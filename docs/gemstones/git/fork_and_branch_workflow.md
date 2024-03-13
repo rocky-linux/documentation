@@ -83,7 +83,7 @@ The high-level steps involved are:
 1. Fork the Repository: Create a personal copy of the project's repository on your GitHub account.
 2. Clone the Fork: Clone your fork to your local machine for development work.
 3. Set Upstream Remote: To stay updated with its changes, add the original project repository as an 'upstream' remote.
-4. Create a Feature Branch: Create a new branch from the updated main branch for each new feature or fix. Branch names should describe the feature or fix it.
+4. Create a Feature Branch: Create a new branch from the updated main branch for each new feature or fix. Branch names should describe the feature or fix.
 5. Commit Changes: Make your changes and commit them with clear and concise commit messages.
 6. Sync with Upstream: Regularly sync your fork and feature branch with the upstream main branch to incorporate new changes and reduce merge conflicts.
 7. Create a Pull Request (PR): Push your feature branch to your fork on GitHub and open a PR against the main project. Your PR should clearly describe the changes and link to any relevant issues.
