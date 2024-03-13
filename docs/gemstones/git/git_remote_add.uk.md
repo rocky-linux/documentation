@@ -1,7 +1,7 @@
 ---
 title: Додавання віддаленого репозиторію за допомогою git CLI
 author: Wale Soyinka
-contributors: null
+contributors: Ganna Zhyrnova
 tags:
   - GitHub
   - git
