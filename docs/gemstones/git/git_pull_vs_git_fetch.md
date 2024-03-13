@@ -1,7 +1,7 @@
 ---
 title: Using git pull and git fetch
 author: Wale Soyinka
-contributors: 
+contributors: Ganna Zhyrnova
 tags:
   - Git
   - git pull
@@ -10,17 +10,17 @@ tags:
 
 ## Introduction 
 
-This Gemstone explains the differences between `git pull` and `git fetch` commands. It also outlines when to appropriately use each command.
+This Gemstone explains the differences between `git pull` and `git fetch` commands. It also outlines when to use each command appropriately.
 
 ## Git Fetch vs Git Pull 
 
 ### Git Fetch
 
-git fetch downloads changes from a remote repository, but doesn't integrate them into your local branch.
+git fetch downloads changes from a remote repository but doesn't integrate them into your local branch.
 
-It is especially useful for seeing what others have committed without merging those changes into your local branch.
+Seeing what others have committed without merging those changes into your local branch is beneficial.
 
-1. List the currently checked out branch
+1. List the currently checked-out branch
      ```
      git branch
      ```
@@ -28,7 +28,7 @@ It is especially useful for seeing what others have committed without merging th
      ```
      git fetch origin main
      ```
-3. Compare the changes beween the HEAD of your local repo and remote origin/main repo. 
+3. Compare the changes between the HEAD of your local repo and the remote origin/main repo. 
      ```
      git log HEAD..origin/main
      ```
@@ -36,7 +36,7 @@ It is especially useful for seeing what others have committed without merging th
 ### Git Pull
 
 Git Pull downloads changes and merges them into your current branch.
-Useful for quickly updating your local branch with changes from the remote repository.
+It is useful for quickly updating your local branch with changes from the remote repository.
 
 1. Pull and Merge Changes**:
      ```
@@ -59,4 +59,4 @@ Useful for quickly updating your local branch with changes from the remote repos
 
 ## Conclusion
 
-Understanding the distinctions between `git fetch` and `git pull` is vital for effective Git workflow management. It is important to choose the right command based on your requirements when working or colloborating via version control systems like github, git, gitlab, gitea and so on.
+Understanding the distinctions between `git fetch` and `git pull` is vital for effective Git workflow management. Choosing the right command based on your requirements is important when working or collaborating via version control systems like GitHub, GitLab, Gitea, etc.
