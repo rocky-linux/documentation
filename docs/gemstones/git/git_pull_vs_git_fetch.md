@@ -59,4 +59,4 @@ It is useful for quickly updating your local branch with changes from the remote
 
 ## Conclusion
 
-Understanding the distinctions between `git fetch` and `git pull` is vital for effective Git workflow management. Choosing the right command based on your requirements is important when working or collaborating via version control systems like GitHub, GitHub, GitHub Labs, Gitea, etc.
+Understanding the distinctions between `git fetch` and `git pull` is vital for effective Git workflow management. Choosing the right command based on your requirements is important when working or collaborating via version control systems like GitHub, GitLab, Gitea, etc.
