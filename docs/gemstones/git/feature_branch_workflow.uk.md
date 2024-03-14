@@ -1,7 +1,7 @@
 ---
 title: Робочий процес розгалуження функції в Git
 author: Wale Soyinka
-contributors: null
+contributors: Ganna Zhyrnova
 tags:
   - git
   - Функціональний робочий процес відділення
