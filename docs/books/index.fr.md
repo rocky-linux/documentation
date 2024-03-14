@@ -59,6 +59,6 @@ Nos livres au format PDF peuvent être téléchargés pour une lecture hors-lign
 * [Italien](https://rocky-linux.github.io/documentation/learning_rsync_rocky_linux.it.pdf)
 * [Ukrainien](https://rocky-linux.github.io/documentation/learning_rsync_rocky_linux.uk.pdf)
 
-### Sed, Awk, Grep: TheThreeSwordsmen
+### The Three Swordsmen
 
 * [Anglais](https://rocky-linux.github.io/documentation/Sed_Awk_Grep_TheTreeSwordsmen.pdf)
