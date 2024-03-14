@@ -28,7 +28,7 @@ Let us run a [Nextcloud](https://nextcloud.com/) self-hosted cloud platform as a
 podman run -d -p 8080:80 nextcloud
 ```
 
-You will receive a prompt to select the container registry to download. In our example, we will use `docker.io/library/nextcloud:latest`.
+You will receive a prompt to select the container registry to download from. In our example, we will use `docker.io/library/nextcloud:latest`.
 
 Once you have downloaded the Nextcloud container, it will run.
 
