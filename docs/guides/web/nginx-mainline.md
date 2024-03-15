@@ -49,7 +49,7 @@ Then, install the `nginx` package:
 sudo dnf install nginx
 ```
 
-Once the installation is done, start the <0>nginx</0> service and enable it to start on reboot all in one go automatically:
+Once the installation is done, start the `nginx` service and enable it to start on reboot all in one go automatically:
 
 ```bash
 sudo systemctl enable --now nginx
