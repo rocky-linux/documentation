@@ -6,7 +6,7 @@ contributors: Ganna Zhyrnova, Neel Chauhan
 
 # Overview
 
-This document aims to provide the reader with a detailed understanding of the various components of an email system, including the installation and basic configuration of one.
+This document aims to provide the reader with a detailed understanding of the various components of an email system, including its installation and basic configuration.
 
 All commands in this document are executed using **root(uid=0)**.
 
@@ -20,7 +20,7 @@ All commands in this document are executed using **root(uid=0)**.
 
 !!! info
 
-    Without a database, Postfix and Dovecot can still work for a small installation.
+    Postfix and Dovecot can still work for a small installation without a database.
 
 ### Install and configure `bind`
 
@@ -62,7 +62,7 @@ zone "rockylinux.me" IN {
 
 !!! question 
 
-    **What is a DNS zone?** A DNS zone is aportion of the DNS namespace that's hosted on a DNS server. A DNS zone contains resource records, and a DNS server responds to queries for records in that namespace. A DNS server can have multiple DNS zones. Simply put, a DNS zone is analogous to a book catalog.
+    **What is a DNS zone?** A DNS zone is a portion of the DNS namespace hosted on a DNS server. A DNS zone contains resource records, and a DNS server responds to queries for records in that namespace. A DNS server can have multiple DNS zones. Simply put, a DNS zone is analogous to a book catalog.
 
 First, initialize BIND:
 
@@ -120,7 +120,7 @@ dns.rockylinux.me.      86400   IN      A       192.168.100.7
 
 ### Install and configure MySQL
 
-First, lets now install MySQL from source:
+First, install MySQL from the source:
 
 ```bash
 Shell(192.168.100.5) > groupadd mysql && useradd -r -g mysql -s /sbin/nologin mysql
@@ -142,7 +142,7 @@ Shell(192.168.100.5) > cd /usr/local/src/mysql-8.0.33 && mkdir build && cd build
 && make && make install
 ```
 
-Next, lets initialize MySQL:
+Next, let's initialize MySQL:
 
 ```bash
 Shell(192.168.100.5) > chown -R mysql:mysql /usr/local/mysql
@@ -178,7 +178,7 @@ Shell(192.168.100.5) > /usr/local/mysql/bin/mysqld_safe  --user=mysql &
 Shell(192.168.100.5) > /usr/local/mysql/bin/mysql -u root --password="pkqaXRuTn1/N"
 ```
 
-Then, lets add our domain entries in MySQL:
+Then, let's add our domain entries in MySQL:
 
 ```sql
 Mysql > ALTER USER 'root'@'localhost' IDENTIFIED BY 'rockylinux.me';
@@ -194,7 +194,7 @@ Mysql > grant all privileges on *.* to 'mailrl'@'%' with grant option;
 
 #### Create tables and insert data
 
-Lets now create the MySQL tables required for Dovecot:
+Let's now create the MySQL tables required for Dovecot:
 
 ```sql
 Shell(192.168.100.5) >  /usr/local/mysql/bin/mysql -u mailrl --password="mail.rockylinux.me"
@@ -231,7 +231,7 @@ Mysql > insert into virtual_aliases(id,domain_id,source,destination) values(1,1,
 Mysql > insert into virtual_aliases(id,domain_id,source,destination) values(2,1,'all@mail.rockylinux.me','leeo@mail.rockylinux.me');
 ```
 
-The password entries for the relevant email users are not shown here, as it requires the use of `doveadm pw -s SHA512-crypt -p twotestandtwo` command. See [here](#ap1)
+The password entries for the relevant email users are not shown here, as it requires using `doveadm pw -s SHA512-crypt -p twotestandtwo` command. See [here](#ap1)
 
 #### Knowledge of SHA512 (SHA-2)
 
@@ -294,7 +294,7 @@ You need to know these binary executable files:
 
 !!! tip
 
-    You can specify the default MTA using the `alternatives -config mta` command if you have more than one MTA on your server.
+    If your server has more than one MTA, you can specify the default MTA using the `alternatives -config mta` command.
 
 #### Explanation of the /etc/postfix/main.cf file
 
@@ -336,21 +336,21 @@ meta_directory = /etc/postfix
 shlib_directory = /usr/lib64/postfix
 ```
 
-The explanation of these parameters are:
+The explanation of these parameters is as follows:
 
-* `compatibility_level = 2`: Enable compatibility with Postfix 2.x configurations.
+* `compatibility_level = 2`: Enables compatibility with Postfix 2.x configurations.
 * `data_directory = /var/lib/postfix`. The Postfix cache directory.
 * `myhostname = host.domain.tld`: **Important:** You need to change it to the hostname under your domain name.
 * `mydomain = domain.tld`: **Important:** You need to change it to your domain name.
 * `myorigin = $myhostname` and `myorigin = $mydomain`: **Important:** parameters that have been commented out. The main function is to complement the sender's mail suffix. `$` represents a reference parameter variable.
 * `inet_interfaces = localhost`: The interfaces to listen to. This value is usually changed to "all".
-* `inet_protocols = all`: Enable IPv4, and IPv6 if an address is found.
+* `inet_protocols = all`: Enables IPv4, and IPv6 if an address is found.
 * `mydestination = \$myhostname, localhost.\$mydomain, localhost`: Indicates the mail server's destination hosts.
 * `unknown_local_recipient_reject_code = 550`: The error code returned when receiving an email to an unknown destination or rejecting an email.
-* `mynetworks =`: Set which networks we should accept emails from.
-* `relay_domains = $mydestination`: Set which domains we should relay emails from.
+* `mynetworks =`: Sets which networks we should accept emails from.
+* `relay_domains = $mydestination`: Sets which domains we should relay emails from.
 * `alias_maps = hash:/etc/aliases`: List of our email server's aliases.
-* `alias_database = hash:/etc/aliases`: The database to be used by aliases.
+* `alias_database = hash:/etc/aliases`: The database is to be used by aliases.
 * `home_mailbox = Maildir/`: **Important**: Out local mailbox location.
 * `debug_peer_level = 2`: Level of log records.
 * `setgid_group = postdrop`: The Unix group for managing Postfix queues.
@@ -584,8 +584,8 @@ The file description is as follows:
 * `dovecot.conf` is the main Dovecot configuration file.
   
   * Load other configuration files via `!include conf.d/*.conf`.
-  * The numeral prefix of the sub configuration file is to facilitate human understanding of its parsing order.
-  * Due to historical reasons, some config files are still separate, which are typically named `*.conf.ext`.
+  * The numeral prefix of the sub-configuration file facilitates human understanding of its parsing order.
+  * Due to historical reasons, some config files are still separate, typically named `*.conf.ext`.
   * In the configuration file, you can use variables divided into **Global variables** and **User variables**, starting with `%`. See [here](https://doc.dovecot.org/configuration_manual/config_file/config_variables/#config-variables).
 
 * `10-auth.conf`: Authentication configuration.
@@ -598,12 +598,12 @@ The file description is as follows:
 #### Some important configuration file parameters
 
 * `protocols = imap pop3 lmtp submission`: List of protocols to be used.
-* `listen = *, ::`: A comma separated list of IPs or hosts where to listen in for connections. `*` listens in all IPv4 interfaces, `::` listens in all IPv6 interfaces.
+* `listen = *, ::`: A comma-separated list of IPs or hosts where to listen in for connections. `*` listens in all IPv4 interfaces, `::` listens in all IPv6 interfaces.
 * `disable_plaintext_auth = yes`: Whether to turn off plaintext authentication. 
 * `auth_mechanisms = `: The type of authentication mechanism to be used. Multiple values can be specified and separated by spaces. Values: plain, login, digest-md5, cram-md5, ntlm, rpa, apop, anonymous, gssapi, otp, skey, gss-spnego.
 * `login_trusted_networks= `: Which IP networks are allowed to use Dovecot. It can be a single IP address, a network segment, or both. As an example: `login_trusted_networks = 10.1.1.0/24 192.168.100.2`
 * `mail_location = `: For an empty value, Dovecot attempts to find the mailboxes automatically (looking at `~/Maildir`, `/var/mail/username`, `~/mail`, and `~/Mail`, in that order). However, auto-detection commonly fails for users whose mail directory hasn’t yet been created, so you should explicitly state the full location here, if possible.
-* `mail_privileged_group = `: This group is enabled temporarily for privileged operations. Currently, this is used only with the INBOX when either its initial creation or dotlocking fails. Typically, this is set to `mail` to access `/var/mail`.
+* `mail_privileged_group = `: This group is enabled temporarily for privileged operations. This is used only with the INBOX when its initial creation or dotlocking fails. Typically, this is set to `mail` to access `/var/mail`.
 
 #### Modify multiple files
 
@@ -661,7 +661,7 @@ userdb {
 
 !!! warning
 
-    Don't write the above grammar on one line, such as this: `userdb {driver = sql args = uid=vmail gid=vmail home=/var/mail/vhosts/%d/%n}`. Otherwise, it won't work.
+    Don't write the above grammar in one line, such as `userdb {driver = sql args = uid=vmail gid=vmail home=/var/mail/vhosts/%d/%n}`. Otherwise, it won't work.
 
 Edit the `/etc/dovecot/dovecot-sql.conf.ext` file with the following contents:
 
