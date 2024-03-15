@@ -33,13 +33,13 @@ tags:
 
 Для завантаження репозиторію потрібен `wget`. Спочатку встановіть це, а потім інсталюйте репозиторій EPEL, якщо він у вас ще не встановлений, за допомогою:
 
-```
+```bash
 dnf install wget epel-release
 ```
 
 Завантажте та ввімкніть безкоштовний репозиторій Atomicorp:
 
-```
+```bash
 wget -q -O - https://www.atomicorp.com/installers/atomic | sh
 ```
 
@@ -51,17 +51,17 @@ wget -q -O - https://www.atomicorp.com/installers/atomic | sh
 
 Вам потрібен лише атомарний репозиторій для кількох пакунків. З цієї причини ви збираєтеся змінити репозиторій і вказати лише потрібні пакети:
 
-```
+```bash
 vi /etc/yum.repos.d/atomic.repo
 ```
 
 Додайте цей рядок під «enabled = 1» у верхній частині:
 
-```
+```bash
 includepkgs = ossec* GeoIP* inotify-tools
 ```
 
-Це єдина зміна, яка вам потрібна. Збережіть зміни та вийдіть зі сховища (у `vi` це ++esc++ для входу в командний режим, потім ++shift+:+wq++ для збереження та виходу).
+Це єдина зміна, яка вам потрібна. Збережіть зміни та вийдіть із сховища (у `vi` це ++esc++ для входу в командний режим, потім ++shift+двокрапка+"wq"++ для збереження та виходу).
 
 Це обмежує репозиторій Atomicorp лише для встановлення та оновлення цих пакетів.
 
@@ -69,7 +69,7 @@ includepkgs = ossec* GeoIP* inotify-tools
 
 З налаштованим репозиторієм вам потрібно встановити пакунки:
 
-```
+```bash
 dnf install ossec-hids-server ossec-hids inotify-tools
 ```
 
@@ -81,13 +81,13 @@ dnf install ossec-hids-server ossec-hids inotify-tools
 
 Щоб відредагувати файл конфігурації, введіть:
 
-```
+```bash
 vi /var/ossec/etc/ossec.conf
 ```
 
 Автор розбере цю конфігурацію, показуючи зміни в рядку та пояснюючи їх:
 
-```
+```bash
 <global>
   <email_notification>yes</email_notification>  
   <email_to>admin1@youremaildomain.com</email_to>
@@ -108,7 +108,7 @@ vi /var/ossec/etc/ossec.conf
 
 Розділи `<white_list>` стосуються локальної IP-адреси сервера та «загальнодоступної» IP-адреси (пам’ятайте, що ми замінюємо приватну IP-адресу) брандмауера, з якого відображатимуться всі з’єднання в довіреній мережі. Ви можете додати багато записів `<white_list>`.
 
-```
+```bash
 <syscheck>
   <!-- Frequency that syscheck is executed -- default every 22 hours -->
   <frequency>86400</frequency>
@@ -122,7 +122,7 @@ vi /var/ossec/etc/ossec.conf
 
 Змінення `<frequence>` для виконання `<rootcheck>` на один раз кожні 24 години (86400 секунд) замість 22 годин за замовчуванням є необов’язковою зміною.
 
-```
+```bash
 <localfile>
   <log_format>apache</log_format>
   <location>/var/log/httpd/*access_log</location>
@@ -137,7 +137,7 @@ vi /var/ossec/etc/ossec.conf
 
 Вам потрібно додати розташування журналів Apache і додати їх як символи підстановки, оскільки ви можете мати купу журналів для багатьох різних веб-клієнтів.
 
-```
+```bash
   <command>
     <name>firewalld-drop</name>
     <executable>firewall-drop.sh</executable>
@@ -157,7 +157,7 @@ vi /var/ossec/etc/ossec.conf
 
 Увімкніть і запустіть службу після завершення всіх змін конфігурації. Якщо все розпочато правильно, ви готові рухатися далі:
 
-```
+```bash
 systemctl enable ossec-hids
 systemctl start ossec-hids
 ```

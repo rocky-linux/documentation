@@ -1,7 +1,7 @@
 ---
 title: Podman
 author: Neel Chauhan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 date: 2024-03-07
 tags:
   - docker

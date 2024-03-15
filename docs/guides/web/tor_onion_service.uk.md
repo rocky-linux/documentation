@@ -1,7 +1,7 @@
 ---
 title: Сервіс Tor Onion
 author: Neel Chauhan
-contributors: null
+contributors: Ganna Zhrynova
 tested_with: 9.3
 tags:
   - web

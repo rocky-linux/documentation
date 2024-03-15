@@ -36,7 +36,7 @@ tags:
 
 Щоб встановити базовий пакет, використовуйте цю команду. Він встановить усі відсутні залежності. Вам також потрібен `wget`, якщо він не встановлений:
 
-```
+```bash
 dnf install mod_security wget
 ```
 
@@ -54,40 +54,42 @@ dnf install mod_security wget
 
 4. На вашому сервері перейдіть до каталогу конфігурації Apache:
 
-    ```
+    ```bash
     cd /etc/httpd/conf
     ```
 
 5. Введіть `wget` і вставте своє посилання. Приклад:
 
-    ```
+    ```bash
     wget https://github.com/coreruleset/coreruleset/archive/refs/tags/v3.3.5.tar.gz
     ```
 
 6. Розпакуйте файл:
 
-    ```
+    ```bash
     tar xzvf v3.3.5.tar.gz
     ```
+
     Це створює каталог із інформацією про випуск у назві. Приклад: "coreruleset-3.3.5"
 
 7. Створіть символічне посилання «crs» на каталог випуску. Приклад:
 
-    ```
+    ```bash
     ln -s coreruleset-3.3.5/ /etc/httpd/conf/crs
     ```
 
 8. Видаліть файл `tar.gz`. Приклад:
 
-    ```
+    ```bash
     rm -f v3.3.5.tar.gz
     ```
 
 9. Скопіюйте тимчасову конфігурацію, щоб вона завантажувалася під час запуску:
 
-    ```
+    ```bash
     cp crs/crs-setup.conf.example crs/crs-setup.conf
     ```
+
     Цей файл можна редагувати, але вам, імовірно, не потрібно буде вносити жодних змін.
 
 Тепер діють правила `mod_security`.
@@ -98,12 +100,13 @@ dnf install mod_security wget
 
 `mod_security` вже має файл конфігурації, розташований у `/etc/httpd/conf.d/mod_security.conf`. Вам потрібно буде змінити цей файл, щоб включити правила OWASP. Для цього відредагуйте файл конфігурації:
 
-```
+```bash
 vi /etc/httpd/conf.d/mod_security.conf
 ```
+
 Додайте наступний вміст безпосередньо перед кінцевим тегом (`</IfModule`):
 
-```
+```bash
     Include    /etc/httpd/conf/crs/crs-setup.conf
 
     SecAction "id:900110,phase:1,pass,nolog,\
@@ -129,25 +132,25 @@ vi /etc/httpd/conf.d/mod_security.conf
     # ...
 ```
 
-Використовуйте ++c++, щоб вийти з режиму вставки, і ++shift:+wq, щоб зберегти зміни та вийти.
+Використовуйте ++esc++, щоб вийти з режиму вставки, і ++shift+двокрапка+"wq"++, щоб зберегти зміни та вийти.
 
 ## Перезапустіть `httpd` і перевірте `mod_security`
 
 Все, що вам потрібно зробити на цьому етапі, це перезапустити `httpd`:
 
-```
+```bash
 systemctl restart httpd
 ```
 
 Переконайтеся, що служба запущена належним чином:
 
-```
+```bash
 systemctl status httpd
 ```
 
 Подібні записи в `/var/log/httpd/error_log` покажуть, що `mod_security` завантажується правильно:
 
-```
+```bash
 [Thu Jun 08 20:31:50.259935 2023] [:notice] [pid 1971:tid 1971] ModSecurity: PCRE compiled version="8.44 "; loaded version="8.44 2020-02-12"
 [Thu Jun 08 20:31:50.259936 2023] [:notice] [pid 1971:tid 1971] ModSecurity: LUA compiled version="Lua 5.4"
 [Thu Jun 08 20:31:50.259937 2023] [:notice] [pid 1971:tid 1971] ModSecurity: YAJL compiled version="2.1.0"
@@ -156,7 +159,7 @@ systemctl status httpd
 
 Якщо ви отримуєте доступ до веб-сайту на сервері, ви маєте отримати запис у `/var/log/httpd/modsec_audit.log`, який показує завантаження правил OWASP:
 
-```
+```bash
 Apache-Handler: proxy:unix:/run/php-fpm/www.sock|fcgi://localhost
 Stopwatch: 1686249687051191 2023 (- - -)
 Stopwatch2: 1686249687051191 2023; combined=697, p1=145, p2=458, p3=14, p4=45, p5=35, sr=22, sw=0, l=0, gc=0
@@ -165,6 +168,7 @@ Producer: ModSecurity for Apache/2.9.6 (http://www.modsecurity.org/); OWASP_CRS/
 Server: Apache/2.4.53 (Rocky Linux)
 Engine-Mode: "ENABLED"
 ```
+
 ## Висновок
 
 `mod_security` з правилами OWASP є ще одним інструментом, який допоможе посилити веб-сервер Apache. Періодична перевірка [сайту GitHub на наявність новіших правил](https://github.com/coreruleset/coreruleset) і останньої офіційної версії є постійним етапом обслуговування, який вам потрібно робити.

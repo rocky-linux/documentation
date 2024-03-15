@@ -529,7 +529,7 @@ tags:
     [user@server ~]$ sudo nmcli connection modify enp1s0 ipv4.method manual
     ```
 
-    !!!tip "Коли з’єднання оновлюється?"
+    !!! tip "Коли з’єднання оновлюється?"
 
         `nmcli connection modify` не змінюватиме конфігурацію *runtime*, але оновлюватиме конфігурацію `/etc/sysconfig/network-scripts` файли з відповідними значеннями на основі того, що ви сказали `nmcli` налаштувати.
 

@@ -73,7 +73,7 @@ sudo firewall-cmd --permanent --zone=public --add-service=https
 - `–-zone=public` вказує брандмауеру дозволити вхідні підключення до цього порту від усіх.
 - Нарешті, `--add-service=http` і `--add-service=https` вказують `firewalld` передавати весь трафік HTTP і HTTPS на сервер.
 
-These configurations won’t take effect until you force the issue. Для цього скажіть `firewalld` перезавантажити свої конфігурації:
+Ці конфігурації не почнуть діяти, доки ви не примусово усунете проблему. Для цього скажіть `firewalld` перезавантажити свої конфігурації:
 
 ```bash
 sudo firewall-cmd --reload
@@ -89,7 +89,7 @@ systemctl restart firewalld
 ```
 ````
 
-Щоб забезпечити доступність портів, запустіть `firewall-cmd --list-all`. A properly-configured firewall will look a bit like this:
+Щоб забезпечити доступність портів, запустіть `firewall-cmd --list-all`. Правильно налаштований брандмауер виглядатиме приблизно так:
 
 ```bash
 public (active)
