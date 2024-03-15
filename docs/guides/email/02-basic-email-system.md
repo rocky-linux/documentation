@@ -120,7 +120,7 @@ dns.rockylinux.me.      86400   IN      A       192.168.100.7
 
 ### Install and configure MySQL
 
-First, let now install MySQL from the source:
+First, install MySQL from the source:
 
 ```bash
 Shell(192.168.100.5) > groupadd mysql && useradd -r -g mysql -s /sbin/nologin mysql
