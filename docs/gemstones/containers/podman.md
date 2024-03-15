@@ -50,7 +50,7 @@ You will get a list of running containers:
 04f7553f431a  docker.io/library/nextcloud:latest  apache2-foregroun...  5 minutes ago  Up 5 minutes  0.0.0.0:8080->80/tcp  compassionate_meninsky
 ```
 
-To make a `systemd` container and enable it on reboot, run the following:
+To make a `systemd` service for the Nextcloud container and enable it on reboot, run the following:
 
 ```bash
 podman generate systemd --name compassionate_meninsky > /usr/lib/systemd/system/nextcloud.service
