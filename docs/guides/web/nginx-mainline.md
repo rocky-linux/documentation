@@ -12,7 +12,7 @@ tags:
 
 ## Introduction
 
-*Nginx* is a web server designed to be fast, efficient, and compatible with almost anything. I use it fairly, and once you get the hang of it — it’s pretty easy to set up and configure. To that end, I've written this beginner's guide.
+*Nginx* is a web server designed to be fast, efficient, and compatible with almost anything. I use it often, and once you get the hang of it — it’s pretty easy to set up and configure. To that end, I've written this beginner's guide.
 
 Here’s a short rundown of the ways Nginx stands out/features it has:
 
