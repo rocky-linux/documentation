@@ -9,11 +9,11 @@ tags:
 
 # File System
 
-In this chapter you will learn how to work with files systems.
+In this chapter, you will learn how to work with file systems.
 
 ****
 
-**Objectives** : In this chapter, future Linux administrators will learn how to:
+**Objectives**: In this chapter, future Linux administrators will learn how to:
 
 :heavy_check_mark: manage partitions on disk;   
 :heavy_check_mark: use LVM for a better use of disk resources;   
@@ -35,9 +35,9 @@ and also discover:
 
 ## Partitioning
 
-Partitioning will allow the installation of several operating systems because it is impossible to have several of them cohabit on the same logical drive. Partitioning also allows the separation of data logically (security, access optimization, ...).
+Partitioning will allow the installation of several operating systems because it is impossible for them to cohabit on the same logical drive. It also allows the separation of data logically (security, access optimization, etc.).
 
-The division of the physical disk into partitioned volumes is recorded in the partition table, stored in the first sector of the disk (MBR: _Master Boot Record_).
+The partition table, stored in the first sector of the disk (MBR: _Master Boot Record_), records the division of the physical disk into partitioned volumes.
 
 For **MBR** partition table types, the same physical disk can be divided into a maximum of 4 partitions:
 
@@ -46,12 +46,12 @@ For **MBR** partition table types, the same physical disk can be divided into a 
 
 !!! Warning
 
-    There can be only one extended partition per physical disk, that is, a physical disk can have in the MBR partition table up to:
+    There can be only one extended partition per physical disk. That is, a physical disk can have in the MBR partition table up to:
     
     1. Three primary partitions plus one extended partition
     2. Four primary partitions 
 
-    The extended partition cannot write data and format, and can only contain logical partitions. The largest physical disk that can be recognized by the MBR partition table is **2TB**.
+    The extended partition cannot write data and format and can only contain logical partitions. The largest physical disk that the MBR partition table can recognize is **2TB**.
 
 ![Breakdown into only 4 primary partitions](images/07-file-systems-001.png)
 
@@ -74,7 +74,7 @@ In the world of GNU/Linux, everything is a file. For disks, they are recognized 
 
 The Linux kernel contains drivers for most hardware devices.
 
-What we call _devices_ are the files, stored without `/dev`, identifying the different hardware detected by the motherboard.
+What we call _devices_ are the files stored without `/dev`, identifying the different hardware detected by the motherboard.
 
 The service called udev is responsible for applying the naming conventions (rules) and applying them to the devices it detects.
 
@@ -102,15 +102,15 @@ sudo fdisk -l /dev/sdc2
 
 ### `parted` command
 
-The `parted` (_partition editor_) command is able to partition a disk without the drawbacks of `fdisk`.
+The `parted` (_partition editor_) command can partition a disk without the drawbacks of `fdisk`.
 
-The `parted` command can be used either on the command-line or interactively. It also has a recovery function capable of rewriting a deleted partition table.
+The `parted` command can be used on the command line or interactively. It also has a recovery function capable of rewriting a deleted partition table.
 
 ```
 parted [-l] [device]
 ```
 
-Under graphical interface, there is the very complete `gparted` tool: *G*nome *PAR*tition *ED*itor.
+Under the graphical interface, there is the very complete `gparted` tool: *G*nome *PAR*tition *ED*itor.
 
 The `gparted -l` command lists all logical devices on a computer.
 
@@ -152,7 +152,7 @@ $ sudo cfdisk /dev/sda
 The preparation, without _LVM_, of the physical media goes through five steps:
 
 * Setting up the physical disk;
-* Partitioning of the volumes (division of the disk, possibility of installing several systems, ...);
+* Partitioning of the volumes (a division of the disk, possibility of installing several systems, ...);
 * Creation of the file systems (allows the operating system to manage the files, the tree structure, the rights, ...);
 * Mounting of file systems (registration of the file system in the tree structure);
 * Manage user access.
@@ -161,7 +161,7 @@ The preparation, without _LVM_, of the physical media goes through five steps:
 
 **L**ogical **V**olume **M**anager (*LVM*)
 
-The partition created by the **standard partition** cannot dynamically adjust the resources of the hard disk, once the partition is mounted, the capacity is completely fixed, this constraint is unacceptable on the server. Although the standard partition can be forcibly expanded or shrunk through certain technical means, it is easy to cause data loss. LVM can solve this problem very well. LVM is available under Linux from kernel version 2.4, and its main features are:
+The partition created by the **standard partition** cannot dynamically adjust the resources of the hard disk, once the partition is mounted, the capacity is completely fixed, this constraint is unacceptable on the server. Although the standard partition can be forcibly expanded or shrunk through certain technical means, it can easily cause data loss. LVM can solve this problem very well. LVM is available under Linux from kernel version 2.4, and its main features are:
 
 * More flexible disk capacity;
 * Online data movement;
@@ -177,7 +177,7 @@ The principle of LVM is very simple:
 
 **The physical media**: The storage medium of the LVM can be the entire hard disk, disk partition, or RAID array. The device must be converted, or initialized, to an LVM Physical Volume(**PV**), before further operations can be performed.
 
-**PV(Physical Volume)**: The basic storage logic block of LVM. To create a physical volume, you can use a disk partition or the disk itself.
+**PV(Physical Volume)** is the basic storage logic block of LVM. You can create a physical volume by using a disk partition or the disk itself.
 
 **VG(Volume Group)**: Similar to physical disks in a standard partition, a VG consists of one or more PV.
 
@@ -185,7 +185,7 @@ The principle of LVM is very simple:
 
 <b><font color="blue">PE</font></b>: The smallest unit of storage that can be allocated in a Physical Volume, default to <b>4MB</b>. You can specify an additional size.
 
-<b><font color="blue">LE</font></b>: The smallest unit of storage that can be allocated in a Logical Volume. In the same VG, PE and LE are the same and correspond one to one.
+<b><font color="blue">LE</font></b>: The smallest unit of storage that can be allocated in a Logical Volume. In the same VG, PE, and LE are the same and correspond one to one.
 
 ![Volume group, PE size equal to 4MB](images/07-file-systems-004.png)
 
@@ -197,7 +197,7 @@ The disadvantage is that if one of the physical volumes becomes out of order, th
 
 !!! info
 
-    In the physical disk, the smallest storage unit is the **sector**; in the file system, the smallest storage unit of GNU/Linux is the **block**, which is called **cluster** in Windows operating system.; in RAID, the smallest storage unit is **chunk**.
+    In the physical disk, the smallest storage unit is the **sector**; in the file system, the smallest storage unit of GNU/Linux is the **block**, which is called **cluster** in the Windows operating system.; in RAID, the smallest storage unit is **chunk**.
 
 ### The Writing Mechanism of LVM
 
@@ -257,7 +257,7 @@ pvcreate -- physical volume « /dev/hdb » successfully created
 
 #### `vgcreate` command
 
-The `vgcreate` command is used to create volume groups. It groups one or more physical volumes into a volume group.
+The `vgcreate` command creates volume groups. It groups one or more physical volumes into a volume group.
 
 ```
 vgcreate  <VG_name>  <PV_name...>  [option] 
@@ -291,8 +291,8 @@ lvcreate -- logical volume « /dev/volume1/VolLog1 » successfully created
 
 | Option    | Description                                                         |
 |-----------|---------------------------------------------------------------------|
-| `-L size` | Sets the logical volume size in K, M or G.                                   |
-| `-n name` | Sets the LV name. Special file created in `/dev/name_volume` with this name. |
+| `-L size` | Sets the logical volume size in K, M, or G.                                   |
+| `-n name` | Sets the LV name. A special file was created in `/dev/name_volume` with this name. |
 | `-l  number`  | Sets the percentage of the capacity of the hard disk to use. You can also use the number of PE. One PE equals 4MB.  |
 
 !!! info
@@ -361,7 +361,7 @@ The preparation with LVM of the physical support is broken down into the followi
 A _file system_ **FS** is in charge of the following actions:
 
 * Securing access and modification rights to files;
-* Manipulating files: create, read, modify and delete;
+* Manipulating files: create, read, modify, and delete;
 * Locating files on the disk;
 * Managing partition space.
 
@@ -389,7 +389,7 @@ Example:
 
     Without a file system it is not possible to use the disk space.
 
-Each file system has a structure which is identical on each partition. A **Boot Sector** and a **Super block** initialized by the system and then an **Inode table** and a **Data block** initialized by the administrator.
+Each file system has an identical structure on each partition. The system initializes a **Boot Sector** and a **Super block**, and then the administrator initializes an **Inode table** and a **Data block**.
 
 !!! Note
 
@@ -397,7 +397,7 @@ Each file system has a structure which is identical on each partition. A **Boot 
 
 ### Boot sector
 
-Boot sector is the first sector of bootable storage media, that is, 0 cylinder, 0 track, 1 sector(1 sector equals 512 bytes). It consists of three parts:
+The boot sector is the first sector of bootable storage media, that is, 0 cylinder, 0 track, 1 sector(1 sector equals 512 bytes). It consists of three parts:
 
 1. MBR(master boot record): 446 bytes.
 2. DPT(disk partition table): 64 bytes.
@@ -405,7 +405,7 @@ Boot sector is the first sector of bootable storage media, that is, 0 cylinder, 
 
 |   Item      |   Description |
 |   ---       |   ---         |
-|   MBR       | Stores the "boot loader"(or "GRUB"); load the kernel, pass parameters; provide a menu interface at boot time; transfer to another loader, such as when multiple operating systems are installed. |
+| MBR | Stores the "boot loader"(or "GRUB"); loads the kernel, passes parameters; provides a menu interface at boot time; transfers to another loader, such as when multiple operating systems are installed. |
 |   DPT       | Records the partition status of the entire disk.              |
 |   BRID      | Determines whether the device is usable to boot.               |
 
@@ -425,9 +425,9 @@ It describes the File System:
 * Size of the inode list;
 * Number and list of free inodes.
 
-A copy is loaded in the central memory as soon as the system is initialized. This copy is updated as soon as it is modified and the system saves it periodically (command `sync`).
+After the system is initialized, a copy is loaded into the central memory. This copy is updated as soon as modified, and the system saves it periodically (command `sync`).
 
-When the system stops, it also copies this table in memory to its block.
+When the system stops, it copies this table in memory to its block.
 
 ### Table of inodes
 
@@ -437,9 +437,9 @@ The size of the **inode table** is defined at its creation and is stored on the 
 
     An inode number is unique within a file system.
 
-A copy is loaded in the central memory as soon as the system is initialized. This copy is updated as soon as it is modified and the system saves it periodically (command `sync`).
+After the system is initialized, a copy is loaded into the central memory. This copy is updated as soon as it is modified, and the system saves it periodically (command `sync`).
 
-When the system stops, it also copies this table in memory to its block.
+When the system stops, it copies this table in memory to its block.
 
 A file is managed by its inode number.
 
@@ -458,13 +458,13 @@ Information present in the *inode table* :
 * Date the file was last accessed;
 * Date the file was last modified;
 * Date of the last modification of the inode (= creation);
-* Table of several pointers (block table) to the logical blocks containing the pieces of the file.
+* Table of several pointers (block table) to the logical blocks containing the file pieces.
 
 ### Data block
 
-Its size corresponds to the rest of the available space of the partition. This area contains the catalogs corresponding to each directory and the data blocks corresponding to the contents of the files.
+Its size corresponds to the rest of the partition's available space. This area contains the catalogs corresponding to each directory and the data blocks corresponding to the file's contents.
 
-**In order to guarantee the consistency of the file system**, an image of the superblock and the inode table is loaded into memory (RAM) when the operating system is loaded so that all I/O operations are done through these system tables. When the user creates or modifies files, this memory image is updated first. The operating system must therefore regularly update the superblock of the logical disk (`sync` command).
+**To guarantee the consistency of the file system**, an image of the superblock and the inode table is loaded into memory (RAM) when the operating system is loaded so that all I/O operations are done through these system tables. When the user creates or modifies files, this memory image is updated first. The operating system must, therefore, regularly update the superblock of the logical disk (`sync` command).
 
 These tables are written to the hard disk when the system is shut down.
 
@@ -476,7 +476,7 @@ These tables are written to the hard disk when the system is shut down.
 
 It is possible to check the consistency of a file system with the `fsck` command.
 
-In case of errors, solutions are proposed to repair the inconsistencies. After repair, files that remain without entries in the inode table are attached to the `/lost+found` folder of the logical drive.
+In case of errors, solutions are proposed to repair the inconsistencies. After repair, files that remain without entries in the inode table are attached to the logical drive's `/lost+found` folder.
 
 #### `fsck` command
 
@@ -513,11 +513,11 @@ By definition, a File System is a tree structure of directories built from a roo
 
 !!! Note
 
-    In Linux everything is a file.
+    In Linux, everything is a file.
 
 Text document, directory, binary, partition, network resource, screen, keyboard, Unix kernel, user program, ...
 
-Linux meets the **FHS** (_Filesystems Hierarchy Standard_) (see `man hier`) which defines the names of folders and their roles.
+Linux meets the **FHS** (_Filesystems Hierarchy Standard_) (see `man hier`), which defines the folders' names and roles.
 
 | Directory  | Functionality                                                 | Complete word                 |
 |------------|---------------------------------------------------------------|-------------------------------|
@@ -527,13 +527,13 @@ Linux meets the **FHS** (_Filesystems Hierarchy Standard_) (see `man hier`) whic
 | `/bin`     | Executables of basic system commands                          | _binaries_                    |
 | `/usr/bin` | System administration commands                                |                               |
 | `/lib`     | Shared libraries and kernel modules                           | _libraries_                   |
-| `/usr`     | Save data resources related to UNIX                           | _UNIX System Resources_       |
+| `/usr`     | Saves data resources related to UNIX                          | _UNIX System Resources_       |
 | `/mnt`     | Temporary mount point directory                               | _mount_                       |
 | `/media`   | For mounting removable media                                  |                               |
-| `/misc`    | For mounting the shared directory of the NFS service.         |                               |
+| `/misc`    | To mount the shared directory of the NFS service.             |                               |
 | `/root`    | Administrator's login directory                               |                               |
 | `/home`    | The upper-level directory of a common user's home directory   |                               |
-| `/tmp`     | Directory containing temporary files                          | _temporary_                   |
+| `/tmp`     | The directory containing temporary files                      | _temporary_                   |
 | `/dev`     | Special device files                                          | _device_                      |
 | `/etc`     | Configuration and script files                                | _editable text configuration_ |
 | `/opt`     | Specific to installed applications                            | _optional_                    |
@@ -543,10 +543,10 @@ Linux meets the **FHS** (_Filesystems Hierarchy Standard_) (see `man hier`) whic
 | `/run`     | That is /var/run                                              |                               |
 | `/srv`     | Service Data Directory                                        | _service_                     |
 
-* To perform a mount or unmount, at the tree level, you must not be under its mount point.
+* To mount or unmount at the tree level, you must not be under its mount point.
 * Mounting on a non-empty directory does not delete the content. It is only hidden.
 * Only the administrator can perform mounts.
-* Mount points to be automatically mounted at boot time must be entered in `/etc/fstab`.
+* Mount points automatically mounted at boot time must be entered in `/etc/fstab`.
 
 ### `/etc/fstab` file
 
@@ -573,14 +573,14 @@ proc                           /proc     proc    defaults        0   0
 | 2      | Mount point name, **absolute path** (except **swap**)                                             |
 | 3      | Filesystem type (ext4, swap, ...)                                                                 |
 | 4      | Special options for mounting (`defaults`, `ro`, ...)                                              |
-| 5      | Enable or disable backup management (0:not backed up, 1:backed up). The `dump` command is used for backup here. This is an outdated feature that was originally designed to back up old file systems on tape.  |
+| 5      | Enable or disable backup management (0:not backed up, 1:backed up). The `dump` command is used for backup here. This outdated feature was initially designed to back up old file systems on tape.  |
 | 6      | Check order when checking the FS with the `fsck` command (0:no check, 1:priority, 2:not priority) |
 
-The `mount -a` command allows you to mount automatically based on the contents of the configuration file `/etc/fstab`, the mounted information is then written to `/etc/mtab`.
+The `mount -a` command allows you to mount automatically based on the contents of the configuration file `/etc/fstab`. The mounted information is then written to `/etc/mtab`.
 
 !!! Warning
 
-    Only the mount points listed in `/etc/fstab` will be mounted on reboot. Generally speaking, we do not recommend writing USB flash disk and removable hard drives to the `/etc/fstab` file, because when the external device is unplugged and rebooted, the system will prompt that the device cannot be found, resulting in a failure to boot. So what am I supposed to do? Temporary mount, for example:
+    Only the mount points listed in `/etc/fstab` will be mounted on reboot. Generally speaking, we do not recommend writing USB flash disks and removable hard drives to the `/etc/fstab` file because when the external device is unplugged and rebooted, the system will prompt that the device cannot be found, resulting in a failure to boot. So what am I supposed to do? Temporary mount, for example:
     
     ```bash
     Shell > mkdir /mnt/usb     
@@ -625,7 +625,7 @@ Example:
 
 !!! Note
 
-    The `mount` command alone displays all mounted file systems. If the mount parameter is `-o defaults`, it means that it is equivalent to `-o rw,suid,dev,exec,auto,nouser,async` and these parameters are independent of the file system. If you need to browse special mount options related to the file system, please read the "Mount options FS-TYPE" section in `man 8 mount` (FS-TYPE is replaced with the corresponding file system, such as ntfs, vfat, ufs, etc.)
+    The `mount` command alone displays all mounted file systems. If the mount parameter is `-o defaults`, it is equivalent to `-o rw,suid,dev,exec,auto,nouser,async` and these parameters are independent of the file system. If you need to browse special mount options related to the file system, please read the "Mount options FS-TYPE" section in `man 8 mount` (FS-TYPE is replaced with the corresponding file system, such as ntfs, vfat, ufs, etc.)
 
 #### `umount` command
 
@@ -655,12 +655,12 @@ Example:
 
 ## File naming convention
 
-As in any system, in order to be able to find one's way through the tree structure and the file management, it is important to respect the file naming rules.
+As in any system, it is important to respect the file naming rules to navigate the tree structure and file management.
 
 * Files are coded on 255 characters;
 * All ASCII characters can be used;
 * Uppercase and lowercase letters are differentiated;
-* Most files have no concept of file extension. In the GNU/Linux world, most file extensions are not required, except for a few (for example, .jpg, .mp4, .gif, etc.).
+* Most files do not have a concept for file extension. In the GNU/Linux world, most file extensions are not required, except for a few (for example, .jpg, .mp4, .gif, etc.).
 
 Groups of words separated by spaces must be enclosed in quotation marks:
 
@@ -670,11 +670,11 @@ Groups of words separated by spaces must be enclosed in quotation marks:
 
 !!! Note
 
-    While there is nothing technically wrong with creating a file or directory with a space in it, it is generally a "best practice" to avoid this and replace any space with an underscore.
+    While nothing is technically wrong with creating a file or directory with a space, it is generally a "best practice" to avoid this and replace any space with an underscore.
 
 !!! Note
 
-    The **.** at the beginning of the file name only serves to hide it from a simple `ls`.
+    The **.** at the beginning of the file name only hides it from a simple `ls`.
 
 Examples of file extension agreements:
 
@@ -700,7 +700,7 @@ Examples of file extension agreements:
 | `1` | Inode number                                                                      |
 | `2` | File type (1st character of the block of 10), "-" means this is an ordinary file. |
 | `3` | Access rights (last 9 characters of the block of 10)                              |
-| `4` | If this is a directory, this number represents how many subdirectories there are in that directory, including hidden ones. If this is a file, indicates the number of hard links, when the number 1 is, that is, there is only one hard link, that is, it itself.                   |
+| `4` | If this is a directory, this number represents how many subdirectories there are in that directory, including hidden ones. If this is a file, it indicates the number of hard links. When the number 1 is, there is only one hard link.                   |
 | `5` | Name of the owner                                                                 |
 | `6` | Name of the group                                                                 |
 | `7` | Size (byte, kilo, mega)                                                           |
@@ -711,17 +711,17 @@ In the GNU/Linux world, there are seven file types:
 
 | File types  | Description                                                                                                                                |
 |:-----------:|--------------------------------------------------------------------------------------------------------------------------------------------|
-| **-**       | Represents a ordinary file. Including plain text files (ASCII); binary files (binary); data format files (data); various compressed files. |
+| **-**       | Represents an ordinary file. Including plain text files (ASCII); binary files (binary); data format files (data); various compressed files. |
 | **d**       | Represents a directory file. |
-| **b**       | Represents a block device file. Includes all kinds of hard drives, USB drives and so on. | 
+| **b**       | Represents a block device file. It includes hard drives, USB drives, and so on. | 
 | **c**       | Represents a character device file. Interface device of serial port, such as mouse, keyboard, etc. |
 | **s**       | Represents a socket file. It is a file specially used for network communication. | 
-| **p**       | Represents a pipe file. It is a special file type. The main purpose is to solve the errors caused by multiple programs accessing a file at the same time. FIFO is the abbreviation of first-in-first-out. |
+| **p**       | Represents a pipe file. It is a special file type. The main purpose is to solve the errors caused by multiple programs accessing a file simultaneously. FIFO is the abbreviation of first-in-first-out. |
 | **l**       | Represents soft link files, also called symbolic link files, are similar to shortcuts in Windows. Hard link file, also known as physical link file.| 
 
-#### Supplementary description of directory
+#### Supplementary description of the directory
 
-In each directory, there are two hidden files:  **.** and **..**. You need to use `ls -al` to view, for example:
+Each directory has two hidden files:  **.** and **..**. You need to use `ls -al` to view, for example:
 
 ```bash
 # . Indicates that in the current directory, for example, you need to execute a script in a directory, usually:
@@ -741,7 +741,7 @@ Shell > ls -ldi /tmp/t1
 
 #### Special files
 
-In order to communicate with peripherals (hard disks, printers...), Linux uses interface files called special files (_device file_ or _special file_). They allow identification by the peripherals.
+To communicate with peripherals (hard disks, printers, etc.), Linux uses interface files called special files (_device file_ or _special file_). These files allow the peripherals to identify themselves.
 
 These files are special because they do not contain data but specify the access mode to communicate with the device.
 
@@ -765,18 +765,18 @@ crw-------   1   root  root  8, 0 jan 1 1970 /dev/tty0
 These are the pipe (_pipes_) and the _socket_ files.
 
 * **Pipe files** pass information between processes by FIFO (_First In, First Out_).
-One process writes transient information to a _pipe_ file and another reads it. After reading, the information is no longer accessible.
+One process writes transient information to a _pipe_ file, and another reads it. After reading, the information is no longer accessible.
 
 * **Socket files** allow bidirectional inter-process communication (on local or remote systems). They use an _inode_ of the file system.
 
 #### Link files
 
-These files give the possibility to give several logical names to the same physical file. A new access point to the file is therefore created.
+These files allow the possibility of giving several logical names to the same physical file. A new access point to the file is therefore created.
 
 There are two types of link files:
 
-* Soft link file, also called symbolic link files;
-* Hard link file, also called physical link files.
+* Soft link files, also called symbolic link files;
+* Hard link files, also called physical link files.
 
 Their main features are:
 
@@ -849,7 +849,7 @@ The description of **directory permissions** is as follows:
 
 !!! info
 
-    For the permissions of a directory, `r` and `x` usually appear at the same time. Moving or renaming a file depends on whether the directory where the file is located has `w` permission, and so does deleting a file.
+    For a directory's permissions, `r` and `x` usually appear at the same time. Moving or renaming a file depends on whether the directory where it is located has `w` permission, and so does deleting a file.
 
 ### User type corresponding to basic permission
 
@@ -861,7 +861,7 @@ The description of **directory permissions** is as follows:
 
 !!! info
 
-    In some commands it is possible to designate everyone with **a** (_all_). **a = ugo**.
+    In some commands, it is possible to designate everyone with **a** (_all_). **a = ugo**.
 
 ### Attribute management
 
@@ -881,7 +881,7 @@ The display of rights is done with the command `ls -l`. It is the last 9 charact
 | 4   | File owner                                                    |
 | 5   | Group owner of the file                                       |
 
-By default, the _owner_ of a file is the one who creates it. The _group_ of the file is the group of the owner who created the file. The _others_ are those which are not concerned by the previous cases.
+By default, the _owner_ of a file is the one who created it. The _group_ of the file is the group of the owner who created the file. The _others_ are those not concerned by the previous cases.
 
 The attributes are changed with the `chmod` command.
 
@@ -972,7 +972,7 @@ For a file, the execution rights are removed:
 
 !!! info
 
-    The `/etc/login.defs` file defines the default UMASK, with a value of **022**. This means that the permission to create a file is 755 (rwxr-xr-x). However, for the sake of security, GNU/Linux does not have **x** permission for newly created files, this restriction applies to root(uid=0) and ordinary users(uid>=1000).
+    The `/etc/login.defs` file defines the default UMASK, with a value of **022**. This means the permission to create a file is 755 (rwxr-xr-x). However, for the sake of security, GNU/Linux does not have **x** permission for newly created files. This restriction applies to root(uid=0) and ordinary users(uid>=1000).
 
     ```bash
     # root user
@@ -1021,7 +1021,7 @@ $ ls -la  umask_025
 
 !!! info
 
-    The `umask` command belongs to bash's built-in commands, so when you use `man umask`, all built-in commands will be displayed. If you only want to view the help of `umask`, you need to use the `help umask` command.
+    The `umask` command belongs to bash's built-in commands, so when you use `man umask`, all built-in commands will be displayed. If you only want to view the help of `umask`, you must use the `help umask` command.
 
 To keep the value, you have to modify the following profile files：
 
