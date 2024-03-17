@@ -792,7 +792,7 @@ Reload the server with `systemctl restart nginx`, then point your browser at wha
 
     You can name the config files whatever you like. I'm using simplified names for the tutorials, but some sysadmins recommend names based on the actual domain, but backwards. It's an alphabetical order-based organization thing.
 
-    e.g., "apache.server.test" would get a configuration file named `test.server.apache.conf`.
+    E.g., "apache.server.test" would get a configuration file named `test.server.apache.conf`.
 #### Directing traffic to the Nginx server
 
 Just kinda repeat the process. Create a file just like before:
