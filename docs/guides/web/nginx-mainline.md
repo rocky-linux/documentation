@@ -65,7 +65,7 @@ From there, you could just start dropping HTML files into the `/usr/share/nginx/
 
 !!! Note
 
-    У старих версіях цього посібника детально описано, як встановити пакет nginx-mainline з ERLepo. This is no longer an option, however. In most cases, the version of Nginx in Rocky's repos is more than sufficient, providing a stable base with backported security patches. Those who still want to use the nginx-mainline branch can follow [this guide from LinuxCapable](https://www.linuxcapable.com/how-to-install-nginx-mainline-on-rocky-linux/). Please note that using nginx-mainline is usually perfectly viable but not supported.
+    Older versions of this guide described the installation of nginx-mainline from ERLepo. This is no longer an option, however. In most cases, the version of Nginx in Rocky's repos is more than sufficient, providing a stable base with backported security patches. Those who still want to use the nginx-mainline branch can follow [this guide from LinuxCapable](https://www.linuxcapable.com/how-to-install-nginx-mainline-on-rocky-linux/). Please note that using nginx-mainline is usually perfectly viable but not supported.
 
 ## Configuring the Firewall
 
