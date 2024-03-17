@@ -151,7 +151,7 @@ Create a new LVM pool? (yes/no) [default=yes]:
 If you have a specific hard drive or partition you’d like to use for the whole storage pool, write “yes” next. If you’re doing all of this on a VPS, you’ll probably *have* to choose “no”.
 
 ```
-`Would you like to use an existing empty block device (e.g. a disk or partition)? (yes/no) [default=no]:`
+`Would you like to use an existing empty block device (e.g., a disk or partition)? (yes/no) [default=no]:`
 ```
 
 Metal As A Service (MAAS) is outside the scope of this document. Accept the defaults for this.
@@ -315,7 +315,7 @@ Here’s the quick method for starting a container with Rocky Linux:
 lxc launch images:rockylinux/8/amd64 my-container
 ```
 
-Of course, that “my-container” bit at the end should be renamed to whatever container name you want, eg. “proxy-server”. The “/amd64” part should be changed to “arm64”  if you’re doing all of this on something like a Raspberry Pi.
+Of course, that “my-container” bit at the end should be renamed to whatever container name you want, e.g., “proxy-server”. The “/amd64” part should be changed to “arm64”  if you’re doing all of this on something like a Raspberry Pi.
 
 Now here’s the long version: to find the images you want, you can use this command to list every available image in the main LXC repositories:
 
@@ -792,7 +792,7 @@ Reload the server with `systemctl restart nginx`, then point your browser at wha
 
     You can name the config files whatever you like. I'm using simplified names for the tutorials, but some sysadmins recommend names based on the actual domain, but backwards. It's an alphabetical order-based organization thing.
 
-    eg. "apache.server.test" would get a configuration file named `test.server.apache.conf`.
+    e.g., "apache.server.test" would get a configuration file named `test.server.apache.conf`.
 #### Directing traffic to the Nginx server
 
 Just kinda repeat the process. Create a file just like before:
