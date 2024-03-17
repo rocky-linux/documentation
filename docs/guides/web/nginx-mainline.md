@@ -12,7 +12,7 @@ tags:
 
 ## Introduction
 
-*Nginx* is a web server designed to be fast, efficient, and compatible with just about anything you can imagine. I personally use it a fair bit and—once you get the hang of it—it’s actually pretty easy to set up and configure. To that end, I've written this beginner's guide.
+*Nginx* is a web server designed to be fast, efficient, and compatible with almost anything. I use it often, and once you get the hang of it — it’s pretty easy to set up and configure. To that end, I've written this beginner's guide.
 
 Here’s a short rundown of the ways Nginx stands out/features it has:
 
@@ -24,7 +24,7 @@ Here’s a short rundown of the ways Nginx stands out/features it has:
 * FastCGI support
 * And, of course, IPv6
 
-It’s great! So just `sudo dnf install nginx`, right? Yes, it's pretty much that, but we've included a few extra helpful tips to get you started.
+It’s great! So just `sudo dnf install nginx`, right? Yes, it's pretty much that, but we've included some helpful tips to get you started.
 
 ## Prerequisites and Assumptions
 
@@ -49,13 +49,13 @@ Then, install the `nginx` package:
 sudo dnf install nginx
 ```
 
-Once the installation is done, start the `nginx` service and enable it to automatically start on reboot all in one go with:
+Once the installation is done, start the `nginx` service and enable it to start on reboot all in one go automatically:
 
 ```bash
 sudo systemctl enable --now nginx
 ```
 
-To verify that the latest version of *Nginx* (the latest version from the Rocky repos, anyway) has been installed, run:
+To verify that the latest version of *Nginx* (the newest version from the Rocky repos, anyway) has been installed, run:
 
 ```bash
 nginx -v
@@ -65,7 +65,7 @@ From there, you could just start dropping HTML files into the `/usr/share/nginx/
 
 !!! Note
 
-    Old versions of this guide used to detail how to install the nginx-mainline package from ELRepo. This is no longer an option, however. In most cases, the version of Nginx in Rocky's repos is more than sufficient, providing a stable base with backported security patches. Those who still want to use the nginx-mainline branch can follow [this guide from LinuxCapable](https://www.linuxcapable.com/how-to-install-nginx-mainline-on-rocky-linux/). Please note that using nginx-mainline is usually perfectly viable, but not supported.
+    Older versions of this guide described the installation of nginx-mainline from ERLepo. This is no longer an option, however. In most cases, the version of Nginx in Rocky's repos is more than sufficient, providing a stable base with backported security patches. Those who still want to use the nginx-mainline branch can follow [this guide from LinuxCapable](https://www.linuxcapable.com/how-to-install-nginx-mainline-on-rocky-linux/). Please note that using nginx-mainline is usually perfectly viable but not supported.
 
 ## Configuring the Firewall
 
@@ -73,11 +73,11 @@ From there, you could just start dropping HTML files into the `/usr/share/nginx/
 
     If you are installing Nginx on a container such as LXD/LXC or Docker, you can just skip this part for now. The firewall should be handled by the host OS.
 
-If you try to view a web page at your machine’s IP address or domain name from another computer, you’re probably going to get nothing. Well, that’ll be the case as long as you have a firewall up and running.
+You'll probably get nothing if you try to view a web page at your machine’s IP address or domain name from another computer. Well, that’ll be the case if you have a firewall up and running.
 
-To open up the necessary ports so that you can actually "see" your web pages, we will use Rocky Linux's built-in firewall, `firewalld`. The `firewalld` command for doing this is `firewall-cmd`. There are two ways to do it: the official and manual. *In this instance, the official way is best,* but you should know both for future reference.
+To open up the necessary ports so that you can actually "see" your web pages, we will use Rocky Linux's built-in firewall, `firewalld`. The `firewalld` command for doing this is `firewall-cmd`. There are two ways to do it: the official and the manual. *In this instance, the official way is best,* but you should know both for future reference.
 
-The official way opens up the firewall to the `http` service, which is of course the service that handles web pages. Just run this:
+The official way opens up the firewall to the `http` service, which is, of course, the service that handles web pages. Just run this:
 
 ```bash
 sudo firewall-cmd --permanent --zone=public --add-service=http
@@ -119,7 +119,7 @@ sudo firewall-cmd --reload
     systemctl restart firewalld
     ```
 
-To make sure the ports have been added properly, run `firewall-cmd --list-all`. A properly-configured firewall will look a bit like this:
+To ensure the ports have been added properly, run `firewall-cmd --list-all`. A properly-configured firewall will look a bit like this:
 
 ```bash
 public (active)
@@ -154,9 +154,9 @@ curl -I http://[your-ip-address]
 
 While you *can* just drop your website into the default directory and go (and this might be fine for *Nginx* when it’s running inside a container, or on a test/development server), it’s not what we call best practice. Instead, it’s a good idea to create a specific Linux user on your system for your website, and put your website files in a directory made just for that user.
 
-If you want to build multiple websites, it’s a good idea to create various users and root directories for organization and security.
+If you want to build multiple websites, you should create various users and root directories for organization and security.
 
-In this guide, I’m going to have just the one user: a handsome devil named “www”. Deciding where to put your website files gets more complicated.
+In this guide, I will have just one user: a handsome devil named “www”. Deciding where to put your website files gets more complicated.
 
 You can put your website files in several places depending on your server setup. If you're on a bare-metal (physical) server, or you're installing `nginx` directly on a VPS, you probably have Security Enhanced Linux (SELinux) running. SELinux is a tool that does a lot to protect your machine, but it also kind of dictates where you can put certain things, like web pages.
 
