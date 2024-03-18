@@ -225,7 +225,7 @@ GroupP:x:516:patrick
 
 !!! Note
 
-   Each line in the `/etc/group` file corresponds to a group. The primary user info is stored in `/etc/passwd`.
+    Each line in the `/etc/group` file corresponds to a group. The primary user info is stored in `/etc/passwd`.
 
 ### `/etc/gshadow` file
 
