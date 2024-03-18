@@ -170,7 +170,7 @@ sudo groupdel GroupC
     $ sudo usermod -g users -G test test
     $ id test
     uid=1000(test) gid=100(users) group=100(users),1000(test)
-    $ sudo groupdel testb
+    $ sudo groupdel test
     ```
 
 !!! Tip
