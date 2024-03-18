@@ -1,6 +1,6 @@
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-98-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-99-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 
@@ -352,6 +352,9 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/j0eybrinkman"><img src="https://avatars.githubusercontent.com/u/122839775?v=4?s=100" width="100px;" alt="Joey"/><br /><sub><b>Joey</b></sub></a><br /><a href="#content-j0eybrinkman" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://www.camalan.net"><img src="https://avatars.githubusercontent.com/u/610692?v=4?s=100" width="100px;" alt="Emre Çamalan"/><br /><sub><b>Emre Çamalan</b></sub></a><br /><a href="#content-ShyRain" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/yashpandey06"><img src="https://avatars.githubusercontent.com/u/97700473?v=4?s=100" width="100px;" alt="Yash Pandey"/><br /><sub><b>Yash Pandey</b></sub></a><br /><a href="#content-yashpandey06" title="Content">🖋</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="http://sjs.io"><img src="https://avatars.githubusercontent.com/u/1754056?v=4?s=100" width="100px;" alt="Stephen Simpson"/><br /><sub><b>Stephen Simpson</b></sub></a><br /><a href="#content-ssimpson89" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>
