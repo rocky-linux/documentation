@@ -4,7 +4,7 @@ author: Neel Chauhan
 contributors:
 tested_with: 9.3
 tags:
-  - automation
+  - hardware
 ---
 
 # HPE ProLiant Agentless Management Service
