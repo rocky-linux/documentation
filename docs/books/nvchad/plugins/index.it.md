@@ -11,6 +11,10 @@ tags:
 
 # Panoramica
 
+!!! danger "Istruzioni errate"
+
+    Con il rilascio della versione 2.5, le istruzioni contenute in questa pagina non sono più corrette; se ne sconsiglia l'uso per le nuove installazioni. Per maggiori informazioni si veda [la pagina principale della guida](../index.md).
+
 ## Introduzione
 
 La configurazione personalizzata creata dagli sviluppatori di NvChad permette di avere un ambiente integrato con molte delle caratteristiche di un IDE grafico. Queste caratteristiche sono integrate nella configurazione di Neovim per mezzo di plugin. Quelli selezionati per NvChad dagli sviluppatori hanno la funzione di impostare l'editor per l'uso generale.
