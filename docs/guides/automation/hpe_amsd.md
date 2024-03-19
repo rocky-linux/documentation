@@ -13,7 +13,7 @@ tags:
 
 HPE ProLiant servers have a companion software called Agentless Management Service which [according to HPE](https://techlibrary.hpe.com/docs/iss/EL8000t/setup_install/GUID-1CF69B20-790A-4EDC-A162-9D64572ED9E8.html) "uses out-of-band communication for increased security and stability." In addition, "with Agentless Management, health monitoring and alerting is built into the system and begins working the moment auxiliary power is connected to the [your server]".
 
-As an example, this is used to reduce fan speeds on a HPE ProLiant ML110 Gen11 in the author's home lab.
+As an example, this is used to reduce fan speeds on an HPE ProLiant ML110 Gen11 in the author's home lab.
 
 ## Prerequisites and assumptions
 
@@ -56,4 +56,4 @@ If you want to check if `amsd` is working, log into iLO via your web browser. If
 
 ## Conclusion
 
-A common criticism of HPE servers are high fan speeds when using third-party components such as SSDs or other add-in PCI Express cards which aren't officially sanctioned by HPE (e.g. video capture cards). Even if you only use HPE-branded components, using `amsd` allows HPE ProLiant servers to run cooler and quieter than just using Rocky Linux alone on one.
+A common criticism of HPE servers are high fan speeds when using third-party components such as SSDs or other add-in PCI Express cards which aren't officially sanctioned by HPE (e.g., video capture cards). Even if you only use HPE-branded components, using `amsd` allows HPE ProLiant servers to run cooler and quieter than just using Rocky Linux alone on one.
