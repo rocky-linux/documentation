@@ -11,6 +11,10 @@ tags:
 
 # Anteprima Markdown
 
+!!! danger "Istruzioni errate"
+
+    Con il rilascio della versione 2.5, le istruzioni contenute in questa pagina non sono più corrette; se ne sconsiglia l'uso per le nuove installazioni. Per maggiori informazioni si veda [la pagina principale della guida](../index.md).
+
 ## Introduzione
 
 Una delle caratteristiche del linguaggio Markdown che lo rendono ampiamente utilizzato nella scrittura di documentazione tecnica è la sua convertibilità. Il codice può essere convertito per la visualizzazione in molti formati (HTML, PDF, testo normale, ecc.), rendendo così il contenuto utilizzabile in numerosi scenari.
