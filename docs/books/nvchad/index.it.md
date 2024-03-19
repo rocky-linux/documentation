@@ -11,6 +11,16 @@ tags:
 
 # :material-book-open-page-variant-outline: Introduzione
 
+!!! warning "Modifiche della release 2.5"
+
+    Con il rilascio della versione 2.5, gli sviluppatori dell'editor hanno modificato in modo significativo la struttura della configurazione. Le modifiche più significative riguardano i seguenti aspetti:
+
+    * La trasformazione della configurazione in un plugin Neovim che può essere aggiornato utilizzando il gestore di plugin *lazy.nvim*
+    * Rimozione della cartella `custom` per la personalizzazione dell'editor (ora integrata nella cartella principale). Per gli utenti attuali viene fornita una [script di migrazione](https://gist.github.com/siduck/048bed2e7570569e6b327b35d1715404).
+    * Le mappature sono state modificate e non utilizzano più la sintassi personalizzata di nvchad, bensì quella di nvim **vim.keymap.set**.
+
+    Di conseguenza, alcune pagine della guida, in particolare tutta la parte relativa all'installazione di NvChad e alla successiva installazione dei plugin, risultano errate. La guida è **in fase di revisione** e sarà presto aggiornata.
+
 In questo libro troverete il modo di implementare Neovim, insieme a NvChad, per creare un ==**ambiente** di **sviluppo** **integrato**== (IDE) completamente funzionale.
 
 Dico "modi" perché ci sono molte possibilità. L'autore si concentra sull'uso di questi strumenti per la scrittura di markdown, ma se il markdown non è il vostro obiettivo, non preoccupatevi, continuate a leggere. Se non conoscete nessuno di questi strumenti (NvChad o Neovim), questo libro vi fornirà un'introduzione a entrambi e, se seguirete questi documenti, vi renderete presto conto che potete configurare questo ambiente in modo che sia di grande aiuto per qualsiasi esigenza di programmazione o di scrittura di script.
