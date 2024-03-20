@@ -377,10 +377,10 @@ Exemple pour obtenir la cause du dernier rejet par SELinux :
 sudo cat /var/log/audit/audit.log | grep AVC | grep denied | tail -1 | audit2why
 ```
 
-| Options | Observations                                                                                        |
-| ------- | --------------------------------------------------------------------------------------------------- |
-| `-v`    | Passer en mode détaillé                                                                             |
-| `-w`    | Traduit la cause d'un rejet par SELinux et propose une solution pour y remédier (option par défaut) |
+| Options | Observations                                                                                           |
+| ------- | ------------------------------------------------------------------------------------------------------ |
+| `-v`    | Passer en mode détaillé                                                                                |
+| `-w`    | Interprète la cause d'un rejet par SELinux et propose une solution pour y remédier (option par défaut) |
 
 ### Approfondir avec SELinux
 

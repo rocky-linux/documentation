@@ -31,7 +31,7 @@ In questo capitolo imparerete a far interagire i vostri script con gli utenti e 
 
 ****
 
-A seconda dello scopo dello script, può essere necessario inviargli informazioni quando viene lanciato o durante la sua esecuzione. Queste informazioni, non note al momento della scrittura dello script, possono essere estratte da file o inserite dall'utente. È anche possibile inviare queste informazioni sotto forma di argomenti quando viene immesso il comando di script. Questo è il modo in cui funzionano molti comandi di Linux.
+A seconda dello scopo dello script, potrebbero essere necessarie informazioni al momento dell'avvio o durante l'esecuzione. Queste informazioni, non predeterminate durante la scrittura dello script, possono provenire da file, dall'input dell'utente o essere passate come argomenti quando si inserisce il comando dello script, in modo simile a molti comandi di Linux.
 
 ## Il comando `read`
 
