@@ -84,11 +84,11 @@ Example:
 sudo groupadd -g 1012 GroupeB
 ```
 
-| Option  | Description                   |
-| --------| ----------------------------- |
-|`-g GID` | Defines the `GID` of the group to create. |
-|`-f` | The system chooses a `GID` if the one specified by the `-g` option already exists. |
-|`-r` | Creates a system group with a `GID` between `SYS_GID_MIN` and `SYS_GID_MAX`. These two variables are defined in `/etc/login.defs`. |
+| Option   | Description                               |
+| -------- | ----------------------------------------- |
+| `-g GID` | Defines the `GID` of the group to create. |
+| `-f`     | The system chooses a `GID` if the one specified by the `-g` option already exists. |
+| `-r`     | Creates a system group with a `GID` between `SYS_GID_MIN` and `SYS_GID_MAX`. These two variables are defined in `/etc/login.defs`. |
 
 Group naming rules:
 
@@ -124,10 +124,10 @@ sudo groupmod -g 1016 GroupP
 sudo groupmod -n GroupC GroupB
 ```
 
-|Option | Description |
-| ------| ----------- |
-|`-g GID` | New `GID` of the group to modify.
-|`-n name` | New name.
+| Option   | Description                       |
+| -------- | --------------------------------- |
+|`-g GID`  | New `GID` of the group to modify. |
+|`-n name` | New name.                         |
 
 It is possible to change the name of a group, its `GID`, or both simultaneously.
 
@@ -459,7 +459,7 @@ uid=1000(test1) gid=1000(test1) groups=1000(test1),1003(groupB),1004(groupC),100
 
 ### `userdel` command
 
-The <0>userdel</0> command lets you delete a user's account.
+The `userdel` command lets you delete a user's account.
 
 ```bash
 sudo userdel -r carine
@@ -722,7 +722,7 @@ root
 
 ### `passwd` command
 
-The <0>passwd</0> command manages a password.
+The `passwd` command manages a password.
 
 ```bash
 passwd [-d] [-l] [-S] [-u] [login]
