@@ -1,7 +1,7 @@
 ---
 title: Служба безагентного керування HPE ProLiant
 author: Neel Chauhan
-contributors: null
+contributors: Ganna Zhyrnova
 tested_with: 9.3
 tags:
   - обладнання
