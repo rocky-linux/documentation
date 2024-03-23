@@ -242,20 +242,25 @@ Note that it is not necessary to have each column broken down by size (as we hav
 
 ## Block quotes
 
-Block quotes are actually designed for quoting text from other sources to include in your documentation, but using them that way is not required. Some contributors use block quotes instead of tables, for instance, to list out some options. Examples of block quotes in markdown would be:
+Block quotes are designed for quoting text from other sources to include in your documentation. Examples of block quotes in markdown would be:
 
 ```text
 > **an item** - A description of that item
 
+followed by:
+
 > **another item** - Another description of that item
 ```
 
-The extra "spacing" line is necessary to keep the lines from running together.
+If you are putting two quotes together, you need to separate them by other words to avoid generating a markdown error (as done above).
 
 That ends up looking like this when the page displays:
 
 > **an item** - A description of that item
-> **another item** - Another description of  an item
+
+followed by:
+
+> **another item** - Another description of that item
 
 ## Inline and block-level code blocks
 
