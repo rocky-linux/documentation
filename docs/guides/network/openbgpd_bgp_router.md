@@ -143,7 +143,7 @@ Once OpenBGPD is enabled, you can see the BGP status:
 bgpctl show
 ```
 
-You will see the output"
+You will see the output:
 
 ```bash
 Neighbor                   AS    MsgRcvd    MsgSent  OutQ Up/Down  State/PrfRcvd
@@ -156,7 +156,7 @@ You can also see the BGP advertised routes:
 bgpctl show rib
 ```
 
-You should see an output like this:
+If working correctly, you should see the BGP routing table:
 
 ```bash
 flags: * = Valid, > = Selected, I = via IBGP, A = Announced,
