@@ -1,7 +1,7 @@
 ---
 title: OpenBGPD BGP Router
 author: Neel Chauhan
-contributors:
+contributors: Steven Spencer
 tested_with: 9.3
 tags:
   - network
@@ -26,13 +26,13 @@ Border Gateway Protocol (BGP) should be self-explanatory, if you are unaware, BG
 
 As OpenBGPD is not in the default repositories, first install the EPEL repository (Extra Packages for Enterprise Linux):
 
-```
+```bash
 dnf install -y epel-release
 ```
 
 Subsequently, install OpenBGPD
 
-```
+```bash
 dnf install -y openbgpd
 ```
 
@@ -40,7 +40,7 @@ dnf install -y openbgpd
 
 Let's start with a fresh OpenBGPD configuration:
 
-```
+```bash
 rm /etc/bgpd.conf
 touch /etc/bgpd.conf
 chmod 0600 /etc/bgpd.conf
@@ -48,7 +48,7 @@ chmod 0600 /etc/bgpd.conf
 
 Subsequently, add the following to `/etc/bgpd.conf`:
 
-```
+```bash
 AS YOUR_ASN
 router-id YOUR_IPV4
 
@@ -94,14 +94,14 @@ The above lines mean the following:
 * The `network` lines add the networks we want to advertise.
 * The `allow to ebgp prefix` line adds [RFC8212](https://datatracker.ietf.org/doc/html/rfc8212) compliance for routing security. This is required by some hosting companies such as BuyVM.
 * The `neighbor` blocks specify each IPv4 and IPv6 peer.
-- The `remote-as` line specifies the upstream's AS number.
-- The `announce IPv4` line specifies whether we should announce `unicast` IPv4 routes or `none`. This should be `none` on an IPv6 upstream.
-- The `announce IPv6` line specifies whether we should announce `unicast` IPv6 routes or `none`. This should be `none` on an IPv4 upstream.
-- The `local-address` line is the upstream's IPv4 or IPv6 address.
+* The `remote-as` line specifies the upstream's AS number.
+* The `announce IPv4` line specifies whether we should announce `unicast` IPv4 routes or `none`. This should be `none` on an IPv6 upstream.
+* The `announce IPv6` line specifies whether we should announce `unicast` IPv6 routes or `none`. This should be `none` on an IPv4 upstream.
+* The `local-address` line is the upstream's IPv4 or IPv6 address.
 
 Some upstreams may use an MD5 password or BGP multihop. Should that be the case, your `neighbor` blocks will look like this:
 
-```
+```bash
 neighbor PEER_IPV4 {
     remote-as               PEER_ASN
     announce IPv4           unicast
@@ -123,14 +123,14 @@ neighbor PEER_IPV6 {
 
 You will need to enable IP forwarding by setting these `sysctl` values:
 
-```
+```bash
 net.ipv4.ip_forward = 1
 net.ipv6.conf.all.forwarding = 1
 ```
 
 Now, we should enable OpenBGPD and forwarding:
 
-```
+```bash
 sysctl -p /etc/sysctl.conf
 systemctl enable --now bgpd
 ```
@@ -139,26 +139,26 @@ systemctl enable --now bgpd
 
 Once OpenBGPD is enabled, you can see the BGP status:
 
-```
+```bash
 bgpctl show
 ```
 
 You will see the output"
 
-```
+```bash
 Neighbor                   AS    MsgRcvd    MsgSent  OutQ Up/Down  State/PrfRcvd
 BGP_PEER             PEER_ASN       164         68     0 00:32:04      0
 ```
 
 You can also see the BGP advertised routes:
 
-```
+```bash
 bgpctl show rib
 ```
 
 You should see an output like this:
 
-```
+```bash
 flags: * = Valid, > = Selected, I = via IBGP, A = Announced,
        S = Stale, E = Error
 origin validation state: N = not-found, V = valid, ! = invalid
