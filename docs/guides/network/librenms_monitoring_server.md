@@ -645,7 +645,7 @@ Before saving, your rule will be:
 
 These two devices will now alert you by email if they are down, and upon recovery.
 
-## Conclusions
+## Conclusion
 
 LibreNMS is a powerful monitoring tool with a full set of features in one application. This document has _just_ scratched the surface on its capabilities. Some of the simpler screens are not shown. 
 
