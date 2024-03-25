@@ -1,9 +1,10 @@
 ---
 title: Working With Jinja Template
 author: Srinivas Nishant Viswanadha
+contributors: Steven Spencer, Antoine Le Morvan, Ganna Zhyrnova
 ---
 
-# Chapter: Working with Jinja Templates in Ansible
+# Chapter: Working with Jinja templates in Ansible
 
 ## Introduction
 
@@ -12,9 +13,9 @@ Ansible provides a powerful and straightforward way to manage configurations usi
 - adding variables to a configuration file
 - building complex files with loops and intricate data structures.
 
-## Adding Variables to a Configuration File
+## Adding variables to a configuration file
 
-### Step 1: Create a Jinja Template
+### Step 1: create a Jinja template
 
 Create a Jinja template file, e.g., `sshd_config.j2`, with placeholders for variables:
 
@@ -26,7 +27,7 @@ PermitRootLogin {{ permit_root_login }}
 # Add more variables as needed
 ```
 
-### Step 2: Use the Ansible Template Module
+### Step 2: use the Ansible template module
 
 In your Ansible playbook, use the `template` module to render the Jinja template with specific values:
 
@@ -45,7 +46,7 @@ In your Ansible playbook, use the `template` module to render the Jinja template
       # Add more variables as needed
 ```
 
-### Step 3: Apply Configuration Changes
+### Step 3: apply configuration changes
 
 Execute the Ansible playbook to apply the changes to the target hosts:
 
@@ -55,9 +56,9 @@ ansible-playbook your_playbook.yml
 
 This step ensures that the configuration changes are applied consistently across your infrastructure.
 
-## Building a Complete File with Loops and Complex Data Structures
+## Building a complete file with loops and complex data structures
 
-### Step 1: Enhance the Jinja Template
+### Step 1: enhance the Jinja template
 
 Extend your Jinja template to handle loops and complex data structures. Here's an example for configuring a hypothetical application with multiple components:
 
@@ -72,7 +73,7 @@ Extend your Jinja template to handle loops and complex data structures. Here's a
 {% endfor %}
 ```
 
-### Step 2: Integrate Ansible Template Module
+### Step 2: integrate Ansible template module
 
 In your Ansible playbook, integrate the `template` module to generate a complete configuration file:
 
@@ -106,7 +107,7 @@ This step ensures that the configuration changes are applied consistently across
 
 The Ansible `template` module provides a way to use Jinja templates for dynamically generating configuration files during playbook execution. This module allows you to separate configuration logic and data, making your Ansible playbooks more flexible and maintainable.
 
-### Key Features
+### Key features
 
 1. **Template Rendering:**
    - The module renders Jinja templates to create configuration files with dynamic content.
@@ -124,7 +125,7 @@ The Ansible `template` module provides a way to use Jinja templates for dynamica
 5. **Idempotent Execution:**
    - The template module supports idempotent execution, ensuring that the template is only applied if changes are detected.
 
-### Example Playbook Snippet
+### Example playbook snippet
 
 ```yaml
 ---
@@ -140,7 +141,7 @@ The Ansible `template` module provides a way to use Jinja templates for dynamica
         variable2: value2
 ```
 
-### Use Cases
+### Use cases
 
 1. **Configuration Management:**
    - Ideal for managing system configurations by dynamically generating files based on specific parameters.
@@ -151,7 +152,7 @@ The Ansible `template` module provides a way to use Jinja templates for dynamica
 3. **Infrastructure as Code:**
    - Facilitates Infrastructure as Code practices by allowing dynamic adjustments to configurations based on variables.
 
-### Best Practices
+### Best practices
 
 1. **Separation of Concerns:**
    - Keep the actual configuration logic in Jinja templates, separating it from the playbook's main structure.
