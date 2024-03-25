@@ -16,11 +16,11 @@ tags:
 
 **What is Asterisk?**
 
-Asterisk is an open source framework for building communications applications. Additionally, Asterisk turns an ordinary computer into a communications server, as well as powering IP PBX systems, VoIP gateways, conference servers and other custom solutions. It is used by small businesses, large businesses, call centers, carriers, and government agencies worldwide.
+Asterisk is an open-source framework for building communications applications. Additionally, Asterisk turns an ordinary computer into a communications server, powers IP PBX systems, VoIP gateways, conference servers, and other custom solutions. It is used by small businesses, large businesses, call centers, carriers, and government agencies worldwide.
 
 Asterisk is free and open source and is sponsored by [Sangoma](https://www.sangoma.com/). Sangoma also offers commercial products that use Asterisk under the hood, and depending on your experience and budget, using these products might be more beneficial than rolling your own. Only you and your organization know that answer.
 
-It should be noted that this guide requires the administrator to do a fair amount of research on their own. Installing a communications server is not a difficult process, but running one can be quite complicated. While this guide will get your server up and running, it will not be fully ready for you to use in production.
+It should be noted that this guide requires the administrator to do a fair amount of research on their own. Installing a communications server is not difficult, but running one can be quite complicated. While this guide will get your server up and running, it will not be ready for you to use in production.
 
 ## Prerequisites
 
@@ -28,11 +28,11 @@ At minimum, you will need the following skills and tools to complete this guide:
 
 * A machine running Rocky Linux
 * A comfort level with modifying configuration files and issuing commands from the command-line
-* Knowledge of how to use a command line editor (We are using `vi` here, but feel free to substitute in your favorite editor.)
-* You will need root access, and ideally be signed in as the root user in your terminal
+* Knowledge of how to use a command line editor (We use `vi` here, but feel free to substitute it with your favorite editor.)
+* You will need root access and ideally be signed in as the root user in your terminal
 * The EPEL repositories from Fedora
-* The ability to login as root or run root commands with `sudo`. All commands here assume a user that has `sudo` rights, however the configuration and build processes run with `sudo -s`.
-* To grab the latest build of Asterisk, you will need to either use `curl` or `wget`. This guide uses `wget`, but feel free to substitute in the appropriate `curl` string if you want to use that.
+* The ability to log in as root or run root commands with `sudo`. All commands here assume a user with `sudo` rights. However, the configuration and build processes run with `sudo -s`.
+* To grab the latest build of Asterisk, you must either use `curl` or `wget`. This guide uses `wget`, but feel free to substitute the appropriate `curl` string if you prefer.
 
 ## Update Rocky Linux and install `wget`
 
@@ -40,7 +40,7 @@ At minimum, you will need the following skills and tools to complete this guide:
 sudo dnf -y update
 ```
 
-This will get your server up-to-date with all packages that have been released or updated since the last update or installation. Then run:
+This will keep your server up-to-date with all packages released or updated since the last update or installation. Then run:
 
 ```bash
 sudo dnf install wget
@@ -120,7 +120,7 @@ configure: host-cpu:vendor:os: x86_64 : pc : linux-gnu :
 
 ### Set Asterisk menu options [For more options]
 
-This is one of the steps where the administrator is going to need to do his homework. Many menu options exist that you might not need. Running the following command:
+This is one of the steps where the administrator will need to do his homework. Many menu options exist that you might not need. Running the following command:
 
 ```bash
 make menuselect
@@ -147,7 +147,7 @@ Installing the documentation is not required, but unless you are a communication
 make progdocs
 ```
 
-Next install the basic PBX and make the configuration. The basic PBX is just that, very basic! You will probably need to make changes going forward to get your PBX to function as you want it to.
+Next, install the basic PBX and configure it. The basic PBX is just that, very basic! You will probably need to make changes going forward to get your PBX to function as you want it to.
 
 ```bash
 make basic-pbx
@@ -158,7 +158,7 @@ make config
 
 ### Create user & group
 
-You will need a specific user and group just for asterisk. Create them now:
+You will need a specific user and group just for Asterisk. Create them now:
 
 ```bash
 groupadd asterisk
@@ -207,14 +207,14 @@ sudo systemctl enable asterisk
 
 This example uses `firewalld` for the firewall, which is the default in Rocky Linux. The goal here is to open SIP ports to the world and to open RTP (Realtime Transport Protocol) to the world on ports 10000-20000 as recommended by the Asterisk documentation.
 
-You will almost certainly need other firewall rules for other forward-facing services (HTTP/HTTPS) which you will probably want to limit to your own IP addresses. That is beyond the scope of this document:
+You will almost certainly need other firewall rules for other forward-facing services (HTTP/HTTPS), which you will probably want to limit to your IP addresses. That is beyond the scope of this document:
 
 ```bash
 sudo firewall-cmd --zone=public --add-service sip --permanent
 sudo firewall-cmd --zone=public --add-port=10000-20000/udp --permanent
 ```
 
-Since you have made the `firewalld` commands permanent, you will need to do a reboot of the server. You can do that with:
+Since you have made the <0>firewalld</0> commands permanent, you must reboot the server. You can do that with:
 
 ```bash
 sudo shutdown -r now
@@ -256,10 +256,10 @@ At the Asterisk command-line client prompt, type:
 pjsip show auth 1101
 ```
 
-This will return username and password information that you can then use to connect any SIP client with.
+This will return username and password information you can use to connect to any SIP client.
 
 ## Conclusion
 
-The above will get you up and running with the server, but finishing out the configuration, connecting devices, and further troubleshooting is up to you.
+The above will get you up and running with the server, but you are responsible for finishing out the configuration, connecting devices, and further troubleshooting.
 
-Running an Asterisk communications server takes time and effort and will require research by any administrator. For more information configuring and using Asterisk, see the [Asterisk Wiki here.](https://docs.asterisk.org/Configuration/)
+Running an Asterisk communications server takes time and effort and will require research by an administrator. For more information configuring and using Asterisk, see the [Asterisk Wiki here.](https://docs.asterisk.org/Configuration/)
