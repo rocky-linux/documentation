@@ -5,7 +5,7 @@ contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 8.8, 9.2
 tags:
   - lxd
-  - entreprise
+  - enterprise
   - automatisation lxd
 ---
 

@@ -10,7 +10,7 @@ tags:
   - kmod
 ---
 
-# Analyser la configuration actuelle du noyau
+# Analyse de la Configuration Actuelle du Noyau
 
 Le noyau Linux stocke ses informations en deux endroits via des systèmes de fichiers spéciaux : ([Un résumé](https://www.landoflinux.com/linux_procfs_sysfs.html))
 
