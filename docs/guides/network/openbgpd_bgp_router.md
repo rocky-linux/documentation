@@ -1,7 +1,7 @@
 ---
 title: OpenBGPD BGP Router
 author: Neel Chauhan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.3
 tags:
   - network
@@ -11,16 +11,16 @@ tags:
 
 ## Introduction
 
-Border Gateway Protocol (BGP) should be self-explanatory, if you are unaware, BGP is the routing protocol that holds the internet together. It's how your can view this document regardless of who your Internet Service Provider is.
+Border Gateway Protocol (BGP) is the routing protocol that holds the internet together. It's how you can view this document regardless of who your Internet Service Provider is.
 
-[OpenBGPD](http://openbgpd.org/) is [OpenBSD's](https://www.openbsd.org/) cross-platform BGP implementation. The author uses it personally on their personal network.
+[OpenBGPD](http://openbgpd.org/) is [OpenBSD's](https://www.openbsd.org/) cross-platform BGP implementation. The author uses it personally on their network.
 
 ## Prerequisites
 
-* A server, virtual machine or lab network with BGP connectivity
+* A server, virtual machine, or lab network with BGP connectivity
 * An AS number from your [Regional Internet Registry](https://www.nro.net/about/rirs/)
 * An owned or leased IPv4 or IPv6 block
-* An intermediate knowledge of network administration
+* Knowledge of network administration
 
 ## Installing packages
 
@@ -46,7 +46,7 @@ touch /etc/bgpd.conf
 chmod 0600 /etc/bgpd.conf
 ```
 
-Subsequently, add the following to `/etc/bgpd.conf`:
+Then, add the following to `/etc/bgpd.conf`:
 
 ```bash
 AS YOUR_ASN
@@ -89,10 +89,10 @@ Replace the following information:
 The above lines mean the following:
 
 * The `AS` line contains your BGP AS number.
-* The `router-id` line contains your BGP router ID. This is an IPv4 address, but can be a dummy value if you are doing IPv6-only BGP.
+* The `router-id` line contains your BGP router ID. This is an IPv4 address but can be a dummy value if you are doing IPv6-only BGP.
 * The `listen on` line tells which interfaces to listen to. We should listen on all interfaces speaking BGP.
 * The `network` lines add the networks we want to advertise.
-* The `allow to ebgp prefix` line adds [RFC8212](https://datatracker.ietf.org/doc/html/rfc8212) compliance for routing security. This is required by some hosting companies such as BuyVM.
+* The `allow to ebgp prefix` line adds [RFC8212](https://datatracker.ietf.org/doc/html/rfc8212) compliance for routing security. Some hosting companies, such as BuyVM, require this.
 * The `neighbor` blocks specify each IPv4 and IPv6 peer.
 * The `remote-as` line specifies the upstream's AS number.
 * The `announce IPv4` line specifies whether we should announce `unicast` IPv4 routes or `none`. This should be `none` on an IPv6 upstream.
@@ -172,4 +172,4 @@ AI*>  N-? YOUR_IPV6::/48       ::                100     0 i
 
 ## Conclusion
 
-While BGP may seem taunting at first, once you get the hang of it, you can get your own piece of the internet routing table. OpenBGPD's simplicity makes it even easier to have a software router or anycast server. Enjoy!
+While BGP may seem daunting initially, once you master it, you can get your piece of the internet routing table. OpenBGPD's simplicity makes having a software router or anycast server even easier. Enjoy!
