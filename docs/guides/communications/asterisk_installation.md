@@ -16,7 +16,7 @@ tags:
 
 **What is Asterisk?**
 
-Asterisk is an open source framework for building communications applications. Additionally, Asterisk turns an ordinary computer into a communications server, powers IP PBX systems, VoIP gateways, conference servers, and other custom solutions. It is used by small businesses, large businesses, call centers, carriers, and government agencies worldwide.
+Asterisk is an open-source framework for building communications applications. Additionally, Asterisk turns an ordinary computer into a communications server, powers IP PBX systems, VoIP gateways, conference servers, and other custom solutions. It is used by small businesses, large businesses, call centers, carriers, and government agencies worldwide.
 
 Asterisk is free and open source and is sponsored by [Sangoma](https://www.sangoma.com/). Sangoma also offers commercial products that use Asterisk under the hood, and depending on your experience and budget, using these products might be more beneficial than rolling your own. Only you and your organization know that answer.
 
@@ -31,7 +31,7 @@ At minimum, you will need the following skills and tools to complete this guide:
 * Knowledge of how to use a command line editor (We use `vi` here, but feel free to substitute it with your favorite editor.)
 * You will need root access and ideally be signed in as the root user in your terminal
 * The EPEL repositories from Fedora
-* The ability to log in as root or run root commands with `sudo`. All commands here assume a user with <0>sudo</0> rights. However, the configuration and build processes run with <0>sudo -s</0>.
+* The ability to log in as root or run root commands with `sudo`. All commands here assume a user with `sudo` rights. However, the configuration and build processes run with `sudo -s`.
 * To grab the latest build of Asterisk, you must either use `curl` or `wget`. This guide uses `wget`, but feel free to substitute the appropriate `curl` string if you prefer.
 
 ## Update Rocky Linux and install `wget`
