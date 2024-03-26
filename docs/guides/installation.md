@@ -35,7 +35,7 @@ For example, `Rocky-9.3-x86_64-minimal.iso`
 
 ## Verifying the Installation Program ISO File
 
-If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, you can use the `sha256sum` utility to verify that file(s) you downloaded are not corrupt. We will show an example of verifying the <0>Rocky-9.3-x86_64-minimal.iso</0> file by checking its checksum.
+If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, you can use the `sha256sum` utility to verify that file(s) you downloaded are not corrupt. We will show an example of verifying the `Rocky-9.3-x86_64-minimal.iso` file by checking its checksum.
 
 1. Download the file that contains the official checksums for the available ISOs.
 
