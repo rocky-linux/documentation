@@ -15,7 +15,7 @@ You can download the latest ISO image for the version of Rocky Linux for this in
 
 <https://www.rockylinux.org/download/>
 
-To download the ISO directly from the command line on an existing Linux based system use the `wget` command:
+To download the ISO directly from the command line on an existing Linux-based system, use the `wget` command:
 
 ```bash
 wget https://download.rockylinux.org/pub/rocky/9/isos/x86_64/Rocky-9.3-x86_64-minimal.iso
@@ -31,11 +31,11 @@ For example, `Rocky-9.3-x86_64-minimal.iso`
 
 !!! Note
 
-    The Rocky project web page lists several mirrors, which are located around the globe. Choose the mirror geographically closest to you. The list ofofficial mirrors can be found [here](https://mirrors.rockylinux.org/mirrormanager/mirrors).
+    The Rocky Project web page lists several mirrors located around the globe. Choose the mirror geographically closest to you. The list of official mirrors can be found [here](https://mirrors.rockylinux.org/mirrormanager/mirrors).
 
 ## Verifying the Installation Program ISO File
 
-If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, you can use the `sha256sum` utility to verify that file(s) you downloaded are not corrupt. We will show an example of how to verify the `Rocky-9.3-x86_64-minimal.iso` file by checking its checksum.
+If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, you can use the `sha256sum` utility to verify that file(s) you downloaded are not corrupt. We will show an example of verifying the <0>Rocky-9.3-x86_64-minimal.iso</0> file by checking its checksum.
 
 1. Download the file that contains the official checksums for the available ISOs.
 
@@ -61,13 +61,13 @@ If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, y
 
 !!! Tip
 
-    Before starting the installation proper, the system’s Unified Extensible Firmware Interface (UEFI) or Basic Input/Output System (BIOS) should be preconfigured to boot from the correct medium.
+    Before installing properly, the system’s Unified Extensible Firmware Interface (UEFI) or Basic Input/Output System (BIOS) should be preconfigured to boot from the correct medium.
 
-If the computer is setup to boot from the media that has the ISO file, we can begin the installation process.
+If the computer is set up to boot from the media with the ISO file, we can begin the installation.
 
 1. Insert and boot from the installation medium (optical disk, USB flash drive, and so on).
 
-2. Once the computer has booted you see the Rocky Linux 9 welcome splash screen.
+2. Once the computer has booted, you see the Rocky Linux 9 welcome splash screen.
 
     ![Rocky Linux installation splash screen](images/install_9_3_01.png)
 
@@ -86,7 +86,7 @@ This media verification step can save you the trouble of starting the installati
 
 ## Installation Summary
 
-The *Installation Summary* screen is an all-in-one area where you make the important decisions about the system to be installed.
+The <0>Installation Summary</0> screen is an all-in-one area where you make important decisions about installing the system.
 
 The screen is roughly divided into the following sections:
 
@@ -99,19 +99,19 @@ We will delve into each of these sections next and make changes where necessary.
 
 ### Localization Section
 
-This section is used for customizing items related to the geographic locality of the system. This includes – Keyboard, Language Support, Time and Date.
+This section customizes items related to the system's geographic location. This includes – Keyboard, Language Support, Time and Date.
 
 #### Keyboard
 
-On our demo system in this guide, we accept the default value (*English US*) and make no changes.
+In this guide's demo system, we accept the default value (*English US*) and make no changes.
 
-However, if you need to make any changes here, from the *Installation Summary* screen, click the ++"keyboard"++ option to specify the keyboard layout of the system. Using the ++plus++ button, you can add additional keyboard layouts if you need to in the ensuing screen and even specify your preferred order.
+However, if you need to make any changes here, from the *Installation Summary* screen, click the ++"keyboard"++ option to specify the system's keyboard layout. Using the ++plus++ button, you can add additional keyboard layouts if you need to in the ensuing screen and even specify your preferred order.
 
 Click ++"done"++ when you are finished with this screen.
 
 #### Language Support
 
-The `Language Support` option on the *Installation Summary* screen enables you to specify support for additional languages.
+The `Language Support` option on the *Installation Summary* screen lets you specify support for additional languages.
 
 We will accept the default value - **English (United States)** and make no change, click ++"done"++.
 
@@ -133,14 +133,14 @@ Because the installation uses a Rocky Linux 9 ISO image, you will notice that *L
 
 !!! Tip
 
-    The installation Source area is where you can opt to perform a network-based installation (for example if you are using the Rocky Linux boot ISO - Rocky-9.3-x86_64-boot.iso). For a network-based installation, you need to first ensure that a network adapter on the target system is properly configured, and is able to reach the internet. To perform a network-based installation, click on `Installation Source` and then select the `On the network` radio button. Once selected, choose `https` as the protocol and type the following URL in the text field `download.rockylinux.org/pub/rocky/9/BaseOS/x86_64/os`. Click `Done`.
+    The installation Source area allows you to perform a network-based installation (for example, if you use the Rocky Linux boot ISO - Rocky-9.3-x86_64-boot.iso). For a network-based installation, you need first to ensure that a network adapter on the target system is properly configured, and can reach the internet. To perform a network-based installation, click `Installation Source` and then select the `On the network` radio button. Once selected, choose `https` as the protocol and type the following URL in the text field `download.rockylinux.org/pub/rocky/9/BaseOS/x86_64/os`. Click `Done`.
 
 #### Software Selection
 
-Clicking the ++"Software Selection"++ option on the main *Installation Summary* screen presents you with the section of the installation where you can pick the exact software packages that get installed on the system. The software selection area is divided into:
+Clicking the ++"Software Selection"++ option on the main *Installation Summary* screen presents you with the installation section where you can pick the exact software packages installed on the system. The software selection area is divided into:
 
-- **Base Environment**: Minimal Install and Custom operating system
-- **Additional software for Selected Environment**: Selecting a Base Environment on the left side presents a variety of related additional software to install for the given environment on the right side. Note that this is only applicable if you were installing from a full Rocky Linux 9.2 DVD or if you have additional repositories configured.
+- **Base Environment**: Minimal Installation and Custom operating system
+- **Additional software for Selected Environment**: Selecting a Base Environment on the left side presents a variety of related additional software to install for the given environment on the right side. Note that this only applies if you were installing from a full Rocky Linux 9.2 DVD or have additional repositories configured.
 
 Select the *Minimal Install* (Basic functionality) option.
 
@@ -170,11 +170,11 @@ The next important task of the installation procedure under the System area deal
 
 !!! Note
 
-    After you click on the ++"Network & Hostname"++ option, all correctly detected network interface hardware (such as Ethernet, wireless network cards, and so on) will be listed in the left pane of the network configuration screen. Depending on your specific hardware setup, Ethernet devices in Linux have names similar to `eth0`, `eth1`, `ens3`, `ens4`, `em1`, `em2`, `p1p1`, `enp0s3` and so on. 
-    For each interface, you can either configure it using DHCP or manually set the IP address. 
+    After you click on the ++"Network & Hostname"++ option, all correctly detected network interface hardware (such as Ethernet, wireless network cards, and so on) will be listed in the left pane of the network configuration screen. Depending on your specific hardware setup, Ethernet devices in Linux have names similar to `eth0`, `eth1`, `ens3`, `ens4`, `em1`, `em2`, `p1p1`, `enp0s3`, and so on. 
+    You can configure each interface using DHCP or manually set the IP address. 
     If you choose to configure manually, be sure to have all the required information ready, such as the IP address, netmask, and so on.
 
-Clicking the ++"Network & Hostname"++ button in the main *Installation Summary* screen opens the corresponding configuration screen. Among other things, you have the option to configure the hostname of the system.
+Clicking the ++"Network & Hostname"++ button in the main *Installation Summary* screen opens the corresponding configuration screen. Here, you can configure the system's hostname.
 
 !!! Note
 
@@ -184,7 +184,7 @@ The next important configuration task is related to the network interfaces on th
 
 1. Verify that the left pane lists an Ethernet card (or any network card.)
 2. Click any of the detected network devices in the left pane to select it.  
-The configurable properties of the selected network adapter appear in the right pane of the screen.
+The selected network adapter's configurable properties appear in the screen's right pane.
 
 !!! Note
 
@@ -222,7 +222,7 @@ This section can be used for creating a password for the `root` user account and
 To create a user:
 
 1. Click the *User Creation* field under *User Settings* to start the *Create User* task screen.  
-This task area allows you to create a privileged or non-privileged (non-administrative) user account on the system.
+This task area allows you to create a privileged or non-privileged (non-administrative) user account.
 
     !!! Info
 
@@ -260,11 +260,11 @@ After the installation begins, various tasks will begin running in the backgroun
 
 !!! Note
 
-    If you do not wish to continue after clicking the Begin Installation button, you can still safely back out of the installation without any loss of data. To quit the installer, simply reset your system either by clicking the Quit button, pressing ctrl-alt-del on the keyboard, or pushing the reset or power switch.
+    If you do not wish to continue after clicking the Begin Installation button, you can still safely exit the installation without losing data. To quit the installer, simply reset your system by clicking the Quit button, pressing ctrl-alt-del on the keyboard, or pushing the reset or power switch.
 
 ### Complete the Installation
 
-After the installation program has run its course, you see a final installation progress screen with a complete message.
+After the installation program has completed its work, you will see a final installation progress screen with a complete message.
 
 Finally, complete the entire procedure by clicking the ++"Reboot System"++ button. The system restarts.
 
