@@ -8,26 +8,23 @@ contributors: tianci li, Steven Spencer, Ganna Zhyrnova
 
 This guide walks through the detailed steps to install a 64-bit version of the Rocky Linux distribution on a stand-alone system.  We will be performing a server class install using an operating system installer image downloaded from the Rocky Linux project website. We will step through the installation and customization steps in the following sections.
 
-
 ## OS Installation Prerequisites
 
 First, you need to download the ISO to be used for this installation of Rocky Linux.
 
 The latest ISO image for the version of Rocky Linux that we will be using for this installation can be downloaded from here:
 
-```
-https://www.rockylinux.org/download/
-```
+<https://www.rockylinux.org/download/>
 
 To download the ISO directly from the command line, use the `wget` command:
 
-```
+```bash
 wget https://download.rockylinux.org/pub/rocky/8.9/isos/x86_64/Rocky-8.9-x86_64-minimal.iso
 ```
 
 Rocky Linux ISOs are named following this convention:
 
-```
+```text
 Rocky-<MAJOR#>.<MINOR#>-<ARCH>-<VARIANT>.iso
 ```
 
@@ -43,19 +40,19 @@ If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, y
 
 First download the file that contains the official checksums for the available ISOs. While still in the folder that contains the downloaded Rocky Linux ISO download the checksum file for the ISO, type:
 
-```
+```bash
 wget https://download.rockylinux.org/pub/rocky/8.9/isos/x86_64/CHECKSUM
 ```
 
 Use the `sha256sum` utility to verify the integrity of the ISO file against corruption and/or tampering.
 
-```
+```bash
 sha256sum -c CHECKSUM --ignore-missing
 ```
 
 This will check the integrity of the previously downloaded ISO file, provided it is in the same directory. The output should show:
 
-```
+```text
 Rocky-8.9-x86_64-minimal.iso: OK
 ```
 
@@ -77,13 +74,13 @@ If you do not press any key the installer will begin a countdown, after which th
 
 `Test this media & install Rocky Linux 8`
 
-You can also press <kbd>Enter</kbd> at any time to start the process immediately.
+You can also press ++enter++ at any time to start the process immediately.
 
 A quick media verification step will take place. This media verification step can save you the trouble of starting the installation only to find out halfway through that the installer has to abort because of bad installation media.
 
 After the media check runs to completion and the media is successfully verified to be usable, the installer will automatically continue to the next screen.
 
-Select the language you want to use for the installation on this screen. For this guide, we select *English (United States)*. Then click the <kbd>Continue</kbd> button.
+Select the language you want to use for the installation on this screen. For this guide, we select *English (United States)*. Then click the ++"Continue"++ button.
 
 ## Installation Summary
 
@@ -105,21 +102,21 @@ This section is used for customizing items related to the system's locale. This 
 
 On our demo system in this guide, we accept the default value (*English US*) and make no changes.
 
-However, if you need to make any changes here, from the *Installation Summary* screen, click the <kbd>Keyboard</kbd> option to specify the keyboard layout of the system. You can add additional keyboard layouts if you need to in the ensuing screen and specify their order.
+However, if you need to make any changes here, from the *Installation Summary* screen, click the ++"Keyboard"++ option to specify the keyboard layout of the system. You can add additional keyboard layouts if you need to in the ensuing screen and specify their order.
 
-Click <kbd>Done</kbd> when you are finished with this screen.
+Click ++"done"++ when you are finished with this screen.
 
 #### Language Support
 
-The <kbd>Language Support</kbd> option on the *Installation Summary* screen enables you to specify support for additional languages that you may need on the finished system.
+The ++"Language Support"++ option on the *Installation Summary* screen enables you to specify support for additional languages that you may need on the finished system.
 
-We will accept the default value (**English – United States**) and make no change, click <kbd>Done</kbd>.
+We will accept the default value (**English – United States**) and make no change, click ++"done"++.
 
 #### Time & Date
 
-Click the <kbd>Time & Date</kbd> option on the main *Installation Summary* screen to bring up another screen that will allow you to select the time zone in which the machine is located. Scroll through the list of regions and cities and select the area closest to you.
+Click the ++"Time & Date"++ option on the main *Installation Summary* screen to bring up another screen that will allow you to select the time zone in which the machine is located. Scroll through the list of regions and cities and select the area closest to you.
 
-Depending on your installation source, the *Network Time* option could be set to *ON* or *OFF* by default. Accept the default *ON* setting; this allows the system to automatically set the correct time using the Network Time Protocol (NTP). Click <kbd>Done</kbd> after making any changes.
+Depending on your installation source, the *Network Time* option could be set to *ON* or *OFF* by default. Accept the default *ON* setting; this allows the system to automatically set the correct time using the Network Time Protocol (NTP). Click ++"done"++ after making any changes.
 
 ### Software Section
 
@@ -135,14 +132,14 @@ Since we are performing our installation using a full Rocky 8 image, you will no
 
 #### Software Selection
 
-Clicking the <kbd>Software Selection</kbd> option on the main *Installation Summary* screen presents you with the section of the installation where you can pick the exact software packages that get installed on the system. The software selection area is divided into:
+Clicking the ++"Software Selection"++ option on the main *Installation Summary* screen presents you with the section of the installation where you can pick the exact software packages that get installed on the system. The software selection area is divided into:
 
 - *Base Environment*: Server, Minimal Install, Custom Operating System
 - *Additional software for Selected Environment area*: Selecting a Base Environment on the left side presents a variety of related additional software that can be installed for the given environment on the right side.
 
 Select the *Minimal Install* (Basic functionality) option instead.
 
-Click <kbd>Done</kbd> at the top of the screen.
+Click ++"done"++ at the top of the screen.
 
 ### System Section
 
@@ -150,13 +147,13 @@ The System section of the *Installation Summary* screen is used for customizing 
 
 #### Installation Destination
 
-From the *Installation Summary* screen, click the <kbd>Installation Destination</kbd> option. This takes you to the corresponding task area.
+From the *Installation Summary* screen, click the `Installation Destination` option. This takes you to the corresponding task area.
 
 You will see a screen displaying all the candidate disk drives that you have available on the target system. If you have only one disk drive on the system, as on our sample system, you will see the drive listed under *Local Standard Disks* with a check mark beside it. Clicking the disk icon will toggle on or off the disk selection check mark. We want it selected/checked here.
 
-Under the *Storage Configuration* Options section, select the <kbd>Automatic</kbd> radio button.
+Under the *Storage Configuration* Options section, select the ++"Automatic"++ radio button.
 
-Then click <kbd>Done</kbd> at the top of the screen.
+Then click ++"done"++ at the top of the screen.
 
 Once the installer determines that you have a usable disk, you will be returned to the *Installation Summary* screen.
 
@@ -166,11 +163,11 @@ The final task of the installation procedure deals with network configuration, w
 
 !!! Note
 
-    After you click on the <kbd>Network & Hostname</kbd> option, all correctly detected network interface hardware (such as Ethernet, wireless network cards, and so on) will be listed in the left pane of the network configuration screen. Depending on the Linux distribution and the specific hardware setup, Ethernet devices in Linux have names similar to `eth0`, `eth1`, `ens3`, `ens4`, `em1`, `em2`, `p1p1`, `enp0s3`, and so on.
+    After you click on the ++"Network & Hostname"++ option, all correctly detected network interface hardware (such as Ethernet, wireless network cards, and so on) will be listed in the left pane of the network configuration screen. Depending on the Linux distribution and the specific hardware setup, Ethernet devices in Linux have names similar to `eth0`, `eth1`, `ens3`, `ens4`, `em1`, `em2`, `p1p1`, `enp0s3`, and so on.
 
 You can either configure each interface using DHCP or manually set the IP address. If you choose to configure manually, be sure to have all the pertinent information ready, such as the IP address, netmask, and so on.
 
-Clicking the <kbd>Network & Hostname</kbd> button in the main *Installation Summary* screen opens the corresponding configuration screen. Among other things, you have the option to configure the hostname of the system (the name defaults to `localhost.localdomain`).
+Clicking the ++"Network & Hostname"++ button in the main *Installation Summary* screen opens the corresponding configuration screen. Among other things, you have the option to configure the hostname of the system (the name defaults to `localhost.localdomain`).
 
 !!! Note
 
@@ -185,7 +182,7 @@ The next important configuration task is related to the network interfaces on th
 Make sure the switch of the device you want to configure is flipped to the `ON` position in the right pane.
 We'll accept all the defaults in this section.
 
-Click <kbd>Done</kbd> to return to the main *Installation Summary* screen.
+Click ++"done"++ to return to the main *Installation Summary* screen.
 
 !!! Warning
 
@@ -209,8 +206,7 @@ Click the *Root Password* field under *User Settings* to launch the *Root Passwo
 
 Enter the same password again in the *Confirm* text box.
 
-Click <kbd>Done</kbd>.
-
+Click ++"done"++.
 
 ### Create a User Account
 
@@ -222,7 +218,7 @@ Next click the *User Creation* field under *User Settings* to launch the *Create
 
 We’ll create a regular user that can invoke superuser (administrator) powers, the same as the root user, when needed.
 
-Complete the fields in the *Create User* screen with the following information and then click <kbd>Done</kbd>:
+Complete the fields in the *Create User* screen with the following information and then click ++"done"++:
 
 *Full name*:
 `rockstar`
@@ -254,7 +250,7 @@ Once you are satisfied with your choices for the various installation tasks, cli
 
 After you have completed all of the mandatory subtasks, and the installer has run its course, you will be presented with a final installation progress screen with a complete message.
 
-Finally, complete the entire procedure by clicking the <kbd>Reboot System</kbd> button. The system will restart.
+Finally, complete the entire procedure by clicking the ++"Reboot System"++ button. The system will restart.
 
 ### Log In
 
@@ -262,9 +258,9 @@ The system is now set up and ready for use. You will see the Rocky Linux console
 
 ![Rocky Linux Welcome Screen](images/installation_8_F02.png)
 
-To log onto the system, type `rockstar` at the login prompt and press <kbd>Enter</kbd>.
+To log onto the system, type `rockstar` at the login prompt and press ++enter++.
 
-At the Password prompt, type `04302021` (rockstar’s password) and press <kbd>Enter</kbd> (the password will ***not*** be echoed to the screen, that is normal).
+At the Password prompt, type `04302021` (rockstar’s password) and press ++enter++ (the password will ***not*** be echoed to the screen, that is normal).
 
 We will run the `whoami` command after login, this command shows the name of the currently logged in user.
 
