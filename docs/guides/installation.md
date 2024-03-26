@@ -86,7 +86,7 @@ This media verification step can save you the trouble of starting the installati
 
 ## Installation Summary
 
-The <0>Installation Summary</0> screen is an all-in-one area where you make important decisions about installing the system.
+The `Installation Summary` screen is an all-in-one area where you make important decisions about installing the system.
 
 The screen is roughly divided into the following sections:
 
