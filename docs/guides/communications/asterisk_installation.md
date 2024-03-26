@@ -214,7 +214,7 @@ sudo firewall-cmd --zone=public --add-service sip --permanent
 sudo firewall-cmd --zone=public --add-port=10000-20000/udp --permanent
 ```
 
-Since you have made the <0>firewalld</0> commands permanent, you must reboot the server. You can do that with:
+Since you have made the `firewalld` commands permanent, you must reboot the server. You can do that with:
 
 ```bash
 sudo shutdown -r now
