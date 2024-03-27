@@ -69,13 +69,13 @@ Then clone the rocky-tools repository with:
 git clone https://github.com/rocky-linux/rocky-tools.git
 ```
 
-Note: this method will download all of the scripts and files in the rocky-tools repository.
+Note: This method will download all scripts and files from the Rocky Tools repository.
 
 ### The easy way
 
 This is probably the easiest way to obtain the script. You only need a suitable HTTP client (`curl`, `wget`, `lynx` and so on) installed on the server.
 
-Assuming you have the `curl` utility installed, run this command to download the script into whatever directory you are using
+Assuming you have the `curl` utility installed, run the following command to download the script into whatever directory you are using:
 
 !!! Note
     If you're running a 9.x system, add a 9 before the `.sh`
@@ -84,11 +84,11 @@ Assuming you have the `curl` utility installed, run this command to download the
 curl https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh -o migrate2rocky.sh
 ```
 
-That command will download the file straight to your server, and *only* the file you want. But again, security concerns suggest this is not necessarily the best practice, so keep that in mind.
+That command will download the file to your server, and *only* the file you want. But again, security concerns suggest this is not necessarily the best practice, so keep that in mind.
 
 ## Running the script and installation
 
-Use the `cd` command to switch to the directory where the script is, ensure the file is executable, and give the owner of the script file x permissions
+Use the `cd` command to switch to the directory where the script is, ensure the file is executable, and give the owner of the script file x permissions.
 
 !!! Note
     In the below commands, if you're running a 9.x system, add a 9 before the `.sh`
@@ -103,15 +103,15 @@ And now, at long last, run the script:
 ./migrate2rocky.sh -r
 ```
 
-That "-r" option tells the script to just go ahead and install everything.
+That "-r" option tells the script to go ahead and install everything.
 
 If you have done everything right, your terminal window will look a bit like this:
 
 ![a successful script startup](images/migrate2rocky-convert-01.png)
 
-Now, it will take the script a while to convert everything, depending on the actual machine, and the connection it has to the wider internet.
+Now, the script will take a while to convert everything, depending on the actual machine and its connection to the wider internet.
 
-If you see a **Complete!** message at the end, then everything is fine and you can restart the server.
+If you see a **Complete!** message at the end, everything is fine, and you can restart the server.
 
 ![a successful OS migration message](images/migrate2rocky-convert-02.png)
 
