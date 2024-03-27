@@ -69,7 +69,7 @@ Then clone the rocky-tools repository with:
 git clone https://github.com/rocky-linux/rocky-tools.git
 ```
 
-Note: This method will download all scripts and files from the Rocky Tools repository.
+Note: This method will download all scripts and files from the rocky-tools repository.
 
 ### The easy way
 
