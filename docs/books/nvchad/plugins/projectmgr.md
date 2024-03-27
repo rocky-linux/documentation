@@ -13,10 +13,6 @@ tags:
 
 ## Introduction
 
-!!! danger "Wrong instructions"
-
-    With the release of version 2.5, the instructions on this page are no longer correct; its use is not recommended for new installations. For more information see [the main page of the guide](../index.md).
-
 One of the features that an IDE must surely have is the ability to manage the various projects that a developer or publisher works on. Being able to select the project to work on once NvChad is open, without the need to type commands in the *statusline* to achieve the goal. This saves time and allows for simplified management in the case of a large number of projects.
 
 Using [charludo/projectmgr.nvim](https://github.com/charludo/projectmgr.nvim) will integrate this functionality. The plugin provides excellent integration with `Telescope` and some interesting additional features such as the ability to synchronize a *git* repository when opening the *project*.
@@ -25,7 +21,7 @@ The plugin also tracks the status of the editor when it closes allowing you to h
 
 ### Plugin installation
 
-To install the plugin you will need to edit the **custom/plugins.lua** file by adding the following block of code:
+To install the plugin you will need to edit the **plugins/init.lua** file by adding the following block of code:
 
 ```lua
 {
@@ -145,15 +141,11 @@ To check if the open files do not match those updated from the repository you ca
 
 ### Mapping
 
-To speed up the opening of your projects, you can create a keyboard shortcut to put in your mapping in **/custom/mapping.lua**. An example might be:
+To speed up the opening of your projects, you can create a keyboard shortcut to put in your mapping in **mapping.lua**. An example might be:
 
 ```lua
 -- Projects
-M.projects = {
-    n = {
-        ["<leader>fp"] = { "<cmd> ProjectMgr<CR>", "Open Projects" },
-    },
-}
+map("n", "<leader>fp", "<CMD> ProjectMgr<CR>", { desc = "Open Projects" })
 ```
 
 With the editor in the **NORMAL** state you can open the project manager with the combination ++space++ + ++"f"++ followed by ++"p"++.
