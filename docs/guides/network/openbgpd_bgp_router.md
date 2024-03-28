@@ -89,7 +89,7 @@ Replace the following information:
 The above lines mean the following:
 
 * The `AS` line contains your BGP AS number.
-* The `router-id` line contains your BGP router ID. This is an IPv4 address but can be a dummy value if you are doing IPv6-only BGP.
+* The `router-id` line contains your BGP router ID. This is an IPv4 address but can be a dummy non-routable address (e.g. 169.254.x.x) if you are doing IPv6-only BGP.
 * The `listen on` line tells which interfaces to listen to. We should listen on all interfaces speaking BGP.
 * The `network` lines add the networks we want to advertise.
 * The `allow to ebgp prefix` line adds [RFC8212](https://datatracker.ietf.org/doc/html/rfc8212) compliance for routing security. Some hosting companies, such as BuyVM, require this.
