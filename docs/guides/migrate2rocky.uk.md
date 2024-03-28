@@ -69,7 +69,7 @@ dnf install git
 git clone https://github.com/rocky-linux/rocky-tools.git
 ```
 
-Примітка. Цей метод завантажить усі сценарії та файли зі сховища Rocky Tools.
+Примітка. Цей метод завантажить усі сценарії та файли зі сховища rocky-tools.
 
 ### Легкий спосіб
 
