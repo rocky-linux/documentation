@@ -151,7 +151,7 @@ Your configuration file should look something like this:
 </VirtualHost>
 ```
 
-Once done, save your changes (with ++shift+colon+"w"+"q"+exclam for _vi_).
+Once done, save your changes (with ++shift+colon+"w"+"q"+exclam++ for _vi_).
 
 Next, create a link to this file in /etc/httpd/sites-enabled:
 
