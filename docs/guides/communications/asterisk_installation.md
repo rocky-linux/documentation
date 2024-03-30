@@ -28,7 +28,7 @@ At minimum, you will need the following skills and tools to complete this guide:
 
 - A machine running Rocky Linux
 - A comfort level with modifying configuration files and issuing commands from the command-line
-- Knowledge of how to use a command line editor (We use `vi` here, but feel free to substitute it with your favorite editor.)
+- Knowledge of how to use a command line editor (we use `vi` here, but feel free to substitute it with your favorite editor.)
 - You will need root access and ideally be signed in as the root user in your terminal
 - The EPEL repositories from Fedora
 - The ability to log in as root or run root commands with `sudo`. All commands here assume a user with `sudo` rights. However, the configuration and build processes run with `sudo -s`.
