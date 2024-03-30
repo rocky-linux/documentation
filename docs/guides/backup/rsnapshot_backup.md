@@ -12,12 +12,12 @@ tags:
 
 ## Prerequisites
 
-  * Know how to install additional repositories and snapshots from the command-line
-  * Know about mounting filesystems external to your machine (external drive, remote filesystem, and so on.)
-  * Know how to use an editor (using `vi` here, but you can use your favorite editor)
-  * Know a little BASH scripting
-  * Know how to change the crontab for the root user
-  * Knowledge of SSH public and private keys (only if you plan to run remote backups from another server)
+- Know how to install additional repositories and snapshots from the command-line
+- Know about mounting filesystems external to your machine (external drive, remote filesystem, and so on.)
+- Know how to use an editor (using `vi` here, but you can use your favorite editor)
+- Know a little BASH scripting
+- Know how to change the crontab for the root user
+- Knowledge of SSH public and private keys (only if you plan to run remote backups from another server)
 
 ## Introduction
 
@@ -224,7 +224,7 @@ Earlier versions of _rsnapshot_ had `hourly, daily, monthly, yearly` but are now
 
 In this example, you are not going to be running any other increments other than a nightly backup. Just add a remark to alpha and gamma. When completed, your configuration file will be:
 
-```
+```text
 #retain  alpha   6
 retain  beta    7
 #retain  gamma   4
@@ -265,7 +265,7 @@ Again, to do this you do not necessarily have to specify the configuration in th
 
 Which will return something similar to this, showing you what will happen when the backup is actually run:
 
-```
+```bash
 echo 1441 > /var/run/rsnapshot.pid
 mkdir -m 0755 -p /mnt/backup/storage/beta.0/
 /usr/bin/rsync -a --delete --numeric-ids --relative --delete-excluded \
@@ -305,7 +305,7 @@ If you have not run this before, choose vim.basic as your editor or your own edi
 
 You are going to set your backup to automatically run at 11 PM, so you will add this to the crontab:
 
-```
+```bash
 ## Running the backup at 11 PM
 00 23 *  *  *  /usr/bin/rsnapshot -c /etc/rsnapshot.conf beta`
 ```
@@ -318,13 +318,13 @@ If running these backups over the Internet, you need to ensure that each locatio
 
 ## Assumptions
 
-Running _rsnapshot_ from a machine remotely, on-premise. Running this exact configuration is possible remotely off-premise also. 
+Running _rsnapshot_ from a machine remotely, on-premise. Running this exact configuration is possible remotely off-premise also.
 
 In this case, you will want to install _rsnapshot_ on the machine that is doing all of the backups. Other assumptions are:
 
-* That the servers you will be backing up to, have a firewall rule that allows the remote machine to SSH into it
-* That each server that you will be backing up has a recent version of `rsync` installed. For Rocky Linux servers, run `dnf install rsync` to update your system's version of `rsync`.
-* That you have connected to the machine as the root user, or that you have run `sudo -s` to switch to the root user
+- That the servers you will be backing up to, have a firewall rule that allows the remote machine to SSH into it
+- That each server that you will be backing up has a recent version of `rsync` installed. For Rocky Linux servers, run `dnf install rsync` to update your system's version of `rsync`.
+- That you have connected to the machine as the root user, or that you have run `sudo -s` to switch to the root user
 
 ## SSH public or private keys
 
@@ -364,7 +364,7 @@ Next, you want to change rsnapshot_web.conf so that it includes the directories 
 
 Here is an example of the web.ourdomain.com configuration:
 
-```
+```bash
 ### BACKUP POINTS / SCRIPTS ###
 backup  root@web.ourourdomain.com:/etc/     web.ourourdomain.com/
 backup  root@web.ourourdomain.com:/var/www/     web.ourourdomain.com/
@@ -393,7 +393,7 @@ Automating backups for the multiple machine or server version is slightly differ
 
 With the content:
 
-```
+```bash
 #!/bin/bash/
 # script to run rsnapshot backups in succession
 /usr/bin/rsnapshot -c /etc/rsnapshot_web.conf beta
@@ -411,7 +411,7 @@ Create the crontab for root to run the backup script:
 
 Add this line:
 
-```
+```bash
 ## Running the backup at 11 PM
 00 23 *  *  *  /usr/local/sbin/backup_all
 ```
@@ -422,7 +422,7 @@ To ensure that everything is backing up according to plan, you might want to sen
 
 ## Restoring a backup
 
-Restoring a few files or an entire backup involves copying the files you want from the directory with the date that you want to restore from back to your machine. 
+Restoring a few files or an entire backup involves copying the files you want from the directory with the date that you want to restore from back to your machine.
 
 ## Conclusions and other resources
 

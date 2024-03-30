@@ -118,25 +118,25 @@ lxd init
 
 Here are the questions and our answers for the script, with a little explanation where warranted:
 
-```
+```text
 Would you like to use LXD clustering? (yes/no) [default=no]:
 ```
 
 If you are interested in clustering, do some additional research on that [here](https://documentation.ubuntu.com/lxd/en/latest/clustering/). Otherwise, just press “Enter” to accept the default option.
 
-```
+```text
 Do you want to configure a new storage pool? (yes/no) [default=yes]:
 ```
 
  Accept the default.
 
-```
+```text
 Name of the new storage pool [default=default]: server-storage
 ```
 
 Choose a name for your storage pool. I like to name it after the server LXD is running on. (A storage pool is basically a set amount of hard drive space set aside for your containers.)
 
-```
+```text
 Name of the storage backend to use (btrfs, dir, lvm, zfs, ceph) [default=zfs]: lvm
 ```
 
@@ -144,25 +144,25 @@ The above question is about what sort of file system you want to use for storage
 
 In a virtual environment, I have found that “LVM” works fine, and it’s usually what I use. You can accept the default on the next question.
 
-```
+```text
 Create a new LVM pool? (yes/no) [default=yes]:
 ```
 
 If you have a specific hard drive or partition you’d like to use for the whole storage pool, write “yes” next. If you’re doing all of this on a VPS, you’ll probably *have* to choose “no”.
 
-```
-`Would you like to use an existing empty block device (e.g., a disk or partition)? (yes/no) [default=no]:`
+```text
+Would you like to use an existing empty block device (e.g., a disk or partition)? (yes/no) [default=no]:
 ```
 
 Metal As A Service (MAAS) is outside the scope of this document. Accept the defaults for this.
 
-```
+```text
 Would you like to connect to a MAAS server? (yes/no) [default=no]:
 ```
 
 And more defaults. It's all good.
 
-```
+```text
 Would you like to create a new local network bridge? (yes/no) [default=yes]:
 
 What should the new bridge be called? [default=lxdbr0]: `
@@ -172,19 +172,19 @@ What IPv4 address should be used? (CIDR subnet notation, “auto” or “none�
 
 If you want to use IPv6 on your LXD containers, you can turn on this next option. That is up to you, but you mostly shouldn’t need to.
 
-```
+```text
 What IPv6 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]:
 ```
 
 This is necessary to easily back up the server, and can allow you to manage your LXD install from other computers. If that all sounds good to you, answer "yes" here
 
-```
+```text
 Would you like the LXD server to be available over the network? (yes/no) [default=no]: yes
 ```
 
 If you did say yes to the last questions, take the defaults here:
 
-```
+```text
 Address to bind LXD to (not including port) [default=all]:
 
 Port to bind LXD to [default=8443]:
@@ -192,7 +192,7 @@ Port to bind LXD to [default=8443]:
 
 Now you'll be asked for a trust password. That's  how you will connect to the LXC host server from other computers and servers, so set this with something that makes sense in your environment. Save this password to a secure location, such as a password manager.
 
-```
+```text
 Trust password for new clients:
 
 Again:
@@ -200,7 +200,7 @@ Again:
 
 And then keep taking the defaults from here on out:
 
-```
+```text
 Would you like stale cached images to be updated automatically? (yes/no) [default=yes]
 
 Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:
@@ -208,7 +208,7 @@ Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:
 
 #### Setting Up User Privileges
 
-Before we continue on, we need to create our "lxdadmin" user and make sure that it has the privileges it needs. We need the "lxdadmin" user to be able to use _sudo_ for access to root commands, and we need it to be a member of the “lxd” group. To add the user and make sure it is a member of both groups, run:
+Before we continue on, we need to create our "lxdadmin" user and make sure that it has the privileges it needs. We need the "lxdadmin" user to be able to use *sudo* for access to root commands, and we need it to be a member of the “lxd” group. To add the user and make sure it is a member of both groups, run:
 
 ```bash
 useradd -G wheel,lxd lxdadmin
@@ -496,7 +496,7 @@ You won’t be able to delete the container if it’s running, so you can either
 lxc delete my-container --force
 ```
 
-Now, thanks to tab -command-completion, user error, and the fact that “d” sits next to “s” on most keyboards, you can accidentally delete containers.
+Now, thanks to ++tab++ -command-completion, user error, and the fact that ++d++ sits next to ++s++ on most keyboards, you can accidentally delete containers.
 
 To defend against that, you can set any container to be “protected” (making the process of deleting them take an extra step) with this command:
 
@@ -588,7 +588,7 @@ nano /etc/httpd/conf.d/real-ip.conf
 
 And add this text to it:
 
-```
+```bash
 RemoteIPHeader X-Real-IP
 RemoteIPTrustedProxy proxy-server.lxd
 ```
@@ -733,7 +733,7 @@ The “listen” option is the port on the host OS, and if I’m not mistaken, 0
 
     Once these devices have been set up, you should reboot all the containers, just to be sure.
 
-These virtual device should ideally be unique. It's usually best not to add a “myport80” device to another container that's currently running; it’ll have to be called something else. 
+These virtual device should ideally be unique. It's usually best not to add a “myport80” device to another container that's currently running; it’ll have to be called something else.
 
 *Likewise, only one container can listen on any specific host OS port at a time.*
 
@@ -747,7 +747,7 @@ nano /etc/nginx/conf.d/apache-server.conf
 
 Then paste this test in, change the domain name as necessary, and save it:
 
-```
+```apache
 upstream apache-server {
     server apache-server.lxd:80;
 }
@@ -771,12 +771,12 @@ server {
 
 Let's break that down a little:
 
-* The `upstream` section is defining exactly where the reverse proxy is going to send all its traffic. Specifically, it's sending traffic to the "apache-server" container's internal domain name: `apache-server.lxd`.
-* The two lines that start with `listen` are telling the server to listen to traffic coming in on port 80 with the proxy protocol. The first via IPv4, and the second via IPv6.
-* The `server_name` function takes all the traffic that's specifically coming to "apache.server.test" and routes it through the reverse proxy.
-* The `proxy-pass` function is the part that actually directs all traffic captured by the `server_name` variable, and sends it to the server defined in the `upstream` section.
-* The `proxy_redirect` function can apparently interfere with reverse proxies, so we're making sure it's turned off.
-* All of the `proxy-set-header` options are sending information like the user's IP and more to the web server.
+1. The `upstream` section is defining exactly where the reverse proxy is going to send all its traffic. Specifically, it's sending traffic to the "apache-server" container's internal domain name: `apache-server.lxd`.
+2. The two lines that start with `listen` are telling the server to listen to traffic coming in on port 80 with the proxy protocol. The first via IPv4, and the second via IPv6.
+3. The `server_name` function takes all the traffic that's specifically coming to "apache.server.test" and routes it through the reverse proxy.
+4. The `proxy-pass` function is the part that actually directs all traffic captured by the `server_name` variable, and sends it to the server defined in the `upstream` section.
+5. The `proxy_redirect` function can apparently interfere with reverse proxies, so we're making sure it's turned off.
+6. All of the `proxy-set-header` options are sending information like the user's IP and more to the web server.
 
 !!! warning
 
@@ -793,6 +793,7 @@ Reload the server with `systemctl restart nginx`, then point your browser at wha
     You can name the config files whatever you like. I'm using simplified names for the tutorials, but some sysadmins recommend names based on the actual domain, but backwards. It's an alphabetical order-based organization thing.
 
     E.g., "apache.server.test" would get a configuration file named `test.server.apache.conf`.
+
 #### Directing traffic to the Nginx server
 
 Just kinda repeat the process. Create a file just like before:
@@ -803,7 +804,7 @@ nano /etc/nginx/conf.d/nginx-server.conf
 
 Add the appropriate text:
 
-```
+```nginx
 upstream nginx-server {
     server rocky-nginx.lxd:80;
 }
@@ -840,6 +841,7 @@ lxc exec apache-server systemctl restart httpd && lxc exec nginx-server restart 
 That will apply the "real-ip.conf" files we made to their respective server configurations.
 
 #### Getting SSL certificates for your websites
+
 Getting official, proper SSL certificates is easiest with Let's Encrypt, and a little application called certbot. certbot will automatically detect your websites, get SSL certificates for them, and configure the sites themselves. It will even renew the certificates for you every 30 days or so, without any intervention from you or cron jobs.
 
 This all has to be done from the "proxy-server" container, so log into that shell. Once there, install the EPEL repositories, just like you did on the host. Make sure the container is updated first:
@@ -870,7 +872,7 @@ Certbot will read your Nginx configuration, and figure out how many websites you
 
 The most important questions are as follows. Enter your email address when you see this:
 
-```
+```bash
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
 Enter email address (used for urgent renewal and security notices)
  (Enter 'c' to cancel):
@@ -878,7 +880,7 @@ Enter email address (used for urgent renewal and security notices)
 
 Here you can choose which websites get certificates. Just hit enter to get certificates for all of them.
 
-```
+```text
 Which names would you like to activate HTTPS for?
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 1: apache.server.test
@@ -892,14 +894,14 @@ You'll see a bunch of confirmation text, and it'll be done. But if you go to you
 
 Go into your `apache-server.conf` and `nginx-server.conf` files, and find the following two lines:
 
-```
+```bash
 listen [::]:443 ssl ipv6only=on; # managed by Certbot
 listen 443 ssl; # managed by Certbot
 ```
 
 Yep, they're missing the `proxy_protocol` setting, and that's bad. Add it in yourself.
 
-```
+```bash
 listen proxy_protocol [::]:443 ssl ipv6only=on; # managed by Certbot
 listen proxy_protocol 443 ssl; # managed by Certbot
 ```

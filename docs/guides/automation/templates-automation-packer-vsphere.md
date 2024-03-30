@@ -6,20 +6,20 @@ contributors: Steven Spencer, Ryan Johnson, Pedro Garcia, Ganna Zhyrnova
 
 # Automatic template creation with Packer and deployment with Ansible in a VMware vSphere environment
 
-**Knowledge**: :star: :star: :star:   
-**Complexity**: :star: :star: :star:   
+**Knowledge**: :star: :star: :star:
+**Complexity**: :star: :star: :star:
 
 **Reading time**: 30 minutes
 
 ## Prerequisites, Assumptions, and General Notes
 
-* A vSphere environment is available, and a user with granted access
-* An internal web server to store files
-* Web access to the Rocky Linux repositories
-* An ISO of Rocky Linux
-* An Ansible environment is available
-* It is assumed that you have some knowledge of each product mentioned. If not, dig into that documentation before you begin.
-* Vagrant is **not** in use here. It was pointed out that with Vagrant, an SSH key that was not self-signed would be provided. If you want to dig into that you can do so, but it is not covered in this document.
+- A vSphere environment is available, and a user with granted access
+- An internal web server to store files
+- Web access to the Rocky Linux repositories
+- An ISO of Rocky Linux
+- An Ansible environment is available
+- It is assumed that you have some knowledge of each product mentioned. If not, dig into that documentation before you begin.
+- Vagrant is **not** in use here. It was pointed out that with Vagrant, an SSH key that was not self-signed would be provided. If you want to dig into that you can do so, but it is not covered in this document.
 
 ## Introduction
 
@@ -37,23 +37,23 @@ You can also choose not to convert the virtual machine into a template. In this 
 
 ### Introduction to Packer
 
-Packer is an open-source virtual machine imaging tool, released under the MPL 2.0 license, and created by HashiCorp. It will help you automate the process of creating virtual machine images with pre-configured operating systems and installed software from a single source configuration in both, cloud and on-prem virtualized environments. 
+Packer is an open-source virtual machine imaging tool, released under the MPL 2.0 license, and created by HashiCorp. It will help you automate the process of creating virtual machine images with pre-configured operating systems and installed software from a single source configuration in both, cloud and on-prem virtualized environments.
 
 With Packer you can create images to be used on the following platforms:
 
-* [Amazon Web Services](https://aws.amazon.com). 
-* [Azure](https://azure.microsoft.com/en-us/).
-* [GCP](https://cloud.google.com).
-* [DigitalOcean](https://www.digitalocean.com). 
-* [OpenStack](https://www.openstack.org).
-* [VirtualBox](https://www.virtualbox.org/).
-* [VMware](https://www.vmware.com).
+- [Amazon Web Services](https://aws.amazon.com).
+- [Azure](https://azure.microsoft.com/en-us/).
+- [GCP](https://cloud.google.com).
+- [DigitalOcean](https://www.digitalocean.com).
+- [OpenStack](https://www.openstack.org).
+- [VirtualBox](https://www.virtualbox.org/).
+- [VMware](https://www.vmware.com).
 
 You can have a look at these resources for additional information:
 
-* The [Packer website](https://www.packer.io/)
-* [Packer documentation](https://www.packer.io/docs)
-* The builder `vsphere-iso`'s [documentation](https://www.packer.io/docs/builders/vsphere/vsphere-iso)
+- The [Packer website](https://www.packer.io/)
+- [Packer documentation](https://www.packer.io/docs)
+- The builder `vsphere-iso`'s [documentation](https://www.packer.io/docs/builders/vsphere/vsphere-iso)
 
 ### Installing Packer
 
@@ -63,29 +63,25 @@ There are two ways to install Packer on your Rocky Linux system.
 
 HashiCorp maintains and signs packages for different Linux distributions. To install packer in our Rocky Linux system, please follow the next steps:
 
-
-#### Download and install from the Packer website
-
 1. Install dnf-config-manager:
 
-```bash
-$ sudo dnf install -y dnf-plugins-core
-```
+    ```bash
+    sudo dnf install -y dnf-plugins-core
+    ```
 
 2. Add the HashiCorp repository to the available repos in our Rocky Linux system:
 
-```bash
-$ sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
-```
+    ```bash
+    sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
+    ```
 
 3. Install Packer:
 
-```bash
-$ sudo dnf -y install packer
-```
+    ```bash
+    sudo dnf -y install packer
+    ```
 
 #### Download and install from the Packer website
-
 
 You can start by downloading the binaries for your own platform with [Packer downloads](https://www.packer.io/downloads).
 
@@ -93,28 +89,29 @@ You can start by downloading the binaries for your own platform with [Packer dow
 
 2. From a shell or terminal download it using ```wget``` tool:
 
-```bash
-$ wget https://releases.hashicorp.com/packer/1.8.3/packer_1.8.3_linux_amd64.zip
-```
-This will download a .zip file.
+    ```bash
+    wget https://releases.hashicorp.com/packer/1.8.3/packer_1.8.3_linux_amd64.zip
+    ```
 
-3.  To decompress the downloaded archive, run the following command in the shell:
+    This will download a .zip file.
 
-```bash
-$ unzip packer_1.8.3_linux_amd64.zip
-```
+3. To decompress the downloaded archive, run the following command in the shell:
 
-!!! tip
+    ```bash
+    unzip packer_1.8.3_linux_amd64.zip
+    ```
 
-    If you get an error and you don’t have the unzip app installed on your system, you can install it by executing this command ```sudo dnf install unzip```.
+    !!! tip
+
+        If you get an error and you don’t have the unzip app installed on your system, you can install it by executing this command ```sudo dnf install unzip```.
 
 4. Move the Packer app to the bin folder:
 
-```bash
-$ sudo mv packer /usr/local/bin/
-```
+    ```bash
+    sudo mv packer /usr/local/bin/
+    ```
 
-####  Verification of the correct installation of Packer
+#### Verification of the correct installation of Packer
 
 If all the steps of the previous procedures have been completed correctly, we can proceed to verify the installation of Packer on our system.
 
@@ -147,7 +144,7 @@ As we will connect to a VMware vCenter Server to send our commands via Packer, w
 
 Let us create a hidden file with our credentials in our home directory. This is a json file:
 
-```
+```bash
 $ vim .vsphere-secrets.json {
     "vcenter_username": "rockstar",
     "vcenter_password": "mysecurepassword"
@@ -158,7 +155,7 @@ Those credentials need some grant access to your vSphere environment.
 
 Let us create a json file (in the future, the format of this file will change to the HCL):
 
-```
+```json
 {
   "variables": {
     "version": "0.0.X",
@@ -221,13 +218,14 @@ Let us create a json file (in the future, the format of this file will change to
   ]
 }
 ```
+
 Next, we will describe each section of this file.
 
 ### Variables section
 
 In a first step, we declare variables, mainly for the sake of readability:
 
-```
+```json
 "variables": {
   "version": "0.0.X",
   "HTTP_IP": "fileserver.rockylinux.lan",
@@ -243,19 +241,19 @@ A Kickstart file contains the answers to the questions asked during the installa
 
 The author likes to store his `ks.cfg` file in an internal web server accessible from his template, but other possibilities exist that you may choose to use instead.
 
-For example, the `ks.cfg` file is accessible from the VM at this URL in our lab: http://fileserver.rockylinux.lan/packer/rockylinux/8/ks.cfg. You would need to set up something similar to use this method.
+For example, the `ks.cfg` file is accessible from the VM at this URL in our lab: <http://fileserver.rockylinux.lan/packer/rockylinux/8/ks.cfg>. You would need to set up something similar to use this method.
 
 Since we want to keep our password private, it is declared as a sensitive variable. Example:
 
-```
-  "sensitive-variables": ["vcenter_password"],
+```json
+"sensitive-variables": ["vcenter_password"],
 ```
 
 ### Provisioners section
 
 Next part is interesting, and will be covered later by providing you the script for `requirements.sh`:
 
-```
+```json
 "provisioners": [
   {
     "type": "shell",
@@ -274,8 +272,7 @@ You can declare one or more builders to target something other than your vSphere
 
 But here we are using the `vsphere-iso` builder:
 
-
-```
+```json
 "builders": [
   {
     "type": "vsphere-iso",
@@ -283,25 +280,25 @@ But here we are using the `vsphere-iso` builder:
 
 This builder lets us configure the hardware we need:
 
-```
-  "CPUs": 2,
-  "CPU_hot_plug": true,
-  "RAM": 2048,
-  "RAM_hot_plug": true,
-  "disk_controller_type": "pvscsi",
-  "guest_os_type": "centos8_64Guest",
-  "network_adapters": [
-    {
-      "network_card": "vmxnet3",
-      "network": "net_infra"
-    }
-  ],
-  "storage": [
-    {
-      "disk_size": 40000,
-      "disk_thin_provisioned": true
-    }
-  ],
+```json
+"CPUs": 2,
+"CPU_hot_plug": true,
+"RAM": 2048,
+"RAM_hot_plug": true,
+"disk_controller_type": "pvscsi",
+"guest_os_type": "centos8_64Guest",
+"network_adapters": [
+  {
+    "network_card": "vmxnet3",
+    "network": "net_infra"
+  }
+],
+"storage": [
+  {
+    "disk_size": 40000,
+    "disk_thin_provisioned": true
+  }
+],
 ```
 
 !!! "Note"
@@ -312,21 +309,21 @@ You can do more cool things with the disk, cpu, etc. You should refer to the doc
 
 To start the installation, you need an ISO image of Rocky Linux. Here is an example of how to use an image located in a vSphere content library. You can of course store the ISO elsewhere. In the case of a vSphere content library, you have to get the full path to the ISO file on the server hosting the content library. In this case it is Synology, so directly on the DSM explorer.
 
-```
-  "iso_paths": [
-    "[datasyno-contentlibrary-mylib] contentlib-a86ad29a-a43b-4717-97e6-593b8358801b/3a381c78-b9df-45a6-82e1-3c07c8187dbe/Rocky-8.4-x86_64-minimal_72cc0cc6-9d0f-4c68-9bcd-06385a506a5d.iso"
-  ],
+```json
+"iso_paths": [
+  "[datasyno-contentlibrary-mylib] contentlib-a86ad29a-a43b-4717-97e6-593b8358801b/3a381c78-b9df-45a6-82e1-3c07c8187dbe/Rocky-8.4-x86_64-minimal_72cc0cc6-9d0f-4c68-9bcd-06385a506a5d.iso"
+],
 ```
 
 Then you have to provide the complete command to be entered during the installation process: configuration of the IP and transmission of the path to the Kickstart response file.
 
-!!! note "Note" 
+!!! note "Note"
 
     This example takes the most complex case: using a static IP. If you have a DHCP server available, the process will be much easier.
 
 This is the most amusing part of the procedure: I'm sure you will go and admire the VMware console during the generation, just to see the automatic entry of the commands during the boot.
 
-```
+```json
 "boot_command": [
 "<up><tab> text ip=192.168.1.11::192.168.1.254:255.255.255.0:template:ens192:none nameserver=192.168.1.254 inst.ks=http://{{ user `HTTP_IP` }}/{{ user `HTTP_PATH` }}<enter><wait><enter>"
 ],
@@ -334,20 +331,20 @@ This is the most amusing part of the procedure: I'm sure you will go and admire 
 
 After the first reboot, Packer will connect to your server by SSH. You can use the root user, or another user with sudo rights, but in any case, this user must correspond to the user that is defined in your ks.cfg file.
 
-```
+```json
 "ssh_password": "mysecurepassword",
 "ssh_username": "root",
 ```
 
 At the end of the process, the VM must be stopped. It is a little bit more complicated with a non-root user, but it is well documented:
 
-```
+```json
 "shutdown_command": "/sbin/halt -h -p",
 ```
 
 Next, we deal with the vSphere configuration. The only notable things here are the use of the variables defined at the beginning of the document in our home directory, as well as the `insecure_connection` option, because our vSphere uses a self-signed certificate (see note in Assumptions at the top of this document):
 
-```
+```json
 "insecure_connection": "true",
 "username": "{{ user `vcenter_username` }}",
 "password": "{{ user `vcenter_password` }}",
@@ -365,7 +362,7 @@ And finally, we will ask vSphere to convert our stopped VM to a template.
 
 At this stage, you could also elect to just use the VM as is (not converting it to a template). In this case, you can decide to take a snapshot instead:
 
-```
+```json
 "convert_to_template": true,
 "create_snapshot": false,
 ```
@@ -376,7 +373,7 @@ As noted above, we need to provide a kickstart response file that will be used b
 
 Here's an example of that file:
 
-```
+```bash
 # Use CD-ROM installation media
 repo --name="AppStream" --baseurl="http://download.rockylinux.org/pub/rocky/8.4/AppStream/x86_64/os/"
 cdrom
@@ -487,7 +484,7 @@ As Packer relies on VMware Tools to detect the end of the installation, and the 
 
     If you do not have access to the external repos, you can use either a mirror of the repo, a squid proxy, or the DVD.
 
-```
+```bash
 # Use CD-ROM installation media
 repo --name="AppStream" --baseurl="http://download.rockylinux.org/pub/rocky/8.4/AppStream/x86_64/os/"
 cdrom
@@ -495,14 +492,14 @@ cdrom
 
 Let us jump to the network configuration, as once again, in this example we are not using a DHCP server:
 
-```
+```bash
 # Network information
 network --bootproto=static --device=ens192 --gateway=192.168.1.254 --ip=192.168.1.11 --nameserver=192.168.1.254,4.4.4.4 --netmask=255.255.255.0 --onboot=on --ipv6=auto --activate
 ```
 
 Remember we specified the user to connect via SSH with to Packer at the end of the installation. This user and password must match:
 
-```
+```bash
 # Root password
 rootpw mysecurepassword
 ```
@@ -513,7 +510,7 @@ rootpw mysecurepassword
 
 Here is the selected partition scheme. Much more complex things can be done. You can define a partition scheme that suits your needs, adapting it to the disk space defined in Packer, and which respects the security rules defined for your environment (dedicated partition for `/tmp`, etc.):
 
-```
+```bash
 # System booloader configuration
 bootloader --location=mbr --boot-drive=sda
 # Partition clearing information
@@ -538,7 +535,7 @@ The `openssh-clients` package seems to be required for Packer to copy its script
 
 The `open-vm-tools` is also needed by Packer to detect the end of the installation, this explains the addition of the AppStream repository. The packages `perl` and `perl-File-Temp` will also be required by VMware Tools during the deployment part. This is a shame because it requires a lot of other dependent packages. `python3` (3.6) will also be required in the future for Ansible to work (if you won't use Ansible or python, remove them!).
 
-```
+```bash
 %packages --ignoremissing --excludedocs
 openssh-clients
 open-vm-tools
@@ -556,7 +553,7 @@ wget
 
 You can not only add packages but also remove them. Since we control the environment in which our hardware will work, we can remove any of the firmware that will be useless to us:
 
-```
+```bash
 # unnecessary firmware
 -aic94xx-firmware
 -atmel-firmware
@@ -565,7 +562,7 @@ You can not only add packages but also remove them. Since we control the environ
 
 The next part adds some users. It is interesting in our case to create an `ansible` user, without password but with a public key. This allows all of our new VMs to be accessible from our Ansible server to run the post-install actions:
 
-```
+```bash
 # Manage Ansible access
 groupadd -g 1001 ansible
 useradd -m -g 1001 -u 1001 ansible
@@ -580,7 +577,7 @@ chmod 440 /etc/sudoers.d/ansible
 
 Now we need to enable and start `vmtoolsd` (the process that manages open-vm-tools). vSphere will detect the IP address after the reboot of the VM.
 
-```
+```bash
 systemctl enable vmtoolsd
 systemctl start vmtoolsd
 ```
@@ -595,7 +592,7 @@ There are different types of provisioners, we could also have used Ansible. You 
 
 This file can be completely changed, but this provides an example of what can be done with a script, in this case `requirements.sh`:
 
-```
+```bash
 #!/bin/sh -eux
 
 echo "Updating the system..."
@@ -643,12 +640,11 @@ truncate -s 0 /etc/machine-id
 echo "Clear the history so our install commands aren't there"
 rm -f /root/.wget-hsts
 export HISTSIZE=0
-
 ```
 
 Some explanations are necessary:
 
-```
+```bash
 echo "Installing cloud-init..."
 dnf -y install cloud-init
 
@@ -678,7 +674,7 @@ Now it is time to launch Packer and check that the creation process, which is co
 
 Simply enter this at the command line:
 
-```
+```bash
 ./packer build -var-file=~/.vsphere-secrets.json rockylinux8/template.json
 ```
 
@@ -696,7 +692,7 @@ For this, we will use a simple Ansible playbook, which uses the `vmware_guest` m
 
 This playbook that we provide you, must be adapted to your needs and your way of doing things.
 
-```
+```ansible
 ---
 - name: Deploy VM from template
   hosts: localhost
@@ -745,7 +741,7 @@ You can store sensitive data in the `./vars/credentials.yml`, which you will obv
 
 If you do not use something like Rundeck or Awx, you can launch the deployment with a command line similar to this one:
 
-```
+```bash
 ansible-playbook -i ./inventory/hosts  -e '{"comments":"my comments","cluster_name":"CS_NAME","esxi_hostname":"ESX_NAME","state":"started","storage_folder":"PROD","datacenter_name":"DC_NAME}","datastore_name":"DS_NAME","template_name":"template-rockylinux8-0.0.1","vm_name":"test_vm","network_name":"net_prod","network_ip":"192.168.1.20","network_gateway":"192.168.1.254","network_mask":"255.255.255.0","memory_mb":"4","num_cpu":"2","domain":"rockylinux.lan","dns_servers":"192.168.1.254","guest_id":"centos8_64Guest"}' ./vmware/create_vm.yml --vault-password-file /etc/ansible/vault_pass.py
 ```
 
@@ -759,4 +755,4 @@ At the same time, this represents an undeniable saving of time, especially in cl
 
 ## Other References
 
-For a detailed project that also covers the deployment of Rocky Linux and other operating systems using the latest in vSphere, Packer, and the Packer Plugin for vSphere, please visit [this project](https://github.com/vmware-samples/packer-examples-for-vsphere). 
+For a detailed project that also covers the deployment of Rocky Linux and other operating systems using the latest in vSphere, Packer, and the Packer Plugin for vSphere, please visit [this project](https://github.com/vmware-samples/packer-examples-for-vsphere).
