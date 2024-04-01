@@ -18,14 +18,14 @@ This is also a companion document to the [Docker version here](rockydocs_web_dev
 
 ## Prerequisites and assumptions
 
-* Familiarity and comfort with the command-line
-* Comfortable using tools for editing, SSH, and synchronization, or willing to follow along and learn
-* LXD reference - there is a long document on [building and using LXD on a server here](../../../books/lxd_server/00-toc.md), but you will use just a basic install on our Linux workstation
-* Using `lsyncd` for mirroring files. See [documentation on that here](../../backup/mirroring_lsyncd.md)
-* You will need public keys generated for your user and the "root" user on your local workstation using [this document](../../security/ssh_public_private_keys.md)
-* Our bridge interface is running on 10.56.233.1 and our container is running on 10.56.233.189 in our examples. However your IPs for the bridge and container will be different. 
-* "youruser" in this document represents your user id
-* The assumption is that you are already doing documentation development with a clone of the documentation repository on your workstation
+- Familiarity and comfort with the command-line
+- Comfortable using tools for editing, SSH, and synchronization, or willing to follow along and learn
+- LXD reference - there is a long document on [building and using LXD on a server here](../../../books/lxd_server/00-toc.md), but you will use just a basic install on our Linux workstation
+- Using `lsyncd` for mirroring files. See [documentation on that here](../../backup/mirroring_lsyncd.md)
+- You will need public keys generated for your user and the "root" user on your local workstation using [this document](../../security/ssh_public_private_keys.md)
+- Our bridge interface is running on 10.56.233.1 and our container is running on 10.56.233.189 in our examples. However your IPs for the bridge and container will be different.
+- "youruser" in this document represents your user id
+- The assumption is that you are already doing documentation development with a clone of the documentation repository on your workstation
 
 ## The `mkdocs` container
 
@@ -35,13 +35,13 @@ Our first step is to create the LXD container. Using your container's defaults (
 
 You will add a Rocky container to our workstation for `mkdocs`. Just name it "mkdocs":
 
-```
+```bash
 lxc launch images:rockylinux/8 mkdocs
 ```
 
 The container needs to be a proxy. By default, when `mkdocs serve` starts, it runs on 127.0.0.1:8000. That is fine when it is on your local workstation without a container. However, when it is in an LXD **container** on your local workstation, you need to set up the container with a proxy port. Do this with:
 
-```
+```bash
 lxc config device add mkdocs mkdocsport proxy listen=tcp:0.0.0.0:8000 connect=tcp:127.0.0.1:8000
 ```
 
@@ -55,7 +55,7 @@ In the line above, "mkdocs" is our container name, "mkdocsport" is an arbitrary 
 
 First, get into the container with:
 
-```
+```bash
 lxc exec mkdocs bash
 ```
 
@@ -77,22 +77,21 @@ lxc exec mkdocs bash
 
 For Rocky Linux 9.x you will need a few packages (see "Changes in requirements.txt for 8.x" for 8.x package installation!):
 
-```
+```bash
 dnf install git openssh-server python3-pip rsync
 ```
 
 When installed, you need to enable and start `sshd`:
 
-
-```
+```bash
 systemctl enable --now sshd
 ```
+
 ### Container users
 
 You need to set a password for our root user and then add our user (the user you use on your local machine) to the sudoers list. You are the "root" user at the moment. To change the password enter:
 
-
-```
+```text
 passwd
 ```
 
@@ -100,14 +99,14 @@ Set a secure and memorable password.
 
 Next, add your user and set a password:
 
-```
+```bash
 adduser youruser
 passwd youruser
 ```
 
 Add your user to the sudoers group:
 
-```
+```bash
 usermod -aG wheel youruser
 ```
 
@@ -117,13 +116,13 @@ You should be able to SSH into the container with the root user or your user fro
 
 In this procedure, the root user (at minimum) needs to be able to SSH into the container without entering a password; this is because of the `lsyncd` process you will be implementing. The assumption here is that you can sudo to the root user on your local workstation:
 
-```
+```bash
 sudo -s
 ```
 
 The assumption also is that the root user has an `id_rsa.pub` key in the `./ssh` directory. If not, generate one with [this procedure](../../security/ssh_public_private_keys.md):
 
-```
+```bash
 ls -al .ssh/
 drwx------  2 root root 4096 Feb 25 08:06 .
 drwx------ 14 root root 4096 Feb 25 08:10 ..
@@ -134,46 +133,46 @@ drwx------ 14 root root 4096 Feb 25 08:10 ..
 
 To get SSH access on our container without having to enter a password, provided the `id_rsa.pub` key exists, as it does above, just run:
 
-```
+```bash
 ssh-copy-id root@10.56.233.189
 ```
 
-For our user, however, you need the entire `.ssh/` directory copied to our container. You will keep everything the same for this user so that our access to GitHub over SSH is the same. 
+For our user, however, you need the entire `.ssh/` directory copied to our container. You will keep everything the same for this user so that our access to GitHub over SSH is the same.
 
 To copy everything over to our container, you just need to do this as your user, **not** sudo:
 
-```
+```bash
 scp -r .ssh/ youruser@10.56.233.189:/home/youruser/
 ```
 
 Next, SSH into the container as your user:
 
-```
+```bash
 ssh -l youruser 10.56.233.189
 ```
 
-You need to make things identical. You are doing this with `ssh-add`. To do this, you must ensure that you have the <code>ssh-agent</code> available:
+You need to make things identical. You are doing this with `ssh-add`. To do this, you must ensure that you have the `ssh-agent` available:
 
-```
+```bash
 eval "$(ssh-agent)"
 ssh-add
 ```
 
 ## Cloning repositories
 
-You need two repositories cloned, but no need to add any <code>git</code> remotes. The documentation repository here will only display the current documentation (mirrored from your workstation) and the docs.
+You need two repositories cloned, but no need to add any `git` remotes. The documentation repository here will only display the current documentation (mirrored from your workstation) and the docs.
 
 The rockylinux.org repository is for running `mkdocs serve` and will use the mirror as its source. Run all these steps as your non-root user. If you are not able to clone the repositories as your userid, then there **IS** a problem with your identity as far as `git` is concerned and you will need to review the last few steps for re-creating your key environment (above).
 
 First, clone the documentation:
 
-```
+```bash
 git clone git@github.com:rocky-linux/documentation.git
 ```
 
 Next, clone docs.rockylinux.org:
 
-```
+```bash
 git clone git@github.com:rocky-linux/docs.rockylinux.org.git
 ```
 
@@ -181,40 +180,41 @@ If you get errors, return to the steps above and ensure that those are all corre
 
 ## Setting up `mkdocs`
 
-Installing the needed plugins is all done with `pip3` and the "requirements.txt" file in the docs.rockylinux.org directory. While this process will argue with you about using the root user to write the changes to the system directories, you have to run it as root. 
+Installing the needed plugins is all done with `pip3` and the "requirements.txt" file in the docs.rockylinux.org directory. While this process will argue with you about using the root user to write the changes to the system directories, you have to run it as root.
 
 You do this with `sudo` here.
 
 Change into the directory:
 
-```
+```bash
 cd docs.rockylinux.org
 ```
 
 Then run:
 
-```
+```bash
 sudo pip3 install -r requirements.txt
 ```
 
 Next you must set up `mkdocs` with an additional directory.  `mkdocs` requires the creation of a docs directory and then the documentation/docs directory linked beneath it. Do this with:
 
-```
+```bash
 mkdir docs
 cd docs
 ln -s ../../documentation/docs
 ```
+
 ### Testing `mkdocs`
 
 Now that you have `mkdocs` setup, try starting the server. Remember, this process will argue that it looks like this is production. It is not, so ignore the warning. Start `mkdocs serve` with:
 
-```
+```bash
 mkdocs serve -a 0.0.0.0:8000
 ```
 
 You will see something like this in the console:
 
-```
+```bash
 INFO     -  Building documentation...
 WARNING  -  Config value: 'dev_addr'. Warning: The use of the IP address '0.0.0.0' suggests a production environment or the use of a
             proxy to connect to the MkDocs server. However, the MkDocs' server is intended for local development purposes only. Please
@@ -243,12 +243,13 @@ Now for the moment of truth! If you have done everything correctly, you should b
 
 In our example, enter the following in the browser address (**NOTE** To avoid broken URLs, the IP here has been changed to "your-server-ip". You just need to substitute in the IP):
 
-```
+```bash
 http://your-server-ip:8000
 ```
+
 ## `lsyncd`
 
-You are almost there if you saw the documentation in the web browser. The last step is to keep the documentation in your container synchronized with the one on your local workstation. 
+You are almost there if you saw the documentation in the web browser. The last step is to keep the documentation in your container synchronized with the one on your local workstation.
 
 As noted above, you are doing this here with `lsyncd`.
 
@@ -261,31 +262,31 @@ For now, we are assuming that you are using a Rocky Linux workstation and are us
 ### Configuration
 
 !!! Note
-    
+
     The root user must run the daemon, so you must be root to create the configuration files and logs. For this we are assuming `sudo -s`.
 
 You need to have some log files available for `lsyncd` to write to:
 
-```
+```bash
 touch /var/log/lsyncd-status.log
 touch /var/log/lsyncd.log
 ```
 
 You also need to have an exclude file created, even though in this case you are not excluding anything:
 
-```
+```bash
 touch /etc/lsyncd.exclude
 ```
 
 Finally you need to create the configuration file. In this example, we are using `vi` as our editor, but you may use whichever editor you feel comfortable with:
 
-```
+```bash
 vi /etc/lsyncd.conf
 ```
 
 Then place this content in that file and save it. Be sure to replace "youruser" with your actual user, and the IP address with your own container IP:
 
-```
+```bash
 settings {
    logfile = "/var/log/lsyncd.log",
    statusFile = "/var/log/lsyncd-status.log",
@@ -312,13 +313,13 @@ sync {
 
 Assuming that you enabled `lsyncd` when you installed it, at this point you need just to start or restart the process:
 
-```
+```bash
 systemctl restart lsyncd
 ```
 
 To ensure things are working, check the logs-particularly the `lsyncd.log`, which should show you something like this if everything started correctly:
 
-```
+```bash
 Fri Feb 25 08:10:16 2022 Normal: --- Startup, daemonizing ---
 Fri Feb 25 08:10:16 2022 Normal: recursive startup rsync: /home/youruser/documentation/ -> root@10.56.233.189:/home/youruser/documentation/
 Fri Feb 25 08:10:41 2022 Normal: Startup of "/home/youruser/documentation/" finished: 0
