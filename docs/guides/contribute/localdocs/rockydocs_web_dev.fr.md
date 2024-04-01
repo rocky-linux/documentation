@@ -1,5 +1,5 @@
 ---
-title: Méthode docker
+title: Méthode Docker
 author: Wale Soyinka
 contributors: Steve Spencer, Ganna Zhyrnova
 update: 2022-02-27
@@ -20,14 +20,14 @@ L'exécution d'une copie locale du site de documentation peut être utile pour l
 - Les instructions de ce guide ne sont **PAS** des prérequis pour la contribution des auteurs à la documentation de Rocky Linux
 - L'environnement complet s'exécute dans un conteneur Docker et vous aurez donc besoin d'un service Docker sur votre ordinateur local
 - Le conteneur est créé à partir de l'image officielle docker RockyLinux disponible ici https://hub.docker.com/r/rockylinux/rockylinux
-- Le conteneur conserve le contenu de la documentation (guides, books, images, etc.) séparément du moteur web (médocs)
-- Le conteneur démarre un serveur web local qui reçoit les requêtes en utilisant le port 8000.  et le port 8000 sera redirigé vers l'hôte Docker
+- Le conteneur conserve le contenu de la documentation (guides, books, images, etc.) séparément du moteur web (mkdocs)
+- Le conteneur démarre un serveur web local qui reçoit les requêtes en utilisant le port 8000.  Le port 8000 sera redirigé vers l'hôte Docker
 
 ## Créer l'environnement de contenu
 
 1. Remplacez le répertoire de travail actuel sur votre système local par un répertoire dans lequel vous avez l'intention d'effectuer vos enregistrements. Nous ferons référence à ce répertoire par l'intermédiaire de la variable `$ROCKYDOCS` dans le reste de ce guide.  Pour notre exemple ici, `$ROCKYDOCS` correspond au répertoire `~/projects/rockydocs` sur notre système de démonstration.
 
-    Créez $ROCKYDOCS s'il n'existe pas déjà, puis saisissez :
+    Créez $ROCKYDOCS s'il n'existe pas déjà, puis exécutez la commande suivante :
 
     ```bash
     cd  $ROCKYDOCS
@@ -51,7 +51,7 @@ Vous avez maintenant le répertoire `$ROCKYDOCS/documentation`. Ce répertoire e
     docker pull wsoyinka/rockydocs:latest
     ```
 
-3. Vérifiez que l'image docker a bien été téléchargée. Entrer la commande suivante :
+3. Vérifiez que l'image docker a bien été téléchargée. Pour ce faire utilisez la commande suivante :
 
     ```bash
     docker image  ls
