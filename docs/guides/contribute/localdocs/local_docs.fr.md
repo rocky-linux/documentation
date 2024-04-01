@@ -14,35 +14,35 @@ Vous pouvez compiler le système de documentation localement sans Docker ou LXD 
 
 ## Procédure
 
-* Cloner le dépôt docs.rockylinux.org :
+- Cloner le dépôt docs.rockylinux.org :
 
-```
-git clone https://github.com/rocky-linux/docs.rockylinux.org.git
-```
+    ```bash
+    git clone https://github.com/rocky-linux/docs.rockylinux.org.git
+    ```
 
-* Une fois terminé, changez dans le répertoire docs.rockylinux.org :
+- Une fois le clonage terminé, changez dans le répertoire docs.rockylinux.org :
 
-```
-cd docs.rockylinux.org
-```
+    ```bash
+    cd docs.rockylinux.org
+    ```
 
-* Maintenant, clonez le dépôt de documentation en utilisant :
+- Maintenant, clonez le dépôt de documentation en utilisant la commande suivante :
 
-```
-git clone https://github.com/rocky-linux/documentation.git docs
-```
+    ```bash
+    git clone https://github.com/rocky-linux/documentation.git docs
+    ```
 
-* Ensuite, installez le fichier requirements.txt pour mkdocs :
+- Ensuite, installez le fichier `requirements.txt` pour `mkdocs` :
 
-```
-python3 -m pip install -r requirements.txt
-```
+    ```bash
+    python3 -m pip install -r requirements.txt
+    ```
 
-* Enfin pour terminer lancez le serveur mkdocs :
+- Enfin pour terminer lancez le serveur mkdocs :
 
-```
-mkdocs serve
-```
+    ```text
+    mkdocs serve
+    ```
 
 ## Conclusion
 
