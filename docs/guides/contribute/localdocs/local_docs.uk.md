@@ -14,35 +14,35 @@ tags:
 
 ## Процедура
 
-* Клонуйте репозиторій docs.rockylinux.org:
+- Клонуйте репозиторій docs.rockylinux.org:
 
-```
-git clone https://github.com/rocky-linux/docs.rockylinux.org.git
-```
+    ```bash
+    git clone https://github.com/rocky-linux/docs.rockylinux.org.git
+    ```
 
-* Після завершення перейдіть до каталогу docs.rockylinux.org:
+- Після завершення перейдіть до каталогу docs.rockylinux.org:
 
-```
-cd docs.rockylinux.org
-```
+    ```bash
+    cd docs.rockylinux.org
+    ```
 
-* Тепер клонуйте сховище документації за допомогою:
+- Тепер клонуйте сховище документації за допомогою:
 
-```
-git clone https://github.com/rocky-linux/documentation.git docs
-```
+    ```bash
+    git clone https://github.com/rocky-linux/documentation.git docs
+    ```
 
-* Далі встановіть файл requirements.txt для mkdocs:
+- Далі встановіть файл requirements.txt для mkdocs:
 
-```
-python3 -m pip install -r requirements.txt
-```
+    ```bash
+    python3 -m pip install -r requirements.txt
+    ```
 
-* Нарешті запустіть сервер mkdocs:
+- Нарешті запустіть сервер mkdocs:
 
-```
-mkdocs serve
-```
+    ```text
+    mkdocs serve
+    ```
 
 ## Висновок
 
