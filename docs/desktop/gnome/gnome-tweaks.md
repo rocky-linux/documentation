@@ -24,7 +24,11 @@ Installation includes all needed dependencies.
 
 ## Screens and functions
 
+![Activities Menu](images/activities.png)
+
 To start tweaks, from the Activities menu's search, type "tweaks" and click on "Tweaks."
+
+![Tweaks](images/tweaks.png)
 
 <!-- Please, add here a screen where you click Tweaks -->
 
