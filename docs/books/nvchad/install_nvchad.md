@@ -56,31 +56,31 @@ rm -rf ~/.cache/nvim
 ## :material-monitor-arrow-down-variant: Installation
 
 The creation of the configuration structure is implemented by copying files from an initialization repository (==starter==) using *Git*. This method allows installing the NvChad configuration, prepared as a Neovim plugin, within the *lazy.nvim* plugin manager.  
-The configuration in this way is updated like all other plugins thus simplifying its management by the user, moreover this approach makes the entire user configuration independent allowing its total management and distribution among multiple machines.
+This way, the configuration is updated like all other plugins, simplifying the user's management. Moreover, this approach makes the entire user configuration independent, allowing its total management and distribution among multiple machines.
 
-To download and initialize the configuration use the following command:
+To download and initialize the configuration, use the following command:
 
 ```bash
 git clone https://github.com/NvChad/starter ~/.config/nvim && nvim
 ```
 
-The command consists of two parts, the first downloads the contents of the *starter* repository to `~/.config/nvim/` (default folder for Neovim settings) while the second invokes the ==nvim== executable which initializes the editor with the configuration you just downloaded. Once you have finished installing the plugins and parsers you will be faced with the following screen, to close the plugins manager type ++"q "++ :
+The command consists of two parts. The first downloads the contents of the *starter* repository to `~/.config/nvim/` (default folder for Neovim settings), while the second invokes the ==nvim== executable which initializes the editor with the configuration you just downloaded. Once you have finished installing the plugins and parsers, you will be faced with the following screen. To close the plugins manager, type ++"q "++ :
 
 ![NvChad Install](images/install_nvchad_25.png)
 
-The initial configuration is a minimal configuration that provides a starting point for your own customization. As evidenced by the screenshot when the editor is first started, only four modules (==plugins==), marked with a checkmark, are loaded, which are as follows:
+The initial configuration is minimal and provides a starting point for your customization. As evidenced by the screenshot when the editor is first started, only four modules (==plugins==), marked with a checkmark, are loaded, which are as follows:
 
-* **base46** - providing editor themes
+* **base46** - provides editor themes
 * **NvChad** - the basic configuration that allows the user configuration to be entered into Neovim
 * **nvim-treesitter** - for analysis and highlighting of code
 * **ui** - the editor interface (statusline, tabufline..)
 
-The remaining modules will be activated, thanks to the ==*lazyloading*== technique, when the functionality provided by the module is requested; this improves the performance of the editor in general and in particular improves its startup time.
+The remaining modules will be activated, thanks to the ==*lazyloading*== technique, when the functionality provided by the module is requested. This improves the performance of the editor in general and, in particular, improves its startup time.
 
-The editor at this point is ready to be used, the following sections are an in-depth look at the installation process and are not necessary for its day-to-day use, if interested only in its use you can turn to the [Using NvChad](./nvchad_ui/using_nvchad.md) page.  
-A reading of the [official documentation](https://nvchad.com/docs/quickstart/install) for an introduction to its components and functionality remains recommended, however.
+At this point, the editor is ready to be used. The following sections provide an in-depth look at the installation process and are not necessary for its day-to-day use. If you are interested only in its use, you can turn to the [Using NvChad](./nvchad_ui/using_nvchad.md) page.  
+However, reading the [official documentation](https://nvchad.com/docs/quickstart/install) for an introduction to its components and functionality remains recommended.
 
-To close the editor use the key ++colon++ ++"q "++.
+To close the editor, use the key ++colon++ ++"q "++.
 
 ### :material-timer-cog-outline: Bootstrap
 
@@ -169,7 +169,7 @@ The structure installed by NvChad is as follows:
 
 It consists of a starting file **init.lua** that initializes and coordinates the insertion of customizations into the configuration of ==Neovim==, this file initially looks identical to the file used by the *bootstrap* from the **starter** repository shown above, it will be used later for loading other files into the configuration such as its own *autocommands.lua* file.
 
-This is followed by the **lazy-lock.json** file where all the plugins in the installation and their status with respect to development on *GitHub* are stored.This file allows the editor status to be synchronized between installations present on multiple machines and to make custom installations replicating the desired status.
+This is followed by the **lazy-lock.json** file where all the plugins in the installation and their status with respect to development on *GitHub* are stored. This file allows the editor status to be synchronized between installations present on multiple machines and allows custom installations to replicate the desired status.
 
 The rest of the configuration is located in the `lua` folder and is initialized starting with the **chadrc.lua** file, which in the initial version contains only the editor theme setting.  
 This file is used for customizing the appearance of the editor (==UI==) and shares syntax with the [nvconfig.lua](https://github.com/NvChad/NvChad/blob/v2.5/lua/nvconfig.lua) file of the **NvChad** plugin; to compile it, simply copy the desired part of the *nvconfig.lua* file into your *chadrc.lua* and change its properties as needed.
