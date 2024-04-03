@@ -37,13 +37,13 @@ tags:
 
 Ось усе, що вам знадобиться або потрібно знати, щоб цей посібник працював:
 
-* Знайомство з командним рядком, сценаріями bash та редагуванням конфігураційних файлів Linux.
-* Доступ SSH при роботі на віддаленій машині.
-* Текстовий редактор на основі командного рядка на ваш вибір. Для цього посібника ми будемо використовувати `vi`.
-* Підключена до Інтернету машина Rocky Linux (Raspberry Pi чудово працюватиме).
-* Багато з цих команд потрібно запускати від імені користувача root, тому на машині вам знадобиться користувач із підтримкою root або sudo.
-* Знайомство з веб-серверами та MariaDB точно допоможе.
-* Знайомство з контейнерами та, можливо, Docker було б *безсумнівним* плюсом, але це не обов’язково.
+- Знайомство з командним рядком, сценаріями bash та редагуванням конфігураційних файлів Linux.
+- Доступ SSH при роботі на віддаленій машині.
+- Текстовий редактор на основі командного рядка на ваш вибір. Для цього посібника ми будемо використовувати `vi`.
+- Підключена до Інтернету машина Rocky Linux (Raspberry Pi чудово працюватиме).
+- Багато з цих команд потрібно запускати від імені користувача root, тому на машині вам знадобиться користувач із підтримкою root або sudo.
+- Знайомство з веб-серверами та MariaDB точно допоможе.
+- Знайомство з контейнерами та, можливо, Docker було б *безсумнівним* плюсом, але це не обов’язково.
 
 ## Крок 01. Встановіть `podman` і `buildah`
 
@@ -75,7 +75,7 @@ vi /etc/containers/registries.conf
 
 Знайдіть розділ, схожий на те, що ви бачите нижче. Якщо він закоментований, розкоментуйте його.
 
-```
+```bash
 [registries.insecure]
 registries = ['registry.access.redhat.com', 'registry.redhat.io', 'docker.io'] 
 insecure = true
@@ -109,7 +109,7 @@ vi Dockerfile
 
 Скопіюйте та вставте наступний текст у свій новий DockerFile.
 
-```
+```docker
 FROM rockylinux/rockylinux:latest
 ENV container docker
 RUN yum -y install epel-release ; yum -y update
@@ -137,7 +137,7 @@ vi build.sh
 
 Потім вставте цей вміст:
 
-```
+```bash
 #!/bin/bash
 clear
 buildah rmi `buildah images -q base` ;
@@ -163,10 +163,10 @@ chmod +x build.sh
 
 Для цілей цього посібника ми зробимо налаштування бази даних максимально простими. Ви захочете відстежувати наступне та змінювати їх за потреби:
 
-* Ім'я бази даних: ncdb
-* Користувач бази даних: nc-user
-* Перехід бази даних: nc-pass
-* IP-адреса вашого сервера (ми будемо використовувати приклад IP-адреси нижче)
+- Ім'я бази даних: ncdb
+- Користувач бази даних: nc-user
+- Перехід бази даних: nc-pass
+- IP-адреса вашого сервера (ми будемо використовувати приклад IP-адреси нижче)
 
 Спочатку перейдіть до папки, де ви будете створювати образ db-tools:
 
@@ -182,7 +182,7 @@ vi db-create.sh
 
 Тепер скопіюйте та вставте наступний код у цей файл за допомогою вашого улюбленого текстового редактора:
 
-```
+```bash
 #!/bin/bash
 mysql -h 10.1.1.160 -u root -p rockylinux << eof
 create database ncdb;
@@ -199,7 +199,7 @@ vi db-drop.sh
 
 Скопіюйте та вставте цей код у новий файл:
 
-```
+```bash
 #!/bin/bash
 mysql -h 10.1.1.160 -u root -p rockylinux << eof
 drop database ncdb;
@@ -215,7 +215,7 @@ vi Dockerfile
 
 Копіювати і вставити:
 
-```
+```docker
 FROM localhost/base
 RUN yum -y install mysql
 WORKDIR /root
@@ -231,7 +231,7 @@ vi build.sh
 
 Код, який вам потрібен:
 
-```
+```bash
 #!/bin/bash
 clear
 buildah rmi `buildah images -q db-tools` ;
@@ -271,7 +271,7 @@ vi db-init.sh
 
     Для цілей цього посібника наступний сценарій видалить усі томи Podman. Якщо у вас є інші програми, що працюють із власними томами, змініть/закоментуйте рядок «podman volume rm --all»;
 
-```
+```bash
 #!/bin/bash
 clear
 echo " "
@@ -302,7 +302,7 @@ vi db-reset.sh
 
 А ось код:
 
-```
+```bash
 #!/bin/bash
 clear
 echo " "
@@ -322,7 +322,7 @@ vi build.sh
 
 З його кодом:
 
-```
+```bash
 #!/bin/bash
 clear
 buildah rmi `buildah images -q mariadb` ;
@@ -332,7 +332,7 @@ buildah images -a
 
 Тепер просто створіть свій DockferFile (`vi Dockerfile`) і вставте такий один рядок:
 
-```
+```docker
 FROM arm64v8/mariadb
 ```
 
@@ -364,7 +364,7 @@ vi Dockerfile
 
 І вставте цей фрагмент:
 
-```
+```docker
 FROM arm64v8/nextcloud
 ```
 
@@ -376,7 +376,7 @@ vi build.sh
 
 І вставте цей код:
 
-```
+```bash
 #!/bin/bash
 clear
 buildah rmi `buildah images -q nextcloud` ;
@@ -398,7 +398,7 @@ vi run.sh
 
 І ось увесь необхідний для цього код. Переконайтеся, що ви змінили IP-адресу `MYSQL_HOST` на контейнер докерів, у якому запущено ваш екземпляр MariaDB.
 
-```
+```bash
 #!/bin/bash
 clear
 echo " "
@@ -430,7 +430,7 @@ chmod +x *.sh
 
 Щоб переконатися, що всі ваші зображення створено правильно, запустіть `podman images`. Ви повинні побачити список, який виглядає так:
 
-```
+```bash
 REPOSITORY                      TAG    IMAGE ID     CREATED      SIZE
 localhost/db-tools              latest 8f7ccb04ecab 6 days ago   557 MB
 localhost/base                  latest 03ae68ad2271 6 days ago   465 MB
@@ -446,13 +446,13 @@ docker.io/arm64v8/nextcloud     latest 579a44c1dc98 3 weeks ago  945 MB
 
 Коли ви запускаєте `podman ps -a`, ви повинні побачити список запущених контейнерів, який виглядає так:
 
-```
+```bash
 CONTAINER ID IMAGE                              COMMAND              CREATED        STATUS            PORTS    NAMES
 9518756a259a docker.io/arm64v8/mariadb:latest   mariadbd             3 minutes  ago Up 3 minutes ago           mariadb
 32534e5a5890 docker.io/arm64v8/nextcloud:latest apache2-foregroun... 12 seconds ago Up 12 seconds ago          nextcloud
 ```
 
-Звідти ви зможете вказати свій браузер на IP-адресу вашого сервера. Якщо ви дотримуєтесь і маєте ту саму IP-адресу, що й у нашому прикладі, ви можете замінити її тут (наприклад, http://your-server-ip) і побачити, як Nextcloud працює.
+Звідти ви зможете вказати свій браузер на IP-адресу вашого сервера. Якщо ви дотримуєтесь і маєте ту саму IP-адресу, що й у нашому прикладі, ви можете замінити її тут (наприклад, <http://your-server-ip>) і побачити, як Nextcloud працює.
 
 ## Висновок
 
