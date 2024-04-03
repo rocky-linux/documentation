@@ -1,7 +1,7 @@
 ---
 title: Markdown Demo
 author: Einstein
-contributors: Dr. Ben Dover, Sweet Gypsy Rose
+contributors: Dr. Ben Dover, Sweet Gypsy Rose, fusion94
 tested_with: 8.5
 tags:
   - sample
@@ -10,6 +10,12 @@ tags:
 ---
 
 # Overview
+
+## Background
+
+* Use [Markdown](https://daringfireball.net/projects/markdown).
+* If you don't know Markdown - Learn Markdown; seriously it might be one of the
+  most important languages you will learn over the years.
 
 !!! WARNING
 
@@ -53,9 +59,34 @@ At other times, you need bulleted or numbered lists:
 
 And you could need an admonition:
 
+### Admonitions
+
+Admonitions, also known as call-outs, are an excellent choice for including side content without significantly interrupting the document flow. Material for MkDocs provides several different types of admonitions and allows for the inclusion and nesting of arbitrary content.
+
 !!! TIP
 
     Pencils and staplers are really old-school.
+
+#### Usage
+
+Admonitions follow a simple syntax: a block starts with `!!!`, followed by a single keyword used as a type qualifier. The content of the block follows on the next line, indented by four spaces:
+
+!!! note
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+    nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+    massa, nec semper lorem quam in massa.
+
+#### Changing the title
+
+By default, the title will equal the type qualifier in titlecase. However, it can be changed by adding a quoted string containing valid Markdown (including links, formatting, ...) after the type qualifier:
+
+!!! note "Phasellus posuere in sem ut cursus"
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+    nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+    massa, nec semper lorem quam in massa.
+
 
 More times than not, when a command has multiple options, or you need to list specifics, you might want to use a table to identify things:
 
