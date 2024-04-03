@@ -1,7 +1,7 @@
 ---
 title: Markdown Demo
 author: Einstein
-contributors: Dr. Ben Dover, Sweet Gypsy Rose
+contributors: Dr. Ben Dover, Sweet Gypsy Rose, fusion94
 tested_with: 8.5
 tags:
   - sample
