@@ -94,10 +94,3 @@ More times than not, when a command has multiple options, or you need to list sp
 | stylus   | writing or printing on an electronic device | sometimes replaced by a keyboard                |
 | keyboard | writing or printing on an electronic device | never replaced - used until full of food crumbs |
 | notepad  | take notes                                  | substitute for a sometimes-faulty memory        |
-
-::: mermaid
-pie title Fishermans in countries
-    "Norway" : 684
-    "Sweeden" : 234
-    "Switzerland" : 10
-:::
