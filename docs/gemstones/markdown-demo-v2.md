@@ -69,7 +69,7 @@ Admonitions, also known as call-outs, are an excellent choice for including side
 
 #### Usage
 
-Admonitions follow a simple syntax: a block starts with !!!, followed by a single keyword used as a type qualifier. The content of the block follows on the next line, indented by four spaces:
+Admonitions follow a simple syntax: a block starts with `!!!`, followed by a single keyword used as a type qualifier. The content of the block follows on the next line, indented by four spaces:
 
 !!! note
 
