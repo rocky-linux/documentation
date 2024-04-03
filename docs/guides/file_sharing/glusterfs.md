@@ -9,9 +9,9 @@ update: 11-Feb-2022
 
 ## Prerequisites
 
-* Proficiency with a command line editor (using _vi_ in this example)
-* A heavy comfort level with issuing commands from the command-line, viewing logs, and other general systems administrator duties
-* All commands are run as the root user or sudo
+- Proficiency with a command line editor (using *vi* in this example)
+- A heavy comfort level with issuing commands from the command-line, viewing logs, and other general systems administrator duties
+- All commands are run as the root user or sudo
 
 ## Introduction
 
@@ -25,8 +25,8 @@ Clients can access the data via the `glusterfs` client or the `mount` command.
 
 GlusterFS can operate in two modes:
 
-  * replicated mode: each node of the cluster has all the data.
-  * distributed mode: no data redundancy. If a storage fails, the data on the failed node is lost.
+- replicated mode: each node of the cluster has all the data.
+- distributed mode: no data redundancy. If a storage fails, the data on the failed node is lost.
 
 Both modes can be used together to provide a replicated and distributed file system if you have the correct number of servers.
 
@@ -38,9 +38,9 @@ Data is stored inside bricks.
 
 Our fictitious platform is comprises two servers and a client, all Rocky Linux servers.
 
-* First node: node1.cluster.local - 192.168.1.10
-* Second node: node2.cluster.local - 192.168.1.11
-* Client1: client1.clients.local - 192.168.1.12
+- First node: node1.cluster.local - 192.168.1.10
+- Second node: node2.cluster.local - 192.168.1.11
+- Client1: client1.clients.local - 192.168.1.12
 
 !!! Note
 
@@ -52,12 +52,12 @@ Each server in the cluster has a second disk for data storage.
 
 We will create a new LVM logical volume that will be mounted on `/data/glusterfs/vol0` on both of the cluster's servers:
 
-```
-$ sudo pvcreate /dev/sdb
-$ sudo vgcreate vg_data /dev/sdb
-$ sudo lvcreate -l 100%FREE -n lv_data vg_data
-$ sudo mkfs.xfs /dev/vg_data/lv_data
-$ sudo mkdir -p /data/glusterfs/volume1
+```bash
+sudo pvcreate /dev/sdb
+sudo vgcreate vg_data /dev/sdb
+sudo lvcreate -l 100%FREE -n lv_data vg_data
+sudo mkfs.xfs /dev/vg_data/lv_data
+sudo mkdir -p /data/glusterfs/volume1
 ```
 
 !!! Note
@@ -65,25 +65,25 @@ $ sudo mkdir -p /data/glusterfs/volume1
     If LVM is not available on your servers, just install it with the following command:
 
     ```
-    $ sudo dnf install lvm2
+    sudo dnf install lvm2
     ```
 
 We can now add that logical volume to the `/etc/fstab` file:
 
-```
+```bash
 /dev/mapper/vg_data-lv_data /data/glusterfs/volume1        xfs     defaults        1 2
 ```
 
 And mount it:
 
-```
-$ sudo mount -a
+```bash
+sudo mount -a
 ```
 
 As the data is stored in a sub-volume called brick, we can create a directory in this new data space dedicated to it:
 
-```
-$ sudo mkdir /data/glusterfs/volume1/brick0
+```bash
+sudo mkdir /data/glusterfs/volume1/brick0
 ```
 
 ## Installation
@@ -94,7 +94,7 @@ However, we will use (for the time being) the archived version.
 
 First of all, it is necessary to add the dedicated repository to gluster (in version 9) on both servers:
 
-```
+```bash
 sudo dnf install centos-release-gluster9
 ```
 
@@ -104,7 +104,7 @@ sudo dnf install centos-release-gluster9
 
 As the repo list and url is not available anymore, let's change the content of the `/etc/yum.repos.d/CentOS-Gluster-9.repo`:
 
-```
+```bash
 [centos-gluster9]
 name=CentOS-$releasever - Gluster 9
 #mirrorlist=http://mirrorlist.centos.org?arch=$basearch&release=$releasever&repo=storage-gluster-9
@@ -116,32 +116,32 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Storage
 
 We are now ready to install the glusterfs server:
 
-```
-$ sudo dnf install glusterfs glusterfs-libs glusterfs-server
+```bash
+sudo dnf install glusterfs glusterfs-libs glusterfs-server
 ```
 
 ## Firewall rules
 
 A few rules are necessary for the service to work:
 
-```
-$ sudo firewall-cmd --zone=public --add-service=glusterfs --permanent
-$ sudo firewall-cmd --reload
+```bash
+sudo firewall-cmd --zone=public --add-service=glusterfs --permanent
+sudo firewall-cmd --reload
 ```
 
 or:
 
-```
-$ sudo firewall-cmd --zone=public --add-port=24007-24008/tcp --permanent
-$ sudo firewall-cmd --zone=public --add-port=49152/tcp --permanent
-$ sudo firewall-cmd --reload
+```bash
+sudo firewall-cmd --zone=public --add-port=24007-24008/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=49152/tcp --permanent
+sudo firewall-cmd --reload
 ```
 
 ## Name resolution
 
 You can let DNS handle the name resolution of the servers in your cluster, or you can choose to relieve the servers of this task by inserting records for each of them in your `/etc/hosts` files. This will also keep things running even during a DNS failure.
 
-```
+```text
 192.168.10.10 node1.cluster.local
 192.168.10.11 node2.cluster.local
 ```
@@ -150,23 +150,23 @@ You can let DNS handle the name resolution of the servers in your cluster, or yo
 
 Without further delay, let's start the service:
 
-```
-$ sudo systemctl enable glusterfsd.service glusterd.service
-$ sudo systemctl start glusterfsd.service glusterd.service
+```bash
+sudo systemctl enable glusterfsd.service glusterd.service
+sudo systemctl start glusterfsd.service glusterd.service
 ```
 
 We are ready to join the two nodes in the same pool.
 
 This command is to be performed only once on a single node (here on node1):
 
-```
+```bash
 sudo gluster peer probe node2.cluster.local
 peer probe: success
 ```
 
 Verify:
 
-```
+```bash
 node1 $ sudo gluster peer status
 Number of Peers: 1
 
@@ -178,7 +178,7 @@ Other names:
 
 ```
 
-```
+```bash
 node2 $ sudo gluster peer status
 Number of Peers: 1
 
@@ -191,7 +191,7 @@ Other names:
 
 We can now create a volume with 2 replicas:
 
-```
+```bash
 $ sudo gluster volume create volume1 replica 2 node1.cluster.local:/data/glusterfs/volume1/brick0/ node2.cluster.local:/data/glusterfs/volume1/brick0/
 Replica 2 volumes are prone to split-brain. Use Arbiter or Replica 3 to avoid this. See: https://docs.gluster.org/en/latest/Administrator-Guide/Split-brain-and-ways-to-deal-with-it/.
 Do you still want to continue?
@@ -205,15 +205,15 @@ volume create: volume1: success: please start the volume to access data
 
 We can now start the volume to access data:
 
-```
-$ sudo gluster volume start volume1
+```bash
+sudo gluster volume start volume1
 
 volume start: volume1: success
 ```
 
 Check the volume state:
 
-```
+```bash
 $ sudo gluster volume status
 Status of volume: volume1
 Gluster process                             TCP Port  RDMA Port  Online  Pid
@@ -230,7 +230,7 @@ Task Status of Volume volume1
 There are no active volume tasks
 ```
 
-```
+```bash
 $ sudo gluster volume info
 
 Volume Name: volume1
@@ -255,8 +255,8 @@ The status must be "Started".
 
 We can already restrict access on the volume a little bit:
 
-```
-$ sudo gluster volume set volume1 auth.allow 192.168.10.*
+```bash
+sudo gluster volume set volume1 auth.allow 192.168.10.*
 ```
 
 It is as simple as that.
@@ -267,10 +267,10 @@ There are several ways to access our data from a client.
 
 The preferred method:
 
-```
-$ sudo dnf install glusterfs-client
-$ sudo mkdir /data
-$ sudo mount.glusterfs node1.cluster.local:/volume1 /data
+```bash
+sudo dnf install glusterfs-client
+sudo mkdir /data
+sudo mount.glusterfs node1.cluster.local:/volume1 /data
 ```
 
 There are no additional repositories to configure. The client is already present in the base repos.
@@ -279,13 +279,13 @@ Create a file and check that it is present on all the nodes of the cluster:
 
 On client:
 
-```
+```bash
 sudo touch /data/test
 ```
 
 On both servers:
 
-```
+```bash
 $ ll /data/glusterfs/volume1/brick0/
 total 0
 -rw-r--r--. 2 root root 0 Feb  3 19:21 test
@@ -295,13 +295,13 @@ Sounds good! But what happens if node 1 fails? It is the one that was specified 
 
 Let's stop node one:
 
-```
-$ sudo shutdown -h now
+```bash
+sudo shutdown -h now
 ```
 
 Check status on node2:
 
-```
+```bash
 $ sudo gluster peer status
 Number of Peers: 1
 
@@ -327,7 +327,7 @@ The node1 is away.
 
 And on client:
 
-```
+```bash
 $ ll /data/test
 -rw-r--r--. 1 root root 0 Feb  4 16:41 /data/test
 ```
