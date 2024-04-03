@@ -78,6 +78,7 @@ Admonitions follow a simple syntax: a block starts with `!!!`, followed by a sin
     massa, nec semper lorem quam in massa.
 
 #### Changing the title
+
 By default, the title will equal the type qualifier in titlecase. However, it can be changed by adding a quoted string containing valid Markdown (including links, formatting, ...) after the type qualifier:
 
 !!! note "Phasellus posuere in sem ut cursus"
