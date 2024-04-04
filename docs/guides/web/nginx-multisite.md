@@ -29,32 +29,33 @@ I'll be explaining a *lot* of details... but in the end, the whole process basic
 
 This is everything you'll need:
 
-* A Rocky Linux server connected to the internet, with Nginx already running on it. If you haven't gotten that far, you can follow [our guide to installing Nginx](nginx-mainline.md) first.
-* Some comfort with doing things on the command line, and a terminal-based text editor like `nano` installed.
+- A Rocky Linux server connected to the internet, with Nginx already running on it. If you haven't gotten that far, you can follow [our guide to installing Nginx](nginx-mainline.md) first.
+- Some comfort with doing things on the command line, and a terminal-based text editor like `nano` installed.
 
     !!! tip "In a pinch"
 
         ... you could use something like Filezilla or WinSCP — and a regular GUI-based text editor — to replicate most of these steps, but we'll be doing things the nerdy way in this tutorial.
 
-* At least one domain pointed at your server for one of the test websites. You can use either a second domain or a subdomain for the other.
+- At least one domain pointed at your server for one of the test websites. You can use either a second domain or a subdomain for the other.
 
     !!! tip
 
         If you're doing all of this on a local server, adjust your hosts file as necessary to create simulated domain names. Instructions below.
 
-* We are assuming that you're running Nginx on a bare metal server or regular VPS, and that SELinux is running. All instructions will be compatible with SELinux by default.
-* *All commands must be run as root,* either by logging in as the root user, or using `sudo`.
+- We are assuming that you're running Nginx on a bare metal server or regular VPS, and that SELinux is running. All instructions will be compatible with SELinux by default.
+- *All commands must be run as root,* either by logging in as the root user, or using `sudo`.
 
 ## Setting up Your Folders and Test Sites
 
 ### The website folders
+
 First, you're going to need a couple of folders for your website files. When you first install Nginx, all of the "demo" website files will be in `/usr/share/nginx/html`. That's fine if you're hosting just the one site, but we're going to get fancy. Ignore the `html` directory for now, and just navigate its parent folder:
 
 ```bash
 cd /usr/share/nginx
 ```
 
-The test domains for the sake of this tutorial will be `site1.server.test` and `site2.server.test`, and we're going to name those website folders accordingly. You should change those domains to whatever you're using, of course. However (and here's a trick I picked up from Smarter People<sup>TM</sup>), we're going to write the domain names "backwards".
+The test domains for the sake of this tutorial will be `site1.server.test` and `site2.server.test`, and we're going to name those website folders accordingly. You should change those domains to whatever you're using, of course. However (and here's a trick I picked up from Smarter People^TM^), we're going to write the domain names "backwards".
 
 eg. "yourwebsite.com" would go in a folder called `com.yourwebsite`. Mind you, you can *literally* name these folders whatever you want, but there's a good reason for this method, which I've outlined below.
 
@@ -110,9 +111,9 @@ cd /etc/nginx/
 
 If you run the `ls` command to see what files and folders are in here, you'll see a bunch of different things, most of which are irrelevant today. The ones to note are these:
 
-* `nginx.conf` is the file that contains, you guessed it, the default Nginx configuration. We'll be editing that later.
-* `conf.d` is a directory where you can put custom configuration files. You *could* use this for websites, but it's better to use it for feature-specific settings that you want on all of your websites.
-* `default.d` is a directory where your website config *might* go if you were only running one site on the server, or if your server has a "primary" website. Leave it alone for now.
+- `nginx.conf` is the file that contains, you guessed it, the default Nginx configuration. We'll be editing that later.
+- `conf.d` is a directory where you can put custom configuration files. You *could* use this for websites, but it's better to use it for feature-specific settings that you want on all of your websites.
+- `default.d` is a directory where your website config *might* go if you were only running one site on the server, or if your server has a "primary" website. Leave it alone for now.
 
 We want to create two new folders called `sites-available` and `sites-enabled`:
 
@@ -159,13 +160,13 @@ nano nginx.conf
 
 First, find the line that looks like this:
 
-```
+```bash
 include /etc/nginx/conf.d/*.conf;
 ```
 
 And **add** this bit just below it:
 
-```
+```bash
 include /etc/nginx/sites-enabled/*.conf;
 ```
 
@@ -173,7 +174,7 @@ That will load in our website configuration files when they're ready to go live.
 
 Now head down to the section that looks like this, and either **comment it out** with the hash sign ++#++, or delete it if you feel so inclined:
 
-```
+```bash
 server {
     listen       80;
     listen       [::]:80;
@@ -195,7 +196,7 @@ server {
 
 What that would look like "commented out":
 
-```
+```bash
 #server {
 #    listen       80;
 #    listen       [::]:80;
@@ -235,7 +236,6 @@ Now let's make your test websites available on the server. As previously mention
 
     However, if you delete a link to the target, nothing at all happens to the original file. This trick is what allows us to put the website configuration files in a working directory (`sites-available`), and then "activate" them by linking to those files from `sites-enabled`.
 
-
 I'll show you what I mean. Make a configuration file for the first website like so:
 
 ```bash
@@ -244,7 +244,7 @@ nano sites-available/test.server.site1.conf
 
 Now paste in this code. This is about the simplest working Nginx configuration you can have, and should work fine for most static HTML websites:
 
-```
+```bash
 server {
     listen 80;
     listen [::]:80;
@@ -338,14 +338,14 @@ On Windows, the hosts file is located at `C:\Windows\system32\drivers\etc\hosts`
 
 So if you're working on a Rocky Linux computer, and are running your Nginx server on the same machine, you'd just open up the file, and define the domains/IP addresses you want. If you're running your workstation and test server on the same machine, that'd be:
 
-```
+```bash
 127.0.0.1           site1.server.test
 127.0.0.1           site2.server.test
 ```
 
 If you're running your Nginx server on another machine on the network, just use the address of that machine, eg.:
 
-```
+```bash
 192.168.0.45           site1.server.test
 192.168.0.45           site2.server.test
 ```
@@ -362,4 +362,4 @@ Remember, most of the folder/file organization and naming conventions here are t
 
 The actual website files should be somewhere in `/usr/share/nginx/`, and the rest is gravy.
 
-Try it out, do some Science<sup>TM</sup>, and don't forget to run `nginx -t` before you restart Nginx to make sure you didn't miss a semi-colon or anything. It'll save you a lot of time.
+Try it out, do some Science^TM^, and don't forget to run `nginx -t` before you restart Nginx to make sure you didn't miss a semi-colon or anything. It'll save you a lot of time.
