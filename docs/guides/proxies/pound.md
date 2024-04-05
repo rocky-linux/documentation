@@ -16,11 +16,11 @@ tags:
 
 ## Introduction
 
-Pound is a web server agnostic reverse proxy and load balancer that is simplistic to setup and manage. It does not use a web service, but does listens on the web service ports (http, https). 
+Pound is a web server agnostic reverse proxy and load balancer that is simplistic to setup and manage. It does not use a web service, but does listens on the web service ports (http, https).
 
 Now, many proxy server options exist, some referenced in these documentation pages. A document on using [HAProxy is here](haproxy_apache_lxd.md) and references to applying Nginx for a reverse proxy exist in other documents.
 
-Load balancing services are quite useful for a busy web server environment. Many proxy servers exist, including the previously mentioned HAProxy, and have uses for many service types. 
+Load balancing services are quite useful for a busy web server environment. Many proxy servers exist, including the previously mentioned HAProxy, and have uses for many service types.
 
 In the case of Pound, it is only usable for web services, but it is good at what it does.
 
@@ -28,13 +28,13 @@ In the case of Pound, it is only usable for web services, but it is good at what
 
 The following are minimum requirements for using this procedure:
 
-* A desire to load balance between a few websites, or the willingness to learn a new tool to do the same.
-* The ability to run commands as the root user or use `sudo` to elevate privileges.
-* Familiarity with a command-line editor. The author is using `vi` or `vim` here, but substitute in your favorite editor.
-* Comfort with changing the listen ports on a few types of web servers.
-* Assuming the earlier installation of the Nginx and Apache servers.
-* Assuming that you are using Rocky Linux servers or containers for everything here.
-* While all kinds of statements regarding `https` are in this document, this guide only deals with the `http` service. To properly do `https`, you will need to configure your pound server with a real certificate from a real certificate authority.
+- A desire to load balance between a few websites, or the willingness to learn a new tool to do the same.
+- The ability to run commands as the root user or use `sudo` to elevate privileges.
+- Familiarity with a command-line editor. The author is using `vi` or `vim` here, but substitute in your favorite editor.
+- Comfort with changing the listen ports on a few types of web servers.
+- Assuming the earlier installation of the Nginx and Apache servers.
+- Assuming that you are using Rocky Linux servers or containers for everything here.
+- While all kinds of statements regarding `https` are in this document, this guide only deals with the `http` service. To properly do `https`, you will need to configure your pound server with a real certificate from a real certificate authority.
 
 !!! tip
 
@@ -52,9 +52,9 @@ The following are minimum requirements for using this procedure:
 
 ## Conventions
 
-For this procedure, we are going to be using two web servers (known as back end servers), one running Nginx (192.168.1.111) and one running Apache (192.168.1.108). 
+For this procedure, we are going to be using two web servers (known as back end servers), one running Nginx (192.168.1.111) and one running Apache (192.168.1.108).
 
-Our Pound server (192.168.1.103) is the gateway. 
+Our Pound server (192.168.1.103) is the gateway.
 
 You will be switching your listen ports on the back end servers to 8080 for the Nginx server and 8081 for the Apache server. (Showing everything below.)
 
@@ -66,13 +66,13 @@ You will be switching your listen ports on the back end servers to 8080 for the 
 
 To install Pound, you need to first install the EPEL (Extra Packages for Enterprise Linux) and run updates:
 
-```
+```bash
 dnf -y install epel-release && dnf -y update
 ```
 
 Then install Pound. (Yes that is a capital "P"):
 
-```
+```bash
 dnf -y install Pound
 ```
 
@@ -117,17 +117,17 @@ End
 
 ### Taking a closer look
 
-* The "User" and "Group" - populated with the installation
-* The "Control" file is not used anywhere
-* The "ListenHTTP" section represents the service `http` (Port 80) and the "Address" that the proxy will listen on. You will change this to the actual IP of our Pound server.
-* The "ListenHTTPS" section represents the service `https` (Port 443) and the "Address" that the proxy will listen on. You will change this to the IP of the Pound server. 
-* The "Cert" option is the self-signed certificate provided by the Pound install process. You want to replace this in a production environment with a real certificate using one of these procedures: [Generating SSL Keys](../security/ssl_keys_https.md) or [SSL Keys with Let's Encrypt](../security/generating_ssl_keys_lets_encrypt.md).
-* The "Service" section configures the "BackEnd" servers with their listening ports. You can have as many "BackEnd" servers as you need.
+- The "User" and "Group" - populated with the installation
+- The "Control" file is not used anywhere
+- The "ListenHTTP" section represents the service `http` (Port 80) and the "Address" that the proxy will listen on. You will change this to the actual IP of our Pound server.
+- The "ListenHTTPS" section represents the service `https` (Port 443) and the "Address" that the proxy will listen on. You will change this to the IP of the Pound server.
+- The "Cert" option is the self-signed certificate provided by the Pound install process. You want to replace this in a production environment with a real certificate using one of these procedures: [Generating SSL Keys](../security/ssl_keys_https.md) or [SSL Keys with Let's Encrypt](../security/generating_ssl_keys_lets_encrypt.md).
+- The "Service" section configures the "BackEnd" servers with their listening ports. You can have as many "BackEnd" servers as you need.
 
 ### Changing the configuration
 
-* change the IP Address under each listen option to our Pound server IP, 192.168.1.103
-* change the IP Addresses and ports under the "BackEnd" sections to match our configuration found in "Conventions" above (IPs and Ports)
+- change the IP Address under each listen option to our Pound server IP, 192.168.1.103
+- change the IP Addresses and ports under the "BackEnd" sections to match our configuration found in "Conventions" above (IPs and Ports)
 
 When you are all done modifying the configuration, your file will look something like this:
 
@@ -176,14 +176,13 @@ listen       8080 default_server;
 
 Save your changes and restart the nginx service:
 
-```
+```bash
 systemctl restart nginx
 ```
 
 ## Configuring Apache to listen on 8081
 
 Since you have set the listen port for Apache in our Pound configuration to 8081, you need to also make that change on our running Apache server. You do this by modifying the `httpd.conf`:
-
 
 ```bash
 vi /etc/httpd/conf/httpd.conf
@@ -197,7 +196,7 @@ Listen 8081
 
 Save your changes and restart the httpd service:
 
-```
+```bash
 systemctl restart httpd
 ```
 
@@ -205,7 +204,7 @@ systemctl restart httpd
 
 Once you have your web services up and running and listening on the right ports on each of your servers, the next step is to turn up the pound service on the Pound server:
 
-```
+```bash
 systemctl enable --now pound
 ```
 
@@ -227,19 +226,19 @@ When you open your proxy server IP in a web browser you will see one of these tw
 
 Or
 
-![Pound Apache](images/pound_apache.jpg)    
+![Pound Apache](images/pound_apache.jpg)
 
 ## Using "Emergency"
 
 One thing that you may need to do when using a load balancer such as Pound, is to take the productions servers off-line for maintenance or to have a fall-back "BackEnd" for a complete outage. Do this with the "Emergency" declaration in the `pound.conf` file. You can only have one "Emergency" declaration per service. In our case, this will appear at the end of the "Service" section in our configuration file:
 
-```
+```bash
 ...
 Service
     BackEnd
         Address 192.168.1.117
         Port    8080
-	Priority 9
+    Priority 9
     End
 
     BackEnd
@@ -247,8 +246,8 @@ Service
         Port    8081
     End
     Emergency
-	   Address 192.168.1.104
-	   Port	8000
+       Address 192.168.1.104
+       Port 8000
    End
 End
 ```
@@ -257,7 +256,7 @@ This server might only show a message that says, "Down For Maintenance".
 
 ## Security considerations
 
-Something that most documents dealing with load balancing proxy servers will not deal with are security issues. For instance, if this is a public facing web server, you will need to have `http` and `https` services open to the world on the load balancing proxy. But what about the "BackEnd" servers? 
+Something that most documents dealing with load balancing proxy servers will not deal with are security issues. For instance, if this is a public facing web server, you will need to have `http` and `https` services open to the world on the load balancing proxy. But what about the "BackEnd" servers?
 
 Those only need accessing by their ports from the Pound server, but since the Pound server is redirecting to 8080 or 8081 on the BackEnd servers, and since the BackEnd servers have `http` listening on those subsequent ports, you can just use the service names for the firewall commands on those BackEnd servers.
 
@@ -277,19 +276,19 @@ To accomplish this, you will use the built-in firewall for Rocky Linux, `firewal
 
 Start by adding our source IPs to the "trusted" zone. This is our LAN here (in our example: 192.168.1.0/24):
 
-```
+```bash
 firewall-cmd --zone=trusted --add-source=192.168.1.0/24 --permanent
 ```
 
 Then, add the `ssh` service to the zone:
 
-```
+```bash
 firewall-cmd --zone=trusted --add-service=ssh --permanent
 ```
 
 And reload the firewall with:
 
-```
+```bash
 firewall-cmd --reload
 ```
 
@@ -315,18 +314,19 @@ trusted (active)
 
 Next you need to make changes to the "public" zone, which by default has the `ssh` service enabled. This needs to be carefully removed (again, the author assumes that you are **NOT** remote to the server here!) with the following:
 
-```
+```bash
 firewall-cmd --zone=public --remove-service=ssh --permanent
 ```
+
 You also need to add `http` and `https` services:
 
-```
+```bash
 firewall-cmd --zone=public --add-service=http --add-service=https --permanent
 ```
 
 Then reload the firewall before to see the changes:
 
-```
+```bash
 firewall-cmd --reload
 ```
 
@@ -353,15 +353,15 @@ Those are the only changes needed to our pound server load balancer within the l
 
 ### Firewall - back end servers
 
-For the "BackEnd" servers, you do not need to allow access from the world for anything. You will need to allow `ssh` from the LAN IPs, and `http` and `https` from our Pound load balancer. 
+For the "BackEnd" servers, you do not need to allow access from the world for anything. You will need to allow `ssh` from the LAN IPs, and `http` and `https` from our Pound load balancer.
 
-That is pretty much it. 
+That is pretty much it.
 
-Again, you are going to add the `ssh` service to your "trusted" zone, with the essentially the same commands used for your pound server. Then add a zone called "balance" that you will use for the remaining `http` and `https`, and set the source IPs to that of the load balancer. 
+Again, you are going to add the `ssh` service to your "trusted" zone, with the essentially the same commands used for your pound server. Then add a zone called "balance" that you will use for the remaining `http` and `https`, and set the source IPs to that of the load balancer.
 
 To simplify things, use all of those commands that you used for the "trusted" zone in a single set of commands:
 
-```
+```bash
 firewall-cmd --zone=trusted --add-source=192.168.1.0/24 --permanent
 firewall-cmd --zone=trusted --add-service=ssh --permanent
 firewall-cmd --reload
@@ -389,7 +389,7 @@ trusted (active)
 
 Again, test your `ssh` rule from an IP on the LAN, and then remove the `ssh` service from the "public" zone. **Remember our warning earlier, and do this only if you have local access to the server!**
 
-```
+```bash
 firewall-cmd --zone=public --remove-service=ssh --permanent
 firewall-cmd --reload
 firewall-cmd --zone=public --list-all
@@ -420,7 +420,7 @@ Add that new zone to deal with `http` and `https`. Remember that the source IP h
 
     A new zone must be added with the `--permanent` option and cannot be used until the firewall is reloaded. Also, do not forget to `--set-target=ACCEPT` for this zone!
 
-```
+```bash
 firewall-cmd --new-zone=balance --permanent
 firewall-cmd --reload
 firewall-cmd --zone=balance --set-target=ACCEPT
@@ -461,8 +461,8 @@ Conveniently, Pound automatically figures out if one of the "BackEnd" servers is
 
 ## Conclusion
 
-Pound offers another option for those who do not want to use HAProxy or Nginx as for load balancing. 
+Pound offers another option for those who do not want to use HAProxy or Nginx as for load balancing.
 
-Pound as a load balancing server is very easy to install, set up and use. As noted here, you can use Pound as a reverse proxy, and many proxy and load balancing options exist. 
+Pound as a load balancing server is very easy to install, set up and use. As noted here, you can use Pound as a reverse proxy, and many proxy and load balancing options exist.
 
 And you should always remember to keep security in mind when setting up any service, including a load balancing proxy server.

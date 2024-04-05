@@ -4,7 +4,6 @@ title: Package Signing & Testing
 
 # Package signing and testing'
 
-
 RPMs produced by us should be cryptographically signed with a Rocky Linux key, which guarantees to users that the package was
 indeed built by the Rocky Linux project.
 

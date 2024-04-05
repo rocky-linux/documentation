@@ -61,14 +61,14 @@ As shown in the picture below, this is a simple illustration of the sending and 
 
 For more information about postfix, please refer to these two links:
 
-* [GitHub repository](https://github.com/vdukhovni/postfix)
-* [Official website](http://www.postfix.org/)
+- [GitHub repository](https://github.com/vdukhovni/postfix)
+- [Official website](http://www.postfix.org/)
 
 ### The process of sending emails by the client
 
 ![legend01](./email-images/email-system02.jpg)
 
-Postfix determines whether an email sent from a client belongs to the local or external domain. The email will be stored in the local domain mailbox if it belongs to the local domain. If the email sent belongs to an external domain, it is forwarded to another MTA (the user's identity needs to be verified from the database before forwarding). 
+Postfix determines whether an email sent from a client belongs to the local or external domain. The email will be stored in the local domain mailbox if it belongs to the local domain. If the email sent belongs to an external domain, it is forwarded to another MTA (the user's identity needs to be verified from the database before forwarding).
 
 ### The process of receiving emails by the client
 
