@@ -11,7 +11,7 @@ tags:
 
 # Guida Iniziale del Contributore
 
-_Tutti iniziano da qualche parte. Se questa è la prima volta che contribuite alla documentazione open source su GitHub, congratulazioni per aver fatto questo passo. Non vediamo l'ora di vedere cosa avete da dirci!_
+*Tutti iniziano da qualche parte. Se questa è la prima volta che contribuite alla documentazione open source su GitHub, congratulazioni per aver fatto questo passo. Non vediamo l'ora di vedere cosa avete da dirci!*
 
 ## Git e GitHub
 
@@ -23,20 +23,20 @@ Non è detto che si inizi a creare e gestire repository per Rocky Linux, ma ques
 
 Markdown è un linguaggio semplice che consente di includere formattazione, codice e testo normale nello stesso file. La prima volta che si aggiorna un documento, si segue il codice esistente. Non passerà molto tempo prima che siate pronti a esplorare altre funzioni. Quando arriva il momento, ecco le regole di base.
 
-* [Markdown di base](https://www.markdownguide.org/basic-syntax#code)
-* [Markdown Avanzato](https://www.markdownguide.org/extended-syntax/#fenced-code-blocks)
-* Alcune delle opzioni [di formattazione](https://docs.rockylinux.org/guides/contribute/rockydocs_formatting/) più [avanzate](https://docs.rockylinux.org/guides/contribute/rockydocs_formatting/) che utilizziamo nel nostro repository
+- [Markdown di base](https://www.markdownguide.org/basic-syntax#code)
+- [Markdown Avanzato](https://www.markdownguide.org/extended-syntax/#fenced-code-blocks)
+- Alcune delle opzioni [di formattazione](https://docs.rockylinux.org/guides/contribute/rockydocs_formatting/) più [avanzate](https://docs.rockylinux.org/guides/contribute/rockydocs_formatting/) che utilizziamo nel nostro repository
 
 ## Modifica del repository locale
 
 Per creare un repository locale, occorre innanzitutto trovare e installare un editor Markdown che funzioni con il proprio computer e sistema operativo. Ecco alcune opzioni, ma ce ne sono altre. Utilizzate ciò che conoscete.
 
-* [ReText](https://github.com/retext-project/retext) - Gratuito, multipiattaforma e open source
-* [Zettlr](https://www.zettlr.com/) - Gratuito, multipiattaforma e open source
-* [MarkText](https://github.com/marktext/marktext) - Gratuito, multipiattaforma e open source
-* [Remarkable](https://remarkableapp.github.io/) - Linux e Windows, open source
-* [NvChad](https://nvchad.com/) per l'utente vi/vim e il client nvim. Sono disponibili molti plugin per migliorare l'editor di markdown. Per un'esauriente serie di istruzioni per l'installazione, consultare [questo documento](https://docs.rockylinux.org/books/nvchad/).
-* [VS Code](https://code.visualstudio.com/) - Parzialmente open source, di Microsoft. VS Code è un editor leggero e potente disponibile per Windows, Linux e MacOS. Per contribuire a questo progetto di documenti, è necessario ottenere le seguenti estensioni: Git Graph, HTML Preview, HTML Snippets, Markdown All in One, Markdown Preview Enhanced, Markdown Preview Mermaid Support e tutte le altre che vi interessano.
+- [ReText](https://github.com/retext-project/retext) - Gratuito, multipiattaforma e open source
+- [Zettlr](https://www.zettlr.com/) - Gratuito, multipiattaforma e open source
+- [MarkText](https://github.com/marktext/marktext) - Gratuito, multipiattaforma e open source
+- [Remarkable](https://remarkableapp.github.io/) - Linux e Windows, open source
+- [NvChad](https://nvchad.com/) per l'utente vi/vim e il client nvim. Sono disponibili molti plugin per migliorare l'editor di markdown. Per un'esauriente serie di istruzioni per l'installazione, consultare [questo documento](https://docs.rockylinux.org/books/nvchad/).
+- [VS Code](https://code.visualstudio.com/) - Parzialmente open source, di Microsoft. VS Code è un editor leggero e potente disponibile per Windows, Linux e MacOS. Per contribuire a questo progetto di documenti, è necessario ottenere le seguenti estensioni: Git Graph, HTML Preview, HTML Snippets, Markdown All in One, Markdown Preview Enhanced, Markdown Preview Mermaid Support e tutte le altre che vi interessano.
 
 ## Creare un repository locale
 
@@ -52,7 +52,7 @@ Una volta installato l'editor Markdown, seguire le istruzioni per collegarlo all
 
 ## Inviare l'aggiornamento
 
-_Aggiungete una parola mancante, correggete un errore o chiarire una parte di testo confusa._
+*Aggiungete una parola mancante, correggete un errore o chiarire una parte di testo confusa.*
 
 1. Iniziare dalla pagina che si desidera aggiornare.
 
@@ -90,9 +90,9 @@ _Aggiungete una parola mancante, correggete un errore o chiarire una parte di te
 
     Una volta ricevuta la richiesta, il team RL risponderà in uno dei tre modi seguenti.
 
-    * Accettare e unire la vostra PR
-    * Commentare con un feedback e chiedere modifiche
-    * Negare il PR con una spiegazione
+    - Accettare e unire la vostra PR
+    - Commentare con un feedback e chiedere modifiche
+    - Negare il PR con una spiegazione
 
     L'ultima risposta è improbabile. Vogliamo davvero includere il vostro punto di vista! Se dovete apportare delle modifiche, capirete immediatamente perché avete bisogno di un repository locale. Il team potrà [spiegarvi](https://chat.rockylinux.org/rocky-linux/channels/documentation) cosa fare in seguito. La buona notizia è che il problema è ancora risolvibile. Seguite la sezione dei commenti di tale richiesta per vedere quali ulteriori informazioni sono richieste.
 
