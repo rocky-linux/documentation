@@ -61,8 +61,8 @@ version: 1.0.0
 
 Для отримання додаткової інформації про postfix перейдіть за цими двома посиланнями:
 
-* [Репозиторій GitHub](https://github.com/vdukhovni/postfix)
-* [Офіційний сайт](http://www.postfix.org/)
+- [Репозиторій GitHub](https://github.com/vdukhovni/postfix)
+- [Офіційний сайт](http://www.postfix.org/)
 
 ### Процес надсилання електронних листів клієнтом
 
