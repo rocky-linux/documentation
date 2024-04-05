@@ -6,7 +6,7 @@ title: Tuis
 
 ## Welkom!
 
-Jy het ons gevind! Welkom by die dokumentasie-hub vir Rocky Linux; ons is bly jy is hier. Ons het verskeie bydraers wat inhoud byvoeg, en daardie inhoud groei die heeltyd. Hier sal jy dokumente vind oor hoe om Rocky Linux self te bou, sowel as dokumente oor verskeie onderwerpe wat belangrik is vir die Rocky Linux gemeenskap. Wie bestaan daardie gemeenskap uit, vra jy?
+Welkom by die dokumentasie-hub vir Rocky Linux; ons is bly jy is hier. Ons het verskeie bydraers wat inhoud byvoeg, en daardie inhoud groei die heeltyd. Hier sal jy dokumente vind oor hoe om Rocky Linux self te bou, sowel as dokumente oor verskeie onderwerpe wat belangrik is vir die Rocky Linux gemeenskap. Wie bestaan daardie gemeenskap uit, vra jy?
 
 Wel eintlik, jy doen.
 
@@ -31,7 +31,7 @@ Die hoofafdelings van die dokumentasiewebwerf is:
 
 ### Veelvuldige Tale
 
-Nie almal het Engels as hul eerste taal nie! By Rocky Linux wil ons die dokumentasiewebwerf so toeganklik moontlik maak vir almal — *vertaling in verskillende tale is 'n belangrike deel daarvan*. As jy op die (algemene simbool) taalkieser op die boonste kieslys klik, sal jy die tale sien waarin die webwerf beskikbaar is. Daar is twee dele hieraan:
+By Rocky Linux wil ons die dokumentasiewebwerf so toeganklik moontlik maak vir almal — *vertaling in verskillende tale is 'n belangrike deel daarvan*. As jy op die (algemene simbool) taalkieser op die boonste kieslys klik, sal jy die tale sien waarin die webwerf beskikbaar is. Daar is twee dele hieraan:
 
 1. Webwerf koppelvlaklokalisering: as jy 'n ander taal kies, byvoorbeeld Français, sal jy daarop let dat die koppelvlak, byvoorbeeld die 'Volgende' en 'Vorige' navigators, gelokaliseer sal word.
 1. Inhoud: die vertaling van inhoud is 'n deurlopende (beduidende) taak. Nie alle inhoud is nog in alle tale vertaal nie. Enige bladsye wat vertaal is (in die gekose taal) sal in die gekose taal gesien word, dié wat nie vertaal is nie, sal terugval na die verstektaal Engels. As jy deur vertalings tot die gemeenskap wil bydra, sal die dokumentasiespan graag van jou hoor – sien hieronder vir besonderhede.
