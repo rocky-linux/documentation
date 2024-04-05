@@ -6,7 +6,7 @@ title: Beranda
 
 ## Selamat Datang!
 
-Anda telah menemukan kami! Selamat datang di pusat dokumentasi untuk Rocky Linux; kami senang Anda ada di sini. Kami memiliki beberapa kontributor yang menambahkan konten, dan konten tersebut terus berkembang setiap saat. Di sini Anda akan menemukan dokumen tentang cara membangun Rocky Linux itu sendiri, serta dokumen tentang berbagai subjek yang penting bagi komunitas Rocky Linux. Siapa yang membentuk komunitas yang Anda tanyakan?
+Selamat datang di pusat dokumentasi untuk Rocky Linux; kami senang Anda ada di sini. Kami memiliki beberapa kontributor yang menambahkan konten, dan konten tersebut terus berkembang setiap saat. Di sini Anda akan menemukan dokumen tentang cara membangun Rocky Linux itu sendiri, serta dokumen tentang berbagai subjek yang penting bagi komunitas Rocky Linux. Siapa yang membentuk komunitas yang Anda tanyakan?
 
 Sebenarnya, Anda tahu.
 
@@ -31,7 +31,7 @@ Bagian utama dari situs dokumentasi adalah:
 
 ### Beberapa Bahasa
 
-Tidak semua orang memiliki bahasa Inggris sebagai bahasa pertama mereka! Di Rocky Linux kami ingin membuat situs dokumentasi semudah mungkin dapat diakses oleh semua orang — *penerjemahan ke dalam bahasa yang berbeda adalah bagian penting dari itu*. Jika Anda mengklik pemilih bahasa (simbol umum) di menu atas, Anda akan melihat bahasa yang tersedia di situs web. Ada dua bagian untuk ini:
+Di Rocky Linux kami ingin membuat situs dokumentasi semudah mungkin dapat diakses oleh semua orang — *penerjemahan ke dalam bahasa yang berbeda adalah bagian penting dari itu*. Jika Anda mengklik pemilih bahasa (simbol umum) di menu atas, Anda akan melihat bahasa yang tersedia di situs web. Ada dua bagian untuk ini:
 
 1. Lokalisasi antarmuka situs web: jika Anda memilih bahasa lain, misalnya Français, Anda akan melihat bahwa antarmuka, misalnya navigator 'Berikutnya' dan 'Sebelumnya', akan dilokalkan.
 1. Konten: menerjemahkan konten adalah tugas yang berkelanjutan (signifikan). Belum semua konten diterjemahkan ke dalam semua bahasa. Setiap halaman yang telah diterjemahkan (ke dalam bahasa yang dipilih) akan terlihat dalam bahasa yang dipilih, yang belum akan kembali ke bahasa default bahasa Inggris. Jika Anda ingin berkontribusi pada komunitas melalui terjemahan, tim dokumentasi akan senang mendengar dari Anda — lihat di bawah untuk detailnya.
