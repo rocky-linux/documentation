@@ -11,7 +11,7 @@ tags:
 
 # 首次贡献指南
 
-_凡事都有个开头。 如果这是您第一次在 GitHub 上为开源文档做出贡献，恭喜您迈出了这一步。 我们迫不及待地想听听你要说什么！_
+*凡事都有个开头。 如果这是您第一次在 GitHub 上为开源文档做出贡献，恭喜您迈出了这一步。 我们迫不及待地想听听你要说什么！*
 
 ## Git 和 GitHub
 
@@ -23,20 +23,20 @@ _凡事都有个开头。 如果这是您第一次在 GitHub 上为开源文档�
 
 Markdown 是一种简单的语言，允许您在同一文件中包含格式、代码和纯文本。 首次更新文档时，请遵循现有代码。 用不了多久，您就可以开始探索其他功能了。 当时机成熟时，以下就是基础。
 
-* [基础 Markdown](https://www.markdownguide.org/basic-syntax#code)
-* [扩展 Markdown](https://www.markdownguide.org/extended-syntax/#fenced-code-blocks)
-* 在存储库中，我们还使用了一些更[高级的格式选项](https://docs.rockylinux.org/guides/contribute/rockydocs_formatting/)
+- [基础 Markdown](https://www.markdownguide.org/basic-syntax#code)
+- [扩展 Markdown](https://www.markdownguide.org/extended-syntax/#fenced-code-blocks)
+- 在存储库中，我们还使用了一些更[高级的格式选项](https://docs.rockylinux.org/guides/contribute/rockydocs_formatting/)
 
 ## 本地存储库编辑器
 
 要创建本地存储库，首先找到并安装一个适用于您的计算机和操作系统的 Markdown 编辑器。 这里有一些选择，但还有其他选择。 使用你所知道的就可以了。
 
-* [ReText](https://github.com/retext-project/retext) - 免费、跨平台、开源
-* [Zettlr](https://www.zettlr.com/) - 免费、跨平台、开源
-* [MarkText](https://github.com/marktext/marktext) - 免费、跨平台、开源
-* [Remarkable](https://remarkableapp.github.io/) - 适用于 Linux 和 Windows，开源
-* 用于 vi/vim 用户和 nvim客户端的 [NvChad](https://nvchad.com/)。 有很多插件可以增强 Markdown 编辑器。 请参阅 [本文档](https://docs.rockylinux.org/books/nvchad/) 以获取一套很好的安装说明。
-* [VS Code](https://code.visualstudio.com/) - 部分开源，由微软提供。 VS Code 是一个轻量级且功能强大的编辑器，可用于 Windows、Linux 和 MacOS 。 要为这个文档项目做出贡献，您应该获取以下扩展程序：Git Graph、HTML Preview、HTML Snippets、Markdown All in One、Markdown Preview Enhanced、Markdown Preview Mermaid Support 以及任何您喜欢的扩展程序。
+- [ReText](https://github.com/retext-project/retext) - 免费、跨平台、开源
+- [Zettlr](https://www.zettlr.com/) - 免费、跨平台、开源
+- [MarkText](https://github.com/marktext/marktext) - 免费、跨平台、开源
+- [Remarkable](https://remarkableapp.github.io/) - 适用于 Linux 和 Windows，开源
+- 用于 vi/vim 用户和 nvim客户端的 [NvChad](https://nvchad.com/)。 有很多插件可以增强 Markdown 编辑器。 请参阅 [本文档](https://docs.rockylinux.org/books/nvchad/) 以获取一套很好的安装说明。
+- [VS Code](https://code.visualstudio.com/) - 部分开源，由微软提供。 VS Code 是一个轻量级且功能强大的编辑器，可用于 Windows、Linux 和 MacOS 。 要为这个文档项目做出贡献，您应该获取以下扩展程序：Git Graph、HTML Preview、HTML Snippets、Markdown All in One、Markdown Preview Enhanced、Markdown Preview Mermaid Support 以及任何您喜欢的扩展程序。
 
 ## 创建本地存储库
 
@@ -52,7 +52,7 @@ Markdown 是一种简单的语言，允许您在同一文件中包含格式、�
 
 ## 提交更新
 
-_添加遗漏的单词、更正错误或澄清令人困惑的文本。_
+*添加遗漏的单词、更正错误或澄清令人困惑的文本。*
 
 1. 从要更新的页面开始。
 
@@ -90,9 +90,9 @@ _添加遗漏的单词、更正错误或澄清令人困惑的文本。_
 
     RL 团队收到您的请求后，他们将以三种方式之一作出回应。
 
-    * 接受并合并您的 PR
-    * 提出反馈意见并要求更改
-    * 拒绝你的 PR 并解释原因
+    - 接受并合并您的 PR
+    - 提出反馈意见并要求更改
+    - 拒绝你的 PR 并解释原因
 
     最后一个回应不大可能出现。 我们真的很想在这里包括你的观点！ 如果你必须进行更改，你会突然明白为什么需要本地存储库。 团队可以 [告诉您](https://chat.rockylinux.org/rocky-linux/channels/documentation) 下一步该怎么做。 好消息是，它仍然是可以解决的。 请关注该请求的评论部分，以了解需要进一步提供哪些信息。
 
