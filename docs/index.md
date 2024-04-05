@@ -6,7 +6,7 @@ title: Home
 
 ## Welcome!
 
-You've found us! Welcome to the documentation hub for Rocky Linux; we are glad you're here. We have several contributors adding content, and that content is growing all the time. Here you will find documents on how to build Rocky Linux itself, as well as documents on various subjects that are important to the Rocky Linux community. Who makes up that community you ask?
+Welcome to the documentation hub for Rocky Linux; we are glad you're here. We have several contributors adding content, and that content is growing all the time. Here you will find documents on how to build Rocky Linux itself, as well as documents on various subjects that are important to the Rocky Linux community. Who makes up that community you ask?
 
 Well actually, you do.
 
@@ -31,7 +31,7 @@ The main sections of the documentation site are:
 
 ### Multiple Languages
 
-Not everyone has English as their first language! At Rocky Linux we want to make the documentation site as accessible as possible to everyone —  *translation into different languages is an important part of that*. If you click on the (common symbol) language selector on the top menu you will see the languages the website is available in. There are two parts to this:
+At Rocky Linux we want to make the documentation site as accessible as possible to everyone —  *translation into different languages is an important part of that*. If you click on the (common symbol) language selector on the top menu you will see the languages the website is available in. There are two parts to this:
 
 1. Website interface localisation: if you choose another language, for example Français, you will note that the interface, for example the 'Next' and 'Previous' navigators, will be localised.
 1. Content: translating content is an ongoing (significant) task. Not all content is translated into all languages yet. Any pages that have been translated (into the language selected) will be seen in the chosen language, those that have not will fall back to the default language English. If you want to contribute to the community through translations the documentation team would love to hear from you — see below for details.
