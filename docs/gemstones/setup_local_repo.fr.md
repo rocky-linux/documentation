@@ -15,7 +15,7 @@ Parfois, vous avez besoin d'avoir des dépôts Rocky locaux pour construire des 
 
 ## Exemple de Code
 
-```
+```bash
 #!/bin/bash
 repos_base_dir="/web/path"
 
@@ -36,7 +36,7 @@ fi
 
 Ce script shell simple utilise `rsync` pour extraire les fichiers de dépôt depuis le miroir le plus proche.  Il utilise également l'option "exclude" qui est définie dans un fichier texte sous la forme de mots-clés qui ne devraient pas être inclus.  Les exclusions sont adéquates si vous avez un espace disque limité ou si vous ne voulez pas tout pour une raison quelconque.  Nous pouvons utiliser l'étoile `*` comme caractère générique.  Faites attention en utilisant `*/ng` car il exclura tout ce qui correspond à ces caractères.  Cf. l'exemple ci-dessous :
 
-```
+```bash
 */source*
 */debug*
 */images*
@@ -46,5 +46,6 @@ Ce script shell simple utilise `rsync` pour extraire les fichiers de dépôt dep
 8.4-RC1
 ```
 
-# Conclusion
+## Conclusion
+
 Un script simple qui peut aider à économiser la bande passante ou rendre la construction d'un environnement de laboratoire un peu plus facile.
