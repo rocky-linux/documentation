@@ -5,8 +5,8 @@ author: Steven Spencer
 
 # Gemstones
 
-Welcome to **Gemstones**! 
-_"What on earth are Gemstones, and how do they fit into Rocky Linux documentation?"_ That is a very good question. 
+Welcome to **Gemstones**!
+_"What on earth are Gemstones, and how do they fit into Rocky Linux documentation?"_ That is a very good question.
 While **Guides** contains our normal length how-to documentation and **Books** contain our longer-form documentation, **Gemstones** are just little gems of wisdom. Have a favorite bit of Linux code that you use all the time or a favorite command? Maybe you've written a `bash` or `python` or `other` time-saving script, that you would like to share? If any of these things are true, **Gemstones** is the place for your contribution!
 
 ## Criteria

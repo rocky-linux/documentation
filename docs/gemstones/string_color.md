@@ -20,7 +20,7 @@ When we download bash scripts that have been written by others in our daily work
 |  31            |     red      |
 |  32            |    green     |
 |  33            |    yellow    |
-|  34            |     blue     | 
+|  34            |     blue     |
 |  35            |     purple   |
 |  36            |   dark green |
 |  37            |    white     |

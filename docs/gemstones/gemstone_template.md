@@ -9,7 +9,7 @@ tags:
   - Tags
 ---
 
-## Introduction 
+## Introduction
 
 A brief overview of the topic. State the relevance and purpose of the Gemstone.
 
@@ -17,7 +17,7 @@ A brief overview of the topic. State the relevance and purpose of the Gemstone.
 
 Define the problem or challenge addressed.
 
-## Prerequisites 
+## Prerequisites
 
 List prerequisites:
 
@@ -29,13 +29,15 @@ List prerequisites:
 Outline the procedure or solution with numbered steps:
 
 1. **First Step**:
-   
+
    Instructions and command examples.
+
    ```bash
    Command or code snippet
    ```
+
 2. **Second Step**:
-    
+
    Continue with detailed instructions.
 
 ## Additional Information (Optional)

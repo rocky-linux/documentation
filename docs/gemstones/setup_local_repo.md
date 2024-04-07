@@ -15,7 +15,7 @@ Sometimes you need to have Rocky repositories local for building virtual machine
 
 ## Code
 
-```
+```bash
 #!/bin/bash
 repos_base_dir="/web/path"
 
@@ -36,7 +36,7 @@ fi
 
 This simple shell script uses `rsync` to pull repository files from the nearest mirror.  It also utilizes the "exclude" option which is defined in a text file in the form of keywords that should not be included.  Excludes are good if you have limited disk space or just do not want everything for whatever reason.  We can use  `*` as a wildcard character.  Be careful using  `*/ng` as it will exclude anything that matches those characters.  An example is below:
 
-```
+```bash
 */source*
 */debug*
 */images*
@@ -46,5 +46,6 @@ This simple shell script uses `rsync` to pull repository files from the nearest 
 8.4-RC1
 ```
 
-# End
+## End
+
 A simple script that can help save bandwidth or make building out a lab environment a little easier.

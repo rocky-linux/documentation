@@ -13,9 +13,8 @@ tags:
 
 ## Background
 
-* Use [Markdown](https://daringfireball.net/projects/markdown).
-* Knowledge of markdown.
-
+- Use [Markdown](https://daringfireball.net/projects/markdown).
+- Knowledge of markdown.
 
 This guide demonstrates popular Markdown tags used on [https://docs.rockylinux.org](https://docs.rockylinux.org) and also includes the admonitions tag, which is not part of the standard Markdown tags.
 
@@ -33,7 +32,7 @@ Sometimes, you need to show a `command`
 
 Or multiple commands:
 
-```
+```bash
 dnf install my_stapler
 dnf update my_pencil
 dnf remove my_notepad
@@ -80,7 +79,6 @@ By default, the title will equal the type qualifier in titlecase. However, it ca
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
     nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
     massa, nec semper lorem quam in massa.
-
 
 More times than not, when a command has multiple options or you need to list specifics, you might want to use a table to identify things:
 
