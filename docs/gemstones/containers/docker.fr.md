@@ -15,7 +15,7 @@ Le Docker Engine peut être utilisé en exécutant des charges de travail de typ
 
 Utilisez l'utilitaire `dnf` pour ajouter le référentiel docker à votre serveur Rocky Linux. Pour ce faire tapez la commande :
 
-```
+```bash
 sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 ```
 
@@ -23,7 +23,7 @@ sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/dock
 
 Installez la dernière version de Docker Engine, `containerd` et Docker Compose en utilisant :
 
-```
+```bash
 sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 ```
 
@@ -31,13 +31,13 @@ sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 Utilisez l'utilitaire `systemctl` afin de configurer Docker pour démarrer automatiquement avec le prochain redémarrage du système et le démarrer simultanément pour la session courante. Pour ce faire utilisez la commande :
 
-```
+```bash
 sudo systemctl --now enable docker
 ```
 
 ### Notes
 
-```
+```docker
 docker-ce : ce paquet fournit la technologie sous-jacente pour construire et exécuter des docker containers (dockerd) 
 docker-ce-cli : fournit l'interface de ligne de commande (CLI) client docker tool (docker)
 containerd.io : fournit le runtime conteneur (runc)
