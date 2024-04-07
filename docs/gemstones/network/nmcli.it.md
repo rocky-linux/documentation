@@ -9,24 +9,23 @@ tags:
 
 Per prima cosa utilizzate nmcli per interrogare e visualizzare il valore corrente della proprietà autoconnect per tutte le connessioni di rete su un sistema Rocky Linux. Digita:
 
-```
+```bash
 nmcli -f name,autoconnect connection 
 ```
 
 Per modificare il valore di una proprietà per una connessione di rete, utilizzare il sottocomando `modify` con `nmcli connection`. Ad esempio, per modificare il valore della proprietà autoconnect da `no` a `yes` per il profilo di connessione `ens3`, digitare:
 
-```
+```bash
 sudo nmcli con mod ens3 connection.autoconnect yes
 ```
 
 ## Spiegazione dei Comandi
 
-```
+```bash
 connection (con) : oggetto di connessione NetworkManager. 
 modify (mod)           : Modifica una o più proprietà di un determinato profilo di connessione.
 connection.autoconnect : L'ambiente e la proprietà (<setting>.<property>)
 -f, --fields : specifica i campi da visualizzare.
-
 ```
 
 ## Note
