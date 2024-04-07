@@ -9,24 +9,23 @@ tags:
 
 먼저 nmcli를 사용하여 Rocky Linux 시스템의 모든 네트워크 연결에 대한 autoconnect 속성의 현재 값을 쿼리하고 표시합니다. 다음 명령을 입력하세요:
 
-```
+```bash
 nmcli -f name,autoconnect connection 
 ```
 
 네트워크 연결에 대한 속성 값을 변경하려면 `nmcli 연결`과 함께 `modify` 하위 명령을 사용합니다. 예를 들어, `ens3` 연결 프로필에 대해 autoconnect 속성 값을 `no`에서 `yes`로 변경하려면 다음과 같이 입력하세요:
 
-```
+```bash
 sudo nmcli con mod ens3 connection.autoconnect yes
 ```
 
 ## 명령 설명
 
-```
+```bash
 connection (con)       : NetworkManager 연결 객체. 
 modify (mod)           : 지정된 연결 프로필의 속성을 하나 이상 수정합니다.
 connection.autoconnect : 설정 및 속성(<setting>.<property>)
 -f, --fields           : 출력할 필드를 지정합니다.
-
 ```
 
 ## 참고 사항
