@@ -12,13 +12,13 @@ A volte è necessario cercare e sostituire rapidamente stringhe in un file o in 
 
 Per cercare e sostituire una particolare stringa in più file di una directory, il comando sarà:
 
-```
+```bash
 perl -pi -w -e 's/search_for/replace_with/g;' ~/Dir_to_search/*.html
 ```
 
 Per un singolo file che potrebbe avere più istanze della stringa, è possibile specificare il file:
 
-```
+```bash
 perl -pi -w -e 's/search_for/replace_with/g;' /var/www/htdocs/bigfile.html
 ```
 
@@ -28,12 +28,12 @@ Questo comando utilizza la sintassi vi per la ricerca e la sostituzione per trov
 
 | Opzione | Spiegazione                                                              |
 | ------- | ------------------------------------------------------------------------ |
-| -p      | inserisce un ciclo intorno allo script                                   |
-| -i      | modifica il file in posizione                                            |
-| -w      | stampa messaggi di avvertimento nel caso in cui qualcosa vada storto     |
-| -e      | consente di inserire una singola riga di codice alla riga di comando     |
-| -s      | specifica la ricerca                                                     |
-| -g      | specifica di sostituire globalmente, in altre parole tutte le occorrenze |
+| `-p`    | inserisce un ciclo intorno allo script                                   |
+| `-i`    | modifica il file in posizione                                            |
+| `-w`    | stampa messaggi di avvertimento nel caso in cui qualcosa vada storto     |
+| `-e`    | consente di inserire una singola riga di codice alla riga di comando     |
+| `-s`    | specifica la ricerca                                                     |
+| `-g`    | specifica di sostituire globalmente, in altre parole tutte le occorrenze |
 
 ## Conclusione
 
