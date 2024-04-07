@@ -15,7 +15,7 @@ tags:
 
 Використовуйте утиліту `dnf`, щоб додати репозиторій Docker до вашого сервера Rocky Linux. Впишіть:
 
-```
+```bash
 sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 ```
 
@@ -23,7 +23,7 @@ sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/dock
 
 Установіть останню версію Docker Engine, `container` і Docker Compose, виконавши:
 
-```
+```bash
 sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 ```
 
@@ -31,13 +31,13 @@ sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 Використовуйте `systemctl`, щоб налаштувати Docker на автоматичний запуск після перезавантаження та одночасного запуску зараз. Впишіть:
 
-```
+```bash
 sudo systemctl --now enable docker
 ```
 
 ### Примітки
 
-```
+```docker
 docker-ce: цей пакет надає основну технологію для створення та запуску docker контейнерів (dockerd)
 docker-ce-cli: надає інтерфейс командного рядка (CLI) клієнтський інструмент докера (докер)
 containerd.io: забезпечує середовище виконання контейнера (runc)
