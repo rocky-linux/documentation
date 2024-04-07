@@ -23,10 +23,9 @@ Although some of the shipped packages are stripped down versions, they are often
 
 For cases, when the stripped-down package is not enough, you can use the `dnf swap` command to quickly replace the minimal package with the regular package.
 
-# Objective
+## Objective
 
 This Rocky Linux GEMstone demonstrates how to use **dnf** to _swap_ the bundled `curl-minimal` package with the regular `curl` package.
-
 
 ## Check existing curl variant
 
@@ -38,7 +37,6 @@ curl-minimal-*
 ```
 
 We have curl-minimal on our demo system!
-
 
 ## Swap curl-minimal for curl
 
@@ -58,9 +56,7 @@ To confirm the changes, query the rpm database again for the installed curl pack
 curl-*
 ```
 
-
 And it's a GEM !
-
 
 ## Notes
 
@@ -74,10 +70,6 @@ dnf [options] swap <package-to-be-removed> <replacement-package>
 
 Under the hood, `dnf swap` uses DNF's `--allowerasing` option to resolve any package conflict issues. Therefore the curl minimal example demonstrated in this GEMstone could also have been done by running:
 
-
 ```bash
 dnf install -y --allowerasing curl
 ```
-
-
-

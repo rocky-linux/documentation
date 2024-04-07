@@ -12,7 +12,7 @@ This script has been used by me many times. No matter how often you use the open
 
 Name this script anything you like, example: `keygen.sh`, make the script executable (`chmod +x scriptname`) and place it in a directory that is in your path, example: /usr/local/sbin
 
-```
+```bash
 #!/bin/bash
 if [ $1 ]
 then

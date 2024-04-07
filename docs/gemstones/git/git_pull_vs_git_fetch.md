@@ -8,11 +8,11 @@ tags:
   - git fetch
 ---
 
-## Introduction 
+## Introduction
 
 This Gemstone explains the differences between `git pull` and `git fetch` commands. It also outlines when to use each command appropriately.
 
-## Git Fetch vs Git Pull 
+## Git Fetch vs Git Pull
 
 ### Git Fetch
 
@@ -21,15 +21,20 @@ git fetch downloads changes from a remote repository but doesn't integrate them 
 Seeing what others have committed without merging those changes into your local branch is beneficial.
 
 1. List the currently checked-out branch
-     ```
+
+     ```bash
      git branch
      ```
+
 2. Fetch changes from the main branch of a remote repo named origin. Type:
-     ```
+
+     ```bash
      git fetch origin main
      ```
-3. Compare the changes between the HEAD of your local repo and the remote origin/main repo. 
-     ```
+
+3. Compare the changes between the HEAD of your local repo and the remote origin/main repo.
+
+     ```bash
      git log HEAD..origin/main
      ```
 
@@ -38,12 +43,15 @@ Seeing what others have committed without merging those changes into your local 
 Git Pull downloads changes and merges them into your current branch.
 It is useful for quickly updating your local branch with changes from the remote repository.
 
-1. Pull and Merge Changes**:
-     ```
+1. **Pull and Merge Changes**:
+
+     ```bash
      git pull origin main
      ```
-2. Review merged changes**:
-     ```
+
+2. **Review merged changes**:
+
+     ```bash
      git log
      ```
 

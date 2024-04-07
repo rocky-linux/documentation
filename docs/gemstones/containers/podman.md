@@ -16,7 +16,7 @@ tags:
 
 Use the `dnf` utility to install Podman:
 
-```
+```bash
 dnf install podman
 ```
 
@@ -24,7 +24,7 @@ dnf install podman
 
 Let us run a [Nextcloud](https://nextcloud.com/) self-hosted cloud platform as an example:
 
-```
+```bash
 podman run -d -p 8080:80 nextcloud
 ```
 
