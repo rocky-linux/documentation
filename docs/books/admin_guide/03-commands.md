@@ -199,7 +199,7 @@ man 5 passwd
 
 will inform him about the files related to the command.
 
-Navigate through the manual with the arrows <kbd>↑</kbd> and <kbd>↓</kbd>. Exit the manual by pressing the <kbd>q</kbd> key.
+Navigate through the manual with the arrows ++arrow-up++ and ++arrow-down++. Exit the manual by pressing the ++q++ key.
 
 ### `shutdown` command
 
@@ -252,21 +252,21 @@ To manipulate the history, the following commands entered from the command promp
 
 | Keys               | Function                                                  |
 | ------------------ | --------------------------------------------------------- |
-| <kbd>!!</kbd>      | Recalls the last command placed.                           |
-| <kbd>!n</kbd>      | Recalls the command by its number in the list.             |
-| <kbd>!string</kbd> | Recalls the most recent command beginning with the string. |
-| <kbd>↑</kbd>       | Navigates through your history working backward in time from the most recent command. |
-| <kbd>↓</kbd>       | Navigates through your history working forward in time. |
+| ++exclam+exclam++      | Recalls the last command placed.                           |
+| ++exclam+n++      | Recalls the command by its number in the list.             |
+| ++exclam+"string"++ | Recalls the most recent command beginning with the string. |
+| ++arrow-up++       | Navigates through your history working backward in time from the most recent command. |
+| ++arrow-down++       | Navigates through your history working forward in time. |
 
 ### Auto-complete
 
 Auto-completion is a great help.
 
 * Completes commands, entered paths, or file names.
-* Press the <kbd>TAB</kbd> key to complete the entry in the case of a single solution.
-* In the case of multiple solutions, press <kbd>TAB</kbd> a second time to see options.
+* Press the ++tab++ key to complete the entry in the case of a single solution.
+* In the case of multiple solutions, press ++tab++ a second time to see options.
 
-If double-pressing the <kbd>TAB</kbd> key presents no options, then there is no solution to the current completion.
+If double-pressing the ++tab++ key presents no options, then there is no solution to the current completion.
 
 ## Display and Identification
 
@@ -278,7 +278,7 @@ On a physical terminal, the display will be permanently hidden, whereas in a gra
 
 !!! Tip
 
-    <kbd>CTRL</kbd> + <kbd>L</kbd> will have the same effect as the `clear` command
+    ++control+l++ will have the same effect as the `clear` command
 
 ### `echo` command
 
@@ -850,7 +850,7 @@ root:x:0:0:root:/root:/bin/bash
 ...
 ```
 
-Using the <kbd>ENTER</kbd> key, the move is line by line. Using the <kbd>SPACE</kbd> key, the move is page by page. `/text` allows you to search for the occurrence in the file.
+Using the ++enter++ key, the move is line by line. Using the ++space++ key, the move is page by page. `/text` allows you to search for the occurrence in the file.
 
 ### `less` command
 
@@ -864,14 +864,14 @@ The commands specific to `less` are:
 
 | Command           | Action                                          |
 | ----------------- | ----------------------------------------------- |
-| <kbd>h</kbd>               | Help.                                           |
-| <kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd><kbd>←</kbd>         | Move up, down a line, or to the right or left.  |
-| <kbd>Enter</kbd>           | Move down one line.                             |
-| <kbd>Space</kbd>           | Move down one page.                             |
-| <kbd>PgUp</kbd> and <kbd>PgDn</kbd> | Move up or down one page.                       |
-| <kbd>g</kbd> and <kbd>G</kbd> | Move to the first and last pages         |
+| ++h++               | Help.                                           |
+| ++arrow-up++ ++arrow-down++ ++arrow-right++ ++arrow-left++         | Move up, down a line, or to the right or left.  |
+| ++enter++           | Move down one line.                             |
+| ++space++           | Move down one page.                             |
+| ++page-up++ and ++page-down++ | Move up or down one page.                       |
+| ++"g"++ and ++g++ | Move to the first and last pages         |
 | `/text`           | Search for text.                                |
-| <kbd>q</kbd>               | Quit the `less` command.                        |
+| ++q++               | Quit the `less` command.                        |
 
 ### `cat` command
 
@@ -971,7 +971,7 @@ tcpdump::x:72:72::/:/sbin/nologin
 user1:x:500:500:grp1:/home/user1:/bin/bash
 ```
 
-With the `-f` option, the change information of the file will always be output unless the user exits the monitoring state with <kbd>CTRL</kbd> + <kbd>C</kbd>. This option is very frequently used to track log files (the logs) in real time.
+With the `-f` option, the change information of the file will always be output unless the user exits the monitoring state with ++control+c++. This option is very frequently used to track log files (the logs) in real time.
 
 Without the `-n` option, the `tail` command displays the last 10 lines of the file.
 
@@ -1000,7 +1000,7 @@ adm:x:3:4:adm:/var/adm/:/sbin/nologin
 | `-o file` | Saves the sort to the specified file.        |
 | `-t`     | Specify a delimiter, which requires that the contents of the corresponding file must be regularly delimited column contents, otherwise they cannot be sorted properly. |
 | `-r`      | Reverse the order of the result. Used in conjunction with the `-n` option to sort in order from largest to smallest.             |
-| `-u`     | Remove duplicates after sorting. Equivalent to `sort file | uniq`.                   |
+| `-u`     | Remove duplicates after sorting. Equivalent to `sort file uniq`.                   |
 
 The `sort` command sorts the file only on the screen. The file is not modified by the sorting. To save the sort, use the `-o` option or an output redirection `>`.
 
@@ -1394,7 +1394,7 @@ When both output streams are redirected, no information is displayed on the scre
 
 A **pipe** is a mechanism allowing you to link the standard output of a first command to the standard input of a second command.
 
-This communication is uni directional and is done with the `|` symbol. The pipe symbol `|` is obtained by pressing the  <kbd>SHIFT</kbd> + <kbd>|</kbd> simultaneously.
+This communication is uni directional and is done with the `|` symbol. The pipe symbol `|` is obtained by pressing the  ++shift+bar++ simultaneously.
 
 ![pipe](images/pipe.png)
 
@@ -1596,7 +1596,7 @@ none        on  /proc/sys/fs/binfmt_misc                   type  binfmt_misc  (r
 
 The `;` character strings the commands.
 
-The commands will all run sequentially in the order of input once the user presses <kbd>ENTER</kbd>.
+The commands will all run sequentially in the order of input once the user presses ++enter++.
 
 ```bash
 ls /; cd /home; ls -lia; cd /

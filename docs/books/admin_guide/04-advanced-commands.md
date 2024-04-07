@@ -333,7 +333,7 @@ The `-n` option allows you to specify the number of seconds between each executi
 
 !!! Note
 
-    To exit the `watch` command, you must type the keys: <kbd>CTRL</kbd>+<kbd>C</kbd> to kill the process.
+    To exit the `watch` command, you must type the keys: ++control+c++ to kill the process.
 
 Examples:
 
@@ -421,7 +421,7 @@ This command already saves time. Combine it with owner, owner group, and rights 
 sudo install -v -o rocky -g users -m 644 -D -t ~/samples/ src/sample.txt
 ```
 
- !!! note
+!!! note
 
      `sudo` is required in this case to make property changes.
 
