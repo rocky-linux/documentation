@@ -6,6 +6,7 @@ update: 2021-11-04
 ---
 
 # Demonstration based on rsync protocol
+
 In vsftpd, there are virtual users (impersonated users customized by the administrator) because it is not safe to use anonymous users and local users. We know that a server based on the SSH protocol must ensure that there is a system of users. When there are many synchronization requirements, it may be necessary to create many users. This obviously does not meet the GNU/Linux operation and maintenance standards (the more users, the more insecure), in rsync, for security reasons, there is an rsync protocol authentication login method.
 
 **How to do it?**
@@ -17,7 +18,7 @@ Just write the corresponding parameters and values in the configuration file. In
 [root@Rocky ~]# vim /etc/rsyncd.conf
 ```
 
-Some parameters and values of this file are as follows, [ here ](04_rsync_configure.md) has more parameter descriptions:
+Some parameters and values of this file are as follows, [here](04_rsync_configure.md) has more parameter descriptions:
 
 |Item|Description|
 |---|---|
@@ -91,7 +92,7 @@ aabbcc anaconda-ks.cfg fedora rsynctest.txt
 
 success! In addition to the above writing based on the rsync protocol, you can also write like this: `rsync://li@10.1.2.84/share`
 
-##  push/upload
+## push/upload
 
 ```bash
 [root@fedora ~]# touch /root/fedora.txt

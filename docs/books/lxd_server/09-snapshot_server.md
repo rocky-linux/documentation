@@ -17,7 +17,7 @@ As noted at the beginning, the snapshot server for LXD must be a mirror of the p
 
 The process of building the snapshot server is exactly like the production server. To fully emulate our production server set up, do all of **Chapters 1-4** again on the snapshot server, and when completed, return to this spot.
 
-You are back!! Congratulations, this must mean that you have successfully completed the basic installation for the snapshot server. 
+You are back!! Congratulations, this must mean that you have successfully completed the basic installation for the snapshot server.
 
 ## Setting up the primary and snapshot server relationship
 
@@ -27,38 +27,38 @@ In our lab, we do not have that luxury. Perhaps you've got the same scenario run
 
 In our lab, the primary LXD server is running on 192.168.1.106 and the snapshot LXD server is running on 192.168.1.141. SSH into each server and add the following to the /etc/hosts file:
 
-```
+```bash
 192.168.1.106 lxd-primary
 192.168.1.141 lxd-snapshot
 ```
 
 Next, you need to allow all traffic between the two servers. To do this, you are going to change the `firewalld` rules. First, on the lxd-primary server, add this line:
 
-```
+```bash
 firewall-cmd zone=trusted add-source=192.168.1.141 --permanent
 ```
 
 and on the snapshot server, add this rule:
 
-```
+```bash
 firewall-cmd zone=trusted add-source=192.168.1.106 --permanent
 ```
 
 then reload:
 
-```
+```bash
 firewall-cmd reload
 ```
 
 Next, as our unprivileged (lxdadmin) user, you need to set the trust relationship between the two machines. This is done by running the following on lxd-primary:
 
-```
+```bash
 lxc remote add lxd-snapshot
 ```
 
 This displays the certificate to accept. Accept it, and it will prompt for your password. This is the "trust password" that you set up when doing the LXD initialization step. Hopefully, you are securely keeping track of all of these passwords. When you enter the password, you will receive this:
 
-```
+```bash
 Client certificate stored at server:  lxd-snapshot
 ```
 
@@ -70,31 +70,31 @@ Before you can migrate your first snapshot, you need to have any profiles create
 
 You will need to create this for lxd-snapshot. Go back to [Chapter 6](06-profiles.md) and create the "macvlan" profile on lxd-snapshot if you need to. If your two servers have the same parent interface names ("enp3s0" for example) then you can copy the "macvlan" profile over to lxd-snapshot without recreating it:
 
-```
+```bash
 lxc profile copy macvlan lxd-snapshot
 ```
 
 With all of the relationships and profiles set up, the next step is to actually send a snapshot from lxd-primary over to lxd-snapshot. If you have been following along exactly, you have probably deleted all of your snapshots. Create another snapshot:
 
-```
+```bash
 lxc snapshot rockylinux-test-9 rockylinux-test-9-snap1
 ```
 
 If you run the "info" command for `lxc`, you can see the snapshot at the bottom of our listing:
 
-```
+```bash
 lxc info rockylinux-test-9
 ```
 
 Which will show something like this at the bottom:
 
-```
+```bash
 rockylinux-test-9-snap1 at 2021/05/13 16:34 UTC) (stateless)
 ```
 
 OK, fingers crossed! Let us try to migrate our snapshot:
 
-```
+```bash
 lxc copy rockylinux-test-9/rockylinux-test-9-snap1 lxd-snapshot:rockylinux-test-9
 ```
 
@@ -102,7 +102,7 @@ This command says, within the container rockylinux-test-9, you want to send the 
 
 After a short time, the copy will be complete. Want to find out for sure? Do an `lxc list` on the lxd-snapshot server. Which should return the following:
 
-```
+```bash
 +-------------------+---------+------+------+-----------+-----------+
 |    NAME           |  STATE  | IPV4 | IPV6 |   TYPE    | SNAPSHOTS |
 +-------------------+---------+------+------+-----------+-----------+
@@ -112,13 +112,13 @@ After a short time, the copy will be complete. Want to find out for sure? Do an 
 
 Success! Try starting it. Because we are starting it on the lxd-snapshot server, you need to stop it first on the lxd-primary server to avoid an IP address conflict:
 
-```
+```bash
 lxc stop rockylinux-test-9
 ```
 
 And on the lxd-snapshot server:
 
-```
+```bash
 lxc start rockylinux-test-9
 ```
 
@@ -128,9 +128,9 @@ Assuming all of this works without error, stop the container on lxd-snapshot and
 
 The snapshots copied to lxd-snapshot will be down when they migrate, but if you have a power event or need to reboot the snapshot server because of updates or something, you will end up with a problem. Those containers will try to start on the snapshot server creating a potential IP address conflict.
 
-To eliminate this, you need to set the migrated containers so that they will not start on reboot of the server. For our newly copied rockylinux-test-9 container, you will do this with: 
+To eliminate this, you need to set the migrated containers so that they will not start on reboot of the server. For our newly copied rockylinux-test-9 container, you will do this with:
 
-```
+```bash
 lxc config set rockylinux-test-9 boot.autostart 0
 ```
 
@@ -142,7 +142,7 @@ It is great that you can create snapshots when you need to, and sometimes you _d
 
 The first thing you need to do is schedule a process to automate snapshot creation on lxd-primary. You will do this for each container on the lxd-primary server. When completed, it will take care of this going forward. You do this with the following syntax. Note the similarities to a crontab entry for the timestamp:
 
-```
+```bash
 lxc config set [container_name] snapshots.schedule "50 20 * * *"
 ```
 
@@ -150,18 +150,18 @@ What this is saying is, do a snapshot of the container name every day at 8:50 PM
 
 To apply this to our rockylinux-test-9 container:
 
-```
+```bash
 lxc config set rockylinux-test-9 snapshots.schedule "50 20 * * *"
 ```
 
 You also want to set up the name of the snapshot to be meaningful by our date. LXD uses UTC everywhere, so our best bet to keep track of things, is to set the snapshot name with a date and time stamp that is in a more understandable format:
 
-```
+```bash
 lxc config set rockylinux-test-9 snapshots.pattern "rockylinux-test-9{{ creation_date|date:'2006-01-02_15-04-05' }}"
 ```
 
 GREAT, but you certainly do not want a new snapshot every day without getting rid of an old one, right? You would fill up the drive with snapshots. To fix this you run:
 
-```
+```bash
 lxc config set rockylinux-test-9 snapshots.expiry 1d
 ```

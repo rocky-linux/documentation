@@ -9,6 +9,7 @@ contributors: @fromoz, Ganna Zhyrnova
 You have found the **Books** section of the documentation. This is where longer-form documentation is kept. These documents are broken down into sections or **_chapters_** to make it easy for you to work through them at your own pace and keeping track of your progress. These documents were created by people just like you, with a passion for certain subjects.
 
 Would you like to try your hand at writing an addition to this section? If so, That would be GREAT! Simply join the conversation on the [Mattermost Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation) and we will help you on your way.
+
 ## Download for offline reading
 
 Our books can be downloaded in PDF format for offline reading.

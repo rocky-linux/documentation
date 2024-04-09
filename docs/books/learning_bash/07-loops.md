@@ -45,7 +45,7 @@ When the evaluated command is false (`$? != 0`), the shell resumes the execution
 
 Syntax of the conditional loop structure `while`:
 
-```
+```bash
 while command
 do
   command if $? = 0
@@ -54,7 +54,7 @@ done
 
 Example using the `while` conditional structure:
 
-```
+```bash
 while [[ -e /etc/passwd ]]
 do
   echo "The file exists"
@@ -77,13 +77,13 @@ The `exit` command ends the execution of the script.
 
 Syntax of the `exit` command :
 
-```
+```bash
 exit [n]
 ```
 
 Example using the `exit` command :
 
-```
+```bash
 bash # to avoid being disconnected after the "exit 1
 exit 1
 echo $?
@@ -99,7 +99,7 @@ The `break` command allows you to interrupt the loop by going to the first comma
 
 The `continue` command allows you to restart the loop by going back to the first command after `done`.
 
-```
+```bash
 while [[ -d / ]]                                                   INT ✘  17s 
 do
   echo "Do you want to continue? (yes/no)"
@@ -113,7 +113,7 @@ done
 
 The `true` command always returns `true` while the `false` command always returns `false`.
 
-```
+```bash
 true
 echo $?
 0
@@ -126,7 +126,7 @@ Used as a condition of a loop, they allow for either an execution of an infinite
 
 Example:
 
-```
+```bash
 while true
 do
   echo "Do you want to continue? (yes/no)"
@@ -146,7 +146,7 @@ When the evaluated command is true (`$? = 0`), the shell resumes the execution o
 
 Syntax of the conditional loop structure `until`:
 
-```
+```bash
 until command
 do
   command if $? != 0
@@ -155,7 +155,7 @@ done
 
 Example of the use of the conditional structure `until`:
 
-```
+```bash
 until [[ -e test_until ]]
 do
   echo "The file does not exist"
@@ -182,7 +182,7 @@ A `break` command is needed to exit the loop.
 
 Syntax of the conditional loop structure `select`:
 
-```
+```bash
 PS3="Your choice:"
 select variable in var1 var2 var3
 do
@@ -192,7 +192,7 @@ done
 
 Example of the use of the conditional structure `select`:
 
-```
+```bash
 PS3="Your choice: "
 select choice in coffee tea chocolate
 do
@@ -202,7 +202,7 @@ done
 
 If this script is run, it shows something like this:
 
-```
+```text
 1) Coffee
 2) Tea
 3) Chocolate
@@ -217,7 +217,7 @@ The `for` / `do` / `done` structure assigns the first element of the list to the
 
 Syntax of the loop structure on list of values `for`:
 
-```
+```bash
 for variable in list
 do
   commands
@@ -226,7 +226,7 @@ done
 
 Example of using the conditional structure `for`:
 
-```
+```bash
 for file in /home /etc/passwd /root/fic.txt
 do
   file $file
@@ -240,7 +240,7 @@ Any command producing a list of values can be placed after the `in` using a sub-
 
 This can be the files in a directory. In this case, the variable will take as a value each of the words of the file names present:
 
-```
+```bash
 for file in $(ls -d /tmp/*)
 do
   echo $file
@@ -249,7 +249,7 @@ done
 
 It can be a file. In this case, the variable will take as a value each word contained in the file browsed, from the beginning to the end:
 
-```
+```bash
 cat my_file.txt
 first line
 second line
@@ -265,7 +265,7 @@ line
 
 To read a file line by line, you must modify the value of the `IFS` environment variable.
 
-```
+```bash
 IFS=$'\t\n'
 for LINE in $(cat my_file.txt); do echo $LINE; done
 first line

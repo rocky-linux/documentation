@@ -5,7 +5,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 update : 2022-Mar-08
 ---
 
-#  Backup Brief
+# Backup Brief
 
 What is a backup?
 
@@ -21,9 +21,9 @@ What are the backup methods?
 * Hot backup: Refers to the backup when the system is in normal operation. As the data in the system is updated at any time, the backed-up data has a certain lag relative to the real data of the system.
 * Remote backup: refers to backing up data in another geographic location to avoid data loss and service interruption caused by fire, natural disasters, theft, etc.
 
-##  rsync in brief
+## rsync in brief
 
-On a server, I backed up the first partition to the second partition, which is commonly known as "Local backup." The specific backup tools are `tar` , `dd` , `dump` , `cp `, etc. can be achieved. Although the data is backed up on this server, if the hardware fails to boot up properly, the data will not be retrieved. In order to solve this problem with the local backup, we introduced another kind of backup --- "remote backup".
+On a server, I backed up the first partition to the second partition, which is commonly known as "Local backup." The specific backup tools are `tar` , `dd` , `dump` , `cp`, etc. can be achieved. Although the data is backed up on this server, if the hardware fails to boot up properly, the data will not be retrieved. In order to solve this problem with the local backup, we introduced another kind of backup --- "remote backup".
 
 Some people will say, can't I just use the `tar` or `cp` command on the first server and send it to the second server via `scp` or `sftp`?
 
@@ -39,7 +39,7 @@ Therefore, there needs to be a data backup in the production environment which n
 
 In terms of platform support, most Unix-like systems are supported, whether it is GNU/Linux or BSD. In addition, there are related `rsync` under the Windows platform, such as cwRsync.
 
-The original `rsync` was maintained by the Australian programmer <font color=red>Andrew Tridgell</font> (shown in Figure 1 below), and now it has been maintained by <font color=red>Wayne Davison</font> (shown in Figure 2 below) ) For maintenance, you can go to [ github project address ](https://github.com/WayneD/rsync) to get the information you want.
+The original `rsync` was maintained by the Australian programmer <font color=red>Andrew Tridgell</font> (shown in Figure 1 below), and now it has been maintained by <font color=red>Wayne Davison</font> (shown in Figure 2 below) ) For maintenance, you can go to [github project address](https://github.com/WayneD/rsync) to get the information you want.
 
 ![ Andrew Tridgell ](images/Andrew_Tridgell.jpg)
 ![ Wayne Davison ](images/Wayne_Davison.jpg)
@@ -48,7 +48,7 @@ The original `rsync` was maintained by the Australian programmer <font color=red
 
     **rsync itself is only an incremental backup tool and does not have the function of real-time data synchronization (it needs to be supplemented by other programs). In addition, synchronization is one-way. If you want to realize two-way synchronization, you need to cooperate with other tools.**
 
-###  Basic Principles and Features
+### Basic Principles and Features
 
 How does `rsync` achieve efficient one-way data synchronization backup?
 

@@ -25,13 +25,13 @@ As with any server, you need to ensure that it is secure from the outside world 
 
 For _firewalld_ rules, you need to use [this basic procedure](../../guides/security/firewalld.md) or be familiar with those concepts. Our assumptions are: LAN network of 192.168.1.0/24 and a bridge named lxdbr0. To be clear, you might have many interfaces on your LXD server, with one perhaps facing your WAN. You are also going to create a zone for the bridged and local networks. This is just for zone clarity's sake. The other zone names do not really apply. This procedure assumes that you already know the basics of _firewalld_.
 
-```
+```bash
 firewall-cmd --new-zone=bridge --permanent
 ```
 
 You need to reload the firewall after adding a zone:
 
-```
+```bash
 firewall-cmd --reload
 ```
 
@@ -45,18 +45,20 @@ You want to allow all traffic from the bridge. Just add the interface, and chang
 
     If you need to create a zone that you want to allow all access to the interface or source, but do not want to have to specify any protocols or services, then you *must* change the target from "default" to "ACCEPT". The same is true of "DROP" and "REJECT" for a particular IP block that you have custom zones for. To be clear, the "drop" zone will take care of that for you as long as you are not using a custom zone.
 
-```
+```bash
 firewall-cmd --zone=bridge --add-interface=lxdbr0 --permanent
 firewall-cmd --zone=bridge --set-target=ACCEPT --permanent
 ```
+
 Assuming no errors and everything is still working just do a reload:
 
-```
+```bash
 firewall-cmd --reload
 ```
+
 If you list out your rules now with `firewall-cmd --zone=bridge --list-all` you will see:
 
-```
+```bash
 bridge (active)
   target: ACCEPT
   icmp-block-inversion: no
@@ -72,22 +74,25 @@ bridge (active)
   icmp-blocks:
   rich rules:
 ```
+
 Note that you also want to allow your local interface. Again, the included zones are not appropriately named for this. Create a zone and use the source IP range for the local interface to ensure you have access:
 
-```
+```bash
 firewall-cmd --new-zone=local --permanent
 firewall-cmd --reload
 ```
+
 Add the source IPs for the local interface, and change the target to "ACCEPT":
 
-```
+```bash
 firewall-cmd --zone=local --add-source=127.0.0.1/8 --permanent
 firewall-cmd --zone=local --set-target=ACCEPT --permanent
 firewall-cmd --reload
 ```
+
 Go ahead and list out the "local" zone to ensure your rules are there with `firewall-cmd --zone=local --list all` which will show:
 
-```
+```bash
 local (active)
   target: ACCEPT
   icmp-block-inversion: no
@@ -106,23 +111,26 @@ local (active)
 
 You want to allow SSH from our trusted network. We will use the source IPs here, and the built-in "trusted" zone. The target for this zone is already "ACCEPT" by default.
 
-```
+```bash
 firewall-cmd --zone=trusted --add-source=192.168.1.0/24
 ```
+
 Add the service to the zone:
 
-```
+```bash
 firewall-cmd --zone=trusted --add-service=ssh
 ```
+
 If everything is working, move your rules to permanent and reload the rules:
 
-```
+```bash
 firewall-cmd --runtime-to-permanent
 firewall-cmd --reload
 ```
+
 Listing out your "trusted" zone will show:
 
-```
+```bash
 trusted (active)
   target: ACCEPT
   icmp-block-inversion: no
@@ -141,13 +149,13 @@ trusted (active)
 
 By default, the "public" zone is in the enabled state and has SSH allowed. For security, you do not want SSH allowed on the "public" zone. Ensure that your zones are correct and that the access you are getting to the server is by one of the LAN IPs (in the case of our example). You might lock yourself out of the server if you do not verify this before continuing. When you are sure you have access from the correct interface, remove SSH from the "public" zone:
 
-```
+```bash
 firewall-cmd --zone=public --remove-service=ssh
 ```
 
 Test access and ensure you are not locked out. If not, move your rules to permanent, reload, and list out zone "public" to ensure the removal of SSH:
 
-```
+```bash
 firewall-cmd --runtime-to-permanent
 firewall-cmd --reload
 firewall-cmd --zone=public --list-all
