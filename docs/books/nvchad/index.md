@@ -11,16 +11,6 @@ tags:
 
 # :material-book-open-page-variant-outline: Introduction
 
-!!! warning "Release 2.5 changes"
-
-    With the release of version 2.5, the editor's developers significantly changed the configuration's structure. The most significant changes concern the following aspects:
-
-    * The configuration transformation into a Neovim plugin can then be updated using the *lazy.nvim* plugins manager
-    * Removing the `custom` folder for editor customization (now integrated into the main folder). A [migration script](https://gist.github.com/siduck/048bed2e7570569e6b327b35d1715404) is provided for current users.
-    * The mappings have been changed and no longer use nvchad's custom syntax, instead nvim's **vim.keymap.set** is used.
-
-    As a result, some pages of the guide, especially the whole part concerning the installation of NvChad and the subsequent installation of plugins, appear incorrect. The guide is **under revision** and will be updated soon.
-
 Throughout this book, you will find ways to implement Neovim, along with NvChad, to create a fully functional ==**I**ntegrated **D**evelopment **E**nvironment== (IDE).
 
 I say "ways" because there are many possibilities. The author focuses here on using these tools for writing markdown, but if markdown isn't your focus, don't worry simply read on. If you are unfamiliar with either of these tools (NvChad or Neovim), then this book will give you an introduction to both, and if you step through these documents, you'll soon realize that you can set up this environment to be a huge help for whatever your programming or script writing needs are.
@@ -89,7 +79,7 @@ Lua is not interpreted directly through a Lua file like other languages, for exa
 
 ### :simple-neovim: Neovim
 
-Neovim is described in detail on its [dedicated page](install_nvim.md) so we will just dwell on the main features, which are:
+Neovim is described in detail on its [dedicated page](./install_nvim.md) so we will just dwell on the main features, which are:
 
 * Performance: Very fast.
 * Customizable: Wide ecosystem of plugins and themes.
@@ -120,4 +110,4 @@ A parser is a component that decomposes data into smaller elements to facilitate
 
     Although it may seem that the two services (LSP and tree-sitter) are redundant, they are actually complementary in that LSP works at the project level while tree-sitter works only on the open source file.
 
-Now that we have explained a bit about the technologies used to create the IDE we can move on to the [Additional Software](additional_software.md) needed to configure our NvChad.
+Now that we have explained a bit about the technologies used to create the IDE we can move on to the [Additional Software](./additional_software.md) needed to configure our NvChad.
