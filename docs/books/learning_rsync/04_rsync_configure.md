@@ -4,9 +4,9 @@ author : tianci li
 update : 2021-11-04
 ---
 
-#  /etc/rsyncd.conf
+# /etc/rsyncd.conf
 
-In the previous article [ rsync demo 02 ](03_rsync_demo02.md) we introduced some basic parameters. This article is to supplement other parameters.
+In the previous article [rsync demo 02](03_rsync_demo02.md) we introduced some basic parameters. This article is to supplement other parameters.
 
 |Parameters|Description|
 |---|---|
@@ -26,6 +26,6 @@ In the previous article [ rsync demo 02 ](03_rsync_demo02.md) we introduced some
 | auth users = li |Enable virtual users, multiple users are separated by commas in English state|
 | syslog facility = daemon | Define the level of system log. These values ​​can be filled in: auth, authpriv, cron, daemon, ftp, kern, lpr, mail, news, security, syslog, user, uucp, local0, local1, local2 local3, local4, local5, local6 and local7. The default value is daemon|
 
-##  Recommended configuration
+## Recommended configuration
 
 ![ photo ](images/rsync_config.jpg)

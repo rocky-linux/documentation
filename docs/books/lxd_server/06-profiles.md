@@ -29,7 +29,7 @@ For now, just be aware that this has drawbacks when choosing container images ba
 
 To create our macvlan profile, use this command:
 
-```
+```bash
 lxc profile create macvlan
 ```
 
@@ -37,13 +37,13 @@ If you were on a multi-interface machine and wanted more than one macvlan templa
 
 You want to change the macvlan interface, but before you do, you need to know what the parent interface is for our LXD server. This will be the interface that has a LAN (in this case) assigned IP. To find what interface that is, use:
 
-```
+```bash
 ip addr
 ```
 
 Look for the interface with the LAN IP assignment in the 192.168.1.0/24 network:
 
-```
+```bash
 2: enp3s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
     link/ether 40:16:7e:a9:94:85 brd ff:ff:ff:ff:ff:ff
     inet 192.168.1.106/24 brd 192.168.1.255 scope global dynamic noprefixroute enp3s0
@@ -56,7 +56,7 @@ In this case, the interface is "enp3s0".
 
 Next change the profile:
 
-```
+```bash
 lxc profile device add macvlan eth0 nic nictype=macvlan parent=enp3s0
 ```
 
@@ -64,14 +64,13 @@ This command adds all of the necessary parameters to the macvlan profile require
 
 Examine what this command created, by using the command:
 
-```
+```bash
 lxc profile show macvlan
 ```
 
 Which will give you output similar to this:
 
-
-```
+```bash
 config: {}
 description: ""
 devices:
@@ -87,13 +86,13 @@ You can use profiles for many other things, but assigning a static IP to a conta
 
 To assign the macvlan profile to rockylinux-test-8 you need to do the following:
 
-```
+```bash
 lxc profile assign rockylinux-test-8 default,macvlan
 ```
 
 Do the same thing for rockylinux-test-9:
 
-```
+```bash
 lxc profile assign rockylinux-test-9 default,macvlan
 ```
 
@@ -101,7 +100,7 @@ This says, you want the default profile, and to apply the macvlan profile too.
 
 ## Rocky Linux macvlan
 
-In RHEL distributions and clones, Network Manager has been in a constant state of change. Because of this, the way the `macvlan` profile works does not work (at least in comparison to other distributions), and requires a little additional work to assign IP addresses from DHCP or statically. 
+In RHEL distributions and clones, Network Manager has been in a constant state of change. Because of this, the way the `macvlan` profile works does not work (at least in comparison to other distributions), and requires a little additional work to assign IP addresses from DHCP or statically.
 
 Remember that none of this has anything to do with Rocky Linux particularly, but with the upstream package implementation.
 
@@ -115,18 +114,18 @@ Having the profile assigned, however, does not change the default configuration,
 
 To test this, do the following:
 
-```
+```bash
 lxc restart rocky-test-8
 lxc restart rocky-test-9
 ```
 
 List your containers again and note that the rockylinux-test-9 does not have an IP address anymore:
 
-```
+```bash
 lxc list
 ```
 
-```
+```bash
 +-------------------+---------+----------------------+------+-----------+-----------+
 |       NAME        |  STATE  |         IPV4         | IPV6 |   TYPE    | SNAPSHOTS |
 +-------------------+---------+----------------------+------+-----------+-----------+
@@ -136,19 +135,19 @@ lxc list
 +-------------------+---------+----------------------+------+-----------+-----------+
 | ubuntu-test       | RUNNING | 10.146.84.181 (eth0) |      | CONTAINER | 0         |
 +-------------------+---------+----------------------+------+-----------+-----------+
-
 ```
+
 As you can see, our Rocky Linux 8.x container received the IP address from the LAN interface, whereas the Rocky Linux 9.x container did not.
 
 To further demonstrate the problem here, you need to run `dhclient` on the Rocky Linux 9.0 container. This will show us that the macvlan profile, *is* in fact applied:
 
-```
+```bash
 lxc exec rockylinux-test-9 dhclient
 ```
 
 Another container listing now shows the following:
 
-```
+```bash
 +-------------------+---------+----------------------+------+-----------+-----------+
 |       NAME        |  STATE  |         IPV4         | IPV6 |   TYPE    | SNAPSHOTS |
 +-------------------+---------+----------------------+------+-----------+-----------+
@@ -162,51 +161,51 @@ Another container listing now shows the following:
 
 That should have happened with a stop and start of the container, but it does not. Assuming that you want to use a DHCP assigned IP address every time, you can fix this with a simple crontab entry. To do this, we need to gain shell access to the container by entering:
 
-```
+```bash
 lxc exec rockylinux-test-9 bash
 ```
 
 Next, lets determine the path to `dhclient`. To do this, because this container is from a minimal image, you will need to first install `which`:
 
-```
+```bash
 dnf install which
 ```
 
 then run:
 
-```
+```bash
 which dhclient
 ```
 
 which will return:
 
-```
+```bash
 /usr/sbin/dhclient
 ```
 
 Next, change root's crontab:
 
-```
+```bash
 crontab -e
 ```
 
 Add this line:
 
-```
+```bash
 @reboot    /usr/sbin/dhclient
 ```
 
-The crontab command entered uses _vi_ . To save your changes and exit  use <kbd>SHIFT</kbd>+<kbd>:</kbd>+<kbd>wq</kbd>.
+The crontab command entered uses *vi* . To save your changes and exit  use ++shift+colon+"w"+"q"++.
 
 Exit the container and restart rockylinux-test-9:
 
-```
+```bash
 lxc restart rockylinux-test-9
 ```
 
 Another listing will reveal that the container has the DHCP address assigned:
 
-```
+```bash
 +-------------------+---------+----------------------+------+-----------+-----------+
 |       NAME        |  STATE  |         IPV4         | IPV6 |   TYPE    | SNAPSHOTS |
 +-------------------+---------+----------------------+------+-----------+-----------+
@@ -225,19 +224,19 @@ To statically assign an IP address, things get even more convoluted. Since `netw
 
 To do this, you need to gain shell access to the container again:
 
-```
+```bash
 lxc exec rockylinux-test-9 bash
 ```
 
 Next, you are going to create a bash script in `/usr/local/sbin` called "static":
 
-```
+```bash
 vi /usr/local/sbin/static
 ```
 
 The contents of this script are not difficult:
 
-```
+```bash
 #!/usr/bin/env bash
 
 /usr/sbin/ip link set dev eth0 name net0
@@ -246,41 +245,40 @@ The contents of this script are not difficult:
 /usr/sbin/ip route add default via 192.168.1.1
 ```
 
-What are we doing here? 
+What are we doing here?
 
 * you rename eth0 to a new name that we can manage ("net0")
 * you assign the new static IP that we have allocated for our container (192.168.1.151)
 * you bring up the new "net0" interface
 * you need to add the default route for our interface
 
-
 Make our script executable with:
 
-```
+```bash
 chmod +x /usr/local/sbin/static
 ```
 
 Add this to root's crontab for the container with the @reboot time:
 
-```
+```bash
 @reboot     /usr/local/sbin/static
 ```
 
 Finally, exit the container and restart it:
 
-```
+```bash
 lxc restart rockylinux-test-9
 ```
 
 Wait a few seconds and list out the containers again:
 
-```
+```bash
 lxc list
 ```
 
 You should see success:
 
-```
+```bash
 +-------------------+---------+----------------------+------+-----------+-----------+
 |       NAME        |  STATE  |         IPV4         | IPV6 |   TYPE    | SNAPSHOTS |
 +-------------------+---------+----------------------+------+-----------+-----------+
@@ -298,19 +296,19 @@ Luckily, In Ubuntu's implementation of Network Manager, the macvlan stack is NOT
 
 Just like with your rockylinux-test-9 container, you need to assign the profile to our container:
 
-```
+```bash
 lxc profile assign ubuntu-test default,macvlan
 ```
 
 To find out if DHCP assigns an address to the container stop and start the container again:
 
-```
+```bash
 lxc restart ubuntu-test
 ```
 
 List the containers again:
 
-```
+```bash
 +-------------------+---------+----------------------+------+-----------+-----------+
 |       NAME        |  STATE  |         IPV4         | IPV6 |   TYPE    | SNAPSHOTS |
 +-------------------+---------+----------------------+------+-----------+-----------+
@@ -326,13 +324,13 @@ Success!
 
 Configuring the Static IP is just a little different, but not at all hard. You need to change the .yaml file associated with the container's connection (`10-lxc.yaml`). For this static IP, you will use 192.168.1.201:
 
-```
+```bash
 vi /etc/netplan/10-lxc.yaml
 ```
 
 Change what is there to the following:
 
-```
+```bash
 network:
   version: 2
   ethernets:
@@ -348,13 +346,13 @@ Save your changes and exit the container.
 
 Restart the container:
 
-```
+```bash
 lxc restart ubuntu-test
 ```
 
 When you list your containers again, you will see your static IP:
 
-```
+```bash
 +-------------------+---------+----------------------+------+-----------+-----------+
 |       NAME        |  STATE  |         IPV4         | IPV6 |   TYPE    | SNAPSHOTS |
 +-------------------+---------+----------------------+------+-----------+-----------+

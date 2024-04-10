@@ -29,7 +29,7 @@ For those wanting to use LXD as a lab environment on their own notebooks or work
 * Comfort at the command line on your machine(s), and fluent in a command line editor. (Using _vi_ throughout these examples, but you can substitute in your favorite editor.)
 * You will need to be your unprivileged user for the bulk of these processes. For the early setup steps, you will need to be the root user or be able to `sudo` to become so. Throughout these chapters, we assume your unprivileged user to be "lxdadmin". You will have to create this user account later in the process.
 * For ZFS, ensure that UEFI secure boot is NOT enabled. Otherwise, you will end up having to sign the ZFS module to get it to load.
-* Using Rocky Linux-based containers for the most part 
+* Using Rocky Linux-based containers for the most part
 
 ## Synopsis
 

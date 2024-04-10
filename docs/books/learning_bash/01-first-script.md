@@ -23,7 +23,7 @@ In this chapter you will learn how to write your first script in bash.
 
 :checkered_flag: **linux**, **script**, **bash**
 
-**Knowledge**: :star:     
+**Knowledge**: :star:
 **Complexity**: :star:
 
 **Reading time**: 10 minutes
@@ -46,7 +46,7 @@ The name of the script should respect some rules:
 
     The author uses the "$" throughout these lessons to indicate the user's command-prompt.
 
-```
+```bash
 #!/usr/bin/env bash
 #
 # Author : Rocky Documentation Team
@@ -60,14 +60,14 @@ echo "Hello world!"
 
 To be able to run this script, as an argument to bash:
 
-```
+```bash
 $ bash hello-world.sh
 Hello world !
 ```
 
 Or, more simply, after having given it the right to execute:
 
-```
+```bash
 $ chmod u+x ./hello-world.sh
 $ ./hello-world.sh
 Hello world !
@@ -83,19 +83,19 @@ Hello world !
 The first line to be written in any script is to indicate the name of the shell binary to be used to execute it.
 If you want to use the `ksh` shell or the interpreted language `python`, you would replace the line:
 
-```
+```bash
 #!/usr/bin/env bash
 ```
 
 with :
 
-```
+```bash
 #!/usr/bin/env ksh
 ```
 
 or with :
 
-```
+```bash
 #!/usr/bin/env python
 ```
 
@@ -117,7 +117,7 @@ Comments can be placed on a separate line or at the end of a line containing a c
 
 Example:
 
-```
+```bash
 # This program displays the date
 date # This line is the line that displays the date!
 ```

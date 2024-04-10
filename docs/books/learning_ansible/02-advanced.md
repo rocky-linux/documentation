@@ -10,14 +10,14 @@ In this chapter you will continue to learn how to work with Ansible.
 
 **Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: work with variables;       
-:heavy_check_mark: use loops;   
-:heavy_check_mark: manage state changes and react to them;   
+:heavy_check_mark: work with variables;
+:heavy_check_mark: use loops;
+:heavy_check_mark: manage state changes and react to them;
 :heavy_check_mark: manage asynchronous tasks.
 
 :checkered_flag: **ansible**, **module**, **playbook**
 
-**Knowledge**: :star: :star: :star:     
+**Knowledge**: :star: :star: :star:
 **Complexity**: :star: :star:
 
 **Reading time**: 30 minutes
@@ -49,7 +49,7 @@ A variable can be defined in different places, like in a playbook, in a role or 
 
 For example, from a playbook:
 
-```
+```bash
 ---
 - hosts: apache1
   vars:
@@ -61,8 +61,8 @@ For example, from a playbook:
 
 or from the command line:
 
-```
-$ ansible-playbook deploy-http.yml --extra-vars "service=httpd"
+```bash
+ansible-playbook deploy-http.yml --extra-vars "service=httpd"
 ```
 
 Once defined, a variable can be used by calling it between double braces:
@@ -72,7 +72,7 @@ Once defined, a variable can be used by calling it between double braces:
 
 For example:
 
-```
+```bash
 - name: make sure apache is started
   ansible.builtin.systemd:
     name: "{{ service['rhel'] }}"
@@ -85,7 +85,7 @@ Of course, it is also possible to access the global variables (the **facts**) of
 
 Variables can be included in a file external to the playbook, in which case this file must be defined in the playbook with the `vars_files` directive:
 
-```
+```bash
 ---
 - hosts: apache1
   vars_files:
@@ -94,7 +94,7 @@ Variables can be included in a file external to the playbook, in which case this
 
 The `myvariables.yml` file:
 
-```
+```bash
 ---
 port_http: 80
 ansible.builtin.systemd::
@@ -104,7 +104,7 @@ ansible.builtin.systemd::
 
 It can also be added dynamically with the use of the module `include_vars`:
 
-```
+```bash
 - name: Include secrets.
   ansible.builtin.include_vars:
     file: vault.yml
@@ -114,14 +114,14 @@ It can also be added dynamically with the use of the module `include_vars`:
 
 To display a variable, you have to activate the `debug` module as follows:
 
-```
+```bash
 - ansible.builtin.debug:
     var: service['debian']
 ```
 
 You can also use the variable inside a text:
 
-```
+```bash
 - ansible.builtin.debug:
     msg: "Print a variable in a message : {{ service['debian'] }}"
 ```
@@ -132,7 +132,7 @@ To save the return of a task and to be able to access it later, you have to use 
 
 Use of a stored variable:
 
-```
+```bash
 - name: /home content
   shell: ls /home
   register: homes
@@ -152,13 +152,13 @@ Use of a stored variable:
 
 The strings that make up the stored variable can be accessed via the `stdout` value (which allows you to do things like `homes.stdout.find("core") != -1`), to exploit them using a loop (see `loop`), or simply by their indices as seen in the previous example.
 
-### Exercises
+### Exercises-1
 
 * Write a  playbook `play-vars.yml` that prints the distribution name of the target with its major version, using global variables.
 
 * Write a playbook using the following dictionary to display the services that will be installed:
 
-```
+```bash
 service:
   web:
     name: apache
@@ -184,7 +184,7 @@ With the help of loop, you can iterate a task over a list, a hash, or dictionary
 
 Simple example of use, creation of 4 users:
 
-```
+```bash
 - name: add users
   user:
     name: "{{ item }}"
@@ -201,7 +201,7 @@ At each iteration of the loop, the value of the list used is stored in the `item
 
 Of course, a list can be defined in an external file:
 
-```
+```bash
 users:
   - antoine
   - patrick
@@ -211,7 +211,7 @@ users:
 
 and be used inside the task like this (after having include the vars file):
 
-```
+```bash
 - name: add users
   user:
     name: "{{ item }}"
@@ -222,7 +222,7 @@ and be used inside the task like this (after having include the vars file):
 
 We can use the example seen during the study of stored variables to improve it. Use of a stored variable:
 
-```
+```bash
 - name: /home content
   shell: ls /home
   register: homes
@@ -241,7 +241,7 @@ In the loop, it becomes possible to use `item.key` which corresponds to the dict
 
 Let's see this through a concrete example, showing the management of the system users:
 
-```
+```bash
 ---
 - hosts: rocky8
   become: true
@@ -269,7 +269,7 @@ Let's see this through a concrete example, showing the management of the system 
 
     Many things can be done with the loops. You will discover the possibilities offered by loops when your use of Ansible pushes you to use them in a more complex way.
 
-### Exercises
+### Exercises-2
 
 * Display the content of the `service` variable from the previous exercise using a loop.
 
@@ -293,7 +293,7 @@ The `when` statement is very useful in many cases: not performing certain action
 
     Behind the `when` statement the variables do not need double braces (they are in fact Jinja2 expressions...).
 
-```
+```bash
 - name: "Reboot only Debian servers"
   reboot:
   when: ansible_os_family == "Debian"
@@ -301,7 +301,7 @@ The `when` statement is very useful in many cases: not performing certain action
 
 Conditions can be grouped with parentheses:
 
-```
+```bash
 - name: "Reboot only CentOS version 6 and Debian version 7"
   reboot:
   when: (ansible_distribution == "CentOS" and ansible_distribution_major_version == "6") or
@@ -310,7 +310,7 @@ Conditions can be grouped with parentheses:
 
 The conditions corresponding to a logical AND can be provided as a list:
 
-```
+```bash
 - name: "Reboot only CentOS version 6"
   reboot:
   when:
@@ -320,7 +320,7 @@ The conditions corresponding to a logical AND can be provided as a list:
 
 You can test the value of a boolean and verify that it is true:
 
-```
+```bash
 - name: check if directory exists
   stat:
     path: /home/ansible
@@ -338,19 +338,19 @@ You can test the value of a boolean and verify that it is true:
 
 You can also test that it is not true:
 
-```
-  when:
-    - file.stat.exists
-    - not file.stat.isdir
+```bash
+when:
+  - file.stat.exists
+  - not file.stat.isdir
 ```
 
 You will probably have to test that a variable exists to avoid execution errors:
 
-```
-  when: myboolean is defined and myboolean
+```bash
+when: myboolean is defined and myboolean
 ```
 
-### Exercises
+### Exercises-3
 
 * Print the value of `service.web` only when `type` equals to `web`.
 
@@ -368,7 +368,7 @@ A module, being idempotent, a playbook can detect that there has been a signific
 
 For example, several tasks may indicate that the `httpd` service needs to be restarted due to a change in its configuration files. But the service will only be restarted once to avoid multiple unnecessary starts.
 
-```
+```bash
 - name: template configuration file
   template:
     src: template-site.j2
@@ -385,7 +385,7 @@ A handler is a kind of task referenced by a unique global name:
 
 Example of handlers:
 
-```
+```bash
 handlers:
 
   - name: restart memcached
@@ -401,7 +401,7 @@ handlers:
 
 Since version 2.2 of Ansible, handlers can listen directly as well:
 
-```
+```bash
 handlers:
 
   - name: restart memcached
@@ -441,7 +441,7 @@ By specifying a poll value of 0, Ansible will execute the task and continue with
 
 Here's an example using asynchronous tasks, which allows you to restart a server and wait for port 22 to be reachable again:
 
-```
+```bash
 # Wait 2s and launch the reboot
 - name: Reboot system
   shell: sleep 2 && shutdown -r now "Ansible reboot triggered"
@@ -468,7 +468,7 @@ You can also decide to launch a long-running task and forget it (fire and forget
 
 * Write a  playbook `play-vars.yml` that print the distribution name of the target with its major version, using global variables.
 
-```
+```bash
 ---
 - hosts: ansible_clients
 
@@ -479,7 +479,7 @@ You can also decide to launch a long-running task and forget it (fire and forget
         msg: "The distribution is {{ ansible_distribution }} version {{ ansible_distribution_major_version }}"
 ```
 
-```
+```bash
 $ ansible-playbook play-vars.yml
 
 PLAY [ansible_clients] *********************************************************************************
@@ -499,7 +499,7 @@ PLAY RECAP *********************************************************************
 
 * Write a playbook using the following dictionary to display the services that will be installed:
 
-```
+```bash
 service:
   web:
     name: apache
@@ -511,7 +511,7 @@ service:
 
 The default type should be "web".
 
-```
+```bash
 ---
 - hosts: ansible_clients
   vars:
@@ -531,7 +531,7 @@ The default type should be "web".
         msg: "The {{ service[type]['name'] }} will be installed with the packages {{ service[type].rpm }}"
 ```
 
-```
+```bash
 $ ansible-playbook display-dict.yml
 
 PLAY [ansible_clients] *********************************************************************************
@@ -551,7 +551,7 @@ PLAY RECAP *********************************************************************
 
 * Override the `type` variable using the command line:
 
-```
+```bash
 ansible-playbook --extra-vars "type=db" display-dict.yml
 
 PLAY [ansible_clients] *********************************************************************************
@@ -570,7 +570,7 @@ PLAY RECAP *********************************************************************
 
 * Externalize variables in a `vars.yml` file
 
-```
+```bash
 type: web
 service:
   web:
@@ -581,7 +581,7 @@ service:
     rpm: mariadb-server
 ```
 
-```
+```bash
 ---
 - hosts: ansible_clients
   vars_files:
@@ -593,7 +593,6 @@ service:
       debug:
         msg: "The {{ service[type]['name'] }} will be installed with the packages {{ service[type].rpm }}"
 ```
-
 
 * Display the content of the `service` variable from the previous exercise using a loop.
 
@@ -611,7 +610,7 @@ service:
 
 With `dict2items`:
 
-```
+```bash
 ---
 - hosts: ansible_clients
   vars_files:
@@ -625,7 +624,7 @@ With `dict2items`:
       loop: "{{ service | dict2items }}"              
 ```
 
-```
+```bash
 $ ansible-playbook display-dict.yml
 
 PLAY [ansible_clients] *********************************************************************************
@@ -648,7 +647,7 @@ PLAY RECAP *********************************************************************
 
 With `list`:
 
-```
+```bash
 ---
 - hosts: ansible_clients
   vars_files:
@@ -663,7 +662,7 @@ With `list`:
 ~                                                 
 ```
 
-```
+```bash
 $ ansible-playbook display-dict.yml
 
 PLAY [ansible_clients] *********************************************************************************
@@ -685,7 +684,7 @@ PLAY RECAP *********************************************************************
 
 * Print the value of `service.web` only when `type` equals to `web`.
 
-```
+```bash
 ---
 - hosts: ansible_clients
   vars_files:
@@ -705,7 +704,7 @@ PLAY RECAP *********************************************************************
       when: type == "db"
 ```
 
-```
+```bash
 $ ansible-playbook display-dict.yml
 
 PLAY [ansible_clients] *********************************************************************************

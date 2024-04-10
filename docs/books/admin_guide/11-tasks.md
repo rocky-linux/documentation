@@ -10,8 +10,8 @@ In this chapter you will learn how to manage scheduled tasks.
 
 **Objectives**: In this chapter, future Linux administrators will learn how to:
 
-:heavy_check_mark: Linux deals with the tasks scheduling;   
-:heavy_check_mark: restrict the use of **`cron`** to certain users;   
+:heavy_check_mark: Linux deals with the tasks scheduling;
+:heavy_check_mark: restrict the use of **`cron`** to certain users;
 :heavy_check_mark: schedule tasks.
 
 :checkered_flag: **crontab**, **crond**, **scheduling**, **linux**
@@ -48,7 +48,7 @@ The `cron` service is run by a `crond` daemon present in memory.
 
 To check its status:
 
-```
+```bash
 [root] # systemctl status crond
 ```
 
@@ -58,13 +58,13 @@ To check its status:
 
 Initialization of the `crond` daemon in manual:
 
-```
+```bash
 [root]# systemctl {status|start|restart|stop} crond
 ```
 
 Initialization of the `crond` daemon at startup:
 
-```
+```bash
 [root]# systemctl enable crond
 ```
 
@@ -105,15 +105,16 @@ By default, `/etc/cron.deny` exists and is empty and `/etc/cron.allow` does not 
 
 Only **user1** will be able to use `cron`.
 
-```
+```bash
 [root]# vi /etc/cron.allow
 user1
 ```
 
 ### Prohibit a user
+
 Only **user2** will not be able to use `cron`.
 
-```
+```bash
 [root]# vi /etc/cron.deny
 user2
 ```
@@ -132,17 +133,17 @@ This file contains all the information the `crond` needs to know regarding all t
 
 The `crontab` command is used to manage the schedule file.
 
-```
+```bash
 crontab [-u user] [-e | -l | -r]
 ```
 
 Example:
 
-```
+```bash
 [root]# crontab -u user1 -e
 ```
 
-| Option |	Description                                              |
+| Option |Description                                              |
 |--------|-----------------------------------------------------------|
 | `-e`   | Edits the schedule file with vi                            |
 | `-l`   | Displays the contents of the schedule file                |
@@ -184,7 +185,7 @@ The `crontab` file is structured according to the following rules.
 * Each line ends with a carriage return;
 * A `#` at the beginning of the line comments it.
 
-```
+```bash
 [root]# crontab –e
 10 4 1 * * /root/scripts/backup.sh
 1  2 3 4 5       6
@@ -216,25 +217,25 @@ Examples:
 
 Script executed on April 15 at 10:25 am:
 
-```
+```bash
 25 10 15 04 * /root/scripts/script > /log/…
 ```
 
 Run at 11am and then at 4pm every day:
 
-```
+```bash
 00 11,16 * * * /root/scripts/script > /log/…
 ```
 
 Run every hour from 11am to 4pm every day:
 
-```
+```bash
 00 11-16 * * * /root/scripts/script > /log/…
 ```
 
 Run every 10 minutes during working hours:
 
-```
+```bash
 */10 8-17 * * 1-5 /root/scripts/script > /log/…
 ```
 
@@ -253,12 +254,12 @@ For the root user, `crontab` also has some special time settings:
 
 A user, rockstar, wants to edit his `crontab` file:
 
-1) `crond` checks to see if he is allowed (`/etc/cron.allow` and `/etc/cron.deny`).
+1. `crond` checks to see if he is allowed (`/etc/cron.allow` and `/etc/cron.deny`).
 
-2) If he is, he accesses his `crontab` file (`/var/spool/cron/rockstar`).
+2. If he is, he accesses his `crontab` file (`/var/spool/cron/rockstar`).
 
-Every minute `crond` reads the schedule files.
+    Every minute `crond` reads the schedule files.
 
-3) It executes the scheduled tasks.
+3. It executes the scheduled tasks.
 
-4) It reports systematically in a log file (`/var/log/cron`).
+4. It reports systematically in a log file (`/var/log/cron`).

@@ -13,13 +13,13 @@ In this chapter you will learn how to work with Ansible.
 
 **Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: Implement Ansible;       
-:heavy_check_mark: Apply configuration changes on a server;   
-:heavy_check_mark: Create first Ansible playbooks;   
+:heavy_check_mark: Implement Ansible;
+:heavy_check_mark: Apply configuration changes on a server;
+:heavy_check_mark: Create first Ansible playbooks;
 
 :checkered_flag: **ansible**, **module**, **playbook**
 
-**Knowledge**: :star: :star: :star:     
+**Knowledge**: :star: :star: :star:
 **Complexity**: :star: :star:
 
 **Reading time**: 30 minutes
@@ -87,7 +87,7 @@ To offer a graphical interface to your daily use of Ansible, you can install som
 
 Ansible is available in the _EPEL_ repository, but may sometimes be too old for the current version, and you'll want to work with a more recent version.
 
-We will therefore consider two types of installation: 
+We will therefore consider two types of installation:
 
 * the one based on EPEL repositories
 * one based on the `pip` python package manager
@@ -96,21 +96,21 @@ The _EPEL_ is required for both versions, so you can go ahead and install that n
 
 * EPEL installation:
 
-```
-$ sudo dnf install epel-release
+```bash
+sudo dnf install epel-release
 ```
 
 ### Installation from EPEL
 
 If we install Ansible from the _EPEL_, we can do the following:
 
-```
-$ sudo dnf install ansible
+```bash
+sudo dnf install ansible
 ```
 
 And then verify the installation:
 
-```
+```bash
 $ ansible --version
 ansible [core 2.14.2]
   config file = /etc/ansible/ansible.cfg
@@ -138,8 +138,8 @@ As we want to use a newer version of Ansible, we will install it from `python3-p
 
 At this stage, we can choose to install ansible with the version of python we want.
 
-```
-$ sudo dnf install python38 python38-pip python38-wheel python3-argcomplete rust cargo curl
+```bash
+sudo dnf install python38 python38-pip python38-wheel python3-argcomplete rust cargo curl
 ```
 
 !!! Note
@@ -149,14 +149,14 @@ $ sudo dnf install python38 python38-pip python38-wheel python3-argcomplete rust
 
 We can now install Ansible:
 
-```
-$ pip3.8 install --user ansible
-$ activate-global-python-argcomplete --user
+```bash
+pip3.8 install --user ansible
+activate-global-python-argcomplete --user
 ```
 
 Check your Ansible version:
 
-```
+```bash
 $ ansible --version
 ansible [core 2.13.11]
   config file = None
@@ -184,7 +184,7 @@ There are two main configuration files:
 
 The configuration file would automatically be created if Ansible was installed with its RPM package. With a `pip` installation, this file does not exist. We'll have to create it by hand thanks to the `ansible-config` command:
 
-```
+```bash
 $ ansible-config -h
 usage: ansible-config [-h] [--version] [-v] {list,dump,view,init} ...
 
@@ -200,7 +200,7 @@ positional arguments:
 
 Example:
 
-```
+```bash
 ansible-config init --disabled > /etc/ansible/ansible.cfg
 ```
 
@@ -224,7 +224,7 @@ It is sometimes necessary to think carefully about how to build this file.
 
 Go to the default inventory file, which is located under `/etc/ansible/hosts`. Some examples are provided and commented:
 
-```
+```text
 # This is the default ansible 'hosts' file.
 #
 # It should live in /etc/ansible/hosts
@@ -278,7 +278,7 @@ The inventory can be generated automatically in production, especially if you ha
 
 As you may have noticed, the groups are declared in square brackets. Then come the elements belonging to the groups. You can create, for example, a `rocky8` group by inserting the following block into this file:
 
-```
+```bash
 [rocky8]
 172.16.1.10
 172.16.1.11
@@ -286,7 +286,7 @@ As you may have noticed, the groups are declared in square brackets. Then come t
 
 Groups can be used within other groups. In this case, it must be specified that the parent group is composed of subgroups with the `:children` attribute like this:
 
-```
+```bash
 [linux:children]
 rocky8
 debian9
@@ -310,7 +310,7 @@ Now that our management server is installed and our inventory is ready, it's tim
 
 The `ansible` command launches a task on one or more target hosts.
 
-```
+```bash
 ansible <host-pattern> [-m module_name] [-a args] [options]
 ```
 
@@ -322,37 +322,37 @@ Examples:
 
 * List the hosts belonging to the rocky8 group:
 
-```
+```bash
 ansible rocky8 --list-hosts
 ```
 
 * Ping a host group with the `ping` module:
 
-```
+```bash
 ansible rocky8 -m ping
 ```
 
 * Display facts from a host group with the `setup` module:
 
-```
+```bash
 ansible rocky8 -m setup
 ```
 
 * Run a command on a host group by invoking the `command` module with arguments:
 
-```
+```bash
 ansible rocky8 -m command -a 'uptime'
 ```
 
 * Run a command with administrator privileges:
 
-```
+```bash
 ansible ansible_clients --become -m command -a 'reboot'
 ```
 
 * Run a command using a custom inventory file:
 
-```
+```bash
 ansible rocky8 -i ./local-inventory -m command -a 'date'
 ```
 
@@ -360,7 +360,7 @@ ansible rocky8 -i ./local-inventory -m command -a 'date'
 
     As in this example, it is sometimes simpler to separate the declaration of managed devices into several files (by cloud project for example) and provide Ansible with the path to these files, rather than to maintain a long inventory file.
 
-| Option                   | 	Information                                                                                    |
+| Option                   | Information                                                                                    |
 |--------------------------|-------------------------------------------------------------------------------------------------|
 | `-a 'arguments'`         | The arguments to pass to the module.                                                            |
 | `-b -K`                  | Requests a password and runs the command with higher privileges.                                |
@@ -380,26 +380,26 @@ This user will be used:
 
 On both machines, create an `ansible` user, dedicated to ansible:
 
-```
-$ sudo useradd ansible
-$ sudo usermod -aG wheel ansible
+```bash
+sudo useradd ansible
+sudo usermod -aG wheel ansible
 ```
 
 Set a password for this user:
 
-```
-$ sudo passwd ansible
+```bash
+sudo passwd ansible
 ```
 
 Modify the sudoers config to allow members of the `wheel` group to sudo without password:
 
-```
-$ sudo visudo
+```bash
+sudo visudo
 ```
 
 Our goal here is to comment out the default, and uncomment the NOPASSWD option so that these lines look like this when we are done:
 
-```
+```bash
 ## Allows people in group wheel to run all commands
 # %wheel  ALL=(ALL)       ALL
 
@@ -414,8 +414,8 @@ Our goal here is to comment out the default, and uncomment the NOPASSWD option s
 
 When using management from this point on, start working with this new user:
 
-```
-$ sudo su - ansible
+```bash
+sudo su - ansible
 ```
 
 ### Test with the ping module
@@ -424,13 +424,13 @@ By default, password login is not allowed by Ansible.
 
 Uncomment the following line from the `[defaults]` section in the `/etc/ansible/ansible.cfg` configuration file and set it to True:
 
-```
+```bash
 ask_pass      = True
 ```
 
 Run a `ping` on each server of the rocky8 group:
 
-```
+```bash
 # ansible rocky8 -m ping
 SSH password:
 172.16.1.10 | SUCCESS => {
@@ -467,7 +467,7 @@ Password authentication will be replaced by a much more secure private/public ke
 
 The dual-key will be generated with the command `ssh-keygen` on the management station by the `ansible` user:
 
-```
+```bash
 [ansible]$ ssh-keygen
 Generating public/private rsa key pair.
 Enter file in which to save the key (/home/ansible/.ssh/id_rsa):
@@ -494,14 +494,14 @@ The key's randomart image is:
 
 The public key can be copied to the servers:
 
-```
+```bash
 # ssh-copy-id ansible@172.16.1.10
 # ssh-copy-id ansible@172.16.1.11
 ```
 
 Re-comment the following line from the `[defaults]` section in the `/etc/ansible/ansible.cfg` configuration file to prevent password authentication:
 
-```
+```bash
 #ask_pass      = True
 ```
 
@@ -509,7 +509,7 @@ Re-comment the following line from the `[defaults]` section in the `/etc/ansible
 
 For the next test, the `shell` module, allowing remote command execution, is used:
 
-```
+```bash
 # ansible rocky8 -m shell -a "uptime"
 172.16.1.10 | SUCCESS | rc=0 >>
  12:36:18 up 57 min,  1 user,  load average: 0.00, 0.00, 0.00
@@ -538,7 +538,7 @@ Collections are a distribution format for Ansible content that can include playb
 
 A module is invoked with the `-m` option of the `ansible` command:
 
-```
+```bash
 ansible <host-pattern> [-m module_name] [-a args] [options]
 ```
 
@@ -562,7 +562,7 @@ Each category of need has its own module. Here is a non-exhaustive list:
 
 The `dnf` module allows for the installation of software on the target clients:
 
-```
+```bash
 # ansible rocky8 --become -m dnf -a name="httpd"
 172.16.1.10 | SUCCESS => {
     "changed": true,
@@ -586,7 +586,7 @@ The `dnf` module allows for the installation of software on the target clients:
 
 The installed software being a service, it is now necessary to start it with the module `systemd`:
 
-```
+```bash
 # ansible rocky8 --become  -m systemd -a "name=httpd state=started"
 172.16.1.10 | SUCCESS => {
     "changed": true,
@@ -630,7 +630,7 @@ Take a look at the different facts of your clients to get an idea of the amount 
 
 We'll see later how to use facts in our playbooks and how to create our own facts.
 
-```
+```bash
 # ansible ansible_clients -m setup | less
 192.168.1.11 | SUCCESS => {
     "ansible_facts": {
@@ -665,7 +665,7 @@ Ansible's playbooks describe a policy to be applied to remote systems, to force 
 
     Learn more about [yaml here](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html)
 
-```
+```bash
 ansible-playbook <file.yml> ... [options]
 ```
 
@@ -694,7 +694,7 @@ The following playbook allows us to install Apache and MariaDB on our target ser
 
 Create a `test.yml` file with the following content:
 
-```
+```bash
 ---
 - hosts: rocky8 <1>
   become: true <2>
@@ -721,7 +721,7 @@ Create a `test.yml` file with the following content:
 
 The execution of the playbook is done with the command `ansible-playbook`:
 
-```
+```bash
 $ ansible-playbook test.yml
 
 PLAY [rocky8] ****************************************************************
@@ -753,7 +753,7 @@ PLAY RECAP *********************************************************************
 
 For more readability, it is recommended to write your playbooks in full yaml format. In the previous example, the arguments are given on the same line as the module, the value of the argument following its name separated by an `=`. Look at the same playbook in full yaml:
 
-```
+```bash
 ---
 - hosts: rocky8
   become: true
@@ -790,14 +790,15 @@ For more readability, it is recommended to write your playbooks in full yaml for
 Note about collections: Ansible now provides modules in the form of collections.
 Some modules are provided by default within the `ansible.builtin` collection, others must be installed manually via the:
 
-```
+```bash
 ansible-galaxy collection install [collectionname]
 ```
+
 where [collectionname] is the name of the collection (the square brackets here are used to highlight the need to replace this with an actual collection name, and are NOT part of the command).
 
 The previous example should be written like this:
 
-```
+```bash
 ---
 - hosts: rocky8
   become: true
@@ -829,7 +830,7 @@ The previous example should be written like this:
 
 A playbook is not limited to one target:
 
-```
+```bash
 ---
 - hosts: webservers
   become: true
@@ -865,19 +866,19 @@ A playbook is not limited to one target:
 
 You can check the syntax of your playbook:
 
-```
-$ ansible-playbook --syntax-check play.yml
+```bash
+ansible-playbook --syntax-check play.yml
 ```
 
 You can also use a "linter" for yaml:
 
-```
-$ dnf install -y yamllint
+```bash
+dnf install -y yamllint
 ```
 
 then check the yaml syntax of your playbooks:
 
-```
+```bash
 $ yamllint test.yml
 test.yml
   8:1       error    syntax error: could not find expected ':' (syntax)
@@ -895,7 +896,7 @@ test.yml
 * Update your client distribution
 * Restart your client
 
-```
+```bash
 ansible ansible_clients --become -m group -a "name=Paris"
 ansible ansible_clients --become -m group -a "name=Tokio"
 ansible ansible_clients --become -m group -a "name=NewYork"
