@@ -9,24 +9,23 @@ tags:
 
 在Rocky Linux 系统上，首先使用 nmcli 来查询和显示所有网络连接的自动连接属性的当前值。 输入：
 
-```
+```bash
 nmcli -f name,autoconnect connection 
 ```
 
 要更改网络连接的属性值，请使用 `nmcli connect` 的子命令 `modify`。 例如，要将 `ens3` 连接配置文件中的 autoconnect 属性值从 `no` 改为 `yes`，输入：
 
-```
+```bash
 sudo nmcli con mod ens3 connection.autoconnect yes
 ```
 
 ## 命令说明
 
-```
+```bash
 connection (con)       :  NetworkManager 连接对象 
 modify (mod)           :  修改给定连接配置文件的一个或多个属性。
 connection.autoconnect :  设置属性 (<setting>.<property>)
 -f, --fields           :  指定要输出的字段
-
 ```
 
 ## 说明
