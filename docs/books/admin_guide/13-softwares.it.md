@@ -166,7 +166,6 @@ dnf install tree
 | `info "Informazione"`     | Visualizza le informazioni sul pacchetto.                                   |
 | `autoremove`              | Rimuove tutti i pacchetti installati come dipendenze, ma non più necessari. |
 
-
 Il comando `dnf install` consente di installare il pacchetto desiderato senza preoccuparsi delle sue dipendenze, che sarà risolto direttamente da `dnf` stesso.
 
 ```bash
@@ -229,7 +228,6 @@ nginx-mod-http-xslt-filter.aarch64 : Nginx XSLT module
 nginx-mod-mail.aarch64 : Nginx mail modules
 nginx-mod-stream.aarch64 : Nginx stream modules
 ```
-
 
 Il comando `dnf remove` rimuove un pacchetto dal sistema e le sue dipendenze. Di seguito è riportato un estratto del comando **dnf remove httpd**.
 
@@ -494,7 +492,6 @@ Il comando `dnf clean` pulisce tutte le cache e i file temporanei creati da `dnf
 | `metadata`     | Rimuove tutti i metadati dei repository.                           |
 | `packages`     | Rimuove qualsiasi pacchetto nella cache.                           |
 
-
 ### Come funziona DNF
 
 Il gestore DNF si basa su uno o più file di configurazione per indirizzare i repository contenenti i pacchetti RPM.
@@ -511,7 +508,7 @@ Ogni file `.repo` consiste almeno delle seguenti informazioni, una direttiva per
 
 Esempio:
 
-```
+```bash
 [baseos] # Short name of the repository
 name=Rocky Linux $releasever - BaseOS # Short name of the repository #Detailed name
 mirrorlist=http://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=BaseOS-$releasever # http address of a list or mirror
@@ -543,19 +540,19 @@ I moduli provengono dal repository AppStream e contengono sia flussi che profili
 
 È possibile ottenere un elenco di tutti i moduli eseguendo il seguente comando:
 
-```
+```bash
 dnf module list
 ```
 
 In questo modo si ottiene un lungo elenco dei moduli disponibili e dei profili che possono essere utilizzati per essi. Il fatto è che probabilmente sapete già a quale pacchetto siete interessati, quindi per scoprire se ci sono moduli per un particolare pacchetto, aggiungete il nome del pacchetto dopo "list". Utilizzeremo di nuovo l'esempio del pacchetto `postgresql`:
 
-```
+```bash
 dnf module list postgresql
 ```
 
 Si otterrà un risultato simile a questo:
 
-```
+```bash
 Rocky Linux 8 - AppStream
 Name                       Stream                 Profiles                           Summary                                            
 postgresql                 9.6                    client, server [d]                 PostgreSQL server and client module                
@@ -570,7 +567,7 @@ Nell'elenco si noti la dicitura "[d]". Ciò significa che è l'impostazione pred
 
 Utilizzando il nostro pacchetto di esempio `postgresql`, supponiamo di voler abilitare la versione 12. Per farlo, è sufficiente utilizzare la seguente procedura:
 
-```
+```bash
 dnf module enable postgresql:12
 ```
 
@@ -578,7 +575,7 @@ Il comando enable richiede il nome del modulo seguito da un ":" e il nome del fl
 
 Per verificare che sia stato abilitato il flusso del modulo `postgresql` versione 12, utilizzare nuovamente il comando list che dovrebbe mostrare il seguente output:
 
-```
+```bash
 Rocky Linux 8 - AppStream
 Name                       Stream                 Profiles                           Summary                                            
 postgresql                 9.6                    client, server [d]                 PostgreSQL server and client module                
@@ -593,13 +590,13 @@ Qui si può notare il simbolo "[e]" per "enabled" accanto allo stream 12, quindi
 
 Ora che il nostro flusso di moduli è abilitato, il passo successivo è installare `postgresql`, l'applicazione client per il server postgresql. Questo può essere ottenuto eseguendo il seguente comando:
 
-```
+```bash
 dnf install postgresql
 ```
 
 Che dovrebbe fornire questo risultato:
 
-```
+```bash
 ========================================================================================================================================
  Package                    Architecture           Version                                              Repository                 Size
 ========================================================================================================================================
@@ -622,13 +619,13 @@ Dopo aver approvato digitando "y", verrà installata l'applicazione.
 
 È anche possibile installare direttamente i pacchetti senza nemmeno dover abilitare il flusso dei moduli! In questo esempio, supponiamo di voler applicare il profilo client solo alla nostra installazione. Per farlo, basta inserire questo comando:
 
-```
+```bash
 dnf install postgresql:12/client
 ```
 
 Che dovrebbe fornire questo risultato:
 
-```
+```bash
 ========================================================================================================================================
  Package                    Architecture           Version                                              Repository                 Size
 ========================================================================================================================================
@@ -656,7 +653,7 @@ Rispondendo "y" al prompt, si installerà tutto ciò che serve per utilizzare po
 
 Dopo l'installazione, si potrebbe decidere che, per qualsiasi motivo, è necessaria una versione diversa dello stream. Il primo passo è rimuovere i pacchetti. Utilizzando di nuovo il nostro pacchetto di esempio `postgresql`, lo faremo con:
 
-```
+```bash
 dnf remove postgresql
 ```
 
@@ -664,13 +661,13 @@ Questa procedura mostrerà un risultato simile a quello della procedura di insta
 
 Una volta completata questa fase, è possibile lanciare il comando di reset per il modulo utilizzando:
 
-```
+```bash
 dnf module reset postgresql
 ```
 
 Che fornirà un risultato come questo:
 
-```
+```bash
 Dependencies resolved.
 ========================================================================================================================================
  Package                         Architecture                   Version                           Repository                       Size
@@ -688,7 +685,7 @@ Is this ok [y/N]:
 
 Rispondendo "y" al prompt, `postgresql` tornerà al flusso predefinito e il flusso che avevamo abilitato (12 nel nostro esempio) non sarà più abilitato:
 
-```
+```bash
 Rocky Linux 8 - AppStream
 Name                       Stream                 Profiles                           Summary                                            
 postgresql                 9.6                    client, server [d]                 PostgreSQL server and client module                
@@ -701,7 +698,7 @@ Ora è possibile utilizzare l'impostazione predefinita.
 
 Si può anche usare il sottocomando switch-to per passare da un flusso abilitato a un altro. Utilizzando questo metodo non solo si passa al nuovo flusso, ma si installano i pacchetti necessari (sia per il downgrade che per l'upgrade) senza un passaggio separato. Per usare questo metodo per abilitare lo stream `postgresql` versione 13 e usare il profilo "client", si deve usare:
 
-```
+```bash
 dnf module switch-to postgresql:13/client
 ```
 
@@ -711,13 +708,13 @@ Può capitare che si voglia disabilitare la possibilità di installare pacchetti
 
 Per disabilitare i flussi del modulo per `postgresql` è sufficiente fare:
 
-```
+```bash
 dnf module disable postgresql
 ```
 
 Se si elencano di nuovo i moduli `postgresql`, si vedrà quanto segue, tutte le versioni dei moduli `postgresql` sono disabilitate:
 
-```
+```bash
 Rocky Linux 8 - AppStream
 Name                       Stream                   Profiles                          Summary                                           
 postgresql                 9.6 [x]                  client, server [d]                PostgreSQL server and client module               
@@ -799,7 +796,7 @@ epel-modular       Extra Packages for Enterprise Linux Modular 8 - aarch64
 
 I file di configurazione del repository si trovano in `/etc/yum.repos.d/`.
 
-```
+```bash
 ll /etc/yum.repos.d/ | grep epel
 -rw-r--r--. 1 root root 1485 Jan 31 17:19 epel-modular.repo
 -rw-r--r--. 1 root root 1422 Jan 31 17:19 epel.repo
@@ -911,7 +908,7 @@ Il pacchetto `dnf-plugins-core` aggiunge plugin a `dnf` che saranno utili per la
 
 Installare il pacchetto sul vostro sistema:
 
-```
+```bash
 dnf install dnf-plugins-core
 ```
 
@@ -925,26 +922,26 @@ Esempi:
 
 * Scaricare un file `.repo` e utilizzarlo:
 
-```
+```bash
 dnf config-manager --add-repo https://packages.centreon.com/ui/native/rpm-standard/23.04/el8/centreon-23.04.repo
 ```
 
 * È anche possibile impostare un url come url di base per un repo:
 
-```
+```bash
 dnf config-manager --add-repo https://repo.rocky.lan/repo
 ```
 
 * Abilitare o disabilitare uno o più repo:
 
-```
+```bash
 dnf config-manager --set-enabled epel centreon
 dnf config-manager --set-disabled epel centreon
 ```
 
 * Aggiungi un proxy al file di configurazione:
 
-```
+```bash
 dnf config-manager --save --setopt=*.proxy=http://proxy.rocky.lan:3128/
 ```
 
@@ -954,7 +951,7 @@ dnf config-manager --save --setopt=*.proxy=http://proxy.rocky.lan:3128/
 
 * Attivare un repo copr:
 
-```
+```bash
 copr enable xxxx
 ```
 
@@ -962,19 +959,19 @@ copr enable xxxx
 
 Scaricare il pacchetto rpm invece di installarlo:
 
-```
+```bash
 dnf download ansible
 ```
 
 Se si vuole ottenere solo l'url della posizione remota del pacchetto:
 
-```
+```bash
 dnf download --url ansible
 ```
 
 Oppure se si desidera scaricare anche le dipendenze:
 
-```
+```bash
 dnf download --resolv --alldeps ansible
 ```
 
@@ -984,7 +981,7 @@ Dopo aver eseguito un `dnf update`, i processi in esecuzione continueranno a fun
 
 Il plugin `needs-restarting` consente di rilevare i processi che si trovano in questo stato.
 
-```
+```bash
 dnf needs-restarting [-u] [-r] [-s]
 ```
 
@@ -1001,7 +998,7 @@ A volte è utile proteggere i pacchetti da tutti gli aggiornamenti o escludere a
 
 È necessario installare un pacchetto aggiuntivo:
 
-```
+```bash
 dnf install python3-dnf-plugin-versionlock
 ```
 
@@ -1009,14 +1006,14 @@ Esempi:
 
 * Blocca la versione ansibile:
 
-```
+```bash
 dnf versionlock add ansible
 Adding versionlock on: ansible-0:6.3.0-2.el9.*
 ```
 
 * Lista pacchetti bloccati:
 
-```
+```bash
 dnf versionlock list
 ansible-0:6.3.0-2.el9.*
 ```
