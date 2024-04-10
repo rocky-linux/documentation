@@ -12,7 +12,7 @@ update: 2022-01-26
 
 您可以随意命名这个脚本，如 `keygen.sh`, 使用 (`chmod +x scriptname`) 将该脚本变得可执行，然后把它放到您的 path 目录中, 示例: /usr/local/sbin
 
-```
+```bash
 #!/bin/bash
 if [ $1 ]
 then
