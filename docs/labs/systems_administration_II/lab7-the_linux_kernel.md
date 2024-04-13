@@ -71,7 +71,7 @@ The choice of when to make a particular feature available as a module or to comp
 
 There are generally three methods by which the kernel can be managed on Linux distributions. These are:
 
-1. Using the prepackaged version of the kernel from the distributions vendor.  e.g. using kernel-<version>.*.rpm. This is the safest, easiest and most preferred recommended.
+1. Using the prepackaged version of the kernel from the distributions vendor.  e.g. using kernel-`<version>`.*.rpm. This is the safest, easiest and most preferred recommended.
 
 2. Via patching. Using patch files like - patch-kernel.version.gz.
 
@@ -395,7 +395,7 @@ In this exercise you will build a new kernel from source, by configuring, compil
     /boot/vmlinuz-<kernel-version>
     ```
 
-    Replace <kernel-version> with the version number of your custom kernel.
+    Replace `<kernel-version>` with the version number of your custom kernel.
     For the sample kernel we are using in this guide, the filename would be vmlinuz-6.*-custom. So here’s the exact command for this example:
 
     ```bash

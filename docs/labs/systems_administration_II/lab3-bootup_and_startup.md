@@ -25,7 +25,7 @@ Estimated time to complete this lab: 50 minutes
 
 ## Boot process overview
 
-The exercises in this lab will begin from the booting-up process down to the logging in of the user. These steps will examine and try to customize parts of the boot-up processes. The high-level steps in the boot process are: 
+The exercises in this lab will begin from the booting-up process down to the logging in of the user. These steps will examine and try to customize parts of the boot-up processes. The high-level steps in the boot process are:
 
 ### Summary of steps
 
@@ -234,7 +234,7 @@ Once the first process runs, it then goes on to start other services, daemons, p
     ...<SNIP>...
     ```
 
-9.  Use `ls` and `file` commands to learn more about the relationship of the traditional `init` program to the `systemd` program. Type:
+9. Use `ls` and `file` commands to learn more about the relationship of the traditional `init` program to the `systemd` program. Type:
 
     ```bash
     [root@localhost ~]# ls -l /usr/sbin/init && file /usr/sbin/init
@@ -389,7 +389,7 @@ The exercises in this section will show you how to configure system/user process
     [root@localhost ~]# pgrep  -a crond
     ```
 
-    If `pgrep` finds a matching process name, it will list the PID of `crond`. 
+    If `pgrep` finds a matching process name, it will list the PID of `crond`.
 
 2. Use `systemctl` to start the `crond.service` unit. Type:
 
