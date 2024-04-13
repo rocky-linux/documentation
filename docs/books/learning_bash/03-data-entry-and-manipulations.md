@@ -17,12 +17,12 @@ In this chapter you will learn how to make your scripts interact with users and 
 
 **Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: read input from a user;
-:heavy_check_mark: manipulate data entries;
-:heavy_check_mark: use arguments inside a script;
-:heavy_check_mark: manage positional variables;
+:heavy_check_mark: read input from a user;  
+:heavy_check_mark: manipulate data entries;  
+:heavy_check_mark: use arguments inside a script;  
+:heavy_check_mark: manage positional variables;  
 
-:checkered_flag: **linux**, **script**, **bash**, **variable**
+:checkered_flag: **linux**, **script**, **bash**, **variable**  
 
 **Knowledge**: :star: :star:  
 **Complexity**: :star: :star:  

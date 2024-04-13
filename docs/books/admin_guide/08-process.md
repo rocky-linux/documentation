@@ -10,14 +10,14 @@ In this chapter, you will learn how to work with processes.
 
 **Objectives**: In this chapter, future Linux administrators will learn how to:
 
-:heavy_check_mark: Recognize the `PID` and `PPID` of a process;
-:heavy_check_mark: View and search for processes;
-:heavy_check_mark: Manage processes.
+:heavy_check_mark: Recognize the `PID` and `PPID` of a process;  
+:heavy_check_mark: View and search for processes;  
+:heavy_check_mark: Manage processes.  
 
 :checkered_flag: **process**, **linux**
 
-**Knowledge**: :star: :star:
-**Complexity**: :star:
+**Knowledge**: :star: :star:  
+**Complexity**: :star:  
 
 **Reading time**: 20 minutes
 

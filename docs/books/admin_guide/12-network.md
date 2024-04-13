@@ -11,10 +11,10 @@ In this chapter you will learn how to work with and manage the network.
 **Objectives**: In this chapter you will learn how to:
 
 :heavy_check_mark: Configure a workstation to use DHCP;  
-:heavy_check_mark: Configure a workstation to use a static configuration;
-:heavy_check_mark: Configure a workstation to use a gateway;
-:heavy_check_mark: Configure a workstation to use DNS servers;
-:heavy_check_mark: Troubleshoot the network of a workstation.
+:heavy_check_mark: Configure a workstation to use a static configuration;  
+:heavy_check_mark: Configure a workstation to use a gateway;  
+:heavy_check_mark: Configure a workstation to use DNS servers;  
+:heavy_check_mark: Troubleshoot the network of a workstation.  
 
 :checkered_flag: **network**, **linux**, **ip**
 

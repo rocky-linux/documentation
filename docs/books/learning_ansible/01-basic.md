@@ -13,14 +13,14 @@ In this chapter you will learn how to work with Ansible.
 
 **Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: Implement Ansible;
-:heavy_check_mark: Apply configuration changes on a server;
-:heavy_check_mark: Create first Ansible playbooks;
+:heavy_check_mark: Implement Ansible;  
+:heavy_check_mark: Apply configuration changes on a server;  
+:heavy_check_mark: Create first Ansible playbooks;  
 
-:checkered_flag: **ansible**, **module**, **playbook**
+:checkered_flag: **ansible**, **module**, **playbook** .  
 
-**Knowledge**: :star: :star: :star:
-**Complexity**: :star: :star:
+**Knowledge**: :star: :star: :star:  
+**Complexity**: :star: :star:  
 
 **Reading time**: 30 minutes
 
