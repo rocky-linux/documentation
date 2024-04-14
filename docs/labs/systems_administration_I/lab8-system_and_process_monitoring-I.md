@@ -436,7 +436,7 @@ The following steps show how to use `ps` to display basic process information.
     <PID> (process ID) old priority 0, new priority -10
     ```
 
-    Replace "<PID>" (above) with the actual PID of the running process.
+    Replace `<PID>` (above) with the actual PID of the running process.
 
 4. Monitor the resource utilization for the `find/md5sum` process, using `top` (or `htop`).  Type:
 
@@ -460,7 +460,7 @@ The following steps show how to use `ps` to display basic process information.
     2338530 (process ID) old priority -10, new priority 10
     ```
 
-    Replace the "<PID>" (above) with the actual PID of the running process.
+    Replace the `<PID>` (above) with the actual PID of the running process.
 
     !!! question
 
@@ -682,7 +682,7 @@ This exercise covers managing processes with `fg` and `bg`
     ps -p <PID>
     ```
 
-    Replace <PID> with the actual process ID obtained from step 2.
+    Replace `<PID>` with the actual process ID obtained from step 2.
 
     !!! question
 
@@ -872,7 +872,7 @@ Like `kill`, `killall` is a command to terminate processes by name instead of PI
     echo <PID> | sudo tee /sys/fs/cgroup/cpu/mygroup/cgroup.procs
     ```
 
-    Replace <PID> with the actual PID of the process.
+    Replace `<PID>` with the actual PID of the process.
 
 4. Check if the process has been moved to the "mygroup" `cgroup`.
 
@@ -892,7 +892,7 @@ Like `kill`, `killall` is a command to terminate processes by name instead of PI
 
 ### Managing processes with `renice`
 
-#### To adjust the priority of a running process using `renice`
+#### To adjust the priority of a running processes using `renice`
 
 1. Identify a running process with a specific PID and priority using `ps`.
 
@@ -910,7 +910,7 @@ Like `kill`, `killall` is a command to terminate processes by name instead of PI
     renice <PRIORITY> -p <PID>
     ```
 
-    Replace <PRIORITY> with the new priority value you want to set, and <PID> with the actual PID of the process.
+    Replace `<PRIORITY>` with the new priority value you want to set, and `<PID>` with the actual PID of the process.
 
 3. Verify that the process' priority has changed using `ps`.
 

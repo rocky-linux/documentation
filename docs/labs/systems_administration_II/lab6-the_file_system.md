@@ -645,7 +645,7 @@ You'll add the `/dev/loop1` physical volume (PV) that was prepped and created ab
     Volume group "rl" successfully extended
     ```
 
-3. Run the `vgdisplay` command again to view your changes. Type: 
+3. Run the `vgdisplay` command again to view your changes. Type:
 
     ```bash
     [root@localhost ~]# vgdisplay
@@ -934,7 +934,7 @@ The previous exercises walked through preparing a block/storage device for use o
 
 This exercise will cover how to `mount` and `umount` the file systems that we created in the previous exercise.
 
-### `mount`
+### `mount` command
 
 The `mount` command is used for attaching the filesystem created on a device to the file hierarchy.
 
@@ -1056,7 +1056,7 @@ The `mount` command is used for attaching the filesystem created on a device to 
 
 4. With real disk or storage devices, the previous steps will be enough to make the system automatically and correctly  mount all the new file systems and apply any special mount options.
 
-    BUT, because we've been using special pseudo-block devices (loop devices) in this lab, we must complete an additional important task to ensure that the correct loop devices are automatically recreated after the system reboots. 
+    BUT, because we've been using special pseudo-block devices (loop devices) in this lab, we must complete an additional important task to ensure that the correct loop devices are automatically recreated after the system reboots.
 
     To do this we'll create a custom systemd service unit to help with this.
 
@@ -1160,15 +1160,15 @@ Implementing and enforcing the use of disk quotas provides a way to ensure that 
 - Decide what your soft and hard limits will be.
 - Decide what the grace periods will be (i.e. if there will be any at all).
 
-*Hard Limit* 
+#### *Hard Limit*
 
 The hard limit defines the absolute maximum amount of disk space that a user or group can use. Once this limit is reached, no further disk space can be used.
 
-*Soft Limit*
+#### *Soft Limit*
 
 The soft limit defines the maximum amount of disk space that can be used. However, unlike the hard limit, the soft limit can be exceeded for a certain amount of time. That time is known as the grace period.
 
-*Grace Period*
+#### *Grace Period*
 
 The grace period is the time during which the soft limit may be exceeded. The grace period can be expressed in seconds, minutes, hours, days, weeks, or months, thus giving the system administrator a great deal of freedom in determining how much time to give users to get their disk usage below their soft limit.
 

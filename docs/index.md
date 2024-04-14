@@ -4,7 +4,7 @@ title: Home
 
 # Rocky Linux Documentation
 
-## Welcome!
+## Welcome
 
 Welcome to the documentation hub for Rocky Linux; we are glad you're here. We have several contributors adding content, and that content is growing all the time. Here you will find documents on how to build Rocky Linux itself, as well as documents on various subjects that are important to the Rocky Linux community. Who makes up that community you ask?
 
@@ -18,7 +18,7 @@ This home page will give you an introduction to the documentation website and ho
 
 Now, you are on the home page of the documentation. If you glance at the top menu (which is always available, including on mobile devices) you can see the main structure showing the top-level sections of the documentation site. If you click on each top menu item (try 'Guides' for example) then on the left side, you will see the list of *sub-sections* for each main section. Guides has many topics of interest.
 
-When you open a document, on the right side you will see a 'Table of contents' with clickable navigation links for that document (for mobile devices try landscape orientation). For long documents, such as the [Release Notes](release_notes/8_8.md), the table of contents allows you to move around the document with ease. If you are reading a long document and want to go back to the top press <kbd>pg up</kbd> and you will see a `Back to top` button appear at the top of the screen.
+When you open a document, on the right side you will see a 'Table of contents' with clickable navigation links for that document (for mobile devices try landscape orientation). For long documents, such as the [Release Notes](release_notes/8_8.md), the table of contents allows you to move around the document with ease. If you are reading a long document and want to go back to the top press ++page-up++ and you will see a `Back to top` button appear at the top of the screen.
 
 The main sections of the documentation site are:
 

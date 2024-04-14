@@ -54,7 +54,7 @@ Out of the box, three independent tables are defined in most Linux Kernels. The 
 
 ### CHAINS
 
-A chain is a list of rules which can match a set of  packets. Each rule specifies what to do with a packet that matches. Each table contains a number of built-in chains and may also contain user-defined chains. 
+A chain is a list of rules which can match a set of  packets. Each rule specifies what to do with a packet that matches. Each table contains a number of built-in chains and may also contain user-defined chains.
 
 ### TARGETS
 
