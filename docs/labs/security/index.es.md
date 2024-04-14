@@ -13,58 +13,66 @@ title: Listado de laboratorios de seguridad
 ### Laboratorio 2: Aplicación de parches al sistema
 
 1. Actualizando y parcheando
-1. Configurar y utilizar dnf
-1. Soluciones de terceros
+2. Configurar y utilizar dnf
+3. Soluciones de terceros
 
 ### Laboratorio 3: Comprobar el sistema
+
 1. Un sencillo comprobador de integridad de fabricación casera
-1. Tripwire
-1. Comprobación de integridad y visualización de informes
-1. Afinando Tripwire
+2. Tripwire
+3. Comprobación de integridad y visualización de informes
+4. Afinando Tripwire
 
 ### Laboratorio 4: Recopilar información
+
 1. netstat
-1. lsof
-1. nmap
-1. rpcinfo
-1. tcpdump
-1. telnet
+2. lsof
+3. nmap
+4. rpcinfo
+5. tcpdump
+6. telnet
 
 ### Laboratorio 5: Seguridad local
+
 1. Crackeando el sistema a través del cargador de arranque
-1. Proteger con contraseña el cargador de arranque
-1. Desactivar TTYs innecesarias
-1. Deshabilitar el reinicio mediante CTRL+ALT+DEL
-1. Forzar la solicitud de contraseña en modo único de usuario
-1. Programas Set-UID
-1. John the ripper
+2. Proteger con contraseña el cargador de arranque
+3. Desactivar TTYs innecesarias
+4. Deshabilitar el reinicio mediante CTRL+ALT+DEL
+5. Forzar la solicitud de contraseña en modo único de usuario
+6. Programas Set-UID
+7. John the ripper
 
 ### Laboratorio 6: Un Hack escenificado
+
 1. El PATH
 
 ### Laboratorio 7: TCP wrappers
+
 1. Tcp_wrappers
 
 ### Laboratorio 8: Iptables
+
 1. Fundamentos de Iptables
-1. Filtrado básico de paquetes
-1. Reenvío básico de paquetes
+2. Filtrado básico de paquetes
+3. Reenvío básico de paquetes
 
 ### Laboratorio 9: Criptografía
+
 1. GnuPG
-1. Administración de claves
-1. Revocación de certificados
-1. Firmas digitales
-1. Encriptar y desencriptar archivos
-1. sshd
-1. ssh
-1. scp
-1. Autenticación vía clave pública
-1. ssh-agent
+2. Administración de claves
+3. Revocación de certificados
+4. Firmas digitales
+5. Encriptar y desencriptar archivos
+6. sshd
+7. ssh
+8. scp
+9. Autenticación vía clave pública
+10. ssh-agent
 
 ### Laboratorio 10: Seguridad a nivel de Kernel
+
 1. Instalar GRsecurity
-1. gradm
-1. ACLs
-1. Modo de aprendizaje de GRSecurity
-1. SELinux
+2. gradm
+3. ACLs
+4. Modo de aprendizaje de GRSecurity
+5. SELinux
