@@ -10,9 +10,9 @@ In this chapter you will learn how to manage scheduled tasks.
 
 **Objectives**: In this chapter, future Linux administrators will learn how to:
 
-:heavy_check_mark: Linux deals with the tasks scheduling;
-:heavy_check_mark: restrict the use of **`cron`** to certain users;
-:heavy_check_mark: schedule tasks.
+:heavy_check_mark: Linux deals with the tasks scheduling;  
+:heavy_check_mark: restrict the use of **`cron`** to certain users;  
+:heavy_check_mark: schedule tasks.  
 
 :checkered_flag: **crontab**, **crond**, **scheduling**, **linux**
 

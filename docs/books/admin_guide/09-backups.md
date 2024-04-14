@@ -10,14 +10,14 @@ In this chapter you will learn how to back up and restore your data with Linux.
 
 **Objectives**: In this chapter, future Linux administrators will learn how to:
 
-:heavy_check_mark: use the `tar` and `cpio` command to make a backup;
-:heavy_check_mark: check their backups and restore data;
-:heavy_check_mark: compress or decompress their backups.
+:heavy_check_mark: use the `tar` and `cpio` command to make a backup;  
+:heavy_check_mark: check their backups and restore data;  
+:heavy_check_mark: compress or decompress their backups.  
 
-:checkered_flag: **backup**, **restore**, **compression**
+:checkered_flag: **backup**, **restore**, **compression**  
 
-**Knowledge**: :star: :star: :star:
-**Complexity**: :star: :star:
+**Knowledge**: :star: :star: :star:  
+**Complexity**: :star: :star:  
 
 **Reading time**: 40 minutes
 

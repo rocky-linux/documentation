@@ -10,13 +10,13 @@ In this chapter you will learn how to scale your configuration management system
 
 **Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: Organize your code for large infrastructure;
-:heavy_check_mark: Apply all or part of your configuration management to a group of nodes;
+:heavy_check_mark: Organize your code for large infrastructure;  
+:heavy_check_mark: Apply all or part of your configuration management to a group of nodes;  
 
 :checkered_flag: **ansible**, **config management**, **scale**
 
-**Knowledge**: :star: :star: :star:
-**Complexity**: :star: :star: :star: :star:
+**Knowledge**: :star: :star: :star:  
+**Complexity**: :star: :star: :star: :star:  
 
 **Reading time**: 30 minutes
 

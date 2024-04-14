@@ -15,7 +15,7 @@ In this chapter you will learn about GNU/Linux distributions.
 :heavy_check_mark: Recount the history of UNIX and GNU/Linux.  
 :heavy_check_mark: Choose the right Linux distribution for your needs.  
 :heavy_check_mark: Explain the philosophy of Free and Open-source Software.  
-:heavy_check_mark: Discover the usefulness of the shell.
+:heavy_check_mark: Discover the usefulness of the shell.  
 
 :checkered_flag: **generalities**, **linux**, **distributions**
 

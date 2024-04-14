@@ -6,8 +6,8 @@ contributors: Steven Spencer, Ryan Johnson, Pedro Garcia, Ganna Zhyrnova
 
 # Automatic template creation with Packer and deployment with Ansible in a VMware vSphere environment
 
-**Knowledge**: :star: :star: :star:
-**Complexity**: :star: :star: :star:
+**Knowledge**: :star: :star: :star:  
+**Complexity**: :star: :star: :star:  
 
 **Reading time**: 30 minutes
 

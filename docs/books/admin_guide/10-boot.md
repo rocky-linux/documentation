@@ -9,16 +9,16 @@ In this chapter, you will learn how the system starts.
 ****
 **Objectives**: In this chapter, future Linux administrators will learn:
 
-:heavy_check_mark: The different stages of the booting process;
-:heavy_check_mark: How Rocky Linux supports this boot by using GRUB2 and systemd;
-:heavy_check_mark: How to protect GRUB2 from an attack;
-:heavy_check_mark: How to manage the services;
-:heavy_check_mark: How to access logs from `journald`.
+:heavy_check_mark: The different stages of the booting process;  
+:heavy_check_mark: How Rocky Linux supports this boot by using GRUB2 and systemd;  
+:heavy_check_mark: How to protect GRUB2 from an attack;  
+:heavy_check_mark: How to manage the services;  
+:heavy_check_mark: How to access logs from `journald`.  
 
-:checkered_flag: **users**
+:checkered_flag: **users** .  
 
-**Knowledge**: :star: :star:
-**Complexity**: :star: :star: :star:
+**Knowledge**: :star: :star:  
+**Complexity**: :star: :star: :star:  
 
 **Reading time**: 20 minutes
 ****

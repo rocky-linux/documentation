@@ -10,13 +10,13 @@ Advanced commands provide greater customization and controls in more specialized
 
 **Objectives**: In this chapter, future Linux administrators will learn:
 
-:heavy_check_mark: some useful commands not covered in the previous chapter.
-:heavy_check_mark: some advanced commands.
+:heavy_check_mark: some useful commands not covered in the previous chapter.  
+:heavy_check_mark: some advanced commands.  
 
-:checkered_flag: **user commands**, **Linux**
+:checkered_flag: **user commands**, **Linux**  
 
-**Knowledge**: :star:
-**Complexity**: :star: :star: :star:
+**Knowledge**: :star:  
+**Complexity**: :star: :star: :star:  
 
 **Reading time**: 20 minutes
 

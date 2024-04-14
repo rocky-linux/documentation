@@ -10,14 +10,14 @@ In this chapter you will learn how to manage files with Ansible.
 
 **Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: modify the content of file;
-:heavy_check_mark: upload files to the targeted servers;
-:heavy_check_mark: retrieve files from the targeted servers.
+:heavy_check_mark: modify the content of file;  
+:heavy_check_mark: upload files to the targeted servers;  
+:heavy_check_mark: retrieve files from the targeted servers.  
 
-:checkered_flag: **ansible**, **module**, **files**
+:checkered_flag: **ansible**, **module**, **files**  
 
-**Knowledge**: :star: :star:
-**Complexity**: :star:
+**Knowledge**: :star: :star:  
+**Complexity**: :star:  
 
 **Reading time**: 20 minutes
 

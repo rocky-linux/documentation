@@ -10,15 +10,15 @@ In this chapter you will continue to learn how to work with Ansible.
 
 **Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: work with variables;
-:heavy_check_mark: use loops;
-:heavy_check_mark: manage state changes and react to them;
-:heavy_check_mark: manage asynchronous tasks.
+:heavy_check_mark: work with variables;  
+:heavy_check_mark: use loops;  
+:heavy_check_mark: manage state changes and react to them;  
+:heavy_check_mark: manage asynchronous tasks.  
 
-:checkered_flag: **ansible**, **module**, **playbook**
+:checkered_flag: **ansible**, **module**, **playbook**  
 
-**Knowledge**: :star: :star: :star:
-**Complexity**: :star: :star:
+**Knowledge**: :star: :star: :star:  
+**Complexity**: :star: :star:  
 
 **Reading time**: 30 minutes
 
