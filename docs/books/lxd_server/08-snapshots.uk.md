@@ -23,19 +23,19 @@ tags:
 
 Ми почнемо з отримання снепшот контейнера ubuntu-test за допомогою цієї команди:
 
-```
+```bash
 lxc snapshot ubuntu-test ubuntu-test-1
 ```
 
 Тут ми називаємо снепшот «ubuntu-test-1», але його можна називати як завгодно. Щоб переконатися, що у вас є снепшот, виконайте «lxc info» контейнера:
 
-```
+```bash
 lxc info ubuntu-test
 ```
 
 Ви вже дивилися на інформаційний екран. Якщо прокрутити вниз, ви побачите:
 
-```
+```bash
 Snapshots:
   ubuntu-test-1 (taken at 2021/04/29 15:57 UTC) (stateless)
 ```
@@ -44,13 +44,13 @@ Snapshots:
 
 Тепер перейдіть до контейнера ubuntu-test:
 
-```
+```bash
 lxc exec ubuntu-test bash
 ```
 
 І створіть порожній файл за допомогою команди _touch_:
 
-```
+```bash
 touch this_file.txt
 ```
 
@@ -58,19 +58,19 @@ touch this_file.txt
 
 Перш ніж ми відновимо контейнер, як він був до створення файлу, найбезпечніший спосіб відновити контейнер, особливо якщо було багато змін, це спочатку зупинити його:
 
-```
+```bash
 lxc stop ubuntu-test
 ```
 
 Потім відновіть його:
 
-```
+```bash
 lxc restore ubuntu-test ubuntu-test-1
 ```
 
 Потім знову запустіть контейнер:
 
-```
+```bash
 lxc start ubuntu-test
 ```
 
@@ -78,7 +78,7 @@ lxc start ubuntu-test
 
 Якщо снепшот більше не потрібен, його можна видалити:
 
-```
+```bash
 lxc delete ubuntu-test/ubuntu-test-1
 ```
 
