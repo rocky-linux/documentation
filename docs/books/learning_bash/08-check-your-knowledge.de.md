@@ -41,7 +41,7 @@ tags:
 
 :heavy_check_mark: Ist die Syntax der folgenden bedingten Struktur für Sie richtig? Erklären Sie, warum.
 
-```
+```bash
 if command
     command if $?=0
 else
@@ -60,7 +60,7 @@ fi
 
 :heavy_check_mark: Ist die Syntax der folgenden bedingten alternativen Struktur für Sie richtig? Erklären Sie warum.
 
-```
+```bash
 case $variable in
   value1)
     commands if $variable = value1
