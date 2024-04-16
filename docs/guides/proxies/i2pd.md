@@ -22,7 +22,7 @@ The following are minimum requirements for using this procedure:
 
 ## Installing `i2pd`
 
-To install `i2pd`, you need to first install the EPEL (Extra Packages for Enterprise Linux) and `i2pd` copr (Cool Other Package Repo) repositories:
+To install `i2pd`, you need to first install the EPEL (Extra Packages for Enterprise Linux) and `i2pd` copr (Cool Other Package Repo) repositories (Note: If you are running Rocky Linux 8, substitute in `8` for `9`):
 
 ```bash
 curl -s https://copr.fedorainfracloud.org/coprs/supervillain/i2pd/repo/epel-9/supervillain-i2pd-epel-9.repo -o /etc/yum.repos.d/i2pd-epel-9.repo
