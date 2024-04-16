@@ -14,4 +14,3 @@ Changelog-Daten für Rocky-Linux-Versionen werden ständig aktualisiert. In dies
 Aktualisierungen, die seit dem Upstream veröffentlicht werden, werden mit unseren aktuellen Architekturen integriert und veröffentlicht. Wir empfehlen dringend, dass alle Benutzer *alle* Updates, einschließlich der heute veröffentlichten Inhalte, auf Ihren bestehenden Rocky Linux Maschinen anwenden. Dies kann durch Ausführen von `dnf update` erreicht werden.
 
 Alle Rocky Linux Komponenten werden aus den Quellen von [git.rockylinux.org](https://git.rockylinux.org) erstellt. Zusätzlich werden SRPMs neben den Projektarchiven in einem entsprechenden "source"-Verzeichnis veröffentlicht. Sie können diese auf einem unserer Spiegel-Server finden. Diese Quellpakete entsprechen allen Binär-RPMs, die wir veröffentlichen.
-

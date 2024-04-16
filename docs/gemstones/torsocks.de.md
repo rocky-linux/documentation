@@ -19,14 +19,14 @@ systemctl enable --now tor
 
 Die Standardoptionen für den Befehl „torsocks“ sind unten aufgeführt und erfordern unter normalen Umständen keine zusätzlichen Optionen. The options come before the application to run (e.g., `curl`):
 
-| Optionen   | Beschreibung                                                          |
-| ---------- | --------------------------------------------------------------------- |
-| --shell    | Erstellt mithilfe von LD_PRELOAD eine neue Shell |
-| -u USER    | Setzt den SOCKS5-Benutzernamen                                        |
-| -p PASS    | Setzt das SOCKS5-Passwort                                             |
-| -a ADDRESS | Setzt die SOCKS5-Server-Adresse                                       |
-| -P PORT    | Setzt die SOCKS5-Server-Portnummer                                    |
-| -i         | Aktiviert die Tor-Isolation                                           |
+| Optionen   | Beschreibung                                                            |
+| ---------- | ----------------------------------------------------------------------- |
+| --shell    | Erstellt mithilfe von LD\_PRELOAD eine neue Shell |
+| -u USER    | Setzt den SOCKS5-Benutzernamen                                          |
+| -p PASS    | Setzt das SOCKS5-Passwort                                               |
+| -a ADDRESS | Setzt die SOCKS5-Server-Adresse                                         |
+| -P PORT    | Setzt die SOCKS5-Server-Portnummer                                      |
+| -i         | Aktiviert die Tor-Isolation                                             |
 
 Beispielhafte (redigierte) Ausgabe vom IP checker [icanhazip.com](https://icanhazip.com/) via `torsocks`:
 
