@@ -7,7 +7,7 @@ tags:
   - network
 ---
 
-# OpenBGPD BGP Router
+# accel-ppp PPPoE Server
 
 ## Introduction
 
