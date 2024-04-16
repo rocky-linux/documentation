@@ -501,7 +501,7 @@ Example:
     [root]# ping 192.168.1.10
     ```
 
-    To determine that the network card is functional, we must now ping its IP address. The network card, if the network cable is not connected, should be in a "down" state.
+    To determine the functionality of the network card, we must ping its IP address. If the network cable is not connected to the network card, it should be in a "down" state.
 
     If the ping does not work, first check the network cable to your network switch and reassemble the interface (see the `if up` command), then check the interface itself.
 
@@ -543,13 +543,13 @@ Examples:
 ...
 ```
 
-The `dig` command is used to query DNS servers. It is very verbose by default, but this behavior can be changed with the `+short` option.
+The `dig` command is used to query DNS servers. It is verbose by default, but the `+short` option can change this behavior.
 
 It is also possible to specify a DNS **record type** to resolve, such as an MX **type** to get information about the mail exchangers for a domain.
 
 ### `getent` command
 
-The `getent` (get entry) command is used to get an NSSwitch entry (`hosts` + `dns`)
+The `getent` (get entry) command gets an NSSwitch entry (`hosts` + `dns`)
 
 Syntax of the `getent` command:
 
@@ -564,13 +564,13 @@ Example:
   76.223.126.88 rockylinux.org
 ```
 
-Querying only a DNS server may return an erroneous result that does not take into account the contents of a `hosts` file, although this should be rare nowadays.
+Querying only a DNS server may return an erroneous result that does not consider the contents of a `hosts` file, although this should be rare nowadays.
 
-To take the `/etc/hosts` file into account as well, the NSSwitch name service must be queried, which will take care of any DNS resolution.
+To take the `/etc/hosts` file into account, the NSSwitch name service must be queried, which will take care of any DNS resolution.
 
 ### `ipcalc` command
 
-The `ipcalc` (**ip calculation**) command is used to calculate the address of a network or broadcast from an IP address and a mask.
+The `ipcalc` (**ip calculation**) command calculates the address of a network or broadcast from an IP address and a mask.
 
 Syntax of the `ipcalc` command:
 
@@ -587,7 +587,7 @@ BROADCAST=172.16.79.255
 
 !!! Tip
 
-    This command is interesting followed by a redirection to automatically fill in the configuration files of your interfaces:
+    This command is interesting, followed by a redirection to fill in the configuration files of your interfaces automatically:
 
     ```
     [root]# ipcalc –b 172.16.66.203 255.255.240.0 >> /etc/sysconfig/network-scripts/ifcfg-eth0
@@ -598,7 +598,7 @@ BROADCAST=172.16.79.255
 |  `-b`    | Displays the broadcast address.        |
 |  `-n`    | Displays the network address and mask. |
 
-`ipcalc` is a simple way to calculate the IP information of a host. The various options indicate what information `ipcalc` should display on the standard output. Multiple options can be specified. An IP address on which to operate must be specified. Most operations also require a network mask or CIDR prefix.
+`ipcalc` is a simple way to calculate a host's IP information. The various options indicate what information `ipcalc` should display on the standard output. You can specify multiple options. You must specify an IP address on which to operate. Most operations also require a network mask or CIDR prefix.
 
 | Option short | Option long | Description                                                                  |
 |---------------|---------------|------------------------------------------------------------------------------|
@@ -628,13 +628,13 @@ tcp   LISTEN   0   128   *:22   *:*
 
 The commands `ss` and `netstat` (to follow) will be very important for the rest of your Linux life.
 
-When implementing network services, it is very common to check with one of these two commands that the service is listening on the expected ports.
+When implementing network services, it is common to check with one of these two commands that the service is listening on the expected ports.
 
 ### `netstat` command
 
 !!! Warning
 
-    The `netstat` command is now deprecated and is no-longer installed by default on Rocky Linux. You may still find some Linux versions that have it installed, but it is best to move on to using `ss` for everything that you would have used `netstat` for.
+    The `netstat` command is now deprecated and is no longer installed by default on Rocky Linux. You may still find some Linux versions that have it installed, but it is best to move on to using `ss` for everything that you would have used `netstat` for.
 
 The `netstat` command (**network statistics**) displays the listening ports on the network.
 
@@ -653,7 +653,7 @@ tcp  0  0  0.0.0.0:22  0.0.0.0:*  LISTEN 2161/sshd
 
 ### IP or MAC address conflicts
 
-A misconfiguration can cause multiple interfaces to use the same IP address. This can happen when a network has multiple DHCP servers or when the same IP address is manually assigned multiple times.
+A misconfiguration can cause multiple interfaces to use the same IP address. This can happen when a network has multiple DHCP servers, or the same IP address is manually assigned numerous times.
 
 When the network is malfunctioning, and when an IP address conflict could be the cause, it is possible to use the `arp-scan` software (requires the EPEL repository):
 
@@ -679,11 +679,11 @@ $ arp-scan -I eth0 -l
 
 !!! Tip
 
-    As the above example shows, it is also possible to have MAC address conflicts! These problems are brought about by virtualization technologies and the copying of virtual machines.
+    As the above example shows, MAC address conflicts are possible! Virtualization technologies and the copying of virtual machines cause these problems.
 
 ## Hot configuration
 
-The `ip` command can hot add an IP address to an interface
+The `ip` command can hot add an IP address to an interface.
 
 ```bash
 ip addr add @IP dev DEVICE
@@ -709,7 +709,7 @@ Example:
 [root]# ip link set eth1 down
 ```
 
-The `ip` command is used to add a route:
+The `ip` command adds a route:
 
 ```bash
 ip route add [default|netaddr] via @IP [dev device]
