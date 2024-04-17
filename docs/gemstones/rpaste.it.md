@@ -16,7 +16,7 @@ tags:
 
 Installazione di `rpaste` su Rocky Linux:
 
-```
+```bash
 sudo dnf --enablerepo=extras install rpaste
 ```
 
@@ -24,7 +24,7 @@ sudo dnf --enablerepo=extras install rpaste
 
 Per i problemi di sistema più gravi, potrebbe essere necessario inviare tutte le informazioni del sistema in modo che possa essere esaminato per individuare eventuali problemi. Per farlo, eseguire:
 
-```
+```bash
 rpaste --sysinfo
 ```
 
@@ -49,7 +49,7 @@ sudo more /var/log/messages | grep 'Mar 10' | rpaste
 
 Per ottenere aiuto con il comando, è sufficiente digitare:
 
-```
+```bash
 rpaste --help
 ```
 
@@ -76,4 +76,3 @@ Options:
 ## Conclusioni
 
 A volte è importante condividere una grande quantità di testo quando si lavora su un problema, codice condiviso o testo, ecc. L'uso di `rpaste` eviterà agli altri di dover visualizzare grandi quantità di testo che non sono importanti per loro. È importante anche il galateo della chat di Rocky Linux.
-

@@ -28,44 +28,62 @@ tags:
 ## Процедура
 
 1. Якщо вона ще не існує, створіть гілку проекту за допомогою утиліти gh. Впишіть:
-   ```
+
+   ```bash
    gh repo fork rocky-linux/documentation --clone=true --remote=true
    ```
+
    У цій команді _gh repo fork_ використовуються такі параметри:
+
    - `--clone=true`: Клонує розгалужене сховище на вашу локальну машину.
    - `--remote=true`: Додає вихідний репозиторій як віддалений, що дозволяє синхронізувати майбутні оновлення.
+
 2. Перейдіть до каталогу локального сховища. Впишіть:
-   ```
+
+   ```bash
    cd documentation
    ```
+
 3. Переконайтеся, що всі відповідні віддалені сховища правильно налаштовано у вашому локальному сховищі, введіть:
-   ```
+
+   ```bash
    git remote -vv
    ```
+
 4. Отримайте останні зміни з дистанційного керування:
-   ```
+
+   ```bash
    git fetch upstream
    ```
+
 5. Створіть і перевірте нову гілку функції під назвою your-feature-branch:
-   ```
+
+   ```bash
    git checkout -b your-feature-branch
    ```
+
 6. Внесіть зміни, додайте нові файли та зафіксуйте свої зміни у своєму локальному репозиторії:
-   ```
+
+   ```bash
    git add .
    git commit -m "Your commit message"
    ```
+
 7. Синхронізуйте з головною гілкою віддаленого сховища під назвою `upstream`:
-   ```
+
+   ```bash
    git pull upstream main
    ```
+
 8. Надішліть зміни до своєї гілки:
-   ```
+
+   ```bash
    git push origin your-feature-branch
    ```
+
 9. Нарешті, створіть запит на вилучення (PR) за допомогою програми `gh` CLI:
 
-   ```
+   ```bash
    gh pr create --base main --head your-feature-branch --title "Your PR Title" --body "Description of your changes"
    ```
 
