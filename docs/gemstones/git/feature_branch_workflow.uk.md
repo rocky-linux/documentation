@@ -30,37 +30,51 @@ tags:
 ## Процедура
 
 1. Якщо це ще не зроблено, клонуйте вашу гілку:
+
    ```bash
    git clone https://github.com/rockstar/documentation.git
    cd documentation
    ```
+
 2. Додайте дистанційне керування:
+
    ```bash
    git remote add upstream https://github.com/rocky-linux/documentation.git
    ```
+
 3. Отримайте зміни:
+
    ```bash
    git fetch upstream
    ```
+
 4. Створіть нову гілку функції:
+
    ```bash
    git checkout -b feature-branch-name
    ```
+
 5. Внесіть зміни, додайте нові файли та зафіксуйте їх:
 
    ```bash
    git add .
    git commit -m "Implementing feature X"
    ```
+
 6. Тримайте свою гілку оновленою. Регулярно об’єднуйте зміни з висхідного потоку, щоб уникнути конфліктів:
+
    ```bash
    git pull upstream main --rebase
    ```
+
 7. Запушіть вилку, введіть:
+
    ```bash
    git push origin feature-branch-name
    ```
+
 8. Створіть запит:
+
    ```bash
    gh pr create --base main --head rockstar:feature-branch-name --title "New Feature X" --body "Long Description of the feature"
    ```
