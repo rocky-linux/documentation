@@ -350,7 +350,7 @@ You can't do much with a computer these days without network connectivity. Wheth
     ping -I enp0s3 -c3 192.168.1.10
     ```
 
-    ## Conclusions
+    ## Conclusion
 
     There are many changes to the networking stack in Rocky Linux 9. Among these is the prioritization of `keyfile` over the formerly used `ifcfg` files found in Network-Scripts. Since the direction of movement here in future versions of Rocky Linux will deprecate and remove Network-Scripts, it is best to focus attention on methodologies such as `nmcli`, `nmtui`, and in some cases `ip`, for network configuration.
 
@@ -697,6 +697,6 @@ You can't do much with a computer these days without network connectivity. Wheth
     rockylinux.org has address 76.76.21.21
     ```
 
-    ## Conclusions
+    ## Conclusion
 
     Rocky Linux 8 has the tools to configure your network from the command line. This document should get you up and running with those tools quickly.
