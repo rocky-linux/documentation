@@ -1,7 +1,7 @@
 ---
 title: Docker - Install Engine
 author: wale soyinka
-contributors:
+contributors: neelchauhan, nishaaaaaant, sastorsl
 date: 2021-08-04
 tags:
   - docker
