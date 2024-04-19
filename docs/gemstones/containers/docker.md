@@ -35,6 +35,24 @@ Use `systemctl` to configure Docker to automatically startup upon reboot and sim
 sudo systemctl --now enable docker
 ```
 
+## Optionally allow a non-root user to manage docker
+
+Add a non-root user to the `docker` group to allow the user to manage `docker` without `sudo`.
+
+This is an optional step, but can be a convenience if you are the main user on the system, or if you want to allow multiple users to manage docker, but do not want to grant them `sudo` permissions.
+
+Type:
+
+```bash
+# Add the current user
+sudo usermod -a -G docker $(whoami)
+
+# Add a specific user
+sudo usermod -a -G docker custom-user
+```
+
+It is required to log out and in again to be assigned the new group. Check with the `id` command to verify that the group has been added.
+
 ### Notes
 
 ```docker
