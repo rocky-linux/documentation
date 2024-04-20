@@ -14,4 +14,3 @@ Les données du journal des modifications pour les versions de Rocky Linux sont 
 Les mises à jour publiées depuis la distribution en amont sont publiées sur nos architectures. Nous recommandons fortement à tous les utilisateurs d'appliquer *toutes* les mises à jour, y compris le contenu publié aujourd'hui, sur vos machines Rocky Linux. Cela peut être fait en exécutant la commande `dnf upgrade`.
 
 Tous les composants de Rocky Linux sont construits à partir des sources hébergées sur [git.rockylinux.org](https://git.rockylinux.org). En outre, les SRPMs sont publiés à côté des dépôts dans un répertoire "source" correspondant. Vous pouvez les trouver sur n'importe lequel de nos miroirs. Ces paquets sources correspondent aux RPM binaires que nous publions.
-
