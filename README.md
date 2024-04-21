@@ -9,7 +9,7 @@
 
 To us, excellent documentation hits these marks:
 
-- Educate users on how to admin this distribution and its associated programs.
+- Educate users on how to administer this distribution and its associated programs.
 - Support users of all skill levels with manuals and troubleshooting guides to make the most of this distribution.
 - Apply a consistent standard across all related documents, for ease of reading and translation.
 - Keep documentation up to date (and error free) with current versions.
