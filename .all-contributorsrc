@@ -926,6 +926,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "reppep",
+      "name": "Chris Pepper",
+      "avatar_url": "https://avatars.githubusercontent.com/u/355322?v=4",
+      "profile": "http://www.extrapepperoni.com/",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
