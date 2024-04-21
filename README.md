@@ -121,27 +121,19 @@ Advanced users may wish to create a complete documentation server on your local 
 
 Please include the following **meta** information at the top of all new documentation:
 
+```text
 ---
-
 title: Document title
-
 author: the author of the source (English) version of the document.
-
 contributors: a comma separated list of contributors to the source document.
-
 tested with: a comma separated list of versions, for example 8.6, 9.0
-
 tags:
-
 - displayable tags
-
 - these are also searchable
-
 - they are two space indented and start with a "-" as shown here
-
 - generally, they should be one word
-
 ---
+```
 
 #### Formatting
 
