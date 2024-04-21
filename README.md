@@ -1,6 +1,6 @@
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-101-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-102-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Introduction
@@ -336,6 +336,7 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
       <td align="center" valign="top" width="14.28%"><a href="http://sjs.io"><img src="https://avatars.githubusercontent.com/u/1754056?v=4?s=100" width="100px;" alt="Stephen Simpson"/><br /><sub><b>Stephen Simpson</b></sub></a><br /><a href="#content-ssimpson89" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/nishaaaaaant"><img src="https://avatars.githubusercontent.com/u/33195320?v=4?s=100" width="100px;" alt="Srinivas Nishant Viswanadha"/><br /><sub><b>Srinivas Nishant Viswanadha</b></sub></a><br /><a href="#content-nishaaaaaant" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/sastorsl"><img src="https://avatars.githubusercontent.com/u/12235187?v=4?s=100" width="100px;" alt="Stein Arne Storslett"/><br /><sub><b>Stein Arne Storslett</b></sub></a><br /><a href="#content-sastorsl" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://www.extrapepperoni.com/"><img src="https://avatars.githubusercontent.com/u/355322?v=4?s=100" width="100px;" alt="Chris Pepper"/><br /><sub><b>Chris Pepper</b></sub></a><br /><a href="#content-reppep" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>
