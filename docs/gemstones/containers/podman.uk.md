@@ -16,7 +16,7 @@ tags:
 
 Використовуйте утиліту `dnf` для встановлення Podman:
 
-```
+```bash
 dnf install podman
 ```
 
@@ -24,7 +24,7 @@ dnf install podman
 
 Запустимо для прикладу автономну хмарну платформу [Nextcloud](https://nextcloud.com/):
 
-```
+```bash
 podman run -d -p 8080:80 nextcloud
 ```
 

@@ -41,7 +41,7 @@ tags:
 
 Поняття типу змінної в сценарії оболонки можливо, але використовується дуже рідко. Вмістом змінної завжди є символ або рядок.
 
-```
+```bash
 #!/usr/bin/env bash
 
 #
@@ -76,7 +76,7 @@ echo "Backup ended!"
 
 Символ `=` призначає вміст змінній:
 
-```
+```bash
 variable=value
 rep_name="/home"
 ```
@@ -85,14 +85,14 @@ rep_name="/home"
 
 Після створення змінної її можна використовувати, додавши до неї префікс долара $.
 
-```
+```bash
 file=file_name
 touch $file
 ```
 
 Рекомендується захищати змінні лапками, як у прикладі нижче:
 
-```
+```bash
 file=file name
 touch $file
 touch "$file"
@@ -102,7 +102,7 @@ touch "$file"
 
 Щоб ізолювати назву змінної від решти тексту, ви повинні використовувати лапки або дужки:
 
-```
+```bash
 file=file_name
 touch "$file"1
 touch ${file}1
@@ -112,7 +112,7 @@ touch ${file}1
 
 Використання апострофів перешкоджає інтерпретації спеціальних символів.
 
-```
+```bash
 message="Hello"
 echo "This is the content of the variable message: $message"
 Here is the content of the variable message: Hello
@@ -126,7 +126,7 @@ Here is the content of the variable message: $message
 
 Приклад:
 
-```
+```bash
 name="NAME"
 firstname="Firstname"
 echo "$name $firstname"
@@ -140,7 +140,7 @@ NAME
 
 Приклад:
 
-```
+```bash
 name="NAME"
 readonly name
 name="OTHER NAME"
@@ -195,21 +195,21 @@ bash: name: read-only variable
 
 Синтаксис для підвиконання команди наступний:
 
-```
+```bash
 variable=`command`
 variable=$(command) # Preferred syntax
 ```
 
 Приклад:
 
-```
-$ day=`date +%d`
-$ homedir=$(pwd)
+```bash
+day=`date +%d`
+homedir=$(pwd)
 ```
 
 З огляду на все, що ми щойно бачили, наш сценарій резервного копіювання може виглядати наступним чином:
 
-```
+```bash
 #!/usr/bin/env bash
 
 #
@@ -257,13 +257,13 @@ logger "Backup of system files by ${USER} on ${HOSTNAME} in the folder ${DESTINA
 
 Запуск нашого сценарію резервного копіювання:
 
-```
-$ sudo ./backup.sh
+```bash
+sudo ./backup.sh
 ```
 
 дасть нам:
 
-```
+```bash
 ****************************************************************
      Backup Script - Backup on desktop                      
 ****************************************************************

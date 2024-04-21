@@ -10,12 +10,12 @@ title: Великомасштабна інфраструктура
 
 **Цілі**: В цьому розділі ви дізнаєтеся як:
 
-:heavy_check_mark: Організувати свій код для великої інфраструктури;   
+:heavy_check_mark: Організувати свій код для великої інфраструктури;  
 :heavy_check_mark: Застосувати все або частину вашого керування конфігурацією до групи вузлів;
 
 :checkered_flag: **ansible**, **керування конфігурацією**, **scale**
 
-**Знання**: :star: :star: :star:       
+**Знання**: :star: :star: :star:  
 **Складність**: :star: :star: :star: :star:
 
 **Час читання**: 30 хвилин
@@ -52,7 +52,7 @@ title: Великомасштабна інфраструктура
 
 Документація Ansible пропонує організувати наш код так:
 
-```
+```bash
 inventories/
    production/
       hosts               # inventory file for production servers
@@ -82,7 +82,7 @@ inventories/
 
 Наприклад, давайте змінимо завдання створення користувачів:
 
-```
+```bash
 - name: add users
   user:
     name: "{{ item }}"
@@ -98,7 +98,7 @@ inventories/
 
 Тепер ви можете відтворювати лише завдання з тегом `users` з опцією `ansible-playbook` `--tags`:
 
-```
+```bash
 ansible-playbook -i inventories/production/hosts --tags users site.yml
 ```
 
@@ -110,7 +110,7 @@ ansible-playbook -i inventories/production/hosts --tags users site.yml
 
 Нашою відправною точкою буде файл `site.yml`. Цей файл трохи нагадує оркестровий диригент CMS, оскільки він міститиме необхідні ролі для цільових вузлів лише за потреби:
 
-```
+```bash
 ---
 - name: "Config Management for {{ target }}"
   hosts: "{{ target }}"
@@ -126,7 +126,7 @@ ansible-playbook -i inventories/production/hosts --tags users site.yml
 
 Мені подобається керувати своїми глобальними змінними в `vars/global_vars.yml`, навіть якщо я можу зберігати їх у файлі, розташованому за адресою `inventories/production/group_vars/all.yml`
 
-```
+```bash
 ---
 - name: "Config Management for {{ target }}"
   hosts: "{{ target }}"
@@ -141,7 +141,7 @@ ansible-playbook -i inventories/production/hosts --tags users site.yml
 
 Мені також подобається зберегти можливість відключення функціональності. Тому я включаю свої ролі з умовою та значенням за замовчуванням, як це:
 
-```
+```bash
 ---
 - name: "Config Management for {{ target }}"
   hosts: "{{ target }}"
@@ -160,8 +160,7 @@ ansible-playbook -i inventories/production/hosts --tags users site.yml
 
 Не забувайте використовувати теги:
 
-
-```
+```bash
 - name: "Config Management for {{ target }}"
   hosts: "{{ target }}"
   vars_files:
@@ -183,7 +182,7 @@ ansible-playbook -i inventories/production/hosts --tags users site.yml
 
 Ви повинні отримати щось на зразок цього:
 
-```
+```bash
 $ tree cms
 cms
 ├── inventories
@@ -218,7 +217,7 @@ cms
 
 Давайте запустимо playbook і проведемо кілька тестів:
 
-```
+```bash
 $ ansible-playbook -i inventories/production/hosts -e "target=client1" site.yml
 
 PLAY [Config Management for client1] ****************************************************************************
@@ -242,14 +241,13 @@ client1                    : ok=2    changed=0    unreachable=0    failed=0    s
 
 Давайте активуємо в інвентарі `functionality2` для нашого цільового вузла та повторно запустимо playbook:
 
-```
+```bash
 $ vim inventories/production/host_vars/client1.yml
 ---
 enable_functionality2: true
 ```
 
-
-```
+```bash
 $ ansible-playbook -i inventories/production/hosts -e "target=client1" site.yml
 
 PLAY [Config Management for client1] ****************************************************************************
@@ -273,7 +271,7 @@ client1                    : ok=3    changed=0    unreachable=0    failed=0    s
 
 Спробуйте застосувати лише `functionality2`:
 
-```
+```bash
 $ ansible-playbook -i inventories/production/hosts -e "target=client1" --tags functionality2 site.yml
 
 PLAY [Config Management for client1] ****************************************************************************
@@ -292,7 +290,7 @@ client1                    : ok=2    changed=0    unreachable=0    failed=0    s
 
 Давайте запустимо весь інвентар:
 
-```
+```bash
 $ ansible-playbook -i inventories/production/hosts -e "target=plateform" site.yml
 
 PLAY [Config Management for plateform] **************************************************************************
