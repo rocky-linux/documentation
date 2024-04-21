@@ -23,8 +23,7 @@ tags:
 
 :checkered_flag: **linux**, **script**, **bash**
 
-**Знання**: :star:     
-**Складність**: :star:
+<0>Знання</0> :star: <0>Складність</0> :star:
 
 **Час для читання**: 10 хвилин
 
@@ -46,7 +45,7 @@ tags:
 
     Автор використовує «$» у цих уроках для позначення командного рядка користувача.
 
-```
+```bash
 #!/usr/bin/env bash
 #
 # Author : Rocky Documentation Team
@@ -60,14 +59,14 @@ echo "Hello world!"
 
 Щоб мати можливість запустити цей скрипт, як аргумент bash:
 
-```
+```bash
 $ bash hello-world.sh
 Hello world !
 ```
 
 Або, простіше, після надання йому права на виконання:
 
-```
+```bash
 $ chmod u+x ./hello-world.sh
 $ ./hello-world.sh
 Hello world !
@@ -82,19 +81,19 @@ Hello world !
 
 Перший рядок, який потрібно написати в будь-якому сценарії, - це вказати назву двійкового файлу оболонки, який буде використано для його виконання. Якщо ви бажаєте використовувати оболонку `ksh` або інтерпретовану мову `python`, замініть рядок:
 
-```
+```bash
 #!/usr/bin/env bash
 ```
 
 на:
 
-```
+```bash
 #!/usr/bin/env ksh
 ```
 
 або на:
 
-```
+```bash
 #!/usr/bin/env python
 ```
 
@@ -115,7 +114,7 @@ Hello world !
 
 Приклад:
 
-```
+```bash
 # This program displays the date
 date # This line is the line that displays the date!
 ```
