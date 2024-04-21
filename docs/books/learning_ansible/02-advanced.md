@@ -4,11 +4,11 @@ title: Ansible Intermediate
 
 # Ansible Intermediate
 
-In this chapter you will continue to learn how to work with Ansible.
+In this chapter, you will continue to learn how to work with Ansible.
 
 ****
 
-**Objectives**: In this chapter you will learn how to:
+**Objectives**: In this chapter, you will learn how to:
 
 :heavy_check_mark: work with variables;  
 :heavy_check_mark: use loops;  
@@ -24,9 +24,9 @@ In this chapter you will continue to learn how to work with Ansible.
 
 ****
 
-In the previous chapter, you learned how to install Ansible, use it on the command line, or how to write playbooks to promote the re-usability of your code.
+In the previous chapter, you learned how to install Ansible, use it on the command line, or write playbooks to promote the re-usability of your code.
 
-In this chapter, we can start to discover some more advanced notions of how to use Ansible, and discover some interesting tasks that you will use very regularly.
+In this chapter, we can start to discover more advanced notions of how to use Ansible and some interesting tasks that you will use regularly.
 
 ## The variables
 
@@ -45,7 +45,7 @@ These variables can be organized as:
 * dictionaries,
 * lists.
 
-A variable can be defined in different places, like in a playbook, in a role or from the command line for example.
+A variable can be defined in different places, such as a playbook, a role, or the command line.
 
 For example, from a playbook:
 
@@ -148,13 +148,13 @@ Use of a stored variable:
 
 !!! Note
 
-    The variable `homes.stdout_lines` is a list of variables of type string, a way to organize variables that we had not yet encountered.
+    The variable `homes.stdout_lines` is a list of variables of type string, a way to organize variables we had not yet encountered.
 
 The strings that make up the stored variable can be accessed via the `stdout` value (which allows you to do things like `homes.stdout.find("core") != -1`), to exploit them using a loop (see `loop`), or simply by their indices as seen in the previous example.
 
-### Exercises-1
+### Exercises:
 
-* Write a  playbook `play-vars.yml` that prints the distribution name of the target with its major version, using global variables.
+* Write a playbook, `play-vars.yml,` using global variables that print the target's distribution name and major version.
 
 * Write a playbook using the following dictionary to display the services that will be installed:
 
@@ -176,13 +176,13 @@ The default type should be "web".
 
 ## Loop management
 
-With the help of loop, you can iterate a task over a list, a hash, or dictionary for example.
+A loop allows you to iterate a task over a list, a hash, or a dictionary, for example.
 
 !!! Note
 
     More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html).
 
-Simple example of use, creation of 4 users:
+A simple example of use, creation of 4 users:
 
 ```bash
 - name: add users
@@ -209,7 +209,7 @@ users:
   - xavier
 ```
 
-and be used inside the task like this (after having include the vars file):
+and be used inside the task like this (after having included the vars file):
 
 ```bash
 - name: add users
@@ -220,7 +220,7 @@ and be used inside the task like this (after having include the vars file):
   loop: "{{ users }}"
 ```
 
-We can use the example seen during the study of stored variables to improve it. Use of a stored variable:
+We can use the example seen while studying stored variables to improve it. Use of a stored variable:
 
 ```bash
 - name: /home content
@@ -235,9 +235,9 @@ We can use the example seen during the study of stored variables to improve it. 
 
 A dictionary can also be used in a loop.
 
-In this case, you will have to transform the dictionary into an item with what is called a **jinja filter** (jinja is the templating engine used by Ansible): `| dict2items`.
+In this case, you must transform the dictionary into an item with a **jinja filter** (jinja is the templating engine used by Ansible): `| dict2items`.
 
-In the loop, it becomes possible to use `item.key` which corresponds to the dictionary key, and `item.value` which corresponds to the values of the key.
+In the loop, it becomes possible to use `item.key`, which corresponds to the dictionary key, and `item.value`, which corresponds to the key's values.
 
 Let's see this through a concrete example, showing the management of the system users:
 
@@ -267,9 +267,9 @@ Let's see this through a concrete example, showing the management of the system 
 
 !!! Note
 
-    Many things can be done with the loops. You will discover the possibilities offered by loops when your use of Ansible pushes you to use them in a more complex way.
+    Loops can be used for many things. When your use of Ansible pushes you to use them more complexly, you will discover the possibilities they offer.
 
-### Exercises-2
+### Exercises:
 
 * Display the content of the `service` variable from the previous exercise using a loop.
 
@@ -287,11 +287,11 @@ Let's see this through a concrete example, showing the management of the system 
 
     More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html).
 
-The `when` statement is very useful in many cases: not performing certain actions on certain types of servers, if a file or a user does not exist, etc.
+The `when` statement is very useful in many cases, such as not performing certain actions on certain types of servers, if a file or a user does not exist, etc.
 
 !!! Note
 
-    Behind the `when` statement the variables do not need double braces (they are in fact Jinja2 expressions...).
+    Behind the `when` statement, the variables do not need double braces (they are, in fact, Jinja2 expressions...).
 
 ```bash
 - name: "Reboot only Debian servers"
@@ -350,7 +350,7 @@ You will probably have to test that a variable exists to avoid execution errors:
 when: myboolean is defined and myboolean
 ```
 
-### Exercises-3
+### Exercises:
 
 * Print the value of `service.web` only when `type` equals to `web`.
 
@@ -360,13 +360,13 @@ when: myboolean is defined and myboolean
 
     More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_handlers.html).
 
-Handlers allow to launch operations, like restarting a service, when changes occur.
+When changes occur, handlers are allowed to launch operations, like restarting a service.
 
-A module, being idempotent, a playbook can detect that there has been a significant change on a remote system, and thus trigger an operation in reaction to this change. A notification is sent at the end of a playbook task block, and the reaction operation will be triggered only once even if several tasks send the same notification.
+A module, being idempotent, a playbook can detect that there has been a significant change on a remote system and thus trigger an operation in reaction to this change. A notification is sent at the end of a playbook task block, and the reaction operation will be triggered only once, even if several tasks send the same notification.
 
 ![Handlers](images/handlers.png)
 
-For example, several tasks may indicate that the `httpd` service needs to be restarted due to a change in its configuration files. But the service will only be restarted once to avoid multiple unnecessary starts.
+For example, several tasks may indicate that the `httpd` service needs to be restarted due to a change in its configuration files. However, the service will only be restarted once to avoid multiple unnecessary starts.
 
 ```bash
 - name: template configuration file
@@ -380,7 +380,7 @@ For example, several tasks may indicate that the `httpd` service needs to be res
 
 A handler is a kind of task referenced by a unique global name:
 
-* It is activated by one or more notifiers.
+* One or more notifiers activate it.
 * It does not start immediately, but waits until all tasks are complete to run.
 
 Example of handlers:
@@ -428,14 +428,14 @@ tasks:
 
     More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_async.html).
 
-By default, SSH connections to hosts remain open during the execution of various playbook tasks on all nodes.
+By default, SSH connections to hosts remain open while executing various playbook tasks on all nodes.
 
 This can cause some problems, especially:
 
 * if the execution time of the task is longer than the SSH connection timeout
-* if the connection is interrupted during the action (server reboot for example)
+* if the connection is interrupted during the action (server reboot, for example)
 
-In this case, you will have to switch to asynchronous mode and specify a maximum execution time as well as the frequency (by default 10s) with which you will check the host status.
+In this case, you will have to switch to asynchronous mode and specify a maximum execution time and the frequency (by default, 10s) with which you will check the host status.
 
 By specifying a poll value of 0, Ansible will execute the task and continue without worrying about the result.
 
@@ -466,7 +466,7 @@ You can also decide to launch a long-running task and forget it (fire and forget
 
 ## Exercise results
 
-* Write a  playbook `play-vars.yml` that print the distribution name of the target with its major version, using global variables.
+* Write a  playbook, `play-vars.yml, ' using global variables, that prints the target's distribution name and major version.
 
 ```bash
 ---
