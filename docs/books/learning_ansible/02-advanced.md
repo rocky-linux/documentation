@@ -24,7 +24,7 @@ In this chapter, you will continue to learn how to work with Ansible.
 
 ****
 
-In the previous chapter, you learned how to install Ansible, use it on the command line, or write playbooks to promote the re-usability of your code.
+In the previous chapter, you learned how to install Ansible, use it on the command line, and write playbooks to promote the re-usability of your code.
 
 In this chapter, we can start to discover more advanced notions of how to use Ansible and some interesting tasks that you will use regularly.
 
