@@ -287,7 +287,7 @@ If everything restarts and there are no issues, then you are ready to move on.
 
 To do the initial configuration, we want to actually load the site in a web browser:
 
-<http://nextcloud.yourdomain.com/>
+<http://your-server-hostname/> (replace with your actual hostname)
 
 Assuming that you've done everything correctly so far, you should be presented with a Nextcloud setup screen:
 
