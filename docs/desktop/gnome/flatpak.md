@@ -150,7 +150,7 @@ Memorizing the list of commands is not necessary, but knowing how to get to the 
 
 Flathub is a web resource for obtaining or submitting desktop packages.
 
-To browse the Flathub, visit <https://flathub.org/>. A huge list of curated desktop packages exists here, nicely divided into categories.
+To browse Flathub, visit <https://flathub.org/>. A huge list of curated desktop packages exists here, nicely divided into categories.
 
 ## Using Flathub with Flatpak
 
@@ -260,4 +260,4 @@ flatpak uninstall com.obsproject.Studio
 
 ## Conclusion
 
-Populating your GNOME desktop with applications, from games to productivity tools, is with ease using Flathub and Flatpak.
+You can use Flathub and Flatpak to populate your GNOME desktop with applications, from games to productivity tools, easily.
