@@ -126,7 +126,7 @@ The next prompt asks you which domain you want the certificate for. It should di
 ```bash
 Which names would you like to activate HTTPS for?
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-1: yourdomain.com
+1: your-server-hostname
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Select the appropriate numbers separated by commas and/or spaces, or leave input
 blank to select all options shown (Enter 'c' to cancel):
@@ -135,18 +135,18 @@ blank to select all options shown (Enter 'c' to cancel):
 If all goes well, you should receive the following message:
 
 ```bash
-Requesting a certificate for yourdomain.com
+Requesting a certificate for your-server-hostname
 Performing the following challenges:
-http-01 challenge for yourdomain.com
+http-01 challenge for your-server-hostname
 Waiting for verification...
 Cleaning up challenges
 Subscribe to the EFF mailing list (email: yourusername@youremaildomain.com).
 
 IMPORTANT NOTES:
  - Congratulations! Your certificate and chain have been saved at:
-   /etc/letsencrypt/live/yourdomain.com/fullchain.pem
+   /etc/letsencrypt/live/your-server-hostname/fullchain.pem
    Your key file has been saved at:
-   /etc/letsencrypt/live/yourdomain.com/privkey.pem
+   /etc/letsencrypt/live/your-server-hostname/privkey.pem
    Your certificate will expire on 2021-07-01. To obtain a new or
    tweaked version of this certificate in the future, simply run
    certbot again. To non-interactively renew *all* of your
@@ -165,12 +165,12 @@ A single PEM (Privacy Enhanced Mail) file includes the certificate and chain fil
 
 ```bash
 <VirtualHost *:80>
-        ServerName www.yourdomain.com
+        ServerName your-server-hostname
         ServerAdmin username@rockylinux.org
-        Redirect / https://www.yourdomain.com/
+        Redirect / https://your-server-hostname/
 </VirtualHost>
 <Virtual Host *:443>
-        ServerName www.yourdomain.com
+        ServerName your-server-hostname
         ServerAdmin username@rockylinux.org
         DocumentRoot /var/www/sub-domains/com.yourdomain.www/html
         DirectoryIndex index.php index.htm index.html
@@ -186,9 +186,9 @@ A single PEM (Privacy Enhanced Mail) file includes the certificate and chain fil
         SSLCipherSuite EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384
 :EECDH+aRSA+SHA256:EECDH+aRSA+RC4:EECDH:EDH+aRSA:RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS
 
-        SSLCertificateFile /etc/letsencrypt/live/yourdomain.com/fullchain.pem
-        SSLCertificateKeyFile /etc/letsencrypt/live/yourdomain.com/privkey.pem
-        SSLCertificateChainFile /etc/letsencrypt/live/yourdomain.com/fullchain.pem
+        SSLCertificateFile /etc/letsencrypt/live/your-server-hostname/fullchain.pem
+        SSLCertificateKeyFile /etc/letsencrypt/live/your-server-hostname/privkey.pem
+        SSLCertificateChainFile /etc/letsencrypt/live/your-server-hostname/fullchain.pem
 
         <Directory /var/www/sub-domains/com.yourdomain.www/html>
                 Options -ExecCGI -Indexes
@@ -289,6 +289,10 @@ Or write your own configuration file the hard way.
 
 ## Automating Let's Encrypt Certificate Renewal
 
+!!! note
+
+    Replace occurences with "your-server-hostname" in these examples, with the actual domain name or hostname.
+
 The beauty of installing *certbot* is that the Let's Encrypt certificate will be automatically renewed. There is no need to create a process to do this. We do need to test the renewal with:
 
 ```bash
@@ -301,25 +305,25 @@ When you run this command, you'll get a nice output showing the renewal process:
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-Processing /etc/letsencrypt/renewal/yourdomain.com.conf
+Processing /etc/letsencrypt/renewal/your-server-hostname.conf
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Cert not due for renewal, but simulating renewal for dry run
 Plugins selected: Authenticator apache, Installer apache
 Account registered.
-Simulating renewal of an existing certificate for yourdomain.com
+Simulating renewal of an existing certificate for your-server-hostname
 Performing the following challenges:
-http-01 challenge for yourdomain.com
+http-01 challenge for your-server-hostname
 Waiting for verification...
 Cleaning up challenges
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 new certificate deployed with reload of apache server; fullchain is
-/etc/letsencrypt/live/yourdomain.com/fullchain.pem
+/etc/letsencrypt/live/your-server-hostname/fullchain.pem
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Congratulations, all simulated renewals succeeded:
-  /etc/letsencrypt/live/yourdomain.com/fullchain.pem (success)
+  /etc/letsencrypt/live/your-server-hostname/fullchain.pem (success)
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
 
