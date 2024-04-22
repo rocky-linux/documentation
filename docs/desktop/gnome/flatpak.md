@@ -10,13 +10,13 @@ From the project's webpage:
 
 > Flatpak is a framework for distributing desktop applications across various Linux distributions. It has been created by developers who have a long history of working on the Linux desktop, and is run as an independent open source project.
 
-Flatpak installation comes by default when installing Rocky Linux with software selections that include GNOME ("Server with GUI" or "Workstation"). Manual installation is also possible. (see included procedure) It is an excellent way to populate your desktop environment with tools that you want to use.
+Flatpak comes installed by default when installing Rocky Linux with software selections that include GNOME ("Server with GUI" or "Workstation"). Manual installation is also possible. (see included procedure) It is an excellent way to populate your desktop environment with tools that you want to use.
 
 ## Manual installation
 
 !!! note
 
-    If you have a GNOME instance described in the introduction, you can skip this step.
+    If you are already running the full GNOME Desktop environment described in the introduction, you can skip this step.
 
 Install Flatpak with:
 
@@ -144,13 +144,13 @@ Memorizing the list of commands is not necessary, but knowing how to get to the 
     No matches found
     ```
 
-    There is no workaround for this. To avoid the error, use the Flathub resource in this document to obtain the package and installation method.
+    There is no workaround for this. To avoid the error, use the Flathub resource in this document to obtain and install the desired package.
 
 ## Flathub
 
 Flathub is a web resource for obtaining or submitting desktop packages.
 
-To get to Flathub, use <https://flathub.org/>. A huge list of curated desktop packages exists here, nicely divided into categories.
+To browse the Flathub, visit <https://flathub.org/>. A huge list of curated desktop packages exists here, nicely divided into categories.
 
 ## Using Flathub with Flatpak
 
