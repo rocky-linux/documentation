@@ -9,6 +9,7 @@ contributors: '@fromoz, Ganna Zhyrnova'
 Avete trovato la sezione **Libri** della documentazione. È qui che viene mantenuta la documentazione più dettagliata. Questi documenti sono suddivisi in sezioni o **_capitoli_** per facilitarne la lettura al proprio ritmo e per tenere traccia dei propri progressi. Questi documenti sono stati creati da persone come voi, appassionate di determinati argomenti.
 
 Volete provare a scrivere un'integrazione a questa sezione? Se così fosse, sarebbe FANTASTICO! È sufficiente unirsi alla conversazione sul canale [Mattermost Documentation](https://chat.rockylinux.org/rocky-linux/channels/documentation) e vi aiuteremo nel vostro percorso.
+
 ## Scaricare per la lettura offline
 
 I nostri libri possono essere scaricati in formato PDF per la lettura offline.
