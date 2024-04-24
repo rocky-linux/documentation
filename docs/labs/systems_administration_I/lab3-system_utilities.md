@@ -914,7 +914,7 @@ ACTION:
     [root@localhost root]# find   .   –size    -200k
     ```
 
-6. Use the `find` command to find all the find all the files in your pwd that are “larger” than 10 kilobytes and display their “file  type” as well. Type:
+6. Use the `find` command to find all the files in your pwd that are “larger” than 10 kilobytes and display their “file  type” as well. Type:
 
     ```bash
     [root@localhost root]#  find   .  –size  +10k   –exec    file     "{ }"      ";"
