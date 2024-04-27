@@ -13,9 +13,9 @@ tags:
 
 !!! note "Plugin Naming Convention"
 
-    In this chapter, the format `user_github/plugin_name` will be used to identify the plugin. This is to avoid possible errors with similarly named plugins and to introduce the format that is used for plugin entry by both NvChad, and the `custom` configuration.
+    This chapter will identify the plugin using the format `user_github/plugin_name`. This is to avoid possible errors with similarly named plugins and to introduce the format used for plugin entry by both NvChad and the `custom` configuration.
 
-The basic NvChad plugins are set up in the `~/.local/share/nvim/lazy/NvChad/lua/nvchad/plugins/` folder:
+The basic NvChad plugins are in the `~/.local/share/nvim/lazy/NvChad/lua/nvchad/plugins/` folder:
 
 ```text title=".local/share/nvchad/lazy/NvChad/lua/nvchad/plugins/"
 ├── init.lua
@@ -36,7 +36,7 @@ and respective configurations in the `~/.local/share/nvim/lazy/NvChad/lua/nvchad
 └── treesitter.lua
 ```
 
-Within the `plugins` folder are the files *init.lua* and *ui.lua*, the former deals with the configuration of plugins that offer additional functionality to the editor (*telescope*, *gitsigns*, *tree-sitter*, etc..) while the latter sets the appearance of the editor (colors, icons, file manager, etc..).
+Within the `plugins` folder are the files *init.lua* and *ui.lua*. The former deals with the configuration of plugins that offer additional functionality to the editor (*telescope*, *gitsigns*, *tree-sitter*, etc.), while the latter sets the appearance of the editor (colors, icons, file manager, etc.).
   
 ## :material-download-circle-outline: Basic Plugins
 
@@ -56,7 +56,7 @@ The following is a brief analysis of the main plugins:
 
     - [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - Provides the appropriate configurations for almost every language server available. It is a community collection, with the most relevant settings already set. The plugin takes care of receiving our configurations and putting them into the editor environment.
 
-    - [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp) con i rispettivi sorgenti forniti dai plugin:
+    - [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp) with the respective sources provided by the plugins:
 
         - [L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip)
         - [saadparwaiz1/cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)
@@ -81,9 +81,9 @@ The following is a brief analysis of the main plugins:
 
     - [NvChad/nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua) - Another plugin written by the developers of NvChad. It is specifically a high-performance highlighter.
 
-    - [kyazdani42/nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons) - Adds icons (requires one of the Nerd Fonts) to file types and folders in our IDE. This allows us to visually identify file types in our File Explorer, to speed up operations.
+    - [kyazdani42/nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)—This adds icons (requires one of the Nerd Fonts) to file types and folders in our IDE. This allows us to visually identify file types in our File Explorer, speeding up operations.
 
-    - [lukas-reineke/indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) - Provides guides to better identify indentation in the document, allowing sub-routines and nested commands to be easily recognized.
+    - [lukas-reineke/indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) - Provides guides to identify indentation in the document better, allowing sub-routines and nested commands to be easily recognized.
 
     - [kyazdani42/nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua) - A File Explorer for Neovim that allows the most common operations on files (copy, paste, etc.), has integration with Git, identifies files with different icons, and other features. Most importantly, it updates automatically (this is very useful when you work with Git repositories).
 
@@ -95,6 +95,6 @@ The following is a brief analysis of the main plugins:
 
 ## Conclusions and final thoughts
 
-There's a huge amount of work by the NvChad developers that must be acknowledged. They have created an integrated environment among all plugins which makes the user interface clean and professional. In addition, plugins that work *under the hood* allow for enhanced editing and other features.
+There's a huge amount of work by the NvChad developers that must be acknowledged. They have created an integrated environment among all plugins, making the user interface clean and professional. In addition, plugins that work *under the hood* allow for enhanced editing and other features.
 
-All of this means that ordinary users can have, in an instant, a basic IDE with which to start working, and an extensible configuration that can adapt to their needs..
+This means that ordinary users can instantly have a basic IDE with which to start working and an extensible configuration that can adapt to their needs.
