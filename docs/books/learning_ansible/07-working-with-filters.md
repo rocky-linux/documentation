@@ -17,8 +17,8 @@ In this chapter you will learn how to transform data with jinja filters.
 
 :checkered_flag: **ansible**, **jinja**, **filters**
 
-**Knowledge**: :star: :star: :star:
-**Complexity**: :star: :star: :star: :star:
+**Knowledge**: :star: :star: :star:  
+**Complexity**: :star: :star: :star: :star:  
 
 **Reading time**: 20 minutes
 
