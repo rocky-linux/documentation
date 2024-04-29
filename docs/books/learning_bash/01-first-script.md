@@ -23,8 +23,8 @@ In this chapter you will learn how to write your first script in bash.
 
 :checkered_flag: **linux**, **script**, **bash**
 
-**Knowledge**: :star:
-**Complexity**: :star:
+**Knowledge**: :star:  
+**Complexity**: :star:  
 
 **Reading time**: 10 minutes
 
