@@ -39,7 +39,7 @@ Par conséquent, il doit y avoir une sauvegarde des données dans l'environnemen
 
 En termes de support de plate-forme, la plupart des systèmes UNIX ou apparentés sont supportés, qu'il s'agisse de GNU/Linux ou de BSD par exemple. En outre, il y a des logiciels similaires à `rsync` sous la plate-forme Windows, comme cwRsync par exemple.
 
-L'original `rsync` a été maintenu par le programmeur australien <font color=red>Andrew Tridgell</font> (affiché dans la figure 1 ci-dessous), et maintenant il a été maintenu par <font color=red>Wayne Davison</font> (affiché sur la figure 2 ci-dessous) pour maintenance, vous pouvez aller à [ l'adresse du projet github ](https://github.com/WayneD/rsync) pour obtenir les informations que vous voulez.
+L'original `rsync` a été maintenu par le programmeur australien <font color=red>Andrew Tridgell</font> (affiché dans la figure 1 ci-dessous) et récemment il a été maintenu par <font color=red>Wayne Davison</font> (affiché sur la figure 2 ci-dessous). Pour la maintenance, vous pouvez aller à [ l'adresse du projet github ](https://github.com/WayneD/rsync) pour obtenir les informations dont vous avez besoin.
 
 ![ Andrew Tridgell ](images/Andrew_Tridgell.jpg) ![ Wayne Davison ](images/Wayne_Davison.jpg)
 

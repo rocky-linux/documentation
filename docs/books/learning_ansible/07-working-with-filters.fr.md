@@ -17,8 +17,7 @@ Dans ce chapitre vous allez apprendre comment transformer les données grâce au
 
 :checkered_flag: **ansible**, **jinja**, **filtres**
 
-**Compétences** : :star: :star: :star:       
-**Difficulté** : :star: :star: :star: :star:
+**Compétences** : :star: :star: :star: **Difficulté** : :star: :star: :star: :star:
 
 **Temps de lecture : **23 minutes
 
@@ -34,7 +33,7 @@ Ces filtres, écrits en Python, nous permettent de manipuler et de transformer n
 
 Tout au long de ce chapitre, nous utiliserons le playbook suivant pour tester les différents filtres présentés :
 
-```
+```bash
 - name: Manipulating the data
   hosts: localhost
   gather_facts: false
@@ -78,7 +77,7 @@ Tout au long de ce chapitre, nous utiliserons le playbook suivant pour tester le
 
 Le playbook sera exécuté comme suit :
 
-```
+```bash
 ansible-playbook play-filter.yml
 ```
 
@@ -90,7 +89,7 @@ Pour connaitre le type de données (le type d'après le langage Python), vous de
 
 Exemple :
 
-```
+```bash
 - name: Display the type of a variable
   debug:
     var: true_boolean|type_debug
@@ -98,7 +97,7 @@ Exemple :
 
 ce qui nous donne :
 
-```
+```bash
 TASK [Display the type of a variable] ******************************************************************
 ok: [localhost] => {
     "true_boolean|type_debug": "bool"
@@ -107,13 +106,13 @@ ok: [localhost] => {
 
 Il est possible de transformer un nombre  entier en chaine de caractère :
 
-```
+```bash
 - name: Transforming a variable type
   debug:
     var: zero|string
 ```
 
-```
+```bash
 TASK [Transforming a variable type] ***************************************************************
 ok: [localhost] => {
     "zero|string": "0"
@@ -122,7 +121,7 @@ ok: [localhost] => {
 
 Transformer une chaine de caractères en nombre entier :
 
-```
+```bash
 - name: Transforming a variable type
   debug:
     var: zero_string|int
@@ -130,7 +129,7 @@ Transformer une chaine de caractères en nombre entier :
 
 ou une variable en booleen :
 
-```
+```bash
 - name: Display an integer as a boolean
   debug:
     var: non_zero | bool
@@ -151,7 +150,7 @@ ou une variable en booleen :
 
 Une chaine de caractères peut être changée en majuscules ou minuscules :
 
-```
+```bash
 - name: Lowercase a string of characters
   debug:
     var: whatever | lower
@@ -163,7 +162,7 @@ Une chaine de caractères peut être changée en majuscules ou minuscules :
 
 ce qui nous donne :
 
-```
+```bash
 TASK [Lowercase a string of characters] *****************************************************
 ok: [localhost] => {
     "whatever | lower": "it's false!"
@@ -179,7 +178,7 @@ Le filtre `replace` vous permet de remplacer des caractères par d'autres.
 
 Ici, nous supprimons des espaces ou même remplacons un mot :
 
-```
+```bash
 - name: Replace a character in a string
   debug:
     var: whatever | replace(" ", "")
@@ -191,7 +190,7 @@ Ici, nous supprimons des espaces ou même remplacons un mot :
 
 ce qui nous donne :
 
-```
+```bash
 TASK [Replace a character in a string] *****************************************************
 ok: [localhost] => {
     "whatever | replace(\" \", \"\")": "It'sfalse!"
@@ -205,14 +204,13 @@ ok: [localhost] => {
 
 Le filtre `split` une chaîne en une liste basée sur un caractère :
 
-```
+```bash
 - name: Cutting a string of characters
   debug:
     var: whatever | split(" ", "")
 ```
 
-
-```
+```bash
 TASK [Cutting a string of characters] *****************************************************
 ok: [localhost] => {
     "whatever | split(\" \")": [
@@ -226,7 +224,7 @@ ok: [localhost] => {
 
 Il est fréquent de devoir joindre les différents éléments dans une seule chaîne. Nous pouvons alors spécifier un caractère ou une chaîne à insérer entre chaque élément.
 
-```
+```bash
 - name: Joining elements of a list
   debug:
     var: my_simple_list|join(",")
@@ -238,7 +236,7 @@ Il est fréquent de devoir joindre les différents éléments dans une seule cha
 
 ce qui nous donne :
 
-```
+```bash
 TASK [Joining elements of a list] *****************************************************************
 ok: [localhost] => {
     "my_simple_list|join(\",\")": "value_list_1,value_list_2,value_list_3"
@@ -257,7 +255,7 @@ Les filtres `dict2items` et `itemstodict`, un peu plus complexe à implémenter,
 
 Notez qu'il est possible de spécifier le nom de la clé et de la valeur à utiliser dans la transformation.
 
-```
+```bash
 - name: Display a dictionary
   debug:
     var: my_dictionary
@@ -275,7 +273,7 @@ Notez qu'il est possible de spécifier le nom de la clé et de la valeur à util
     var: my_list | items2dict(key_name='element', value_name='value')
 ```
 
-```
+```bash
 TASK [Display a dictionary] *************************************************************************
 ok: [localhost] => {
     "my_dictionary": {
@@ -325,13 +323,13 @@ ok: [localhost] => {
 
 Il est possible de fusioner ou de filtrer des données à partir d'une ou plusieurs listes :
 
-```
+```bash
 - name: Merger of two lists
   debug:
     var: my_simple_list | union(my_simple_list_2)
 ```
 
-```
+```bash
 ok: [localhost] => {
     "my_simple_list | union(my_simple_list_2)": [
         "value_list_1",
@@ -345,13 +343,13 @@ ok: [localhost] => {
 
 Pour garder uniquement l'intersection des deux listes (c'est-à-dire les éléments appartenant à la fois aux deux listes) :
 
-```
+```bash
 - name: Merger of two lists
   debug:
     var: my_simple_list | intersect(my_simple_list_2)
 ```
 
-```
+```bash
 TASK [Merger of two lists] *******************************************************************************
 ok: [localhost] => {
     "my_simple_list | intersect(my_simple_list_2)": [
@@ -362,13 +360,13 @@ ok: [localhost] => {
 
 Ou bien au contraire garder uniquement la différence (c'est-à-dire les éléments d'une liste n'appartenant pas à la deuxième) :
 
-```
+```bash
 - name: Merger of two lists
   debug:
     var: my_simple_list | difference(my_simple_list_2)
 ```
 
-```
+```bash
 TASK [Merger of two lists] *******************************************************************************
 ok: [localhost] => {
     "my_simple_list | difference(my_simple_list_2)": [
@@ -380,7 +378,7 @@ ok: [localhost] => {
 
 Si votre liste contient des valeurs multiples, vous pouvez aussi utiliser le filtre `unique` :
 
-```
+```bash
 - name: Unique value in a list
   debug:
     var: my_simple_list | unique
@@ -390,7 +388,7 @@ Si votre liste contient des valeurs multiples, vous pouvez aussi utiliser le fil
 
 Vous pouvez avoir à importer des données json (à partir d'une API par exemple) ou bien exporter des données au format yaml ou json.
 
-```
+```bash
 - name: Display a variable in yaml
   debug:
     var: my_list | to_nice_yaml(indent=4)
@@ -400,7 +398,7 @@ Vous pouvez avoir à importer des données json (à partir d'une API par exemple
     var: my_list | to_nice_json(indent=4)
 ```
 
-```
+```bash
 TASK [Display a variable in yaml] ********************************************************************
 ok: [localhost] => {
     "my_list | to_nice_yaml(indent=4)": "-   element: element1\n    value: value1\n-   element: element2\n    value: value2\n"
@@ -418,13 +416,13 @@ Vous serez rapidement confronté à des erreurs dans l'exécution de vos playboo
 
 La valeur d'une variable peut être remplacée par une autre si elle n'existe pas avec le filtre `default`:
 
-```
+```bash
 - name: Default value
   debug:
     var: variablethatdoesnotexists | default(whatever)
 ```
 
-```
+```bash
 TASK [Default value] ********************************************************************************
 ok: [localhost] => {
     "variablethatdoesnotexists | default(whatever)": "It's false!"
@@ -433,13 +431,13 @@ ok: [localhost] => {
 
 Notez la présence de l'apostrophe `'` qui doit être protégée, par exemple, si vous utilisez le module `shell`:
 
-```
+```bash
 - name: Default value
   debug:
     var: variablethatdoesnotexists | default(whatever| quote)
 ```
 
-```
+```bash
 TASK [Default value] ********************************************************************************
 ok: [localhost] => {
     "variablethatdoesnotexists | default(whatever|quote)": "'It'\"'\"'s false!'"
@@ -448,7 +446,7 @@ ok: [localhost] => {
 
 Enfin une variable optionnelle dans un module peut être ignorée si elle n'existe pas avec le mot clé `omit` dans le filtre `default`, ce qui vous permettra d'éviter une erreur à l'exécution.
 
-```
+```bash
 - name: Add a new user
   ansible.builtin.user:
     name: "{{ user_name }}"
@@ -461,13 +459,13 @@ Parfois, vous devez utiliser une condition pour assigner une valeur à une varia
 
 Ceci peut être évité en utilisant le filtre `ternary` :
 
-```
+```bash
 - name: Default value
   debug:
     var: (user_name == 'antoine') | ternary('admin', 'normal_user')
 ```
 
-```
+```bash
 TASK [Default value] ********************************************************************************
 ok: [localhost] => {
     "(user_name == 'antoine') | ternary('admin', 'normal_user')": "admin"
@@ -476,8 +474,8 @@ ok: [localhost] => {
 
 ## D'autres filtres
 
-  * `{{ 10000 | random }}` : comme son nom l'indique, produit une valeur aléatoire.
-  * `{{ my_simple_list | first }}` : extrait le premier élément de la liste.
-  * `{{ my_simple_list | length }}` : donne la longueur (d'une liste ou d'une chaîne).
-  * `{{ ip_list | ansible.netcommon.ipv4 }}` : n'affiche que les adresses IPv4. Without dwelling on this, if you need, there are many filters dedicated to the network.
-  * `{{ user_password | password_hash('sha512') }}` : génère un mot de passe haché en sha512.
+* `{{ 10000 | random }}` : comme son nom l'indique, produit une valeur aléatoire.
+* `{{ my_simple_list | first }}` : extrait le premier élément de la liste.
+* `{{ my_simple_list | length }}` : donne la longueur (d'une liste ou d'une chaîne).
+* `{{ ip_list | ansible.netcommon.ipv4 }}` : n'affiche que les adresses IPv4. Without dwelling on this, if you need, there are many filters dedicated to the network.
+* `{{ user_password | password_hash('sha512') }}` : génère un mot de passe haché en sha512.
