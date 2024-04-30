@@ -9,10 +9,10 @@ In questo capitolo verrà illustrato come si avvia il sistema.
 ****
 **Obiettivi** : In questo capitolo, i futuri amministratori Linux apprenderanno:
 
-:heavy_check_mark: Le diverse fasi del processo di avvio;   
-:heavy_check_mark: Come Rocky Linux supporta questo avvio tramite Grub2 e systemd;   
-:heavy_check_mark: Come proteggere Grub2 da un attacco;   
-:heavy_check_mark: Come gestire i servizi;   
+:heavy_check_mark: Le diverse fasi del processo di avvio;  
+:heavy_check_mark: Come Rocky Linux supporta questo avvio tramite Grub2 e systemd;  
+:heavy_check_mark: Come proteggere Grub2 da un attacco;  
+:heavy_check_mark: Come gestire i servizi;  
 :heavy_check_mark: Come accedere ai registri di log con `journald`.
 
 :checkered_flag: **utenti**
@@ -49,7 +49,7 @@ Il file di configurazione di GRUB2 si trova in `/boot/grub2/grub.cfg` ma questo 
 
 Le impostazioni di configurazione del menu GRUB2 si trovano in `/etc/default/grub` e sono usate per generare il file `grub.cfg`.
 
-```
+```bash
 # cat /etc/default/grub
 GRUB_TIMEOUT=5
 GRUB_DEFAULT=saved
@@ -61,7 +61,7 @@ GRUB_DISABLE_RECOVERY="true"
 
 Se vengono apportate modifiche a uno o più di questi parametri, deve essere eseguito il comando `grub2-mkconfig` per rigenerare il file `/boot/grub2/grub.cfg`.
 
-```
+```bash
 [root] # grub2-mkconfig –o /boot/grub2/grub.cfg
 ```
 
@@ -71,7 +71,8 @@ Se vengono apportate modifiche a uno o più di questi parametri, deve essere ese
 ### Il kernel
 
 Il kernel inizia il processo `systemd` con PID 1.
-```
+
+```bash
 root          1      0  0 02:10 ?        00:00:02 /usr/lib/systemd/systemd --switched-root --system --deserialize 23
 ```
 
@@ -104,7 +105,7 @@ Per proteggere con password il bootloader GRUB2:
 
 * Se un utente non è stato ancora configurato, utilizzare il comando `grub2-setpassword` per fornire una password per l'utente root:
 
-```
+```bash
 # grub2-setpassword
 ```
 
@@ -114,14 +115,14 @@ Un file `/boot/grub2/user.cfg` sarà creato se non era già presente. Contiene l
 
     Questo comando supporta solo le configurazioni con un singolo utente root.
 
-```
+```bash
 [root]# cat /boot/grub2/user.cfg
 GRUB2_PASSWORD=grub.pbkdf2.sha512.10000.CC6F56....A21
 ```
 
 * Ricreare il file di configurazione con il comando `grub2-mkconfig`:
 
-```
+```bash
 [root]# grub2-mkconfig -o /boot/grub2/grub.cfg
 Generating grub configuration file ...
 Found linux image: /boot/vmlinuz-3.10.0-327.el7.x86_64
@@ -185,27 +186,27 @@ Le unità di servizio terminano con l'estensione di file `.service` e hanno uno 
 
 | systemctl                                 | Descrizione                                   |
 | ----------------------------------------- | --------------------------------------------- |
-| systemctl start _name_.service            | Avviare un servizio                           |
-| systemctl stop _name_.service             | Arresta un servizio                           |
-| systemctl restart _name_.service          | Riavviare un servizio                         |
-| systemctl reload _name_.service           | Ricaricare una configurazione                 |
-| systemctl status _name_.service           | Controlla se un servizio è in esecuzione      |
-| systemctl try-restart _name_.service      | Riavviare un servizio solo se è in esecuzione |
+| systemctl start *name*.service            | Avviare un servizio                           |
+| systemctl stop *name*.service             | Arresta un servizio                           |
+| systemctl restart *name*.service          | Riavviare un servizio                         |
+| systemctl reload *name*.service           | Ricaricare una configurazione                 |
+| systemctl status *name*.service           | Controlla se un servizio è in esecuzione      |
+| systemctl try-restart *name*.service      | Riavviare un servizio solo se è in esecuzione |
 | systemctl list-units --type service --all | Visualizzare lo stato di tutti i servizi      |
 
 Il comando `systemctl` viene utilizzato anche per `abilitare` o `disabilitare` un servizio di sistema e la visualizzazione dei servizi associati:
 
 | systemctl                                | Descrizione                                                  |
 | ---------------------------------------- | ------------------------------------------------------------ |
-| systemctl enable _name_.service          | Attivare un servizio                                         |
-| systemctl disable _name_.service         | Disabilitare un servizio                                     |
+| systemctl enable *name*.service          | Attivare un servizio                                         |
+| systemctl disable *name*.service         | Disabilitare un servizio                                     |
 | systemctl list-unit-files --type service | Elenca tutti i servizi e i controlli se sono in esecuzione   |
 | systemctl list-dependencies --after      | Elenca i servizi che si avviano prima dell'unità specificata |
 | systemctl list-dependencies --before     | Elenca i servizi che si avviano dopo l'unità specificata     |
 
 Esempi:
 
-```
+```bash
 systemctl stop nfs-server.service
 # or
 systemctl stop nfs-server
@@ -213,24 +214,24 @@ systemctl stop nfs-server
 
 Per elencare tutte le unità attualmente caricate:
 
-```
+```bash
 systemctl list-units --type service
 ```
 
 Per elencare tutte le unità e per verificare se sono attivate:
 
-```
+```bash
 systemctl list-unit-files --type service
 ```
 
-```
+```bash
 systemctl enable httpd.service
 systemctl disable bluetooth.service
 ```
 
 ### Esempio di un file .service per il servizio postfix
 
-```
+```bash
 postfix.service Unit File
 What follows is the content of the /usr/lib/systemd/system/postfix.service unit file as currently provided by the postfix package:
 
@@ -275,20 +276,20 @@ Allo stesso modo, l'unità `multi-user.target` inizializza altri servizi di sist
 
 Per determinare quale obiettivo viene utilizzato per impostazione predefinita:
 
-```
+```bash
 systemctl get-default
 ```
 
 Questo comando cerca l'obiettivo del collegamento simbolico situato in `/etc/systemd/system/default.target` e visualizza il risultato.
 
-```
+```bash
 $ systemctl get-default
 graphical.target
 ```
 
 Il comando `systemctl` può anche fornire un elenco di obiettivi disponibili:
 
-```
+```bash
 systemctl list-units --type target
 UNIT                   LOAD   ACTIVE SUB    DESCRIPTION
 basic.target           loaded active active Basic System
@@ -314,13 +315,13 @@ timers.target          loaded active active Timers
 
 Per configurare il sistema all'utilizzo di un diverso target predefinito:
 
-```
+```bash
 systemctl set-default name.target
 ```
 
 Esempio:
 
-```
+```bash
 # systemctl set-default multi-user.target
 rm '/etc/systemd/system/default.target'
 ln -s '/usr/lib/systemd/system/multi-user.target' '/etc/systemd/system/default.target'
@@ -328,7 +329,7 @@ ln -s '/usr/lib/systemd/system/multi-user.target' '/etc/systemd/system/default.t
 
 Per passare a un'unità di destinazione diversa nella sessione corrente:
 
-```
+```bash
 systemctl isolate name.target
 ```
 
@@ -340,7 +341,7 @@ Su Rocky 8, la `modalità di ripristino` è equivalente al vecchio `single user 
 
 Per modificare la destinazione corrente immettere `rescue mode` nella sessione corrente:
 
-```
+```bash
 systemctl rescue
 ```
 
@@ -348,7 +349,7 @@ systemctl rescue
 
 Per modificare il target corrente e immettere la modalità di emergenza nella sessione corrente:
 
-```
+```bash
 systemctl emergency
 ```
 
@@ -377,7 +378,7 @@ Il formato del file di registro nativo, che è un file binario strutturato e ind
 
 Il comando `journalctl` visualizza i file di registro.
 
-```
+```bash
 journalctl
 ```
 
@@ -392,7 +393,7 @@ Il comando elenca tutti i file di registro generati sul sistema. La struttura di
 
 Con il display continuo, i messaggi di registro vengono visualizzati in tempo reale.
 
-```
+```bash
 journalctl -f
 ```
 
@@ -402,7 +403,7 @@ Questo comando restituisce un elenco delle dieci linee di registro più recenti.
 
 È possibile utilizzare diversi metodi di filtraggio per estrarre informazioni che si adattano a diverse esigenze. I messaggi di registro vengono spesso utilizzati per monitorare il comportamento errato del sistema. Per visualizzare le voci con una priorità selezionata o superiore:
 
-```
+```bash
 journalctl -p priority
 ```
 
