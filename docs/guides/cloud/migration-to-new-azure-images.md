@@ -11,9 +11,11 @@ tags:
 
 !!! info "Old Publishing Account Images Deprecated April 2024"
 
-    The images contained in the former publishing account (`erockyenterprisesoftwarefoundationinc1653071250513`) were marked for deprecation on April 23, 2024 with a 180-day (6 month) window until the images can no longer be used. 
+    A Microsoft publishing account is an Azure marketplace account that allows developers to publish their offers to Microsoft AppSource or Azure Marketplace. 
+    The RESF provides Rocky Linux Virtual Machine images under 2 separate publishing accounts in Azure; a legacy account identfied by `erockyenterprisesoftwarefoundationinc1653071250513` and a newer official account called `resf`.
+    The images published under the legacy publishing account (`erockyenterprisesoftwarefoundationinc1653071250513`) were marked for deprecation on April 23, 2024 with a 180-day (6 month) window until the images can no longer be used. 
 
-    To continue using Rocky Linux on Azure, you must either migrate to the new publishing account (`resf`) or to the new Community Galleries images by following the guide below.
+    To continue using Rocky Linux on Azure, you must either migrate to the new publishing account (`resf`) or to the new Community Galleries images by following this guide.
 
 # Migration Guide: Transitioning to new Rocky Linux images on Azure
 
