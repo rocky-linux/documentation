@@ -15,7 +15,7 @@ tags:
 
 As specified on the NvChad site you need to ensure the system meets the following requirements:
 
-* [Neovim 0.9.5](https://github.com/neovim/neovim/releases/tag/v0.9.4).
+* [Neovim 0.9.5](https://github.com/neovim/neovim/releases/tag/v0.9.5).
 * [Nerd Font](https://www.nerdfonts.com/) Set it in your terminal emulator.
     * Make sure the nerd font you set doesn't end with **Mono**
     * **Example:** Iosevka Nerd Font and not ~~Iosevka Nerd Font Mono~~
