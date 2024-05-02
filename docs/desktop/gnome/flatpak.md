@@ -1,7 +1,7 @@
 ---
 title: Flatpak
 author: Steven Spencer
-contributors: 
+contributors: Ganna Zhyrnova
 ---
 
 ## Introduction
@@ -10,13 +10,13 @@ From the project's webpage:
 
 > Flatpak is a framework for distributing desktop applications across various Linux distributions. It has been created by developers who have a long history of working on the Linux desktop, and is run as an independent open source project.
 
-Flatpak comes installed by default when installing Rocky Linux with software selections that include GNOME ("Server with GUI" or "Workstation"). Manual installation is also possible. (see included procedure) It is an excellent way to populate your desktop environment with tools that you want to use.
+Flatpak comes installed by default when installing Rocky Linux with software selections that include GNOME ("Server with GUI" or "Workstation"). Manual installation is also possible. (see included procedure) It is an excellent way to populate your desktop environment with tools you want to use.
 
 ## Manual installation
 
 !!! note
 
-    If you are already running the full GNOME Desktop environment described in the introduction, you can skip this step.
+    You can skip this step if you are already running the full GNOME Desktop environment described in the introduction.
 
 Install Flatpak with:
 
@@ -123,7 +123,7 @@ Application Options:
   --ostree-verbose        Show OSTree debug information
 ```
 
-Memorizing the list of commands is not necessary, but knowing how to get to the list, using the option `--help`, is a good idea.
+Memorizing the list of commands is unnecessary, but knowing how to get to the list and using the option `--help` is a good idea.
 
 !!! warning
 
@@ -138,7 +138,7 @@ Memorizing the list of commands is not necessary, but knowing how to get to the 
     ```text
     F: Failed to parse /var/lib/flatpak/appstream/flathub/x86_64/active/appstream.xml.gz file: Error on line 4065 char 29: <p> already set '
       Organic Maps is a free Android & iOS offline maps app for travelers,
-      tourists, hikers, drivers and cyclists.
+      tourists, hikers, drivers, and cyclists.
       It uses crowd-sourced OpenStreetMap data and is developed with love by
       ' and tried to replace with ' ('
     No matches found
@@ -208,7 +208,7 @@ As an example, the installation process for OBS Studio is:
     Installation complete.
     ```
 
-8. From the "Activities" menu, you will now be able to search for and run OBS Studio.
+8. From the "Activities" menu, you can now search for and run OBS Studio.
 
 ## Listing packages
 
