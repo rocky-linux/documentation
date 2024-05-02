@@ -10,6 +10,20 @@ tags:
 
 # Creating a full LXD server
 
+??? warning "LXD on Rocky Linux current status!"
+
+    Nearly a year ago now, the following announcement came out on the lxc-users mailing list:
+
+    > Canonical, the creator and main contributor of the LXD project has decided that after over 8 years as part of the Linux Containers community, the project would now be better served directly under Canonical’s own set of projects.
+
+    One of the deciding factors were the resignations of some lead developers for LXD, who then went on to fork LXD into Incus, announcing the fork in August 2023. A release version (0.1) came out in October 2023, and the developers have since rapidly built on that version with step releases through 0.7 (on March 2024). On the heals of 0.7, came the long term support version, 6.0 LTS on April 4, 2024.
+
+    Throughout the process, it was thought that Cannonical would continue to maintain links to the container images provided by Linux Containers, but because of a [licensing change](https://stgraber.org/2023/12/12/lxd-now-re-licensed-and-under-a-cla/) it became impossible for Linux Containers to continue to offer the container images within LXD. What this means is that LXD will have container images, but they will not be the container images you might currently expect. Linux Containers continues to host and support their images if you are using Incus. 
+
+    This document uses LXD, rather than Incus, BUT it is our intention to rewrite the procedure for Incus. We were hoping for an RPM version of Incus to be released in the EPEL, and while that is in the works, it is not ready. This means that in order to rewrite this procedure for Incus, we need to focus our interests on the source package installation and conversion routine. The reason for this long warning, is that we do not want you to take the time to install using this procedure and then discover that the container images (Rocky Linux for instance) aren't available within LXD. 
+
+    Keep an eye out for changes here!
+
 ## Introduction
 
 LXD is best described on the [official website](https://documentation.ubuntu.com/lxd/en/latest/), but think of it as a container system that provides the benefits of virtual servers in a container.
