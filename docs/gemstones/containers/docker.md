@@ -1,7 +1,9 @@
 ---
 title: Docker - Install Engine
 author: Wale Soyinka
-contributors: Neel Chauhan, nishaaaaaant, sastorsl, Ganna Zhyrnova
+contributors: Neel Chauhan, 
+Srinivas Nishant Viswanadha, 
+Stein Arne Storslett, Ganna Zhyrnova
 date: 2021-08-04
 tags:
   - docker
