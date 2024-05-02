@@ -17,7 +17,8 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 :checkered_flag: **ansible**, **jinja**, **filters**
 
-**Знання**: :star: :star: :star: **Складність**: :star: :star: :star: :star:
+**Знання**: :star: :star: :star:  
+**Складність**: :star: :star: :star: :star:
 
 **Час читання**: 20 хвилин
 
