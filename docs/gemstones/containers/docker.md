@@ -1,7 +1,7 @@
 ---
 title: Docker - Install Engine
-author: wale soyinka
-contributors: neelchauhan, nishaaaaaant, sastorsl
+author: Wale Soyinka
+contributors: Neel Chauhan, nishaaaaaant, sastorsl, Ganna Zhyrnova
 date: 2021-08-04
 tags:
   - docker
@@ -9,7 +9,7 @@ tags:
 
 # Introduction
 
-The Docker Engine can be used running native Docker style container workloads on Rocky Linux servers. This is sometimes preferred to running the full Docker Desktop environment.
+The Docker Engine can run native Docker-style container workloads on Rocky Linux servers. This is sometimes preferred when running the full Docker Desktop environment.
 
 ## Add the Docker repository
 
@@ -39,7 +39,7 @@ sudo systemctl --now enable docker
 
 Add a non-root user to the `docker` group to allow the user to manage `docker` without `sudo`.
 
-This is an optional step, but can be a convenience if you are the main user on the system, or if you want to allow multiple users to manage docker, but do not want to grant them `sudo` permissions.
+This is an optional step, but it can be convenient if you are the system's main user or if you want to allow multiple users to manage docker but do not want to grant them `sudo` permissions.
 
 Type:
 
@@ -51,7 +51,7 @@ sudo usermod -a -G docker $(whoami)
 sudo usermod -a -G docker custom-user
 ```
 
-It is required to log out and in again to be assigned the new group. Check with the `id` command to verify that the group has been added.
+To be assigned the new group, you must log out and in again. Check with the `id` command to verify that the group has been added.
 
 ### Notes
 
