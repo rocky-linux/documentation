@@ -1,7 +1,7 @@
 ---
 title: Flatpak
 author: Steven Spencer
-contributors: null
+contributors: Ganna Zhyrnova
 ---
 
 ## Вступ
