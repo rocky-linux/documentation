@@ -33,7 +33,7 @@ update: 06 грудня 2021 року
 
 Ці факти можна легко зберегти в базі даних `redis`:
 
-```
+```bash
 sudo yum install redis
 sudo systemctl start redis
 sudo systemctl enable redis
@@ -42,7 +42,7 @@ sudo pip3 install redis
 
 Не забудьте змінити конфігурацію ansible:
 
-```
+```bash
 fact_caching = redis
 fact_caching_timeout = 86400
 fact_caching_connection = localhost:6379:0
@@ -50,7 +50,7 @@ fact_caching_connection = localhost:6379:0
 
 Щоб перевірити правильність роботи, достатньо запитати сервер `redis`:
 
-```
+```bash
 redis-cli
 127.0.0.1:6379> keys *
 127.0.0.1:6379> get ansible_facts_SERVERNAME
@@ -68,26 +68,26 @@ Ansible зможе розшифрувати цей файл під час вик
 
 Відредагуйте файл `/etc/ansible/ansible.cfg`:
 
-```
+```bash
 #vault_password_file = /path/to/vault_password_file
 vault_password_file = /etc/ansible/vault_pass
 ```
 
 Збережіть пароль у цьому файлі `/etc/ansible/vault_pass` і призначте необхідні обмежувальні права:
 
-```
+```bash
 mysecretpassword
 ```
 
 Потім ви можете зашифрувати файли за допомогою команди:
 
-```
+```bash
 ansible-vault encrypt myfile.yml
 ```
 
 Файл, зашифрований `ansible-vault`, можна легко розпізнати за його заголовком:
 
-```
+```text
 $ANSIBLE_VAULT;1.1;AES256
 35376532343663353330613133663834626136316234323964333735363333396136613266383966
 6664322261633261356566383438393738386165333966660a343032663233343762633936313630
@@ -98,7 +98,7 @@ $ANSIBLE_VAULT;1.1;AES256
 
 Після того, як файл зашифровано, його все ще можна редагувати за допомогою команди:
 
-```
+```bash
 ansible-vault edit myfile.yml
 ```
 
@@ -106,7 +106,7 @@ ansible-vault edit myfile.yml
 
 Наприклад, щоб отримати пароль, який зберігатиметься в сховищі rundeck:
 
-```
+```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import urllib.request
@@ -141,13 +141,13 @@ if __name__ == '__main__':
 
 * Через менеджер пакетів:
 
-```
+```bash
 sudo dnf install python38-devel krb5-devel krb5-libs krb5-workstation
 ```
 
 і налаштуйте файл `/etc/krb5.conf`, щоб указати правильні `realms`:
 
-```
+```bash
 [realms]
 ROCKYLINUX.ORG = {
     kdc = dc1.rockylinux.org
@@ -159,7 +159,7 @@ ROCKYLINUX.ORG = {
 
 * Через менеджер пакетів python:
 
-```
+```bash
 pip3 install pywinrm
 pip3 install pywinrm[credssp]
 pip3 install kerberos requests-kerberos
@@ -169,7 +169,7 @@ pip3 install kerberos requests-kerberos
 
 Для мережевих модулів зазвичай потрібен модуль python `netaddr`:
 
-```
+```bash
 sudo pip3 install netaddr
 ```
 
@@ -177,24 +177,24 @@ sudo pip3 install netaddr
 
 Інструмент `ansible-cmdb` був розроблений для створення CMDB з ansible.
 
-```
+```bash
 pip3 install ansible-cmdb
 ```
 
 Факти повинні бути експортовані ansible за допомогою наступної команди:
 
-```
+```bash
 ansible --become --become-user=root -o -m setup --tree /var/www/ansible/cmdb/out/
 ```
 
 Потім ви можете створити глобальний файл `json`:
 
-```
+```bash
 ansible-cmdb -t json /var/www/ansible/cmdb/out/linux > /var/www/ansible/cmdb/cmdb-linux.json
 ```
 
 Якщо ви віддаєте перевагу веб-інтерфейсу:
 
-```
+```bash
 ansible-cmdb -t html_fancy_split /var/www/ansible/cmdb/out/
 ```
