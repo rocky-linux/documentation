@@ -1,7 +1,7 @@
 ---
 title: Migration to New Azure Images
 author: Neil Hanlon
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
     - cloud
     - azure
@@ -12,19 +12,19 @@ tags:
 !!! info "Old Publishing Account Images Deprecated April 2024"
 
     A Microsoft publishing account is an Azure marketplace account that allows developers to publish their offers to Microsoft AppSource or Azure Marketplace. 
-    The RESF provides Rocky Linux Virtual Machine images under 2 separate publishing accounts in Azure; a legacy account identfied by `erockyenterprisesoftwarefoundationinc1653071250513` and a newer official account called `resf`.
-    The images published under the legacy publishing account (`erockyenterprisesoftwarefoundationinc1653071250513`) were marked for deprecation on April 23, 2024 with a 180-day (6 month) window until the images can no longer be used. 
+    The RESF provides Rocky Linux Virtual Machine images under 2 separate publishing accounts in Azure; a legacy account identified as `erockyenterprisesoftwarefoundationinc1653071250513` and a newer official account called `resf`.
+    The images published under the legacy publishing account (`erockyenterprisesoftwarefoundationinc1653071250513`) were marked for deprecation on April 23, 2024, with a 180-day (6 months) window until they can no longer be used. 
 
-    To continue using Rocky Linux on Azure, you must either migrate to the new publishing account (`resf`) or to the new Community Galleries images by following this guide.
+    To continue using Rocky Linux on Azure, you must follow this guide to migrate to the new publishing account (`resf`) or to the new Community Galleries images.
 
 # Migration Guide: Transitioning to new Rocky Linux images on Azure
 
-This guide provides detailed steps on how to migrate your Azure virtual machines (VMs) from the deprecated Rocky Linux images to the new images under the `resf` publisher account, or to use the Community Galleries. Following this guide will ensure a smooth transition with minimal disruption.
+This guide provides detailed steps for migrating your Azure virtual machines (VMs) from the deprecated Rocky Linux images to the new images under the `resf` publisher account or using the Community Galleries. Following this guide will ensure a smooth transition with minimal disruption.
 
 ## Before you start
 
 - Ensure you have a current backup of your VM. While the migration process should not affect your data, having a backup is a best practice for any system changes.
-- Verify that you have the necessary permissions to create new VMs and manage existing ones in your Azure account.
+- Verify you have the necessary permissions to create new VMs and manage existing ones in your Azure account.
 
 ## Step 1: Locate your existing VMs
 
@@ -34,7 +34,7 @@ Identify the VMs deployed with the old Rocky Linux images. You can do this by fi
 erockyenterprisesoftwarefoundationinc1653071250513`
 ```
 
-## Step 2: Prepare new VM
+## Step 2: Prepare a new VM
 
 1. **Navigate** to the Azure Marketplace.
 2. **Search** for the new Rocky Linux images under the `resf` publisher account or access the Community Galleries.
@@ -46,12 +46,12 @@ erockyenterprisesoftwarefoundationinc1653071250513`
 
 ## Step 3: Transfer data
 
-### Option A: Using Azure managed disks (recommended for simplicity)
+### Option A: Using Azure-managed disks (recommended for simplicity)
 
 1. **Stop** your existing VM.
 2. **Detach** the operating system disk from the existing VM.
 3. **Attach** the detached disk to the new VM as a data disk.
-4. **Boot** your new VM. You can mount the old OS disk and copy data to the new disk if required.
+4. **Boot** your new VM. If required, you can mount the old OS disk and copy data to the new disk.
 
 ### Option B: Using Data Transfer Tools (For complex environments or specific needs)
 
@@ -70,7 +70,7 @@ rsync -avzh /path/to/old_VM_data/ user@new_VM_IP:/path/to/new_VM_destination/
 
 ## Step 5: Update DNS records (if applicable)
 
-If accessing your VM through a specific domain, you will need to update your DNS records to point to the IP address of the new VM.
+If you access your VM through a specific domain, you must update your DNS records to point to the new VM's IP address.
 
 ## Step 6: Decommission old VM
 
@@ -83,4 +83,4 @@ Once you have confirmed that the new VM is running correctly and moved all neces
 
 ## Support
 
-If you encounter any issues during your migration or have questions, support is available. Visit [Rocky Linux support channels](https://wiki.rockylinux.org/rocky/support/) for assistance.
+Support is available if you encounter any issues during your migration or have questions. Visit [Rocky Linux support channels](https://wiki.rockylinux.org/rocky/support/) for assistance.
