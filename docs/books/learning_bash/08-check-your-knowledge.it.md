@@ -41,7 +41,7 @@ tags:
 
 :heavy_check_mark: La sintassi della struttura condizionale sottostante vi sembra corretta? Spiegare perché.
 
-```
+```bash
 if command
     command if $?=0
 else
@@ -60,7 +60,7 @@ fi
 
 :heavy_check_mark: La sintassi della struttura alternativa condizionale qui sotto vi sembra corretta? Spiegare perché.
 
-```
+```bash
 case $variable in
   value1)
     commands if $variable = value1
