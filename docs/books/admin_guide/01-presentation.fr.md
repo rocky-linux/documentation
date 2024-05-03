@@ -20,9 +20,8 @@ Dans ce chapitre, vous allez en apprendre plus à propos des distributions GNU/L
 
 :checkered_flag: **généralités**, **linux**, **distributions**
 
-**Connaissances**: :star:
-
-**Complexité**: :star:
+**Connaissances** : :star:  
+**Complexité** : :star:
 
 **Temps de lecture** : 11 minutes
 
@@ -64,11 +63,11 @@ Dans le cadre de la gestion des ressources, le système d'exploitation doit :
 
 * **1969** : Après le retrait de Bell (1969) puis de General Electric du projet, deux développeurs (Ken Thompson et Dennis Ritchie), rejoints plus tard par Brian Kernighan, jugeant MULTICS trop complexe, ont lancé le développement de UNIX (UNiplexed Information and Computing Service). Développé à l'origine en assembleur, les concepteurs d'UNIX développent le langage B puis le langage C (1971) et réécrivent complètement UNIX. Ayant été développé en 1970, la date de référence (epoch) des systèmes UNIX/Linux est toujours fixée au 1er janvier 1970.
 
-Le langage C est encore l'un des langages de programmation les plus populaires aujourd'hui. Un langage de bas niveau, proche du matériel, il permet d'adapter le système d'exploitation à toute architecture de machine ayant un compilateur C.
+C reste encore l'un des langages de programmation les plus populaires aujourd'hui. Un langage de bas niveau, proche du matériel, il permet d'adapter le système d'exploitation à toute architecture de machine ayant un compilateur C.
 
-UNIX est un système d'exploitation ouvert et évolutif qui a joué un rôle majeur dans l'histoire de l'informatique. Il a été la base de beaucoup d'autres systèmes : Linux, BSD, MacOS, etc.
+UNIX est un système d'exploitation ouvert et évolutif qui a joué un rôle majeur dans l'histoire de l'informatique. Il a été la base de beaucoup d'autres systèmes comme GNU/Linux, BSD, macOS, etc.
 
-UNIX est toujours d'actualité aujourd'hui (HP-UX, AIX, Solaris, etc.).
+UNIX est toujours d'actualité aujourd'hui (HP-UX, AIX, Solaris, etc.)
 
 #### Projet GNU
 
@@ -164,7 +163,7 @@ Linux est écrit dans un langage de haut niveau qui peut être adapté à diffé
 
 #### Ouvert
 
-Linux est basé sur et utilise des standards reconnus tels que [POSIX](http://fr.wikipedia.org/wiki/POSIX), [TCP/IP](https://fr.wikipedia.org/wiki/Internet_protocol_suite), [NFS](https://fr.wikipedia.org/wiki/Network_File_System), et [Samba](https://en.wikipedia.org/wiki/Samba_(software)), qui lui permettent de partager des données et des services avec d'autres systèmes d'application.
+Linux est basé sur et utilise des standards reconnus tels que [POSIX](http://fr.wikipedia.org/wiki/POSIX), [TCP/IP](https://fr.wikipedia.org/wiki/Internet_protocol_suite), [NFS](https://fr.wikipedia.org/wiki/Network_File_System), et [Samba](https://fr.wikipedia.org/wiki/Samba_(software)), qui lui permettent de partager des données et des services avec d'autres systèmes d'application.
 
 ### La philosophie UNIX/Linux
 
@@ -172,16 +171,16 @@ Linux est basé sur et utilise des standards reconnus tels que [POSIX](http://fr
 * Portabilité.
 * Ne faire qu’une seule chose à la fois et la faire bien.
 * KISS : Keep It Simple and Stupid.
-* “UNIX est simple, il faut juste être un génie pour comprendre sa simplicité” (**Dennis Ritchie**)
+* "UNIX is a simple operating system, but you have to be a genius to understand the simplicity." (**Dennis Ritchie**)
 * “UNIX est convivial. Cependant UNIX ne précise pas vraiment avec qui.” (**Steven King**)
 
 ## Les distributions GNU/Linux
 
-Une distribution Linux est un **ensemble cohérent de logiciels** assemblés autour du noyau Linux et prêt à être installé ainsi que le nécessaire à la gestion de ces logiciels (installation, suppression, configuration,...). Il existe des **distributions associatives ou communautaires** (Debian, CentOS) ou bien **commerciales** (RedHat, Ubuntu).
+Une distribution GNU/Linux est un **ensemble cohérent de logiciels** assemblés autour du noyau Linux et prêt à être installé ainsi que le nécessaire à la gestion de ces logiciels (installation, suppression, configuration,...). Il existe des **distributions associatives** ou **communautaires** (Debian, Rocky Linux) ou bien **commerciales** (Red Hat, Ubuntu).
 
 Chaque distribution offre un ou plusieurs **environnements de bureau** et fournit un ensemble de logiciels préinstallés et une bibliothèque de logiciels supplémentaires. Les options de configuration (options du noyau ou des services par exemple) sont spécifiques à chaque distribution.
 
-Ce principe permet aux distributions d'être orientées vers **débutants** (Ubuntu, Linux Mint...) ou entièrement personnalisable pour **les utilisateurs expérimentés** (Gentoo, Arch); les distributions peuvent également être plus adaptées aux **serveurs** (Debian, Red Hat) ou aux **postes de travail** (Fedora).
+Ce principe permet aux distributions d'être orientées vers **débutants** (Ubuntu, Linux Mint...) ou entièrement personnalisable pour **les utilisateurs expérimentés** (Gentoo, Arch) ; les distributions peuvent également être plus adaptées aux **serveurs** (Debian, Red Hat) ou aux **postes de travail** (Fedora).
 
 ### Les environnements de bureau
 
@@ -193,23 +192,23 @@ Alors pourquoi y a-t-il si peu d'enthousiasme pour Linux ? Peut-être est-ce par
 
 L'environnement de bureau **GNOME 3** n'utilise plus le concept de bureau mais celui de GNOME Shell (à ne pas confondre avec le shell en ligne de commande). Il sert à la fois de bureau, de tableau de bord, de zone de notification et de sélecteur de fenêtre. L'environnement de bureau GNOME est basé sur la bibliothèque de composants **GTK+**.
 
-![Le bureau KDE](images/01-presentation-kde.png)
+![KDE Desktop](images/01-presentation-kde.png)
 
-L’environnement de bureau **KDE** se base sur la bibliothèque de composants **Qt**. Il est traditionnellement recommandé pour les utilisateurs familiers avec un environnement Windows.
+L’environnement de bureau **KDE** est basé sur la bibliothèque de composants **Qt**. Il est traditionnellement recommandé pour les utilisateurs familiers avec un environnement Windows.
 
 ![Tux - La mascotte de Linux](images/tux.png)
 
 ### Libre / Open source
 
-Un utilisateur d'un système d’exploitation Microsoft ou Mac doit s’affranchir d’une licence d’utilisation du système d’exploitation. Cette licence a un coût, même s’il est généralement transparent (le prix de la licence étant inclus dans le prix de l’ordinateur).
+L'utilisateur d'un système d’exploitation Microsoft ou Mac doit s’affranchir d’une licence d’utilisation du système d’exploitation. Cette licence a un coût, même s’il est généralement transparent (le prix de la licence étant inclus dans le prix de l’ordinateur).
 
-Dans le monde **GNU/Linux**, le mouvement du Libre permet de fournir des distributions majoritairement libres.
+Dans le monde **GNU/Linux**, le mouvement du Logiciel Libre permet de fournir des distributions majoritairement libres.
 
 **Libre** ne veut pas dire gratuit !
 
 **Open Source** : les codes sources sont disponibles, il est donc possible de les consulter et de les modifier sous certaines conditions.
 
-Un logiciel libre est nécessairement open-source, mais le contraire n'est pas vrai puisque le logiciel open-source est distinct de la liberté offerte par la licence GPL.
+Un logiciel libre est nécessairement open-source, mais le contraire n'est pas vrai car la liberté liée au logiciel open-source est distincte de la liberté offerte par la licence GPL.
 
 #### GPL (General Public License)
 
@@ -226,20 +225,20 @@ D'autre part, même les produits sous licence GPL peuvent avoir un coût. Ce n'e
 
 ## Les domaines d’utilisation
 
-Une distribution Linux excelle pour :
+Une distribution GNU/Linux excelle pour :
 
 * **Serveurs** : HTTP, messagerie, groupware, partage de fichiers, etc.
 * **Sécurité** : Passerelle, pare-feu, routeur, proxy, etc.
 * **Ordinateur centraux** : Banques, assurances, industrie, etc.
 * **Systèmes embarqués**: Routeurs, boîtes Internet, SmartTVs, etc.
 
-Linux est un choix adapté pour l’hébergement de bases de données ou de sites Web ou comme serveur de messagerie, DNS ou bien pare-feu. Bref Linux peut à peu près tout faire, ce qui explique la quantité de distributions spécifiques.
+Linux est un choix adapté pour l’hébergement de bases de données ou de sites Web ou comme serveur de messagerie, DNS ou bien pare-feu. Bref, Linux peut à peu près tout faire, ce qui explique la quantité de distributions spécifiques.
 
 ## Le Shell
 
 ### Généralités
 
-Le **shell**, _interface de commandes_ en français, permet aux utilisateurs d’envoyer des commandes au système d’exploitation. Il est moins visible aujourd’hui, depuis la mise en place des interfaces graphiques, mais reste un moyen privilégié sur les systèmes Linux qui ne possèdent pas tous des interfaces graphiques et dont les services ne possèdent pas toujours une interface de configuration.
+Le **shell**, _interface de commandes_ en français, permet aux utilisateurs d’envoyer des commandes au système d’exploitation. Il est moins visible aujourd’hui, depuis la mise en place des interfaces graphiques, mais reste un moyen privilégié sur les systèmes GNU/Linux qui ne possèdent pas tous des interfaces graphiques et dont les services ne possèdent pas toujours une interface de configuration.
 
 Il offre un véritable langage de programmation comprenant les structures classiques (boucles, alternatives) et les constituants courants (variables, passage de paramètres, sous-programmes). Il permet donc la création de scripts pour automatiser certaines actions (sauvegardes, création d’utilisateurs, surveillance du système,…).
 

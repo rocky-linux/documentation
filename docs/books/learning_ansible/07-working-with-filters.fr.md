@@ -17,7 +17,8 @@ Dans ce chapitre vous allez apprendre comment transformer les données grâce au
 
 :checkered_flag: **ansible**, **jinja**, **filtres**
 
-**Compétences** : :star: :star: :star: **Difficulté** : :star: :star: :star: :star:
+**Connaissances** : :star: :star: :star:  
+**Complexité** : :star: :star: :star: :star:
 
 **Temps de lecture : **23 minutes
 

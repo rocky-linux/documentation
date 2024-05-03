@@ -6,7 +6,8 @@ contributors: Steven Spencer, Ryan Johnson, Pedro Garcia, Ganna Zhyrnova
 
 # Автоматичне створення шаблону за допомогою Packer і розгортання за допомогою Ansible у середовищі VMware vSphere
 
-**Знання**: :star: :star: :star: **Складність**: :star: :star: :star:
+**Знання**: :star: :star: :star:  
+**Складність**: :star: :star: :star:
 
 **Час читання**: 30 хвилин
 

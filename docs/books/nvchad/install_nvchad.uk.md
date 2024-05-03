@@ -15,7 +15,7 @@ tags:
 
 Як зазначено на сайті NvChad, вам потрібно переконатися, що система відповідає таким вимогам:
 
-* [Neovim 0.9.5](https://github.com/neovim/neovim/releases/tag/v0.9.4).
+* [Neovim 0.9.5](https://github.com/neovim/neovim/releases/tag/v0.9.5).
 * [Шрифт Nerd](https://www.nerdfonts.com/) Установіть його в емуляторі терміналу.
     * Переконайтеся, що шрифт, який ви налаштували, не закінчується на **Mono**
     * **Приклад:** шрифт Iosevka Nerd, а не ~~Шрифт Iosevka Nerd Mono~~

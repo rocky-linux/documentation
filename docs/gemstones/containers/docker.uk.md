@@ -1,7 +1,7 @@
 ---
 title: Docker - Інсталяція
-author: wale soyinka
-contributors:
+author: Wale Soyinka
+contributors: Neel Chauhan, Srinivas Nishant Viswanadha, Stein Arne Storslett, Ganna Zhyrnova
 date: 2021-08-04
 tags:
   - docker
@@ -34,6 +34,24 @@ sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 ```bash
 sudo systemctl --now enable docker
 ```
+
+## Необов’язково можна дозволити не-root користувачеві керувати докером
+
+Додайте користувача без root до групи `docker`, щоб користувач міг керувати `docker` без `sudo`.
+
+Це необов’язковий крок, але він може бути зручним, якщо ви є основним користувачем системи або якщо ви хочете дозволити кільком користувачам керувати докером, але не хочете надавати їм дозволи `sudo`.
+
+Впишіть:
+
+```bash
+# Add the current user
+sudo usermod -a -G docker $(whoami)
+
+# Add a specific user
+sudo usermod -a -G docker custom-user
+```
+
+Щоб призначити нову групу, потрібно вийти та знову увійти. Перевірте за допомогою команди `id`, щоб переконатися, що групу додано.
 
 ### Примітки
 
