@@ -9,24 +9,23 @@ tags:
 
 Спочатку використовуйте nmcli для запиту та відображення поточного значення властивості autoconnect для всіх мережевих підключень у системі Rocky Linux. Впишіть:
 
-```
+```bash
 nmcli -f name,autoconnect connection 
 ```
 
 Щоб змінити значення властивості для мережевого з’єднання, використовуйте підкоманду `modify` із `nmcli connection`. Наприклад, щоб змінити значення властивості autoconnect з `no` на `yes` для профілю підключення `ens3`, введіть:
 
-```
+```bash
 sudo nmcli con mod ens3 connection.autoconnect yes
 ```
 
 ## Пояснення команд
 
-```
+```bash
 connection (con) : об’єкт підключення NetworkManager. 
 modify (mod) : змінити одну або більше властивостей даного профілю з’єднання.
 connection.autoconnect : налаштування та властивість (<setting>.<property>)
 -f, --fields : вказати поля для виведення.
-
 ```
 
 ## Примітки

@@ -35,12 +35,12 @@ Once you have VirtualBox&reg; installed, the next step is to start it. With no i
 
  First, you need to tell VirtualBox&reg; what your OS is going to be:
 
- * Click "New" (saw tooth icon).
- * Type a name. Example: "Rocky Linux 8.5".
- * Leave the machine folder as automatically filled.
- * Change the type to "Linux".
- * And choose "Red Hat (64-bit)".
- * Click "Next".
+* Click "New" (saw tooth icon).
+* Type a name. Example: "Rocky Linux 8.5".
+* Leave the machine folder as automatically filled.
+* Change the type to "Linux".
+* And choose "Red Hat (64-bit)".
+* Click "Next".
 
  ![Name And Operating System](../images/vbox-02.png)
 
@@ -52,27 +52,27 @@ You need to set up the hard disk size. By default, VirtualBox&reg; will automati
 
 ![Hard Disk](../images/vbox-03.png)
 
-* Click "Create"
+* Click ++"Create"++
 
 You will get a dialog box for creating various virtual hard disk types. Several hard disk types are here. See the Oracle VirtualBox documentation for [more information](https://docs.oracle.com/en/virtualization/virtualbox/6.0/user/vdidetails.html) about selecting virtual hard disk types. For this document, keep the default (VDI):
 
 ![Hard Disk File Type](../images/vbox-04.png)
 
-* Click "Next"
+* Click ++"Next"++
 
 The next screen deals with the storage on the physical hard disk. Two options exist. "Fixed Size" will be slower to create, faster to use, but less flexible in terms of space (if you need more space, you cannot grow past what you created).
 
-The default option, "Dynamically Allocated", will be faster to create and slower to use, but will allow you to grow if your disk space needs to change. 
+The default option, "Dynamically Allocated", will be faster to create and slower to use, but will allow you to grow if your disk space needs to change.
 
 ![Storage On Physical Hard Disk](../images/vbox-05.png)
 
-* Click "Next"
+* Click ++"Next"++
 
 VirtualBox&reg; now gives you the option to specify where you want the virtual hard disk file located. An option to expand the default 8 GB virtual hard disk space is also here. This option is good, because 8 GB of hard disk space is not enough to install any GUI install options, much less use. Set this to 20 GB (or more) depending on what you want to use the virtual machine for, and how much disk space you have available:
 
 ![File Location And Size](../images/vbox-06.png)
 
-* Click "Create"
+* Click ++"Create"++
 
 You have finished the basic configuration. You will have a screen that looks something like this:
 
@@ -101,7 +101,7 @@ The Rocky Linux ISO image now shows selected under the "Controller:IDE" in the m
 
 ![ISO Image Selected](../images/vbox-10.png)
 
-* Click "OK"
+* Click ++"OK"++
 
 ### Video memory for graphical installations
 
@@ -127,7 +127,7 @@ Your screen should look something like this:
 
 ![Settings Video](../images/vbox-12.png)
 
-* Click "OK"
+* Click ++"OK"++
 
 ## Starting the installation
 

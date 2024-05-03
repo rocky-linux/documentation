@@ -18,7 +18,7 @@ DNF is commonly used in Rocky Linux, Fedora, RHEL (Red Hat Enterprise Linux) 8 a
 
 ## Prerequisites
 
-* For all Rocky Linux versions, the ability to use `sudo` to elevate privileges.
+- For all Rocky Linux versions, the ability to use `sudo` to elevate privileges.
 
 ## Installing packages
 

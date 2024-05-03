@@ -41,7 +41,7 @@ Per essere sicuri, controllare l'elenco dei repository con:
 
 Otterrete quanto segue:
 
-```
+```bash
 appstream                                                        Rocky Linux 8 - AppStream
 baseos                                                           Rocky Linux 8 - BaseOS
 extras                                                           Rocky Linux 8 - Extras
@@ -66,7 +66,7 @@ Vedrete:
 
 Per consentire il traffico in entrata con HTTPS, eseguire:
 
-```
+```bash
 firewall-cmd --zone=public --permanent --add-service=https
 firewall-cmd --reload
 ```
@@ -83,7 +83,7 @@ Per generare un certificato autofirmato per l'host rocky8 con scadenza di 365 gi
 
 Verrà visualizzato il seguente risultato:
 
-```
+```bash
 Generating a RSA private key
 ................+++++
 ..........+++++
@@ -104,9 +104,10 @@ Organizational Unit Name (eg, section) []:
 Common Name (eg, your name or your server's hostname) []:rocky8
 Email Address []:
 ```
+
 Al termine di questo comando, saranno presenti i due file SSL/TLS seguenti:
 
-```
+```bash
 ls -l /etc/pki/tls/private/httpd.key /etc/pki/tls/certs/httpd.crt
 
 -rw-r--r--. 1 root root 1269 Jan 29 16:05 /etc/pki/tls/certs/httpd.crt
@@ -122,12 +123,15 @@ Per includere il certificato SSL/TLS appena creato nella configurazione del serv
 Modificare le seguenti righe:
 
 DA:
-```
+
+```bash
 SSLCertificateFile /etc/pki/tls/certs/localhost.crt
 SSLCertificateKeyFile /etc/pki/tls/private/localhost.key
 ```
+
 A:
-```
+
+```bash
 SSLCertificateFile /etc/pki/tls/certs/httpd.crt
 SSLCertificateKeyFile /etc/pki/tls/private/httpd.key
 ```
@@ -150,7 +154,7 @@ Creare un nuovo file eseguendo:
 
 Inserite il seguente contenuto e salvate il file, sostituendo "your-server-hostname" con il vostro hostname.
 
-```
+```bash
 <VirtualHost _default_:80>
 
         Servername rocky8

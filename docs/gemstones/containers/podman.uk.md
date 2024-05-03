@@ -16,7 +16,7 @@ tags:
 
 Використовуйте утиліту `dnf` для встановлення Podman:
 
-```
+```bash
 dnf install podman
 ```
 
@@ -24,7 +24,7 @@ dnf install podman
 
 Запустимо для прикладу автономну хмарну платформу [Nextcloud](https://nextcloud.com/):
 
-```
+```bash
 podman run -d -p 8080:80 nextcloud
 ```
 
@@ -50,11 +50,15 @@ You will get a list of running containers:
 04f7553f431a  docker.io/library/nextcloud:latest  apache2-foregroun...  5 minutes ago  Up 5 minutes  0.0.0.0:8080->80/tcp  compassionate_meninsky
 ````
 
+Як видно вище, ім’я нашого контейнера – `compassionate_meninsky`.
+
 Щоб створити контейнер `systemd` і ввімкнути його під час перезавантаження, виконайте наступне:
 
 ```bash
 podman generate systemd --name compassionate_meninsky > /usr/lib/systemd/system/nextcloud.service
 systemctl enable nextcloud
 ```
+
+Замініть `compassionate_meninsky` на назву вашого контейнера.
 
 Коли ваша система перезавантажиться, Nextcloud перезапуститься в Podman.

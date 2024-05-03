@@ -198,7 +198,7 @@ man 5 passwd
 
 lo informerà sui file relativi al comando.
 
-Navigare nel manuale con le frecce <kbd>↑</kbd> e <kbd>↓</kbd>. Uscire dal manuale premendo il tasto <kbd>q</kbd>.
+Navigare nel manuale con le frecce ++arrow-up++ e ++arrow-down++. Uscire dal manuale premendo il tasto ++q++.
 
 ### comando `shutdown`
 
@@ -249,23 +249,23 @@ $ history
 
 Per manipolare la history, i seguenti comandi immessi dal prompt dei comandi permetteranno di:
 
-| Chiavi             | Funzione                                                                              |
-| ------------------ | ------------------------------------------------------------------------------------- |
-| <kbd>!!</kbd>      | Richiama l'ultimo comando eseguito.                                                   |
-| <kbd>!n</kbd>      | Richiama il comando per il suo numero nell'elenco.                                    |
-| <kbd>!string</kbd> | Richiama il comando più recente che inizia con la stringa.                            |
-| <kbd>↑</kbd>       | Naviga nella cronologia andando indietro nel tempo a partire dal comando più recente. |
-| <kbd>↓</kbd>       | Naviga nella cronologia andando avanti nel tempo.                                     |
+| Chiavi              | Funzione                                                                              |
+| ------------------- | ------------------------------------------------------------------------------------- |
+| ++exclam+exclam++   | Richiama l'ultimo comando eseguito.                                                   |
+| ++exclam+n++        | Richiama il comando per il suo numero nell'elenco.                                    |
+| ++exclam+"string"++ | Richiama il comando più recente che inizia con la stringa.                            |
+| ++arrow-up++        | Naviga nella cronologia andando indietro nel tempo a partire dal comando più recente. |
+| ++arrow-down++      | Naviga nella cronologia andando avanti nel tempo.                                     |
 
 ### Autocompletamento
 
 Il completamento automatico è di grande aiuto.
 
 * Completa i comandi, i percorsi inseriti o i nomi dei file.
-* Una pressione del tasto <kbd>TAB</kbd> completa la voce nel caso di una soluzione singola.
-* Nel caso di più soluzioni, premere <kbd>TAB</kbd> una seconda volta per visualizzare le opzioni.
+* Una pressione del tasto ++tab++ completa la voce nel caso di una soluzione singola.
+* Nel caso di più soluzioni, premere ++tab++ una seconda volta per visualizzare le opzioni.
 
-Se premendo due volte il tasto <kbd>TAB</kbd> non vengono presentate opzioni, non c'è soluzione al completamento attuale.
+Se premendo due volte il tasto ++tab++ non vengono presentate opzioni, non c'è soluzione al completamento attuale.
 
 ## Visualizzazione e Identificazione
 
@@ -277,7 +277,7 @@ Su un terminale fisico, il display sarà permanentemente nascosto, mentre in un'
 
 !!! Tip "Suggerimento"
 
-    <kbd>CTRL</kbd> + <kbd>L</kbd> avrà lo stesso effetto del comando `clear`
+    ++control+l++ avrà lo stesso effetto del comando `clear`
 
 ### comando `echo`
 
@@ -848,7 +848,7 @@ root:x:0:0:root:/root:/bin/bash
 ...
 ```
 
-Usando il tasto <kbd>ENTER</kbd>, lo spostamento è linea per linea. Usando il tasto <kbd>SPACE</kbd>, lo spostamento è pagina per pagina. `/text` Ti consente di cercare la corrispondenza nel file.
+Usando il tasto ++enter++, lo spostamento è linea per linea. Usando il tasto ++space++, lo spostamento è pagina per pagina. `/text` Ti consente di cercare la corrispondenza nel file.
 
 ### comando `less`
 
@@ -860,16 +860,16 @@ less file1 [files]
 
 I comandi specifici per `less` sono:
 
-| Comando                                          | Azione                                              |
-| ------------------------------------------------ | --------------------------------------------------- |
-| <kbd>h</kbd>                                     | Aiuto.                                              |
-| <kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd><kbd>←</kbd> | Sposta su, giù di una linea, o a destra e sinistra. |
-| <kbd>Invio</kbd>                                 | Sposta giù di una riga.                             |
-| <kbd>Spazio</kbd>                                | Sposta giù di una pagina.                           |
-| <kbd>PgUp</kbd> e <kbd>PgDn</kbd>                | Sposta su o giù di una pagina.                      |
-| <kbd>g</kbd> e <kbd>G</kbd>                      | Passa alla prima e all'ultima pagina                |
-| `/text`                                          | Cerca il testo.                                     |
-| <kbd>q</kbd>                                     | Chiude il comando`less`.                            |
+| Comando                                                    | Azione                                              |
+| ---------------------------------------------------------- | --------------------------------------------------- |
+| ++h++                                                      | Aiuto.                                              |
+| ++arrow-up++ ++arrow-down++ ++arrow-right++ ++arrow-left++ | Sposta su, giù di una linea, o a destra e sinistra. |
+| ++enter++                                                  | Sposta giù di una riga.                             |
+| ++space++                                                  | Sposta giù di una pagina.                           |
+| ++page-up++ e ++page-down++                                | Sposta su o giù di una pagina.                      |
+| ++"g"++ e ++g++                                            | Passa alla prima e all'ultima pagina                |
+| `/text`                                                    | Cerca il testo.                                     |
+| ++q++                                                      | Chiude il comando`less`.                            |
 
 ### comando `cat`
 
@@ -969,7 +969,7 @@ tcpdump::x:72:72::/:/sbin/nologin
 user1:x:500:500:grp1:/home/user1:/bin/bash
 ```
 
-Con l'opzione `-f`, le informazioni di modifica del file verranno sempre emesse a meno che l'utente non esca dallo stato di monitoraggio con <kbd>CTRL</kbd> + <kbd>C</kbd>. Questa opzione è molto utilizzata per tracciare i file di log (i registri) in tempo reale.
+Con l'opzione `-f`, le informazioni di modifica del file verranno sempre emesse a meno che l'utente non esca dallo stato di monitoraggio con ++control+c++. Questa opzione è molto utilizzata per tracciare i file di log (i registri) in tempo reale.
 
 Senza l'opzione `-n`, il comando `tail` mostra le ultime 10 righe del file.
 
@@ -998,7 +998,7 @@ adm:x:3:4:adm:/var/adm/:/sbin/nologin
 | `-o file` | Salva l'ordinamento nel file specificato.                                                                                                                                                   |
 | `-t`      | Specificare un delimitatore, che richiede che i contenuti del file corrispondente siano contenuti di colonne regolarmente delimitate, altrimenti non possono essere ordinati correttamente. |
 | `-r`      | Inverte l'ordine del risultato. Usato insieme all'opzione `-n` per ordinare dal più grande al più piccolo.                                                                                  |
-| `-u`      | Rimuovi i duplicati dopo l'ordinamento. Equivalente a `sort file | uniq`.                                                                                                                   |
+| `-u`      | Rimuovi i duplicati dopo l'ordinamento. Equivalente a `sort file uniq`.                                                                                                                     |
 
 Il comando `sort` ordina il file solo sullo schermo. Il file non è modificato dall'ordinamento. Per salvare l'ordinamento, utilizzare l'opzione `-o` o un reindirizzamento dell'output `>`.
 
@@ -1393,7 +1393,7 @@ Quando entrambi i flussi di uscita vengono reindirizzati, nessuna informazione v
 
 Una **pipe** è un meccanismo che consente di collegare l'output standard di un primo comando all'ingresso standard di un secondo comando.
 
-Questa comunicazione è unidirezionale ed è fatta con il simbolo `|`. Il simbolo della pipe `|` è ottenuto premendo il tasto  <kbd>SHIFT</kbd> + <kbd>|</kbd> contemporaneamente.
+Questa comunicazione è unidirezionale ed è fatta con il simbolo `|`. Il simbolo della pipe `|` è ottenuto premendo il tasto  ++shift+bar++ contemporaneamente.
 
 ![pipe](images/pipe.png)
 
@@ -1595,87 +1595,40 @@ none        on  /proc/sys/fs/binfmt_misc                   type  binfmt_misc  (r
 
 Il carattere `;` concatena i comandi.
 
-Una volta che l'utente ha premuto <kbd>INVIO</kdb>, tutti i comandi verranno eseguiti in sequenza nell'ordine di immissione.</p> 
+Una volta che l'utente preme ++enter++, i comandi vengono eseguiti in sequenza nell'ordine di inserimento.
 
-<pre><code class="bash">ls /; cd /home; ls -lia; cd /
-</code></pre>
+```bash
+ls /; cd /home; ls -lia; cd /
+```
 
-<h2 spaces-before="0">
-  Verificare le proprie Conoscenze
-</h2>
+## Verificare le proprie Conoscenze
 
-<p spaces-before="0">
-  :heavy_check_mark: Cosa definisce un utente sotto Linux? (7 risposte)
-</p>
+:heavy_check_mark: Cosa definisce un utente sotto Linux? (7 risposte)
 
-<p spaces-before="0">
-  :heavy_check_mark: Cosa caratterizza un'opzione lunga per un comando?
-</p>
+:heavy_check_mark: Cosa caratterizza un'opzione lunga per un comando?
 
-<p spaces-before="0">
-  :heavy_check_mark: Quali comandi ti permettono di cercare aiuto su un comando?
-</p>
+:heavy_check_mark: Quali comandi ti permettono di cercare aiuto su un comando?
 
-<ul>
-  <li>
-    [ ] <code>google</code>
-  </li>
-  <li>
-    [ ] <code>chuck --norris</code>
-  </li>
-  <li>
-    [ ] <code>info</code>
-  </li>
-  <li>
-    [ ] <code>apropos</code>
-  </li>
-  <li>
-    [ ] <code>whatis</code>
-  </li>
-</ul>
+* [ ] `google`
+* [ ] `chuck --norris`
+* [ ] `info`
+* [ ] `apropos`
+* [ ] `whatis`
 
-<p spaces-before="0">
-  :heavy_check_mark: Quale comando ti permette di vedere la cronologia di un utente?
-</p>
+:heavy_check_mark: Quale comando ti permette di vedere la cronologia di un utente?
 
-<p spaces-before="0">
-  :heavy_check_mark: Quale comando ti permette di cercare del testo in un file?
-</p>
+:heavy_check_mark: Quale comando ti permette di cercare del testo in un file?
 
-<ul>
-  <li>
-    [ ] <code>find</code>
-  </li>
-  <li>
-    [ ] <code>grep</code>
-  </li>
-</ul>
+* [ ] `find`
+* [ ] `grep`
 
-<p spaces-before="0">
-  :heavy_check_mark: Quale comando ti permette di cercare un file?
-</p>
+:heavy_check_mark: Quale comando ti permette di cercare un file?
 
-<ul>
-  <li>
-    [ ] <code>find</code>
-  </li>
-  <li>
-    [ ] <code>grep</code>
-  </li>
-</ul>
+* [ ] `find`
+* [ ] `grep`
 
-<p spaces-before="0">
-  :heavy_check_mark: Quale comando reindirizza il flusso di errore di un comando a un nuovo file <code>errors.log</code>?
-</p>
+:heavy_check_mark: Quale comando reindirizza il flusso di errore di un comando a un nuovo file `errors.log`?
 
-<ul>
-  <li>
-    [ ] <code>ls -R / 2&gt; errors.log</code>
-  </li>
-  <li>
-    [ ] <code>ls -R / 2&gt;&gt; errors.log</code>
-  </li>
-  <li>
-    [ ] <code>ls -R / 2&gt; errors.log 2&gt;&1</code>
-  </li>
-</ul>  
+* [ ] `ls -R / 2> errors.log`
+* [ ] `ls -R / 2>> errors.log`
+* [ ] `ls -R / 2> errors.log 2>&1`  

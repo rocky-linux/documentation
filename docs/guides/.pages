@@ -11,6 +11,7 @@ nav:
     - Content Management: cms
     - Communications: communications
     - Containers: containers
+    - Cloud: cloud
     - Database: database
     - Desktop: desktop
     - DNS: dns

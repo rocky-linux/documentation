@@ -40,7 +40,7 @@ dnf install -y libvirt
 systemctl enable --now libvirtd cockpit.socket
 ```
 
-Увімкнувши `cockpit`, відкрийте браузер за адресою **http\://ip_address:9090** (примітка: замініть **ip_address** на IP-адресу вашого сервера):
+Увімкнувши `cockpit`, відкрийте браузер за адресою **http://ip_address:9090** (примітка: замініть **ip_address** на IP-адресу вашого сервера):
 
 ![Cockpit login screen](../images/cockpit_login.png)
 

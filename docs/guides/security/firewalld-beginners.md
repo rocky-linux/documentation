@@ -16,10 +16,10 @@ So, let's talk about what we're here for. `firewalld` is the default firewall ap
 
 Here you'll learn:
 
-* The very basics of how `firewalld` works
-* How to use `firewalld` to restrict or allow incoming and outgoing connections
-* How to allow only people from certain IP addresses or places to log into your machine remotely
-* How to manage some `firewalld`-specific features like Zones.
+- The very basics of how `firewalld` works
+- How to use `firewalld` to restrict or allow incoming and outgoing connections
+- How to allow only people from certain IP addresses or places to log into your machine remotely
+- How to manage some `firewalld`-specific features like Zones.
 
 Please note that this is *not* intended to be a complete or exhaustive firewall guide; And as a result it only covers the basics.
 
@@ -31,12 +31,13 @@ Well... there *are* graphical firewall configuration options. On the desktop, th
 2. Understanding how the `firewalld` commands work might help you better grasp how the firewall software works.  You can take the same principles you learn here and better understand what you're doing if you decide to use a graphical interface in the future.
 
 ## Prerequisites and Assumptions
+
 You'll need:
 
-* A Rocky Linux machine of any kind, local or remote, physical or virtual
-* Access to the terminal, and a willingness to use it
-* You need root access, or at least the ability to use `sudo` on your user account. For simplicity's sake, I'm assuming all commands are being run as root
-* A basic understanding of SSH wouldn't hurt for managing remote machines.
+- A Rocky Linux machine of any kind, local or remote, physical or virtual
+- Access to the terminal, and a willingness to use it
+- You need root access, or at least the ability to use `sudo` on your user account. For simplicity's sake, I'm assuming all commands are being run as root
+- A basic understanding of SSH wouldn't hurt for managing remote machines.
 
 ## Basic Usage
 
@@ -147,21 +148,13 @@ If your machine has multiple ways to connect to different networks (e.g., Ethern
 Default zones include the following (I've taken this explanation from [DigitalOcean's guide to `firewalld`](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-using-firewalld-on-centos-8), which you should also read):
 
 > **drop:** The lowest level of trust. All incoming connections are dropped without reply and only outgoing connections are possible.
-
 > **block:** Similar to the above, but instead of simply dropping connections, incoming requests are rejected with an icmp-host-prohibited or icmp6-adm-prohibited message.
-
 > **public:** Represents public, untrusted networks. You don’t trust other computers but may allow selected incoming connections on a case-by-case basis.
-
 > **external:** External networks in the event that you are using the firewall as your gateway. It is configured for NAT masquerading so that your internal network remains private but reachable.
-
 > **internal:** The other side of the external zone, used for the internal portion of a gateway. The computers are fairly trustworthy, and some additional services are available.
-
 > **dmz:** Used for computers located in a DMZ (isolated computers that will not have access to the rest of your network). Only certain incoming connections are allowed.
-
 > **work:** Used for work machines. Trust most of the computers in the network. A few more services might be allowed.
-
 > **home:** A home environment. It generally implies that you trust most of the other computers and that a few more services will be accepted.
-
 > **trusted:** Trust all of the machines in the network. The most open of the available options and should be used sparingly.
 
 Okay, so some of those explanations get complicated, but honestly? The average beginner can get by with understanding "trusted", "home", and "public", and when to use which.
@@ -271,10 +264,10 @@ As you might imagine, services are fairly standardized programs that run on your
 
 This is the preferred way to open up the ports for these common services, and a whole lot more:
 
-* HTTP and HTTPS: for web servers
-* FTP: For moving files back and forth (the old-fashioned way)
-* SSH: For controlling remote machines and moving files back and forth the new way
-* Samba: For sharing files with Windows machines.
+- HTTP and HTTPS: for web servers
+- FTP: For moving files back and forth (the old-fashioned way)
+- SSH: For controlling remote machines and moving files back and forth the new way
+- Samba: For sharing files with Windows machines.
 
 !!! Warning
 
@@ -363,7 +356,6 @@ public (active)
         rule family="ipv4" source address="192.168.1.0/24" service name="ssh" accept
 ```
 
-
 Secondly, you can use two different zones at a time. If your interface is bound to the public zone, you can activate a second zone (the "trusted" zone, for example) by adding a source IP or IP range, as shown above. Then, add the SSH service to the trusted zone, and remove it from the public zone.
 
 When you're done, the output should look a bit like this:
@@ -419,7 +411,7 @@ If you get locked out, restart the server (most VPS control panels have an optio
 
 This is far from an exhaustive guide, and you can learn a whole lot more with the [official `firewalld` documentation](https://firewalld.org/documentation/). There are also handy app-specific guides all over the internet that will show you how to set up your firewall for those specific apps.
 
-For you fans of `iptables` (if you've gotten this far...), [we have a guide](firewalld.md) detailing some of the differences in how `firewalld` and `iptables` work. That guide might help you figure out if you want to stay with `firewalld` or go back to The Old Ways<sup>(TM)</sup>. There is something to be said for The Old Ways<sup>(TM)</sup>, in this case.
+For you fans of `iptables` (if you've gotten this far...), [we have a guide](firewalld.md) detailing some of the differences in how `firewalld` and `iptables` work. That guide might help you figure out if you want to stay with `firewalld` or go back to The Old Ways^(TM)^. There is something to be said for The Old Ways^(TM)^, in this case.
 
 ## Conclusion
 

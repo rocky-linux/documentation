@@ -10,8 +10,7 @@ tags:
 
 # `iptables` guide to `firewalld` - Introduction
 
-
-When the introduction of `firewalld` as the default firewall happened (Its introduction was in 2011, but I believe it showed up first in CentOS 7.), the author continued to use `iptables`. There were two reasons for this. First, the documentation available at the time for `firewalld` used simplistic rules and did not show how `firewalld` was securing the server *down to the IP level*. Second, the author had over a decade of experience with `iptables` and it was easier to continue using that instead of learning `firewalld`. 
+When the introduction of `firewalld` as the default firewall happened (Its introduction was in 2011, but I believe it showed up first in CentOS 7.), the author continued to use `iptables`. There were two reasons for this. First, the documentation available at the time for `firewalld` used simplistic rules and did not show how `firewalld` was securing the server *down to the IP level*. Second, the author had over a decade of experience with `iptables` and it was easier to continue using that instead of learning `firewalld`.
 
 This document aims to address the limitations of most `firewalld` references and, to force the author to use `firewalld` to mimic those more granular firewall rules.
 
@@ -23,10 +22,10 @@ This guide focuses on applying rules from an `iptables` firewall to a `firewalld
 
 ## Prerequisites and assumptions
 
-* Throughout this document, the assumption is that you are the root user or have elevated privileges with `sudo`.
-* A passing knowledge of firewall rules, particularly `iptables` or at minimum, you want to learn something about `firewalld`.
-* You feel comfortable entering commands at the command line.
-* All of the examples here deal with IPv4 IPs.
+- Throughout this document, the assumption is that you are the root user or have elevated privileges with `sudo`.
+- A passing knowledge of firewall rules, particularly `iptables` or at minimum, you want to learn something about `firewalld`.
+- You feel comfortable entering commands at the command line.
+- All of the examples here deal with IPv4 IPs.
 
 ## Zones
 
@@ -77,7 +76,7 @@ The author does not like most of these zone names. drop, block, public, and trus
 
 Here you are allowing a single IP address for SSH (port 22) into the server. If you decide to use the built-in zones, you could use "trusted" for this. First, you add the IP to the zone and second, you apply the rule to the zone:
 
-```
+```bash
 firewall-cmd --zone=trusted --add-source=192.168.1.122 --permanent
 firewall-cmd --zone trusted --add-service=ssh --permanent
 ```
@@ -129,7 +128,6 @@ Before using this zone, you need to reload the firewall:
 
 Before going any further, you need to examine the process of listing zones. You get a single production column rather than a tabular output provided by `iptables -L`. List a zone with the command `firewall-cmd --zone=[zone_name] --list-all`. Here is what this looks like when you list out the newly created "admin" zone:
 
-
 `firewall-cmd --zone=admin --list-all`
 
 ```bash
@@ -148,6 +146,7 @@ admin
   icmp-blocks:
   rich rules:
 ```
+
 You can list out the active zones on your system by using this command:
 
 `firewall-cmd --get-active-zones`
@@ -189,7 +188,7 @@ and reload:
 
 Now just repeat our original steps using the "admin" zone:
 
-```
+```bash
 firewall-cmd --zone=admin --add-source=192.168.1.122
 firewall-cmd --zone admin --add-service=ssh
 ```
@@ -207,6 +206,7 @@ Test your rule to ensure it works. To test:
 Feb 14 22:02:34 serverhostname sshd[9805]: Accepted password for root from 192.168.1.122 port 42854 ssh2
 Feb 14 22:02:34 serverhostname sshd[9805]: pam_unix(sshd:session): session opened for user root by (uid=0)
 ```
+
 This shows that the source IP for our SSH connection is the same IP that you just added to the "admin" zone. You will be safe to move this rule permanent:
 
 `firewall-cmd --runtime-to-permanent`
@@ -271,14 +271,14 @@ From 192.168.1.104 icmp_seq=3 Packet filtered
 
 Here is the `iptables` script for publicly allowing `http` and `https`, the protocols you will need to serve web pages:
 
-```
+```bash
 iptables -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
 iptables -A INPUT -p tcp -m tcp --dport 443 -j ACCEPT
 ```
 
 And here is the `firewalld` equivalent that you have probably seen many times before:
 
-```
+```bash
 firewall-cmd --zone=public --add-service=http --add-service=https --permanent
 ```
 
@@ -304,14 +304,14 @@ Reload:
 
 Returning to the `iptables` script. You have the following rules dealing with FTP:
 
-```
+```bash
 iptables -A INPUT -p tcp -m tcp --dport 20-21 -j ACCEPT
 iptables -A INPUT -p tcp -m tcp --dport 7000-7500 -j ACCEPT
 ```
 
 This portion of the script deals with the standard FTP ports (20 and 21) and some additional passive ports. FTP servers such as [VSFTPD](../file_sharing/secure_ftp_server_vsftpd.md) often need these sort of rules. Generally, this sort of rule will be on a publicly facing web server, and is there for allowing ftp connections from your customers.
 
-No ftp-data service (port 20) exists in `firewalld`. The ports 7000 through 7500 listed here are for passive FTP connections, and again, these do not exist as a service in `firewalld`. You could switch to SFTP, which simplifies the port-allow rules here and is likely the recommended way. 
+No ftp-data service (port 20) exists in `firewalld`. The ports 7000 through 7500 listed here are for passive FTP connections, and again, these do not exist as a service in `firewalld`. You could switch to SFTP, which simplifies the port-allow rules here and is likely the recommended way.
 
 This demonstrates the conversion of a set of `iptables` rules to `firewalld`. To get around all of these issues, you can do the following.
 
@@ -416,6 +416,7 @@ public
   icmp-blocks: echo-reply echo-request
   rich rules:
 ```
+
 Note that you have removed SSH access from services and blocked ICMP "echo-reply" and "echo-request".
 
 In your "admin" zone so far, it looks like this:
@@ -453,12 +454,13 @@ Interfaces are not added in our examples, because the lab uses LXD for testing. 
 
 To assign these zones to the appropriate interface, you use the following commands:
 
-```
+```bash
 firewall-cmd --zone=public --change-interface=enp3s0 --permanent
 firewall-cmd --zone=trusted --change-interface=enp3s1 --permanent
 firewall-cmd --zone=admin --change-interface=enp3s1 --permanent
 firewall-cmd --reload
 ```
+
 ## Common firewall-cmd commands
 
 You have used some commands already. Here are a few more common commands and what they do:
@@ -481,4 +483,4 @@ Since `firewalld` is the recommended and included firewall with Rocky Linux, it 
 
 When you see these instructions, think about what your server's use and whether the service needs to be open to the world. If not, consider applying more granularity in your rules as described above.
 
-This is not meant to be an exhaustive guide to `firewalld`, but rather a starting point.                                         
+This is not meant to be an exhaustive guide to `firewalld`, but rather a starting point.

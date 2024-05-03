@@ -35,7 +35,7 @@ tags:
 
 Синтаксис умовної альтернативи `if`:
 
-```
+```bash
 if command
 then
     command if $?=0
@@ -50,7 +50,7 @@ fi
 
 Приклади:
 
-```
+```bash
 if [[ -e /etc/passwd ]]
 then
     echo "The file exists"
@@ -66,7 +66,7 @@ fi
 
 Якщо блок `else` починається з нової структури `if`, ви можете об’єднати `else` та `if` з ` elif`, як показано нижче:
 
-```
+```bash
 [...]
 else
   if [[ -e /etc/ ]]
@@ -97,7 +97,7 @@ elif [[ -e /etc ]]
 
 Приклад:
 
-```
+```bash
 [[ -e /etc/passwd ]] && echo "The file exists" || echo "The file does not exist"
 mkdir dir && echo "The directory is created".
 ```
@@ -107,21 +107,26 @@ mkdir dir && echo "The directory is created".
 Цей синтаксис реалізує дужки:
 
 * Відображає значення заміни, якщо змінна порожня:
-    ```
+
+    ```bash
     ${variable:-value}
     ```
+
 * Відображає значення заміни, якщо змінна не порожня:
-    ```
+
+    ```bash
     ${variable:+value}
     ```
+
 * Призначає нове значення змінній, якщо вона порожня:
-    ```
+
+    ```bash
     ${variable:=value}
     ```
 
 Приклади:
 
-```
+```bash
 name=""
 echo ${name:-linux}
 linux
@@ -157,7 +162,7 @@ linux
 
 Синтаксис умовного альтернативного випадку:
 
-```
+```bash
 case $variable in
   value1)
     commands if $variable = value1
@@ -174,7 +179,7 @@ esac
 
 Якщо значення може змінюватися, радимо використовувати символи підстановки `[]`, щоб указати можливості:
 
-```
+```bash
 [Yy][Ee][Ss])
   echo "yes"
   ;;
@@ -182,7 +187,7 @@ esac
 
 Символ `|` також дозволяє вказати значення чи інше:
 
-```
+```bash
 "yes" | "YES")
   echo "yes"
   ;;

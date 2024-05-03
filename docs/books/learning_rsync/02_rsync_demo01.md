@@ -39,7 +39,7 @@ Commonly used options:
 
 The author's personal use: `rsync -avz original location target location`
 
-##  Environment Description
+## Environment Description
 
 |Item|Description|
 |---|---|
@@ -62,13 +62,13 @@ RockyLinux8-->|push/upload|Fedora34;
 Fedora34-->|pull/download|RockyLinux8;
 ```
 
-##  Demonstration based on SSH protocol
+## Demonstration based on SSH protocol
 
 !!! tip "tip"
 
     Here, both Rocky Linux 8 and Fedora 34 use the root user to log in. Fedora 34 is the client and Rocky Linux 8 is the server.
 
-###  pull/download
+### pull/download
 
 Since it is based on the SSH protocol, we first create a user in the server:
 
@@ -90,6 +90,7 @@ total size is 0 speedup is 0.00
 [root@fedora ~]# ls
 aabbcc
 ```
+
 The transfer was successful.
 
 !!! tip "tip"

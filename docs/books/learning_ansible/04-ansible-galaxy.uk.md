@@ -10,12 +10,12 @@ title: Ansible Galaxy
 
 **Цілі**: В цьому розділі ви дізнаєтеся як:
 
-:heavy_check_mark: встановити та керувати колекціями.       
-:heavy_check_mark: встановити та керувати ролями.
+:heavy_check_mark: встановлювати та керувати колекціями.  
+:heavy_check_mark: встановлювати ролі та керувати ними.
 
 :checkered_flag: **ansible**, **ansible-galaxy**, **roles**, **collections**
 
-**Знання**: :star: :star:      
+**Знання**: :star: :star:  
 **Складність**: :star: :star: :star:
 
 **Час для читання**: 40 хвилин
@@ -32,7 +32,7 @@ title: Ansible Galaxy
 
 * Щоб керувати ролями:
 
-```
+```bash
 ansible-galaxy role [import|init|install|login|remove|...]
 ```
 
@@ -47,7 +47,7 @@ ansible-galaxy role [import|init|install|login|remove|...]
 
 * Щоб керувати колекціями:
 
-```
+```bash
 ansible-galaxy collection [import|init|install|login|remove|...]
 ```
 
@@ -73,13 +73,13 @@ ansible-galaxy collection [import|init|install|login|remove|...]
 
 * Встановіть роль. Для цього потрібна лише одна команда:
 
-```
+```bash
 ansible-galaxy role install alemorvan.patchmanagement
 ```
 
 * Створіть playbook, щоб включити роль:
 
-```
+```bash
 - name: Start a Patch Management
   hosts: ansible_clients
   vars:
@@ -98,13 +98,13 @@ ansible-galaxy role install alemorvan.patchmanagement
 
 * Створіть папку `custom_tasks`:
 
-```
+```bash
 mkdir custom_tasks
 ```
 
 * Створіть `custom_tasks/pm_before_update_tasks_file.yml` (ви можете змінити назву та вміст цього файлу)
 
-```
+```bash
 ---
 - name: sample task before the update process
   debug:
@@ -113,7 +113,7 @@ mkdir custom_tasks
 
 * Створіть `custom_tasks/pm_after_update_tasks_file.yml` (ви можете змінити назву та вміст цього файлу)
 
-```
+```bash
 ---
 - name: sample task after the update process
   debug:
@@ -122,7 +122,7 @@ mkdir custom_tasks
 
 І запустіть своє перше керування виправленнями (Patch Management):
 
-```
+```bash
 ansible-playbook patchmanagement.yml
 
 PLAY [Start a Patch Management] *************************************************************************
@@ -210,14 +210,14 @@ PLAY RECAP *********************************************************************
 
 Скелет ролі, який служить відправною точкою для розробки власної ролі, може бути згенерований командою `ansible-galaxy`:
 
-```
+```bash
 $ ansible-galaxy role init rocky8
 - Role rocky8 was created successfully
 ```
 
 Команда створить таку структуру дерева, яка містить роль `rocky8`:
 
-```
+```bash
 tree rocky8/
 rocky8/
 ├── defaults
@@ -260,7 +260,7 @@ rocky8/
 
 Ми створимо користувача `rockstar` на всіх наших серверах. Оскільки ми не хочемо, щоб цей користувач був перевизначений, давайте визначимо його в `vars/main.yml`:
 
-```
+```bash
 ---
 rocky8_default_group:
   name: rockstar
@@ -273,7 +273,7 @@ rocky8_default_user:
 
 Тепер ми можемо використовувати ці змінні в нашому `tasks/main.yml` без жодного включення.
 
-```
+```bash
 ---
 - name: Create default group
   group:
@@ -289,7 +289,7 @@ rocky8_default_user:
 
 Щоб перевірити вашу нову роль, давайте створимо playbook `test-role.yml` у тому ж каталозі, що й ваша роль:
 
-```
+```bash
 ---
 - name: Test my role
   hosts: localhost
@@ -303,7 +303,7 @@ rocky8_default_user:
 
 і запустимо його:
 
-```
+```bash
 ansible-playbook test-role.yml
 
 PLAY [Test my role] ************************************************************************************
@@ -327,7 +327,7 @@ localhost                  : ok=3    changed=1    unreachable=0    failed=0    s
 
 Створіть список пакетів для встановлення за замовчуванням на ваших серверах і порожній список пакетів для видалення. Відредагуйте файли `defaults/main.yml` і додайте ці два списки:
 
-```
+```bash
 rocky8_default_packages:
   - tree
   - vim
@@ -336,7 +336,7 @@ rocky8_remove_packages: []
 
 та використайте їх у своєму `tasks/main.yml`:
 
-```
+```bash
 - name: Install default packages (can be overridden)
   package:
     name: "{{ rocky8_default_packages }}"
@@ -350,7 +350,7 @@ rocky8_remove_packages: []
 
 Перевірте свою роль за допомогою попередньо створеного посібника:
 
-```
+```bash
 ansible-playbook test-role.yml
 
 PLAY [Test my role] ************************************************************************************
@@ -376,7 +376,7 @@ localhost                  : ok=5    changed=0    unreachable=0    failed=0    s
 
 Тепер ви можете замінити `rocky8_remove_packages` у своєму playbook та видалити, наприклад, `cockpit`:
 
-```
+```bash
 ---
 - name: Test my role
   hosts: localhost
@@ -391,7 +391,7 @@ localhost                  : ok=5    changed=0    unreachable=0    failed=0    s
       become_user: root
 ```
 
-```
+```bash
 ansible-playbook test-role.yml
 
 PLAY [Test my role] ************************************************************************************
@@ -417,7 +417,7 @@ localhost                  : ok=5    changed=1    unreachable=0    failed=0    s
 
 Очевидно, що немає обмежень щодо того, наскільки ви можете покращити свою роль. Уявіть, що для одного з ваших серверів вам потрібен пакет, який є у списку тих, які потрібно видалити. Тоді ви можете, наприклад, створити новий список, який можна перевизначити, а потім видалити зі списку пакунків, які потрібно видалити, ті зі списку конкретних пакунків, які потрібно встановити, використовуючи jinja `difference()` фільтр.
 
-```
+```bash
 - name: "Uninstall default packages (can be overridden) {{ rocky8_remove_packages }}"
   package:
     name: "{{ rocky8_remove_packages | difference(rocky8_specifics_packages) }}"
@@ -434,13 +434,13 @@ localhost                  : ok=5    changed=1    unreachable=0    failed=0    s
 
 Щоб встановити або оновити колекцію:
 
-```
+```bash
 ansible-galaxy collection install namespace.collection [--upgrade]
 ```
 
 Потім ви можете використовувати щойно встановлену колекцію, використовуючи її простір імен та ім’я перед назвою модуля або назвою ролі:
 
-```
+```bash
 - import_role:
     name: namespace.collection.rolename
 
@@ -452,7 +452,7 @@ ansible-galaxy collection install namespace.collection [--upgrade]
 
 Давайте встановимо колекцію `community.general`:
 
-```
+```bash
 ansible-galaxy collection install community.general
 Starting galaxy collection install process
 Process install dependency map
@@ -464,7 +464,7 @@ community.general:3.3.2 was installed successfully
 
 Тепер ми можемо використовувати нещодавно доступний модуль `yum_versionlock`:
 
-```
+```bash
 - name: Start a Patch Management
   hosts: ansible_clients
   become: true
@@ -487,7 +487,7 @@ community.general:3.3.2 was installed successfully
         var: locks.meta.packages                            
 ```
 
-```
+```bash
 ansible-playbook versionlock.yml
 
 PLAY [Start a Patch Management] *************************************************************************
@@ -517,12 +517,12 @@ PLAY RECAP *********************************************************************
 
 Як і у випадку з ролями, ви можете створити власну колекцію за допомогою команди `ansible-galaxy`:
 
-```
+```bash
 ansible-galaxy collection init rocky8.rockstarcollection
 - Collection rocky8.rockstarcollection was created successfully
 ```
 
-```
+```bash
 tree rocky8/rockstarcollection/
 rocky8/rockstarcollection/
 ├── docs

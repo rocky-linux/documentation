@@ -1,7 +1,7 @@
 ---
 title: Markdown Demo
-author: Einstein
-contributors: Dr. Ben Dover, Sweet Gypsy Rose, Anna
+author: Steven Spencer
+contributors: Wale Soyinka, Tony Guntharp
 tested_with: 8.5
 tags:
   - зразок
@@ -11,13 +11,12 @@ tags:
 
 # Огляд
 
-!!! WARNING "ПОПЕРЕДЖЕННЯ"
+## Необхідні умови:
 
-    Не сприймайте серйозно те, що ви можете прочитати в цьому документі.
+- Використання [Markdown](https://daringfireball.net/projects/markdown).
+- Знання Markdown.
 
-Як ви можете зрозуміти, це досить дурний приклад, призначений для перевірки деяких проблем з перекладом, які ми маємо. Але оскільки проблеми ще не вирішено, ми збираємося дещо змінити файл, щоб побачити його ефект. Хоча писати весело!
-
-Цей посібник демонструє популярні теги Markdown, які використовуються на [https://docs.rockylinux.org](https://docs.rockylinux.org), а також містить тег admonitions, який не є частиною стандартних тегів Markdown.
+Цей посібник демонструє популярні теги Markdown, які використовуються на [https://docs.rockylinux.org](https://docs.rockylinux.org), і містить тег admonitions, який не є частиною стандартних тегів Markdown.
 
 ## Демо
 
@@ -33,7 +32,7 @@ tags:
 
 Або кілька команд:
 
-```
+```bash
 dnf install my_stapler
 dnf update my_pencil
 dnf remove my_notepad
@@ -53,9 +52,33 @@ systemctl enable my_stapler
 
 І вам може знадобитися попередження:
 
+### Попередження
+
+Застереження є чудовим вибором для включення додаткового вмісту без значного переривання потоку документів. Матеріал для MkDocs надає кілька типів попереджень і дозволяє включати та вкладати довільний вміст.
+
 !!! TIP "ПІДКАЗКА"
 
-    Олівці та степлери справді старовинні.
+    Олівці та степлери - це стара школа.
+
+#### Використання
+
+Застереження мають простий синтаксис: блок починається з `!!!`, за яким йде ключове слово, яке використовується як кваліфікатор типу. Вміст блоку наводиться в наступному рядку з відступом на чотири інтервали:
+
+!!! note "Примітка"
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+    nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+    massa, nec semper lorem quam in massa.
+
+#### Зміна назви
+
+За замовчуванням заголовок дорівнюватиме кваліфікатору типу в регістрі заголовка. Однак його можна змінити, додавши рядок у лапках, що містить дійсну позначку (включно з посиланнями, форматуванням тощо) після кваліфікатора типу:
+
+!!! note "Phasellus posuere in sem ut cursus"
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+    nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+    massa, nec semper lorem quam in massa.
 
 Часто, коли команда має кілька параметрів або вам потрібно вказати особливості, ви можете використовувати таблицю для визначення речей:
 

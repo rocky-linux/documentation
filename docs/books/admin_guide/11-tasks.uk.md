@@ -10,8 +10,8 @@ title: Управління задачами
 
 **Цілі**: у цьому розділі майбутні адміністратори Linux дізнаються, як:
 
-:heavy_check_mark: Linux займається плануванням завдань;   
-:heavy_check_mark: обмежує використання **`cron`** певними користувачами;   
+:heavy_check_mark: Linux займається плануванням завдань;  
+:heavy_check_mark: обмежує використання **`cron`** певними користувачами;  
 :heavy_check_mark: скласти розклад задач.
 
 :checkered_flag: **crontab**, **crond**, **scheduling**, **linux**
@@ -48,7 +48,7 @@ title: Управління задачами
 
 Щоб перевірити його статус:
 
-```
+```bash
 [root] # systemctl status crond
 ```
 
@@ -58,13 +58,13 @@ title: Управління задачами
 
 Ініціалізація демона `crond` вручну:
 
-```
+```bash
 [root]# systemctl {status|start|restart|stop} crond
 ```
 
 Ініціалізація демона `crond` під час запуску:
 
-```
+```bash
 [root]# systemctl enable crond
 ```
 
@@ -105,15 +105,16 @@ title: Управління задачами
 
 Лише **user1** зможе використовувати `cron`.
 
-```
+```bash
 [root]# vi /etc/cron.allow
 user1
 ```
 
 ### Заборонити користувача
+
 Лише **user2** не зможе використовувати `cron`.
 
-```
+```bash
 [root]# vi /etc/cron.deny
 user2
 ```
@@ -132,13 +133,13 @@ user2
 
 Команда `crontab` використовується для керування файлом розкладу.
 
-```
+```bash
 crontab [-u user] [-e | -l | -r]
 ```
 
 Приклад:
 
-```
+```bash
 [root]# crontab -u user1 -e
 ```
 
@@ -184,7 +185,7 @@ crontab [-u user] [-e | -l | -r]
 * Кожен рядок закінчується символом повернення каретки;
 * `#` на початку рядка коментує його.
 
-```
+```bash
 [root]# crontab –e
 10 4 1 * * /root/scripts/backup.sh
 1  2 3 4 5       6
@@ -216,25 +217,25 @@ crontab [-u user] [-e | -l | -r]
 
 Сценарій виконано 15 квітня о 10:25:
 
-```
+```bash
 25 10 15 04 * /root/scripts/script > /log/…
 ```
 
 Запуск об 11:00, а потім о 16:00 щодня:
 
-```
+```bash
 00 11,16 * * * /root/scripts/script > /log/…
 ```
 
 Запуск щогодини з 11:00 до 16:00 щодня:
 
-```
+```bash
 00 11-16 * * * /root/scripts/script > /log/…
 ```
 
 Запуск кожні 10 хвилин у робочий час:
 
-```
+```bash
 */10 8-17 * * 1-5 /root/scripts/script > /log/…
 ```
 
@@ -253,12 +254,12 @@ crontab [-u user] [-e | -l | -r]
 
 Користувач, rockstar, хоче відредагувати свій файл `crontab`:
 
-1) `crond` перевіряє, чи дозволено йому (`/etc/cron.allow` та `/etc/cron.deny`).
+1. `crond` перевіряє, чи він дозволений (`/etc/cron.allow` і `/etc/cron.deny`).
 
-2) Якщо так, він отримує доступ до свого файлу `crontab` (`/var/spool/cron/rockstar`).
+2. Якщо так, він отримує доступ до свого файлу `crontab` (`/var/spool/cron/rockstar`).
 
-Щохвилини `crond` читає файли розкладу.
+    Щохвилини `crond` читає файли розкладу.
 
-3) Виконує заплановані задачі.
+3. Він виконує заплановані завдання.
 
-4) Систематично звітує у файлі журналу (`/var/log/cron`).
+4. Він систематично звітує у файлі журналу (`/var/log/cron`).

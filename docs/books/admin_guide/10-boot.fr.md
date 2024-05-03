@@ -9,15 +9,15 @@ Dans ce chapitre, vous apprendrez comment le système démarre.
 ****
 **Objectifs** : Dans ce chapitre, les futurs administrateurs Linux vont apprendre :
 
-:heavy_check_mark : Les différentes étapes du processus de démarrage ;   
-:heavy_check_mark : Comment Rocky Linux prend en charge ce démarrage en utilisant GRUB2 et systemd ;   
-:heavy_check_mark : Comment protéger GRUB2 d'une attaque ;   
-:heavy_check_mark : Comment gérer les services ;   
-:heavy_check_mark : Comment accéder aux journaux depuis `journald`.
+:heavy_check_mark: Les différentes étapes du processus de démarrage ;  
+:heavy_check_mark: Comment Rocky Linux prend en charge ce démarrage en utilisant GRUB2 et systemd ;  
+:heavy_check_mark: Comment protéger GRUB2 d'une attaque ;  
+:heavy_check_mark: Comment gérer les services ;  
+:heavy_check_mark: Comment accéder aux journaux depuis `journald`.
 
 :checkered_flag: **utilisateurs**
 
-**Connaissances** : :star: :star:   
+**Connaissances** : :star: :star:  
 **Complexité** : :star: :star: :star:
 
 **Temps de lecture** : 23 minutes
@@ -49,7 +49,7 @@ Le fichier de configuration GRUB 2 se trouve sous `/boot/grub2/grub.cfg` mais ne
 
 Les paramètres de configuration du menu GRUB2 sont situés dans `/etc/default/grub` et sont utilisés pour générer le fichier `grub.cfg`.
 
-```
+```bash
 # cat /etc/default/grub
 GRUB_TIMEOUT=5
 GRUB_DEFAULT=saved
@@ -61,7 +61,7 @@ GRUB_DISABLE_RECOVERY="true"
 
 Si des modifications sont apportées à un ou plusieurs de ces paramètres, la commande `grub2-mkconfig` doit être exécutée pour régénérer le fichier `/boot/grub2/grub.cfg`.
 
-```
+```bash
 [root] # grub2-mkconfig –o /boot/grub2/grub.cfg
 ```
 
@@ -71,7 +71,8 @@ Si des modifications sont apportées à un ou plusieurs de ces paramètres, la c
 ### Le noyau
 
 Le noyau démarre le processus `systemd` avec PID 1.
-```
+
+```bash
 root          1      0  0 02:10 ?        00:00:02 /usr/lib/systemd/systemd --switched-root --system --deserialize 23
 ```
 
@@ -104,7 +105,7 @@ Pour protéger par mot de passe le chargeur de démarrage GRUB2 :
 
 * Si un utilisateur n'a pas encore été configuré, utilisez la commande `grub2-setpassword` pour fournir un mot de passe à l'utilisateur root :
 
-```
+```bash
 # grub2-setpassword
 ```
 
@@ -114,14 +115,14 @@ Un fichier `/boot/grub2/user.cfg` sera créé s'il n'est pas déjà présent. Il
 
     Cette commande ne prend en charge que les configurations ne contenant qu'un seul utilisateur root.
 
-```
+```bash
 [root]# cat /boot/grub2/user.cfg
 GRUB2_PASSWORD=grub.pbkdf2.sha512.10000.CC6F56....A21
 ```
 
 * Recrée le fichier de configuration avec la commande `grub2-mkconfig` :
 
-```
+```bash
 [root]# grub2-mkconfig -o /boot/grub2/grub.cfg
 Generating grub configuration file ...
 Found linux image: /boot/vmlinuz-3.10.0-327.el7.x86_64
@@ -185,27 +186,27 @@ Les unités de service se terminent par l'extension de fichier `.service` et ont
 
 | systemctl                                 | Observation                                                   |
 | ----------------------------------------- | ------------------------------------------------------------- |
-| systemctl start _name_.service            | Lance un service                                              |
-| systemctl stop _name_.service             | Arrête un service                                             |
-| systemctl restart _name_.service          | Redémarre un service                                          |
-| systemctl reload _name_.service           | Recharge une configuration                                    |
-| systemctl status _name_.service           | Vérifie si un service est en cours d'exécution                |
-| systemctl try-restart _name_.service      | Redémarre un service uniquement s'il est en cours d'exécution |
+| systemctl start *name*.service            | Lance un service                                              |
+| systemctl stop *name*.service             | Arrête un service                                             |
+| systemctl restart *name*.service          | Redémarre un service                                          |
+| systemctl reload *name*.service           | Recharge une configuration                                    |
+| systemctl status *name*.service           | Vérifie si un service est en cours d'exécution                |
+| systemctl try-restart *name*.service      | Redémarre un service uniquement s'il est en cours d'exécution |
 | systemctl list-units --type service --all | Affiche l'état de tous les services                           |
 
 La commande `systemctl` est également utilisée pour `activer` ou `désactiver` un service et afficher les services associés :
 
 | systemctl                                | Observation                                                        |
 | ---------------------------------------- | ------------------------------------------------------------------ |
-| systemctl enable _name_.service          | Activer un service                                                 |
-| systemctl disable _name_.service         | Désactiver un service                                              |
+| systemctl enable *name*.service          | Activer un service                                                 |
+| systemctl disable *name*.service         | Désactiver un service                                              |
 | systemctl list-unit-files --type service | Liste tous les services et vérifie s'ils sont en cours d'exécution |
 | systemctl list-dependencies --after      | Liste les services qui commencent avant l'unité spécifiée          |
 | systemctl list-dependencies --before     | Liste les services qui commencent après l'unité spécifiée          |
 
 Exemples :
 
-```
+```bash
 systemctl stop nfs-server.service
 # ou bien
 systemctl stop nfs-server
@@ -213,24 +214,24 @@ systemctl stop nfs-server
 
 Pour lister toutes les unités actuellement chargées :
 
-```
+```bash
 systemctl list-units --type service
 ```
 
 Pour lister toutes les unités à vérifier si elles sont activées :
 
-```
+```bash
 systemctl list-unit-files --type service
 ```
 
-```
+```bash
 systemctl enable httpd.service
 systemctl disable bluetooth.service
 ```
 
 ### Exemple d'un fichier .service pour le service postfix
 
-```
+```bash
 postfix.service Unit File
 What follows is the content of the /usr/lib/systemd/system/postfix.service unit file as currently provided by the postfix package:
 
@@ -275,20 +276,20 @@ De même, l'unité `multi-user.target` démarre d'autres services système essen
 
 Pour déterminer quelle est la cible utilisée par défaut :
 
-```
+```bash
 systemctl get-default
 ```
 
 Cette commande recherche la cible du lien symbolique situé dans `/etc/systemd/system/default.target` et affiche le résultat.
 
-```
+```bash
 $ systemctl get-default
 graphical.target
 ```
 
 La commande `systemctl` peut également fournir une liste de cibles disponibles :
 
-```
+```bash
 systemctl list-units --type target
 UNIT                   LOAD   ACTIVE SUB    DESCRIPTION
 basic.target           loaded active active Basic System
@@ -314,13 +315,13 @@ timers.target          loaded active active Timers
 
 Pour configurer le système pour qu'il utilise une cible par défaut différente :
 
-```
+```bash
 systemctl set-default name.target
 ```
 
 Exemple :
 
-```
+```bash
 # systemctl set-default multi-user.target
 rm '/etc/systemd/system/default.target'
 ln -s '/usr/lib/systemd/system/multi-user.target' '/etc/systemd/system/default.target'
@@ -328,7 +329,7 @@ ln -s '/usr/lib/systemd/system/multi-user.target' '/etc/systemd/system/default.t
 
 Pour passer à une autre unité cible de la session courante :
 
-```
+```bash
 systemctl isolate name.target
 ```
 
@@ -340,7 +341,7 @@ Sur Rocky 8, le `mode de secours` est équivalent à l'ancien `mode utilisateur 
 
 Pour changer la cible actuelle et entrer dans le mode de secours `Rescue Mode` dans la session en cours :
 
-```
+```bash
 systemctl rescue
 ```
 
@@ -348,7 +349,7 @@ systemctl rescue
 
 Pour modifier la cible actuelle et passer en mode d'urgence dans la session en cours :
 
-```
+```bash
 systemctl emergency
 ```
 
@@ -377,7 +378,7 @@ Le format du fichier journal natif, qui est un fichier binaire structuré et ind
 
 La commande `journalctl` affiche les fichiers journaux.
 
-```
+```bash
 journalctl
 ```
 
@@ -392,7 +393,7 @@ La commande liste tous les fichiers journaux générés sur le système. La stru
 
 Avec un affichage continu, les messages de log sont affichés en temps réel.
 
-```
+```bash
 journalctl -f
 ```
 
@@ -402,7 +403,7 @@ Cette commande retourne une liste des dix lignes de log les plus récentes. L'ut
 
 Il est possible d'utiliser différentes méthodes de filtrage pour extraire des informations qui répondent à différents besoins. Les messages de log sont souvent utilisés pour suivre les comportements erronés dans le système. Voir les entrées avec une priorité sélectionnée ou supérieure :
 
-```
+```bash
 journalctl -p priority
 ```
 

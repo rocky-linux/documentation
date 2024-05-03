@@ -41,7 +41,7 @@ update: 20 січня 2022 р
 
 Ви отримаєте наступне:
 
-```
+```bash
 appstream                                                        Rocky Linux 8 - AppStream
 baseos                                                           Rocky Linux 8 - BaseOS
 extras                                                           Rocky Linux 8 - Extras
@@ -66,7 +66,7 @@ powertools                                                       Rocky Linux 8 -
 
 Щоб дозволити вхідний трафік через HTTPS, виконайте:
 
-```
+```bash
 firewall-cmd --zone=public --permanent --add-service=https
 firewall-cmd --reload
 ```
@@ -83,7 +83,7 @@ firewall-cmd --reload
 
 Ви побачите такий результат:
 
-```
+```bash
 Generating a RSA private key
 ................+++++
 ..........+++++
@@ -104,9 +104,10 @@ Organizational Unit Name (eg, section) []:
 Common Name (eg, your name or your server's hostname) []:rocky8
 Email Address []:
 ```
+
 Після виконання цієї команди з’являться наступні два файли SSL/TLS:
 
-```
+```bash
 ls -l /etc/pki/tls/private/httpd.key /etc/pki/tls/certs/httpd.crt
 
 -rw-r--r--. 1 root root 1269 Jan 29 16:05 /etc/pki/tls/certs/httpd.crt
@@ -122,12 +123,15 @@ ls -l /etc/pki/tls/private/httpd.key /etc/pki/tls/certs/httpd.crt
 Змініть наступні рядки:
 
 З:
-```
+
+```bash
 SSLCertificateFile /etc/pki/tls/certs/localhost.crt
 SSLCertificateKeyFile /etc/pki/tls/private/localhost.key
 ```
+
 НА:
-```
+
+```bash
 SSLCertificateFile /etc/pki/tls/certs/httpd.crt
 SSLCertificateKeyFile /etc/pki/tls/private/httpd.key
 ```
@@ -150,7 +154,7 @@ SSLCertificateKeyFile /etc/pki/tls/private/httpd.key
 
 Вставте наведений нижче вміст і збережіть файл, замінивши «ім’я хоста-вашого-сервера» на ім’я хосту.
 
-```
+```bash
 <VirtualHost _default_:80>
 
         Servername rocky8

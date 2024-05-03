@@ -17,12 +17,12 @@ In this chapter you will learn how to make your scripts interact with users and 
 
 **Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: read input from a user;     
-:heavy_check_mark: manipulate data entries;     
-:heavy_check_mark: use arguments inside a script;     
-:heavy_check_mark: manage positional variables;     
+:heavy_check_mark: read input from a user;  
+:heavy_check_mark: manipulate data entries;  
+:heavy_check_mark: use arguments inside a script;  
+:heavy_check_mark: manage positional variables;  
 
-:checkered_flag: **linux**, **script**, **bash**, **variable**
+:checkered_flag: **linux**, **script**, **bash**, **variable**  
 
 **Knowledge**: :star: :star:  
 **Complexity**: :star: :star:  
@@ -39,13 +39,13 @@ The `read` command allows you to enter a character string and store it in a vari
 
 Syntax of the read command:
 
-```
+```bash
 read [-n X] [-p] [-s] [variable]
 ```
 
 The first example below, prompts you for two variable inputs: "name" and "firstname", but since there is no prompt, you would have to know ahead of time that this was the case. In the case of this particular entry, each variable input would be separated by a space.  The second example prompts for the variable "name" with the prompt text included:
 
-```
+```bash
 read name firstname
 read -p "Please type your name: " name
 ```
@@ -56,22 +56,22 @@ read -p "Please type your name: " name
 | `-n`   | Limits the number of characters to be entered. |
 | `-s`   | Hides the input.                              |
 
-When using the `-n` option, the shell automatically validates the input after the specified number of characters. The user does not have to press the <kbd>ENTER</kbd> key.
+When using the `-n` option, the shell automatically validates the input after the specified number of characters. The user does not have to press the ++enter++ key.
 
-```
+```bash
 read -n5 name
 ```
 
 The `read` command allows you to interrupt the execution of the script while the user enters information. The user's input is broken down into words assigned to one or more predefined variables. The words are strings of characters separated by the field separator.
 
-The end of the input is determined by pressing the <kbd>ENTER</kbd> key.
+The end of the input is determined by pressing the ++enter++ key.
 
 Once the input is validated, each word will be stored in the predefined variable.
 
 The division of the words is defined by the field separator character.
 This separator is stored in the system variable `IFS` (**Internal Field Separator**).
 
-```
+```bash
 set | grep IFS
 IFS=$' \t\n'
 ```
@@ -80,9 +80,9 @@ By default, the IFS contains the space, tab and line feed.
 
 When used without specifying a variable, this command simply pauses the script. The script continues its execution when the input is validated.
 
-This is used to pause a script when debugging or to prompt the user to press <kbd>ENTER</kbd> to continue.
+This is used to pause a script when debugging or to prompt the user to press ++enter++ to continue.
 
-```
+```bash
 echo -n "Press [ENTER] to continue..."
 read
 ```
@@ -93,13 +93,13 @@ The cut command allows you to isolate a column in a file or in a stream.
 
 Syntax of the cut command:
 
-```
+```bash
 cut [-cx] [-dy] [-fz] file
 ```
 
 Example of use of the cut command:
 
-```
+```bash
 cut -d: -f1 /etc/passwd
 ```
 
@@ -116,7 +116,7 @@ The main benefit of this command will be its association with a stream, for exam
 
 Example:
 
-```
+```bash
 grep "^root:" /etc/passwd | cut -d: -f3
 0
 ```
@@ -131,7 +131,7 @@ The `tr` command allows you to convert a string.
 
 Syntax of the `tr` command:
 
-```
+```bash
 tr [-csd] string1 string2
 ```
 
@@ -143,22 +143,28 @@ tr [-csd] string1 string2
 
 An example of using the `tr` command follows. If you use `grep` to return root's `passwd` file entry, you would get this:
 
-```
+```bash
 grep root /etc/passwd
 ```
+
 returns:
-```
+
+```bash
 root:x:0:0:root:/root:/bin/bash
 ```
+
 Now let's use `tr` command and the reduce the "o's" in the line:
 
-```
+```bash
 grep root /etc/passwd | tr -s "o"
 ```
+
 which returns this:
-```
+
+```bash
 rot:x:0:0:rot:/rot:/bin/bash
 ```
+
 ## Extract the name and path of a file
 
 The `basename` command allows you to extract the name of the file from a path.
@@ -167,14 +173,17 @@ The `dirname` command allows you to extract the parent path of a file.
 
 Examples:
 
-```
+```bash
 echo $FILE=/usr/bin/passwd
 basename $FILE
 ```
+
 Which would result in "passwd"
-```
+
+```bash
 dirname $FILE
 ```
+
 Which would result in: "/usr/bin"
 
 ## Arguments of a script
@@ -193,7 +202,7 @@ Its major disadvantage is that the user will have to be warned about the syntax 
 The arguments are filled in when the script command is entered.
 They are separated by a space.
 
-```
+```bash
 ./script argument1 argument2
 ```
 
@@ -214,7 +223,7 @@ These variables can be used in the script like any other variable, except that t
 
 Example:
 
-```
+```bash
 #!/usr/bin/env bash
 #
 # Author : Damien dit LeDub
@@ -238,7 +247,7 @@ echo "All without separation  (\$@) = $@"
 
 This will give:
 
-```
+```bash
 $ ./arguments.sh one two "tree four"
 The number of arguments ($#) = 3
 The name of the script  ($0) = ./arguments.sh
@@ -264,7 +273,7 @@ The shift command allows you to shift positional variables.
 
 Let's modify our previous example to illustrate the impact of the shift command on positional variables:
 
-```
+```bash
 #!/usr/bin/env bash
 #
 # Author : Damien dit LeDub
@@ -299,7 +308,7 @@ echo "All without separation  (\$@) = $@"
 
 This will give:
 
-```
+```bash
 ./arguments.sh one two "tree four"
 The number of arguments ($#) = 3
 The 1st argument        ($1) = one
@@ -330,13 +339,13 @@ The `set` command splits a string into positional variables.
 
 Syntax of the set command:
 
-```
+```bash
 set [value] [$variable]
 ```
 
 Example:
 
-```
+```bash
 $ set one two three
 $ echo $1 $2 $3 $#
 one two three 3

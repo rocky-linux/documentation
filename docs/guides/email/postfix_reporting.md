@@ -13,11 +13,11 @@ tags:
 
 ## Prerequisites
 
-* Complete comfort operating from the command line on a Rocky Linux server
-* Familiarity with an editor of your choice (this document uses the `vi` editor, but you can substitute in your favorite editor)
-* An understanding of DNS (the Domain Name System) and host names
-* The ability to assign variables in a bash script
-* Knowledge of what the `tail`, `more`, `grep`, and `date` commands do
+- Complete comfort operating from the command line on a Rocky Linux server
+- Familiarity with an editor of your choice (this document uses the `vi` editor, but you can substitute in your favorite editor)
+- An understanding of DNS (the Domain Name System) and host names
+- The ability to assign variables in a bash script
+- Knowledge of what the `tail`, `more`, `grep`, and `date` commands do
 
 ## Introduction
 
@@ -79,7 +79,7 @@ Use this command to see the output of the log file:
 
 You will see something like this, although the log file will have different domains for the email address, and other items:
 
-```
+```bash
 Mar  4 16:51:40 hedgehogct postfix/postfix-script[735]: starting the Postfix mail system
 Mar  4 16:51:40 hedgehogct postfix/master[737]: daemon started -- version 3.3.1, configuration /etc/postfix
 Mar  4 16:52:04 hedgehogct postfix/pickup[738]: C9D42EC0ADD: uid=0 from=<root>
@@ -90,6 +90,7 @@ Mar  4 16:52:06 hedgehogct postfix/smtp[745]: C9D42EC0ADD: to=<myname@mydomain.c
 :25, delay=1.4, delays=0.02/0.02/0.99/0.32, dsn=2.0.0, status=sent (250 2.0.0 OK  1614876726 z8si17418573ilq.142 - gsmtp)
 Mar  4 16:52:06 hedgehogct postfix/qmgr[739]: C9D42EC0ADD: removed
 ```
+
 The "somehost.localdomain" shows that you need to make some changes. Stop the `postfix` daemon first:
 
 `systemctl stop postfix`
@@ -132,10 +133,11 @@ Before you continue editing the generic file, you need to see how the email will
 
 This file tells `postfix` how any email coming from this server will look. Remember our test email and the log file? This is where we fix all of that:
 
-```
+```bash
 root@somehost.localdomain       root@bruno.ourdomain.com
 @somehost.localdomain           root@bruno.ourdomain.com
 ```
+
 Next, you need to tell `postfix` to use all of our changes. Do this with the postmap command:
 
 `postmap /etc/postfix/generic`
@@ -164,7 +166,7 @@ Check our system log and see how it records information. To do this, use the `mo
 
 Which will give you something like this:
 
-```
+```bash
 Mar  4 18:23:53 hedgehogct dbus-daemon[60]: [system] Successfully activated service 'org.freedesktop.nm_dispatcher'
 Mar  4 18:50:41 hedgehogct dbus-daemon[60]: [system] Activating via systemd: service name='org.freedesktop.nm_dispatcher' unit='dbus-org.freedesktop.nm-dispatcher.service' requested by ':1.1' (uid=0 pid=61 comm="/usr/sbin/NetworkManager --no-daemon " label="unconfined")
 Mar  4 18:50:41 hedgehogct dbus-daemon[60]: [system] Successfully activated service 'org.freedesktop.nm_dispatcher
@@ -188,7 +190,7 @@ Also, in our first run of the script, you are grabbing all of the messages for t
 
 Be aware that the `grep` command will return the filename in the output, which you will not want in this case. To remove this, add the "-h" option to grep. In addition, when you set the variable "today", you need to look for the entire variable as a string, which needs the string within quotes:
 
-```
+```bash
 #!/bin/bash
 
 # set the date string to match /var/log/messages
@@ -210,7 +212,7 @@ If all works correctly, you will get a long list of all of the messages in _/var
 
 `vi /usr/local/sbin/test.sh`
 
-```
+```bash
 #!/bin/bash
 
 # set the date string to match /var/log/messages
@@ -228,7 +230,7 @@ One final step remains. Remember, you need to get this emailed to the administra
 
 Change the script:
 
-```
+```bash
 #!/bin/bash
 
 # start postfix

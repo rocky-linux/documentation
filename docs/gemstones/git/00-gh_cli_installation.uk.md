@@ -33,12 +33,14 @@ tags:
    curl -fsSL https://cli.github.com/packages/rpm/gh-cli.repo | sudo tee /etc/yum.repos.d/github-cli.repo
    sudo dnf -y install gh
    ```
+
 2. **Перевірте встановлення**:
    Переконайтеся, що `gh` встановлено правильно. Впишіть:
 
    ```bash
    gh --version
    ```
+
 3. **Автентифікація за допомогою GitHub**:
    Увійдіть у свій обліковий запис GitHub. Впишіть:
 
@@ -55,4 +57,4 @@ tags:
 ## Додаткова інформація (необов'язково)
 
 - GitHub CLI надає різні команди, такі як `gh repo clone`, `gh pr create`, `gh issue list` тощо.
-- Щоб дізнатися більше про використання, зверніться до [офіційної документації GitHub CLI] (https\://cli.github.com/manual/).
+- Щоб дізнатися більше про використання, зверніться до [офіційної документації GitHub CLI] (https://cli.github.com/manual/).

@@ -36,13 +36,13 @@ You could run most of the commands in the guide manually, but setting up a few b
 
 Here is everything you will need, or need to know, to make this guide work:
 
-* Familiarity with the command line, bash scripts, and editing Linux configuration files.
-* SSH access if working on a remote machine.
-* A command-line based text editor of your choice. We will be using `vi` for this guide. 
-* An internet-connected Rocky Linux machine (again, a Raspberry Pi will work nicely).
-* Many of these commands must be run as root, so you will need a root or sudo-capable user on the machine.
-* Familiarity with web servers and MariaDB would definitely help.
-* Familiarity with containers and maybe Docker would be a *definite* plus, but is not strictly essential.
+- Familiarity with the command line, bash scripts, and editing Linux configuration files.
+- SSH access if working on a remote machine.
+- A command-line based text editor of your choice. We will be using `vi` for this guide.
+- An internet-connected Rocky Linux machine (again, a Raspberry Pi will work nicely).
+- Many of these commands must be run as root, so you will need a root or sudo-capable user on the machine.
+- Familiarity with web servers and MariaDB would definitely help.
+- Familiarity with containers and maybe Docker would be a *definite* plus, but is not strictly essential.
 
 ## Step 01: Install `podman` and `buildah`
 
@@ -74,7 +74,7 @@ vi /etc/containers/registries.conf
 
 Find the section that looks like what you see below. If it is commented out, uncomment it.
 
-```
+```bash
 [registries.insecure]
 registries = ['registry.access.redhat.com', 'registry.redhat.io', 'docker.io'] 
 insecure = true
@@ -108,7 +108,7 @@ vi Dockerfile
 
 Copy and paste the following text into your brand new DockerFile.
 
-```
+```docker
 FROM rockylinux/rockylinux:latest
 ENV container docker
 RUN yum -y install epel-release ; yum -y update
@@ -128,7 +128,7 @@ VOLUME [ "/sys/fs/cgroup" ]
 CMD ["/usr/sbin/init"]
 ```
 
-Save and close the previous file, and make a new bash script file: 
+Save and close the previous file, and make a new bash script file:
 
 ```bash
 vi build.sh
@@ -136,7 +136,7 @@ vi build.sh
 
 Then paste in this content:
 
-```
+```bash
 #!/bin/bash
 clear
 buildah rmi `buildah images -q base` ;
@@ -162,10 +162,10 @@ Wait until it is done, and move on to the next step.
 
 For the purposes of this guide, we are keeping the database setup as simple as we can. You will want to keep track of the following, and modify them as needed:
 
-* Database name: ncdb
-* Database user: nc-user
-* Database pass: nc-pass
-* Your server IP address (we will be using an example IP below)
+- Database name: ncdb
+- Database user: nc-user
+- Database pass: nc-pass
+- Your server IP address (we will be using an example IP below)
 
 First, change to the folder where you will be building the db-tools image:
 
@@ -173,7 +173,7 @@ First, change to the folder where you will be building the db-tools image:
 cd /root/db-tools
 ```
 
-Now set up some bash scripts that will be used inside the Podman container image. First, make the script that will automatically build your database for you: 
+Now set up some bash scripts that will be used inside the Podman container image. First, make the script that will automatically build your database for you:
 
 ```bash
 vi db-create.sh
@@ -181,7 +181,7 @@ vi db-create.sh
 
 Now copy and paste the following code into that file, using your favorite text editor:
 
-```
+```bash
 #!/bin/bash
 mysql -h 10.1.1.160 -u root -p rockylinux << eof
 create database ncdb;
@@ -198,7 +198,7 @@ vi db-drop.sh
 
 Copy and paste this code into the new file:
 
-```
+```bash
 #!/bin/bash
 mysql -h 10.1.1.160 -u root -p rockylinux << eof
 drop database ncdb;
@@ -214,7 +214,7 @@ vi Dockerfile
 
 Copy and paste:
 
-```
+```docker
 FROM localhost/base
 RUN yum -y install mysql
 WORKDIR /root
@@ -230,7 +230,7 @@ vi build.sh
 
 The code you will want:
 
-```
+```bash
 #!/bin/bash
 clear
 buildah rmi `buildah images -q db-tools` ;
@@ -250,7 +250,7 @@ And run it:
 ./build.sh
 ```
 
-## Step 04: Create the MariaDB container image 
+## Step 04: Create the MariaDB container image
 
 You are getting the hang of the process, right? It is time to build that actual database container. Change the working directory to `/root/mariadb`:
 
@@ -270,7 +270,7 @@ And here is the code you will need:
 
     For the purposes of this guide, the following script will delete all Podman Volumes. If you have other applications running with their own volumes, modify/comment the line "podman volume rm --all";
 
-```
+```bash
 #!/bin/bash
 clear
 echo " "
@@ -301,7 +301,7 @@ vi db-reset.sh
 
 And here is the code:
 
-```
+```bash
 #!/bin/bash
 clear
 echo " "
@@ -321,7 +321,7 @@ vi build.sh
 
 With its code:
 
-```
+```bash
 #!/bin/bash
 clear
 buildah rmi `buildah images -q mariadb` ;
@@ -331,7 +331,7 @@ buildah images -a
 
 Now just make your DockferFile (`vi Dockerfile`), and paste in the following single line:
 
-```
+```docker
 FROM arm64v8/mariadb
 ```
 
@@ -363,7 +363,7 @@ vi Dockerfile
 
 And paste in this bit:
 
-```
+```docker
 FROM arm64v8/nextcloud
 ```
 
@@ -375,7 +375,7 @@ vi build.sh
 
 And paste in this code:
 
-```
+```bash
 #!/bin/bash
 clear
 buildah rmi `buildah images -q nextcloud` ;
@@ -397,7 +397,7 @@ vi run.sh
 
 And here is all the code you need for that. Ensure you change the IP address for `MYSQL_HOST` to the docker container that is running your MariaDB instance.
 
-```
+```bash
 #!/bin/bash
 clear
 echo " "
@@ -419,7 +419,7 @@ podman run --name nextcloud --net host --privileged -d -p 80:80 \
 nextcloud ;
 ```
 
-Save and close that out, make all of your scripts executable, then run the image building script first: 
+Save and close that out, make all of your scripts executable, then run the image building script first:
 
 ```bash
 chmod +x *.sh
@@ -429,7 +429,7 @@ chmod +x *.sh
 
 To ensure all of your images have been built correctly, run `podman images`. You should see a list that looks like this:
 
-```
+```bash
 REPOSITORY                      TAG    IMAGE ID     CREATED      SIZE
 localhost/db-tools              latest 8f7ccb04ecab 6 days ago   557 MB
 localhost/base                  latest 03ae68ad2271 6 days ago   465 MB
@@ -445,13 +445,13 @@ If it all looks right, run the final script to get Nextcloud up and going:
 
 When you run `podman ps -a`, you should see a list of running containers that looks like this:
 
-```
+```bash
 CONTAINER ID IMAGE                              COMMAND              CREATED        STATUS            PORTS    NAMES
 9518756a259a docker.io/arm64v8/mariadb:latest   mariadbd             3 minutes  ago Up 3 minutes ago           mariadb
 32534e5a5890 docker.io/arm64v8/nextcloud:latest apache2-foregroun... 12 seconds ago Up 12 seconds ago          nextcloud
 ```
 
-From there, you should be able to point your browser to your server IP address. If you are following along and have the same IP as our example, you can substitute that in here (e.g., http://your-server-ip) and see Nextcloud up and running.
+From there, you should be able to point your browser to your server IP address. If you are following along and have the same IP as our example, you can substitute that in here (e.g., <http://your-server-ip>) and see Nextcloud up and running.
 
 ## Conclusion
 

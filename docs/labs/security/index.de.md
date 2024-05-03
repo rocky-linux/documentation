@@ -13,58 +13,66 @@ title: Liste der Security Labs
 ### Lab 2: Betriebssystem-Patch
 
 1. Update und Patch
-1. Konfiguration und Verwendung von dnf
-1. Drittanbieter-Lösungen
+2. Konfiguration und Verwendung von dnf
+3. Drittanbieter-Lösungen
 
 ### Lab 2: Betriebssystem-Audit
+
 1. Beispiel für ein einfaches Integrität-Checker
-1. Open Source Tripwire®
-1. Integritätsprüfung und Reports
-1. Feinabstimmung von Open Source Tripwire®
+2. Open Source Tripwire®
+3. Integritätsprüfung und Reports
+4. Feinabstimmung von Open Source Tripwire®
 
 ### Lab 4: Informationserfassung
+
 1. netstat
-1. lsof
-1. nmap
-1. rpcinfo
-1. tcpdump
-1. telnet
+2. lsof
+3. nmap
+4. rpcinfo
+5. tcpdump
+6. telnet
 
 ### Lab 5: Lokale Sicherheit
+
 1. System kompromitieren durch den boot loader
-1. boot loader mit Passwort schützen
-1. Nicht notwendige tty’s deaktivieren
-1. reboot via  CTRL+ALT+DEL deaktivieren
-1. Passwortabfrage im Benutzermodus erzwingen
-1. Set-UID Programme
-1. John the Ripper
+2. boot loader mit Passwort schützen
+3. Nicht notwendige tty’s deaktivieren
+4. reboot via  CTRL+ALT+DEL deaktivieren
+5. Passwortabfrage im Benutzermodus erzwingen
+6. Set-UID Programme
+7. John the Ripper
 
 ### Lab 6: A staged Hack
+
 1. The PATH
 
 ### Lab 7: TCP-Wrapper
+
 1. Tcp_wrappers
 
 ### Lab 8: Iptables
+
 1. Iptables Grundlagen
-1. Basic Packet Filtering
-1. Basic Packet Forwarding
+2. Basic Packet Filtering
+3. Basic Packet Forwarding
 
 ### Lab 9: Kryptographie
+
 1. GnuPG
-1. Verwaltung der Schlüssel
-1. Widerruf-Zertifikate
-1. Digitale Signaturen
-1. Verschlüsseln und Entschlüsseln von Dateien
-1. sshd
-1. ssh
-1. scp
-1. Authentifizierung via Public-Key
-1. ssh-agent
+2. Verwaltung der Schlüssel
+3. Widerruf-Zertifikate
+4. Digitale Signaturen
+5. Verschlüsseln und Entschlüsseln von Dateien
+6. sshd
+7. ssh
+8. scp
+9. Authentifizierung via Public-Key
+10. ssh-agent
 
 ### Lab 10: Kernel Level Sicherheit
+
 1. GRsecurity installieren
-1. gradm
-1. ACLs
-1. GRsecurity Lern-Modus
-1. SELinux
+2. gradm
+3. ACLs
+4. GRsecurity Lern-Modus
+5. SELinux

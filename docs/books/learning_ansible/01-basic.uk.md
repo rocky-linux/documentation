@@ -13,13 +13,13 @@ update: 15 грудня 2021 р
 
 **Цілі**: В цьому розділі ви дізнаєтеся як:
 
-:heavy_check_mark: Реалізувати Ansible;       
-:heavy_check_mark: Застосувати зміни конфігурації на сервері;   
-:heavy_check_mark: Створити перші збірники ігор Ansible;
+:heavy_check_mark: Реалізувати Ansible;  
+:heavy_check_mark: Застосувати зміни конфігурації на сервері;  
+:heavy_check_mark: Створити перші Ansible playbooks;
 
 :checkered_flag: **ansible**, **module**, **playbook**
 
-**Знання**: :star: :star: :star:     
+**Знання**: :star: :star: :star:  
 **Складність**: :star: :star:
 
 **Час читання**: 30 хвилин
@@ -96,21 +96,21 @@ _EPEL_ потрібен для обох версій, тому ви можете
 
 * Установка EPEL:
 
-```
-$ sudo dnf install epel-release
+```bash
+sudo dnf install epel-release
 ```
 
 ### Установка від EPEL
 
 Якщо ми встановимо Ansible з _EPEL_, ми зможемо зробити наступне:
 
-```
-$ sudo dnf install ansible
+```bash
+sudo dnf install ansible
 ```
 
 А потім перевірте встановлення:
 
-```
+```bash
 $ ansible --version
 ansible [core 2.14.2]
   config file = /etc/ansible/ansible.cfg
@@ -138,8 +138,8 @@ Python 3.6.8
 
 На цьому етапі ми можемо встановити ansible з потрібною версією python.
 
-```
-$ sudo dnf install python38 python38-pip python38-wheel python3-argcomplete rust cargo curl
+```bash
+sudo dnf install python38 python38-pip python38-wheel python3-argcomplete rust cargo curl
 ```
 
 !!! Note "Примітка"
@@ -149,14 +149,14 @@ $ sudo dnf install python38 python38-pip python38-wheel python3-argcomplete rust
 
 Тепер ми можемо встановити Ansible:
 
-```
-$ pip3.8 install --user ansible
-$ activate-global-python-argcomplete --user
+```bash
+pip3.8 install --user ansible
+activate-global-python-argcomplete --user
 ```
 
 Перевірте свою версію Ansible:
 
-```
+```bash
 $ ansible --version
 ansible [core 2.13.11]
   config file = None
@@ -184,7 +184,7 @@ ansible [core 2.13.11]
 
 Конфігураційний файл буде створено автоматично, якщо Ansible було встановлено через пакет RPM. При встановленні `pip` цей файл не існує. Нам доведеться створити його вручну завдяки команді `ansible-config`:
 
-```
+```bash
 $ ansible-config -h
 usage: ansible-config [-h] [--version] [-v] {list,dump,view,init} ...
 
@@ -200,7 +200,7 @@ usage: ansible-config [-h] [--version] [-v] {list,dump,view,init} ...
 
 Приклад:
 
-```
+```bash
 ansible-config init --disabled > /etc/ansible/ansible.cfg
 ```
 
@@ -224,7 +224,7 @@ ansible-config init --disabled > /etc/ansible/ansible.cfg
 
 Перейдіть до файлу інвентаризації за умовчанням, який знаходиться під `/etc/ansible/hosts`. Деякі приклади наведено та прокоментовано:
 
-```
+```text
 # This is the default ansible 'hosts' file.
 #
 # It should live in /etc/ansible/hosts
@@ -278,7 +278,7 @@ ansible-config init --disabled > /etc/ansible/ansible.cfg
 
 Як ви могли помітити, групи оголошуються у квадратних дужках. Потім йдуть елементи, що належать до груп. Ви можете створити, наприклад, групу `rocky8`, вставивши наступний блок у цей файл:
 
-```
+```bash
 [rocky8]
 172.16.1.10
 172.16.1.11
@@ -286,7 +286,7 @@ ansible-config init --disabled > /etc/ansible/ansible.cfg
 
 Групи можна використовувати в інших групах. У цьому випадку необхідно вказати, що батьківська група складається з підгруп з атрибутом `:children`, як це:
 
-```
+```bash
 [linux:children]
 rocky8
 debian9
@@ -310,7 +310,7 @@ ansible_clients
 
 Команда `ansible` запускає завдання на одному чи кількох цільових хостах.
 
-```
+```bash
 ansible <host-pattern> [-m module_name] [-a args] [options]
 ```
 
@@ -322,37 +322,37 @@ ansible <host-pattern> [-m module_name] [-a args] [options]
 
 * Перелічіть хости, що належать до групи rocky8:
 
-```
+```bash
 ansible rocky8 --list-hosts
 ```
 
 * Виконайте тестування групи хостів за допомогою модуля `ping`:
 
-```
+```bash
 ansible rocky8 -m ping
 ```
 
 * Відображення фактів із групи хостів за допомогою модуля `setup`:
 
-```
+```bash
 ansible rocky8 -m setup
 ```
 
 * Виконайте команду в групі хостів, викликавши модуль `command` з аргументами:
 
-```
+```bash
 ansible rocky8 -m command -a 'uptime'
 ```
 
 * Виконайте команду з правами адміністратора:
 
-```
+```bash
 ansible ansible_clients --become -m command -a 'reboot'
 ```
 
 * Виконайте команду за допомогою спеціального файлу інвентаризації:
 
-```
+```bash
 ansible rocky8 -i ./local-inventory -m command -a 'date'
 ```
 
@@ -380,26 +380,26 @@ ansible rocky8 -i ./local-inventory -m command -a 'date'
 
 На обох машинах створіть користувача `ansible`, присвяченого ansible:
 
-```
-$ sudo useradd ansible
-$ sudo usermod -aG wheel ansible
+```bash
+sudo useradd ansible
+sudo usermod -aG wheel ansible
 ```
 
 Встановіть пароль для цього користувача:
 
-```
-$ sudo passwd ansible
+```bash
+sudo passwd ansible
 ```
 
 Змініть конфігурацію sudoers, щоб дозволити членам групи `wheel` використовувати sudo без пароля:
 
-```
-$ sudo visudo
+```bash
+sudo visudo
 ```
 
 Наша мета тут — закоментувати параметр за замовчуванням і розкоментувати параметр NOPASSWD, щоб ці рядки виглядали так, коли ми закінчимо:
 
-```
+```bash
 ## Allows people in group wheel to run all commands
 # %wheel  ALL=(ALL)       ALL
 
@@ -414,8 +414,8 @@ $ sudo visudo
 
 Використовуючи керування з цього моменту, почніть працювати з цим новим користувачем:
 
-```
-$ sudo su - ansible
+```bash
+sudo su - ansible
 ```
 
 ### Перевірка за допомогою модуля ping
@@ -424,13 +424,13 @@ $ sudo su - ansible
 
 Розкоментуйте наступний рядок із розділу `[defaults]` у файлі конфігурації `/etc/ansible/ansible.cfg` і встановіть для нього значення True:
 
-```
+```bash
 ask_pass      = True
 ```
 
 Запустіть `ping` на кожному сервері групи rocky8:
 
-```
+```bash
 # ansible rocky8 -m ping
 SSH password:
 172.16.1.10 | SUCCESS => {
@@ -467,7 +467,7 @@ SSH password:
 
 Подвійний ключ буде згенеровано за допомогою команди `ssh-keygen` на станції керування користувачем `ansible`:
 
-```
+```bash
 [ansible]$ ssh-keygen
 Generating public/private rsa key pair.
 Enter file in which to save the key (/home/ansible/.ssh/id_rsa):
@@ -494,14 +494,14 @@ The key's randomart image is:
 
 Відкритий ключ можна скопіювати на сервери:
 
-```
+```bash
 # ssh-copy-id ansible@172.16.1.10
 # ssh-copy-id ansible@172.16.1.11
 ```
 
 Повторно прокоментуйте наступний рядок із розділу `[defaults]` у файлі конфігурації `/etc/ansible/ansible.cfg`, щоб запобігти автентифікації паролем:
 
-```
+```bash
 #ask_pass      = True
 ```
 
@@ -509,7 +509,7 @@ The key's randomart image is:
 
 Для наступного тесту використовується модуль `shell`, що дозволяє віддалено виконувати команди:
 
-```
+```bash
 # ansible rocky8 -m shell -a "uptime"
 172.16.1.10 | SUCCESS | rc=0 >>
  12:36:18 up 57 min,  1 user,  load average: 0.00, 0.00, 0.00
@@ -538,7 +538,7 @@ Ansible можна використовувати з оболонки або pla
 
 Модуль викликається за допомогою параметра `-m` команди `ansible`:
 
-```
+```bash
 ansible <host-pattern> [-m module_name] [-a args] [options]
 ```
 
@@ -562,7 +562,7 @@ ansible <host-pattern> [-m module_name] [-a args] [options]
 
 Модуль `dnf` дозволяє інсталювати програмне забезпечення на цільових клієнтах:
 
-```
+```bash
 # ansible rocky8 --become -m dnf -a name="httpd"
 172.16.1.10 | SUCCESS => {
     "changed": true,
@@ -586,7 +586,7 @@ ansible <host-pattern> [-m module_name] [-a args] [options]
 
 Встановлене програмне забезпечення є службою, тепер необхідно запустити його за допомогою модуля `systemd`:
 
-```
+```bash
 # ansible rocky8 --become  -m systemd -a "name=httpd state=started"
 172.16.1.10 | SUCCESS => {
     "changed": true,
@@ -630,7 +630,7 @@ ansible <host-pattern> [-m module_name] [-a args] [options]
 
 Пізніше ми побачимо, як використовувати факти в наших підручниках і створювати власні факти.
 
-```
+```bash
 # ansible ansible_clients -m setup | less
 192.168.1.11 | SUCCESS => {
     "ansible_facts": {
@@ -665,7 +665,7 @@ Playbooks Ansible описують політику, яка буде засто�
 
     Дізнайтеся більше про [yaml тут](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html)
 
-```
+```bash
 ansible-playbook <file.yml> ... [options]
 ```
 
@@ -694,7 +694,7 @@ ansible-playbook <file.yml> ... [options]
 
 Створіть файл `test.yml` із таким вмістом:
 
-```
+```bash
 ---
 - hosts: rocky8 <1>
   become: true <2>
@@ -721,7 +721,7 @@ ansible-playbook <file.yml> ... [options]
 
 Виконання playbook виконується командою `ansible-playbook`:
 
-```
+```bash
 $ ansible-playbook test.yml
 
 PLAY [rocky8] ****************************************************************
@@ -753,7 +753,7 @@ PLAY RECAP *********************************************************************
 
 Для кращої читабельності рекомендовано писати ваші п’єси в повному форматі yaml. У попередньому прикладі аргументи подано в тому самому рядку, що й модуль, значення аргументу після його назви розділено `=`. Подивіться ту саму playbook на повному yaml:
 
-```
+```bash
 ---
 - hosts: rocky8
   become: true
@@ -789,14 +789,15 @@ PLAY RECAP *********************************************************************
 
 Примітка щодо колекцій: Ansible тепер надає модулі у формі колекцій. Деякі модулі надаються за замовчуванням у колекції `ansible.builtin`, інші потрібно встановити вручну за допомогою:
 
-```
+```bash
 ansible-galaxy collection install [collectionname]
 ```
+
 де [collectionname] — це назва колекції (квадратні дужки тут використовуються, щоб підкреслити необхідність заміни її фактичною назвою колекції, і НЕ є частиною команди).
 
 Попередній приклад слід записати так:
 
-```
+```bash
 ---
 - hosts: rocky8
   become: true
@@ -828,7 +829,7 @@ ansible-galaxy collection install [collectionname]
 
 Посібник не обмежується однією метою:
 
-```
+```bash
 ---
 - hosts: webservers
   become: true
@@ -864,19 +865,19 @@ ansible-galaxy collection install [collectionname]
 
 Ви можете перевірити синтаксис вашої playbook:
 
-```
-$ ansible-playbook --syntax-check play.yml
+```bash
+ansible-playbook --syntax-check play.yml
 ```
 
 Ви також можете використовувати "лінтер" для yaml:
 
-```
-$ dnf install -y yamllint
+```bash
+dnf install -y yamllint
 ```
 
 потім перевірте синтаксис yaml своїх playbooks:
 
-```
+```bash
 $ yamllint test.yml
 test.yml
   8:1       error    syntax error: could not find expected ':' (syntax)
@@ -894,7 +895,7 @@ test.yml
 * Оновіть дистрибутив клієнта
 * Перезапустіть клієнт
 
-```
+```bash
 ansible ansible_clients --become -m group -a "name=Paris"
 ansible ansible_clients --become -m group -a "name=Tokio"
 ansible ansible_clients --become -m group -a "name=NewYork"

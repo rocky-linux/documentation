@@ -86,7 +86,7 @@ Say you have a website that loads a wiki. You will need a configuration file, wh
 
 If you want to serve the website with SSL/TLS (and face it, in most cases you do), you need to add another (nearly the same) section to that file to enable port 443.
 
-You can examine that below in the [Configuration `https` using An SSL/TLS certificate](#https) section.
+You can examine that below in the [Configuration `https` using An SSL/TLS certificate](#configuration-https-using-an-ssltls-certificate) section.
 
 You first need to create this configuration file in *sites-available*:
 
@@ -121,9 +121,9 @@ The configuration file content will look something like this:
 </VirtualHost>
 ```
 
-When created, you need to write (save) it with ++shift+:+wq++.
+When created, you need to write (save) it with ++shift+colon+w+q++.
 
-In the example, loading the wiki site happens from the "html" subdirectory of _your-server-hostname_, which means that the path you created in _/var/www_ (above) will need some additional directories to satisfy this:
+In the example, loading the wiki site happens from the "html" subdirectory of *your-server-hostname*, which means that the path you created in */var/www* (above) will need some additional directories to satisfy this:
 
 ```bash
 mkdir -p /var/www/sub-domains/your-server-hostname/html
@@ -137,7 +137,7 @@ Copy your files to the path you created:
 cp -Rf wiki_source/* /var/www/sub-domains/your-server-hostname/html/
 ```
 
-## <a name="https"></a>Configuration `https` using an SSL/TLS certificate
+## Configuration `https` using an SSL/TLS certificate
 
 As stated earlier, every web server created these days *should* be running with SSL/TLS (the secure socket layer).
 

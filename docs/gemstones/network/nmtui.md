@@ -9,7 +9,7 @@ update: 2021-10-23
 
 For novice users who are new to GNU/Linux for the first time, the first thing to consider is how to connect the machine to the Internet after installing the operating system. This article will tell you how to configure the IP address, subnet mask, gateway and DNS. There are several ways for reference. Whether you are a novice or a familiar, I believe you can quickly get started.
 
-##  nmtui
+## nmtui
 
 `NetworkManager` is a standard Linux network configuration tool suite, which supports server and desktop environments. Nowadays, most popular distributions support it. This set of network configuration tools is suitable for Rocky Linux 8 and later versions. If you want to configure network information graphically (i.e. the command line `nmtui`), you only need to do this:
 
@@ -26,12 +26,11 @@ shell > nmtui
 |Quit||
 ||\<OK\>|
 
-You can use the <kbd>Tab</kbd> key or the <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> key to select the specific If you want to change the network information, please select **Edit a connection** and then <kbd>Enter</kbd>. Select a different network card and select **Edit..** to edit.
+You can use the ++tab++ key or the ++arrow-up++ ++arrow-down++ ++arrow-left++ ++arrow-right++ key to select the specific If you want to change the network information, please select **Edit a connection** and then ++enter++. Select a different network card and select **Edit..** to edit.
 
-###  DHCP IPv4
+### DHCP IPv4
 
 For IPv4, if it is to obtain network information with DHCP, you only need to select *IPv4 CONFIGURATION* **&lt;Automatic&gt;**, and run in your terminal `systemctl restart NetworkManager.service`. This will work in most cases. In rare cases, you need to disable and enable the network card for the change to take effect. For example: `nmcli connection down ens33`, `nmcli connection up ens33`
-
 
 ### Manually fix network information
 
@@ -85,7 +84,7 @@ ifcfg-ens33
 
 After the configuration file is modified successfully, remember to restart the network card service `systemctl restart NetworkManager.service`.
 
-###  Recommended configuration for IPV4
+### Recommended configuration for IPV4
 
 ```bash
 TYPE=Ethernet
@@ -117,6 +116,6 @@ IPV6_DEFROUTE=yes
 IPV6_FAILURE_FATAL=no
 ```
 
-##  View network information
+## View network information
 
 `ip a` or `nmcli device show`

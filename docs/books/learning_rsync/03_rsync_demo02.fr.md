@@ -6,6 +6,7 @@ update: 2021-11-04
 ---
 
 # Démonstration basée sur le protocole rsync
+
 Dans vsftpd, il y a des utilisateurs virtuels (utilisateurs personnalisés par l'administrateur) parce qu'il est très déconseillé d'utiliser des utilisateurs anonymes et des utilisateurs locaux. On sait qu'un serveur basé sur le protocole SSH doit garantir l'existence d'un système d'utilisateurs. Quand il y a beaucoup d'exigences de synchronisation, il peut être nécessaire de créer de nombreux utilisateurs. Cela ne répond évidemment pas aux normes de fonctionnement et de maintenance de GNU/Linux (plus il y a d'utilisateurs, plus il y a d'utilisateurs non sécurisés). Dans rsync, pour des raisons de sécurité, il y a une méthode d'authentification du protocole rsync.
 
 **Comment faire?**
@@ -17,7 +18,7 @@ Il suffit d'écrire les paramètres et valeurs correspondants dans le fichier de
 [root@Rocky ~]# vim /etc/rsyncd.conf
 ```
 
-Certains paramètres et leurs valeurs de ce fichier sont présentés ci-dessous, [ici](04_rsync_configure.md) vous trouverez d'autres descriptions de paramètres :
+Certains paramètres de ce fichier et leurs valeurs sont présentés ci-dessous, [ici](04_rsync_configure.md) vous trouverez des descriptions de paramètres supplémentaires :
 
 | Élément                                   | Observation                                                                                                                                                                                        |
 | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

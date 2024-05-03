@@ -17,7 +17,7 @@ Throughout this chapter you will need to run commands as your unprivileged user 
 
 You probably can not wait to get started with a container. There are many container operating system possibilities. To get a feel for how many possibilities, enter this command:
 
-```
+```bash
 lxc image list images: | more
 ```
 
@@ -25,13 +25,13 @@ Enter the space bar to page through the list. This list of containers and virtua
 
 The **last** thing you want to do is to page through looking for a container image to install, particularly if you know the image that you want to create. Change the command to show only Rocky Linux install options:
 
-```
+```bash
 lxc image list images: | grep rocky
 ```
 
 This brings up a much more manageable list:
 
-```
+```bash
 | rockylinux/8 (3 more)                    | 0ed2f148f7c6 | yes    | Rockylinux 8 amd64 (20220805_02:06)          | x86_64       | CONTAINER       | 128.68MB  | Aug 5, 2022 at 12:00am (UTC)  |
 | rockylinux/8 (3 more)                    | 6411a033fdf1 | yes    | Rockylinux 8 amd64 (20220805_02:06)          | x86_64       | VIRTUAL-MACHINE | 643.15MB  | Aug 5, 2022 at 12:00am (UTC)  |
 | rockylinux/8/arm64 (1 more)              | e677777306cf | yes    | Rockylinux 8 arm64 (20220805_02:29)          | aarch64      | CONTAINER       | 124.06MB  | Aug 5, 2022 at 12:00am (UTC)  |
@@ -50,7 +50,7 @@ This brings up a much more manageable list:
 
 For the first container, you are going to use "rockylinux/8". To install it, you *might* use:
 
-```
+```bash
 lxc launch images:rockylinux/8 rockylinux-test-8
 ```
 
@@ -58,19 +58,19 @@ That will create a Rocky Linux-based container named "rockylinux-test-8". You ca
 
 To start the container manually, use:
 
-```
+```bash
 lxc start rockylinux-test-8
 ```
 
 To Rename the image (we are not going to do this here, but this is how to do it) first stop the container:
 
-```
+```bash
 lxc stop rockylinux-test-8
 ```
 
 Use the `move` command to change the container's name:
 
-```
+```bash
 lxc move rockylinux-test-8 rockylinux-8
 ```
 
@@ -78,25 +78,25 @@ If you followed this instruction anyway, stop the container and move it back to 
 
 For the purposes of this guide, go ahead and install two more images for now:
 
-```
+```bash
 lxc launch images:rockylinux/9 rockylinux-test-9
 ```
 
 and
 
-```
+```bash
 lxc launch images:ubuntu/22.04 ubuntu-test
 ```
 
 Examine what you have by listing your images:
 
-```
+```bash
 lxc list
 ```
 
 which will return this:
 
-```
+```bash
 +-------------------+---------+----------------------+------+-----------+-----------+
 |       NAME        |  STATE  |         IPV4         | IPV6 |   TYPE    | SNAPSHOTS |
 +-------------------+---------+----------------------+------+-----------+-----------+
@@ -106,6 +106,4 @@ which will return this:
 +-------------------+---------+----------------------+------+-----------+-----------+
 | ubuntu-test       | RUNNING | 10.146.84.181 (eth0) |      | CONTAINER | 0         |
 +-------------------+---------+----------------------+------+-----------+-----------+
-
 ```
-

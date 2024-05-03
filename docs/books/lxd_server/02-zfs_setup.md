@@ -19,7 +19,7 @@ If you have already installed ZFS, this section will walk you through ZFS setup.
 
 First, enter this command:
 
-```
+```bash
 /sbin/modprobe zfs
 ```
 
@@ -27,13 +27,13 @@ If there are no errors, it will return to the prompt and echo nothing. If you ge
 
 Next you need to examine the disks on our system, find out where the operating system is, and what is available to use for the ZFS pool. You will do this with `lsblk`:
 
-```
+```bash
 lsblk
 ```
 
 Which will return something like this (your system will be different!):
 
-```
+```bash
 AME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
 loop0    7:0    0  32.3M  1 loop /var/lib/snapd/snap/snapd/11588
 loop1    7:1    0  55.5M  1 loop /var/lib/snapd/snap/core18/1997
@@ -55,7 +55,7 @@ In this listing, you can see that */dev/sda* is in use by the operating system. 
 
 That falls outside the scope of this document, but definitely is a consideration for production. It offers better performance and redundancy. For now, create your pool on the single device you have identified:
 
-```
+```bash
 zpool create storage /dev/sdb
 ```
 

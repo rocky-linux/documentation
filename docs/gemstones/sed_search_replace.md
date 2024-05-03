@@ -53,7 +53,7 @@ First, generate a list of files that your script will use. Do this at the comman
 
 Next, create a script to use this `phpfiles.txt`:
 
-```
+```bash
 #!/bin/bash
 
 for file in `cat phpfiles.txt`
@@ -61,6 +61,7 @@ do
         sed -i.bak 's|search_for/with_slash|replace_string|g' $file
 done
 ```
+
 The script loops through all of the files created in `phpfiles.txt`, creates a backup of each file, and executes the search and replace string globally. When you have verified that the changes are what you want, you can delete all of the backup files.
 
 ## Other reading and examples

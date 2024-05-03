@@ -90,6 +90,7 @@ total size is 0 speedup is 0.00
 [root@fedora ~]# ls
 aabbcc
 ```
+
 Trasferimento effettuato con successo.
 
 !!! tip "Suggerimento"

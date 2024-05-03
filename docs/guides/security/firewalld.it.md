@@ -10,7 +10,6 @@ tags:
 
 # Guida da `iptables` a `firewalld` - Introduzione
 
-
 Quando è stato introdotto `firewalld` come firewall predefinito (l'introduzione è avvenuta nel 2011, ma credo che sia apparso per primo in CentOS 7), l'autore ha continuato a usare `iptables`. C'erano due ragioni per questo. In primo luogo, la documentazione disponibile all'epoca per `firewalld` utilizzava regole semplicistiche e non mostrava come `firewalld` proteggesse il server *fino al livello IP*. In secondo luogo, l'autore aveva più di dieci anni di esperienza con `iptables` ed era più facile continuare ad usare quello invece di imparare `firewalld`.
 
 Questo documento si propone di affrontare le limitazioni della maggior parte dei riferimenti a `firewalld` e di costringere l'autore a usare `firewalld` per replicare le regole più granulari del firewall.
@@ -23,10 +22,10 @@ Questa guida si concentra sull'applicazione delle regole di un firewall `iptable
 
 ## Prerequisiti e presupposti
 
-* In questo documento si presuppone che l'utente sia l'utente root o che abbia privilegi elevati con `sudo`.
-* Una conoscenza di base delle regole del firewall, in particolare di `iptables` o, come minimo, una conoscenza di `firewalld`.
-* Ti senti a tuo agio nell'inserire i comandi dalla riga di comando.
-* Tutti gli esempi qui riportati riguardano gli IP IPv4.
+- In questo documento si presuppone che l'utente sia l'utente root o che abbia privilegi elevati con `sudo`.
+- Una conoscenza di base delle regole del firewall, in particolare di `iptables` o, come minimo, una conoscenza di `firewalld`.
+- Ti senti a tuo agio nell'inserire i comandi dalla riga di comando.
+- Tutti gli esempi qui riportati riguardano gli IP IPv4.
 
 ## Zone
 
@@ -78,7 +77,7 @@ All'autore non piace la maggior parte di questi nomi di zona. drop, block, publi
 
 Qui si consente l'accesso al server a un singolo indirizzo IP per SSH (porta 22). Se si decide di utilizzare le zone integrate, si può usare "trusted". In primo luogo, si aggiunge l'IP alla zona e in secondo luogo si applica la regola alla zona:
 
-```
+```bash
 firewall-cmd --zone=trusted --add-source=192.168.1.122 --permanent
 firewall-cmd --zone trusted --add-service=ssh --permanent
 ```
@@ -132,7 +131,6 @@ Prima di utilizzare questa zona, è necessario ricaricare il firewall:
 
 Prima di proseguire, è necessario esaminare il processo di elencazione delle zone. Si ottiene una singola colonna di produzione piuttosto che un output tabellare fornito da `iptables -L`. Elencare una zona con il comando `firewall-cmd --zone=[zone_name] --list-all`. Ecco come appare quando si elenca la zona "admin" appena creata:
 
-
 `firewall-cmd --zone=admin --list-all`
 
 ```bash
@@ -151,6 +149,7 @@ admin
   icmp-blocks:
   rich rules:
 ```
+
 Puoi elencare le zone attive sul tuo sistema usando questo comando:
 
 `firewall-cmd --get-active-zones`
@@ -192,7 +191,7 @@ e ricaricare:
 
 Ora basta ripetere i nostri passi originali usando la zona "admin":
 
-```
+```bash
 firewall-cmd --zone=admin --add-source=192.168.1.122
 firewall-cmd --zone admin --add-service=ssh
 ```
@@ -210,6 +209,7 @@ Testate la regola per assicurarvi che funzioni. Per verificare:
 Feb 14 22:02:34 serverhostname sshd[9805]: Accepted password for root from 192.168.1.122 port 42854 ssh2
 Feb 14 22:02:34 serverhostname sshd[9805]: pam_unix(sshd:session): session opened for user root by (uid=0)
 ```
+
 Questo mostra che l'IP di origine per la nostra connessione SSH è lo stesso IP appena aggiunto alla zona "admin". Sarà sicuro spostare questa regola in modalità permanente:
 
 `firewall-cmd --runtime-to-permanent`
@@ -274,14 +274,14 @@ From 192.168.1.104 icmp_seq=3 Packet filtered
 
 Ecco lo script `iptables` per permettere l'accesso pubblico a `http` e `https`, i protocolli necessari per servire le pagine web:
 
-```
+```bash
 iptables -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
 iptables -A INPUT -p tcp -m tcp --dport 443 -j ACCEPT
 ```
 
 Ed ecco l'equivalente `firewalld` che probabilmente avete già visto molte volte:
 
-```
+```bash
 firewall-cmd --zone=public --add-service=http --add-service=https --permanent
 ```
 
@@ -307,7 +307,7 @@ Ricaricare:
 
 Torniamo al nostro script `iptables`. Le seguenti regole riguardano l'FTP:
 
-```
+```bash
 iptables -A INPUT -p tcp -m tcp --dport 20-21 -j ACCEPT
 iptables -A INPUT -p tcp -m tcp --dport 7000-7500 -j ACCEPT
 ```
@@ -419,6 +419,7 @@ public
   icmp-blocks: echo-reply echo-request
   rich rules:
 ```
+
 Si noti che è stato rimosso l'accesso SSH dai servizi e bloccato ICMP "echo-reply" e "echo-request".
 
 Nella zona "admin", per il momento, si presenta così:
@@ -456,12 +457,13 @@ Le interfacce non vengono aggiunte nei nostri esempi, perché il laboratorio uti
 
 Per assegnare queste zone all'interfaccia corrispondente, si utilizzano i seguenti comandi:
 
-```
+```bash
 firewall-cmd --zone=public --change-interface=enp3s0 --permanent
 firewall-cmd --zone=trusted --change-interface=enp3s1 --permanent
 firewall-cmd --zone=admin --change-interface=enp3s1 --permanent
 firewall-cmd --reload
 ```
+
 ## Comandi comuni di firewall-cmd
 
 Avete già utilizzato alcuni comandi. Ecco alcuni comandi più comuni e cosa fanno:
@@ -484,4 +486,4 @@ Poiché `firewalld` è il firewall raccomandato e incluso in Rocky Linux, è una
 
 Quando vedete queste istruzioni, pensate all'uso del vostro server e se il servizio deve essere aperto al mondo. In caso contrario, si consiglia di applicare una maggiore granularità alle regole, come descritto in precedenza.
 
-Questa non vuole essere una guida esaustiva a `firewalld`, ma piuttosto un punto di partenza.                                         
+Questa non vuole essere una guida esaustiva a `firewalld`, ma piuttosto un punto di partenza.

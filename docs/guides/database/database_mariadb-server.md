@@ -12,27 +12,27 @@ tags:
 
 ## Prerequisites
 
-* A Rocky Linux server
-* Proficiency with a command-line editor (using _vi_ in this example)
-* A heavy comfort level with issuing commands from the command-line, viewing logs, and other general systems administrator duties
-* An understanding of _mariadb-server_ databases is helpful
-* Run all commands as root or with _sudo_
+- A Rocky Linux server
+- Proficiency with a command-line editor (using *vi* in this example)
+- A heavy comfort level with issuing commands from the command-line, viewing logs, and other general systems administrator duties
+- An understanding of *mariadb-server* databases is helpful
+- Run all commands as root or with *sudo*
 
 ## Introduction
 
-The _mariadb-server_ and it is client _mariadb_ are the open source alternatives to _mysql-server_ and _mysql_, and they share command structure. _mariadb-server_ is running on many web servers, due to the popular [Wordpress CMS](https://wordpress.org/) which requires it. This database, though, has many other uses.
+The *mariadb-server* and it is client *mariadb* are the open source alternatives to *mysql-server* and *mysql*, and they share command structure. *mariadb-server* is running on many web servers, due to the popular [Wordpress CMS](https://wordpress.org/) which requires it. This database, though, has many other uses.
 
 If you want to use this along with other tools for hardening a web server, refer back to the [Apache Hardened Web Server guide](../web/apache_hardened_webserver/index.md).
 
 ## Installing `mariadb-server`
 
-You need to install _mariadb-server_:
+You need to install *mariadb-server*:
 
 `dnf install mariadb-server`
 
 ## Securing `mariadb-server`
 
-To strengthen the security of _mariadb-server_ you need to run a script, but before you do, you need to enable and start mariadb:
+To strengthen the security of *mariadb-server* you need to run a script, but before you do, you need to enable and start mariadb:
 
 `systemctl enable mariadb`
 
@@ -56,7 +56,7 @@ Next, run this command:
 
 This brings up a dialog:
 
-```
+```text
 NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
       SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
 
@@ -68,11 +68,11 @@ so you should just press enter here.
 Enter current password for root (enter for none):
 ```
 
-Since this is a brand-new installation, no root password set. Just hit enter here.
+Since this is a brand-new installation, no root password set. Just hit ++enter++ here.
 
 The next part of the dialog continues:
 
-```
+```text
 OK, successfully used password, moving on...
 
 Setting the root password ensures that nobody can log into the MariaDB
@@ -81,16 +81,16 @@ root user without the proper authorisation.
 Set root password? [Y/n]
 ```
 
-You absolutely _do_ want to have a root password set. You'll want to figure out what this should be and document it in a password manager somewhere so that you can pull it up if necessary. Start by hitting 'Enter' to accept the default "Y". This will bring up the password dialog:
+You absolutely *do* want to have a root password set. You'll want to figure out what this should be and document it in a password manager somewhere so that you can pull it up if necessary. Start by hitting ++enter++ to accept the default "Y". This will bring up the password dialog:
 
-```
+```text
 New password:
 Re-enter new password:
 ```
 
 Enter your chosen password and then confirm it by entering it again. If this is successful, you will get the following dialog:
 
-```
+```text
 Password updated successfully!
 Reloading privilege tables..
  ... Success!
@@ -98,7 +98,7 @@ Reloading privilege tables..
 
 Next the dialog deals with the anonymous user:
 
-```
+```text
 By default, a MariaDB installation has an anonymous user, allowing anyone
 to log into MariaDB without having to have a user account created for
 them.  This is intended only for testing, and to make the installation
@@ -108,11 +108,11 @@ production environment.
 Remove anonymous users? [Y/n]
 ```
 
-The answer here is "Y" so just hit 'Enter' to accept the default.
+The answer here is "Y" so just hit ++enter++ to accept the default.
 
 The dialog proceeds to the section dealing with allowing the root user to login remotely:
 
-```
+```text
 ... Success!
 
 Normally, root should only be allowed to connect from 'localhost'.  This
@@ -121,11 +121,11 @@ ensures that someone cannot guess at the root password from the network.
 Disallow root login remotely? [Y/n]
 ```
 
-root should only be needed locally on the machine. So accept this default as well by hitting 'Enter'.
+root should only be needed locally on the machine. So accept this default as well by hitting ++enter++.
 
-The dialog then moves on to the 'test' database that is automatically installed with _mariadb-server_:
+The dialog then moves on to the 'test' database that is automatically installed with *mariadb-server*:
 
-```
+```text
 ... Success!
 
 
@@ -136,11 +136,11 @@ before moving into a production environment.
 Remove test database and access to it? [Y/n]
 ```
 
-Again, the answer here is the default, so just hit 'Enter' to remove it.
+Again, the answer here is the default, so just hit ++enter++ to remove it.
 
 Finally, the dialog asks you if you want to reload the privileges:
 
-```
+```text
 - Dropping test database...
  ... Success!
  - Removing privileges on test database...
@@ -152,9 +152,9 @@ will take effect immediately.
 Reload privilege tables now? [Y/n]
 ```
 
-Again, hit 'Enter' to do this. If all goes well, you will receive this message:
+Again, hit ++enter++ to do this. If all goes well, you will receive this message:
 
-```
+```text
  ... Success!
 
 Cleaning up...
@@ -169,23 +169,23 @@ MariaDB will now be ready to use.
 
 ### Rocky 9.0 changes
 
-Rocky Linux 9.0 uses `mariadb-server-10.5.13-2` as the default mariadb-server version. As of version 10.4.3, a new plugin is automatically enabled in the server which changes the `mariadb-secure-installation` dialog. That plugin is `unix-socket` authentication. [This article](https://mariadb.com/kb/en/authentication-plugin-unix-socket/) explains the new feature well. Essentially, using unix-socket authentication uses the logged-in user's credentials to access the database. It makes it so that if the root user, for example, logs in and then uses `mysqladmin` to create or delete a database (or any other function) that no password is needed for access. Same works with `mysql`. It also means there is no password to compromise remotely. This depends on the security of the users set up on the server for all of the database protection. 
+Rocky Linux 9.0 uses `mariadb-server-10.5.13-2` as the default mariadb-server version. As of version 10.4.3, a new plugin is automatically enabled in the server which changes the `mariadb-secure-installation` dialog. That plugin is `unix-socket` authentication. [This article](https://mariadb.com/kb/en/authentication-plugin-unix-socket/) explains the new feature well. Essentially, using unix-socket authentication uses the logged-in user's credentials to access the database. It makes it so that if the root user, for example, logs in and then uses `mysqladmin` to create or delete a database (or any other function) that no password is needed for access. Same works with `mysql`. It also means there is no password to compromise remotely. This depends on the security of the users set up on the server for all of the database protection.
 
 The second dialog during the `mariadb-secure-installation` after the password is set for the administrative user is:
 
-```
+```text
 Switch to unix_socket authentication Y/n
 ```
 
 The default here is "Y", but even if you answer "n", with the plugin enabled, a password is not requested for the user, at least not from the command line interface. You can specify either password or no password and they both work:
 
-```
+```bash
 mysql
 
 MariaDB [(none)]>
 ```
 
-```
+```bash
 mysql -p
 Enter password:
 
@@ -196,4 +196,4 @@ For more information on this feature, refer to the link above. There is a way to
 
 ## Conclusion
 
-A database server, such as _mariadb-server_, can be used for many purposes. Because of the popularity of the Wordpress CMS, it is often found on web servers. Before you run the database in production, however, it is a good idea to strengthen its security.
+A database server, such as *mariadb-server*, can be used for many purposes. Because of the popularity of the Wordpress CMS, it is often found on web servers. Before you run the database in production, however, it is a good idea to strengthen its security.

@@ -41,7 +41,7 @@ Just to be sure check your repository listing with:
 
 You will get the following:
 
-```
+```bash
 appstream                                                        Rocky Linux 8 - AppStream
 baseos                                                           Rocky Linux 8 - BaseOS
 extras                                                           Rocky Linux 8 - Extras
@@ -67,7 +67,7 @@ You will see:
 
 To allow incoming traffic with HTTPS, run:
 
-```
+```bash
 firewall-cmd --zone=public --permanent --add-service=https
 firewall-cmd --reload
 ```
@@ -84,7 +84,7 @@ To generate a self-signed certificate for host rocky8 with 365 days expiry, run:
 
 You will see the following output:
 
-```
+```bash
 Generating a RSA private key
 ................+++++
 ..........+++++
@@ -105,9 +105,10 @@ Organizational Unit Name (eg, section) []:
 Common Name (eg, your name or your server's hostname) []:rocky8
 Email Address []:
 ```
+
 After this command completes, the following two SSL/TLS files will be there:
 
-```
+```bash
 ls -l /etc/pki/tls/private/httpd.key /etc/pki/tls/certs/httpd.crt
 
 -rw-r--r--. 1 root root 1269 Jan 29 16:05 /etc/pki/tls/certs/httpd.crt
@@ -123,12 +124,15 @@ To include your newly created SSL/TLS certificate into the Apache web server con
 Change the following lines:
 
 FROM:
-```
+
+```bash
 SSLCertificateFile /etc/pki/tls/certs/localhost.crt
 SSLCertificateKeyFile /etc/pki/tls/private/localhost.key
 ```
+
 TO:
-```
+
+```bash
 SSLCertificateFile /etc/pki/tls/certs/httpd.crt
 SSLCertificateKeyFile /etc/pki/tls/private/httpd.key
 ```
@@ -151,7 +155,7 @@ Create a new file by running:
 
 Insert the following content and save file, replacing "your-server-hostname" with your hostname.
 
-```
+```bash
 <VirtualHost _default_:80>
 
         Servername rocky8

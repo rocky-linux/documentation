@@ -26,7 +26,7 @@ The security of your information system will be strengthened. `dnf-automatic` is
 
 You can install `dnf-automatic` from the rocky repositories:
 
-```
+```bash
 sudo dnf install dnf-automatic
 ```
 
@@ -34,7 +34,7 @@ sudo dnf install dnf-automatic
 
 By default, the update process will start at 6am, with a random extra time delta to avoid all your machines updating simultaneously. To change this behavior, you must override the timer configuration associated with the application service:
 
-```
+```bash
 sudo systemctl edit dnf-automatic.timer
 
 [Unit]
@@ -56,8 +56,8 @@ This configuration reduces the start-up delay between 6:00 and 6:10 am. (A serve
 
 Then activate the timer associated with the service (not the service itself):
 
-```
-$ sudo systemctl enable --now dnf-automatic.timer
+```bash
+sudo systemctl enable --now dnf-automatic.timer
 ```
 
 ## What about CentOS 7 servers?
@@ -68,15 +68,15 @@ $ sudo systemctl enable --now dnf-automatic.timer
 
 The process under CentOS 7 is similar but uses: `yum-cron`.
 
-```
-$ sudo yum install yum-cron
+```bash
+sudo yum install yum-cron
 ```
 
 This time, the configuration of the service is done in the file `/etc/yum/yum-cron.conf`.
 
 Set configuration as needed:
 
-```
+```text
 [commands]
 #  What kind of update to use:
 # default                            = yum upgrade
@@ -111,8 +111,8 @@ The comments in the configuration file speak for themselves.
 
 You can now enable the service and start it:
 
-```
-$ sudo systemctl enable --now yum-cron
+```bash
+sudo systemctl enable --now yum-cron
 ```
 
 ## Conclusion

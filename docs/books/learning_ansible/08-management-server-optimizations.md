@@ -33,7 +33,7 @@ Gathering facts is a process that can take some time. It can be interesting to d
 
 These facts can be easily stored in a `redis` database:
 
-```
+```bash
 sudo yum install redis
 sudo systemctl start redis
 sudo systemctl enable redis
@@ -42,7 +42,7 @@ sudo pip3 install redis
 
 Don't forget to modify the ansible configuration:
 
-```
+```bash
 fact_caching = redis
 fact_caching_timeout = 86400
 fact_caching_connection = localhost:6379:0
@@ -50,7 +50,7 @@ fact_caching_connection = localhost:6379:0
 
 To check the correct operation, it is enough to request the `redis` server:
 
-```
+```bash
 redis-cli
 127.0.0.1:6379> keys *
 127.0.0.1:6379> get ansible_facts_SERVERNAME
@@ -68,26 +68,26 @@ Ansible will be able to decrypt this file at runtime by retrieving the encryptio
 
 Edit the `/etc/ansible/ansible.cfg` file:
 
-```
+```bash
 #vault_password_file = /path/to/vault_password_file
 vault_password_file = /etc/ansible/vault_pass
 ```
 
 Store the password in this file `/etc/ansible/vault_pass` and assign necessary restrictive rights:
 
-```
+```bash
 mysecretpassword
 ```
 
 You can then encrypt your files with the command:
 
-```
+```bash
 ansible-vault encrypt myfile.yml
 ```
 
 A file encrypted by `ansible-vault` can be easily recognized by its header:
 
-```
+```text
 $ANSIBLE_VAULT;1.1;AES256
 35376532343663353330613133663834626136316234323964333735363333396136613266383966
 6664322261633261356566383438393738386165333966660a343032663233343762633936313630
@@ -98,7 +98,7 @@ $ANSIBLE_VAULT;1.1;AES256
 
 Once a file is encrypted, it can still be edited with the command:
 
-```
+```bash
 ansible-vault edit myfile.yml
 ```
 
@@ -106,7 +106,7 @@ You can also deport your password storage to any password manager.
 
 For example, to retrieve a password that would be stored in the rundeck vault:
 
-```
+```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import urllib.request
@@ -141,13 +141,13 @@ It will be necessary to install on the management server several packages:
 
 * Via the package manager:
 
-```
+```bash
 sudo dnf install python38-devel krb5-devel krb5-libs krb5-workstation
 ```
 
 and configure the `/etc/krb5.conf` file to specify the correct `realms`:
 
-```
+```bash
 [realms]
 ROCKYLINUX.ORG = {
     kdc = dc1.rockylinux.org
@@ -159,7 +159,7 @@ ROCKYLINUX.ORG = {
 
 * Via the python package manager:
 
-```
+```bash
 pip3 install pywinrm
 pip3 install pywinrm[credssp]
 pip3 install kerberos requests-kerberos
@@ -169,7 +169,7 @@ pip3 install kerberos requests-kerberos
 
 Network modules usually require the `netaddr` python module:
 
-```
+```bash
 sudo pip3 install netaddr
 ```
 
@@ -177,24 +177,24 @@ sudo pip3 install netaddr
 
 A tool, `ansible-cmdb` has been developed to generate a CMDB from ansible.
 
-```
+```bash
 pip3 install ansible-cmdb
 ```
 
 The facts must be exported by ansible with the following command:
 
-```
+```bash
 ansible --become --become-user=root -o -m setup --tree /var/www/ansible/cmdb/out/
 ```
 
 You can then generate a global `json` file:
 
-```
+```bash
 ansible-cmdb -t json /var/www/ansible/cmdb/out/linux > /var/www/ansible/cmdb/cmdb-linux.json
 ```
 
 If you prefer a web interface:
 
-```
+```bash
 ansible-cmdb -t html_fancy_split /var/www/ansible/cmdb/out/
 ```

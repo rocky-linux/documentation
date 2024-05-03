@@ -17,10 +17,10 @@ Border Gateway Protocol (BGP) is the routing protocol that holds the internet to
 
 ## Prerequisites
 
-* A server, virtual machine, or lab network with BGP connectivity
-* An AS number from your [Regional Internet Registry](https://www.nro.net/about/rirs/)
-* An owned or leased IPv4 or IPv6 block
-* Knowledge of network administration
+- A server, virtual machine, or lab network with BGP connectivity
+- An AS number from your [Regional Internet Registry](https://www.nro.net/about/rirs/)
+- An owned or leased IPv4 or IPv6 block
+- Knowledge of network administration
 
 ## Installing packages
 
@@ -79,25 +79,25 @@ neighbor PEER_IPV6 {
 
 Replace the following information:
 
-* **YOUR_ASN** with your AS number.
-* **YOUR_IPV4** with your server's IPv4 address.
-* **YOUR_IPV6** with your server's IPv6 address.
-* **PEER_ASN** with your upstream ISP's AS number.
-* **PEER_IPV4** with your upstream ISP's IPv4 address.
-* **PEER_IPV6** with your upstream ISP's IPv6 address.
+- **YOUR_ASN** with your AS number.
+- **YOUR_IPV4** with your server's IPv4 address.
+- **YOUR_IPV6** with your server's IPv6 address.
+- **PEER_ASN** with your upstream ISP's AS number.
+- **PEER_IPV4** with your upstream ISP's IPv4 address.
+- **PEER_IPV6** with your upstream ISP's IPv6 address.
 
 The above lines mean the following:
 
-* The `AS` line contains your BGP AS number.
-* The `router-id` line contains your BGP router ID. This is an IPv4 address but can be a dummy non-routable address (e.g. 169.254.x.x) if you are doing IPv6-only BGP.
-* The `listen on` line tells which interfaces to listen to. We should listen on all interfaces speaking BGP.
-* The `network` lines add the networks we want to advertise.
-* The `allow to ebgp prefix` line adds [RFC8212](https://datatracker.ietf.org/doc/html/rfc8212) compliance for routing security. Some hosting companies, such as BuyVM, require this.
-* The `neighbor` blocks specify each IPv4 and IPv6 peer.
-* The `remote-as` line specifies the upstream's AS number.
-* The `announce IPv4` line specifies whether we should announce `unicast` IPv4 routes or `none`. This should be `none` on an IPv6 upstream.
-* The `announce IPv6` line specifies whether we should announce `unicast` IPv6 routes or `none`. This should be `none` on an IPv4 upstream.
-* The `local-address` line is the upstream's IPv4 or IPv6 address.
+- The `AS` line contains your BGP AS number.
+- The `router-id` line contains your BGP router ID. This is an IPv4 address but can be a dummy non-routable address (e.g. 169.254.x.x) if you are doing IPv6-only BGP.
+- The `listen on` line tells which interfaces to listen to. We should listen on all interfaces speaking BGP.
+- The `network` lines add the networks we want to advertise.
+- The `allow to ebgp prefix` line adds [RFC8212](https://datatracker.ietf.org/doc/html/rfc8212) compliance for routing security. Some hosting companies, such as BuyVM, require this.
+- The `neighbor` blocks specify each IPv4 and IPv6 peer.
+- The `remote-as` line specifies the upstream's AS number.
+- The `announce IPv4` line specifies whether we should announce `unicast` IPv4 routes or `none`. This should be `none` on an IPv6 upstream.
+- The `announce IPv6` line specifies whether we should announce `unicast` IPv6 routes or `none`. This should be `none` on an IPv4 upstream.
+- The `local-address` line is the upstream's IPv4 or IPv6 address.
 
 Some upstreams may use an MD5 password or BGP multihop. Should that be the case, your `neighbor` blocks will look like this:
 

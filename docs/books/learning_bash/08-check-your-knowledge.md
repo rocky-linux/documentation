@@ -13,17 +13,17 @@ tags:
 
 :heavy_check_mark: Every order must return a return code at the end of its execution:
 
-- [ ] True   
+- [ ] True
 - [ ] False
 
 :heavy_check_mark: A return code of 0 indicates an execution error:
 
-- [ ] True   
+- [ ] True
 - [ ] False
 
 :heavy_check_mark: The return code is stored in the variable `$@`:
 
-- [ ] True   
+- [ ] True
 - [ ] False
 
 :heavy_check_mark: The test command allows you to:
@@ -41,7 +41,7 @@ tags:
 
 :heavy_check_mark: Does the syntax of the conditional structure below seem correct to you? Explain why.
 
-```
+```bash
 if command
     command if $?=0
 else
@@ -60,7 +60,7 @@ fi
 
 :heavy_check_mark: Does the syntax of the conditional alternative structure below seem correct to you? Explain why.
 
-```
+```bash
 case $variable in
   value1)
     commands if $variable = value1
