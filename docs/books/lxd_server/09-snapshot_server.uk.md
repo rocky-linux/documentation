@@ -27,38 +27,38 @@ tags:
 
 У нашій лабораторії основний сервер LXD працює на 192.168.1.106, а сервер знімків LXD працює на 192.168.1.141. SSH на кожному сервері та додайте наступне до файлу /etc/hosts:
 
-```
+```bash
 192.168.1.106 lxd-primary
 192.168.1.141 lxd-snapshot
 ```
 
 Далі вам потрібно дозволити весь трафік між двома серверами. Для цього ви збираєтеся змінити правила `firewalld`. Спочатку на сервері lxd-primary додайте цей рядок:
 
-```
+```bash
 firewall-cmd zone=trusted add-source=192.168.1.141 --permanent
 ```
 
 а на сервері знімків додайте це правило:
 
-```
+```bash
 firewall-cmd zone=trusted add-source=192.168.1.106 --permanent
 ```
 
 потім перезавантажте:
 
-```
+```bash
 firewall-cmd reload
 ```
 
 Далі, як наш непривілейований користувач (lxdadmin), вам потрібно встановити довірчі відносини між двома машинами. Це робиться за допомогою наступного виконання на lxd-primary:
 
-```
+```bash
 lxc remote add lxd-snapshot
 ```
 
 Це відображає сертифікат, який потрібно прийняти. Прийміть його, і з’явиться запит на введення пароля. Це «пароль довіри», який ви встановлюєте під час виконання кроку ініціалізації LXD. Сподіваємось, ви надійно зберігаєте всі ці паролі. Коли ви введете пароль, ви отримаєте це:
 
-```
+```bash
 Client certificate stored at server:  lxd-snapshot
 ```
 
@@ -70,31 +70,31 @@ Client certificate stored at server:  lxd-snapshot
 
 Вам потрібно буде створити це для lxd-snapshot. Поверніться до [розділу 6](06-profiles.md) і створіть профіль "macvlan" у lxd-snapshot, якщо потрібно. Якщо ваші два сервери мають однакові назви батьківського інтерфейсу (наприклад, "enp3s0"), ви можете скопіювати профіль "macvlan" до lxd-snapshot без його повторного створення:
 
-```
+```bash
 lxc profile copy macvlan lxd-snapshot
 ```
 
 Коли всі зв’язки та профілі налаштовано, наступним кроком є фактичне надсилання знімка з lxd-primary до lxd-snapshot. Якщо ви точно слідкували за цим, ви, ймовірно, видалили всі свої знімки. Створіть інший знімок:
 
-```
+```bash
 lxc snapshot rockylinux-test-9 rockylinux-test-9-snap1
 ```
 
 Якщо ви запустите команду «info» для `lxc`, ви побачите знімок у нижній частині нашого списку:
 
-```
+```bash
 lxc info rockylinux-test-9
 ```
 
 Унизу буде показано щось на зразок цього:
 
-```
+```bash
 rockylinux-test-9-snap1 at 2021/05/13 16:34 UTC) (stateless)
 ```
 
 Тож, тримаємо пальці! Давайте спробуємо перенести наш snapshot:
 
-```
+```bash
 lxc copy rockylinux-test-9/rockylinux-test-9-snap1 lxd-snapshot:rockylinux-test-9
 ```
 
@@ -102,7 +102,7 @@ lxc copy rockylinux-test-9/rockylinux-test-9-snap1 lxd-snapshot:rockylinux-test-
 
 Через короткий час копіювання буде завершено. Хочете дізнатися напевно? Створіть `список lxc` на сервері lxd-snapshot. Що має повернути наступне:
 
-```
+```bash
 +-------------------+---------+------+------+-----------+-----------+
 |    NAME           |  STATE  | IPV4 | IPV6 |   TYPE    | SNAPSHOTS |
 +-------------------+---------+------+------+-----------+-----------+
@@ -112,13 +112,13 @@ lxc copy rockylinux-test-9/rockylinux-test-9-snap1 lxd-snapshot:rockylinux-test-
 
 Успішно! Спробуйте запустити його. Оскільки ми запускаємо його на сервері lxd-snapshot, вам потрібно спершу зупинити його на сервері lxd-primary, щоб уникнути конфлікту IP-адрес:
 
-```
+```bash
 lxc stop rockylinux-test-9
 ```
 
 А на сервері lxd-snapshot:
 
-```
+```bash
 lxc start rockylinux-test-9
 ```
 
@@ -130,7 +130,7 @@ Snapshots, скопійовані в lxd-snapshot, не працюватимут
 
 Щоб усунути це, потрібно налаштувати переміщені контейнери так, щоб вони не запускалися після перезавантаження сервера. Для нашого щойно скопійованого контейнера rockylinux-test-9 ви зробите це за допомогою:
 
-```
+```bash
 lxc config set rockylinux-test-9 boot.autostart 0
 ```
 
@@ -142,7 +142,7 @@ lxc config set rockylinux-test-9 boot.autostart 0
 
 Перше, що вам потрібно зробити, це запланувати процес автоматизованого створення снепшоту на lxd-primary. Ви зробите це для кожного контейнера на сервері lxd-primary. Після завершення він подбає про це в майбутньому. Це можна зробити за допомогою наступного синтаксису. Зверніть увагу на схожість із записом crontab для позначки часу:
 
-```
+```bash
 lxc config set [container_name] snapshots.schedule "50 20 * * *"
 ```
 
@@ -150,18 +150,18 @@ lxc config set [container_name] snapshots.schedule "50 20 * * *"
 
 Щоб застосувати це до нашого контейнера rockylinux-test-9:
 
-```
+```bash
 lxc config set rockylinux-test-9 snapshots.schedule "50 20 * * *"
 ```
 
 Ви також хочете налаштувати назву знімка, щоб мати значення до нашої дати. LXD скрізь використовує UTC, тому наш найкращий вибір, щоб відстежувати речі, це встановити ім’я знімка з датою та міткою часу в більш зрозумілому форматі:
 
-```
+```bash
 lxc config set rockylinux-test-9 snapshots.pattern "rockylinux-test-9{{ creation_date|date:'2006-01-02_15-04-05' }}"
 ```
 
 ЧУДОВО, але ви точно не хочете отримувати новий знімок щодня, не позбувшись старого, чи не так? Ви б заповнили диск знімками. Щоб виправити це, виконайте:
 
-```
+```bash
 lxc config set rockylinux-test-9 snapshots.expiry 1d
 ```
