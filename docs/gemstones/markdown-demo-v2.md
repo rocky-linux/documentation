@@ -1,7 +1,7 @@
 ---
 title: Markdown Demo
 author: Steven Spencer
-contributors: Wale Soyinka, fusion94
+contributors: Wale Soyinka, Tony Guntharp
 tested_with: 8.5
 tags:
   - sample
@@ -16,7 +16,7 @@ tags:
 - Use [Markdown](https://daringfireball.net/projects/markdown).
 - Knowledge of markdown.
 
-This guide demonstrates popular Markdown tags used on [https://docs.rockylinux.org](https://docs.rockylinux.org) and also includes the admonitions tag, which is not part of the standard Markdown tags.
+This guide demonstrates popular Markdown tags used on [https://docs.rockylinux.org](https://docs.rockylinux.org) and includes the admonitions tag, which is not part of the standard Markdown tags.
 
 ## The Demo
 
@@ -62,7 +62,7 @@ Admonitions, also called out, are an excellent choice for including side content
 
 #### Usage
 
-Admonitions follow a simple syntax: a block starts with `!!!`, followed by a single keyword used as a type qualifier. The content of the block follows on the next line, indented by four spaces:
+Admonitions follow a simple syntax: a block starts with `!!!`, followed by a keyword used as a type qualifier. The content of the block follows on the next line, indented by four spaces:
 
 !!! note
 
@@ -72,7 +72,7 @@ Admonitions follow a simple syntax: a block starts with `!!!`, followed by a sin
 
 #### Changing the title
 
-By default, the title will equal the type qualifier in titlecase. However, it can be changed by adding a quoted string containing valid Markdown (including links, formatting, ...) after the type qualifier:
+By default, the title will equal the type qualifier in the title case. However, it can be changed by adding a quoted string containing valid Markdown (including links, formatting, ...) after the type qualifier:
 
 !!! note "Phasellus posuere in sem ut cursus"
 
@@ -80,7 +80,7 @@ By default, the title will equal the type qualifier in titlecase. However, it ca
     nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
     massa, nec semper lorem quam in massa.
 
-More times than not, when a command has multiple options or you need to list specifics, you might want to use a table to identify things:
+More times than not, when a command has multiple options, or you need to list specifics, you might want to use a table to identify things:
 
 | Tool     | Use                                         | Additional Information                          |
 | -------- | ------------------------------------------- | ----------------------------------------------- |
