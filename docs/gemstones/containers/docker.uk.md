@@ -1,7 +1,7 @@
 ---
 title: Docker - Інсталяція
-author: wale soyinka
-contributors: neelchauhan, nishaaaaaant, sastorsl
+author: Wale Soyinka
+contributors: Neel Chauhan, Srinivas Nishant Viswanadha, Stein Arne Storslett, Ganna Zhyrnova
 date: 2021-08-04
 tags:
   - docker
