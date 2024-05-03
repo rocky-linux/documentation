@@ -12,7 +12,7 @@ tags:
 
 !!! note
 
-    This document represents expanded content from its [parent document found here](../../gemstones/containers/podman.md). If you are in need of a quick how-to, that parent document may suffice. 
+    This document represents expanded content from its [parent document found here](../../gemstones/containers/podman.md). If you need a quick how-to, that parent document may suffice. 
 
 [Podman](https://podman.io/) (Pod Manager) is a container and image management tool compatible with the [OCI](https://opencontainers.org/) (Open Container Initiative).
 
@@ -22,7 +22,7 @@ Podman:
 * allows you to manage containers as an unprivileged user (no need to be root)
 * included, unlike docker, in the Rocky Linux repositories
 
-That makes Podman not only a docker-compatible alternative container runtime, but much more.
+That makes Podman not only a docker-compatible alternative container runtime but much more.
 
 ## Install Podman
 
@@ -32,7 +32,7 @@ Use the `dnf` utility to install Podman:
 dnf install podman
 ```
 
-You can retrieve the list of available podman subcommands with the following command:
+You can retrieve the list of available Podman subcommands with the following command:
 
 ```bash
 $ podman --help
@@ -52,42 +52,42 @@ Here is a non-exhaustive list of the most commonly used subcommands:
 
 | Subcommand  | Description                                                     |
 | ----------- | --------------------------------------------------------------- |
-| `build`     | Build an image using instructions from Containerfiles           |
-| `commit`    | Create new image based on the changed container                 |
-| `container` | Manage containers                                               |
-| `cp`        | Copy files/folders between a container and the local filesystem |
-| `create`    | Create but do not start a container                             |
-| `exec`      | Run a process in a running container                            |
-| `image`     | Manage images                                                   |
-| `images`    | List images in local storage                                    |
-| `info`      | Display podman system information                               |
-| `init`      | Initialize one or more containers                               |
-| `inspect`   | Display the configuration of object denoted by ID               |
-| `kill`      | Kill one or more running containers with a specific signal      |
-| `login`     | Log in to a container registry                                  |
-| `logs`      | Fetch the logs of one or more containers                        |
-| `network`   | Manage networks                                                 |
-| `pause`     | Pause all the processes in one or more containers               |
-| `ps`        | List containers                                                 |
-| `pull`      | Pull an image from a registry                                   |
-| `push`      | Push an image to a specified destination                        |
-| `restart`   | Restart one or more containers                                  |
-| `rm`        | Remove one or more containers                                   |
-| `rmi`       | Remove one or more images from local storage                    |
-| `run`       | Run a command in a new container                                |
-| `start`     | Start one or more containers                                    |
-| `stats`     | Display a live stream of container resource usage statistics    |
-| `stop`      | Stop one or more containers                                     |
-| `system`    | Manage podman                                                   |
-| `top`       | Display the running processes of a container                    |
-| `unpause`   | Unpause the processes in one or more containers                 |
-| `volume`    | Manage volumes                                                  |
+| `build`     | Builds an image using instructions from Containerfiles          |
+| `commit`    | Creates a new image based on the changed container              |
+| `container` | Manages containers                                               |
+| `cp`        | Copies files/folders between a container and the local filesystem |
+| `create`    | Creates but does not start a container                             |
+| `exec`      | Runs a process in a running container                            |
+| `image`     | Manages images                                                   |
+| `images`    | Lists images in local storage                                    |
+| `info`      | Displays Podman system information                               |
+| `init`      | Initializes one or more containers                               |
+| `inspect`   | Displays the configuration of the object denoted by ID               |
+| `kill`      | Kills one or more running containers with a specific signal      |
+| `login`     | Logs in to a container registry                                  |
+| `logs`      | Fetches the logs of one or more containers                        |
+| `network`   | Manages networks                                                 |
+| `pause`     | Pauses all the processes in one or more containers               |
+| `ps`        | Lists containers                                                 |
+| `pull`      | Pulls an image from a registry                                   |
+| `push`      | Pushes an image to a specified destination                        |
+| `restart`   | Restarts one or more containers                                  |
+| `rm`        | Removes one or more containers                                   |
+| `rmi`       | Removes one or more images from local storage                    |
+| `run`       | Runs a command in a new container                                |
+| `start`     | Starts one or more containers                                    |
+| `stats`     | Displays a live stream of container resource usage statistics    |
+| `stop`      | Stops one or more containers                                     |
+| `system`    | Manages Podman                                                   |
+| `top`       | Displays the running processes of a container                    |
+| `unpause`   | Unpauses the processes in one or more containers                 |
+| `volume`    | Manages volumes                                                  |
 
 !!! note
 
     Podman can run almost any Docker command thanks to its similar CLI interface.
 
-If you need to use a compose file, remember to install the `podman-compose` package :
+If you need to use a compose file, remember to install the `podman-compose` package:
 
 ```bash
 dnf install podman-compose
@@ -138,7 +138,7 @@ When your system reboots, Nextcloud will restart in Podman.
 
 ## DockerFiles
 
-A DockerFile is a file used by docker to create custom container images. Since Podman is fully compatible with Dockerfile, you can build your container images with Podman in the same way you would with Docker.
+A DockerFile is a file used by Docker to create custom container images. Since Podman is fully compatible with Dockerfile, you can build your container images with Podman like you would with Docker.
 
 ### Web server from a DockerFile
 
@@ -298,6 +298,6 @@ podman system prune -a -f
 
 | Options     | Description                                             |
 | ----------- | ------------------------------------------------------- |
-| `-a`        | Remove all unused data, not only the external to podman |
+| `-a`        | Removes all unused data, not only the external to Podman |
 | `-f`        | No prompt for confirmation                              |
 | `--volumes` | Prune volumes                                           |
