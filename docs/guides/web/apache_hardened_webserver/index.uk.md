@@ -33,7 +33,7 @@ tags:
 
 Ви можете використовувати пару цих інструментів, а не інші. Цей документ поділено на окремі документи для кожного інструменту для ясності та зручності читання. Винятком буде брандмауер на основі пакетів (`firewalld`) у цьому основному документі.
 
-* Хороший брандмауер із фільтром пакетів на основі портів (iptables, firewalld або апаратний брандмауер – у наших прикладах використовується `firewalld`) [`firewalld` процедура](#iptablesstart)
+* Хороший брандмауер із фільтром пакетів на основі портів (iptables, firewalld або апаратний брандмауер – у наших прикладах використовується `firewalld`) [`firewalld` процедура](#configuring-firewalld)
 * Система виявлення вторгнень на основі хосту (HIDS), у цьому випадку _ossec-hids_ [Apache Hardened Web Server - ossec- ховається](ossec-hids.md)
 * Брандмауер веб-додатків (WAF) із правилами `mod_security` [Apache Hardened Web Server - mod_security](modsecurity.md)
 * Rootkit Hunter (`rkhunter`): інструмент сканування, який перевіряє Linux на зловмисне програмне забезпечення [Apache Hardened Web Server - rkhunter](rkhunter.md)
@@ -72,9 +72,9 @@ tags:
 
 Кожен розділ пакета містить необхідні файли інсталяції та будь-яку процедуру налаштування.
 
-## <a name="iptablesstart"></a>Налаштування `firewalld`
+## Налаштування `firewalld`
 
-```
+```bash
 firewall-cmd --zone=trusted --add-source=192.168.1.2 --permanent
 firewall-cmd --zone=trusted --add-service=ssh --permanent
 firewall-cmd --zone=public --remove-service=ssh --permanent
@@ -85,6 +85,7 @@ firewall-cmd --zone=public --add-port=20/tcp --permanent
 firewall-cmd --zone=public --add-port=7000-7500/tcp --permanent
 firewall-cmd --reload
 ```
+
 Ось що відбувається:
 
 * встановлення нашої надійної зони на IP-адресу апаратного брандмауера
