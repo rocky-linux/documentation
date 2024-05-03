@@ -186,7 +186,7 @@ listen = /var/opt/remi/php81/run/php-fpm/www.sock
 listen = 127.0.0.1:9000
 ```
 
-Потім збережіть і закрийте файл www.conf і відкрийте Caddyfile:
+Потім збережіть і закрийте файл `www.conf` і відкрийте Caddyfile:
 
 ```bash
 vim /etc/caddy/Caddyfile
