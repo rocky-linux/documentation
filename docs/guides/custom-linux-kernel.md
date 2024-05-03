@@ -247,7 +247,7 @@ The following steps cover how to configure the kernel. We will be using a text-b
 
 4. In the DOS/FAT/NT Filesystems section, navigate to NTFS file system support.
 
-    Type ++M++ (uppercase) to enable modules to support for the NTFS file system.
+    Type ++"M"++ (uppercase) to enable modules to support for the NTFS file system.
 
     Use the arrow keys to navigate down to NTFS debugging support (NEW) and then press y to include it.
 

@@ -22,7 +22,7 @@ Nel corso del tempo, questi aspetti potrebbero cambiare e sarà opportuno tenerl
 
 Per elencare i profili di sicurezza disponibili, è necessario utilizzare il comando `oscap info` fornito dal pacchetto `openscap-scanner`. Questo dovrebbe essere già installato nel vostro sistema, se avete seguito la procedura dalla prima parte.  Per ottenere i profili di sicurezza disponibili:
 
-```
+```bash
 oscap info /usr/share/xml/scap/ssg/content/ssg-rl8-ds.xml
 ```
 
@@ -52,7 +52,7 @@ Qui è possibile scegliere tra due tipi:
 
 Eseguire una scansione e creare un rapporto HTML per il DISA STIG:
 
-```
+```bash
 sudo oscap xccdf eval --report unit-test-disa-scan.html --profile stig /usr/share/xml/scap/ssg/content/ssg-rl8-ds.xml
 ```
 
@@ -69,11 +69,14 @@ E produrrà un rapporto HTML:
 Successivamente, genereremo una scansione e useremo i risultati della scansione per generare uno script bash per rimediare al sistema in base al profilo DISA stig. Non consiglio di utilizzare la riparazione automatica, è sempre necessario rivedere le modifiche prima di eseguirle.
 
 1) Generare una scansione del sistema:
-    ```
+
+    ```bash
     sudo oscap xccdf eval --results disa-stig-scan.xml --profile stig /usr/share/xml/scap/ssg/content/ssg-rl8-ds.xml
     ```
+
 2) Utilizzare l'output della scansione per generare lo script:
-    ```
+
+    ```bash
     sudo oscap xccdf generate fix --output draft-disa-remediate.sh --profile stig disa-stig-scan.xml
     ```
 
@@ -90,11 +93,14 @@ Lo script risultante includerà tutte le modifiche da apportare al sistema.
 È anche possibile generare azioni di rimedio in formato playbook ansible. Ripetiamo la sezione precedente, ma questa volta con l'output di Ansible:
 
 1) Generare una scansione del sistema:
-    ```
+
+    ```bash
     sudo oscap xccdf eval --results disa-stig-scan.xml --profile stig /usr/share/xml/scap/ssg/content/ssg-rl8-ds.xml
     ```
+
 2) Utilizzare l'output della scansione per generare lo script:
-    ```
+
+    ```bash
     sudo oscap xccdf generate fix --fix-type ansible --output draft-disa-remediate.yml --profile stig disa-stig-scan.xml
     ```
 
@@ -107,4 +113,3 @@ Lo script risultante includerà tutte le modifiche da apportare al sistema.
 ## Informazioni sull'Autore
 
 Scott Shinn è il CTO di Atomicorp e fa parte del team Rocky Linux Security. Dal 1995 si occupa di sistemi informativi federali presso casa Bianca, del Dipartimento della Difesa e dell'Intelligence Community dal 1995. Parte di questo è stata la creazione degli STIG e l'obbligo di usarli e mi dispiace molto per questo.
-

@@ -26,7 +26,7 @@ In this chapter you will learn how to manage users.
 
 ## General
 
-Each user must have a group, which is called the user's **primary group**.
+Each user must have a group called the user's **primary group**.
 
 Several users can be part of the same group.
 
@@ -41,7 +41,7 @@ Groups and users are managed by their unique numerical identifiers `GID` and `UI
 * `UID`: *User IDentifier*. Unique user ID.
 * `GID`: *Group IDentifier*. Unique group identifier.
 
-Both UID and GID are recognized by the kernel, which means that the Super Admin is not necessarily the **root** user, as long as the **uid=0** user is the Super Admin.
+The kernel recognizes Both UID and GID, meaning that the Super Admin is not necessarily the **root** user, as long as the **uid=0** user is the Super Admin.
 
 The files related to users/groups are:
 
@@ -84,11 +84,11 @@ Example:
 sudo groupadd -g 1012 GroupeB
 ```
 
-| Option  | Description                   |
-| --------| ----------------------------- |
-|`-g GID` | Defines the `GID` of the group to create. |
-|`-f` | The system chooses a `GID` if the one specified by the `-g` option already exists. |
-|`-r` | Creates a system group with a `GID` between `SYS_GID_MIN` and `SYS_GID_MAX`. These two variables are defined in `/etc/login.defs`. |
+| Option   | Description                               |
+| -------- | ----------------------------------------- |
+| `-g GID` | Defines the `GID` of the group to create. |
+| `-f`     | The system chooses a `GID` if the one specified by the `-g` option already exists. |
+| `-r`     | Creates a system group with a `GID` between `SYS_GID_MIN` and `SYS_GID_MAX`. These two variables are defined in `/etc/login.defs`. |
 
 Group naming rules:
 
@@ -124,12 +124,12 @@ sudo groupmod -g 1016 GroupP
 sudo groupmod -n GroupC GroupB
 ```
 
-|Option | Description |
-| ------| ----------- |
-|`-g GID` | New `GID` of the group to modify.
-|`-n name` | New name.
+| Option   | Description                       |
+| -------- | --------------------------------- |
+|`-g GID`  | New `GID` of the group to modify. |
+|`-n name` | New name.                         |
 
-It is possible to change the name of a group, its `GID` or both simultaneously.
+It is possible to change the name of a group, its `GID`, or both simultaneously.
 
 After modification, the files belonging to the group have an unknown `GID`. They must be reassigned to the new `GID`.
 
@@ -170,7 +170,7 @@ sudo groupdel GroupC
     $ sudo usermod -g users -G test test
     $ id test
     uid=1000(test) gid=100(users) group=100(users),1000(test)
-    $ sudo groupdel testb
+    $ sudo groupdel test
     ```
 
 !!! Tip
@@ -179,7 +179,7 @@ sudo groupdel GroupC
 
 !!! Tip
 
-    Each group has a unique `GID`. A group can be used by multiple users as a supplementary group. By convention, The GID of super administrator is 0. The GIDS reserved for some services or processes are 201-999, called system groups or pseudo user groups. The GID for users is usually greater than or equal to 1000. These are related to <font color=red>/etc/login.defs</font>, which we will talk about later.
+    Each group has a unique `GID`. Multiple users can use a group as a supplementary group. By convention, The GID of the super administrator is 0. The GIDS reserved for some services or processes is 201-999, called system groups or pseudo-user groups. The GID for users is usually greater than or equal to 1000. These are related to <font color=red>/etc/login.defs</font>, which we will talk about later.
 
     ```bash
     # Comment line ignored
@@ -225,7 +225,7 @@ GroupP:x:516:patrick
 
 !!! Note
 
-   Each line in the `/etc/group` file corresponds to a group. The primary user info is stored in `/etc/passwd`.
+    Each line in the `/etc/group` file corresponds to a group. The primary user info is stored in `/etc/passwd`.
 
 ### `/etc/gshadow` file
 
@@ -244,7 +244,7 @@ GroupA:$6$2,9,v...SBn160:alain:rockstar
 
 !!! Warning
 
-    The name of the group in **/etc/group** and **/etc/gshadow** must correspond one by one, that is, each line in the **/etc/group** file must have a corresponding line in the **/etc/gshadow** file.
+    The name of the group in **/etc/group** and **/etc/gshadow** must correspond one by one. That is, each line in the **/etc/group** file must have a corresponding line in the **/etc/gshadow** file.
 
 An `!` in the password indicates it is locked.
 Thus, no user can use the password to access the group (since group members do not need it).
@@ -296,13 +296,13 @@ sudo useradd -u 1000 -g 1013 -d /home/GroupC/carine carine
 |`-d directory` | Creates the home directory.                                            |
 |`-s shell`     | Specifies the user's shell.                                            |
 |`-c COMMENT`           | Adds a comment.                                                |
-|`-U`           | Adds the user to a group with the same name created simultaneously. If not specified, creation of a group with the same name occurs when creating the user. |
+|`-U`           | Adds the user to a group with the same name created simultaneously. If not specified, the creation of a group with the same name occurs when creating the user. |
 |`-M`           | Does not create the user's home directory.                             |
 |`-r`           | Creates a system account.                                              |
 
 At creation, the account has no password and is locked.
 
-A password must be assigned to unlock the account.
+The user must assign a password to unlock the account.
 
 When invoking the `useradd` command without any options, the following default settings are set for the new user:
 
@@ -333,7 +333,7 @@ test1:!::
 
 Account naming rules:
 
-* Lowercase letters, numbers and underscores are allowed, and other special characters such as asterisks, percent signs, full-width symbols are not accepted.
+* Lowercase letters, numbers, and underscores are allowed; other special characters such as asterisks, percent signs, and full-width symbols are not accepted.
 * Although you can use an uppercase user name in RockyLinux, we do not recommend it;
 * It is not recommended to start with numbers and underscores, although you may be allowed to do so;
 * Different from the name of an existing group or system file;
@@ -341,11 +341,11 @@ Account naming rules:
 
 !!! Warning
 
-    The home directory tree must be created except for the last directory.
+    The user must create the home directory, except for the last directory.
 
 The last directory is created by the `useradd` command, which takes the opportunity to copy the files from `/etc/skel` into it.
 
-**A user can belong to several groups in addition to their primary group.**
+**A user can belong to several groups besides their primary group.**
 
 Example:
 
@@ -425,7 +425,7 @@ Where `1000` is the old `UID` and `1044` is the new one. Examples are as follows
 sudo find / -uid 1000 -exec chown 1044: {} \;
 ```
 
-Locking and unlocking of user account, Examples are as follows:
+Locking and unlocking of user accounts. Examples are as follows:
 
 ```bash
 $ usermod -L test1
@@ -459,7 +459,7 @@ uid=1000(test1) gid=1000(test1) groups=1000(test1),1003(groupB),1004(groupC),100
 
 ### `userdel` command
 
-The `userdel` command allows you to delete a user's account.
+The `userdel` command lets you delete a user's account.
 
 ```bash
 sudo userdel -r carine
@@ -533,7 +533,7 @@ $ echo $(($(date --date="2018-07-06" +%s)/86400+1))
 
     All files necessarily belong to one user and one group.
 
-The primary group of the user creating the file is, by default, the group that owns the file.
+By default, the primary group of the user creating the file is the group that owns the file.
 
 ### Modification commands
 
@@ -722,7 +722,7 @@ root
 
 ### `passwd` command
 
-The `passwd` command is used to manage a password.
+The `passwd` command manages a password.
 
 ```bash
 passwd [-d] [-l] [-S] [-u] [login]
@@ -766,11 +766,11 @@ sudo passwd alain
 
 !!! Note
 
-    The `passwd` command is available to users to change their password (the old password is requested). The administrator can change the passwords of all users without restriction.
+    Users can use the `passwd` command to change their passwords (the old password is requested). The administrator can change the passwords of all users without restriction.
 
 They will have to comply with the security restrictions.
 
-When managing user accounts by shell script, it may be useful to set a default password after creating the user.
+When managing user accounts by shell script, setting a default password after creating the user may be useful.
 
 This can be done by passing the password to the `passwd` command.
 
@@ -782,11 +782,11 @@ sudo echo "azerty,1" | passwd --stdin philippe
 
 !!! Warning
 
-    The password is entered in clear text, `passwd` takes care of encrypting it.
+    The password is entered in clear text, `passwd` encrypts it.
 
 ### `chage` command
 
-The `chage` command is change user password expiry information.
+The `chage` command is to change user password expiry information.
 
 ```bash
 chage [-d date] [-E date] [-I days] [-l] [-m days] [-M days] [-W days] [login]
@@ -814,7 +814,7 @@ Examples:
 # The `chage` command also offers an interactive mode.
 $ sudo chage philippe
 
-# The `-d` option forces the password to be changed at login.
+# The `-d` option changes the password when logging in.
 $ sudo chage -d 0 philippe
 ```
 
@@ -840,7 +840,7 @@ This file contains the default data settings.
 
 !!! Tip
 
-    When creating a user, if the options are not specified, the system uses the default values defined in `/etc/default/useradd`.
+   If the options are not specified when creating a user, the system uses the default values defined in `/etc/default/useradd`.
 
 This file is modified by the command `useradd -D` (`useradd -D` entered without any other option displays the contents of the `/etc/default/useradd` file).
 
@@ -898,7 +898,7 @@ USERGROUPS_ENAB yes
 ENCRYPT_METHOD SHA512
 ```
 
-`UMASK 022`: This means that the permission to create a file is 755 (rwxr-xr-x). However, for the sake of security, GNU/Linux does not have **x** permission for newly created files. This restriction applies to root(uid=0) and ordinary users(uid>=1000). For example:
+`UMASK 022`: This means that the permission to create a file is 755 (rwxr-xr-x). However, for security, GNU/Linux does not have **x** permission for newly created files. This restriction applies to root(uid=0) and ordinary users(uid>=1000). For example:
 
 ```bash
 Shell > touch a.txt
@@ -928,7 +928,7 @@ These files are automatically copied from the `/etc/skel` directory.
 * `.bash_profile`
 * `.bashrc`
 
-All files and directories placed in this directory will be copied to the user tree when they are created.
+All files and directories placed in this directory will be copied to the user tree when created.
 
 ## Identity change
 

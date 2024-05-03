@@ -38,26 +38,25 @@ You should refer to the manual of the `man command` to know the different values
 
 The return code is not visible directly, but is stored in a special variable: `$?`.
 
-```
+```bash
 mkdir directory
 echo $?
 0
 ```
 
-```
+```bash
 mkdir /directory
 mkdir: unable to create directory
 echo $?
 1
 ```
 
-```
+```bash
 command_that_does_not_exist
 command_that_does_not_exist: command not found
 echo $?
 127
 ```
-
 
 !!! note
 
@@ -80,7 +79,7 @@ echo $?
 It is also possible to create return codes in a script.
 To do so, you just need to add a numeric argument to the `exit` command.
 
-```
+```bash
 bash # to avoid being disconnected after the "exit 2
 exit 123
 echo $?
@@ -103,13 +102,13 @@ The result of the test:
 
 Syntax of the `test` command for a file:
 
-```
+```bash
 test [-d|-e|-f|-L] file
 ```
 
 or:
 
-```
+```bash
 [ -d|-e|-f|-L file ]
 ```
 
@@ -139,7 +138,7 @@ Options of the test command on files:
 
 Example:
 
-```
+```bash
 test -e /etc/passwd
 echo $?
 0
@@ -150,7 +149,7 @@ echo $?
 
 An internal command to some shells (including bash) that is more modern, and provides more features than the external command `test`, has been created.
 
-```
+```bash
 [[ -s /etc/passwd ]]
 echo $?
 1
@@ -164,7 +163,7 @@ echo $?
 
 It is also possible to compare two files:
 
-```
+```bash
 [[ file1 -nt|-ot|-ef file2 ]]
 ```
 
@@ -178,7 +177,7 @@ It is also possible to compare two files:
 
 It is possible to test variables:
 
-```
+```bash
 [[ -z|-n $variable ]]
 ```
 
@@ -191,13 +190,13 @@ It is possible to test variables:
 
 It is also possible to compare two strings:
 
-```
+```bash
 [[ string1 =|!=|<|> string2 ]]
 ```
 
 Example:
 
-```
+```bash
 [[ "$var" = "Rocky rocks!" ]]
 echo $?
 0
@@ -214,20 +213,20 @@ echo $?
 
 Syntax for testing integers:
 
-```
+```bash
 [[ "num1" -eq|-ne|-gt|-lt "num2" ]]
 ```
 
 Example:
 
-```
+```bash
 var=1
 [[ "$var" -eq "1" ]]
 echo $?
 0
 ```
 
-```
+```bash
 var=2
 [[ "$var" -eq "1" ]]
 echo $?
@@ -264,11 +263,11 @@ echo $?
 The combination of tests allows you to perform several tests in one command.
 It is possible to test the same argument (file, string or numeric) several times or different arguments.
 
-```
+```bash
 [ option1 argument1 [-a|-o] option2 argument 2 ]
 ```
 
-```
+```bash
 ls -lad /etc
 drwxr-xr-x 142 root root 12288 sept. 20 09:25 /etc
 [ -d /etc -a -x /etc ]
@@ -281,22 +280,21 @@ echo $?
 | `-a`   | AND: The test will be true if all patterns are true.       |
 | `-o`   | OR: The test will be true if at least one pattern is true. |
 
-
 With the internal command, it is better to use this syntax:
 
-```
+```bash
 [[ -d "/etc" && -x "/etc" ]]
 ```
 
 Tests can be grouped with parentheses `(` `)` to give them priority.
 
-```
+```bash
 (TEST1 -a TEST2) -a TEST3
 ```
 
 The `!` character is used to perform the reverse test of the one requested by the option:
 
-```
+```bash
 test -e /file # true if file exists
 ! test -e /file # true if file does not exist
 ```
@@ -305,13 +303,13 @@ test -e /file # true if file exists
 
 The `expr` command performs an operation with numeric integers.
 
-```
+```bash
 expr num1 [+] [-] [\*] [/] [%] num2
 ```
 
 Example:
 
-```
+```bash
 expr 2 + 2
 4
 ```
@@ -329,14 +327,13 @@ expr 2 + 2
 | `/`    | Division quotient      |
 | `%`    | Modulo of the division |
 
-
 ## The `typeset` command
 
 The `typeset -i` command declares a variable as an integer.
 
 Example:
 
-```
+```bash
 typeset -i var1
 var1=1+1
 var2=1+1
@@ -352,7 +349,7 @@ The `let` command  tests if a character is numeric.
 
 Example:
 
-```
+```bash
 var1="10"
 var2="AA"
 let $var1
@@ -375,7 +372,7 @@ echo $?
 
 The `let` command also allows you to perform mathematical operations:
 
-```
+```bash
 let var=5+5
 echo $var
 10
@@ -383,7 +380,7 @@ echo $var
 
 `let` can be substituted by `$(( ))`.
 
-```
+```bash
 echo $((5+2))
 7
 echo $((5*2))

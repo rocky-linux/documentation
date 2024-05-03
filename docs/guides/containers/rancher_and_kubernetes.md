@@ -33,7 +33,7 @@ This guide will help you discover Rancher, install and start it, and then create
 
 Installing Rancher is quite trivial if you have Docker installed on your server.
 
-You can find the Docker installation [here in gemstones](https://docs.rockylinux.org/gemstones/docker/).
+You can find the Docker installation [here in gemstones](https://docs.rockylinux.org/gemstones/containers/docker/).
 
 To run on a Rocky 9, Rancher will also require loading modules/
 /run//run/
@@ -91,7 +91,7 @@ You are ready to connect to the Rancher's webUI.
 
 Rancher offers its docker-based version of Kubernetes: RKE (Rancher Kubernetes Engine).
 
-All you need is several Rocky Linux servers and the [Docker engine](https://docs.rockylinux.org/gemstones/docker/) installed on them.
+All you need is several Rocky Linux servers and the [Docker engine](https://docs.rockylinux.org/gemstones/containers/docker/) installed on them.
 
 Do not forget that one of the requirements of Kubernetes is to have an odd number of master nodes (1 or 3, for example). For our tests, start with 3 master nodes and 2 additional nodes with only the worker role.
 

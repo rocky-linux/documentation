@@ -10,12 +10,12 @@ In diesem Kapitel erfahren Sie, wie Sie Ihr Konfigurationsmanagementsystem skali
 
 **Ziele**: In diesem Kapitel lernen Sie Folgendes:
 
-:heavy_check_mark: Ihren Code für eine große Infrastruktur organisieren;   
+:heavy_check_mark: Ihren Code für eine große Infrastruktur organisieren;  
 :heavy_check_mark: Ihr Konfigurationsmanagement ganz oder teilweise auf eine Gruppe von Knoten anwenden;
 
 :checkered_flag: **Ansible**, **Konfig-Management**, **Skalierung**
 
-**Vorkenntnisse**: :star: :star: :star:       
+**Vorkenntnisse**: :star: :star: :star:  
 **Schwierigkeitsgrad**: :star: :star: :star: :star:
 
 **Lesezeit**: 31 Minuten
@@ -52,7 +52,7 @@ Wir haben es hier noch nicht besprochen, aber Sie sollten wissen, dass Ansible a
 
 Die Ansible-Dokumentation schlägt vor, unseren Code wie folgt zu organisieren:
 
-```
+```bash
 inventories/
    production/
       hosts               # inventory file for production servers
@@ -82,7 +82,7 @@ Die Verwendung von Ansible-Tags ermöglicht es Ihnen, einen Teil der Aufgaben in
 
 Lassen Sie uns zum Beispiel die Aufgabe zur Benutzererstellung ändern:
 
-```
+```bash
 - name: add users
   user:
     name: "{{ item }}"
@@ -98,7 +98,7 @@ Lassen Sie uns zum Beispiel die Aufgabe zur Benutzererstellung ändern:
 
 Sie können jetzt nur Aufgaben mit dem Tag `users` mit der Option `ansible-playbook` `--tags` abspielen:
 
-```
+```bash
 ansible-playbook -i inventories/production/hosts --tags users site.yml
 ```
 
@@ -110,7 +110,7 @@ Konzentrieren wir uns auf einen Vorschlag zur Organisation von Dateien und Verze
 
 Unser Ausgangspunkt wird die Datei `site.yml` sein. Diese Datei ähnelt ein wenig dem CMS-Orchesterleiter, da sie nur bei Bedarf die Rollen enthält, die für die Zielknoten erforderlich sind:
 
-```
+```bash
 ---
 - name: "Config Management for {{ target }}"
   hosts: "{{ target }}"
@@ -126,7 +126,7 @@ Natürlich müssen diese Rollen im Verzeichnis `roles` auf derselben Ebene wie d
 
 Wir verwalten unsere globalen Variablen gerne in einer Datei `vars/global_vars.yml`, obwohl wir sie auch in einer Datei in `inventories/produktion/group_vars/all.yml` speichern könnten
 
-```
+```bash
 ---
 - name: "Config Management for {{ target }}"
   hosts: "{{ target }}"
@@ -141,7 +141,7 @@ Wir verwalten unsere globalen Variablen gerne in einer Datei `vars/global_vars.y
 
 Außerdem möchten wir die Möglichkeit behalten, eine Funktion zu deaktivieren. Dann schließen wir meine Rollen mit einer Bedingung und einem Standardwert wie diesem ein:
 
-```
+```bash
 ---
 - name: "Config Management for {{ target }}"
   hosts: "{{ target }}"
@@ -160,8 +160,7 @@ Außerdem möchten wir die Möglichkeit behalten, eine Funktion zu deaktivieren.
 
 Vergessen Sie nicht, Tags zu verwenden:
 
-
-```
+```bash
 - name: "Config Management for {{ target }}"
   hosts: "{{ target }}"
   vars_files:
@@ -183,7 +182,7 @@ Vergessen Sie nicht, Tags zu verwenden:
 
 Sie sollten so etwas erhalten:
 
-```
+```bash
 $ tree cms
 cms
 ├── inventories
@@ -218,7 +217,7 @@ cms
 
 Lassen Sie uns das Playbook starten und einige Tests ausführen:
 
-```
+```bash
 $ ansible-playbook -i inventories/production/hosts -e "target=client1" site.yml
 
 PLAY [Config Management for client1] ****************************************************************************
@@ -242,14 +241,13 @@ Wie Sie sehen, werden standardmäßig nur Aufgaben aus der Rolle `functionality1
 
 Wir aktivieren `functionality2` für unseren Zielknoten im Inventar und starten das Playbook neu:
 
-```
+```bash
 $ vim inventories/production/host_vars/client1.yml
 ---
 enable_functionality2: true
 ```
 
-
-```
+```bash
 $ ansible-playbook -i inventories/production/hosts -e "target=client1" site.yml
 
 PLAY [Config Management for client1] ****************************************************************************
@@ -273,7 +271,7 @@ client1                    : ok=3    changed=0    unreachable=0    failed=0    s
 
 Lass uns versuchen, nur `functionality2` anzuwenden:
 
-```
+```bash
 $ ansible-playbook -i inventories/production/hosts -e "target=client1" --tags functionality2 site.yml
 
 PLAY [Config Management for client1] ****************************************************************************
@@ -292,7 +290,7 @@ client1                    : ok=2    changed=0    unreachable=0    failed=0    s
 
 Lassen Sie uns die gesamte Inventur ausführen:
 
-```
+```bash
 $ ansible-playbook -i inventories/production/hosts -e "target=plateform" site.yml
 
 PLAY [Config Management for plateform] **************************************************************************

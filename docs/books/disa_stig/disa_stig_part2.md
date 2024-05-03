@@ -22,7 +22,7 @@ Over time, these things could change and you will want to keep an eye on it. Fre
 
 To list the security profiles available, we need to use the command `oscap info` provided by the `openscap-scanner` package. This should already be installed in your system if you've been following along since Part 1.  To obtain the security profiles available:
 
-```
+```bash
 oscap info /usr/share/xml/scap/ssg/content/ssg-rl8-ds.xml
 ```
 
@@ -48,11 +48,11 @@ DISA is just one of many Security Profiles supported by the Rocky Linux SCAP def
 There are two types to choose from here:
 
 * stig - Without a GUI
-* stig_gui - With a GUI 
+* stig_gui - With a GUI
 
 Run a scan and create an HTML report for the DISA STIG:
 
-```
+```bash
 sudo oscap xccdf eval --report unit-test-disa-scan.html --profile stig /usr/share/xml/scap/ssg/content/ssg-rl8-ds.xml
 ```
 
@@ -69,15 +69,18 @@ And will output an HTML report:
 Next, we will generate a scan, and then use the results of the scan to generate a bash script to remediate the system based on the DISA stig profile. I do not recommend using automatic remediation, you should always review the changes before actually running them.
 
 1) Generate a scan on the system:
-    ```
+
+    ```bash
     sudo oscap xccdf eval --results disa-stig-scan.xml --profile stig /usr/share/xml/scap/ssg/content/ssg-rl8-ds.xml
     ```
+
 2) Use this scan output to generate the script:
-    ```
-	sudo oscap xccdf generate fix --output draft-disa-remediate.sh --profile stig disa-stig-scan.xml
+
+    ```bash
+    sudo oscap xccdf generate fix --output draft-disa-remediate.sh --profile stig disa-stig-scan.xml
     ```
 
-The resulting script will include all the changes it would make the system. 
+The resulting script will include all the changes it would make the system.
 
 !!! warning
 
@@ -90,12 +93,15 @@ The resulting script will include all the changes it would make the system.
 You can also generate remediation actions in ansible playbook format. Let's repeat the section above, but this time with ansible output:
 
 1) Generate a scan on the system:
+
+    ```bash
+    sudo oscap xccdf eval --results disa-stig-scan.xml --profile stig /usr/share/xml/scap/ssg/content/ssg-rl8-ds.xml
     ```
-	sudo oscap xccdf eval --results disa-stig-scan.xml --profile stig /usr/share/xml/scap/ssg/content/ssg-rl8-ds.xml
-    ```
+
 2) Use this scan output to generate the script:
-    ```
-	sudo oscap xccdf generate fix --fix-type ansible --output draft-disa-remediate.yml --profile stig disa-stig-scan.xml
+
+    ```bash
+    sudo oscap xccdf generate fix --fix-type ansible --output draft-disa-remediate.yml --profile stig disa-stig-scan.xml
     ```
 
 !!! warning
@@ -109,4 +115,3 @@ You can also generate remediation actions in ansible playbook format. Let's repe
 Scott Shinn is the CTO for Atomicorp, and part of the Rocky Linux Security team. He has been involved with federal information systems at
 the White House, Department of Defense, and Intelligence Community since 1995. Part of that was creating STIG’s and the requirement
 that you use them and I am so very sorry about that.
-

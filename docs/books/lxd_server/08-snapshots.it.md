@@ -23,19 +23,19 @@ L'autore ha utilizzato i container LXD per i server PowerDNS rivolti al pubblico
 
 Iniziate ottenendo un'istantanea del container ubuntu-test con questo comando:
 
-```
+```bash
 lxc snapshot ubuntu-test ubuntu-test-1
 ```
 
 Qui lo snapshot viene chiamato "ubuntu-test-1", ma si può chiamare in qualsiasi modo. Per assicurarsi di uno snapshot, eseguire un'`lxc info` del container:
 
-```
+```bash
 lxc info ubuntu-test
 ```
 
 Avete già guardato una schermata informativa. Se si scorre fino in fondo, ora si vede:
 
-```
+```bash
 Snapshots:
   ubuntu-test-1 (taken at 2021/04/29 15:57 UTC) (stateless)
 ```
@@ -44,13 +44,13 @@ Riuscito! Il nostro snapshot è in posizione.
 
 Entrate nel container ubuntu-test:
 
-```
+```bash
 lxc exec ubuntu-test bash
 ```
 
 Creare un file vuoto con il comando _touch_:
 
-```
+```bash
 touch this_file.txt
 ```
 
@@ -58,19 +58,19 @@ Uscite dal container.
 
 Prima di ripristinare il container com'era prima della creazione del file, il modo più sicuro per ripristinare un container, in particolare se ci sono state molte modifiche, è quello di fermarlo prima:
 
-```
+```bash
 lxc stop ubuntu-test
 ```
 
 Ripristino:
 
-```
+```bash
 lxc restore ubuntu-test ubuntu-test-1
 ```
 
 Avviare nuovamente il container:
 
-```
+```bash
 lxc start ubuntu-test
 ```
 
@@ -78,7 +78,7 @@ Se si torna di nuovo nel container e si guarda, il "this_file.txt" creato non c'
 
 Quando non si ha più bisogno di uno snapshot, è possibile eliminarlo:
 
-```
+```bash
 lxc delete ubuntu-test/ubuntu-test-1
 ```
 

@@ -10,12 +10,13 @@ Les commandes avancées offrent une plus grande personnalisation et des contrôl
 
 **Objectifs** : Dans ce chapitre, les futurs administrateurs Linux vont apprendre :
 
-:heavy_check_mark: quelques commandes utiles non traitées dans le chapitre précédent. :heavy_check_mark: des commandes avancées.
+:heavy_check_mark: quelques commandes utiles non couvertes dans le chapitre précédent ;  
+:heavy_check_mark: quelques commandes avancées.
 
 :checkered_flag: **commandes utilisateurs**, **Linux**
 
-**Connaissances** :star:   
-**Complexité** :star: :star: :star:
+**Connaissances : ** :star:  
+**Complexité : ** :star: :star: :star:
 
 **Temps de lecture : **20 minutes
 
@@ -332,7 +333,7 @@ L’option `-n` permet de spécifier le nombre de secondes entre chaque exécuti
 
 !!! Note
 
-    To exit the `watch` command, you must type the keys: <kbd>CTRL</kbd>+<kbd>C</kbd> to kill the process.
+    Pour quitter la commande `watch`, vous devez appuyer sur les touches : <kbd>CTRL</kbd>+<kbd>C</kbd> pour terminer le processus.
 
 Exemples :
 
@@ -420,7 +421,7 @@ Cette commande permet déjà un gain de temps. Combinez-le avec propriétaire, g
 sudo install -v -o rocky -g users -m 644 -D -t ~/samples/ src/sample.txt
 ```
 
- !!! note "Remarque"
+!!! note "Remarque"
 
      Dans ce cas `sudo` est nécessaire pour modifier les propriétés.
 

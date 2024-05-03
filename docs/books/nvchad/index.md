@@ -79,7 +79,7 @@ Lua is not interpreted directly through a Lua file like other languages, for exa
 
 ### :simple-neovim: Neovim
 
-Neovim is described in detail on its [dedicated page](install_nvim.md) so we will just dwell on the main features, which are:
+Neovim is described in detail on its [dedicated page](./install_nvim.md) so we will just dwell on the main features, which are:
 
 * Performance: Very fast.
 * Customizable: Wide ecosystem of plugins and themes.
@@ -110,4 +110,4 @@ A parser is a component that decomposes data into smaller elements to facilitate
 
     Although it may seem that the two services (LSP and tree-sitter) are redundant, they are actually complementary in that LSP works at the project level while tree-sitter works only on the open source file.
 
-Now that we have explained a bit about the technologies used to create the IDE we can move on to the [Additional Software](additional_software.md) needed to configure our NvChad.
+Now that we have explained a bit about the technologies used to create the IDE we can move on to the [Additional Software](./additional_software.md) needed to configure our NvChad.

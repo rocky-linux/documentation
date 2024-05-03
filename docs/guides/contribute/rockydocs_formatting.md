@@ -11,7 +11,7 @@ tags:
 
 This guide highlights our more advanced formatting options, including admonitions, numbered lists, tables, and more.
 
-A document may or may not need to contain any of these elements. If you feel your document will benefit from special formatting, then this guide should help.
+A document may or may not need to contain any of these elements. However, if you feel your document will benefit from special formatting, this guide should help.
 
 !!! note "A Note About Headings"
 
@@ -35,7 +35,7 @@ A document may or may not need to contain any of these elements. If you feel you
 
 !!! warning "A note about supported HTML elements"
 
-    There are HTML elements that are technically supported in markdown. Some of these are described in this document where no markdown syntax exists to replace them. These supported HTML tags should be used rarely, because markdown linters will complain about them in a document. For example:
+    There are HTML elements that are technically supported in markdown. Some of these are described in this document, and no markdown syntax exists to replace them. These supported HTML tags should be used rarely, because markdown linters will complain about them in a document. For example:
 
     * Inline HTML [element name]
 
@@ -43,7 +43,7 @@ A document may or may not need to contain any of these elements. If you feel you
 
 ## Admonitions
 
-Admonitions are special visual "boxes" that allow you to call attention to important facts and highlight them. Following are types of admonitions:
+Admonitions are special visual "boxes" that allow you to call attention to important facts and highlight them. The following are types of admonitions:
 
 | type      | Description                                               |
 |-----------|-----------------------------------------------------------|
@@ -53,7 +53,7 @@ Admonitions are special visual "boxes" that allow you to call attention to impor
 | tip       | displays text in a blue-green box (icon slightly greener)     |
 | success   | displays text in a green box                                  |
 | question  | displays text in a light green box                            |
-| warning   | displays text in a orange box                                 |
+| warning   | displays text in an orange box                                |
 | failure   | displays text in a light red box                              |
 | danger    | displays text in a red box                                    |
 | bug       | displays text in a red box                                    |
@@ -62,7 +62,7 @@ Admonitions are special visual "boxes" that allow you to call attention to impor
 | custom ^1^ | always displays text in a blue box                  |
 | custom ^2^ | displays text in the color of the box of the chosen type |
 
-Admonitions are limitless, as noted in custom <sub>1</sub> above. It is possible to add a custom title to any admonition type to get the box color you want for a specific admonition, as noted in custom <sub>2</sub> above.
+As noted in custom <sub>1</sub> above, admonitions are limitless. Add a custom title to any admonition type to get the box color you want for a specific admonition, as noted in custom <sub>2</sub> above.
 
 An admonition is always entered in this way:
 
@@ -72,9 +72,9 @@ An admonition is always entered in this way:
     text of admonition
 ```
 
-The body text of the admonition must have a four (4) space indentation from the beginning margin. It is easy to see where that is because it will always line up under the first letter of the admonition type. The extra line between the title and body will not show up but our translation engine (Crowdin) needs these to function correctly.
+The body text of the admonition must have a four (4) space indentation from the beginning margin. It is easy to see where that is because it will always line up under the first letter of the admonition type. The extra line between the title and body will not appear, but our translation engine (Crowdin) needs these to function correctly.
 
-Here are examples of each admonition type, and how they will look in your document:
+Here are examples of each admonition type and how they will look in your document:
 
 !!! note
 
@@ -142,7 +142,7 @@ Which looks like this in your editor:
 
 ## Tabbed content within a document
 
-Formatting tabbed content is similar to admonitions. Instead of three exclamation marks or three question marks, it begins with three equal signs. All the admonition formatting (4 spaces, and so on) applies to this content. For example, a document might need a different procedure for a different Rocky Linux version. When using tabbed content for versions, the most recent release of Rocky Linux should come first. At the time of this writing that was 9.0:
+Formatting tabbed content is similar to admonitions. Instead of three exclamation marks or question marks, it begins with three equal signs. All the admonition formatting (4 spaces and so on) applies to this content. For example, a document might need a different procedure for a different Rocky Linux version. When using tabbed content for versions, the most recent release of Rocky Linux should come first. At the time of this writing, that was 9.0:
 
 === "9.0"
 
@@ -168,7 +168,7 @@ Remember that everything that falls inside of the section must continue to use t
 
 ## Numbered lists
 
-Numbered lists sound like they are easy to create and use, and once you get the hang of them, they really are. If you just have a single list of items with no complexity, then this sort of format works fine:
+Numbered lists sound easy to create and use, and once you get the hang of them, they are. If you have a single list of items with no complexity, then this sort of format works fine:
 
 ```text
 1. Item 1
@@ -184,9 +184,9 @@ Numbered lists sound like they are easy to create and use, and once you get the 
 
 3. Item 3
 
-If you need to add code blocks, multiple lines or even paragraphs of text to a numbered list, then the text must have the same four (4) space indentation that you used in the admonitions.
+If you need to add code blocks, multiple lines, or even paragraphs of text to a numbered list, then the text must have the same four (4) space indentation you used in the admonitions.
 
-However, you cannot use your eyes to line them up under the numbered item because this is one space off. If you use a good markdown editor, you can set your tab value to four (4), which will make formatting everything a bit easier.
+However, you cannot use your eyes to line them up under the numbered item because this is one space off. If you use a good markdown editor, you can set your tab value to four (4), making formatting everything easier.
 
 Here is an example of a multi-line numbered list with a code block thrown in for good measure:
 
@@ -227,7 +227,7 @@ In the above case, tables help us lay out command options or admonition types an
 | tip       | displays text in a  blue-green box (icon slightly greener)    |
 | success   | displays text in a  green box                                 |
 | question  | displays text in a light green box                            |
-| warning   | displays text in a orange box                                 |
+| warning   | displays text in an orange box                                 |
 | failure   | displays text in a light red box                              |
 | danger    | displays text in a  red box                                   |
 | bug       | displays text in a red box                                    |
@@ -242,20 +242,25 @@ Note that it is not necessary to have each column broken down by size (as we hav
 
 ## Block quotes
 
-Block quotes are actually designed for quoting text from other sources to include in your documentation, but using them that way is not required. Some contributors use block quotes instead of tables, for instance, to list out some options. Examples of block quotes in markdown would be:
+Block quotes are designed for quoting text from other sources to include in your documentation. Examples of block quotes in markdown would be:
 
 ```text
 > **an item** - A description of that item
 
+followed by:
+
 > **another item** - Another description of that item
 ```
 
-The extra "spacing" line is necessary to keep the lines from running together.
+If you are putting two quotes together, you need to separate them by other words to avoid generating a markdown error (as done above).
 
 That ends up looking like this when the page displays:
 
 > **an item** - A description of that item
-> **another item** - Another description of  an item
+
+followed by:
+
+> **another item** - Another description of that item
 
 ## Inline and block-level code blocks
 
@@ -273,9 +278,9 @@ sudo dnf install the-kitchen-sink
 ```
 ````
 
-The `bash` bit of that formatting is a markdown recommended code identifier but can help with syntax highlighting. If you showcase text, Python, PHP, Ruby, HTML, CSS, or any other kind of code, the "bash" will change to whatever language you use.
+The `bash` bit of that formatting is a markdown recommended code identifier but can help with syntax highlighting. If you showcase text, Python, PHP, Ruby, HTML, CSS, or any other code, the "bash" will change to whatever language you use.
 
-Incidentally, if you need to show a code block within a code block, just add one more backtick ++"`"++ to the parent block:
+Incidentally, if you need to show a code block within a code block, add one more backtick ++"`"++ to the parent block:
 
 `````markdown
 ````markdown
@@ -285,15 +290,15 @@ sudo dnf install the-kitchen-sink
 ````
 `````
 
-And yes, the code block you just saw used five backticks at the beginning and end to make it render properly.
+And yes, the code block you just saw used five backticks at the beginning and end to make it render correctly.
 
 ### Suppressing the displayed prompt and automatic line feed
 
-There might be times when writing documentation where you want to show a prompt in your command, but you do not want the user to copy that prompt when they use the copy option. An application of this might be writing labs where you want to show the location with the prompt as in this example:
+There might be times when writing documentation when you want to show a prompt in your command but do not want the user to copy that prompt when they use the copy option. An application of this might be writing labs where you want to show the location with the prompt, as in this example:
 
 ![copy_option](copy_option.png)
 
-If formatted normally, the copy option will copy the prompt and the command, where copying just the command is preferable. To get around this, you can use the following syntax to tell the copy option what you want copied:
+If formatted normally, the copy option will copy the prompt and the command, whereas copying just the command is preferable. To get around this, you can use the following syntax to tell the copy option what you want copied:
 
 ````text
 ``` { .sh data-copy="cd /usr/local" }
@@ -305,15 +310,15 @@ When using this method, the automatic line feed is also suppressed.
 
 ## Keyboard
 
-Another way to add as much clarity to your documents as possible is to represent the entering of keys on a keyboard in the correct manner. In markdown, do this by surrounding the key or keys with double plus signs (`++`) Do this with `++key++`. For instance, to represent that you need to hit the escape key in your document you would use `++escape++`. When you need to indicate the pressing of multiple keys, add a `+` between them like this: `++ctrl+f4++`. For keys that aren't defined (for instance we are indicating a mystery function key, `Fx` below) put your definition in quotes (`++ctrl+"Fx"++`). If requiring the pressing of keys simultaneously, add "simultaneously" or "at the same time" or some similar phrase to your instructions. Here is an example of a keyboard instruction in your editor:
+Another way to add as much clarity to your documents as possible is to represent the correct manner of entering keys on a keyboard. In markdown, do this by surrounding the key or keys with double plus signs (`++`). Do this with `++key++`. For instance, to represent that you need to hit the escape key in your document, you would use `++escape++`. When you need to indicate the pressing of multiple keys, add a `+` between them like this: `++ctrl+f4++`. For keys that aren't defined (for instance, we are indicating a mystery function key, `Fx` below), put your definition in quotes (`++ctrl+"Fx"++`). If requiring the pressing of keys simultaneously, add "simultaneously" or "at the same time" or some similar phrase to your instructions. Here is an example of a keyboard instruction in your editor:
 
 ```text
-A workstation type installation (with graphical interface) starts this interface on terminal 1. Linux being multi-user, it is possible to connect several users several times, on different **physical terminals** (TTY) or **virtual terminals** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using ++alt+"Fx"++ from the command line or using ++ctrl+alt+"Fx"++.
+A workstation-type installation (with a graphical interface) starts this interface on terminal 1. Linux being multi-user, it is possible to connect several users several times, on different **physical terminals** (TTY) or **virtual terminals** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using ++alt+"Fx"++ from the command line or ++ctrl+alt+"Fx"++.
 ```
 
 Here is how that renders when displayed:
 
-A workstation type installation (with graphical interface) starts this interface on terminal 1. Linux being multi-user, it is possible to connect several users several times, on different **physical terminals** (TTY) or **virtual terminals** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using ++alt+"Fx"++ from the command line or using ++ctrl+alt+"Fx"++.
+A workstation-type installation (with a graphical interface) starts this interface on terminal 1. Linux being multi-user, it is possible to connect several users several times, on different **physical terminals** (TTY) or **virtual terminals** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using ++alt+"Fx"++ from the command line or ++ctrl+alt+"Fx"++.
 
 A list of accepted keyboard commands [in this document](https://facelessuser.github.io/pymdown-extensions/extensions/keys/#key-map-index).
 
@@ -338,18 +343,18 @@ Here is how all the above looks in your markdown code:
 * copyright and trademark symbols, like ^&copy;^, ^TM^ or ^&trade;^, ^&reg;^
 * as notation for references, such as this^1^, this^2^ and this^3^
 
-Some of the special characters, such as &copy; are not normally superscript, while others such as &trade;, are.
+Some special characters, such as &copy; are not normally superscript, while others such as &trade;, are.
 ```
 
-To force superscript you surround what you want superscript with `^`.
+To force superscript, you surround what you want superscript with `^`.
 
 Enter subscript by surrounding your text with the `~` tag (H~2~0 is `H~2~0`) and as noted earlier, is not used nearly as much in writing.
 
 ### Superscript for references
 
-Some of you may feel the need to reference outside sources when writing documentation. If you only have a single source, you can include it in your conclusion as a single link, but if you have multiples^1^, you can use superscript to note them in your text^2^ and then list them at the end of your document. Note that the positioning of references should come after the "Conclusion" section.
+Some of you may need to reference outside sources when writing documentation. If you only have a single source, you can include it in your conclusion as a single link, but if you have multiples^1^, you can use superscript to note them in your text^2^ and then list them at the end of your document. Note that the positioning of references should come after the "Conclusion" section.
 
-Following the conclusion, you can have your notations in a numbered list to match the superscript, or you can enter them as links. Both examples are shown here:
+Following the conclusion, you can have your notations in a numbered list to match the superscript or enter them as links. Both examples are shown here:
 
 1. "How Multiples Are Used In Text" by Wordy W. McWords [https://site1.com](https://site1.com)
 2. "Using Superscript In Text" by Sam B. Supersecret [https://site2.com](https://site2.com)
@@ -447,7 +452,7 @@ Here is what this example looks like in your editor:
 
 As long as you keep track of the magic four (4) spaces to separate these items, they will display logically and exactly the way you want them to. Sometimes that is really important.
 
-You can even embed a table or block quote (literally any formatting item type) within another one. Here  have a numbered list, an admonition, a table and some block quote elements all bundled together:
+You can even embed a table or block quote (literally any formatting item type) within another one. Here  have a numbered list, an admonition, a table, and some block quote elements all bundled together:
 
 1. Trying to keep up with everything that is going on in your document can be a real task when working with multiple elements.
 

@@ -21,7 +21,7 @@ The plugin also tracks the status of the editor when it closes allowing you to h
 
 ### Plugin installation
 
-To install the plugin you will need to edit the **custom/plugins.lua** file by adding the following block of code:
+To install the plugin you will need to edit the **plugins/init.lua** file by adding the following block of code:
 
 ```lua
 {
@@ -141,15 +141,11 @@ To check if the open files do not match those updated from the repository you ca
 
 ### Mapping
 
-To speed up the opening of your projects, you can create a keyboard shortcut to put in your mapping in **/custom/mapping.lua**. An example might be:
+To speed up the opening of your projects, you can create a keyboard shortcut to put in your mapping in **mapping.lua**. An example might be:
 
 ```lua
 -- Projects
-M.projects = {
-    n = {
-        ["<leader>fp"] = { "<cmd> ProjectMgr<CR>", "Open Projects" },
-    },
-}
+map("n", "<leader>fp", "<CMD> ProjectMgr<CR>", { desc = "Open Projects" })
 ```
 
 With the editor in the **NORMAL** state you can open the project manager with the combination ++space++ + ++"f"++ followed by ++"p"++.

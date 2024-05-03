@@ -14,21 +14,21 @@ You can't do much with a computer these days without network connectivity. Wheth
 
 ## Prerequisites
 
-* A certain amount of comfort operating from the command line
-* Elevated or administrative privileges on the system (For example root, `sudo` and so on)
-* Optional: familiarity with networking concepts
+- A certain amount of comfort operating from the command line
+- Elevated or administrative privileges on the system (for example root, `sudo` and so on)
+- Optional: familiarity with networking concepts
 
 === "9"
-    
+
     ## Network Configuration - Rocky Linux 9
 
     A lot has changed with network configuration as of Rocky Linux 9. One of the major changes is the move from Network-Scripts (still available to install-but effectively deprecated) to the use of Network Manager and key files, rather than `ifcfg` based files. `NetworkManager` as of 9, prioritizes `keyfiles` over the previous `ifcfg` files. Since this is now the default, the act of configuring the network should now take the default as the proper way of doing things, given that other changes over the years have meant the eventual deprecation and removal of older utilities. This guide will attempt to walk you through the use of Network Manager and the latest changes within Rocky Linux 9. 
 
     ## Prerequisites
 
-    * A certain amount of comfort operating from the command line
-    * Elevated or administrative privileges on the system (For example root, `sudo` and so on)
-    * Optional: familiarity with networking concepts
+    - A certain amount of comfort operating from the command line
+    - Elevated or administrative privileges on the system (for example root, `sudo` and so on)
+    - Optional: familiarity with networking concepts
 
     ## Using NetworkManager service
 
@@ -106,7 +106,7 @@ You can't do much with a computer these days without network connectivity. Wheth
         
         The static IP configuration scheme is very popular on server class systems or networks.
 
-        The dynamic IP approach is popular on home and office networks or workstation and desktop class systems in a business environment.  The dynamic scheme usually needs _something_ extra that is locally available and that can supply proper IP configuration information to requesting workstations and desktops. This _something_ is called the Dynamic Host Configuration Protocol (DHCP). On a home network, and even on most business networks, this service is provided by a DHCP Server configured for the purpose. This can be a separate server or part of a router configuration.
+        The dynamic IP approach is popular on home and office networks or workstation and desktop class systems in a business environment.  The dynamic scheme usually needs *something* extra that is locally available and that can supply proper IP configuration information to requesting workstations and desktops. This *something* is called the Dynamic Host Configuration Protocol (DHCP). On a home network, and even on most business networks, this service is provided by a DHCP Server configured for the purpose. This can be a separate server or part of a router configuration.
 
     ## IP Address
 
@@ -116,25 +116,25 @@ You can't do much with a computer these days without network connectivity. Wheth
     
         ![nmtui](images/nmtui_first.png)
 
-    2. It's already on the selection we need "Edit a connection" so hit the <kbd>TAB</kbd> key so that "OK" is highlighted and hit <kbd>ENTER</kbd>
+    2. It's already on the selection we need "Edit a connection" so hit the ++tab++ key so that "OK" is highlighted and hit ++enter++
 
-    3. This will bring up a screen showing the Ethernet connections on the machine and allow you to choose one. In our case, there is *ONLY* one, so it is already highlighted, we simply need to hit the <kbd>TAB</kbd> key until "Edit" is highlighted and then hit <kbd>ENTER</kbd>
+    3. This will bring up a screen showing the Ethernet connections on the machine and allow you to choose one. In our case, there is *ONLY* one, so it is already highlighted, we simply need to hit the ++tab++ key until "Edit" is highlighted and then hit ++enter++
 
         ![nmtui_edit](images/nmtui_edit.png)
 
-    4. Once we have done this, we will be on the screen showing our current configuration. What we need to do is switch from "Manual" to "Automatic" so hit the <kbd>TAB</kbd> key several times until you get to where "Manual" is highlighted and then hit <kbd>ENTER</kbd>.
+    4. Once we have done this, we will be on the screen showing our current configuration. What we need to do is switch from "Manual" to "Automatic" so hit the ++tab++ key several times until you get to where "Manual" is highlighted and then hit ++enter++.
 
         ![nmtui_manual](images/nmtui_manual.png)
 
-    5. Arrow up until "Automatic" is highlighted and then hit <kbd>ENTER</kbd>
+    5. Arrow up until "Automatic" is highlighted and then hit ++enter++
     
         ![nmtui_automatic](images/nmtui_automatic.png)
 
-    6. Once we have switched the interface over to "Automatic" we need to remove the statically assigned IP so hit the <kbd>TAB</kbd> key until the "Remove" is highlighted next to the IP address and hit <kbd>ENTER</kbd>.
+    6. Once we have switched the interface over to "Automatic" we need to remove the statically assigned IP so hit the ++tab++ key until the "Remove" is highlighted next to the IP address and hit ++enter++.
 
         ![nmtui_remove](images/nmtui_remove.png)
 
-    7. Finally, hit the <kbd>TAB</kbd> key several times until you get to the bottom of the `nmtui` screen and the "OK" is highlighted and hit <kbd>ENTER</kbd>
+    7. Finally, hit the ++tab++ key several times until you get to the bottom of the `nmtui` screen and the "OK" is highlighted and hit ++enter++
 
     You can deactivate and reactivate your interface with `nmtui` as well, but instead let's do this with `nmcli`. In this way we can string the deactivation of the interface and the reactivation of the interface so that the interface is never down for long:
 
@@ -167,10 +167,10 @@ You can't do much with a computer these days without network connectivity. Wheth
 
     Before we start, be aware that to reconfigure the interface to DHCP we need to: 
 
-    * Remove the IPv4 Gateway 
-    * Remove the IPv4 Address that we statically assigned
-    * Change the IPv4 Method to automatic
-    * Down and Up the interface
+    - Remove the IPv4 Gateway 
+    - Remove the IPv4 Address that we statically assigned
+    - Change the IPv4 Method to automatic
+    - Down and Up the interface
 
     Note too, that we are not using examples that tell you to use -ipv4.address etc. These do not change the interface completely. To do that we must set the ipv4.address and the ipv4.gateway to an empty string. Again, to save as much time as possible with our command, we are going to string them all together in one line:
 
@@ -214,10 +214,10 @@ You can't do much with a computer these days without network connectivity. Wheth
 
     In this example, we will assume the following parameters:
 
-    * interface name: enp0s3
-    * ip address: 192.168.1.151
-    * subnet mask: 24
-    * gateway: 192.168.1.1
+    - interface name: enp0s3
+    - ip address: 192.168.1.151
+    - subnet mask: 24
+    - gateway: 192.168.1.1
 
     ### Get general information
 
@@ -230,7 +230,7 @@ You can't do much with a computer these days without network connectivity. Wheth
     !!! tip "**Pro tips:**"
 
         * use the `-c` flag to get a more readable coloured output: `ip -c a`.
-	    * `ip` accepts abbreviation so `ip a`, `ip addr` and `ip address` are equivalent
+        * `ip` accepts abbreviation so `ip a`, `ip addr` and `ip address` are equivalent
 
     ### Bring interface up or down
 
@@ -350,7 +350,7 @@ You can't do much with a computer these days without network connectivity. Wheth
     ping -I enp0s3 -c3 192.168.1.10
     ```
 
-    ## Conclusions
+    ## Conclusion
 
     There are many changes to the networking stack in Rocky Linux 9. Among these is the prioritization of `keyfile` over the formerly used `ifcfg` files found in Network-Scripts. Since the direction of movement here in future versions of Rocky Linux will deprecate and remove Network-Scripts, it is best to focus attention on methodologies such as `nmcli`, `nmtui`, and in some cases `ip`, for network configuration.
 
@@ -399,15 +399,15 @@ You can't do much with a computer these days without network connectivity. Wheth
 
         The static IP configuration scheme is very popular on server class systems or networks.
 
-        The dynamic IP approach is popular on home and office networks - or workstation and desktop class systems.  The dynamic scheme usually needs _something_ extra that is locally available that can supply proper IP configuration information to requesting workstations and desktops. This _something_ is called the Dynamic Host Configuration Protocol (DHCP).
+        The dynamic IP approach is popular on home and office networks - or workstation and desktop class systems.  The dynamic scheme usually needs *something* extra that is locally available that can supply proper IP configuration information to requesting workstations and desktops. This *something* is called the Dynamic Host Configuration Protocol (DHCP).
 
        Home or office users often do not have to worry about DHCP. This is because the something else automatically takes care of that in the background. The end user needs to physically or wirelessly connect to the right network (and of course make sure that their systems are powered on)!
     
     ### IP Address
 
-    In the previous `/etc/sysconfig/network-scripts/ifcfg-enp1s0` listing, we see that the value of the `BOOTPROTO` parameter or key is set to `none`. The configred system is set to a static IP address scheme.
+    In the previous `/etc/sysconfig/network-scripts/ifcfg-enp1s0` listing, we see that the value of the `BOOTPROTO` parameter or key is set to `none`. The configured system is set to a static IP address scheme.
 
-    If instead you want to configure the system to use a dynamic IP address scheme, you will have to change the value of the `BOOTPROTO` parameter from `none` to `dhcp` and also remove the `IPADDR`, `PREFIX` and `GATEWAY` lines. This is necessary because all that information will be automaically obtained from any available DHCP server.
+    If instead you want to configure the system to use a dynamic IP address scheme, you will have to change the value of the `BOOTPROTO` parameter from `none` to `dhcp` and also remove the `IPADDR`, `PREFIX` and `GATEWAY` lines. This is necessary because all that information will be automatically obtained from any available DHCP server.
 
     To configure a static IP address attribution, set the following:
 
@@ -498,8 +498,8 @@ You can't do much with a computer these days without network connectivity. Wheth
 
     For example, we can see that the `ipv4.method` here is currently set to `auto`. There are many allowed values for the `ipv4.method` setting, but the main two you will most likely see are:
 
-    * `auto`: the appropriate automatic method (DHCP, PPP, etc) is used for the interface and most other properties can be left unset.
-    * `manual`: static IP addressing is used and at least one IP address must be given in the 'addresses' property.
+    - `auto`: the appropriate automatic method (DHCP, PPP, etc) is used for the interface and most other properties can be left unset.
+    - `manual`: static IP addressing is used and at least one IP address must be given in the 'addresses' property.
 
     If instead you want to configure the system to use a static IP address scheme, you will have to change the value of `ipv4.method` to `manual`, and also specify the `ipv4.gateway` and `ipv4.addresses`.
 
@@ -516,7 +516,7 @@ You can't do much with a computer these days without network connectivity. Wheth
     [user@server ~]$ sudo nmcli connection modify enp1s0 ipv4.method manual
     ```
 
-    !!!tip "When does the connection get updated?"
+    !!! tip "When does the connection get updated?"
 
         `nmcli connection modify` will not modify the *runtime* configuration, but update the `/etc/sysconfig/network-scripts` configuration files with the appropriate values based on what you have told `nmcli` to configure.
 
@@ -557,10 +557,10 @@ You can't do much with a computer these days without network connectivity. Wheth
 
     In this example, we will assume the following parameters:
 
-    * interface name: ens19
-    * ip address: 192.168.20.10
-    * subnet mask: 24
-    * gateway: 192.168.20.254
+    - interface name: ens19
+    - ip address: 192.168.20.10
+    - subnet mask: 24
+    - gateway: 192.168.20.254
 
     ### Get general information
 
@@ -572,8 +572,8 @@ You can't do much with a computer these days without network connectivity. Wheth
 
     !!! tip "**Pro tips:**"
 
-        * use the `-c` flag to get a more readable coloured output: `ip -c a`.
-	    * `ip` accepts abbreviation so `ip a`, `ip addr` and `ip address` are equivalent
+        - use the `-c` flag to get a more readable coloured output: `ip -c a`.
+        - `ip` accepts abbreviation so `ip a`, `ip addr` and `ip address` are equivalent
 
     ### Bring interface up or down
 
@@ -602,10 +602,10 @@ You can't do much with a computer these days without network connectivity. Wheth
     will output:
 
     ```bash
-	3: ens19: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
-		link/ether 4a:f2:f5:b6:aa:9f brd ff:ff:ff:ff:ff:ff
-		inet 192.168.20.10/24 scope global ens19
-		valid_lft forever preferred_lft forever
+    3: ens19: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+        link/ether 4a:f2:f5:b6:aa:9f brd ff:ff:ff:ff:ff:ff
+        inet 192.168.20.10/24 scope global ens19
+        valid_lft forever preferred_lft forever
     ```
 
     Our interface is up and configured, but it is still lacking something!
@@ -697,6 +697,6 @@ You can't do much with a computer these days without network connectivity. Wheth
     rockylinux.org has address 76.76.21.21
     ```
 
-    ## Conclusions
+    ## Conclusion
 
     Rocky Linux 8 has the tools to configure your network from the command line. This document should get you up and running with those tools quickly.

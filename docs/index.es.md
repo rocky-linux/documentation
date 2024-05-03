@@ -6,7 +6,7 @@ title: Inicio
 
 ## ¡Bienvenidos!
 
-¡Nos has encontrado! Este es el centro de documentación de Rocky Linux; estamos muy contentos de que estés aquí. Tenemos una serie de colaboradores que añaden contenido, y esa caché de contenido está creciendo constantemente. Aquí podrá encontrar documentación relacionada con la implementación y el despliegue de Rocky Linux como también varias tópicas de interés relevantes para toda la comunidad. Si se pregunta quienes componen la comunidad,
+Este es el centro de documentación de Rocky Linux; estamos muy contentos de que estés aquí. Tenemos una serie de colaboradores que añaden contenido, y esa caché de contenido está creciendo constantemente. Aquí podrá encontrar documentación relacionada con la implementación y el despliegue de Rocky Linux como también varias tópicas de interés relevantes para toda la comunidad. Si se pregunta quienes componen la comunidad,
 
 la respuesta es: gente como usted.
 
@@ -31,12 +31,12 @@ Las secciones principales de la plataforma de documentación son las siguientes:
 
 ### Idiomas Múltiples
 
-¡Por supuesto que no todo el mundo habla inglés como su idioma principal! En Rocky Linux queremos hacer el sitio de documentación lo más accesible posible para todas las personas. —  *las traducciones a diferentes idiomas son una parte fundamental para lograr este objetivo. *. Si haces clic en el selector de idioma en el menú superior verás todos los idiomas disponibles en este momento. Hay dos partes de esto:
+En Rocky Linux queremos hacer el sitio de documentación lo más accesible posible para todas las personas. —  *las traducciones a diferentes idiomas son una parte fundamental para lograr este objetivo. *. Si haces clic en el selector de idioma en el menú superior verás todos los idiomas disponibles en este momento. Hay dos partes de esto:
 
 1. Regionalización de la interfaz del sitio web: si se elige otro idioma, observará que los botones de navegación  'Siguiente' y 'Anteriores', estarán en el idioma elegido.
 1. Naturalmente la traducción de nuestro sitio es un trabajo en curso y constante. No todo el contenido actual está traducido a todos los idiomas disponibles aun. Así que todas las páginas que han sido traducidas a tu idioma de preferencia se mostrarán en dicho idioma excepto las que aun estén pendientes de traducción que, por defecto, se mostrarán en el idioma inglés. Si desea contribuir a la comunidad a través de las traducciones, al equipo de documentación le encantaría saber de usted — vea abajo para más detalles.
 
-!!! Observación:
+!!! Observación
 
     Debido a una limitación inherente a MkDocs,  puede que algunas funciones de la plataforma no estén disponibles en todos los idiomas.
 

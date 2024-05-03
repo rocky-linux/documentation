@@ -35,7 +35,7 @@ Create $ROCKYDOCS se non esiste già e poi digitate:
 cd  $ROCKYDOCS
 ```
 
-2. Assicurati di avere `git` installato (`dnf -y install git`).  Mentre sei in $ROCKYDOCS usa git per clonare il repo ufficiale dei contenuti della Documentazione Rocky. Digitate:
+2. Assicurati di avere `git` installato (`dnf -y install git`).  Mentre sei in $ROCKYDOCS usa git per clonare il repo ufficiale dei contenuti della Documentazione Rocky. Digitare:
 
 ```
 git clone https://github.com/rocky-linux/documentation.git

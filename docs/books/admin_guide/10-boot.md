@@ -9,16 +9,16 @@ In this chapter, you will learn how the system starts.
 ****
 **Objectives**: In this chapter, future Linux administrators will learn:
 
-:heavy_check_mark: The different stages of the booting process;   
-:heavy_check_mark: How Rocky Linux supports this boot by using GRUB2 and systemd;   
-:heavy_check_mark: How to protect GRUB2 from an attack;   
-:heavy_check_mark: How to manage the services;   
-:heavy_check_mark: How to access logs from `journald`.
+:heavy_check_mark: The different stages of the booting process;  
+:heavy_check_mark: How Rocky Linux supports this boot by using GRUB2 and systemd;  
+:heavy_check_mark: How to protect GRUB2 from an attack;  
+:heavy_check_mark: How to manage the services;  
+:heavy_check_mark: How to access logs from `journald`.  
 
-:checkered_flag: **users**
+:checkered_flag: **users** .  
 
-**Knowledge**: :star: :star:   
-**Complexity**: :star: :star: :star:   
+**Knowledge**: :star: :star:  
+**Complexity**: :star: :star: :star:  
 
 **Reading time**: 20 minutes
 ****
@@ -49,7 +49,7 @@ The GRUB 2 configuration file is located under `/boot/grub2/grub.cfg` but this f
 
 The GRUB2 menu configuration settings are located under `/etc/default/grub` and are used to generate the `grub.cfg` file.
 
-```
+```bash
 # cat /etc/default/grub
 GRUB_TIMEOUT=5
 GRUB_DEFAULT=saved
@@ -61,7 +61,7 @@ GRUB_DISABLE_RECOVERY="true"
 
 If changes are made to one or more of these parameters, the `grub2-mkconfig` command must be run to regenerate the `/boot/grub2/grub.cfg` file.
 
-```
+```bash
 [root] # grub2-mkconfig –o /boot/grub2/grub.cfg
 ```
 
@@ -71,7 +71,8 @@ If changes are made to one or more of these parameters, the `grub2-mkconfig` com
 ### The kernel
 
 The kernel starts the `systemd` process with PID 1.
-```
+
+```bash
 root          1      0  0 02:10 ?        00:00:02 /usr/lib/systemd/systemd --switched-root --system --deserialize 23
 ```
 
@@ -104,7 +105,7 @@ To password protect the GRUB2 bootloader:
 
 * If a user has not yet been configured, use the `grub2-setpassword` command to provide a password for the root user:
 
-```
+```bash
 # grub2-setpassword
 ```
 
@@ -114,14 +115,14 @@ A `/boot/grub2/user.cfg` file will be created if it was not already present. It 
 
     This command only supports configurations with a single root user.
 
-```
+```bash
 [root]# cat /boot/grub2/user.cfg
 GRUB2_PASSWORD=grub.pbkdf2.sha512.10000.CC6F56....A21
 ```
 
 * Recreate the configuration file with the `grub2-mkconfig` command:
 
-```
+```bash
 [root]# grub2-mkconfig -o /boot/grub2/grub.cfg
 Generating grub configuration file ...
 Found linux image: /boot/vmlinuz-3.10.0-327.el7.x86_64
@@ -185,27 +186,27 @@ Service units end with the `.service` file extension and have a similar purpose 
 
 | systemctl                                 | Description                             |
 |-------------------------------------------|-----------------------------------------|
-| systemctl start _name_.service            | Starts a service                         |
-| systemctl stop _name_.service             | Stops a service                         |
-| systemctl restart _name_.service          | Restarts a service                       |
-| systemctl reload _name_.service           | Reloads a configuration                  |
-| systemctl status _name_.service           | Checks if a service is running          |
-| systemctl try-restart _name_.service      | Restarts a service only if it is running |
+| systemctl start *name*.service            | Starts a service                         |
+| systemctl stop *name*.service             | Stops a service                         |
+| systemctl restart *name*.service          | Restarts a service                       |
+| systemctl reload *name*.service           | Reloads a configuration                  |
+| systemctl status *name*.service           | Checks if a service is running          |
+| systemctl try-restart *name*.service      | Restarts a service only if it is running |
 | systemctl list-units --type service --all | Displays the status of all services      |
 
 The `systemctl` command is also used for the `enable` or `disable` of system a service and displaying associated services:
 
 | systemctl                                | Description                                             |
 |------------------------------------------|---------------------------------------------------------|
-| systemctl enable _name_.service            | Activates a service                                      |
-| systemctl disable _name_.service           | Disables a service                                       |
+| systemctl enable *name*.service            | Activates a service                                      |
+| systemctl disable *name*.service           | Disables a service                                       |
 | systemctl list-unit-files --type service | Lists all services and checks if they are running       |
 | systemctl list-dependencies --after      | Lists the services that start before the specified unit |
 | systemctl list-dependencies --before     | Lists the services that start after the specified unit  |
 
 Examples:
 
-```
+```bash
 systemctl stop nfs-server.service
 # or
 systemctl stop nfs-server
@@ -213,24 +214,24 @@ systemctl stop nfs-server
 
 To list all units currently loaded:
 
-```
+```bash
 systemctl list-units --type service
 ```
 
 To list all units to check if they are activated:
 
-```
+```bash
 systemctl list-unit-files --type service
 ```
 
-```
+```bash
 systemctl enable httpd.service
 systemctl disable bluetooth.service
 ```
 
 ### Example of a .service file for the postfix service
 
-```
+```bash
 postfix.service Unit File
 What follows is the content of the /usr/lib/systemd/system/postfix.service unit file as currently provided by the postfix package:
 
@@ -275,20 +276,20 @@ Similarly, the `multi-user.target` unit starts other essential system services, 
 
 To determine which target is used by default:
 
-```
+```bash
 systemctl get-default
 ```
 
 This command searches for the target of the symbolic link located at `/etc/systemd/system/default.target` and displays the result.
 
-```
+```bash
 $ systemctl get-default
 graphical.target
 ```
 
 The `systemctl` command can also provide a list of available targets:
 
-```
+```bash
 systemctl list-units --type target
 UNIT                   LOAD   ACTIVE SUB    DESCRIPTION
 basic.target           loaded active active Basic System
@@ -314,13 +315,13 @@ timers.target          loaded active active Timers
 
 To configure the system to use a different default target:
 
-```
+```bash
 systemctl set-default name.target
 ```
 
 Example:
 
-```
+```bash
 # systemctl set-default multi-user.target
 rm '/etc/systemd/system/default.target'
 ln -s '/usr/lib/systemd/system/multi-user.target' '/etc/systemd/system/default.target'
@@ -328,7 +329,7 @@ ln -s '/usr/lib/systemd/system/multi-user.target' '/etc/systemd/system/default.t
 
 To switch to a different target unit in the current session:
 
-```
+```bash
 systemctl isolate name.target
 ```
 
@@ -340,7 +341,7 @@ On Rocky 8, the `rescue mode` is equivalent to the old `single user mode` and re
 
 To change the current target and enter `rescue mode` in the current session:
 
-```
+```bash
 systemctl rescue
 ```
 
@@ -348,7 +349,7 @@ systemctl rescue
 
 To change the current target and enter emergency mode in the current session:
 
-```
+```bash
 systemctl emergency
 ```
 
@@ -377,7 +378,7 @@ The format of the native log file, which is a structured and indexed binary file
 
 The `journalctl` command displays the log files.
 
-```
+```bash
 journalctl
 ```
 
@@ -392,7 +393,7 @@ The command lists all log files generated on the system. The structure of this o
 
 With continuous display, log messages are displayed in real time.
 
-```
+```bash
 journalctl -f
 ```
 
@@ -402,7 +403,7 @@ This command returns a list of the ten most recent log lines. The journalctl uti
 
 It is possible to use different filtering methods to extract information that fits different needs. Log messages are often used to track erroneous behavior on the system. To view entries with a selected or higher priority:
 
-```
+```bash
 journalctl -p priority
 ```
 

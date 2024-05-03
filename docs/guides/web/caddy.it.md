@@ -186,7 +186,7 @@ Sostituirla con questa:
 listen = 127.0.0.1:9000
 ```
 
-Quindi salvare e uscire dal file www\.conf e aprire il file Caddy:
+Quindi salvare e uscire dal file www.conf e aprire il file Caddy:
 
 ```bash
 vim /etc/caddy/Caddyfile

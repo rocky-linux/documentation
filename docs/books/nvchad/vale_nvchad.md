@@ -23,7 +23,7 @@ tags:
 
 The [nvim-lint](https://github.com/mfussenegger/nvim-lint) plugin provides support for inserting ==linters== into the editor by correcting code or content for both the syntactic and semantic parts.
 
-To install the plugin, you need to edit the `custom/plugins.lua` file by adding the following block of code:
+To install the plugin, you need to edit the `lua/plugins/init.lua` file by adding the following block of code:
 
 ```lua title="plugins.lua"
   {
@@ -35,7 +35,7 @@ To install the plugin, you need to edit the `custom/plugins.lua` file by adding 
   },
 ```
 
-The plugin has a configuration file to be placed in the `custom/configs` folder. Inside it we find a table ==linters_by_ft== where you can enter the *linters* for the languages used for development.
+The plugin has a configuration file to be placed in the `lua/configs` folder. Inside it we find a table ==linters_by_ft== where you can enter the *linters* for the languages used for development.
 
 ```lua title="lint.lua"
 require("lint").linters_by_ft = {
@@ -123,7 +123,7 @@ Just having `vale` installed is not enough. You need a couple of additional item
 
 ### :material-file-edit-outline: The `lint.lua` file changes
 
-There is one final step needed. You need to change the `lint.lua` file found in `~/.config/nvim/lua/custom/configs/` and add the `vale` linter.
+There is one final step needed. You need to change the `lint.lua` file found in `~/.config/nvim/lua/configs/` and add the `vale` linter.
 
 Using the example shown above to add *vale* to the linter available for markdown files it will be necessary to add the new linter to the string already present:
 

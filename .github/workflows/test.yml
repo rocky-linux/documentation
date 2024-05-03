@@ -20,8 +20,9 @@ jobs:
           subfolder: docs
           file_types: .en.md,.md
           include_files: '\/([\w-]+)\.(en\.)?md'
-          exclude_patterns: 'avatars.githubusercontent.com,example.com,your-server-ip,your-server-hostname,nginx-server,apache-server,site1.com,site2.com,site.com,$releasever,proxy.rocky.lan,repo.rocky.lan,zfs-release,$host$request,fileserver.rockylinux.lan,your_fork_name,rundeck.rockylinux.org,manickathan.ch,breakingpitt.es,download.example,192.168,172.16,127.0.0.1,localhost,download.rockylinux.org,cyber.gov.au,herokuapp.com,rpa.st,home.arpa,SERVER_IP,dev.mysql.com,ip_address'
+          exclude_patterns: 'avatars.githubusercontent.com,example.com,your-server-ip,your-server-hostname,nginx-server,apache-server,site1.com,site2.com,site.com,$releasever,proxy.rocky.lan,repo.rocky.lan,zfs-release,$host$request,fileserver.rockylinux.lan,your_fork_name,rundeck.rockylinux.org,manickathan.ch,breakingpitt.es,download.example,192.168,172.16,127.0.0.1,localhost,download.rockylinux.org,cyber.gov.au,herokuapp.com,rpa.st,home.arpa,SERVER_IP,dev.mysql.com,ip_address,github.com,reddit.com/r/rockylinux,planet.i2p,linode.com'
           # NOTE:(sspencerwire) 2022-10-25, cyber.gov.au added to excludes as a known good URL that will not pass the test. Probably blocking GitHub
+          # NOTE:(sspencerwire) 2024-04-23, the reddit URL and the linode.com URL function fine, and test fine in the URL checker, but then throw errors at the end. The problem has been reported to the upstream package maintainer.
           print_all: false
           retry_count: 2
           timeout: 7

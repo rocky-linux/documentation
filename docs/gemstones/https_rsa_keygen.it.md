@@ -12,7 +12,7 @@ Questo script è stato usato da me molte volte. Indipendentemente dalla frequenz
 
 Date a questo script un nome a piacere, ad esempio: `keygen.sh`, rendetelo eseguibile`(chmod +x scriptname`) e posizionatelo in una directory presente nel vostro percorso, ad esempio: /usr/local/sbin
 
-```
+```bash
 #!/bin/bash
 if [ $1 ]
 then

@@ -25,13 +25,17 @@ To integrate this functionality into your editor, two of the plugins available f
 
 [Peek](https://github.com/toppair/peek.nvim) uses [Deno](https://deno.com/manual) a JavaScript, TypeScript and WebAssembly runtime with default and secure settings for its operation. By default Deno does not allow any file, network or environment access unless explicitly enabled.
 
-If you have also installed the [Template Chadrc](../template_chadrc.md) this component will already be available as it is one of the language servers installed by default. In case it is not yet present in the editor you can install it with the command `:MasonInstall deno`.
+To install the language server in the editor configuration, the *mason.nvim* plugin is used, which provides the command `:MasonInstall`, a command that enables the automatic inclusion and configuration of *Deno*.
+
+```text
+:MasonInstall deno
+```
 
 !!! Warning
 
-    The language server **must** be installed before proceeding to install the plugin. Otherwise the installation will fail and it will be necessary to remove the code from **/custom/plugins.lua**, perform a configuration cleanup by opening `Lazy` and typing ++"X"++ to delete the plugin and then repeat the installation procedure.
+    The language server **must** be installed before proceeding to install the plugin. Otherwise the installation will fail and it will be necessary to remove the code from **plugins/init.lua**, perform a configuration cleanup by opening `Lazy` and typing ++"X"++ to delete the plugin and then repeat the installation procedure.
 
-To install the plugin you will have to edit the file **/custom/plugins.lua** by adding the following block of code:
+To install the plugin you will have to edit the file **plugins/init.lua** by adding the following block of code:
 
 ```lua
 {
@@ -79,7 +83,7 @@ In this configuration, the "browser" method was chosen, which opens the file to 
 
 [Markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim) is a plugin written in `node.js` (JavaScript). Its installation on NvChad does not require any dependencies as the developers provide a precompiled version that works perfectly in the editor.
 
-To install this version you will need to add this code block to your **/custom/plugins.lua**:
+To install this version you will need to add this code block to your **plugins/init.lua**:
 
 ```lua
 {
@@ -121,16 +125,12 @@ vim.g.mkdp_browser = "/usr/bin/chromium-browser"
 
 This way the next time NvChad is opened, `chromium-browser` will be used regardless of the system's default browser.
 
-The configuration also provides the commands `:MarkdownPreview` and `:MarkdownPreviewStop` to open and close the preview, respectively. For faster access to the commands you can map them to the **/custom/mapping.lua** file as follows:
+The configuration also provides the commands `:MarkdownPreview` and `:MarkdownPreviewStop` to open and close the preview, respectively. For faster access to the commands you can map them to the **mapping.lua** file as follows:
 
 ```lua
--- binding for Markdown Preview
-M.mdpreview = {
-    n = {
-        ["<leader>mp"] = { "<cmd> MarkdownPreview<CR>", "Open Preview" },
-        ["<leader>mc"] = { "<cmd> MarkdownPreviewStop<CR>", "Close Preview" },
-    },
-}
+-- mapping for Markdown Preview
+map("n", "<leader>mp", "<CMD> MarkdownPreview<CR>", { desc = "Open Preview" })
+map("n", "<leader>mc", "<CMD> MarkdownPreviewStop<CR>", { desc = "Close Preview" })
 ```
 
 This will allow you to open the markdown preview by typing ++enter++ + ++"m"++ followed by ++"p"++ and close it with the combination ++enter++ + ++"m"++ followed by ++"c"++.

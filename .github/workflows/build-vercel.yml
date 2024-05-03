@@ -3,6 +3,7 @@ name: Build (Vercel)
 on:
   push:
     branches: [ 'main' ]
+  workflow_dispatch:
     
 jobs:
   vercel_trigger:

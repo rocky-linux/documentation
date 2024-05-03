@@ -33,13 +33,13 @@ If you prefer support, and have the budget for it, check out [Atomicorp's paid `
 
 Downloading the repository requires `wget`. Install that first, and install the EPEL repository if you do not have it installed already, with:
 
-```
+```bash
 dnf install wget epel-release
 ```
 
 Download and enable Atomicorp's no cost repository:
 
-```
+```bash
 wget -q -O - https://www.atomicorp.com/installers/atomic | sh
 ```
 
@@ -51,17 +51,17 @@ Next, it will ask you if you want to enable the repository by default, and again
 
 You only need the atomic repository for a couple of packages. For this reason, you are going to change the repository and specify only those packages needed:
 
-```
+```bash
 vi /etc/yum.repos.d/atomic.repo
 ```
 
 Add this line beneath the "enabled = 1" in the top section:
 
-```
+```bash
 includepkgs = ossec* GeoIP* inotify-tools
 ```
 
-That is the only change you need. Save your changes and get out of the repository (in `vi` that is ++esc++ to enter command mode, then ++shift+:+wq++ to save and quit).
+That is the only change you need. Save your changes and get out of the repository (in `vi` that is ++esc++ to enter command mode, then ++shift+colon+"wq"++ to save and quit).
 
 This restricts the Atomicorp repository only to install and update these packages.
 
@@ -69,7 +69,7 @@ This restricts the Atomicorp repository only to install and update these package
 
 With the repository configured, you need to install the packages:
 
-```
+```bash
 dnf install ossec-hids-server ossec-hids inotify-tools
 ```
 
@@ -81,13 +81,13 @@ The default configuration is in a state requiring many changes. Most of these ha
 
 To edit the configuration file, enter:
 
-```
+```bash
 vi /var/ossec/etc/ossec.conf
 ```
 
 The author will break apart this configuration showing the changes in line and explaining them:
 
-```
+```bash
 <global>
   <email_notification>yes</email_notification>  
   <email_to>admin1@youremaildomain.com</email_to>
@@ -108,7 +108,7 @@ You need to set the "from" email address. You need this to deal with SPAM filter
 
 The `<white_list>` sections deal with the server's localhost IP and with the "public" IP address (remember our substitution of a private IP address) of the firewall, from which all connections on the trusted network will show. You can add many `<white_list>` entries.
 
-```
+```bash
 <syscheck>
   <!-- Frequency that syscheck is executed -- default every 22 hours -->
   <frequency>86400</frequency>
@@ -122,7 +122,7 @@ The `<rootcheck>` section just beneath the `<syscheck>` section is yet another p
 
 Changing the `<frequency>` for the running of `<rootcheck>` to once every 24 hours (86400 seconds) from the default of 22 hours is an optional change shown.
 
-```
+```bash
 <localfile>
   <log_format>apache</log_format>
   <location>/var/log/httpd/*access_log</location>
@@ -137,7 +137,7 @@ The `<localfile>` section deals with the locations of the logs you want to watch
 
 You need to add in the Apache log locations, and you want to add these in as wild cards because you could have a bunch of logs for many different web customers.
 
-```
+```bash
   <command>
     <name>firewalld-drop</name>
     <executable>firewall-drop.sh</executable>
@@ -157,7 +157,7 @@ The "firewall-drop" script already exists within the `ossec-hids` path. It tells
 
 Enable and start the service when all the configuration changes are complete. If everything starts correctly, you are ready to move on:
 
-```
+```bash
 systemctl enable ossec-hids
 systemctl start ossec-hids
 ```

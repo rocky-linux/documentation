@@ -1,7 +1,7 @@
 ---
 title: Cockpit KVM Dashboard
 author: Neel Chauhan
-contributors:
+contributors: Ganna Zhrynova
 tested on: 9.3
 tags:
   - virtualization
@@ -23,13 +23,13 @@ Cockpit is a server administration tool that provides an easy-to-use dashboard t
 Cockpit comes by default in Rocky Linux. However, KVM support does not come installed out-of-the-box. We will install it via `dnf`:
 
 ```bash
-dnf install -y cockpit-machine
+dnf install -y cockpit-machines
 ```
 
 Also install `libvirtd`:
 
 ```bash
-dnf install -y libvirtd
+dnf install -y libvirt
 ```
 
 ## Enabling `cockpit`
@@ -37,10 +37,10 @@ dnf install -y libvirtd
 To enable both KVM virtualization and Cockpit, enable the `systemd` services:
 
 ```bash
-systemctl enable --now libvirtd cockpit
+systemctl enable --now libvirtd cockpit.socket
 ```
 
-After you enable `cockpit`, open a browser to http://ip_address:9090 (note: replace "ip_address" with the IP address of your server):
+After you enable `cockpit`, open a browser to **http://ip_address:9090** (note: replace **ip_address** with the IP address of your server):
 
 ![Cockpit login screen](../images/cockpit_login.png)
 

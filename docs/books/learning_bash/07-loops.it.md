@@ -45,7 +45,7 @@ Quando il comando valutato è falso (`$? != 0`), la shell riprende l'esecuzione 
 
 Sintassi della struttura del ciclo condizionale `while`:
 
-```
+```bash
 while command
 do
   command if $? = 0
@@ -54,7 +54,7 @@ done
 
 Esempio di utilizzo della struttura condizionale `while`:
 
-```
+```bash
 while [[ -e /etc/passwd ]]
 do
   echo "The file exists"
@@ -77,13 +77,13 @@ Il comando `exit` termina l'esecuzione dello script.
 
 Sintassi del comando `exit`:
 
-```
+```bash
 exit [n]
 ```
 
 Esempio di utilizzo del comando `exit`:
 
-```
+```bash
 bash # to avoid being disconnected after the "exit 1
 exit 1
 echo $?
@@ -98,7 +98,7 @@ Il comando `break` consente di interrompere il ciclo passando al primo comando d
 
 Il comando `continue` consente di riavviare il ciclo tornando al primo comando dopo `done`.
 
-```
+```bash
 while [[ -d / ]]                                                   INT ✘  17s 
 do
   echo "Do you want to continue? (yes/no)"
@@ -112,7 +112,7 @@ done
 
 Il comando `true` restituisce sempre `vero`, mentre il comando `false` restituisce sempre `falso`.
 
-```
+```bash
 true
 echo $?
 0
@@ -125,7 +125,7 @@ Utilizzati come condizione di un ciclo, consentono l'esecuzione di un ciclo infi
 
 Esempio:
 
-```
+```bash
 while true
 do
   echo "Do you want to continue? (yes/no)"
@@ -145,7 +145,7 @@ Quando il comando valutato è vero (`$? = 0`), la shell riprende l'esecuzione de
 
 Sintassi della struttura del ciclo condizionale `until`:
 
-```
+```bash
 until command
 do
   command if $? != 0
@@ -154,7 +154,7 @@ done
 
 Esempio di utilizzo della struttura condizionale `until`:
 
-```
+```bash
 until [[ -e test_until ]]
 do
   echo "The file does not exist"
@@ -181,7 +181,7 @@ Per uscire dal ciclo è necessario un comando di `break`.
 
 Sintassi della struttura del ciclo condizionale `select`:
 
-```
+```bash
 PS3="Your choice:"
 select variable in var1 var2 var3
 do
@@ -191,7 +191,7 @@ done
 
 Esempio di utilizzo della struttura condizionale `select`:
 
-```
+```bash
 PS3="Your choice: "
 select choice in coffee tea chocolate
 do
@@ -201,7 +201,7 @@ done
 
 Se questo script viene eseguito, viene visualizzato qualcosa di simile a questo:
 
-```
+```text
 1) Coffee
 2) Tea
 3) Chocolate
@@ -216,7 +216,7 @@ La struttura `for` / `do` / `done` assegna il primo elemento dell'elenco alla va
 
 Sintassi della struttura del ciclo `for` su un elenco di valori:
 
-```
+```bash
 for variable in list
 do
   commands
@@ -225,7 +225,7 @@ done
 
 Esempio di utilizzo della struttura condizionale `for`:
 
-```
+```bash
 for file in /home /etc/passwd /root/fic.txt
 do
   file $file
@@ -239,7 +239,7 @@ Qualsiasi comando che produca un elenco di valori può essere collocato dopo il 
 
 Questi possono essere i file di una directory. In questo caso, la variabile assumerà come valore ciascuna delle parole dei nomi dei file presenti:
 
-```
+```bash
 for file in $(ls -d /tmp/*)
 do
   echo $file
@@ -248,7 +248,7 @@ done
 
 Può essere un file. In questo caso, la variabile assumerà come valore ogni parola contenuta nel file sfogliato, dall'inizio alla fine:
 
-```
+```bash
 cat my_file.txt
 first line
 second line
@@ -264,7 +264,7 @@ line
 
 Per leggere un file riga per riga, è necessario modificare il valore della variabile d'ambiente `IFS`.
 
-```
+```bash
 IFS=$'\t\n'
 for LINE in $(cat my_file.txt); do echo $LINE; done
 first line

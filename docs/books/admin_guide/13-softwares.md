@@ -166,7 +166,6 @@ Only the short name of the package is required.
 | `info`                     | Displays the package information.                                    |
 | `autoremove`               | Removes all packages installed as dependencies but no longer needed. |
 
-
 The `dnf install` command allows you to install the desired package without worrying about its dependencies, which will be resolved directly by `dnf` itself.
 
 ```bash
@@ -230,7 +229,6 @@ nginx-mod-mail.aarch64 : Nginx mail modules
 nginx-mod-stream.aarch64 : Nginx stream modules
 ```
 
-
 The `dnf remove` command removes a package from the system and its dependencies. Below is an excerpt of the **dnf remove httpd** command.
 
 ```bash
@@ -258,13 +256,13 @@ Removing unused dependencies:
 
 The `dnf list` command lists all the packages installed on the system and present in the repository. It accepts several parameters:
 
-| Parameter   | Description                                                                |
-|-------------|----------------------------------------------------------------------------|
-| `all`       |	Lists the installed packages and then those available on the repositories. |
-| `available` |	Lists only the packages available for installation.                        |
-| `updates`   |	Lists packages that can be upgraded.                                       |
-| `obsoletes` |	Lists the packages made obsolete by higher versions available.             |
-| `recent`    |	Lists the latest packages added to the repository.                         |
+| Parameter   |Description                                                                |
+|-------------|---------------------------------------------------------------------------|
+| `all`       |Lists the installed packages and then those available on the repositories. |
+| `available` |Lists only the packages available for installation.                        |
+| `updates`   |Lists packages that can be upgraded.                                       |
+| `obsoletes` |Lists the packages made obsolete by higher versions available.             |
+| `recent`    |Lists the latest packages added to the repository.                         |
 
 The `dnf info` command, as you might expect, provides detailed information about a package:
 
@@ -494,7 +492,6 @@ The `dnf clean` command cleans all caches and temporary files created by `dnf`. 
 | `metadata`         | Removes all the repositories metadata.                        |
 | `packages`         | Removes any cached packages.                                  |
 
-
 ### How DNF works
 
 The DNF manager relies on one or more configuration files to target the repositories containing the RPM packages.
@@ -511,7 +508,7 @@ Each `.repo` file consists of at least the following information, one directive 
 
 Example:
 
-```
+```bash
 [baseos] # Short name of the repository
 name=Rocky Linux $releasever - BaseOS # Short name of the repository #Detailed name
 mirrorlist=http://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=BaseOS-$releasever # http address of a list or mirror
@@ -543,19 +540,19 @@ Modules come from the AppStream repository and contain both streams and profiles
 
 You can obtain a list of all modules by executing the following command:
 
-```
+```bash
 dnf module list
 ```
 
 This will give you a long list of the available modules and the profiles that can be used for them. The thing is you probably already know what package you are interested in, so to find out if there are modules for a particular package, add the package name after "list". We will use our `postgresql` package example again here:
 
-```
+```bash
 dnf module list postgresql
 ```
 
 This will give you output that looks like this:
 
-```
+```bash
 Rocky Linux 8 - AppStream
 Name                       Stream                 Profiles                           Summary                                            
 postgresql                 9.6                    client, server [d]                 PostgreSQL server and client module                
@@ -570,7 +567,7 @@ Notice in the listing the "[d]". This means that this is the default. It shows t
 
 Using our example `postgresql` package, let's say that we want to enable version 12. To do this, you simply use the following:
 
-```
+```bash
 dnf module enable postgresql:12
 ```
 
@@ -578,7 +575,7 @@ Here the enable command requires the module name followed by a ":" and the strea
 
 To verify that you have enabled `postgresql` module stream version 12, use your list command again which should show you the following output:
 
-```
+```bash
 Rocky Linux 8 - AppStream
 Name                       Stream                 Profiles                           Summary                                            
 postgresql                 9.6                    client, server [d]                 PostgreSQL server and client module                
@@ -593,13 +590,13 @@ Here we can see the "[e]" for "enabled" next to stream 12, so we know that versi
 
 Now that our module stream is enabled, the next step is to install `postgresql`, the client application for the postgresql server. This can be achieved by running the following command:
 
-```
+```bash
 dnf install postgresql
 ```
 
 Which should give you this output:
 
-```
+```bash
 ========================================================================================================================================
  Package                    Architecture           Version                                              Repository                 Size
 ========================================================================================================================================
@@ -622,13 +619,13 @@ After approving by typing "y" you installed the application.
 
 It's also possible to directly install packages without even having to enable the module stream! In this example, let's assume that we only want the client profile applied to our installation. To do this, we simply enter this command:
 
-```
+```bash
 dnf install postgresql:12/client
 ```
 
 Which should give you this output:
 
-```
+```bash
 ========================================================================================================================================
  Package                    Architecture           Version                                              Repository                 Size
 ========================================================================================================================================
@@ -656,7 +653,7 @@ Answering "y" to the prompt will install everything you need to use postgresql v
 
 After you install, you may decide that for whatever reason, you need a different version of the stream. The first step is to remove your packages. Using our example `postgresql` package again, we would do this with:
 
-```
+```bash
 dnf remove postgresql
 ```
 
@@ -664,13 +661,13 @@ This will display similar output as the install procedure above, except it will 
 
 Once this step is complete, you can issue the reset command for the module using:
 
-```
+```bash
 dnf module reset postgresql
 ```
 
 Which will give you output like this:
 
-```
+```bash
 Dependencies resolved.
 ========================================================================================================================================
  Package                         Architecture                   Version                           Repository                       Size
@@ -688,7 +685,7 @@ Is this ok [y/N]:
 
 Answering "y" to the prompt will then reset `postgresql` back to the default stream with the stream that we had enabled (12 in our example) no longer enabled:
 
-```
+```bash
 Rocky Linux 8 - AppStream
 Name                       Stream                 Profiles                           Summary                                            
 postgresql                 9.6                    client, server [d]                 PostgreSQL server and client module                
@@ -701,7 +698,7 @@ Now you can use the default.
 
 You can also use the switch-to sub-command to switch from one enabled stream to another. Using this method not only switches to the new stream, but installs the needed packages (either downgrade or upgrade) without a separate step. To use this method to enable `postgresql` stream version 13 and use the "client" profile, you would use:
 
-```
+```bash
 dnf module switch-to postgresql:13/client
 ```
 
@@ -711,13 +708,13 @@ There may be times when you wish to disable the ability to install packages from
 
 To disable the module streams for `postgresql` simply do:
 
-```
+```bash
 dnf module disable postgresql
 ```
 
 And if you list out the `postgresql` modules again, you will see the following showing all `postgresql` module versions disabled:
 
-```
+```bash
 Rocky Linux 8 - AppStream
 Name                       Stream                   Profiles                          Summary                                           
 postgresql                 9.6 [x]                  client, server [d]                PostgreSQL server and client module               
@@ -799,7 +796,7 @@ epel-modular       Extra Packages for Enterprise Linux Modular 8 - aarch64
 
 The repository configuration files are located in `/etc/yum.repos.d/`.
 
-```
+```bash
 ll /etc/yum.repos.d/ | grep epel
 -rw-r--r--. 1 root root 1485 Jan 31 17:19 epel-modular.repo
 -rw-r--r--. 1 root root 1422 Jan 31 17:19 epel.repo
@@ -911,7 +908,7 @@ The `dnf-plugins-core` package adds plugins to `dnf` that will be useful for man
 
 Install the package on your system:
 
-```
+```bash
 dnf install dnf-plugins-core
 ```
 
@@ -925,26 +922,26 @@ Examples:
 
 * Download a `.repo` file and use it:
 
-```
+```bash
 dnf config-manager --add-repo https://packages.centreon.com/ui/native/rpm-standard/23.04/el8/centreon-23.04.repo
 ```
 
 * You can also set an url as a base url for a repo:
 
-```
+```bash
 dnf config-manager --add-repo https://repo.rocky.lan/repo
 ```
 
 * Enable or disable one or more repos:
 
-```
+```bash
 dnf config-manager --set-enabled epel centreon
 dnf config-manager --set-disabled epel centreon
 ```
 
 * Add a proxy to your config file:
 
-```
+```bash
 dnf config-manager --save --setopt=*.proxy=http://proxy.rocky.lan:3128/
 ```
 
@@ -954,7 +951,7 @@ dnf config-manager --save --setopt=*.proxy=http://proxy.rocky.lan:3128/
 
 * Activate a copr repo:
 
-```
+```bash
 copr enable xxxx
 ```
 
@@ -962,19 +959,19 @@ copr enable xxxx
 
 Download rpm package instead of installing it:
 
-```
+```bash
 dnf download ansible
 ```
 
 If you just want to obtain the remote location url of the package:
 
-```
+```bash
 dnf download --url ansible
 ```
 
 Or if you want to also download the dependencies:
 
-```
+```bash
 dnf download --resolv --alldeps ansible
 ```
 
@@ -984,7 +981,7 @@ After running a `dnf update`, the running processes will continue to run but wit
 
 The `needs-restarting` plugin will allow you to detect processes that are in this case.
 
-```
+```bash
 dnf needs-restarting [-u] [-r] [-s]
 ```
 
@@ -997,11 +994,11 @@ dnf needs-restarting [-u] [-r] [-s]
 
 ### `versionlock` plugin
 
-Sometimes it is useful to protect packages from all updates or to exclude certain versions of a package (because of known problems for example). For this purpose, the versionlock plugin will be of great help. 
+Sometimes it is useful to protect packages from all updates or to exclude certain versions of a package (because of known problems for example). For this purpose, the versionlock plugin will be of great help.
 
 You need to install an extra package:
 
-```
+```bash
 dnf install python3-dnf-plugin-versionlock
 ```
 
@@ -1009,14 +1006,14 @@ Examples:
 
 * Lock the ansible version:
 
-```
+```bash
 dnf versionlock add ansible
 Adding versionlock on: ansible-0:6.3.0-2.el9.*
 ```
 
 * List locked packages:
 
-```
+```bash
 dnf versionlock list
 ansible-0:6.3.0-2.el9.*
 ```

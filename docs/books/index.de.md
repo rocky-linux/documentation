@@ -9,6 +9,7 @@ contributors: '@fromoz, Ganna Zhyrnova'
 Sie haben den Abschnitt **Bücher** der Rocky Linux Dokumentation gefunden. Hier werden ausführliche Dokumente untergebracht. Diese Dokumente werden in Kapiteln aufgeteilt, um sie leichter abarbeiten zu können und Ihren Fortschritt verfolgen zu können. Diese Dokumente werden von Leute wie Sie verfasst, die sich für besondere Themen interessieren.
 
 Sie möchten es auch versuchen und selber Bücher verfassen? Großartig! Machen Sie einfach mit, Sie sind im [Mattermost Documentation Channel](https://chat.rockylinux.org/rocky-linux/channels/documentation) willkommen.
+
 ## PDFs zum Offline Lesen Herunterladen
 
 Unsere Bücher als stehen als PDF zum herunterladen zur Verfügung.
@@ -59,6 +60,6 @@ Unsere Bücher als stehen als PDF zum herunterladen zur Verfügung.
 * [Italienisch](https://rocky-linux.github.io/documentation/learning_rsync_rocky_linux.it.pdf)
 * [Ukrainisch](https://rocky-linux.github.io/documentation/learning_rsync_rocky_linux.uk.pdf)
 
-### Sed, Awk, Grep: TheTreeSwordsmen
+### The Three Swordsmen
 
 * [Englisch](https://rocky-linux.github.io/documentation/Sed_Awk_Grep_TheTreeSwordsmen.pdf)

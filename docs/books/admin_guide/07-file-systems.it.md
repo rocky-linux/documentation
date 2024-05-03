@@ -152,7 +152,7 @@ $ sudo cfdisk /dev/sda
 La preparazione, senza _LVM_, dei supporti fisici avviene in cinque fasi:
 
 * Impostazione del disco fisico;
-* Partizionamento dei volumi (divisione geografica del disco, possibilità di installare più sistemi, ...);
+* Partizionamento dei volumi (divisione del disco, possibilità di installare più sistemi, ...);
 * Creazione dei file system (permette al sistema operativo di gestire i file, la struttura ad albero, i diritti, ...);
 * Montaggio dei file system (registrazione del file system nella struttura ad albero);
 * Gestire l'accesso degli utenti.

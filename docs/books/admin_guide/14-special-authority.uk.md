@@ -368,7 +368,7 @@ Shell > chmod u-s FILE_NAME
 
 Візьмемо, наприклад, команду `locate`:
 
-```
+```bash
 Shell > rpm -ql mlocate
 /usr/bin/locate
 ...

@@ -1,7 +1,7 @@
 ---
 Title: Introduction
 author: Steven Spencer
-contributors: null
+contributors: Ganna Zhyrnova
 tags:
   - local docs
   - docs as code

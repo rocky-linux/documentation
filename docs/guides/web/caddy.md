@@ -184,7 +184,7 @@ Replace it with this:
 listen = 127.0.0.1:9000
 ```
 
-Then save and exit the www.conf file, and open the Caddyfile:
+Then save and exit the `www.conf` file, and open the Caddyfile:
 
 ```bash
 vim /etc/caddy/Caddyfile

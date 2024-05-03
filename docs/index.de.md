@@ -6,7 +6,7 @@ title: Startseite
 
 ## Willkommen!
 
-Sie haben uns gefunden! Willkommen im Dokumentations-Portal für Rocky Linux. Wir freuen uns, dass Sie hier sind. Mitwirkende sind willkommen um Beiträge hinzuzufügen, sodass die Menge von Inhalten ständig wächst. Hier finden Sie Dokumente, um Rocky Linux selbst zusammenzubauen, sowie Dokumente zu verschiedenen Themen, die für die Rocky Linux Community wichtig sind. Wer ist eigentlich diese Community, werden Sie fragen?
+Willkommen im Dokumentations-Portal für Rocky Linux. Wir freuen uns, dass Sie hier sind. Mitwirkende sind willkommen um Beiträge hinzuzufügen, sodass die Menge von Inhalten ständig wächst. Hier finden Sie Dokumente, um Rocky Linux selbst zusammenzubauen, sowie Dokumente zu verschiedenen Themen, die für die Rocky Linux Community wichtig sind. Wer ist eigentlich diese Community, werden Sie fragen?
 
 Diese Community wird durch die Teilnahme von Leuten wie Sie gebildet.
 
@@ -31,7 +31,7 @@ Die Hauptbereiche der Dokumentationseite sind:
 
 ### Multilingual
 
-Nicht jeder spricht Englisch fliessend! Bei Rocky Linux wollen wir die Dokumentationsseite für jeden in seiner Lieblingssprache zugänglich  machen —  *deshalb sind Übersetzungen in verschiedenen Sprachen wesentlich*. Wenn Sie auf die Sprachauswahl (文A bzw. wén-A Icon) im oberen Menü klicken, sehen Sie die Sprachen, die zurzeit verfügbar sind: Dazu gibt es zwei Teile:
+Bei Rocky Linux wollen wir die Dokumentationsseite für jeden in seiner Lieblingssprache zugänglich  machen —  *deshalb sind Übersetzungen in verschiedenen Sprachen wesentlich*. Wenn Sie auf die Sprachauswahl (文A bzw. wén-A Icon) im oberen Menü klicken, sehen Sie die Sprachen, die zurzeit verfügbar sind: Dazu gibt es zwei Teile:
 
 1. Lokalisierung der Webseiten-Schnittstelle: Wenn Sie eine andere Sprache wählen, zum Beispiel Français, werden Sie feststellen, dass die Schnittstelle, zum Beispiel die Navigatoren 'Weiter' und 'Vorheriger' übersetzt werden.
 1. Inhalt: Das Übersetzen von Inhalten ist eine laufende (wichtige) Aufgabe. Noch nicht alle Inhalte sind in allen Sprachen übersetzt. Alle Seiten, die übersetzt wurden (in der ausgewählten Sprache) werden entsprechend dargestellt, diejenigen, die es noch nicht vollständig sind, werden in Englisch angezeigt. Wenn Sie der Community durch Übersetzungen helfen möchten, sind Sie sehr willkommen — siehe unten für weitere Details zur Vorgehensweise.

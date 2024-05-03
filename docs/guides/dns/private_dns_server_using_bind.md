@@ -12,12 +12,12 @@ tags:
 
 ## Prerequisites and assumptions
 
-* A server running Rocky Linux
-* Several internal servers that need only local access, not over the Internet
-* Several workstations that need access to these same servers that exist on the same network
-* A healthy comfort level with entering commands from command line
-* Familiarity with a command line editor (using _vi_ in this example)
-* Able to use _firewalld_ for creating firewall rules 
+- A server running Rocky Linux
+- Several internal servers that need only local access, not over the Internet
+- Several workstations that need access to these same servers that exist on the same network
+- A healthy comfort level with entering commands from command line
+- Familiarity with a command line editor (using *vi* in this example)
+- Able to use *firewalld* for creating firewall rules
 
 ## Introduction
 
@@ -25,7 +25,7 @@ External, or public, DNS servers map hostnames to IP addresses and, in the case 
 
 On a private network, particularly one for developing many systems, you can use your Rocky Linux workstation's */etc/hosts* file to map a name to an IP address.
 
-This will work for _your_ workstation, but not for any other machine on your network. The best method to make things universally applied is to take some time out and create a local, private DNS server to handle this for all your machines. 
+This will work for *your* workstation, but not for any other machine on your network. The best method to make things universally applied is to take some time out and create a local, private DNS server to handle this for all your machines.
 
 Suppose you were creating production-level public DNS servers and resolvers. In that case, this author recommends the more robust [PowerDNS](https://www.powerdns.com/) authoritative and recursive DNS, which is installable on Rocky Linux servers. However, this document is for a local network that will not expose its DNS servers to the outside world. That is why the author chose `bind` for this example.
 
@@ -39,35 +39,35 @@ The authoritative server is the storage area for all IP addresses and host names
 
 The first step is to install packages:
 
-```
+```bash
 dnf install bind bind-utils
 ```
 
-_bind's_ service daemon is `named`. Enable this to start on boot:
+*bind's* service daemon is `named`. Enable this to start on boot:
 
-```
+```bash
 systemctl enable named
 ```
 
 Start `named`:
 
-```
+```bash
 systemctl start named
 ```
 
 ## Configuration
 
-Before making changes to any configuration file, create a backup copy of the original installed working file, _named.conf_:
+Before making changes to any configuration file, create a backup copy of the original installed working file, *named.conf*:
 
-```
+```bash
 cp /etc/named.conf /etc/named.conf.orig
 ```
 
 That will help in the future if the introduction of errors into the configuration file occurs. It is *always* a good idea to make a backup copy before making changes.
 
-Edit the _named.conf_ file. The author is using _vi_ , but you can substitute your favorite command line editor:
+Edit the *named.conf* file. The author is using *vi* , but you can substitute your favorite command line editor:
 
-```
+```bash
 vi /etc/named.conf
 ```
 
@@ -77,7 +77,7 @@ This is helpful, particularly when you add this DNS to our workstations because 
 
 This way, the other configured DNS servers will take over nearly immediately to look up the Internet based services:
 
-```
+```bash
 options {
 #       listen-on port 53 { 127.0.0.1; };
 #       listen-on-v6 port 53 { ::1; };
@@ -85,7 +85,7 @@ options {
 
 Finally, skip down to the bottom of the *named.conf* file and add a section for your network. Our example is "ourdomain", so sub in what you want to call your LAN hosts:
 
-```
+```bash
 # primary forward and reverse zones
 //forward zone
 zone "ourdomain.lan" IN {
@@ -103,21 +103,21 @@ zone "1.168.192.in-addr.arpa" IN {
 };
 ```
 
-Save your changes (for _vi_, `SHIFT:wq!`)
+Save your changes (for *vi*, ++shift+colon+w+q+exclam++)
 
 ## The forward and reverse records
 
-You need to create two files in `/var/named`. You will edit these files if you add machines to your network to include them in the DNS. 
+You need to create two files in `/var/named`. You will edit these files if you add machines to your network to include them in the DNS.
 
 The first is the forward file to map our IP address to the hostname. Again, our examples is "ourdomain" here. Note that the IP of our local DNS is 192.168.1.136. Add hosts at the bottom of this file.
 
-```
+```bash
 vi /var/named/ourdomain.lan.db
 ```
 
 The file will look something like this when completed:
 
-```
+```bash
 $TTL 86400
 @ IN SOA dns-primary.ourdomain.lan. admin.ourdomain.lan. (
     2019061800 ;Serial
@@ -143,13 +143,13 @@ Add all the hosts and IP addresses you need and save your changes.
 
 You need a reverse file to map our hostname to the IP address. In this case, the only part of the IP that you need is the last octet (in an IPv4 address each number separated by a "." is an octet) of the host, the PTR, and hostname.
 
-```
+```bash
 vi /var/named/ourdomain.lan.rev
 ```
 
 When completed, the file will look something like this:
 
-```
+```bash
 $TTL 86400
 @ IN SOA dns-primary.ourdomain.lan. admin.ourdomain.lan. (
     2019061800 ;Serial
@@ -174,28 +174,28 @@ Add all of the hostnames that are in the forward file and save your changes.
 
 ### What all this means
 
-Since you have all of this added in, and are preparing to restart our _bind_ DNS server, let us explore some of the terminologies used in these two files.
+Since you have all of this added in, and are preparing to restart our *bind* DNS server, let us explore some of the terminologies used in these two files.
 
 Just making things work is not good enough if you do not know what each term means, right?
 
-* **TTL** stands for "Time To Live". TTL tells the DNS server how long to keep its cache before requesting a fresh copy. In this case, the TTL is the default setting for all records unless you manually enter a specific TTL. The default here is 86400 seconds or 24 hours.
-* **IN** stands for Internet. In this case, the Internet is not used. Think of this as the Intranet instead.
-* **SOA** stands for "Start Of Authority" or what the primary DNS server is for the domain
-* **NS** stands for "name server"
-* **Serial** is the value used by the DNS server to verify that the contents of the zone file are up-to-date
-* **Refresh** specifies how often a slave DNS server will request a zone transfer from the master
-* **Retry** specifies the length of time in seconds to wait before trying again on a failed zone transfer
-* **Expire** specifies how long a slave server will wait to answer a query when the master is unreachable
-* **A** Is the host address or forward record and is only in the forward file
-* **PTR** The pointer record better known as the "reverse" and is only in our reverse file
+- **TTL** stands for "Time To Live". TTL tells the DNS server how long to keep its cache before requesting a fresh copy. In this case, the TTL is the default setting for all records unless you manually enter a specific TTL. The default here is 86400 seconds or 24 hours.
+- **IN** stands for Internet. In this case, the Internet is not used. Think of this as the Intranet instead.
+- **SOA** stands for "Start Of Authority" or what the primary DNS server is for the domain
+- **NS** stands for "name server"
+- **Serial** is the value used by the DNS server to verify that the contents of the zone file are up-to-date
+- **Refresh** specifies how often a slave DNS server will request a zone transfer from the master
+- **Retry** specifies the length of time in seconds to wait before trying again on a failed zone transfer
+- **Expire** specifies how long a slave server will wait to answer a query when the master is unreachable
+- **A** Is the host address or forward record and is only in the forward file
+- **PTR** The pointer record better known as the "reverse" and is only in our reverse file
 
 ## Testing configurations
 
-When you have all of your files created, you need to ensure that the configuration files and zones are in good working order before you start the _bind_ service again.
+When you have all of your files created, you need to ensure that the configuration files and zones are in good working order before you start the *bind* service again.
 
 Check the main configuration:
 
-```
+```bash
 named-checkconf
 ```
 
@@ -203,33 +203,33 @@ This will return an empty result if everything is OK.
 
 Check the forward zone:
 
-```
+```bash
 named-checkzone ourdomain.lan /var/named/ourdomain.lan.db
 ```
 
 This will return something like this if all is well:
 
-```
+```bash
 zone ourdomain.lan/IN: loaded serial 2019061800
 OK
 ```
 
 Finally, check the reverse zone:
 
-```
+```bash
 named-checkzone 192.168.1.136 /var/named/ourdomain.lan.rev
 ```
 
 Which will return something like this if all is well:
 
-```
+```bash
 zone 192.168.1.136/IN: loaded serial 2019061800
 OK
 ```
 
-Assuming that everything looks good, go ahead and restart _bind_:
+Assuming that everything looks good, go ahead and restart *bind*:
 
-```
+```bash
 systemctl restart named
 ```
 
@@ -344,7 +344,7 @@ systemctl restart named
 
     ![Add Filter IPv6](images/dns_filter.png)
 
-    Once you make this change, save it and exit the `named.conf` (for _vi_, `SHIFT:wq!`)
+    Once you make this change, save it and exit the `named.conf` (for *vi*, ++shift+colon+w+q+exclam++)
 
     You need to make a similar change to `/etc/sysconfig/named`:
 
@@ -358,7 +358,7 @@ systemctl restart named
     OPTIONS="-4"
     ```
 
-    Save those changes (again, for _vi_, `SHIFT:wq!`)
+    Save those changes (again, for *vi*, ++shift+colon+w+q+exclam++)
 
 
     ## 8 Testing machines
@@ -413,7 +413,6 @@ systemctl restart named
     ```
 
     You will now be able to get to anything in the *ourdomain.lan* domain from your workstations, plus still be able to resolve and get to Internet addresses.
-   
 
 ## Firewall rules - `firewalld`
 
@@ -424,34 +423,34 @@ systemctl restart named
 The author is not making any assumptions about the network or services that you might need, except for turning on SSH access and DNS access for our LAN network only. For this, you will use `firewalld's` built-in zone, "trusted". You will have to make service changes to the "public" zone to limit SSH access to the LAN.
 
 The first step is to add our LAN network to the "trusted" zone:
-    
-```
+
+```bash
 firewall-cmd --zone=trusted --add-source=192.168.1.0/24 --permanent
 ```
 
 Add our two services to the "trusted" zone:
 
-```
+```bash
 firewall-cmd --zone=trusted --add-service=ssh --permanent
 firewall-cmd --zone=trusted --add-service=dns --permanent
 ```
 
 Remove the SSH service from our "public" zone, which is on by default:
 
-```
+```bash
 firewall-cmd --zone=public --remove-service=ssh --permanent
 ```
 
 Reload the firewall and list out the zones that you made changes to:
 
-```
+```bash
 firewall-cmd --reload
 firewall-cmd --zone=trusted --list-all
 ```
-    
+
 Which will show that you have correctly added the services and the source network:
 
-```
+```bash
 trusted (active)
     target: ACCEPT
     icmp-block-inversion: no
@@ -470,13 +469,13 @@ trusted (active)
 
 Listing out the "public" zone will show that SSH access is no-longer allowed:
 
-```
+```bash
 firewall-cmd --zone=public --list-all
 ```
 
 Shows:
 
-```
+```bash
 public
     target: default
     icmp-block-inversion: no
@@ -497,6 +496,6 @@ These rules will get you DNS resolution on your private DNS server from hosts on
 
 ## Conclusions
 
-Changing  */etc/hosts* on an individual workstation will get you access to a machine on your internal network, but you can only use it on that one machine. A private DNS server that is uses _bind_ will allow you to add hosts to the DNS and, provided the workstations have access to that private DNS server, they will be able to get to these local servers.
+Changing  */etc/hosts* on an individual workstation will get you access to a machine on your internal network, but you can only use it on that one machine. A private DNS server that is uses *bind* will allow you to add hosts to the DNS and, provided the workstations have access to that private DNS server, they will be able to get to these local servers.
 
 If you do not need machines to resolve on the Internet, but do need local access from several machines to local servers, then consider a private DNS server instead.

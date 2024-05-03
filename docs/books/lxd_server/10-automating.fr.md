@@ -5,7 +5,7 @@ contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 8.8, 9.2
 tags:
   - lxd
-  - entreprise
+  - enterprise
   - automatisation lxd
 ---
 
@@ -17,16 +17,15 @@ Automatiser le processus de capture instantanée rend les choses beaucoup plus f
 
 ## Automatisation du processus de copie des snapshots
 
-
 Ce processus est effectué sur le serveur lxd-primary. La première chose que nous devons faire est de créer un script qui sera exécuté par cron dans /usr/local/sbin et appelé "refresh-containers" :
 
-```
+```bash
 sudo vi /usr/local/sbin/refreshcontainers.sh
 ```
 
 Le script est plutôt simple :
 
-```
+```bash
 #!/bin/bash
 # This script is for doing an lxc copy --refresh against each container, copying
 # and updating them to the snapshot server.
@@ -40,25 +39,25 @@ for x in $(/var/lib/snapd/snap/bin/lxc ls -c n --format csv)
 
  Rendre le script exécutable :
 
-```
+```bash
 sudo chmod +x /usr/local/sbin/refreshcontainers.sh
 ```
 
 Changer la propriété de ce script aux utilisateur et groupe lxdadmin :
 
-```
+```bash
 sudo chown lxdadmin.lxdadmin /usr/local/sbin/refreshcontainers.sh
 ```
 
 Configurez le crontab pour que l'utilisateur lxdadmin exécute ce script, dans ce cas à 22h :
 
-```
+```bash
 crontab -e
 ```
 
 Votre entrée ressemblera à ceci :
 
-```
+```bash
 00 22 * * * /usr/local/sbin/refreshcontainers.sh > /home/lxdadmin/refreshlog 2>&1
 ```
 
@@ -68,6 +67,6 @@ Cela créera un log dans le répertoire home de lxdadmin, appelé "refreshlog" q
 
 La procédure automatisée échouera parfois. Cela se produit généralement lorsqu'un conteneur particulier ne parvient pas à se mettre à jour. Vous pouvez relancer manuellement la mise à jour avec la commande suivante (en supposant que rockylinux-test-9 ici, est notre conteneur) :
 
-```
+```bash
 lxc copy --refresh rockylinux-test-9 lxd-snapshot:rockylinux-test-9
 ```

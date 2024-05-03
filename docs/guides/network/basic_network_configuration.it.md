@@ -15,7 +15,7 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
 ## Prerequisiti
 
 * Una certa comodità nell'operare dalla riga di comando
-* Privilegi elevati o amministrativi sul sistema (per esempio root, sudo e così via)
+* Privilegi elevati o amministrativi sul sistema (per esempio root, `sudo` e così via)
 * Opzionale: familiarità con i concetti di rete
 
 === "9"
@@ -27,7 +27,7 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
     ## Prerequisiti
 
     * Una certa dimestichezza nell'operare dalla riga di comando
-    * Privilegi elevati o amministrativi sul sistema (ad esempio root, `sudo` e così via)
+    * Privilegi elevati o amministrativi sul sistema (per esempio root, `sudo` e così via)
     * Opzionale: familiarità con i concetti di rete
 
 
@@ -418,7 +418,7 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
     
     Nel precedente elenco `/etc/sysconfig/network-scripts/ifcfg-enp1s0`, vediamo che il valore del parametro o chiave `BOOTPROTO` è impostato su `none`. Il sistema configurato è impostato su uno schema di indirizzi IP statici.
     
-    Se invece si vuole configurare il sistema per utilizzare uno schema di indirizzi IP dinamici, si dovrà cambiare il valore del parametro `BOOTPROTO` da `none` a `dhcp` e rimuovere anche le linee `IPADDR`, `PREFIX` e `GATEWAY`. Questo è necessario perché tutte le informazioni saranno ottenute automaticamente da qualsiasi server DHCP disponibile.
+    Se invece si vuole configurare il sistema per utilizzare uno schema di indirizzi IP dinamici, si dovrà cambiare il valore del parametro `BOOTPROTO` da `none` a `dhcp` e rimuovere anche le linee `IPADDR`, `PREFIX` e `GATEWAY`. Questo si rende necessario dal momento che tutte le informazioni saranno ottenute automaticamente da qualsiasi server DHCP disponibile.
     
     Per configurare l'attribuzione di un indirizzo IP statico, impostare quanto segue:
 

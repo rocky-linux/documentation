@@ -19,25 +19,25 @@ Thanks to the Rocky Linux development team, live images for several desktop inst
 
 ## Prerequisites
 
-* A machine, compatible with Rocky Linux 9.0, (desktop, notebook or server) that you want to run the KDE desktop on.
-* The ability to do a few things from the command line, such as test the image checksums.
-* The knowledge of how to write a bootable image to a DVD or USB thumb drive.
+- A machine, compatible with Rocky Linux 9.0, (desktop, notebook or server) that you want to run the KDE desktop on.
+- The ability to do a few things from the command line, such as test the image checksums.
+- The knowledge of how to write a bootable image to a DVD or USB thumb drive.
 
 ## Get, verify, and write the KDE live image
 
 Prior to installation, the first step is to download the live image and write that to a DVD or a USB thumb drive. As stated earlier, the image will be bootable, just like any other installation media for Linux. You can find the latest KDE image in the download section for Rocky Linux 9 [live images](https://dl.rockylinux.org/pub/rocky/9.3/live/x86_64/).
 
-Note that this particular link assumes x86_64 as your processor architecture. If you have aarch64 architecture, you can use that image instead. Download the live image and checksum files. 
+Note that this particular link assumes x86_64 as your processor architecture. If you have aarch64 architecture, you can use that image instead. Download the live image and checksum files.
 
-Verify the image with the CHECKSUM file by using the following (note: this is an example! Ensure your image name and CHECKSUM files match): 
+Verify the image with the CHECKSUM file by using the following (note: this is an example! Ensure your image name and CHECKSUM files match):
 
-```
+```text
 sha256sum -c CHECKSUM --ignore-missing Rocky-9-KDE-x86_64-latest.iso.CHECKSUM
 ```
 
 If all goes well, you should receive this message:
 
-```
+```text
 Rocky-9-KDE-x86_64-latest.iso: OK
 ```
 
@@ -72,7 +72,7 @@ When you have chosen your language and clicked **Continue**, the install will ad
 3. **Installation Destination** - You will need to click into this option, even if it is just to accept what is already there.
 4. **Network & Host Name** - Verify that you have what you want here. Provided the network is enabled, you can always change this later if you need to.
 5. **Root Password** - Go ahead and set a root password. Remember to save this somewhere safe (password manager), particularly if it is not something you use often.
-6. **User Creation** - Definitely create at least one user. If you want the user to have administrative rights, remember to set this option when creating the user. 
+6. **User Creation** - Definitely create at least one user. If you want the user to have administrative rights, remember to set this option when creating the user.
 7. **Begin Installation** - When you have set or verified all of the settings, click this option.
 
 When you do step 7, the installation process will start installing packages, shown in this screenshot:
@@ -97,7 +97,7 @@ Finally, finish the configuration:
 
 ![kde_finish_config](images/kde_finish_config.png)
 
-When this step finishes, the username that you created earlier will appear. Enter the password you created for the user and hit <kbd>ENTER</kbd>. This will show you a pristine KDE desktop screen:
+When this step finishes, the username that you created earlier will appear. Enter the password you created for the user and hit ++enter++. This will show you a pristine KDE desktop screen:
 
 ![kde_screen](images/kde_screen.png)
 

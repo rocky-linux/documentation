@@ -30,7 +30,7 @@ Pour installer le plugiciel, vous devrez éditer le fichier **custom/plugins.lua
 },
 ```
 
-Une fois que vous avez enregistré le fichier, le plugiciel sera disponible pour l'installation. Pour l'installer, ouvrez *lazy.nvim* avec la commande `:Lazy` et tapez <kbd>I</kbd>. Une fois l'installation terminée, vous devrez relancer l'éditeur pour qu'il utilise la nouvelle configuration que vous avez enregistrée.
+Une fois que vous avez enregistré le fichier, le plugiciel sera disponible pour l'installation. Pour l'installer, ouvrez *lazy.nvim* avec la commande `:Lazy` et tapez ++"I"++. Une fois l'installation terminée, vous devrez relancer l'éditeur pour qu'il utilise la nouvelle configuration que vous avez enregistrée.
 
 Le plugiciel fournit une commande unique `:ProjectMgr` qui ouvre un tampon interactif à partir duquel vous pouvez effectuer toutes les opérations en utilisant des raccourcis clavier. Lors de la première ouverture, le tampon sera vide comme cette capture d'écran l'indique :
 
@@ -38,7 +38,7 @@ Le plugiciel fournit une commande unique `:ProjectMgr` qui ouvre un tampon inter
 
 ### Utilisation du Gestionnaire de Projet
 
-Toutes les opérations sont effectuées avec la touche <kbd>Ctrl</kbd> suivie d'une lettre (exemple `<C-a`), la touche `<CR>` correspondant à la touche <kbd>Entrer</kbd>.
+Toutes les opérations sont effectuées avec la touche ++ctrl++ suivie d'une lettre (par exemple `<C-a`), la touche `<CR>` correspondant à la touche ++enter++.
 
 Le tableau suivant montre toutes les opérations disponibles
 
@@ -50,7 +50,7 @@ Le tableau suivant montre toutes les opérations disponibles
 | `<C-e>` | Modifier les paramètres du projet              |
 | `<C-q>` | Fermer le tampon                               |
 
-Pour ajouter votre premier projet, vous devrez utiliser la combinaison <kbd>Ctrl</kbd> + <kbd>a</kbd> qui ouvrira un menu interactif dans la *ligne d'état*. Dans cet exemple, un clone de la documentation de Rocky Linux enregistrée dans **~/lab/rockydocs/documentation** sera utilisé.
+Pour ajouter votre premier projet, vous devrez utiliser la combinaison ++ctrl++ + ++"a"++ qui ouvrira un menu interactif dans la *ligne d'état*. Dans cet exemple, un clone de la documentation de Rocky Linux enregistrée dans **~/lab/rockydocs/documentation** sera utilisé.
 
 La première question concerne le nom du projet :
 
@@ -72,13 +72,13 @@ Ou exécuter une commande avant de fermer l'éditeur.
 
 Les commandes doivent être saisies en omettant le deux-points `:` utilisé pour exécuter les mêmes commandes dans la *ligne d'état*.
 
-Une fois la configuration terminée, votre projet sera disponible dans le tampon. Pour l'ouvrir, sélectionnez-le et appuyez sur <kbd>Entrer</kbd>.
+Une fois la configuration terminée, votre projet sera disponible dans le tampon. Pour l'ouvrir, sélectionnez-le et appuyez sur ++enter++.
 
 ![ProjectMgr Add](./images/projectmgr_add.png)
 
 Comme vous pouvez le constater à partir de la capture d'écran dans la section **Config & Infos** le plugiciel a reconnu le dossier comme géré par *Git* et nous fournit quelques informations à son sujet.
 
-La modification d'un projet se fait avec <kbd>Ctrl</kbd> + <kbd>e</kbd> et se compose d'une nouvelle boucle interactive, alors que toute suppression est effectuée avec la combinaison <kbd>Ctrl</kbd> + <kbd>d</kbd>.
+La modification d'un projet se fait avec ++ctrl++ + ++"e"++ et se compose d'une nouvelle boucle interactive, alors que toute suppression est effectuée avec la combinaison ++ctrl++ + ++"d"++.
 
 ### Fonctions supplémentaires
 
@@ -146,15 +146,15 @@ Pour accélérer l'ouverture de vos projets, vous pouvez créer un raccourci cla
 ```lua
 -- Projects
 M.projects = {
-  n = {
-    ["<leader>fp"] = { "<cmd> ProjectMgr<CR>", "Open Projects"}
+    n = {
+        ["<leader>fp"] = { "<cmd> ProjectMgr<CR>", "Open Projects" },
     },
 }
 ```
 
-Avec l'éditeur dans l'état **NORMAL** vous pouvez ouvrir le gestionnaire de projet avec la combinaison <kbd>Espace</kbd> + <kbd>f</kbd> suivie de <kbd>p</kbd>.
+Avec l'éditeur dans l'état **NORMAL** vous pouvez ouvrir le gestionnaire de projet avec la combinaison ++space++ + ++"f"++ suivie de ++"p"++.
 
-## Conclusions et pensées finales
+## Conclusion
 
 Comme le nombre de projets sur lesquels vous travaillez augmente, il peut être utile d'avoir un outil pour vous aider à les gérer. Ce plugiciel vous permettra d'accélérer votre travail en réduisant le temps nécessaire pour accéder aux fichiers dont vous avez besoin pour les éditer.
 

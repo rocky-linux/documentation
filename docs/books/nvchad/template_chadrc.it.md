@@ -11,6 +11,10 @@ tags:
 
 # Esempio di configurazione
 
+!!! danger "Non più fornito"
+
+    L'esempio di configurazione non viene più fornito durante l'installazione di NvChad; di conseguenza, questa pagina è obsoleta e verrà rimossa nella nuova versione della guida. Le istruzioni verranno aggiornate al più presto.
+
 ## :material-message-outline: Introduzione
 
 La versione 2.0 di NvChad introduce la possibilità di creare una cartella ==custom== durante la fase di installazione. La sua creazione è il punto di partenza per personalizzare l'editor modificando i suoi file. Installato al bootstrap permette, al primo avvio, di avere un editor con le caratteristiche di base di un IDE, ma può essere incluso anche dopo l'installazione di NvChad.

@@ -5,23 +5,22 @@ title: Introduction to Linux
 
 # Introduction to the Linux Operating System
 
-In this chapter you will learn about GNU/Linux distributions.
+In this chapter, you will learn about GNU/Linux distributions.
 
 ****
 
-**Objectives**: In this chapter you will learn how to:
+**Objectives**: In this chapter, you will learn how to:
 
 :heavy_check_mark: Describe the features and possible architectures of an operating system.  
 :heavy_check_mark: Recount the history of UNIX and GNU/Linux.  
 :heavy_check_mark: Choose the right Linux distribution for your needs.  
 :heavy_check_mark: Explain the philosophy of Free and Open-source Software.  
-:heavy_check_mark: Discover the usefulness of the shell.
+:heavy_check_mark: Discover the usefulness of the shell.  
 
 :checkered_flag: **generalities**, **linux**, **distributions**
 
 **Knowledge**: :star:  
-
-**Complexity**: :star:
+**Complexity**: :star:  
 
 **Reading time**: 10 minutes
 
@@ -39,12 +38,12 @@ As part of this management of resources, the operating system has to:
 
 * Manage the **physical** or **virtual** memory.
 
-    * The **physical memory** is made up of the RAM bars and the processor cache memory, which are used for the execution of programs.
+    * The **physical memory** is made up of the RAM bars and the processor cache memory, which are used for program execution.
 
     * The **virtual memory** is a location on the hard disk (the **swap** partition) that allows the unloading of the physical memory and the saving of the current state of the system during the electrical shutdown of the computer.
 
 * Intercept **access to peripherals**.
-  Software is rarely allowed to access hardware directly (except for graphics cards for very specific needs).
+  Software can rarely access hardware directly (except for graphics cards for specific needs).
 
 * Provide applications with proper **task management**.
   The operating system is responsible for scheduling processes to occupy the processor
@@ -64,13 +63,13 @@ As part of this management of resources, the operating system has to:
 * **1964 — 1968**:
   MULTICS (MULTiplexed Information and Computing Service) is developed for MIT, Bell Labs (AT&T) and General Electric.
 
-* **1969 — 1971**: After the withdrawal of Bell (1969) and then General Electric from the project, two developers, Ken Thompson and Dennis Ritchie (joined later by Brian Kernighan), judging MULTICS to be too complex, begin development of UNIX (UNiplexed Information and Computing Service). While it was originally created in Assembly language, the creators of UNIX eventually develop the B language and then the C language (1971) and completely rewrite UNIX. As it was developed in 1970, the reference (epoch) date for the start of time of UNIX/Linux systems is set at January 01, 1970.
+* **1969 — 1971**: After the withdrawal of Bell (1969) and then General Electric from the project, two developers, Ken Thompson and Dennis Ritchie (joined later by Brian Kernighan), judging MULTICS to be too complex, begin development of UNIX (UNiplexed Information and Computing Service). While it was created in Assembly language, the creators of UNIX eventually developed the B language and then the C language (1971) and completely rewrote UNIX. As it was developed in 1970, the reference (epoch) date for the start of time of UNIX/Linux systems is set at January 01, 1970.
 
-The C language remains one of the most popular programming languages today. A low-level language, close to the hardware, it allows the adaptation of the operating system to any machine architecture having a C compiler.
+C remains one of the most popular programming languages today. A low-level language close to the hardware, it allows the operating system to be adapted to any machine architecture having a C compiler.
 
-UNIX is an open and evolving operating system that has played a major role in the history of computing. It forms the basis for many other systems such as Linux, BSD, MacOS, and more.
+UNIX is an open and evolving operating system that has played a major role in the history of computing. It forms the basis for many other systems, such as Linux, BSD, MacOS, etc.
 
-UNIX is still relevant today (HP-UX, AIX, Solaris, etc.).
+UNIX remains relevant today (HP-UX, AIX, Solaris, etc.).
 
 #### GNU Project
 
@@ -110,13 +109,13 @@ UNIX is still relevant today (HP-UX, AIX, Solaris, etc.).
 TODO: graphics with market share for servers and pc.
 -->
 
-Despite its prevalence, Linux remains relatively unknown by the general public. Linux is hidden within **smartphones**, **televisions**, **internet boxes**, etc. Almost **70% of the websites** in the world are hosted on a Linux or UNIX server!
+Despite its prevalence, Linux remains relatively unknown to the general public. Linux is hidden within **smartphones**, **televisions**, **internet boxes**, etc. Almost **70% of the websites** in the world are hosted on a Linux or UNIX server!
 
 Linux equips about **3% of personal computers** but more than **82% of smartphones**. The **Android** operating system, for example, uses a Linux kernel.
 
 <!-- TODO: review those stats -->
 
-Linux equips 100% of the top 500 supercomputers since 2018. A supercomputer is a computer designed to achieve the highest possible performance with the techniques known at the time of its design, especially with regard to computing speed.
+Linux equips 100% of the top 500 supercomputers since 2018. A supercomputer is a computer designed to achieve the highest possible performance with the techniques known during its design, especially concerning computing speed.
 
 ### Architectural design
 
@@ -128,7 +127,7 @@ Linux equips 100% of the top 500 supercomputers since 2018. A supercomputer is a
 
 * The **shell** is a utility that interprets user commands and ensures their execution.
 
-    * Main shells: Bourne shell, C shell, Korn shell and Bourne-Again shell (bash).
+    * Main shells: Bourne shell, C shell, Korn shell, and Bourne-Again shell (bash).
 
 * **Applications** are user programs including but not limited to:
 
@@ -138,7 +137,7 @@ Linux equips 100% of the top 500 supercomputers since 2018. A supercomputer is a
 
 #### Multi-task
 
-Linux belongs to the family of time-sharing operating systems. It divides processing time between several programs, switching from one to another in a transparent way for the user. This implies:
+Linux belongs to the family of time-sharing operating systems. It divides processing time between several programs, transparently switching from one to another for the user. This implies:
 
 * Simultaneous execution of several programs.
 * Distribution of CPU time by the scheduler.
@@ -147,15 +146,15 @@ Linux belongs to the family of time-sharing operating systems. It divides proces
 
 #### Multi-user
 
-The purpose of MULTICS was to allow several users to work from several terminals (screen and keyboard) from a single computer (very expensive at the time). Linux, inspired by this operating system, kept this ability to work with several users simultaneously and independently, each one having their own user account with memory space and access rights to files and software.
+MULTICS's purpose was to allow users to work from several terminals (screen and keyboard) on a single computer (which was very expensive at the time). Inspired by this operating system, Linux kept this ability to work with several users simultaneously and independently, each with its user account with memory space and access rights to files and software.
 
 #### Multi-processor
 
-Linux is able to work with multi-processor computers or with multi-core processors.
+Linux can work with multi-processor computers or with multi-core processors.
 
 #### Multi-platform
 
-Linux is written in a high-level language that can be adapted to different types of platforms during compilation. This allows it to run on:
+Linux is written in a high-level language that can be adapted to different platforms during compilation. This allows it to run on:
 
 * Home computers (PC and laptop)
 * Servers (data and applications)
@@ -174,7 +173,7 @@ Linux is based on recognized standards such as [POSIX](http://en.wikipedia.org/w
 * Value portability.
 * Do one thing and do it well.
 * KISS: Keep It Simple Stupid.
-* "UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity." (**Dennis Ritchie**)
+* "UNIX is a simple operating system, but you have to be a genius to understand the simplicity." (**Dennis Ritchie**)
 * "Unix is user-friendly. It just isn't promiscuous about which users it's friendly with." (**Steven King**)
 
 ## The GNU/Linux distributions
@@ -189,7 +188,7 @@ This principle allows distributions to be geared to **beginners** (Ubuntu, Linux
 
 There are many graphic environments such as **GNOME**, **KDE**, **LXDE**, **XFCE**, etc. There is something for everyone, and their **ergonomics** hold their own against Microsoft or Apple systems.
 
-So why is there so little enthusiasm for Linux, when this system is practically **virus free**? Could it be because so many editors (Adobe) and manufacturers (Nvidia) do not play the free game and do not provide a version of their software or **drivers** for GNU/Linux? Perhaps it's fear of change, or the difficulty of finding where to buy a Linux computer, or too few games distributed under Linux. That last excuse at least shouldn't be true for long, with the advent of the game engine Steam for Linux.
+So why is there so little enthusiasm for Linux, when this system is practically **virus free**? Could it be because so many editors (Adobe) and manufacturers (Nvidia) do not play the free game and do not provide a version of their software or **drivers** for GNU/Linux? Perhaps it's fear of change, or the difficulty of finding where to buy a Linux computer, or too few games distributed under Linux. That last excuse, at least, shouldn't be true for long, with the advent of the game engine Steam for Linux.
 
 ![GNOME Desktop](images/01-presentation-gnome.png)
 
@@ -203,13 +202,13 @@ The **KDE** desktop environment is based on the **Qt** component library. It is 
 
 ### Free / Open Source
 
-A user of a Microsoft or Mac operating system must purchase a license to use the operating system. This license has a cost, although it is usually transparent (the price of the license is included in the price of the computer).
+A Microsoft or Mac operating system user must purchase a license to use the system. This license has a cost, although it is usually transparent (the price of the license is included in the price of the computer).
 
-In the **GNU/Linux** world, the Free Software movement provides mostly free distributions.
+The Free Software movement provides mostly free distributions in the **GNU/Linux** world.
 
 **Free** does not mean free!
 
-**Open Source**: the source code is available, so it is possible to consult and modify it under certain conditions.
+**Open Source**: the source code is available, so consulting and modifying it under certain conditions is possible.
 
 A free software is necessarily open-source, but the opposite is not true since open-source software is distinct from the freedom offered by the GPL license.
 

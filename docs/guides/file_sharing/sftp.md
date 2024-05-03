@@ -44,11 +44,11 @@ All of these steps will allow you to offer secure SFTP access for your customers
 
 Assumptions are that:
 
-* you are comfortable executing commands at the command line.
-* you can use a command line editor, such as `vi` (used here), `nano`, `micro`, etc.
-* you understand basic Linux commands used for adding groups and users, or can follow along well.
-* your multisite website is like this: [Apache Multisite](../web/apache-sites-enabled.md)
-* you have already installed `httpd` (Apache) on the server.
+- you are comfortable executing commands at the command line.
+- you can use a command line editor, such as `vi` (used here), `nano`, `micro`, etc.
+- you understand basic Linux commands used for adding groups and users, or can follow along well.
+- your multisite website is like this: [Apache Multisite](../web/apache-sites-enabled.md)
+- you have already installed `httpd` (Apache) on the server.
 
 !!! note
 
@@ -60,15 +60,15 @@ These are fictitious scenarios. Any resemblance to persons or sites that are rea
 
 **Sites:**
 
-* mybrokenaxel = (site1.com)
+- mybrokenaxel = (site1.com)
     user = mybroken
-* myfixedaxel = (site2.com)
+- myfixedaxel = (site2.com)
     user = myfixed
 
-**Administrators**
+**Administrators:**
 
-* Steve Simpson = ssimpson
-* Laura Blakely = lblakely
+- Steve Simpson = ssimpson
+- Laura Blakely = lblakely
 
 ## Part 2: SFTP chroot jail
 
@@ -76,7 +76,7 @@ These are fictitious scenarios. Any resemblance to persons or sites that are rea
 
 Installation is not difficult. You just need to have `openssh-server` installed, which is probably installed already. Enter this command to be sure:
 
-```
+```bash
 dnf install openssh-server
 ```
 
@@ -88,17 +88,18 @@ The directory path structure will be `/var/www/sub-domains/[ext.domainname]/html
 
 Creating the configuration directories:
 
-```
+```bash
 mkdir -p /etc/httpd/sites-available
 mkdir -p /etc/httpd/sites-enabled
 ```
 
 Creating the web directories:
 
-```
+```bash
 mkdir -p /var/www/sub-domains/com.site1/html
 mkdir -p /var/www/sub-domains/com.site2/html
 ```
+
 You will deal with the ownership of these directories in the script application later.
 
 ### `httpd` configuration
@@ -107,13 +108,13 @@ You need to change the built-in `httpd.conf` file to make it load the configurat
 
 Edit the file with your favorite editor. The author uses `vi` here:
 
-```
+```bash
 vi /etc/httpd/conf/httpd.conf
 ```
 
 and add this at the bottom of the file:
 
-```
+```bash
 Include /etc/httpd/sites-enabled
 ```
 
@@ -123,7 +124,7 @@ Save the file and exit.
 
 You need two sites created. You will create the configurations in `/etc/httpd/sites-available` and link them to `../sites-enabled`:
 
-```
+```bash
 vi /etc/httpd/sites-available/com.site1
 ```
 
@@ -131,7 +132,7 @@ vi /etc/httpd/sites-available/com.site1
 
     The example only uses the HTTP protocol. Any real website would need the HTTPS protocol configuration, SSL certificates, and possibly more.
 
-```
+```bash
 <VirtualHost *:80>
         ServerName www.site1.com
         ServerAdmin username@rockylinux.org
@@ -155,13 +156,14 @@ vi /etc/httpd/sites-available/com.site1
         </Directory>
 </VirtualHost>
 ```
+
 Save this file and exit.
 
-```
+```bash
 vi /etc/httpd/sites-available/com.site2
 ```
 
-```
+```bash
 <VirtualHost *:80>
         ServerName www.site2.com
         ServerAdmin username@rockylinux.org
@@ -185,17 +187,19 @@ vi /etc/httpd/sites-available/com.site2
         </Directory>
 </VirtualHost>
 ```
+
 Save this file and exit.
 
 When finished creating the two configuration files, link them from within `/etc/httpd/sites-enabled`:
 
-```
+```bash
 ln -s ../sites-available/com.site1
 ln -s ../sites-available/com.site2
 ```
+
 Enable and start the `httpd` process:
 
-```
+```bash
 systemctl enable --now httpd
 ```
 
@@ -205,15 +209,16 @@ For our example environment, the assumption is that none of the users exist yet.
 
 #### Administrators
 
-```
+```bash
 useradd -g wheel ssimpson
 useradd -g wheel lblakely
 ```
+
 By adding our users to the group "wheel" you give them `sudo` access.
 
 You still need a password for `sudo` access. There are ways around this, but none are all that secure. Frankly, if you have problems with security using `sudo` on your server, then you have much bigger problems with your entire setup. Set the two administrative passwords with secure passwords:
 
-```
+```bash
 passwd ssimpson
 Changing password for user ssimpson.
 New password:
@@ -229,8 +234,8 @@ passwd: all authentication tokens updated successfully.
 
 Test access to the server with `ssh` for your two administrative users. You should be able to:
 
-* use `ssh` to log in as one of the administrative users of the server. (Example: `ssh lblakely@192.168.1.116` or `ssh lblakely@mywebserver.com`)
-* you should be able to access root with `sudo -s` and entering the administrative user's password.
+- use `ssh` to log in as one of the administrative users of the server. (Example: `ssh lblakely@192.168.1.116` or `ssh lblakely@mywebserver.com`)
+- you should be able to access root with `sudo -s` and entering the administrative user's password.
 
 You will be ready for the next step if this works for all administrative users.
 
@@ -238,24 +243,24 @@ You will be ready for the next step if this works for all administrative users.
 
 You need to add our web users. That `../html` directory structure already exists, so you do not want to create it when adding the user, but you *do* want to specify it. You also do not want any login other than with SFTP so you need to use a shell that denies logins.
 
-```
+```bash
 useradd -M -d /var/www/sub-domains/com.site1/html -g apache -s /usr/sbin/nologin mybroken
 useradd -M -d /var/www/sub-domains/com.site2/html -g apache -s /usr/sbin/nologin myfixed
 ```
 
 Breaking down those commands a bit:
 
-* The `-M` option says to *not* create the standard home directory for the user.
-* `-d` specifies that what comes after is the *actual* home directory.
-* `-g` says that the group that this user belongs to is `apache`.
-* `-s` says the assigned shell is `/usr/sbin/nologin`
-* At the end is the actual username for the user.
+- The `-M` option says to *not* create the standard home directory for the user.
+- `-d` specifies that what comes after is the *actual* home directory.
+- `-g` says that the group that this user belongs to is `apache`.
+- `-s` says the assigned shell is `/usr/sbin/nologin`
+- At the end is the actual username for the user.
 
 **Note:** For an Nginx server, you would use `nginx` as the group.
 
 Our SFTP users still need  passwords. Setup a secure password for each now. You have already seen the command output above:
 
-```
+```bash
 passwd mybroken
 passwd myfixed
 ```
@@ -274,28 +279,29 @@ You need to make one change to the `/etc/ssh/sshd_config` file. You are going to
 
 First, make the manual change you need:
 
-```
+```bash
 vi /etc/ssh/sshd_config
 ```
 
 Near the bottom of the file, you will find this:
 
-```
+```bash
 # override default of no subsystems
 Subsystem     sftp    /usr/libexec/openssh/sftp-server
 ```
 
 You want to change that to read as follows:
 
-```
+```bash
 # override default of no subsystems
 # Subsystem     sftp    /usr/libexec/openssh/sftp-server
 Subsystem       sftp    internal-sftp
 ```
+
 Save and exit the file.
 
 The `sftp-server` and `internal-sftp` are part of OpenSSH. The `internal-sftp`, while not too different from the `sftp-server`, simplifies configurations using `ChrootDirectory` to force a different file system root on clients. That is why you use `internal-sftp`.
- 
+
 ### The template and script
 
 Why are you creating a template and a script for this next part? The reason is to avoid human error as much as possible. You are not done modifying that `/etc/ssh/sshd_config` file yet, but you want to eliminate as many errors as possible whenever you need to make these modifications. You will create all of this in `/usr/local/sbin`.
@@ -304,13 +310,13 @@ Why are you creating a template and a script for this next part? The reason is t
 
 First, create your template:
 
-```
+```bash
 vi /usr/local/sbin/sshd_template
 ```
 
 This template will have the following:
 
-```
+```bash
 Match User replaceuser
   PasswordAuthentication yes
   ChrootDirectory replacedirectory
@@ -325,10 +331,9 @@ Match User replaceuser
 
 You want a directory for your user files that you will create from the template too:
 
-```
+```bash
 mkdir /usr/local/sbin/templates
 ```
-
 
 #### The script and `sshd_config` changes
 
@@ -338,13 +343,13 @@ Because of the changes allowed for the `sshd_config` file in Rocky Linux 8.6 and
 
 To start with, create that directory:
 
-```
+```bash
 mkdir /etc/ssh/sftp
 ```
 
 Now make a backup copy of the `sshd_config`:
 
-```
+```bash
 cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 ```
 
@@ -356,13 +361,13 @@ Include /etc/ssh/sftp/sftp_config
 
 Save your changes and exit the file. You will need to restart `sshd` but our script will do that for us after you update `sftp_config` file, so create the script and run it.
 
-```
+```bash
 vi /usr/local/sbin/webuser
 ```
 
 And put this code in it:
 
-```
+```bash
 #!/bin/bash
     # script to populate the SSHD configuration for web users.
 
@@ -383,14 +388,14 @@ And put this code in it:
     read yn
     if [ "$yn" = "n" ] || [ "$yn" = "N" ]
     then
-	    exit
+        exit
     fi
     if [ "$yn" = "y" ] || [ "$yn" = "Y" ]
     then
-	    /usr/bin/cat $tempfile > /usr/local/sbin/templates/$dom.txt
-	    /usr/bin/sed -i "s,replaceuser,$sftpuser,g" /usr/local/sbin/templates/$dom.txt
-	    /usr/bin/sed -i "s,replacedirectory,$dompath$dom,g" /usr/local/sbin/templates/$dom.txt
-	    /usr/bin/chown -R $sftpuser.apache $dompath$dom/html
+        /usr/bin/cat $tempfile > /usr/local/sbin/templates/$dom.txt
+        /usr/bin/sed -i "s,replaceuser,$sftpuser,g" /usr/local/sbin/templates/$dom.txt
+        /usr/bin/sed -i "s,replacedirectory,$dompath$dom,g" /usr/local/sbin/templates/$dom.txt
+        /usr/bin/chown -R $sftpuser.apache $dompath$dom/html
         # Ensure directory permissions are correct
         # The root user owns all directories except the chroot, which is owned by the sftpuser
         # when connecting, you will end up one directory down, and you must actually change to the html directory
@@ -422,7 +427,7 @@ And put this code in it:
     echo "A backup of the working sftp_config was created when this script was run: sftp_config.bak"
 ```
 
-### Final changes and script notes 
+### Final changes and script notes
 
 !!! tip
 
@@ -434,7 +439,7 @@ The SFTP chroot requires that the path given in the `sshd_config` has root owner
 
 Make the script executable:
 
-```
+```bash
 chmod +x /usr/local/sbin/webuser
 ```
 
@@ -444,17 +449,18 @@ Run the script for our two test domains.
 
 First, test with `ssh` from another machine to our host machine as one of the SFTP users. You should receive this after entering a password:
 
-```
+```bash
 This service allows sftp connections only.
 ```
+
 #### Graphical tool testing
 
 If you *do* receive that message, the next thing is to test SFTP access. For ease of testing, you can use a graphical FTP application that supports SFTP such as Filezilla. In such cases, your fields will look something like this:
 
-* **Host:** sftp://hostname_or_IP_of_the_server
-* **Username:** (Example: myfixed)
-* **Password:** (the password of the SFTP user)
-* **Port:** If you use SSH and SFTP on the default port 22, enter that port
+- **Host:** sftp://hostname_or_IP_of_the_server
+- **Username:** (Example: myfixed)
+- **Password:** (the password of the SFTP user)
+- **Port:** If you use SSH and SFTP on the default port 22, enter that port
 
 Once filled in, you can click the "Quickconnect" (Filezilla) button and you will connect to the `../html` directory of the appropriate site. Double-click on the "html" directory to put yourself inside it and try to drop a file into the directory. If you are successful, everything is working correctly.
 
@@ -462,13 +468,13 @@ Once filled in, you can click the "Quickconnect" (Filezilla) button and you will
 
 You can do all of this from the command line on a machine with SSH installed (most Linux installations). Here is a brief overview of the command line method for connection and a few options:
 
-* sftp username (Example: myfixed@ hostname or IP of the server: sftp myfixed@192.168.1.116)
-* Enter the password when prompted
-* cd html (change to the html directory)
-* pwd (should show that you are in the html directory)
-* lpwd (should show your local working directory)
-* lcd PATH (should change your local working directory to something you want to use)
-* put filename (will copy a file to `..html` directory)
+- sftp username (Example: myfixed@ hostname or IP of the server: sftp myfixed@192.168.1.116)
+- Enter the password when prompted
+- cd html (change to the html directory)
+- pwd (should show that you are in the html directory)
+- lpwd (should show your local working directory)
+- lcd PATH (should change your local working directory to something you want to use)
+- put filename (will copy a file to `..html` directory)
 
 For an exhaustive list of options and more, view the [SFTP manual page](https://man7.org/linux/man-pages/man1/sftp.1.html).
 
@@ -476,7 +482,7 @@ For an exhaustive list of options and more, view the [SFTP manual page](https://
 
 For our dummy domains, you want to create a couple of `index.html` files that you can populate the `../html` directory with. When created, you need to put them in the directory for each domain with the SFTP credentials for that domain. These files are simplistic. You just want something to verify that your sites are up and running and that SFTP is working as expected. Here is an example of this file. You can change it if you want to:
 
-```
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -493,12 +499,12 @@ For our dummy domains, you want to create a couple of `index.html` files that yo
 
 ### Web tests
 
-You need to change the _hosts_ file on your workstation to test that these files show up and load as expected. For Linux that will be `sudo vi /etc/hosts` and add in the IP and host names you are testing with like this:
+You need to change the *hosts* file on your workstation to test that these files show up and load as expected. For Linux that will be `sudo vi /etc/hosts` and add in the IP and host names you are testing with like this:
 
-```
-127.0.0.1	localhost
-192.168.1.116	www.site1.com site1.com
-192.168.1.116	www.site2.com site2.com
+```bash
+127.0.0.1 localhost
+192.168.1.116 www.site1.com site1.com
+192.168.1.116 www.site2.com site2.com
 # The following lines are desirable for IPv6 capable hosts
 ::1     ip6-localhost ip6-loopback
 fe00::0 ip6-localnet
@@ -511,7 +517,7 @@ ff02::2 ip6-allrouters
 
     You would want to populate your DNS servers with the hosts above for real domains. You can, though, use this *Poor Man's DNS* for testing any domain, even one that has not been taken live on real DNS servers.
 
-Open your web browser and ensure that your `index.html` file for each domain displays by entering the URL in your browser's address bar. (Example: "http://site1.com") If your test index files load, everything is working correctly.
+Open your web browser and ensure that your `index.html` file for each domain displays by entering the URL in your browser's address bar. (Example: <http://site1.com>) If your test index files load, everything is working correctly.
 
 ## Part 3: Administrative access with SSH key pairs
 
@@ -521,26 +527,26 @@ Note that you will use concepts discussed in the document [SSH Public and Privat
 
 From one of the administrative user's workstations command line, (Example: lblakely) do the following:
 
-```
+```bash
 ssh-keygen -t rsa
 ```
 
 Which will give you this:
 
-```
+```text
 Generating public/private rsa key pair.
 Enter file in which to save the key (/home/lblakely/.ssh/id_rsa):
 ```
 
 Hit enter to create the private key in the location shown. This will give you this dialog:
 
-```
+```text
 Enter passphrase (empty for no passphrase):
 ```
 
 You will need to decide personally whether you need a passphrase for this step. The author always just hits enter here.
 
-```
+```text
 Enter same passphrase again:
 ```
 
@@ -554,13 +560,13 @@ The next step is to export our key to the server. In reality, a system administr
 
 The user can send the key to the server securely with `ssh-id-copy` when created:
 
-```
+```bash
 ssh-id-copy lblakely@192.168.1.116
 ```
 
-The server will prompt for the user's password one time, and copy the key into _authorized_keys_. You will get this message too:
+The server will prompt for the user's password one time, and copy the key into *authorized_keys*. You will get this message too:
 
-```
+```bash
 Number of key(s) added: 1
 
 Now try logging into the machine, with:   "ssh 'lblakely@192.168.1.116'"
@@ -575,37 +581,37 @@ If everything has worked out as planned and our keys for our administrators are 
 
 To accomplish this step, you need to change the `sshd_config` again, and just like before, you want to make a backup of the file first:
 
-```
+```bash
 cp -f /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 ```
 
 Next, edit the `sshd_config` file:
 
-```
+```bash
 vi /etc/ssh/sshd_config
 ```
 
 You want to turn off tunneled passwords. Find this line in the configuration:
 
-```
+```text
 PasswordAuthentication yes
 ```
 
 Change it to "no" - note that just remarking out this line will fail, as the default is always "yes".
 
-```
+```text
 PasswordAuthentication no
 ```
 
 Public key authentication is on by default, but ensure that it is by removing the remark in front of this line:
 
-```
+```text
 #PubkeyAuthentication yes
 ```
 
 So that it reads:
 
-```
+```text
 PubkeyAuthentication yes
 ```
 
@@ -613,7 +619,7 @@ This makes our `sshd_config` file self-documenting to a degree.
 
 Save your changes. Cross your fingers, and restart `sshd`:
 
-```
+```bash
 systemctl restart sshd
 ```
 
@@ -623,7 +629,7 @@ Attempting to login as one of your administrative users to the server using thei
 
 You have functionally done that already. If you attempt to login with the root user to the server now, you will get the following:
 
-```
+```bash
 root@192.168.1.116: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
 ```
 
@@ -631,31 +637,31 @@ But you want to ensure that someone cannot create a public/private key for the r
 
 Just like every other step here when changing the `sshd_config` file, you want to make a backup copy of the file before continuing:
 
-```
+```bash
 cp -f /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 ```
 
 Edit the `sshd_config`:
 
-```
+```bash
 vi /etc/ssh/sshd_config
 ```
 
 Find this line:
 
-```
+```text
 PermitRootLogin yes
 ```
 
 Change it to "no":
 
-```
+```text
 PermitRootLogin no
 ```
 
 Save, quit out of the file, and restart `sshd`:
 
-```
+```bash
 systemctl restart sshd
 ```
 
@@ -663,32 +669,32 @@ A login as the root user remotely over `ssh` will get the same denial message as
 
 ## Addendum: New system administrators
 
-Not discussed yet is what happens when adding another system administrator. `ssh-copy-id` will not work with password authentication off. Here is what the author recommends for these situations. Note more than one solution exists. In addition, to the methods mentioned here, an existing administrator can generate and deploy the keys for another administrator. 
+Not discussed yet is what happens when adding another system administrator. `ssh-copy-id` will not work with password authentication off. Here is what the author recommends for these situations. Note more than one solution exists. In addition, to the methods mentioned here, an existing administrator can generate and deploy the keys for another administrator.
 
 ### Solution one - sneaker net
 
 This solution assumes physical access to the server and that the server is physical hardware and not virtual (container or VM):
 
-* Add the user to the "wheel" group on the SFTP server
-* Have the user generate his SSH public and private keys
-* Using a USB drive, copy the public key to the drive and physically walk it over to the server and install it manually in the new system administrators `/home/[username]/.ssh` directory
+- Add the user to the "wheel" group on the SFTP server
+- Have the user generate his SSH public and private keys
+- Using a USB drive, copy the public key to the drive and physically walk it over to the server and install it manually in the new system administrators `/home/[username]/.ssh` directory
 
 ### Solution two - temporarily edit the `sshd_config`
 
 This solution is prone to human error, but since it is not done often, it would probably be OK if carefully done:
 
-* Add the user to the "wheel" group on the SFTP server
-* Have another system administrator who already has key based authentication, temporarily turn on "PasswordAuthentication yes" in the `sshd_config` file and restart `sshd`
-* Have the new system administrator run `ssh-copy-id` using their password to copy the ssh key to the server.
+- Add the user to the "wheel" group on the SFTP server
+- Have another system administrator who already has key based authentication, temporarily turn on "PasswordAuthentication yes" in the `sshd_config` file and restart `sshd`
+- Have the new system administrator run `ssh-copy-id` using their password to copy the ssh key to the server.
 
 ### Solution three - script the process
 
 This process uses a system administrator that already has key-based access and a script that must run with `bash [script-name]` to accomplish the same thing as "Solution Two" above:
 
-* manually edit the `sshd_config` file and remove the remarked-out line that looks like this: `#PasswordAuthentication no`. This line is documenting the process of turning password authentication off, but it will get in the way of the script below, because our script will look for the first occurrence of `PasswordAuthentication no` and later the first occurrence of `PasswordAuthentication yes`. If you remove this one line, our script will work fine.
-* create a script on the SFTP server called "quickswitch", or whatever you want to call it. The contents of this script would look like this:
+- manually edit the `sshd_config` file and remove the remarked-out line that looks like this: `#PasswordAuthentication no`. This line is documenting the process of turning password authentication off, but it will get in the way of the script below, because our script will look for the first occurrence of `PasswordAuthentication no` and later the first occurrence of `PasswordAuthentication yes`. If you remove this one line, our script will work fine.
+- create a script on the SFTP server called "quickswitch", or whatever you want to call it. The contents of this script would look like this:
 
-```
+```bash
 #!/bin/bash
 # for use in adding a new system administrator
 
@@ -702,7 +708,8 @@ read yn
 /usr/bin/systemctl restart sshd
 echo "Changes reversed"
 ```
-Script explanation: You do not make this script executable. The reason is that you do not want it to run accidentally. The script runs (as noted above) like this: `bash /usr/local/sbin/quickswitch`. This script makes a backup copy of the `sshd_config` file just like all of our other examples above. It then edits the `sshd_config` file in place and searches for the *FIRST* occurrence of `PasswordAuthentication no` and changes it to `PasswordAuthentication yes` then restarts `sshd` and waits for the script user to hit <kbd>ENTER</kbd> before continuing. The system administrator running the script would be in communication with the new system administrator, and once that new system administrator runs `ssh-copy-id` to copy his key to the server, the system administrator who is running the script hits enter and that reverses the change.
+
+Script explanation: You do not make this script executable. The reason is that you do not want it to run accidentally. The script runs (as noted above) like this: `bash /usr/local/sbin/quickswitch`. This script makes a backup copy of the `sshd_config` file just like all of our other examples above. It then edits the `sshd_config` file in place and searches for the *FIRST* occurrence of `PasswordAuthentication no` and changes it to `PasswordAuthentication yes` then restarts `sshd` and waits for the script user to hit ++enter++ before continuing. The system administrator running the script would be in communication with the new system administrator, and once that new system administrator runs `ssh-copy-id` to copy his key to the server, the system administrator who is running the script hits enter and that reverses the change.
 
 In short, many ways exist for adding another system administrator after the implementation of SSH lock down procedures.
 

@@ -92,7 +92,7 @@ DISA STIG partitioning scheme for a 30G disk. My use case is as a simple web ser
 
 ![Accept Changes](images/disa_stig_pt1_img9.jpg)
 
-### Step 5: Configure software for your environment: Server install without a GUI.
+### Step 5: Configure software for your environment: Server install without a GUI
 
 This will matter in **Step 6**, so if you are using a UI or a workstation configuration the security profile will be different.
 
@@ -132,7 +132,7 @@ In later tutorials we can get into joining this to a FreeIPA enterprise configur
 
 ![Reboot](images/disa_stig_pt1_img18.jpg)
 
-### Step 11: Log in to your STIG'd Rocky Linux 8 System!
+### Step 11: Log in to your STIG'd Rocky Linux 8 System
 
 ![DoD Warning](images/disa_stig_pt1_img19.jpg)
 
