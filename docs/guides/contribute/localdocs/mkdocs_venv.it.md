@@ -9,7 +9,7 @@ tags:
   - documentation
 ---
 
-# MkDocs (Python Virtual Enviroment)
+# MkDocs (Python Virtual Environment)
 
 ## Introduzione
 
