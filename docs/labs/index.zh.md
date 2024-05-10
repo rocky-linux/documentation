@@ -6,4 +6,4 @@ title: 教程实验室
 
 什么是 **实验室**？它们与 **书籍** 等较长的文档有什么不同？ **实验室** 是为了循序渐进地工作而设计的，可帮助您进一步加深理解。 其中包括测试你知识的练习。 这些实验室的目的纯粹是为了教育和教学目的。 它们将帮助您理解特定的系统管理主题，激发实验兴趣，并鼓励在安全和模拟的实验室环境中进行协作。
 
-您是否拥有可以转换到实验室的学科经验？ 如果有的话就太好了！ 我们希望您能参与进来。 参与进来与参与任何 Rocky Linux 文档没有什么不同——只需前往 [Mattermost Documentation 频道](https://chat.rockylinux.org/rocky-linux/channels/documentation)，加入对话，让我们知道您想写什么，我们将在您的路上帮助您。 
+您是否拥有可以转换到实验室的学科经验？ 如果有的话就太好了！ 我们希望您能参与进来。 参与进来与参与任何 Rocky Linux 文档没有什么不同——只需前往 [Mattermost Documentation 频道](https://chat.rockylinux.org/rocky-linux/channels/documentation)，加入对话，让我们知道您想写什么，我们将在您的路上帮助您。

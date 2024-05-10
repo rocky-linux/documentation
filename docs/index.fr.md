@@ -18,7 +18,7 @@ Cette page d'accueil vous donnera une introduction au site de cette documentatio
 
 En ce moment, vous êtes sur la page d'accueil de la documentation. Si vous jetez un coup d'œil au menu supérieur (qui devrait être toujours disponible, y compris sur les appareils mobiles) vous pouvez voir la structure principale montrant les sections du niveau principal du site de documentation. Si vous cliquez sur chaque lien de menu en haut (essayez 'Guides' par exemple) puis sur le côté gauche vous verrez la liste des *sous-sections* pour chaque section principale. Les guides traitent de nombreux thèmes.
 
-Lorsque vous ouvrez un document, sur le côté droit vous verrez une 'Table des matières' avec des liens de navigation cliquables pour ce document (pour les appareils mobiles essayez de basculer l'affichage horizontalement). Pour les documents longs, comme les [Notes de publication](release_notes/8_8.md), la table des matières facilite la navigation dans le document. Si vous lisez un document long et que vous voulez revenir en haut de la page, appuyez sur <kbd>pg up</kbd> et vous verrez apparaître un bouton `Retour vers le haut` en haut de l'écran.
+Lorsque vous ouvrez un document, sur le côté droit vous verrez une 'Table des matières' avec des liens de navigation cliquables pour ce document (pour les appareils mobiles essayez de basculer l'affichage horizontalement). Pour les documents longs, comme les [Notes de publication](release_notes/8_8.md), la table des matières facilite la navigation dans le document. Si vous lisez un document long et que vous voulez revenir en haut de la page, appuyez sur ++page-up++ et vous verrez apparaître un bouton `Retour vers le haut` en haut de l'écran.
 
 Les sections principales du site de documentation sont :
 

@@ -17,13 +17,13 @@ tags:
 
 스크립트를 사용하려면 다음 단계를 따르세요:
 
-1.  Linux 시스템에서 터미널을 엽니다.
-2.  `cd`를 사용하여 원하는 디렉토리로 이동합니다.
-3.  `curl`을 사용하여 NoSleep.sh 스크립트를 다운로드합니다: `curl -O https://github.com/andrewthiesen/NoSleep.sh/blob/main/NoSleep.sh`
-4.  NoSleep 스크립트를 실행 가능하도록 하기 위해 `chmod +x NoSleep.sh` 명령을 실행합니다.
-5.  `sudo ./NoSleep.sh` 명령을 사용하여 스크립트를 루트 권한으로 실행합니다.
-8.  `HandleLidSwitch` 스크립트가 `logind.conf` 파일의 `HandleLidSwitch` 옵션을 `ignore`로 업데이트합니다.
-9.  변경 사항이 즉시 적용되도록 시스템을 재부팅할 것인지에 대한 선택적으로 재부팅하라는 메시지가 표시됩니다.
+1. Linux 시스템에서 터미널을 엽니다.
+2. `cd`를 사용하여 원하는 디렉토리로 이동합니다.
+3. `curl`을 사용하여 NoSleep.sh 스크립트를 다운로드합니다: `curl -O https://github.com/andrewthiesen/NoSleep.sh/blob/main/NoSleep.sh`
+4. NoSleep 스크립트를 실행 가능하도록 하기 위해 `chmod +x NoSleep.sh` 명령을 실행합니다.
+5. `sudo ./NoSleep.sh` 명령을 사용하여 스크립트를 루트 권한으로 실행합니다.
+6. `HandleLidSwitch` 스크립트가 `logind.conf` 파일의 `HandleLidSwitch` 옵션을 `ignore`로 업데이트합니다.
+7. 변경 사항이 즉시 적용되도록 시스템을 재부팅할 것인지에 대한 선택적으로 재부팅하라는 메시지가 표시됩니다.
 
 ### 중요 사항
 
