@@ -8,7 +8,7 @@ RockyLinux пропонує курси Linux для викладачів або 
 
 **SA** : **Share Alike**.
 
-- Ліцензія Creative Commons-BY-SA: https\://creativecommons.org/licenses/by-sa/4.0/
+- Ліцензія Creative Commons-BY-SA: https://creativecommons.org/licenses/by-sa/4.0/
 
 Документи та їх джерела можна безкоштовно завантажити з:
 
