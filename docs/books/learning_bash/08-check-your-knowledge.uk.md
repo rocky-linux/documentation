@@ -41,7 +41,7 @@ tags:
 
 :heavy_check_mark: Синтаксис наведеної нижче умовної структури здається вам правильним? Поясніть чому.
 
-```
+```bash
 if command
     command if $?=0
 else
@@ -60,7 +60,7 @@ fi
 
 :heavy_check_mark: Синтаксис наведеної нижче умовної альтернативної структури здається вам правильним? Поясніть чому.
 
-```
+```bash
 case $variable in
   value1)
     commands if $variable = value1

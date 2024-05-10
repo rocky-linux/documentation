@@ -18,50 +18,50 @@ In questo capitolo è necessario essere root o poter fare `sudo` per diventare r
 
 L'ambiente del server è pronto. Si è pronti a inizializzare LXD. Si tratta di uno script automatico che pone una serie di domande per rendere operativa l'istanza LXD:
 
-```
+```bash
 lxd init
 ```
 
 Ecco le domande e le nostre risposte per lo script, con una piccola spiegazione dove necessario:
 
-```
+```text
 Would you like to use LXD clustering? (yes/no) [default=no]:
 ```
 
 Se siete interessati al clustering, fate ulteriori ricerche al riguardo [qui](https://documentation.ubuntu.com/lxd/en/latest/clustering/)
 
-```
+```text
 Do you want to configure a new storage pool? (yes/no) [default=yes]:
 ```
 
 Questo sembra controintuitivo. Il pool ZFS è già stato creato, ma sarà chiaro in una domanda successiva. Accettare l'impostazione predefinita.
 
-```
+```text
 Name of the new storage pool [default=default]: storage
 ```
 
 Lasciare questo nome "default" è un'opzione, ma per chiarezza è meglio usare lo stesso nome dato al pool ZFS.
 
-```
+```text
 Name of the storage backend to use (btrfs, dir, lvm, zfs, ceph) [default=zfs]:
 ```
 
 You want to accept the default.
 
-```
+```text
 Create a new ZFS pool? (yes/no) [default=yes]: no
 ```
 
 È qui che entra in gioco la risoluzione della domanda precedente sulla creazione di un pool di storage.
 
-```
+```text
 Name of the existing ZFS pool or dataset: storage
 Would you like to connect to a MAAS server? (yes/no) [default=no]:
 ```
 
 Il Metal As A Service (MAAS) non rientra nell'ambito di questo documento.
 
-```
+```text
 Would you like to create a new local network bridge? (yes/no) [default=yes]:
 What should the new bridge be called? [default=lxdbr0]: 
 What IPv4 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]:
@@ -70,13 +70,13 @@ What IPv6 address should be used? (CIDR subnet notation, “auto” or “none�
 
 Se si desidera utilizzare IPv6 sui propri contenitori LXD, è possibile attivare questa opzione. Questo dipende da voi.
 
-```
+```text
 Would you like the LXD server to be available over the network? (yes/no) [default=no]: yes
 ```
 
 È necessario per eseguire lo snapshot del server.
 
-```
+```text
 Address to bind LXD to (not including port) [default=all]:
 Port to bind LXD to [default=8443]:
 Trust password for new clients:
@@ -85,7 +85,7 @@ Again:
 
 Questa password di fiducia è il modo in cui ci si connette al server snapshot o si torna indietro dal server snapshot. Impostate qualcosa che abbia senso nel vostro ambiente. Salvare questa voce in un luogo sicuro, ad esempio in un gestore di password.
 
-```
+```text
 Would you like stale cached images to be updated automatically? (yes/no) [default=yes]
 Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:
 ```
@@ -94,13 +94,13 @@ Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:
 
 Prima di continuare, è necessario creare l'utente "lxdadmin" e assicurarsi che abbia i privilegi necessari. È necessario che l'utente "lxdadmin" sia in grado di eseguire il `sudo` a root e che sia membro del gruppo lxd. Per aggiungere l'utente e assicurarsi che sia membro di entrambi i gruppi, procedere come segue:
 
-```
+```bash
 useradd -G wheel,lxd lxdadmin
 ```
 
 Impostare la password:
 
-```
+```bash
 passwd lxdadmin
 ```
 

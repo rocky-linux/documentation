@@ -17,16 +17,15 @@ tags:
 
 ## Автоматизація snapshot процесу
 
-
 Виконайте цей процес на lxd-primary. Перше, що вам потрібно зробити, це створити сценарій, який запускатиметься cron у /usr/local/sbin під назвою "refresh-containers":
 
-```
+```bash
 sudo vi /usr/local/sbin/refreshcontainers.sh
 ```
 
 Сценарій досить мінімальний:
 
-```
+```bash
 #!/bin/bash
 # This script is for doing an lxc copy --refresh against each container, copying
 # and updating them to the snapshot server.
@@ -40,25 +39,25 @@ for x in $(/var/lib/snapd/snap/bin/lxc ls -c n --format csv)
 
  Зробіть його виконуваним:
 
-```
+```bash
 sudo chmod +x /usr/local/sbin/refreshcontainers.sh
 ```
 
 Змініть право власності на цей сценарій на свого користувача та групу lxdadmin:
 
-```
+```bash
 sudo chown lxdadmin.lxdadmin /usr/local/sbin/refreshcontainers.sh
 ```
 
 Налаштуйте crontab для користувача lxdadmin, щоб запустити цей сценарій, у цьому випадку о 22:00:
 
-```
+```bash
 crontab -e
 ```
 
 Ваш запис виглядатиме так:
 
-```
+```bash
 00 22 * * * /usr/local/sbin/refreshcontainers.sh > /home/lxdadmin/refreshlog 2>&1
 ```
 
@@ -68,6 +67,6 @@ crontab -e
 
 Автоматизована процедура іноді дає збій. Зазвичай це трапляється, коли не вдається оновити певний контейнер. Ви можете вручну повторно запустити оновлення за допомогою такої команди (припускаючи, що rockylinux-test-9 тут є нашим контейнером):
 
-```
+```bash
 lxc copy --refresh rockylinux-test-9 lxd-snapshot:rockylinux-test-9
 ```

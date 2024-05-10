@@ -62,4 +62,4 @@ Nos livres au format PDF peuvent être téléchargés pour une lecture hors-lign
 
 ### The Three Swordsmen
 
-* [Anglais](https://rocky-linux.github.io/documentation/Sed_Awk_Grep_TheTreeSwordsmen.pdf)
+* [Anglais](https://rocky-linux.github.io/documentation/Sed_Awk_Grep_TheThreeSwordmen.pdf)

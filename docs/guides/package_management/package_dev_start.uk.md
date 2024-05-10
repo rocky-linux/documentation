@@ -4,7 +4,6 @@ title: Посібник розробника та із упаковки
 
 # Посібник розробника та із упаковки для початківців
 
-
 Rocky Devtools — це набір домашніх сценаріїв і утиліт, створених членами спільноти Rocky Linux, щоб допомогти з пошуком, створенням, брендингом, виправленням і створенням програмних пакетів, що поширюються разом з операційною системою Rocky Linux. Rocky Devtools складається з `rockyget`, `rockybuild`, `rockypatch` і `rockyprep`.
 
 На низькому рівні Rocky Devtools — це оболонка для запуску користувальницьких і традиційних програм для різноманітних завдань керування пакетами. Rocky Devtools значною мірою покладається на [`srpmproc`](https://github.com/mstg/srpmproc), `go`, `git< /code> і <code>rpmbuild`.
@@ -14,8 +13,10 @@ Rocky Devtools — це набір домашніх сценаріїв і ути
 Давайте розглянемо типовий сценарій встановлення та використання devtools.
 
 ## Залежності
+
 Перш ніж ви зможете почати використовувати інструменти розробника, у системі потрібно кілька пакетів. Ці команди були перевірені на Rocky Linux, але також повинні працювати на CentOS 8 / RHEL 8
-```
+
+```bash
 dnf install git make golang
 ```
 
@@ -23,16 +24,15 @@ dnf install git make golang
 
 Завантажте архівований вихідний код devtools за такою URL-адресою:
 
-https://github.com/rocky-linux/devtools/archive/refs/heads/main.zip
+<https://github.com/rocky-linux/devtools/archive/refs/heads/main.zip>
 
 Тут ми використовуємо команду `curl`:
 
-```
+```bash
 curl -OJL https://github.com/rocky-linux/devtools/archive/refs/heads/main.zip
 ```
 
 Тепер у вас має бути заархівований архів під назвою `devtools-main.zip`
-
 
 ## 2. Встановлення Rocky Devtools
 
@@ -40,25 +40,25 @@ curl -OJL https://github.com/rocky-linux/devtools/archive/refs/heads/main.zip
 
 Тут ми використаємо утиліту командного рядка `unzip`:
 
-```
+```bash
 unzip devtools-main.zip
 ```
 
 Змініть свій робочий каталог на новий вихідний каталог devtool, який щойно було створено:
 
-```
+```bash
 cd devtools-main
 ```
 
 Запустіть `make`, щоб налаштувати та скомпілювати інструменти розробника:
 
-```
+```bash
 make
 ```
 
 Встановіть devtools:
 
-```
+```bash
 sudo make install
 ```
 
@@ -68,14 +68,15 @@ sudo make install
 
 Давайте використаємо `rockyget`, щоб завантажити SRPM для популярного пакету `sed`:
 
-```
+```bash
 rockyget sed
 ```
+
 Під час першого запуску rockyget він автоматично створить структуру каталогів, яка приблизно імітує структуру сховища серверів збірки Rocky. Наприклад, автоматично буде створено папку `~/rocky/rpms`.
 
 Для нашого поточного прикладу sed його джерела зберігатимуться в такій зразковій ієрархії папок:
 
-```
+```bash
 ~rocky/rpms/sed/
 └── r8
     ├── SOURCES
@@ -88,12 +89,13 @@ rockyget sed
         └── sed.spec
 ```
 
-### Підказка :
-Отримавши вихідні коди, можливо, саме час переглянути файл SPECs (`~rocky/rpms/sed/SPECS/specs.spec`), щоб знайти потенційні можливості дебрендування в даному пакеті. Дебрендінг може включати заміну зображень/логотипів і так далі.
+!!! tip "Порада"
 
-### Підказка
-Якщо ви шукаєте інші пакунки Rocky для створення та експериментів, ви можете переглянути список пакунків, які наразі не працюють у автоматизованому середовищі збирання Rocky [тут](https://kojidev.rockylinux.org/koji/builds?state=3&order=-build_id) - https://kojidev.rockylinux.org/ koji/builds?state=3&order=-build_id
+    Коли ви отримаєте вихідні коди, можливо, буде гарний час переглянути файл SPECs (`~rocky/rpms/sed/SPECS/specs.spec`), щоб знайти потенційні можливості дебрендування в даному пакеті. Дебрендінг може включати заміну зображень/логотипів і так далі.
 
+!!! tip "Порада"
+
+    Якщо ви шукаєте інші пакети Rocky для створення та експериментів, ви можете переглянути список пакетів, які наразі не працюють у автоматизованому середовищі збирання Rocky [тут](https://kojidev.rockylinux.org/koji/builds?state =3&order=-build_id)
 
 ## 4. Використовуйте Rocky Devtools (rockybuild), щоб створити новий пакет для ОС Rocky
 
@@ -101,7 +103,7 @@ rockyget sed
 
 Використовуйте `rockybuild` для створення утиліти sed:
 
-```
+```bash
 rockybuild sed
 ```
 
@@ -109,7 +111,7 @@ rockybuild sed
 
 Наприкінці запуску `rockybuild` результат, подібний до наведеного тут, вказує на те, що збірка була успішно завершена.
 
-```
+```bash
 ..........
 + exit 0
 Finish: rpmbuild sed-4.5-2.el8.src.rpm
@@ -119,19 +121,15 @@ INFO: Results and/or logs in: /home/centos/rocky/builds/sed/r8
 ........
 ```
 
-
 Якщо все піде добре, у каталозі `~/rocky/builds/sed/r8` має бути готовий до Rocky файл SRPM.
 
 `~/rocky/rpms/sed/r8/SRPMS/sed-4.5-2.el8.src.rpm`
-
-
 
 ## 5. Налагодження невдалої збірки пакета
 
 Попередній процес rockybuild створить деякі файли журналу, які можна використовувати для налагодження невдалих збірок програми. Результати та/або журнали процесу збирання зберігаються в `~/rocky/builds/<ІМ'Я ПАКЕТА>/r8`. Наприклад `~/rocky/builds/sed/r8`
 
-
-```
+```bash
 ~/rocky/builds/sed/r8
 ├── build.log
 ├── hw_info.log

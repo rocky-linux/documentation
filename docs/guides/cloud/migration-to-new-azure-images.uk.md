@@ -1,7 +1,7 @@
 ---
 title: Перехід до нових зображень Azure
 author: Neil Hanlon
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - cloud
   - azure

@@ -17,16 +17,15 @@ L'automazione del processo di snapshot rende le cose molto più facili.
 
 ## Automatizzazione del Processo di Copia di Istantanee
 
-
 Questo processo viene eseguito su lxd-primario. La prima cosa da fare è creare uno script che verrà eseguito da cron in /usr/local/sbin chiamato "refresh-containers" :
 
-```
+```bash
 sudo vi /usr/local/sbin/refreshcontainers.sh
 ```
 
 Lo script è piuttosto semplice:
 
-```
+```bash
 #!/bin/bash
 # This script is for doing an lxc copy --refresh against each container, copying
 # and updating them to the snapshot server.
@@ -40,25 +39,25 @@ for x in $(/var/lib/snapd/snap/bin/lxc ls -c n --format csv)
 
  Rendetelo eseguibile:
 
-```
+```bash
 sudo chmod +x /usr/local/sbin/refreshcontainers.sh
 ```
 
 Cambiare la proprietà di questo script all'utente e al gruppo lxdadmin:
 
-```
+```bash
 sudo chown lxdadmin.lxdadmin /usr/local/sbin/refreshcontainers.sh
 ```
 
 Impostare il crontab per l'utente lxdadmin per l'esecuzione di questo script, in questo caso alle 10 di sera:
 
-```
+```bash
 crontab -e
 ```
 
 La voce avrà il seguente aspetto:
 
-```
+```bash
 00 22 * * * /usr/local/sbin/refreshcontainers.sh > /home/lxdadmin/refreshlog 2>&1
 ```
 
@@ -68,6 +67,6 @@ In questo modo si creerà un registro nella home directory di lxdadmin chiamato 
 
 La procedura automatica a volte fallisce. Questo accade generalmente quando un particolare container non riesce ad aggiornarsi. È possibile eseguire manualmente l'aggiornamento con il seguente comando (assumendo rockylinux-test-9 qui, come nostro contenitore):
 
-```
+```bash
 lxc copy --refresh rockylinux-test-9 lxd-snapshot:rockylinux-test-9
 ```
