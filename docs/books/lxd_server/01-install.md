@@ -100,7 +100,7 @@ root            hard    nofile           1048576
 *               hard    memlock          unlimited
 ```
 
-Save your changes and exit. (++shift+colon+"w"+"q"+"exclam++ for *vi*)
+Save your changes and exit (++shift+colon+"w"+"q"+exclam++ for *vi*).
 
 ### Modifying sysctl.conf with `90-lxd.override.conf`
 
