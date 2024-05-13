@@ -48,7 +48,7 @@ Il servizio di `cron` è gestito da un demone `crond` presente in memoria.
 
 Per verificare il suo stato:
 
-```
+```bash
 [root] # systemctl status crond
 ```
 
@@ -58,13 +58,13 @@ Per verificare il suo stato:
 
 Inizializzazione manuale del demone `crond`:
 
-```
+```bash
 [root]# systemctl {status|start|restart|stop} crond
 ```
 
 Initializzazione del demone `crond` all'avvio del sistema:
 
-```
+```bash
 [root]# systemctl enable crond
 ```
 
@@ -105,15 +105,16 @@ Per impostazione predefinita, `/etc/cron.deny` esiste ed è vuoto e `/etc/cron.a
 
 Solo **user1** sarà in grado di utilizzare`cron`.
 
-```
+```bash
 [root]# vi /etc/cron.allow
 user1
 ```
 
 ### Proibire ad un utente
+
 Solo **user2** non sarà in grado di usare `cron`.
 
-```
+```bash
 [root]# vi /etc/cron.deny
 user2
 ```
@@ -132,13 +133,13 @@ Questo file contiene tutte le informazioni che il `crond` deve sapere riguardo a
 
 Il comando `crontab` viene utilizzato per gestire il file di pianificazione.
 
-```
+```bash
 crontab [-u user] [-e | -l | -r]
 ```
 
 Esempio:
 
-```
+```bash
 [root]# crontab -u user1 -e
 ```
 
@@ -184,7 +185,7 @@ Il file `crontab` è strutturato in base alle seguenti regole.
 * Ogni linea termina con un ritorno a capo;
 * Un `#` all'inizio della linea la commenta.
 
-```
+```bash
 [root]# crontab –e
 10 4 1 * * /root/scripts/backup.sh
 1  2 3 4 5       6
@@ -216,25 +217,25 @@ Esempi:
 
 Script eseguito il 15 Aprile alle 10:25am:
 
-```
+```bash
 25 10 15 04 * /root/scripts/script > /log/…
 ```
 
 Esegui alle 11am e quindi alle 4pm di ogni giorno:
 
-```
+```bash
 00 11,16 * * * /root/scripts/script > /log/…
 ```
 
 Esegui ogni ora dalle 11am alle 4pm di ogni giorno:
 
-```
+```bash
 00 11-16 * * * /root/scripts/script > /log/…
 ```
 
 Esegui ogni 10 minuti durante l'orario di lavoro:
 
-```
+```bash
 */10 8-17 * * 1-5 /root/scripts/script > /log/…
 ```
 
@@ -253,12 +254,12 @@ Per l'utente root, `crontab` ha anche alcune impostazioni speciali del tempo:
 
 Un utente, rockstar, vuole modificare il suo file `crontab`:
 
-1) `crond` controlla se è permesso (`/etc/cron.allow` e `/etc/cron.deny`).
+1. `crond` controlla se è autorizzato (`/etc/cron.allow` e `/etc/cron.deny`).
 
-2) Se lo è, accede al file `crontab` (`/var/spool/cron/rockstar`).
+2. Se lo è, accede al suo file `crontab` (`/var/spool/cron/rockstar`).
 
-Ogni minuto `cron` legge il file di pianificazione.
+    Ogni minuto `crond` legge i file di pianificazione.
 
-3) Esegue le attività pianificate.
+3. Esegue le attività programmate.
 
-4) Riporta sistematicamente in un file di registro (`/var/log/cron`).
+4. I rapporti sono riportati sistematicamente in un file di log (`/var/log/cron`).
