@@ -104,13 +104,16 @@ Ci sono molte utilità per fare il backup.
 I comandi che useremo qui sono `tar` e `cpio`.
 
 * `tar`:
-  * facile da usare ;
-  * consente di aggiungere file a un backup esistente.
+
+  1. facile da usare;
+  2. consente di aggiungere file a un backup esistente.
+
 * `cpio`:
-  * conserva i proprietari;
-  * conserva gruppi, date e permessi;
-  * salta i file danneggiati;
-  * file system completo.
+
+  1. conserva i proprietari;
+  2. conserva gruppi, date e permessi;
+  3. salta i file danneggiati;
+  4. file system completo.
 
 !!! Note "Nota"
 
@@ -185,9 +188,9 @@ L'utilità predefinita per la creazione di backup su sistemi UNIX è il comando 
 
 #### Stimare le dimensioni di un backup
 
-Il comando seguente stima la dimensione in kilobyte di un possibile file _tar_:
+Il comando seguente stima la dimensione in kilobyte di un possibile file *tar*:
 
-```
+```bash
 $ tar cf - /directory/to/backup/ | wc -c
 20480
 $ tar czf - /directory/to/backup/ | wc -c
@@ -208,10 +211,10 @@ Ecco un esempio di convenzione di denominazione per un backup `tar`, sapendo che
 | ------- | ------- | ---------------- | ------------------------------------------------- |
 | `cvf`   | `home`  | `home.tar`       | `/home` in modalità relativa, forma non compressa |
 | `cvfP`  | `/etc`  | `etc.A.tar`      | `/etc` in modalità assoluta, nessuna compressione |
-| `cvfz`  | `usr`   | `usr.tar.gz`     | `/usr` in modalità relativa, compressione _gzip_  |
-| `cvfj`  | `usr`   | `usr.tar.bz2`    | `/usr` in modalità relativa, compressione _bzip2_ |
-| `cvfPz` | `/home` | `home.A.tar.gz`  | `home` in modalità assoluta, compressione _gzip_  |
-| `cvfPj` | `/home` | `home.A.tar.bz2` | `home` in modalità assoluta, compressione _bzip2_ |
+| `cvfz`  | `usr`   | `usr.tar.gz`     | `/usr` in modalità relativa, compressione *gzip*  |
+| `cvfj`  | `usr`   | `usr.tar.bz2`    | `/usr` in modalità relativa, compressione *bzip2* |
+| `cvfPz` | `/home` | `home.A.tar.gz`  | `home` in modalità assoluta, compressione *gzip*  |
+| `cvfPj` | `/home` | `home.A.tar.bz2` | `home` in modalità assoluta, compressione *bzip2* |
 | …       |         |                  |                                                   |
 
 #### Creare un backup
@@ -220,16 +223,15 @@ Ecco un esempio di convenzione di denominazione per un backup `tar`, sapendo che
 
 La creazione di un backup non compresso in modalità relativa viene eseguita con le opzioni `cvf`:
 
-```
+```bash
 tar c[vf] [device] [file(s)]
 ```
 
 Esempio:
 
-```
+```bash
 [root]# tar cvf /backups/home.133.tar /home/
 ```
-
 
 | Opzione | Descrizione                                            |
 | ------- | ------------------------------------------------------ |
@@ -245,20 +247,19 @@ Esempio:
 
 La creazione di un backup non compresso in modo esplicito in modalità assoluta viene eseguita con le opzioni `cvfP`:
 
-```
-$ tar c[vf]P [device] [file(s)]
+```bash
+tar c[vf]P [device] [file(s)]
 ```
 
 Esempio:
 
-```
+```bash
 [root]# tar cvfP /backups/home.133.P.tar /home/
 ```
 
 | Opzione | Descrizione                          |
 | ------- | ------------------------------------ |
 | `P`     | Crea un backup in modalità assoluta. |
-
 
 !!! Warning "Attenzione"
 
@@ -268,14 +269,13 @@ Esempio:
 
 La creazione di un backup compresso con 'gzip' viene eseguita con le opzioni `cvfz`:
 
-```
-$ tar cvzf backup.tar.gz dirname/
+```bash
+tar cvzf backup.tar.gz dirname/
 ```
 
 | Opzione | Descrizione                    |
 | ------- | ------------------------------ |
-| `z`     | Comprime il backup con _gzip_. |
-
+| `z`     | Comprime il backup con *gzip*. |
 
 !!! Note "Nota"
 
@@ -289,13 +289,13 @@ $ tar cvzf backup.tar.gz dirname/
 
 La creazione di un backup compresso con `bzip` viene eseguita con le opzioni `cvfj`:
 
-```
-$ tar cvfj backup.tar.bz2 dirname/
+```bash
+tar cvfj backup.tar.bz2 dirname/
 ```
 
-| Opzione | Descrizione                      |
-| ------- | -------------------------------- |
-| `j`     | Comprime il backup con_bzip2_. |
+| Opzione | Descrizione                     |
+| ------- | ------------------------------- |
+| `j`     | Comprime il backup con *bzip2*. |
 
 !!! Note "Nota"
 
@@ -307,30 +307,30 @@ La compressione, e di conseguenza la decompressione, avrà un impatto sul consum
 
 Ecco una classifica della compressione di un insieme di file di testo, dal meno al più efficiente:
 
-- compress (`.tar.Z`)
-- gzip (`.tar.gz`)
-- bzip2 (`.tar.bz2`)
-- lzip (`.tar.lz`)
-- xz (`.tar.xz`)
+* compress (`.tar.Z`)
+* gzip (`.tar.gz`)
+* bzip2 (`.tar.bz2`)
+* lzip (`.tar.lz`)
+* xz (`.tar.xz`)
 
 #### Aggiungere un file o una directory a un backup esistente
 
 È possibile aggiungere uno o più elementi a un backup esistente.
 
-```
+```bash
 tar {r|A}[key(s)] [device] [file(s)]
 ```
 
 Per aggiungere `/etc/passwd` al backup `/backups/home.133.tar`:
 
-```
+```bash
 [root]# tar rvf /backups/home.133.tar /etc/passwd
 ```
 
 L'aggiunta di una directory è simile. Qui aggiungi `dirtoadd` a `backup_name.tar`:
 
-```
-$ tar rvf backup_name.tar dirtoadd
+```bash
+tar rvf backup_name.tar dirtoadd
 ```
 
 | Opzione | Descrizione                                                                                     |
@@ -358,7 +358,7 @@ $ tar rvf backup_name.tar dirtoadd
 
 È possibile visualizzare il contenuto di un backup senza estrarlo.
 
-```
+```bash
 tar t[key(s)] [device]
 ```
 
@@ -368,16 +368,16 @@ tar t[key(s)] [device]
 
 Esempi:
 
-```
-$ tar tvf backup.tar
-$ tar tvfz backup.tar.gz
-$ tar tvfj backup.tar.bz2
+```bash
+tar tvf backup.tar
+tar tvfz backup.tar.gz
+tar tvfj backup.tar.bz2
 ```
 
-Quando il numero di file in un backup diventa grande, è possibile inviare in  _pipe_ il risultato del comando `tar` ad un _impaginatore_ (`more`, `less`, `most`, ecc.):
+Quando il numero di file in un backup diventa grande, è possibile inviare in *pipe* il risultato del comando `tar` ad un *impaginatore* (`more`, `less`, `most`, ecc.):
 
-```
-$ tar tvf backup.tar | less
+```bash
+tar tvf backup.tar | less
 ```
 
 !!! Tip "Suggerimento"
@@ -392,14 +392,14 @@ $ tar tvf backup.tar | less
 
 L'integrità di un backup può essere testata con la chiave `W` al momento della sua creazione:
 
-```
-$ tar cvfW file_name.tar dir/
+```bash
+tar cvfW file_name.tar dir/
 ```
 
 L'integrità di un backup può essere testata con la chiave `d` dopo la sua creazione:
 
-```
-$ tar vfd file_name.tar dir/
+```bash
+tar vfd file_name.tar dir/
 ```
 
 !!! Tip "Suggerimento"
@@ -419,7 +419,7 @@ $ tar vfd file_name.tar dir/
 
 L'opzione `W` viene utilizzata anche per confrontare il contenuto di un archivio con il filesystem:
 
-```
+```bash
 $ tar tvfW file_name.tar
 Verify 1/file1
 1/file1: Mod time differs
@@ -428,33 +428,33 @@ Verify 1/file2
 Verify 1/file3
 ```
 
-La verifica con l'opzione `W` non può essere eseguita con un archivio compresso. Deve essere utilizzata l'opzione `d` :
+La verifica con l'opzione `W` non può essere eseguita con un archivio compresso. Deve essere utilizzata l'opzione ++d++:
 
+```bash
+tar dfz file_name.tgz
+tar dfj file_name.tar.bz2
 ```
-$ tar dfz file_name.tgz
-$ tar dfj file_name.tar.bz2
-```
 
-#### Estrarre (_untar_) un backup
+#### Estrarre (*untar*) un backup
 
-L'estrazione di un backup (_untar_) `*.tar` viene eseguito con le opzioni `xvf`:
+L'estrazione di un backup (*untar*) `*.tar` viene eseguito con le opzioni `xvf`:
 
 Estrarre il file `etc/exports` dal backup `/savings/etc.133.tar` nella cartella `etc` della directory corrente:
 
-```
-$ tar xvf /backups/etc.133.tar etc/exports
+```bash
+tar xvf /backups/etc.133.tar etc/exports
 ```
 
 Estrarre tutti i file dal backup compresso `/backups/home.133.tar.bz2` nella directory corrente:
 
-```
+```bash
 [root]# tar xvfj /backups/home.133.tar.bz2
 ```
 
 Estrarre tutti i file dal backup `/backups/etc.133.P.tar` nella loro directory originale:
 
-```
-$ tar xvfP /backups/etc.133.P.tar
+```bash
+tar xvfP /backups/etc.133.P.tar
 ```
 
 !!! Warning "Attenzione"
@@ -467,17 +467,16 @@ $ tar xvfP /backups/etc.133.P.tar
 | ------- | --------------------------------------------- |
 | `x`     | Estrarre i file dal backup, compressi o meno. |
 
+L'estrazione di un backup *tar-gzipped* (`*.tar.gz`) viene eseguita con le opzioni `xvfz`:
 
-L'estrazione di un backup _tar-gzipped_ (`*.tar.gz`) viene eseguita con le opzioni `xvfz`:
-
+```bash
+tar xvfz backup.tar.gz
 ```
-$ tar xvfz backup.tar.gz
-```
 
-L'estrazione di un _tar-bzipped_ (`*.tar.bz2`) viene eseguita con le opzioni `xvfj`:
+L'estrazione di un *tar-bzipped* (`*.tar.bz2`) viene eseguita con le opzioni `xvfj`:
 
-```
-$ tar xvfj backup.tar.bz2
+```bash
+tar xvfj backup.tar.bz2
 ```
 
 !!! Tip "Suggerimento"
@@ -488,52 +487,52 @@ $ tar xvfj backup.tar.bz2
 
     Per ripristinare i file nella loro cartella originale (chiave `P` di un `tar xvf`), devi aver generato il backup con il percorso assoluto. Cioè, con la chiave `P` di un `tar cvf`.
 
-##### Estrarre solo un file da un backup _tar_
+##### Estrarre solo un file da un backup *tar*
 
-Per estrarre un file specifico da un backup _tar_, specificare il nome di tale file alla fine del comando `tar xvf`.
+Per estrarre un file specifico da un backup *tar*, specificare il nome di tale file alla fine del comando `tar xvf`.
 
-```
-$ tar xvf backup.tar /path/to/file
+```bash
+tar xvf backup.tar /path/to/file
 ```
 
 Il comando precedente estrae solo il file `/path/to/file` dal backup `backup.tar`. Questo file verrà ripristinato nella directory `/path/to/` creata, o già presente, nella directory corrente.
 
-```
-$ tar xvfz backup.tar.gz /path/to/file
-$ tar xvfj backup.tar.bz2 /path/to/file
+```bash
+tar xvfz backup.tar.gz /path/to/file
+tar xvfj backup.tar.bz2 /path/to/file
 ```
 
-##### Estrarre una cartella da un backup _tar_
+##### Estrarre una cartella da un backup *tar*
 
 Per estrarre una sola directory (incluse le sottodirectory e i file) da un backup, specificare il nome della directory alla fine del comando `tar xvf`.
 
-```
-$ tar xvf backup.tar /path/to/dir/
+```bash
+tar xvf backup.tar /path/to/dir/
 ```
 
 Per estrarre più directory, specificare ciascuno dei nomi uno dopo l'altro:
 
-```
-$ tar xvf backup.tar /path/to/dir1/ /path/to/dir2/
-$ tar xvfz backup.tar.gz /path/to/dir1/ /path/to/dir2/
-$ tar xvfj backup.tar.bz2 /path/to/dir1/ /path/to/dir2/
+```bash
+tar xvf backup.tar /path/to/dir1/ /path/to/dir2/
+tar xvfz backup.tar.gz /path/to/dir1/ /path/to/dir2/
+tar xvfj backup.tar.bz2 /path/to/dir1/ /path/to/dir2/
 ```
 
-##### Estrarre un gruppo di file da un backup _tar_ utilizzando espressioni regolari (_regex_)
+##### Estrarre un gruppo di file da un backup *tar* utilizzando espressioni regolari (_regex_)
 
-Specificate un (_regex_) per estrarre i file corrispondenti al modello di selezione specificato.
+Specificate un (*regex*) per estrarre i file corrispondenti al modello di selezione specificato.
 
 Ad esempio, per estrarre tutti i file con l'estensione `.conf` :
 
-```
-$ tar xvf backup.tar --wildcards '*.conf'
+```bash
+tar xvf backup.tar --wildcards '*.conf'
 ```
 
 chiavi :
 
-  * `--wildcards *.conf` corrisponde ai file con estensione `.conf`.
+* `--wildcards *.conf` corrisponde ai file con estensione `.conf`.
 
-## _CoPy Input Output_ - `cpio`
+## *CoPy Input Output* - `cpio`
 
 Il comando `cpio` consente di salvare su più supporti successivi senza specificare alcuna opzione.
 
@@ -559,7 +558,7 @@ Questo elenco è fornito con i comandi `find`, `ls` o `cat`.
 
 Sintassi del comando `cpio`:
 
-```
+```bash
 [files command |] cpio {-o| --create} [-options] [<file-list] [>device]
 ```
 
@@ -567,17 +566,17 @@ Esempio:
 
 Con un reindirizzamento dell'output di `cpio`:
 
-```
-$ find /etc | cpio -ov > /backups/etc.cpio
+```bash
+find /etc | cpio -ov > /backups/etc.cpio
 ```
 
 Utilizzo del nome di un supporto di backup:
 
-```
-$ find /etc | cpio -ovF /backups/etc.cpio
+```bash
+find /etc | cpio -ovF /backups/etc.cpio
 ```
 
-Il risultato del comando `find` viene inviato come input al comando `cpio` tramite una _pipe_ (carattere `|`, <kbd>AltGr</kbd> + <kbd>6</kbd>).
+Il risultato del comando `find` viene inviato come input al comando `cpio` tramite una *pipe* (carattere `|`, ++alt-graph+6++).
 
 Qui, il comando `find /etc` restituisce un elenco di file corrispondenti al contenuto della directory `/etc` (ricorsivamente) al comando `cpio`, che esegue il backup.
 
@@ -585,14 +584,14 @@ Non dimenticare il segno `>` durante il salvataggio o l'opzione `F save_name_cpi
 
 | Opzioni | Descrizione                              |
 | ------- | ---------------------------------------- |
-| `-o`    | Crea un backup (_output_).               |
+| `-o`    | Crea un backup (*output*).               |
 | `-v`    | Visualizza il nome dei file elaborati.   |
 | `-F`    | Indica il backup da modificare (medium). |
 
 Backup su un supporto:
 
-```
-$ find /etc | cpio -ov > /dev/rmt0
+```bash
+find /etc | cpio -ov > /dev/rmt0
 ```
 
 Il supporto può essere di vari tipi:
@@ -604,15 +603,15 @@ Il supporto può essere di vari tipi:
 
 #### Backup con percorso relativo
 
-```
-$ cd /
-$ find etc | cpio -o > /backups/etc.cpio
+```bash
+cd /
+find etc | cpio -o > /backups/etc.cpio
 ```
 
 #### Backup con percorso assoluto
 
-```
-$ find /etc | cpio -o > /backups/etc.A.cpio
+```bash
+find /etc | cpio -o > /backups/etc.A.cpio
 ```
 
 !!! Warning "Attenzione"
@@ -623,14 +622,14 @@ $ find /etc | cpio -o > /backups/etc.A.cpio
 
 ### Aggiungere a un backup
 
-```
+```bash
 [files command |] cpio {-o| --create} -A [-options] [<fic-list] {F|>device}
 ```
 
 Esempio:
 
-```
-$ find /etc/shadow | cpio -o -AF SystemFiles.A.cpio
+```bash
+find /etc/shadow | cpio -o -AF SystemFiles.A.cpio
 ```
 
 L'aggiunta di file è possibile solo su supporti ad accesso diretto.
@@ -644,7 +643,7 @@ L'aggiunta di file è possibile solo su supporti ad accesso diretto.
 
 * Salva **poi** comprimi
 
-```
+```bash
 $ find /etc | cpio  –o > etc.A.cpio
 $ gzip /backups/etc.A.cpio
 $ ls /backups/etc.A.cpio*
@@ -653,8 +652,8 @@ $ ls /backups/etc.A.cpio*
 
 * Salva **e** comprimi
 
-```
-$ find /etc | cpio –o | gzip > /backups/etc.A.cpio.gz
+```bash
+find /etc | cpio –o | gzip > /backups/etc.A.cpio.gz
 ```
 
 Non c'è alcuna opzione, a differenza del comando `tar`, per salvare e comprimere allo stesso tempo. Quindi è fatto in due passaggi: salvataggio e compressione.
@@ -665,16 +664,16 @@ Per il primo metodo, il file di backup viene automaticamente rinominato dall'uti
 
 ### Leggere il contenuto di un backup
 
-Sintassi del comando `cpio` per leggere il contenuto di un backup _cpio_:
+Sintassi del comando `cpio` per leggere il contenuto di un backup *cpio*:
 
-```
+```bash
 cpio -t [-options] [<fic-list]
 ```
 
 Esempio:
 
-```
-$ cpio -tv </backups/etc.152.cpio | less
+```bash
+cpio -tv </backups/etc.152.cpio | less
 ```
 
 | Opzioni | Descrizione                        |
@@ -690,14 +689,14 @@ Allo stesso modo, prima di eseguire un ripristino, è necessario leggere il cont
 
 Sintassi del comando `cpio` per ripristinare un backup:
 
-```
+```bash
 cpio {-i| --extract} [-E file] [-options] [<device]
 ```
 
 Esempio:
 
-```
-$ cpio -iv </backups/etc.152.cpio | less
+```bash
+cpio -iv /backups/etc.152.cpio | less
 ```
 
 | Opzioni                     | Descrizione                                                                          |
@@ -718,24 +717,24 @@ Esempi:
 
 * Ripristinare un backup assoluto in modalità assoluta
 
-```
-$ cpio –ivF home.A.cpio
+```bash
+cpio –ivF home.A.cpio
 ```
 
 * Ripristino assoluto su una struttura ad albero esistente
 
 L'opzione `u` consente di sovrascrivere i file esistenti nella posizione in cui avviene il ripristino.
 
-```
-$ cpio –iuvF home.A.cpio
+```bash
+cpio –iuvF home.A.cpio
 ```
 
 * Ripristinare un backup assoluto in modalità relativa
 
 L'opzione lunga `no-absolute-filenames` consente un ripristino in modalità relativa. Infatti la `/` all'inizio del percorso verrà rimossa.
 
-```
-$ cpio --no-absolute-filenames -divuF home.A.cpio
+```bash
+cpio --no-absolute-filenames -divuF home.A.cpio
 ```
 
 !!! Tip "Suggerimento"
@@ -744,15 +743,15 @@ $ cpio --no-absolute-filenames -divuF home.A.cpio
 
 * Ripristinare un backup relativo
 
-```
-$ cpio –iv <etc.cpio
+```bash
+cpio –iv etc.cpio
 ```
 
 * Ripristino in modalità assoluta di un file o di una directory
 
 Il ripristino di un particolare file o directory richiede la creazione di un file di elenco che deve poi essere eliminato.
 
-```
+```bash
 echo "/etc/passwd" > tmp
 cpio –iuE tmp -F etc.A.cpio
 rm -f tmp
@@ -775,13 +774,13 @@ Il comando `gzip` comprime i dati.
 
 Sintassi del comando `gzip`:
 
-```
+```bash
 gzip [options] [file ...]
 ```
 
 Esempio:
 
-```
+```bash
 $ gzip usr.tar
 $ ls
 usr.tar.gz
@@ -797,13 +796,13 @@ Anche il comando `bunzip2` comprime i dati.
 
 Sintassi del comando `bzip2`:
 
-```
+```bash
 bzip2 [options] [file ...]
 ```
 
 Esempio:
 
-```
+```bash
 $ bzip2 usr.cpio
 $ ls
 usr.cpio.bz2
@@ -819,13 +818,13 @@ Il comando `gunzip` decomprime i dati compressi.
 
 Sintassi del comando `gunzip`:
 
-```
+```bash
 gunzip [options] [file ...]
 ```
 
 Esempio:
 
-```
+```bash
 $ gunzip usr.tar.gz
 $ ls
 usr.tar
@@ -845,13 +844,13 @@ Il comando `bunzip2` decomprime i dati compressi.
 
 Sintassi del comando `bzip2`:
 
-```
+```bash
 bzip2 [options] [file ...]
 ```
 
 Esempio:
 
-```
+```bash
 $ bunzip2 usr.cpio.bz2
 $ ls
 usr.cpio

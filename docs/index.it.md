@@ -4,7 +4,7 @@ title: Home
 
 # Documentazione Rocky Linux
 
-## Benvenuto!
+## Benvenuto
 
 Benvenuti nell'hub di documentazione di Rocky Linux; siamo lieti che siate qui. Abbiamo diversi collaboratori che aggiungono contenuti e questi contenuti crescono continuamente. Qui troverete documenti su come costruire Rocky Linux stesso, oltre a documenti su vari argomenti importanti per la comunità Rocky Linux. Chi compone questa comunità, vi chiederete?
 
@@ -18,7 +18,7 @@ Questa pagina iniziale vi fornirà un'introduzione al sito web della documentazi
 
 Ora siete nella pagina iniziale della documentazione. Se si dà un'occhiata al menu in alto (sempre disponibile, anche sui dispositivi mobili) si può vedere la struttura principale che mostra le sezioni di primo livello del sito di documentazione. Se si fa clic su ciascuna voce del menu superiore (ad esempio, " Guides "), sul lato sinistro viene visualizzato l'elenco delle *sottosezioni* per ciascuna sezione principale. Le guide comprendono molti argomenti di interesse.
 
-Quando si apre un documento, sul lato destro viene visualizzato una "Tabella dei Contenuti" con collegamenti di navigazione cliccabili per quel documento (per i dispositivi mobili provare l'orientamento orizzontale). Per i documenti lunghi, come le [Note di rilascio](release_notes/8_8.md), l'indice permette di muoversi agevolmente all'interno del documento. Se state leggendo un documento lungo e volete tornare all'inizio, premete il tasto <kbd>pg su</kbd> e vedrete apparire un pulsante `Back to top` nella parte superiore dello schermo.
+Quando si apre un documento, sul lato destro viene visualizzato una "Tabella dei Contenuti" con collegamenti di navigazione cliccabili per quel documento (per i dispositivi mobili provare l'orientamento orizzontale). Per i documenti lunghi, come le [Note di rilascio](release_notes/8_8.md), l'indice permette di muoversi agevolmente all'interno del documento. Se state leggendo un documento lungo e volete tornare all'inizio, premete ++page-up++ e vedrete apparire un pulsante `Back to top` nella parte superiore dello schermo.
 
 Le sezioni principali del sito di documentazione sono:
 
