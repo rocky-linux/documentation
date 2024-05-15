@@ -4,29 +4,29 @@ title: Ansibile Intermedio
 
 # Ansibile Intermedio
 
-In questo capitolo continuerete a imparare come lavorare con Ansible.
+In questo capitolo si continuerà a imparare a lavorare con Ansible.
 
 ****
 
-**Obiettivi**: In questo capitolo imparerai a:
+**Obiettivi**: in questo capitolo imparerete come:
 
-:heavy_check_mark: lavorare con le variabili;       
-:heavy_check_mark: usare i cicli;   
-:heavy_check_mark: gestire i cambiamenti di stato e reagire a loro;   
+:heavy_check_mark: lavorare con le variabili;  
+:heavy_check_mark: usare i cicli;  
+:heavy_check_mark: gestire i cambiamenti di stato e reagire a loro;  
 :heavy_check_mark: gestire le attività asincrone.
 
 :checkered_flag: **ansible**, **moduli**, **playbook**
 
-**Conoscenza**: :star: :star: :star:     
+**Conoscenza**: :star: :star: :star:  
 **Complessità**: :star: :star:
 
 **Tempo di lettura**: 30 minuti
 
 ****
 
-Nel capitolo precedente, hai imparato come installare Ansible, usarlo dalla riga di comando, o come scrivere playbook per promuovere la riutilizzabilità del tuo codice.
+Nel capitolo precedente si è appreso come installare Ansible, utilizzarlo dalla riga di comando e scrivere playbook per promuovere la riutilizzabilità del codice.
 
-In questo capitolo, possiamo iniziare a scoprire alcune nozioni più avanzate su come usare Ansible, e scoprire alcune attività interessanti che userete molto regolarmente.
+In questo capitolo, possiamo iniziare a scoprire nozioni più avanzate su come utilizzare Ansible e alcuni task interessanti che utilizzerete regolarmente.
 
 ## Le variabili
 
@@ -45,11 +45,11 @@ Queste variabili possono essere organizzate come:
 * dizionari,
 * elenchi.
 
-Una variabile può essere definita in luoghi diversi, come in un playbook, in un ruolo o dalla riga di comando, per esempio.
+Una variabile può essere definita in diversi luoghi, come un playbook, un ruolo o la riga di comando.
 
 Per esempio, da un playbook:
 
-```
+```bash
 ---
 - hosts: apache1
   vars:
@@ -61,8 +61,8 @@ Per esempio, da un playbook:
 
 o dalla riga di comando:
 
-```
-$ ansible-playbook deploy-http.yml --extra-vars "service=httpd"
+```bash
+ansible-playbook deploy-http.yml --extra-vars "service=httpd"
 ```
 
 Una volta definita, una variabile può essere utilizzata chiamandola tra due parentesi graffe:
@@ -72,7 +72,7 @@ Una volta definita, una variabile può essere utilizzata chiamandola tra due par
 
 Per esempio:
 
-```
+```bash
 - name: make sure apache is started
   ansible.builtin.systemd:
     name: "{{ service['rhel'] }}"
@@ -85,7 +85,7 @@ Naturalmente, è anche possibile accedere alle variabili globali (i **fatti**) d
 
 Le variabili possono essere incluse in un file esterno al playbook, in questo caso questo file deve essere definito nel playbook con la direttiva `vars_files`:
 
-```
+```bash
 ---
 - hosts: apache1
   vars_files:
@@ -94,7 +94,7 @@ Le variabili possono essere incluse in un file esterno al playbook, in questo ca
 
 Il file `myvariables.yml`:
 
-```
+```bash
 ---
 port_http: 80
 ansible.builtin.systemd::
@@ -104,7 +104,7 @@ ansible.builtin.systemd::
 
 Può anche essere aggiunto dinamicamente con l'uso del modulo `include_vars`:
 
-```
+```bash
 - name: Include secrets.
   ansible.builtin.include_vars:
     file: vault.yml
@@ -114,14 +114,14 @@ Può anche essere aggiunto dinamicamente con l'uso del modulo `include_vars`:
 
 Per visualizzare una variabile, è necessario attivare il modulo `di debug` come segue:
 
-```
+```bash
 - ansible.builtin.debug:
     var: service['debian']
 ```
 
 È anche possibile utilizzare la variabile all'interno di un testo:
 
-```
+```bash
 - ansible.builtin.debug:
     msg: "Print a variable in a message : {{ service['debian'] }}"
 ```
@@ -132,7 +132,7 @@ Per salvare il risultato di un compito e per essere in grado di accedervi più t
 
 Uso di una variabile memorizzata:
 
-```
+```bash
 - name: /home content
   shell: ls /home
   register: homes
@@ -148,17 +148,17 @@ Uso di una variabile memorizzata:
 
 !!! Note "Nota"
 
-    La variabile `homes.stdout_lines` è una lista di variabili di tipo stringa, un modo per organizzare variabili che non avevamo ancora incontrato.
+    La variabile `homes.stdout_lines' è un elenco di variabili di tipo stringa, un modo per organizzare le variabili che non avevamo ancora incontrato.
 
 Le stringhe che compongono la variabile memorizzata possono essere consultate tramite il valore `stdout` (che ti permette di fare cose come `homes.stdout.find("core") != -1`), per sfruttarli usando un ciclo (vedi `loop`), o semplicemente dai loro indici come visto nell'esempio precedente.
 
-### Esercizi
+### Esercizi:
 
-* Scrivi un playbook `play-vars.yml` che stampa il nome della distribuzione di destinazione con la sua versione principale, utilizzando variabili globali.
+* Scrivere un playbook, `play-vars.yml,` usando variabili globali che stampino il nome della distribuzione e la versione principale del target.
 
 * Scrivi un playbook usando il seguente dizionario per visualizzare i servizi che verranno installati:
 
-```
+```bash
 service:
   web:
     name: apache
@@ -176,15 +176,15 @@ Il tipo predefinito dovrebbe essere "web".
 
 ## Gestione dei cicli
 
-Con l'aiuto di loop, è possibile iterare un compito su una lista, un hash, o dizionario, per esempio.
+Un ciclo consente di iterare un'operazione su un elenco, un hash o un dizionario, ad esempio.
 
 !!! Note "Nota"
 
     Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html).
 
-Semplice esempio di utilizzo, creazione di 4 utenti:
+Un semplice esempio di utilizzo, la creazione di 4 utenti:
 
-```
+```bash
 - name: add users
   user:
     name: "{{ item }}"
@@ -201,7 +201,7 @@ Ad ogni iterazione del ciclo, il valore della lista utilizzata viene memorizzato
 
 Naturalmente, un elenco può essere definito in un file esterno:
 
-```
+```bash
 users:
   - antoine
   - patrick
@@ -209,9 +209,9 @@ users:
   - xavier
 ```
 
-ed essere usato all'interno del task come questo (dopo aver incluso il file var):
+ed essere utilizzato all'interno del task in questo modo (dopo aver incluso il file vars):
 
-```
+```bash
 - name: add users
   user:
     name: "{{ item }}"
@@ -220,9 +220,9 @@ ed essere usato all'interno del task come questo (dopo aver incluso il file var)
   loop: "{{ users }}"
 ```
 
-Possiamo usare l'esempio visto durante lo studio delle variabili memorizzate per migliorarlo. Uso di una variabile memorizzata:
+Possiamo utilizzare l'esempio visto durante lo studio delle variabili memorizzate per migliorarlo. Uso di una variabile memorizzata:
 
-```
+```bash
 - name: /home content
   shell: ls /home
   register: homes
@@ -235,13 +235,13 @@ Possiamo usare l'esempio visto durante lo studio delle variabili memorizzate per
 
 Un dizionario può anche essere usato in un ciclo.
 
-In questo caso, dovrai trasformare il dizionario in un oggetto con quello che viene chiamato filtro **jinja** (jinja è il motore di modellazione usato da Ansible): `dict2items`.
+In questo caso, è necessario trasformare il dizionario in un elemento con un filtro **jinja** (jinja è il motore di template utilizzato da Ansible): `| dict2items`.
 
-Nel ciclo, diventa possibile utilizzare `item.key` che corrisponde alla chiave del dizionario, e `item.value` che corrisponde ai valori della chiave.
+Nel ciclo, è possibile utilizzare `item.key`, che corrisponde alla chiave del dizionario, e `item.value`, che corrisponde ai valori della chiave.
 
 Vediamo questo attraverso un esempio concreto, mostrando la gestione degli utenti del sistema:
 
-```
+```bash
 ---
 - hosts: rocky8
   become: true
@@ -267,9 +267,9 @@ Vediamo questo attraverso un esempio concreto, mostrando la gestione degli utent
 
 !!! Note "Nota"
 
-    Molte cose possono essere fatte con i loops. Scoprirete le possibilità offerte dai loop quando il vostro uso di Ansible vi spingerà ad usarli in modo più complesso.
+    I loop possono essere utilizzati per molte cose. Quando l'uso di Ansible vi spingerà a utilizzarli in modo più complesso, scoprirete le possibilità che offrono.
 
-### Esercizi
+### Esercizi:
 
 * Visualizza il contenuto della variabile `service` dell'esercizio precedente utilizzando un loop.
 
@@ -287,13 +287,13 @@ Vediamo questo attraverso un esempio concreto, mostrando la gestione degli utent
 
     Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html).
 
-L'istruzione `when` è molto utile in molti casi: non eseguire determinate azioni su determinati tipi di server, se un file o un utente non esistono, ecc.
+L'istruzione `when` è molto utile in molti casi, ad esempio per non eseguire determinate azioni su certi tipi di server, se un file o un utente non esiste, ecc.
 
 !!! Note "Nota"
 
-    Dietro la dichiarazione `when` le variabili non hanno bisogno di parentesi graffe doppie (sono infatti espressioni Jinja2...).
+    Dietro l'istruzione `when`, le variabili non hanno bisogno di doppie parentesi (sono infatti espressioni Jinja2...).
 
-```
+```bash
 - name: "Reboot only Debian servers"
   reboot:
   when: ansible_os_family == "Debian"
@@ -301,7 +301,7 @@ L'istruzione `when` è molto utile in molti casi: non eseguire determinate azion
 
 Le condizioni possono essere raggruppate tra parentesi:
 
-```
+```bash
 - name: "Reboot only CentOS version 6 and Debian version 7"
   reboot:
   when: (ansible_distribution == "CentOS" and ansible_distribution_major_version == "6") or
@@ -310,7 +310,7 @@ Le condizioni possono essere raggruppate tra parentesi:
 
 Le condizioni corrispondenti a una logica AND possono essere fornite sotto forma di elenco:
 
-```
+```bash
 - name: "Reboot only CentOS version 6"
   reboot:
   when:
@@ -320,7 +320,7 @@ Le condizioni corrispondenti a una logica AND possono essere fornite sotto forma
 
 Puoi testare il valore di un booleano e verificare che sia vero:
 
-```
+```bash
 - name: check if directory exists
   stat:
     path: /home/ansible
@@ -338,19 +338,19 @@ Puoi testare il valore di un booleano e verificare che sia vero:
 
 Puoi anche verificare che non sia vero:
 
-```
-  when:
-    - file.stat.exists
-    - not file.stat.isdir
+```bash
+when:
+  - file.stat.exists
+  - not file.stat.isdir
 ```
 
 Probabilmente dovrai verificare che esiste una variabile per evitare errori di esecuzione:
 
-```
-  when: myboolean is defined and myboolean
+```bash
+when: myboolean is defined and myboolean
 ```
 
-### Esercizi
+### Esercizi:
 
 * Stampa il valore di `service.web` solo quando `type` è uguale a `web`.
 
@@ -360,15 +360,15 @@ Probabilmente dovrai verificare che esiste una variabile per evitare errori di e
 
     Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/playbooks_handlers.html).
 
-I gestori consentono di avviare operazioni, come il riavvio di un servizio, quando si verificano modifiche.
+Quando si verificano le modifiche, i gestori sono autorizzati a lanciare operazioni, come il riavvio di un servizio.
 
-Un modulo, essendo idempotente, un playbook può rilevare che c'è stato un cambiamento significativo su un sistema remoto, e quindi innescare un'operazione di reazione a questo cambiamento. Una notifica viene inviata alla fine di un blocco di attività del playbook, e l'operazione di reazione sarà attivata solo una volta anche se più attività inviano la stessa notifica.
+Un modulo, essendo idempotente, un playbook può rilevare che c'è stato un cambiamento significativo su un sistema remoto e quindi attivare un'operazione in reazione a questo cambiamento. Una notifica viene inviata alla fine di un blocco di attività di playbook e l'operazione di reazione verrà attivata una sola volta, anche se più attività inviano la stessa notifica.
 
 ![Gestori](images/handlers.png)
 
-Ad esempio, diverse attività possono indicare che il servizio `httpd` deve essere riavviato a causa di un cambiamento nei suoi file di configurazione. Ma il servizio sarà riavviato solo una volta per evitare riavvi non necessari.
+Ad esempio, diverse attività possono indicare che il servizio `httpd` deve essere riavviato a causa di un cambiamento nei suoi file di configurazione. Tuttavia, il servizio verrà riavviato solo una volta per evitare più avvii inutili.
 
-```
+```bash
 - name: template configuration file
   template:
     src: template-site.j2
@@ -380,12 +380,12 @@ Ad esempio, diverse attività possono indicare che il servizio `httpd` deve esse
 
 Un gestore è una sorta di compito referenziato da un nome globale unico:
 
-* È attivato da uno o più notificanti.
+* Uno o più notificatori lo attivano.
 * Non inizia immediatamente, ma attende fino a quando tutte le attività sono complete.
 
 Esempio di gestori:
 
-```
+```bash
 handlers:
 
   - name: restart memcached
@@ -401,7 +401,7 @@ handlers:
 
 Dala versione 2.2 di Ansible, i gestori possono anche ascoltare direttamente:
 
-```
+```bash
 handlers:
 
   - name: restart memcached
@@ -428,20 +428,20 @@ tasks:
 
     Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/playbooks_async.html).
 
-Per impostazione predefinita, le connessioni SSH agli host rimangono aperte durante l'esecuzione delle varie attività di playbook su tutti i nodi.
+Per impostazione predefinita, le connessioni SSH agli host rimangono aperte durante l'esecuzione di varie attività del playbook su tutti i nodi.
 
 Ciò può causare alcuni problemi, in particolare:
 
 * se il tempo di esecuzione dell'attività è più lungo del timeout della connessione SSH
-* se la connessione è interrotta durante l'azione (riavvio del server, per esempio)
+* se la connessione viene interrotta durante l'azione (riavvio del server, ad esempio)
 
-In questo caso, si dovrà passare alla modalità asincrona e specificare un tempo di esecuzione massimo così come la frequenza (di default 10s) con cui si controllerà lo stato dell'host.
+In questo caso, si dovrà passare alla modalità asincrona e specificare un tempo massimo di esecuzione e la frequenza (per impostazione predefinita, 10s) con cui si controllerà lo stato dell'host.
 
 Specificando un valore di misura di 0, Ansible eseguirà l'attività e continuerà senza preoccuparsi del risultato.
 
 Ecco un esempio che utilizza attività asincrone, che consente di riavviare un server e attendere che la porta 22 sia nuovamente raggiungibile:
 
-```
+```bash
 # Wait 2s and launch the reboot
 - name: Reboot system
   shell: sleep 2 && shutdown -r now "Ansible reboot triggered"
@@ -466,9 +466,9 @@ Puoi anche decidere di lanciare un'attività di lunga durata e dimenticarla (avv
 
 ## Risultati delle esercitazioni
 
-* Scrivi un playbook `play-vars.yml` che stampa il nome della distribuzione della destinazione con la sua versione principale, usando variabili globali.
+* Scrivere un playbook, `play-vars.yml, ' usando variabili globali, che stampi il nome della distribuzione del target e la versione principale.
 
-```
+```bash
 ---
 - hosts: ansible_clients
 
@@ -479,7 +479,7 @@ Puoi anche decidere di lanciare un'attività di lunga durata e dimenticarla (avv
         msg: "The distribution is {{ ansible_distribution }} version {{ ansible_distribution_major_version }}"
 ```
 
-```
+```bash
 $ ansible-playbook play-vars.yml
 
 PLAY [ansible_clients] *********************************************************************************
@@ -499,7 +499,7 @@ PLAY RECAP *********************************************************************
 
 * Scrivi un playbook usando il seguente dizionario per visualizzare i servizi che verranno installati:
 
-```
+```bash
 service:
   web:
     name: apache
@@ -511,7 +511,7 @@ service:
 
 Il tipo predefinito dovrebbe essere "web".
 
-```
+```bash
 ---
 - hosts: ansible_clients
   vars:
@@ -531,7 +531,7 @@ Il tipo predefinito dovrebbe essere "web".
         msg: "The {{ service[type]['name'] }} will be installed with the packages {{ service[type].rpm }}"
 ```
 
-```
+```bash
 $ ansible-playbook display-dict.yml
 
 PLAY [ansible_clients] *********************************************************************************
@@ -551,7 +551,7 @@ PLAY RECAP *********************************************************************
 
 * Sovrascrivi la variabile `type` usando la riga di comando:
 
-```
+```bash
 ansible-playbook --extra-vars "type=db" display-dict.yml
 
 PLAY [ansible_clients] *********************************************************************************
@@ -570,7 +570,7 @@ PLAY RECAP *********************************************************************
 
 * Esternalizza le variabili in un file `vars.yml`
 
-```
+```bash
 type: web
 service:
   web:
@@ -581,7 +581,7 @@ service:
     rpm: mariadb-server
 ```
 
-```
+```bash
 ---
 - hosts: ansible_clients
   vars_files:
@@ -593,7 +593,6 @@ service:
       debug:
         msg: "The {{ service[type]['name'] }} will be installed with the packages {{ service[type].rpm }}"
 ```
-
 
 * Visualizza il contenuto della variabile `service` dell'esercizio precedente utilizzando un ciclo.
 
@@ -611,7 +610,7 @@ service:
 
 Con `dict2items`:
 
-```
+```bash
 ---
 - hosts: ansible_clients
   vars_files:
@@ -625,7 +624,7 @@ Con `dict2items`:
       loop: "{{ service | dict2items }}"              
 ```
 
-```
+```bash
 $ ansible-playbook display-dict.yml
 
 PLAY [ansible_clients] *********************************************************************************
@@ -648,7 +647,7 @@ PLAY RECAP *********************************************************************
 
 Con `list`:
 
-```
+```bash
 ---
 - hosts: ansible_clients
   vars_files:
@@ -663,7 +662,7 @@ Con `list`:
 ~                                                 
 ```
 
-```
+```bash
 $ ansible-playbook display-dict.yml
 
 PLAY [ansible_clients] *********************************************************************************
@@ -685,7 +684,7 @@ PLAY RECAP *********************************************************************
 
 * Stampa il valore di `service.web` solo quando `type` è uguale a `web`.
 
-```
+```bash
 ---
 - hosts: ansible_clients
   vars_files:
@@ -705,7 +704,7 @@ PLAY RECAP *********************************************************************
       when: type == "db"
 ```
 
-```
+```bash
 $ ansible-playbook display-dict.yml
 
 PLAY [ansible_clients] *********************************************************************************
