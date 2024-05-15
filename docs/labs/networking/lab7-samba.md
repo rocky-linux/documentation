@@ -12,6 +12,8 @@ tags:
   - network file system
 ---
 
+# Lab 8: Samba  
+
 ## Objectives
 
 After completing this lab, you will be able to
@@ -23,7 +25,7 @@ After completing this lab, you will be able to
 Estimated time to complete this lab: 40 minutes
 
 
-## Samba
+## Introduction
 
 Samba allows for file sharing and printing services between Unix/Linux and Windows systems. 
 
@@ -44,21 +46,21 @@ The exercises in this lab focus on setting up Samba as both a server and a clien
 
 #### To Install the Samba server application
 
-1. Use the dnf utility to install the Samba server and client package on your server 
+0. Use the dnf utility to install the Samba server and client package on your server 
    Type:   
     ```bash
     sudo dnf install -y samba
     ```
 
-#### To configure the Samba Service
+#### To configure Samba 
 
 1. Create a directory to be shared named samba-share under the /tmp folder. Type:
    
     ```bash
     mkdir /tmp/samba-share
     ```
-2. Let's create a basic Samba Configuration to share the /tmp/samba-share folder. Do
-    this by creating a new share definition in the Samba configuration file:
+2. Let's create a basic Samba Configuration to share the /tmp/samba-share folder. 
+   Do this by creating a new share definition in the Samba configuration file:
 
     ```bash
     sudo tee -a /etc/samba/smb.conf << 'EOF'
@@ -123,14 +125,14 @@ In this exercise, we'll try accessing the new Samba share from the same system. 
 
 #### To install Samba client tools 
 
-1. Install Client Utilities by running:
+0. Install Client Utilities by running:
 
     ```bash
     sudo dnf -y install cifs-utils
     ```
 #### To create a Samba mount point
 
-1. Create the mount point:
+0. Create the mount point:
     ```bash
     mkdir ~/samba-client
     ```
@@ -139,9 +141,9 @@ In this exercise, we'll try accessing the new Samba share from the same system. 
 
 1. Mount Samba Share Locally:
 
-```bash
-sudo mount -t cifs //localhost/Shared ~/samba-client -o user=sambarockstar
-```
+    ```bash
+    sudo mount -t cifs //localhost/Shared ~/samba-client -o user=sambarockstar
+    ```
 2. Use the `mount` command to list all mounted CIFS type file systems. Type:
    ```bash
    mount -t cifs
@@ -186,10 +188,9 @@ sudo mount -t cifs //localhost/Shared ~/samba-client -o user=sambarockstar
      '/\[Shared\]/,+3 s/writable =.*$/writable = no/'  /etc/samba/smb.conf
     ```
 2. Restart Samba services:
-   
-```bash
-sudo systemctl restart smb nmb
-```
+    ```bash
+    sudo systemctl restart smb nmb
+    ```
 3. Now, test writing to the share by trying to create a file on the mounted share:
 
     ```bash
@@ -230,7 +231,8 @@ This exercise will walk through how to restrict access to Samba shares via a use
 
 This exercise simulates a real-world scenario where you'll act in the role of an Administrator of a client system, and then test accessing the Samba service on remote system (serverHQ) on which you do not have any Administrative access or privileges.  client as a student, will set up a Samba client on your machine (serverXY) to access a Samba service hosted on a different machine (serverHQ). This reflects common workplace setups.
 
-Assumptions
+Assumptions:
+
 - You do not have root access on serverHQ.
 - The Samba share on serverHQ is already set up and accessible.
 
