@@ -17,9 +17,9 @@ In questo capitolo imparerete a far interagire i vostri script con gli utenti e 
 
 **Obiettivi**: In questo capitolo imparerete a:
 
-:heavy_check_mark: leggere l'input di un utente;     
-:heavy_check_mark: manipolare voci di dati;     
-:heavy_check_mark: utilizzare argomenti all'interno di uno script;     
+:heavy_check_mark: leggere l'input di un utente;  
+:heavy_check_mark: manipolare voci di dati;  
+:heavy_check_mark: utilizzare argomenti all'interno di uno script;  
 :heavy_check_mark: gestire variabili posizionali;
 
 :checkered_flag: **linux**, **script**, **bash**, **variable**
@@ -39,13 +39,13 @@ Il comando `read` consente di inserire una stringa di caratteri e di memorizzarl
 
 Sintassi del comando read:
 
-```
+```bash
 read [-n X] [-p] [-s] [variable]
 ```
 
 Il primo esempio qui sotto richiede l'inserimento di due variabili: "name" e "firstname", ma poiché non c'è alcun prompt, bisogna sapere in anticipo che questo è il caso. Nel caso di questo particolare inserimento, ogni variabile immessa sarà separata da uno spazio.  Il secondo esempio richiede la variabile "name" con il testo di richiesta incluso:
 
-```
+```bash
 read name firstname
 read -p "Please type your name: " name
 ```
@@ -56,21 +56,21 @@ read -p "Please type your name: " name
 | `-n`    | Limita il numero di caratteri da inserire. |
 | `-s`    | Nasconde l'input.                          |
 
-Quando si utilizza l'opzione `-n`, la shell convalida automaticamente l'input dopo il numero di caratteri specificato. L'utente non deve premere il tasto <kbd>INVIO</kbd>.
+Quando si utilizza l'opzione `-n`, la shell convalida automaticamente l'input dopo il numero di caratteri specificato. L'utente non deve premere il tasto ++enter++.
 
-```
+```bash
 read -n5 name
 ```
 
 Il comando `read` consente di interrompere l'esecuzione dello script mentre l'utente inserisce le informazioni. L'input dell'utente viene scomposto in parole assegnate a una o più variabili predefinite. Le parole sono stringhe di caratteri separate dal separatore di campo.
 
-La fine dell'immissione è determinata dalla pressione del tasto <kbd>INVIO</kbd>.
+La fine dell'immissione è determinata dalla pressione del tasto ++enter++.
 
 Una volta convalidato l'input, ogni parola viene memorizzata nella variabile predefinita.
 
 La divisione delle parole è definita dal carattere separatore di campo. Questo separatore è memorizzato nella variabile di sistema `IFS`(**Internal Field Separator**).
 
-```
+```bash
 set | grep IFS
 IFS=$' \t\n'
 ```
@@ -79,9 +79,9 @@ Per impostazione predefinita, l'IFS contiene spazio, tabulazione e avanzamento r
 
 Se utilizzato senza specificare una variabile, questo comando mette semplicemente in pausa lo script. Lo script continua la sua esecuzione quando l'input viene convalidato.
 
-Viene utilizzato per mettere in pausa uno script durante il debug o per chiedere all'utente di premere <kbd>INVIO</kbd> per continuare.
+Viene utilizzato per mettere in pausa uno script durante il debug o per chiedere all'utente di premere ++enter++ per continuare.
 
-```
+```bash
 echo -n "Press [ENTER] to continue..."
 read
 ```
@@ -92,13 +92,13 @@ Il comando cut consente di isolare una colonna in un file o in un flusso.
 
 Sintassi del comando cut:
 
-```
+```bash
 cut [-cx] [-dy] [-fz] file
 ```
 
 Esempio di utilizzo del comando cut:
 
-```
+```bash
 cut -d: -f1 /etc/passwd
 ```
 
@@ -115,7 +115,7 @@ Il vantaggio principale di questo comando sarà la sua associazione con un fluss
 
 Esempio:
 
-```
+```bash
 grep "^root:" /etc/passwd | cut -d: -f3
 0
 ```
@@ -130,7 +130,7 @@ Il comando `tr` consente di convertire una stringa.
 
 Sintassi del comando `tr`:
 
-```
+```bash
 tr [-csd] string1 string2
 ```
 
@@ -142,22 +142,28 @@ tr [-csd] string1 string2
 
 Segue un esempio di utilizzo del comando `tr`. Se si usa `grep` per restituire la voce del file `passwd` di root, si ottiene questo risultato:
 
-```
+```bash
 grep root /etc/passwd
 ```
+
 restituisce:
-```
+
+```bash
 root:x:0:0:root:/root:/bin/bash
 ```
+
 Ora usiamo il comando `tr` e riduciamo le "o" nella riga:
 
-```
+```bash
 grep root /etc/passwd | tr -s "o"
 ```
+
 che restituisce questo:
-```
+
+```bash
 rot:x:0:0:rot:/rot:/bin/bash
 ```
+
 ## Estrarre il nome e il percorso di un file
 
 Il comando `basename` consente di estrarre il nome del file da un percorso.
@@ -166,14 +172,17 @@ Il comando `dirname` consente di estrarre il percorso padre di un file.
 
 Esempi:
 
-```
+```bash
 echo $FILE=/usr/bin/passwd
 basename $FILE
 ```
+
 Il che si tradurrebbe in "passwd"
-```
+
+```bash
 dirname $FILE
 ```
+
 Il risultato sarebbe: "/usr/bin"
 
 ## Argomenti di uno script
@@ -190,7 +199,7 @@ Lo svantaggio principale è che l'utente dovrà essere avvisato della sintassi d
 
 Gli argomenti vengono inseriti quando si immette il comando di script. Sono separati da uno spazio.
 
-```
+```bash
 ./script argument1 argument2
 ```
 
@@ -211,7 +220,7 @@ Queste variabili possono essere utilizzate nello script come qualsiasi altra var
 
 Esempio:
 
-```
+```bash
 #!/usr/bin/env bash
 #
 # Author : Damien dit LeDub
@@ -235,7 +244,7 @@ echo "All without separation  (\$@) = $@"
 
 questo ci darà:
 
-```
+```bash
 $ ./arguments.sh one two "tree four"
 The number of arguments ($#) = 3
 The name of the script  ($0) = ./arguments.sh
@@ -261,7 +270,7 @@ Il comando shift consente di spostare le variabili posizionali.
 
 Modifichiamo l'esempio precedente per illustrare l'impatto del comando shift sulle variabili posizionali:
 
-```
+```bash
 #!/usr/bin/env bash
 #
 # Author : Damien dit LeDub
@@ -296,7 +305,7 @@ echo "All without separation  (\$@) = $@"
 
 questo ci darà:
 
-```
+```bash
 ./arguments.sh one two "tree four"
 The number of arguments ($#) = 3
 The 1st argument        ($1) = one
@@ -327,13 +336,13 @@ Il comando `set` divide una stringa in variabili posizionali.
 
 Sintassi del comando set:
 
-```
+```bash
 set [value] [$variable]
 ```
 
 Esempio:
 
-```
+```bash
 $ set one two three
 $ echo $1 $2 $3 $#
 one two three 3

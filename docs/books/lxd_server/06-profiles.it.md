@@ -29,7 +29,7 @@ Per il momento, è bene sapere che questo comporta degli svantaggi quando si sce
 
 Per creare il profilo macvlan, utilizzare questo comando:
 
-```
+```bash
 lxc profile create macvlan
 ```
 
@@ -37,13 +37,13 @@ Se si dispone di una macchina con più interfacce e si desidera più di un model
 
 Si vuole cambiare l'interfaccia macvlan, ma prima è necessario sapere qual è l'interfaccia principale del nostro server LXD. Si tratta dell'interfaccia che ha un IP assegnato alla LAN (in questo caso). Per individuare l'interfaccia, utilizzare:
 
-```
+```bash
 ip addr
 ```
 
 Cercare l'interfaccia con l'assegnazione IP LAN nella rete 192.168.1.0/24:
 
-```
+```bash
 2: enp3s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
     link/ether 40:16:7e:a9:94:85 brd ff:ff:ff:ff:ff:ff
     inet 192.168.1.106/24 brd 192.168.1.255 scope global dynamic noprefixroute enp3s0
@@ -56,7 +56,7 @@ In questo caso, l'interfaccia è "enp3s0".
 
 Quindi cambiare il profilo:
 
-```
+```bash
 lxc profile device add macvlan eth0 nic nictype=macvlan parent=enp3s0
 ```
 
@@ -64,14 +64,13 @@ Questo comando aggiunge al profilo macvlan tutti i parametri necessari per l'uso
 
 Esaminare ciò che questo comando ha creato, utilizzando il comando:
 
-```
+```bash
 lxc profile show macvlan
 ```
 
 Il risultato sarà simile a questo:
 
-
-```
+```bash
 config: {}
 description: ""
 devices:
@@ -87,13 +86,13 @@ used_by: []
 
 Per assegnare il profilo macvlan a rockylinux-test-8 è necessario procedere come segue:
 
-```
+```bash
 lxc profile assign rockylinux-test-8 default,macvlan
 ```
 
 Fare la stessa cosa per rockylinux-test-9:
 
-```
+```bash
 lxc profile assign rockylinux-test-9 default,macvlan
 ```
 
@@ -115,18 +114,18 @@ L'assegnazione del profilo, tuttavia, non modifica la configurazione predefinita
 
 Per verificarlo, procedere come segue:
 
-```
+```bash
 lxc restart rocky-test-8
 lxc restart rocky-test-9
 ```
 
 Elencare nuovamente i container e notare che rockylinux-test-9 non ha più un indirizzo IP:
 
-```
+```bash
 lxc list
 ```
 
-```
+```bash
 +-------------------+---------+----------------------+------+-----------+-----------+
 |       NAME        |  STATE  |         IPV4         | IPV6 |   TYPE    | SNAPSHOTS |
 +-------------------+---------+----------------------+------+-----------+-----------+
@@ -136,19 +135,19 @@ lxc list
 +-------------------+---------+----------------------+------+-----------+-----------+
 | ubuntu-test       | RUNNING | 10.146.84.181 (eth0) |      | CONTAINER | 0         |
 +-------------------+---------+----------------------+------+-----------+-----------+
-
 ```
+
 Come si può vedere, il nostro contenitore Rocky Linux 8.x ha ricevuto l'indirizzo IP dall'interfaccia LAN, mentre il contenitore Rocky Linux 9.x no.
 
 Per dimostrare ulteriormente il problema, è necessario eseguire `dhclient` sul contenitore Rocky Linux 9.0. Questo mostrerà che il profilo macvlan *è stato* effettivamente applicato:
 
-```
+```bash
 lxc exec rockylinux-test-9 dhclient
 ```
 
 Un altro elenco di container mostra ora quanto segue:
 
-```
+```bash
 +-------------------+---------+----------------------+------+-----------+-----------+
 |       NAME        |  STATE  |         IPV4         | IPV6 |   TYPE    | SNAPSHOTS |
 +-------------------+---------+----------------------+------+-----------+-----------+
@@ -162,51 +161,51 @@ Un altro elenco di container mostra ora quanto segue:
 
 Ciò sarebbe dovuto accadere con l'arresto e l'avvio del contenitore, ma non è così. Supponendo di voler utilizzare sempre un indirizzo IP assegnato da DHCP, si può risolvere il problema con una semplice voce di crontab. Per farlo, è necessario ottenere l'accesso al container tramite shell, inserendo:
 
-```
+```bash
 lxc exec rockylinux-test-9 bash
 ```
 
 Quindi, determiniamo il percorso di `dhclient`. Per fare ciò, poiché questo container proviene da un'immagine minimale, è necessario prima installare `which`:
 
-```
+```bash
 dnf install which
 ```
 
 quindi eseguire:
 
-```
+```bash
 which dhclient
 ```
 
 che restituirà:
 
-```
+```bash
 /usr/sbin/dhclient
 ```
 
 Successivamente, modificare il crontab di root:
 
-```
+```bash
 crontab -e
 ```
 
 Aggiungere questa riga:
 
-```
+```bash
 @reboot    /usr/sbin/dhclient
 ```
 
-Il comando crontab inserito utilizza _vi_. Per salvare le modifiche e uscire, utilizzare <kbd>SHIFT</kbd>+<kbd>:</kbd>+<kbd>wq</kbd>.
+Il comando crontab inserito utilizza *vi*. Per salvare le modifiche e uscire, utilizzare ++shift+colon+"w"+"q"++.
 
 Uscire dal container e riavviare rockylinux-test-9:
 
-```
+```bash
 lxc restart rockylinux-test-9
 ```
 
 Un altro elenco rivelerà che al contenitore è stato assegnato un indirizzo DHCP:
 
-```
+```bash
 +-------------------+---------+----------------------+------+-----------+-----------+
 |       NAME        |  STATE  |         IPV4         | IPV6 |   TYPE    | SNAPSHOTS |
 +-------------------+---------+----------------------+------+-----------+-----------+
@@ -225,19 +224,19 @@ Per assegnare staticamente un indirizzo IP, le cose si fanno ancora più complic
 
 Per farlo, è necessario ottenere nuovamente l'accesso al contenitore:
 
-```
+```bash
 lxc exec rockylinux-test-9 bash
 ```
 
 Successivamente, si creerà uno script bash in `/usr/local/sbin` chiamato "static":
 
-```
+```bash
 vi /usr/local/sbin/static
 ```
 
 Il contenuto di questo script non è difficile:
 
-```
+```bash
 #!/usr/bin/env bash
 
 /usr/sbin/ip link set dev eth0 name net0
@@ -253,34 +252,33 @@ Cosa stiamo facendo qui?
 * si apre la nuova interfaccia "net0"
 * è necessario aggiungere la route predefinita per la nostra interfaccia
 
-
 Rendere il nostro script eseguibile con:
 
-```
+```bash
 chmod +x /usr/local/sbin/static
 ```
 
 Aggiungerlo al crontab di root per il contenitore con il @reboot time:
 
-```
+```bash
 @reboot     /usr/local/sbin/static
 ```
 
 Infine, uscire dal container e riavviarlo:
 
-```
+```bash
 lxc restart rockylinux-test-9
 ```
 
 Aspettate qualche secondo e elencate di nuovo i contenitori:
 
-```
+```bash
 lxc list
 ```
 
 Il successo dovrebbe essere visibile:
 
-```
+```bash
 +-------------------+---------+----------------------+------+-----------+-----------+
 |       NAME        |  STATE  |         IPV4         | IPV6 |   TYPE    | SNAPSHOTS |
 +-------------------+---------+----------------------+------+-----------+-----------+
@@ -298,19 +296,19 @@ Fortunatamente, nell'implementazione di Ubuntu di Network Manager, lo stack macv
 
 Proprio come nel caso del contenitore rockylinux-test-9, è necessario assegnare il profilo al nostro contenitore:
 
-```
+```bash
 lxc profile assign ubuntu-test default,macvlan
 ```
 
 Per scoprire se il DHCP assegna un indirizzo al contenitore, interrompere e riavviare il contenitore:
 
-```
+```bash
 lxc restart ubuntu-test
 ```
 
 Elencare nuovamente i contenitori:
 
-```
+```bash
 +-------------------+---------+----------------------+------+-----------+-----------+
 |       NAME        |  STATE  |         IPV4         | IPV6 |   TYPE    | SNAPSHOTS |
 +-------------------+---------+----------------------+------+-----------+-----------+
@@ -326,13 +324,13 @@ Riuscito!
 
 La configurazione dell'IP statico è leggermente diversa, ma non è affatto difficile. È necessario modificare il file .yaml associato alla connessione del contenitore`(10-lxc.yaml`). Per questo IP statico si utilizzerà 192.168.1.201:
 
-```
+```bash
 vi /etc/netplan/10-lxc.yaml
 ```
 
 Cambiare ciò che c'è con quanto segue:
 
-```
+```bash
 network:
   version: 2
   ethernets:
@@ -348,13 +346,13 @@ Salvare le modifiche e uscire dal container.
 
 Riavviare il container:
 
-```
+```bash
 lxc restart ubuntu-test
 ```
 
 Quando si elencano nuovamente i containeri, si vedrà il proprio IP statico:
 
-```
+```bash
 +-------------------+---------+----------------------+------+-----------+-----------+
 |       NAME        |  STATE  |         IPV4         | IPV6 |   TYPE    | SNAPSHOTS |
 +-------------------+---------+----------------------+------+-----------+-----------+

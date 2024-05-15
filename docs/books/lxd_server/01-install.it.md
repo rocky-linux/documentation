@@ -11,19 +11,19 @@ tags:
 
 # Capitolo 1: Installazione e configurazione
 
-In questo capitolo dovrete essere l'utente root o dovrete essere in grado di fare _sudo_ a root.
+In tutto questo capitolo dovrete essere l'utente root o dovrete essere in grado di passare a root con *sudo*.
 
 ## Installare i repository EPEL e OpenZFS
 
 LXD richiede i repository EPEL (Extra Packages for Enterprise Linux), che sono facili da installare:
 
-```
+```bash
 dnf install epel-release
 ```
 
 Una volta installato, verificare che non vi siano aggiornamenti:
 
-```
+```bash
 dnf upgrade
 ```
 
@@ -33,7 +33,7 @@ Se durante il processo di aggiornamento sono stati effettuati aggiornamenti del 
 
 Installare il repository OpenZFS con:
 
-```
+```bash
 dnf install https://zfsonlinux.org/epel/zfs-release-2-2$(rpm --eval "%{dist}").noarch.rpm
 ```
 
@@ -41,19 +41,19 @@ dnf install https://zfsonlinux.org/epel/zfs-release-2-2$(rpm --eval "%{dist}").n
 
 L'installazione di LXD richiede un pacchetto snap su Rocky Linux. Per questo motivo, è necessario installare `snapd` (e alcuni altri programmi utili) con:
 
-```
+```bash
 dnf install snapd dkms vim kernel-devel
 ```
 
 Ora abilitate e avviate snapd:
 
-```
+```bash
 systemctl enable snapd
 ```
 
 Quindi eseguire:
 
-```
+```bash
 systemctl start snapd
 ```
 
@@ -63,13 +63,13 @@ Riavviare il server prima di continuare.
 
 L'installazione di LXD richiede l'uso del comando snap. A questo punto, si sta solo installando, non si sta eseguendo la configurazione:
 
-```
+```bash
 snap install lxd
 ```
 
 ## Installare OpenZFS
 
-```
+```bash
 dnf install zfs
 ```
 
@@ -83,13 +83,13 @@ Fortunatamente, modificare le impostazioni di LXD non è difficile, basta modifi
 
 Il primo file da modificare è il file `limits.conf.` Questo file è autodocumentato. Esaminate le spiegazioni nei commenti del file per capire cosa fa questo file. Per apportare le modifiche, inserire:
 
-```
+```bash
 vi /etc/security/limits.conf
 ```
 
 L'intero file è costituito da commenti e, in fondo, mostra le impostazioni predefinite correnti. Nello spazio vuoto sopra il marcatore di fine file (#End of file) è necessario aggiungere le nostre impostazioni personalizzate. Una volta completato, il file avrà il seguente aspetto:
 
-```
+```text
 # Modifications made for LXD
 
 *               soft    nofile           1048576
@@ -100,15 +100,15 @@ root            hard    nofile           1048576
 *               hard    memlock          unlimited
 ```
 
-Salvare le modifiche e uscire. (<kbd>SHIFT</kbd>+<kbd>:</kbd>+<kbd>wq!</kbd> per _vi_)
+Salva le tue modifiche ed esci (++shift+colon+"w"+"q"+exclam++ per *vi*).
 
 ### Modifica di sysctl.conf con `90-lxd.override.conf`
 
-Con _systemd_, è possibile apportare modifiche alla configurazione generale del sistema e alle opzioni del kernel *senza* modificare il file di configurazione principale. Le impostazioni vanno invece inserite in un file separato che sovrascrive le impostazioni specifiche necessarie.
+Con *systemd*, è possibile apportare modifiche alla configurazione generale del sistema e alle opzioni del kernel *senza* modificare il file di configurazione principale. Le impostazioni vanno invece inserite in un file separato che sovrascrive le impostazioni specifiche necessarie.
 
 Per apportare queste modifiche al kernel, si deve creare un file chiamato `90-lxd-override.conf` in `/etc/sysctl.d`. Per farlo, digitare:
 
-```
+```bash
 vi /etc/sysctl.d/90-lxd-override.conf
 ```
 
@@ -118,7 +118,7 @@ vi /etc/sysctl.d/90-lxd-override.conf
 
 Inserite il seguente contenuto nel file. Se vi state chiedendo cosa state facendo, il contenuto del file è autodocumentante:
 
-```
+```bash
 ## The following changes have been made for LXD ##
 
 # fs.inotify.max_queued_events specifies an upper limit on the number of events that can be queued to the corresponding inotify instance
@@ -176,19 +176,19 @@ Salvare le modifiche e uscire.
 
 A questo punto riavviare il server.
 
-### Controllo dei valori di _sysctl.conf_
+### Controllo dei valori di *sysctl.conf*
 
 Dopo il riavvio, accedere nuovamente al server come utente root. È necessario verificare che il nostro file di override abbia effettivamente completato il lavoro.
 
 Non è difficile da fare. Non è necessario verificare tutte le impostazioni, a meno che non lo si voglia fare, ma controllarne alcune consente di verificare che le impostazioni siano state modificate. Per farlo, utilizzare il comando `sysctl`:
 
-```
+```bash
 sysctl net.core.bpf_jit_limit
 ```
 
 Che vi mostrerà:
 
-```
+```bash
 net.core.bpf_jit_limit = 3000000000
 ```
 

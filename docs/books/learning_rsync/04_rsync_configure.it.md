@@ -6,7 +6,7 @@ update: 2021-12-25
 
 # /etc/rsyncd.conf
 
-Nel precedente articolo [ rsync demo 02 ](03_rsync_demo02.md) abbiamo introdotto alcuni parametri di base. Questo articolo è per integrare altri parametri.
+Nel precedente articolo [rsync demo 02](03_rsync_demo02.md) abbiamo introdotto alcuni parametri di base. Questo articolo è per integrare altri parametri.
 
 | Parametri                           | Descrizione                                                                                                                                                                                                                                                                                                                                                                    |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
