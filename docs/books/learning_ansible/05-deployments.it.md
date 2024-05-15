@@ -10,15 +10,15 @@ In questo capitolo imparerai come distribuire applicazioni con il ruolo Ansible 
 
 **Obiettivi**: In questo capitolo imparerai come:
 
-:heavy_check_mark: Implementare Ansistrano;       
-:heavy_check_mark: Configurare Ansistrano;       
-:heavy_check_mark: Usare cartelle e file condivisi tra le versioni distribuite;       
-:heavy_check_mark: Distribuire diverse versioni di un sito da git;        
+:heavy_check_mark: Implementare Ansistrano;  
+:heavy_check_mark: Configurare Ansistrano;  
+:heavy_check_mark: Usare cartelle e file condivisi tra le versioni distribuite;  
+:heavy_check_mark: Distribuire diverse versioni di un sito da git;  
 :heavy_check_mark: Reagire tra i passaggi di implementazione.
 
 :checkered_flag: **ansible**, **ansistrano**, **ruoli**, **distribuzioni**
 
-**Conoscenza**: :star: :star:      
+**Conoscenza**: :star: :star:  
 **Complessità**: :star: :star: :star:
 
 **Tempo di lettura**: 40 minuti
@@ -51,7 +51,7 @@ Ansistrano distribuisce applicazioni seguendo questi 5 passaggi:
 
 Lo scheletro di una distribuzione con Ansistrano assomiglia a questo:
 
-```
+```bash
 /var/www/site/
 ├── current -> ./releases/20210718100000Z
 ├── releases
@@ -83,7 +83,7 @@ Il server gestito:
 
 Per una maggiore efficienza, useremo il ruolo `geerlingguy.apache` per configurare il server:
 
-```
+```bash
 $ ansible-galaxy role install geerlingguy.apache
 Starting galaxy role install process
 - downloading role 'apache', owned by geerlingguy
@@ -94,7 +94,7 @@ Starting galaxy role install process
 
 Probabilmente avremo bisogno di aprire alcune regole del firewall, quindi installeremo anche la collezione `ansible.posix` per lavorare con il suo modulo `firewalld`:
 
-```
+```bash
 $ ansible-galaxy collection install ansible.posix
 Starting galaxy collection install process
 Process install dependency map
@@ -125,7 +125,7 @@ Considerazioni tecniche:
 
 Il nostro playbook per configurare il server: `playbook-config-server.yml`
 
-```
+```bash
 ---
 - hosts: ansible_clients
   become: yes
@@ -136,27 +136,27 @@ Il nostro playbook per configurare il server: `playbook-config-server.yml`
       DirectoryIndex index.php index.htm
     apache_vhosts:
       - servername: "website"
-        documentroot: "{{ dest }}current/html"
+ documentroot: "{{ dest }}current/html"
 
   tasks:
 
     - name: create directory for website
       file:
-        path: /var/www/site/
-        state: directory
-        mode: 0755
+ path: /var/www/site/
+ state: directory
+ mode: 0755
 
     - name: install git
       package:
-        name: git
-        state: latest
+ name: git
+ state: latest
 
     - name: permit traffic in default zone for http service
       ansible.posix.firewalld:
-        service: http
-        permanent: yes
-        state: enabled
-        immediate: yes
+ service: http
+ permanent: yes
+ state: enabled
+ immediate: yes
 
   roles:
     - { role: geerlingguy.apache }
@@ -164,13 +164,13 @@ Il nostro playbook per configurare il server: `playbook-config-server.yml`
 
 Il playbook può essere applicato al server:
 
-```
-$ ansible-playbook playbook-config-server.yml
+```bash
+ansible-playbook playbook-config-server.yml
 ```
 
 Nota l'esecuzione dei seguenti compiti:
 
-```
+```bash
 TASK [geerlingguy.apache : Ensure Apache is installed on RHEL.] ****************
 TASK [geerlingguy.apache : Configure Apache.] **********************************
 TASK [geerlingguy.apache : Add apache vhosts configuration.] *******************
@@ -183,7 +183,7 @@ Il ruolo `geerlingguy.apache` rende il nostro lavoro molto più facile prendendo
 
 Puoi controllare che tutto funzioni usando `curl`:
 
-```
+```bash
 $ curl -I http://192.168.1.11
 HTTP/1.1 404 Not Found
 Date: Mon, 05 Jul 2021 23:30:02 GMT
@@ -201,7 +201,7 @@ Ora che il nostro server è configurato, possiamo distribuire l'applicazione.
 
 Per questo, useremo il ruolo `ansistrano.deploy` in un secondo playbook dedicato alla distribuzione delle applicazioni (per una maggiore leggibilità).
 
-```
+```bash
 $ ansible-galaxy role install ansistrano.deploy
 Starting galaxy role install process
 - downloading role 'deploy', owned by ansistrano
@@ -215,7 +215,7 @@ Le fonti del software possono essere trovate nel [repository github](https://git
 
 Creeremo un playbook `playbook-deploy.yml` per gestire la nostra distribuzione:
 
-```
+```bash
 ---
 - hosts: ansible_clients
   become: yes
@@ -230,7 +230,7 @@ Creeremo un playbook `playbook-deploy.yml` per gestire la nostra distribuzione:
      - { role: ansistrano.deploy }
 ```
 
-```
+```bash
 $ ansible-playbook playbook-deploy.yml
 
 PLAY [ansible_clients] *********************************************************
@@ -257,13 +257,13 @@ TASK [ansistrano.deploy : ANSISTRANO | Change softlink to new release]
 TASK [ansistrano.deploy : ANSISTRANO | Clean up releases]
 
 PLAY RECAP ********************************************************************************************************************************************************************************************************
-192.168.1.11               : ok=25   changed=8    unreachable=0    failed=0    skipped=14   rescued=0    ignored=0   
+192.168.1.11 : ok=25   changed=8    unreachable=0    failed=0    skipped=14   rescued=0    ignored=0   
 
 ```
 
 Tante cose fatte con sole 11 righe di codice!
 
-```
+```html
 $ curl http://192.168.1.11
 <html>
 <head>
@@ -281,7 +281,7 @@ Ora puoi connetterti da ssh alla tua macchina client.
 
 * Crea un `albero` nella directory `/var/www/site/`:
 
-```
+```bash
 $ tree /var/www/site/
 /var/www/site
 ├── current -> ./releases/20210722155312Z
@@ -289,7 +289,7 @@ $ tree /var/www/site/
 │   └── 20210722155312Z
 │       ├── REVISION
 │       └── html
-│           └── index.htm
+│    └── index.htm
 ├── repo
 │   └── html
 │       └── index.htm
@@ -304,7 +304,7 @@ Nota che:
 
 * Dal server Ansible riavviare la distribuzione **3** volte, quindi controllare il client.
 
-```
+```bash
 $ tree /var/www/site/
 var/www/site
 ├── current -> ./releases/20210722160048Z
@@ -324,7 +324,7 @@ var/www/site
 │   └── 20210722160048Z
 │       ├── REVISION
 │       └── html
-│           └── index.htm
+│    └── index.htm
 ├── repo
 │   └── html
 │       └── index.htm
@@ -342,7 +342,7 @@ La variabile `ansistrano_keep_releases` è usata per specificare il numero di ri
 
 * Utilizzando la variabile `ansistrano_keep_releases`, mantieni solo 3 rilasci del progetto. Verifica.
 
-```
+```bash
 ---
 - hosts: ansible_clients
   become: yes
@@ -358,14 +358,14 @@ La variabile `ansistrano_keep_releases` è usata per specificare il numero di ri
      - { role: ansistrano.deploy }
 ```
 
-```
+```bash
 ---
 $ ansible-playbook -i hosts playbook-deploy.yml
 ```
 
 Sulla macchina client:
 
-```
+```bash
 $ tree /var/www/site/
 /var/www/site
 ├── current -> ./releases/20210722160318Z
@@ -381,7 +381,7 @@ $ tree /var/www/site/
 │   └── 20210722160318Z
 │       ├── REVISION
 │       └── html
-│           └── index.htm
+│    └── index.htm
 ├── repo
 │   └── html
 │       └── index.htm
@@ -390,8 +390,7 @@ $ tree /var/www/site/
 
 ### Utilizzo di shared_path e shared_files
 
-
-```
+```bash
 ---
 - hosts: ansible_clients
   become: yes
@@ -414,13 +413,13 @@ $ tree /var/www/site/
 
 Sulla macchina client, crea il file `log` nella directory `shared`:
 
-```
+```bash
 sudo touch /var/www/site/shared/logs
 ```
 
 Quindi esegui il playbook:
 
-```
+```bash
 TASK [ansistrano.deploy : ANSISTRANO | Ensure shared paths targets are absent] *******************************************************
 ok: [192.168.10.11] => (item=img)
 ok: [192.168.10.11] => (item=css)
@@ -434,7 +433,7 @@ changed: [192.168.10.11] => (item=logs)
 
 Sulla macchina client:
 
-```
+```bash
 $  tree -F /var/www/site/
 /var/www/site/
 ├── current -> ./releases/20210722160631Z/
@@ -487,7 +486,7 @@ Non dimenticare di modificare la configurazione di Apache per tenere conto di qu
 
 Modifica il playbook per la configurazione del server `playbook-config-server.yml`
 
-```
+```bash
 ---
 - hosts: ansible_clients
   become: yes
@@ -498,20 +497,20 @@ Modifica il playbook per la configurazione del server `playbook-config-server.ym
       DirectoryIndex index.php index.htm
     apache_vhosts:
       - servername: "website"
-        documentroot: "{{ dest }}current/" # <1>
+ documentroot: "{{ dest }}current/" # <1>
 
   tasks:
 
     - name: create directory for website
       file:
-        path: /var/www/site/
-        state: directory
-        mode: 0755
+ path: /var/www/site/
+ state: directory
+ mode: 0755
 
     - name: install git
       package:
-        name: git
-        state: latest
+ name: git
+ state: latest
 
   roles:
     - { role: geerlingguy.apache }
@@ -521,7 +520,7 @@ Modifica il playbook per la configurazione del server `playbook-config-server.ym
 
 Cambia il playbook per la distribuzione `playbook-deploy.yml`
 
-```
+```bash
 ---
 - hosts: ansible_clients
   become: yes
@@ -549,7 +548,7 @@ Cambia il playbook per la distribuzione `playbook-deploy.yml`
 
 * Controlla la macchina cliente:
 
-```
+```bash
 $  tree -F /var/www/site/
 /var/www/site/
 ├── current -> ./releases/20210722161542Z/
@@ -588,7 +587,7 @@ La variabile `ansistrano_git_branch` è usata per specificare un `branch` o un `
 
 * Distribuisci il branch `releases/v1.1.0`:
 
-```
+```bash
 ---
 - hosts: ansible_clients
   become: yes
@@ -615,7 +614,7 @@ La variabile `ansistrano_git_branch` è usata per specificare un `branch` o un `
 
     Per divertirti, durante la distribuzione, puoi aggiornare il browser, per vedere in 'live' il cambiamento.
 
-```
+```html
 $ curl http://192.168.1.11
 <html>
 <head>
@@ -629,7 +628,7 @@ $ curl http://192.168.1.11
 
 * Distribuisci il tag `v2.0.0`:
 
-```
+```bash
 ---
 - hosts: ansible_clients
   become: yes
@@ -652,7 +651,7 @@ $ curl http://192.168.1.11
      - { role: ansistrano.deploy }
 ```
 
-```
+```html
 $ curl http://192.168.1.11
 <html>
 <head>
@@ -685,8 +684,7 @@ Un playbook può essere incluso attraverso le variabili fornite per questo scopo
 
 * Esempio semplice: invia un'email (o qualsiasi cosa desideri come la notifica di Slack) all'inizio della distribuzione:
 
-
-```
+```bash
 ---
 - hosts: ansible_clients
   become: yes
@@ -712,7 +710,7 @@ Un playbook può essere incluso attraverso le variabili fornite per questo scopo
 
 Crea il file `deploy/before-setup-tasks.yml`:
 
-```
+```bash
 ---
 - name: Send a mail
   mail:
@@ -720,7 +718,7 @@ Crea il file `deploy/before-setup-tasks.yml`:
   delegate_to: localhost
 ```
 
-```
+```bash
 TASK [ansistrano.deploy : include] *************************************************************************************
 included: /home/ansible/deploy/before-setup-tasks.yml for 192.168.10.11
 
@@ -728,7 +726,7 @@ TASK [ansistrano.deploy : Send a mail] *****************************************
 ok: [192.168.10.11 -> localhost]
 ```
 
-```
+```bash
 [root] # mailx
 Heirloom Mail version 12.5 7/5/10.  Type ? for help.
 "/var/spool/mail/root": 1 message 1 new
@@ -737,7 +735,7 @@ Heirloom Mail version 12.5 7/5/10.  Type ? for help.
 
 * Probabilmente dovrai riavviare alcuni servizi alla fine della distribuzione, per esempio per pulire la cache. Riavviamo Apache alla fine della distribuzione:
 
-```
+```bash
 ---
 - hosts: ansible_clients
   become: yes
@@ -764,7 +762,7 @@ Heirloom Mail version 12.5 7/5/10.  Type ? for help.
 
 Crea il file `deploy/after-symlink-tasks.yml`:
 
-```
+```bash
 ---
 - name: restart apache
   systemd:
@@ -772,7 +770,7 @@ Crea il file `deploy/after-symlink-tasks.yml`:
     state: restarted
 ```
 
-```
+```bash
 TASK [ansistrano.deploy : include] *************************************************************************************
 included: /home/ansible/deploy/after-symlink-tasks.yml for 192.168.10.11
 
