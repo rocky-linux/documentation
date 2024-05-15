@@ -62,8 +62,10 @@ fs.inotify.max_user_watches = 1048576
 ## Comandi correlati
 
 Lo strumento inotify-tools ha due comandi, chiamati:
-*   **inotifywait**: per il monitoraggio continuo, risultati in tempo reale. È generalmente usato con lo strumento di backup incrementale rsync. Poiché si tratta di un monitoraggio del file system, può essere utilizzato con uno script. Introdurremo lo script specifico in un secondo momento.
-*   **inotifywatch**: per il monitoraggio a breve termine, risultati in uscita dopo il completamento dell'attività.
+
+* **inotifywait**: per il monitoraggio continuo, risultati in tempo reale. È generalmente usato con lo strumento di backup incrementale rsync. Poiché si tratta di un monitoraggio del file system, può essere utilizzato con uno script. Introdurremo lo script specifico in un secondo momento.
+
+* **inotifywatch**: per il monitoraggio a breve termine, risultati in uscita dopo il completamento dell'attività.
 
 `inotifywait` ha principalmente le seguenti opzioni:
 
