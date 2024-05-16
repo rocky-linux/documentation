@@ -46,7 +46,7 @@ The exercises in this lab focus on setting up Samba as both a server and a clien
 
 #### To Install the Samba server application
 
-0. Use the dnf utility to install the Samba server and client package on your server 
+0. Use the dnf utility to install the Samba server and client package on your server. 
    Type:   
     ```bash
     sudo dnf install -y samba
@@ -59,6 +59,7 @@ The exercises in this lab focus on setting up Samba as both a server and a clien
     ```bash
     mkdir /tmp/samba-share
     ```
+
 2. Let's create a basic Samba Configuration to share the /tmp/samba-share folder. 
    Do this by creating a new share definition in the Samba configuration file:
 
@@ -79,6 +80,7 @@ The exercises in this lab focus on setting up Samba as both a server and a clien
     sudo systemctl start smb nmb
     sudo systemctl enable smb nmb
     ```
+
 2. Verify the daemons used by the Samba service are running:
 
     ```bash
@@ -112,6 +114,7 @@ This exercise shows how to create Samba users and set up access credentials for 
     sudo smbpasswd -a sambarockstar
     ```
     When prompted, input the selected password and press ENTER after each entry.
+
 4. Restart Samba Services:
     ```bash
     sudo systemctl restart smb nmb
@@ -144,6 +147,7 @@ In this exercise, we'll try accessing the new Samba share from the same system. 
     ```bash
     sudo mount -t cifs //localhost/Shared ~/samba-client -o user=sambarockstar
     ```
+
 2. Use the `mount` command to list all mounted CIFS type file systems. Type:
    ```bash
    mount -t cifs
@@ -153,6 +157,7 @@ In this exercise, we'll try accessing the new Samba share from the same system. 
    //localhost/Shared on ~/samba-client type cifs (rw,relatime,vers=3.1.1,cache=strict,username=sambarockstar....
    ...<SNIP>...
    ```
+
 3. Similarly use the `df` command to verify that the mounted share is available. Type:
 
     ```bash
@@ -164,11 +169,13 @@ In this exercise, we'll try accessing the new Samba share from the same system. 
     Filesystem         1K-blocks     Used Available Use% Mounted on
     //localhost/Shared  73364480 17524224  55840256  24% ~/samba-client
     ```
+
 4. Next list the contents of the mounted share. Type:
 
     ```bash
     ls ~/samba-client
     ```
+
 5. Create a test file in Share:
 
     ```bash
@@ -187,10 +194,12 @@ In this exercise, we'll try accessing the new Samba share from the same system. 
     sudo  sed -i'' -E \
      '/\[Shared\]/,+3 s/writable =.*$/writable = no/'  /etc/samba/smb.conf
     ```
+
 2. Restart Samba services:
     ```bash
     sudo systemctl restart smb nmb
     ```
+
 3. Now, test writing to the share by trying to create a file on the mounted share:
 
     ```bash
@@ -199,7 +208,7 @@ In this exercise, we'll try accessing the new Samba share from the same system. 
 
 ## Exercise 5
 
-### Using Samba for Specific User Groups
+### Using Samba for specific user groups
 
 This exercise will walk through how to restrict access to Samba shares via a user's local group membership. This provides a convenient mechanism for making shared resources accessible only to specific user groups.
 
@@ -261,6 +270,7 @@ You will need the IP address or hostname of serverHQ, the share name, and your S
     ```bash
     sudo mount -t cifs //serverHQ/sharedFolder ~/serverHQ-share -o user=yourUsername
     ```
+
 #### To verify and access the mounted Share
 
 1. Check if the shared directory from serverHQ is successfully mounted on your machine:
@@ -268,6 +278,7 @@ You will need the IP address or hostname of serverHQ, the share name, and your S
     ```bash
     ls ~/serverHQ-share
     ```
+
 2. Try accessing and modifying files within the mounted share. For example, to create a new file:
 
     ```bash
