@@ -33,7 +33,7 @@ This project is open to everyone. Interested candidates should email docs@rockyl
 - Proposed topics/titles for RL desktop documentation
 - Preferred languages for translation
 
-## Grant Distribution
+## Grant
 
 - Contribute 5 original desktop-focused guides to the new "Desktop" category and receive $200 (up to $1000).
 - Review and translate 4 desktop-focused guides and receive $100 (up to $500).
