@@ -19,9 +19,9 @@ Grazie al team di sviluppo di Rocky Linux, sono disponibili immagini live per di
 
 ## Prerequisiti
 
-* Una macchina compatibile con Rocky Linux 9.0 (desktop, notebook o server) su cui si desidera eseguire il desktop KDE.
-* La possibilità di eseguire alcune operazioni dalla riga di comando, come la verifica dei checksum delle immagini.
-* La conoscenza di come scrivere un'immagine avviabile su un DVD o una chiavetta USB.
+- Una macchina compatibile con Rocky Linux 9.0 (desktop, notebook o server) su cui si desidera eseguire il desktop KDE.
+- La possibilità di eseguire alcune operazioni dalla riga di comando, come la verifica dei checksum delle immagini.
+- La conoscenza di come scrivere un'immagine avviabile su un DVD o una chiavetta USB.
 
 ## Ottenere, verificare e scrivere l'immagine live di KDE
 
@@ -31,13 +31,13 @@ Si noti che questo particolare collegamento presuppone x86_64 come architettura 
 
 Verificare l'immagine con il file CHECKSUM utilizzando quanto segue (nota: si tratta di un esempio! Assicurarsi che il nome dell'immagine e i file CHECKSUM corrispondano):
 
-```
+```text
 sha256sum -c CHECKSUM --ignore-missing Rocky-9-KDE-x86_64-latest.iso.CHECKSUM
 ```
 
 Se tutto va bene, si dovrebbe ricevere questo messaggio:
 
-```
+```text
 Rocky-9-KDE-x86_64-latest.iso: OK
 ```
 
@@ -97,7 +97,7 @@ Infine, terminare la configurazione:
 
 ![kde_finish_config](images/kde_finish_config.png)
 
-Al termine di questo passaggio, apparirà il nome utente creato in precedenza. Inserire la password creata per l'utente e premere <kbd>INVIO</kbd>. Questo mostrerà una schermata del desktop KDE immacolata:
+Al termine di questo passaggio, apparirà il nome utente creato in precedenza. Inserire la password creata per l'utente e premere ++enter++. Questo mostrerà una schermata del desktop KDE immacolata:
 
 ![kde_screen](images/kde_screen.png)
 
