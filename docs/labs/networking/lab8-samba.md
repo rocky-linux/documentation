@@ -245,7 +245,7 @@ Assumptions:
 - You do not have root access on serverHQ.
 - The Samba share on serverHQ is already set up and accessible.
 
-#### To Setting Up Samba Client on serverXY
+#### To set up Samba client on serverXY
 
 Configure your machine (serverXY) as a Samba client to access a shared directory on a separate host (serverHQ).
 
@@ -255,6 +255,7 @@ Configure your machine (serverXY) as a Samba client to access a shared directory
     ```bash
     sudo dnf install samba-client cifs-utils -y
     ```
+
 2. Create a Mount Point on serverXY:
 
     ```bash
@@ -265,13 +266,13 @@ Configure your machine (serverXY) as a Samba client to access a shared directory
 
 You will need the IP address or hostname of serverHQ, the share name, and your Samba credentials.
 
-1. Replace serverHQ, sharedFolder, and yourUsername with the actual values.
+   Replace serverHQ, sharedFolder, and yourUsername with the actual values.
 
     ```bash
     sudo mount -t cifs //serverHQ/sharedFolder ~/serverHQ-share -o user=yourUsername
     ```
 
-#### To verify and access the mounted Share
+#### To verify and access the mounted share
 
 1. Check if the shared directory from serverHQ is successfully mounted on your machine:
 
@@ -287,7 +288,7 @@ You will need the IP address or hostname of serverHQ, the share name, and your S
 
 #### To unmount the remote share
 
-1. Once done, unmount the share:
+   Once done, unmount the share:
 
     ```bash
     sudo umount ~/serverHQ-share
