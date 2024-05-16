@@ -37,6 +37,7 @@ This project is open to everyone. Interested candidates should email docs@rockyl
 
 - Contribute 5 original desktop-focused guides to the new "Desktop" category and receive $200 (up to $1000).
 - Review and translate 4 desktop-focused guides and receive $100 (up to $500).
+
 The goal is to add at least 25 new documents and 20 translations to the new Desktop category.
 
 
