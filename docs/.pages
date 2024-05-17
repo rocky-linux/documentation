@@ -1,7 +1,6 @@
 ---
 nav:
     - ... | index*.md
-    - ... | summer-of-docs-2024*.md
     - Guides: guides
     - Books: books
     - Labs: labs

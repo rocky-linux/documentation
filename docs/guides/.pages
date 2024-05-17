@@ -4,6 +4,7 @@ nav:
     - ... | installation*.md
     - ... | 8_6_installation*.md
     - ... | migrate2rocky*.md
+    - ... | summer-of-docs-2024*.md
     - ... | custom-linux-kernel*.md
     - Contribute: contribute
     - Automation: automation
