@@ -10,13 +10,13 @@ In diesem Kapitel erfahren Sie, wie Sie Dateien mit Ansible verwalten.
 
 **Ziele**: In diesem Kapitel lernen Sie Folgendes:
 
-:heavy_check_mark: den Inhalt einer Datei ändern;       
-:heavy_check_mark: Dateien auf Zielserver hochladen;   
+:heavy_check_mark: den Inhalt einer Datei ändern;  
+:heavy_check_mark: Dateien auf Zielserver hochladen;  
 :heavy_check_mark: Dateien von Zielservern herunterladen.
 
 :checkered_flag: **ansible**, **module**, **Dateien**
 
-**Vorkenntnisse**: :star: :star:     
+**Vorkenntnisse**: :star: :star:  
 **Schwierigkeitsgrad**: :star:
 
 **Lesezeit**: 23 Minuten
@@ -41,7 +41,7 @@ Das Modul erfordert Folgendes:
 
 Anwendungsbeispiel:
 
-```
+```bash
 - name: change value on inifile
   community.general.ini_file:
     dest: /path/to/file.ini
@@ -62,7 +62,7 @@ In diesem Fall wird die zu ändernde Zeile in einer Datei mithilfe eines regulä
 
 Um beispielsweise sicherzustellen, dass die mit `SELINUX=` beginnende Zeile in der Datei `/etc/selinux/config` den Wert `enforcing` enthält:
 
-```
+```bash
 - ansible.builtin.lineinfile:
     path: /etc/selinux/config
     regexp: '^SELINUX='
@@ -79,7 +79,7 @@ Wenn eine Datei vom Ansible-Server auf einen oder mehrere Hosts kopiert werden m
 
 Hier kopieren wir `myfile.conf` von einem Ort an einen anderen:
 
-```
+```bash
 - ansible.builtin.copy:
     src: /data/ansible/sources/myfile.conf
     dest: /etc/myfile.conf
@@ -98,7 +98,7 @@ Wenn eine Datei von einem Remote-Server auf den lokalen Server kopiert werden so
 
 Das Modul macht das Gegenteil wie das `copy`-Modul:
 
-```
+```bash
 - ansible.builtin.fetch:
     src: /etc/myfile.conf
     dest: /data/ansible/backup/myfile-{{ inventory_hostname }}.conf
@@ -107,7 +107,7 @@ Das Modul macht das Gegenteil wie das `copy`-Modul:
 
 ## `template` Modul
 
-Ansible und sein `template`-Modul verwenden das **Jinja2**-Vorlagensystem (http://jinja.pocoo.org/docs/), um Dateien auf dem Zielhosts zu generieren.
+Ansible und sein `template`-Modul verwenden das **Jinja2**-Vorlagensystem (<http://jinja.pocoo.org/docs/>), um Dateien auf den Zielhosts zu generieren.
 
 !!! note "Anmerkung"
 
@@ -115,7 +115,7 @@ Ansible und sein `template`-Modul verwenden das **Jinja2**-Vorlagensystem (http:
 
 Zum Beispiel:
 
-```
+```bash
 - ansible.builtin.template:
     src: /data/ansible/templates/monfichier.j2
     dest: /etc/myfile.conf
@@ -126,7 +126,7 @@ Zum Beispiel:
 
 Sie können einen Validierungsschritt hinzufügen, wenn der Zieldienst dies zulässt (z. B. Apache mit dem Befehl `apachectl -t`):
 
-```
+```bash
 - template:
     src: /data/ansible/templates/vhost.j2
     dest: /etc/httpd/sites-available/vhost.conf
@@ -140,7 +140,7 @@ Sie können einen Validierungsschritt hinzufügen, wenn der Zieldienst dies zul�
 
 Um Dateien von einer Website oder FTP auf einen oder mehrere Hosts hochzuladen, verwenden Sie das `get_url`-Modul:
 
-```
+```bash
 - get_url:
     url: http://site.com/archive.zip
     dest: /tmp/archive.zip
