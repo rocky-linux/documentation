@@ -14,13 +14,12 @@ tags:
 
 Le noyau Linux stocke ses informations en deux endroits via des systèmes de fichiers spéciaux : ([Un résumé](https://www.landoflinux.com/linux_procfs_sysfs.html))
 
-  - Les [procfs plus anciens](https://man7.org/linux/man-pages/man5/procfs.5.html) qui montent `/proc` (vérifier via `mount -l -t proc`)
-  - Les [sysfs plus récents](https://man7.org/linux/man-pages/man5/sysfs.5.html) qui montent `/sys`    (vérifiez via `mount -l -t sysfs`)
+- Les [procfs plus anciens](https://man7.org/linux/man-pages/man5/procfs.5.html) qui montent `/proc` (vérifier via `mount -l -t proc`)
+- Les [sysfs plus récents](https://man7.org/linux/man-pages/man5/sysfs.5.html) qui montent `/sys`    (vérifiez via `mount -l -t sysfs`)
 
 !!! warning "Attention"
 
     Soyez prudent si vous examinez les fichiers mentionnés ici, les modifier peut changer le comportement du noyau en cours d'exécution !
-
 
 Ces deux interfaces vous permettent de visualiser et de modifier les paramètres du noyau en cours d'exécution.
 
@@ -58,11 +57,11 @@ cat /boot/config-$(uname -r) | grep -i <keyword>
 
 Les résultats suivants devraient être affichés :
 
-  - "=m" si compilé en tant que module de noyau
-  - "=y" si compilé statiquement dans le noyau
-  - "is not set" si ce paramètre a été commenté
-  - une valeur numérique
-  - une valeur de chaîne entre guillemets
+- `=m` si compilé en tant que module de noyau
+- `=y` si compilé statiquement dans le noyau
+- `is not set` si ce paramètre a été commenté
+- une valeur numérique
+- une valeur de chaîne entre guillemets
 
 Certaines distributions, comme Gentoo et Arch, utilisent le module du noyau `configs` pour fournir par défaut `/proc/config.gz` :
 
@@ -88,7 +87,6 @@ modprobe configs
     Ce document ne couvre pas actuellement les paquets du noyau qui pourraient provenir de repos non par défaut tels que :
     
     appstream-debug, appstream-source, baseos-debug, baseos-source ou devel
-
 
 Les paquets `kernel-devel` installent le fichier de configuration utilisé pour compiler chaque paquet de noyau standard installé en tant que fichier ASCII à l'emplacement suivant :
 
@@ -153,6 +151,6 @@ Vous pouvez vérifier les dépendances du module de noyau dans le fichier :
 
 mais il est plus facile de lire ou d'analyser la sortie du champ "Used-by" dans [`lsmod`](https://man7.org/linux/man-pages/man8/lsmod.8.html).
 
-## Références :
+## Référence
 
 [depmod](https://man7.org/linux/man-pages/man8/depmod.8.html), [ls](https://man7.org/linux/man-pages/man1/ls.1.html), [lsmod](https://man7.org/linux/man-pages/man8/lsmod.8.html), [modinfo](https://man7.org/linux/man-pages/man8/modinfo.8.html), [modprobe](https://man7.org/linux/man-pages/man8/modprobe.8.html), [modules.dep](https://man7.org/linux/man-pages/man5/modules.dep.5.html), [namespaces](https://man7.org/linux/man-pages/man7/namespaces.7.html), [procfs](https://man7.org/linux/man-pages/man5/procfs.5.html), [sysctl](https://man7.org/linux/man-pages/man8/sysctl.8.html), [sysfs](https://man7.org/linux/man-pages/man5/sysfs.5.html), [uname](https://man7.org/linux/man-pages/man8/uname26.8.html)
