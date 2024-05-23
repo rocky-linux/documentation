@@ -21,9 +21,9 @@ En développant des guides d'utilisation complets, conviviaux et multilingues, n
 
 ## Chronologie
 
-- **Du 1er juin au 15 juin** : évaluation initiale, planification du sprint, sélection des participants, intégration, sélection des sujets et configuration de l'environnement de bureau virtuel.
-- **Du 16 juin au 15 août** : création de contenus et traductions.
-- **Du 16 août au 30 août** : relecture basée sur les commentaires de la communauté et les traductions finales.
+- **Du 15 juin au 30 juin** : évaluation initiale, planification du sprint, sélection des participants, intégration, sélection des sujets et configuration de l'environnement de bureau virtuel.
+- **Du 1er juillet au 30 août** : Création de contenus et traductions.
+- **Du 1er septembre au 15 septembre** : relecture basée sur les commentaires de la communauté et les traductions finales.
 
 ## Processus de Candidature
 
