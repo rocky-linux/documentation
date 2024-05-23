@@ -22,9 +22,9 @@ By developing comprehensive, user-friendly, and multilingual desktop user guides
 
 ## Timeline
 
-- **June 1 - June 15**: Initial assessment, sprint planning, participant selection, onboarding, topic selection, and setup for virtual desktop environment.
-- **June 16 - August 15**: Content creation and translations.
-- **August 16 - August 30**: Revisions based on community feedback and final translations.
+- **June 15 - June 30**: Initial assessment, sprint planning, participant selection, onboarding, topic selection, and setup for virtual desktop environment.
+- **July 1 - August 30**: Content creation and translations.
+- **Sept 1 - Sept 15**: Revisions based on community feedback and final translations.
 
 ## Application Process
 This project is open to everyone. Interested candidates should email docs@rockylinux.org with any of the following:
