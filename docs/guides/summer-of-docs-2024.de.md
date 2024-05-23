@@ -21,9 +21,9 @@ Durch die Entwicklung umfassender, benutzerfreundlicher und mehrsprachiger Deskt
 
 ## Kalender
 
-- **1. Juni – 15. Juni**: Erste Bewertung, Sprintplanung, Teilnehmerauswahl, Onboarding, Themenauswahl und Einrichtung der virtuellen Desktop-Umgebung.
-- **16. Juni – 15. August**: Erstellung von Inhalten und Übersetzungen.
-- **16. August – 30. August**: Überarbeitungen basierend auf dem Feedback der Community und den endgültigen Übersetzungen.
+- **15. Juni – 30. Juni**: Erste Bewertung, Sprintplanung, Teilnehmerauswahl, Onboarding, Themenauswahl und Einrichtung der virtuellen Desktop-Umgebung.
+- **1. Juli – 30. August**: Erstellung von Inhalten und Übersetzungen.
+- **1. Sept. – 15. September**: Überarbeitungen basierend auf dem Feedback der Community und den endgültigen Übersetzungen.
 
 ## Bewerbungsprozess
 
