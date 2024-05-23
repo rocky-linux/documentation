@@ -105,7 +105,7 @@ In order for a computer to be part of a DNS domain, it must be given a DNS suffi
 
     To remember the order of the layers of the OSI model, remember the following sentence: **Please Do Not Touch Steven's Pet Alligator**.
 
-|  Layer            |  Protocoles                                  |
+|  Layer            |  Protocols                                  |
 |-------------------|----------------------------------------------|
 |  7 - Application  |  POP, IMAP, SMTP, SSH, SNMP, HTTP, FTP, ...  |
 |  6 - Presentation |  ASCII, MIME, ...                            |
