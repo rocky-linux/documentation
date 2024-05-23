@@ -9,13 +9,9 @@ tags:
 
 # `vale` in NvChad (Neovim)
 
-!!! danger "Istruzioni errate"
-
-    Con il rilascio della versione 2.5, le istruzioni contenute in questa pagina non sono più corrette; se ne sconsiglia l'uso per le nuove installazioni. Per maggiori informazioni si veda [la pagina principale della guida](../index.md).
-
 ## :material-message-outline: Introduzione
 
-`vale.sh` è uno dei principali progetti open source per scrittori tecnici che vogliono migliorare la propria scrittura e la coerenza dello stile. Può essere utilizzato con numerosi editor su quasi tutte le principali piattaforme OS (Linux, MacOS, Windows). Per saperne di più sul progetto, visitate il [sito web vale.sh](https://vale.sh/). Questa guida vi condurrà nell'aggiunta di `vale` a NvChad. Poiché è incluso nei pacchetti Mason usati per l'installazione, il processo non è troppo difficile, anche se comporta alcune piccole modifiche e configurazioni per far funzionare le cose. Per essere chiari, NvChad è in realtà il gestore della configurazione dell'editor Neovim, quindi da questo momento in poi il riferimento sarà `nvim`.
+`vale.sh` è uno dei principali progetti open source per scrittori tecnici che vogliono migliorare la propria scrittura e la coerenza dello stile. Può essere utilizzato con numerosi editor su quasi tutte le principali piattaforme OS (Linux, macOS, Windows). Per saperne di più sul progetto, visitate il [sito web vale.sh](https://vale.sh/). Questa guida vi condurrà nell'aggiunta di `vale` a NvChad. Poiché è incluso nei pacchetti Mason usati per l'installazione, il processo non è troppo difficile, anche se comporta alcune piccole modifiche e configurazioni per far funzionare le cose. Per essere chiari, NvChad è in realtà il gestore della configurazione dell'editor Neovim, quindi da questo momento in poi il riferimento sarà `nvim`.
 
 ## :material-arrow-bottom-right-bold-outline: Prerequisiti
 
@@ -27,7 +23,7 @@ tags:
 
 Il plugin [nvim-lint](https://github.com/mfussenegger/nvim-lint) fornisce il supporto per l'inserimento dei ==linters== nell'editor, fornendo la correzione del codice o del contenuto sia per la parte sintattica che per quella semantica.
 
-Per installare il plugin, è necessario modificare il file `custom/plugins.lua` aggiungendo il seguente blocco di codice:
+Per installare il plugin, è necessario modificare il file `lua/plugins/init.lua` aggiungendo il seguente blocco di codice:
 
 ```lua title="plugins.lua"
   {
@@ -39,7 +35,7 @@ Per installare il plugin, è necessario modificare il file `custom/plugins.lua` 
   },
 ```
 
-Il plugin ha un file di configurazione da collocare nella cartella `custom/configs`. Al suo interno troviamo una tabella ==linters_by_ft== dove è possibile inserire i *linters* per i linguaggi utilizzati per lo sviluppo.
+Il plugin ha un file di configurazione che deve essere posizionato nella cartella `lua/configs`. Al suo interno troviamo una tabella ==linters_by_ft== dove è possibile inserire i *linters* per i linguaggi utilizzati per lo sviluppo.
 
 ```lua title="lint.lua"
 require("lint").linters_by_ft = {
@@ -129,7 +125,7 @@ Copiare il file `.vale.ini` e la cartella `styles` nella radice della cartella h
 
 ### :material-file-edit-outline: Modifiche al file `lint.lua`
 
-È necessario un ultimo passo. È necessario modificare il file `lint.lua` che si trova in `~/.config/nvim/lua/custom/configs/` e aggiungere il linter `vale`.
+È necessario un ultimo passo. È necessario modificare il file `lint.lua` che si trova in `~/.config/nvim/lua/configs/` e aggiungere il linter `vale`.
 
 Utilizzando l'esempio mostrato sopra per aggiungere *vale* al linter disponibile per i file markdown, sarà necessario aggiungere il nuovo linter alla stringa già presente:
 
