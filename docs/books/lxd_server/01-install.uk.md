@@ -100,7 +100,7 @@ root            hard    nofile           1048576
 *               hard    memlock          unlimited
 ```
 
-Збережіть зміни та вийдіть. (++shift+colon+"w"+"q"+"exclam++ для *vi*)
+Збережіть зміни та вийдіть (++shift+двокрапка+"w"+"q"+exclam++ для *vi*).
 
 ### Модифікація sysctl.conf за допомогою 90-lxd.override.conf
 
