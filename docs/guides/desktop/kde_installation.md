@@ -25,7 +25,7 @@ Thanks to the Rocky Linux development team, live images for several desktop inst
 
 ## Get, verify, and write the KDE live image
 
-Prior to installation, the first step is to download the live image and write that to a DVD or a USB thumb drive. As stated earlier, the image will be bootable, just like any other installation media for Linux. You can find the latest KDE image in the download section for Rocky Linux 9 [live images](https://dl.rockylinux.org/pub/rocky/9.3/live/x86_64/).
+Prior to installation, the first step is to download the live image and write that to a DVD or a USB thumb drive. As stated earlier, the image will be bootable, just like any other installation media for Linux. You can find the latest KDE image in the download section for Rocky Linux 9 [live images](https://dl.rockylinux.org/pub/rocky/9.4/live/x86_64/).
 
 Note that this particular link assumes x86_64 as your processor architecture. If you have aarch64 architecture, you can use that image instead. Download the live image and checksum files.
 

@@ -28,7 +28,7 @@ It is also one of the most accessible desktop environments to combine with alter
 
     ## 9: Get, verify, and write the XFCE live image
 
-    Prior to installation, the first step is to download the live image and write that to a DVD or a USB thumb drive. As stated earlier, the image will be bootable, just like any other installation media for Linux. You can find the latest XFCE image in the download section for Rocky Linux 9 [live images](https://dl.rockylinux.org/pub/rocky/9.3/live/x86_64/). Note that this particular link assumes x86_64 is your processor's architecture. 
+    Prior to installation, the first step is to download the live image and write that to a DVD or a USB thumb drive. As stated earlier, the image will be bootable, just like any other installation media for Linux. You can find the latest XFCE image in the download section for Rocky Linux 9 [live images](https://dl.rockylinux.org/pub/rocky/9.4/live/x86_64/). Note that this particular link assumes x86_64 is your processor's architecture. 
     
     As of this writing, you can use x86_64 or aarch64 architectures for this live image. Download the live image and checksum files. 
 
@@ -101,7 +101,7 @@ It is also one of the most accessible desktop environments to combine with alter
 
     ## 9 minimal: Introduction
 
-    If you installed Rocky Linux 9.x and decide that you want to install XFCE after, this procedure will get you there. This procedure assumes installation of `Rocky-9.3-x86_64-minimal.iso`.
+    If you installed Rocky Linux 9.x and decide that you want to install XFCE after, this procedure will get you there. This procedure assumes installation of `Rocky-9.4-x86_64-minimal.iso`.
 
     ### Update your system
 
