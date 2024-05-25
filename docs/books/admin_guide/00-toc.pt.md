@@ -20,7 +20,7 @@ Em seguida, podemos entrar no funcionamento mais profundo do Linux para compreen
 * Sistemas de Arquivos
 * Gerenciamento de Processos
 
-Backup e Restauração são informações essenciais para o Administrador de Sistema. O Linux vem com várias soluções para melhorar os backups (rsnapshot, lsyncd, etcetera.). É importante conhecer os componentes de backup essenciais que existem no sistema operacional. Neste capítulo vamos estudar duas ferramentas: `tar` e o menos conhecido `cpio`.
+Backup e Restauração são informações essenciais para o Administrador de Sistema. O Linux vem com várias soluções para melhorar os backups (rsnapshot, lsyncd, etc.). É importante conhecer os componentes de backup essenciais que existem no sistema operacional. Neste capítulo vamos estudar duas ferramentas: `tar` e o menos conhecido `cpio`.
 
 A Inicialização do Sistema também é uma leitura importante porque a gestão do sistema durante o processo de inicialização evoluiu significativamente nos últimos anos desde a chegada do systemd.
 
