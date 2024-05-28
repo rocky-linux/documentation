@@ -22,11 +22,13 @@ tags:
 
 ## Cockpit
 
-Cockpit, a web-based graphical interface administrative tool for Linux servers. While, it has many use cases. We  will be using Cockpit for the purposes of managing user and group accounts. The benefits of using Cockpit are ease of use, remote management, integration, real-time feedback and multi-server dashboards. 
+Cockpit is a web-based graphical interface administrative tool for Linux servers. While it has many use cases, we  will be using Cockpit for managing user and group accounts. The benefits of using Cockpit include ease of use, remote management, integration, real-time feedback and multi-server dashboards. 
 
 ### Log In to Cockpit
 
 - Open your web browser and enter https://localhost:9090 in the address bar
+    >*Note: You can also enter 
+    ```https://localhost:9090``` on the CLI*
 - Enter your username and password and click the **Log In** button
 
     ![img](../rocky_linux_images/1.png)
@@ -63,7 +65,7 @@ sudo useradd jdoe -md /home/jdoe -u 1002 -s /bin/bash
 sudo passwd jdoe 
 ```
 
->You should observe the addition of the new user to the list of users displayed under the **Accounts** tab.
+Observe the addition of the new user to the list of users displayed under the **Accounts** tab.
 
 ![img](../rocky_linux_images/9.png)
 
@@ -140,7 +142,7 @@ sudo userdel -d username groupname
     ![img](../rocky_linux_images/7.png)
 
 - Enter the group name in the text box
-- Accept the default group ID or change it to the numerical value you desire (e.g. 5001)
+>*Note: You can accept the default group ID or change it to the numerical value you desire (e.g. 5001)*
 - Click the **Select** button
 
     ![img](../rocky_linux_images/11.png)
@@ -150,7 +152,7 @@ sudo userdel -d username groupname
 sudo groupadd groupname
 ```
 
-To verify the group has been created
+To verify the group has been created:
 
 - Enter the group name in the search box on the **Groups** table 
 
