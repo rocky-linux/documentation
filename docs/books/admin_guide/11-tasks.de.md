@@ -254,7 +254,7 @@ Für den Root-Benutzer hat `crontab` auch einige spezielle Zeiteinstellungen:
 
 Ein Benutzer, rockstar, möchte seine `crontab` Datei bearbeiten:
 
-1. `crond` prüft, ob er berechtigt ist (`/etc/cron.allow` und `/etc/cron.deny`).
+1. `crond` prüft, ob er dazu berechtigt ist (`/etc/cron.allow` und `/etc/cron.deny`).
 
 2. Falls er berechtigt ist, bearbeitet er seine `crontab` Datei (`/var/spool/cron/rockstar`).
 
