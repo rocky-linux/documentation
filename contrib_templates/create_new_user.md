@@ -14,9 +14,7 @@ tags:
 ## Introduction
 
   This guide will teach you how to manage user and group accounts on Rocky Linux 9.4 using Cockpit, a web-based administrative tool for Linux servers.
-
-  https://ciq.com/blog/how-to-administer-rocky-linux-with-cockpit/
-
+  
 ## Prerequsites
 - Access to Rocky Linux 9 OS with GUI
 - Administrative Priviledges
@@ -49,9 +47,26 @@ tags:
 
     ![img](../rocky_linux_images/8.png)
 
+
+CLI counterpart
+
+```text
+sudo useradd jdoe -md /home/jdoe -u 1002 -s /bin/bash 
+```
+
+```text
+sudo passwd jdoe 
+```
+
 We can now see that user jdoe has been added to the list of users under the Accounts tab
 
   ![img](../rocky_linux_images/9.png)
+
+CLI counterpart
+
+```text
+cat /etc/passwd
+```
 
 #### Modify User Account
 
@@ -76,11 +91,21 @@ To add a user to a group do the following:
 
     ![img](../rocky_linux_images/14.png)
 
+CLI counterpart
+```text
+sudo usermod -aG groupname username
+```
+
 To to remove the user from a group:
 
 - Click the "x" next to the group name
 
     ![img](../rocky_linux_images/18.png)
+
+CLI counterpart
+```text
+sudo gpasswd -d username groupname
+```
 
 #### Delete User Account
 
@@ -97,6 +122,11 @@ Or
 
     ![img](../rocky_linux_images/22.png)
 
+CLI counterpart
+```text
+sudo userdel -d username groupname
+```
+
 ### Creating and Deleting and Managing Group Accounts
 
 - From the the left menu column, click Accounts tab then, click the "Create new group" button
@@ -109,6 +139,11 @@ Or
 
     ![img](../rocky_linux_images/11.png)
 
+CLI counterpart
+```text
+sudo groupadd groupname
+```
+
 To verify the group has been created
 
 - Enter the group name in the search box on the "Groups" table 
@@ -119,12 +154,26 @@ Or
 
     ![img](../rocky_linux_images/12.png)
 
+CLI counterpart
+```text
+cat /etc/group | grep groupname
+```
+
 To delete a group:
 
 - Click the vertical elipses for our new user, jdoe, and click "Delete group"
 
     ![img](../rocky_linux_images/21.png)
   
+#### CLI counterpart
+
+```text
+sudo groupdel groupname
+```
+
+```text
+getent group | grep groupname
+```
 
 ## Conclusions
 
@@ -134,7 +183,4 @@ To delete a group:
 
 ## REFERENCES
 
-1. Footnotes/Reference links (URLs, manpage websites, etc)
-2. Links to scripts, code and custom programs (for posterity in some cases if the originals might disappear)
-
-## Plus all the things I've thought of in the past and can't remember
+To Install Cockpit: https://ciq.com/blog/how-to-administer-rocky-linux-with-cockpit/
