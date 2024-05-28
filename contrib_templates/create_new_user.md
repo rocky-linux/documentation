@@ -189,6 +189,8 @@ getent group | grep groupname
 
   It works great!
 
+  In conclusion, this guide has equipped you with the knowledge to manage user and group accounts on Rocky Linux 9.4 using Cockpit. With Cockpit's intuitive web-based graphical interface, administrative tasks become more accessible and efficient, allowing you to take full advantage of its user-friendly features for seamless system management.
+
 ---
 
 ## REFERENCES
