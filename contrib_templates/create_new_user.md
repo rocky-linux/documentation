@@ -60,11 +60,11 @@ Cockpit is a web-based graphical interface administrative tool for Linux servers
 **CLI counterpart**
 
 ```text
-sudo useradd jdoe -md /home/jdoe -u 1002 -s /bin/bash 
+sudo useradd username -md /home/username -u 1002 -s /bin/bash 
 ```
 
 ```text
-sudo passwd jdoe 
+sudo passwd username 
 ```
 
 Observe the addition of the new user to the list of users displayed under the **Accounts** tab.
@@ -79,7 +79,7 @@ cat /etc/passwd
 
 #### Modify User Account
 
-- Click the vertical ellipsis icon for our new user, jdoe, and click **Edit user**
+- Click the vertical ellipsis icon for the new user and click **Edit user**
 
     ![img](../rocky_linux_images/13.png)
 
@@ -121,7 +121,7 @@ sudo gpasswd -d username groupname
 
 To delete a user account:
 
-- Click the vertical ellipsis icon for our new user, jdoe, and click **Delete account**
+- Click the vertical ellipsis icon for the new user and click **Delete account**
 
     ![img](../rocky_linux_images/16.png)
 
