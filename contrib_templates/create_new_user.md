@@ -27,8 +27,10 @@ Cockpit is a web-based graphical interface administrative tool for Linux servers
 ### Log In to Cockpit
 
 - Open your web browser and enter https://localhost:9090 in the address bar
-    >*Note: You can also enter 
-    ```https://localhost:9090``` on the CLI*
+    >*Note: You can also enter the same address on the command line
+    ```text 
+    https://localhost:9090
+    ``` 
 - Enter your username and password and click the **Log In** button
 
     ![img](../rocky_linux_images/1.png)
