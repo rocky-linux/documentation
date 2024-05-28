@@ -13,14 +13,18 @@ tags:
 
 ## Introduction
 
-  This guide will teach you how to manage user and group accounts on Rocky Linux 9.4 using Cockpit, a web-based administrative tool for Linux servers.
+  This guide will teach you how to manage user and group accounts on Rocky Linux 9.4 using Cockpit, a web-based graphical interface administrative tool for Linux servers.
   
 ## Prerequsites
 - Access to Rocky Linux 9 OS with GUI
 - Administrative Priviledges
 - Cockpit package installed and enabled
 
-## Log In to Cockpit
+## Cockpit
+
+Cockpit, a web-based graphical interface administrative tool for Linux servers. While, it has many use cases. We  will be using Cockpit for the purposes of managing user and group accounts. The benefits of using Cockpit are ease of use, remote management, integration, real-time feedback and multi-server dashboards. 
+
+### Log In to Cockpit
 
 - Open your web browser and enter https://localhost:9090 in the address bar
 - Enter your username and password and click the **Log In** button
@@ -35,12 +39,13 @@ tags:
 
 ### Managing User Accounts
 
-- From the the left menu column, click **Accounts** tab then, click the **Create new account** button
+- From the left menu, click **Accounts** tab and then click on the **Create new account** button
 
     ![img](../rocky_linux_images/5.png)
 
 
-- Enter the user's name in the text box for "Full name"
+- Enter the user's name in the **Full name** text box
+  >*Note that the username will be automatically populated based on the full name. However the username field is also editable.*
 - Enter a password for the new user
 - Click the **Create** button
 
@@ -58,9 +63,9 @@ sudo useradd jdoe -md /home/jdoe -u 1002 -s /bin/bash
 sudo passwd jdoe 
 ```
 
-You should see the new user added to the list of users under the Accounts tab
+>You should observe the addition of the new user to the list of users displayed under the **Accounts** tab.
 
-  ![img](../rocky_linux_images/9.png)
+![img](../rocky_linux_images/9.png)
 
 **CLI counterpart**
 
@@ -70,11 +75,11 @@ cat /etc/passwd
 
 #### Modify User Account
 
-- Click the vertical elipses for our new user, jdoe, and click **Edit user**
+- Click the vertical ellipsis icon for our new user, jdoe, and click **Edit user**
 
     ![img](../rocky_linux_images/13.png)
 
-Here is where we can modify user account settings, such as the user's:
+This is where we can modify user account settings, such as:
 
 - Full name
 - Group membership
@@ -85,9 +90,10 @@ Here is where we can modify user account settings, such as the user's:
 
 To add a user to a group do the following:
 
-- Click the vertical elipses associated with the user and click **Edit user**
+- Click the vertical ellipsis icon next to the new user and click **Edit user**
 
-- Click the Groups text box and start typing the name of the group or scroll down the dropdown menu and click the name of the group in which you want to add the user 
+- Click the **Groups** text box and begin typing the name of the group.  
+  Alternatively, you can scroll down the dropdown menu and click the name of the group you wish to add 
 
     ![img](../rocky_linux_images/14.png)
 
@@ -96,7 +102,7 @@ To add a user to a group do the following:
 sudo usermod -aG groupname username
 ```
 
-To to remove the user from a group:
+To remove the user from a group:
 
 - Click the **x** next to the group name
 
@@ -111,7 +117,7 @@ sudo gpasswd -d username groupname
 
 To delete a user account:
 
-- Click the vertical elipses for our new user, jdoe, and click **Delete account**
+- Click the vertical ellipsis icon for our new user, jdoe, and click **Delete account**
 
     ![img](../rocky_linux_images/16.png)
 
@@ -161,7 +167,7 @@ cat /etc/group | grep groupname
 
 To delete a group:
 
-- Click the vertical elipses for our new user, jdoe, and click **Delete group**
+- Click the vertical ellipsis for the new user and click **Delete group**
 
     ![img](../rocky_linux_images/21.png)
   
