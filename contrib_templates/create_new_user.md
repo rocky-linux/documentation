@@ -70,7 +70,7 @@ cat /etc/passwd
 
 #### Modify User Account
 
-- Click the vertical elipses for our new user, jdoe, and click "Edit user"
+- Click the vertical elipses for our new user, jdoe, and click **Edit user**
 
     ![img](../rocky_linux_images/13.png)
 
@@ -85,7 +85,7 @@ Here is where we can modify user account settings, such as the user's:
 
 To add a user to a group do the following:
 
-- Click the vertical elipses associated with the user and click "Edit user"
+- Click the vertical elipses associated with the user and click **Edit user**
 
 - Click the Groups text box and start typing the name of the group or scroll down the dropdown menu and click the name of the group in which you want to add the user 
 
@@ -98,7 +98,7 @@ sudo usermod -aG groupname username
 
 To to remove the user from a group:
 
-- Click the "x" next to the group name
+- Click the **x** next to the group name
 
     ![img](../rocky_linux_images/18.png)
 
@@ -111,12 +111,12 @@ sudo gpasswd -d username groupname
 
 To delete a user account:
 
-- Click the vertical elipses for our new user, jdoe, and click "Delete account"
+- Click the vertical elipses for our new user, jdoe, and click **Delete account**
 
     ![img](../rocky_linux_images/16.png)
 
 Or 
-- Click the username highlighted in blue and select "Delete" box
+- Click the username highlighted in blue and select **Delete** box
 
     ![img](../rocky_linux_images/17.png)
 
@@ -129,7 +129,7 @@ sudo userdel -d username groupname
 
 ### Creating and Deleting and Managing Group Accounts
 
-- From the the left menu column, click Accounts tab then, click the **Create new group** button
+- From the the left menu column, click **Accounts** tab then, click the **Create new group** button
 
     ![img](../rocky_linux_images/7.png)
 
@@ -146,11 +146,11 @@ sudo groupadd groupname
 
 To verify the group has been created
 
-- Enter the group name in the search box on the "Groups" table 
+- Enter the group name in the search box on the **Groups** table 
 
 Or 
 
--  Click the dropdown menu next to "Groups"
+-  Click the dropdown menu next to **Groups**
 
     ![img](../rocky_linux_images/12.png)
 
@@ -161,7 +161,7 @@ cat /etc/group | grep groupname
 
 To delete a group:
 
-- Click the vertical elipses for our new user, jdoe, and click "Delete group"
+- Click the vertical elipses for our new user, jdoe, and click **Delete group**
 
     ![img](../rocky_linux_images/21.png)
   
