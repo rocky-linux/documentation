@@ -13,13 +13,13 @@ tags:
 
 Ecco tutto ciò di cui avrete bisogno per capire e seguire questa guida:
 
-* Una macchina con Rocky Linux.
-* Essere a proprio agio con la modifica dei file di configurazione dalla riga di comando
-* Conoscenza dell'uso di un editor a riga di comando (qui si usa _vi_, ma si può usare il proprio editor preferito)
-* È necessario avere accesso a root e, idealmente, essere registrati come utente root nel proprio terminale
-* Coppia di chiavi SSH Pubbliche e Private.
-* In grado di creare uno script bash con `vi` o con il vostro editor preferito e di testarlo.
-* In grado di utilizzare _crontab_ per automatizzare l'esecuzione dello script.
+- Una macchina con Rocky Linux.
+- Essere a proprio agio con la modifica dei file di configurazione dalla riga di comando
+- Conoscenza dell'uso di un editor a riga di comando (qui si usa _vi_, ma si può usare il proprio editor preferito)
+- È necessario avere accesso a root e, idealmente, essere registrati come utente root nel proprio terminale
+- Coppia di chiavi SSH Pubbliche e Private.
+- In grado di creare uno script bash con `vi` o con il vostro editor preferito e di testarlo.
+- In grado di utilizzare _crontab_ per automatizzare l'esecuzione dello script.
 
 ## Introduzione
 
@@ -45,18 +45,18 @@ Questo particolare esempio utilizzerà `rsync` sul computer di destinazione per 
 
 Prima di lasciarsi prendere la mano con l'impostazione di uno script, è necessario decidere quali parametri utilizzare con `rsync`. Ci sono molte possibilità, quindi date un'occhiata al [manuale di rsync](https://linux.die.net/man/1/rsync). Il modo più comune di usare `rsync` è quello di usare l'opzione `-a`, perché `-a`, o archivio, combina una serie di opzioni in una sola e queste sono opzioni molto comuni. Che cosa include -a?
 
-* -r, ricorrere le directory
-* -l, mantenere i collegamenti simbolici come collegamenti simbolici
-* -p, preservare le autorizzazioni
-* -t, preservare i tempi di modifica
-* -g, preservare il gruppo
-* -o, preservare il proprietario
-* -D, conservare i file di dispositivo
+- `-r`, ricorre le directory
+- `-l`, mantiene i collegamenti simbolici come collegamenti simbolici
+- `-p`, preserva i permessi
+- `-t`, preserva i tempi di modifica
+- `-g`, preserva il gruppo
+- `-o`, preserva il proprietario
+- `-D`, conserva i file del dispositivo
 
 Le uniche altre opzioni da specificare in questo esempio sono:
 
-* -e, specificare la shell remota da utilizzare
-* --delete, che dice che se la directory di destinazione contiene un file che non esiste nella sorgente, bisogna eliminarlo
+- `-e`, specifica la shell remota da utilizzare
+- `--delete`, che dice che se nella directory di destinazione c'è un file che non esiste nella sorgente, bisogna eliminarlo
 
 Successivamente, dobbiamo impostare uno script creando un file per esso (ancora una volta, utilizzate il vostro editor preferito se non avete familiarità con vi). Per creare il file, basta usare questo comando:
 
@@ -70,7 +70,7 @@ E poi renderlo eseguibile:
 
 Ora, lo scripting lo rende super semplice e sicuro, in modo da poterlo testare senza timore. Si noti che l'URL utilizzato di seguito è "source.domain.com". Sostituirlo con il dominio o l'indirizzo IP del proprio computer di origine, entrambi funzionano. Ricordate inoltre che in questo esempio lo script viene creato sul computer "di destinazione", perché il file viene estratto dal computer di origine:
 
-```
+```bash
 #!/bin/bash
 /usr/bin/rsync -ae ssh --delete root@source.domain.com:/home/your_user /home
 ```
@@ -148,24 +148,25 @@ In questo modo si ottiene il cron, che può avere un aspetto simile a questo:
 #
 # m h  dom mon dow   command
 ```
+
 Il cron è impostato su un orologio di 24 ore, quindi la voce da inserire in fondo al file è:
 
 `00 23   *  *  *    /usr/local/sbin/rsync_dirs`
 
 Questo comando deve essere eseguito alle 00 minuti, 23 ore, tutti i giorni, tutti i mesi e tutti i giorni della settimana. Salvare la voce di cron con:
 
-`Shift : wq!`
+++shift+colon+"w"+"q"+exclam++
 
 ... o con i comandi che il vostro editor preferito utilizza per salvare un file.
 
 ## Flags opzionali
-```
+
+```bash
 -n : Esecuzione Dry-Run per vedere quali file verranno trasferiti 
 -v : elenca tutti i file che vengono trasferiti 
 -vvv : per fornire informazioni di debug durante il trasferimento dei file 
 -z : per abilitare la compressione durante il trasferimento 
 ```
-
 
 ## Conclusioni
 
