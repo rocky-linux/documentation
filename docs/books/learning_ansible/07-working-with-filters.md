@@ -17,8 +17,8 @@ In this chapter you will learn how to transform data with jinja filters.
 
 :checkered_flag: **ansible**, **jinja**, **filters**
 
-**Knowledge**: :star: :star: :star:       
-**Complexity**: :star: :star: :star: :star:
+**Knowledge**: :star: :star: :star:  
+**Complexity**: :star: :star: :star: :star:  
 
 **Reading time**: 20 minutes
 
@@ -34,7 +34,7 @@ These filters, written in python, allow us to manipulate and transform our ansib
 
 Throughout this chapter, we will use the following playbook to test the different filters presented:
 
-```
+```bash
 - name: Manipulating the data
   hosts: localhost
   gather_facts: false
@@ -78,7 +78,7 @@ Throughout this chapter, we will use the following playbook to test the differen
 
 The playbook will be played as follows:
 
-```
+```bash
 ansible-playbook play-filter.yml
 ```
 
@@ -90,7 +90,7 @@ To know the type of a data (the type in python language), you have to use the `t
 
 Example:
 
-```
+```bash
 - name: Display the type of a variable
   debug:
     var: true_boolean|type_debug
@@ -98,7 +98,7 @@ Example:
 
 which gives us:
 
-```
+```bash
 TASK [Display the type of a variable] ******************************************************************
 ok: [localhost] => {
     "true_boolean|type_debug": "bool"
@@ -107,13 +107,13 @@ ok: [localhost] => {
 
 It is possible to transform an integer into a string:
 
-```
+```bash
 - name: Transforming a variable type
   debug:
     var: zero|string
 ```
 
-```
+```bash
 TASK [Transforming a variable type] ***************************************************************
 ok: [localhost] => {
     "zero|string": "0"
@@ -122,7 +122,7 @@ ok: [localhost] => {
 
 Transform a string into an integer:
 
-```
+```bash
 - name: Transforming a variable type
   debug:
     var: zero_string|int
@@ -130,7 +130,7 @@ Transform a string into an integer:
 
 or a variable into a boolean:
 
-```
+```bash
 - name: Display an integer as a boolean
   debug:
     var: non_zero | bool
@@ -151,7 +151,7 @@ or a variable into a boolean:
 
 A character string can be transformed into upper or lower case:
 
-```
+```bash
 - name: Lowercase a string of characters
   debug:
     var: whatever | lower
@@ -163,7 +163,7 @@ A character string can be transformed into upper or lower case:
 
 which gives us:
 
-```
+```bash
 TASK [Lowercase a string of characters] *****************************************************
 ok: [localhost] => {
     "whatever | lower": "it's false!"
@@ -179,7 +179,7 @@ The `replace` filter allows you to replace characters by others.
 
 Here we remove spaces or even replace a word:
 
-```
+```bash
 - name: Replace a character in a string
   debug:
     var: whatever | replace(" ", "")
@@ -191,7 +191,7 @@ Here we remove spaces or even replace a word:
 
 which gives us:
 
-```
+```bash
 TASK [Replace a character in a string] *****************************************************
 ok: [localhost] => {
     "whatever | replace(\" \", \"\")": "It'sfalse!"
@@ -205,14 +205,13 @@ ok: [localhost] => {
 
 The `split` filter splits a string into a list based on a character:
 
-```
+```bash
 - name: Cutting a string of characters
   debug:
     var: whatever | split(" ", "")
 ```
 
-
-```
+```bash
 TASK [Cutting a string of characters] *****************************************************
 ok: [localhost] => {
     "whatever | split(\" \")": [
@@ -227,7 +226,7 @@ ok: [localhost] => {
 It is frequent to have to join the different elements in a single string.
 We can then specify a character or a string to insert between each element.
 
-```
+```bash
 - name: Joining elements of a list
   debug:
     var: my_simple_list|join(",")
@@ -239,7 +238,7 @@ We can then specify a character or a string to insert between each element.
 
 which gives us:
 
-```
+```bash
 TASK [Joining elements of a list] *****************************************************************
 ok: [localhost] => {
     "my_simple_list|join(\",\")": "value_list_1,value_list_2,value_list_3"
@@ -259,7 +258,7 @@ are frequently used, especially in loops.
 
 Note that it is possible to specify the name of the key and of the value to use in the transformation.
 
-```
+```bash
 - name: Display a dictionary
   debug:
     var: my_dictionary
@@ -277,7 +276,7 @@ Note that it is possible to specify the name of the key and of the value to use 
     var: my_list | items2dict(key_name='element', value_name='value')
 ```
 
-```
+```bash
 TASK [Display a dictionary] *************************************************************************
 ok: [localhost] => {
     "my_dictionary": {
@@ -327,13 +326,13 @@ ok: [localhost] => {
 
 It is possible to merge or filter data from one or more lists:
 
-```
+```bash
 - name: Merger of two lists
   debug:
     var: my_simple_list | union(my_simple_list_2)
 ```
 
-```
+```bash
 ok: [localhost] => {
     "my_simple_list | union(my_simple_list_2)": [
         "value_list_1",
@@ -347,13 +346,13 @@ ok: [localhost] => {
 
 To keep only the intersection of the 2 lists (the values present in the 2 lists):
 
-```
+```bash
 - name: Merger of two lists
   debug:
     var: my_simple_list | intersect(my_simple_list_2)
 ```
 
-```
+```bash
 TASK [Merger of two lists] *******************************************************************************
 ok: [localhost] => {
     "my_simple_list | intersect(my_simple_list_2)": [
@@ -364,13 +363,13 @@ ok: [localhost] => {
 
 Or on the contrary keep only the difference (the values that do not exist in the second list):
 
-```
+```bash
 - name: Merger of two lists
   debug:
     var: my_simple_list | difference(my_simple_list_2)
 ```
 
-```
+```bash
 TASK [Merger of two lists] *******************************************************************************
 ok: [localhost] => {
     "my_simple_list | difference(my_simple_list_2)": [
@@ -382,7 +381,7 @@ ok: [localhost] => {
 
 If your list contains non-unique values, it is also possible to filter them with the `unique` filter.
 
-```
+```bash
 - name: Unique value in a list
   debug:
     var: my_simple_list | unique
@@ -392,7 +391,7 @@ If your list contains non-unique values, it is also possible to filter them with
 
 You may have to import json data (from an API for example) or export data in yaml or json.
 
-```
+```bash
 - name: Display a variable in yaml
   debug:
     var: my_list | to_nice_yaml(indent=4)
@@ -402,7 +401,7 @@ You may have to import json data (from an API for example) or export data in yam
     var: my_list | to_nice_json(indent=4)
 ```
 
-```
+```bash
 TASK [Display a variable in yaml] ********************************************************************
 ok: [localhost] => {
     "my_list | to_nice_yaml(indent=4)": "-   element: element1\n    value: value1\n-   element: element2\n    value: value2\n"
@@ -420,13 +419,13 @@ You will quickly be confronted with errors in the execution of your playbooks if
 
 The value of a variable can be substituted for another one if it does not exist with the `default` filter:
 
-```
+```bash
 - name: Default value
   debug:
     var: variablethatdoesnotexists | default(whatever)
 ```
 
-```
+```bash
 TASK [Default value] ********************************************************************************
 ok: [localhost] => {
     "variablethatdoesnotexists | default(whatever)": "It's false!"
@@ -435,13 +434,13 @@ ok: [localhost] => {
 
 Note the presence of the apostrophe `'` which should be protected, for example, if you were using the `shell` module:
 
-```
+```bash
 - name: Default value
   debug:
     var: variablethatdoesnotexists | default(whatever| quote)
 ```
 
-```
+```bash
 TASK [Default value] ********************************************************************************
 ok: [localhost] => {
     "variablethatdoesnotexists | default(whatever|quote)": "'It'\"'\"'s false!'"
@@ -450,7 +449,7 @@ ok: [localhost] => {
 
 Finally, an optional variable in a module can be ignored if it does not exist with the keyword `omit` in the `default` filter, which will save you an error at runtime.
 
-```
+```bash
 - name: Add a new user
   ansible.builtin.user:
     name: "{{ user_name }}"
@@ -463,13 +462,13 @@ Sometimes you need to use a condition to assign a value to a variable, in which 
 
 This can be avoided by using the `ternary` filter:
 
-```
+```bash
 - name: Default value
   debug:
     var: (user_name == 'antoine') | ternary('admin', 'normal_user')
 ```
 
-```
+```bash
 TASK [Default value] ********************************************************************************
 ok: [localhost] => {
     "(user_name == 'antoine') | ternary('admin', 'normal_user')": "admin"
@@ -478,8 +477,8 @@ ok: [localhost] => {
 
 ## Some other filters
 
-  * `{{ 10000 | random }}`: as its name indicates, gives a random value.
-  * `{{ my_simple_list | first }}`: extracts the first element of the list.
-  * `{{ my_simple_list | length }}`: gives the length (of a list or a string).
-  * `{{ ip_list | ansible.netcommon.ipv4 }}`: only displays v4 IPs. Without dwelling on this, if you need, there are many filters dedicated to the network.
-  * `{{ user_password | password_hash('sha512') }}`: generates a hashed password in sha512.
+* `{{ 10000 | random }}`: as its name indicates, gives a random value.
+* `{{ my_simple_list | first }}`: extracts the first element of the list.
+* `{{ my_simple_list | length }}`: gives the length (of a list or a string).
+* `{{ ip_list | ansible.netcommon.ipv4 }}`: only displays v4 IPs. Without dwelling on this, if you need, there are many filters dedicated to the network.
+* `{{ user_password | password_hash('sha512') }}`: generates a hashed password in sha512.

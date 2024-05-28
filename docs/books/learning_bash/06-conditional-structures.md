@@ -36,7 +36,7 @@ But we can use it in a condition.
 
 Syntax of the conditional alternative `if`:
 
-```
+```bash
 if command
 then
     command if $?=0
@@ -52,7 +52,7 @@ Using a classical command (`mkdir`, `tar`, ...) allows you to define the actions
 
 Examples:
 
-```
+```bash
 if [[ -e /etc/passwd ]]
 then
     echo "The file exists"
@@ -68,7 +68,7 @@ fi
 
 If the `else` block starts with a new `if` structure, you can merge the `else` and `if` with `elif` as shown below:
 
-```
+```bash
 [...]
 else
   if [[ -e /etc/ ]]
@@ -99,7 +99,7 @@ The command to execute if `$?` is `true` is placed after `&&` while the command 
 
 Example:
 
-```
+```bash
 [[ -e /etc/passwd ]] && echo "The file exists" || echo "The file does not exist"
 mkdir dir && echo "The directory is created".
 ```
@@ -109,21 +109,26 @@ It is also possible to evaluate and replace a variable with a lighter structure 
 This syntax implements the braces:
 
 * Displays a replacement value if the variable is empty:
-    ```
+
+    ```bash
     ${variable:-value}
     ```
+  
 * Displays a replacement value if the variable is not empty:
-    ```
+
+    ```bash
     ${variable:+value}
     ```
+  
 * Assigns a new value to the variable if it is empty:
-    ```
+
+    ```bash
     ${variable:=value}
     ```
 
 Examples:
 
-```
+```bash
 name=""
 echo ${name:-linux}
 linux
@@ -160,7 +165,7 @@ Placed at the end of the structure, the choice `*` indicates the actions to be e
 
 Syntax of the conditional alternative case:
 
-```
+```bash
 case $variable in
   value1)
     commands if $variable = value1
@@ -177,7 +182,7 @@ esac
 
 When the value is subject to variation, it is advisable to use wildcards `[]` to specify the possibilities:
 
-```
+```bash
 [Yy][Ee][Ss])
   echo "yes"
   ;;
@@ -185,7 +190,7 @@ When the value is subject to variation, it is advisable to use wildcards `[]` to
 
 The character `|` also allows you to specify a value or another:
 
-```
+```bash
 "yes" | "YES")
   echo "yes"
   ;;

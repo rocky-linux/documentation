@@ -41,7 +41,7 @@ The content of a variable can be changed during the script, as the variable cont
 
 The notion of a variable type in a shell script is possible but is very rarely used. The content of a variable is always a character or a string.
 
-```
+```bash
 #!/usr/bin/env bash
 
 #
@@ -76,7 +76,7 @@ By convention, variables created by a user have a name in lower case. This name 
 
 The character `=` assigns content to a variable:
 
-```
+```bash
 variable=value
 rep_name="/home"
 ```
@@ -85,14 +85,14 @@ There is no space before or after the `=` sign.
 
 Once the variable is created, it can be used by prefixing it with a dollar $.
 
-```
+```bash
 file=file_name
 touch $file
 ```
 
 It is strongly recommended to protect variables with quotes, as in this example below:
 
-```
+```bash
 file=file name
 touch $file
 touch "$file"
@@ -102,7 +102,7 @@ As the content of the variable contains a space, the first `touch` will create 2
 
 To isolate the name of the variable from the rest of the text, you must use quotes or braces:
 
-```
+```bash
 file=file_name
 touch "$file"1
 touch ${file}1
@@ -112,7 +112,7 @@ touch ${file}1
 
 The use of apostrophes inhibits the interpretation of special characters.
 
-```
+```bash
 message="Hello"
 echo "This is the content of the variable message: $message"
 Here is the content of the variable message: Hello
@@ -126,7 +126,7 @@ The `unset` command allows for the deletion of a variable.
 
 Example:
 
-```
+```bash
 name="NAME"
 firstname="Firstname"
 echo "$name $firstname"
@@ -140,7 +140,7 @@ The `readonly` or `typeset -r` command locks a variable.
 
 Example:
 
-```
+```bash
 name="NAME"
 readonly name
 name="OTHER NAME"
@@ -195,21 +195,21 @@ It is possible to store the result of a command in a variable.
 
 The syntax for sub-executing a command is as follows:
 
-```
+```bash
 variable=`command`
 variable=$(command) # Preferred syntax
 ```
 
 Example:
 
-```
-$ day=`date +%d`
-$ homedir=$(pwd)
+```bash
+day=`date +%d`
+homedir=$(pwd)
 ```
 
 With everything we've just seen, our backup script might look like this:
 
-```
+```bash
 #!/usr/bin/env bash
 
 #
@@ -257,13 +257,13 @@ logger "Backup of system files by ${USER} on ${HOSTNAME} in the folder ${DESTINA
 
 Running our backup script:
 
-```
-$ sudo ./backup.sh
+```bash
+sudo ./backup.sh
 ```
 
 will give us:
 
-```
+```bash
 ****************************************************************
      Backup Script - Backup on desktop                      
 ****************************************************************

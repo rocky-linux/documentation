@@ -36,6 +36,7 @@ Delineare la procedura o la soluzione con passi numerati:
    ```bash
    Comando o frammento di codice
    ```
+
 2. **Secondo passo**:
 
    Proseguire con le istruzioni dettagliate.

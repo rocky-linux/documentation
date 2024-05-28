@@ -31,29 +31,31 @@ Quando viene eseguito un programma, Il sistema creerà un processo posizionando 
 
 Ogni processo ha:
 
-* un _PID_ : _**P**rocess **ID**entifier_, un identificatore di processo unico
-* un _PPID_ : _**P**arent **P**rocess **ID**entifier_, identificatore univoco del processo genitore
+* un *PID*: ***P**rocess **ID**entifier*, un identificatore di processo unico
+* un *PPID*: ***P**arent **P**rocess **ID**entifier*, identificatore univoco del processo genitore
 
 Da filiazioni successive, il processo `init` è il padre di tutti i processi.
 
 * Un processo è sempre creato da un processo genitore
 * Un processo genitore può avere più processi figlio
 
-C'è una relazione genitore/figlio tra i processi. Un processo figlio è il risultato di un genitore che chiama la primitiva _fork()_ e duplica il suo codice per creare un figlio. Il _PID_ del processo figlio viene restituito al processo genitore in modo che possa comunicare. Ogni processo figlio ha l'identificatore del suo processo genitore, il _PPID_.
+C'è una relazione genitore/figlio tra i processi. Un processo figlio è il risultato di un genitore che chiama la primitiva *fork()* e duplica il suo codice per creare un figlio. Il *PID* del processo figlio viene restituito al processo genitore in modo che possa comunicare. Ogni processo figlio ha l'identificatore del suo processo genitore, il *PPID*.
 
-Il numero _PID_ rappresenta il processo al momento dell'esecuzione. Quando il processo finisce, il numero è di nuovo disponibile per un altro processo. Eseguendo lo stesso comando più volte produrrà un diverso _PID_ ogni volta.<!-- TODO !\[Parent/child relationship between processes\](images/FON-050-001.png) -->!!! Note "Nota"
+Il numero *PID* rappresenta il processo al momento dell'esecuzione. Al termine del processo, il numero è nuovamente disponibile per un altro processo. Eseguendo più volte lo stesso comando si otterrà ogni volta un *PID* diverso.<!-- TODO !\[Parent/child relationship between processes\](images/FON-050-001.png) -->!!! Note "Nota"
 
     I processi non devono essere confusi con i _threads_. Ogni processo ha il suo contesto di memoria (risorse e spazio degli indirizzi), mentre i _thread_ dello stesso processo condividono questo contesto.
 
 ## Visualizzazione dei processi
 
 Il comando `ps` visualizza lo stato dei processi in esecuzione.
-```
+
+```bash
 ps [-e] [-f] [-u login]
 ```
 
 Esempio:
-```
+
+```bash
 # ps -fu root
 ```
 
@@ -80,7 +82,7 @@ Senza un'opzione specificata, il comando `ps` visualizza solo i processi in esec
 
 Il risultato viene visualizzato nelle seguenti colonne:
 
-```
+```bash
 # ps -ef
 UID  PID PPID C STIME  TTY TIME      CMD
 root 1   0    0 Jan01  ?   00:00/03  /sbin/init
@@ -99,7 +101,7 @@ root 1   0    0 Jan01  ?   00:00/03  /sbin/init
 
 Il comportamento del controllo può essere completamente personalizzato:
 
-```
+```bash
 # ps -e --format "%P %p %c %n" --sort ppid --headers
  PPID   PID COMMAND          NI
     0     1 systemd           0
@@ -119,14 +121,14 @@ Il processo dell'utente:
 * è iniziato da un terminale associato a un utente
 * accede alle risorse tramite richieste o daemons
 
-I processi di sistema sono quindi chiamati daemons (_**D**isk **A**nd **E**xecution **MON**itor_)
+Il processo di sistema (*daemon*):
 
 * è iniziato dal sistema
 * non è associato a nessun terminale, ed è di proprietà di un utente di sistema (spesso `root`);
 * è caricato al momento dell'avvio, risiede in memoria, e sta aspettando una chiamata
 * è solitamente identificato dalla lettera `d` associato al nome del processo
 
-I processi di sistema sono quindi chiamati daemons (_**D**isk **A**nd **E**xecution **MON**itor_).
+I processi di sistema sono quindi chiamati daemons (_**D**isk **A**nd **E**xecution **MON**itor_)
 
 ## Autorizzazioni e diritti
 
@@ -161,9 +163,11 @@ Quando un genitore termina, i suoi figli diventano orfani. Vengono quindi adotta
 
 ### La priorità di un processo
 
-Il processore lavora in time sharing, con ogni processo che occupa una quantità di tempo del processore.
+Linux appartiene alla famiglia dei sistemi operativi a condivisione di tempo. I processori lavorano in time-sharing e ogni processo occupa una parte del tempo del processore. I processi vengono classificati per priorità:
 
-I processi sono classificati per priorità, il cui valore varia da **-20** (la priorità più alta) a **+19** (la priorità più bassa).
+* Processo in tempo reale: il processo con priorità **0-99** è programmato dall'algoritmo di schedulazione in tempo reale.
+* Processi ordinari: i processi con priorità dinamiche da **100-139** sono programmati utilizzando un algoritmo di schedulazione completamente equo.
+* Valore di nice: parametro utilizzato per regolare la priorità di un processo ordinario. L'intervallo è **-20-19**.
 
 La priorità predefinita di un processo è **0**.
 
@@ -186,23 +190,23 @@ I vincoli della modalità asincrona:
 
 Il comando `kill` invia un segnale di arresto a un processo.
 
-```
+```bash
 kill [-signal] PID
 ```
 
 Esempio:
 
-```
-$ kill -9 1664
+```bash
+kill -9 1664
 ```
 
-| Codice | Segnale   | Descrizione                          |
-| ------ | --------- | ------------------------------------ |
-| `2`    | _SIGINT_  | Arresto immediato del processo       |
-| `9`    | _SIGKILL_ | Interruzione del processo (CTRL + D) |
-| `15`   | _SIGTERM_ | Arresto pulito del processo          |
-| `18`   | _SIGCONT_ | Riprendere il processo               |
-| `19`   | _SIGSTOP_ | Sospendere il processo               |
+| Codice | Segnale   | Descrizione                               |
+| ------ | --------- | ----------------------------------------- |
+| `2`    | *SIGINT*  | Arresto immediato del processo            |
+| `9`    | *SIGKILL* | Interruzione del processo (++control+d++) |
+| `15`   | *SIGTERM* | Arresto pulito del processo               |
+| `18`   | *SIGCONT* | Riprendere il processo                    |
+| `19`   | *SIGSTOP* | Sospendere il processo                    |
 
 I segnali sono i mezzi di comunicazione tra i processi. Il comando `kill` invia un segnale a un processo.
 
@@ -218,14 +222,14 @@ I segnali sono i mezzi di comunicazione tra i processi. Il comando `kill` invia 
 
 `nohup` consente il lancio di un processo indipendentemente da una connessione.
 
-```
+```bash
 comando nohup
 ```
 
 Esempio:
 
-```
-$ nohup myprogram.sh 0</dev/null &
+```bash
+nohup myprogram.sh 0</dev/null &
 ```
 
 `nohup` ignora il segnale `SIGHUP` inviato quando un utente si disconnette.
@@ -236,27 +240,27 @@ $ nohup myprogram.sh 0</dev/null &
 
 ### [CTRL] + [Z]
 
-Premendo la combinazione <kbd>CTRL</kbd> + <kbd>Z</kbd> contemporaneamente, il processo sincrono è temporaneamente sospeso. L'accesso al prompt viene ripristinato dopo aver visualizzato il numero del processo che è stato appena sospeso.
+Premendo la combinazione ++control+z++ contemporaneamente, il processo sincrono è temporaneamente sospeso. L'accesso al prompt viene ripristinato dopo aver visualizzato il numero del processo che è stato appena sospeso.
 
 ### istruzione `&`
 
-La dichiarazione `&` esegue il comando in modo asincrono (il comando viene quindi chiamato _job_) e visualizza il numero di _job_. L'accesso al prompt viene quindi restituito.
+La dichiarazione `&` esegue il comando in modo asincrono (il comando viene quindi chiamato *job*) e visualizza il numero di *job*. L'accesso al prompt viene quindi restituito.
 
 Esempio:
 
-```
+```bash
 $ time ls -lR / > list.ls 2> /dev/null &
 [1] 15430
 $
 ```
 
-Il numero _job_ è ottenuto durante l'elaborazione in background e viene visualizzato in parentesi quadre, seguito dal numero di `PID`.
+Il numero di *job* si ottiene durante l'elaborazione in background e viene visualizzato tra parentesi quadre, seguito dal numero `PID`.
 
 ### comandi `fg` e `bg`
 
 Il comando `fg` mette il processo in primo piano:
 
-```
+```bash
 $ time ls -lR / > list.ls 2>/dev/null &
 $ fg 1
 time ls -lR / > list.ls 2/dev/null
@@ -264,7 +268,7 @@ time ls -lR / > list.ls 2/dev/null
 
 mentre il comando `bg` lo colloca in background:
 
-```
+```bash
 [CTRL]+[Z]
 ^Z
 [1]+ Stopped
@@ -273,7 +277,7 @@ $ bg 1
 $
 ```
 
-Se è stato messo in background quando è stato creato con l'argomento `&` o più tardi con la combinazione <kbd>CTRL</kbd> +<kbd>Z</kbd>, un processo può essere riportato in primo piano con il comando `fg` e il suo numero di lavoro.
+Sia che sia stato messo in secondo piano quando è stato creato con l'argomento `&` o successivamente con i tasti ++control+z++, un processo può essere riportato in primo piano con il comando `fg` e il suo numero di job.
 
 ### comando `jobs`
 
@@ -281,7 +285,7 @@ Il comando `jobs` visualizza l'elenco dei processi in esecuzione in background e
 
 Esempio:
 
-```
+```bash
 $ jobs
 [1]- Running    sleep 1000
 [2]+ Running    find / > arbo.txt
@@ -290,24 +294,26 @@ $ jobs
 Le colonne rappresentano:
 
 1. numero di lavoro
-2. l'ordine in cui i processi sono in esecuzione
-- un `+` : Il processo selezionato per impostazione predefinita per i comandi `fg` e `bg` quando non viene specificato un numero di processo
-- a `-` : Questo processo è il processo successivo che prende il `+`
-3.  _Running_ (processo in esecuzione) o _Stopped_ (processo sospeso).
+2. l'ordine di esecuzione dei processi:
+
+   * un `+` : Il processo selezionato per impostazione predefinita per i comandi `fg` e `bg` quando non viene specificato un numero di processo
+   * a `-` : Questo processo è il processo successivo che prende il `+`
+
+3. *Running* (processo in esecuzione) o *Stopped* (processo sospeso)
 4. il comando
 
 ### comandi `nice` e `renice`
 
 Il comando `nice` consente l'esecuzione di un comando specificando la sua priorità.
 
-```
+```bash
 comando nice priority
 ```
 
 Esempio:
 
-```
-$ nice -n+15 find / -name "file"
+```bash
+nice -n+15 find / -name "file"
 ```
 
 A differenza di `root`, un utente standard può solo ridurre la priorità di un processo. Saranno accettati solo valori tra +0 e +19.
@@ -318,15 +324,16 @@ A differenza di `root`, un utente standard può solo ridurre la priorità di un 
 
 Il comando `renice` ti consente di modificare la priorità di un processo di esecuzione.
 
-```
+```bash
 renice priority [-g GID] [-p PID] [-u UID]
 ```
 
 Esempio:
 
+```bash
+renice +15 -p 1664
 ```
-$ renice +15 -p 1664
-```
+
 | Opzione | Descrizione                                 |
 | ------- | ------------------------------------------- |
 | `-g`    | `GID` del gruppo proprietario del processo. |
@@ -347,7 +354,7 @@ Il comando `renice` agisce sui processi già in esecuzione. È quindi possibile 
 
 Il comando `top` visualizza i processi e il loro consumo di risorse.
 
-```
+```bash
 $ top
 PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND
 2514 root 20 0       15    5.5 0:01.14   top
@@ -368,11 +375,11 @@ Il comando `top` permette di controllare i processi in tempo reale e in modalit�
 
 ### comandi `pgrep` e `pkill`
 
-Il comando `pgrep` cerca i processi in esecuzione per un nome di processo e visualizza il _PID_ che soddisfa i criteri di selezione sull'output standard.
+Il comando `pgrep` cerca i processi in esecuzione per un nome di processo e visualizza il *PID* che soddisfa i criteri di selezione sull'output standard.
 
-Il comando `pkill` invia a ogni processo il segnale specificato (per impostazione predefinita _SIGTERM_).
+Il comando `pkill` invia a ogni processo il segnale specificato (per impostazione predefinita *SIGTERM*).
 
-```
+```bash
 pgrep process
 pkill [option] [-signal] process
 ```
@@ -381,40 +388,40 @@ Esempi:
 
 * Ottenere il numero del processo da `sshd`:
 
-  ```
-  $ pgrep -u root sshd
+  ```bash
+  pgrep -u root sshd
   ```
 
 * Terminare tutti i processi di `tomcat`:
 
-  ```
-  $ pkill tomcat
+  ```bash
+  pkill tomcat
   ```
 
 !!! note "Nota"
 
-    Prima di terminare un processo, è meglio conoscere esattamente lo scopo del processo, altrimenti si possono verificare arresti del sistema o altri problemi imprevedibili.
+    Prima di terminare un processo, è meglio sapere esattamente a cosa serve; in caso contrario, si possono verificare crash del sistema o altri problemi imprevedibili.
 
 Oltre a inviare segnali ai processi interessati, il comando `pkill` può anche terminare la sessione di connessione dell'utente in base al numero di terminale, come ad esempio:
 
-```
-$ pkill -t pts/1
+```bash
+pkill -t pts/1
 ```
 
 ### comando `killall`
 
-La funzione di questo comando è pressoché identica a quella del comando `pkill`. L'utilizzo è - `killall [option] [ -s SIGNAL | -SIGNAL ] NAME`. Il segnale predefinito è _SIGTERM_.
+La funzione di questo comando è più o meno la stessa del comando `pkill`. L'utilizzo è —`killall [option] [ -s SIGNAL | -SIGNAL ] NAME`. Il segnale predefinito è *SIGTERM*.
 
 | Opzioni | Descrizione                                                                      |
 |:------- |:-------------------------------------------------------------------------------- |
-| `-l`    | elencare tutti i nomi dei segnali conosciuti                                     |
-| `-i`    | chiedere conferma prima di terminare                                             |
+| `-l`    | elenca tutti i nomi dei segnali conosciuti                                       |
+| `-i`    | chiede conferma prima di terminarlo                                              |
 | `-I`    | corrispondenza del nome del processo senza distinzione tra maiuscole e minuscole |
 
 Esempio:
 
-```
-$ killall tomcat
+```bash
+killall tomcat
 ```
 
 ### comando `pstree`
@@ -461,13 +468,13 @@ systemd(1)─┬─systemd-journal(595)
 
 Pericolo:
 
-* Occupa le risorse del sistema e causa una riduzione delle prestazioni della macchina.
+* Occupano le risorse del sistema e causano una riduzione delle prestazioni della macchina.
 * Impossibile generare nuovi processi figli.
 
-Come verificare se ci sono processi zombie nel sistema in uso?
+Come si può verificare la presenza di processi zombie nel sistema attuale?
 
-```
-$ ps -lef | awk '{print $2}' | grep Z
+```bash
+ps -lef | awk '{print $2}' | grep Z
 ```
 
 Questi caratteri possono comparire in questa colonna:

@@ -14,4 +14,3 @@ Los datos del registro de cambios para las versiones de Rocky Linux son actualme
 Las actualizaciones publicadas desde upstream se publican en todas nuestras arquitecturas actuales. Recomendamos encarecidamente a todos los usuarios que apliquen *todas* las actualizaciones, incluido el contenido publicado hoy, en sus máquinas Rocky Linux existentes. Esto se puede hacer ejecutando el comando `dnf update`.
 
 Todos los componentes de Rocky Linux se construyen a partir de las fuentes alojadas en [git.rockylinux.org](https://git.rockylinux.org). Además, los SRPM están siendo publicados junto a los repositorios en un directorio de "fuente" correspondiente. Puede encontrarlo en cualquiera de nuestras replicas. Estos paquetes fuente coinciden con cada RPM binario que publicamos.
-

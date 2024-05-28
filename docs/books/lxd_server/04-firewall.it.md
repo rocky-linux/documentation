@@ -25,13 +25,13 @@ Come per qualsiasi server, è necessario assicurarsi che sia sicuro sia dal mond
 
 Per le regole di _firewalld_, è necessario utilizzare [questa procedura di base](../../guides/security/firewalld.md) o avere familiarità con questi concetti. Le nostre ipotesi sono: Rete LAN 192.168.1.0/24 e un bridge chiamato lxdbr0. Per essere chiari, si potrebbero avere molte interfacce sul server LXD, con una magari rivolta verso la WAN. Si creerà anche una zona per le reti bridged e locali. Questo solo per chiarezza di zona. Gli altri nomi delle zone non sono applicabili. Questa procedura presuppone che si conoscano già le basi di _firewalld_.
 
-```
+```bash
 firewall-cmd --new-zone=bridge --permanent
 ```
 
 È necessario ricaricare il firewall dopo aver aggiunto una zona:
 
-```
+```bash
 firewall-cmd --reload
 ```
 
@@ -45,18 +45,20 @@ Si vuole consentire tutto il traffico dal bridge. È sufficiente aggiungere l'in
 
     Se si desidera creare una zona che consenta tutti gli accessi all'interfaccia o alla sorgente, ma non si vuole specificare alcun protocollo o servizio, è necessario cambiare l'obiettivo da "default" ad "ACCEPT". Lo stesso vale per "DROP" e "REJECT" per un particolare blocco IP per il quale sono state create zone personalizzate. Per essere chiari, la zona "drop" si occuperà di questo aspetto, a patto che non si utilizzi una zona personalizzata.
 
-```
+```bash
 firewall-cmd --zone=bridge --add-interface=lxdbr0 --permanent
 firewall-cmd --zone=bridge --set-target=ACCEPT --permanent
 ```
+
 Supponendo che non ci siano errori e che tutto funzioni ancora, è sufficiente ricaricare:
 
-```
+```bash
 firewall-cmd --reload
 ```
+
 Se ora si elencano le regole con `firewall-cmd --zone=bridge --list-all` si vedrà:
 
-```
+```bash
 bridge (active)
   target: ACCEPT
   icmp-block-inversion: no
@@ -72,22 +74,25 @@ bridge (active)
   icmp-blocks:
   rich rules:
 ```
+
 Si noti che si desidera consentire anche l'interfaccia locale. Anche in questo caso, le zone incluse non hanno un nome appropriato. Creare una zona e utilizzare l'intervallo IP di origine per l'interfaccia locale per garantire l'accesso:
 
-```
+```bash
 firewall-cmd --new-zone=local --permanent
 firewall-cmd --reload
 ```
+
 Aggiungere gli IP di origine per l'interfaccia locale e modificare la destinazione in "ACCEPT":
 
-```
+```bash
 firewall-cmd --zone=local --add-source=127.0.0.1/8 --permanent
 firewall-cmd --zone=local --set-target=ACCEPT --permanent
 firewall-cmd --reload
 ```
+
 Procedere con l'elenco della zona "local" per assicurarsi che le regole siano presenti con `firewall-cmd --zone=local --list all`, che visualizzerà:
 
-```
+```bash
 local (active)
   target: ACCEPT
   icmp-block-inversion: no
@@ -106,23 +111,26 @@ local (active)
 
 Si vuole consentire SSH dalla nostra rete fidata. In questo caso utilizzeremo gli IP di origine e la zona "trusted" integrata. L'obiettivo di questa zona è già "ACCEPT" per impostazione predefinita.
 
-```
+```bash
 firewall-cmd --zone=trusted --add-source=192.168.1.0/24
 ```
+
 Aggiungere il servizio alla zona:
 
-```
+```bash
 firewall-cmd --zone=trusted --add-service=ssh
 ```
+
 Se tutto funziona, spostare le regole su permanente e ricaricarle:
 
-```
+```bash
 firewall-cmd --runtime-to-permanent
 firewall-cmd --reload
 ```
+
 L'elenco della zona "fidata" visualizzerà:
 
-```
+```bash
 trusted (active)
   target: ACCEPT
   icmp-block-inversion: no
@@ -141,13 +149,13 @@ trusted (active)
 
 Per impostazione predefinita, la zona "pubblica" è nello stato abilitato e ha SSH consentito. Per motivi di sicurezza, non si vuole che SSH sia consentito nella zona "pubblica". Assicurarsi che le zone siano corrette e che l'accesso al server avvenga tramite uno degli IP della LAN (nel nostro esempio). Se non lo verificate prima di continuare, potreste rimanere bloccati fuori dal server. Quando si è sicuri di avere accesso dall'interfaccia corretta, rimuovere SSH dalla zona "pubblica":
 
-```
+```bash
 firewall-cmd --zone=public --remove-service=ssh
 ```
 
 Verificate l'accesso e assicuratevi di non essere bloccati. In caso contrario, spostare le regole su permanenti, ricaricare ed eliminare la zona "pubblica" per garantire la rimozione di SSH:
 
-```
+```bash
 firewall-cmd --runtime-to-permanent
 firewall-cmd --reload
 firewall-cmd --zone=public --list-all

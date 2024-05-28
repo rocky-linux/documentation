@@ -21,7 +21,7 @@ Vedremo come eseguire questo script come servizio `systemd`, visualizzare i log 
 
 Iniziamo installando alcune dipendenze python necessarie allo script per utilizzare journalctl:
 
-```
+```bash
 shell > sudo dnf install python36-devel systemd-devel
 shell > sudo pip3 install systemd
 ```
@@ -30,7 +30,7 @@ shell > sudo pip3 install systemd
 
 Consideriamo il seguente script `my_service.py`:
 
-```
+```python
 """
 Sample script to run as script
 """
@@ -86,7 +86,7 @@ Ora che abbiamo uno script che può servire come base per la vostra immaginazion
 
 Creiamo il file `my_service.service` e copiamolo in `/etc/systemd/system/`.
 
-```
+```bash
 [Unit]
 Description=My Service
 After=multi-user.target
@@ -109,7 +109,7 @@ Come si può vedere, lo script viene lanciato da `/opt/my_service/`. Ricordarsi 
 
 Avviare e abilitare il nuovo servizio:
 
-```
+```bash
 shell > sudo systemctl daemon-reload
 shell > sudo systemctl enable my_service.service
 shell > sudo systemctl start my_service.service
@@ -119,7 +119,7 @@ shell > sudo systemctl start my_service.service
 
 Ora possiamo visualizzare i log tramite journalctl:
 
-```
+```bash
 shell > journalctl -f -u my_service
 oct. 14 11:07:48 rocky8 systemd[1]: Started My Service.
 oct. 14 11:07:49 rocky8 __main__[270267]: [INFO] Starting the service
@@ -129,13 +129,13 @@ oct. 14 11:09:49 rocky8 __main__[270267]: [INFO] Total duration: 120
 
 Vediamo ora cosa succede se lo script si blocca:
 
-```
+```bash
 shell > ps -elf | grep my_service
 4 S root      270267       1  0  80   0 - 82385 -      11:07 ?        00:00:00 /usr/bin/python3 my_service.py
 shell > sudo kill -9 270267
 ```
 
-```
+```bash
 shell > journalctl -f -u my_service
 oct. 14 11:10:49 rocky8 __main__[270267]: [INFO] Total duration: 180
 oct. 14 11:11:49 rocky8 __main__[270267]: [INFO] Total duration: 240
@@ -150,7 +150,7 @@ oct. 14 11:12:19 rocky8 __main__[270863]: [INFO] Starting the service
 
 Possiamo anche aspettare 5 minuti che lo script si blocchi da solo: (rimuovete questo per la vostra produzione)
 
-```
+```bash
 oct. 14 11:16:02 rocky8 systemd[1]: Started My Service.
 oct. 14 11:16:03 rocky8 __main__[271507]: [INFO] Starting the service
 oct. 14 11:17:03 rocky8 __main__[271507]: [INFO] Total duration: 60

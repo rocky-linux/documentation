@@ -14,35 +14,35 @@ You can build the documentation system locally without either Docker or LXD if y
 
 ## Procedure
 
-* Clone the docs.rockylinux.org repository:
+- Clone the docs.rockylinux.org repository:
 
-```
-git clone https://github.com/rocky-linux/docs.rockylinux.org.git
-```
+    ```bash
+    git clone https://github.com/rocky-linux/docs.rockylinux.org.git
+    ```
 
-* Once finished, change into the docs.rockylinux.org directory:
+- Once finished, change into the docs.rockylinux.org directory:
 
-```
-cd docs.rockylinux.org
-```
+    ```bash
+    cd docs.rockylinux.org
+    ```
 
-* Now clone the documentation repository using:
+- Now clone the documentation repository using:
 
-```
-git clone https://github.com/rocky-linux/documentation.git docs
-```
+    ```bash
+    git clone https://github.com/rocky-linux/documentation.git docs
+    ```
 
-* Next, install the requirements.txt file for mkdocs:
+- Next, install the requirements.txt file for mkdocs:
 
-```
-python3 -m pip install -r requirements.txt
-```
+    ```bash
+    python3 -m pip install -r requirements.txt
+    ```
 
-* Finally run the mkdocs server:
+- Finally run the mkdocs server:
 
-```
-mkdocs serve
-```
+    ```text
+    mkdocs serve
+    ```
 
 ## Conclusion
 

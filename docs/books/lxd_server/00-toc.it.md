@@ -10,6 +10,20 @@ tags:
 
 # Creare un server LXD completo
 
+??? warning "Stato attuale di LXD su Rocky Linux!"
+
+    Quasi un anno fa, sulla mailing list lxc-users è stato pubblicato il seguente annuncio:
+    
+    > Canonical, il creatore e principale collaboratore del progetto LXD, ha deciso che dopo oltre 8 anni di appartenenza alla comunità di Linux Containers, il progetto sarebbe stato gestito meglio direttamente da Canonical.
+    
+    Uno dei fattori decisivi sono state le dimissioni di alcuni sviluppatori principali di LXD, i quali hanno poi effettuato il fork di LXD in Incus, annunciando il fork nell'agosto 2023. Una versione di rilascio (0.1) è stata rilasciata nell'ottobre 2023, e da allora gli sviluppatori hanno rapidamente sviluppato questa versione con rilasci successivi fino alla 0.7 (marzo 2024). Dopo la 0.7 è arrivata la versione di supporto a lungo termine, la 6.0 LTS, il 4 aprile 2024.
+    
+    Durante tutto il processo, si pensava che Cannonical avrebbe continuato a mantenere i collegamenti alle immagini dei container fornite da Linux Containers, ma a causa di un [cambio di licenza](https://stgraber.org/2023/12/12/lxd-now-re-licensed-and-under-a-cla/) è diventato impossibile per Linux Containers continuare a offrire le immagini dei container all'interno di LXD. Ciò significa che LXD avrà delle immagini container, ma non saranno le immagini container che ci si aspetta attualmente. Linux Containers continua a ospitare e supportare le proprie immagini se si utilizza Incus. 
+    
+    Questo documento utilizza LXD, piuttosto che Incus, MA è nostra intenzione riscrivere la procedura per Incus. Speravamo che una versione RPM di Incus venisse rilasciata nell'EPEL e, sebbene sia in lavorazione, non è ancora pronta. Ciò significa che per riscrivere questa procedura per Incus, dobbiamo concentrare i nostri interessi sulla routine di installazione e conversione del pacchetto sorgente. Il motivo di questo lungo avvertimento è che non vogliamo che si prenda il tempo di installare con questa procedura e poi si scopra che le immagini del contenitore (Rocky Linux, per esempio) non sono disponibili in LXD. 
+    
+    Tenete d'occhio i cambiamenti qui!
+
 ## Introduzione
 
 LXD è descritto meglio sul sito web [ufficiale](https://documentation.ubuntu.com/lxd/en/latest/), ma consideratelo come un sistema di container che offre i vantaggi dei server virtuali in un container.

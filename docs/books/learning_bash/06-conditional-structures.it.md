@@ -35,7 +35,7 @@ Ma possiamo usarlo in una condizione. **Se** il test è positivo **allora** eseg
 
 Sintassi dell'alternativa condizionale `if`:
 
-```
+```bash
 if command
 then
     command if $?=0
@@ -50,7 +50,7 @@ L'uso di un comando classico`(mkdir`, `tar`, ...) consente di definire le azioni
 
 Esempi:
 
-```
+```bash
 if [[ -e /etc/passwd ]]
 then
     echo "The file exists"
@@ -66,7 +66,7 @@ fi
 
 Se il blocco `else` inizia con una nuova struttura `if`, è possibile unire `else` e `if` con `elif`, come mostrato di seguito:
 
-```
+```bash
 [...]
 else
   if [[ -e /etc/ ]]
@@ -97,7 +97,7 @@ Il comando da eseguire se `$?` è `vero` è posto dopo `&&` mentre il comando da
 
 Esempio:
 
-```
+```bash
 [[ -e /etc/passwd ]] && echo "The file exists" || echo "The file does not exist"
 mkdir dir && echo "The directory is created".
 ```
@@ -107,21 +107,26 @@ mkdir dir && echo "The directory is created".
 Questa sintassi implementa le parentesi graffe:
 
 * Visualizza un valore sostitutivo se la variabile è vuota:
-    ```
+
+    ```bash
     ${variable:-value}
     ```
+
 * Visualizza un valore sostitutivo se la variabile non è vuota:
-    ```
+
+    ```bash
     ${variable:+value}
     ```
+
 * Assegna un nuovo valore alla variabile se è vuota:
-    ```
+
+    ```bash
     ${variable:=value}
     ```
 
 Esempi:
 
-```
+```bash
 name=""
 echo ${name:-linux}
 linux
@@ -157,7 +162,7 @@ Collocata alla fine della struttura, la scelta `*` indica le azioni da eseguire 
 
 Sintassi dell'alternativo condizionale case:
 
-```
+```bash
 case $variable in
   value1)
     commands if $variable = value1
@@ -174,7 +179,7 @@ esac
 
 Quando il valore è soggetto a variazioni, è consigliabile utilizzare i caratteri jolly `[]` per specificare le possibilità:
 
-```
+```bash
 [Yy][Ee][Ss])
   echo "yes"
   ;;
@@ -182,7 +187,7 @@ Quando il valore è soggetto a variazioni, è consigliabile utilizzare i caratte
 
 Il carattere `|` consente anche di specificare un valore o un altro:
 
-```
+```bash
 "yes" | "YES")
   echo "yes"
   ;;

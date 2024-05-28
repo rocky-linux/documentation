@@ -9,7 +9,7 @@ tags:
   - github
 ---
 
-## Introduction 
+## Introduction
 
 This gemstone covers the installation and basic setup of the GitHub CLI tool (gh) on the Rocky Linux system. This tool enables users to interact with GitHub repositories directly from the command line.
 
@@ -17,7 +17,7 @@ This gemstone covers the installation and basic setup of the GitHub CLI tool (gh
 
 Users need a convenient way to interact with GitHub without leaving the command line environment.
 
-## Prerequisites 
+## Prerequisites
 
 - A system running Rocky Linux
 - Access to a terminal
@@ -33,18 +33,21 @@ Users need a convenient way to interact with GitHub without leaving the command 
    curl -fsSL https://cli.github.com/packages/rpm/gh-cli.repo | sudo tee /etc/yum.repos.d/github-cli.repo
    sudo dnf -y install gh
    ```
+
 2. **Verify Installation**:
    Ensure that `gh` is correctly installed. Type:
 
    ```bash
    gh --version
    ```
+
 3. **Authenticate with GitHub**:
    Log in to your GitHub account. Type:
-   
+
    ```bash
    gh auth login
    ```
+
    Follow the prompts to authenticate.
 
 ## Conclusion

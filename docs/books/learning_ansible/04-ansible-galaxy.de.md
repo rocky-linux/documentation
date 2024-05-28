@@ -10,12 +10,12 @@ In diesem Kapitel erfahren Sie, wie Sie Ansible Rollen und Kollektionen verwende
 
 **Ziele**: In diesem Kapitel lernen Sie Folgendes:
 
-:heavy_check_mark: Installation und Verwaltung von Kollektionen.       
+:heavy_check_mark: Installation und Verwaltung von Kollektionen.  
 :heavy_check_mark: Installieren und Verwalten von Rollen.
 
 :checkered_flag: **ansible**, **ansible-galaxy**, **Rollen**, **Kollektionen**
 
-**Vorkenntnisse**: :star: :star:      
+**Vorkenntnisse**: :star: :star:  
 **Komplexität**: :star: :star: :star:
 
 **Lesezeit**: 41 Minuten
@@ -32,7 +32,7 @@ Der `ansible-galaxy` Befehl verwaltet Rollen und Kollektionen unter Verwendung v
 
 * Rollen verwalten:
 
-```
+```bash
 ansible-galaxy role [import|init|install|login|remove|...]
 ```
 
@@ -47,7 +47,7 @@ ansible-galaxy role [import|init|install|login|remove|...]
 
 * Um Kollektionen zu verwalten:
 
-```
+```bash
 ansible-galaxy collection [import|init|install|login|remove|...]
 ```
 
@@ -73,13 +73,13 @@ Der Code im Github Repo der Rolle kann [hier](https://github.com/alemorvan/patch
 
 * Die Rolle installieren. Dies benötigt nur einen Befehl:
 
-```
+```bash
 ansible-galaxy role install alemorvan.patchmanagement
 ```
 
 * Playbook erstellen, um die Rolle einzubinden:
 
-```
+```bash
 - name: Start a Patch Management
   hosts: ansible_clients
   vars:
@@ -98,13 +98,13 @@ Erstellen der Aufgaben, die vor und nach dem Aktualisierungsprozess ausgeführt 
 
 * Den `custom_tasks` Ordner anlegen:
 
-```
+```bash
 mkdir custom_tasks
 ```
 
 * `custom_tasks/pm_before_update_tasks_file.yml` erstellen (Name und Inhalt dieser Datei können beliebig geändert werden)
 
-```
+```bash
 ---
 - name: sample task before the update process
   debug:
@@ -113,7 +113,7 @@ mkdir custom_tasks
 
 * `custom_tasks/pm_after_update_tasks_file.yml` erstellen (Name und Inhalt dieser Datei können beliebig geändert werden)
 
-```
+```bash
 ---
 - name: sample task after the update process
   debug:
@@ -122,7 +122,7 @@ mkdir custom_tasks
 
 Und starten Sie Ihre erste Patch-Verwaltung:
 
-```
+```bash
 ansible-playbook patchmanagement.yml
 
 PLAY [Start a Patch Management] *************************************************************************
@@ -210,14 +210,14 @@ Sie können auch Ihre eigenen Rollen für Ihre Bedürfnisse erstellen und im Int
 
 Ein Rollenskelett, das als Ausgangspunkt für benutzerdefinierte Rollen dient, kann durch den `ansible-galaxy` Befehl erzeugt werden:
 
-```
+```bash
 $ ansible-galaxy role init rocky8
 - Role rocky8 was created successfully
 ```
 
 Der Befehl generiert die folgende Baumstruktur um die `rocky8` Rolle zu enthalten:
 
-```
+```bash
 tree rocky8/
 rocky8/
 ├── defaults
@@ -260,7 +260,7 @@ Lassen Sie uns dies mit einer "go anywhere"-Rolle implementieren, die einen Defa
 
 Wir werden einen `rockstar` Benutzer auf allen unseren Servern erstellen. Da wir nicht wollen, dass dieser Benutzer überschrieben wird, definieren wir ihn in der Datei `vars/main.yml`:
 
-```
+```bash
 ---
 rocky8_default_group:
   name: rockstar
@@ -273,7 +273,7 @@ rocky8_default_user:
 
 Wir können diese Variablen jetzt in unsere `tasks/main.yml` ohne Include verwenden.
 
-```
+```bash
 ---
 - name: Create default group
   group:
@@ -289,7 +289,7 @@ Wir können diese Variablen jetzt in unsere `tasks/main.yml` ohne Include verwen
 
 Um die neue Rolle zu testen, erstellen wir ein `test-role.yml` Playbook im selben Verzeichnis wie die Rolle:
 
-```
+```bash
 ---
 - name: Test my role
   hosts: localhost
@@ -303,7 +303,7 @@ Um die neue Rolle zu testen, erstellen wir ein `test-role.yml` Playbook im selbe
 
 und starten:
 
-```
+```bash
 ansible-playbook test-role.yml
 
 PLAY [Test my role] ************************************************************************************
@@ -327,7 +327,7 @@ Lass uns die Verwendung von Default-Variablen untersuchen.
 
 Eine Liste der Pakete erstellen, die standardmäßig auf Ihren Servern installiert werden sollen, und eine leere Liste der zu deinstallierenden Pakete. Die Datei `defaults/main.yml` ändern und diese zwei Listen hinzufügen:
 
-```
+```bash
 rocky8_default_packages:
   - tree
   - vim
@@ -336,7 +336,7 @@ rocky8_remove_packages: []
 
 und sie in `tasks/main.yml` verwenden:
 
-```
+```bash
 - name: Install default packages (can be overridden)
   package:
     name: "{{ rocky8_default_packages }}"
@@ -350,7 +350,7 @@ und sie in `tasks/main.yml` verwenden:
 
 Testen Sie Ihre Rolle mit Hilfe des zuletzt erstellten Playbook:
 
-```
+```bash
 ansible-playbook test-role.yml
 
 PLAY [Test my role] ************************************************************************************
@@ -376,7 +376,7 @@ localhost                  : ok=5    changed=0    unreachable=0    failed=0    s
 
 Sie können jetzt `rocky8_remove_packages` im Playbook überschreiben und zum Beispiel `cockpit` deinstallieren:
 
-```
+```bash
 ---
 - name: Test my role
   hosts: localhost
@@ -391,7 +391,7 @@ Sie können jetzt `rocky8_remove_packages` im Playbook überschreiben und zum Be
       become_user: root
 ```
 
-```
+```bash
 ansible-playbook test-role.yml
 
 PLAY [Test my role] ************************************************************************************
@@ -417,7 +417,7 @@ localhost                  : ok=5    changed=1    unreachable=0    failed=0    s
 
 Offensichtlich gibt es keine Grenzen, wie viel Sie die Rolle verbessern können. Stellen Sie sich vor, dass Sie für einen Ihrer Server ein Paket benötigen, das in der Liste der zu deinstallierenden Pakete steht. Sie könnten dann beispielsweise eine neue Liste erstellen, die überschrieben werden kann, und sie dann aus der Liste der Pakete entfernen, um diejenigen in der Liste der spezifischen zu installierenden Pakete mithilfe des Jinja-Filters `difference()` zu deinstallieren.
 
-```
+```bash
 - name: "Uninstall default packages (can be overridden) {{ rocky8_remove_packages }}"
   package:
     name: "{{ rocky8_remove_packages | difference(rocky8_specifics_packages) }}"
@@ -434,13 +434,13 @@ Die Kollektion ist ein Verteilungsformat für Ansible Inhalte, das Playbooks, Ro
 
 Zum Installieren oder Aktualisieren einer Sammlung:
 
-```
+```bash
 ansible-galaxy collection install namespace.collection [--upgrade]
 ```
 
 Sie können dann die neu installierte Kollektion mit ihrem Namensraum und Namen vor dem Namen des Moduls oder der Rolle verwenden:
 
-```
+```bash
 - import_role:
     name: namespace.collection.rolename
 
@@ -452,7 +452,7 @@ Einen Kollektionsindex ist [hier verfügbar](https://docs.ansible.com/ansible/la
 
 Lass uns die Kollektion `-community.general` installieren:
 
-```
+```bash
 ansible-galaxy collection install community.general
 Starting galaxy collection install process
 Process install dependency map
@@ -464,7 +464,7 @@ community.general:3.3.2 was installed successfully
 
 Wir können nun das neu verfügbare Modul `yum_versionlock` verwenden:
 
-```
+```bash
 - name: Start a Patch Management
   hosts: ansible_clients
   become: true
@@ -487,7 +487,7 @@ Wir können nun das neu verfügbare Modul `yum_versionlock` verwenden:
         var: locks.meta.packages                            
 ```
 
-```
+```bash
 ansible-playbook versionlock.yml
 
 PLAY [Start a Patch Management] *************************************************************************
@@ -517,12 +517,12 @@ PLAY RECAP *********************************************************************
 
 Wie bei Rollen, können Sie eine eigene Kollektion mit Hilfe des `ansible-galaxy` Befehls erstellen:
 
-```
+```bash
 ansible-galaxy collection init rocky8.rockstarcollection
 - Collection rocky8.rockstarcollection was created successfully
 ```
 
-```
+```bash
 tree rocky8/rockstarcollection/
 rocky8/rockstarcollection/
 ├── docs

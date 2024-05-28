@@ -13,10 +13,6 @@ tags:
 
 ## Introduzione
 
-!!! danger "Istruzioni errate"
-
-    Con il rilascio della versione 2.5, le istruzioni contenute in questa pagina non sono più corrette; se ne sconsiglia l'uso per le nuove installazioni. Per maggiori informazioni si veda [la pagina principale della guida](../index.md).
-
 Una delle caratteristiche che un IDE deve sicuramente avere è la capacità di gestire i vari progetti su cui lavora uno sviluppatore o un editore. La possibilità di selezionare il progetto su cui lavorare una volta aperto NvChad, senza dover digitare comandi nella *statusline* per raggiungere l'obiettivo. Ciò consente di risparmiare tempo e di semplificare la gestione nel caso di un numero elevato di progetti.
 
 L'uso di [charludo/projectmgr.nvim](https://github.com/charludo/projectmgr.nvim) integrerà questa funzionalità. Il plugin offre un'eccellente integrazione con `Telescope` e alcune interessanti funzionalità aggiuntive, come la possibilità di sincronizzare un repository *git* all'apertura del *progetto*.
@@ -25,7 +21,7 @@ Il plugin tiene anche traccia dello stato dell'editor alla sua chiusura, consent
 
 ### Installazione del plugin
 
-Per installare il plugin è necessario modificare il file **custom/plugins.lua** aggiungendo il seguente blocco di codice:
+Per installare il plugin è necessario modificare il file **plugins/init.lua** aggiungendo il seguente blocco di codice:
 
 ```lua
 {
@@ -145,15 +141,11 @@ Per verificare se i file aperti non corrispondono a quelli aggiornati dal reposi
 
 ### Mappatura
 
-Per velocizzare l'apertura dei progetti, è possibile creare una scorciatoia da tastiera per inserire la mappatura in **/custom/mapping.lua**. Un esempio potrebbe essere:
+Per velocizzare l'apertura dei progetti, è possibile creare una scorciatoia da tastiera da inserire nella mappatura in **mapping.lua**. Un esempio potrebbe essere:
 
 ```lua
 -- Projects
-M.projects = {
-    n = {
-        ["<leader>fp"] = { "<cmd> ProjectMgr<CR>", "Open Projects" },
-    },
-}
+map("n", "<leader>fp", "<CMD> ProjectMgr<CR>", { desc = "Open Projects" })
 ```
 
 Con l'editor in stato **NORMALE** è possibile aprire il project manager con la combinazione ++space++ + ++"f"++ seguita da ++"p"++.

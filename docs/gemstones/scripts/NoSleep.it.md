@@ -17,13 +17,13 @@ Questo script bash è stato progettato per modificare il file di configurazione 
 
 Per utilizzare lo script, procedere come segue:
 
-1.  Aprite un terminale sul vostro sistema Linux.
-2.  `cd` alla directory preferita.
-3.  Scaricare lo script NoSleep.sh tramite `curl`: `curl -O https://github.com/andrewthiesen/NoSleep.sh/blob/main/NoSleep.sh`
-4.  Rendete lo script NoSleep eseguibile con il comando `chmod +x NoSleep.sh`.
-5.  Eseguite lo script come root usando il comando `sudo ./NoSleep.sh`.
-8.  Lo script aggiornerà l'opzione `HandleLidSwitch` nel file `logind.conf` in modo da `ignorarla`.
-9.  Opzionalmente, verrà richiesto di riavviare il sistema affinché le modifiche abbiano effetto immediato.
+1. Aprite un terminale sul vostro sistema Linux.
+2. `cd` alla directory preferita.
+3. Scaricare lo script NoSleep.sh tramite `curl`: `curl -O https://github.com/andrewthiesen/NoSleep.sh/blob/main/NoSleep.sh`
+4. Rendete lo script NoSleep eseguibile con il comando `chmod +x NoSleep.sh`.
+5. Eseguite lo script come root usando il comando `sudo ./NoSleep.sh`.
+6. Lo script aggiornerà l'opzione `HandleLidSwitch` nel file `logind.conf` in modo da `ignorarla`.
+7. Opzionalmente, verrà richiesto di riavviare il sistema affinché le modifiche abbiano effetto immediato.
 
 ### Note importanti
 

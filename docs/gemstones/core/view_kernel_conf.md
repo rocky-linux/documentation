@@ -14,13 +14,12 @@ tags:
 
 The Linux kernel stores running kernel information in two places via special filesystems: ([A summary of them](https://www.landoflinux.com/linux_procfs_sysfs.html))
 
-  - The older [procfs](https://man7.org/linux/man-pages/man5/procfs.5.html) which mounts `/proc` (verify via `mount -l -t proc`)
-  - The newer [sysfs](https://man7.org/linux/man-pages/man5/sysfs.5.html) which mounts `/sys`    (verify via `mount -l -t sysfs`)
+- The older [procfs](https://man7.org/linux/man-pages/man5/procfs.5.html) which mounts `/proc` (verify via `mount -l -t proc`)
+- The newer [sysfs](https://man7.org/linux/man-pages/man5/sysfs.5.html) which mounts `/sys`    (verify via `mount -l -t sysfs`)
 
 !!! warning
 
     Be cautious if examining the files mentioned here, altering them can change the behavior of the actual running kernel!
-
 
 These two interfaces allow you to view and change the parameters of the currently running kernel.
 
@@ -59,11 +58,11 @@ cat /boot/config-$(uname -r) | grep -i <keyword>
 
 Results will show:
 
-  - "=m" if compiled in as a kernel module
-  - "=y" if compiled statically into the kernel
-  - "is not set" if that setting was commented out
-  - a numeric value
-  - a quoted string value
+- `=m` if compiled in as a kernel module
+- `=y` if compiled statically into the kernel
+- `is not set` if that setting was commented out
+- a numeric value
+- a quoted string value
 
 Some distributions, like Gentoo and Arch, use the `configs` kernel module to provide `/proc/config.gz` by default instead:
 
@@ -89,7 +88,6 @@ modprobe configs
     This document does not currently cover kernel packages that might have come from non-default repos such as:
 
     appstream-debug, appstream-source, baseos-debug, baseos-source, or devel
-
 
 The `kernel-devel` packages install the config file used to compile each installed standard kernel package as an ASCII file in the following location:
 
@@ -154,6 +152,6 @@ You can check for kernel module dependencies in the file:
 
 but it is easier to read or parse the output of the "Used-by" field in [`lsmod`](https://man7.org/linux/man-pages/man8/lsmod.8.html).
 
-## Reference:
+## Reference
 
 [depmod](https://man7.org/linux/man-pages/man8/depmod.8.html), [ls](https://man7.org/linux/man-pages/man1/ls.1.html), [lsmod](https://man7.org/linux/man-pages/man8/lsmod.8.html), [modinfo](https://man7.org/linux/man-pages/man8/modinfo.8.html), [modprobe](https://man7.org/linux/man-pages/man8/modprobe.8.html), [modules.dep](https://man7.org/linux/man-pages/man5/modules.dep.5.html), [namespaces](https://man7.org/linux/man-pages/man7/namespaces.7.html), [procfs](https://man7.org/linux/man-pages/man5/procfs.5.html), [sysctl](https://man7.org/linux/man-pages/man8/sysctl.8.html), [sysfs](https://man7.org/linux/man-pages/man5/sysfs.5.html), [uname](https://man7.org/linux/man-pages/man8/uname26.8.html)

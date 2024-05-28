@@ -26,7 +26,7 @@ tags:
 
 Ви можете встановити `dnf-automatic` зі складних репозиторіїв:
 
-```
+```bash
 sudo dnf install dnf-automatic
 ```
 
@@ -34,7 +34,7 @@ sudo dnf install dnf-automatic
 
 За замовчуванням процес оновлення розпочнеться о 6 годині ранку з випадковою додатковою дельтою часу, щоб уникнути одночасного оновлення всіх ваших машин. Щоб змінити цю поведінку, ви повинні змінити конфігурацію таймера, пов’язану зі службою програми:
 
-```
+```bash
 sudo systemctl edit dnf-automatic.timer
 
 [Unit]
@@ -56,8 +56,8 @@ WantedBy=timers.target
 
 Потім активуйте таймер, пов’язаний із послугою (не самою послугою):
 
-```
-$ sudo systemctl enable --now dnf-automatic.timer
+```bash
+sudo systemctl enable --now dnf-automatic.timer
 ```
 
 ## А як щодо серверів CentOS 7?
@@ -68,15 +68,15 @@ $ sudo systemctl enable --now dnf-automatic.timer
 
 Процес у CentOS 7 схожий, але використовує `yum-cron`.
 
-```
-$ sudo yum install yum-cron
+```bash
+sudo yum install yum-cron
 ```
 
 Цього разу налаштування служби виконується у файлі `/etc/yum/yum-cron.conf`.
 
 Налаштуйте необхідну конфігурацію:
 
-```
+```text
 [commands]
 #  What kind of update to use:
 # default                            = yum upgrade
@@ -111,8 +111,8 @@ random_sleep = 30
 
 Тепер ви можете включити службу та запустити її:
 
-```
-$ sudo systemctl enable --now yum-cron
+```bash
+sudo systemctl enable --now yum-cron
 ```
 
 ## Висновок

@@ -4,27 +4,27 @@ title: Ansible Intermediate
 
 # Ansible für Fortgeschrittene
 
-In diesem Kapitel lernen Sie weitere Themen, über die Arbeit mit Ansible.
+In diesem Kapitel lernen Sie weitere Themen über die Arbeit mit Ansible.
 
 ****
 
 **Ziele**: In diesem Kapitel wird Folgendes behandelt:
 
-:heavy_check_mark: arbeiten mit Variablen;       
-:heavy_check_mark: Verwendung von Schleifen;   
-:heavy_check_mark: Statusänderungen verwalten und darauf reagieren;   
+:heavy_check_mark: arbeiten mit Variablen;  
+:heavy_check_mark: Verwendung von Schleifen;  
+:heavy_check_mark: Statusänderungen verwalten und darauf reagieren;  
 :heavy_check_mark: asynchrone Aufgaben verwalten.
 
 :checkered_flag: **Ansible**, **Module**, **Playbook**
 
-**Vorkenntnisse**: :star: :star: :star:     
+**Vorkenntnisse**: :star: :star: :star:  
 **Schwierigkeitsgrad**: :star: :star:
 
 **Lesezeit**: 31 Minuten
 
 ****
 
-Im vorherigen Kapitel haben Sie gelernt, wie man Ansible installiert, in der Befehlszeile verwendet oder wie man Playbooks entwirft, um die Wiederverwendbarkeit Ihres Codes zu sichern.
+Im vorherigen Kapitel haben Sie gelernt, wie man Ansible installiert und in der Befehlszeile verwendet oder wie man Playbooks entwirft, um die Wiederverwendbarkeit Ihres Codes zu sichern.
 
 In diesem Kapitel können wir einige fortgeschrittenere Konzepte zur Verwendung von Ansible kennenlernen und interessante Vorgehensweisen entdecken, die Sie regelmäßig verwenden können.
 
@@ -49,7 +49,7 @@ Eine Variable kann an verschiedenen Orten definiert werden, wie in einem Playboo
 
 Zum Beispiel in einem Playbook:
 
-```
+```bash
 ---
 - hosts: apache1
   vars:
@@ -61,8 +61,8 @@ Zum Beispiel in einem Playbook:
 
 oder in der Kommandozeile:
 
-```
-$ ansible-playbook deploy-http.yml --extra-vars "service=httpd"
+```bash
+ansible-playbook deploy-http.yml --extra-vars "service=httpd"
 ```
 
 Einmal definiert, kann eine Variable verwendet werden, indem sie zwischen doppelten geschweiften Klammern aufgerufen wird:
@@ -72,7 +72,7 @@ Einmal definiert, kann eine Variable verwendet werden, indem sie zwischen doppel
 
 Zum Beispiel:
 
-```
+```bash
 - name: make sure apache is started
   ansible.builtin.systemd:
     name: "{{ service['rhel'] }}"
@@ -85,7 +85,7 @@ Natürlich ist es auch möglich, auf die globalen Variablen (die **facts**) von 
 
 Variablen können in eine externe Datei zum Playbook aufgenommen werden, in diesem Fall muss diese Datei im Playbook mit der `vars_files` Direktive definiert werden:
 
-```
+```bash
 ---
 - hosts: apache1
   vars_files:
@@ -94,7 +94,7 @@ Variablen können in eine externe Datei zum Playbook aufgenommen werden, in dies
 
 Die `myvariables.yml` Datei:
 
-```
+```bash
 ---
 port_http: 80
 ansible.builtin.systemd::
@@ -104,7 +104,7 @@ ansible.builtin.systemd::
 
 Es kann auch dynamisch mithilfe des `include_vars`-Moduls hinzugefügt werden:
 
-```
+```bash
 - name: Include secrets.
   ansible.builtin.include_vars:
     Datei: vault.yml
@@ -114,14 +114,14 @@ Es kann auch dynamisch mithilfe des `include_vars`-Moduls hinzugefügt werden:
 
 Um eine Variable anzuzeigen, müssen Sie das `debug` Modul wie folgt aktivieren:
 
-```
+```bash
 - ansible.builtin.debug:
     var: service['debian']
 ```
 
 Sie können auch die Variablen innerhalb eines Textes verwenden:
 
-```
+```bash
 - ansible.builtin.debug:
     msg: "Print a variable in a message : {{ service['debian'] }}"
 ```
@@ -132,7 +132,7 @@ Um die Rückgabe einer Aufgabe - task - zu speichern und später darauf zugreife
 
 Verwendung einer gespeicherten Variable:
 
-```
+```bash
 - name: /home content
   shell: ls /home
   register: homes
@@ -152,13 +152,13 @@ Verwendung einer gespeicherten Variable:
 
 Die Strings, aus denen die gespeicherte Variable besteht, können über den Wert von `stdout` abgerufen werden (der Ihnen Dinge wie `homes.stdout.find("core") != -1`ermöglicht), um sie mithilfe einer Schleife (siehe `loop`) oder einfach anhand ihrer Indizes abzugreifen, wie im vorherigen Beispiel gezeigt wurde.
 
-### Übungen
+### Übungen:
 
-* ein Playbook schreiben `play-vars.yml`, das den Namen der Distribution des Ziels mit seiner Hauptversion ausdruckt und dabei globale Variablen verwendet.
+* Ein Playbook schreiben `play-vars.yml`, das den Namen der Distribution des Ziels mit seiner Hauptversion ausdruckt und dabei globale Variablen verwendet.
 
 * ein Playbook mit folgendem Dictionary schreiben, um die Dienste anzuzeigen, die installiert werden:
 
-```
+```bash
 service:
   web:
     name: apache
@@ -176,15 +176,15 @@ Der Default-Typ sollte "web" sein.
 
 ## Schleifen-Verwaltung
 
-Mit Hilfe einer Schleife können Sie beispielsweise eine Aufgabe über eine Liste, einen Hash oder ein Dictionary iterieren.
+Mithilfe einer Schleife können Sie beispielsweise eine Aufgabe über eine Liste, eine Hashtabelle oder ein Dictionary iterieren.
 
 !!! note "Anmerkung"
 
     Weitere Informationen finden Sie [hier](https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html).
 
-Einfaches Beispiel für die Anwendung, Erstellung von 4 Benutzer:
+Als einfaches Beispiel implementieren wir eine Anwendung zur Erstellung von vier Benutzern:
 
-```
+```bash
 - name: add users
   user:
     name: "{{ item }}"
@@ -201,7 +201,7 @@ Bei jeder Wiederholung der Schleife wird der Wert der verwendeten Liste in der V
 
 Natürlich kann eine Liste in einer externen Datei definiert werden:
 
-```
+```bash
 users:
   - antoine
   - patrick
@@ -209,9 +209,9 @@ users:
   - xavier
 ```
 
-und im Task wie folgt verwendet werden (nach dem Einbinden der vars Datei):
+und im Task wie folgt verwendet werden (nach dem Einbinden der vars-Datei):
 
-```
+```bash
 - name: add users
   user:
     name: "{{ item }}"
@@ -220,9 +220,9 @@ und im Task wie folgt verwendet werden (nach dem Einbinden der vars Datei):
   loop: "{{ users }}"
 ```
 
-Wir können das Beispiel während der Untersuchung der gespeicherten Variablen, um es zu verbessern. Verwendung einer gespeicherten Variable:
+Wir können das Beispiel mit den gespeicherten Variablen verwenden, um es zu verbessern. Verwendung einer gespeicherten Variable:
 
-```
+```bash
 - name: /home content
   shell: ls /home
   register: homes
@@ -235,13 +235,13 @@ Wir können das Beispiel während der Untersuchung der gespeicherten Variablen, 
 
 Ein Wörterbuch kann auch in einer Schleife verwendet werden.
 
-In diesem Fall müssen das Wörterbuch in ein Element mit einem **jinja filter** (jinja ist die von Ansible verwendete Template-Engine) umwandeln: `| dict2items`.
+In diesem Fall müssen das Dictionary mit einem **jinja filter** (jinja ist die von Ansible verwendete Template-Engine) in ein Item umwandeln: `| dict2items`.
 
-In the loop, it becomes possible to use `item.key` which corresponds to the dictionary key, and `item.value` which corresponds to the values of the key.
+In der Schleife ist es möglich, `item.key` zu verwenden, der dem Dictionary-Schlüssel entspricht, und `item.value`, der den Werten des Schlüssels entspricht.
 
 Sehen wir uns das an einem konkreten Beispiel, das die Verwaltung der Systembenutzer anzeigt:
 
-```
+```bash
 ---
 - hosts: rocky8
   become: true
@@ -267,9 +267,9 @@ Sehen wir uns das an einem konkreten Beispiel, das die Verwaltung der Systembenu
 
 !!! note "Anmerkung"
 
-    Viele Dinge können mit Schleifen getan werden. Sie werden die Möglichkeiten entdecken, die Schleifen bieten, wenn Ihre Verwendung von Ansible Sie dazu bringt, sie auf komplexere Weise zu nutzen.
+    Viele Dinge können mit Schleifen implementiert werden. Sie werden die Möglichkeiten entdecken, die Schleifen bieten, wenn Ihre Verwendung von Ansible Sie dazu bringt, sie auf komplexere Weise zu nutzen.
 
-### Übungen
+### Übungen:
 
 * Zeigt Sie den Inhalt der `service` Variable der vorherigen Übung mit einer Schleife an.
 
@@ -287,13 +287,13 @@ Sehen wir uns das an einem konkreten Beispiel, das die Verwaltung der Systembenu
 
     Weitere Informationen finden Sie [hier](https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html).
 
-Die `when` Anweisung ist in vielen Fällen sehr nützlich: bestimmte Aktionen auf bestimmten Servertypen nicht ausführen, wenn eine Datei oder ein Benutzer nicht existiert, etc.
+Die `when` Anweisung ist in vielen Fällen sehr nützlich, z.B., bestimmte Aktionen auf bestimmten Servertypen nicht ausführen, wenn eine Datei oder ein Benutzer nicht existiert, etc.
 
 !!! note "Anmerkung"
 
-    Hinter der `when` Anweisung brauchen die Variablen keine doppelten Klammern (sie sind eigentlich Jinja2 Ausdrücke...).
+    Hinter der `when` Anweisung brauchen die Variablen keine doppelten Klammern (sie sind eigentlich Jinja2-Ausdrücke...).
 
-```
+```bash
 - name: "Reboot only Debian servers"
   reboot:
   when: ansible_os_family == "Debian"
@@ -301,7 +301,7 @@ Die `when` Anweisung ist in vielen Fällen sehr nützlich: bestimmte Aktionen au
 
 Bedingungen können mit Klammern gruppiert werden:
 
-```
+```bash
 - name: "Reboot only CentOS version 6 and Debian version 7"
   reboot:
   when: (ansible_distribution == "CentOS" and ansible_distribution_major_version == "6") or
@@ -310,7 +310,7 @@ Bedingungen können mit Klammern gruppiert werden:
 
 Die Bedingungen, die einem logischen UND entsprechen, können als Liste zur Verfügung gestellt werden:
 
-```
+```bash
 - name: "Reboot only CentOS version 6"
   reboot:
   when:
@@ -320,7 +320,7 @@ Die Bedingungen, die einem logischen UND entsprechen, können als Liste zur Verf
 
 Sie können den Wert eines Booleschen testen und überprüfen, ob es wahr ist:
 
-```
+```bash
 - name: check if directory exists
   stat:
     path: /home/ansible
@@ -338,19 +338,19 @@ Sie können den Wert eines Booleschen testen und überprüfen, ob es wahr ist:
 
 Sie können auch testen, daß es nicht stimmt:
 
-```
-  when:
-    - file.stat.exists
-    - not file.stat.isdir
+```bash
+when:
+  - file.stat.exists
+  - not file.stat.isdir
 ```
 
 Sie müssen wahrscheinlich testen, daß eine Variable existiert, um Ausführungsfehler zu vermeiden:
 
-```
-  when: myboolean is defined and myboolean
+```bash
+when: myboolean is defined and myboolean
 ```
 
-### Übungen
+### Übungen:
 
 * Gibt den Wert von `service.web` nur aus, wenn `type` gleich `web` ist.
 
@@ -360,15 +360,15 @@ Sie müssen wahrscheinlich testen, daß eine Variable existiert, um Ausführungs
 
     Weitere Informationen finden Sie [hier](https://docs.ansible.com/ansible/latest/user_guide/playbooks_handlers.html).
 
-Die Handler erlauben den Start von Operationen, wie z.B. das Neustarten eines Dienstes, wenn Änderungen vorkommen.
+Die Handler erlauben den Start von Operationen, wie, z.B., das Neustarten eines Dienstes, wenn Änderungen vorkommen.
 
-Ein Modul kann in einem Playbook erkennen, dass es eine wesentliche Änderung auf einem entfernten System gegeben hat und so eine Operation als Reaktion auf diese Änderung auslösen. Eine Benachrichtigung wird am Ende eines Playbook-Taskblocks versendet, und die Reaktionsoperation nur einmal ausgelöst, selbst wenn mehrere Aufgaben die gleiche Benachrichtigung senden.
+In einem Playbook kann ein Modul erkennen, dass es eine bedeutende Änderung auf einem entfernten System gegeben hat und so eine Operation als Reaktion auf diese Änderung auslösen. Eine Benachrichtigung wird am Ende eines Playbook-Taskblocks versendet, und die Reaktionsoperation nur einmal ausgelöst, selbst wenn mehrere Aufgaben die gleiche Benachrichtigung senden.
 
 ![Handlers](images/handlers.png)
 
-Beispielsweise können mehrere Aufgaben darauf hindeuten, dass der `httpd` Dienst aufgrund einer Änderung in den Konfigurationsdateien neu gestartet werden muss. Aber der Dienst wird nur einmal neu gestartet, um mehrere unnötige Starts zu vermeiden.
+Beispielsweise können mehrere Aufgaben darauf hindeuten, dass der `httpd` Dienst aufgrund einer Änderung in den Konfigurationsdateien neu gestartet werden muss. Dennoch wird der Dienst nur einmal neu gestartet, um mehrere unnötige Starts zu vermeiden.
 
-```
+```bash
 - name: template configuration file
   template:
     src: template-site.j2
@@ -385,7 +385,7 @@ Ein Handler ist eine Art Aufgabe, auf die ein eindeutiger globaler Name verweist
 
 Beispiel für Handler:
 
-```
+```bash
 handlers:
 
   - name: restart memcached
@@ -401,7 +401,7 @@ handlers:
 
 Seit Version 2.2 von Ansible können Handler auch direkt lauschen:
 
-```
+```bash
 handlers:
 
   - name: restart memcached
@@ -441,7 +441,7 @@ Durch Angabe eines Umfragewertes von 0 wird Ansible die Aufgabe ausführen und f
 
 Hier ist ein Beispiel mit asynchronen Aufgaben, die es Ihnen erlauben, einen Server neu zu starten und darauf zu warten, dass Port 22 wieder erreichbar ist:
 
-```
+```bash
 # Wait 2s and launch the reboot
 - name: Reboot system
   shell: sleep 2 && shutdown -r now "Ansible reboot triggered"
@@ -466,9 +466,9 @@ Sie können sich auch entscheiden, eine lang-laufende Aufgabe zu starten und sie
 
 ## Übungsergebnisse
 
-* Playbook schreiben `play-vars.yml`, das den Namen der Distribution des Ziels mit seiner Hauptversion ausdruckt, wobei globale Variablen verwendet werden.
+* Ein Playbook schreiben `play-vars.yml`, das den Namen der Distribution des Ziels mit seiner Hauptversion ausdruckt, wobei globale Variablen verwendet werden.
 
-```
+```bash
 ---
 - hosts: ansible_clients
 
@@ -479,7 +479,7 @@ Sie können sich auch entscheiden, eine lang-laufende Aufgabe zu starten und sie
         msg: "The distribution is {{ ansible_distribution }} version {{ ansible_distribution_major_version }}"
 ```
 
-```
+```bash
 $ ansible-playbook play-vars.yml
 
 PLAY [ansible_clients] *********************************************************************************
@@ -499,7 +499,7 @@ PLAY RECAP *********************************************************************
 
 * Ein Playbook mit folgendem Dictionary schreiben, um die Dienste anzuzeigen, die installiert werden sollen:
 
-```
+```bash
 service:
   web:
     name: apache
@@ -511,7 +511,7 @@ service:
 
 Der Default-Typ sollte "web" sein.
 
-```
+```bash
 ---
 - hosts: ansible_clients
   vars:
@@ -531,7 +531,7 @@ Der Default-Typ sollte "web" sein.
         msg: "The {{ service[type]['name'] }} will be installed with the packages {{ service[type].rpm }}"
 ```
 
-```
+```bash
 $ ansible-playbook display-dict.yml
 
 PLAY [ansible_clients] *********************************************************************************
@@ -551,7 +551,7 @@ PLAY RECAP *********************************************************************
 
 * Überschreiben der Variable `type` in der Befehlszeile:
 
-```
+```bash
 ansible-playbook --extra-vars "type=db" display-dict.yml
 
 PLAY [ansible_clients] *********************************************************************************
@@ -570,7 +570,7 @@ PLAY RECAP *********************************************************************
 
 * Variablen in einer `vars.yml` Datei auslagern
 
-```
+```bash
 type: web
 service:
   web:
@@ -581,7 +581,7 @@ service:
     rpm: mariadb-server
 ```
 
-```
+```bash
 ---
 - hosts: ansible_clients
   vars_files:
@@ -593,7 +593,6 @@ service:
       debug:
         msg: "The {{ service[type]['name'] }} will be installed with the packages {{ service[type].rpm }}"
 ```
-
 
 * Den Inhalt der `service` Variable der vorherigen Übung mit einer Schleife anzeigen.
 
@@ -611,7 +610,7 @@ service:
 
 Mit `dict2items`:
 
-```
+```bash
 ---
 - hosts: ansible_clients
   vars_files:
@@ -625,7 +624,7 @@ Mit `dict2items`:
       loop: "{{ service | dict2items }}"              
 ```
 
-```
+```bash
 $ ansible-playbook display-dict.yml
 
 PLAY [ansible_clients] *********************************************************************************
@@ -648,7 +647,7 @@ PLAY RECAP *********************************************************************
 
 Mit `list`:
 
-```
+```bash
 ---
 - hosts: ansible_clients
   vars_files:
@@ -663,7 +662,7 @@ Mit `list`:
 ~                                                 
 ```
 
-```
+```bash
 $ ansible-playbook display-dict.yml
 
 PLAY [ansible_clients] *********************************************************************************
@@ -685,7 +684,7 @@ PLAY RECAP *********************************************************************
 
 * Den Wert von `service.web` nur ausgeben, wenn `type` gleich `web` ist.
 
-```
+```bash
 ---
 - hosts: ansible_clients
   vars_files:
@@ -705,7 +704,7 @@ PLAY RECAP *********************************************************************
       when: type == "db"
 ```
 
-```
+```bash
 $ ansible-playbook display-dict.yml
 
 PLAY [ansible_clients] *********************************************************************************

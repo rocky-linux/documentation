@@ -1,7 +1,7 @@
 ---
 title: Autorizzazioni Speciali
 author: tianci li
-contributors: Franco Colussi
+contributors: Serge, Ganna Zhyrnova
 tags:
   - advanced permissions
   - access control
@@ -235,7 +235,7 @@ Qual è la ricorsione dei permessi ACL? Per i permessi ACL, ciò significa che q
 
 !!! info "Informazione"
 
-    La ricorsione si applica a file/directory già esistenti.
+    La ricorsione è adatta a file/directory già esistenti nella directory.
 
 Osservate il seguente esempio:
 
@@ -290,6 +290,10 @@ default:mask::rwx
 default:other::---
 ```
 
+!!! info "Informazione"
+
+    Il valore predefinito e la ricorsione dell'uso dei permessi ACL richiedono che l'oggetto operativo del comando sia una directory! Se l'oggetto dell'operazione è un file, viene emesso un messaggio di errore.
+
 ### SetUID
 
 Il ruolo di "SetUID":
@@ -303,16 +307,16 @@ Perché GNU/Linux ha bisogno di queste strane autorizzazioni? Prendiamo ad esemp
 
 ![SetUID1](./images/SetUID1.png)
 
-Come si può vedere, l'utente ordinario ha solo r e x, ma la x del proprietario diventa s, dimostrando che il comando `passwd` ha i permessi SUID.
+Come si può vedere, l'utente ordinario ha solo r e x, ma la x del proprietario diventa s, dimostrando che il comando `passwd` ha permessi SUID.
 
-È noto che gli utenti ordinari (uid >= 1000) possono cambiare la propria password. La vera password è memorizzata nel file **/etc/shadow** , ma il permesso del file shadows è di 000, e gli utenti ordinari non hanno alcun permesso.
+È noto che gli utenti ordinari (uid >= 1000) possono modificare la propria password. La vera password è memorizzata nel file **/etc/shadow**, ma il permesso del file shadows è 000 e gli utenti ordinari non hanno alcun permesso.
 
 ```bash
 Shell > ls -l /etc/shadow
 ---------- 1 root root 874 Jan  12 13:42 /etc/shadow
 ```
 
-Poiché gli utenti ordinari possono cambiare la loro password, devono aver scritto la password nel file **/etc/shadow**. Quando un utente ordinario esegue il comando `passwd` , cambierà temporaneamente al proprietario del file -- **root**. Per il file **shadow** , **root** non può essere limitato dai permessi. Questo è il motivo per cui il comando `passwd` necessita dell'autorizzazione SUID.
+Poiché gli utenti ordinari possono cambiare la loro password, devono averla scritta nel file **/etc/shadow**. Quando un utente normale esegue il comando `passwd`, passa temporaneamente al proprietario del file -- **root**. Per il file **shadow** , **root** non può essere limitato dai permessi. Questo è il motivo per cui il comando `passwd` necessita dell'autorizzazione SUID.
 
 Come accennato in precedenza, i permessi di base possono essere rappresentati da numeri, come 755, 644, e così via. Il SUID è rappresentato da **4**. Per i binari eseguibili, è possibile impostare permessi come questo -- **4755**.
 
@@ -347,7 +351,7 @@ Shell > chmod u-s FILE_NAME
 
 !!! warning "Attenzione"
 
-    Poiché SUID può temporaneamente cambiare gli utenti ordinari in root, è necessario prestare particolare attenzione con i file con questo permesso durante la manutenzione del server. È possibile trovare file con permessi SUID utilizzando il seguente comando:
+    Poiché SUID può cambiare temporaneamente gli utenti ordinari in root, è necessario prestare particolare attenzione ai file con questo permesso durante la manutenzione del server. È possibile trovare i file con permessi SUID utilizzando il seguente comando:
 
     ```bash
     Shell > find / -perm -4000 -a -type f -exec ls -l  {} \;
@@ -364,7 +368,7 @@ Il ruolo di "SetGID":
 
 Prendiamo ad esempio il comando `locate`:
 
-```
+```bash
 Shell > rpm -ql mlocate
 /usr/bin/locate
 ...
@@ -444,7 +448,7 @@ Il ruolo di "Sticky BIT":
 
 Lo SBIT è rappresentato dal numero **1**.
 
-Il file o la directory possono avere i permessi **7755**? No, sono rivolti a oggetti diversi. SUID è per i file binari eseguibili; SGID è usato per i file binari eseguibili e le directory; SBIT è solo per le directory. È quindi necessario impostare queste autorizzazioni speciali in base ai diversi oggetti.
+Il file o la directory possono avere i permessi **7755**? No, sono rivolti ad oggetti diversi. SUID è per i file binari eseguibili; SGID è usato per i file binari eseguibili e le directory; SBIT è solo per le directory. È quindi necessario impostare queste autorizzazioni speciali in base ai diversi oggetti.
 
 La directory **/tmp** ha il permesso SBIT. Un esempio è il seguente:
 
@@ -609,7 +613,7 @@ Rimuovere l'attributo a dall'esempio precedente:
 Shell > chattr -a /etc/tmpfile1 /etc/dira/
 ```
 
-!!! domanda
+!!! question "Domanda"
 
     Cosa succede quando ho impostato l'attributo ai su un file? 
     Non è possibile fare nulla con il file, se non visualizzarlo.
@@ -629,7 +633,7 @@ Sappiamo che solo l'amministratore root ha il permesso di usare i comandi sotto 
 
 Per concedere i permessi agli utenti ordinari, è **necessario utilizzare l'utente root (uid=0)**.
 
-Puoi abilitare gli utenti normali usando il comando `visudo` , quello che stai effettivamente cambiando è il file **/etc/sudoers**.
+È possibile dare i permessi agli utenti ordinari usando il comando `visudo`; ciò che si sta effettivamente modificando è il file **/etc/sudoers**.
 
 ```bash
 Shell > visudo
@@ -643,8 +647,7 @@ Shell > visudo
 94 ##
 95 ##      user    MACHINE=COMMANDS
 96 ##
-97 ## The COMMANDS section may have other options added to it.
-98 ##
+97 ## The COMMANDS section may have other options added to it. 98 ##
 99 ## Allow root to run any commands anywhere
 100 root    ALL=(ALL)       ALL
      ↓       ↓    ↓          ↓

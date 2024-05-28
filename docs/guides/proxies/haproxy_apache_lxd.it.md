@@ -11,7 +11,6 @@ tested_with: 8.5, 8.6, 9.0
 
 HAProxy sta per "High Availability Proxy" Questo proxy può essere collocato prima di qualsiasi applicazione TCP (come i server web), ma viene spesso utilizzato come bilanciatore di carico tra molte istanze di siti web.
 
-
 Le ragioni possono essere molteplici. Se avete un sito web che viene visitato in modo intenso, l'aggiunta di un'altra istanza dello stesso sito web e l'inserimento di HAProxy in entrambe le istanze vi consente di distribuire il traffico tra le istanze. Un altro motivo potrebbe essere quello di poter aggiornare i contenuti di un sito web senza interruzioni. HAProxy può anche contribuire a mitigare gli attacchi DOS e DDOS.
 
 Questa guida analizza l'uso di HAProxy con due istanze del sito web e il bilanciamento del carico con rotazione round-robin sullo stesso host LXD. Questa potrebbe essere una soluzione perfetta per garantire che gli aggiornamenti possano essere eseguiti senza tempi di inattività.
@@ -20,25 +19,26 @@ Tuttavia, se il problema sono le prestazioni del sito web, potrebbe essere neces
 
 ## Prerequisiti e presupposti
 
-* Completo comfort alla riga di comando su una macchina Linux
-* Esperienza con un editor a riga di comando (qui si usa `vim`)
-* Esperienza con `crontab`
-* Conoscenza di LXD. Per ulteriori informazioni, è possibile consultare il documento [LXD Server](../../books/lxd_server/00-toc.md). È possibile installare LXD su un notebook o una workstation senza eseguire l'installazione completa del server. Questo documento è stato scritto con una macchina da laboratorio che esegue LXD, ma non è impostato come un intero server, come invece avviene nel documento collegato in precedenza.
-* Conoscenza dell'installazione, della configurazione e dell'utilizzo di server web.
-* Si presuppone che LXD sia già installato e pronto a creare i contenitori.
+- Completo comfort alla riga di comando su una macchina Linux
+- Esperienza con un editor a riga di comando (qui si usa `vim`)
+- Esperienza con `crontab`
+- Conoscenza di LXD. Per ulteriori informazioni, è possibile consultare il documento [LXD Server](../../books/lxd_server/00-toc.md). È possibile installare LXD su un notebook o una workstation senza eseguire l'installazione completa del server. Questo documento è stato scritto con una macchina da laboratorio che esegue LXD, ma non è impostato come un intero server, come invece avviene nel documento collegato in precedenza.
+- Conoscenza dell'installazione, della configurazione e dell'utilizzo di server web.
+- Si presuppone che LXD sia già installato e pronto a creare i contenitori.
 
 ## Installare i container
 
 Sul vostro host LXD per questa guida, avrete bisogno di tre container. Volendo, si possono avere più contenitori di server web. Useremo **web1** e **web2** per i container del nostro sito web e **proxyha** per il nostro container di HAProxy. Per installarli sull'host LXD, procedere come segue:
 
-```
+```bash
 lxc launch images:rockylinux/8 web1
 lxc launch images:rockylinux/8 web2
 lxc launch images:rockylinux/8 proxyha
 ```
+
 L'esecuzione di un elenco `lxc` dovrebbe restituire qualcosa di simile:
 
-```
+```bash
 +---------+---------+----------------------+------+-----------+-----------+
 |  NAME   |  STATE  |         IPV4         | IPV6 |   TYPE    | SNAPSHOTS |
 +---------+---------+----------------------+------+-----------+-----------+
@@ -64,11 +64,12 @@ Assicurarsi che l'editor sia impostato su quello preferito, in questo caso `vim`
 
 Successivamente, modificate il profilo `macvlan`. Prima di farlo, è necessario conoscere l'interfaccia utilizzata dall'host per la nostra LAN. Eseguire `ip addr` e cercare l'interfaccia con l'assegnazione dell'IP LAN:
 
-```
+```bash
 2: eno1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
     link/ether a8:5e:45:52:f8:b6 brd ff:ff:ff:ff:ff:ff
     inet 192.168.1.141/24 brd 192.168.1.255 scope global dynamic noprefixroute eno1
 ```
+
 !!! Note "Nota"
 
     In questo caso, l'interfaccia che si sta cercando è "eno1", che potrebbe essere completamente diversa sul vostro sistema. Utilizzate le **vostre** informazioni sull'interfaccia!
@@ -79,7 +80,7 @@ Ora che si conosce l'interfaccia LAN, è possibile modificare il profilo `macvla
 
 Modificate il profilo in modo che assomigli a questo. L'autore ha escluso i commenti all'inizio del file, ma se siete nuovi di LXD, esaminateli:
 
-```
+```bash
 config: {}
 description: ""
 devices:
@@ -95,7 +96,7 @@ Quando si crea il profilo `macvlan`, il sistema copia il profilo `default`. La m
 
 Ora che il profilo `macvlan` esiste, è necessario applicarlo ai nostri tre container:
 
-```
+```bash
 lxc profile assign web1 default,macvlan
 lxc profile assign web2 default,macvlan
 lxc profile assign proxyha default,macvlan
@@ -105,19 +106,19 @@ Sfortunatamente, il comportamento predefinito di `macvlan`, come implementato ne
 
 Questa operazione è piuttosto semplice quando si usa il DHCP. Procedere in questo modo per ogni container:
 
-* `lxc exec web1 bash`, che ci porterà alla riga di comando del contenitore **web1**
-* `crontab -e` che modificherà il file di root `crontab` sul container
-* digitare `i` per passare alla modalità di inserimento.
-* aggiungere una riga: `@reboot /usr/sbin/dhclient`
-* premere il tasto `ESC` per uscire dalla modalità di inserimento.
-* salvare le modifiche con `SHIFT: wq`
-* digitare `exit` per uscire dal container
+- `lxc exec web1 bash`, che ci porterà alla riga di comando del contenitore **web1**
+- `crontab -e` che modificherà il file di root `crontab` sul container
+- digitare ++i++ per passare alla modalità di inserimento.
+- aggiungere una riga: `@reboot /usr/sbin/dhclient`
+- premere il tasto ++escape++ per uscire dalla modalità di inserimento.
+- salvare le modifiche con ++shift++colon+w+q++
+- digitare `exit` per uscire dal container
 
 Ripetere i passaggi per **web2** e **proxyha**.
 
 Una volta completati questi passaggi, riavviare i container:
 
-```
+```bash
 lxc restart web1
 lxc restart web2
 lxc restart proxyha
@@ -125,7 +126,7 @@ lxc restart proxyha
 
 e quando si esegue nuovamente un `lxc list`, si vedrà che gli indirizzi DHCP sono ora assegnati dalla LAN:
 
-```
+```bash
 +---------+---------+----------------------+------+-----------+-----------+
 |  NAME   |  STATE  |         IPV4         | IPV6 |   TYPE    | SNAPSHOTS |
 +---------+---------+----------------------+------+-----------+-----------+
@@ -141,17 +142,18 @@ e quando si esegue nuovamente un `lxc list`, si vedrà che gli indirizzi DHCP so
 
 Il nostro ambiente è pronto. Quindi, installare Apache (`httpd`) su ogni container web. È possibile farlo senza accedervi fisicamente:
 
-```
+```bash
 lxc exec web1 dnf install httpd
 lxc exec web2 dnf install httpd
 ```
+
 Per qualsiasi server web moderno è necessario più di Apache, ma questo è sufficiente per eseguire alcuni test.
 
 Quindi, abilitate `htpd`, avviatelo e modificate la schermata di benvenuto predefinita. In questo modo, si sa che il server risponde quando si prova ad accedere tramite proxy.
 
 Attivare e avviare `htpd`:
 
-```
+```bash
 lxc exec web1 systemctl enable httpd
 lxc exec web1 systemctl start httpd
 lxc exec web2 systemctl enable httpd
@@ -179,7 +181,8 @@ Ora ripetete la procedura per web2. Se si accede a questi computer tramite IP in
 `lxc exec proxyha dnf install haproxy`
 
 Poi si vuole configurare `haproxy` per ascoltare sulla porta 80 e sulla porta 443 per i servizi web. Questo si fa con il sottocomando configure di `lxc`:
-```
+
+```bash
 lxc config device add proxyha http proxy listen=tcp:0.0.0.0:80 connect=tcp:127.0.0.1:80
 lxc config device add proxyha https proxy listen=tcp:0.0.0.0:443 connect=tcp:127.0.0.1:443
 ```
@@ -194,7 +197,7 @@ Si è già installato HAProxy sul container, ma non si è ancora fatto nulla per
 
 Aggiungere i seguenti record alla fine del file:
 
-```
+```bash
 192.168.1.150   site1.testdomain.com     site1
 192.168.1.101   site2.testdomain.com     site2
 ```
@@ -211,7 +214,7 @@ Creare un nuovo file di configurazione:
 
 Si noti che, per il momento, le linee del protocollo HTTPS sono state escluse. In un ambiente di produzione, è necessario utilizzare un certificato jolly che copra i server Web e che abiliti l'HTTPS:
 
-```
+```bash
 global
 log /dev/log local0
 log /dev/log local1 notice
@@ -301,7 +304,7 @@ Creare ciascuno di questi file in quella directory. Si noti che è possibile ese
 
 Nome file `400.http`:
 
-```
+```bash
 HTTP/1.0 400 Bad request
 Cache-Control: no-cache
 Connection: close
@@ -314,7 +317,7 @@ Your browser sent an invalid request.
 
 Nome file `403.http`:
 
-```
+```bash
 HTTP/1.0 403 Forbidden
 Cache-Control: no-cache
 Connection: close
@@ -327,7 +330,7 @@ Request forbidden by administrative rules.
 
 Nome file `408.http`:
 
-```
+```bash
 HTTP/1.0 408 Request Time-out
 Cache-Control: no-cache
 Connection: close
@@ -340,7 +343,7 @@ Your browser didn't send a complete request in time.
 
 Nome file `500.http`:
 
-```
+```bash
 HTTP/1.0 500 Internal Server Error
 Cache-Control: no-cache
 Connection: close
@@ -353,7 +356,7 @@ An internal server error occurred.
 
 Nome file `502.http`:
 
-```
+```bash
 HTTP/1.0 502 Bad Gateway
 Cache-Control: no-cache
 Connection: close
@@ -366,7 +369,7 @@ The server returned an invalid or incomplete response.
 
 Nome file `503.http`:
 
-```
+```bash
 HTTP/1.0 503 Service Unavailable
 Cache-Control: no-cache
 Connection: close
@@ -379,7 +382,7 @@ No server is available to handle this request.
 
 Nome file `504.http`:
 
-```
+```bash
 HTTP/1.0 504 Gateway Time-out
 Cache-Control: no-cache
 Connection: close
@@ -397,10 +400,12 @@ Creare una cartella "run" per `haproxy` prima di avviare il servizio:
 `lxc exec proxyha mkdir /run/haproxy`
 
 Quindi, abilitare il servizio e avviarlo:
-```
+
+```bash
 lxc exec proxyha systemctl enable haproxy
 lxc exec proxyha systemctl start haproxy
 ```
+
 Se si verificano errori, ricercare il motivo utilizzando:
 
 `lxc exec proxyha systemctl status haproxy`
@@ -417,21 +422,20 @@ Per farlo, modificare il file `/etc/hosts` sul computer locale. Considerate ques
 
 Aggiungete queste due righe:
 
-```
+```bash
 192.168.1.149   site1.testdomain.com     site1
 192.168.1.149   site2.testdomain.com     site2
 ```
 
 Se si esegue un ping su **site1** o **site2** sulla macchina locale, si otterrà una risposta da **proxyha**:
 
-```
+```bash
 PING site1.testdomain.com (192.168.1.149) 56(84) bytes of data.
 64 bytes from site1.testdomain.com (192.168.1.149): icmp_seq=1 ttl=64 time=0.427 ms
 64 bytes from site1.testdomain.com (192.168.1.149): icmp_seq=2 ttl=64 time=0.430 ms
 ```
 
 Aprite il browser Web e digitate site1.testdomain.com (o site2.testdomain.com) come URL nella barra degli indirizzi. Si otterrà una risposta da una delle due pagine di test e se si carica nuovamente la pagina, si otterrà la pagina di test del server successivo. Si noti che l'URL non cambia, ma la pagina restituita cambia alternativamente tra i server.
-
 
 ![screenshot of web1 being loaded and showing the second server test message](../images/haproxy_apache_lxd.png)
 
@@ -447,7 +451,7 @@ Quindi, creare un processo di sistema per `rsyslogd` per catturare le istanze da
 
 Aggiungete il seguente contenuto al file:
 
-```
+```bash
 $AddUnixListenSocket /var/lib/haproxy/dev/log
 
 # Send HAProxy messages to a dedicated logfile
@@ -456,6 +460,7 @@ $AddUnixListenSocket /var/lib/haproxy/dev/log
   stop
 }
 ```
+
 Salvare il file, uscire e riavviare `rsyslog`:
 
 `lxc exec proxyha systemctl restart rsyslog`
@@ -470,7 +475,7 @@ Visualizzare il file di registro creato:
 
 Il che mostrerà qualcosa di simile a questo:
 
-```
+```bash
 Sep 25 23:18:02 proxyha haproxy[4602]: Proxy http_frontend started.
 Sep 25 23:18:02 proxyha haproxy[4602]: Proxy http_frontend started.
 Sep 25 23:18:02 proxyha haproxy[4602]: Proxy subdomain1 started.

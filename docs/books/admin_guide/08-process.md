@@ -10,14 +10,14 @@ In this chapter, you will learn how to work with processes.
 
 **Objectives**: In this chapter, future Linux administrators will learn how to:
 
-:heavy_check_mark: Recognize the `PID` and `PPID` of a process;   
-:heavy_check_mark: View and search for processes;   
-:heavy_check_mark: Manage processes.
+:heavy_check_mark: Recognize the `PID` and `PPID` of a process;  
+:heavy_check_mark: View and search for processes;  
+:heavy_check_mark: Manage processes.  
 
 :checkered_flag: **process**, **linux**
 
-**Knowledge**: :star: :star:   
-**Complexity**: :star:
+**Knowledge**: :star: :star:  
+**Complexity**: :star:  
 
 **Reading time**: 20 minutes
 
@@ -31,17 +31,17 @@ When a program runs, the system will create a process by placing the program dat
 
 Each process has:
 
-* a _PID_: _**P**rocess **ID**entifier_, a unique process identifier
-* a _PPID_: _**P**arent **P**rocess **ID**entifier_, unique identifier of parent process
+* a *PID*: ***P**rocess **ID**entifier*, a unique process identifier
+* a *PPID*: ***P**arent **P**rocess **ID**entifier*, unique identifier of parent process
 
 By successive filiations, the `init` process is the father of all processes.
 
 * A parent process always creates a process
 * A parent process can have multiple child processes
 
-There is a parent/child relationship between processes. A child process results from the parent calling the _fork()_ primitive and duplicating its code to create a child. The _PID_ of the child is returned to the parent process so that it can talk to it. Each child has its parent's identifier, the _PPID_.
+There is a parent/child relationship between processes. A child process results from the parent calling the *fork()* primitive and duplicating its code to create a child. The *PID* of the child is returned to the parent process so that it can talk to it. Each child has its parent's identifier, the *PPID*.
 
-The _PID_ number represents the process at the time of execution. When the process finishes, the number is available again for another process. Running the same command several times will produce a different _PID_ each time.
+The *PID* number represents the process at the time of execution. When the process finishes, the number is available again for another process. Running the same command several times will produce a different *PID* each time.
 
 <!-- TODO ![Parent/child relationship between processes](images/FON-050-001.png) -->
 
@@ -52,12 +52,14 @@ The _PID_ number represents the process at the time of execution. When the proce
 ## Viewing processes
 
 The `ps` command displays the status of running processes.
-```
+
+```bash
 ps [-e] [-f] [-u login]
 ```
 
 Example:
-```
+
+```bash
 # ps -fu root
 ```
 
@@ -84,7 +86,7 @@ Without an option specified, the `ps` command only displays processes running fr
 
 The result is displayed in the following columns:
 
-```
+```bash
 # ps -ef
 UID  PID PPID C STIME  TTY TIME      CMD
 root 1   0    0 Jan01  ?   00:00/03  /sbin/init
@@ -103,7 +105,7 @@ root 1   0    0 Jan01  ?   00:00/03  /sbin/init
 
 The behavior of the control can be fully customized:
 
-```
+```bash
 # ps -e --format "%P %p %c %n" --sort ppid --headers
  PPID   PID COMMAND          NI
     0     1 systemd           0
@@ -123,14 +125,14 @@ The user process:
 * is started from a terminal associated with a user
 * accesses resources via requests or daemons
 
-The system process (_daemon_):
+The system process (*daemon*):
 
 * is started by the system
 * is not associated with any terminal and is owned by a system user (often `root`)
 * is loaded at boot time, resides in memory, and is waiting for a call
 * is usually identified by the letter `d` associated with the process name
 
-System processes are therefore called daemons (_**D**isk **A**nd **E**xecution **MON**itor_).
+System processes are therefore called daemons (***D**isk **A**nd **E**xecution **MON**itor*).
 
 ## Permissions and rights
 
@@ -192,23 +194,23 @@ The constraints of the asynchronous mode:
 
 The `kill` command sends a stop signal to a process.
 
-```
+```bash
 kill [-signal] PID
 ```
 
 Example:
 
-```
-$ kill -9 1664
+```bash
+kill -9 1664
 ```
 
 | Code | Signal    | Description                                            |
 |------|-----------|--------------------------------------------------------|
-| `2`  | _SIGINT_  | Immediate termination of the process                   |
-| `9`  | _SIGKILL_ | Interrupt the process (<kbd>CTRL</kbd> + <kbd>D</kbd>) |
-| `15` | _SIGTERM_ | Clean termination of the process                       |
-| `18` | _SIGCONT_ | Resume the process                                     |
-| `19` | _SIGSTOP_ | Suspend the process                                    |
+| `2`  | *SIGINT*  | Immediate termination of the process                   |
+| `9`  | *SIGKILL* | Interrupt the process (++control+d++) |
+| `15` | *SIGTERM* | Clean termination of the process                       |
+| `18` | *SIGCONT* | Resume the process                                     |
+| `19` | *SIGSTOP* | Suspend the process                                    |
 
 Signals are the means of communication between processes. The `kill` command sends a signal to a process.
 
@@ -224,14 +226,14 @@ Signals are the means of communication between processes. The `kill` command sen
 
 `nohup` allows the launching of a process independently of a connection.
 
-```
+```bash
 nohup command
 ```
 
 Example:
 
-```
-$ nohup myprogram.sh 0</dev/null &
+```bash
+nohup myprogram.sh 0</dev/null &
 ```
 
 `nohup` ignores the `SIGHUP` signal sent when a user logs out.
@@ -242,27 +244,27 @@ $ nohup myprogram.sh 0</dev/null &
 
 ### [CTRL] + [Z]
 
-By pressing the <kbd>CTRL</kbd> + <kbd>Z</kbd> keys simultaneously, the synchronous process is temporarily suspended. Access to the prompt is restored after displaying the number of the process that has just been suspended.
+By pressing the ++control+z++ keys simultaneously, the synchronous process is temporarily suspended. Access to the prompt is restored after displaying the number of the process that has just been suspended.
 
 ### `&` instruction
 
-The `&` statement executes the command asynchronously (the command is then called _job_) and displays the number of _job_. Access to the prompt is then returned.
+The `&` statement executes the command asynchronously (the command is then called *job*) and displays the number of *job*. Access to the prompt is then returned.
 
 Example:
 
-```
+```bash
 $ time ls -lR / > list.ls 2> /dev/null &
 [1] 15430
 $
 ```
 
-The _job_ number is obtained during background processing and is displayed in square brackets, followed by the `PID` number.
+The *job* number is obtained during background processing and is displayed in square brackets, followed by the `PID` number.
 
 ### `fg` and `bg` commands
 
 The `fg` command puts the process in the foreground:
 
-```
+```bash
 $ time ls -lR / > list.ls 2>/dev/null &
 $ fg 1
 time ls -lR / > list.ls 2/dev/null
@@ -270,7 +272,7 @@ time ls -lR / > list.ls 2/dev/null
 
 while the command `bg` places it in the background:
 
-```
+```bash
 [CTRL]+[Z]
 ^Z
 [1]+ Stopped
@@ -279,7 +281,7 @@ $ bg 1
 $
 ```
 
-Whether it was put in the background when it was created with the `&` argument or later with the <kbd>CTRL</kbd> +<kbd>Z</kbd> keys, a process can be brought back to the foreground with the `fg` command and its job number.
+Whether it was put in the background when it was created with the `&` argument or later with the ++control+z++ keys, a process can be brought back to the foreground with the `fg` command and its job number.
 
 ### `jobs` command
 
@@ -287,7 +289,7 @@ The `jobs` command displays the list of processes running in the background and 
 
 Example:
 
-```
+```bash
 $ jobs
 [1]- Running    sleep 1000
 [2]+ Running    find / > arbo.txt
@@ -296,24 +298,26 @@ $ jobs
 The columns represent:
 
 1. job number
-2. the order that the processes run
-- a `+` : The process selected by default for the `fg` and `bg` commands when no job number is specified
-- a `-` : This process is the next process to take the `+`   
-3.  _Running_ (running process) or _Stopped_ (suspended process)  
+2. the order that the processes run:
+
+   * a `+` : The process selected by default for the `fg` and `bg` commands when no job number is specified
+   * a `-` : This process is the next process to take the `+`
+  
+3. *Running* (running process) or *Stopped* (suspended process)  
 4. the command
 
 ### `nice` and `renice` commands
 
 The command `nice` allows the execution of a command by specifying its priority.
 
-```
+```bash
 nice priority command
 ```
 
 Example:
 
-```
-$ nice -n+15 find / -name "file"
+```bash
+nice -n+15 find / -name "file"
 ```
 
 Unlike `root`, a standard user can only reduce the priority of a process. Only values between +0 and +19 will be accepted.
@@ -324,15 +328,16 @@ Unlike `root`, a standard user can only reduce the priority of a process. Only v
 
 The `renice` command allows you to change the priority of a running process.
 
-```
+```bash
 renice priority [-g GID] [-p PID] [-u UID]
 ```
 
 Example:
 
+```bash
+renice +15 -p 1664
 ```
-$ renice +15 -p 1664
-```
+
 | Option | Description                       |
 |--------|-----------------------------------|
 | `-g`   | `GID` of the process owner group. |
@@ -353,7 +358,7 @@ The `renice` command acts on processes already running. It is therefore possible
 
 The `top` command displays the processes and their resource consumption.
 
-```
+```bash
 $ top
 PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND
 2514 root 20 0       15    5.5 0:01.14   top
@@ -374,11 +379,11 @@ The `top` command allows control of the processes in real-time and in interactiv
 
 ### `pgrep` and `pkill` commands
 
-The `pgrep` command searches the running processes for a process name and displays the _PID_ matching the selection criteria on the standard output.
+The `pgrep` command searches the running processes for a process name and displays the *PID* matching the selection criteria on the standard output.
 
-The `pkill` command will send each process the specified signal (by default _SIGTERM_).
+The `pkill` command will send each process the specified signal (by default *SIGTERM*).
 
-```
+```bash
 pgrep process
 pkill [option] [-signal] process
 ```
@@ -387,14 +392,14 @@ Examples:
 
 * Get the process number from `sshd`:
 
-  ```
-  $ pgrep -u root sshd
+  ```bash
+  pgrep -u root sshd
   ```
 
 * Kill all `tomcat` processes:
 
-  ```
-  $ pkill tomcat
+  ```bash
+  pkill tomcat
   ```
 
 !!! note
@@ -403,13 +408,13 @@ Examples:
 
 In addition to sending signals to the relevant processes, the `pkill` command can also end the user's connection session according to the terminal number, such as:
 
-```
-$ pkill -t pts/1
+```bash
+pkill -t pts/1
 ```
 
 ### `killall` command
 
-This command's function is roughly the same as that of the `pkill` command. The usage is —`killall [option] [ -s SIGNAL | -SIGNAL ] NAME`. The default signal is _SIGTERM_.
+This command's function is roughly the same as that of the `pkill` command. The usage is —`killall [option] [ -s SIGNAL | -SIGNAL ] NAME`. The default signal is *SIGTERM*.
 
 | Options | Description |
 | :--- | :--- |
@@ -419,8 +424,8 @@ This command's function is roughly the same as that of the `pkill` command. The 
 
 Example:
 
-```
-$ killall tomcat
+```bash
+killall tomcat
 ```
 
 ### `pstree` command
@@ -472,8 +477,8 @@ Hazard:
 
 How can we check for any zombie processes in the current system?
 
-```
-$ ps -lef | awk '{print $2}' | grep Z
+```bash
+ps -lef | awk '{print $2}' | grep Z
 ```
 
 These characters may appear in this column:

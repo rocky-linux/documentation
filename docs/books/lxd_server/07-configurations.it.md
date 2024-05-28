@@ -15,13 +15,13 @@ Nel corso di questo capitolo sarà necessario eseguire i comandi come utente non
 
 Esistono numerose opzioni per configurare il container dopo l'installazione. Prima di vederli, però, esaminiamo il comando `info` per un container. In questo esempio, si utilizzerà il container ubuntu-test:
 
-```
+```bash
 lxc info ubuntu-test
 ```
 
 Verrà visualizzato quanto segue:
 
-```
+```bash
 Name: ubuntu-test
 Location: none
 Remote: unix://
@@ -60,7 +60,7 @@ Resources:
 
 Ci sono molte informazioni utili, dai profili applicati, alla memoria in uso, allo spazio su disco in uso e altro ancora.
 
-### Una parola sulla configurazione e su alcune opzioni
+## Una parola sulla configurazione e su alcune opzioni
 
 Per impostazione predefinita, LXD assegna al container la memoria di sistema, lo spazio su disco, i core della CPU e altre risorse necessarie. Ma se si vuole essere più specifici? È assolutamente possibile.
 
@@ -70,29 +70,29 @@ Ricordate che ogni azione compiuta per configurare un contenitore _può_ avere e
 
 Piuttosto che scorrere tutte le opzioni di configurazione, utilizzare il completamento automatico delle schede per visualizzare le opzioni disponibili:
 
-```
+```bash
 lxc config set ubuntu-test
 ```
 
-e <kbd>TAB</kbd>.
+e ++tab++.
 
 Mostra tutte le opzioni per la configurazione di un container. Se avete domande su cosa fa una delle opzioni di configurazione, visitate la [documentazione ufficiale di LXD](https://documentation.ubuntu.com/lxd/en/latest/config-options/) e fate una ricerca per il parametro di configurazione, oppure cercate su Google l'intera stringa, ad esempio `lxc config set limits.memory` ed esaminate i risultati della ricerca.
 
 Di seguito esaminiamo alcune delle opzioni di configurazione più utilizzate. Ad esempio, se si vuole impostare la quantità massima di memoria che un container può utilizzare:
 
-```
+```bash
 lxc config set ubuntu-test limits.memory 2GB
 ```
 
 Questo dice che se la memoria è disponibile per l'uso, ad esempio se ci sono 2 GB di memoria disponibile, il container può effettivamente usare più di 2 GB se è disponibile. Si tratta di un limite morbido, ad esempio.
 
-```
+```bash
 lxc config set ubuntu-test limits.memory.enforce 2GB
 ```
 
 Ciò significa che il container non può mai utilizzare più di 2 GB di memoria, indipendentemente dal fatto che sia attualmente disponibile o meno. In questo caso si tratta di un limite rigido.
 
-```
+```bash
 lxc config set ubuntu-test limits.cpu 2
 ```
 
@@ -104,14 +104,13 @@ Questo dice di limitare a 2 il numero di core della CPU che il container può ut
 
 Ricordate quando avete impostato il nostro pool di archiviazione nel capitolo ZFS? Il pool è stato chiamato "storage", ma avrebbe potuto essere chiamato in qualsiasi modo. Se si desidera esaminarlo, si può usare questo comando, che funziona ugualmente bene anche per gli altri tipi di pool (come mostrato per dir):
 
-```
+```bash
 lxc storage show storage
 ```
 
-
 Questo mostra quanto segue:
 
-```
+```bash
 config:
   source: /var/snap/lxd/common/lxd/storage-pools/storage
 description: ""
@@ -129,11 +128,10 @@ locations:
 
 Questo mostra che tutti i container utilizzano il pool di archiviazione dir. Quando si usa ZFS, si può anche impostare una quota disco su un container. Ecco come appare il comando, che imposta una quota disco di 2 GB sul container ubuntu-test:
 
-```
+```bash
 lxc config device override ubuntu-test root size=2GB
 ```
 
 Come detto in precedenza, usare le opzioni di configurazione con parsimonia, a meno che non si abbia un container che vuole usare molto più della sua quota di risorse. LXD, nella maggior parte dei casi, gestisce l'ambiente in modo autonomo.
 
 Esistono molte altre opzioni che potrebbero essere di interesse per alcuni. La ricerca personale vi aiuterà a scoprire se uno di questi elementi è utile nel vostro ambiente.
-

@@ -5,8 +5,8 @@ contributors: Steven Spencer, Serge, Ganna Zhyrnova
 ---
 # Network File System
 
-**Knowledge**: :star: :star:   
-**Complexity**: :star: :star:   
+**Knowledge**: :star: :star:
+**Complexity**: :star: :star:
 
 **Reading time**: 15 minutes
 
@@ -24,18 +24,18 @@ Remote files are mounted in a directory and appear as a local file system. Clien
 
 NFS requires two services to function:
 
-* The `network` service (of course)
-* The `rpcbind` service
+- The `network` service (of course)
+- The `rpcbind` service
 
 View the status of the services with the command:
 
-```
+```bash
 systemctl status rpcbind
 ```
 
 If the `nfs-utils` package is not installed:
 
-```
+```bash
 sudo dnf install nfs-utils
 ```
 
@@ -43,18 +43,18 @@ The `nfs-utils` package requires the installation of several dependencies, inclu
 
 Start the NFS service with:
 
-```
+```bash
 sudo systemctl enable --now nfs-server rpcbind
 ```
 
 Installing the NFS service creates two users:
 
-* `nobody`: used for anonymous connections
-* `rpcuser`: for RPC protocol operation
+- `nobody`: used for anonymous connections
+- `rpcuser`: for RPC protocol operation
 
 Configuring the firewall is necessary:
 
-```
+```bash
 sudo firewall-cmd --add-service={nfs,nfs3,mountd,rpc-bind} --permanent 
 sudo firewall-cmd --reload
 ```
@@ -69,20 +69,20 @@ sudo firewall-cmd --reload
 
 Set up resource shares with the `/etc/exports` file. Each line in this file corresponds to an NFS share.
 
-```
-/share_name	client1(permissions) client2(permissions)
+```bash
+/share_name client1(permissions) client2(permissions)
 ```
 
-* **/share_name**: Absolute path of shared directory
-* **clients**: Clients authorized to access resources
-* **(permissions)**: Permissions on resources
+- **/share_name**: Absolute path of shared directory
+- **clients**: Clients authorized to access resources
+- **(permissions)**: Permissions on resources
 
 Declare machines authorized to access resources with:
 
-* **IP address**: `192.168.1.2`
-* **Network address**: `192.168.1.0/255.255.255.0` or CIDR format `192.168.1.0/24`
-* **FQDN**: client_*.rockylinux.org: allows FQDNs starting with client_ from the rockylinux.org domain
-* `*` for everybody
+- **IP address**: `192.168.1.2`
+- **Network address**: `192.168.1.0/255.255.255.0` or CIDR format `192.168.1.0/24`
+- **FQDN**: client_*.rockylinux.org: allows FQDNs starting with client_ from the rockylinux.org domain
+- `*` for everybody
 
 Multiple client specifications are possible on the same line, separated by a space.
 
@@ -90,8 +90,8 @@ Multiple client specifications are possible on the same line, separated by a spa
 
 There are two types of permissions:
 
-* `ro`: read-only
-* `rw`: read-write
+- `ro`: read-only
+- `rw`: read-write
 
 If no right is specified, then the right applied will be read-only.
 
@@ -99,7 +99,7 @@ By default, the NFS server preserves the client user UIDs and GIDs (except for `
 
 To force the use of a UID or GID other than that of the user writing the resource, specify the `anonuid=UID` and `anongid=GID` options, or give `anonymous` access to the data with the `all_squash` option.
 
-!!! warning "warning" 
+!!! warning "warning"
 
     A parameter, `no_root_squash`, identifies the client root user as the server root user. This parameter can be dangerous from a system security point of view.
 
@@ -107,24 +107,24 @@ Activation of the `root_squash` parameter is a default (even if not specified), 
 
 ### Case studies
 
-* `/share client(ro,all_squash)`
+- `/share client(ro,all_squash)`
 Client users have read-only access to resources and are identified as anonymous on the server.
 
-* `/share client(rw)`
+- `/share client(rw)`
 Client users can modify resources and keep their UID on the server. Only `root` is identified as `anonymous`.
 
-* `/share client1(rw) client2(ro)`
+- `/share client1(rw) client2(ro)`
 Users on client workstation 1 can modify resources, while those on client workstation 2 have read-only access.
 UIDs are kept on the server, and only `root` is identified as `anonymous`.
 
-* `/share client(rw,all_squash,anonuid=1001,anongid=100)`
+- `/share client(rw,all_squash,anonuid=1001,anongid=100)`
 Client1 users can modify resources. Their UID is changed to `1001` and their GID to `100` on the server.
 
 ### The `exportfs` command
 
 The `exportfs` (exported file systems) command is used to manage the table of local files shared with NFS clients.
 
-```
+```bash
 exportfs [-a] [-r] [-u share_name] [-v]
 ```
 
@@ -139,7 +139,7 @@ exportfs [-a] [-r] [-u share_name] [-v]
 
 The `showmount` command monitors clients.
 
-```
+```bash
 showmount [-a] [-e] [host]
 ```
 
@@ -160,26 +160,26 @@ Shared resources on an NFS server are accessible through a mount point on the cl
 
 If required, create a local folder for mounting:
 
-```
-$ sudo mkdir /mnt/nfs
+```bash
+sudo mkdir /mnt/nfs
 ```
 
 List available NFS shares on the server:
 
-```
+```bash
 $ showmount –e 172.16.1.10
 /share *
 ```
 
 Mount the server's NFS share:
 
-```
-$ mount –t nfs 172.16.1.10:/share /mnt/nfs
+```bash
+mount –t nfs 172.16.1.10:/share /mnt/nfs
 ```
 
 Automation of the mount can happen at system startup with the `/etc/fstab` file:
 
-```
+```bash
 $ sudo vim /etc/fstab
 172.16.1.10:/share /mnt/nfs nfs defaults 0 0
 ```

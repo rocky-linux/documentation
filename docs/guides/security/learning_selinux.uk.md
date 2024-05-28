@@ -51,10 +51,10 @@ SELinux використовує для цього набір правил (по
 
 Розглянемо такі частини головоломки SELinux:
 
-* Суб'єкти
-* Об'єкти
-* Політики
-* Режими
+- Суб'єкти
+- Об'єкти
+- Політики
+- Режими
 
 Коли суб’єкт (наприклад, програма) намагається отримати доступ до об’єкта (наприклад, файлу), частина SELinux ядра Linux запитує його базу даних політики. Залежно від режиму роботи, SELinux авторизує доступ до об’єкта в разі успіху, інакше він записує помилку у файл `/var/log/messages`.
 
@@ -66,7 +66,7 @@ SELinux використовує для цього набір правил (по
 
 Домен — це певний тип (у розумінні SELinux), пов’язаний із процесом і успадкований (зазвичай) від користувача, який його запустив. Його права виражені в термінах дозволу або відмови щодо типів, пов’язаних з об’єктами:
 
-Процес, контекст якого має безпеку __домен D__, може отримати доступ до об’єктів __типу T__.
+Процес, чий контекст має безпечний **домен D**, може отримати доступ до об'єктів **типу T**.
 
 ![Контекст стандартних процесів SELinux](../images/selinux_003.png)
 
@@ -84,14 +84,14 @@ SELinux використовує для цього набір правил (по
 
 Команда `semanage` керує правилами SELinux.
 
-```
+```bash
 semanage [object_type] [options]
 ```
 
 Приклад:
 
-```
-$ semanage boolean -l
+```bash
+semanage boolean -l
 ```
 
 | Опції | Функціональність  |
@@ -105,13 +105,13 @@ $ semanage boolean -l
 
 Не знаючи пакета, який надає цю команду, ви повинні шукати його назву за допомогою команди:
 
-```
+```bash
 dnf provides */semanage
 ```
 
 потім встановіть це:
 
-```
+```bash
 sudo dnf install policycoreutils-python-utils
 ```
 
@@ -119,13 +119,13 @@ sudo dnf install policycoreutils-python-utils
 
 Логічні значення дозволяють стримувати процеси.
 
-```
+```bash
 semanage boolean [options]
 ```
 
 Щоб отримати список доступних логічних значень:
 
-```
+```bash
 semanage boolean –l
 SELinux boolean    State Default  Description
 …
@@ -139,13 +139,13 @@ httpd_can_sendmail (off , off)  Allow httpd to send mail
 
 Команда `setsebool` використовується для зміни стану логічного об’єкта:
 
-```
+```bash
 setsebool [-PV] boolean on|off
 ```
 
 Приклад:
 
-```
+```bash
 sudo setsebool -P httpd_can_sendmail on
 ```
 
@@ -162,13 +162,13 @@ sudo setsebool -P httpd_can_sendmail on
 
 Команда `semanage` використовується для керування об’єктами типу port:
 
-```
+```bash
 semanage port [options]
 ```
 
 Приклад: дозволити порт 81 для процесів домену httpd
 
-```
+```bash
 sudo semanage port -a -t http_port_t -p tcp 81
 ```
 
@@ -176,15 +176,15 @@ sudo semanage port -a -t http_port_t -p tcp 81
 
 SELinux має три режими роботи:
 
-* Enforcing (Примусове виконання)
+- Enforcing (Примусове виконання)
 
 Режим за замовчуванням для Rocky Linux. Доступ буде обмежено відповідно до чинних правил.
 
-* Permissive (Дозвільний)
+- Permissive (Дозвільний)
 
 Правила опитуються, а помилки доступу реєструються, але доступ не блокується.
 
-* Disabled (Вимкнено)
+- Disabled (Вимкнено)
 
 Ніщо не буде обмежено, нічого не буде зареєстровано.
 
@@ -192,32 +192,32 @@ SELinux має три режими роботи:
 
 Команда `getenforce` повертає поточний режим роботи
 
-```
+```bash
 getenforce
 ```
 
 Приклад:
 
-```
+```bash
 $ getenforce
 Enforcing
 ```
 
 Команда `sestatus` повертає інформацію про SELinux
 
-```
+```bash
 sestatus
 ```
 
 Приклад:
 
-```
+```bash
 $ sestatus
-SELinux status:                enabled
-SELinuxfs mount:                 /sys/fs/selinux
+SELinux status:       enabled
+SELinuxfs mount:     /sys/fs/selinux
 SELinux root directory:    /etc/selinux
 Loaded policy name:        targeted
-Current mode:                enforcing
+Current mode:             enforcing
 Mode from config file:     enforcing
 ...
 Max kernel policy version: 33
@@ -225,13 +225,13 @@ Max kernel policy version: 33
 
 Команда `setenforce` змінює поточний режим роботи:
 
-```
+```bash
 setenforce 0|1
 ```
 
 Перемкніть SELinux у дозвільний режим:
 
-```
+```bash
 sudo setenforce 0
 ```
 
@@ -245,7 +245,7 @@ sudo setenforce 0
 
 Відредагуйте файл `/etc/sysconfig/selinux`
 
-```
+```bash
 SELINUX=disabled
 ```
 
@@ -255,7 +255,7 @@ SELINUX=disabled
 
 Перезавантажте систему:
 
-```
+```bash
 sudo reboot
 ```
 
@@ -269,7 +269,7 @@ sudo reboot
 
 Маркування всієї системи:
 
-```
+```bash
 sudo touch /.autorelabel
 sudo reboot
 ```
@@ -278,8 +278,8 @@ sudo reboot
 
 SELinux надає два стандартних типи правил:
 
-* **Targeted (Цільовий)**: захищені лише мережеві демони (`dhcpd`, `httpd`, `named`, `nscd`, `ntpd`, `portmap`, `snmpd`, `squid` і `syslogd`)
-* **Strict (Строгий)**: усі демони захищені
+- **Targeted (Цільовий)**: захищені лише мережеві демони (`dhcpd`, `httpd`, `named`, `nscd`, `ntpd`, `portmap`, `snmpd`, `squid` і `syslogd`)
+- **Strict (Строгий)**: усі демони захищені
 
 ## Контекст
 
@@ -287,25 +287,25 @@ SELinux надає два стандартних типи правил:
 
 Приклади:
 
-```
-id -Z   # the user's context
-ls -Z   # those of the current files
-ps -eZ  # those of the processes
+```bash
+id -Z # the user's context
+ls -Z # those of the current files
+ps -eZ # those of the processes
 netstat –Z # for network connections
 lsof -Z # for open files
 ```
 
 Команда `matchpathcon` повертає контекст каталогу.
 
-```
+```bash
 matchpathcon directory
 ```
 
 Приклад:
 
-```
+```bash
 sudo matchpathcon /root
- /root  system_u:object_r:admin_home_t:s0
+ /root system_u:object_r:admin_home_t:s0
 
 sudo matchpathcon /
  /      system_u:object_r:root_t:s0
@@ -313,13 +313,13 @@ sudo matchpathcon /
 
 Команда `chcon` змінює контекст безпеки:
 
-```
+```bash
 chcon [-vR] [-u USER] [–r ROLE] [-t TYPE] file
 ```
 
 Приклад:
 
-```
+```bash
 sudo chcon -vR -t httpd_sys_content_t /data/websites/
 ```
 
@@ -331,13 +331,13 @@ sudo chcon -vR -t httpd_sys_content_t /data/websites/
 
 Команда `restorecon` відновлює контекст безпеки за умовчанням (той, який передбачено правилами):
 
-```
+```bash
 restorecon [-vR] directory
 ```
 
 Приклад:
 
-```
+```bash
 sudo restorecon -vR /home/
 ```
 
@@ -348,7 +348,7 @@ sudo restorecon -vR /home/
 
 Команда `restorecon` відновлює контекст безпеки за умовчанням (той, який передбачено правилами):
 
-```
+```bash
 semanage fcontext -a options file
 ```
 
@@ -358,22 +358,22 @@ semanage fcontext -a options file
 
 Приклад:
 
-```
-$ sudo semanage fcontext -a -t httpd_sys_content_t "/data/websites(/.*)?"
-$ sudo restorecon -vR /data/websites/
+```bash
+sudo semanage fcontext -a -t httpd_sys_content_t "/data/websites(/.*)?"
+sudo restorecon -vR /data/websites/
 ```
 
 ## Команда `audit2why`
 
 Команда `audit2why` вказує на причину відхилення SELinux:
 
-```
+```bash
 audit2why [-vw]
 ```
 
 Приклад визначення причини останньої відмови SELinux:
 
-```
+```bash
 sudo cat /var/log/audit/audit.log | grep AVC | grep denied | tail -1 | audit2why
 ```
 
@@ -386,13 +386,13 @@ sudo cat /var/log/audit/audit.log | grep AVC | grep denied | tail -1 | audit2why
 
 Команда `audit2allow` створює модуль, щоб дозволити дію SELinux (якщо модуль не існує) із рядка у файлі «аудит»:
 
-```
+```bash
 audit2allow [-mM]
 ```
 
 Приклад:
 
-```
+```bash
 sudo cat /var/log/audit/audit.log | grep AVC | grep denied | tail -1 | audit2allow -M mylocalmodule
 ```
 
@@ -405,25 +405,25 @@ sudo cat /var/log/audit/audit.log | grep AVC | grep denied | tail -1 | audit2all
 
 Після виконання команди система повертає вам командний рядок, але очікуваного результату не видно: на екрані немає повідомлення про помилку.
 
-* **Крок 1**: прочитайте файл журналу, знаючи, що повідомлення, яке нас цікавить, має тип AVC (SELinux), відхилено (відмовлено) і найновіше (тобто останнє один).
+- **Крок 1**: прочитайте файл журналу, знаючи, що повідомлення, яке нас цікавить, має тип AVC (SELinux), відхилено (відмовлено) і найновіше (тобто останнє один).
 
-```
+```bash
 sudo cat /var/log/audit/audit.log | grep AVC | grep denied | tail -1
 ```
 
 Повідомлення правильно ізольовано, але воно нам не допомагає.
 
-* **Крок 2**: прочитайте ізольоване повідомлення за допомогою команди `audit2why`, щоб отримати більш чітке повідомлення, яке може містити рішення нашої проблеми (зазвичай логічний бути встановлено).
+- **Крок 2**: прочитайте ізольоване повідомлення за допомогою команди `audit2why`, щоб отримати більш чітке повідомлення, яке може містити рішення нашої проблеми (зазвичай логічний бути встановлено).
 
-```
+```bash
 sudo cat /var/log/audit/audit.log | grep AVC | grep denied | tail -1 | audit2why
 ```
 
 Є два випадки: або ми можемо розмістити контекст або заповнити логічне значення, або ми повинні перейти до кроку 3, щоб створити наш власний контекст.
 
-* **Крок 3**: Створіть власний модуль.
+- **Крок 3**: Створіть власний модуль.
 
-```
+```bash
 $ sudo cat /var/log/audit/audit.log | grep AVC | grep denied | tail -1 | audit2allow -M mylocalmodule
 Generating type enforcement: mylocalmodule.te
 Compiling policy: checkmodule -M -m -o mylocalmodule.mod mylocalmodule.te

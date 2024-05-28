@@ -17,7 +17,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 :checkered_flag: **ansible**, **jinja**, **filters**
 
-**Знання**: :star: :star: :star:       
+**Знання**: :star: :star: :star:  
 **Складність**: :star: :star: :star: :star:
 
 **Час читання**: 20 хвилин
@@ -34,7 +34,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 У цьому розділі ми будемо використовувати наступний playbook, щоб перевірити різні представлені фільтри:
 
-```
+```bash
 - name: Manipulating the data
   hosts: localhost
   gather_facts: false
@@ -78,7 +78,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 Playbook відбуватиметься таким чином:
 
-```
+```bash
 ansible-playbook play-filter.yml
 ```
 
@@ -90,7 +90,7 @@ ansible-playbook play-filter.yml
 
 Приклад:
 
-```
+```bash
 - name: Display the type of a variable
   debug:
     var: true_boolean|type_debug
@@ -98,7 +98,7 @@ ansible-playbook play-filter.yml
 
 що дає нам:
 
-```
+```bash
 TASK [Display the type of a variable] ******************************************************************
 ok: [localhost] => {
     "true_boolean|type_debug": "bool"
@@ -107,13 +107,13 @@ ok: [localhost] => {
 
 Ціле число можна перетворити на рядок:
 
-```
+```bash
 - name: Transforming a variable type
   debug:
     var: zero|string
 ```
 
-```
+```bash
 TASK [Transforming a variable type] ***************************************************************
 ok: [localhost] => {
     "zero|string": "0"
@@ -122,7 +122,7 @@ ok: [localhost] => {
 
 Перетворення рядка в ціле число:
 
-```
+```bash
 - name: Transforming a variable type
   debug:
     var: zero_string|int
@@ -130,7 +130,7 @@ ok: [localhost] => {
 
 або змінну в логічне значення:
 
-```
+```bash
 - name: Display an integer as a boolean
   debug:
     var: non_zero | bool
@@ -151,7 +151,7 @@ ok: [localhost] => {
 
 Рядок символів можна перетворити на верхній або нижній регістр:
 
-```
+```bash
 - name: Lowercase a string of characters
   debug:
     var: whatever | lower
@@ -163,7 +163,7 @@ ok: [localhost] => {
 
 що дає нам:
 
-```
+```bash
 TASK [Lowercase a string of characters] *****************************************************
 ok: [localhost] => {
     "whatever | lower": "it's false!"
@@ -179,7 +179,7 @@ ok: [localhost] => {
 
 Тут ми видаляємо пробіли або навіть замінюємо слово:
 
-```
+```bash
 - name: Replace a character in a string
   debug:
     var: whatever | replace(" ", "")
@@ -191,7 +191,7 @@ ok: [localhost] => {
 
 що дає нам:
 
-```
+```bash
 TASK [Replace a character in a string] *****************************************************
 ok: [localhost] => {
     "whatever | replace(\" \", \"\")": "It'sfalse!"
@@ -205,14 +205,13 @@ ok: [localhost] => {
 
 Фільтр `split` розбиває рядок на список на основі символу:
 
-```
+```bash
 - name: Cutting a string of characters
   debug:
     var: whatever | split(" ", "")
 ```
 
-
-```
+```bash
 TASK [Cutting a string of characters] *****************************************************
 ok: [localhost] => {
     "whatever | split(\" \")": [
@@ -226,7 +225,7 @@ ok: [localhost] => {
 
 Часто доводиться об’єднувати різні елементи в один рядок. Потім ми можемо вказати символ або рядок для вставки між кожним елементом.
 
-```
+```bash
 - name: Joining elements of a list
   debug:
     var: my_simple_list|join(",")
@@ -238,7 +237,7 @@ ok: [localhost] => {
 
 що дає нам:
 
-```
+```bash
 TASK [Joining elements of a list] *****************************************************************
 ok: [localhost] => {
     "my_simple_list|join(\",\")": "value_list_1,value_list_2,value_list_3"
@@ -257,7 +256,7 @@ ok: [localhost] => {
 
 Зауважте, що можна вказати назву ключа та значення для використання в перетворенні.
 
-```
+```bash
 - name: Display a dictionary
   debug:
     var: my_dictionary
@@ -275,7 +274,7 @@ ok: [localhost] => {
     var: my_list | items2dict(key_name='element', value_name='value')
 ```
 
-```
+```bash
 TASK [Display a dictionary] *************************************************************************
 ok: [localhost] => {
     "my_dictionary": {
@@ -325,13 +324,13 @@ ok: [localhost] => {
 
 Можна об’єднати або відфільтрувати дані з одного чи кількох списків:
 
-```
+```bash
 - name: Merger of two lists
   debug:
     var: my_simple_list | union(my_simple_list_2)
 ```
 
-```
+```bash
 ok: [localhost] => {
     "my_simple_list | union(my_simple_list_2)": [
         "value_list_1",
@@ -345,13 +344,13 @@ ok: [localhost] => {
 
 Щоб зберегти лише перетин 2 списків (значення, присутні у 2 списках):
 
-```
+```bash
 - name: Merger of two lists
   debug:
     var: my_simple_list | intersect(my_simple_list_2)
 ```
 
-```
+```bash
 TASK [Merger of two lists] *******************************************************************************
 ok: [localhost] => {
     "my_simple_list | intersect(my_simple_list_2)": [
@@ -362,13 +361,13 @@ ok: [localhost] => {
 
 Або навпаки залишити лише різницю (значення, яких немає у другому списку):
 
-```
+```bash
 - name: Merger of two lists
   debug:
     var: my_simple_list | difference(my_simple_list_2)
 ```
 
-```
+```bash
 TASK [Merger of two lists] *******************************************************************************
 ok: [localhost] => {
     "my_simple_list | difference(my_simple_list_2)": [
@@ -380,7 +379,7 @@ ok: [localhost] => {
 
 Якщо ваш список містить неунікальні значення, їх також можна відфільтрувати за допомогою фільтра `unique`.
 
-```
+```bash
 - name: Unique value in a list
   debug:
     var: my_simple_list | unique
@@ -390,7 +389,7 @@ ok: [localhost] => {
 
 Можливо, вам доведеться імпортувати дані json (наприклад, з API) або експортувати дані в yaml або json.
 
-```
+```bash
 - name: Display a variable in yaml
   debug:
     var: my_list | to_nice_yaml(indent=4)
@@ -400,7 +399,7 @@ ok: [localhost] => {
     var: my_list | to_nice_json(indent=4)
 ```
 
-```
+```bash
 TASK [Display a variable in yaml] ********************************************************************
 ok: [localhost] => {
     "my_list | to_nice_yaml(indent=4)": "-   element: element1\n    value: value1\n-   element: element2\n    value: value2\n"
@@ -418,13 +417,13 @@ ok: [localhost] => {
 
 Значення змінної можна замінити на інше, якщо воно не існує за допомогою фільтра `default`:
 
-```
+```bash
 - name: Default value
   debug:
     var: variablethatdoesnotexists | default(whatever)
 ```
 
-```
+```bash
 TASK [Default value] ********************************************************************************
 ok: [localhost] => {
     "variablethatdoesnotexists | default(whatever)": "It's false!"
@@ -433,13 +432,13 @@ ok: [localhost] => {
 
 Зверніть увагу на наявність апострофа `'`, який слід захистити, наприклад, якщо ви використовуєте модуль `shell`:
 
-```
+```bash
 - name: Default value
   debug:
     var: variablethatdoesnotexists | default(whatever| quote)
 ```
 
-```
+```bash
 TASK [Default value] ********************************************************************************
 ok: [localhost] => {
     "variablethatdoesnotexists | default(whatever|quote)": "'It'\"'\"'s false!'"
@@ -448,7 +447,7 @@ ok: [localhost] => {
 
 Нарешті, необов’язкову змінну в модулі можна проігнорувати, якщо вона не існує з ключовим словом `omit` у фільтрі `default`, що позбавить вас від помилки під час виконання.
 
-```
+```bash
 - name: Add a new user
   ansible.builtin.user:
     name: "{{ user_name }}"
@@ -461,13 +460,13 @@ ok: [localhost] => {
 
 Цього можна уникнути за допомогою фільтра `ternary`:
 
-```
+```bash
 - name: Default value
   debug:
     var: (user_name == 'antoine') | ternary('admin', 'normal_user')
 ```
 
-```
+```bash
 TASK [Default value] ********************************************************************************
 ok: [localhost] => {
     "(user_name == 'antoine') | ternary('admin', 'normal_user')": "admin"
@@ -476,8 +475,8 @@ ok: [localhost] => {
 
 ## Деякі інші фільтри
 
-  * `{{ 10000 | random }}`: як вказує його назва, дає випадкове значення.
-  * `{{ my_simple_list | first }}`: витягує перший елемент списку.
-  * `{{ my_simple_list | length }}`: дає довжину (списку або рядка).
-  * `{{ ip_list | ansible.netcommon.ipv4 }}`: відображає лише v4 IP. Не зупиняючись на цьому, якщо вам потрібно, є багато фільтрів, присвячених мережі.
-  * `{{ user_password | password_hash('sha512') }}`: генерує хешований пароль у sha512.
+* `{{ 10000 | random }}`: як вказує його назва, дає випадкове значення.
+* `{{ my_simple_list | first }}`: витягує перший елемент списку.
+* `{{ my_simple_list | length }}`: дає довжину (списку або рядка).
+* `{{ ip_list | ansible.netcommon.ipv4 }}`: відображає лише v4 IP. Не зупиняючись на цьому, якщо вам потрібно, є багато фільтрів, присвячених мережі.
+* `{{ user_password | password_hash('sha512') }}`: генерує хешований пароль у sha512.

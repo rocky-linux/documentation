@@ -10,13 +10,13 @@ Dans ce chapitre, vous apprendrez à gérer des fichiers avec Ansible.
 
 **Objectifs** : Dans ce chapitre, vous apprendrez à :
 
-:heavy_check_mark: modifier le contenu d'un fichier ;       
-:heavy_check_mark: transmettre des fichiers vers des serveurs cibles ;   
+:heavy_check_mark: modifier le contenu d'un fichier ;  
+:heavy_check_mark: transmettre des fichiers vers des serveurs cibles ;  
 :heavy_check_mark: télécharger des fichiers à partir de serveurs distants.
 
 :checkered_flag: **ansible**, **module**, **fichiers**
 
-**Connaissances** : :star: :star:     
+**Connaissances** : :star: :star:  
 **Complexité** : :star:
 
 **Temps de lecture :** 23 minutes
@@ -41,7 +41,7 @@ Le module nécessite :
 
 Exemple d'utilisation :
 
-```
+```bash
 - name: change value on inifile
   community.general.ini_file:
     dest: /path/to/file.ini
@@ -62,7 +62,7 @@ Dans ce cas, la ligne à modifier sera identifiée en utilisant regexp.
 
 Par exemple, pour s'assurer que la ligne qui commence par `SELINUX=` dans le fichier `/etc/selinux/config` contient bien la valeur `enforcing` :
 
-```
+```bash
 - ansible.builtin.lineinfile:
     path: /etc/selinux/config
     regexp: '^SELINUX='
@@ -79,7 +79,7 @@ Pour copier un fichier à partir du serveur Ansible vers un ou plusieurs hôtes,
 
 L'exemple suivant illustre la copie du fichier `myflile.conf` d'un endroit à un autre :
 
-```
+```bash
 - ansible.builtin.copy:
     src: /data/ansible/sources/myfile.conf
     dest: /etc/myfile.conf
@@ -98,7 +98,7 @@ Pour copier un fichier à partir d'un serveur distant vers le serveur local, il 
 
 Ce module effectue l'opération inverse du module `copy` :
 
-```
+```bash
 - ansible.builtin.fetch:
     src: /etc/myfile.conf
     dest: /data/ansible/backup/myfile-{{ inventory_hostname }}.conf
@@ -107,7 +107,7 @@ Ce module effectue l'opération inverse du module `copy` :
 
 ## Module `template`
 
-Ansible et son module `template` utilisent le système de modèles **Jinja2** (http://jinja.pocoo.org/docs/) pour générer des fichiers dans la machine cible.
+Ansible et son module `template` utilisent le système de modèles **Jinja2** (<http://jinja.pocoo.org/docs/>) pour générer des fichiers dans la machine cible.
 
 !!! note "Remarque"
 
@@ -115,7 +115,7 @@ Ansible et son module `template` utilisent le système de modèles **Jinja2** (h
 
 Par exemple :
 
-```
+```bash
 - ansible.builtin.template:
     src: /data/ansible/templates/monfichier.j2
     dest: /etc/myfile.conf
@@ -126,7 +126,7 @@ Par exemple :
 
 Il est possible d'ajouter une étape de validation si le service ciblé le permet (par exemple avec apache en utilisant la commande `apachectl -t`) :
 
-```
+```bash
 - template:
     src: /data/ansible/templates/vhost.j2
     dest: /etc/httpd/sites-available/vhost.conf
@@ -140,7 +140,7 @@ Il est possible d'ajouter une étape de validation si le service ciblé le perme
 
 Pour tranférer des fichiers à partir d'un site web ou ftp vers un ou plusieurs hôtes, vous pouvez utiliser le module `get_url` :
 
-```
+```bash
 - get_url:
     url: http://site.com/archive.zip
     dest: /tmp/archive.zip

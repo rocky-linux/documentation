@@ -11,10 +11,6 @@ tags:
 
 # Marksman - code assistant
 
-!!! danger "Wrong instructions"
-
-    With the release of version 2.5, the instructions on this page are no longer correct; its use is not recommended for new installations. For more information see [the main page of the guide](./index.md).
-
 Marksman is a useful tool when drafting your document for Rocky Linux. It allows the easy entry of symbols needed to define the *markdown* language tags. This allows you to write faster and reduces the possibility of errors.
 
 NvChad/Neovim already includes text widgets that aid writing, such as the repetition of often-used words indexed by frequency of entry. The new options included by this language server will enrich these widgets.
@@ -30,7 +26,7 @@ NvChad/Neovim already includes text widgets that aid writing, such as the repeti
 ## Requirements and skills
 
 - A basic knowledge of the Markdown language, recommended reading the [Markdown Guide](https://www.markdownguide.org/)
-- NvChad on the machine in use with the [Template Chadr](./template_chadrc.md) properly installed
+- NvChad on the machine in use properly installed
 
 **Difficulty level** :star:
 
@@ -44,7 +40,7 @@ Installation of the language server does not involve any particular problems sin
 
 The command will open the *Mason* interface and directly install the required language server. Once binary installation completes, you can close the *Mason* screen with the ++"q"++ key.
 
-Its installation, however, does not yet involve its integration into the editor. Enable this by editing the `custom/configs/lspconfig.lua` file of the *Chadrc Template*.
+Its installation, however, does not yet include its integration into the editor. To enable it, it must be placed in the `configs/lspconfig.lua` file of the configuration.
 
 ## Integration into the editor
 
@@ -52,14 +48,12 @@ Its installation, however, does not yet involve its integration into the editor.
 
     The [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) plugin integrates the language servers into NvChad. This plugin greatly simplifies their inclusion in the NvChad configuration.
 
-If during the editor installation you also chose to install the *Template Chadrc*, this creates the *lspoconfig.lua* file in your `custom/configs` folder.
-
-This file takes care of entering the calls needed to use the language servers and also allows you to specify the ones you have installed. To integrate *marksman* into the editor's language server configuration you will need to edit the *local servers* string by adding your new LSP.
+The file *lspconfig.lua* takes care of entering the calls needed to use the language servers and also allows you to specify the ones you have installed. To integrate *marksman* into the editor's language server configuration you will need to edit the *local servers* string by adding your new LSP.
 
 Open your NvChad on the file with the command:
 
 ```bash
-nvim ~/.config/nvim/lua/custom/configs/lspconfig.lua
+nvim ~/.config/nvim/lua/configs/lspconfig.lua
 ```
 
 And edit the *local servers* string, which will look as follows when completed:

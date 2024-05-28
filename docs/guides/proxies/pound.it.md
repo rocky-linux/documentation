@@ -28,13 +28,13 @@ Nel caso di Pound, è utilizzabile solo per i servizi web, ma è efficace in ci�
 
 I requisiti minimi per l'utilizzo di questa procedura sono i seguenti:
 
-* Il desiderio di bilanciare il carico tra alcuni siti web o la volontà di imparare un nuovo strumento per fare lo stessa cosa.
-* La possibilità di eseguire comandi come utente root o di usare `sudo` per elevare i privilegi.
-* Familiarità con un editor a riga di comando. L'autore utilizza `vi` o `vim`, ma potete sostituirlo con il vostro editor preferito.
-* La comodità di cambiare le porte di ascolto su alcuni tipi di server web.
-* Supponendo l'installazione precedente dei server Nginx e Apache.
-* Supponendo che si stiano usando server Rocky Linux o container per ogni cosa.
-* Sebbene in questo documento siano presenti tutti i tipi di dichiarazioni relative a `https`, questa guida si occupa solo del servizio `http`. Per utilizzare correttamente l'`https`, è necessario configurare il server pound con un vero certificato di una vera autorità di certificazione.
+- Il desiderio di bilanciare il carico tra alcuni siti web o la volontà di imparare un nuovo strumento per fare lo stessa cosa.
+- La possibilità di eseguire comandi come utente root o di usare `sudo` per elevare i privilegi.
+- Familiarità con un editor a riga di comando. L'autore utilizza `vi` o `vim`, ma potete sostituirlo con il vostro editor preferito.
+- La comodità di cambiare le porte di ascolto su alcuni tipi di server web.
+- Supponendo l'installazione precedente dei server Nginx e Apache.
+- Supponendo che si stiano usando server Rocky Linux o container per ogni cosa.
+- Sebbene in questo documento siano presenti tutti i tipi di dichiarazioni relative a `https`, questa guida si occupa solo del servizio `http`. Per utilizzare correttamente l'`https`, è necessario configurare il server pound con un vero certificato di una vera autorità di certificazione.
 
 !!! tip "Suggerimento"
 
@@ -67,13 +67,13 @@ Le porte di ascolto dei server back end saranno 8080 per il server Nginx e 8081 
 
 Per installare Pound, è necessario installare prima EPEL (Extra Packages for Enterprise Linux) ed eseguire gli aggiornamenti:
 
-```
+```bash
 dnf -y install epel-release && dnf -y update
 ```
 
 Quindi installare Pound. (Sì, è una "P" maiuscola):
 
-```
+```bash
 dnf -y install Pound
 ```
 
@@ -118,17 +118,17 @@ End
 
 ### Uno sguardo più approfondito
 
-* Lo "User" e il "Group" - inseriti durante l'installazione
-* Il file "Control" non viene utilizzato da nessuna parte
-* La sezione "ListenHTTP" rappresenta il servizio `http` (Porta 80) e l'"Address" su cui il proxy ascolterà. Si cambierà questo indirizzo con l'IP effettivo del nostro server Pound.
-* La sezione "ListenHTTPS" rappresenta il servizio `https` (Porta 443) e l'"Address" su cui il proxy ascolterà. Si cambierà questo indirizzo con l'IP del server Pound.
-* L'opzione "Cert" è il certificato autofirmato fornito dal processo di installazione di Pound. In un ambiente di produzione, si desidera sostituire questo certificato con un certificato reale utilizzando una delle seguenti procedure: [Generazione di chiavi SSL](../security/ssl_keys_https.md) or [Chiavi SSL con Let's Encrypt](../security/generating_ssl_keys_lets_encrypt.md).
-* La sezione "Service" configura i server "BackEnd" con le loro porte di ascolto. È possibile avere quanti server "BackEnd" si desiderano.
+- Lo "User" e il "Group" - inseriti durante l'installazione
+- Il file "Control" non viene utilizzato da nessuna parte
+- La sezione "ListenHTTP" rappresenta il servizio `http` (Porta 80) e l'"Address" su cui il proxy ascolterà. Si cambierà questo indirizzo con l'IP effettivo del nostro server Pound.
+- La sezione "ListenHTTPS" rappresenta il servizio `https` (Porta 443) e l'"Address" su cui il proxy ascolterà. Si cambierà questo indirizzo con l'IP del server Pound.
+- L'opzione "Cert" è il certificato autofirmato fornito dal processo di installazione di Pound. In un ambiente di produzione, si desidera sostituire questo certificato con un certificato reale utilizzando una delle seguenti procedure: [Generazione di chiavi SSL](../security/ssl_keys_https.md) or [Chiavi SSL con Let's Encrypt](../security/generating_ssl_keys_lets_encrypt.md).
+- La sezione "Service" configura i server "BackEnd" con le loro porte di ascolto. È possibile avere quanti server "BackEnd" si desiderano.
 
 ### Modifica della configurazione
 
-* cambiare l'indirizzo IP in ciascuna opzione di ascolto con l'indirizzo IP del nostro server Pound, 192.168.1.103
-* cambiare gli indirizzi IP e le porte nelle sezioni "BackEnd" in modo che corrispondano alla nostra configurazione trovata in "Convenzioni" sopra (IP e porte)
+- cambiare l'indirizzo IP in ciascuna opzione di ascolto con l'indirizzo IP del nostro server Pound, 192.168.1.103
+- cambiare gli indirizzi IP e le porte nelle sezioni "BackEnd" in modo che corrispondano alla nostra configurazione trovata in "Convenzioni" sopra (IP e porte)
 
 Una volta terminata la modifica della configurazione, il file avrà un aspetto simile a questo:
 
@@ -177,14 +177,13 @@ listen       8080 default_server;
 
 Salvare le modifiche e riavviare il servizio nginx:
 
-```
+```bash
 systemctl restart nginx
 ```
 
 ## Configurazione di Apache in ascolto su 8081
 
 Poiché nella configurazione di Pound è stata impostata la porta di ascolto per Apache a 8081, è necessario apportare questa modifica anche al server Apache in esecuzione. Per farlo, è necessario modificare il file `httpd.conf`:
-
 
 ```bash
 vi /etc/httpd/conf/httpd.conf
@@ -198,7 +197,7 @@ Listen 8081
 
 Salvate le modifiche e riavviate il servizio httpd:
 
-```
+```bash
 systemctl restart httpd
 ```
 
@@ -206,7 +205,7 @@ systemctl restart httpd
 
 Una volta che i servizi web sono attivi e funzionanti e in ascolto sulle porte giuste su ciascuno dei server, il passo successivo è quello di attivare il servizio pound sul server Pound:
 
-```
+```bash
 systemctl enable --now pound
 ```
 
@@ -234,7 +233,7 @@ Oppure
 
 Una cosa che potrebbe essere necessario fare quando si utilizza un bilanciatore di carico come Pound, è di mettere fuori linea i server di produzione per la manutenzione o di avere un "BackEnd" di riserva per un'interruzione completa. Questo viene fatto con la dichiarazione "Emergency" nel file `pound.conf`. È possibile avere una sola dichiarazione di "Emergency" per servizio. Nel nostro caso, questo comparirà alla fine della sezione "Service" del nostro file di configurazione:
 
-```
+```bash
 ...
 Service
     BackEnd
@@ -278,19 +277,19 @@ Per farlo, si utilizzerà il firewall integrato di Rocky Linux, `firewalld` e la
 
 Iniziare aggiungendo i nostri IP di origine alla zona "trusted". Questa è la nostra LAN (nel nostro esempio: 192.168.1.0/24):
 
-```
+```bash
 firewall-cmd --zone=trusted --add-source=192.168.1.0/24 --permanent
 ```
 
 Aggiungiamo quindi il servizio `ssh` alla zona:
 
-```
+```bash
 firewall-cmd --zone=trusted --add-service=ssh --permanent
 ```
 
 E ricaricare il firewall con:
 
-```
+```bash
 firewall-cmd --reload
 ```
 
@@ -316,18 +315,19 @@ trusted (active)
 
 Successivamente è necessario apportare le modifiche alla zona "public", che per impostazione predefinita ha il servizio `ssh` abilitato. Questo deve essere accuratamente rimosso (ancora una volta, l'autore presume che **NON** siate in remoto sul server!) con quanto segue:
 
-```
+```bash
 firewall-cmd --zone=public --remove-service=ssh --permanent
 ```
+
 Dobbiamo anche aggiungere i servizi `http` e `https`:
 
-```
+```bash
 firewall-cmd --zone=public --add-service=http --add-service=https --permanent
 ```
 
 Quindi è necessario ricaricare il firewall prima di poter vedere le modifiche:
 
-```
+```bash
 firewall-cmd --reload
 ```
 
@@ -362,7 +362,7 @@ Anche in questo caso, si aggiungerà il servizio `ssh` alla zona "trusted", con 
 
 Per semplificare le cose, utilizzare tutti i comandi utilizzati per la zona "trusted" in un'unica serie di comandi:
 
-```
+```bash
 firewall-cmd --zone=trusted --add-source=192.168.1.0/24 --permanent
 firewall-cmd --zone=trusted --add-service=ssh --permanent
 firewall-cmd --reload
@@ -390,7 +390,7 @@ trusted (active)
 
 Ancora una volta, testate la regola `ssh` da un IP della LAN e poi rimuovete il servizio `ssh` dalla zona "public". **Ricordate l'avvertimento precedente e fatelo solo se avete accesso locale al server!**
 
-```
+```bash
 firewall-cmd --zone=public --remove-service=ssh --permanent
 firewall-cmd --reload
 firewall-cmd --zone=public --list-all
@@ -421,7 +421,7 @@ Aggiungere una nuova zona per gestire `http` e `https`. Ricordate che l'IP di or
 
     Una nuova zona deve essere aggiunta con l'opzione `--permanent` e non può essere utilizzata finché il firewall non viene ricaricato. Inoltre, non dimenticare di impostare `-set-target=ACCEPT` per questa zona!
 
-```
+```bash
 firewall-cmd --new-zone=balance --permanent
 firewall-cmd --reload
 firewall-cmd --zone=balance --set-target=ACCEPT

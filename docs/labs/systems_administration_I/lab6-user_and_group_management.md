@@ -161,7 +161,7 @@ Some common utilities used in the day-to-day user and group management tasks are
 
 ### Manually creating a new user
 
-So far, throughout the previous labs, you have been using the system as the most powerful user on the system – the `root` user. This is not good practice in a production system because it makes the system vulnerable, securityi-wise. The root user can, do and undo unlimited damage to the system.
+So far, throughout the previous labs, you have been using the system as the most powerful user on the system – the `root` user. This is not good practice in a production system because it makes the system vulnerable, security-wise. The root user can, do and undo unlimited damage to the system.
 
 Other than the superuser, every other user has limited access to files and directories.
 Always use your machine as a normal user. Two confusing concepts will be made clear here.

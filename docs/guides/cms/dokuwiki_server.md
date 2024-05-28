@@ -12,13 +12,13 @@ tags:
 
 ## Prerequisites And Assumptions
 
-* A Rocky Linux instance installed on a server, container, or virtual machine.
-* Comfort with modifying configuration files from the command line with an editor (our examples here will use _vi_, but you can substitute your favorite editor).
-* Some knowledge about web applications and setup.
-* Our example will use the [Apache Sites Enabled](../web/apache-sites-enabled.md) for setup, so it is a good idea to review that routine if you plan on following along.
-* We will be using "example.com" as the domain name throughout this example.
-* We will assume throughout this document that you are the root user or can get there with _sudo_.
-* We are assuming a fresh install of the OS, however that is **NOT** a requirement.
+- A Rocky Linux instance installed on a server, container, or virtual machine.
+- Comfort with modifying configuration files from the command line with an editor (our examples here will use _vi_, but you can substitute your favorite editor).
+- Some knowledge about web applications and setup.
+- Our example will use the [Apache Sites Enabled](../web/apache-sites-enabled.md) for setup, so it is a good idea to review that routine if you plan on following along.
+- We will be using "example.com" as the domain name throughout this example.
+- We will assume throughout this document that you are the root user or can get there with _sudo_.
+- We are assuming a fresh install of the OS, however that is **NOT** a requirement.
 
 ## Introduction
 
@@ -62,24 +62,24 @@ Create the site configuration file in sites-available:
 
 That configuration file should look something like this:
 
-```
+```apache
 <VirtualHost *>
-	ServerName    example.com
-	DocumentRoot  /var/www/sub-domains/com.example/html
+  ServerName    example.com
+  DocumentRoot  /var/www/sub-domains/com.example/html
 
-	<Directory ~ "/var/www/sub-domains/com.example/html/(bin/|conf/|data/|inc/)">
-	    <IfModule mod_authz_core.c>
+  <Directory ~ "/var/www/sub-domains/com.example/html/(bin/|conf/|data/|inc/)">
+      <IfModule mod_authz_core.c>
                 AllowOverride All
-        	Require all denied
-	    </IfModule>
-	    <IfModule !mod_authz_core.c>
-	        Order allow,deny
-        	Deny from all
-	    </IfModule>
-	</Directory>
+          Require all denied
+      </IfModule>
+      <IfModule !mod_authz_core.c>
+          Order allow,deny
+          Deny from all
+      </IfModule>
+  </Directory>
 
-	ErrorLog   /var/log/httpd/example.com_error.log
-	CustomLog  /var/log/httpd/example.com_access.log combined
+  ErrorLog   /var/log/httpd/example.com_error.log
+  CustomLog  /var/log/httpd/example.com_access.log combined
 </VirtualHost>
 ```
 
@@ -113,13 +113,14 @@ Before we decompress the archive, take a look at the contents using `tar ztf` to
 
 Notice the named dated directory ahead of all the other files that looks something like this?
 
-```
+```text
 ... (more above)
 dokuwiki-2020-07-29/inc/lang/fr/resetpwd.txt
 dokuwiki-2020-07-29/inc/lang/fr/draft.txt
 dokuwiki-2020-07-29/inc/lang/fr/recent.txt
 ... (more below)
 ```
+
 We don't want that leading named directory when we decompress the archive, so we are going to use some options with tar to exclude it. The first option is the "--strip-components=1" which removes that leading directory.
 
 The second option is the "-C" option, and that tells tar where we want the archive to be decompressed to. So decompress the archive with this command:
@@ -148,10 +149,10 @@ In this example, let's assume that DokuWiki will be running on a private IPv4 ad
 
 And then modify your hosts file to look something like this (note the IP address above in the below example):
 
-```
-127.0.0.1	localhost
-127.0.1.1	myworkstation-home
-10.56.233.179	example.com     example	
+```bash
+127.0.0.1 localhost
+127.0.1.1 myworkstation-home
+10.56.233.179 example.com     example
 
 # The following lines are desirable for IPv6 capable hosts
 ::1     ip6-localhost ip6-loopback
@@ -193,16 +194,16 @@ OR
 
 Either should work if you set your hosts file as above. This will bring you to the setup screen so that you can finish the setup:
 
-* In the "Wiki Name" field, type the name for our wiki. Example "Technical Documentation"
-* In the "Superuser" field, type the administrative username. Example "admin"
-* In the "Real name" field, type the real name of the administrative user.
-* In the "E-Mail" field, type the email address of the administrative user.
-* In the "Password" field, type the secure password of the administrative user.
-* In the "once again" field, re-type that same password.
-* In the "Initial ACL Policy" drop-down, choose the option that works best for your environment.
-* Choose the appropriate check box of the license you want to put your content under.
-* Leave checked (or uncheck if you prefer) the "Once a month, send anonymous usage data to the DokuWiki developers" checkbox
-* Click the "Save" button
+- In the "Wiki Name" field, type the name for our wiki. Example "Technical Documentation"
+- In the "Superuser" field, type the administrative username. Example "admin"
+- In the "Real name" field, type the real name of the administrative user.
+- In the "E-Mail" field, type the email address of the administrative user.
+- In the "Password" field, type the secure password of the administrative user.
+- In the "once again" field, re-type that same password.
+- In the "Initial ACL Policy" drop-down, choose the option that works best for your environment.
+- Choose the appropriate check box of the license you want to put your content under.
+- Leave checked (or uncheck if you prefer) the "Once a month, send anonymous usage data to the DokuWiki developers" checkbox
+- Click the "Save" button
 
 Your wiki is now ready for you to add content.
 
@@ -232,7 +233,7 @@ First, modify or create the _/etc/firewall.conf_ file:
 
 `vi /etc/firewall.conf`
 
-```
+```bash
 #IPTABLES=/usr/sbin/iptables
 
 #  Unless specified, the default for OUTPUT is ACCEPT
@@ -264,11 +265,11 @@ This will execute the rules and save them so that they will be reloaded on the n
 
 #### `firewalld` Firewall
 
-If you are using `firewalld` as your firewall (and by this time, you probably *should* be) you can apply the same concepts using `firewalld's firewall-cmd` syntax.
+If you are using `firewalld` as your firewall (and by this time, you probably _should_ be) you can apply the same concepts using `firewalld's firewall-cmd` syntax.
 
 We will duplicate the `iptables` rules (above) with `firewalld` rules:
 
-```
+```bash
 firewall-cmd --zone=trusted --add-source=10.0.0.0/8 --permanent
 firewall-cmd --zone=trusted --add-service=http --add-service=https --permanent
 firewall-cmd --reload
@@ -276,13 +277,13 @@ firewall-cmd --reload
 
 Once you have the above rules added and the firewalld service reloaded, list out your zone to make sure that everything is there that you need:
 
-```
+```bash
 firewall-cmd --zone=trusted --list-all
 ```
 
 which should show you something like this if all of the above has worked correctly:
 
-```
+```bash
 trusted (active)
   target: ACCEPT
   icmp-block-inversion: no

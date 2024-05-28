@@ -15,11 +15,11 @@ VMware Tools™ is a suite of utilities that enhances the performance and manage
 ## Prerequisites and assumptions
 
 * a desire to manage VMware instances with VMware Tools™
-* the ability to escalate privileges with `sudo` 
+* the ability to escalate privileges with `sudo`
 * it is assumed that you are starting with a Rocky Linux minimal installation
 
 ## Installation of needed packages
-    
+
 Install X11 VMware driver:
 
 ```bash
@@ -27,7 +27,7 @@ sudo dnf install xorg-x11-drv-vmware
 ```
 
 Install kernel-devel and kernel-headers:
-    
+
 ```bash
 sudo dnf install kernel-devel kernel-headers
 ```

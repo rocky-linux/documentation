@@ -41,7 +41,7 @@ Il contenuto di una variabile può essere modificato durante lo script, poiché 
 
 La nozione di tipo di variabile in uno script di shell è possibile, ma viene utilizzata molto raramente. Il contenuto di una variabile è sempre un carattere o una stringa.
 
-```
+```bash
 #!/usr/bin/env bash
 
 #
@@ -76,7 +76,7 @@ Per convenzione, le variabili create da un utente hanno un nome in minuscolo. Qu
 
 Il carattere `=` assegna il contenuto a una variabile:
 
-```
+```bash
 variable=value
 rep_name="/home"
 ```
@@ -85,14 +85,14 @@ Non ci sono spazi prima o dopo il segno `=`.
 
 Una volta creata la variabile, è possibile utilizzarla anteponendole un dollaro $.
 
-```
+```bash
 file=file_name
 touch $file
 ```
 
 Si raccomanda vivamente di proteggere le variabili con le virgolette, come nell'esempio seguente:
 
-```
+```bash
 file=file name
 touch $file
 touch "$file"
@@ -102,7 +102,7 @@ Poiché il contenuto della variabile contiene uno spazio, il primo `touch` creer
 
 Per isolare il nome della variabile dal resto del testo, è necessario utilizzare le virgolette o le parentesi graffe:
 
-```
+```bash
 file=file_name
 touch "$file"1
 touch ${file}1
@@ -112,7 +112,7 @@ touch ${file}1
 
 L'uso degli apostrofi impedisce l'interpretazione dei caratteri speciali.
 
-```
+```bash
 message="Hello"
 echo "This is the content of the variable message: $message"
 Here is the content of the variable message: Hello
@@ -126,7 +126,7 @@ Il comando `unset` consente di cancellare una variabile.
 
 Esempio:
 
-```
+```bash
 name="NAME"
 firstname="Firstname"
 echo "$name $firstname"
@@ -140,7 +140,7 @@ Il comando `readonly` o `typeset -r` blocca una variabile.
 
 Esempio:
 
-```
+```bash
 name="NAME"
 readonly name
 name="OTHER NAME"
@@ -195,21 +195,21 @@ La modifica di una variabile esportata in un processo figlio non può essere ric
 
 La sintassi per la sub-esecuzione di un comando è la seguente:
 
-```
+```bash
 variable=`command`
 variable=$(command) # Preferred syntax
 ```
 
 Esempio:
 
-```
-$ day=`date +%d`
-$ homedir=$(pwd)
+```bash
+day=`date +%d`
+homedir=$(pwd)
 ```
 
 Con tutto ciò che abbiamo appena visto, il nostro script di backup potrebbe assomigliare a questo:
 
-```
+```bash
 #!/usr/bin/env bash
 
 #
@@ -257,13 +257,13 @@ logger "Backup of system files by ${USER} on ${HOSTNAME} in the folder ${DESTINA
 
 Esecuzione dello script di backup:
 
-```
-$ sudo ./backup.sh
+```bash
+sudo ./backup.sh
 ```
 
 questo ci darà:
 
-```
+```bash
 ****************************************************************
      Backup Script - Backup on desktop                      
 ****************************************************************

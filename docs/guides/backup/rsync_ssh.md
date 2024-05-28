@@ -13,13 +13,13 @@ tags:
 
 This is everything you will need to understand and follow along with this guide:
 
-* A machine running Rocky Linux
-* To be comfortable with modifying configuration files from the command-line
-* Knowledge of how to use a command line editor (using _vi_ here, but you can use your favorite editor)
-* You will need root access, and ideally be signed in as the root user in your terminal
-* Public and Private SSH key pairs
-* Able to create a bash script with `vi` or your favorite editor, and test it.
-* Able to use _crontab_ to automate the running of the script
+- A machine running Rocky Linux
+- To be comfortable with modifying configuration files from the command-line
+- Knowledge of how to use a command line editor (using _vi_ here, but you can use your favorite editor)
+- You will need root access, and ideally be signed in as the root user in your terminal
+- Public and Private SSH key pairs
+- Able to create a bash script with `vi` or your favorite editor, and test it.
+- Able to use _crontab_ to automate the running of the script
 
 ## Introduction
 
@@ -45,18 +45,18 @@ This particular example will use `rsync` on the target machine to pull from the 
 
 Before we get terribly carried away with setting up a script, we first need to decide what parameters we want to use with `rsync`. There are many possibilities, so take a look at the [manual for rsync](https://linux.die.net/man/1/rsync). The most common way to use `rsync` is to use the `-a` option, because `-a`, or archive, combines a number of options into one and these are very common options. What does -a include?
 
-* -r, recurses the directories
-* -l, maintains symbolic links as symbolic links
-* -p, preserves permissions
-* -t, preserves modification times
-* -g, preserves group
-* -o, preserves owner
-* -D, preserves device files
+- `-r`, recurses the directories
+- `-l`, maintains symbolic links as symbolic links
+- `-p`, preserves permissions
+- `-t`, preserves modification times
+- `-g`, preserves group
+- `-o`, preserves owner
+- `-D`, preserves device files
 
 The only other options that we need to specify in this example are:
 
-* -e, specify the remote shell to use
-* --delete, which says if the target directory has a file in it that doesn't exist on the source, get rid of it
+- `-e`, specify the remote shell to use
+- `--delete`, which says if the target directory has a file in it that doesn't exist on the source, get rid of it
 
 Next, we need to set up a script by creating a file for it (again, use your favorite editor if you are not familiar with vi). To create the file, just use this command:
 
@@ -70,7 +70,7 @@ And then make it executable:
 
 Now, scripting makes it super simple and safe so that you can test it fearlessly. Please note that the URL used below is "source.domain.com". Replace it with the domain or IP address of your own source computer, both will work. Also remember that in this example, the script is created on the "target" computer, because the file is pulled from the source computer:
 
-```
+```bash
 #!/bin/bash
 /usr/bin/rsync -ae ssh --delete root@source.domain.com:/home/your_user /home
 ```
@@ -148,24 +148,25 @@ This will pull up the cron, which may look something like this:
 #
 # m h  dom mon dow   command
 ```
+
 The cron is set up on a 24-hour clock, so what we will need for our entry at the bottom of this file is:
 
 `00 23   *  *  *    /usr/local/sbin/rsync_dirs`
 
 What this says is to run this command at 00 minute, 23 h, every day, every month, and every day of the week. Save your cron entry with:
 
-`Shift : wq!`
+++shift+colon+"w"+"q"+exclam++
 
 ... or with the commands that your favorite editor uses for saving a file.
 
 ## Optional Flags
-```
+
+```bash
 -n : Dry-Run to see what files wouold be transferred 
 -v : list out all the files which are being transferred 
 -vvv : to provide debug info while transferring files 
 -z : to enable compression during the transfer 
 ```
-
 
 ## Conclusions
 

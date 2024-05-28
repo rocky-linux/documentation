@@ -492,7 +492,7 @@ Initializing the database is the Tripwire terminology for, taking an initial “
 
 ## Exercise 3
 
-**Integrity checking and viewing reports**
+### Integrity checking and viewing reports
 
 In this exercise you will learn how to run an integrity check of the system and view the reports that Tripwire generates for you.
 

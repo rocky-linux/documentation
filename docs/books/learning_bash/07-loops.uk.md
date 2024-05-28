@@ -45,7 +45,7 @@ tags:
 
 Синтаксис структури умовного циклу `while`:
 
-```
+```bash
 while command
 do
   command if $? = 0
@@ -54,7 +54,7 @@ done
 
 Приклад використання умовної структури `while`:
 
-```
+```bash
 while [[ -e /etc/passwd ]]
 do
   echo "The file exists"
@@ -77,13 +77,13 @@ done
 
 Синтаксис команди `exit`:
 
-```
+```bash
 exit [n]
 ```
 
 Приклад використання команди `exit`:
 
-```
+```bash
 bash # to avoid being disconnected after the "exit 1
 exit 1
 echo $?
@@ -98,7 +98,7 @@ echo $?
 
 Команда `continue` дозволяє перезапустити цикл, повернувшись до першої команди після `done`.
 
-```
+```bash
 while [[ -d / ]]                                                   INT ✘  17s 
 do
   echo "Do you want to continue? (yes/no)"
@@ -112,7 +112,7 @@ done
 
 Команда `true` завжди повертає `true`, тоді як команда `false` завжди повертає `false`.
 
-```
+```bash
 true
 echo $?
 0
@@ -125,7 +125,7 @@ echo $?
 
 Приклад:
 
-```
+```bash
 while true
 do
   echo "Do you want to continue? (yes/no)"
@@ -145,7 +145,7 @@ done
 
 Синтаксис структури умовного циклу `until`:
 
-```
+```bash
 until command
 do
   command if $? != 0
@@ -154,7 +154,7 @@ done
 
 Приклад використання умовної структури `until`:
 
-```
+```bash
 until [[ -e test_until ]]
 do
   echo "The file does not exist"
@@ -181,7 +181,7 @@ done
 
 Синтаксис структури умовного циклу `select`:
 
-```
+```bash
 PS3="Your choice:"
 select variable in var1 var2 var3
 do
@@ -191,7 +191,7 @@ done
 
 Приклад використання умовної структури `select`:
 
-```
+```bash
 PS3="Your choice: "
 select choice in coffee tea chocolate
 do
@@ -201,7 +201,7 @@ done
 
 Якщо запустити цей сценарій, він покаже щось на зразок цього:
 
-```
+```text
 1) Coffee
 2) Tea
 3) Chocolate
@@ -216,7 +216,7 @@ Your choice:
 
 Синтаксис структури циклу в списку значень `for`:
 
-```
+```bash
 for variable in list
 do
   commands
@@ -225,7 +225,7 @@ done
 
 Приклад використання умовної структури `for`:
 
-```
+```bash
 for file in /home /etc/passwd /root/fic.txt
 do
   file $file
@@ -239,7 +239,7 @@ done
 
 Це можуть бути файли в каталозі. У цьому випадку змінна прийматиме як значення кожне зі слів наявних імен файлів:
 
-```
+```bash
 for file in $(ls -d /tmp/*)
 do
   echo $file
@@ -248,7 +248,7 @@ done
 
 Це може бути файл. У цьому випадку змінна прийматиме як значення кожне слово, що міститься у файлі, який переглядається, від початку до кінця:
 
-```
+```bash
 cat my_file.txt
 first line
 second line
@@ -264,7 +264,7 @@ line
 
 Щоб прочитати файл рядок за рядком, потрібно змінити значення змінної середовища `IFS`.
 
-```
+```bash
 IFS=$'\t\n'
 for LINE in $(cat my_file.txt); do echo $LINE; done
 first line

@@ -16,7 +16,7 @@ tags:
 
 Use the `dnf` utility to install Podman:
 
-```
+```bash
 dnf install podman
 ```
 
@@ -24,7 +24,7 @@ dnf install podman
 
 Let us run a [Nextcloud](https://nextcloud.com/) self-hosted cloud platform as an example:
 
-```
+```bash
 podman run -d -p 8080:80 nextcloud
 ```
 
@@ -50,11 +50,15 @@ You will get a list of running containers:
 04f7553f431a  docker.io/library/nextcloud:latest  apache2-foregroun...  5 minutes ago  Up 5 minutes  0.0.0.0:8080->80/tcp  compassionate_meninsky
 ```
 
+As seen above, our container's name is `compassionate_meninsky`.
+
 To make a `systemd` service for the Nextcloud container and enable it on reboot, run the following:
 
 ```bash
 podman generate systemd --name compassionate_meninsky > /usr/lib/systemd/system/nextcloud.service
 systemctl enable nextcloud
 ```
+
+Replace `compassionate_meninsky` with your container's assigned name.
 
 When your system reboots, Nextcloud will restart in Podman.

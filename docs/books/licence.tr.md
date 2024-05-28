@@ -8,7 +8,7 @@ Rocky Linux materyalleri Creative Commons-BY-SA kapsamında yayınlanmaktadır. 
 
 **IN** : **Benzer Paylaş**.
 
-- Creative Commons-BY-SA lisansı: https\://creativecommons.org/licenses/by-sa/4.0/
+- Creative Commons-BY-SA lisansı: https://creativecommons.org/licenses/by-sa/4.0/
 
 Belgeler ve kaynakları şu adresten ücretsiz olarak indirilebilir:
 

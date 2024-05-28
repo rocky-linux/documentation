@@ -15,12 +15,12 @@ tags:
 
 *[micro](https://micro-editor.github.io)* is a fantastic little terminal-based text editor that sits between *nano* and *vim* in terms of complexity. It has a simple, easily-recognized workflow with several awesome features:
 
-* All of your usual “Control-C”, ”Control-V”, and “Control-F” commands work as they would in a desktop-based text editor. All keybindings can be re-bound, of course.
-* Mouse support — click and drag to select text, double-click to select words, triple-click to select lines.
-* Over 75 languages are supported with syntax highlighting by default.
-* Multiple cursors for when you need to edit multiple lines at a time.
-* Includes a plugin system.
-* Multiple panes.
+- All of your usual ++control+c++, ++control+v++, and ++control+f++ commands work as they would in a desktop-based text editor. All keybindings can be re-bound, of course.
+- Mouse support — click and drag to select text, double-click to select words, triple-click to select lines.
+- Over 75 languages are supported with syntax highlighting by default.
+- Multiple cursors for when you need to edit multiple lines at a time.
+- Includes a plugin system.
+- Multiple panes.
 
 And here’s how it looks in my own terminal:
 
@@ -32,9 +32,9 @@ And here’s how it looks in my own terminal:
 
 ## Prerequisites
 
-* Any internet-connected Rocky Linux machine or container.
-* A basic knowledge of the command line, and a desire to edit your text there.
-* Some commands will need to be run as root, or with `sudo`.
+- Any internet-connected Rocky Linux machine or container.
+- A basic knowledge of the command line, and a desire to edit your text there.
+- Some commands will need to be run as root, or with `sudo`.
 
 ### How to Install micro
 

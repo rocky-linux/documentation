@@ -9,7 +9,7 @@ tags:
   - CLI
 ---
 
-## Introduction 
+## Introduction
 
 This Gemstone explains how to edit or change the title of an existing pull request (PR) in a GitHub repository using both the GitHub web interface and CLI.
 
@@ -17,7 +17,7 @@ This Gemstone explains how to edit or change the title of an existing pull reque
 
 Sometimes, the title of a PR after its creation may need to be modified to better reflect the current changes or discussions.
 
-## Prerequisites 
+## Prerequisites
 
 - An existing GitHub pull request.
 - Access to GitHub web interface or CLI with necessary permissions.
@@ -28,15 +28,18 @@ Sometimes, the title of a PR after its creation may need to be modified to bette
 
 1. **Check Out the Corresponding Branch**:
    - Ensure you are on the branch associated with the PR.
+
      ```bash
      git checkout branch-name
      ```
 
 2. **Edit the PR Using the CLI**:
    - Use the following command to edit the PR:
+
      ```bash
      gh pr edit PR_NUMBER --title "New PR Title"
      ```
+
    - Replace `PR_NUMBER` with the number of your pull request and `"New PR Title"` with the desired title.
 
 ## Additional Information (Optional)

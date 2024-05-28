@@ -17,7 +17,7 @@ In questo capitolo dovrete eseguire i comandi come utente non privilegiato ("lxd
 
 Probabilmente non vedete l'ora di iniziare con un contenitore. Esistono molte possibilità di sistemi operativi per container. Per avere un'idea del numero di possibilità, inserite questo comando:
 
-```
+```bash
 lxc image list images: | more
 ```
 
@@ -25,13 +25,13 @@ Digitare la barra spaziatrice per sfogliare l'elenco. Questo elenco di container
 
 L'**ultima** cosa che si vuole fare è cercare un'immagine del contenitore da installare, soprattutto se si conosce l'immagine che si vuole creare. Modificare il comando per mostrare solo le opzioni di installazione di Rocky Linux:
 
-```
+```bash
 lxc image list images: | grep rocky
 ```
 
 In questo modo si ottiene un elenco molto più gestibile:
 
-```
+```bash
 | rockylinux/8 (3 more)                    | 0ed2f148f7c6 | yes    | Rockylinux 8 amd64 (20220805_02:06)          | x86_64       | CONTAINER       | 128.68MB  | Aug 5, 2022 at 12:00am (UTC)  |
 | rockylinux/8 (3 more)                    | 6411a033fdf1 | yes    | Rockylinux 8 amd64 (20220805_02:06)          | x86_64       | VIRTUAL-MACHINE | 643.15MB  | Aug 5, 2022 at 12:00am (UTC)  |
 | rockylinux/8/arm64 (1 more)              | e677777306cf | yes    | Rockylinux 8 arm64 (20220805_02:29)          | aarch64      | CONTAINER       | 124.06MB  | Aug 5, 2022 at 12:00am (UTC)  |
@@ -50,7 +50,7 @@ In questo modo si ottiene un elenco molto più gestibile:
 
 Per il primo contenitore, si utilizzerà "rockylinux/8". Per installarlo, *si può* usare:
 
-```
+```bash
 lxc launch images:rockylinux/8 rockylinux-test-8
 ```
 
@@ -58,19 +58,19 @@ Questo creerà un contenitore basato su Rocky Linux chiamato "rockylinux-test-8"
 
 Per avviare manualmente il container, utilizzare:
 
-```
+```bash
 lxc start rockylinux-test-8
 ```
 
 Per rinominare l'immagine (non lo faremo qui, ma ecco come farlo), prima di tutto fermate il contenitore:
 
-```
+```bash
 lxc stop rockylinux-test-8
 ```
 
 Usare il comando `move` per cambiare il nome del contenitore:
 
-```
+```bash
 lxc move rockylinux-test-8 rockylinux-8
 ```
 
@@ -78,25 +78,25 @@ Se avete seguito comunque questa istruzione, fermate il contenitore e riportatel
 
 Ai fini di questa guida, per ora installate altre due immagini:
 
-```
+```bash
 lxc launch images:rockylinux/9 rockylinux-test-9
 ```
 
 e
 
-```
+```bash
 lxc launch images:ubuntu/22.04 ubuntu-test
 ```
 
 Esaminate ciò che avete elencando le vostre immagini:
 
-```
+```bash
 lxc list
 ```
 
 che restituirà questo:
 
-```
+```bash
 +-------------------+---------+----------------------+------+-----------+-----------+
 |       NAME        |  STATE  |         IPV4         | IPV6 |   TYPE    | SNAPSHOTS |
 +-------------------+---------+----------------------+------+-----------+-----------+
@@ -106,6 +106,4 @@ che restituirà questo:
 +-------------------+---------+----------------------+------+-----------+-----------+
 | ubuntu-test       | RUNNING | 10.146.84.181 (eth0) |      | CONTAINER | 0         |
 +-------------------+---------+----------------------+------+-----------+-----------+
-
 ```
-

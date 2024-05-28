@@ -10,11 +10,13 @@ I comandi avanzati offrono una maggiore personalizzazione e controlli in situazi
 
 **Obiettivi** : In questo capitolo, i futuri amministratori Linux impareranno:
 
-:heavy_check_mark: alcuni comandi utili non trattati nel capitolo precedente. :heavy_check_mark: alcuni comandi avanzati.
+:heavy_check_mark: alcuni comandi utili non trattati nel capitolo precedente.  
+:heavy_check_mark: alcuni comandi avanzati.
 
 :checkered_flag: **comandi utente**, **Linux**
 
-**Conoscenza**: :star: **Complessità**: :star: :star: :star:
+**Conoscenza**: :star:  
+**Complessità**: :star: :star: :star:
 
 **Tempo di lettura**: 20 minuti
 
@@ -331,7 +333,7 @@ L'opzione `-n` consente di specificare il numero di secondi tra ogni esecuzione 
 
 !!! Note "Nota"
 
-    Per uscire dal comando `watch', è necessario digitare i tasti: <kbd>CTRL</kbd>+<kbd>C</kbd> per terminare il processo.
+    Per uscire dal comando `watch`, è necessario digitare i tasti: ++control+c++ per terminare il processo.
 
 Esempi:
 
@@ -419,7 +421,7 @@ Questo comando consente di risparmiare tempo. Combinatelo con la gestione dei pr
 sudo install -v -o rocky -g users -m 644 -D -t ~/samples/ src/sample.txt
 ```
 
- !!! note "Nota"
+!!! note "Nota"
 
      In questo caso è necessario `sudo` per apportare modifiche alle proprietà.
 

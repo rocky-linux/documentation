@@ -23,7 +23,7 @@ In questo capitolo imparerete a scrivere il vostro primo script in bash.
 
 :checkered_flag: **linux**, **script**, **bash**
 
-**Conoscenza**: :star:     
+**Conoscenza**: :star:  
 **Complessità**: :star:
 
 **Tempo di lettura**: 10 minuti
@@ -46,7 +46,7 @@ Il nome dello script deve rispettare alcune regole:
 
     In queste lezioni l'autore utilizza il simbolo "$" per indicare il prompt dei comandi dell'utente.
 
-```
+```bash
 #!/usr/bin/env bash
 #
 # Autore : Team di documentazione Rocky
@@ -60,14 +60,14 @@ echo "Hello world!"
 
 Per poter eseguire questo script, come argomento della bash:
 
-```
+```bash
 $ bash hello-world.sh
 Hello world !
 ```
 
 O, più semplicemente, dopo avergli dato il diritto di eseguire:
 
-```
+```bash
 $ chmod u+x ./hello-world.sh
 $ ./hello-world.sh
 Hello world !
@@ -82,19 +82,19 @@ Hello world !
 
 La prima riga da scrivere in qualsiasi script è quella che indica il nome del binario di shell da usare per eseguirlo. Se si vuole usare la shell `ksh` o il linguaggio interpretato `python`, si sostituisce la riga:
 
-```
+```bash
 #!/usr/bin/env bash
 ```
 
 con :
 
-```
+```bash
 #!/usr/bin/env ksh
 ```
 
 o con :
 
-```
+```bash
 #!/usr/bin/env python
 ```
 
@@ -115,7 +115,7 @@ I commenti possono essere inseriti su una riga separata o alla fine di una riga 
 
 Esempio:
 
-```
+```bash
 # Questo programma visualizza la data
 date # Questa riga è la riga che visualizza la data!
 ```

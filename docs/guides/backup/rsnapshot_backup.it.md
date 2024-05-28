@@ -12,12 +12,12 @@ tags:
 
 ## Prerequisiti
 
-  * Saper installare repository e snapshot aggiuntivi dalla riga di comando
-  * Conoscere il montaggio di filesystem esterni al computer (unità esterna, filesystem remoto e così via)
-  * Saper usare un editor (qui si usa `vi`, ma si può usare il proprio editor preferito)
-  * Conoscere un po' di scripting BASH
-  * Saper modificare il crontab per l'utente root
-  * Conoscenza delle chiavi pubbliche e private SSH (solo se si intende eseguire backup remoti da un altro server)
+- Saper installare repository e snapshot aggiuntivi dalla riga di comando
+- Conoscere il montaggio di filesystem esterni al computer (unità esterna, filesystem remoto e così via)
+- Saper usare un editor (qui si usa `vi`, ma si può usare il proprio editor preferito)
+- Conoscere un po' di scripting BASH
+- Saper modificare il crontab per l'utente root
+- Conoscenza delle chiavi pubbliche e private SSH (solo se si intende eseguire backup remoti da un altro server)
 
 ## Introduzione
 
@@ -227,7 +227,7 @@ Le versioni precedenti di _rsnapshot_ avevano `hourly, daily, monthly, yearly` m
 
 In questo esempio, non si eseguiranno altri incrementi oltre al backup notturno. Basta aggiungere un commento ad alfa e gamma. Una volta completato, il file di configurazione sarà:
 
-```
+```text
 #retain  alpha   6
 retain  beta    7
 #retain  gamma   4
@@ -268,7 +268,7 @@ Anche in questo caso non è necessario specificare la configurazione, ma è una 
 
 Il risultato sarà simile a questo, mostrando cosa accadrà quando il backup verrà effettivamente eseguito:
 
-```
+```bash
 echo 1441 > /var/run/rsnapshot.pid
 mkdir -m 0755 -p /mnt/backup/storage/beta.0/
 /usr/bin/rsync -a --delete --numeric-ids --relative --delete-excluded \
@@ -308,7 +308,7 @@ Se non avete mai eseguito questa operazione, scegliete vim.basic come editor o i
 
 Si intende impostare il backup in modo che venga eseguito automaticamente alle 23: 00, quindi si aggiungerà questo codice al crontab:
 
-```
+```bash
 ## Running the backup at 11 PM
 00 23 *  *  *  /usr/bin/rsnapshot -c /etc/rsnapshot.conf beta`
 ```
@@ -325,9 +325,9 @@ Esecuzione di _rsnapshot_ da una macchina in remoto, in sede. L'esecuzione di qu
 
 In questo caso, è necessario installare _rsnapshot_ sul computer che esegue tutti i backup. Altre ipotesi sono:
 
-* Che i server su cui si eseguirà il backup abbiano una regola del firewall che consenta alla macchina remota di accedere al server SSH
-* Che ogni server di cui si intende eseguire il backup abbia installato una versione recente di `rsync`. Per i server Rocky Linux, eseguire `dnf install rsync` per aggiornare la versione di `rsync` del sistema.
-* Che ci si sia connessi alla macchina come utente root, o che si sia eseguito `sudo -s` per passare all'utente root
+- Che i server su cui si eseguirà il backup abbiano una regola del firewall che consenta alla macchina remota di accedere al server SSH
+- Che ogni server di cui si intende eseguire il backup abbia installato una versione recente di `rsync`. Per i server Rocky Linux, eseguire `dnf install rsync` per aggiornare la versione di `rsync` del sistema.
+- Che ci si sia connessi alla macchina come utente root, o che si sia eseguito `sudo -s` per passare all'utente root
 
 ## Chiavi Pubbliche e Private SSH
 
@@ -367,7 +367,7 @@ Successivamente, si deve modificare il file rsnapshot_web.conf in modo che inclu
 
 Ecco un esempio di configurazione di web.ourdomain.com:
 
-```
+```bash
 ### BACKUP POINTS / SCRIPTS ###
 backup  root@web.ourourdomain.com:/etc/     web.ourourdomain.com/
 backup  root@web.ourourdomain.com:/var/www/     web.ourourdomain.com/
@@ -396,7 +396,7 @@ L'automazione dei backup per la versione per più macchine o server è leggermen
 
 Con il contenuto:
 
-```
+```bash
 #!/bin/bash/
 # script to run rsnapshot backups in succession
 /usr/bin/rsnapshot -c /etc/rsnapshot_web.conf beta
@@ -414,7 +414,7 @@ Creare il crontab per root per eseguire lo script di backup:
 
 Aggiungere questa riga:
 
-```
+```bash
 ## Running the backup at 11 PM
 00 23 *  *  *  /usr/local/sbin/backup_all
 ```

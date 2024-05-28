@@ -56,4 +56,4 @@ If you want to check if `amsd` is working, log into iLO via your web browser. If
 
 ## Conclusion
 
-A common criticism of HPE servers is high fan speeds when using third-party components such as SSDs or other add-in PCI Express cards not officially sanctioned by HPE (e.g., video capture cards). Even if you only use HPE-branded components, using `amsd` allows HPE ProLiant servers to run cooler and quieter than just using Rocky Linux alone on one.
+A common criticism of HPE servers is high fan speeds when using third-party components such as SSDs or other add-in PCI Express cards not officially sanctioned by HPE (e.g., video capture cards). Even if you only use HPE-branded components, using `amsd` allows HPE ProLiant servers to run cooler and quieter than just using Rocky Linux alone.

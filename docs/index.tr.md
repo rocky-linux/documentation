@@ -6,7 +6,7 @@ title: Ana sayfa
 
 ## Hoşgeldiniz!
 
-Bizi buldunuz! Rocky Linux belgelendirme merkezine hoş geldiniz; burada olduğunuz için memnunuz. Çeşitli katkıda bulunan birkaç katılımcımız var ve içerik sürekli olarak artıyor. Burada Rocky Linux'un nasıl oluşturulacağına ilişkin belgeleri ve Rocky Linux topluluğu için önemli olan çeşitli konular hakkındaki belgeleri bulacaksınız. O topluluğu kim oluşturur diye soruyorsunuz?
+Rocky Linux belgelendirme merkezine hoş geldiniz; burada olduğunuz için memnunuz. Çeşitli katkıda bulunan birkaç katılımcımız var ve içerik sürekli olarak artıyor. Burada Rocky Linux'un nasıl oluşturulacağına ilişkin belgeleri ve Rocky Linux topluluğu için önemli olan çeşitli konular hakkındaki belgeleri bulacaksınız. O topluluğu kim oluşturur diye soruyorsunuz?
 
 Aslında, işte o sizsiniz.
 
@@ -31,7 +31,7 @@ Belgelendirme sitesinin ana bölümleri şunlardır:
 
 ### Çoklu Dil
 
-Herkesin ilk dili İngilizce değil! Rocky Linux'te, belgelendirme sitesini herkes için mümkün olduğunca erişilebilir yapmak istiyoruz — *farklı dillere çeviri bu önemli bir parçasıdır*. Üst menüdeki (genel sembol) dil seçicisine tıklarsanız, web sitesinin mevcut olduğu dilleri göreceksiniz. Bunun iki parçası var:
+Rocky Linux'te, belgelendirme sitesini herkes için mümkün olduğunca erişilebilir yapmak istiyoruz — *farklı dillere çeviri bu önemli bir parçasıdır*. Üst menüdeki (genel sembol) dil seçicisine tıklarsanız, web sitesinin mevcut olduğu dilleri göreceksiniz. Bunun iki parçası var:
 
 1. Web sitesi arayüzünün yerelleştirilmesi: Başka bir dil seçerseniz, örneğin Français'i seçerseniz, arayüzün, örneğin 'İleri' ve 'Geri' gezinmeleri gibi bölümlerinin yerelleştirildiğini göreceksiniz.
 1. İçerik: İçeriğin çevirisi devam eden (önemli) bir görevdir. Henüz tüm içerikler tüm dillere çevrilmemiştir. Seçilen dile çevrilen sayfalar (seçilen dilde) görünecek, çevrilmemiş olanlar ise varsayılan dil olan İngilizce'ye geri dönecektir. Topluluğa çeviriler aracılığıyla katkıda bulunmak istiyorsanız, belgelendirme ekibi sizinle tanışmayı çok ister — ayrıntılar için aşağıya bakın.

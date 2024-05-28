@@ -15,7 +15,7 @@ A volte è necessario disporre di repository Rocky in locale per creare macchine
 
 ## Codice
 
-```
+```bash
 #!/bin/bash
 repos_base_dir="/web/path"
 
@@ -36,7 +36,7 @@ fi
 
 Questo semplice script di shell utilizza `rsync` per prelevare i file del repository dal mirror più vicino.  Utilizza anche l'opzione "exclude", definita in un file di testo sotto forma di parole chiave che non devono essere incluse.  Le esclusioni sono utili se si dispone di spazio limitato su disco o se, per qualsiasi motivo, non si vuole tutto.  Possiamo usare `*` come carattere jolly.  Fate attenzione all'uso di `*/ng`, perché escluderà tutto ciò che corrisponde a questi caratteri.  Un esempio è riportato di seguito:
 
-```
+```bash
 */source*
 */debug*
 */images*
@@ -46,5 +46,6 @@ Questo semplice script di shell utilizza `rsync` per prelevare i file del reposi
 8.4-RC1
 ```
 
-# Fine
+## Fine
+
 Un semplice script che può aiutare a risparmiare larghezza di banda o a semplificare la creazione di un ambiente di laboratorio.

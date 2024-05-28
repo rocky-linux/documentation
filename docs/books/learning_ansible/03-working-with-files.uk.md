@@ -10,13 +10,13 @@ title: Керування файлами
 
 **Цілі**: В цьому розділі ви дізнаєтеся як:
 
-:heavy_check_mark: змінити вміст файлу;       
-:heavy_check_mark: завантажити файли на цільові сервери;   
+:heavy_check_mark: змінити вміст файлу;  
+:heavy_check_mark: завантажити файли на цільові сервери;  
 :heavy_check_mark: отримати файли з цільових серверів.
 
 :checkered_flag: **ansible**, **module**, **files**
 
-**Знання**: :star: :star:     
+**Знання**: :star: :star:  
 **Складність**: :star:
 
 **Час читання**: 20 хвилин
@@ -41,7 +41,7 @@ title: Керування файлами
 
 Приклад використання:
 
-```
+```bash
 - name: change value on inifile
   community.general.ini_file:
     dest: /path/to/file.ini
@@ -62,7 +62,7 @@ title: Керування файлами
 
 Наприклад, щоб переконатися, що рядок, який починається з `SELINUX=` у файлі `/etc/selinux/config`, містить значення `enforcing`:
 
-```
+```bash
 - ansible.builtin.lineinfile:
     path: /etc/selinux/config
     regexp: '^SELINUX='
@@ -79,7 +79,7 @@ title: Керування файлами
 
 Тут ми копіюємо `myflile.conf` з одного місця в інше:
 
-```
+```bash
 - ansible.builtin.copy:
     src: /data/ansible/sources/myfile.conf
     dest: /etc/myfile.conf
@@ -98,7 +98,7 @@ title: Керування файлами
 
 Цей модуль діє протилежно до модуля `copy`:
 
-```
+```bash
 - ansible.builtin.fetch:
     src: /etc/myfile.conf
     dest: /data/ansible/backup/myfile-{{ inventory_hostname }}.conf
@@ -107,15 +107,15 @@ title: Керування файлами
 
 ## Модуль `template`
 
-Ansible і його модуль `template` використовують систему шаблонів **Jinja2** (http://jinja.pocoo.org/docs/) для створення файлів на target hosts.
+Ansible і його модуль `template` використовують систему шаблонів **Jinja2** (<http://jinja.pocoo.org/docs/>) для створення файлів на target hosts.
 
-!!! Примітка
+!!! Note "Примітка"
 
     Більше інформації можна [знайти тут](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html).
 
 Наприклад:
 
-```
+```bash
 - ansible.builtin.template:
     src: /data/ansible/templates/monfichier.j2
     dest: /etc/myfile.conf
@@ -126,7 +126,7 @@ Ansible і його модуль `template` використовують сис�
 
 Можна додати крок перевірки, якщо це дозволяє цільова служба (наприклад, apache за допомогою команди `apachectl -t`):
 
-```
+```bash
 - template:
     src: /data/ansible/templates/vhost.j2
     dest: /etc/httpd/sites-available/vhost.conf
@@ -140,7 +140,7 @@ Ansible і його модуль `template` використовують сис�
 
 Щоб завантажити файли з веб-сайту чи ftp на один або кілька хостів, скористайтеся модулем `get_url`:
 
-```
+```bash
 - get_url:
     url: http://site.com/archive.zip
     dest: /tmp/archive.zip

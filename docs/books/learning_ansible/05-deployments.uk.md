@@ -10,15 +10,15 @@ title: Розгортання за допомогою Ansistrano
 
 **Цілі**: В цьому розділі ви дізнаєтеся як:
 
-:heavy_check_mark: Запровадити Ansistrano;       
-:heavy_check_mark: Налаштувати Ansistrano;       
-:heavy_check_mark: Використовувати спільні папки та файли між розгорнутими версіями;       
-:heavy_check_mark: Розгорнути різних версій сайту з git;        
+:heavy_check_mark: Запровадити Ansistrano;  
+:heavy_check_mark: Налаштувати Ansistrano;  
+:heavy_check_mark: Використовувати спільні папки та файли між розгорнутими версіями;  
+:heavy_check_mark: Розгорнути різних версій сайту з git;  
 :heavy_check_mark: Реагувати між кроками розгортання.
 
 :checkered_flag: **ansible**, **ansistrano**, **roles**, **deployments**
 
-**Знання**: :star: :star:      
+**Знання**: :star: :star:  
 **Складність**: :star: :star: :star:
 
 **Час для читання**: 40 хвилин
@@ -51,7 +51,7 @@ Ansistrano розгортає програми, дотримуючись нас�
 
 Скелет розгортання з Ansistrano виглядає так:
 
-```
+```bash
 /var/www/site/
 ├── current -> ./releases/20210718100000Z
 ├── releases
@@ -83,7 +83,7 @@ Ansistrano розгортає програми, дотримуючись нас�
 
 Для більшої ефективності ми використаємо роль `geerlingguy.apache` для налаштування сервера:
 
-```
+```bash
 $ ansible-galaxy role install geerlingguy.apache
 Starting galaxy role install process
 - downloading role 'apache', owned by geerlingguy
@@ -94,7 +94,7 @@ Starting galaxy role install process
 
 Можливо, нам знадобиться відкрити деякі правила брандмауера, тому ми також встановимо колекцію `ansible.posix` для роботи з її модулем `firewalld`:
 
-```
+```bash
 $ ansible-galaxy collection install ansible.posix
 Starting galaxy collection install process
 Process install dependency map
@@ -125,7 +125,7 @@ ansible.posix:1.2.0 was installed successfully
 
 Наш playbook із налаштування сервера: `playbook-config-server.yml`
 
-```
+```bash
 ---
 - hosts: ansible_clients
   become: yes
@@ -136,27 +136,27 @@ ansible.posix:1.2.0 was installed successfully
       DirectoryIndex index.php index.htm
     apache_vhosts:
       - servername: "website"
-        documentroot: "{{ dest }}current/html"
+ documentroot: "{{ dest }}current/html"
 
   tasks:
 
     - name: create directory for website
       file:
-        path: /var/www/site/
-        state: directory
-        mode: 0755
+ path: /var/www/site/
+ state: directory
+ mode: 0755
 
     - name: install git
       package:
-        name: git
-        state: latest
+ name: git
+ state: latest
 
     - name: permit traffic in default zone for http service
       ansible.posix.firewalld:
-        service: http
-        permanent: yes
-        state: enabled
-        immediate: yes
+ service: http
+ permanent: yes
+ state: enabled
+ immediate: yes
 
   roles:
     - { role: geerlingguy.apache }
@@ -164,13 +164,13 @@ ansible.posix:1.2.0 was installed successfully
 
 Playbook можна застосувати до сервера:
 
-```
-$ ansible-playbook playbook-config-server.yml
+```bash
+ansible-playbook playbook-config-server.yml
 ```
 
 Зверніть увагу на виконання наступних завдань:
 
-```
+```bash
 TASK [geerlingguy.apache : Ensure Apache is installed on RHEL.] ****************
 TASK [geerlingguy.apache : Configure Apache.] **********************************
 TASK [geerlingguy.apache : Add apache vhosts configuration.] *******************
@@ -183,7 +183,7 @@ RUNNING HANDLER [geerlingguy.apache : restart apache] **************************
 
 Ви можете перевірити, чи все працює, використовуючи `curl`:
 
-```
+```bash
 $ curl -I http://192.168.1.11
 HTTP/1.1 404 Not Found
 Date: Mon, 05 Jul 2021 23:30:02 GMT
@@ -191,7 +191,7 @@ Server: Apache/2.4.37 (rocky) OpenSSL/1.1.1g
 Content-Type: text/html; charset=iso-8859-1
 ```
 
-!!! Примітка
+!!! note "Примітка"
 
     Ми ще не розгорнули жодного коду, тому для curl нормально повертати HTTP-код 404. Але ми вже можемо підтвердити, що служба `httpd` працює і що брандмауер відкритий.
 
@@ -201,7 +201,7 @@ Content-Type: text/html; charset=iso-8859-1
 
 Для цього ми використаємо роль `ansistrano.deploy` у другому playbook, присвяченому розгортанню програми (для кращої читабельності).
 
-```
+```bash
 $ ansible-galaxy role install ansistrano.deploy
 Starting galaxy role install process
 - downloading role 'deploy', owned by ansistrano
@@ -215,7 +215,7 @@ Starting galaxy role install process
 
 Ми створимо playbook `playbook-deploy.yml` для керування розгортанням:
 
-```
+```bash
 ---
 - hosts: ansible_clients
   become: yes
@@ -230,7 +230,7 @@ Starting galaxy role install process
      - { role: ansistrano.deploy }
 ```
 
-```
+```bash
 $ ansible-playbook playbook-deploy.yml
 
 PLAY [ansible_clients] *********************************************************
@@ -257,13 +257,13 @@ TASK [ansistrano.deploy : ANSISTRANO | Change softlink to new release]
 TASK [ansistrano.deploy : ANSISTRANO | Clean up releases]
 
 PLAY RECAP ********************************************************************************************************************************************************************************************************
-192.168.1.11               : ok=25   changed=8    unreachable=0    failed=0    skipped=14   rescued=0    ignored=0   
+192.168.1.11 : ok=25   changed=8    unreachable=0    failed=0    skipped=14   rescued=0    ignored=0   
 
 ```
 
 Стільки всього зроблено лише за допомогою 11 рядків коду!
 
-```
+```html
 $ curl http://192.168.1.11
 <html>
 <head>
@@ -281,7 +281,7 @@ $ curl http://192.168.1.11
 
 * Створіть `дерево` в каталозі `/var/www/site/`:
 
-```
+```bash
 $ tree /var/www/site/
 /var/www/site
 ├── current -> ./releases/20210722155312Z
@@ -289,7 +289,7 @@ $ tree /var/www/site/
 │   └── 20210722155312Z
 │       ├── REVISION
 │       └── html
-│           └── index.htm
+│    └── index.htm
 ├── repo
 │   └── html
 │       └── index.htm
@@ -304,7 +304,7 @@ $ tree /var/www/site/
 
 * На сервері Ansible перезапустіть розгортання **3** рази, а потім перевірте клієнта.
 
-```
+```bash
 $ tree /var/www/site/
 var/www/site
 ├── current -> ./releases/20210722160048Z
@@ -324,7 +324,7 @@ var/www/site
 │   └── 20210722160048Z
 │       ├── REVISION
 │       └── html
-│           └── index.htm
+│    └── index.htm
 ├── repo
 │   └── html
 │       └── index.htm
@@ -342,7 +342,7 @@ var/www/site
 
 * Використовуючи змінну `ansistrano_keep_releases`, збережіть лише 3 випуски проекту. Перевірка.
 
-```
+```bash
 ---
 - hosts: ansible_clients
   become: yes
@@ -358,14 +358,14 @@ var/www/site
      - { role: ansistrano.deploy }
 ```
 
-```
+```bash
 ---
 $ ansible-playbook -i hosts playbook-deploy.yml
 ```
 
 На клієнтській машині:
 
-```
+```bash
 $ tree /var/www/site/
 /var/www/site
 ├── current -> ./releases/20210722160318Z
@@ -381,7 +381,7 @@ $ tree /var/www/site/
 │   └── 20210722160318Z
 │       ├── REVISION
 │       └── html
-│           └── index.htm
+│    └── index.htm
 ├── repo
 │   └── html
 │       └── index.htm
@@ -390,8 +390,7 @@ $ tree /var/www/site/
 
 ### Використання shared_paths і shared_files
 
-
-```
+```bash
 ---
 - hosts: ansible_clients
   become: yes
@@ -414,13 +413,13 @@ $ tree /var/www/site/
 
 На клієнтській машині створіть файл `logs` у каталозі `shared`:
 
-```
+```bash
 sudo touch /var/www/site/shared/logs
 ```
 
 Потім виконайте playbook:
 
-```
+```bash
 TASK [ansistrano.deploy : ANSISTRANO | Ensure shared paths targets are absent] *******************************************************
 ok: [192.168.10.11] => (item=img)
 ok: [192.168.10.11] => (item=css)
@@ -434,7 +433,7 @@ changed: [192.168.10.11] => (item=logs)
 
 На клієнтській машині:
 
-```
+```bash
 $  tree -F /var/www/site/
 /var/www/site/
 ├── current -> ./releases/20210722160631Z/
@@ -487,7 +486,7 @@ $  tree -F /var/www/site/
 
 Змініть playbook для конфігурації сервера `playbook-config-server.yml`
 
-```
+```bash
 ---
 - hosts: ansible_clients
   become: yes
@@ -498,20 +497,20 @@ $  tree -F /var/www/site/
       DirectoryIndex index.php index.htm
     apache_vhosts:
       - servername: "website"
-        documentroot: "{{ dest }}current/" # <1>
+ documentroot: "{{ dest }}current/" # <1>
 
   tasks:
 
     - name: create directory for website
       file:
-        path: /var/www/site/
-        state: directory
-        mode: 0755
+ path: /var/www/site/
+ state: directory
+ mode: 0755
 
     - name: install git
       package:
-        name: git
-        state: latest
+ name: git
+ state: latest
 
   roles:
     - { role: geerlingguy.apache }
@@ -521,7 +520,7 @@ $  tree -F /var/www/site/
 
 Змініть playbook для розгортання `playbook-deploy.yml`
 
-```
+```bash
 ---
 - hosts: ansible_clients
   become: yes
@@ -549,7 +548,7 @@ $  tree -F /var/www/site/
 
 * Перевірте на клієнтській машині:
 
-```
+```bash
 $  tree -F /var/www/site/
 /var/www/site/
 ├── current -> ./releases/20210722161542Z/
@@ -588,7 +587,7 @@ $  tree -F /var/www/site/
 
 * Розгорніть гілку `releases/v1.1.0`:
 
-```
+```bash
 ---
 - hosts: ansible_clients
   become: yes
@@ -615,7 +614,7 @@ $  tree -F /var/www/site/
 
     Ви можете весело провести час під час розгортання, оновивши свій веб-переглядач, щоб побачити «живі» зміни.
 
-```
+```html
 $ curl http://192.168.1.11
 <html>
 <head>
@@ -629,7 +628,7 @@ $ curl http://192.168.1.11
 
 * Розгорніть тег `v2.0.0`:
 
-```
+```bash
 ---
 - hosts: ansible_clients
   become: yes
@@ -652,7 +651,7 @@ $ curl http://192.168.1.11
      - { role: ansistrano.deploy }
 ```
 
-```
+```html
 $ curl http://192.168.1.11
 <html>
 <head>
@@ -685,8 +684,7 @@ Playbook можна включити за допомогою змінних, н�
 
 * Простий приклад: надішліть електронний лист (або будь-яке інше, наприклад сповіщення Slack) на початку розгортання:
 
-
-```
+```bash
 ---
 - hosts: ansible_clients
   become: yes
@@ -712,7 +710,7 @@ Playbook можна включити за допомогою змінних, н�
 
 Створіть файл `deploy/before-setup-tasks.yml`:
 
-```
+```bash
 ---
 - name: Send a mail
   mail:
@@ -720,7 +718,7 @@ Playbook можна включити за допомогою змінних, н�
   delegate_to: localhost
 ```
 
-```
+```bash
 TASK [ansistrano.deploy : include] *************************************************************************************
 included: /home/ansible/deploy/before-setup-tasks.yml for 192.168.10.11
 
@@ -728,7 +726,7 @@ TASK [ansistrano.deploy : Send a mail] *****************************************
 ok: [192.168.10.11 -> localhost]
 ```
 
-```
+```bash
 [root] # mailx
 Heirloom Mail version 12.5 7/5/10.  Type ? for help.
 "/var/spool/mail/root": 1 message 1 new
@@ -737,7 +735,7 @@ Heirloom Mail version 12.5 7/5/10.  Type ? for help.
 
 * Можливо, вам доведеться перезапустити деякі служби наприкінці розгортання, наприклад, щоб очистити кеші. Давайте перезапустимо Apache наприкінці розгортання:
 
-```
+```bash
 ---
 - hosts: ansible_clients
   become: yes
@@ -764,7 +762,7 @@ Heirloom Mail version 12.5 7/5/10.  Type ? for help.
 
 Створіть файл `deploy/after-symlink-tasks.yml`:
 
-```
+```bash
 ---
 - name: restart apache
   systemd:
@@ -772,7 +770,7 @@ Heirloom Mail version 12.5 7/5/10.  Type ? for help.
     state: restarted
 ```
 
-```
+```bash
 TASK [ansistrano.deploy : include] *************************************************************************************
 included: /home/ansible/deploy/after-symlink-tasks.yml for 192.168.10.11
 

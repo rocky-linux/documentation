@@ -14,4 +14,3 @@ Data catatan perubahan untuk versi Rocky Linux saat ini sedang dalam proses. Dok
 Pembaruan yang dirilis sejak upstream diposting di seluruh arsitektur kami saat ini. Kami sangat menyarankan agar semua pengguna menerapkan *semua* pembaruan, termasuk konten yang dirilis hari ini, di mesin Rocky Linux Anda yang sudah ada. Ini dapat dilakukan dengan menjalankan `dnf upgrade`.
 
 Semua komponen Rocky Linux dibuat dari sumber yang dihosting di [git.rockylinux.org](https://git.rockylinux.org). Selain itu, SRPM diterbitkan bersama repositori dalam direktori "sumber" yang sesuai. Anda dapat menemukan ini di salah satu cermin kami. Paket sumber ini cocok dengan setiap RPM biner yang kami rilis.
-

@@ -8,7 +8,7 @@ tags:
   - Documentation
 ---
 
-## Introduction 
+## Introduction
 
 This guide explains how to edit or change the title of an existing pull request (PR) in a GitHub repository using the GitHub web interface.
 
@@ -16,7 +16,7 @@ This guide explains how to edit or change the title of an existing pull request 
 
 Sometimes, there may be a need to modify the title of a PR after its creation to reflect the current changes or discussions better.
 
-## Prerequisites 
+## Prerequisites
 
 - An existing GitHub pull request.
 - Access to GitHub web interface or CLI with necessary permissions.

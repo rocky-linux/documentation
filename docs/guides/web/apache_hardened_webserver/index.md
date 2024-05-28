@@ -33,7 +33,7 @@ Web server hardening can take many forms, including any or all of the tools here
 
 You might use a couple of these tools and not the others. For clarity and readability this document splits into separate documents for each tool. The exception will be the packet-based firewall (`firewalld`) in this main document.
 
-* A good packet filter firewall based on ports (iptables, firewalld, or hardware firewall - using `firewalld` for our examples) [`firewalld` procedure](#iptablesstart)
+* A good packet filter firewall based on ports (iptables, firewalld, or hardware firewall - using `firewalld` for our examples) [`firewalld` procedure](#configuring-firewalld)
 * A Host-based Intrusion Detection System (HIDS), in this case _ossec-hids_ [Apache Hardened Web Server - ossec-hids](ossec-hids.md)
 * A Web-based Application Firewall (WAF), with `mod_security` rules [Apache Hardened Web Server - mod_security](modsecurity.md)
 * Rootkit Hunter (`rkhunter`): A scan tool that checks against Linux malware [Apache Hardened Web Server - rkhunter](rkhunter.md)
@@ -72,9 +72,9 @@ The diagram shows our general layout. The `firewalld` packet-based firewall runs
 
 Each individual package section has the needed installation files and any configuration procedure listed.
 
-## <a name="iptablesstart"></a>Configuring `firewalld` 
+## Configuring `firewalld`
 
-```
+```bash
 firewall-cmd --zone=trusted --add-source=192.168.1.2 --permanent
 firewall-cmd --zone=trusted --add-service=ssh --permanent
 firewall-cmd --zone=public --remove-service=ssh --permanent
@@ -85,14 +85,15 @@ firewall-cmd --zone=public --add-port=20/tcp --permanent
 firewall-cmd --zone=public --add-port=7000-7500/tcp --permanent
 firewall-cmd --reload
 ```
+
 Here is what is happening:
 
-* set our trusted zone to the IP address of the hardware firewall 
+* set our trusted zone to the IP address of the hardware firewall
 * accept SSH (port 22) from our trusted network, the devices behind the hardware firewall (just one IP address)
 * accept DNS from the public zone (limiting this further is possible by specifying the server IP addresses or local DNS servers, if you have them)
 * accept web traffic from anywhere over port 80 and 443.
 * accept standard FTP (ports 20-21) and the passive ports needed to exchange two-way communications in FTP (7000-7500). These ports can be arbitrarily changed to other ports based on your ftp server configuration.
-    
+
     !!! note
 
         Using SFTP is the best method these days. You can find out how to [securely use SFTP from this document](../../file_sharing/sftp.md).

@@ -13,11 +13,11 @@ tags:
 
 ## Prerequisiti
 
-* Completo comfort nell'operare dalla riga di comando su un server Rocky Linux
-* Familiarità con un editor di vostra scelta (questo documento utilizza l'editor _vi_, ma potete sostituirlo con il vostro editor preferito)
-* Conoscenza del DNS (Domain Name System) e dei nomi host
-* L'abilità di assegnare variabili in uno script bash
-* Conoscenza di ciò che fanno i comandi `tail`, `more`, `grep`, e `date`
+- Completo comfort nell'operare dalla riga di comando su un server Rocky Linux
+- Familiarità con un editor di vostra scelta (questo documento utilizza l'editor _vi_, ma potete sostituirlo con il vostro editor preferito)
+- Conoscenza del DNS (Domain Name System) e dei nomi host
+- L'abilità di assegnare variabili in uno script bash
+- Conoscenza di ciò che fanno i comandi `tail`, `more`, `grep`, e `date`
 
 ## Introduzione
 
@@ -79,7 +79,7 @@ Utilizzare questo comando per visualizzare l'output del file di log:
 
 Si vedrà qualcosa di simile a questo, anche se il file di registro avrà domini diversi per l'indirizzo e-mail e altri elementi:
 
-```
+```bash
 Mar  4 16:51:40 hedgehogct postfix/postfix-script[735]: starting the Postfix mail system
 Mar  4 16:51:40 hedgehogct postfix/master[737]: daemon started -- version 3.3.1, configuration /etc/postfix
 Mar  4 16:52:04 hedgehogct postfix/pickup[738]: C9D42EC0ADD: uid=0 from=<root>
@@ -90,6 +90,7 @@ Mar  4 16:52:06 hedgehogct postfix/smtp[745]: C9D42EC0ADD: to=<myname@mydomain.c
 :25, delay=1.4, delays=0.02/0.02/0.99/0.32, dsn=2.0.0, status=sent (250 2.0.0 OK  1614876726 z8si17418573ilq.142 - gsmtp)
 Mar  4 16:52:06 hedgehogct postfix/qmgr[739]: C9D42EC0ADD: removed
 ```
+
 L'indirizzo "somehost.localdomain" indica che è necessario apportare alcune modifiche. Arrestare prima il demone `postfix`:
 
 `systemctl stop postfix`
@@ -132,10 +133,11 @@ Prima di continuare a modificare il file generico, è necessario vedere come si 
 
 Questo file comunica a `postfix` l'aspetto di qualsiasi e-mail proveniente da questo server. Ricordate la nostra e-mail di prova e il file di log? È qui che risolviamo tutto questo:
 
-```
+```bash
 root@somehost.localdomain       root@bruno.ourdomain.com
 @somehost.localdomain           root@bruno.ourdomain.com
 ```
+
 Successivamente, occorre indicare a `postfix` di utilizzare tutte le nostre modifiche. Questo si può fare con il comando postmap:
 
 `postmap /etc/postfix/generic`
@@ -164,7 +166,7 @@ Controllate il registro di sistema e verificate come registra le informazioni. A
 
 Il risultato è qualcosa di simile a questo:
 
-```
+```bash
 Mar  4 18:23:53 hedgehogct dbus-daemon[60]: [system] Successfully activated service 'org.freedesktop.nm_dispatcher'
 Mar  4 18:50:41 hedgehogct dbus-daemon[60]: [system] Activating via systemd: service name='org.freedesktop.nm_dispatcher' unit='dbus-org.freedesktop.nm-dispatcher.service' requested by ':1.1' (uid=0 pid=61 comm="/usr/sbin/NetworkManager --no-daemon " label="unconfined")
 Mar  4 18:50:41 hedgehogct dbus-daemon[60]: [system] Successfully activated service 'org.freedesktop.nm_dispatcher
@@ -188,7 +190,7 @@ Inoltre, nella prima esecuzione dello script, vengono acquisiti tutti i messaggi
 
 Tenete presente che il comando `grep` restituisce il nome del file in uscita, cosa che in questo caso non è desiderata. Per rimuoverlo, aggiungete l'opzione "-h" a grep. Inoltre, quando si imposta la variabile " today", è necessario cercare l'intera variabile come stringa, il che richiede la stringa all'interno delle virgolette:
 
-```
+```bash
 #!/bin/bash
 
 # set the date string to match /var/log/messages
@@ -210,7 +212,7 @@ Se tutto funziona correttamente, si otterrà un lungo elenco di tutti i messaggi
 
 `vi /usr/local/sbin/test.sh`
 
-```
+```bash
 #!/bin/bash
 
 # set the date string to match /var/log/messages
@@ -228,7 +230,7 @@ Rimane un ultimo passo da compiere. Ricordate che dovete inviare questo document
 
 E modificare lo script:
 
-```
+```bash
 #!/bin/bash
 
 # start postfix
