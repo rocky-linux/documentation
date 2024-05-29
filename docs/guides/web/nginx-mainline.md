@@ -65,7 +65,7 @@ From there, you could just start dropping HTML files into the `/usr/share/nginx/
 
 !!! Note
 
-    Older versions of this guide described the installation of nginx-mainline from ERLepo. This is no longer an option, however. In most cases, the version of Nginx in Rocky's repos is more than sufficient, providing a stable base with backported security patches. Those who still want to use the nginx-mainline branch can follow [this guide from LinuxCapable](https://www.linuxcapable.com/how-to-install-nginx-mainline-on-rocky-linux/). Please note that using nginx-mainline is usually perfectly viable but not supported.
+    Older versions of this guide described the installation of nginx-mainline. This is no longer an option. In most cases, the version of Nginx in Rocky's repos is more than sufficient, providing a stable base with backported security patches. Those who still want to use the nginx-mainline can find methods to do so by searching the web. All of the how-to documents found, however, will be for Rocky Linux 8. Please note that using nginx-mainline is usually perfectly viable but not supported.
 
 ## Configuring the Firewall
 
@@ -318,7 +318,7 @@ You can either disable setenforce for development purposes
 sudo setenforce 0
 ```
 
-or you can enable `http_d` or other services that related to nginx in `/var/log/audit/audit.log`
+or you can enable `httpd` or other services related to nginx in `/var/log/audit/audit.log`
 
 ```bash
 sudo setsebool httpd_can_network_connect 1 -P
@@ -326,6 +326,6 @@ sudo setsebool httpd_can_network_connect 1 -P
 
 ## Conclusion
 
-The basic installation and configuration of `nginx` are easy, even if it’s more complicated than it should be to get the latest version. But follow the steps, and you’ll have one of the best server options up and running quickly.
+The basic installation and configuration of `nginx` is easy, even if it is more complicated than it should be to get the latest version. But follow the steps, and you will have one of the best server options up and running quickly.
 
 Now you just have to go and build yourself a website? What could that take, another ten minutes? *Sobs quietly in Web Designer*
