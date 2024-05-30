@@ -161,7 +161,7 @@ Insert the following content and save file, replacing "your-server-hostname" wit
         Servername rocky8
         Redirect permanent / https://your-server-hostname/
 
-</VirtualHost/>
+</VirtualHost>
 ```
 
 Apply the change by running:
