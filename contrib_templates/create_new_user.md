@@ -8,16 +8,16 @@ tags:
   - gnome
   - cockpit
 ---
-
+<!-- note to self: add table of contents and images 5/27/2024-->
 # How to Create New Users and Group Accounts
 
 ## Introduction
 
   This guide will teach you how to manage user and group accounts on Rocky Linux 9.4 using Cockpit, a web-based graphical interface administrative tool for Linux servers.
   
-## Prerequsites
+## Prerequisites
 - Access to Rocky Linux 9 OS with GUI
-- Administrative Priviledges
+- Administrative Privileges
 - Cockpit package installed and enabled
 
 ## Cockpit
@@ -27,7 +27,8 @@ Cockpit is a web-based graphical interface administrative tool for Linux servers
 ### Log In to Cockpit
 
 - Open your web browser and enter https://localhost:9090 in the address bar
-    >*Note: You can also enter the same address on the command line
+    >**Note**: You can also enter the same address on the command line
+
     ```text 
     https://localhost:9090
     ``` 
@@ -39,7 +40,7 @@ Cockpit is a web-based graphical interface administrative tool for Linux servers
 
     ![img](../rocky_linux_images/2.png)
 
-## User and Group Manangement
+## User and Group Management
 
 ### Managing User Accounts
 
@@ -176,7 +177,6 @@ To delete a group:
     ![img](../rocky_linux_images/21.png)
   
 **CLI counterpart**
-
 ```text
 sudo groupdel groupname
 ```
@@ -187,9 +187,9 @@ getent group | grep groupname
 
 ## Conclusions
 
-  It works great!
+  Congratulations, you did it!
 
-  In conclusion, this guide has equipped you with the knowledge to manage user and group accounts on Rocky Linux 9.4 using Cockpit. With Cockpit's intuitive web-based graphical interface, administrative tasks become more accessible and efficient, allowing you to take full advantage of its user-friendly features for seamless system management.
+  In conclusion, this guide has equipped you with the knowledge needed to successfully manage user and group accounts on Rocky Linux 9.4 using Cockpit. Cockpit's easy-to-use web-based graphical interface, makes executing administrative tasks more accessible and efficient, allowing you to take full advantage of its user-friendly features for smooth system management.
 
 ---
 
