@@ -52,7 +52,7 @@ Cockpit is a web-based graphical interface administrative tool for Linux servers
 
 
 - Enter the user's name in the **Full name** text box
-  >*Note that the username will be automatically populated based on the full name. However the username field is also editable.*
+  >*Note that the username will be automatically populated based on the full name. However, you can also edit the User name and User ID fields if needed.*
 - Enter a password for the new user
 - Click the **Create** button
 
@@ -82,11 +82,11 @@ cat /etc/passwd
 
 #### Modify User Account
 
-- Click the vertical ellipsis icon for the new user and click **Edit user**
+- Click the vertical ellipsis icon for the new user and then click **Edit user**
 
     ![img](images/user_group_acctmgt_images/13.png)
 
-This is where we can modify user account settings, such as:
+This is where you can modify the user account settings, such as:
 
 - Full name
 - Group membership
@@ -109,7 +109,7 @@ To add a user to a group do the following:
 sudo usermod -aG groupname username
 ```
 
-To remove the user from a group:
+To remove a user from a group:
 
 - Click the **x** next to the group name
 
