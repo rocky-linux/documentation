@@ -8,7 +8,7 @@ tags:
   - gnome
   - cockpit
 ---
-<!-- note to self: add table of contents and images 5/27/2024-->
+
 # How to Create New Users and Group Accounts
 
 ## Introduction
@@ -34,11 +34,13 @@ Cockpit is a web-based graphical interface administrative tool for Linux servers
     ``` 
 - Enter your username and password and click the **Log In** button
 
-    ![img](../rocky_linux_images/1.png)
+    ![img](images/user_group_acctmgt_images/1.png)
+
+
 
 - Click the **Limited access** button and enter your password to enable administrative access
 
-    ![img](../rocky_linux_images/2.png)
+    ![img](images/user_group_acctmgt_images/2.png)
 
 ## User and Group Management
 
@@ -46,7 +48,7 @@ Cockpit is a web-based graphical interface administrative tool for Linux servers
 
 - From the left menu, click **Accounts** tab and then click on the **Create new account** button
 
-    ![img](../rocky_linux_images/5.png)
+    ![img](images/user_group_acctmgt_images/5.png)
 
 
 - Enter the user's name in the **Full name** text box
@@ -55,7 +57,7 @@ Cockpit is a web-based graphical interface administrative tool for Linux servers
 - Click the **Create** button
 
 
-    ![img](../rocky_linux_images/8.png)
+    ![img](images/user_group_acctmgt_images/8.png)
 
 
 **CLI counterpart**
@@ -70,7 +72,7 @@ sudo passwd username
 
 Observe the addition of the new user to the list of users displayed under the **Accounts** tab.
 
-![img](../rocky_linux_images/9.png)
+![img](images/user_group_acctmgt_images/9.png)
 
 **CLI counterpart**
 
@@ -82,7 +84,7 @@ cat /etc/passwd
 
 - Click the vertical ellipsis icon for the new user and click **Edit user**
 
-    ![img](../rocky_linux_images/13.png)
+    ![img](images/user_group_acctmgt_images/13.png)
 
 This is where we can modify user account settings, such as:
 
@@ -91,7 +93,7 @@ This is where we can modify user account settings, such as:
 - Password settings
 - Shell
 
-    ![img](../rocky_linux_images/15.png)
+    ![img](images/user_group_acctmgt_images/15.png)
 
 To add a user to a group do the following:
 
@@ -100,7 +102,7 @@ To add a user to a group do the following:
 - Click the **Groups** text box and begin typing the name of the group.  
   Alternatively, you can scroll down the dropdown menu and click the name of the group you wish to add 
 
-    ![img](../rocky_linux_images/14.png)
+    ![img](images/user_group_acctmgt_images/14.png)
 
 **CLI counterpart**
 ```text
@@ -111,7 +113,7 @@ To remove the user from a group:
 
 - Click the **x** next to the group name
 
-    ![img](../rocky_linux_images/18.png)
+    ![img](images/user_group_acctmgt_images/18.png)
 
 **CLI counterpart**
 ```text
@@ -124,14 +126,14 @@ To delete a user account:
 
 - Click the vertical ellipsis icon for the new user and click **Delete account**
 
-    ![img](../rocky_linux_images/16.png)
+    ![img](images/user_group_acctmgt_images/16.png)
 
 Or 
 - Click the username highlighted in blue and select **Delete** box
 
-    ![img](../rocky_linux_images/17.png)
+    ![img](images/user_group_acctmgt_images/17.png)
 
-    ![img](../rocky_linux_images/22.png)
+    ![img](images/user_group_acctmgt_images/22.png)
 
 **CLI counterpart**
 ```text
@@ -142,13 +144,13 @@ sudo userdel -d username groupname
 
 - From the the left menu column, click **Accounts** tab then, click the **Create new group** button
 
-    ![img](../rocky_linux_images/7.png)
+    ![img](images/user_group_acctmgt_images/7.png)
 
 - Enter the group name in the text box
 >*Note: You can accept the default group ID or change it to the numerical value you desire (e.g. 5001)*
 - Click the **Select** button
 
-    ![img](../rocky_linux_images/11.png)
+    ![img](images/user_group_acctmgt_images/11.png)
 
 **CLI counterpart**
 ```text
@@ -163,7 +165,7 @@ Or
 
 -  Click the dropdown menu next to **Groups**
 
-    ![img](../rocky_linux_images/12.png)
+    ![img](images/user_group_acctmgt_images/12.png)
 
 **CLI counterpart**
 ```text
@@ -174,7 +176,7 @@ To delete a group:
 
 - Click the vertical ellipsis for the new user and click **Delete group**
 
-    ![img](../rocky_linux_images/21.png)
+    ![img](images/user_group_acctmgt_images/21.png)
   
 **CLI counterpart**
 ```text
