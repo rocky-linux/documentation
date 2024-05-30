@@ -1,7 +1,7 @@
 ---
 title: How to Create New Users and Group Accounts
 author: Sasheeny Hubbard
-contributors: Sasheeny Hubbard
+contributors: Steven Spencer 
 tested with: 9.4
 tags:
   - desktop
@@ -9,58 +9,53 @@ tags:
   - cockpit
 ---
 
-# How to Create New Users and Group Accounts
-
 ## Introduction
 
   This guide will teach you how to manage user and group accounts on Rocky Linux 9.4 using Cockpit, a web-based graphical interface administrative tool for Linux servers.
   
 ## Prerequisites
-- Access to Rocky Linux 9 OS with GUI
+
+- Access to Rocky Linux 9 operating system with GUI
 - Administrative Privileges
 - Cockpit package installed and enabled
 
 ## Cockpit
 
-Cockpit is a web-based graphical interface administrative tool for Linux servers. While it has many use cases, we  will be using Cockpit for managing user and group accounts. The benefits of using Cockpit include ease of use, remote management, integration, real-time feedback and multi-server dashboards. 
+Cockpit is a web-based graphical interface administrative tool for Linux servers. While it has many use cases, we  will be using Cockpit for managing user and group accounts. The benefits of using Cockpit include ease of use, remote management, integration, real-time feedback and multi-server dashboards.
 
-### Log In to Cockpit
+### Log in to Cockpit
 
-- Open your web browser and enter https://localhost:9090 in the address bar
+- Open your web browser and enter <https://localhost:9090> in the address bar
     >**Note**: You can also enter the same address on the command line
 
-    ```text 
+    ```text
     https://localhost:9090
-    ``` 
+    ```
+
 - Enter your username and password and click the **Log In** button
 
     ![img](images/user_group_acctmgt_images/1.png)
-
-
 
 - Click the **Limited access** button and enter your password to enable administrative access
 
     ![img](images/user_group_acctmgt_images/2.png)
 
-## User and Group Management
+## User and group management
 
-### Managing User Accounts
+### Managing user accounts
 
 - From the left menu, click **Accounts** tab and then click on the **Create new account** button
 
     ![img](images/user_group_acctmgt_images/5.png)
-
 
 - Enter the user's name in the **Full name** text box
   >*Note that the username will be automatically populated based on the full name. However, you can also edit the User name and User ID fields if needed.*
 - Enter a password for the new user
 - Click the **Create** button
 
-
     ![img](images/user_group_acctmgt_images/8.png)
 
-
-**CLI counterpart**
+#### CLI method: managing user accounts
 
 ```text
 sudo useradd username -md /home/username -u 1002 -s /bin/bash 
@@ -74,13 +69,13 @@ Observe the addition of the new user to the list of users displayed under the **
 
 ![img](images/user_group_acctmgt_images/9.png)
 
-**CLI counterpart**
+#### CLI method: viewing `passwd` file
 
 ```text
 cat /etc/passwd
 ```
 
-#### Modify User Account
+#### Modify user account
 
 - Click the vertical ellipsis icon for the new user and then click **Edit user**
 
@@ -100,11 +95,12 @@ To add a user to a group do the following:
 - Click the vertical ellipsis icon next to the new user and click **Edit user**
 
 - Click the **Groups** text box and begin typing the name of the group.  
-  Alternatively, you can scroll down the dropdown menu and click the name of the group you wish to add 
+  Alternatively, you can scroll down the dropdown menu and click the name of the group you want to add
 
     ![img](images/user_group_acctmgt_images/14.png)
 
-**CLI counterpart**
+##### CLI method: adding a user to a group
+
 ```text
 sudo usermod -aG groupname username
 ```
@@ -115,12 +111,13 @@ To remove a user from a group:
 
     ![img](images/user_group_acctmgt_images/18.png)
 
-**CLI counterpart**
+##### CLI method: remove a user from a group
+
 ```text
 sudo gpasswd -d username groupname
 ```
 
-#### Delete User Account
+#### Delete user account
 
 To delete a user account:
 
@@ -128,46 +125,52 @@ To delete a user account:
 
     ![img](images/user_group_acctmgt_images/16.png)
 
-Or 
+Or
+
 - Click the username highlighted in blue and select **Delete** box
 
     ![img](images/user_group_acctmgt_images/17.png)
 
     ![img](images/user_group_acctmgt_images/22.png)
 
-**CLI counterpart**
+##### CLI method: delete a user account
+
 ```text
 sudo userdel -d username groupname
 ```
 
-### Creating and Deleting and Managing Group Accounts
+### Creating, deleting, and managing group accounts
 
-- From the the left menu column, click **Accounts** tab then, click the **Create new group** button
+- From the left menu column, click **Accounts** tab then, click the **Create new group** button
 
     ![img](images/user_group_acctmgt_images/7.png)
 
 - Enter the group name in the text box
->*Note: You can accept the default group ID or change it to the numerical value you desire (e.g. 5001)*
+
+>*Note: You can accept the default group ID or change it to the numerical value you desire (for example 5001)*
+
 - Click the **Select** button
 
     ![img](images/user_group_acctmgt_images/11.png)
 
-**CLI counterpart**
+#### CLI method: add a group name
+
 ```text
 sudo groupadd groupname
 ```
 
 To verify the group has been created:
 
-- Enter the group name in the search box on the **Groups** table 
+- Enter the group name in the search box on the **Groups** table
 
-Or 
+Or
 
--  Click the dropdown menu next to **Groups**
+- Click the dropdown menu next to **Groups**
 
     ![img](images/user_group_acctmgt_images/12.png)
 
-**CLI counterpart**
+#### CLI method: verify group name
+
 ```text
 cat /etc/group | grep groupname
 ```
@@ -178,7 +181,8 @@ To delete a group:
 
     ![img](images/user_group_acctmgt_images/21.png)
   
-**CLI counterpart**
+#### CLI method: delete group
+
 ```text
 sudo groupdel groupname
 ```
@@ -197,4 +201,4 @@ getent group | grep groupname
 
 ## REFERENCES
 
-To Install Cockpit: https://ciq.com/blog/how-to-administer-rocky-linux-with-cockpit/
+To Install Cockpit: <https://ciq.com/blog/how-to-administer-rocky-linux-with-cockpit/>
