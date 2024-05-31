@@ -1,7 +1,7 @@
 ---
-title: Création de Nouveaux Comptes Utilisateurs et leurs Groupes
+title: Gestion des comptes d'utilisateurs et leurs groupes
 author: Sasheeny Hubbard
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 9.4
 tags:
   - bureau
@@ -21,13 +21,13 @@ Ce guide vous apprendra à gérer les comptes d'utilisateurs et les groupes corr
 
 ## Cockpit
 
-Cockpit est un outil d'administration d'interface graphique Web pour les serveurs Linux. Bien qu'il présente de nombreux cas d'utilisation, nous utiliserons Cockpit pour gérer les comptes d'utilisateurs et de groupes. Les avantages de l'utilisation de Cockpit incluent la facilité d'utilisation, la gestion à distance, l'intégration, le retour d'information en temps réel et les tableaux de bord multi-serveurs.
+Cockpit est un outil d'administration d'interface graphique Web pour les serveurs Linux. Bien qu'il présente de nombreux cas d'utilisation, nous utiliserons Cockpit pour gérer les comptes d'utilisateurs et de groupes. Les avantages de travailler avec Cockpit incluent la facilité d'utilisation, la gestion à distance, l'intégration, le retour d'information en temps réel et les tableaux de bord multiserveurs.
 
 ### Se connecter à Cockpit
 
 - Ouvrez votre navigateur Web et saisissez https://localhost:9090 dans la barre d'adresse
 
-  > **Remarque** : Vous pouvez également saisir la même adresse sur la ligne de commande
+  > **Remarque** : Vous pouvez également saisir l'adresse exacte sur la ligne de commande
 
   ```text
   https://localhost:9090
@@ -78,7 +78,7 @@ Observez l'ajout du nouvel utilisateur à la liste des utilisateurs affichée so
 cat /etc/passwd
 ```
 
-#### Modification du compte d'utilisateur
+### Modification du compte d'utilisateur
 
 - Cliquez sur l'icône de points de suspension verticaux du nouvel utilisateur, puis cliquez sur **Edit user**
 
@@ -102,7 +102,7 @@ Pour ajouter un utilisateur à un groupe, procédez comme suit :
 
   ![img](images/user_group_acctmgt_images/14.png)
 
-##### Méthode CLI : ajouter un utilisateur à un groupe
+#### Méthode CLI : ajouter un utilisateur à un groupe
 
 ```text
 sudo usermod -aG groupname username
@@ -114,13 +114,13 @@ Supprimer un utilisateur d'un groupe :
 
   ![img](images/user_group_acctmgt_images/18.png)
 
-##### Méthode CLI : supprimer un utilisateur d'un groupe
+#### Méthode CLI : supprimer un utilisateur d'un groupe
 
 ```text
 sudo gpasswd -d username groupname
 ```
 
-#### Suppression de compte d'utilisateur
+### Suppression de compte d'utilisateur
 
 Supprimer un compte d'utilisateur :
 
@@ -136,7 +136,7 @@ Ou
 
   ![img](images/user_group_acctmgt_images/22.png)
 
-##### Méthode CLI : supprimer un compte d'utilisateur
+#### Méthode CLI : supprimer un compte d'utilisateur
 
 ```text
 sudo userdel -d username groupname
@@ -195,8 +195,6 @@ getent group | grep groupname
 ```
 
 ## Conclusion
-
-Félicitations, vous avez réussi !
 
 En conclusion, ce guide vous a fourni les connaissances nécessaires pour gérer avec succès les comptes d'utilisateurs et de groupes sur Rocky Linux 9.4 à l'aide de Cockpit. L'interface graphique Web facile à utiliser de Cockpit rend l'exécution des tâches administratives plus accessible et efficace, vous permettant de profiter pleinement de ses fonctionnalités conviviales pour une gestion fluide du système.
 
