@@ -1,5 +1,5 @@
 ---
-title: How to Create New Users and Group Accounts
+title: User and group account management
 author: Sasheeny Hubbard
 contributors: Steven Spencer 
 tested with: 9.4
@@ -75,7 +75,7 @@ Observe the addition of the new user to the list of users displayed under the **
 cat /etc/passwd
 ```
 
-#### Modify user account
+### Modify user account
 
 - Click the vertical ellipsis icon for the new user and then click **Edit user**
 
@@ -99,7 +99,7 @@ To add a user to a group do the following:
 
     ![img](images/user_group_acctmgt_images/14.png)
 
-##### CLI method: adding a user to a group
+#### CLI method: adding a user to a group
 
 ```text
 sudo usermod -aG groupname username
@@ -111,13 +111,13 @@ To remove a user from a group:
 
     ![img](images/user_group_acctmgt_images/18.png)
 
-##### CLI method: remove a user from a group
+#### CLI method: remove a user from a group
 
 ```text
 sudo gpasswd -d username groupname
 ```
 
-#### Delete user account
+### Delete user account
 
 To delete a user account:
 
@@ -133,7 +133,7 @@ Or
 
     ![img](images/user_group_acctmgt_images/22.png)
 
-##### CLI method: delete a user account
+#### CLI method: delete a user account
 
 ```text
 sudo userdel -d username groupname
