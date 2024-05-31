@@ -1,7 +1,7 @@
 ---
 title: How to Create New Users and Group Accounts
 author: Sasheeny Hubbard
-contributors: Steven Spencer 
+contributors: Steven Spencer, Ganna Zhyrnova 
 tested with: 9.4
 tags:
   - desktop
@@ -21,12 +21,12 @@ tags:
 
 ## Cockpit
 
-Cockpit is a web-based graphical interface administrative tool for Linux servers. While it has many use cases, we  will be using Cockpit for managing user and group accounts. The benefits of using Cockpit include ease of use, remote management, integration, real-time feedback and multi-server dashboards.
+Cockpit is a web-based graphical interface administrative tool for Linux servers. While it has many use cases, we will use Cockpit to manage user and group accounts. The benefits of using Cockpit include ease of use, remote management, integration, real-time feedback, and multi-server dashboards.
 
 ### Log in to Cockpit
 
 - Open your web browser and enter <https://localhost:9090> in the address bar
-    >**Note**: You can also enter the same address on the command line
+    >**Note**: You can also enter the exact address on the command line
 
     ```text
     https://localhost:9090
@@ -44,12 +44,12 @@ Cockpit is a web-based graphical interface administrative tool for Linux servers
 
 ### Managing user accounts
 
-- From the left menu, click **Accounts** tab and then click on the **Create new account** button
+- From the left menu, click the **Accounts** tab and then click on the **Create new account** button
 
     ![img](images/user_group_acctmgt_images/5.png)
 
 - Enter the user's name in the **Full name** text box
-  >*Note that the username will be automatically populated based on the full name. However, you can also edit the User name and User ID fields if needed.*
+  >*Note that the username will be automatically populated based on the full name. However, you can also edit the User name and ID fields if needed.*
 - Enter a password for the new user
 - Click the **Create** button
 
@@ -90,11 +90,11 @@ This is where you can modify the user account settings, such as:
 
     ![img](images/user_group_acctmgt_images/15.png)
 
-To add a user to a group do the following:
+To add a user to a group, do the following:
 
 - Click the vertical ellipsis icon next to the new user and click **Edit user**
 
-- Click the **Groups** text box and begin typing the name of the group.  
+- Click the **Groups** text box and type the group's name.  
   Alternatively, you can scroll down the dropdown menu and click the name of the group you want to add
 
     ![img](images/user_group_acctmgt_images/14.png)
@@ -141,13 +141,13 @@ sudo userdel -d username groupname
 
 ### Creating, deleting, and managing group accounts
 
-- From the left menu column, click **Accounts** tab then, click the **Create new group** button
+- From the left menu column, click the **Accounts** tab, then, click the **Create new group** button
 
     ![img](images/user_group_acctmgt_images/7.png)
 
 - Enter the group name in the text box
 
->*Note: You can accept the default group ID or change it to the numerical value you desire (for example 5001)*
+>*Note: You can accept the default group ID or change it to the numerical value you desire (for example, 5001)*
 
 - Click the **Select** button
 
@@ -193,9 +193,7 @@ getent group | grep groupname
 
 ## Conclusions
 
-  Congratulations, you did it!
-
-  In conclusion, this guide has equipped you with the knowledge needed to successfully manage user and group accounts on Rocky Linux 9.4 using Cockpit. Cockpit's easy-to-use web-based graphical interface, makes executing administrative tasks more accessible and efficient, allowing you to take full advantage of its user-friendly features for smooth system management.
+  In conclusion, this guide has equipped you with the knowledge to successfully manage user and group accounts on Rocky Linux 9.4 using Cockpit. Cockpit's easy-to-use web-based graphical interface makes executing administrative tasks more accessible and efficient, allowing you to fully utilize its user-friendly features for smooth system management.
 
 ---
 
