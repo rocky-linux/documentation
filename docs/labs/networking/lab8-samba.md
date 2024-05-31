@@ -1,6 +1,6 @@
 ---
 author: Wale Soyinka 
-contributors: 
+contributors: Ganna Zhyrnova
 tested on: All Versions
 tags:
   - samba
@@ -29,12 +29,12 @@ Estimated time to complete this lab: 40 minutes
 
 Samba allows for file sharing and printing services between Unix/Linux and Windows systems. 
 
-Samba is an open source implementation of the “Common Internet File System” (CIFS). CIFS is also referred to as the Server Message Block (SMB), Lan Manager or NETBIOS protocol. 
-The Samba server comprises of two main daemons – smbd and nmbd. 
+Samba is an open-source “Common Internet File System” (CIFS) implementation. CIFS is also referred to as the Server Message Block (SMB), LAN manager, or NetBIOS protocol. 
+The Samba server comprises two main daemons – smbd and nmbd. 
 
-*smbd* :  This daemon provides the file and print services to SMB clients, such as machines running various Microsoft operating systems. 
+*smbd*: This daemon provides file and print services to SMB clients, such as machines running various Microsoft operating systems. 
 
-*nmbd* : This daemon provides NETBIOS name serving and browsing support. 
+*nmbd*: This daemon provides NETBIOS name serving and browsing support. 
 
 
 The exercises in this lab focus on setting up Samba as both a server and a client on a Rocky Linux server.
@@ -54,7 +54,7 @@ The exercises in this lab focus on setting up Samba as both a server and a clien
 
 #### To configure Samba 
 
-1. Create a directory to be shared named samba-share under the /tmp folder. Type:
+1. Create a directory named samba-share under the /tmp folder to be shared. Type:
    
     ```bash
     mkdir /tmp/samba-share
@@ -91,13 +91,13 @@ The exercises in this lab focus on setting up Samba as both a server and a clien
 
 ### Samba users
 
-An important and common administrative task for managing a Samba server is creating users, creating passwords for users that need to access the shared resources.
+An important and common administrative task for managing a Samba server is creating users and passwords for users who need to access the shared resources.
 
 This exercise shows how to create Samba users and set up access credentials for the users.
 
-#### To create a Samba user and samba password
+#### To create a Samba user and Samba password
 
-1. First create a regular system user named sambarockstar. Type:
+1. First, create a regular system user named sambarockstar. Type:
 
     ```bash
     sudo useradd sambarockstar
@@ -107,8 +107,7 @@ This exercise shows how to create Samba users and set up access credentials for 
     ```bash
     id sambarockstar
     ```
-3. Add the new sambarockstar system user to the Samba user database and simultanously
-   set a password for the Samba user:
+3. Add the new sambarockstar system user to the Samba user database and simultaneously set a password for the Samba user:
 
     ```bash
     sudo smbpasswd -a sambarockstar
@@ -124,7 +123,7 @@ This exercise shows how to create Samba users and set up access credentials for 
 
 ### Accessing Samba Share (Local test)
 
-In this exercise, we'll try accessing the new Samba share from the same system. This means that we'll be using the same host as both a server and client.
+In this exercise, we'll try accessing the new Samba share from the same system. This means that we'll be using the same host as both a server and a client.
 
 #### To install Samba client tools 
 
@@ -148,7 +147,7 @@ In this exercise, we'll try accessing the new Samba share from the same system. 
     sudo mount -t cifs //localhost/Shared ~/samba-client -o user=sambarockstar
     ```
 
-2. Use the `mount` command to list all mounted CIFS type file systems. Type:
+2. Use the `mount` command to list all mounted CIFS-type file systems. Type:
    ```bash
    mount -t cifs
    ```
@@ -158,7 +157,7 @@ In this exercise, we'll try accessing the new Samba share from the same system. 
    ...<SNIP>...
    ```
 
-3. Similarly use the `df` command to verify that the mounted share is available. Type:
+3. Similarly, use the `df` command to verify that the mounted share is available. Type:
 
     ```bash
     df -t cifs
@@ -170,7 +169,7 @@ In this exercise, we'll try accessing the new Samba share from the same system. 
     //localhost/Shared  73364480 17524224  55840256  24% ~/samba-client
     ```
 
-4. Next list the contents of the mounted share. Type:
+4. Next, list the contents of the mounted share. Type:
 
     ```bash
     ls ~/samba-client
@@ -210,11 +209,11 @@ In this exercise, we'll try accessing the new Samba share from the same system. 
 
 ### Using Samba for specific user groups
 
-This exercise will walk through how to restrict access to Samba shares via a user's local group membership. This provides a convenient mechanism for making shared resources accessible only to specific user groups.
+This exercise will walk through restricting access to Samba shares via a user's local group membership. This provides a convenient mechanism for making shared resources accessible only to specific user groups.
 
 #### To create a new group for Samba user 
 
-1. Use the groupadd utility to create a new system group named rockstars. This is the group that we'll use in our example for housing system users that can access a given resource. Type: 
+1. Use the groupadd utility to create a new system group named rockstars. We'll use this group in our example for housing system users who can access a given resource. Type: 
     ```bash
     sudo groupadd rockstars
     ```    
@@ -224,8 +223,7 @@ This exercise will walk through how to restrict access to Samba shares via a use
     ```
 #### To configure valid users in Samba configuration
 
-1. Use the sed utility to add a new valid users paranter to the share definition in the 
-   Samba config file. Type:
+1. Use the sed utility to add new valid user parameters to the share definition in the Samba config file. Type:
     ```bash
     sudo sed -i '/\[Shared\]/a valid users = @sambagroup' /etc/samba/smb.conf
     ```
@@ -238,18 +236,18 @@ This exercise will walk through how to restrict access to Samba shares via a use
 
 ## Exercise 6
 
-This exercise simulates a real-world scenario where you'll act in the role of an Administrator of a client system, and then test accessing the Samba service on remote system (serverHQ) on which you do not have any Administrative access or privileges.  client as a student, will set up a Samba client on your machine (serverXY) to access a Samba service hosted on a different machine (serverHQ). This reflects common workplace setups.
+This exercise simulates a real-world scenario in which you'll act as an administrator of a client system and then test accessing the Samba service on the remote system (server HQ), to which you do not have any administrative access or privileges.  As a student, you will set up a Samba client on your machine (serverXY) to access a Samba service hosted on a different machine (serverHQ). This reflects standard workplace setups.
 
 Assumptions:
 
-- You do not have root access on serverHQ.
+- You do not have root access to serverHQ.
 - The Samba share on serverHQ is already set up and accessible.
 
 #### To set up Samba client on serverXY
 
 Configure your machine (serverXY) as a Samba client to access a shared directory on a separate host (serverHQ).
 
-1. Ensure that the necessary samba client utilities are installed on your local system.
+1. Ensure the necessary Samba client utilities are installed on your local system.
     Install them if necessary by running: 
 
     ```bash
