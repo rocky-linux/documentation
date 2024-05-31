@@ -1,7 +1,7 @@
 ---
 title: Як створити нових користувачів і облікові записи груп
 author: Sasheeny Hubbard
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 9.4
 tags:
   - робочий стіл
@@ -78,7 +78,7 @@ sudo passwd username
 cat /etc/passwd
 ```
 
-#### Змінити обліковий запис користувача
+### Змінити обліковий запис користувача
 
 - Натисніть піктограму з вертикальною крапкою для нового користувача, а потім натисніть **Edit user**
 
@@ -102,7 +102,7 @@ cat /etc/passwd
 
   ![img](images/user_group_acctmgt_images/14.png)
 
-##### Метод CLI: додавання користувача до групи
+#### Метод CLI: додавання користувача до групи
 
 ```text
 sudo usermod -aG groupname username
@@ -114,13 +114,13 @@ sudo usermod -aG groupname username
 
   ![img](images/user_group_acctmgt_images/18.png)
 
-##### Метод CLI: видалити користувача з групи
+#### Метод CLI: видалити користувача з групи
 
 ```text
 sudo gpasswd -d username groupname
 ```
 
-#### Видалити обліковий запис користувача
+### Видалити обліковий запис користувача
 
 Щоб видалити обліковий запис користувача:
 
@@ -136,7 +136,7 @@ sudo gpasswd -d username groupname
 
   ![img](images/user_group_acctmgt_images/22.png)
 
-##### Метод CLI: видалити обліковий запис користувача
+#### Метод CLI: видалити обліковий запис користувача
 
 ```text
 sudo userdel -d username groupname
@@ -195,8 +195,6 @@ getent group | grep groupname
 ```
 
 ## Висновки
-
-Вітаємо! Ви це зробили!
 
 На закінчення, цей посібник надав вам знання для успішного керування обліковими записами користувачів і груп у Rocky Linux 9.4 за допомогою Cockpit. Простий у використанні веб-графічний інтерфейс Cockpit робить виконання адміністративних завдань більш доступним і ефективним, дозволяючи повністю використовувати його зручні функції для плавного керування системою.
 
