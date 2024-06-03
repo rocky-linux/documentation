@@ -42,7 +42,7 @@ As mentioned, you can run Podman containers as `systemd` services. Let us now do
 
 ```bash
 podman ps
-``
+```
 
 You will get a list of running containers:
 
