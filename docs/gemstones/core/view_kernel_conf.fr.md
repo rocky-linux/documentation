@@ -1,5 +1,5 @@
 ---
-title: Analyser la configuration actuelle du noyau
+title: Analyse de la Configuration Actuelle du Noyau
 author: David Hensley
 contributors: Steven Spencer
 tested_with: 8.5
@@ -12,7 +12,7 @@ tags:
 
 # Analyse de la Configuration Actuelle du Noyau
 
-Le noyau Linux stocke ses informations en deux endroits via des systèmes de fichiers spéciaux : ([Un résumé](https://www.landoflinux.com/linux_procfs_sysfs.html))
+Le noyau Linux stocke ses informations en deux endroits via des systèmes de fichiers spéciaux : ([sommaire](https://www.landoflinux.com/linux_procfs_sysfs.html))
 
 - Les [procfs plus anciens](https://man7.org/linux/man-pages/man5/procfs.5.html) qui montent `/proc` (vérifier via `mount -l -t proc`)
 - Les [sysfs plus récents](https://man7.org/linux/man-pages/man5/sysfs.5.html) qui montent `/sys`    (vérifiez via `mount -l -t sysfs`)
