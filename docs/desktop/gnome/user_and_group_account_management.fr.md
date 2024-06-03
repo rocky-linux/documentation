@@ -21,13 +21,13 @@ Ce guide vous apprendra à gérer les comptes d'utilisateurs et les groupes corr
 
 ## Cockpit
 
-Cockpit est un outil d'administration d'interface graphique Web pour les serveurs Linux. Bien qu'il présente de nombreux cas d'utilisation, nous utiliserons Cockpit pour gérer les comptes d'utilisateurs et de groupes. Les avantages de travailler avec Cockpit incluent la facilité d'utilisation, la gestion à distance, l'intégration, le retour d'information en temps réel et les tableaux de bord multiserveurs.
+Cockpit est un outil d'administration avec un interface graphique Web pour les serveurs Linux. Bien qu'il présente de nombreux cas d'utilisation, nous utiliserons Cockpit pour gérer les comptes d'utilisateurs et de groupes. Les avantages de travailler avec Cockpit incluent la facilité d'utilisation, la gestion à distance, l'intégration, le retour d'information en temps réel et les tableaux de bord multiserveurs.
 
 ### Se connecter à Cockpit
 
 - Ouvrez votre navigateur Web et saisissez https://localhost:9090 dans la barre d'adresse
 
-  > **Remarque** : Vous pouvez également saisir l'adresse exacte sur la ligne de commande
+  > **Remarque** : Vous pouvez également saisir la même adresse sur la ligne de commande
 
   ```text
   https://localhost:9090
@@ -72,7 +72,7 @@ Observez l'ajout du nouvel utilisateur à la liste des utilisateurs affichée so
 
 ![img](images/user_group_acctmgt_images/9.png)
 
-#### Méthode CLI : affichage di fichier `passwd`
+#### Méthode CLI : affichage du fichier `passwd`
 
 ```text
 cat /etc/passwd
@@ -124,11 +124,11 @@ sudo gpasswd -d username groupname
 
 Supprimer un compte d'utilisateur :
 
-- Cliquez sur l'icône de points de suspension verticaux du nouvel utilisateur, puis cliquez sur **Delete account**
+- Cliquez sur l'icône de points de suspension verticaux de l'utilisateur, puis cliquez sur **Delete account**
 
   ![img](images/user_group_acctmgt_images/16.png)
 
-Ou
+ou
 
 - Cliquez sur le nom d'utilisateur surligné en bleu et sélectionnez la case **Supprimer**
 
@@ -142,7 +142,7 @@ Ou
 sudo userdel -d username groupname
 ```
 
-### Création, suppression et gestion de comptes de groupe
+### Création, suppression et gestion des groupes
 
 - Dans la colonne du menu de gauche, cliquez sur l'onglet **Accounts**, puis cliquez sur le bouton **Create new group**
 
@@ -166,7 +166,7 @@ Pour vérifier que le groupe a bien été créé :
 
 - Saisissez le nom du groupe dans le champ de recherche du tableau **Groups**
 
-Ou
+ou
 
 - Cliquez sur le menu déroulant à côté de **Groups**
 
