@@ -34,7 +34,7 @@ The main sections of the documentation site are:
 At Rocky Linux we want to make the documentation site as accessible as possible to everyone —  *translation into different languages is an important part of that*. If you click on the (common symbol) language selector on the top menu you will see the languages the website is available in. There are two parts to this:
 
 1. Website interface localisation: if you choose another language, for example Français, you will note that the interface, for example the 'Next' and 'Previous' navigators, will be localised.
-1. Content: translating content is an ongoing (significant) task. Not all content is translated into all languages yet. Any pages that have been translated (into the language selected) will be seen in the chosen language, those that have not will fall back to the default language English. If you want to contribute to the community through translations the documentation team would love to hear from you — see below for details.
+1. Content: translating content is an [ongoing](https://crowdin.com/project/rockydocs/activity-stream) (significant) [task](https://crowdin.com/project/rockydocs). Not all content is translated into all languages yet. Any pages that have been translated (into the language selected) will be seen in the chosen language, those that have not will fall back to the default language English. If you want to contribute to the community through translations the documentation team would love to hear from you — see below for details.
 
 !!! note
 
