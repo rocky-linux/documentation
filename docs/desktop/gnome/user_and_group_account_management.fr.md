@@ -202,4 +202,4 @@ En conclusion, ce guide vous a fourni les connaissances nécessaires pour gérer
 
 ## RÉFÉRENCES
 
-Installation de Cockpit : https://ciq.com/blog/how-to-administer-rocky-linux-with-cockpit/
+Installation de Cockpit : https://ciq.com/blog/how-to-administer-rocky-linux-with-cockpit/
