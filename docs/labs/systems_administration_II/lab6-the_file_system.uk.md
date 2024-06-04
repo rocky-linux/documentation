@@ -676,35 +676,18 @@ ext2/ext3/ext4 налагоджувач файлової системи
 
      Використовуючи вихідні дані `vgdisplay`, запишіть зміни у вашій системі. Які нові значення для «Free PE / Size»?
 
-#### Для видалення LV, VG і PV
-
-У цьому розділі описано, як видалити `/dev/loop1`` PV, який ви призначили існуючому`rl` VG у попередньому розділі.
-
-1. Видаліть логічний том під назвою scratch2. Впишіть:
+4. Щоб видалити новий PV (/dev/loop1) із наявної групи томів `rl`. Використовуйте команду `vgreduce`, введіть:
 
     ```bash
-    [root@localhost ~]# lvremove -f  /dev/rl/scratch2
-    Logical volume "scratch2" successfully removed.
+    [root@localhost ~]# vgreduce rl /dev/loop1
     ```
 
-2. Видаліть логічний том scratch3, виконавши:
+    **Вихід**
 
     ```bash
-    [root@localhost ~]# lvremove -f  /dev/rl/scratch3
+    Removed "/dev/loop0" from volume group "rl"
     ```
 
-3. Вилучивши відповідні томи, тепер ви можете зменшити розмір VG `rl`, щоб зробити його узгодженим. Впишіть:
-
-    ```bash
-    [root@localhost ~]# vgreduce --removemissing  rl
-    ```
-
-4. Видаліть усі мітки LVM із PV `/dev/loop1`. Впишіть:
-
-    ```bash
-    [root@localhost ~]# pvremove /dev/loop1
-    Labels on physical volume "/dev/loop1" successfully wiped.
-    ```
 
 #### Щоб створити нову групу томів
 
@@ -791,6 +774,36 @@ ext2/ext3/ext4 налагоджувач файлової системи
     ```
 
 5. Скористайтеся командою `lvdisplay` знову, щоб переглянути новий LV.
+
+#### Для видалення LV, VG і PV
+
+У цьому розділі описано, як видалити `/dev/loop1`` PV, який ви призначили існуючому`rl` VG у попередньому розділі.
+
+1. Видаліть логічний том під назвою scratch2. Впишіть:
+
+    ```bash
+    [root@localhost ~]# lvremove -f  /dev/rl/scratch2
+    Logical volume "scratch2" successfully removed.
+    ```
+
+2. Видаліть логічний том scratch3, виконавши:
+
+    ```bash
+    [root@localhost ~]# lvremove -f  /dev/rl/scratch3
+    ```
+
+3. Вилучивши відповідні томи, тепер ви можете зменшити розмір VG `rl`, щоб зробити його узгодженим. Впишіть:
+
+    ```bash
+    [root@localhost ~]# vgreduce --removemissing  rl
+    ```
+
+4. Видаліть усі мітки LVM із PV `/dev/loop1`. Впишіть:
+
+    ```bash
+    [root@localhost ~]# pvremove /dev/loop1
+    Labels on physical volume "/dev/loop1" successfully wiped.
+    ```
 
 ## Завдання 2
 
