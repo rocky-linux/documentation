@@ -40,15 +40,15 @@ podman run -d -p 8080:80 nextcloud
 
 Як згадувалося, ви можете запускати контейнери Podman як служби `systemd`. Давайте тепер зробимо це за допомогою Nextcloud. Запустіть:
 
-````bash
+```bash
 podman ps
-``
+```
 
-You will get a list of running containers:
+Ви отримаєте список запущених контейнерів:
 
 ```bash
 04f7553f431a  docker.io/library/nextcloud:latest  apache2-foregroun...  5 minutes ago  Up 5 minutes  0.0.0.0:8080->80/tcp  compassionate_meninsky
-````
+```
 
 Як видно вище, ім’я нашого контейнера – `compassionate_meninsky`.
 

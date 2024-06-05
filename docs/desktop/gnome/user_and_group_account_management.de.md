@@ -27,7 +27,7 @@ Cockpit ist ein webbasiertes Verwaltungstool mit grafischer Oberfläche für Lin
 
 - Öffnen Sie Ihren Webbrowser und geben Sie https://localhost:9090 in die Adressleiste ein
 
-  > **Hinweis**: Sie können die genaue Adresse auch in der Befehlszeile eingeben
+  > **Hinweis**: Sie können dieselbe Adresse auch in der Befehlszeile eingeben
 
   ```text
   https://localhost:9090
@@ -128,7 +128,7 @@ Konto löschen:
 
   ![img](images/user_group_acctmgt_images/16.png)
 
-Oder
+oder
 
 - Klicken Sie auf den blau markierten Benutzernamen und wählen Sie das Feld **Delete**
 
@@ -166,7 +166,7 @@ So überprüfen Sie, ob die Gruppe erstellt wurde:
 
 - Geben Sie den Gruppennamen in das Suchfeld in der Tabelle **Groups** ein
 
-Oder
+oder
 
 - Klicken Sie auf das Dropdown-Menü neben **Groups**
 

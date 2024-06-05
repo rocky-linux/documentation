@@ -160,7 +160,7 @@ SSLCertificateKeyFile /etc/pki/tls/private/httpd.key
         Servername rocky8
         Redirect permanent / https://your-server-hostname/
 
-</VirtualHost/>
+</VirtualHost>
 ```
 
 Застосуйте зміни, виконавши:
