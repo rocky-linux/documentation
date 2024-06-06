@@ -6,18 +6,18 @@ contributors: Ganna Zhyrnova
 
 ## Introduction
 
-GNOME Tweaks ist ein Tool zum Anpassen von Desktop-Eigenschaften, einschließlich Standardschriftarten, Fenstern, Arbeitsbereichen und mehr.
+GNOME Tweaks est un outil permettant de personnaliser l'environnement de bureau, notamment les polices par défaut, les fenêtrages, les espaces de travail, etc.
 
 ## Prérequis
 
-- Eine Rocky Linux-Workstation oder ein Server mit GUI-Installation, die GNOME verwendet.
+- Un poste de travail ou un serveur Rocky Linux avec une interface graphique qui utilise GNOME.
 
 ## Installation de GNOME tweaks
 
 GNOME Tweaks est disponible depuis le référentiel « appstream », ne nécessitant aucune configuration de référentiel supplémentaire. Installieren avec la commande suivante :
 
 ```bash
-sudo dnf install gnome-tweaks 
+sudo dnf install gnome-tweaks
 ```
 
 L’installation inclut toutes les dépendances nécessaires.
