@@ -1,9 +1,9 @@
 ---
+title: Active Directory Authentication 
 author: Hayden Young
-contributors: Steven Spencer, Sambhav Saggi, Antoine Le Morvan, Krista Burdine, Ganna Zhyrnova
+contributors: Steven Spencer, Sambhav Saggi, Antoine Le Morvan, Krista Burdine, Ganna Zhyrnova, Neel Chauhan
+tested_with: 9.4
 ---
-
-# Active Directory Authentication
 
 ## Prerequisites
 
@@ -14,7 +14,7 @@ contributors: Steven Spencer, Sambhav Saggi, Antoine Le Morvan, Krista Burdine, 
 
 In most enterprises, Microsoft's Active Directory (AD) is the default authentication system for Windows systems and for external, LDAP-connected services. It allows you to configure users and groups, access control, permissions, auto-mounting, and more.
 
-Now, while connecting Linux to an AD cluster cannot support _all_ of the features mentioned, it can handle users, groups, and access control. It is possible (through some configuration tweaks on the Linux side and some advanced options on the AD side) to distribute SSH keys using AD.
+While connecting Linux to an AD cluster cannot support _all_ of the features mentioned, it can handle users, groups, and access control. It is possible (through some configuration tweaks on the Linux side and some advanced options on the AD side) to distribute SSH keys using AD.
 
 This guide, however, will just cover configuring authentication against Active Directory, and will not include any extra configuration on the Windows side.
 
@@ -65,7 +65,7 @@ The first step to joining a Linux system into AD is to discover your AD cluster,
 
 ### Discovery
 
-Now, you should be able to successfully discover your AD server(s) from your Linux host.
+You should now be able to successfully discover your AD server(s) from your Linux host.
 
 ```sh
 [user@host ~]$ realm discover ad.company.local
@@ -83,7 +83,7 @@ ad.company.local
   required-package: samba-common
 ```
 
-This will be discovered using the relevant SRV records stored in your Active Directory DNS service.
+The relevant SRV records stored in your Active Directory DNS service will allow discovery.
 
 ### Joining
 
@@ -106,7 +106,7 @@ If this process succeeds, you should now be able to pull `passwd` information fo
 administrator@ad.company.local:*:1450400500:1450400513:Administrator:/home/administrator@ad.company.local:/bin/bash
 ```
 
-!!! Note 
+!!! Note
 
     `getent` get entries from Name Service Switch libraries (NSS). It means that, contrary to `passwd` or `dig` for example, it will query different databases, including `/etc/hosts` for `getent hosts` or from `sssd` in the `getent passwd` case.
 
@@ -119,13 +119,13 @@ administrator@ad.company.local:*:1450400500:1450400513:Administrator:/home/admin
 | --os-version='8'                                           | Specify the OS version stored in the AD  |
 | -U admin_username                                          | Specify an admin account                 |
 
-### Attempting to Authenticate
+### Attempting to authenticate
 
 Now your users should be able to authenticate to your Linux host against Active Directory.
 
 **On Windows 10:** (which provides its own copy of OpenSSH)
 
-```
+```dos
 C:\Users\John.Doe> ssh -l john.doe@ad.company.local linux.host
 Password for john.doe@ad.company.local:
 
@@ -166,7 +166,7 @@ use_fully_qualified_names = False
 override_homedir = /home/%u
 ```
 
-Don't forget to restart the `sssd` service.
+Do not forget to restart the `sssd` service.
 
 ### Restrict to certain users
 
