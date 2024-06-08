@@ -44,14 +44,14 @@ Since 4.4 Podman ships with [Quadlet](https://docs.podman.io/en/latest/markdown/
 
 Quadlet files for rootful services can be placed in 
 
-- /etc/containers/systemd/
-- /usr/share/containers/systemd/
+- `/etc/containers/systemd/`
+- `/usr/share/containers/systemd/`
 
 while rootless files can be placed in either of
 
-- $XDG_CONFIG_HOME/containers/systemd/ or ~/.config/containers/systemd/
-- /etc/containers/systemd/users/$(UID)
-- /etc/containers/systemd/users/
+- `$XDG_CONFIG_HOME/containers/systemd/` or `~/.config/containers/systemd/`
+- `/etc/containers/systemd/users/$(UID)`
+- `/etc/containers/systemd/users/`
 
 While, aside from single containers, pod, image, network, volume and kube files are supported, let's focus on our Nextcloud example. Create a new file `~/.config/containers/systemd/nextcloud.cotainer` with the following content:
 
