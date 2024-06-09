@@ -39,7 +39,8 @@ sudo systemctl --now enable docker
 
 Add a non-root user to the `docker` group to allow the user to manage `docker` without `sudo`.
 
-This is an optional step, but it can be convenient if you are the system's main user or if you want to allow multiple users to manage docker but do not want to grant them `sudo` permissions.
+> [!NOTE]
+> This is an optional step, but it can be convenient if you are the system's main user or if you want to allow multiple users to manage docker but do not want to grant them `sudo` permissions.
 
 Type:
 
