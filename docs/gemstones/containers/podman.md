@@ -1,7 +1,7 @@
 ---
 title: Podman
 author: Neel Chauhan
-contributors: Steven Spencer, Ganna Zhyrnova
+contributors: Steven Spencer, Ganna Zhyrnova, Christian Steinert
 date: 2024-03-07
 tags:
   - docker
@@ -66,7 +66,7 @@ A [lot of other options](https://docs.podman.io/en/latest/markdown/podman-system
 To run the generator and let systemd know that there is a new service run:
 
 ```bash
-sysmteclt --user daemon-reload
+sysmtemclt --user daemon-reload
 ```
 
 To now run your service run:
