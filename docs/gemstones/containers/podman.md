@@ -66,7 +66,7 @@ A [lot of other options](https://docs.podman.io/en/latest/markdown/podman-system
 To run the generator and let systemd know that there is a new service run:
 
 ```bash
-sysmtemclt --user daemon-reload
+systemctl --user daemon-reload
 ```
 
 To now run your service run:
@@ -75,8 +75,9 @@ To now run your service run:
 systemctl --user start nextcloud.service
 ```
 
-> [!NOTE]
-> If you created a file in one of the directories for rootful services, omit the `--user` flag.
+!!! note
+
+    If you created a file in one of the directories for rootful services, omit the `--user` flag.
 
 To automatically run the container upon system start or user login, you can add another section to your `nextcloud.container` file:
 
@@ -98,8 +99,10 @@ Other file types are supported: pod, volume, network, image and kube. [Pods](htt
 
 Podman additionally provides the `generate systemd` subcommand. It can be used to generate `systemd` service files. 
 
-> [!IMPORTANT]
-> `generate systemd` is now deprecated and will not receive further features. Usage of Quadlet is recommended.
+!!! warning
+
+    `generate systemd` is now deprecated and will not receive further features. Usage of Quadlet is recommended.
+
 
 Let us now do it with Nextcloud. Run:
 
