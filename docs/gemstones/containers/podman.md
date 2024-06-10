@@ -75,7 +75,7 @@ To now run your service run:
 systemctl --user start nextcloud.service
 ```
 
-!!! note
+!!! note "Note"
 
     If you created a file in one of the directories for rootful services, omit the `--user` flag.
 
@@ -99,7 +99,7 @@ Other file types are supported: pod, volume, network, image and kube. [Pods](htt
 
 Podman additionally provides the `generate systemd` subcommand. It can be used to generate `systemd` service files. 
 
-!!! warning
+!!! warning "Warning"
 
     `generate systemd` is now deprecated and will not receive further features. Usage of Quadlet is recommended.
 
