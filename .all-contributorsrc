@@ -944,6 +944,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "ChrSteinert",
+      "name": "Christian Steinert",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9868229?v=4",
+      "profile": "https://github.com/ChrSteinert",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
