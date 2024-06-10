@@ -304,7 +304,7 @@ CONTAINER ID  IMAGE                              COMMAND     CREATED         STA
 282c09eecf84  localhost/myrockywebserver:latest  /sbin/init  16 seconds ago  Up 16 seconds  0.0.0.0:8080->80/tcp  rockywebserver
 ```
 
-You launched your Podman image in daemon mode (`-p`) and named it `rockywebserver` (option `--name`).
+You launched your Podman image in daemon mode (`-d`) and named it `rockywebserver` (option `--name`).
 
 You redirected port 80 (protected) to port 8080 with the `-p` option. See if the port is listening with:
 
@@ -325,6 +325,10 @@ Congratulations! You can now stop and destroy your running image, giving the nam
 ```bash
 podman stop rockywebserver && podman rm rockywebserver
 ```
+
+!!! tip "Tip"
+
+    You can add the `--rm` switch to automatically delete the container once it stopps.
 
 If you relaunch the build process, `podman` will use a cache at each step of the build:
 
