@@ -103,7 +103,7 @@ podman run -d -p 8080:80 nextcloud
 
 You will receive a prompt to select the container registry to download from. In our example, you will use `docker.io/library/nextcloud:latest`.
 
-Once you have downloaded the Nextcloud container, it will run.
+Once you have downloaded the Nextcloud image, it will run.
 
 Enter **ip_address:8080** in your web browser (assuming you opened the port in `firewalld`) and set up Nextcloud:
 
@@ -201,11 +201,11 @@ Replace `compassionate_meninsky` with your container's assigned name.
 
 When your system reboots, Nextcloud will restart in Podman.
 
-## DockerFiles
+## Containerfiles
 
-A DockerFile is a file used by Docker to create custom container images. Since Podman is fully compatible with Dockerfile, you can build your container images with Podman like you would with Docker.
+A Containerfile is a file used by Podman  to create container images. Containerfiles use the same syntax as Dockerfiles, so you can build your container images with Podman like you would with Docker.
 
-### Web server from a DockerFile
+### Web server from a Containerfile
 
 You will create an `httpd` server based on a RockyLinux 9.
 
@@ -221,7 +221,7 @@ Create an `index.html` file that will run in our web server:
 echo "Welcome to Rocky" > index.html
 ```
 
-Create a `Dockerfile` file with the following content:
+Create a `Containerfile` file with the following content:
 
 ```text
 # Use the latest rockylinux image as a start
