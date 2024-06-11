@@ -324,7 +324,7 @@ You can't do much with a computer these days without network connectivity. Wheth
     64 bytes from 192.168.1.10: icmp_seq=3 ttl=255 time=0.676 ms
     ```
 
-    Test to ensure we cam see a reachable host external to your network. For the test below, we are using Google's open DNS server:
+    Test to ensure we can see a reachable host external to your network. For the test below, we are using Google's open DNS server:
 
     ```bash
     ping -c3 8.8.8.8
