@@ -109,7 +109,7 @@ Enter **ip_address:8080** in your web browser (assuming you opened the port in `
 
 ![Nextcloud in container](../../gemstones/images/podman_nextcloud.png)
 
-!!! tip "Tip"
+!!! tip
 
     To follow the log output of the last created container use `podman logs -lf`. `-l` specifies to use the last created container, while `-f` specifies to follow the logs, as they are created. Press Ctrl+C to stop the log output.
 
