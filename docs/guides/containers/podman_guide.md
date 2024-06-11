@@ -370,3 +370,53 @@ podman system prune -a -f
 | `-a`        | Removes all unused data, not only the external to Podman |
 | `-f`        | No prompt for confirmation                              |
 | `--volumes` | Prune volumes                                           |
+
+## Pods
+
+Pods are a way to group container together. Containers in a pod share some settings, like mounts, ressource allocations or port mappings. 
+
+In Podman, pods are managed using the `podman pod` subcommand, which is quite simmilar to a lot of the Podman commands to control containers:
+
+| Command | Description                                                                       |
+|--       |--                                                                                 |
+| clone   | Create a copy of an existing pod.                                                 |
+| create  | Create a new pod.                                                                 |
+| exists  | Check if a pod exists in local storage.                                           |
+| inspect | Display information describing a pod.                                             |
+| kill    | Kill the main process of each container in one or more pods.                      |
+| logs    | Display logs for pod with one or more containers.                                 |
+| pause   | Pause one or more pods.                                                           |
+| prune   | Remove all stopped pods and their containers.                                     |
+| ps      | Print out information about pods.                                                 |
+| restart | Restart one or more pods.                                                         |
+| rm      | Remove one or more stopped pods and containers.                                   |
+| start   | Start one or more pods.                                                           |   
+| stats   | Display a live stream of resource usage stats for containers in one or more pods. |
+| stop    | Stop one or more pods.                                                            |
+| top     | Display the running processes of containers in a pod.                             |
+| unpause | Unpause one or more pods.                                                         |
+
+Containers grouped into a pod can access each over by using localhost. This is usefull, for instance when setting up a Nextcloud with a dedicated database like postgres. Nextcloud can access the database, but the database does not need to be accessible from outside the containers.
+
+To create a pod containing Nextcloud and a dedicated database run:
+
+```bash
+# Create the pod with a port mapping
+podman pod create --name nextcloud -p 8080:80
+
+# Add a Nextcloud container to the pod – the port mapping must not be specified again!
+podman create --pod nextcloud --name nextcloud-app nextcloud
+
+# Add a Postgres database. This container has a postgres specific environment variable set.
+podman create --pod nextcloud --name nextcloud-db -e POSTGRES_HOST_AUTH_METHOD=trust postgres
+```
+
+To run you newly created pod run:
+
+```bash
+podman pod start nextcloud
+```
+
+You can now setup Nextcloud using a local database:
+
+![Nextcloud setting up a database](img/podman_nextcloud_db_setup.png)
