@@ -1,7 +1,7 @@
 ---
 title: Active Directory Authentication with Samba
 author: Neel Chauhan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.4
 ---
 
@@ -16,13 +16,13 @@ In most enterprises, Microsoft's Active Directory (AD) is the default authentica
 
 While connecting Linux to an AD cluster cannot support _all_ of the features mentioned, it can handle users, groups, and access control. It is possible (through some configuration tweaks on the Linux side and some advanced options on the AD side) to distribute SSH keys using AD.
 
-The default way of using Active Directory on Rocky Linux uses SSSD but Samba is a more full-featured alternative. For instance, file sharing can be done with Samba but not SSSD. This guide, however, will just cover configuring authentication against Active Directory using Samba, and will not include any extra configuration on the Windows side.
+The default way of using Active Directory on Rocky Linux is using SSSD, but Samba is a more full-featured alternative. For instance, file sharing can be done with Samba but not SSSD. This guide, however, will cover configuring authentication against Active Directory using Samba and will not include any extra configuration on the Windows side.
 
 ## Discovering and joining AD using Samba
 
 !!! Note
 
-    The domain name `ad.company.local` throughout this guide will represent the Active Directory domain. To follow this guide, replace it with your AD domain's actual domain name.
+    The domain name `ad.company.local` throughout this guide will represent the Active Directory domain. To follow this guide, replace it with your AD domain's name.
 
 The first step to joining a Linux system into AD is to discover your AD cluster, to ensure the network configuration is correct on both sides.
 
