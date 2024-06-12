@@ -1,7 +1,7 @@
 ---
 title: Podman
 author: Neel Chauhan
-contributors: Steven Spencer, Ganna Zhyrnova
+contributors: Steven Spencer, Ganna Zhyrnova, Christian Steinert
 date: 2024-03-07
 tags:
   - docker
@@ -38,7 +38,76 @@ podman run -d -p 8080:80 nextcloud
 
 ## Запуск контейнерів як служб systemd
 
-Як згадувалося, ви можете запускати контейнери Podman як служби `systemd`. Давайте тепер зробимо це за допомогою Nextcloud. Запустіть:
+### Використання `quadlet`
+
+Починаючи з версії 4.4 Podman постачається з [Quadlet](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html) – генератором systemd. Його можна використовувати для генерації файлів модулів для безкорінних і кореневих системних служб.
+
+Можна розміщувати файли квадлетів для кореневих служб в
+
+- `/etc/containers/systemd/`
+- `/usr/share/containers/systemd/`
+
+тоді як безкореневі файли можна розмістити в будь-якому з
+
+- `$XDG_CONFIG_HOME/containers/systemd/` або `~/.config/containers/systemd/`
+- `/etc/containers/systemd/users/$(UID)`
+- `/etc/containers/systemd/users/`
+
+Хоча файли окремих контейнерів, pod, image, network, volume і kube також підтримуються, давайте зосередимося на нашому прикладі Nextcloud. Створіть новий файл ~/.config/containers/systemd/nextcloud.cotainer із таким вмістом:
+
+```systemd
+[Container]
+Image=nextcloud
+PublishPort=8080:80
+```
+
+Доступно [багато інших варіантів](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html#container-units-container).
+
+Щоб запустити генератор і повідомити systemd про запуск нової служби:
+
+```bash
+systemctl --user daemon-reload
+```
+
+Щоб запустити службу, виконайте такі дії:
+
+```bash
+systemctl --user start nextcloud.service
+```
+
+!!! note "Примітка"
+
+```
+Якщо ви створили файл в одному з каталогів для кореневих служб, опустіть позначку `--user`.
+```
+
+Щоб автоматично запускати контейнер після запуску системи або входу користувача, ви можете додати ще один розділ до свого файлу `nextcloud.container`:
+
+```systemd
+[Install]
+WantedBy=default.target
+```
+
+Потім знову запустіть генератор і ввімкніть службу:
+
+```bash
+systemctl --user daemon-reload;
+systemctl --user enable nextcloud.service;
+```
+
+Підтримуються інші типи файлів: pod, том, мережа, зображення та kube. [Pods](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html#pod-units-pod), наприклад, можна використовувати для групування контейнерів – згенерованого systemd служби та їхні залежності (створити pod перед контейнерами) автоматично керуються systemd.
+
+### Використання `podman generate systemd`
+
+Podman додатково надає підкоманду `generate systemd`. Його можна використовувати для створення службових файлів `systemd`.
+
+!!! warning "Важливо"
+
+```
+`generate systemd` не підтримується і не матиме подальших функцій. Рекомендовано використовувати Quadlet.
+```
+
+Давайте тепер зробимо це за допомогою Nextcloud. Запустіть:
 
 ```bash
 podman ps

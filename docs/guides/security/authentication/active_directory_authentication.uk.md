@@ -1,9 +1,9 @@
 ---
+title: Аутентифікація Active Directory
 author: Hayden Young
-contributors: Steven Spencer, Sambhav Saggi, Antoine Le Morvan, Krista Burdine, Ganna Zhyrnova
+contributors: Steven Spencer, Sambhav Saggi, Antoine Le Morvan, Krista Burdine, Ganna Zhyrnova, Neel Chauhan
+tested_with: 9.4
 ---
-
-# Аутентифікація Active Directory
 
 ## Передумови
 
@@ -106,7 +106,7 @@ ad.company.local
 administrator@ad.company.local:*:1450400500:1450400513:Administrator:/home/administrator@ad.company.local:/bin/bash
 ```
 
-!!! Note "Примітка" 
+!!! Note "Примітка"
 
     `getent` отримує записи з бібліотек перемикання служб імен (NSS). Це означає, що, наприклад, на відміну від `passwd` або `dig`, він запитуватиме різні бази даних, у тому числі `/etc/hosts` для `getent hosts` або з `sssd` у випадку `getent passwd`.
 
@@ -125,7 +125,7 @@ administrator@ad.company.local:*:1450400500:1450400513:Administrator:/home/admin
 
 **У Windows 10:** (яка надає власну копію OpenSSH)
 
-```
+```dos
 C:\Users\John.Doe> ssh -l john.doe@ad.company.local linux.host
 Password for john.doe@ad.company.local:
 

@@ -1,9 +1,9 @@
 ---
+title: Authentification avec Active Directory
 author: Hayden Young
-contributors: Steven Spencer, Sambhav Saggi, Antoine Le Morvan, Krista Burdine, Ganna Zhyrnova
+contributors: Steven Spencer, Sambhav Saggi, Antoine Le Morvan, Krista Burdine, Ganna Zhyrnova, Neel Chauhan
+tested_with: 9.4
 ---
-
-# Authentification avec Active Directory
 
 ## Prérequis
 
@@ -66,7 +66,7 @@ La première étape pour relier un système GNU/Linux à AD consiste à connecte
 
 ### Connexion automatique
 
-Maintenant, vous devriez être en mesure de vous connecter avec succès à votre ou vos serveurs AD à partir de votre hôte GNU/Linux.
+Maintenant, vous devriez être en mesure de vous connecter avec succès à votre ou vos serveurs AD à partir de votre hôte Linux.
 
 ```sh
 [user@host ~]$ realm discover ad.company.local
@@ -107,7 +107,7 @@ Si ce processus réussit, vous devriez maintenant pouvoir extraire les informati
 administrator@ad.company.local:*:1450400500:1450400513:Administrator:/home/administrator@ad.company.local:/bin/bash
 ```
 
-!!! note "Remarque" 
+!!! note "Remarque"
 
     La commande `getent` récupère les données des bibliothèques Name Service Switch (NSS). Cela signifie que, contrairement à `passwd` ou `dig` par exemple, il va interroger différentes bases de données, y compris `/etc/hosts` pour `getent hosts` ou depuis `sssd` dans le cas de `getent passwd`.
 
@@ -126,7 +126,7 @@ Now your users should be able to authenticate to your Linux host against Active 
 
 **Sous Windows 10 :** (qui possède sa propre copie de OpenSSH)
 
-```
+```dos
 C:\Users\John.Doe> ssh -l john.doe@ad.company.local linux.host
 Password for john.doe@ad.company.local:
 
@@ -140,7 +140,7 @@ If this succeeds, you have successfully configured Linux to use Active Directory
 
 ### Définir le domaine par défaut
 
-In a completely default setup, you will need to log in with your AD account by specifying the domain in your username (e.g., `john.doe@ad.company.local`). If this is not the desired behavior, and you instead want to be able to omit the domain name at authentication time, you can configure SSSD to default to a specific domain.
+In a completely default setup, you will need to log in with your AD account by specifying the domain in your username (e.g., `john.doe@ad.company.local`). Si ce n'est pas le comportement souhaité et vous voulez plutôt pouvoir omettre le nom de domaine au moment de l'authentification, vous pouvez configurer SSSD pour qu'il utilise un domaine spécifique par défaut.
 
 This is a relatively straightforward process, requiring a configuration tweak in your SSSD configuration file.
 
@@ -167,7 +167,7 @@ use_fully_qualified_names = False
 override_homedir = /home/%u
 ```
 
-N'oubliez pas de redémarrer le service `sssd`.
+N'oubliez pas de relancer le service `sssd`.
 
 ### Restreindre à certains utilisateurs
 
