@@ -40,7 +40,7 @@ Enter **ip_address:8080** in your web browser (assuming you opened the port in `
 
 ### Using `quadlet`
 
-Since 4.4 Podman ships with [Quadlet](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html) – a systemd generator. It can be used to generate unit files for rootless and rootful systemd services.
+Since 4.4, Podman ships with [Quadlet](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html), a systemd generator that can generate unit files for rootless and rootful systemd services.
 
 Quadlet files for rootful services can be placed in 
 
@@ -53,7 +53,7 @@ while rootless files can be placed in either of
 - `/etc/containers/systemd/users/$(UID)`
 - `/etc/containers/systemd/users/`
 
-While, aside from single containers, pod, image, network, volume and kube files are supported, let's focus on our Nextcloud example. Create a new file `~/.config/containers/systemd/nextcloud.cotainer` with the following content:
+While single containers, pod, image, network, volume, and kube files are also supported, let's focus on our Nextcloud example. Create a new file `~/.config/containers/systemd/nextcloud.cotainer` with the following content:
 
 ```systemd
 [Container]
@@ -86,14 +86,14 @@ To automatically run the container upon system start or user login, you can add 
 WantedBy=default.target
 ```
 
-Then let the generator run again, and enable your service:
+Then let the generator run again and enable your service:
 
 ```bash
 systemctl --user daemon-reload;
 systemctl --user enable nextcloud.service;
 ```
 
-Other file types are supported: pod, volume, network, image and kube. [Pods](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html#pod-units-pod) for instance can be used to group containers – the generated systemd services and theirs dependencies (create the pod before the containers) are automatically managed by systemd.
+Other file types are supported: pod, volume, network, image, and kube. [Pods](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html#pod-units-pod), for instance, can be used to group containers – the generated systemd services and their dependencies (create the pod before the containers) are automatically managed by systemd.
 
 ### Using `podman generate systemd`
 
@@ -101,7 +101,7 @@ Podman additionally provides the `generate systemd` subcommand. It can be used t
 
 !!! warning
 
-    `generate systemd` is now deprecated and will not receive further features. Usage of Quadlet is recommended.
+    `generate systemd` is now deprecated and will not receive further features. The usage of Quadlet is recommended.
 
 
 Let us now do it with Nextcloud. Run:
