@@ -23,34 +23,33 @@ tags:
 
 The [nvim-lint](https://github.com/mfussenegger/nvim-lint) plugin provides support for inserting ==linters== into the editor by correcting code or content for both the syntactic and semantic parts.
 
-To install the plugin, you need to edit the `lua/plugins/init.lua` file by adding the following block of code:
+To install the *nvim-lint* plugin, simply create a **nvim-lint.lua** file in the `lua/plugins` folder; when the Neovim instance is next started, this will be integrated into the configuration.
 
-```lua title="plugins.lua"
-  {
-    "mfussenegger/nvim-lint",
-    event = "VeryLazy",
-    config = function()
-      require "custom.configs.lint"
+The contents of the file are as follows:
+
+```lua title="nvim-lint.lua"
+return {
+ {
+  "mfussenegger/nvim-lint",
+  enabled = true,
+  event = "VeryLazy",
+  config = function()
+   require("lint").linters_by_ft = {
+    markdown = { "markdownlint", "vale" },
+    yaml = { "yamllint" },
+   }
+
+   vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    callback = function()
+     require("lint").try_lint()
     end,
-  },
-```
-
-The plugin has a configuration file to be placed in the `lua/configs` folder. Inside it we find a table ==linters_by_ft== where you can enter the *linters* for the languages used for development.
-
-```lua title="lint.lua"
-require("lint").linters_by_ft = {
-  markdown = { "markdownlint" },
-  yaml = { "yamllint" },
-}
-
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  callback = function()
-    require("lint").try_lint()
+   })
   end,
-})
+ },
+}
 ```
 
-This configuration file is set to work with markdown code but can be modified or extended with [those available](https://github.com/mfussenegger/nvim-lint?tab=readme-ov-file#available-linters) on the project site.  
+This configuration file is set to work with markdown code but can be modified or extended with [those available](https://github.com/mfussenegger/nvim-lint?tab=readme-ov-file#available-linters) on the project site.
 
 Once the changes are complete exit and re-enter NvChad to install the plugin and import the configuration.
 
