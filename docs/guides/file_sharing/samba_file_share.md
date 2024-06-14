@@ -10,7 +10,7 @@ tags:
 
 ## Introduction
 
-If you have ever dealt with Windows systems chances are you are aware of SMB (Server Message Block) for file sharing. If you are a seasoned Linux administrator chances are that you have heard of Samba but if you have not, [Samba](https://www.samba.org/) is the de facto open source implementation of SMB to enable file sharing and Active Directory access from Linux machines to Windows networks.
+If you have ever dealt with Windows systems chances are you are aware of SMB (Server Message Block) for file sharing. If you are a seasoned Linux administrator chances are that you have heard of Samba but if you have not, [Samba](https://www.samba.org/) is the de facto open-source implementation of SMB to enable file sharing and Active Directory access from Linux machines to Windows networks.
 
 ## Installation
 
