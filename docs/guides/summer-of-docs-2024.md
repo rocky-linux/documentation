@@ -33,6 +33,8 @@ This project is open to everyone. Interested candidates should email docs@rockyl
 - Proposed topics/titles for RL desktop documentation
 - Preferred languages for translation
 
+(If you have any questions or need assistance participating, please connect with us at https://chat.rockylinux.org)
+
 ## Grant
 
 - Contribute 5 original desktop-focused guides to the new "Desktop" category and receive $200 (up to $1000).
