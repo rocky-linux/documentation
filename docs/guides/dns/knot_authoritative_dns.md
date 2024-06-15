@@ -9,7 +9,7 @@ tags:
 
 # Knot Authoritative DNS
 
-An alternative to BIND, [Knot DNS](https://www.knot-dns.cz/) is an modern authoritative-only DNS server maintained by the Czech domain registry [CZ.NIC](https://www.nic.cz/).
+An alternative to BIND, [Knot DNS](https://www.knot-dns.cz/) is a modern authoritative-only DNS server maintained by the Czech domain registry [CZ.NIC](https://www.nic.cz/).
 
 ## Prerequisites and assumptions
 
