@@ -45,7 +45,7 @@ mv /etc/knot/knot.conf /etc/knot/knot.conf.orig
 
 That will help in the future if the introduction of errors into the configuration file occurs. It is *always* a good idea to make a backup copy before making changes.
 
-Edit the *knot.conf* file. The author is using *vi* , but you can substitute your favorite command line editor:
+Edit the *knot.conf* file. The author is using *vi*, but you can substitute your favorite command line editor:
 
 ```bash
 vi /etc/knot/knot.conf
