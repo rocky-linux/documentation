@@ -33,6 +33,8 @@ Ce projet est ouvert à chacun. Les candidats intéressés doivent envoyer un co
 - Thèmes/titres proposés pour la documentation du Desktop de Rocky Linux
 - Langues proposées pour la traduction
 
+(Si vous avez des questions ou avez besoin d'aide pour participer, veuillez nous contacter sur https://chat.rockylinux.org)
+
 ## Subvention
 
 - Contribuez à 5 guides originaux axés sur les ordinateurs de bureau dans la nouvelle catégorie « Desktop » et recevez 200 $ (jusqu'à 1 000 $).
