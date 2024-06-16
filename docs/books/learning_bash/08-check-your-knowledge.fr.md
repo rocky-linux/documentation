@@ -37,7 +37,7 @@ tags:
 
 - [ ] Concatène 2 chaînes de caractères
 - [ ] Effectue des opérations mathématiques
-- [ ] Afficher le texte à l'écran
+- [ ] Affiche un texte à l'écran
 
 :heavy_check_mark: La syntaxe de la structure conditionnelle ci-dessous vous semble-t-elle correcte ? Expliquez pourquoi.
 
@@ -79,5 +79,5 @@ esac
 
 - [ ] while
 - [ ] until
-- [ ] boucle
+- [ ] loop
 - [ ] for
