@@ -1,7 +1,7 @@
 ---
 title: Podman
 author: Neel Chauhan, Antoine Le Morvan
-contributors: Steven Spencer, Ganna Zhyrnova
+contributors: Steven Spencer, Ganna Zhyrnova, Christian Steinert
 date: 2024-03-07
 tags:
   - docker
@@ -10,7 +10,7 @@ tags:
 
 # Introduction
 
-!!! note
+!!! note "Note"
 
     This document represents expanded content from its [parent document found here](../../gemstones/containers/podman.md). If you need a quick how-to, that parent document may suffice. 
 
@@ -83,7 +83,7 @@ Here is a non-exhaustive list of the most commonly used subcommands:
 | `unpause`   | Unpauses the processes in one or more containers                 |
 | `volume`    | Manages volumes                                                  |
 
-!!! note
+!!! note "Note"
 
     Podman can run almost any Docker command thanks to its similar CLI interface.
 
@@ -103,15 +103,84 @@ podman run -d -p 8080:80 nextcloud
 
 You will receive a prompt to select the container registry to download from. In our example, you will use `docker.io/library/nextcloud:latest`.
 
-Once you have downloaded the Nextcloud container, it will run.
+Once you have downloaded the Nextcloud image, it will run.
 
 Enter **ip_address:8080** in your web browser (assuming you opened the port in `firewalld`) and set up Nextcloud:
 
 ![Nextcloud in container](../../gemstones/images/podman_nextcloud.png)
 
+!!! tip
+
+    To follow the log output of the last created container use `podman logs -lf`. `-l` specifies to use the last created container, while `-f` specifies to follow the logs, as they are created. Press Ctrl+C to stop the log output.
+
 ## Running containers as `systemd` services
 
-As mentioned, you can run Podman containers as `systemd` services. Let us now do it with Nextcloud. Run:
+### Using `quadlet`
+
+Since 4.4 Podman ships with [Quadlet](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html) – a systemd generator. It can be used to generate unit files for rootless and rootful systemd services.
+
+Quadlet files for rootful services can be placed in 
+
+- `/etc/containers/systemd/`
+- `/usr/share/containers/systemd/`
+
+while rootless files can be placed in either of
+
+- `$XDG_CONFIG_HOME/containers/systemd/` or `~/.config/containers/systemd/`
+- `/etc/containers/systemd/users/$(UID)`
+- `/etc/containers/systemd/users/`
+
+While, aside from single containers, pod, image, network, volume and kube files are supported, let's focus on our Nextcloud example. Create a new file `~/.config/containers/systemd/nextcloud.cotainer` with the following content:
+
+```systemd
+[Container]
+Image=nextcloud
+PublishPort=8080:80
+```
+
+A [lot of other options](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html#container-units-container) are available.
+
+To run the generator and let systemd know that there is a new service run:
+
+```bash
+systemctl --user daemon-reload
+```
+
+To now run your service run:
+
+```bash
+systemctl --user start nextcloud.service
+```
+
+!!! note "Note"
+
+    If you created a file in one of the directories for rootful services, omit the `--user` flag.
+
+To automatically run the container upon system start or user login, you can add another section to your `nextcloud.container` file:
+
+```systemd
+[Install]
+WantedBy=default.target
+```
+
+Then let the generator run again, and enable your service:
+
+```bash
+systemctl --user daemon-reload;
+systemctl --user enable nextcloud.service;
+```
+
+Other file types are supported: pod, volume, network, image and kube. [Pods](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html#pod-units-pod) for instance can be used to group containers – the generated systemd services and theirs dependencies (create the pod before the containers) are automatically managed by systemd.
+
+### Using `podman generate systemd`
+
+Podman additionally provides the `generate systemd` subcommand. It can be used to generate `systemd` service files. 
+
+!!! warning "Warning"
+
+    `generate systemd` is now deprecated and will not receive further features. Usage of Quadlet is recommended.
+
+Let us now do it with Nextcloud. Run:
 
 ```bash
 podman ps
@@ -136,11 +205,11 @@ Replace `compassionate_meninsky` with your container's assigned name.
 
 When your system reboots, Nextcloud will restart in Podman.
 
-## DockerFiles
+## Containerfiles
 
-A DockerFile is a file used by Docker to create custom container images. Since Podman is fully compatible with Dockerfile, you can build your container images with Podman like you would with Docker.
+A Containerfile is a file used by Podman  to create container images. Containerfiles use the same syntax as Dockerfiles, so you can build your container images with Podman like you would with Docker.
 
-### Web server from a DockerFile
+### Web server from a Containerfile
 
 You will create an `httpd` server based on a RockyLinux 9.
 
@@ -156,7 +225,7 @@ Create an `index.html` file that will run in our web server:
 echo "Welcome to Rocky" > index.html
 ```
 
-Create a `Dockerfile` file with the following content:
+Create a `Containerfile` file with the following content:
 
 ```text
 # Use the latest rockylinux image as a start
@@ -239,7 +308,7 @@ CONTAINER ID  IMAGE                              COMMAND     CREATED         STA
 282c09eecf84  localhost/myrockywebserver:latest  /sbin/init  16 seconds ago  Up 16 seconds  0.0.0.0:8080->80/tcp  rockywebserver
 ```
 
-You launched your Podman image in daemon mode (`-p`) and named it `rockywebserver` (option `--name`).
+You launched your Podman image in daemon mode (`-d`) and named it `rockywebserver` (option `--name`).
 
 You redirected port 80 (protected) to port 8080 with the `-p` option. See if the port is listening with:
 
@@ -260,6 +329,10 @@ Congratulations! You can now stop and destroy your running image, giving the nam
 ```bash
 podman stop rockywebserver && podman rm rockywebserver
 ```
+
+!!! tip "Tip"
+
+    You can add the `--rm` switch to automatically delete the container once it stopps.
 
 If you relaunch the build process, `podman` will use a cache at each step of the build:
 
@@ -301,3 +374,53 @@ podman system prune -a -f
 | `-a`        | Removes all unused data, not only the external to Podman |
 | `-f`        | No prompt for confirmation                              |
 | `--volumes` | Prune volumes                                           |
+
+## Pods
+
+Pods are a way to group container together. Containers in a pod share some settings, like mounts, ressource allocations or port mappings. 
+
+In Podman, pods are managed using the `podman pod` subcommand, which is quite simmilar to a lot of the Podman commands to control containers:
+
+| Command | Description                                                                       |
+|--       |--                                                                                 |
+| clone   | Create a copy of an existing pod.                                                 |
+| create  | Create a new pod.                                                                 |
+| exists  | Check if a pod exists in local storage.                                           |
+| inspect | Display information describing a pod.                                             |
+| kill    | Kill the main process of each container in one or more pods.                      |
+| logs    | Display logs for pod with one or more containers.                                 |
+| pause   | Pause one or more pods.                                                           |
+| prune   | Remove all stopped pods and their containers.                                     |
+| ps      | Print out information about pods.                                                 |
+| restart | Restart one or more pods.                                                         |
+| rm      | Remove one or more stopped pods and containers.                                   |
+| start   | Start one or more pods.                                                           |   
+| stats   | Display a live stream of resource usage stats for containers in one or more pods. |
+| stop    | Stop one or more pods.                                                            |
+| top     | Display the running processes of containers in a pod.                             |
+| unpause | Unpause one or more pods.                                                         |
+
+Containers grouped into a pod can access each over by using localhost. This is usefull, for instance when setting up a Nextcloud with a dedicated database like postgres. Nextcloud can access the database, but the database does not need to be accessible from outside the containers.
+
+To create a pod containing Nextcloud and a dedicated database run:
+
+```bash
+# Create the pod with a port mapping
+podman pod create --name nextcloud -p 8080:80
+
+# Add a Nextcloud container to the pod – the port mapping must not be specified again!
+podman create --pod nextcloud --name nextcloud-app nextcloud
+
+# Add a Postgres database. This container has a postgres specific environment variable set.
+podman create --pod nextcloud --name nextcloud-db -e POSTGRES_HOST_AUTH_METHOD=trust postgres
+```
+
+To run you newly created pod run:
+
+```bash
+podman pod start nextcloud
+```
+
+You can now setup Nextcloud using a local database:
+
+![Nextcloud setting up a database](img/podman_nextcloud_db_setup.png)
