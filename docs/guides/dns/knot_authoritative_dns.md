@@ -1,13 +1,11 @@
 ---
 title: Knot Authoritative DNS
 author: Neel Chauhan
-contributors:
+contributors: Steven Spencer
 tested_with: 9.4
 tags:
   - dns
 ---
-
-# Knot Authoritative DNS
 
 An alternative to BIND, [Knot DNS](https://www.knot-dns.cz/) is a modern authoritative-only DNS server maintained by the Czech domain registry [CZ.NIC](https://www.nic.cz/).
 
@@ -45,7 +43,7 @@ mv /etc/knot/knot.conf /etc/knot/knot.conf.orig
 
 That will help in the future if the introduction of errors into the configuration file occurs. It is *always* a good idea to make a backup copy before making changes.
 
-Edit the *knot.conf* file. The author is using *vi*, but you can substitute your favorite command line editor:
+Edit the *knot.conf* file. The author uses *vi*, but you can substitute your favorite command line editor:
 
 ```bash
 vi /etc/knot/knot.conf
@@ -70,7 +68,7 @@ log:
 
 Replace `example.com` with the domain name you are running a nameserver for.
 
-Next, create the zone files itself:
+Next, create the zone files:
 
 ```bash
 mkdir /var/lib/knot/zones
@@ -105,7 +103,7 @@ Save your changes.
 
 ## Enabling Knot
 
-Now you will allow DNS in `firewall-cmd` and enable Knot DNS:
+Next, allow DNS ports in `firewalld` and enable Knot DNS:
 
 ```bash
 firewall-cmd --add-service=dns --zone=public
@@ -113,7 +111,7 @@ firewall-cmd --runtime-to-permanent
 systemctl enable --now knot
 ```
 
-You can check DNS resolution with the `host` command:
+Check DNS resolution with the `host` command:
 
 ```bash
 % host example.com 172.20.0.100
@@ -126,8 +124,9 @@ example.com has address 172.20.0.100
 example.com mail is handled by 10 mail.another.com.
 %
 ```
+
 ## Conclusion
 
-While most people use third-party services for DNS there are scenarios where self-hosting DNS is desired. For instance, telecom, hosting and social media companies host a large number of DNS entries where hosted services are undesirable.
+While most people use third-party services for DNS, there are scenarios where self-hosting DNS is desired. For instance, telecom, hosting, and social media companies, host a large number of DNS entries where hosted services are undesirable.
 
-Knot is one of many open source tools which make hosting DNS possible, so congratulations, you got your very own DNS server! Cheers!
+Knot is one of many open source tools which make hosting DNS possible. Congratulations, you have your very own DNS server! Cheers!
