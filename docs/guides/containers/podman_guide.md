@@ -8,9 +8,9 @@ tags:
   - podman
 ---
 
-# Introduction
+## Introduction
 
-!!! note "Note"
+!!! note
 
     This document represents expanded content from its [parent document found here](../../gemstones/containers/podman.md). If you need a quick how-to, that parent document may suffice. 
 
@@ -83,7 +83,7 @@ Here is a non-exhaustive list of the most commonly used subcommands:
 | `unpause`   | Unpauses the processes in one or more containers                 |
 | `volume`    | Manages volumes                                                  |
 
-!!! note "Note"
+!!! note
 
     Podman can run almost any Docker command thanks to its similar CLI interface.
 
@@ -119,18 +119,18 @@ Enter **ip_address:8080** in your web browser (assuming you opened the port in `
 
 Since 4.4 Podman ships with [Quadlet](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html) – a systemd generator. It can be used to generate unit files for rootless and rootful systemd services.
 
-Quadlet files for rootful services can be placed in 
+Place Quadlet files for rootful services in:
 
-- `/etc/containers/systemd/`
-- `/usr/share/containers/systemd/`
+* `/etc/containers/systemd/`
+* `/usr/share/containers/systemd/`
 
-while rootless files can be placed in either of
+Place rootless files in any of:
 
-- `$XDG_CONFIG_HOME/containers/systemd/` or `~/.config/containers/systemd/`
-- `/etc/containers/systemd/users/$(UID)`
-- `/etc/containers/systemd/users/`
+* `$XDG_CONFIG_HOME/containers/systemd/` or `~/.config/containers/systemd/`
+* `/etc/containers/systemd/users/$(UID)`
+* `/etc/containers/systemd/users/`
 
-While, aside from single containers, pod, image, network, volume and kube files are supported, let's focus on our Nextcloud example. Create a new file `~/.config/containers/systemd/nextcloud.cotainer` with the following content:
+Aside from single containers, pod, image, network, volume, and kube files are supported. Let us focus on our Nextcloud example. Create a new file `~/.config/containers/systemd/nextcloud.cotainer` with the following content:
 
 ```systemd
 [Container]
@@ -152,7 +152,7 @@ To now run your service run:
 systemctl --user start nextcloud.service
 ```
 
-!!! note "Note"
+!!! note
 
     If you created a file in one of the directories for rootful services, omit the `--user` flag.
 
@@ -174,9 +174,9 @@ Other file types are supported: pod, volume, network, image and kube. [Pods](htt
 
 ### Using `podman generate systemd`
 
-Podman additionally provides the `generate systemd` subcommand. It can be used to generate `systemd` service files. 
+Podman additionally provides the `generate systemd` subcommand. Use this subcommand to generate `systemd` service files.
 
-!!! warning "Warning"
+!!! warning
 
     `generate systemd` is now deprecated and will not receive further features. Usage of Quadlet is recommended.
 
@@ -330,7 +330,7 @@ Congratulations! You can now stop and destroy your running image, giving the nam
 podman stop rockywebserver && podman rm rockywebserver
 ```
 
-!!! tip "Tip"
+!!! tip
 
     You can add the `--rm` switch to automatically delete the container once it stopps.
 
@@ -377,9 +377,9 @@ podman system prune -a -f
 
 ## Pods
 
-Pods are a way to group container together. Containers in a pod share some settings, like mounts, ressource allocations or port mappings. 
+Pods are a way to group container together. Containers in a pod share some settings, like mounts, resource allocations or port mappings.
 
-In Podman, pods are managed using the `podman pod` subcommand, which is quite simmilar to a lot of the Podman commands to control containers:
+In Podman, you manage pods using the `podman pod` subcommand, similar to many Podman commands, to control containers:
 
 | Command | Description                                                                       |
 |--       |--                                                                                 |
@@ -394,13 +394,13 @@ In Podman, pods are managed using the `podman pod` subcommand, which is quite si
 | ps      | Print out information about pods.                                                 |
 | restart | Restart one or more pods.                                                         |
 | rm      | Remove one or more stopped pods and containers.                                   |
-| start   | Start one or more pods.                                                           |   
+| start   | Start one or more pods.                                                           |
 | stats   | Display a live stream of resource usage stats for containers in one or more pods. |
 | stop    | Stop one or more pods.                                                            |
 | top     | Display the running processes of containers in a pod.                             |
 | unpause | Unpause one or more pods.                                                         |
 
-Containers grouped into a pod can access each over by using localhost. This is usefull, for instance when setting up a Nextcloud with a dedicated database like postgres. Nextcloud can access the database, but the database does not need to be accessible from outside the containers.
+Containers grouped into a pod can access each other by using localhost. This is usefull, for instance, when setting up Nextcloud with a dedicated database like postgres. Nextcloud can access the database, but the database does not need to be accessible from outside the containers.
 
 To create a pod containing Nextcloud and a dedicated database run:
 
