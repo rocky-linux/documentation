@@ -94,7 +94,7 @@ Pour entrer en mode de secours, vous devez fournir le mot de passe root.
 
 Pour accéder au mode de secours, le moyen le plus simple est de sélectionner la ligne commençant par `0-rescue-*` dans le menu grub.
 
-Une autre façon consiste à éditer n'importe quelle ligne du menu grub (en appuyant sur la touche ++'e'++) et à ajouter `systemd.unit=rescue.target` à la fin de la ligne qui commence par `linux`, puis à appuyer sur ++ctrl++ + ++x++ pour démarrez le système en mode de secours.
+Une autre façon consiste à éditer n'importe quelle ligne du menu grub (en appuyant sur la touche ++'e'++) et à ajouter `systemd.unit=rescue.target` à la fin de la ligne qui commence par `linux`, puis à appuyer sur ++ctrl++ + ++"x"++ pour démarrez le système en mode de secours.
 
 !!! note "Remarque"
 
