@@ -1,4 +1,9 @@
-# Part 6. Mail servers
+---
+author: 
+contributors: 
+title: Part 6. Mail servers
+---
+<!---
 
 ## Postfix
 
@@ -47,3 +52,4 @@ In this chapter, you will learn about XXXXXXX.
 * [ ] Answer 3  
 * [ ] Answer 4  
 
+-->

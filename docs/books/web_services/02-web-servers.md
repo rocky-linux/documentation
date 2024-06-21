@@ -1,8 +1,8 @@
 ---
 author: Antoine Le Morvan
 contributors: Steven Spencer, Ganna Zhyrnova
+title: Part 2. Web Servers
 ---
-# Part 2. Web Servers
 
 ## Generalities
 
@@ -710,6 +710,8 @@ sudo find ./ -type d -exec chmod 0755 "{}" \;
 sudo find ./ -type f -exec chmod 0644 "{}" \;
 ```
 
+<!---
+
 ### Workshop
 
 #### Task 1 : XXX
@@ -777,3 +779,5 @@ In this chapter, you will learn about XXXXXXX.
 * [ ] Answer 2  
 * [ ] Answer 3  
 * [ ] Answer 4  
+
+-->

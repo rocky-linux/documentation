@@ -1,3 +1,10 @@
+---
+author: 
+contributors: 
+title: Part 5. Load balancing, caching and proxyfication
+---
+<!---
+
 # Part 5. Load balancing, caching and proxyfication
 
 ## HAProxy
@@ -141,3 +148,4 @@ In this chapter, you will learn about XXXXXXX.
 * [ ] Answer 3  
 * [ ] Answer 4  
 
+-->

@@ -559,6 +559,8 @@ You can refer to an `info.php` page (including the `phpinfo();`) to configure th
     Don't underestimate the speed gain that can be achieved by setting up and configuring the opcache correctly.
 
 
+<!---
+
 ### Workshop
 
 #### Task 1 : XXX
@@ -627,6 +629,4 @@ In this chapter, you will learn about XXXXXXX.
 * [ ] Answer 3  
 * [ ] Answer 4  
 
-
-
-
+-->

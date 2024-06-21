@@ -6,8 +6,8 @@ tags:
   - mysql
   - database
   - rdbms
+title: Part 4. Databases servers
 ---
-# Part 4. Databases servers
 
 MySQL, MariaDB and PostgreSQL are open source RDBMS (Relational DataBase Managed System).
 
@@ -51,13 +51,17 @@ Databases services are multi-threaded and multi-user, run on most operating syst
 
 Several engines are supported, enabling different engines to be assigned to different tables within the same database, depending on requirements:
 
-MyISAM:: the simplest, but does not support transactions or foreign keys. It is an indexed sequential engine. MyISAM is now deprecated.
+MyISAM
+:   the simplest, but does not support transactions or foreign keys. It is an indexed sequential engine. MyISAM is now deprecated.
 
-InnoDB:: manages table integrity (foreign keys and transactions), but takes up more disk space. This has been the default engine since MySQL version 5.6. It is a transactional engine.
+InnoDB
+:   manages table integrity (foreign keys and transactions), but takes up more disk space. This has been the default engine since MySQL version 5.6. It is a transactional engine.
 
-Memory:: tables are stored in memory.
+Memory
+:   tables are stored in memory.
 
-Archive:: data compression on insertion saves disk space, but slows down search queries (cold data).
+Archive
+:   data compression on insertion saves disk space, but slows down search queries (cold data).
 
 ...
 
@@ -1376,6 +1380,9 @@ It does, however, offer a number of advantages: high data availability, load bal
 
 It goes without saying that, in the event of a main server crash, one of the secondary servers can be promoted to main server.
 
+<!---
+
+
 ## PostgreSQL
 
 In this chapter, you will learn about XXXXXXX.
@@ -1422,3 +1429,5 @@ In this chapter, you will learn about XXXXXXX.
 * [ ] Answer 2  
 * [ ] Answer 3  
 * [ ] Answer 4  
+
+-->

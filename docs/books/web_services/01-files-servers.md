@@ -1,3 +1,13 @@
+---
+author: 
+contributors: 
+title: Part 1. Files Servers
+tags:
+  - ftp
+  - sftp
+---
+<!---
+
 # Part 1. Files Servers
 
 ## FTP
@@ -93,3 +103,5 @@ In this chapter, you will learn about XXXXXXX.
 * [ ] Answer 2  
 * [ ] Answer 3  
 * [ ] Answer 4  
+
+-->

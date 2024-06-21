@@ -1,4 +1,9 @@
-# Part 7. High availability
+---
+author: 
+contributors: 
+title: Part 7. High availability
+---
+<!---
 
 ## Heartbeat
 
@@ -93,3 +98,5 @@ In this chapter, you will learn about XXXXXXX.
 * [ ] Answer 2  
 * [ ] Answer 3  
 * [ ] Answer 4  
+
+-->
