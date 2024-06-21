@@ -1,6 +1,11 @@
 ---
 author: Antoine Le Morvan
 contributors: Steven Spencer, Ganna Zhyrnova
+tags:
+  - mariadb
+  - mysql
+  - database
+  - rdbms
 ---
 # Part 4. Databases servers
 
