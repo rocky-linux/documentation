@@ -2,10 +2,10 @@
 title: SSH CA Key Signing
 author: Julian Patocki
 tags:
-	- security
-	- ssh
-	- keygen
-	- certificates
+    - security
+    - ssh
+    - keygen
+    - certificates
 ---
 
 # SSH Certificate Authorities and Key Signing
@@ -14,24 +14,20 @@ tags:
 
 * Basic understanding of SSH and public key infrastructure
 
-
 ## Introduction
 
 The initial SSH connection with a remote host is insecure, if you cannot verify the fingerprint of the remote host's key. Using a certificate authority to sign public keys of remote hosts makes the initial connection secure for every user that trusts the CA.
 
 CAs can also be used to sign user SSH keys. Instead of distributing the key to every remote host, one signature is sufficient to authorize user to log in to multiple servers.
 
-
 ## Objectives
 
 * Improving the security of SSH connections
 * Improving the onboarding process and key management
 
-
 ## Skills
 
 + Basic understanding of ssh keys and public key infrastructure
-
 
 ## Initial Connection
 
@@ -69,7 +65,6 @@ Where:
 - **-t**: key type: rsa, ed25519, ecdsa...
 - **-f**: output key file
 
-
 ## Signing the public keys
 
 Creating a client's ssh key and signing it:
@@ -93,7 +88,6 @@ Where:
 - **-n**: identifies the name (host or user) associated with the certificate (if not specified, certificates are valid for all users or hosts)
 - **-h**: defines the certificate as a host key, as opposed to a client key
 - **-V**: validity period of the certificate
-
 
 ## Establishing Trust
 
@@ -128,12 +122,11 @@ Restarting the sshd service on the server:
 [user@rocky-vm ~]$ systemctl restart sshd
 ```
 
-
 ## Testing the Connection
 
 Removing remote server's fingerprint from your `known_hosts` file and verifying the settings by establishing an ssh connection:
 
 ```
-[user@rocky-vm ~]$ ssh-keygen -R rocky-vm.example.com
-[user@rocky-vm ~]$ ssh user@rocky-vm.example.com
+[user@rocky ~]$ ssh-keygen -R rocky-vm.example.com
+[user@rocky ~]$ ssh user@rocky-vm.example.com
 ```
