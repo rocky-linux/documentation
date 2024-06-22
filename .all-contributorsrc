@@ -953,6 +953,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "hs303",
+      "name": "hs303",
+      "avatar_url": "https://avatars.githubusercontent.com/u/84558934?v=4",
+      "profile": "https://github.com/hs303",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
