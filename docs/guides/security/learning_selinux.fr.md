@@ -51,10 +51,10 @@ Le contexte de sécurité est assigné à un utilisateur au moment de sa connexi
 
 Considérez les pièces suivantes du puzzle SELinux :
 
-* Les sujets
-* Les objets
-* Les politiques
-* Le mode
+- Les sujets
+- Les objets
+- Les politiques
+- Le mode
 
 Lorsqu'un sujet (par exemple une application) tente d'accéder à un objet (un fichier par exemple), la partie SELinux du noyau Linux interroge sa base de données de règles. En fonction du mode d'opération, SELinux autorise l'accès à l'objet en cas de succès, sinon il enregistre l'échec dans le fichier `/var/log/messages`.
 
@@ -66,7 +66,7 @@ Par défaut, le contexte de sécurité du processus est défini par le contexte 
 
 Un domaine SELinux (domain) désigne un type spécial lié à un processus, type hérité (normalement) de l'utilisateur qui l'a lancé. Les droits s'expriment en termes d'autorisation ou de refus sur des types liés aux objets :
 
-Un processus dont le contexte a un __domaine de sécurité D__ peut accéder à des objets de __type T__.
+Un processus dont le contexte a un **domaine de sécurité D** peut accéder à des objets de **type T**.
 
 ![Le contexte SELinux des processus standards](../images/selinux_003.png)
 
@@ -84,14 +84,14 @@ Ce mécanisme est essentiel car il restreint autant que possible les droits d'un
 
 La commande `semanage` est utilisée pour gérer les règles SELinux.
 
-```
+```bash
 semanage [object_type] [options]
 ```
 
 Exemple :
 
-```
-$ semanage boolean -l
+```bash
+semanage boolean -l
 ```
 
 | Options | Observations      |
@@ -105,13 +105,13 @@ La commande `semanage` peut ne pas être installée par défaut sous Rocky Linux
 
 Sans connaître le paquet qui fournit cette commande, vous devriez rechercher son nom avec la commande suivante :
 
-```
+```bash
 dnf provides */semanage
 ```
 
 puis installez :
 
-```
+```bash
 sudo dnf install policycoreutils-python-utils
 ```
 
@@ -119,13 +119,13 @@ sudo dnf install policycoreutils-python-utils
 
 Les objets booléens permettent de contenir les processus.
 
-```
+```bash
 semanage boolean [options]
 ```
 
 Pour lister les Booleans disponibles :
 
-```
+```bash
 semanage boolean –l
 SELinux boolean    State Default  Description
 …
@@ -139,13 +139,13 @@ httpd_can_sendmail (off , off) Autoriser httpd à envoyer du courrier
 
 La commande `setsebool` est utilisée pour modifier l'état d'un objet booléen :
 
-```
+```bash
 setsebool [-PV] boolean on|off
 ```
 
 Exemple :
 
-```
+```bash
 sudo setsebool -P httpd_can_sendmail on
 ```
 
@@ -162,13 +162,13 @@ sudo setsebool -P httpd_can_sendmail on
 
 La commande `semanage` est utilisée pour gérer les objets de type port :
 
-```
+```bash
 semanage port [options]
 ```
 
 Exemple : autoriser le port 81 pour les processus du domaine httpd
 
-```
+```bash
 sudo semanage port -a -t http_port_t -p tcp 81
 ```
 
@@ -176,15 +176,15 @@ sudo semanage port -a -t http_port_t -p tcp 81
 
 SELinux possède trois modes de fonctionnement :
 
-* Renforcé
+- Renforcé
 
 Mode par défaut pour Rocky Linux. L'accès sera restreint selon les règles en vigueur.
 
-* Permissif
+- Permissif
 
 Les règles sont verifiées, les erreurs d'accès sont enregistrées dans le log, mais l'accès ne sera pas bloqué.
 
-* Désactivé
+- Désactivé
 
 Rien ne sera restreint, rien ne sera enregistré.
 
@@ -192,32 +192,32 @@ Par défaut, la plupart des systèmes d'exploitation sont configurés avec SELin
 
 La commande `getenforce` retourne le mode de fonctionnement actuel
 
-```
+```bash
 getenforce
 ```
 
 Exemple :
 
-```
+```bash
 $ getenforce
 Enforcing
 ```
 
 La commande `sestatus` retourne des informations sur SELinux
 
-```
+```bash
 sestatus
 ```
 
 Exemple :
 
-```
+```bash
 $ sestatus
-SELinux status:                enabled
-SELinuxfs mount:                 /sys/fs/selinux
+SELinux status:       enabled
+SELinuxfs mount:     /sys/fs/selinux
 SELinux root directory:    /etc/selinux
 Loaded policy name:        targeted
-Current mode:                enforcing
+Current mode:             enforcing
 Mode from config file:     enforcing
 ...
 Version maximale de la politique du noyau : 33
@@ -225,13 +225,13 @@ Version maximale de la politique du noyau : 33
 
 La commande `setenforce` modifie le mode de fonctionnement actuel :
 
-```
+```bash
 setenforce 0|1
 ```
 
 Faire passer SELinux au mode permissif :
 
-```
+```bash
 sudo setenforce 0
 ```
 
@@ -245,7 +245,7 @@ Le fichier `/etc/sysconfig/selinux` vous permet de changer le mode de fonctionne
 
 Modifier le fichier `/etc/sysconfig/selinux`
 
-```
+```bash
 SELINUX=disabled
 ```
 
@@ -255,7 +255,7 @@ SELINUX=disabled
 
 Redémarrez le système :
 
-```
+```bash
 sudo reboot
 ```
 
@@ -269,7 +269,7 @@ Pour réactiver SELinux, vous devrez repositionner les étiquettes sur l'ensembl
 
 Étiquetage de l'ensemble du système :
 
-```
+```bash
 sudo touch /.autorelabel
 sudo reboot
 ```
@@ -278,8 +278,8 @@ sudo reboot
 
 SELinux fournit deux types de règles standard :
 
-* **Targeted** : seuls les démons de réseau sont protégés (`dhcpd`, `httpd`, `named`, `nscd`, `ntpd`, `portmap`, `snmpd`, `squid` et `syslogd`)
-* **Strict** : tous les démons sont protégés
+- **Targeted** : seuls les démons de réseau sont protégés (`dhcpd`, `httpd`, `named`, `nscd`, `ntpd`, `portmap`, `snmpd`, `squid` et `syslogd`)
+- **Strict** : tous les démons sont protégés
 
 ## Contexte
 
@@ -287,7 +287,7 @@ L'affichage des contextes de sécurité s'effectue avec l'option `-Z`. L'option 
 
 Exemples :
 
-```
+```bash
 id -Z # le contexte de l'utilisateur
 ls -Z # celui des fichiers actuels
 ps -eZ # celui des processus
@@ -297,15 +297,15 @@ lsof -Z # pour les fichiers ouverts
 
 La commande `matchpathcon` renvoie le contexte d'un répertoire.
 
-```
+```bash
 matchpathcon directory
 ```
 
 Exemple :
 
-```
+```bash
 sudo matchpathcon /root
- /root  system_u:object_r:admin_home_t:s0
+ /root system_u:object_r:admin_home_t:s0
 
 sudo matchpathcon /
  /      system_u:object_r:root_t:s0
@@ -313,13 +313,13 @@ sudo matchpathcon /
 
 La commande `chcon` modifie un contexte de sécurité :
 
-```
+```bash
 chcon [-vR] [-u USER] [–r ROLE] [-t TYPE] file
 ```
 
 Exemple :
 
-```
+```bash
 sudo chcon -vR -t httpd_sys_content_t /data/websites/
 ```
 
@@ -331,13 +331,13 @@ sudo chcon -vR -t httpd_sys_content_t /data/websites/
 
 La commande `restorecon` restaure le contexte de sécurité par défaut (celle fournie par les règles) :
 
-```
+```bash
 restorecon [-vR] directory
 ```
 
 Exemple :
 
-```
+```bash
 sudo restorecon -vR /home/
 ```
 
@@ -348,7 +348,7 @@ sudo restorecon -vR /home/
 
 Pour faire un changement de contexte qui tient compte de `restorecon`, vous devez modifier les contextes de fichier par défaut avec la commande `semanage fcontext` :
 
-```
+```bash
 semanage fcontext -a options file
 ```
 
@@ -358,22 +358,22 @@ semanage fcontext -a options file
 
 Exemple :
 
-```
-$ sudo semanage fcontext -a -t httpd_sys_content_t "/data/websites(/.*)?"
-$ sudo restorecon -vR /data/websites/
+```bash
+sudo semanage fcontext -a -t httpd_sys_content_t "/data/websites(/.*)?"
+sudo restorecon -vR /data/websites/
 ```
 
 ## La commande `audit2why`
 
 La commande `audit2why` indique la cause d'un rejet de SELinux :
 
-```
+```bash
 audit2why [-vw]
 ```
 
 Exemple pour obtenir la cause du dernier rejet par SELinux :
 
-```
+```bash
 sudo cat /var/log/audit/audit.log | grep AVC | grep denied | tail -1 | audit2why
 ```
 
@@ -386,13 +386,13 @@ sudo cat /var/log/audit/audit.log | grep AVC | grep denied | tail -1 | audit2why
 
 La commande `audit2allow` crée un module pour permettre une action SELinux (quand aucun module n'existe) à partir d'une ligne dans un fichier "audit" :
 
-```
+```bash
 audit2allow [-mM]
 ```
 
 Exemple :
 
-```
+```bash
 sudo cat /var/log/audit/audit.log | grep AVC | grep denied | tail -1 | audit2allow -M mylocalmodule
 ```
 
@@ -405,25 +405,25 @@ sudo cat /var/log/audit/audit.log | grep AVC | grep denied | tail -1 | audit2all
 
 Après l'exécution d'une commande, le système vous renvoie à l'invite de commande mais le résultat attendu n'est pas visible : aucun message d'erreur à l'écran.
 
-* **Étape 1**: Lisez le fichier log sachant que le message qui nous intéresse est de type AVC (SELinux), refusé (refusé) et le plus récent (donc le dernier).
+- **Étape 1**: Lisez le fichier log sachant que le message qui nous intéresse est de type AVC (SELinux), refusé (refusé) et le plus récent (donc le dernier).
 
-```
+```bash
 sudo cat /var/log/audit/audit.log | grep AVC | grep denied | tail -1
 ```
 
 Le message est correctement isolé, mais il ne nous est d'aucune utilité.
 
-* **Étape 2**: Lisez le message isolé avec la commande `audit2why` pour obtenir un message plus explicite qui pourrait contenir la solution à notre problème (généralement un booléen à définir).
+- **Étape 2**: Lisez le message isolé avec la commande `audit2why` pour obtenir un message plus explicite qui pourrait contenir la solution à notre problème (généralement un booléen à définir).
 
-```
+```bash
 sudo cat /var/log/audit/audit.log | grep AVC | grep denied | tail -1 | audit2why
 ```
 
 Il y a deux cas : soit nous pouvons placer un contexte ou remplir un booléen, soit nous allons à l'étape 3 pour créer notre propre contexte.
 
-* **Étape 3**: Créez votre propre module.
+- **Étape 3**: Créez votre propre module.
 
-```
+```bash
 $ sudo cat /var/log/audit/audit.log | grep AVC | grep denied | tail -1 | audit2allow -M mylocalmodule
 Generating type enforcement: mylocalmodule.te
 Compiling policy: checkmodule -M -m -o mylocalmodule.mod mylocalmodule.te
