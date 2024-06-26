@@ -205,4 +205,4 @@ Maintaining and updating the revocation lists is important. You can automate the
 ## Conclusion
 
 SSH is one of the most useful protocols to manage remote servers. Implementing certificate authorities can be helpful, especially in larger environments with many servers and users.
-It is important to maintain revocation lists. It ensures the reovcation of compromised keys easily without replacing the whole key infrastructure.
+It is important to maintain revocation lists. It ensures the revocation of compromised keys easily without replacing the whole key infrastructure.
