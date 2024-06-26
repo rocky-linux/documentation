@@ -1,7 +1,7 @@
 ---
 title: NSD Authoritative DNS
 author: Neel Chauhan
-contributors:
+contributors: Steven Spencer
 tested_with: 9.4
 tags:
   - dns
@@ -12,7 +12,7 @@ An alternative to BIND, [NSD](https://www.nlnetlabs.nl/projects/nsd/about/) (Nam
 ## Prerequisites and assumptions
 
 - A server running Rocky Linux
-- Able to use *firewalld* for creating firewall rules
+- Able to use `firewalld` for creating firewall rules
 - A domain name or internal recursive DNS server pointed to your authoritative DNS server
 
 ## Introduction
@@ -82,7 +82,7 @@ $ORIGIN example.com. ; Define our domain name
        IN  MX  10 mail.another.com. ; external mail provider
        IN  A      172.20.0.100 ; default A record
 ; server host definitions
-ns1    IN  A      172.20.0.100 ; name server definition     
+ns1    IN  A      172.20.0.100 ; name server definition
 www    IN  A      172.20.0.101 ; web server definition
 mail   IN  A      172.20.0.102 ; mail server definition
 ```
@@ -108,7 +108,7 @@ Check DNS resolution with the `host` command:
 Using domain server:
 Name: 172.20.0.100
 Address: 172.20.0.100#53
-Aliases: 
+Aliases:
 
 example.com has address 172.20.0.100
 example.com mail is handled by 10 mail.another.com.
@@ -117,6 +117,6 @@ example.com mail is handled by 10 mail.another.com.
 
 ## Conclusion
 
-While most people use third-party services for DNS, there are scenarios where self-hosting DNS is desired. For instance, telecom, hosting and social media companies host a large number of DNS entries where hosted services are undesirable.
+Most people use third-party services for DNS. There are scenarios, however, where self-hosting DNS is desired. For instance, telecom, hosting, and social media companies host a large number of DNS entries where hosted services are undesirable.
 
-NSD is one of many open source tools which make hosting DNS possible. Congratulations, you have your very own DNS server! Cheers!
+NSD is one of many open source tools that make hosting DNS possible. Congratulations, you have your very own DNS server! Cheers!
