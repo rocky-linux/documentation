@@ -4,7 +4,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 title: Part 2. Web Servers
 ---
 
-## Generalities
+## Introduction
 
 ### HTTP Protocol
 
@@ -17,26 +17,26 @@ HTTP is a "request-response" protocol operating on top of **TCP** (**T**ransmiss
 1. The client opens a TCP connection to the server and sends a request.
 2. The server analyzes the request and responds according to its configuration.
 
-The HTTP protocol itself is called "**STATELESS**": it doesn't retain any information about the client's state from one request to the next. Dynamic languages such as php, python or java are used to store client session information in memory (as on an e-commerce site, for example).
+The HTTP protocol is "**STATELESS**": it does not retain any information about the client's state from one request to the next. Dynamic languages such as php, python, or java store client session information in memory (as on an e-commerce site, for example).
 
-The HTTP protocol is version 1.1. Version 2 is still currently being deployed.
+The HTTP protocol is version 1.1. Version 2 is still under development.
 
 An HTTP response is a set of lines sent to the browser by the server. It includes:
 
-* A **status line**: this specifies the protocol version used and the processing status of the request, using a code and explanatory text. The line comprises three elements, which must be separated by a space:
-  * The protocol version used ;
-  * The status code ;
-  * The meaning of the code.
+* A **status line**: this specifies the protocol version used and the processing status of the request, using a code and explanatory text. The line comprises three elements separated with a space:
+    * The protocol version used
+    * The status code
+    * The meaning of the code
 
 * **Response header fields**: these are a set of optional lines providing additional information about the response and/or the server. Each of these lines consists of a name qualifying the header type, followed by a colon (:) and the header value.
 
 * **The response body**: this contains the requested document.
 
-Here's an example of an HTTP response:
+Here is an example of an HTTP response:
 
 ```bash
 $ curl --head --location https://docs.rockylinux.org
-HTTP/2 200 
+HTTP/2 200
 accept-ranges: bytes
 access-control-allow-origin: *
 age: 109725
@@ -54,37 +54,37 @@ content-length: 154696
 
 !!! NOTE
 
-    Learning the `curl` command usages will be very helpfull for you to troubleshoot your servers in the futur.
+    Learning the `curl` command usages will be very helpfull for you to troubleshoot your servers in the future.
 
-The role of the web server is to translate a URL into a local resource. Consulting the http://docs.rockylinux.org/ page is like sending an HTTP request to this machine. The DNS service therefore plays an essential role.
+The role of the web server is to translate a URL into a local resource. Consulting the <https://docs.rockylinux.org/> page is like sending an HTTP request to this machine. The DNS service therefore plays an essential role.
 
 ### URLs
 
 A **URL** (**U**niform **R**esource **L**ocator) is an ASCII character string used to designate resources on the Internet. It is informally referred to as a web address.
 
-A URL is divided into three parts:
+A URL has three parts:
 
-```
+```text
 <protocol>://<host>:<port>/<path>
 ```
 
-* **Protocol name**: this is the language used to communicate over the network, like for example HTTP, HTTPS, FTP, etc. The most widely used protocols are HTTP (HyperText TransferProtocol) and its secure version HTTPS, the protocol used to exchange Web pages in HTML format.
+* **Protocol name**: this is the language used to communicate over the network, for example HTTP, HTTPS, FTP, and so on. The most widely used protocols are HTTP (HyperText TransferProtocol) and its secure version HTTPS, the protocol used to exchange Web pages in HTML format.
 
 * **Login** and **password**: allows you to specify access parameters to a secure server. This option is not recommended, as the password is visible in the URL (for security purposes).
 
 * **Host**: This is the name of the computer hosting the requested resource. Note that it is possible to use the server's IP address, which makes the URL less readable.
 
-* **Port number**: this is a number associated with a service, enabling the server to know what type of resource is being requested. The default port associated with the HTTP protocol is port number 80 and 443 with HTTPS. Thus, when the protocol in use is HTTP or HTTPS, the port number is optional.
+* **Port number**: this is a number associated with a service, enabling the server to know the requested resource type. The default port associated with the HTTP protocol is port number 80 and 443 with HTTPS. So, when the protocol in use is HTTP or HTTPS, the port number is optional.
 
-* Resource path: This last part lets the server know where the resource is located, i.e. generally the location (directory) and name of the requested file. If not specified, indicates the first page of the host. Otherwise, indicates the path to the page to be displayed.
+* Resource path: This part lets the server know the location of the resource. Generally, the location (directory) and name of the requested file. If nothing in the address specifies a location, it indicates the first page of the host. Otherwise it indicates the path to the page to display.
 
 ### Ports
 
 An HTTP request will arrive on port 80 (default port for http) of the server running on the host. However, the administrator is free to choose the server's listening port.
 
-The http protocol is available in a secure version: the https protocol (port 443). This encrypted protocol is implemented using the `mod_ssl` module.
+The http protocol is available in a secure version: the https protocol (port 443). Implement this encrypted protocol with the `mod_ssl` module.
 
-Other ports can also be used, such as port `8080` (Java EE application servers).
+Using other ports is also possible, such as port `8080` (Java EE application servers).
 
 ## Apache
 
@@ -94,12 +94,12 @@ In this chapter, you will learn about Apache, the web server.
 
 **Objectives**: In this chapter, you will learn how to:
 
-:heavy_check_mark: install and configure apache  
+:heavy_check_mark: install and configure apache
 
 :checkered_flag: **apache**, **http**, **httpd**
 
-**Knowledge**: :star: :star:  
-**Complexity**: :star: :star:  
+**Knowledge**: :star: :star:
+**Complexity**: :star: :star:
 
 **Reading time**: 30 minutes
 
@@ -109,33 +109,33 @@ In this chapter, you will learn about Apache, the web server.
 
 The Apache HTTP server is the work of a group of volunteers: The Apache Group. This group set out to build a Web server on the same level as commercial products, but as free software (its source code is available).
 
-The original team was joined by hundreds of users who, through their ideas, tests and lines of code, contributed to making Apache the most widely used Web server in the world.
+Joining the original team were hundreds of users who, through their ideas, tests, and lines of code, contributed to making Apache the most widely used Web server in the world.
 
 Apache's ancestor is the free server developed by the National Center for Supercomputing Applications at the University of Illinois. The evolution of this server came to a halt when the person in charge left the NCSA in 1994. Users continued to fix bugs and create extensions, which they distributed as "patches", hence the name "a patchee server".
 
-Apache version 1.0 was released on December 1, 1995 (over 30 years ago!).
+The release of Apache version 1.0 was on December 1, 1995 (over 30 years ago!).
 
-The development team coordinates its work via a mailing list, where changes are proposed and changes to the software are discussed. Changes are put to the vote before being incorporated into the project. Anyone can join the development team: all you need to do to become a member of The Apache Group is make an active contribution to the project.
+The development team coordinates its work by way of a mailing list, where discussions regarding proposals and changes to the software happen. Voting on changes happens before incorporation into the project. Anyone can join the development team: all you need to do to become a member of The Apache Group is make an active contribution to the project.
 
 The Apache server has a very strong presence on the Internet, still accounting for around 50% of market share for all active sites.
 
-The market share lost by Apache is taken by its biggest challenger: the nginx server. The latter is faster at delivering web pages, and less functionally complete than the giant Apache.
+The market share lost by Apache often goes to its biggest challenger: the nginx server. The latter is faster at delivering web pages, and less functionally complete than the giant Apache.
 
 ### Installation
 
-Apache is **cross-platform**. It can be used on Linux, Windows, Mac...
+Apache is **cross-platform**. It is usable on Linux, Windows, Mac...
 
 The administrator will have to choose between two installation methods:
 
-* **Package installation**: the distribution vendor supplies **stable, supported** (but sometimes older) versions;
+* **Package installation**: the distribution vendor supplies **stable, supported** (but sometimes older) versions
 
-* **Installation from source**: the Apache software is compiled, and the administrator can specify the options that interest him or her, thus optimizing the service. Since Apache has a modular architecture, it is generally not necessary to re-compile the apache software to add or remove additional functionalities (add/remove modules).
+* **Installation from source**: which involves compilation of the software by the administrator, who can specify the options that interest him or her, thus optimizing the service. Since Apache has a modular architecture, it is generally not necessary to re-compile the apache software to add or remove additional functionalities (add or remove modules).
 
-The package-based installation method is strongly recommended. Additional repositories can be used to install more recent versions of apache on older distributions, but nobody will not provide support in the event of problems.
+The package-based installation method is strongly recommended. Additional repositories are available to install more recent versions of apache on older distributions, but nobody will provide support in the event of problems.
 
-On EnterpriseLinux distributions, the Apache server is provided by the `httpd` package.
+On Enterprise Linux distributions, the `httpd` package provides the Apache server.
 
-In the future, you may have to install some extra modules. Here are some examples of modules and their respective roles:
+In the future, you might have to install some extra modules. Here are some examples of modules and their roles:
 
 * **mod_access**: filters client access by host name, IP address or other characteristic
 * **mod_alias**: enables the creation of aliases or virtual directories
@@ -145,13 +145,13 @@ In the future, you may have to install some extra modules. Here are some example
 * **mod_mime**: associates file types with the corresponding action
 * **mod_proxy**: proposes a proxy server
 * **mod_rewrite**: rewrites URLs
-* ...
+* Others
 
 ```bash
 sudo dnf install httpd
 ```
 
-The version installed on RockyLinux 9 is 2.4.
+The version installed on Rocky Linux 9 is 2.4.
 
 Installing the package creates an `apache` system user and a corresponding `apache` system group.
 
@@ -172,7 +172,7 @@ Created symlink /etc/systemd/system/multi-user.target.wants/httpd.service → /u
 You can check the service's status:
 
 ```bash
-$ sudo systemctl status httpd 
+$ sudo systemctl status httpd
 ● httpd.service - The Apache HTTP Server
      Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; preset: disabl>     Active: active (running) since Fri 2024-06-21 14:22:34 CEST; 8s ago
        Docs: man:httpd.service(8)
@@ -188,11 +188,11 @@ $ sudo systemctl status httpd
              ├─4391 /usr/sbin/httpd -DFOREGROUND
 ```
 
-Don't forget to open your firewall (see Security section).
+Do not forget to open your firewall (see Security section).
 
 You can check now the availability of the service:
 
-* from any web browser providing the IP address of your server (for example http://192.168.1.100/).
+* from any web browser providing the IP address of your server (for example <http://192.168.1.100/>).
 * directly from your server.
 
 For that, you will have to install a text browser, for example elinks.
@@ -207,7 +207,7 @@ Browse your server and check the default page:
 elinks http://localhost
 ```
 
-Installing the httpd package generates a complete tree structure that needs to be fully understood:
+Installing the `httpd` package generates a complete tree structure that needs to be fully understood:
 
 ```text
 /etc/httpd/
@@ -244,11 +244,11 @@ Installing the httpd package generates a complete tree structure that needs to b
 └── html
 ```
 
-You'll notice that the `/etc/httpd/logs` folder is a symbolic link to the `/var/log/httpd` directory. Similarly, you'll notice that the files making up the default site are stored in the `/var/www/html` folder.
+You will notice that the `/etc/httpd/logs` folder is a symbolic link to the `/var/log/httpd` directory. Similarly, you will notice that the files making up the default site are in the `/var/www/html` folder.
 
 ### Configuration
 
-Initially, Apache server configuration was carried out in a single `/etc/httpd/conf/httpd.conf` file. Over time, this file has become increasingly large and less readable.
+Initially, configuration of the Apache server was in a single `/etc/httpd/conf/httpd.conf` file. Over time, this file has become increasingly large and less readable.
 
 Modern distributions therefore tend to distribute Apache configuration over a series of `*.conf` files in the directories `/etc/httpd/conf.d` and `/etc/httpd/conf.modules.d`, attached to the main `/etc/httpd/conf/httpd.conf` file by the Include directive.
 
@@ -260,21 +260,21 @@ IncludeOptional conf.d/*.conf
 
 The `/etc/httpd/conf/httpd.conf` file is amply documented. In general, these comments are sufficient to clarify the administrator's options.
 
-Global server configuration is carried out in `/etc/httpd/conf/httpd.conf`.
+Global server configuration is in `/etc/httpd/conf/httpd.conf`.
 
-This file is divided into 3 sections for configuring:
+This file has 3 sections for configuring:
 
 * in **section 1**, the global environment;
 * in **section 2**, the default site and default virtual site parameters;
 * in **section 3**, the virtual hosts.
 
-**Virtual hosting** lets you put **several virtual sites online** on the same server. The sites are then differentiated according to their domain names, IP addresses, etc.
+**Virtual hosting** lets you put **several virtual sites online** on the same server. The sites are then differentiated according to their domain names, IP addresses, and so on.
 
 Modifying a value in section 1 or 2 affects all hosted sites.
 
-In a shared environment, modifications will therefore be made in section 3.
+In a shared environment, modifications are therefore in section 3.
 
-To facilitate future updates, we strongly recommend that you create a section 3 configuration file for each virtual site.
+To facilitate future updates, it is strongly recommended that you create a section 3 configuration file for each virtual site.
 
 Here is a minimal version of the `httpd.conf` file:
 
@@ -311,7 +311,7 @@ LogLevel warn
     LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
     LogFormat "%h %l %u %t \"%r\" %>s %b" common
     <IfModule logio_module>
-      LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio  
+      LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio
     </IfModule>
     CustomLog "logs/access_log" combined
 </IfModule>
@@ -344,7 +344,7 @@ The various directives encountered in section 1 are :
 
 | Option                 | Information                                                                                |
 | ---------------------- | ------------------------------------------------------------------------------------------ |
-| `ServerTokens`         | This directive will be presented in a future chapter.                                      |
+| `ServerTokens`         | This directive will be in a future chapter.                                      |
 | `ServertRoot`          | Indicates the path to the directory containing all the files making up the Apache server.  |
 | `Timeout`              | The number of seconds before the expiry time of a too long request (incoming or outgoing). |
 | `KeepAlive`            | Persistent connection (several requests per TCP connection).                               |
@@ -354,7 +354,7 @@ The various directives encountered in section 1 are :
 | `LoadModule`           | Load add-on modules (fewer modules = greater security).                                    |
 | `Include`              | Include other server configuration files.                                                  |
 | `ExtendedStatus`       | Display more information about the server in the server-status module.                     |
-| `User` and `Group`     | Allows Apache processes to be launched with different users. Apache always starts as root, then changes its owner and group. |
+| `User` and `Group`     | Allows the launching of Apache processes with different users. Apache always starts as root, then changes its owner and group. |
 
 ##### Multi-Process Modules (MPM)
 
@@ -362,13 +362,13 @@ The Apache server was designed to be a powerful and flexible server, capable of 
 
 Different platforms and environments often mean different functionality, or the use of different methods to implement the same functionality as efficiently as possible.
 
-Apache's modular design allows the administrator to choose which features will be included in the server, by selecting which modules to load either at compile-time or at run-time.
+Apache's modular design allows the administrator to choose which features to include in the server, by selecting which modules to load, either at compile-time or at run-time.
 
 This modularity also includes the most basic web server functions.
 
 Certain modules, the Multi-Process Modules (MPM), are responsible for associating with the machine's network ports, accepting requests and distributing them among the various child processes.
 
-The MPM modules are configured in the `/etc/httpd/conf.modules.d/00-mpm.conf` config file:
+Configuring MPM modules is in the `/etc/httpd/conf.modules.d/00-mpm.conf` configuration file:
 
 ```file
 # Select the MPM module which should be used by uncommenting exactly
@@ -400,24 +400,24 @@ As you can see, the default MPM is the `mpm_event`.
 
 The performance and capabilities of your web server depend heavily on the choice of MPM.
 
-Choosing one module over another is therefore a complex task, as is optimizing the chosen MPM module (number of clients, queries, etc.).
+Choosing one module over another is therefore a complex task, as is optimizing the chosen MPM module (number of clients, queries, and so on.).
 
-By default, Apache is configured for a moderately busy service (256 clients max).
+By default, the Apache configuration assumes a moderately busy service (256 clients max).
 
 ##### About keepalive directives
 
-With the `KeepAlive` directive disabled, every resource request on the server requires a TCP connection to be opened, which is time-consuming from a network point of view and requires a lot of system resources.
+With the `KeepAlive` directive disabled, every resource request on the server requires opening a TCP connection, which is time-consuming from a network point of view and requires a lot of system resources.
 
-With the KeepAlive directive set to `On`, the server keeps the connection open with the client for the duration of the Keepalive.
+With the `KeepAlive` directive set to `On`, the server keeps the connection open with the client for the duration of the `KeepAlive`.
 
-Given that a web page is made up of several files (images, stylesheets, javascripts, etc.), this strategy is a quick winner.
+Given that a web page contains several files (images, stylesheets, javascripts, etc.), this strategy is a quick winner.
 
-However, it's important to set this value as precisely as possible:
+However, it is important to set this value as precisely as possible:
 
 * Too short a value penalizes the customer,
 * Too long a value penalizes server resources.
 
-Specific configuration requests may be made by shared hosting customers. In this case, KeepAlive values will be set directly in the customer's VirtualHost or at proxy level (`ProxyKeepalive` and `ProxyKeepaliveTimeout`).
+`KeepAlive` values for individual customer virtual hosts allows more granularity per customer. In this case, setting `KeepAlive` values happens directly in the customer's VirtualHost or at proxy level (`ProxyKeepalive` and `ProxyKeepaliveTimeout`).
 
 #### Section 2
 
@@ -428,11 +428,11 @@ The values are also used as default values for virtual sites.
 | Option              | Information                                                                                         |
 | ------------------- | --------------------------------------------------------------------------------------------------- |
 | `ServerAdmin`       | specifies an e-mail address which will appear on certain auto-generated pages, such as error pages. |
-| `ServerName`        | specifies the name by which the server will be identified. Can be determined automatically, but it is recommended to specify it explicitly (IP address or DNS name). |
-| `DocumentRoot`      | specifies the directory containing files to be served to clients. Default /var/www/html/.           |
+| `ServerName`        | specifies the name identifying the server. Can happen automatically, but it the recommendation is to specify it explicitly (IP address or DNS name). |
+| `DocumentRoot`      | specifies the directory containing files to serve to clients. Default /var/www/html/.           |
 | `ErrorLog`          | specifies the path to the error file.                                                               |
 | `LogLevel`          | debug, info, notice, warn, error, crit, alert, emerg.                                               |
-| `LogFormat`         | define a specific log format to be used with the CustomLog directive.                               |
+| `LogFormat`         | defines a specific log format. Done with the CustomLog directive.                               |
 | `CustomLog`         | specify path to access file.                                                                        |
 | `ServerSignature`   | seen in the security part.                                                                          |
 | `Alias`             | specifies a directory outside the tree and makes it accessible by context. The presence or absence of the last slash in the context is important. |
@@ -444,15 +444,15 @@ The values are also used as default values for virtual sites.
 
 ##### The `ErrorLog` directive
 
-The `ErrorLog` directive is used to define the error log.
+The `ErrorLog` directive defines the error log to use.
 
-This directive defines the name of the file in which the server logs all errors it encounters. If the file path is not absolute, it is assumed to be relative to ServerRoot.
+This directive defines the name of the file in which the server logs all errors it encounters. If the file path is not absolute, the assumption is to be relative to ServerRoot.
 
 ##### The `DirectoryIndex` directive
 
-The DirectoryIndex directive is used to define the site's home page.
+The DirectoryIndex directive defines the site's home page.
 
-This directive specifies the name of the file to be loaded first, which will act as the site index or home page.
+This directive specifies the name of the file loaded first, which will act as the site index or home page.
 
 Syntax:
 
@@ -460,7 +460,7 @@ Syntax:
 DirectoryIndex display-page
 ```
 
-The full path is not specified, as the file is searched for in the directory specified by DocumentRoot.
+The full path is not specified. Searching for the file happens in the directory specified by DocumentRoot.
 
 Example:
 
@@ -469,7 +469,7 @@ DocumentRoot /var/www/html
 DirectoryIndex index.php index.htm
 ```
 
-This directive specifies the name of the website index file. The index is the default page that opens when the client types the site URL (without having to type the index name). This file must be located in the directory specified by the `DocumentRoot` directive.
+This directive specifies the name of the website index file. The index is the default page that opens when the client types the site URL (without having to type the index name). This file must be in the directory specified by the `DocumentRoot` directive.
 
 The `DirectoryIndex` directive can specify several index file names separated by spaces. For example, a default index page with dynamic content and, as a second choice, a static page.
 
@@ -477,7 +477,7 @@ The `DirectoryIndex` directive can specify several index file names separated by
 
 The Directory tag is used to define directory-specific directives.
 
-This tag is used to apply rights to one or more directories. The directory path is entered as an absolute.
+This tag applies rights to one or more directories. The directory path is entered as an absolute.
 
 Syntax:
 
@@ -495,7 +495,7 @@ Example:
 </Directory>
 ```
 
-The `Directory` section is used to define a block of directives applying to a part of the server's file system. The directives contained in this section will only apply to the specified directory (and its sub-directories).
+The `Directory` section defines a block of directives applying to a part of the server's file system. The directives contained here will only apply to the specified directory (and its sub-directories).
 
 The syntax of this block accepts wildcards, but it is preferable to use the DirectoryMatch block.
 
@@ -503,19 +503,19 @@ In the following example, we're going to deny access to the server's local hard 
 
 ```file
 <Directory />
-	Require all denied
+    Require all denied
 </Directory>
 ```
 
-In the following example, we're going to authorize access to the /var/www/html publishing directory for all clients.
+The following example shows authorizing access to the /var/www/html publishing directory for all clients.
 
 ```file
 <Directory /var/www/html>
-	Require all granted
+    Require all granted
 </Directory>
 ```
 
-When the server finds an `.htaccess` file, it needs to know which directives placed in this file are authorized to modify the pre-existing configuration. The handling of `.htaccess` files is controlled by the `AllowOverride` directive, which can only be used in `Directory` directives. When set to `none`, `.htaccess` files are completely ignored.
+When the server finds an `.htaccess` file, it needs to know whether directives placed in the file have authorization to modify the pre-existing configuration. The `AllowOverride` directive, controls that authorization in `Directory` directives. When set to `none`, `.htaccess` files are completely ignored.
 
 ##### The `mod_status`
 
@@ -523,12 +523,12 @@ The `mod_status` displays a `/server-status` or `/server-info` page summarizing 
 
 ```file
 <Location /server-status>
-	SetHandler server-status
-	Require local
+    SetHandler server-status
+    Require local
 </Location>
 
 <Location /server-info>
-	SetHandler server-info
+    SetHandler server-info
     Require local
 </Location>
 ```
@@ -537,44 +537,44 @@ Please note that this module provides information that should not be accessible 
 
 #### Shared hosting (section 3)
 
-With shared hosting, the customer thinks he's visiting several servers. In reality, there's just one server and several virtual sites.
+With shared hosting, the customer thinks they are visiting several servers. In reality, there is just one server and several virtual sites.
 
 To set up shared hosting, you need to set up virtual hosts:
 
-* declaring multiple listening ports;
-* declaring multiple listening IP addresses (virtual hosting by IP);
-* declaring multiple server names (virtual hosting by name);
+* declaring multiple listening ports
+* declaring multiple listening IP addresses (virtual hosting by IP)
+* declaring multiple server names (virtual hosting by name)
 
 Each virtual site corresponds to a different tree structure.
 
-Section 3 of the `httpd.conf` file is used to declare these virtual hosts.
+Section 3 of the `httpd.conf` file declares these virtual hosts.
 
-To facilitate future updates, we strongly recommend that you create a section 3 configuration file for each virtual site.
+To facilitate future updates, it is strongly recommended that you create a section 3 configuration file for each virtual site.
 
 Choose virtual hosting "by IP" or "by name". For production use, it is not advisable to mix the two solutions.
 
-* Each virtual site can be configured in an independent ;
-* VirtualHosts are stored in `/etc/httpd/conf.d/`;
-* The file extension is `.conf`.
+* Configuring each virtual site in an independent configuration file
+* VirtualHosts are stored in `/etc/httpd/conf.d/`
+* The file extension is `.conf`
 
 ##### The `VirtualHost` directive
 
-The `VirtualHost` directive is used to define virtual hosts.
+The `VirtualHost` directive defines virtual hosts.
 
 ```file
 <VirtualHost IP-address[:port]>
-	# if the "NameVirtualHost" directive is present
-	# then "address-IP" must match the one entered
-	# under "NameVirtualHost" as well as for "port".
+    # if the "NameVirtualHost" directive is present
+    # then "address-IP" must match the one entered
+    # under "NameVirtualHost" as well as for "port".
  ...
  </VirtualHost>
 ```
 
-If we configure the Apache server with the basic directives seen above, we'll only be able to publish one site. Indeed, we can't publish multiple sites with the default settings: same IP address, same TCP port and no hostname or unique hostname.
+If you configure the Apache server with the basic directives seen above, you will only be able to publish one site. Indeed, you can not publish multiple sites with the default settings: same IP address, same TCP port and no hostname or unique hostname.
 
-The use of virtual sites will enable us to publish several websites on the same Apache server. We're going to define blocks, each of which will describe a website. In this way, each site will have its own configuration.
+The use of virtual sites will enable us to publish several websites on the same Apache server. You are going to define blocks, each of which will describe a website. In this way, each site will have its own configuration.
 
-For ease of understanding, we often associate a website with a single machine. Virtual sites or virtual hosts are so called because they dematerialize the link between machine and website.
+For ease of understanding, a website is often associated with a single machine. Virtual sites or virtual hosts are so called because they dematerialize the link between machine and website.
 
 Example 1:
 
@@ -596,9 +596,9 @@ IP-based virtual hosting is a method of applying certain guidelines based on the
 
 ##### The `NameVirtualHost` directive
 
-The `NameVirtualHost` directive is used to define name-based virtual hosts.
+The `NameVirtualHost` directive defines name-based virtual hosts.
 
-This directive is mandatory for setting up name-based virtual hosts. With this directive, we specify the IP address on which the server will receive requests from name-based virtual hosts.
+This directive is mandatory for setting up name-based virtual hosts. With this directive, you specify the IP address on which the server will receive requests from name-based virtual hosts.
 
 Syntax:
 
@@ -612,7 +612,7 @@ Example:
 NameVirtualHost 160.210.169.6:80
 ```
 
-The directive must be placed before the virtual site description blocks. It designates the IP addresses used to listen for client requests to virtual sites.
+The directive must come before the virtual site description blocks. It designates the IP addresses used to listen for client requests to virtual sites.
 
 To listen for requests on all the server's IP addresses, use the * character.
 
@@ -626,14 +626,14 @@ sudo systemctl reload httpd
 
 #### Manual
 
-There is a package containing a site that acts as an Apache user manual. It's called `httpd-manual`. 
+There is a package containing a site that acts as an Apache user manual. It is called `httpd-manual`.
 
 ```bash
 sudo dnf install httpd-manual
 sudo systemctl reload httpd
 ```
 
-Once this package has been installed, you can access the manual with a web browser at http://127.0.0.1/manual.
+When installed, you can access the manual with a web browser at <http://127.0.0.1/manual>.
 
 ```bash
 $ elinks http://127.0.0.1/manual
@@ -641,7 +641,7 @@ $ elinks http://127.0.0.1/manual
 
 #### The `apachectl` command
 
-The `apachectl` is the server control interface for Apache httpd server. 
+The `apachectl` is the server control interface for Apache `httpd` server.
 
 It is a very usefull command with the `-t` or `configtest` witch run a configuration file syntax test.
 
@@ -651,7 +651,7 @@ It is a very usefull command with the `-t` or `configtest` witch run a configura
 
 ### Security
 
-If your server is protected by a firewall (which is a good thing), you may need to consider opening it.
+When protecting your server with a firewall (which is a good thing), you might need to consider opening it.
 
 ```bash
 sudo firewall-cmd --zone=public --add-service=http
@@ -661,11 +661,11 @@ sudo firewall-cmd --reload
 
 #### SELinux
 
-By default, if SELinux security is active, it prevents a site from being read from a directory other than `/var/www/`.
+By default, if SELinux security is active, it prevents the reading of a site from a directory other than `/var/www/`.
 
 The directory containing the site must have the security context `httpd_sys_content_t`.
 
-The current context is checked with the command :
+You can check current context with the command:
 
 ```bash
 * ls -Z /dir
@@ -677,7 +677,7 @@ Add context with the following command:
 sudo chcon -vR --type=httpd_sys_content_t /dir
 ```
 
-It also prevents the opening of a non-standard port. The port must be opened manually, using the `semanage` command (not installed by default).
+It also prevents the opening of a non-standard port. Opening the port is a manual operation, using the `semanage` command (not installed by default).
 
 ```bash
 sudo semanage port -a -t http_port_t -p tcp 1664
@@ -687,21 +687,21 @@ sudo semanage port -a -t http_port_t -p tcp 1664
 
 the `User` and `Group` directives define an Apache management account and group.
 
-Historically, Apache was run by root, which caused security problems. Apache is always run by root, but then changes its identity. Generally User `apache` and Group `apache`.
+Historically, root ran Apache, which caused security problems. Apache is always run by root, but then changes its identity. Generally User `apache` and Group `apache`.
 
 Never ROOT!
 
-The Apache server (`httpd` process) is started by the `root` superuser account. Each client request triggers the creation of a "child" process. To limit risks, these child processes should be launched with a less privileged account.
+The Apache server (`httpd` process) starts with the `root` superuser account. Each client request triggers the creation of a "child" process. To limit risks, launching these child processes happens from a less privileged account.
 
-The User and Group directives are used to declare the account and group used to create child processes.
+The User and Group directives declare the account and group used to create child processes.
 
-This account and group must have been created in the system (by default, this is done during installation).
+This account and group must exist in the system (by default, this happens during installation).
 
 #### File permissions
 
-As a general security rule, web server content must not belong to the process running the server. In our case, the files should not belong to the `apache` user and group, since he has write access to the folders.
+As a general security rule, web server content must not belong to the process running the server. In our case, the files should not belong to the `apache` user and group, since it has write access to the folders.
 
-We assign the contents to the unprivileged user or to the root user and the associated group. Incidentally, we also take the opportunity to restrict the group's access rights.
+You assign the contents to the unprivileged user or to the root user and the associated group. Incidentally, you also take the opportunity to restrict the group's access rights.
 
 ```bash
 cd /var/www/html
@@ -728,10 +728,10 @@ sudo find ./ -type f -exec chmod 0644 "{}" \;
 
 :heavy_check_mark: Question with multiple answers?
 
-* [ ] Answer 1  
-* [ ] Answer 2  
-* [ ] Answer 3  
-* [ ] Answer 4  
+* [ ] Answer 1
+* [ ] Answer 2
+* [ ] Answer 3
+* [ ] Answer 4
 
 ## Nginx
 
@@ -741,13 +741,13 @@ In this chapter, you will learn about XXXXXXX.
 
 **Objectives**: In this chapter, you will learn how to:
 
-:heavy_check_mark: XXX  
-:heavy_check_mark: XXX  
+:heavy_check_mark: XXX
+:heavy_check_mark: XXX
 
 :checkered_flag: **XXX**, **XXX**
 
-**Knowledge**: :star:  
-**Complexity**: :star:  
+**Knowledge**: :star:
+**Complexity**: :star:
 
 **Reading time**: XX minutes
 
@@ -775,9 +775,9 @@ In this chapter, you will learn about XXXXXXX.
 
 :heavy_check_mark: Question with multiple answers?
 
-* [ ] Answer 1  
-* [ ] Answer 2  
-* [ ] Answer 3  
-* [ ] Answer 4  
+* [ ] Answer 1
+* [ ] Answer 2
+* [ ] Answer 3
+* [ ] Answer 4
 
 -->
