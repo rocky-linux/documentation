@@ -1,0 +1,32 @@
+---
+INHERIT: ../build_base.yml
+
+# Do not modify this block
+pdf-config: &pdf-config
+  author: Rocky Documentation Team
+  cover: true
+  cover_logo: ../assets/rocky-linux-logo.svg
+  cover_subtitle: A book from the Documentation Team
+  toc_level: 3
+  ordered_chapter_level: 3
+  verbose: false
+  back_cover: true
+  
+# You are free to configure here what you want
+plugins:
+  - with-pdf:
+      <<: *pdf-config
+      cover_title: Rocky Linux Web Services Guide (English version)
+      output_path: ../pdf/RockyLinuxWebServicesGuide.pdf
+
+# Customize your own book
+nav:
+  - web_services/00-toc.md
+  - licence.md
+  - web_services/01-files-servers.md
+  - web_services/02-web-servers.md
+  - web_services/03-application-servers.md
+  - web_services/04-databases-servers.md
+  - web_services/05-load-balancer-proxies.md
+  - web_services/06-mails-servers.md
+  - web_services/07-high-availability.md
