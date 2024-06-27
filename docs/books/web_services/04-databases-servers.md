@@ -19,13 +19,13 @@ In this chapter, you will learn about the RDBMS MariaDB and MySQL.
 
 **Objectives**: In this chapter, you will learn how to:
 
-:heavy_check_mark: install, configure and secure MariaDB server and MySQL server;  
-:heavy_check_mark: perform some administrative actions on databases and users.  
+:heavy_check_mark: install, configure, and secure MariaDB server and MySQL server;
+:heavy_check_mark: perform some administrative actions on databases and users.
 
 :checkered_flag: **RDBMS**, **database**, **MariaDB**, **MySQL**
 
-**Knowledge**: :star: :star: :star:  
-**Complexity**: :star: :star: :star:  
+**Knowledge**: :star: :star: :star:
+**Complexity**: :star: :star: :star:
 
 **Reading time**: 30 minutes
 
@@ -33,23 +33,23 @@ In this chapter, you will learn about the RDBMS MariaDB and MySQL.
 
 ### Generalities
 
-MySQL was developed by Michael "Monty" Widenius (a Finnish computer scientist), who founded MySQL AB in 1995. MySQL AB was acquired by SUN in 2008, which in turn was acquired by Oracle in 2009, which still owns the MySQL software and distributes it under a dual GPL and proprietary license.
+MySQL was developed by Michael "Monty" Widenius (a Finnish computer scientist) who founded MySQL AB in 1995. MySQL AB was acquired by SUN in 2008, which in turn was acquired by Oracle in 2009, which still owns the MySQL software and distributes it under a dual GPL and proprietary license.
 
 In 2009, Michael Widenius left SUN, founded Monty Program AB and launched the development of his community fork of MySQL : MariaDB under GPL license. Governance of the project is entrusted to the MariaDB Foundation, which ensures that the project remains free.
 
-It wasn't long before the majority of Linux distributions offered MariaDB packages instead of MySQL ones, and major accounts such as Wikipedia and Google also adopted the community fork.
+It was not long before the majority of Linux distributions offered MariaDB packages instead of MySQL ones, and major accounts such as Wikipedia and Google also adopted the community fork.
 
 MySQL and MariaDB are among the world's most widely used RDBMSs (professionally and by the general public), particularly for web applications (**LAMP**: Linux + Apache + Mysql-MariaDB + Php).
 
-Mysql-MariaDB's main competitors are :
+Mysql-MariaDB's main competitors are:
 
 * PostgreSQL,
 * OracleDB,
 * Microsoft SQL Server.
 
-Databases services are multi-threaded and multi-user, run on most operating systems (Linux, Unix, BSD, Mac OSx, Windows) and are accessible from many programming languages (Php, Java, Python, C, C++, Perl, ...).
+Databases services are multi-threaded and multi-user, run on most operating systems (Linux, Unix, BSD, Mac OSx, Windows), and are accessible from many programming languages (Php, Java, Python, C, C++, Perl, others).
 
-Several engines are supported, enabling different engines to be assigned to different tables within the same database, depending on requirements:
+Support is offered for several engines, enabling the assignment of different engines to different tables within the same database, depending on requirements:
 
 MyISAM
 :   the simplest, but does not support transactions or foreign keys. It is an indexed sequential engine. MyISAM is now deprecated.
@@ -63,13 +63,11 @@ Memory
 Archive
 :   data compression on insertion saves disk space, but slows down search queries (cold data).
 
-...
-
-It's a matter of adopting an engine according to need: Archive for log storage, Memory for temporary data, etc.
+It is a matter of adopting an engine according to need: Archive for log storage, Memory for temporary data, and so on.
 
 MariaDB/MySQL uses port 3306/tcp for network communication.
 
-As the default version supplied with Rocky is the MariaDB community version of the database, this chapter will deal with this version. Only the differences between MySQL and MariaDB will be dealt with specifically.
+As the default version supplied with Rocky is the MariaDB community version of the database, this chapter will deal with this version. Only the differences between MySQL and MariaDB are specifically dealt with.
 
 ### Installation
 
@@ -111,7 +109,7 @@ If you have not yet installed the mariadb server, activating the desired module 
 $ sudo dnf module enable mariadb:10.11
 Last metadata expiration check: 0:02:23 ago on Thu Jun 20 11:39:10 2024.
 Dependencies resolved.
-============================================================================================================================================= Package                          Architecture                    Version                             Repository                        Size 
+============================================================================================================================================= Package                          Architecture                    Version                             Repository                        Size
 =============================================================================================================================================
 Enabling module streams:
  mariadb                                                          10.11
@@ -122,7 +120,7 @@ Is this ok [y/N]: y
 Complete!
 ```
 
-You can now install the package as previously, the desired version will be automatically installed:
+You can now install the package. The desired version will be automatically installed:
 
 ```bash
 sudo dnf install -y mariadb-server
@@ -145,7 +143,7 @@ mariadb-prepare-db-dir[6599]: able to connect as any of these users with a passw
 
 ### Configuration
 
-Configuration files can be found at `/etc/my.cnf` and `/etc/my.cnf.d/`.
+Configuration files can are in `/etc/my.cnf` and `/etc/my.cnf.d/`.
 
 Some important default options have been setup in the `/etc/my.cnf.d/mariadb-server.cnf`:
 
@@ -160,11 +158,11 @@ pid-file=/run/mariadb/mariadb.pid
 ...
 ```
 
-As you can see, data are stored in the `/var/lib/mysql` per default. This folder can require a lot of storage space and recurring volume increases. It is therefore advisable to mount this folder on a dedicated partition.
+As you can see, data is in the `/var/lib/mysql` per default. This folder can require a lot of storage space and recurring volume increases. It is therefore advisable to mount this folder on a dedicated partition.
 
 ### Security
 
-MariaDB and Mysql includes a script to help you secure your server. It remove for example remote root logins and sample users, that remains the less secure default options.
+MariaDB and Mysql includes a script to help you secure your server. It remove for example remote root logins and sample users, the less-secure default options.
 
 Use the `mariadb-secure-installation` and secure your server:
 
@@ -172,14 +170,14 @@ Use the `mariadb-secure-installation` and secure your server:
 sudo mariadb-secure-installation
 ```
 
-You will be asked to provide a password for your root user.
+The script will prompt you to provide a password for your root user.
 
 !!! NOTE
 
     The `mysql_secure_installation` command is now a symlink to the `mariadb-secure-installation` command:
 
     ```bash
-    $ ll /usr/bin/mysql_secure_installation 
+    $ ll /usr/bin/mysql_secure_installation
     lrwxrwxrwx. 1 root root 27 Oct 12  2023 /usr/bin/mysql_secure_installation -> mariadb-secure-installation
     ```
 
@@ -191,7 +189,7 @@ user="root"
 password="#######"
 ```
 
-Ensure the permissions are restrictives enought to only allow the current user can access:
+Ensure the permissions are restrictive enough to only allow the current user can access:
 
 ```bash
 chmod 600 ~/.my.cnf
@@ -199,9 +197,9 @@ chmod 600 ~/.my.cnf
 
 !!! WARNING
 
-    This is not the best way to do, there are another solutions more secure than storing password in plain text. Since MySQL 5.6.6, it's now possible to store your credentials in an encrypted login `.mylogin.cnf`, thanks to the `mysql_config_editor` command.
+    This is not the best way. There is another solution more secure than storing a password in plain text. Since MySQL 5.6.6, it is now possible to store your credentials in an encrypted login `.mylogin.cnf`, thanks to the `mysql_config_editor` command.
 
-If your server is protected by a firewall (which is a good thing), you may need to consider opening it, but only if your service is to be accessed from the outside.
+If your server runs a firewall (which is a good thing), you might need to consider opening it, but only if you need your service accessible from the outside.
 
 ```bash
 sudo firewall-cmd --zone=public --add-service=mysql
@@ -210,7 +208,7 @@ sudo firewall-cmd --reload
 
 !!! NOTE
 
-    The best security is not to open your database server to the outside world (if the application server is hosted on the same server), or to restrict access to authorized IPs only. 
+    The best security is not to open your database server to the outside world (if the application server is hosted on the same server), or to restrict access to authorized IPs only.
 
 ### Administration
 
@@ -274,7 +272,7 @@ mariadb-admin -u user -p command
 | `-p`      | Asks for a password.                 |
 | `command` | A command to execute.                |
 
-The `mariadb-admin` provides several commands as `version`, `variables`, `stop-slave` or `start-slaves`, `create databasename`, etc.
+The `mariadb-admin` provides several commands as `version`, `variables`, `stop-slave` or `start-slaves`, `create databasename`, and so on.
 
 Example:
 
@@ -338,19 +336,19 @@ Sort types can be :
 
 ### About backup
 
-As with any RDBMS, a database must be backed up while the data is not being modified. This can be done :
+As with any RDBMS, backing up a database is done while the data modification is off-line. You can do this by:
 
-* when the service is stopped: this is an offline backup;
-* while the service is running, but a lock has been set (to temporarily suspend all modifications): this is an online backup.
-* using a snapshot of the LVM file system, enabling data to be backed up with a cold file system.
+* stopping the service, known as an offline backup;
+* while the service is running, buy temporarily locking out updates (suspending all modifications). This is an online backup.
+* using a snapshot of the LVM file system, enabling the backing up of data with a cold file system.
 
 The backup format can be an ASCII (text) file, representing the state of the database and its data in the form of SQL commands, or a binary file, corresponding to MySQL storage files.
 
-While a binary file can be backed up using common utilities such as tar or cpio, an ASCII file requires a utility such as `mariadb-dump`.
+While you can back up a binary file using common utilities such as tar or cpio, an ASCII file requires a utility such as `mariadb-dump`.
 
 The `mariadb-dump` command can perform a dump of your database.
 
-During the process, some data access can be locked.
+During the process, locking of some data access occurs.
 
 ```bash
 mariadb-dump -u root -p DATABASE_NAME > backup.sql
@@ -358,15 +356,15 @@ mariadb-dump -u root -p DATABASE_NAME > backup.sql
 
 !!! NOTE
 
-    Don't forget that after restoring a full backup, restoring the binary files (binlogs) completes the reconstitution of the data.
+    Do not forget that after restoring a full backup, restoring the binary files (binlogs) completes the reconstitution of the data.
 
-The resulting file can be used to restore the database data (the database must still exist or have been recreated beforehand!):
+The resulting file is usable to restore the database data. The database must still exist or you must have recreated it beforehand!:
 
 ```bash
 mariadb -u root -p DATABASE_NAME < backup.sql
 ```
 
-### Graphical Tools
+### Graphical tools
 
 Graphical tools exist to facilitate the administration and management of database data. Here are a few examples:
 
@@ -374,7 +372,7 @@ Graphical tools exist to facilitate the administration and management of databas
 
 ### Workshop
 
-In this workshop, you'll install, configure and secure your mariadb server.
+In this workshop, you will install, configure, and secure your mariadb server.
 
 #### Task 1 : Installation
 
@@ -384,15 +382,15 @@ Install the mariadb-server package:
 $ sudo dnf install mariadb-server
 Last metadata expiration check: 0:10:05 ago on Thu Jun 20 11:26:03 2024.
 Dependencies resolved.
-============================================================================================================================================= Package                                       Architecture            Version                              Repository                  Size 
+============================================================================================================================================= Package                                       Architecture            Version                              Repository                  Size
 =============================================================================================================================================
 Installing:
- mariadb-server                                x86_64                  3:10.5.22-1.el9_2                    appstream                  9.6 M 
+ mariadb-server                                x86_64                  3:10.5.22-1.el9_2                    appstream                  9.6 M
 Installing dependencies:
 ...
 ```
 
-Installation adds a `mysql` user to the system, with `/var/lib/mysql` as homedirectory:
+Installation adds a `mysql` user to the system, with `/var/lib/mysql` as home directory:
 
 ```bash
 $ cat /etc/passwd
@@ -432,8 +430,8 @@ $ sudo systemctl status mariadb
 
 Jun 20 11:48:56 localhost.localdomain mariadb-prepare-db-dir[6599]: The second is mysql@localhost, it has no password either, but
 Jun 20 11:48:56 localhost.localdomain mariadb-prepare-db-dir[6599]: you need to be the system 'mysql' user to connect.
-Jun 20 11:48:56 localhost.localdomain mariadb-prepare-db-dir[6599]: After connecting you can set the password, if you would need to be       
-Jun 20 11:48:56 localhost.localdomain mariadb-prepare-db-dir[6599]: able to connect as any of these users with a password and without sudo   
+Jun 20 11:48:56 localhost.localdomain mariadb-prepare-db-dir[6599]: After connecting you can set the password, if you would need to be
+Jun 20 11:48:56 localhost.localdomain mariadb-prepare-db-dir[6599]: able to connect as any of these users with a password and without sudo
 Jun 20 11:48:56 localhost.localdomain mariadb-prepare-db-dir[6599]: See the MariaDB Knowledgebase at https://mariadb.com/kb
 Jun 20 11:48:56 localhost.localdomain mariadb-prepare-db-dir[6599]: Please report any problems at https://mariadb.org/jira
 Jun 20 11:48:56 localhost.localdomain mariadb-prepare-db-dir[6599]: The latest information about MariaDB is available at https://mariadb.org>Jun 20 11:48:56 localhost.localdomain mariadb-prepare-db-dir[6599]: Consider joining MariaDB's strong and vibrant community:
@@ -441,7 +439,7 @@ Jun 20 11:48:56 localhost.localdomain mariadb-prepare-db-dir[6599]: https://mari
 Jun 20 11:48:56 localhost.localdomain systemd[1]: Started MariaDB 10.5 database server.
 ```
 
-Try to connect to the server:
+Try connecting to the server:
 
 ```bash
 $ sudo mariadb
@@ -481,7 +479,7 @@ Uptime:                 7 min 24 sec
 Threads: 1  Questions: 9  Slow queries: 0  Opens: 17  Open tables: 10  Queries per second avg: 0.020
 ```
 
-As you can see, the `root` user doesn't need to provide any password. We will correct that during the next task.
+As you can see, the `root` user does not need to provide a password. You will correct that during the next task.
 
 #### Task 2 : Secure your server
 
@@ -514,7 +512,7 @@ Reloading privilege tables..
 You already have your root account protected, so you can safely answer 'n'.
 
 Change the root password? [Y/n] y
-New password: 
+New password:
 Re-enter new password:
 Password updated successfully!
 Reloading privilege tables..
@@ -560,14 +558,14 @@ installation should now be secure.
 Thanks for using MariaDB!
 ```
 
-Try now to connect with and without password to your server:
+Try connecting again, with and without password to your server:
 
 ```bash
 $ mariadb -u root
 ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)
 
 $ mariadb -u root -p
-Enter password: 
+Enter password:
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
 Your MariaDB connection id is 4
 Server version: 10.5.22-MariaDB MariaDB Server
@@ -576,7 +574,7 @@ Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-MariaDB [(none)]> 
+MariaDB [(none)]>
 ```
 
 Configure your firewall:
@@ -592,7 +590,7 @@ Verify your installation :
 
 ```bash
 $ mysqladmin -u root -p version
-Enter password: 
+Enter password:
 mysqladmin  Ver 9.1 Distrib 10.5.22-MariaDB, for Linux on x86_64
 Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
@@ -621,7 +619,7 @@ Create a new user and give him all rights on all table of that database:
 MariaDB [(none)]> grant all privileges on NEW_DATABASE_NAME.* TO 'NEW_USER_NAME'@'localhost' identified by 'PASSWORD';
 ```
 
-Replace `localhost` per `%` if you want to grant access from everywhere or replace per IP adresses if you can.
+Replace `localhost` per `%` if you want to grant access from everywhere or replace per IP addresses if you can.
 
 You can restrict the priveleges granted. There are different types of permissions to offer users:
 
@@ -635,7 +633,7 @@ You can restrict the priveleges granted. There are different types of permission
 * **ALL PRIVILEGES**: all rights
 * **GRANT OPTION**: give or remove rights to other users
 
-Don't forget to reload apply the new rights:
+Do not forget to reload apply the new rights:
 
 ```sql
 MariaDB [(none)]> flush privileges;
@@ -645,7 +643,7 @@ Check:
 
 ```bash
 $ mariadb -u NEW_USER_NAME -p
-Enter password: 
+Enter password:
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
 Your MariaDB connection id is 8
 Server version: 10.5.22-MariaDB MariaDB Server
@@ -665,7 +663,7 @@ MariaDB [(none)]> show databases;
 
 ```
 
-Add sample datas into your database:
+Add sample data into your database:
 
 ```bash
 $ mariadb -u NEW_USER_NAME -p NEW_DATABASE_NAME
@@ -683,7 +681,7 @@ Query OK, 1 row affected (0.004 sec)
 
 #### Task 5 : Create a remote user
 
-In this task, we will create a new user, granted access from remote, and test a connexion with him.
+In this task, you will create a new user, grant access from remote, and test a connection with that user.
 
 ```bash
 MariaDB [(none)]> grant all privileges on NEW_DATABASE_NAME.* TO 'NEW_USER_NAME'@'%' identified by 'PASSWORD';
@@ -693,14 +691,14 @@ MariaDB [(none)]> flush privileges;
 Query OK, 0 rows affected (0.004 sec)
 ```
 
-Use this user and the `-h` option to connect remotly to your server:
+Use this user and the `-h` option to connect remotely to your server:
 
 ```bash
 $ mariadb -h YOUR_SERVER_IP -u NEW_USER_NAME -p NEW_DATABASE_NAME
-Enter password: 
+Enter password:
 ...
 
-MariaDB [NEW_DATABASE_NAME]> 
+MariaDB [NEW_DATABASE_NAME]>
 ```
 
 #### Task 6 : Perform an upgrade
@@ -709,10 +707,10 @@ Enable the module needed:
 
 ```bash
 $ sudo dnf module enable mariadb:10.11
-[sudo] password for antoine: 
+[sudo] password for antoine:
 Last metadata expiration check: 2:00:16 ago on Thu Jun 20 11:50:27 2024.
 Dependencies resolved.
-============================================================================================================================================= Package                          Architecture                    Version                             Repository                        Size 
+============================================================================================================================================= Package                          Architecture                    Version                             Repository                        Size
 =============================================================================================================================================Enabling module streams:
  mariadb                                                          10.11
 
@@ -728,16 +726,16 @@ Upgrade the packages:
 $ sudo dnf update mariadb
 Last metadata expiration check: 2:00:28 ago on Thu Jun 20 11:50:27 2024.
 Dependencies resolved.
-============================================================================================================================================= Package                            Architecture        Version                                                 Repository              Size 
+============================================================================================================================================= Package                            Architecture        Version                                                 Repository              Size
 =============================================================================================================================================
 Upgrading:
- mariadb                            x86_64              3:10.11.6-1.module+el9.4.0+20012+a68bdff7               appstream              1.7 M 
- mariadb-backup                     x86_64              3:10.11.6-1.module+el9.4.0+20012+a68bdff7               appstream              6.7 M 
- mariadb-common                     x86_64              3:10.11.6-1.module+el9.4.0+20012+a68bdff7               appstream               28 k 
- mariadb-errmsg                     x86_64              3:10.11.6-1.module+el9.4.0+20012+a68bdff7               appstream              254 k 
- mariadb-gssapi-server              x86_64              3:10.11.6-1.module+el9.4.0+20012+a68bdff7               appstream               15 k 
- mariadb-server                     x86_64              3:10.11.6-1.module+el9.4.0+20012+a68bdff7               appstream               10 M 
- mariadb-server-utils               x86_64              3:10.11.6-1.module+el9.4.0+20012+a68bdff7               appstream              261 k 
+ mariadb                            x86_64              3:10.11.6-1.module+el9.4.0+20012+a68bdff7               appstream              1.7 M
+ mariadb-backup                     x86_64              3:10.11.6-1.module+el9.4.0+20012+a68bdff7               appstream              6.7 M
+ mariadb-common                     x86_64              3:10.11.6-1.module+el9.4.0+20012+a68bdff7               appstream               28 k
+ mariadb-errmsg                     x86_64              3:10.11.6-1.module+el9.4.0+20012+a68bdff7               appstream              254 k
+ mariadb-gssapi-server              x86_64              3:10.11.6-1.module+el9.4.0+20012+a68bdff7               appstream               15 k
+ mariadb-server                     x86_64              3:10.11.6-1.module+el9.4.0+20012+a68bdff7               appstream               10 M
+ mariadb-server-utils               x86_64              3:10.11.6-1.module+el9.4.0+20012+a68bdff7               appstream              261 k
 
 Transaction Summary
 =============================================================================================================================================
@@ -746,15 +744,15 @@ Upgrade  7 Packages
 Total download size: 19 M
 Is this ok [y/N]: y
 Downloading Packages:
-(1/7): mariadb-gssapi-server-10.11.6-1.module+el9.4.0+20012+a68bdff7.x86_64.rpm                               99 kB/s |  15 kB     00:00     
-(2/7): mariadb-server-utils-10.11.6-1.module+el9.4.0+20012+a68bdff7.x86_64.rpm                               1.1 MB/s | 261 kB     00:00    
-(3/7): mariadb-errmsg-10.11.6-1.module+el9.4.0+20012+a68bdff7.x86_64.rpm                                     2.5 MB/s | 254 kB     00:00     
-(4/7): mariadb-common-10.11.6-1.module+el9.4.0+20012+a68bdff7.x86_64.rpm                                     797 kB/s |  28 kB     00:00     
-(5/7): mariadb-10.11.6-1.module+el9.4.0+20012+a68bdff7.x86_64.rpm                                            5.7 MB/s | 1.7 MB     00:00     
-(6/7): mariadb-server-10.11.6-1.module+el9.4.0+20012+a68bdff7.x86_64.rpm                                     9.5 MB/s |  10 MB     00:01     
-(7/7): mariadb-backup-10.11.6-1.module+el9.4.0+20012+a68bdff7.x86_64.rpm                                     7.7 MB/s | 6.7 MB     00:00     
+(1/7): mariadb-gssapi-server-10.11.6-1.module+el9.4.0+20012+a68bdff7.x86_64.rpm                               99 kB/s |  15 kB     00:00
+(2/7): mariadb-server-utils-10.11.6-1.module+el9.4.0+20012+a68bdff7.x86_64.rpm                               1.1 MB/s | 261 kB     00:00
+(3/7): mariadb-errmsg-10.11.6-1.module+el9.4.0+20012+a68bdff7.x86_64.rpm                                     2.5 MB/s | 254 kB     00:00
+(4/7): mariadb-common-10.11.6-1.module+el9.4.0+20012+a68bdff7.x86_64.rpm                                     797 kB/s |  28 kB     00:00
+(5/7): mariadb-10.11.6-1.module+el9.4.0+20012+a68bdff7.x86_64.rpm                                            5.7 MB/s | 1.7 MB     00:00
+(6/7): mariadb-server-10.11.6-1.module+el9.4.0+20012+a68bdff7.x86_64.rpm                                     9.5 MB/s |  10 MB     00:01
+(7/7): mariadb-backup-10.11.6-1.module+el9.4.0+20012+a68bdff7.x86_64.rpm                                     7.7 MB/s | 6.7 MB     00:00
 ---------------------------------------------------------------------------------------------------------------------------------------------
-Total                                                                                                         13 MB/s |  19 MB     00:01     
+Total                                                                                                         13 MB/s |  19 MB     00:01
 Running transaction check
 Transaction check succeeded.
 Running transaction test
@@ -766,7 +764,7 @@ Running transaction
 Complete!
 ```
 
-Now your databases need to be upgraded (check your `/var/log/messages` as the service complains):
+Your databases now need upgrading (check your `/var/log/messages` as the service complains):
 
 ```text
 mariadb-check-upgrade[8832]: The datadir located at /var/lib/mysql needs to be upgraded using 'mariadb-upgrade' tool. This can be done using the following steps:
@@ -777,7 +775,7 @@ mariadb-check-upgrade[8832]: Read more about 'mariadb-upgrade' usage at:
 mariadb-check-upgrade[8832]: https://mariadb.com/kb/en/mysql_upgrade/
 ```
 
-Don't forget to execute the upgrade script provided by MariaDB:
+Do not forget to execute the upgrade script provided by MariaDB:
 
 ```bash
 sudo mariadb-upgrade
@@ -862,19 +860,19 @@ UNLOCK TABLES;
 
 ### Check your Knowledge
 
-:heavy_check_mark: Which database version is installed by default?
+:heavy_check_mark: Which database version installs by default?
 
-* [ ] MySQL 5.5  
-* [ ] MariaDB 10.5  
-* [ ] MariaDB 11.11  
-* [ ] Mysql 8  
+* [ ] MySQL 5.5
+* [ ] MariaDB 10.5
+* [ ] MariaDB 11.11
+* [ ] Mysql 8
 
-:heavy_check_mark: Which command is used to apply rights changes?
+:heavy_check_mark: Which command do you use to apply rights changes?
 
-* [ ] flush rights  
-* [ ] flush privileges  
-* [ ] mariadb reload  
-* [ ] apply  
+* [ ] flush rights
+* [ ] flush privileges
+* [ ] mariadb reload
+* [ ] apply
 
 ### Conclusion
 
@@ -882,30 +880,30 @@ In this chapter, you have installed and secured a MariaDB database server, creat
 
 These skills are a prerequisite for the administration of your databases.
 
-In the next chapter, we will see how to install the MySQL database instead of the MariaDB fork.
+In the next section, you will see how to install the MySQL database instead of the MariaDB fork.
 
 ## Mysql
 
 In this chapter, you will learn how to install MySQL server.
 
-We're only going to cover the notable differences between the MariaDB and MySQL versions.
+Only notable differences between the MariaDB and MySQL versions are included.
 
 ****
 
 **Objectives**: In this chapter, you will learn how to:
 
-:heavy_check_mark: install, configure and secure MariaDB server and MySQL server;  
+:heavy_check_mark: install, configure and secure MariaDB server and MySQL server;
 
 :checkered_flag: **RDBMS**, **database**, **MariaDB**, **MySQL**
 
-**Knowledge**: :star: :star: :star:  
-**Complexity**: :star: :star: :star:  
+**Knowledge**: :star: :star: :star:
+**Complexity**: :star: :star: :star:
 
 **Reading time**: 10 minutes
 
 ****
 
-### Installation
+### Installation of MySQL
 
 By default, the installed version of MySQL is version 8.0.
 
@@ -928,9 +926,9 @@ You can now follow the previous chapter replacing the following commands:
 * `mariadb-dump` => `mysql_dump`
 * `mariadb-secure-installation` => `mysql_secure_installation`
 
-To install the latest version of mysql-server, you will have to install a new repo.
+To install the latest version of mysql-server, you will have to install a different repository.
 
-Please visit this page: https://dev.mysql.com/downloads/repo/yum/ and catch the repo URL.
+Visit this page: https://dev.mysql.com/downloads/repo/yum/ and copy the repository URL.
 
 For example:
 
@@ -938,21 +936,21 @@ For example:
 sudo dnf install -y https://dev.mysql.com/get/mysql84-community-release-el9-1.noarch.rpm
 ```
 
-Once the new repo is installed, you can perform the `dnf update`:
+When completed, you can perform the `dnf update`:
 
 ```bash
 $ dnf update
 Error: This command has to be run with superuser privileges (under the root user on most systems).
 [antoine@localhost ~]$ sudo dnf update
-MySQL 8.4 LTS Community Server                                                                               377 kB/s | 226 kB     00:00    
-MySQL Connectors Community                                                                                   110 kB/s |  53 kB     00:00    
-MySQL Tools 8.4 LTS Community                                                                                170 kB/s |  97 kB     00:00    
+MySQL 8.4 LTS Community Server                                                                               377 kB/s | 226 kB     00:00
+MySQL Connectors Community                                                                                   110 kB/s |  53 kB     00:00
+MySQL Tools 8.4 LTS Community                                                                                170 kB/s |  97 kB     00:00
 Dependencies resolved.
-============================================================================================================================================= Package                                   Architecture      Version                                Repository                          Size 
+============================================================================================================================================= Package                                   Architecture      Version                                Repository                          Size
 =============================================================================================================================================Installing:
- mysql-community-client                    x86_64            8.4.0-1.el9                            mysql-8.4-lts-community            3.1 M 
+ mysql-community-client                    x86_64            8.4.0-1.el9                            mysql-8.4-lts-community            3.1 M
      replacing  mysql.x86_64 8.0.36-1.el9_3
- mysql-community-server                    x86_64            8.4.0-1.el9                            mysql-8.4-lts-community             50 M 
+ mysql-community-server                    x86_64            8.4.0-1.el9                            mysql-8.4-lts-community             50 M
      replacing  mariadb-connector-c-config.noarch 3.2.6-1.el9_0
      replacing  mysql-server.x86_64 8.0.36-1.el9_3
 Installing dependencies:
@@ -964,15 +962,15 @@ Transaction Summary
 Total download size: 59 M
 Is this ok [y/N]: y
 Downloading Packages:
-(1/7): mysql-community-client-plugins-8.4.0-1.el9.x86_64.rpm                                                 3.4 MB/s | 1.4 MB     00:00     
-(2/7): mysql-community-common-8.4.0-1.el9.x86_64.rpm                                                         1.3 MB/s | 576 kB     00:00     
-(3/7): mysql-community-icu-data-files-8.4.0-1.el9.x86_64.rpm                                                  30 MB/s | 2.3 MB     00:00     
-(4/7): mysql-community-client-8.4.0-1.el9.x86_64.rpm                                                         5.8 MB/s | 3.1 MB     00:00     
-(5/7): mysql-community-libs-8.4.0-1.el9.x86_64.rpm                                                           6.8 MB/s | 1.5 MB     00:00     
-(6/7): net-tools-2.0-0.62.20160912git.el9.x86_64.rpm                                                         1.1 MB/s | 292 kB     00:00     
-(7/7): mysql-community-server-8.4.0-1.el9.x86_64.rpm                                                          48 MB/s |  50 MB     00:01     
----------------------------------------------------------------------------------------------------------------------------------------------Total                                                                                                         30 MB/s |  59 MB     00:01     
-MySQL 8.4 LTS Community Server                                                                               3.0 MB/s | 3.1 kB     00:00    
+(1/7): mysql-community-client-plugins-8.4.0-1.el9.x86_64.rpm                                                 3.4 MB/s | 1.4 MB     00:00
+(2/7): mysql-community-common-8.4.0-1.el9.x86_64.rpm                                                         1.3 MB/s | 576 kB     00:00
+(3/7): mysql-community-icu-data-files-8.4.0-1.el9.x86_64.rpm                                                  30 MB/s | 2.3 MB     00:00
+(4/7): mysql-community-client-8.4.0-1.el9.x86_64.rpm                                                         5.8 MB/s | 3.1 MB     00:00
+(5/7): mysql-community-libs-8.4.0-1.el9.x86_64.rpm                                                           6.8 MB/s | 1.5 MB     00:00
+(6/7): net-tools-2.0-0.62.20160912git.el9.x86_64.rpm                                                         1.1 MB/s | 292 kB     00:00
+(7/7): mysql-community-server-8.4.0-1.el9.x86_64.rpm                                                          48 MB/s |  50 MB     00:01
+---------------------------------------------------------------------------------------------------------------------------------------------Total                                                                                                         30 MB/s |  59 MB     00:01
+MySQL 8.4 LTS Community Server                                                                               3.0 MB/s | 3.1 kB     00:00
 Importing GPG key 0xA8D3785C:
  Userid     : "MySQL Release Engineering <mysql-build@oss.oracle.com>"
  Fingerprint: BCA4 3417 C3B4 85DD 128E C6D4 B7B3 B788 A8D3 785C
@@ -993,20 +991,20 @@ Installed:
 Complete!
 ```
 
-Don't forget to re-enable and restart your server:
+Do not forget to re-enable and restart your server:
 
 ```bash
 sudo systemctl enable mysqld.service --now
 ```
 
-### Check your Knowledge
+### Check your Knowledge MySQL
 
 :heavy_check_mark: Which MySQL database version is installed by default?
 
-* [ ] MySQL 5.5  
-* [ ] MariaDB 10.5  
-* [ ] MariaDB 11.11  
-* [ ] Mysql 8  
+* [ ] MySQL 5.5
+* [ ] MariaDB 10.5
+* [ ] MariaDB 11.11
+* [ ] Mysql 8
 
 ## Secondary server with MariaDB
 
@@ -1016,34 +1014,34 @@ In this chapter, you will learn how to configure a Primary/Secondary system serv
 
 **Objectives**: In this chapter, you will learn how to:
 
-:heavy_check_mark: activate the binlogs in your servers;  
-:heavy_check_mark: setup a secondary server to replicate data from primary server.  
+:heavy_check_mark: activate the binlogs in your servers;
+:heavy_check_mark: setup a secondary server to replicate data from primary server.
 
 :checkered_flag: **MariaDB**, **Replication**, **Primary**, **Secondary**
 
-**Knowledge**: :star: :star:  
-**Complexity**: :star: :star: :star:  
+**Knowledge**: :star: :star:
+**Complexity**: :star: :star: :star:
 
 **Reading time**: 10 minutes
 
 ****
 
-### Generalities
+### Generalities secondary server with MariaDB
 
-As soon as you start using your database more intensively, you'll need to replicate your data on several servers.
+As soon as you start using your database more intensively, you will need to replicate your data on several servers.
 
 This can be done in several ways:
 
 * Distribute write requests to the primary server and read requests to the secondary server.
 * Perform database backups on the secondary server, which avoids blocking writes to the primary server for the duration of the backups.
 
-If your usage becomes even more demanding, you may consider switching to a primary/primary system: replications are then made crosswise, but beware of the risk of blocking the uniqueness of primary keys. Otherwise, you'll need to switch to a more advanced clustering system.
+If your usage becomes even more demanding, you may consider switching to a primary/primary system: replications are then made crosswise, but beware of the risk of blocking the uniqueness of primary keys. Otherwise, you will need to switch to a more advanced clustering system.
 
-### Configuration
+### Configuration secondary server with MariaDB
 
 #### How to activate the binlogs
 
-This action must be performed on the primary and secondary servers:
+Perform this action on the primary and secondary servers:
 
 Add the following options to your `/etc/my.cnf.d/mariadb-server.cnf` file, under the `[mariadb]` key:
 
@@ -1065,7 +1063,7 @@ log-basename=server2
 binlog-format=mixed
 ```
 
-The `server_id` option must be unique on each server in the cluster, while the `log-basename` option allows you to specify a prefix to the binlog files. If you don't do this, you won't be able to rename your server in the future.
+The `server_id` option must be unique on each server in the cluster, while the `log-basename` option allows you to specify a prefix to the binlog files. If you do not do this, you will not be able to rename your server in the future.
 
 You can now restart the mariadb service on both servers:
 
@@ -1089,7 +1087,7 @@ srwxrwxrwx. 1 mysql mysql         0 Jun 21 11:16 mysql.sock
 
 #### How to configure the replication
 
-First of all, on the primary, you'll need to create users authorized to replicate data (be careful to restrict the IPs authorized):
+First of all, on the primary, you will need to create users authorized to replicate data (be careful to restrict the IPs authorized):
 
 ```bash
 $ sudo mariadb
@@ -1097,7 +1095,7 @@ $ sudo mariadb
 MariaDB [(none)]> CREATE USER 'replication'@'%' IDENTIFIED BY 'PASSWORD';
 Query OK, 0 rows affected (0.002 sec)
 
-MariaDB [(none)]> GRANT REPLICATION SLAVE ON *.* TO 'replication'@'%';  
+MariaDB [(none)]> GRANT REPLICATION SLAVE ON *.* TO 'replication'@'%';
 Query OK, 0 rows affected (0.002 sec)
 ```
 
@@ -1109,11 +1107,11 @@ $ sudo mariadb
 MariaDB [(none)]> CREATE USER 'replication'@'192.168.1.101' IDENTIFIED BY 'PASSWORD';
 Query OK, 0 rows affected (0.002 sec)
 
-MariaDB [(none)]> GRANT REPLICATION SLAVE ON *.* TO 'replication'@'192.168.1.101';  
+MariaDB [(none)]> GRANT REPLICATION SLAVE ON *.* TO 'replication'@'192.168.1.101';
 Query OK, 0 rows affected (0.002 sec)
 ```
 
-If your primary server already contains data, you'll need to lock new transactions while data is being exported/imported to the secondary server(s), and tell the secondary servers when to start replication. If your server does not yet contain any data, the procedure is greatly simplified.
+If your primary server already contains data, you will need to lock new transactions while the exporting or importing of data occurs to the secondary server(s), and tell the secondary servers when to start replication. If your server does not yet contain any data, the procedure is greatly simplified.
 
 Prevent any changes to the data while you view the binary log position:
 
@@ -1135,12 +1133,11 @@ MariaDB [(none)]> SHOW MASTER STATUS;
 
 Do not quit your session to keep the lock.
 
-Record the File and Position details. 
+Record the File and Position details.
 
-If your server contains data, it's time to create a backup and import it onto your secondary server(s). The lock must be kept for the duration of the backup, and can be released as soon as it's complete, reducing downtime (the time it takes to copy and import the data on the secondary servers).
+If your server contains data, it is time to create a backup and import it onto your secondary server(s). Keep the lock for the duration of the backup, and release it as soon as the backup is complete. This reduces downtime (the time it takes to copy and import the data on the secondary servers).
 
-You can remove now the lock:
-
+You can remove the lock now:
 
 ```bash
 $ sudo mariadb
@@ -1166,7 +1163,7 @@ MariaDB [(none)]> START SLAVE;
 Query OK, 0 rows affected (0.001 sec)
 ```
 
-Of course, replace the primary server IP with yours and the `MASTER_LOG_FILE` and `MASTER_LOG_POS` values with those you previously registered.
+Replace the primary server IP with yours and the `MASTER_LOG_FILE` and `MASTER_LOG_POS` values with those you previously registered.
 
 Check if the replication is ok:
 
@@ -1185,13 +1182,13 @@ MariaDB [(none)]> SHOW SLAVE STATUS \G
 1 row in set (0.001 sec)
 ```
 
-The `Seconds_Behind_Master` is an interessing values to monitor as he can help you see if there is a replication issue.
+The `Seconds_Behind_Master` is an interesting value to monitor as it can help you see if there is a replication issue.
 
-### Workshop
+### Workshop secondary server using MariaDB
 
-For this workshop, you'll need two servers with MariaDB services installed, configured and secured as described in the previous chapters.
+For this workshop, you will need two servers with MariaDB services installed, configured and secured as described in the previous chapters.
 
-You'll configure replication on the secondary server, then create a new database, insert data into it and check that the data is accessible on the secondary server.
+You will configure replication on the secondary server, then create a new database, insert data into it and check that the data is accessible on the secondary server.
 
 Our two servers have the following IP addresses:
 
@@ -1200,7 +1197,7 @@ Our two servers have the following IP addresses:
 
 Remember to replace these values with your own.
 
-#### Task 1: Create a dedicated replication user.
+#### Task 1: Create a dedicated replication user
 
 On the primary server:
 
@@ -1210,7 +1207,7 @@ $ sudo mariadb
 MariaDB [(none)]> CREATE USER 'replication'@'192.168.1.101' IDENTIFIED BY 'PASSWORD';
 Query OK, 0 rows affected (0.002 sec)
 
-MariaDB [(none)]> GRANT REPLICATION SLAVE ON *.* TO 'replication'@'192.168.1.101';  
+MariaDB [(none)]> GRANT REPLICATION SLAVE ON *.* TO 'replication'@'192.168.1.101';
 Query OK, 0 rows affected (0.002 sec)
 ```
 
@@ -1282,7 +1279,7 @@ MariaDB [(none)]> grant all privileges on NEW_DATABASE_NAME.* TO 'NEW_USER_NAME'
 Query OK, 0 rows affected (0.004 sec)
 ```
 
-On the secondary, check if database is created:
+On the secondary, check for creation of the database:
 
 ```bash
 MariaDB [(none)]> show databases;
@@ -1299,11 +1296,11 @@ MariaDB [(none)]> show databases;
 
 Magic !
 
-On the secondary, try to connect with the new user created on the primary:
+On the secondary, try connecting the new user created on the primary:
 
 ```bash
 $ mariadb -u NEW_USER_NAME -p
-Enter password: 
+Enter password:
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
 
 MariaDB [(none)]> show databases;
@@ -1316,9 +1313,9 @@ MariaDB [(none)]> show databases;
 2 rows in set (0.000 sec)
 ```
 
-#### Task 5: Insert new datas
+#### Task 5: Insert new data
 
-Insert new datas on the primary server:
+Insert new data on the primary server:
 
 ```bash
 MariaDB [(none)]> use NEW_DATABASE_NAME
@@ -1336,7 +1333,7 @@ Query OK, 1 row affected (0.004 sec)
 
 ```
 
-On the secondary, check that data are well replicated:
+On the secondary, check that data are replicated:
 
 ```bash
 MariaDB [(none)]> use NEW_DATABASE_NAME
@@ -1359,29 +1356,28 @@ MariaDB [NEW_DATABASE_NAME]> SELECT * FROM users;
 1 row in set (0.000 sec)
 ```
 
-### Check your Knowledge
+### Check your Knowledge secondary server with MariaDB
 
 :heavy_check_mark: Each server must have the same id within a cluster?
 
-* [ ] True  
-* [ ] False  
+* [ ] True
+* [ ] False
 
 :heavy_check_mark: Binary logs must be enabled before replication is activated.?
 
-* [ ] True  
-* [ ] False  
-* [ ] It depends  
+* [ ] True
+* [ ] False
+* [ ] It depends
 
-### Conclusion
+### Conclusion secondary server with MariaDB
 
 As you can see, creating one or more secondary servers is a relatively easy action, but it does require service interruption on the main server.
 
-It does, however, offer a number of advantages: high data availability, load balancing and simplified backup.
+It does, however, offer many advantages: high data availability, load balancing, and simplified backup.
 
-It goes without saying that, in the event of a main server crash, one of the secondary servers can be promoted to main server.
+It goes without saying that, in the event of a main server crash, promotion of one of the secondary servers to main server can occur.
 
 <!---
-
 
 ## PostgreSQL
 
@@ -1391,13 +1387,13 @@ In this chapter, you will learn about XXXXXXX.
 
 **Objectives**: In this chapter, you will learn how to:
 
-:heavy_check_mark: XXX  
-:heavy_check_mark: XXX  
+:heavy_check_mark: XXX
+:heavy_check_mark: XXX
 
 :checkered_flag: **XXX**, **XXX**
 
-**Knowledge**: :star:  
-**Complexity**: :star:  
+**Knowledge**: :star:
+**Complexity**: :star:
 
 **Reading time**: XX minutes
 
@@ -1425,9 +1421,9 @@ In this chapter, you will learn about XXXXXXX.
 
 :heavy_check_mark: Question with multiple answers?
 
-* [ ] Answer 1  
-* [ ] Answer 2  
-* [ ] Answer 3  
-* [ ] Answer 4  
+* [ ] Answer 1
+* [ ] Answer 2
+* [ ] Answer 3
+* [ ] Answer 4
 
 -->
