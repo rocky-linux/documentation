@@ -61,7 +61,7 @@ For this example we will install the popular dash to dock extension.
 
 ## Managing installed extensions
 
-GNOME extensions can not only be installed on gnome.extensions.org but also managed.
+GNOME extensions are installed and managed on gnome.extensions.org.
 
 To manage your GNOME extensions, first go to <https://extensions.gnome.org/local/>
 
