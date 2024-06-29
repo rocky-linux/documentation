@@ -864,14 +864,14 @@ The commands specific to `less` are:
 
 | Command           | Action                                          |
 | ----------------- | ----------------------------------------------- |
-| ++"h"++               | Help.                                           |
+| ++"h"++ or ++h++              | Help.                                           |
 | ++arrow-up++ ++arrow-down++ ++arrow-right++ ++arrow-left++         | Move up, down a line, or to the right or left.  |
 | ++enter++           | Move down one line.                             |
 | ++space++           | Move down one page.                             |
 | ++page-up++ and ++page-down++ | Move up or down one page.                       |
 | ++"g"++ and ++g++ | Move to the first and last pages         |
 | `/text`           | Search for text.                                |
-| ++"q"++               | Quit the `less` command.                        |
+| ++"q"++ or ++q++              | Quit the `less` command.                        |
 
 ### `cat` command
 
