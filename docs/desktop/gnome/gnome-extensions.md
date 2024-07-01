@@ -22,10 +22,10 @@ From the [GNOME website](https://extensions.gnome.org/about/){:target="_blank"}:
 
 ## Install GNOME extensions
 
-GNOME Extensions is available from the "appstream" repository, requiring no additional repository configuration. Install with:
+GNOME Extensions is provided from the gnome-shell package available in the "appstream" repository. Install with:
 
 ```bash
-sudo dnf install gnome-extensions
+sudo dnf install gnome-shell
 ```
 
 Installation includes all needed dependencies.
