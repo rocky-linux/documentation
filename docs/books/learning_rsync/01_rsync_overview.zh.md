@@ -39,7 +39,7 @@ update: 2022年3月8日
 
 在平台支持上，支持绝大多数的类Unix，不管是GNU/Linux还是BSD等都支持。 另外Windows平台下也有相关的rsync，比如cwRsync。
 
-最初的 rsync 由澳大利亚程序员<font color=red>安德鲁-特里杰尔</font>（下图1所示）进行维护，现在已由<font color=red>韦恩-戴维森</font>（下图2所示）进行维护，可以到 [github项目地址](https://github.com/WayneD/rsync) 获取您想要的信息。
+最初的 `rsync` 由澳大利亚程序员<font color=red>安德鲁-特里杰尔</font>（下图1所示）进行维护，现在已由<font color=red>韦恩-戴维森</font>（下图2所示）进行维护，可以到 [github项目地址](https://github.com/WayneD/rsync) 获取您想要的信息。
 
 ![ 安德鲁-特里杰尔 ](images/Andrew_Tridgell.jpg) ![ 韦恩-戴维森 ](images/Wayne_Davison.jpg)
 

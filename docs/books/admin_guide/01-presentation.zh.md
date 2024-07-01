@@ -20,9 +20,8 @@ title: Linux 简介
 
 :checkered_flag: **概述**, **linux**, **发行版**
 
-**知识掌握程度**: :star:
-
-**知识复杂度**: :star:
+**知识性**: :star:  
+**复杂度**: :star:
 
 **阅读时间**: 10 分钟
 
@@ -62,7 +61,7 @@ Linux、UNIX、BSD、Windows 和 MacOS 都是 **操作系统**。
 
 * **1964 — 1968**：MIT、贝尔实验室（AT&T）和通用电气公司共同研发了 MULTICS（多功能信息和计算服务）。
 
-* **1969 — 1971**：在贝尔（1969）和通用电气退出该项目后，两位开发人员（肯·汤普森和丹尼斯·里奇）以及后来的布莱恩·科尼根（Brian Kernighan）认为 MULTICS 过于复杂，便启动开发 UNIX（UNiplexed Information and Computing Service，单一功能信息和计算服务）。 UNIX最初是用汇编语言开发的，它的设计者先后开发了B语言和C语言(1971年)，并完全重写了UNIX。 由于 UNIX/Linux 系统是在1970年开发的，因此 UNIX/Linux 系统的起始时间参考日期（纪元日期）设置为1970年01月01日。
+* **1969 — 1971**：在贝尔（1969）和通用电气退出该项目后，两位开发人员（肯·汤普森和丹尼斯·里奇）以及后来的布莱恩·科尼根（Brian Kernighan）认为 MULTICS 过于复杂，便启动开发 UNIX（UNiplexed Information and Computing Service，单一功能信息和计算服务）。 UNIX 最初是用汇编语言开发的，它的设计者先后开发了B语言和C语言(1971年)，并完全重写了 UNIX。 由于 UNIX/Linux 系统是在1970年开发的，因此 UNIX/Linux 系统的起始时间参考日期（纪元日期）设置为1970年01月01日。
 
 C语言仍然是当今最流行的编程语言之一。 它是一种接近硬件的低级语言，允许操作系统适配任何具有C编译器的机器架构。
 
