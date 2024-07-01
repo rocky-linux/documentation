@@ -864,14 +864,14 @@ The commands specific to `less` are:
 
 | Command           | Action                                          |
 | ----------------- | ----------------------------------------------- |
-| ++h++               | Help.                                           |
+| ++"h"++ or ++h++              | Help.                                           |
 | ++arrow-up++ ++arrow-down++ ++arrow-right++ ++arrow-left++         | Move up, down a line, or to the right or left.  |
 | ++enter++           | Move down one line.                             |
 | ++space++           | Move down one page.                             |
 | ++page-up++ and ++page-down++ | Move up or down one page.                       |
 | ++"g"++ and ++g++ | Move to the first and last pages         |
 | `/text`           | Search for text.                                |
-| ++q++               | Quit the `less` command.                        |
+| ++"q"++ or ++q++              | Quit the `less` command.                        |
 
 ### `cat` command
 
@@ -1000,7 +1000,7 @@ adm:x:3:4:adm:/var/adm/:/sbin/nologin
 | `-o file` | Saves the sort to the specified file.        |
 | `-t`     | Specify a delimiter, which requires that the contents of the corresponding file must be regularly delimited column contents, otherwise they cannot be sorted properly. |
 | `-r`      | Reverse the order of the result. Used in conjunction with the `-n` option to sort in order from largest to smallest.             |
-| `-u`     | Remove duplicates after sorting. Equivalent to `sort file uniq`.                   |
+| `-u`     | Remove duplicates after sorting. Equivalent to `sort FILE | uniq` command.                   |
 
 The `sort` command sorts the file only on the screen. The file is not modified by the sorting. To save the sort, use the `-o` option or an output redirection `>`.
 
