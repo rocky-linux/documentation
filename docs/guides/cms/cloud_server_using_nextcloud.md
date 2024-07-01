@@ -37,11 +37,11 @@ Nextcloud offers an open source cloud with security and flexibility in mind. Not
 
 ### Installing And Configuring Repositories and Modules
 
-For this installation, we will require two repositories. We need to install the EPEL (Extra Packages for Enterprise Linux), and the Remi Repository for PHP 8.0
+For this installation, we will require two repositories. We need to install the EPEL (Extra Packages for Enterprise Linux), and the Remi Repository for PHP 8.3
 
 !!! note
 
-    A minimum PHP version 7.3 or 7.4 is required and the Rocky Linux version of 7.4 does not contain all of the packages that Nextcloud needs. We are going to use PHP 8.0 from the Remi repository instead.
+    A minimum PHP version 7.3 or 7.4 is required and the Rocky Linux version of 7.4 does not contain all of the packages that Nextcloud needs. We are going to use PHP 8.3 from the Remi repository instead.
 
 To install the EPEL run:
 
@@ -79,16 +79,18 @@ php                     remi-7.3                   common [d], devel, minimal   
 php                     remi-7.4                   common [d], devel, minimal                   PHP scripting language                  
 php                     remi-8.0                   common [d], devel, minimal                   PHP scripting language                  
 php                     remi-8.1                   common [d], devel, minimal                   PHP scripting language                  
+php                     remi-8.2                   common [d], devel, minimal                   PHP scripting language                  
+php                     remi-8.3                   common [d], devel, minimal                   PHP scripting language                  
 Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
 ```
 
-We want to grab the newest PHP that Nextcloud is compatible with, which at this moment is 8.0, so we will enable that module by doing:
+We want to grab the newest PHP that Nextcloud is compatible with, which at this moment is 8.3, so we will enable that module by doing:
 
 ```bash
-dnf module enable php:remi-8.0
+dnf module enable php:remi-8.3
 ```
 
-To see how this changes the output of the module list, run the module list command again and you will see the "[e]" next to 8.0:
+To see how this changes the output of the module list, run the module list command again and you will see the "[e]" next to 8.3:
 
 ```bash
 dnf module list php
@@ -97,7 +99,7 @@ dnf module list php
 And the output again is the same except for this line:
 
 ```bash
-php                    remi-8.0 [e]                   common [d], devel, minimal                  PHP scripting language
+php                    remi-8.3 [e]                   common [d], devel, minimal                  PHP scripting language
 ```
 
 ### Installing Packages
@@ -105,7 +107,7 @@ php                    remi-8.0 [e]                   common [d], devel, minimal
 Our example here uses Apache and mariadb, so to install what we need, we simply need to do the following:
 
 ```bash
-dnf install httpd mariadb-server vim wget zip unzip libxml2 openssl php81-php php81-php-ctype php81-php-curl php81-php-gd php81-php-iconv php81-php-json php81-php-libxml php81-php-mbstring php81-php-openssl php81-php-posix php81-php-session php81-php-xml php81-php-zip php81-php-zlib php81-php-pdo php81-php-mysqlnd php81-php-intl php81-php-bcmath php81-php-gmp
+dnf install httpd mariadb-server vim wget zip unzip libxml2 openssl php83-php php83-php-ctype php83-php-curl php83-php-gd php83-php-iconv php83-php-json php83-php-libxml php83-php-mbstring php83-php-openssl php83-php-posix php83-php-session php83-php-xml php83-php-zip php83-php-zlib php83-php-pdo php83-php-mysqlnd php83-php-intl php83-php-bcmath php83-php-gmp
 ```
 
 ### Configuring
@@ -174,7 +176,7 @@ This is where our Nextcloud instance will be installed.
 We need to set the time zone for PHP. To do this, open up php.ini with your text editor of choice:
 
 ```bash
-vi /etc/opt/remi/php81/php.ini
+vi /etc/opt/remi/php83/php.ini
 ```
 
 Then find the line:
