@@ -14,7 +14,7 @@ Flatpak est installé par défaut lors de l'installation de Rocky Linux avec des
 
 ## Installation Manuelle
 
-!!! note
+!!! note "Remarque"
 
 ```
 Vous pouvez ignorer cette étape si vous exécutez déjà l'environnement de bureau GNOME complet décrit dans l'introduction.
