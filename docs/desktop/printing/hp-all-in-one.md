@@ -42,7 +42,7 @@ While you can scan using cli commands with the HPLIP package, they do not supply
 sudo dnf install sane-backends sane-frontends xsane
 ```
 
-The xsane gui looks a little intimidating but doing a simple scan is straight-foward. When you launch xsane a window with a button exists where you can ++"Acquire a preview"++. This will take a preview image of a scan. Once read to scan click the button 'Start' in the main menu.
+The xsane gui looks a little intimidating but doing a simple scan is straightforward. When you launch xsane a window with a button exists where you can ++"Acquire a preview"++. This will take a preview image of a scan. Once read to scan click the button 'Start' in the main menu.
 
 For a more comprehensive xsane guide read this [article by the University of Cambridge Faculty of Mathematics](https://www.maths.cam.ac.uk/computing/printing/xsane){target="_blank"}
 
