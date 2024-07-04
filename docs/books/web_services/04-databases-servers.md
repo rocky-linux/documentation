@@ -9,7 +9,7 @@ tags:
 title: Part 4. Databases servers
 ---
 
-MySQL, MariaDB and PostgreSQL are open source RDBMS (Relational DataBase Managed System).
+MySQL, MariaDB and PostgreSQL are open-source RDBMS (Relational DataBase Management System).
 
 ## MariaDB and MySQL
 
@@ -162,7 +162,7 @@ As you can see, data is in the `/var/lib/mysql` per default. This folder can req
 
 ### Security
 
-MariaDB and Mysql includes a script to help you secure your server. It remove for example remote root logins and sample users, the less-secure default options.
+MariaDB and Mysql include a script to help you secure your server. It remove for example remote root logins and sample users, the less-secure default options.
 
 Use the `mariadb-secure-installation` and secure your server:
 
@@ -181,7 +181,7 @@ The script will prompt you to provide a password for your root user.
     lrwxrwxrwx. 1 root root 27 Oct 12  2023 /usr/bin/mysql_secure_installation -> mariadb-secure-installation
     ```
 
-If providing a password each time you have to use mariadb's commands is a problem, you can set up a `~/.my.cnf` file with your credentials, that will be use per default by mariadb to connect to your server.
+If providing a password each time you have to use mariadb's commands is a problem, you can set up a `~/.my.cnf` file with your credentials, that will be used per default by mariadb to connect to your server.
 
 ```bash
 [client]
