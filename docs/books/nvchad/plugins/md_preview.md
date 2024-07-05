@@ -23,7 +23,7 @@ To integrate this functionality into your editor, two of the plugins available f
 
 ### Peek.nvim
 
-[Peek](https://github.com/toppair/peek.nvim) uses [Deno](https://deno.com/manual) a JavaScript, TypeScript and WebAssembly runtime with default and secure settings for its operation. By default Deno does not allow any file, network or environment access unless explicitly enabled.
+[Peek](https://github.com/toppair/peek.nvim) uses [Deno](https://docs.deno.com/runtime/manual/) a JavaScript, TypeScript and WebAssembly runtime with default and secure settings for its operation. By default Deno does not allow any file, network or environment access unless explicitly enabled.
 
 To install the language server in the editor configuration, the *mason.nvim* plugin is used, which provides the command `:MasonInstall`, a command that enables the automatic inclusion and configuration of *Deno*.
 
