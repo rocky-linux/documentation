@@ -1,7 +1,7 @@
 ---
 title: Awk command
 author: tianci li
-contributors: 
+contributors:
 tags:
   - awk
 ---
@@ -55,7 +55,7 @@ Although `awk` is a tool for processing text, it has some programming language f
 A simple example that is easy to understand：
 
 ```bash
-Shell > df -hT 
+Shell > df -hT
 | 1             |     2        |  3    |  4   |  5    |   6   |   7            | 8       |
 |Filesystem     |    Type      | Size  | Used | Avail | Use%  | Mounted        | on      |←← 1 (first line)
 |devtmpfs       |    devtmpfs  | 1.8G  |   0  | 1.8G  |  0%   | /dev           |         |←← 2
@@ -889,7 +889,7 @@ ID      Name
     discard         9/dccp                  # Discard SC:DISC
     ...
     ```
-  
+
 3. Basic operations in mathematics
 
     ```bash
@@ -929,7 +929,7 @@ ID      Name
     ...
     ```
 
-4. Pipe symbol<a id=ps></a>
+4. Pipe symbol
 
     You can use the bash command in the awk program, for example:
 
@@ -964,7 +964,7 @@ ID      Name
     ssh             22/tcp                          # The Secure Shell (SSH) Protocol
     sshell          614/tcp                 # SSLshell
     ssh-mgmt        17235/tcp               # SSH Tectia Manager
-    
+
     Shell > cat /etc/services | grep -v -E "(^#)|(^$)" | awk '$2!~/(tcp)|(udp)/ {print $0}'
     http            80/sctp                         # HyperText Transfer Protocol
     bgp             179/sctp
@@ -1020,14 +1020,14 @@ ID      Name
     Multiple branches:
 
     ```bash
-    Shell > cat /etc/services | awk '{ \ 
-    if($1~/netbios/) 
-        {print $0} 
-    else if($2~/175/) 
-        {print "175"} 
-    else if($2~/137/) 
-        {print "137"} 
-    else {print "no"} 
+    Shell > cat /etc/services | awk '{ \
+    if($1~/netbios/)
+        {print $0}
+    else if($2~/175/)
+        {print "175"}
+    else if($2~/137/)
+        {print "137"}
+    else {print "no"}
     }'
     ```
 
@@ -1136,14 +1136,14 @@ ID      Name
       }
     }'
 
-    1                                                                                                                           
-    2                                                                                                                                         
-    4                                                                                                                                         
-    5                                                                                                                                         
-    6                                                                                                                                         
-    7                                                                                                                                         
-    8                                                                                                                                         
-    9                                                                                                                                         
+    1
+    2
+    4
+    5
+    6
+    7
+    8
+    9
     10
     ```
 
@@ -1313,7 +1313,7 @@ Like most programming languages, `awk` also supports arrays, which are divided i
     Shell > cat /var/log/secure | egrep -o "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" | awk ' \
     {
       a[$1]++
-    } 
+    }
     END{
       for(v in a) print a[v],v
     }
@@ -1356,7 +1356,7 @@ Like most programming languages, `awk` also supports arrays, which are divided i
 
     ```bash
     Shell > ss -tulnp | awk -F " "  '/tcp/ {a[$2]++} END{for(i in a) print a[i],i}'
-    2 LISTEN  
+    2 LISTEN
     ```
 
 8. Print lines based on the number of occurrences of a specific field
@@ -1625,8 +1625,6 @@ Like most programming languages, `awk` also supports arrays, which are divided i
     ```
 
     Just like the `sed` command, you can also use the "&" symbol to reference already matched strings.
-    
-     [Review that here](#symbol).
 
     ```bash
     Shell > vim /tmp/tmp-file1.txt
@@ -1735,7 +1733,7 @@ Like most programming languages, `awk` also supports arrays, which are divided i
     cloudcheck-ping 45514/udp               # ASSIA CloudCheck WiFi Management keepalive
     cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
     spremotetablet  46998/tcp               # Capture handwritten signatures
-    
+
     # I need this part of the content - "tablet"
     Shell > tail  -n 5 /etc/services | awk '/^sp/ {print substr($1,9)}'
     tablet
@@ -1989,8 +1987,6 @@ Like most programming languages, `awk` also supports arrays, which are divided i
         "**>**" indicates writing to the file as an overlay. If you want to write to the file as an append, please use "**>>**". Reminder again, you should use double quotation marks to include the file path.
 
 7. pipe character
-
-    See [here](#ps)
 
 8. Custom functions
 
