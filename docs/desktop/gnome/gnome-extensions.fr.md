@@ -22,10 +22,10 @@ Extrait du [site de GNOME](https://extensions.gnome.org/about/){:target="_blank"
 
 ## Installation d'Extensions de GNOME
 
-Les extensions GNOME sont disponibles à partir du référentiel `appstream`, ne nécessitant aucune configuration de référentiel supplémentaire. Installez avec la commande suivante :
+Les extensions GNOME sont fournies à partir du paquet `gnome-shell` disponible dans le référentiel `appstream`. Installez avec la commande suivante :
 
 ```bash
-sudo dnf install gnome-extensions
+sudo dnf install gnome-shell
 ```
 
 L’installation inclut toutes les dépendances nécessaires.
