@@ -14,7 +14,7 @@ GNOME Tweaks est un outil permettant de personnaliser l'environnement de bureau,
 
 ## Installation de GNOME tweaks
 
-GNOME Tweaks est disponible depuis le référentiel « appstream », ne nécessitant aucune configuration de référentiel supplémentaire. Installieren avec la commande suivante :
+GNOME Tweaks est disponible depuis le référentiel « appstream », ne nécessitant aucune configuration de référentiel supplémentaire. Installez avec la commande suivante :
 
 ```bash
 sudo dnf install gnome-tweaks
