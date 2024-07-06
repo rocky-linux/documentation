@@ -20,7 +20,7 @@ Par défaut, Rocky Linux offre la possibilité de partager votre bureau via un a
 
 Pour ce guide, nous partons du principe que vous disposez déjà de la configuration suivante :
 
-- Rocky Linux et Gnome
+- Rocky Linux et GNOME
 - Flatpak et Flathub installés et opérationnels
 - Un compte utilisateur non root
 - Accès administrateur ou sudo et pouvoir coller des commandes dans le terminal
