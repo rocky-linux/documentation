@@ -862,14 +862,14 @@ I comandi specifici per `less` sono:
 
 | Comando                                                    | Azione                                              |
 | ---------------------------------------------------------- | --------------------------------------------------- |
-| ++h++                                                      | Aiuto.                                              |
+| ++"h"++ o ++h++                                            | Aiuto.                                              |
 | ++arrow-up++ ++arrow-down++ ++arrow-right++ ++arrow-left++ | Sposta su, giù di una linea, o a destra e sinistra. |
 | ++enter++                                                  | Sposta giù di una riga.                             |
 | ++space++                                                  | Sposta giù di una pagina.                           |
 | ++page-up++ e ++page-down++                                | Sposta su o giù di una pagina.                      |
 | ++"g"++ e ++g++                                            | Passa alla prima e all'ultima pagina                |
 | `/text`                                                    | Cerca il testo.                                     |
-| ++q++                                                      | Chiude il comando`less`.                            |
+| ++"q"++ o ++q++                                            | Chiude il comando`less`.                            |
 
 ### comando `cat`
 
