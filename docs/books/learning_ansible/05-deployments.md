@@ -10,16 +10,16 @@ In this chapter you will learn how to deploy applications with the Ansible role 
 
 **Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: Implement Ansistrano;  
-:heavy_check_mark: Configure Ansistrano;  
-:heavy_check_mark: Use shared folders and files between deployed versions;  
-:heavy_check_mark: Deploying different versions of a site from git;  
-:heavy_check_mark: React between deployment steps.  
+:heavy_check_mark: Implement Ansistrano;
+:heavy_check_mark: Configure Ansistrano;
+:heavy_check_mark: Use shared folders and files between deployed versions;
+:heavy_check_mark: Deploying different versions of a site from git;
+:heavy_check_mark: React between deployment steps.
 
-:checkered_flag: **ansible**, **ansistrano**, **roles**, **deployments**  
+:checkered_flag: **ansible**, **ansistrano**, **roles**, **deployments**
 
-**Knowledge**: :star: :star:  
-**Complexity**: :star: :star: :star:  
+**Knowledge**: :star: :star:
+**Complexity**: :star: :star: :star:
 
 **Reading time**: 40 minutes
 
@@ -126,7 +126,7 @@ Technical considerations:
 
 Our playbook to configure the server: `playbook-config-server.yml`
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -137,27 +137,27 @@ Our playbook to configure the server: `playbook-config-server.yml`
       DirectoryIndex index.php index.htm
     apache_vhosts:
       - servername: "website"
- documentroot: "{{ dest }}current/html"
+    documentroot: "{{ dest }}current/html"
 
   tasks:
 
     - name: create directory for website
       file:
- path: /var/www/site/
- state: directory
- mode: 0755
+        path: /var/www/site/
+        state: directory
+        mode: 0755
 
     - name: install git
       package:
- name: git
- state: latest
+        name: git
+        state: latest
 
     - name: permit traffic in default zone for http service
       ansible.posix.firewalld:
- service: http
- permanent: yes
- state: enabled
- immediate: yes
+        service: http
+        permanent: yes
+        state: enabled
+        immediate: yes
 
   roles:
     - { role: geerlingguy.apache }
@@ -216,7 +216,7 @@ The sources of the software can be found in the [github repository](https://gith
 
 We will create a playbook `playbook-deploy.yml` to manage our deployment:
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -258,7 +258,7 @@ TASK [ansistrano.deploy : ANSISTRANO | Change softlink to new release]
 TASK [ansistrano.deploy : ANSISTRANO | Clean up releases]
 
 PLAY RECAP ********************************************************************************************************************************************************************************************************
-192.168.1.11 : ok=25   changed=8    unreachable=0    failed=0    skipped=14   rescued=0    ignored=0   
+192.168.1.11 : ok=25   changed=8    unreachable=0    failed=0    skipped=14   rescued=0    ignored=0
 
 ```
 
@@ -343,7 +343,7 @@ The `ansistrano_keep_releases` variable is used to specify the number of release
 
 * Using the `ansistrano_keep_releases` variable, keep only 3 releases of the project. Check.
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -391,7 +391,7 @@ $ tree /var/www/site/
 
 ### Using shared_paths and shared_files
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -487,7 +487,7 @@ Don't forget to modify the Apache configuration to take into account this change
 
 Change the playbook for the server configuration `playbook-config-server.yml`
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -521,7 +521,7 @@ Change the playbook for the server configuration `playbook-config-server.yml`
 
 Change the playbook for the deployment `playbook-deploy.yml`
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -588,7 +588,7 @@ The `ansistrano_git_branch` variable is used to specify a `branch` or `tag` to d
 
 * Deploy the `releases/v1.1.0` branch:
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -629,7 +629,7 @@ $ curl http://192.168.1.11
 
 * Deploy the `v2.0.0` tag:
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -685,7 +685,7 @@ A playbook can be included through the variables provided for this purpose:
 
 * Easy example: send an email (or whatever you want like Slack notification) at the beginning of the deployment:
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -711,7 +711,7 @@ A playbook can be included through the variables provided for this purpose:
 
 Create the file `deploy/before-setup-tasks.yml`:
 
-```bash
+```yaml
 ---
 - name: Send a mail
   mail:
@@ -736,7 +736,7 @@ Heirloom Mail version 12.5 7/5/10.  Type ? for help.
 
 * You will probably have to restart some services at the end of the deployment, to flush caches for example. Let's restart Apache at the end of the deployment:
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -763,7 +763,7 @@ Heirloom Mail version 12.5 7/5/10.  Type ? for help.
 
 Create the file `deploy/after-symlink-tasks.yml`:
 
-```bash
+```yaml
 ---
 - name: restart apache
   systemd:

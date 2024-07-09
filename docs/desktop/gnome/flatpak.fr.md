@@ -14,7 +14,7 @@ Flatpak est installé par défaut lors de l'installation de Rocky Linux avec des
 
 ## Installation Manuelle
 
-!!! note
+!!! note "Remarque"
 
 ```
 Vous pouvez ignorer cette étape si vous exécutez déjà l'environnement de bureau GNOME complet décrit dans l'introduction.
@@ -125,7 +125,7 @@ Application Options:
   --ostree-verbose        Show OSTree debug information
 ```
 
-Mémoriser la liste des commandes n'est pas nécessaire, mais savoir comment y accéder et utiliser l'option `--help` est une bonne idée.
+Mémoriser la liste des commandes n'est pas nécessaire, mais savoir comment y accéder et utiliser l'option `--help` est essentiel.
 
 !!! warning "Avertissement"
 
@@ -154,11 +154,11 @@ There is no workaround for this. To avoid the error, use the Flathub resource in
 
 `Flathub` est une ressource Web permettant d'obtenir ou de soumettre des packages de bureau.
 
-Pour parcourir `Flathub`, veuillez visiter https://flathub.org/. Une énorme liste de packages de bureau sélectionnés existe ici, joliment divisés en catégories.
+Pour parcourir `Flathub`, veuillez consulter https://flathub.org/. Une énorme liste de packages de bureau sélectionnés existe ici, joliment divisés en catégories.
 
 ## Intégration de Flathub avec Flatpak
 
-À titre d'exemple, le processus d'installation d'OBS Studio est le suivant :
+À titre d'exemple, la marche à suivre pour l'installation d'OBS Studio est la suivante :
 
 1. Ouvrez la section "Audio & Vidéo" sur Flathub
 

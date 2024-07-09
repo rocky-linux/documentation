@@ -4,7 +4,7 @@ title: Aprendendo Linux Com o Rocky
 
 <!-- markdownlint-disable MD025 MD007 -->
 
-# Aprendendo Linux com o Rocky
+# Aprendendo Linux com Rocky
 
 O Guia do Administrador é uma coleção de documentos educacionais direcionados aos Administradores de Sistema. Eles podem ser utilizados por futuros Administradores de Sistema tentando se familiarizar, pelos atuais Administradores de Sistemas que gostariam de se atualizar, ou por qualquer usuário Linux que gostaria de aprender mais sobre o ambiente Linux, comandos, processos e mais. Como todo documento desse tipo, ele evoluirá e se atualizará com o tempo.
 
@@ -20,7 +20,7 @@ Em seguida podemos entrar no funcionamento mais profundo do Linux para entender 
 * Sistemas de Arquivos
 * Gerenciamento de Processos
 
-Backup e Restauração são informações essenciais para o Administrador de Sistemas. O Linux vem com muitas soluções de programas para aprimorar os backups (rsnapshot, lsyncd, etcetera.). É importante conhecer os componentes essenciais de backup que existem no sistema operacional. Nesse capítulo vamos abordar duas ferramentas: `tar` e o menos conhecido `cpio`.
+Backup e Restauração são informações essenciais para o Administrador de Sistemas. O Linux vem com muitas soluções de programas para aprimorar os backups (rsnapshot, lsyncd, etcétera.). É importante conhecer os componentes essenciais de backup que existem no sistema operacional. Nesse capítulo vamos abordar duas ferramentas: `tar` e o menos conhecido `cpio`.
 
 A Inicialização do Sistema também é uma leitura importante porque o gerenciamento do sistema durante o processo de inicialização evoluiu significativamente nos últimos anos, desde a chegada do systemd.
 

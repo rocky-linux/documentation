@@ -183,7 +183,7 @@ Then, let's add our domain entries in MySQL:
 ```sql
 Mysql > ALTER USER 'root'@'localhost' IDENTIFIED BY 'rockylinux.me';
 
-Mysql > create user 'mailrl'@'%' identified by 'mail.rockylinux.me'; 
+Mysql > create user 'mailrl'@'%' identified by 'mail.rockylinux.me';
 
 Mysql > grant all privileges on *.* to 'mailrl'@'%' with grant option;
 ```
@@ -231,7 +231,7 @@ Mysql > insert into virtual_aliases(id,domain_id,source,destination) values(1,1,
 Mysql > insert into virtual_aliases(id,domain_id,source,destination) values(2,1,'all@mail.rockylinux.me','leeo@mail.rockylinux.me');
 ```
 
-The password entries for the relevant email users are not shown here, as it requires using `doveadm pw -s SHA512-crypt -p twotestandtwo` command. See [here](#ap1)
+The password entries for the relevant email users are not shown here, as it requires using `doveadm pw -s SHA512-crypt -p twotestandtwo` command.
 
 #### Knowledge of SHA512 (SHA-2)
 
@@ -374,7 +374,7 @@ mydomain = rockylinux.me
 myorigin = $myhostname
 inet_interfaces = 192.168.100.6
 inet_protocols = ipv4
-mydestination = 
+mydestination =
 biff = no
 append_dot_mydomain = no
 smtpd_sasl_type = dovecot
@@ -401,7 +401,7 @@ mydomain = rockylinux.me
 myorigin = $myhostname
 inet_interfaces = 192.168.100.6
 inet_protocols = ipv4
-mydestination = 
+mydestination =
 biff = no
 append_dot_mydomain = no
 smtpd_sasl_type = dovecot

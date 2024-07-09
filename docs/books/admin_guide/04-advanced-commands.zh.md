@@ -10,11 +10,13 @@ title: 高级Linux 命令
 
 **目标**：在本章中，未来的Linux管理员将学习：
 
-:heavy_check_mark: 上一章中没有介绍的一些有用命令。 :heavy_check_mark: 一些高级命令。
+:heavy_check_mark: 上一章没有介绍的一些有用命令。  
+:heavy_check_mark: 一些高级命令。
 
 :checkered_flag: **用户命令**, **Linux**
 
-**知识性**: :star: **复杂度**: :star: :star: :star:
+**知识性**: :star:  
+**复杂度**: :star: :star: :star:
 
 **阅读时间**: 20 分钟
 
@@ -331,7 +333,7 @@ systemd─┬─NetworkManager───2*[{NetworkManager}]
 
 !!! note "说明"
 
-    要退出 `watch` 命令，您必须键入以下键：<kbd>CTRL</kbd>+<kbd>C</kbd> 以终止进程。
+    要退出 `watch` 命令，您必须键入 ++control+c++ 以终止进程。
 
 示例：
 
@@ -419,7 +421,7 @@ install: creating directory '~/samples'
 sudo install -v -o rocky -g users -m 644 -D -t ~/samples/ src/sample.txt
 ```
 
- !!! note "说明"
+!!! note "说明"
 
      在这种情况下，需要使用 `sudo` 来进行属性更改。
 

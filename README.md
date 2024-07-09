@@ -1,6 +1,6 @@
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-105-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-106-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Introduction
@@ -332,6 +332,9 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/techstacksavvy"><img src="https://avatars.githubusercontent.com/u/84424434?v=4?s=100" width="100px;" alt="Sasheeny Hubbard"/><br /><sub><b>Sasheeny Hubbard</b></sub></a><br /><a href="#content-techstacksavvy" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/ChrSteinert"><img src="https://avatars.githubusercontent.com/u/9868229?v=4?s=100" width="100px;" alt="Christian Steinert"/><br /><sub><b>Christian Steinert</b></sub></a><br /><a href="#content-ChrSteinert" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/hs303"><img src="https://avatars.githubusercontent.com/u/84558934?v=4?s=100" width="100px;" alt="hs303"/><br /><sub><b>hs303</b></sub></a><br /><a href="#content-hs303" title="Content">🖋</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/MarlonJMejia"><img src="https://avatars.githubusercontent.com/u/58282236?v=4?s=100" width="100px;" alt="MarlonJMejia"/><br /><sub><b>MarlonJMejia</b></sub></a><br /><a href="#content-MarlonJMejia" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>
