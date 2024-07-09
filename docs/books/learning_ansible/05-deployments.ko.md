@@ -487,7 +487,7 @@ $  tree -F /var/www/site/
 
 서버 구성을 위한 `playbook-config-server.yml`에 대한 플레이북 변경
 
-```
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -498,7 +498,7 @@ $  tree -F /var/www/site/
       DirectoryIndex index.php index.htm
     apache_vhosts:
       - servername: "website"
-        documentroot: "{{ dest }}current/" # <1>
+    documentroot: "{{ dest }}current/" # <1>
 
   tasks:
 

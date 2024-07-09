@@ -486,7 +486,7 @@ Non dimenticare di modificare la configurazione di Apache per tenere conto di qu
 
 Modifica il playbook per la configurazione del server `playbook-config-server.yml`
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -497,20 +497,20 @@ Modifica il playbook per la configurazione del server `playbook-config-server.ym
       DirectoryIndex index.php index.htm
     apache_vhosts:
       - servername: "website"
- documentroot: "{{ dest }}current/" # <1>
+    documentroot: "{{ dest }}current/" # <1>
 
   tasks:
 
     - name: create directory for website
       file:
- path: /var/www/site/
- state: directory
- mode: 0755
+        path: /var/www/site/
+        state: directory
+        mode: 0755
 
     - name: install git
       package:
- name: git
- state: latest
+        name: git
+        state: latest
 
   roles:
     - { role: geerlingguy.apache }

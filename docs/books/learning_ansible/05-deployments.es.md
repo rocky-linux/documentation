@@ -487,7 +487,7 @@ En nuestro caso, el repositorio contiene una carpeta `html`, que contiene los ar
 
 Cambie el playbook para la configuración del servidor `playbook-config-server.yml`
 
-```
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -498,7 +498,7 @@ Cambie el playbook para la configuración del servidor `playbook-config-server.y
       DirectoryIndex index.php index.htm
     apache_vhosts:
       - servername: "website"
-        documentroot: "{{ dest }}current/" # <1>
+    documentroot: "{{ dest }}current/" # <1>
 
   tasks:
 

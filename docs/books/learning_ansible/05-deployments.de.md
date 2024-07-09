@@ -125,7 +125,7 @@ Technische Überlegungen:
 
 Unser Playbook zur Konfiguration des Servers: `playbook-config-server.yml`
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -136,27 +136,27 @@ Unser Playbook zur Konfiguration des Servers: `playbook-config-server.yml`
       DirectoryIndex index.php index.htm
     apache_vhosts:
       - servername: "website"
- documentroot: "{{ dest }}current/html"
+    documentroot: "{{ dest }}current/html"
 
   tasks:
 
     - name: create directory for website
       file:
- path: /var/www/site/
- state: directory
- mode: 0755
+        path: /var/www/site/
+        state: directory
+        mode: 0755
 
     - name: install git
       package:
- name: git
- state: latest
+        name: git
+        state: latest
 
     - name: permit traffic in default zone for http service
       ansible.posix.firewalld:
- service: http
- permanent: yes
- state: enabled
- immediate: yes
+        service: http
+        permanent: yes
+        state: enabled
+        immediate: yes
 
   roles:
     - { role: geerlingguy.apache }
@@ -486,7 +486,7 @@ Vergessen Sie nicht, Ihre Apache-Konfiguration entsprechend zu ändern!
 
 Bearbeiten Sie das Playbook für die Serverkonfiguration `playbook-config-server.yml`
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -497,20 +497,20 @@ Bearbeiten Sie das Playbook für die Serverkonfiguration `playbook-config-server
       DirectoryIndex index.php index.htm
     apache_vhosts:
       - servername: "website"
- documentroot: "{{ dest }}current/" # <1>
+    documentroot: "{{ dest }}current/" # <1>
 
   tasks:
 
     - name: create directory for website
       file:
- path: /var/www/site/
- state: directory
- mode: 0755
+        path: /var/www/site/
+        state: directory
+        mode: 0755
 
     - name: install git
       package:
- name: git
- state: latest
+        name: git
+        state: latest
 
   roles:
     - { role: geerlingguy.apache }
