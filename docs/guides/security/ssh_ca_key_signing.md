@@ -196,7 +196,6 @@ Host *
 Trying to connect to the host results in the following:
 
 ```bash
->>>>>>> upstream/main
 [user@rocky ~]$ ssh user@rocky-vm.example.com
 Host key ED25519-CERT SHA256:bXWRZCpppNWxXs8o1MyqFlmfO8aSG+nlgJrBM4j4+gE revoked by file /etc/ssh/revokation_list.krl
 ```
