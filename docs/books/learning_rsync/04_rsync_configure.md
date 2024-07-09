@@ -28,7 +28,7 @@ In the previous article [rsync demo 02](03_rsync_demo02.md) we introduced some b
 
 ## Recommended configuration
 
-```ini
+```ini title="/etc/rsyncd.conf"
 uid = nobody
 gid = nobody
 address = 192.168.100.4
