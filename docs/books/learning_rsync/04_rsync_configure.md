@@ -28,4 +28,21 @@ In the previous article [rsync demo 02](03_rsync_demo02.md) we introduced some b
 
 ## Recommended configuration
 
-![ photo ](images/rsync_config.jpg)
+```ini
+uid = nobody
+gid = nobody
+address = 192.168.100.4
+use chroot = yes
+max connections = 10
+syslog facility = daemon
+pid file = /var/run/rsyncd.pid
+log file = /var/log/rsyncd.log
+lock file = /var/run/rsyncd.lock
+[file]
+  comment = rsync
+  path = /rsync/
+  read only = no
+  dont compress = *.gz *.bz2 *.zip
+  auth users = li
+  secrets file = /etc/rsyncd users.db
+```
