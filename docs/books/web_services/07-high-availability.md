@@ -27,7 +27,7 @@ This availability is a performance measure expressed as a percentage obtained by
 | 99,999%  | 5 minutes, 15 seconds         |
 | 99,9999% | 31,68 seconds                 |
 
-High Availability" (**HA**) refers to all the measures taken to guarantee the highest possible availability of a service, i.e. its correct operation 24 hours a day.
+"High Availability" (**HA**) refers to all the measures taken to guarantee the highest possible availability of a service, i.e. its correct operation 24 hours a day.
 
 ### Overview
 
@@ -79,8 +79,8 @@ In this chapter, you will learn about Pacemaker, a clustering solution.
 
 **Objectives**: In this chapter, you will learn how to:
 
-:heavy_check_mark: installer et configurer un cluster Pacemaker  
-:heavy_check_mark: administrer un cluster Pacemaker  
+:heavy_check_mark: install and configure a Pacemaker cluster;  
+:heavy_check_mark: administer a Pacemaker cluster.  
 
 :checkered_flag: **clustering**, **ha**, **high availability**, **pcs**, **pacemaker**
 
@@ -249,12 +249,9 @@ sudo firewall-cmd --permanent --add-service=high-availability
 sudo firewall-cmd --reload
 ```
 
-The services can now be activated for the next startup:
+!!! NOTE
 
-```bash
-sudo systemctl enable corosync
-sudo systemctl enable pacemaker
-```
+    Do not start the services now, as they are not configured, they will not work.
 
 ### Cluster managment
 
@@ -282,8 +279,12 @@ hacluster:x:189:189:cluster user:/var/lib/pacemaker:/sbin/nologin
 On all nodes, assign an identical password to the hacluster user:
 
 ```bash
-echo "mdphacluster" | sudo passwd --stdin hacluster
+echo "pwdhacluster" | sudo passwd --stdin hacluster
 ```
+
+!!! NOTE
+
+    Please replace "pwdhacluster" with a more secure password.
 
 From any node, it is possible to authenticate as a hacluster user on all nodes, then use the `pcs` commands on them:
 
@@ -298,7 +299,7 @@ server2: Authorized
 From the node on which pcs is authenticated, launch the cluster configuration:
 
 ```bash
-$ sudo pcs cluster setup --start mycluster server1 server2
+$ sudo pcs cluster setup mycluster server1 server2
 No addresses specified for host 'server1', using 'server1'
 No addresses specified for host 'server2', using 'server2'
 Destroying cluster on hosts: 'server1', 'server2'...
@@ -330,6 +331,14 @@ server1: Starting Cluster...
 server2: Starting Cluster...
 ```
 
+Enable the cluster service to start on boot:
+
+```bash
+sudo pcs cluster enable --all
+```
+
+Check the service status:
+
 ```bash
 $ sudo pcs status
 Cluster name: mycluster
@@ -357,6 +366,248 @@ Daemon Status:
   pcsd: active/enabled
 ```
 
+#### Adding ressources
+
+Before we can configure the resources, we'll need to deal with the alert message:
+
+```bash
+WARNINGS:
+No stonith devices and stonith-enabled is not false
+```
+
+In this state, Pacemaker will refuse to start our new resources.
+
+You have two choices:
+
+* disable `stonith`
+* configure it
+
+First, we will disable stonith until we learn how to configure it:
+
+```bash
+sudo pcs property set stonith-enabled=false
+```
+
+!!! WARNING
+
+    Be careful not to leave stonith disabled on a production environment!!!!
+
+##### VIP configuration
+
+The first resource we're going to create on our cluster is a VIP.
+
+The standard resources available are provided by the `pcs resource standards` command:
+
+```bash
+$ pcs resource standards
+lsb
+ocf
+service
+systemd
+```
+
+This VIP, corresponding to the IP address used by customers to access future cluster services, will be assigned to one of the nodes. Then, in the event of failure, the cluster will switch this resource from one node to another to ensure continuity of service.
+
+```bash
+pcs resource create myclusterVIP ocf:heartbeat:IPaddr2 ip=192.168.1.12 cidr_netmask=24 op monitor interval=30s
+```
+
+The `ocf:heartbeat:IPaddr2` argument is made up of 3 fields that provide pacemaker with :
+
+* the standard (here `ocf`),
+* the script namespace (here `heartbeat`),
+* the resource script name.
+
+The result is the addition of a virtual IP address to the list of managed resources:
+
+```bash
+$ sudo pcs status
+Cluster name: mycluster
+
+...
+Cluster name: mycluster
+Cluster Summary:
+  * Stack: corosync (Pacemaker is running)
+  ...
+  * 2 nodes configured
+  * 1 resource instance configured
+
+Full List of Resources:
+  * myclusterVIP        (ocf:heartbeat:IPaddr2):         Started server1
+...
+```
+
+In this case, VIP is active on server1, which can be verified with the `ip` command:
+
+```bash
+$ ip add show dev enp0s3
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:df:29:09 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.10/24 brd 192.168.1.255 scope global noprefixroute enp0s3
+       valid_lft forever preferred_lft forever
+    inet 192.168.1.12/24 brd 192.168.1.255 scope global secondary enp0s3
+       valid_lft forever preferred_lft forever
+```
+
+###### Toggle tests
+
+From anyware on the network, run the ping command on the VIP :
+
+```bash
+ping 192.168.1.12
+```
+
+Put the active node on standby:
+
+```bash
+sudo pcs node standby server1
+```
+
+Check that no ping was lost during the operation: (no missing `icmp_seq`)
+
+```bash
+64 bytes from 192.168.1.12: icmp_seq=39 ttl=64 time=0.419 ms
+64 bytes from 192.168.1.12: icmp_seq=40 ttl=64 time=0.043 ms
+64 bytes from 192.168.1.12: icmp_seq=41 ttl=64 time=0.129 ms
+64 bytes from 192.168.1.12: icmp_seq=42 ttl=64 time=0.074 ms
+64 bytes from 192.168.1.12: icmp_seq=43 ttl=64 time=0.099 ms
+64 bytes from 192.168.1.12: icmp_seq=44 ttl=64 time=0.044 ms
+64 bytes from 192.168.1.12: icmp_seq=45 ttl=64 time=0.021 ms
+64 bytes from 192.168.1.12: icmp_seq=46 ttl=64 time=0.058 ms
+```
+
+Check the cluster status:
+
+```bash
+$ sudo pcs status
+Cluster name: mycluster
+Cluster Summary:
+...
+  * 2 nodes configured
+  * 1 resource instance configured
+
+Node List:
+  * Node server1: standby
+  * Online: [ server2 ]
+
+Full List of Resources:
+  * myclusterVIP        (ocf:heartbeat:IPaddr2):         Started server2
+```
+
+The VIP has been moved to server2. Check with the `ip add` command as seen previously.
+
+Return server1 to the pool:
+
+```bash
+sudo pcs node unstandby server1
+```
+
+Note that once server1 has been unstandby, the cluster returns to its normal state, but the resource is not transferred back to server1: it remains on server2.
+
+##### Service configuration
+
+We will install the Apache service on both nodes of our cluster. This service will only be started on the active node, and will switch nodes at the same time as the VIP in the event of failure of the active node.
+
+Please refer to the apache chapter for detailed installation instructions.
+
+Installation must be performed on both nodes:
+
+```bash
+$ sudo dnf install -y httpd
+$ sudo firewall-cmd --permanent --add-service=http
+$ sudo firewall-cmd --reload
+```
+
+!!! WARNING
+
+    Don't start or activate the service yourself, pacemaker will take care of it.
+
+An HTML page containing the server name will be displayed by default:
+
+```bash
+echo "<html><body>Node $(hostname -f)</body></html>" | sudo tee "/var/www/html/index.html"
+```
+
+The Pacemaker resource agent will use the `/server-status` page (see apache chapter) to determine its health status. It must be activated by creating the file `/etc/httpd/conf.d/status.conf` on both servers:
+
+```bash
+sudo vim /etc/httpd/conf.d/status.conf
+<Location /server-status>
+    SetHandler server-status
+    Require local
+</Location>
+```
+
+To create a resource we'll call "WebSite", we'll call the apache script of the OCF resource and in the heartbeat namespace.
+
+```bash
+sudo pcs resource create WebSite ocf:heartbeat:apache configfile=/etc/httpd/conf/httpd.conf statusurl="http://localhost/server-status" op monitor interval=1min
+```
+
+The cluster will check Apache's health every minute (`op monitor interval=1min`).
+
+Finally, to ensure that the Apache service is started on the same node as the VIP address, a constraint must be added to the cluster:
+
+```bash
+sudo pcs constraint colocation add WebSite with myclusterVIP INFINITY
+```
+
+The Apache service can also be configured to start after the VIP, which can be useful if Apache VHosts are configured to listen to the VIP address (`Listen 192.168.1.12`):
+
+```bash
+$ sudo pcs constraint order myclusterVIP then WebSite
+Adding myclusterVIP WebSite (kind: Mandatory) (Options: first-action=start then-action=start)
+```
+
+###### Testing the failover
+
+We will perform a failover and test that our webserver is still available:
+
+```bash
+$ sudo pcs status
+Cluster name: mycluster
+Cluster Summary:
+  * Stack: corosync (Pacemaker is running)
+  * Current DC: server1 (version 2.1.7-5.el9_4-0f7f88312) - partition with quorum
+  ...
+
+Node List:
+  * Online: [ server1 server2 ]
+
+Full List of Resources:
+  * myclusterVIP        (ocf:heartbeat:IPaddr2):         Started server1
+  * WebSite     (ocf:heartbeat:apache):  Started server1
+```
+
+We are currently working on server1.
+
+```bash
+$ curl http://192.168.1.12/
+<html><body>Node server1</body></html>
+```
+
+Simulate a failure on server1:
+
+```bash
+sudo pcs node standby server1
+```
+
+```bash
+$ curl http://192.168.1.12/
+<html><body>Node server2</body></html>
+```
+
+As you can see, our webservice is still working but on server2 now.
+
+```bash
+sudo pcs node unstandby server1
+```
+
+Please note that the service was only interrupted for a few seconds while the VIP was switched over and the services restarted.
+
+### Cluster troubleshooting
+
+
 ### Security
 
 ### Workshop
@@ -367,56 +618,19 @@ You will configure a higly available Apache cluster.
 
 Our two servers have the following IP addresses:
 
-* server1: 192.168.1.100
-* server2: 192.168.1.101
+* server1: 192.168.1.10
+* server2: 192.168.1.11
 
+If you do not have a service to resolve names, fill the `/etc/hosts` file with content like the following:
 
-#### Task 1 : XXX
+```bash
+$ cat /etc/hosts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
 
-#### Task 2 : XXX
-
-#### Task 3 : XXX
-
-#### Task 4 : XXX
-
-### Check your Knowledge
-
-:heavy_check_mark: Simple question? (3 answers)
-
-:heavy_check_mark: Question with multiple answers?
-
-* [ ] Answer 1  
-* [ ] Answer 2  
-* [ ] Answer 3  
-* [ ] Answer 4  
-
-## PCS
-
-In this chapter, you will learn about XXXXXXX.
-
-****
-
-**Objectives**: In this chapter, you will learn how to:
-
-:heavy_check_mark: XXX  
-:heavy_check_mark: XXX  
-
-:checkered_flag: **XXX**, **XXX**
-
-**Knowledge**: :star:  
-**Complexity**: :star:  
-
-**Reading time**: XX minutes
-
-****
-
-### Generalities
-
-### Configuration
-
-### Security
-
-### Workshop
+192.168.1.10 server1 server1.rockylinux.lan
+192.168.1.11 server2 server2.rockylinux.lan
+```
 
 #### Task 1 : XXX
 
@@ -436,5 +650,3 @@ In this chapter, you will learn about XXXXXXX.
 * [ ] Answer 2  
 * [ ] Answer 3  
 * [ ] Answer 4  
-
--->
