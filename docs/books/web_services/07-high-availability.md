@@ -266,8 +266,8 @@ Cluster configuration could possibly be done by hand, but the pcs package makes 
 Install the package on all nodes and activate the daemon:
 
 ```bash
-$ sudo dnf install pcs
-$ sudo systemctl enable pcsd --now
+sudo dnf install pcs
+sudo systemctl enable pcsd --now
 ```
 
 The package installation created a hacluster user with an empty password. To perform tasks such as synchronizing corosync configuration files or rebooting remote nodes, this user must be assigned a password.
@@ -513,9 +513,9 @@ Please refer to the apache chapter for detailed installation instructions.
 Installation must be performed on both nodes:
 
 ```bash
-$ sudo dnf install -y httpd
-$ sudo firewall-cmd --permanent --add-service=http
-$ sudo firewall-cmd --reload
+sudo dnf install -y httpd
+sudo firewall-cmd --permanent --add-service=http
+sudo firewall-cmd --reload
 ```
 
 !!! WARNING
@@ -607,8 +607,112 @@ Please note that the service was only interrupted for a few seconds while the VI
 
 ### Cluster troubleshooting
 
+#### The `pcs status` command
 
-### Security
+The `pcs status` command provides information on the overall status of the cluster:
+
+```bash
+$ sudo pcs status
+Cluster name: mycluster
+Cluster Summary:
+  * Stack: corosync (Pacemaker is running)
+  * Current DC: server1 (version 2.1.7-5.el9_4-0f7f88312) - partition with quorum
+  * Last updated: Tue Jul  9 12:25:42 2024 on server1
+  * Last change:  Tue Jul  9 12:10:55 2024 by root via root on server1
+  * 2 nodes configured
+  * 2 resource instances configured
+
+Node List:
+  * Online: [ server1 ]
+  * OFFLINE: [ server2 ]
+
+Full List of Resources:
+  * myclusterVIP        (ocf:heartbeat:IPaddr2):         Started server1
+  * WebSite     (ocf:heartbeat:apache):  Started server1
+
+Daemon Status:
+  corosync: active/enabled
+  pacemaker: active/enabled
+  pcsd: active/enabled
+```
+
+As you can see, one of the two server is offline.
+
+#### The `pcs status corosync`
+
+The `pcs status corosync` command provides information on the status of corosync nodes:
+
+```bash
+$ sudo pcs status corosync
+
+Membership information
+----------------------
+    Nodeid      Votes Name
+         1          1 server1 (local)
+```
+
+and once the server2 is back:
+
+```bash
+$ sudo pcs status corosync
+
+Membership information
+----------------------
+    Nodeid      Votes Name
+         1          1 server1 (local)
+         2          1 server2
+```
+
+#### The `crm_mon` command
+
+The `crm_mon` command returns cluster status information. Use the `-1` option to display the cluster status once and exit.
+
+```bash
+$ sudo crm_mon -1
+Cluster Summary:
+  * Stack: corosync (Pacemaker is running)
+  * Current DC: server1 (version 2.1.7-5.el9_4-0f7f88312) - partition with quorum
+  * Last updated: Tue Jul  9 12:30:21 2024 on server1
+  * Last change:  Tue Jul  9 12:10:55 2024 by root via root on server1
+  * 2 nodes configured
+  * 2 resource instances configured
+
+Node List:
+  * Online: [ server1 server2 ]
+
+Active Resources:
+  * myclusterVIP        (ocf:heartbeat:IPaddr2):         Started server1
+  * WebSite     (ocf:heartbeat:apache):  Started server1
+```
+
+#### The `corosync-*cfgtool*` commands
+
+The `corosync-cfgtool` command checks that the configuration is correct and that communication with the cluster is working properly:
+
+```bash
+$ sudo corosync-cfgtool -s
+Local node ID 1, transport knet
+LINK ID 0 udp
+        addr    = 192.168.1.10
+        status:
+                nodeid:          1:     localhost
+                nodeid:          2:     connected
+```
+
+The `corosync-cmapctl` command is a tool for accessing the object database.
+For example, it can be used to check the status of cluster member nodes:
+
+```bash
+$ sudo corosync-cmapctl  | grep members
+runtime.members.1.config_version (u64) = 0
+runtime.members.1.ip (str) = r(0) ip(192.168.1.10)
+runtime.members.1.join_count (u32) = 1
+runtime.members.1.status (str) = joined
+runtime.members.2.config_version (u64) = 0
+runtime.members.2.ip (str) = r(0) ip(192.168.1.11)
+runtime.members.2.join_count (u32) = 2
+runtime.members.2.status (str) = joined
+```
 
 ### Workshop
 
@@ -632,21 +736,142 @@ $ cat /etc/hosts
 192.168.1.11 server2 server2.rockylinux.lan
 ```
 
-#### Task 1 : XXX
+The VIP address `192.168.1.12` will be use.
 
-#### Task 2 : XXX
+#### Task 1 : Installation and configuration
 
-#### Task 3 : XXX
+To install Pacemaker, remember to enable the `highavailability` repo.
 
-#### Task 4 : XXX
+On both nodes:
+
+```bash
+sudo dnf config-manager --set-enabled highavailability
+sudo dnf install pacemaker pcs
+sudo firewall-cmd --permanent --add-service=high-availability
+sudo firewall-cmd --reload
+sudo systemctl enable pcsd --now
+echo "pwdhacluster" | sudo passwd --stdin hacluster
+```
+
+On server1:
+
+```bash
+$ sudo pcs host auth server1 server2
+Username: hacluster
+Password: 
+server1: Authorized
+server2: Authorized
+$ sudo pcs cluster setup mycluster server1 server2
+$ sudo pcs cluster start --all
+$ sudo pcs cluster enable --all
+$ sudo pcs property set stonith-enabled=false
+```
+
+#### Task 2 : Adding a VIP
+
+The first resource we're going to create on our cluster is a VIP.
+
+```bash
+pcs resource create myclusterVIP ocf:heartbeat:IPaddr2 ip=192.168.1.12 cidr_netmask=24 op monitor interval=30s
+```
+
+Check the cluster status:
+
+```bash
+$ sudo pcs status
+Cluster name: mycluster
+Cluster Summary:
+...
+  * 2 nodes configured
+  * 1 resource instance configured
+
+Node List:
+  * Node server1: standby
+  * Online: [ server2 ]
+
+Full List of Resources:
+  * myclusterVIP        (ocf:heartbeat:IPaddr2):         Started server2
+```
+
+#### Task 3 : Installing the Apache server
+
+Installation must be performed on both nodes:
+
+```bash
+$ sudo dnf install -y httpd
+$ sudo firewall-cmd --permanent --add-service=http
+$ sudo firewall-cmd --reload
+echo "<html><body>Node $(hostname -f)</body></html>" | sudo tee "/var/www/html/index.html"
+sudo vim /etc/httpd/conf.d/status.conf
+<Location /server-status>
+    SetHandler server-status
+    Require local
+</Location>
+```
+
+#### Task 4 : Adding the httpd ressource
+
+Only on server1, add the new resource to the cluster with the needed constraints:
+
+```bash
+sudo pcs resource create WebSite ocf:heartbeat:apache configfile=/etc/httpd/conf/httpd.conf statusurl="http://localhost/server-status" op monitor interval=1min
+sudo pcs constraint colocation add WebSite with myclusterVIP INFINITY
+sudo pcs constraint order myclusterVIP then WebSite
+```
+
+#### Task 5 : Test your cluster
+
+We will perform a failover and test that our webserver is still available:
+
+```bash
+$ sudo pcs status
+Cluster name: mycluster
+Cluster Summary:
+  * Stack: corosync (Pacemaker is running)
+  * Current DC: server1 (version 2.1.7-5.el9_4-0f7f88312) - partition with quorum
+  ...
+
+Node List:
+  * Online: [ server1 server2 ]
+
+Full List of Resources:
+  * myclusterVIP        (ocf:heartbeat:IPaddr2):         Started server1
+  * WebSite     (ocf:heartbeat:apache):  Started server1
+```
+
+We are currently working on server1.
+
+```bash
+$ curl http://192.168.1.12/
+<html><body>Node server1</body></html>
+```
+
+Simulate a failure on server1:
+
+```bash
+sudo pcs node standby server1
+```
+
+```bash
+$ curl http://192.168.1.12/
+<html><body>Node server2</body></html>
+```
+
+As you can see, our webservice is still working but on server2 now.
+
+```bash
+sudo pcs node unstandby server1
+```
+
+Please note that the service was only interrupted for a few seconds while the VIP was switched over and the services restarted.
 
 ### Check your Knowledge
 
-:heavy_check_mark: Simple question? (3 answers)
+:heavy_check_mark: The `pcs` command is the only one command to control a pacemaker cluster?
 
-:heavy_check_mark: Question with multiple answers?
+:heavy_check_mark: Which command returns the cluster state?
 
-* [ ] Answer 1  
-* [ ] Answer 2  
-* [ ] Answer 3  
-* [ ] Answer 4  
+* [ ] `sudo pcs status`  
+* [ ] `systemctl status pcs`  
+* [ ] `sudo crm_mon -1`  
+* [ ] `sudo pacemaker -t`  
