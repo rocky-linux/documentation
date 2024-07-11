@@ -1,7 +1,7 @@
 ---
 title: Unbound Recursive DNS
 author: Neel Chauhan
-contributors:
+contributors: Steven Spencer
 tested_with: 9.4
 tags:
   - dns
@@ -16,7 +16,7 @@ An alternative to BIND, [Unbound](https://www.nlnetlabs.nl/projects/unbound/abou
 
 ## Introduction
 
-There are two types of DNS servers: authoritative and recursive. Whereas authoritative DNS servers advertise a DNS zone, recursive servers resolve queries on behalf of clients by forwarding them to an ISP or public DNS resolver, or the root zones for larger servers.
+There are two types of DNS servers: authoritative and recursive. Where authoritative DNS servers advertise a DNS zone, recursive servers resolve queries on behalf of clients by forwarding them to an ISP or public DNS resolver, or the root zones for larger servers.
 
 As an example, your home router is likely running an embedded recursive DNS resolver to forward to your ISP or a well-known public DNS server which is also a recursive DNS server.
 
@@ -84,7 +84,7 @@ $ host google.com 172.20.0.100
 Using domain server:
 Name: 192.168.50.209
 Address: 192.168.50.209#53
-Aliases: 
+Aliases:
 
 google.com has address 142.251.215.238
 google.com has IPv6 address 2607:f8b0:400a:805::200e
@@ -93,6 +93,7 @@ google.com mail is handled by 10 smtp.google.com.
 
 %
 ## Conclusion
-Most people use their home router's DNS resolver or public DNS resolvers run by ISPs and tech companies. In homelab and large networks it is a norm to run a network-wide resolver to reduce latency and network load by caching DNS requests for commonly-requested websites such as Google. A network-wide resolver also enables intranet services such as SharePoint and Active Directory.
+
+Most people use their home router's DNS resolver or public DNS resolvers run by ISPs and tech companies. In home lab and large networks it is a norm to run a network-wide resolver to reduce latency and network load by caching DNS requests for commonly-requested websites such as Google. A network-wide resolver also enables intranet services such as SharePoint and Active Directory.
 
 Unbound is one of many open source tools that make resolving DNS possible. Congratulations, you have your very own DNS resolver! Cheers!
