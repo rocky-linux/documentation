@@ -46,4 +46,3 @@ lock file = /var/run/rsyncd.lock
   auth users = li
   secrets file = /etc/rsyncd users.db
 ```
-
