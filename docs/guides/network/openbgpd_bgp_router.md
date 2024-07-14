@@ -30,7 +30,7 @@ As OpenBGPD is not in the default repositories, first install the EPEL repositor
 dnf install -y epel-release
 ```
 
-Subsequently, install OpenBGPD
+Subsequently, install OpenBGPD:
 
 ```bash
 dnf install -y openbgpd
