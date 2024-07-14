@@ -28,4 +28,22 @@ update: 2021-11-04
 
 ## 권장 구성
 
-![ photo ](images/rsync_config.jpg)
+```ini title="/etc/rsyncd.conf"
+uid = nobody
+gid = nobody
+address = 192.168.100.4
+use chroot = yes
+max connections = 10
+syslog facility = daemon
+pid file = /var/run/rsyncd.pid
+log file = /var/log/rsyncd.log
+lock file = /var/run/rsyncd.lock
+[file]
+  comment = rsync
+  path = /rsync/
+  read only = no
+  dont compress = *.gz *.bz2 *.zip
+  auth users = li
+  secrets file = /etc/rsyncd users.db
+```
+
