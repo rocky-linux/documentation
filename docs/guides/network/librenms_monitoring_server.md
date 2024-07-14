@@ -46,10 +46,17 @@ The version of the repository you install will depend on the version of Rocky Li
 dnf install http://rpms.remirepo.net/enterprise/remi-release-9.rpm
 ```
 
+Then set the dnf to use remi packages instead of the regular packages
+
+```bash
+dnf module reset php
+dnf module enable php:8.1
+```
+
 Once both the EPEL and REMI repositories are installed, it is time to install the packages:
 
 ```bash
-dnf install bash-completion cronie fping git httpd ImageMagick mariadb-server mtr net-snmp net-snmp-utils nmap php81-php-fpm php81-php-cli php81-php-common php81-php-curl php81-php-gd php81-php-json php81-php-mbstring php81-php-process php81-php-snmp php81-php-xml php81-php-zip php81-php-mysqlnd python3 python3-PyMySQL python3-redis python3-memcached python3-pip python3-systemd rrdtool unzip wget
+dnf install bash-completion cronie fping git httpd ImageMagick mariadb-server mtr net-snmp net-snmp-utils nmap php-fpm php-cli php-common php-curl php-gd php-gmp php-json php-mbstring php-process php-snmp php-xml php-zip php-mysqlnd python3 python3-PyMySQL python3-redis python3-memcached python3-pip python3-systemd rrdtool unzip wget
 ```
 
 All of these packages represent some portion of the LibreNMS feature set.

@@ -9,7 +9,7 @@ update: 11-23-2021
 
 ## Prerequisites and assumptions
 
-- CentOS Stream, CentOS, AlmaLinux, RHEL, or Oracle Linux running on a hardware server or VPS. Non-Stream CentOS is frozen at version 8.5. The current supported version of the other systems is 8.9 or 9.3.
+- CentOS Stream, CentOS, AlmaLinux, RHEL, or Oracle Linux running on a hardware server or VPS. Non-Stream CentOS is frozen at version 8.5. The current supported version of the other systems is 8.10 or 9.4.
 - A working knowledge of the command line
 - A working knowledge of SSH for remote machines
 - A mildly risk-taking attitude

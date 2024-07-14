@@ -9,7 +9,7 @@ tags:
 
 ## Introduction
 
-BitTorrent needs no introduction, but if you are unaware, BitTorrent is a peer-to-peer file-sharing protocol. BitTorrent relies on multiple peers seeding (uploading) the requested file to you, but you are also back to future downloaders.
+BitTorrent needs no introduction, but if you are unaware, BitTorrent is a peer-to-peer file-sharing protocol. BitTorrent relies on multiple peers seeding (uploading) the requested file to you, but you also seed back to future downloaders.
 
 Transmission is a popular open-source BitTorrent client with multiple frontends and backends. Here, you will install the headless "daemon" backend.
 
