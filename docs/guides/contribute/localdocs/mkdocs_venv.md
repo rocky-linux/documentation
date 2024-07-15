@@ -2,7 +2,7 @@
 title: Python VENV Method 
 author: Franco Colussi
 contributors: Steven Spencer, Ganna Zhyrnova
-tested_with: 8.7, 9.1
+tested_with: 8.7, 9.1, 9.4
 tags:
   - mkdocs
   - testing
