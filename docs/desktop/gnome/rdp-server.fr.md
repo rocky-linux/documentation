@@ -69,7 +69,7 @@ Vous pouvez également utiliser l'application Firewall pour gérer `firewalld` e
 
 Vous avez vu comment installer un serveur RDP et vous avez désormais besoin d'un client RDP. Sous Windows, l’application Remote Desktop Connection fait très bien l’affaire. Si vous souhaitez accéder à votre machine Rocky Linux à partir d'une autre machine Linux, vous devrez installer une solution tierce.
 
-Sur GNOME, le logiciel Remmina bénéficie de ma plus haute confiance. C'est simple à utiliser, c’est stable et cela fonctionne.
+Sur GNOME, le logiciel `Remmina` bénéficie de la plus haute confiance de l'auteur. C'est simple à utiliser, c’est stable et cela fonctionne.
 
 Si Flatpak/Flathub est installé, ouvrez simplement l’application Software et recherchez Remmina.
 
