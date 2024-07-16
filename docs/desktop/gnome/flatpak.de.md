@@ -6,13 +6,13 @@ contributors: Ganna Zhyrnova
 
 ## Einleitung
 
-Von der Webseite des Projekts:
+Zitat aus der Webseite des Projekts:
 
 > Flatpak ist ein Framework zur Verteilung von Desktop-Anwendungen auf verschiedene Linux-Distributionen. Es wurde von Entwicklern erstellt, die über langjährige Erfahrung in der Arbeit am Linux-Desktop verfügen, und wird als unabhängiges Open-Source-Projekt betrieben.
 
-Flatpak wird standardmäßig installiert, wenn Rocky Linux mit Software-Selektierungen installiert wird, die GNOME enthalten („Server mit GUI“ oder „Workstation“). Manuelle Installation ist auch möglich. (siehe beigefügtes Verfahren) Es ist eine hervorragende Möglichkeit, Ihre Desktop-Umgebung mit den Tools zu füllen, die Sie verwenden möchten.
+Flatpak wird standardmäßig installiert, wenn Rocky Linux mit einer Software-Auswahl installiert wird, die GNOME enthält („Server mit GUI“ oder „Workstation“). Eine manuelle Installation ist auch möglich (siehe beigefügtes Verfahren). Es ist eine hervorragende Möglichkeit, Ihre Desktop-Umgebung mit den Tools zu füllen, die Sie verwenden möchten.
 
-## Installation in Handarbeit
+## Manuelle Installation
 
 !!! note "Anmerkung"
 
@@ -206,7 +206,7 @@ Der Installationsprozess für OBS Studio sieht beispielsweise wie folgt aus:
 
 6. Wenn Sie mit „Y“ antworten und ++enter++ drücken, werden die Systemberechtigungen wie angegeben geändert und die Anwendung installiert.
 
-7. Wenn alles gut geht, sollten Sie Folgendes erhalten:
+7. Wenn alles gut geht, sollten Sie folgende Meldung erhalten:
 
    ```text
    Installation complete.
