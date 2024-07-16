@@ -60,3 +60,22 @@ Le funzionalità del copia/incolla sono state ampliate mediante l'integrazione n
 Le chiavi per utilizzare *yanky* sono ++space+"y"++ in modalità *NORMAL* e ++ctrl+"y"++ nella modalità *INSERT*, entrambe posizionano la stringa da incollare nella posizione corrente in cui si trova il cursore.
 
 ![Yank Ring](./images/yank_ring.png)
+
+## Ulteriori integrazioni
+
+Ai plugin che forniscono le funzionalità descritte sopra sono stati aggiunti inoltre alcuni plugin che forniscono funzionalità comuni dedicate alla gestione del buffer.
+
+* [nvim-highlight-colors](https://github.com/brenoprata10/nvim-highlight-colors) for color code translation (*hexadecimal*), this plugin adds a background color to the hexadecimal value (e.g. #FCFCFC) making it much easier to manage and edit. The feature is particularly useful for those who want to try their hand at editing NvChad themes. The ++space+"uC "++ shortcut is available for activation, which also allows its disabling (*toggle command*).
+
+![Highlight Colors](./images/hl_colors.png)
+
+* [neoscroll.nvim](https://github.com/karb94/neoscroll.nvim) enables smoother scrolling of the document (in *NORMAL* mode), its use allows you to quickly navigate the markdown file, which is useful for both editing and reviewing documents. The plugin provides two commands, ++ctrl+"u "++ and ++ctrl+"d "++ to scroll up or down the document.
+
+## Controllo ortografico
+
+Una delle funzioni *built-in* di Neovim è il controllo ortografico, questa funzione permette di confrontare la parola che si ha appena scritto con le parole contenute in un dizionario `myspell` di quella lingua, si possono così evitare gli errori di battitura, permettendo di eliminare questo controllo dalla revisione del documento.  
+Il dizionario per la lingua inglese è disponibile assieme ad una installazione standard di Neovim e può essere attivata immediatamente con il comando `:set spell spelllang=en`, per gli utenti internazionali invece i dizionari non sono disponibili e devono essere costruiti in locale.
+
+!!! warning "Disabilitazione dei plugin built-in di Neovim"
+
+L'uso del gestore dei plugin *lazy.nvim* comporta la totale disabilitazione dei plugin inclusi in Neovim, di conseguenza per NvChad non possono essere seguiti i tutorial sull'argomento che si trovano in rete, i dizionari devono necessariamente essere scaricati e costruiti utilizzando una copia locale.
