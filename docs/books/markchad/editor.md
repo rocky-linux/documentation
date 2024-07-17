@@ -73,9 +73,93 @@ Ai plugin che forniscono le funzionalità descritte sopra sono stati aggiunti in
 
 ## Controllo ortografico
 
-Una delle funzioni *built-in* di Neovim è il controllo ortografico, questa funzione permette di confrontare la parola che si ha appena scritto con le parole contenute in un dizionario `myspell` di quella lingua, si possono così evitare gli errori di battitura, permettendo di eliminare questo controllo dalla revisione del documento.  
+Una delle funzioni *built-in* di Neovim è il controllo ortografico, questa funzione permette di confrontare la parola che si ha appena scritto con le parole contenute in un dizionario localizzato in quella lingua, si possono così evitare gli errori di battitura, permettendo di eliminare questo controllo dalla revisione del documento.  
 Il dizionario per la lingua inglese è disponibile assieme ad una installazione standard di Neovim e può essere attivata immediatamente con il comando `:set spell spelllang=en`, per gli utenti internazionali invece i dizionari non sono disponibili e devono essere costruiti in locale.
 
-!!! warning "Disabilitazione dei plugin built-in di Neovim"
+### Costruzione del dizionario
 
-L'uso del gestore dei plugin *lazy.nvim* comporta la totale disabilitazione dei plugin inclusi in Neovim, di conseguenza per NvChad non possono essere seguiti i tutorial sull'argomento che si trovano in rete, i dizionari devono necessariamente essere scaricati e costruiti utilizzando una copia locale.
+Il processo di creazione di un dizionario locale consiste nello scaricamento dei file sorgente del dizionario e la successiva costruzione in Neovim con il comando `:mkspell`. I file sorgente possono essere reperiti utilizzando varie fonti (*Openoffice*, *Libreoffice*, altri..) e consistono in un file `.aff` e un file `.dict`.  
+Il file `.aff` memorizzare la descrizione relativa al file dizionario del controllo ortografico selezionato mentre il file `.dict` è il file che contiene gli elenchi di parole e informazioni sulla lingua usati per controllare l'ortografia e fornire sinonimi.
+
+#### Scaricare i file sorgente
+
+!!! note "Scelta della fonte"
+
+    Da una ricerca effettuata dall'autore è risultato che i dizionari più aggiornati siano quelli presenti sul sito delle [estensioni di Libreoffice](https://extensions.libreoffice.org/?Tags%5B%5D=50).
+
+    In questa guida verrà costruito il dizionario per la lingua italiana ma lo stesso procedimento può essere eseguito per qualsiasi lingua si desideri, modificando il *locale* e il percorso dei sorgenti.
+
+Aprire in un browser il sito delle estensioni di Libreoffice e selezionare la sezione *Dictionary*, una volta nella sezione si può utilizzare la funzione di ricerca per trovare, ad esempio, tutti i dizionari che trattano la lingua italiana.
+
+![Libreoffice Extensions](./images/libreoffice_ext.png)
+
+Selezionando il dizionario italiano si viene indirizzati ad una nuova pagina dove sono presenti la descrizione del progetto e le versioni disponibili, per scaricare la più recente basta semplicemente utilizzare il bottone presente in alto a sinistra.  
+Nel caso del dizionario italiano il file da scaricare è `874d181c_dict-it.oxt`, tutti questi file sono archivi compressi (*zip*) e si possono scompattare con l'utilità `unzip`.  
+Passiamo quindi a preparare i sorgenti eseguendo i seguenti comandi:
+
+```bash
+mkdir -p ~/nvspell/italian
+cd ~/nvspell/italian
+curl -O https://extensions.libreoffice.org/assets/downloads/z/874d181c_dict-it.oxt
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 1341k  100 1341k    0     0  1938k      0 --:--:-- --:--:-- --:--:-- 1935k
+```
+
+Una volta salvato scompattiamo il dizionario con:
+
+```bash
+unzip 874d181c_dict-it.oxt
+```
+
+Che creerà la seguente struttura:
+
+```txt
+.
+├── description
+├── description.xml
+└──  dictionaries
+    ├── CHANGELOG.txt
+    ├── hyph_it_IT.dic
+    ├── it_IT.aff
+    ├── it_IT.dic
+    ├── README_hyph_it_IT.txt
+    ├── README.txt
+    ├── th_it_IT_v2.dat
+    └── th_it_IT_v2.idx
+├── images
+├── legacy
+├── META-INF
+└── registry
+```
+
+#### Costruire il dizionario
+
+Per costruire il dizionario ci si avvale del comando integrato in Neovim [mkspell](https://neovim.io/doc/user/spell.html#_3.-generating-a-spell-file), il comando scansiona tutte le parole disponibili nel file **.dict** e crea un file **.spl** dalla scansione.  
+Il file **.spl** è il file che Neovim utilizza per il confronto delle parole nel buffer e va posizionato in un percorso di ricerca predefinito del comando `:spell`.
+
+Uno dei percorsi predefiniti è una cartella `spell` nel percorso della configurazione (`~/.config/nvim`) e verrà utilizzata in questo esempio per la costruzione. L'uso di questo percorso consente inoltre, se la configurazione è mantenuta in un repository git, di replicare anche i dizionari evitando di doverli costruire sulle altre macchine dove viene replicata la configurazione.
+
+```bash
+mkdir ~/.config/nvim/spell/
+```
+
+Aprire NvChad e digitare il seguente comando, il comando consiste nel passare a `mkspell` come primo argomento il percorso di destinazione del dizionario seguito dal *locale* che si vuole costruire e come secondo argomento la sorgente dove reperire le parole seguito sempre dal *locale*.  
+
+```txt
+:mkspell ~/.config/nvim/spell/it_IT ~/nvspell/italian/it_IT
+```
+
+Al termine del processo sarà disponibile un nuovo file nella cartella `spell` chiamato **it.utf-8.spl**, ora è possibile avere il controllo ortografico in italiano del file che si sta scrivendo con:
+
+```txt
+:set spell spelllang=it
+```
+
+Per il controllo ortografico possono essere utilizzati anche più dizionari contemporaneamente, consentendo così di avere il controllo sia quando si scrive la stesura del documento che quando lo si traduce in inglese. Per avere entrambe i dizionari disponibili nel buffer a questo punto è sufficiente un:
+
+```txt
+:set spell spelllang=en,it
+```
+
+#### Aggiornamento del dizionario
