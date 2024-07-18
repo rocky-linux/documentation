@@ -133,7 +133,7 @@ Che creerà la seguente struttura:
 └── registry
 ```
 
-#### Costruire il dizionario
+#### Costruzione del dizionario
 
 Per costruire il dizionario ci si avvale del comando integrato in Neovim [mkspell](https://neovim.io/doc/user/spell.html#_3.-generating-a-spell-file), il comando scansiona tutte le parole disponibili nel file **.dict** e crea un file **.spl** dalla scansione.  
 Il file **.spl** è il file che Neovim utilizza per il confronto delle parole nel buffer e va posizionato in un percorso di ricerca predefinito del comando `:spell`.
@@ -163,3 +163,31 @@ Per il controllo ortografico possono essere utilizzati anche più dizionari cont
 ```
 
 #### Aggiornamento del dizionario
+
+Anche i dizionari, come tutte le *librerie*, vengono aggiornati per riflettere le modifiche della lingua, gli aggiornamenti anche se non così frequenti inseriscono nuove parole e nuove regole nei dizionari.
+
+Una volta disponibile il dizionario aggiornato per prima cosa bisogna recuperare i nuovi sorgenti scaricandoli e scompattandoli in una nuova cartella che per questo esempio sarà `~/nvspell/it_new`, le istruzioni sono le stesse della procedura di costruzione.
+
+Per l'aggiornamento del dizionario viene utilizzato il precedente comando `mkspell`, al quale va aggiunta la flag `!` per indicare al comando che il file è già presente e va sovrascritto; di conseguenza il percorso di destinazione va modificato per riflettere la posizione del file e anche il percorso dei sorgenti va indirizzato alla nuova cartella contenente i nuovi dizionari. Il comando sarà il seguente:
+
+```txt
+:mkspell! ~/.config/nvim/spell/it.utf-8.spl ~/nvspell/it_new/it_IT
+```
+
+Una volta terminata la costruzione sarà immediatamente disponibile nel buffer di NvChad.
+
+### Dizionario delle eccezioni
+
+Nella cartella `spell` sono presenti inoltre due file, **exceptions.utf-8.add** e **exceptions.utf-8.add.spl**, il primo è il file che fa da ponte per l'inserimento delle nuove parole nel dizionario. Il file **exceptions.utf-8.add** è un file arbitrario che deve essere creato in quanto non presente, quello che lo rende *speciale* è il fatto che venga definito come `spellfile` in questo modo si comunica al comando `spell` di utilizzarlo come ponte per la creazione di un dizionario con lo stesso nome ma con suffisso *.spl*.
+Il file è condiviso fra tutte le lingue impostate in `spelllang` e serve ad eliminare le segnalazione di errore su parole che ortograficamente non sono corrette ma che lo sono nel contesto documentale come *Rocky*, *yaml* o *mkdocs*.
+
+![Spell Wrong](./images/spell_wrong.png)
+
+!!! note
+
+    Il dizionario delle eccezioni viene impostato dal autocomando, presente in `lua/autocmds.lua`, che si occupa delle impostazioni automatiche per i file *markdown* e quindi è sempre disponibile in un buffer aperto su un file di quel tipo.
+
+#### Gestione del dizionario
+
+Per inserire nel dizionario una parola contrassegnata come corretta è sufficiente posizionare il cursore nella parola e digitare ++"z"+"g"++ (*good*) e la parola nel buffer, e nei prossimi documenti, non sarà più sottolineata ad indicare un errore. Allo stesso modo per contrassegnare qualcosa come errato si utilizza, sempre posizionati sulla parola, la combinazione ++"z"+"w"++ (*wrong*).  
+Per una panoramica dei comandi disponibili si può fare riferimento a questa [sezione della guida](https://neovim.io/doc/user/spell.html#_1.-quick-start) di Neovim.
