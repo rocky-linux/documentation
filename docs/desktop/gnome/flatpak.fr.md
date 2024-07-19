@@ -6,11 +6,11 @@ contributors: Ganna Zhyrnova
 
 ## Introduction
 
-Depuis le site Web du projet :
+Citation à partir du site Web du projet :
 
 > Flatpak est un framework permettant de distribuer des applications de bureau sur diverses distributions Linux. Il a été créé par des développeurs qui ont une longue expérience sur Linux-Desktop et est exécuté comme un projet open source indépendant.
 
-Flatpak est installé par défaut lors de l'installation de Rocky Linux avec des sélections de logiciels incluant GNOME (« Serveur avec interface graphique » ou « Poste de travail »). Une installation manuelle est également possible. (voir procédure incluse) C'est un excellent moyen de remplir votre environnement de bureau avec les outils que vous souhaitez utiliser.
+Flatpak est installé par défaut lors de l'installation de Rocky Linux avec des sélections de logiciels incluant GNOME (« Server with GUI » ou « Workstation »). Une installation manuelle est également possible (voir procédure incluse). C'est un excellent moyen de peupler votre environnement de bureau avec des outils que vous souhaitez utiliser.
 
 ## Installation Manuelle
 
@@ -212,7 +212,7 @@ Pour parcourir `Flathub`, veuillez consulter https://flathub.org/. Une énorme l
    Installation complete.
    ```
 
-8. Depuis le menu « Activités », vous pouvez désormais rechercher et exécuter OBS Studio.
+8. Depuis le menu « Activities », vous pouvez désormais rechercher et exécuter OBS Studio.
 
 ## Liste des Paquets
 
