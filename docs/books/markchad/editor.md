@@ -10,19 +10,21 @@ tags:
   - markdown
 ---
 
-Le funzionalità di base di NvChad sono state ampliate per fornire un'esperienza migliorata di quella ottima già fornita dall'editor, sono presenti funzioni per gestione dei file, la navigazione del buffer, la copia delle stringhe e altre piccole utilità.
+The basic functionality of NvChad has been expanded to provide an enhanced experience from the already excellent one provided by the editor; there are features for file management, buffer navigation, string copying, and other small utilities.
 
-## File Manager
+To enrich the experience of writing and editing markdown files, the use of dictionaries (multilingual) for spell-checking and exception handling has also been implemented.
 
-La modifica più rilevante alla configurazione dell'editor è la sostituzione del file manager utilizzato da NvChad, al suo posto è stato utilizzato [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim), questo plugin permette di avere una configurazione più semplice e fornisce "fuori dalla scatola" un layout flottante e vari parametri da passare al comando `:Neotree`.
+## :material-file-tree: File Manager
+
+The most notable change to the configuration of the editor is the replacement of the file manager used by NvChad, in its place is [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim), this plugin allows for a simpler configuration and provides "out of the box" a floating layout and various parameters to be passed to the `:Neotree` command.
 
 ![Neotree Standard](./images/neo-tree.png)
 
-I comandi utilizzati in NvChad sono stati migrati per riflettere le modifiche ma le funzionalità rimangono le stesse, con ++ctrl+"n"++ si apre lateralmente il file manager e con ++space+"e"++ si posiziona il focus su di esso.
+The commands used in NvChad have been migrated to reflect the changes but the functionality remains the same; ++ctrl+"n "++ opens the file manager sideways and ++space+"e "++ places the focus on it.
 
-!!! note "Disabilitazione di nvimtree"
+!!! notes "Disabling nvimtree"
 
-    Il plugin fornito dalla configurazione di base è stato completamente disabilitato per evitare problemi di incompatibilità con il suo sostituto, la disabilitazione è impostata nel file `lua/plugins/init.lua`.
+    The plugin provided by the base configuration has been completely disabled to avoid incompatibility problems with its replacement, the disabling is set in the file `lua/plugins/init.lua`.
 
     ```lua
     -- disable nvim-tree
@@ -32,11 +34,11 @@ I comandi utilizzati in NvChad sono stati migrati per riflettere le modifiche ma
     },
     ```
 
-Il plugin fornisce anche un layout flottante che viene richiamato con il carattere ++"-"++, il comando eseguito da questa scorciatoia corrisponde all'esecuzione di *Neotree* con la flag ==float==, al comando in particolare è stata aggiunta anche la flag ==toggle== per utilizzare lo stesso carattere anche per chiudere il buffer.
+The plugin also provides a floating layout that is invoked with the ++"-"++ character, the command executed by this shortcut corresponds to the execution of *Neotree* with the ==float== flag, the ==toggle== flag was also added to the particular command to use the same character also to close the buffer.
 
 ![Floating Neotree](./images/neo-tree_float.png)
 
-La scorciatoia può essere modificata secondo preferenze modificando il carattere corrispondente nel file `lua/plugins/neotree.lua`.
+The shortcut can be changed according to preference by editing the corresponding character in the file `lua/plugins/neotree.lua`.
 
 ```lua
   { -- lazy style key map
@@ -46,24 +48,32 @@ La scorciatoia può essere modificata secondo preferenze modificando il caratter
   },
 ```
 
-Il comando `:Neotree` dispone di numerose opzioni e layout predefiniti, per un suo approfondimento visitare [la sezione relativa](https://github.com/nvim-neo-tree/neo-tree.nvim?tab=readme-ov-file#the-neotree-command) della documentazione.
+The `:Neotree` command has many default options and layouts, for a more in-depth discussion of it visit [the related section](https://github.com/nvim-neo-tree/neo-tree.nvim?tab=readme-ov-file#the-neotree-command) of the documentation.
 
-## Command line
+## :octicons-command-palette-16: Command line
 
-Affiancata alla *cmdline* fornita da NvChad è stata inserita anche una seconda *command line* più moderna e funzionale, il suo inserimento è stato effettuato nel file `lua/plugins/telescope.lua`. Il plugin è un *picker* personalizzato di *Telescope*, fornisce una cronologia dei comandi effettuati e ne permette la ricerca, la funzionalità è fornita dal plugin [telescope-cmdline.nvim](https://github.com/jonarrien/telescope-cmdline.nvim).
+In addition to the *cmdline* provided by NvChad, a second more modern and functional *command line* was also included, its inclusion was made in the file `lua/plugins/telescope.lua`. The plugin is a custom *picker* of *Telescope*, it provides a history of the commands made and allows them to be searched, the functionality is provided by the [telescope-cmdline.nvim](https://github.com/jonarrien/telescope-cmdline.nvim) plugin.
 
 ![Cmdline](./images/cmdline_telescope.png)
 
-## Copy and Paste
+## :octicons-paste-16: Copy and Paste
 
-Le funzionalità del copia/incolla sono state ampliate mediante l'integrazione nella configurazione di [yanky.nvim](https://github.com/gbprod/yanky.nvim), questo plugin permette di incollare, da una comoda cronologia visualizzata in *Telescope*, le stringhe copiate in precedenza. La cronologia (*yanky-ring*) viene salvata in `~.local/share/nvim/databases/yanky.db`, si tratta di un database *sqlite* che consente di immagazzinare un numero superiore di stringhe e offre migliori prestazioni nella ricerca.  
-Le chiavi per utilizzare *yanky* sono ++space+"y"++ in modalità *NORMAL* e ++ctrl+"y"++ nella modalità *INSERT*, entrambe posizionano la stringa da incollare nella posizione corrente in cui si trova il cursore.
+The copy/paste functionality has been extended through the integration into the configuration of [yanky.nvim](https://github.com/gbprod/yanky.nvim), this plugin allows for the pasting, from a convenient history displayed in *Telescope*, of previously copied strings. The history (*yanky-ring*) is saved in `~.local/share/nvim/databases/yanky.db`, this is a *sqlite* database that allows more strings to be stored and offers better search performance.  
+The keys to use *yanky* are ++space+"y "++ in *NORMAL* mode and ++ctrl+"y "++ in *INSERT* mode, both of which position the string to be pasted at the current location where the cursor is.
 
 ![Yank Ring](./images/yank_ring.png)
 
-## Ulteriori integrazioni
+The history of the copied strings is shared with the *clipboard* of the host system, this allows the copied strings to be used outside Neovim as web addresses, remote images, etc. in the open buffer. The setting that enables the feature is found in the file `lua/plugins/yanky.lua` and is as follows:
 
-Ai plugin che forniscono le funzionalità descritte sopra sono stati aggiunti inoltre alcuni plugin che forniscono funzionalità comuni dedicate alla gestione del buffer.
+```lua
+    system_clipboard = {
+     sync_with_ring = true,
+    },
+```
+
+## :octicons-diff-added-16: Further additions
+
+A number of plugins have also been added to the plugins that provide the functionality described above that provide common functionality dedicated to buffer management.
 
 * [nvim-highlight-colors](https://github.com/brenoprata10/nvim-highlight-colors) for color code translation (*hexadecimal*), this plugin adds a background color to the hexadecimal value (e.g. #FCFCFC) making it much easier to manage and edit. The feature is particularly useful for those who want to try their hand at editing NvChad themes. The ++space+"uC "++ shortcut is available for activation, which also allows its disabling (*toggle command*).
 
@@ -71,7 +81,11 @@ Ai plugin che forniscono le funzionalità descritte sopra sono stati aggiunti in
 
 * [neoscroll.nvim](https://github.com/karb94/neoscroll.nvim) enables smoother scrolling of the document (in *NORMAL* mode), its use allows you to quickly navigate the markdown file, which is useful for both editing and reviewing documents. The plugin provides two commands, ++ctrl+"u "++ and ++ctrl+"d "++ to scroll up or down the document.
 
-## Controllo ortografico
+* [rainbow-delimiters.nvim](https://github.com/hiphish/rainbow-delimiters.nvim) this plugin colors the parentheses (*round*, *square*, and *curly*) of the code by following their nesting order, allows for easier recognition of code blocks, and although not strictly related to markdown is a very useful tool for editing the NvChad configuration.
+
+![rainbow Delimiters](./images/hl_rainbow.png)
+
+## :material-file-check-outline: Spell checking
 
 Una delle funzioni *built-in* di Neovim è il controllo ortografico, questa funzione permette di confrontare la parola che si ha appena scritto con le parole contenute in un dizionario localizzato in quella lingua, si possono così evitare gli errori di battitura, permettendo di eliminare questo controllo dalla revisione del documento.  
 Il dizionario per la lingua inglese è disponibile assieme ad una installazione standard di Neovim e può essere attivata immediatamente con il comando `:set spell spelllang=en`, per gli utenti internazionali invece i dizionari non sono disponibili e devono essere costruiti in locale.
@@ -133,7 +147,7 @@ Che creerà la seguente struttura:
 └── registry
 ```
 
-#### Costruzione del dizionario
+#### Costruire il dizionario
 
 Per costruire il dizionario ci si avvale del comando integrato in Neovim [mkspell](https://neovim.io/doc/user/spell.html#_3.-generating-a-spell-file), il comando scansiona tutte le parole disponibili nel file **.dict** e crea un file **.spl** dalla scansione.  
 Il file **.spl** è il file che Neovim utilizza per il confronto delle parole nel buffer e va posizionato in un percorso di ricerca predefinito del comando `:spell`.
