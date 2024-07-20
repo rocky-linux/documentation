@@ -53,7 +53,7 @@ The `:Neotree` command has many default options and layouts, for a more in-depth
 ## :octicons-command-palette-16: Command line
 
 In addition to the *cmdline* provided by NvChad, a second more modern and functional *command line* was also included, its inclusion was made in the file `lua/plugins/telescope.lua`. The plugin is a custom *picker* of *Telescope*, it provides a history of the commands made and allows them to be searched, the functionality is provided by the [telescope-cmdline.nvim](https://github.com/jonarrien/telescope-cmdline.nvim) plugin.  
-To open the *cmdline* use the ++semicolon++ key:
+To open the *cmdline* use the ++comma++ (comma) key:
 
 ![Cmdline](./images/cmdline_telescope.png)
 
