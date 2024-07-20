@@ -20,7 +20,7 @@ The most notable change to the configuration of the editor is the replacement of
 
 ![Neotree Standard](./images/neo-tree.png)
 
-The commands used in NvChad have been migrated to reflect the changes but the functionality remains the same; ++ctrl+"n "++ opens the file manager sideways and ++space+"e "++ places the focus on it.
+The commands used in NvChad have been migrated to reflect the changes but the functionality remains the same; ++ctrl+"n"++ opens the file manager sideways and ++space+"e"++ places the focus on it.
 
 !!! notes "Disabling nvimtree"
 
@@ -52,7 +52,8 @@ The `:Neotree` command has many default options and layouts, for a more in-depth
 
 ## :octicons-command-palette-16: Command line
 
-In addition to the *cmdline* provided by NvChad, a second more modern and functional *command line* was also included, its inclusion was made in the file `lua/plugins/telescope.lua`. The plugin is a custom *picker* of *Telescope*, it provides a history of the commands made and allows them to be searched, the functionality is provided by the [telescope-cmdline.nvim](https://github.com/jonarrien/telescope-cmdline.nvim) plugin.
+In addition to the *cmdline* provided by NvChad, a second more modern and functional *command line* was also included, its inclusion was made in the file `lua/plugins/telescope.lua`. The plugin is a custom *picker* of *Telescope*, it provides a history of the commands made and allows them to be searched, the functionality is provided by the [telescope-cmdline.nvim](https://github.com/jonarrien/telescope-cmdline.nvim) plugin.  
+To open the *cmdline* use the ++semicolon++ key:
 
 ![Cmdline](./images/cmdline_telescope.png)
 
@@ -87,29 +88,29 @@ A number of plugins have also been added to the plugins that provide the functio
 
 ## :material-file-check-outline: Spell checking
 
-Una delle funzioni *built-in* di Neovim è il controllo ortografico, questa funzione permette di confrontare la parola che si ha appena scritto con le parole contenute in un dizionario localizzato in quella lingua, si possono così evitare gli errori di battitura, permettendo di eliminare questo controllo dalla revisione del documento.  
-Il dizionario per la lingua inglese è disponibile assieme ad una installazione standard di Neovim e può essere attivata immediatamente con il comando `:set spell spelllang=en`, per gli utenti internazionali invece i dizionari non sono disponibili e devono essere costruiti in locale.
+One of the *built-in* functions of Neovim is spell-checking, this function allows you to compare the word you have just typed with the words contained in a dictionary localized in that language, you can thus avoid typos, allowing you to eliminate this check from the document review.  
+The dictionary for the English language is available along with a standard installation of Neovim and can be activated immediately with the command `:set spell spelllang=en`; for international users, however, dictionaries are not available and must be built locally.
 
-### Costruzione del dizionario
+### Dictionary construction
 
-Il processo di creazione di un dizionario locale consiste nello scaricamento dei file sorgente del dizionario e la successiva costruzione in Neovim con il comando `:mkspell`. I file sorgente possono essere reperiti utilizzando varie fonti (*Openoffice*, *Libreoffice*, altri..) e consistono in un file `.aff` e un file `.dict`.  
-Il file `.aff` memorizzare la descrizione relativa al file dizionario del controllo ortografico selezionato mentre il file `.dict` è il file che contiene gli elenchi di parole e informazioni sulla lingua usati per controllare l'ortografia e fornire sinonimi.
+The process of creating a local dictionary consists of downloading the dictionary source files and then building them in Neovim with the `:mkspell` command. The source files can be found using various sources (*Openoffice*, *Libreoffice*, others..) and consist of a `.aff` file and a `.dict` file.  
+The file `.aff` store the description related to the selected spell check dictionary file while the file `.dict` is the file that contains the word lists and language information used to spell check and provide synonyms.
 
-#### Scaricare i file sorgente
+#### Download source files
 
-!!! note "Scelta della fonte"
+!!! notes "Choice of source"
 
-    Da una ricerca effettuata dall'autore è risultato che i dizionari più aggiornati siano quelli presenti sul sito delle [estensioni di Libreoffice](https://extensions.libreoffice.org/?Tags%5B%5D=50).
+    A search by the author found that the most up-to-date dictionaries are those on the [Libreoffice extensions](https://extensions.libreoffice.org/?Tags%5B%5D=50) site.
 
-    In questa guida verrà costruito il dizionario per la lingua italiana ma lo stesso procedimento può essere eseguito per qualsiasi lingua si desideri, modificando il *locale* e il percorso dei sorgenti.
+    In this guide, the dictionary for the Italian language will be built, but the same process can be performed for any language you want by changing the *local* and source path.
 
-Aprire in un browser il sito delle estensioni di Libreoffice e selezionare la sezione *Dictionary*, una volta nella sezione si può utilizzare la funzione di ricerca per trovare, ad esempio, tutti i dizionari che trattano la lingua italiana.
+Open the Libreoffice extensions site in a browser and select the *Dictionary* section, once in the section you can use the search function to find, for example, all dictionaries dealing with the Italian language.
 
 ![Libreoffice Extensions](./images/libreoffice_ext.png)
 
-Selezionando il dizionario italiano si viene indirizzati ad una nuova pagina dove sono presenti la descrizione del progetto e le versioni disponibili, per scaricare la più recente basta semplicemente utilizzare il bottone presente in alto a sinistra.  
-Nel caso del dizionario italiano il file da scaricare è `874d181c_dict-it.oxt`, tutti questi file sono archivi compressi (*zip*) e si possono scompattare con l'utilità `unzip`.  
-Passiamo quindi a preparare i sorgenti eseguendo i seguenti comandi:
+Selecting the Italian dictionary takes you to a new page where the project description and available versions are present; to download the most recent simply use the button in the top left corner.  
+In the case of the Italian dictionary the file to download is `874d181c_dict-it.oxt`, all these files are compressed archives (*zip*) and can be unpacked with the `unzip` utility.  
+Then go on to prepare the sources by executing the following commands:
 
 ```bash
 mkdir -p ~/nvspell/italian
@@ -120,13 +121,13 @@ curl -O https://extensions.libreoffice.org/assets/downloads/z/874d181c_dict-it.o
 100 1341k  100 1341k    0     0  1938k      0 --:--:-- --:--:-- --:--:-- 1935k
 ```
 
-Una volta salvato scompattiamo il dizionario con:
+Once saved unpack the dictionary with:
 
 ```bash
 unzip 874d181c_dict-it.oxt
 ```
 
-Che creerà la seguente struttura:
+That will create the following structure:
 
 ```txt
 .
@@ -147,61 +148,62 @@ Che creerà la seguente struttura:
 └── registry
 ```
 
-#### Costruire il dizionario
+#### Building the dictionary
 
-Per costruire il dizionario ci si avvale del comando integrato in Neovim [mkspell](https://neovim.io/doc/user/spell.html#_3.-generating-a-spell-file), il comando scansiona tutte le parole disponibili nel file **.dict** e crea un file **.spl** dalla scansione.  
-Il file **.spl** è il file che Neovim utilizza per il confronto delle parole nel buffer e va posizionato in un percorso di ricerca predefinito del comando `:spell`.
+The command built into Neovim [mkspell](https://neovim.io/doc/user/spell.html#_3.-generating-a-spell-file) is used to build the dictionary, the command scans all available words in the **.dict** file and creates a **.spl** file from the scan.  
+The **.spl** file is the file that Neovim uses to compare words in the buffer and should be placed in a default search path of the `:spell` command.
 
-Uno dei percorsi predefiniti è una cartella `spell` nel percorso della configurazione (`~/.config/nvim`) e verrà utilizzata in questo esempio per la costruzione. L'uso di questo percorso consente inoltre, se la configurazione è mantenuta in un repository git, di replicare anche i dizionari evitando di doverli costruire sulle altre macchine dove viene replicata la configurazione.
+One of the default paths is a `spell` folder in the configuration path (`~/.config/nvim`) and will be used in this example for the build. Using this path also allows, if the configuration is maintained in a git repository, to replicate the dictionaries as well, avoiding the need to build them on the other machines where the configuration is replicated.
 
 ```bash
 mkdir ~/.config/nvim/spell/
 ```
 
-Aprire NvChad e digitare il seguente comando, il comando consiste nel passare a `mkspell` come primo argomento il percorso di destinazione del dizionario seguito dal *locale* che si vuole costruire e come secondo argomento la sorgente dove reperire le parole seguito sempre dal *locale*.  
+Open NvChad and type the following command, the command is to pass to `mkspell` as the first argument the destination path of the dictionary followed by the *locale* you want to build and as the second argument the source where to find the words followed again by the *locale*.  
 
 ```txt
 :mkspell ~/.config/nvim/spell/it_IT ~/nvspell/italian/it_IT
 ```
 
-Al termine del processo sarà disponibile un nuovo file nella cartella `spell` chiamato **it.utf-8.spl**, ora è possibile avere il controllo ortografico in italiano del file che si sta scrivendo con:
+At the end of the process a new file will be available in the `spell` folder called **it.utf-8.spl**, now you can have Italian spell-check of the file you are writing with:
 
 ```txt
 :set spell spelllang=it
 ```
 
-Per il controllo ortografico possono essere utilizzati anche più dizionari contemporaneamente, consentendo così di avere il controllo sia quando si scrive la stesura del documento che quando lo si traduce in inglese. Per avere entrambe i dizionari disponibili nel buffer a questo punto è sufficiente un:
+Multiple dictionaries can also be used for spell-checking at the same time, allowing you to have control both when writing the drafting of the document and when translating it into English. To have both dictionaries available in the buffer run the following command:
 
 ```txt
 :set spell spelllang=en,it
 ```
 
-#### Aggiornamento del dizionario
+#### Dictionary update
 
-Anche i dizionari, come tutte le *librerie*, vengono aggiornati per riflettere le modifiche della lingua, gli aggiornamenti anche se non così frequenti inseriscono nuove parole e nuove regole nei dizionari.
+Dictionaries, like all *libraries*, are also updated to reflect changes in the language; updates even if not as frequent insert new words and new rules into the dictionaries.
 
-Una volta disponibile il dizionario aggiornato per prima cosa bisogna recuperare i nuovi sorgenti scaricandoli e scompattandoli in una nuova cartella che per questo esempio sarà `~/nvspell/it_new`, le istruzioni sono le stesse della procedura di costruzione.
+Once the updated dictionary is available first you need to retrieve the new sources by downloading and unpacking them into a new folder which for this example will be `~/nvspell/it_new`, the instructions are the same as for the build procedure.
 
-Per l'aggiornamento del dizionario viene utilizzato il precedente comando `mkspell`, al quale va aggiunta la flag `!` per indicare al comando che il file è già presente e va sovrascritto; di conseguenza il percorso di destinazione va modificato per riflettere la posizione del file e anche il percorso dei sorgenti va indirizzato alla nuova cartella contenente i nuovi dizionari. Il comando sarà il seguente:
+For the dictionary update, the previous `mkspell` command is used, to which the `!` flag should be added to indicate to the command that the file is already present and should be overwritten; consequently, the destination path should be changed to reflect the location of the file, and the source path should also be directed to the new folder containing the new dictionaries. The command will be as follows:
 
 ```txt
 :mkspell! ~/.config/nvim/spell/it.utf-8.spl ~/nvspell/it_new/it_IT
 ```
 
-Una volta terminata la costruzione sarà immediatamente disponibile nel buffer di NvChad.
+Once the construction is finished, it will be immediately available in the NvChad buffer.
 
-### Dizionario delle eccezioni
+### Dictionary of exceptions
 
-Nella cartella `spell` sono presenti inoltre due file, **exceptions.utf-8.add** e **exceptions.utf-8.add.spl**, il primo è il file che fa da ponte per l'inserimento delle nuove parole nel dizionario. Il file **exceptions.utf-8.add** è un file arbitrario che deve essere creato in quanto non presente, quello che lo rende *speciale* è il fatto che venga definito come `spellfile` in questo modo si comunica al comando `spell` di utilizzarlo come ponte per la creazione di un dizionario con lo stesso nome ma con suffisso *.spl*.
-Il file è condiviso fra tutte le lingue impostate in `spelllang` e serve ad eliminare le segnalazione di errore su parole che ortograficamente non sono corrette ma che lo sono nel contesto documentale come *Rocky*, *yaml* o *mkdocs*.
+There are also two files in the `spell` folder, **exceptions.utf-8.add** and **exceptions.utf-8.add.spl**, the former being the file that acts as the bridge for entering new words into the dictionary.  
+The file **exceptions.utf-8.add** is an arbitrary file that must be created since it is not present, what makes it *special* is the fact that it is defined as a `spellfile` in this way it is communicated to the `spell` command to use it as a bridge for the creation of a dictionary with the same name but suffixed *.spl*.  
+The file is shared among all languages set in `spelllang` and is used to eliminate error reports on words that are spelled incorrectly but are correct in the document context such as *Rocky*, *yaml*, or *mkdocs*.
 
 ![Spell Wrong](./images/spell_wrong.png)
 
 !!! note
 
-    Il dizionario delle eccezioni viene impostato dal autocomando, presente in `lua/autocmds.lua`, che si occupa delle impostazioni automatiche per i file *markdown* e quindi è sempre disponibile in un buffer aperto su un file di quel tipo.
+    The exception dictionary is set by the autocommand, found in `lua/autocmds.lua`, which takes care of the automatic settings for *markdown* files and thus is always available in an open buffer on a file of that type.
 
-#### Gestione del dizionario
+#### Dictionary management
 
-Per inserire nel dizionario una parola contrassegnata come corretta è sufficiente posizionare il cursore nella parola e digitare ++"z"+"g"++ (*good*) e la parola nel buffer, e nei prossimi documenti, non sarà più sottolineata ad indicare un errore. Allo stesso modo per contrassegnare qualcosa come errato si utilizza, sempre posizionati sulla parola, la combinazione ++"z"+"w"++ (*wrong*).  
-Per una panoramica dei comandi disponibili si può fare riferimento a questa [sezione della guida](https://neovim.io/doc/user/spell.html#_1.-quick-start) di Neovim.
+To enter a word marked as correct in the dictionary, simply place the cursor in the word and type ++"z"+"g"++ (*good*), and the word in the buffer, and in future documents, will no longer be underlined to indicate an error. Similarly to mark something as incorrect you use, again positioned on the word, the combination ++"z"+"w"++ (*wrong*).  
+For an overview of the available commands you can refer to this [help section](https://neovim.io/doc/user/spell.html#_1.-quick-start) of Neovim.
