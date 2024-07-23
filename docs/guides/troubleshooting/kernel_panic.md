@@ -1,7 +1,7 @@
 ---
 title: How to deal with a kernel panic
 author: Antoine Le Morvan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.4
 tags:
   - kernel
@@ -11,20 +11,20 @@ tags:
 
 ## Introduction
 
-Sometimes a kernel installation goes wrong and you have to backtrack.
+Sometimes, a kernel installation goes wrong, and you have to backtrack.
 
-There can be many reasons for this: insufficient space on the `/boot` partition, an interrupted installation, or some kind of problem with a third-party application.
+There can be many reasons for this, such as insufficient space on the `/boot` partition, an interrupted installation, or a problem with a third-party application.
 
 Fortunately for us, there is always something we can do to save the day.
 
 ## Try to reboot with the previous kernel
 
-First thing to try is to reboot with the previous kernel.
+The first thing to try is to reboot with the previous kernel.
 
 * Restart the system.
 * Once you have reached the GRUB 2 boot screen, move the selection to the menu entry corresponding to the previous kernel and press the `enter` key.
 
-Once the system has restarted, it can be repaired.
+Once the system has restarted, you can repair it.
 
 If the system does not boot, try the **rescue mode** (see above).
 
@@ -36,19 +36,19 @@ The easiest way to do this is to uninstall the kernel version that is not workin
 
     You cannot remove a kernel that you are running. 
     
-    To show the version of currently running kernel: 
+    To show the version of the currently running kernel: 
     
     ```bash
     uname -r
     ```
 
-You can check the list of installed kernels:
+To check the list of installed kernels:
 
 ```bash
 dnf list installed kernel\* | sort -V
 ```
 
-but this command is perhaps more practical, since it only returns packages that have several versions installed:
+But the following command is perhaps more practical since it only returns packages with several versions installed:
 
 ```bash
 dnf repoquery --installed --installonly
@@ -72,7 +72,7 @@ or use the `dnf repoquery` command:
 dnf remove $(dnf repoquery --installed --installonly --latest=1)
 ```
 
-You can now  upgrade your system and try reinstalling the latest kernel version.
+You can now upgrade your system and try reinstalling the latest kernel version.
 
 ```bash
 dnf update
@@ -90,33 +90,33 @@ Rescue mode corresponds to the old single-user mode.
 
 To enter rescue mode, the easiest way is to select the line starting with `0-rescue-*` in the grub menu.
 
-Another way is to edit any line of the grub menu (pressing 'e' key) and add `systemd.unit=rescue.target` at the end of the line that starts with `linux` and then press `ctrl+x` to boot the system into rescue mode.
+Another way is to edit any line of the grub menu (pressing the 'e' key) and add `systemd.unit=rescue.target` at the end of the line that starts with `linux` and then press `ctrl+x` to boot the system into rescue mode.
 
 !!! Note
 
     You are then in qwerty mode.
 
-Once you are in rescue mode and you have enter the root password, you can then repair your system.
+You can repair your system once you are in rescue mode and have entered the root password.
 
-For that, you might need to configure a temporary IP address thanks to `ip ad add ...` (see network chapter of our admin guide).
+For that, you might need to configure a temporary IP address using `ip ad add ...` (see the network chapter of our admin guide).
 
 ## Last chance: Anaconda Rescue Mode
 
-If none of the above methods work, it is still possible to boot from the installation ISO and repair the system.
+If none of the above methods work, you can still boot from the installation ISO and repair the system.
 
-This method is not covered by this documentation.
+This documentation does not cover this method.
 
 ## System maintenance
 
 ### Cleaning old kernel versions
 
-You can remove old installed kernel packages, keeping only latest version and version of running kernel:
+You can remove old installed kernel packages, keeping only the latest version and version of the running kernel:
 
 ```bash
 dnf remove --oldinstallonly
 ```
 
-### Limiting the number of installed kernels versions
+### Limiting the number of installed kernel versions
 
 We can limit the number of kernel versions by editing the `/etc/yum.conf` file and setting the **installonly_limit** variable:
 
