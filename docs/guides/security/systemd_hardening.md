@@ -1,7 +1,7 @@
 ---
 title: Systemd Units Hardening
 author: Julian Patocki
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
     - security
     - systemd
@@ -16,7 +16,7 @@ tags:
 
 ## Introduction
 
-Many services run with privileges they do not really need to function properly. `systemd` ships many tools that help to minimize the risk when a process gets compromised, by enforcing security measures and limiting permissions.
+Many services run with privileges they do not need to function correctly. `systemd` ships many tools that help to minimize the risk when a process gets compromised by enforcing security measures and limiting permissions.
 
 ## Objectives
 
@@ -24,7 +24,7 @@ Many services run with privileges they do not really need to function properly. 
 
 ## Disclaimer
 
-This guide explains the mechanics of securing `systemd` units and does not cover the proper configuration of any particular unit. Some concepts are oversimplified. Understanding them and some commands used, requires a deeper dive into the topic.
+This guide explains the mechanics of securing `systemd` units and does not cover the proper configuration of any particular unit. Some concepts are oversimplified. Understanding them and some commands used requires a deeper dive into the topic.
 
 ## Resources
 
@@ -33,7 +33,7 @@ This guide explains the mechanics of securing `systemd` units and does not cover
 
 ## Analysis
 
-`systemd` includes a great tool that gives a quick overview on overall security configuration of a `systemd` unit.
+`systemd` includes a great tool that gives a quick overview of the overall security configuration of a `systemd` unit.
 `systemd-analyze security` provides a quick overview of the security configuration of a `systemd` unit. Here is the score of a freshly installed `httpd`:
 
 ```bash
@@ -65,15 +65,15 @@ For the purpose of performing permission checks, traditional UNIX implementation
 Starting  with  Linux 2.2, Linux divides the privileges traditionally associated with superuser into distinct units, known as capabilities, which can be independently enabled and disabled. Capabilities are a per-thread attribute.
 ```
 
-Basically it means that capabilities can grant some of `root` privileges to unprivileged processes, but also limit the privileges of processes run by `root`.
+This basically means that capabilities can grant some of `root` privileges to unprivileged processes but also limit the privileges of processes run by `root`.
 
-There are currently 41 capabilities. It means the privileges of the `root` user has 41 sets of privileges. Here are a few examples:
+There are currently 41 capabilities. It means the privileges of the `root` user have 41 sets of privileges. Here are a few examples:
 
-* **CAP_CHOWN**: Make arbitrary changes to file UIDs and GIDs
-* **CAP_KILL**: Bypass permission checks for sending signals
-* **CAP_NET_BIND_SERVICE**: Bind a socket to Internet domain privileged ports (port numbers less than 1024)
+* **CAP_CHOWN**: Makes arbitrary changes to file UIDs and GIDs
+* **CAP_KILL**: Bypasses permission checks for sending signals
+* **CAP_NET_BIND_SERVICE**: Bindes a socket to Internet domain-privileged ports (port numbers less than 1024)
 
-The `Capabilities(7)` man page contains the full list.
+The `Capabilities(7)` man page contains the complete list.
 
 There are two types of capabilities:
 
@@ -82,11 +82,11 @@ There are two types of capabilities:
 
 ## File capabilities
 
-File capabilities allow associating privileges with an executable, similar to `suid`. They include three sets: `Permitted`, `Inheritable`, and `Effective`, stored in an extended attribute.
+File capabilities allow for associating privileges with an executable, similar to `suid`. They include three sets stored in an extended attribute: `Permitted`, `Inheritable`, and `Effective`.
 
 Refer to the `Capabilities(7)` man page for a full explanation.
 
-File capabilities cannot affect the overall exposure level of a unit and are therefore only slightly relevant to this guide. Understanding them can be useful, though. Therefore a quick demonstration:
+File capabilities cannot affect a unit's overall exposure level and are, therefore, only slightly relevant to this guide. Understanding them can be helpful, though. Therefore, a quick demonstration:
 
 Let us try running `httpd` on the default (privileged) port 80 as an unprivileged user:
 
@@ -96,7 +96,7 @@ Let us try running `httpd` on the default (privileged) port 80 as an unprivilege
 no listening sockets available, shutting down
 ```
 
-As expected, the operation fails. Let us equip the `httpd` binary with previously mentioned **CAP_NET_BIND_SERVICE** and **CAP_DAC_OVERRIDE** (to override file permission checks on log and pid files for the sake of this excercise) and try again:
+As expected, the operation fails. Let us equip the `httpd` binary with the previously mentioned **CAP_NET_BIND_SERVICE** and **CAP_DAC_OVERRIDE** (to override file permission checks on log and pid files for the sake of this exercise) and try again:
 
 ```bash
 [user@rocky-vm ~]$ sudo setcap "cap_net_bind_service=+ep cap_dac_override=+ep" /usr/sbin/httpd
@@ -118,7 +118,7 @@ Thread capabilities apply to a process and its children. There are five thread c
 * Bounding
 * Ambient
 
-For full explanation refer to `Capabilities(7)` man page.
+For a full explanation, refer to the `Capabilities(7)` man page.
 
 You have already established that `httpd` does not need all the privileges available to the `root` user. Let us remove the previously granted capabilities from the `httpd` binary, start the `httpd` daemon, and check its privileges:
 
@@ -135,7 +135,7 @@ CapAmb: 0000000000000000
 0x000001ffffffffff=cap_chown,cap_dac_override,cap_dac_read_search,cap_fowner,cap_fsetid,cap_kill,cap_setgid,cap_setuid,cap_setpcap,cap_linux_immutable,cap_net_bind_service,cap_net_broadcast,cap_net_admin,cap_net_raw,cap_ipc_lock,cap_ipc_owner,cap_sys_module,cap_sys_rawio,cap_sys_chroot,cap_sys_ptrace,cap_sys_pacct,cap_sys_admin,cap_sys_boot,cap_sys_nice,cap_sys_resource,cap_sys_time,cap_sys_tty_config,cap_mknod,cap_lease,cap_audit_write,cap_audit_control,cap_setfcap,cap_mac_override,cap_mac_admin,cap_syslog,cap_wake_alarm,cap_block_suspend,cap_audit_read,cap_perfmon,cap_bpf,cap_checkpoint_restore
 ```
 
-The main `httpd` process runs with all available capabilities, even though most of them are not required.
+The main `httpd` process runs with all available capabilities, even though most are not required.
 
 ## Restricting capabilities
 
@@ -162,9 +162,9 @@ Reducing the overall exposure level from `UNSAFE` to `MEDIUM` is possible.
 → Overall exposure level for httpd.service: 7.1 MEDIUM 😐
 ```
 
-However, this process still runs as `root`. Lowering the exposure level further by running it exclusively as `apache` is possible.
+However, this process still runs as `root`. It is possible to lower the exposure level further by running it exclusively as `apache`.
 
-Apart from accessing the port 80, the process needs to write to the logs located in `/etc/httpd/logs/` and be able to create `/run/httpd/` and write to it. Achieving this in the former is done by changing the permissions with `chown` and the latter by using the `systemd-tmpfiles` utility. You can use it with the option `--create` for it to create the file without rebooting, but the creation of this file occurs automatically on every system startup from now on.
+Apart from accessing port 80, the process needs to write to the logs located in `/etc/httpd/logs/` and be able to create `/run/httpd/` and write to it. Achieving this in the former is done by changing the permissions with `chown` and the latter by using the `systemd-tmpfiles` utility. You can use it with the option `--create` to create the file without rebooting, but from now on, it will be created automatically on every system startup.
 
 ```bash
 [user@rocky-vm ~]$ sudo chown -R apache:apache /etc/httpd/logs/
@@ -175,7 +175,7 @@ d /run/httpd 0755 apache apache -
 drwxr-xr-x. 2 apache apache 40 Jun 30 08:29 /run/httpd/
 ```
 
-You need to adjust the configuration within `/lib/systemd/system/httpd.service.d/override.conf`. You need to grant the new capabilities with **AmbientCapabilities**. If `httpd` is enabled on startup, expanding the dependencies in the `[Unit]` section for the service to start after the creation of the temporary file must occur.
+You need to adjust the configuration within `/lib/systemd/system/httpd.service.d/override.conf`. You need to grant the new capabilities with **AmbientCapabilities**. If `httpd` is enabled on startup, expanding the dependencies in the `[Unit]` section must occur for the service to start after the temporary file is created.
 
 ```bash
 [Unit]
@@ -205,7 +205,7 @@ CapAmb: 0000000000000400
 ## File system restrictions
 
 Controlling the permissions on the files that the process creates is done by setting the `UMask`.
-The `UMask` parameter modifies default file permissions by performing bitwise operations. Mostly, this sets default permissions to octal `0644` (`-rw-r--r--`), and the default `UMask` is `0022`. This means the `UMask` does not change the default set:
+The `UMask` parameter modifies default file permissions by performing bitwise operations. This mainly sets the default permissions to octal `0644` (`-rw-r--r--`), and the default `UMask` is `0022`. This means the `UMask` does not change the default set:
 
 ```bash
 [user@rocky-vm ~]$ printf "%o\n" $(echo $(( 00644 &  ~00022 )))
@@ -232,7 +232,7 @@ Furthermore:
 * `ProtectProc=`: *"When set to "invisible" processes owned by other users are hidden from /proc/."*
 * `ProcSubset=`: *"If "pid", all files and directories not directly associated with process management and introspection are made invisible in the /proc/ file system configured for the unit's processes."*
 
-Restricting the executable paths is also possible. The daemon only needs to execute its own binaries and libraries they use. The `ldd` utility can tell us what libraries a binary uses:
+Restricting the executable paths is also possible. The daemon only needs to execute its binaries and libraries. The `ldd` utility can tell us what libraries a binary uses:
 
 ```bash
 [user@rocky-vm ~]$ ldd /usr/sbin/httpd
@@ -288,7 +288,7 @@ Various parameters can restrict system operations to enhance security:
 * `SystemCallArchitectures=`: if set to `native`, processes can make only native `syscalls` (in most cases `x86-64`)
 * `RestrictNamespaces=`: namespaces are mostly relevant to containers, therefore can be restricted for this unit
 * `RestrictSUIDSGID=`: prevents the process from setting `setuid` and `setgid` bits on files
-* `LockPersonality=`: prevents the execution domain from being changed, which could be useful only for running legacy applications, or software designed for other Unix-like systems
+* `LockPersonality=`: prevents the execution domain from being changed, which could be useful only for running legacy applications or software designed for other Unix-like systems
 * `RestrictRealtime=`: realtime scheduling is relevant only to applications that require strict timing guarantees, such as industrial control systems, audio/video processing, and scientific simulations
 * `RestrictAddressFamilies=`: restricts socket address families that are available; can be set to `AF_(INET|INET6)` to allow only IPv4 and IPv6 sockets; some services will need `AF_UNIX` for internal communication and logging
 * `MemoryDenyWriteExecute=`: ensures that the process cannot allocate new memory regions that are both writable and executable, prevents some types of attacks where malicious code is injected into writable memory and then executed; may cause JIT compilers used by JavaScript, Java or .NET to fail
@@ -320,7 +320,7 @@ ProtectHostname=true
 
 Restricting system calls may not be easy. It is difficult to determine what system calls some daemons need to make to function properly.
 
-The `strace` utility can be useful to determine what syscalls created. The option `-f` specifies to follow forked processes and `-o` saves the output to the file called `httpd.strace`.
+The `strace` utility can help determine what syscalls are created. The option `-f` specifies to follow forked processes, and `-o` saves the output to the file called `httpd.strace`.
 
 ```bash
 [user@rocky-vm ~]$ sudo strace -f -o httpd.strace /usr/sbin/httpd
@@ -351,7 +351,7 @@ HTTP/1.1 403 Forbidden
 
 The web server is still running and the exposure has been significantly lowered.
 
-The above approach is very precise. If a system call has been left out, it may lead to the program crashing. `systemd` groups system calls into predefined sets. To make restricting system calls easier, instead of a single system call, setting a whole group on the allowed or disallowed list, is possible. To look up the lists:
+The above approach is exact. If a system call has been left out, it may lead to the program crashing. `systemd` groups system calls into predefined sets. To make restricting system calls easier, instead of setting a single system call on the allowed or disallowed list, it is possible to set a whole group on the allowed or disallowed list. To look up the lists:
 
 ```bash
 [user@rocky-vm ~]$ systemd-analyze syscall-filter
@@ -366,7 +366,7 @@ The above approach is very precise. If a system call has been left out, it may l
 ...
 ```
 
-System calls within groups may overlap, especially for some groups include other groups. Therefore single calls or groups can be set to disallowed by being specified with the `~` symbol. The following directives in the `override.conf` file should work for this unit:
+System calls within groups may overlap, especially for some groups that include other groups. Therefore, single calls or groups can be disallowed by being specified with the `~` symbol. The following directives in the `override.conf` file should work for this unit:
 
 ```bash
 SystemCallFilter=@system-service
