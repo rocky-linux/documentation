@@ -18,7 +18,7 @@ tags:
 
 The following are minimum requirements for using this procedure:
 
-- A public IPv4 or IPv6 address, whether directly on the server, with port forwarding, or uPNP/NAT-PMP
+- A public IPv4 or IPv6 address, whether directly on the server, with port forwarding, or UPnP/NAT-PMP
 
 ## Installing `i2pd`
 
@@ -45,7 +45,7 @@ vim /etc/i2pd/i2pd.conf
 
 The default `i2pd.conf` file is pretty descriptive, but can get long if you just want a basic configuration, you can leave as-is.
 
-However, if you want to enable IPv6 and uPNP and listen the HTTP proxy to port `12345`, a configuration allowing this is as follows:
+However, if you want to enable IPv6 and UPnP and listen the HTTP proxy to port `12345`, a configuration allowing this is as follows:
 
 ```bash
 ipv6 = true
