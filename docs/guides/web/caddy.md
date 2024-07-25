@@ -158,10 +158,10 @@ To install PHP, first add the Remi repository (note: if you are running Rocky Li
 dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
 ```
 
-Next, we need to install PHP (note: if you are using another version of PHP, substitute your desired version for php81):
+Next, we need to install PHP (note: if you are using another version of PHP, substitute your desired version for php83):
 
 ```bash
-dnf install -y php81-php-fpm
+dnf install -y php83-php-fpm
 ```
 
 If you require additional PHP modules (e.g., GD), add them to the above command.
@@ -169,13 +169,13 @@ If you require additional PHP modules (e.g., GD), add them to the above command.
 Then, we need to configure PHP to listen on a TCP socket:
 
 ```bash
-vim /etc/opt/remi/php81/php-fpm.d/www.conf
+vim /etc/opt/remi/php83/php-fpm.d/www.conf
 ```
 
 Next, find the line:
 
 ```bash
-listen = /var/opt/remi/php81/run/php-fpm/www.sock
+listen = /var/opt/remi/php83/run/php-fpm/www.sock
 ```
 
 Replace it with this:
