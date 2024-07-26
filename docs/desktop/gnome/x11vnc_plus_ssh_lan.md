@@ -1,12 +1,12 @@
 ---
-title: Secure Remote Support on LAN with x11vnc + SSH
+title: Desktop Sharing via x11vnc+SSH (LAN)
 author: Joseph Brinkman
 contributors: Steven Spencer
 ---
 
 ## Introduction
 
-x11vnc is a powerful VNC program that distinguishes itself by utilizing the existing X session instead of creating a new one. This makes it an excellent tool for providing remote support, as it enables controlling remotely the user's screen or X session.
+x11vnc, a powerful VNC program, stands out by using the existing X session instead of creating a new one. This feature makes it an excellent tool for remote support, allowing users to control their screen or X session from a distance.
 
 In this guide, you will learn how to stand up an x11vnc server and how to connect to it remotely.
 
