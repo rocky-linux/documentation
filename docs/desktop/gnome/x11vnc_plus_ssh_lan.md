@@ -1,11 +1,12 @@
 ---
 title: Secure Remote Support on LAN with x11vnc + SSH
 author: Joseph Brinkman
+contributors: Steven Spencer
 ---
 
 ## Introduction
 
-x11vnc is a powerful VNC program that distinguishes itself by utilizing the existing X session instead of creating a new one. This makes it an excellent tool for providing remote support, as the user's screen or X session can be controlled remotely.
+x11vnc is a powerful VNC program that distinguishes itself by utilizing the existing X session instead of creating a new one. This makes it an excellent tool for providing remote support, as it enables controlling remotely the user's screen or X session.
 
 In this guide, you will learn how to stand up an x11vnc server and how to connect to it remotely.
 
@@ -15,18 +16,18 @@ In this guide, you will learn how to stand up an x11vnc server and how to connec
 
 ## Assumptions
 
-For this guide, the assumption is that you have the following set up already:
+For this guide, the assumption is that you have the following:
 
 * Rocky Linux Workstation
-* sudo privileges
+* `sudo` privileges
 
 ## Setting up the VNC server
 
-To capture a user's X session, x11vnc server will need to be installed on their Rocky workstation.
+To capture a your X session, you will need to install x11vnc server on your Rocky workstation.
 
 ### Disable Wayland
 
-First, you need to disable Wayland. Open the custom.conf file using your text editor of choice:
+First, you need to disable Wayland. Open the `custom.conf` file using your text editor of choice:
 
 ```bash
 sudo vim /etc/gdm/custom.conf
@@ -71,7 +72,7 @@ Create a password for x11vnc:
 x11vnc -storepasswd ~/.x11vnc.pwd
 ```
 
-Create a new file with your text editor of choice. This will be used to create a service to run x11vnc:
+Create a new file with your text editor of choice. You will use this to create a service to run x11vnc:
 
 ```bash
 sudo vim /etc/systemd/system/x11vnc.service
@@ -116,7 +117,7 @@ sudo dnf install epel-release
 
 ### Install a VNC client
 
-Install TigerVNC. We will not be using the server, but will utilize the client:
+Install TigerVNC. The server is not used, but you will use the client:
 
 ```bash
 sudo dnf install tigervnc
@@ -148,11 +149,8 @@ Connect to the VNC server by entering 127.0.0.1 or localhost into TigerVNC and c
 
 Enter the x11vnc password you created earlier.
 
-
 ## Conclusion
 
 ![TigerVNC viewer connected to an X session](images/x11vnc_plus_ssh_lan_images/x11vnc_over_ssh_lan_conclusion.webp)
 
 At this point, you have successfully set up an x11vnc server and connected to it using a TigerVNC client. This solution is ideal for providing remote support, as it shares the same X session as the user, ensuring a seamless support experience.
-
-
