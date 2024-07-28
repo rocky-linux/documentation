@@ -1,7 +1,7 @@
 ---
 title: SSH Certificate Authorities and Key Signing
 author: Julian Patocki
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
     - security
     - ssh
@@ -13,15 +13,15 @@ tags:
 
 * Ability to use command line tools
 * Managing content from the command line
-* Previous experience with SSH key generation helpful, but not required
-* Basic understanding of SSH and public key infrastructure helpful, but not required
+* Previous experience with SSH key generation helpful but not required
+* A basic understanding of SSH and public key infrastructure is helpful but not required
 * A server running the sshd daemon.
 
 ## Introduction
 
-The initial SSH connection with a remote host is insecure if you cannot verify the fingerprint of the remote host's key. Using a certificate authority to sign public keys of remote hosts makes the initial connection secure for every user that trusts the CA.
+The initial SSH connection with a remote host is insecure if you cannot verify the fingerprint of the remote host's key. Using a certificate authority to sign public keys of remote hosts makes the initial connection secure for every user who trusts the CA.
 
-CAs can also be used to sign user SSH keys. Instead of distributing the key to every remote host, one signature is sufficient to authorize user to log in to multiple servers.
+CAs can also be used to sign user SSH keys. Instead of distributing the key to every remote host, one signature is sufficient to authorize the user to log in to multiple servers.
 
 ## Objectives
 
@@ -35,7 +35,7 @@ CAs can also be used to sign user SSH keys. Instead of distributing the key to e
 
 ## Initial connection
 
-To make the initial connection secure, you need prior knowledge of the key fingerprint. You can optimize and integrate this deployment process for new hosts.
+To secure the initial connection, you need prior knowledge of the key fingerprint. You can optimize and integrate this deployment process for new hosts.
 
 Displaying the key fingerprint on the remote host:
 
@@ -44,7 +44,7 @@ user@rocky-vm ~]$ ssh-keygen -E sha256 -l -f /etc/ssh/ssh_host_ed25519_key.pub
 256 SHA256:bXWRZCpppNWxXs8o1MyqFlmfO8aSG+nlgJrBM4j4+gE no comment (ED25519)
 ```
 
-Making the initial SSH connection from the client. The key fingerprint is being displayed an can be compared to the previously aquired one:
+Making the initial SSH connection from the client. The key fingerprint is being displayed and can be compared to the previously acquired one:
 
 ```bash
 [user@rocky ~]$ ssh user@rocky-vm.example.com
@@ -69,7 +69,7 @@ Where:
 * **-t**: key type: rsa, ed25519, ecdsa...
 * **-f**: output key file
 
-Alternatively, you can specify the `known_hosts` file system wide by editing the SSH config file `/etc/ssh/ssh_config`:
+Alternatively, you can specify the `known_hosts` file system-wide by editing the SSH config file `/etc/ssh/ssh_config`:
 
 ```bash
 Host *
@@ -102,7 +102,7 @@ Where:
 
 ## Establishing trust
 
-Copying the remote host's certificate for the remote host to present it along its public key while being connected to:
+Copying the remote host's certificate for the remote host to present it along with its public key while being connected to:
 
 ```bash
 [user@rocky ~]$ scp ssh_host_ed25519_key-cert.pub root@rocky-vm.example.com:/etc/ssh/
@@ -135,7 +135,7 @@ Restarting the `sshd` service on the server:
 
 ## Testing the connection
 
-Removing remote server's fingerprint from your `known_hosts` file and verifying the settings by establishing an SSH connection:
+Removing the remote server's fingerprint from your `known_hosts` file and verifying the settings by establishing an SSH connection:
 
 ```bash
 [user@rocky ~]$ ssh-keygen -R rocky-vm.example.com
@@ -144,7 +144,7 @@ Removing remote server's fingerprint from your `known_hosts` file and verifying 
 
 ## Key revocation
 
-Revoking host or user keys may be crucial to the security of the whole environment. Therefore it is important to store the previously signed public keys to be able to revoke them at some point in the future.
+Revoking host or user keys may be crucial to the security of the whole environment. Therefore, it is important to store the previously signed public keys so that you can revoke them at a later date.
 
 Creating an empty revocation list and revoking the public key of user2:
 
@@ -167,7 +167,7 @@ The following line specifies the revocation list:
 RevokedKeys /etc/ssh/revokation_list.krl
 ```
 
-It is a requirement to restarting the SSHD daemon for the configuration to reload:
+It is a requirement to restart the SSHD daemon for the configuration to reload:
 
 ```bash
 [user@rocky-vm ~]$ sudo systemctl restart sshd
@@ -186,7 +186,7 @@ Revoking server keys is also possible:
 [user@rocky ~]$ sudo ssh-keygen -k -f /etc/ssh/revokation_list.krl -u /path/to/ssh_host_ed25519_key.pub
 ```
 
-The following lines in `/etc/ssh/ssh_config` applies the host revocation list system wide:
+The following lines in `/etc/ssh/ssh_config` apply the host revocation list system-wide:
 
 ```bash
 Host *
@@ -200,9 +200,9 @@ Trying to connect to the host results in the following:
 Host key ED25519-CERT SHA256:bXWRZCpppNWxXs8o1MyqFlmfO8aSG+nlgJrBM4j4+gE revoked by file /etc/ssh/revokation_list.krl
 ```
 
-Maintaining and updating the revocation lists is important. You can automate the process to assure the most recent revocation lists are accessible by all hosts and users.
+Maintaining and updating the revocation lists is important. You can automate the process to ensure all hosts and users can access the most recent revocation lists.
 
 ## Conclusion
 
-SSH is one of the most useful protocols to manage remote servers. Implementing certificate authorities can be helpful, especially in larger environments with many servers and users.
-It is important to maintain revocation lists. It ensures the revocation of compromised keys easily without replacing the whole key infrastructure.
+SSH is one of the most valuable protocols to manage remote servers. Implementing certificate authorities can be helpful, especially in larger environments with many servers and users.
+It is important to maintain revocation lists. It easily revokes compromised keys without replacing the whole critical infrastructure.
