@@ -160,10 +160,10 @@ systemctl enable --now caddy
 dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
 ```
 
-Далі нам потрібно встановити PHP (примітка: якщо ви використовуєте іншу версію PHP, замініть потрібну версію на php81):
+Далі нам потрібно встановити PHP (примітка: якщо ви використовуєте іншу версію PHP, замініть потрібну версію на php83):
 
 ```bash
-dnf install -y php81-php-fpm
+dnf install -y php83-php-fpm
 ```
 
 Якщо вам потрібні додаткові модулі PHP (наприклад, GD), додайте їх до наведеної вище команди.
@@ -171,13 +171,13 @@ dnf install -y php81-php-fpm
 Потім нам потрібно налаштувати PHP для прослуховування TCP-сокета:
 
 ```bash
-vim /etc/opt/remi/php81/php-fpm.d/www.conf
+vim /etc/opt/remi/php83/php-fpm.d/www.conf
 ```
 
 Далі знайдіть рядок:
 
 ```bash
-listen = /var/opt/remi/php81/run/php-fpm/www.sock
+listen = /var/opt/remi/php83/run/php-fpm/www.sock
 ```
 
 Замініть його цим:
