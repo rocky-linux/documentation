@@ -1,7 +1,7 @@
 ---
 title: Зміцнення підрозділів Systemd
 author: Julian Patocki
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - безпека
   - systemd
