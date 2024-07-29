@@ -42,10 +42,17 @@ dnf install -y epel-release
 dnf install http://rpms.remirepo.net/enterprise/remi-release-9.rpm
 ```
 
+Потім налаштуйте dnf на використання пакетів remi замість звичайних пакетів
+
+```bash
+dnf module reset php
+dnf module enable php:8.1
+```
+
 Після того, як репозиторії EPEL і REMI встановлено, настав час інсталювати пакунки:
 
 ```bash
-dnf install bash-completion cronie fping git httpd ImageMagick mariadb-server mtr net-snmp net-snmp-utils nmap php81-php-fpm php81-php-cli php81-php-common php81-php-curl php81-php-gd php81-php-json php81-php-mbstring php81-php-process php81-php-snmp php81-php-xml php81-php-zip php81-php-mysqlnd python3 python3-PyMySQL python3-redis python3-memcached python3-pip python3-systemd rrdtool unzip wget
+dnf install bash-completion cronie fping git httpd ImageMagick mariadb-server mtr net-snmp net-snmp-utils nmap php-fpm php-cli php-common php-curl php-gd php-gmp php-json php-mbstring php-process php-snmp php-xml php-zip php-mysqlnd python3 python3-PyMySQL python3-redis python3-memcached python3-pip python3-systemd rrdtool unzip wget
 ```
 
 Усі ці пакети представляють певну частину набору функцій LibreNMS.
@@ -58,7 +65,7 @@ dnf install bash-completion cronie fping git httpd ImageMagick mariadb-server mt
 useradd librenms -d /opt/librenms -M -r -s "$(which bash)"
 ```
 
-Ця команда встановлює типовий каталог для користувача на `/opt/librenms`; однак параметр `-M` каже "не створювати каталог". Причина в тому, що це відбувається під час встановлення LibreNMS. `-r` каже зробити цього користувача системним обліковим записом, а `-s` говорить про встановлення оболонки (у цьому випадку на "bash").
+Ця команда встановлює каталог за замовчуванням для користувача на `/opt/librenms`, однак параметр `-M` говорить «не створювати каталог». Причина в тому, що це відбувається під час встановлення LibreNMS. `-r` каже зробити цього користувача системним обліковим записом, а `-s` говорить про встановлення оболонки (у цьому випадку на "bash").
 
 ## Завантаження LibreNMS і встановлення дозволів
 
