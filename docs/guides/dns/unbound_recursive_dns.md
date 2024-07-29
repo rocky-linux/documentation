@@ -1,13 +1,13 @@
 ---
 title: Unbound Recursive DNS
 author: Neel Chauhan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.4
 tags:
   - dns
 ---
 
-An alternative to BIND, [Unbound](https://www.nlnetlabs.nl/projects/unbound/about/) is a modern validating, recursive and caching DNS server maintained by [NLnet Labs](https://www.nlnetlabs.nl/).
+An alternative to BIND, [Unbound](https://www.nlnetlabs.nl/projects/unbound/about/) is a modern validating, recursive, and caching DNS server maintained by [NLnet Labs](https://www.nlnetlabs.nl/).
 
 ## Prerequisites and assumptions
 
@@ -16,9 +16,9 @@ An alternative to BIND, [Unbound](https://www.nlnetlabs.nl/projects/unbound/abou
 
 ## Introduction
 
-There are two types of DNS servers: authoritative and recursive. Where authoritative DNS servers advertise a DNS zone, recursive servers resolve queries on behalf of clients by forwarding them to an ISP or public DNS resolver, or the root zones for larger servers.
+There are two types of DNS servers: authoritative and recursive. Where authoritative DNS servers advertise a DNS zone, recursive servers resolve queries on behalf of clients by forwarding them to an ISP or public DNS resolver or the root zones for larger servers.
 
-As an example, your home router is likely running an embedded recursive DNS resolver to forward to your ISP or a well-known public DNS server which is also a recursive DNS server.
+For example, your home router is likely running an embedded recursive DNS resolver that forwards to your ISP or a well-known public DNS server, which is also a recursive DNS server.
 
 ## Installing and enabling Unbound
 
@@ -59,11 +59,11 @@ forward-zone:
     forward-addr: 1.1.1.1@53
 ```
 
-Replace `192.168.0.0/16` and `2001:db8::/64` with the subnets you are resolving DNS queries for. Save your changes.
+Replace `192.168.0.0/16` and `2001:db8::/64` with the subnets for which you are resolving DNS queries. Save your changes.
 
 ### Taking a closer look
 
-- The `interface` denotes the interfaces (IPv4 or IPv6) you want to listen for DNS queries on. We are listening on all interfaces with `0.0.0.0` and `::`.
+- The `interface` denotes the interfaces (IPv4 or IPv6) on which you want to listen for DNS queries. We are listening on all interfaces with `0.0.0.0` and `::`.
 - The `access-control` denotes which subnets (IPv4 or IPv6) you want to allow DNS queries from. We are allowing requests from `192.168.0.0/16` and `2001:db8::/64`.
 - The `forward-addr` defines the servers we will forward to. We are forwarding to Cloudflare's 1.1.1.1.
 
@@ -94,6 +94,6 @@ google.com mail is handled by 10 smtp.google.com.
 %
 ## Conclusion
 
-Most people use their home router's DNS resolver or public DNS resolvers run by ISPs and tech companies. In home lab and large networks it is a norm to run a network-wide resolver to reduce latency and network load by caching DNS requests for commonly-requested websites such as Google. A network-wide resolver also enables intranet services such as SharePoint and Active Directory.
+Most people use their home router's DNS resolver or public DNS resolvers run by ISPs and tech companies. In-home labs and large networks, it is the norm to run a network-wide resolver to reduce latency and network load by caching DNS requests for commonly requested websites such as Google. A network-wide resolver also enables intranet services such as SharePoint and Active Directory.
 
-Unbound is one of many open source tools that make resolving DNS possible. Congratulations, you have your very own DNS resolver! Cheers!
+Unbound is one of many open-source tools that make resolving DNS possible. Congratulations, you have your very own DNS resolver!
