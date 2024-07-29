@@ -11,7 +11,7 @@ tags:
 
 ## Introduction
 
-HPE ProLiant servers have a companion software called Agentless Management Service which [according to HPE](https://techlibrary.hpe.com/docs/iss/EL8000t/setup_install/GUID-1CF69B20-790A-4EDC-A162-9D64572ED9E8.html) "uses out-of-band communication for increased security and stability." In addition, "with Agentless Management, health monitoring, and alerting is built into the system and begins working the moment auxiliary power is connected to the [your server]".
+HPE ProLiant servers have a companion software called Agentless Management Service which [according to HPE](https://techlibrary.hpe.com/docs/iss/EL8000t/setup_install/GUID-1CF69B20-790A-4EDC-A162-9D64572ED9E8.html) "uses out-of-band communication for increased security and stability." In addition, "with Agentless Management, health monitoring, and alerting is built into the system and begins working the moment auxiliary power is connected to [your server]".
 
 This is used, for example, to reduce fan speeds on an HPE ProLiant ML110 Gen11 in the author's home lab.
 
