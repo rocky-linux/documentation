@@ -103,7 +103,7 @@ firewall-cmd --permanent --zone=public --add-port=9091/tcp
 firewall-cmd --runtime-to-permanent
 ```
 
-If you are not behind a NAT-PMP, UPnP-enabled router, or connected without NAT, you must forward the BitTorrent port (`12345` in our example). Each router is different, but as an example on the author's MikroTik router:
+If you are not behind a NAT-PMP or UPnP-enabled router, or connected without NAT, you must forward the BitTorrent port (`12345` in our example). Each router is different, but as an example on the author's MikroTik router:
 
 ```bash
 /ip firewall nat add action=dst-nat chain=dstnat dst-port=12345 in-interface=ether1 protocol=tcp to-addresses=SERVER_IP to-ports=12345
