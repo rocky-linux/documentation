@@ -1,7 +1,7 @@
 ---
 title: Автентифікація Active Directory за допомогою Samba
 author: Neel Chauhan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.4
 ---
 
