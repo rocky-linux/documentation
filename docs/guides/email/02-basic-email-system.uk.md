@@ -183,7 +183,7 @@ Shell(192.168.100.5) > /usr/local/mysql/bin/mysql -u root --password="pkqaXRuTn1
 ```sql
 Mysql > ALTER USER 'root'@'localhost' IDENTIFIED BY 'rockylinux.me';
 
-Mysql > create user 'mailrl'@'%' identified by 'mail.rockylinux.me'; 
+Mysql > create user 'mailrl'@'%' identified by 'mail.rockylinux.me';
 
 Mysql > grant all privileges on *.* to 'mailrl'@'%' with grant option;
 ```
@@ -231,7 +231,7 @@ Mysql > insert into virtual_aliases(id,domain_id,source,destination) values(1,1,
 Mysql > insert into virtual_aliases(id,domain_id,source,destination) values(2,1,'all@mail.rockylinux.me','leeo@mail.rockylinux.me');
 ```
 
-Записи паролів для відповідних користувачів електронної пошти тут не показані, оскільки для цього потрібно використовувати команду `doveadm pw -s SHA512-crypt -p twotestandtwo`. Перегляньте [тут](#ap1)
+Записи паролів для відповідних користувачів електронної пошти тут не показані, оскільки для цього потрібно використовувати команду `doveadm pw -s SHA512-crypt -p twotestandtwo`.
 
 #### Знання SHA512 (SHA-2)
 
@@ -374,7 +374,7 @@ mydomain = rockylinux.me
 myorigin = $myhostname
 inet_interfaces = 192.168.100.6
 inet_protocols = ipv4
-mydestination = 
+mydestination =
 biff = no
 append_dot_mydomain = no
 smtpd_sasl_type = dovecot
@@ -401,7 +401,7 @@ mydomain = rockylinux.me
 myorigin = $myhostname
 inet_interfaces = 192.168.100.6
 inet_protocols = ipv4
-mydestination = 
+mydestination =
 biff = no
 append_dot_mydomain = no
 smtpd_sasl_type = dovecot
