@@ -199,7 +199,7 @@ La commande `systemctl` est également utilisée pour `activer` ou `désactiver`
 | systemctl                                | Observation                                                        |
 | ---------------------------------------- | ------------------------------------------------------------------ |
 | systemctl enable *name*.service          | Activer un service                                                 |
-| systemctl disable *name*.service         | Désactiver un service                                              |
+| systemctl disable *name*.service         | Désactive un service                                               |
 | systemctl list-unit-files --type service | Liste tous les services et vérifie s'ils sont en cours d'exécution |
 | systemctl list-dependencies --after      | Liste les services qui commencent avant l'unité spécifiée          |
 | systemctl list-dependencies --before     | Liste les services qui commencent après l'unité spécifiée          |
