@@ -1,7 +1,7 @@
 ---
 title: Extensions GNOME Shell
 author: Joseph Brinkman
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 9.4
 tags:
   - desktop
@@ -32,7 +32,7 @@ L’installation inclut toutes les dépendances nécessaires.
 
 ## Installation de l'Intégration du Navigateur
 
-Gnome Extensions dispose d'une bibliothèque de logiciels disponible sur leur site Web gnome.extensions.org à partir duquel vous pouvez directement installer des extensions. Pour y parvenir, votre navigateur et les extensions gnome doivent faciliter la connexion.
+Gnome Extensions dispose d'une bibliothèque de logiciels disponible sur leur site Web `gnome.extensions.org` à partir duquel vous pouvez directement installer des extensions. Pour y parvenir, votre navigateur et les extensions gnome doivent faciliter la connexion.
 
 ```bash
 sudo dnf install chrome-gnome-shell
@@ -40,9 +40,9 @@ sudo dnf install chrome-gnome-shell
 
 [guide d'installation](https://gnome.pages.gitlab.gnome.org/gnome-browser-integration/pages/installation-guide.html){target="_blank"}
 
-## Déterminer la Version du Shell GNOME
+## Déterminer la Version de GNOME Shell
 
-L'extension de navigateur utilisée pour faciliter l'installation d'extensions à partir du site extensions.gnome.org devrait automatiquement détecter la version du shell GNOME que votre système exécute actuellement.
+L'extension de navigateur utilisée pour faciliter l'installation d'extensions à partir du site `extensions.gnome.org` devrait automatiquement détecter la version du shell GNOME que votre système exécute actuellement.
 
 Si vous souhaitez effectuer une installation locale, vous devrez télécharger l'extension avec la version correcte du shell GNOME.
 
@@ -57,7 +57,7 @@ Pour cet exemple, nous installerons l’extension populaire `Dash to Dock`.
 1. Rendez-vous sur [page Web de l'extension Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/){target="_blank"}
 2. Passer l'extension de "off" à "on"
    ![Toggle extension](images/gnome_extensions_images/gnome-shell-extensions-toggle-btn.webp)
-3. Lorsque vous êtes invité à installer l’extension, cliquez sur « yes »
+3. Lorsque vous êtes invité à installer l’extension, cliquez sur `yes`.
 
 ## Gestion des Extensions Installées
 
