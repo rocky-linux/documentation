@@ -1,7 +1,7 @@
 ---
 title: Спільний доступ до файлів Samba Windows
 author: Neel Chauhan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.4
 tags:
   - передача файлів
