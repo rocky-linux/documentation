@@ -10,17 +10,17 @@ tags:
   - markdown
 ---
 
-The basic functionality of NvChad has been expanded to provide an enhanced experience from the already excellent one provided by the editor; there are features for file management, buffer navigation, string copying, and other small utilities.
+Markchad expands the functionality of the already excellent editor in NvChad, enhancing the experiences in file management, buffer navigation, string copying, and other small utilities.
 
-To enrich the experience of writing and editing markdown files, the use of dictionaries (multilingual) for spell-checking and exception handling has also been implemented.
+The implementation of dictionaries (multilingual) for spell-checking and exception handling is done to enrich the experience of writing and editing markdown files.
 
 ## :material-file-tree: File Manager
 
-The most notable change to the configuration of the editor is the replacement of the file manager used by NvChad, in its place is [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim), this plugin allows for a simpler configuration and provides "out of the box" a floating layout and various parameters to be passed to the `:Neotree` command.
+The most notable change to the configuration of the editor is the replacement of the file manager used by NvChad. In its place is [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim). This plugin allows for a simpler configuration and provides "out of the box" a floating layout and the passing of various parameters to the `:Neotree` command.
 
 ![Neotree Standard](./images/neo-tree.png)
 
-The commands used in NvChad have been migrated to reflect the changes but the functionality remains the same; ++ctrl+"n"++ opens the file manager sideways and ++space+"e"++ places the focus on it.
+Migration of the commands used in NvChad reflects the changes, but the functionality remains the same: ++ctrl+"n"++ opens the file manager sideways and ++space+"e"++ places the focus on it.
 
 !!! notes "Disabling nvimtree"
 
@@ -34,11 +34,11 @@ The commands used in NvChad have been migrated to reflect the changes but the fu
     },
     ```
 
-The plugin also provides a floating layout that is invoked with the ++"-"++ character, the command executed by this shortcut corresponds to the execution of *Neotree* with the ==float== flag, the ==toggle== flag was also added to the particular command to use the same character also to close the buffer.
+The plugin also provides a floating layout invoked with the ++"-"++ character. The command run by this shortcut corresponds to the running of *Neotree* with the ==float== flag. The ==toggle== flag was also added to the particular command to use the same character to close the buffer.
 
 ![Floating Neotree](./images/neo-tree_float.png)
 
-The shortcut can be changed according to preference by editing the corresponding character in the file `lua/plugins/neotree.lua`.
+Changing the shortcut according to preference by editing the corresponding character in the file `lua/plugins/neotree.lua` is possible.
 
 ```lua
   { -- lazy style key map
@@ -52,19 +52,19 @@ The `:Neotree` command has many default options and layouts, for a more in-depth
 
 ## :octicons-command-palette-16: Command line
 
-In addition to the *cmdline* provided by NvChad, a second more modern and functional *command line* was also included, its inclusion was made in the file `lua/plugins/telescope.lua`. The plugin is a custom *picker* of *Telescope*, it provides a history of the commands made and allows them to be searched, the functionality is provided by the [telescope-cmdline.nvim](https://github.com/jonarrien/telescope-cmdline.nvim) plugin.  
+In addition to the *cmdline* provided by NvChad, a second more modern and functional *command line* is included within the file `lua/plugins/telescope.lua`. The plugin is a custom *picker* of *Telescope*. It provides a history of the commands made and allows makes them searchable. This functionality comes from the [telescope-cmdline.nvim](https://github.com/jonarrien/telescope-cmdline.nvim) plugin.  
 To open the *cmdline* use the ++comma++ (comma) key:
 
 ![Cmdline](./images/cmdline_telescope.png)
 
 ## :octicons-paste-16: Copy and Paste
 
-The copy/paste functionality has been extended through the integration into the configuration of [yanky.nvim](https://github.com/gbprod/yanky.nvim), this plugin allows for the pasting, from a convenient history displayed in *Telescope*, of previously copied strings. The history (*yanky-ring*) is saved in `~.local/share/nvim/databases/yanky.db`, this is a *sqlite* database that allows more strings to be stored and offers better search performance.  
-The keys to use *yanky* are ++space+"y "++ in *NORMAL* mode and ++ctrl+"y "++ in *INSERT* mode, both of which position the string to be pasted at the current location where the cursor is.
+Through integration into the configuration of [yanky.nvim](https://github.com/gbprod/yanky.nvim), copy/paste funtionality is extended. This plugin allows for pasting, from a convenient history displayed in *Telescope*, of previously copied strings. The history saved (*yanky-ring*) is in `~.local/share/nvim/databases/yanky.db`. This is a *sqlite* database that allows the storing of more strings and better search performance.  
+The keys to use *yanky* are ++space+"y "++ in *NORMAL* mode and ++ctrl+"y "++ in *INSERT* mode, both position the string for pasting at the cursors current location.
 
 ![Yank Ring](./images/yank_ring.png)
 
-The history of the copied strings is shared with the *clipboard* of the host system, this allows the copied strings to be used outside Neovim as web addresses, remote images, etc. in the open buffer. The setting that enables the feature is found in the file `lua/plugins/yanky.lua` and is as follows:
+The history of the copied strings is shared with the *clipboard* of the host system. This allows the use of copied strings outside Neovim as web addresses, remote images, etc., in the open buffer. You can find the setting enabling this feature in the file `lua/plugins/yanky.lua`:
 
 ```lua
     system_clipboard = {
@@ -74,27 +74,27 @@ The history of the copied strings is shared with the *clipboard* of the host sys
 
 ## :octicons-diff-added-16: Further additions
 
-A number of plugins have also been added to the plugins that provide the functionality described above that provide common functionality dedicated to buffer management.
+Many plugins are also added to the plugins that provide the functionality described above, providing common functionality dedicated to buffer management.
 
 * [nvim-highlight-colors](https://github.com/brenoprata10/nvim-highlight-colors) for color code translation (*hexadecimal*), this plugin adds a background color to the hexadecimal value (e.g. #FCFCFC) making it much easier to manage and edit. The feature is particularly useful for those who want to try their hand at editing NvChad themes. The ++space+"uC "++ shortcut is available for activation, which also allows its disabling (*toggle command*).
 
 ![Highlight Colors](./images/hl_colors.png)
 
-* [neoscroll.nvim](https://github.com/karb94/neoscroll.nvim) enables smoother scrolling of the document (in *NORMAL* mode), its use allows you to quickly navigate the markdown file, which is useful for both editing and reviewing documents. The plugin provides two commands, ++ctrl+"u "++ and ++ctrl+"d "++ to scroll up or down the document.
+* [neoscroll.nvim](https://github.com/karb94/neoscroll.nvim) enables smoother scrolling of the document (in *NORMAL* mode). Its use allows you to quickly navigate the markdown file, which is useful for both editing and reviewing documents. The plugin provides two commands, ++ctrl+"u "++ and ++ctrl+"d "++ to scroll up or down the document.
 
-* [rainbow-delimiters.nvim](https://github.com/hiphish/rainbow-delimiters.nvim) this plugin colors the parentheses (*round*, *square*, and *curly*) of the code by following their nesting order, allows for easier recognition of code blocks, and although not strictly related to markdown is a very useful tool for editing the NvChad configuration.
+* [rainbow-delimiters.nvim](https://github.com/hiphish/rainbow-delimiters.nvim) this plugin colors the parentheses (*round*, *square*, and *curly*) of the code by following their nesting order. It allows for easier recognition of code blocks, and although not strictly related to markdown, is a very useful tool for editing the NvChad configuration.
 
 ![rainbow Delimiters](./images/hl_rainbow.png)
 
 ## :material-file-check-outline: Spell checking
 
 One of the *built-in* functions of Neovim is spell-checking, this function allows you to compare the word you have just typed with the words contained in a dictionary localized in that language, you can thus avoid typos, allowing you to eliminate this check from the document review.  
-The dictionary for the English language is available along with a standard installation of Neovim and can be activated immediately with the command `:set spell spelllang=en`; for international users, however, dictionaries are not available and must be built locally.
+The dictionary for the English language comes with a standard installation of Neovim. Activation is immediate with the command `:set spell spelllang=en`. For international users, however, dictionaries are not available and must be built locally.
 
 ### Dictionary construction
 
-The process of creating a local dictionary consists of downloading the dictionary source files and then building them in Neovim with the `:mkspell` command. The source files can be found using various sources (*Openoffice*, *Libreoffice*, others..) and consist of a `.aff` file and a `.dict` file.  
-The file `.aff` store the description related to the selected spell check dictionary file while the file `.dict` is the file that contains the word lists and language information used to spell check and provide synonyms.
+The process of creating a local dictionary consists of downloading the dictionary source files and then building them in Neovim with the `:mkspell` command. Source files are available from various sources (*Openoffice*, *Libreoffice*, others..) and consist of a `.aff` file and a `.dict` file.  
+The file `.aff` stores the description related to the selected spell check dictionary file, while the `.dict` file contains the word lists and language information used to spell check and provide synonyms.
 
 #### Download source files
 
@@ -109,7 +109,7 @@ Open the Libreoffice extensions site in a browser and select the *Dictionary* se
 ![Libreoffice Extensions](./images/libreoffice_ext.png)
 
 Selecting the Italian dictionary takes you to a new page where the project description and available versions are present; to download the most recent simply use the button in the top left corner.  
-In the case of the Italian dictionary the file to download is `874d181c_dict-it.oxt`, all these files are compressed archives (*zip*) and can be unpacked with the `unzip` utility.  
+In the case of the Italian dictionary the file to download is `874d181c_dict-it.oxt`. All these files are compressed archives (*zip*) which you unpack with the `unzip` utility.  
 Then go on to prepare the sources by executing the following commands:
 
 ```bash
@@ -150,10 +150,10 @@ That will create the following structure:
 
 #### Building the dictionary
 
-The command built into Neovim [mkspell](https://neovim.io/doc/user/spell.html#_3.-generating-a-spell-file) is used to build the dictionary, the command scans all available words in the **.dict** file and creates a **.spl** file from the scan.  
+The command built into Neovim [mkspell](https://neovim.io/doc/user/spell.html#_3.-generating-a-spell-file) builds the dictionary. The command scans all available words in the **.dict** file and creates a **.spl** file from the scan.  
 The **.spl** file is the file that Neovim uses to compare words in the buffer and should be placed in a default search path of the `:spell` command.
 
-One of the default paths is a `spell` folder in the configuration path (`~/.config/nvim`) and will be used in this example for the build. Using this path also allows, if the configuration is maintained in a git repository, to replicate the dictionaries as well, avoiding the need to build them on the other machines where the configuration is replicated.
+One of the default paths is a `spell` folder in the configuration path (`~/.config/nvim`) and is used in this example for the build. Using this path also allows, if the configuration is maintained in a git repository, to replicate the dictionaries as well, avoiding the need to build them on the other machines where the configuration is replicated.
 
 ```bash
 mkdir ~/.config/nvim/spell/
@@ -179,23 +179,23 @@ Multiple dictionaries can also be used for spell-checking at the same time, allo
 
 #### Dictionary update
 
-Dictionaries, like all *libraries*, are also updated to reflect changes in the language; updates even if not as frequent insert new words and new rules into the dictionaries.
+Dictionaries, like all *libraries*, are also updated to reflect changes in the language. Updates, even if not as frequent, insert new words and new rules into the dictionaries.
 
-Once the updated dictionary is available first you need to retrieve the new sources by downloading and unpacking them into a new folder which for this example will be `~/nvspell/it_new`, the instructions are the same as for the build procedure.
+Once the updated dictionary is available first you need to retrieve the new sources by downloading and unpacking them into a new folder which for this example will be `~/nvspell/it_new`. The instructions are the same as for the build procedure.
 
-For the dictionary update, the previous `mkspell` command is used, to which the `!` flag should be added to indicate to the command that the file is already present and should be overwritten; consequently, the destination path should be changed to reflect the location of the file, and the source path should also be directed to the new folder containing the new dictionaries. The command will be as follows:
+For the dictionary update, use the `mkspell` command again along with `!` flag. This indicates to the command that the file is already present and should be overwritten. Change the destination path to reflect the location of the file, and the source path to the new folder containing the new dictionaries. The command will be:
 
 ```txt
 :mkspell! ~/.config/nvim/spell/it.utf-8.spl ~/nvspell/it_new/it_IT
 ```
 
-Once the construction is finished, it will be immediately available in the NvChad buffer.
+Once the construction finishes, it will be immediately available in the NvChad buffer.
 
 ### Dictionary of exceptions
 
-There are also two files in the `spell` folder, **exceptions.utf-8.add** and **exceptions.utf-8.add.spl**, the former being the file that acts as the bridge for entering new words into the dictionary.  
-The file **exceptions.utf-8.add** is an arbitrary file that must be created since it is not present, what makes it *special* is the fact that it is defined as a `spellfile` in this way it is communicated to the `spell` command to use it as a bridge for the creation of a dictionary with the same name but suffixed *.spl*.  
-The file is shared among all languages set in `spelllang` and is used to eliminate error reports on words that are spelled incorrectly but are correct in the document context such as *Rocky*, *yaml*, or *mkdocs*.
+Two files in the `spell` folder exist for special purposes, **exceptions.utf-8.add**, which acts as a bridge for entering new words into the dictionary, and **exceptions.utf-8.add.spl**, for exceptions.  
+The file **exceptions.utf-8.add** does not exist. It is an arbitrary file that you must create. What makes it *special* is the fact that it is a `spellfile`. In this way it communicates to the `spell` command that it as a bridge for the creation of a dictionary with the same name, but suffixed *.spl*.  
+Shared among all languages set in `spelllang`, its use is to eliminate error reports on words spelled incorrectly, but are correct in the document context such as *Rocky*, *yaml*, or *mkdocs*.
 
 ![Spell Wrong](./images/spell_wrong.png)
 
@@ -205,5 +205,5 @@ The file is shared among all languages set in `spelllang` and is used to elimina
 
 #### Dictionary management
 
-To enter a word marked as correct in the dictionary, simply place the cursor in the word and type ++"z"+"g"++ (*good*), and the word in the buffer, and in future documents, will no longer be underlined to indicate an error. Similarly to mark something as incorrect you use, again positioned on the word, the combination ++"z"+"w"++ (*wrong*).  
-For an overview of the available commands you can refer to this [help section](https://neovim.io/doc/user/spell.html#_1.-quick-start) of Neovim.
+To enter a word marked as correct in the dictionary, simply place the cursor in the word and type ++"z"+"g"++ (*good*), and the word in the buffer, and in future documents, will no longer show as an error. Similarly to mark something as incorrect you use, again positioned on the word, the combination ++"z"+"w"++ (*wrong*).  
+For an overview of the available commands, refer to this [help section](https://neovim.io/doc/user/spell.html#_1.-quick-start) of Neovim.
