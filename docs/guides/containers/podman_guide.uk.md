@@ -1,14 +1,14 @@
 ---
 title: Podman
 author: Neel Chauhan, Antoine Le Morvan
-contributors: Steven Spencer, Ganna Zhyrnova
+contributors: Steven Spencer, Ganna Zhyrnova, Christian Steinert
 date: 2024-03-07
 tags:
   - docker
   - podman
 ---
 
-# Вступ
+## Вступ
 
 !!! note "Примітка"
 
@@ -107,15 +107,90 @@ podman run -d -p 8080:80 nextcloud
 
 Ви отримаєте підказку вибрати реєстр контейнерів для завантаження. У нашому прикладі ви будете використовувати `docker.io/library/nextcloud:latest`.
 
-Щойно ви завантажите контейнер Nextcloud, він запуститься.
+Коли ви завантажите образ Nextcloud, він запуститься.
 
 Введіть **ip_address:8080** у своєму веб-браузері (за умови, що ви відкрили порт у `firewalld`) і налаштуйте Nextcloud:
 
 ![Nextcloud in container](../../gemstones/images/podman_nextcloud.png)
 
+!!! tip "Підказка"
+
+```
+Щоб стежити за виведенням журналу останнього створеного контейнера, використовуйте `podman logs -lf`. `-l` вказує на використання останнього створеного контейнера, тоді як `-f` вказує на відстеження журналів у міру їх створення. Натисніть Ctrl+C, щоб зупинити виведення журналу.
+```
+
 ## Запуск контейнерів як служб systemd
 
-Як згадувалося, ви можете запускати контейнери Podman як служби `systemd`. Давайте тепер зробимо це за допомогою Nextcloud. Запустіть:
+### Використання `quadlet`
+
+Починаючи з версії 4.4 Podman постачається з [Quadlet](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html) – генератором systemd. Його можна використовувати для генерації файлів модулів для безкорінних і кореневих системних служб.
+
+Розмістіть файли Quadlet для кореневих служб у:
+
+- `/etc/containers/systemd/`
+- `/usr/share/containers/systemd/`
+
+Розмістіть безкореневі файли в будь-якому з:
+
+- `$XDG_CONFIG_HOME/containers/systemd/` або `~/.config/containers/systemd/`
+- `/etc/containers/systemd/users/$(UID)`
+- `/etc/containers/systemd/users/`
+
+Окрім окремих контейнерів, підтримуються файли pod, image, network, volume і kube. Давайте зосередимося на нашому прикладі Nextcloud. Створіть новий файл ~/.config/containers/systemd/nextcloud.cotainer із таким вмістом:
+
+```systemd
+[Container]
+Image=nextcloud
+PublishPort=8080:80
+```
+
+Доступно [багато інших варіантів](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html#container-units-container).
+
+Щоб запустити генератор і повідомити systemd про запуск нової служби:
+
+```bash
+systemctl --user daemon-reload
+```
+
+Щоб запустити службу, виконайте такі дії:
+
+```bash
+systemctl --user start nextcloud.service
+```
+
+!!! note "Примітка"
+
+```
+Якщо ви створили файл в одному з каталогів для кореневих служб, опустіть позначку `--user`.
+```
+
+Щоб автоматично запускати контейнер після запуску системи або входу користувача, ви можете додати ще один розділ до свого файлу `nextcloud.container`:
+
+```systemd
+[Install]
+WantedBy=default.target
+```
+
+Потім знову запустіть генератор і ввімкніть службу:
+
+```bash
+systemctl --user daemon-reload;
+systemctl --user enable nextcloud.service;
+```
+
+Підтримуються інші типи файлів: pod, том, мережа, зображення та kube. [Pods](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html#pod-units-pod), наприклад, можна використовувати для групування контейнерів – згенерованого systemd служби та їхні залежності (створити pod перед контейнерами) автоматично керуються systemd.
+
+### Використання `podman generate systemd`
+
+Podman додатково надає підкоманду `generate systemd`. Використовуйте цю підкоманду для створення службових файлів `systemd`.
+
+!!! warning "Важливо"
+
+```
+`generate systemd` не підтримується і не матиме подальших функцій. Рекомендовано використовувати Quadlet.
+```
+
+Давайте тепер зробимо це за допомогою Nextcloud. Запустіть:
 
 ```bash
 podman ps
@@ -140,13 +215,13 @@ systemctl enable nextcloud
 
 Коли ваша система перезавантажиться, Nextcloud перезапуститься в Podman.
 
-## DockerFiles
+## Containerfiles
 
-DockerFile — це файл, який використовується Docker для створення власних зображень контейнерів. Оскільки Podman повністю сумісний з Dockerfile, ви можете створювати образи контейнерів за допомогою Podman так само, як і з Docker.
+Containerfile — це файл, який використовується Podman для створення зображень контейнерів. Containerfiles використовують той самий синтаксис, що й файли Docker, тож ви можете створювати зображення контейнерів за допомогою Podman так само, як і за допомогою Docker.
 
-### Веб-сервер із DockerFile
+### Веб-сервер із Containerfile
 
-Ви створите сервер `http` на основі Rocky Linux 9.
+Ви створите сервер `http` на основі RockyLinux 9.
 
 Створіть папку, присвячену нашому зображенню:
 
@@ -160,7 +235,7 @@ mkdir myrocky && cd myrocky
 echo "Welcome to Rocky" > index.html
 ```
 
-Створіть файл Dockerfile із таким вмістом:
+Створіть файл `Containerfile` з таким вмістом:
 
 ```text
 # Use the latest rockylinux image as a start
@@ -243,7 +318,7 @@ CONTAINER ID  IMAGE                              COMMAND     CREATED         STA
 282c09eecf84  localhost/myrockywebserver:latest  /sbin/init  16 seconds ago  Up 16 seconds  0.0.0.0:8080->80/tcp  rockywebserver
 ```
 
-Ви запустили образ Podman у режимі демона (`-p`) і назвали його `rockywebserver` (параметр `--name`).
+Ви запустили образ Podman у режимі демона (`-d`) і назвали його `rockywebserver` (параметр `--name`).
 
 Ви перенаправили порт 80 (захищений) на порт 8080 за допомогою параметра `-p`. Перевірте, чи прослуховує порт:
 
@@ -263,6 +338,12 @@ Welcome to Rocky
 
 ```bash
 podman stop rockywebserver && podman rm rockywebserver
+```
+
+!!! tip "Підказка"
+
+```
+Ви можете додати перемикач `--rm`, щоб автоматично видалити контейнер після його зупинки.
 ```
 
 Якщо ви перезапустите процес збирання, `podman` використовуватиме кеш на кожному кроці збирання:
@@ -305,3 +386,53 @@ podman system prune -a -f
 | `-a`        | Видаляє всі невикористовувані дані, а не лише зовнішні для Podman |
 | `-f`        | Немає запиту на підтвердження                                     |
 | `--volumes` | Prune volumes                                                     |
+
+## Pods
+
+Pods — це спосіб групувати контейнери разом. Контейнери в модулі мають спільні параметри, наприклад монтування, розподіл ресурсів або зіставлення портів.
+
+У Podman ви керуєте контейнерами за допомогою підкоманди `podman pod`, подібної до багатьох команд Podman:
+
+| Команда | Опис                                                                                                                   |
+| ------- | ---------------------------------------------------------------------------------------------------------------------- |
+| clone   | Створює копію існуючого модуля.                                                                        |
+| create  | Створює новий пакет.                                                                                   |
+| exists  | Перевіряє наявність пакета в локальному сховищі.                                                       |
+| inspect | Відображає інформацію, що описує контейнер.                                                            |
+| kill    | Вбиває основний процес кожного контейнера в одному або кількох контейнерах.                            |
+| logs    | Відображає журнали для модуля з одним або кількома контейнерами.                                       |
+| pause   | Призупиняє один або кілька модулів.                                                                    |
+| prune   | Видаляє всі зупинені стручки та їхні контейнери.                                                       |
+| ps      | Роздруковує інформацію про pods.                                                                       |
+| restart | Перезапускає один або кілька модулів.                                                                  |
+| rm      | Видаляє одну або кілька зупинених коробок і контейнерів.                                               |
+| start   | Запускає один або кілька контейнерів.                                                                  |
+| stats   | Відображає прямий потік статистики використання ресурсів для контейнерів в одному або кількох пакетах. |
+| stop    | Зупиняє один або кілька контейнерів.                                                                   |
+| top     | Відображає запущені процеси контейнерів у модулі.                                                      |
+| unpause | Відновлює паузу одного або кількох модулів.                                                            |
+
+Контейнери, згруповані в pod, можуть отримувати доступ один до одного за допомогою localhost. Це корисно, наприклад, під час налаштування Nextcloud із спеціальною базою даних, наприклад Postgres. Nextcloud може отримати доступ до бази даних, але база даних не обов’язково має бути доступна поза контейнерами.
+
+Щоб створити пакет, що містить Nextcloud і виділену базу даних, виконайте наступне:
+
+```bash
+# Create the pod with a port mapping
+podman pod create --name nextcloud -p 8080:80
+
+# Add a Nextcloud container to the pod – the port mapping must not be specified again!
+podman create --pod nextcloud --name nextcloud-app nextcloud
+
+# Add a Postgres database. This container has a postgres specific environment variable set.
+podman create --pod nextcloud --name nextcloud-db -e POSTGRES_HOST_AUTH_METHOD=trust postgres
+```
+
+Щоб запустити щойно створений модуль, виконайте:
+
+```bash
+podman pod start nextcloud
+```
+
+Тепер ви можете налаштувати Nextcloud за допомогою локальної бази даних:
+
+![Nextcloud setting up a database](img/podman_nextcloud_db_setup.png)
