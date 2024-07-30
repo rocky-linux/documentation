@@ -262,7 +262,7 @@ Il existe plusieurs types d'interpréteurs de commandes disponibles et configura
 
 ## Testez vos connaissances
 
-:heavy_check_mark: Un système d’exploitation est un ensemble de programmes permettant la gestion des ressources disponibles d’un ordinateur :
+:heavy_check_mark: Un système d’exploitation est un ensemble de programmes permettant la gestion des ressources d’un ordinateur :
 
 * [ ] Vrai
 * [ ] Faux
@@ -306,12 +306,12 @@ Il existe plusieurs types d'interpréteurs de commandes disponibles et configura
 * [ ] Multiplateforme
 * [ ] Ouvert
 
-:heavy_check_mark: Un logiciel libre est-il forcément Open Source ?
+:heavy_check_mark: Un logiciel libre est-il forcément open-source ?
 
 * [ ] Vrai
 * [ ] Faux
 
-:heavy_check_mark: Un logiciel Open Source est-il forcément libre ?
+:heavy_check_mark: Un logiciel open-source est-il forcément libre ?
 
 * [ ] Vrai
 * [ ] Faux
