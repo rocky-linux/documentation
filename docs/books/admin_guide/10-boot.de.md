@@ -198,7 +198,7 @@ Der `systemctl` Befehl wird auch für die Aktivierung - `enable` - oder Deaktivi
 
 | systemctl                                | Beschreibung                                                  |
 | ---------------------------------------- | ------------------------------------------------------------- |
-| systemctl enable *name*.service          | Dienst aktivieren                                             |
+| systemctl enable *name*.service          | Einen Dienst aktivieren                                       |
 | systemctl disable *name*.service         | Dienst deaktivieren                                           |
 | systemctl list-unit-files --type service | Listet alle Dienste und prüft, ob sie ausgeführt werden       |
 | systemctl list-dependencies --after      | Listet die Dienste auf, die vor der angegebenen Unit beginnen |
