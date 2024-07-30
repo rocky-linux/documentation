@@ -15,7 +15,7 @@ Dans ce chapitre, vous apprendrez comment le système démarre.
 :heavy_check_mark: Comment gérer les services ;  
 :heavy_check_mark: Comment accéder aux journaux depuis `journald`.
 
-:checkered_flag: **utilisateurs**
+:checkered_flag: **utilisateurs**.
 
 **Connaissances** : :star: :star:  
 **Complexité** : :star: :star: :star:
@@ -156,7 +156,7 @@ Il est développé pour :
 
 La suite logicielle systemd introduit le concept d'unités système (systemd units).
 
-| Type             | Extension de fichier | Observation                                                 |
+| Type             | Extension de fichier | Fonctionnalité                                              |
 | ---------------- | -------------------- | ----------------------------------------------------------- |
 | Unité de service | `.service`           | Service système                                             |
 | Target unit      | `.target`            | Un groupe d'unités système                                  |
@@ -199,7 +199,7 @@ La commande `systemctl` est également utilisée pour `activer` ou `désactiver`
 | systemctl                                | Observation                                                        |
 | ---------------------------------------- | ------------------------------------------------------------------ |
 | systemctl enable *name*.service          | Activer un service                                                 |
-| systemctl disable *name*.service         | Désactiver un service                                              |
+| systemctl disable *name*.service         | Désactive un service                                               |
 | systemctl list-unit-files --type service | Liste tous les services et vérifie s'ils sont en cours d'exécution |
 | systemctl list-dependencies --after      | Liste les services qui commencent avant l'unité spécifiée          |
 | systemctl list-dependencies --before     | Liste les services qui commencent après l'unité spécifiée          |

@@ -17,7 +17,7 @@ Dans ce chapitre, vous apprendrez à travailler avec Ansible.
 :heavy_check_mark: Appliquer des changements de configuration à des serveurs ;  
 :heavy_check_mark: Créer vos premiers playbooks Ansible;
 
-:checkered_flag: **ansible**, **module**, **playbook**
+:checkered_flag: **ansible**, **module**, **playbook**.
 
 **Connaissances** : :star: :star: :star:  
 **Complexité** : :star: :star:

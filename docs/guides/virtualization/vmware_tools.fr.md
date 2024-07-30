@@ -44,7 +44,7 @@ Redémarrez le système :
 sudo shutdown -r now
 ```
 
-## Monter VMware Tools
+## Montage de VMware Tools™
 
 ### Monter VMware Tools dans le cadre de l'interface graphique
 

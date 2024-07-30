@@ -26,7 +26,7 @@ Les options courantes de la commande `torsocks` suivent et, dans des circonstanc
 | -p PASS    | Indique le mot de passe de SOCKS5                            |
 | -a ADDRESS | Indique l'adresse du serveur SOCKS5                          |
 | -P PORT    | Indique le port du serveur SOCKS5                            |
-| -i         | Activation de l'isolation de Tor                             |
+| -i         | Activation de l'isolation de `Tor`                           |
 
 Un exemple (redacted) de sortie de l'IP checker [icanhazip.com](https://icanhazip.com/) via `torsocks`:
 

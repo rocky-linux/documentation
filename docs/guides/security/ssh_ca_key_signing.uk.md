@@ -1,7 +1,7 @@
 ---
 title: Центри сертифікації SSH і підписування ключів
 author: Julian Patocki
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - безпека
   - ssh

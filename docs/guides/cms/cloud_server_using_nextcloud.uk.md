@@ -37,11 +37,11 @@ Nextcloud пропонує хмару з відкритим вихідним к�
 
 ### Встановлення та налаштування репозиторіїв і модулів
 
-Для цієї інсталяції нам знадобляться два репозиторії. Нам потрібно встановити EPEL (додаткові пакети для Enterprise Linux) і репозиторій Remi для PHP 8.0
+Для цієї інсталяції нам знадобляться два репозиторії. Нам потрібно встановити EPEL (додаткові пакети для Enterprise Linux) і репозиторій Remi для PHP 8.3
 
 !!! note "Примітка"
 
-    Потрібна мінімальна версія PHP 7.3 або 7.4, а версія Rocky Linux 7.4 не містить усіх пакетів, необхідних Nextcloud. Натомість ми збираємося використовувати PHP 8.0 із сховища Remi.
+    Потрібна мінімальна версія PHP 7.3 або 7.4, а версія Rocky Linux 7.4 не містить усіх пакетів, необхідних Nextcloud. Натомість ми збираємося використовувати PHP 8.3 із сховища Remi.
 
 Щоб встановити EPEL запустіть:
 
@@ -79,16 +79,18 @@ php                     remi-7.3                   common [d], devel, minimal   
 php                     remi-7.4                   common [d], devel, minimal                   PHP scripting language                  
 php                     remi-8.0                   common [d], devel, minimal                   PHP scripting language                  
 php                     remi-8.1                   common [d], devel, minimal                   PHP scripting language                  
+php                     remi-8.2                   common [d], devel, minimal                   PHP scripting language                  
+php                     remi-8.3                   common [d], devel, minimal                   PHP scripting language                  
 Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
 ```
 
-Ми хочемо взяти найновіший PHP, сумісний з Nextcloud, який на даний момент є 8.0, тому ми ввімкнемо цей модуль, виконавши:
+Ми хочемо взяти найновіший PHP, сумісний з Nextcloud, який на даний момент є 8.3, тому ми ввімкнемо цей модуль, виконавши:
 
 ```bash
-dnf module enable php:remi-8.0
+dnf module enable php:remi-8.3
 ```
 
-Щоб побачити, як це змінює вихід списку модулів, запустіть команду списку модулів знову, і ви побачите «[e]» поруч із 8.0:
+Щоб побачити, як це змінює вихід списку модулів, запустіть команду списку модулів знову, і ви побачите «[e]» поруч із 8.3:
 
 ```bash
 dnf module list php
@@ -97,7 +99,7 @@ dnf module list php
 І результат знову той самий, за винятком цього рядка:
 
 ```bash
-php                    remi-8.0 [e]                   common [d], devel, minimal                  PHP scripting language
+php                    remi-8.3 [e]                   common [d], devel, minimal                  PHP scripting language
 ```
 
 ### Встановлення пакетів
@@ -105,7 +107,7 @@ php                    remi-8.0 [e]                   common [d], devel, minimal
 У нашому прикладі використовуються Apache і mariadb, тому, щоб встановити те, що нам потрібно, нам просто потрібно зробити наступне:
 
 ```bash
-dnf install httpd mariadb-server vim wget zip unzip libxml2 openssl php81-php php81-php-ctype php81-php-curl php81-php-gd php81-php-iconv php81-php-json php81-php-libxml php81-php-mbstring php81-php-openssl php81-php-posix php81-php-session php81-php-xml php81-php-zip php81-php-zlib php81-php-pdo php81-php-mysqlnd php81-php-intl php81-php-bcmath php81-php-gmp
+dnf install httpd mariadb-server vim wget zip unzip libxml2 openssl php83-php php83-php-ctype php83-php-curl php83-php-gd php83-php-iconv php83-php-json php83-php-libxml php83-php-mbstring php83-php-openssl php83-php-posix php83-php-session php83-php-xml php83-php-zip php83-php-zlib php83-php-pdo php83-php-mysqlnd php83-php-intl php83-php-bcmath php83-php-gmp
 ```
 
 ### Конфігурація
@@ -174,7 +176,7 @@ mkdir -p /var/www/sub-domains/com.yourdomain.com/html
 Нам потрібно встановити часовий пояс для PHP. Для цього відкрийте php.ini за допомогою обраного вами текстового редактора:
 
 ```bash
-vi /etc/opt/remi/php81/php.ini
+vi /etc/opt/remi/php83/php.ini
 ```
 
 Потім знайдіть рядок:
