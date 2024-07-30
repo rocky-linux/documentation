@@ -62,7 +62,7 @@ The installation process may take some time. Please wait until it is complete. O
 
 ## Scanner support
 
-Xsane is a scanning utility that provides a graphical user interface for scanning. It uses packages available from the app stream repository and requires no additional configuration.
+Xsane is a scanning utility that provides a graphical user interface for scanning. It uses packages available from the appstream repository and requires no additional configuration.
 
 ```bash
 sudo dnf install sane-backends sane-frontends xsane
