@@ -163,14 +163,14 @@ To automatically run the container upon system start or user login, you can add 
 WantedBy=default.target
 ```
 
-Then let the generator run again, and enable your service:
+Then let the generator run again and enable your service:
 
 ```bash
 systemctl --user daemon-reload;
 systemctl --user enable nextcloud.service;
 ```
 
-Other file types are supported: pod, volume, network, image and kube. [Pods](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html#pod-units-pod) for instance can be used to group containers – the generated systemd services and theirs dependencies (create the pod before the containers) are automatically managed by systemd.
+Other file types are supported: pod, volume, network, image, and kube. [Pods](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html#pod-units-pod), for instance, can be used to group containers – the generated systemd services and their dependencies (create the pod before the containers) are automatically managed by systemd.
 
 ### Using `podman generate systemd`
 
@@ -178,7 +178,7 @@ Podman additionally provides the `generate systemd` subcommand. Use this subcomm
 
 !!! warning
 
-    `generate systemd` is now deprecated and will not receive further features. Usage of Quadlet is recommended.
+    `generate systemd` is now deprecated and will not receive further features. The usage of Quadlet is recommended.
 
 Let us now do it with Nextcloud. Run:
 
@@ -207,7 +207,7 @@ When your system reboots, Nextcloud will restart in Podman.
 
 ## Containerfiles
 
-A Containerfile is a file used by Podman  to create container images. Containerfiles use the same syntax as Dockerfiles, so you can build your container images with Podman like you would with Docker.
+A Containerfile is a file used by Podman to create container images. Containerfiles use the same syntax as Dockerfiles, so you can build your container images with Podman like you would with Docker.
 
 ### Web server from a Containerfile
 
@@ -332,7 +332,7 @@ podman stop rockywebserver && podman rm rockywebserver
 
 !!! tip
 
-    You can add the `--rm` switch to automatically delete the container once it stopps.
+    You can add the `--rm` switch to automatically delete the container once it stops.
 
 If you relaunch the build process, `podman` will use a cache at each step of the build:
 
@@ -377,32 +377,32 @@ podman system prune -a -f
 
 ## Pods
 
-Pods are a way to group container together. Containers in a pod share some settings, like mounts, resource allocations or port mappings.
+Pods are a way to group containers together. Containers in a pod share some settings, like mounts, resource allocations, or port mappings.
 
 In Podman, you manage pods using the `podman pod` subcommand, similar to many Podman commands, to control containers:
 
 | Command | Description                                                                       |
 |--       |--                                                                                 |
-| clone   | Create a copy of an existing pod.                                                 |
-| create  | Create a new pod.                                                                 |
-| exists  | Check if a pod exists in local storage.                                           |
+| clone   | Creates a copy of an existing pod.                                                 |
+| create  | Creates a new pod.                                                                 |
+| exists  | Checks if a pod exists in local storage.                                           |
 | inspect | Display information describing a pod.                                             |
-| kill    | Kill the main process of each container in one or more pods.                      |
-| logs    | Display logs for pod with one or more containers.                                 |
-| pause   | Pause one or more pods.                                                           |
-| prune   | Remove all stopped pods and their containers.                                     |
-| ps      | Print out information about pods.                                                 |
-| restart | Restart one or more pods.                                                         |
-| rm      | Remove one or more stopped pods and containers.                                   |
-| start   | Start one or more pods.                                                           |
-| stats   | Display a live stream of resource usage stats for containers in one or more pods. |
-| stop    | Stop one or more pods.                                                            |
-| top     | Display the running processes of containers in a pod.                             |
-| unpause | Unpause one or more pods.                                                         |
+| kill    | Kills the main process of each container in one or more pods.                      |
+| logs    | Displays logs for pod with one or more containers.                                 |
+| pause   | Pauses one or more pods.                                                           |
+| prune   | Removes all stopped pods and their containers.                                     |
+| ps      | Prints out information about pods.                                                 |
+| restart | Restarts one or more pods.                                                         |
+| rm      | Removes one or more stopped pods and containers.                                   |
+| start   | Starts one or more pods.                                                           |
+| stats   | Displays a live stream of resource usage stats for containers in one or more pods. |
+| stop    | Stops one or more pods.                                                            |
+| top     | Displays the running processes of containers in a pod.                             |
+| unpause | Unpauses one or more pods.                                                         |
 
-Containers grouped into a pod can access each other by using localhost. This is usefull, for instance, when setting up Nextcloud with a dedicated database like postgres. Nextcloud can access the database, but the database does not need to be accessible from outside the containers.
+Containers grouped into a pod can access each other by using localhost. It is useful, for instance, when setting up Nextcloud with a dedicated database like Postgres. Nextcloud can access the database, but the database does not need to be accessible from outside the containers.
 
-To create a pod containing Nextcloud and a dedicated database run:
+To create a pod containing Nextcloud and a dedicated database, run the following:
 
 ```bash
 # Create the pod with a port mapping
@@ -415,7 +415,7 @@ podman create --pod nextcloud --name nextcloud-app nextcloud
 podman create --pod nextcloud --name nextcloud-db -e POSTGRES_HOST_AUTH_METHOD=trust postgres
 ```
 
-To run you newly created pod run:
+To run your newly created pod, run:
 
 ```bash
 podman pod start nextcloud
