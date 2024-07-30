@@ -10,16 +10,16 @@ In this chapter you will learn how to deploy applications with the Ansible role 
 
 **Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: Implement Ansistrano;
-:heavy_check_mark: Configure Ansistrano;
-:heavy_check_mark: Use shared folders and files between deployed versions;
-:heavy_check_mark: Deploying different versions of a site from git;
-:heavy_check_mark: React between deployment steps.
+:heavy_check_mark: Implement Ansistrano;  
+:heavy_check_mark: Configure Ansistrano;  
+:heavy_check_mark: Use shared folders and files between deployed versions;  
+:heavy_check_mark: Deploying different versions of a site from git;  
+:heavy_check_mark: React between deployment steps.  
 
 :checkered_flag: **ansible**, **ansistrano**, **roles**, **deployments**
 
-**Knowledge**: :star: :star:
-**Complexity**: :star: :star: :star:
+**Knowledge**: :star: :star:  
+**Complexity**: :star: :star: :star:  
 
 **Reading time**: 40 minutes
 
