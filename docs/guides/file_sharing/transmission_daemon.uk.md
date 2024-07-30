@@ -103,7 +103,7 @@ firewall-cmd --permanent --zone=public --add-port=9091/tcp
 firewall-cmd --runtime-to-permanent
 ```
 
-Якщо ви не працюєте за NAT-PMP, маршрутизатором із підтримкою uPNP або підключені без NAT, вам потрібно перенаправити порт BitTorrent («12345» у нашому прикладі). Кожен роутер різний, але як приклад на авторському роутері MikroTik:
+Якщо ви не перебуваєте за маршрутизатором із підтримкою NAT-PMP або UPnP або підключені без NAT, вам потрібно перенаправити порт BitTorrent («12345» у нашому прикладі). Кожен роутер різний, але як приклад на авторському роутері MikroTik:
 
 ```bash
 /ip firewall nat add action=dst-nat chain=dstnat dst-port=12345 in-interface=ether1 protocol=tcp to-addresses=SERVER_IP to-ports=12345
