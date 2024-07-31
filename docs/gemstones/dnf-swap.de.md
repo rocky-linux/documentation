@@ -19,12 +19,11 @@ Obwohl es sich bei einigen der bereitgestellten Pakete um abgespeckte Versionen 
 
 In den Fällen, in denen das abgespeckte Paket nicht ausreichend ist, können Sie mit dem Befehl `dnf swap` schnell das Minimalpaket durch das normale Paket ersetzen.
 
-# Zielsetzung
+## Zielsetzung
 
 Dieser Rocky Linux GEMstone zeigt, wie man **dnf swap** verwendet, um den `curl-minimal`-Paket mit dem normalen `curl`-Paket austauscht.
 
-
-## Existierende Curl-Variante prüfen
+## Bereits vorhandene curl-Variante prüfen
 
 Wenn Sie als Benutzer mit Administratorrechten auf den Container oder die Umgebung der virtuellen Maschine zugreifen, prüfen Sie bitte zunächst, welche Variante des Pakets `curl` bereits installiert ist. Geben Sie bitte Folgendes ein:
 
@@ -35,7 +34,6 @@ curl-minimal-*
 
 curl-minimal ist auf unserem Demosystem installiert!
 
-
 ## curl-minimal durch curl ersetzen
 
 Verwenden Sie `dnf`, um das installierte Paket `curl-minimal` durch das reguläre Paket `curl` auszutauschen.
@@ -45,7 +43,7 @@ Verwenden Sie `dnf`, um das installierte Paket `curl-minimal` durch das regulär
 
 ```
 
-## neue Curl-Paketvariante überprüfen
+## Neue Curl-Paketvariante überprüfen
 
 Um die Änderungen zu übernehmen, fragen Sie die RPM-Datenbank erneut nach installierten Curl-Pakete ab, indem Sie Folgendes ausführen:
 
@@ -54,9 +52,7 @@ Um die Änderungen zu übernehmen, fragen Sie die RPM-Datenbank erneut nach inst
 curl-*
 ```
 
-
 Das war's!
-
 
 ## Anmerkungen
 
@@ -70,10 +66,6 @@ dnf [options] swap <package-to-be-removed> <replacement-package>
 
 Unter der Haube nutzt `dnf swap` die Option `--allowerasing` von DNF, um etwaige Paketkonflikte zu lösen. Daher hätte das in diesem GEMstone gezeigte Minimal-Curl-Beispiel auch durch Folgendes ausgeführt werden können:
 
-
 ```bash
 dnf install -y --allowerasing curl
 ```
-
-
-
