@@ -51,48 +51,33 @@ sudo dnf install ksnip -y
 
 Ksnip has handy and intuitive tools to annotate screenshots.  In the image, down the left side are the options described below.
 
-The `Select` tool is used to make a selection. You can click an item to select it or click and drag to make a selection.
-
-The `Duplicate` tool is used to duplicate a selection. Click and drag to make a selection. Then click and drag the selection to move or further transform it.
-
-The `Arrow` tool is used to create arrows. Click and drag to create an arrow.
-
-The `Double Arrow` tool (chosen by clicking the down arrow next to the arrow): used to create double-sided arrows. Click and drag to create a double-sided arrow.
-
-The `Line` tool is used to create straight lines. Click and drag to create a line.
-
-The `Pen` tool makes strokes that resemble a pen. To use the pen, click and move the cursor across the screenshot. In the top toolbar, customization options exist to change the style and stroke of the pen.
-
-The `Marker Pen` tool makes strokes that resemble a highlighter. To use the marker pen, hold the click and drag the cursor across the screenshot. Customizations exist to change the opacity in the top toolbar.
-
-The `Marker Rectangle` tool is similar to the Marker Pen tool, but when you click and drag your cursor, the Marker Rectangle tool fills the rectangular selection. Customizations exist to change the opacity in the top toolbar.
-
-The `Marker Ellipse` tool is the Marker Pen tool, but when you left-click and drag your cursor, the Marker Ellipse tool will fill the ellipse made from the selection. Customizations exist to change the opacity in the top toolbar.
-
-The `Text` tool is used to annotate a screenshot with text. To use the Text tool, click anywhere on the image and begin typing. The top toolbar offers customizations to change the border, color, font family, font size, font style, and opacity of your text.
-
-The `Text Pointer` tool is used to annotate a screenshot with text attached to a pointer. Similar to the Text Arrow tool, the pointer should bring attention to the text.
-
-The `Text Arrow` tool is used to annotate a screenshot with text attached to an arrow. Similar to the Text Pointer tool, the pointer should bring attention to the text.
-
-The `Number` tool is used to annotate a screenshot with a numbered shape. Click anywhere on the image to place a numbered shape. The top toolbar offers customizations to change the color, width, and opacity.
-
-The `Number Pointer` tool is used to annotate a screenshot with a numbered shape attached to a pointer. Click anywhere on the image to place a numbered shape attached to a pointer. The top toolbar offers customizations to change the color, width, and opacity.
-
-The `Number Arrow` tool annotates a screenshot with a numbered shape attached to a pointer. Click anywhere on the image to place the numbered shape attached to an arrow. The top toolbar offers customizations to change the color, width, and opacity.
-
-The `Blur` tool blurs a selection. Left-click and drag anywhere on the screenshot to do this.
-
-The `Pixelate` tool is used to pixelate a selection. Left-click and drag anywhere on the screenshot to pixelate a selection.
-
-The `Rectangle` tool is used to create a rectangle from a selection. Left-click and drag anywhere on the screenshot to make a rectangular selection. The top toolbar offers customizations to change the color, width, and opacity.
-
-The `Ellipse` tool is used to create an ellipse from a selection. Left-click and drag anywhere on the screenshot to place an ellipse. The top toolbar offers customizations to change the color, width, and opacity.
-
-The `Sticker` tool places a sticker or emoji on a screenshot. Selecting the tool and clicking will place the sticker.
+| Option | Tool | Description                                                                                         |
+|--------|------| ----------------------------------------------------------------------------------------------------|
+| 1  | `Select` | tool is used to make a selection. Click an item to select it or click and drag to make a selection. |
+| 2  | `Duplicate` | tool is used to duplicate a selection. Click and drag to make a selection. Then click and drag the selection to move or transform it.|
+| 3a | `Arrow`  | the default arrow tool, which allows you to click and drag to create an arrow from a location to a new one |
+| 3b | `Double Arrow` | the second arrow option reached by clicking the down arrow next to the arrow tool. As the tools suggest, it has an arrow at both end points. |
+| 3c | `Line`   | the third option reached by clicking the down arrow next to the arrow tool. It replaces arrows with a simple line. |
+| 4  | `Pen`    | makes strokes that resemble a pen. To use the pen, click and move the cursor across the screenshot. ^1^ |
+| 5a | `Marker Pen` | the default marker tool makes strokes that resemble a highlighter. To use the marker pen, hold the click and drag the cursor across the screenshot. ^1^ |
+| 5b | `Marker Rectangle` | the second marker option reached by clicking the down arrow next to the marker tool. When you left-click and drag your cursor, the Marker Rectangle tool will fill the rectangle made from the selection. ^1^ |
+| 5c | `Marker Elipse`  | the third marker option reached by clicking the down arrow next to the marker tool. When you left-click and drag your cursor, the Marker Elipse tool will fill the elipse made from the selection. ^1^ |
+| 6a | `Text` | the default text tool, which allows you to annotate the screenshot with text. ^1^ |
+| 6b | `Text Pointer` | the second text option reached by clicking the down arrow next to the text tool. It attaches a pointer to draw attention to the text. ^1^ |
+| 6c | `Text Arrow` | the third text option reached by clicking the down arrow next to the text tool. It attaches an arrow to draw attention to the text. ^1^ |
+| 7a | `Number`  | the default number tool, adds a number to draw attention to and annotate the screenshot with numbers. ^1^ |
+| 7b | `Number Pointer` | the second option reached by clicking the down arrow next to the number tool. Adds a number with a pointer to further annotate a screenshot. ^1^ |
+| 7c | `Number Arrow` | the third option reached by clicking the down arrow next to the number tool. Adds a number with an arrow to further annotate a screenshot. ^1^ |
+| 8a | `Blur`  | the default blur tool, which allows you to blur portions of the screenshot by left-clicking and dragging. |
+| 8b | `Pixelate` | the second blur tool option reached by clicking the down arrow next to the blur tool. Pixelate anywhere on the screen by left-clicking and dragging. |
+| 9a | `Rectangle` | the default rectangle tool, allows you to click and drag to create a rectangle. ^1^ |
+| 9b | `Ellipse` | the second rectangle tool option, reached by clicking the down arrow next to the rectangle tool. Allows you to click and drag to create an ellipse on the screen. ^1^ |
+| 10 | `Sticker` | places a sticker or emoji on a screenshot. Selecting the tool and clicking will place the sticker. |
 
 ## Conclusion
 
 Ksnip is an excellent utility for annotating screenshots. It can also take screenshots, but this guide's main focus is on the annotation capabilities and tools provided by Ksnip.
 
 Check out the [Ksnip GitHub Repo](https://github.com/ksnip/ksnip){target="_blank"} to learn more about this excellent screenshot utility.
+
+**1.** Each of the tools that have descriptions followed by ==this superscript== (^1^), have various command options available in the top menu after making the tool selection. These change the opacity, border, font, font style, and other attributes.
