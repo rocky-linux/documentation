@@ -1,7 +1,7 @@
 ---
 title: Brother All-in-One – Installation et Configuration de l'Imprimante
 author: Joseph Brinkman
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 9.4
 tags:
   - desktop
@@ -44,25 +44,24 @@ Une fenêtre Logiciel s'ouvre pour tenter de localiser et d'installer les pilote
 
 1. [Download the Brother MFC-J480DW Printer driver bash script](https://support.brother.com/g/b/downloadtop.aspx?c=us\&lang=en\&prod=mfcj480dw_us_eu_as){target="_blank"}
 
-2. Ouvrez un terminal.
+2. Ouvrez une fenêtre de terminal.
+   Accédez au répertoire dans lequel vous avez téléchargé le fichier au cours de l'étape précédente. par exemple, `cd Downloads`
 
-3. Accédez au répertoire dans lequel vous avez téléchargé le fichier au cours de l'étape précédente. par exemple, `cd Downloads`
-
-4. Saisissez cette commande pour extraire le fichier téléchargé :
+3. Entrez cette commande pour extraire le fichier téléchargé :
 
    ```bash
    gunzip linux-brprinter-installer-*.*.*-*.gz
    ```
 
-5. Obtenez les droits d'accès superuser avec la commande `su` ou `sudo su`.
+4. Obtenez les droits d'accès superuser avec la commande `su` ou `sudo su`.
 
-6. Exécuter la commande suivante :
+5. Exécuter la commande suivante :
 
    ```bash
    bash linux-brprinter-installer-*.*.*-* Brother machine name
    ```
 
-7. L'installation du pilote va démarrer. Suivez les instructions de l'écran d'installation
+6. L'installation du pilote va démarrer. Suivez les instructions de l'écran d'installation.
 
 Le processus d'installation peut prendre un certain temps. Attendez qu'il soit terminé. Une fois terminé, vous pouvez éventuellement envoyer un test d'impression.
 
