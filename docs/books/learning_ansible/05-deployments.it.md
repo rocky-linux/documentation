@@ -14,7 +14,7 @@ In questo capitolo imparerai come distribuire applicazioni con il ruolo Ansible 
 :heavy_check_mark: Configurare Ansistrano;  
 :heavy_check_mark: Usare cartelle e file condivisi tra le versioni distribuite;  
 :heavy_check_mark: Distribuire diverse versioni di un sito da git;  
-:heavy_check_mark: Reagire tra i passaggi di implementazione.
+:heavy_check_mark: Reagire tra le fasi di distribuzione.
 
 :checkered_flag: **ansible**, **ansistrano**, **ruoli**, **distribuzioni**
 
@@ -125,7 +125,7 @@ Considerazioni tecniche:
 
 Il nostro playbook per configurare il server: `playbook-config-server.yml`
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -136,27 +136,27 @@ Il nostro playbook per configurare il server: `playbook-config-server.yml`
       DirectoryIndex index.php index.htm
     apache_vhosts:
       - servername: "website"
- documentroot: "{{ dest }}current/html"
+    documentroot: "{{ dest }}current/html"
 
   tasks:
 
     - name: create directory for website
       file:
- path: /var/www/site/
- state: directory
- mode: 0755
+        path: /var/www/site/
+        state: directory
+        mode: 0755
 
     - name: install git
       package:
- name: git
- state: latest
+        name: git
+        state: latest
 
     - name: permit traffic in default zone for http service
       ansible.posix.firewalld:
- service: http
- permanent: yes
- state: enabled
- immediate: yes
+        service: http
+        permanent: yes
+        state: enabled
+        immediate: yes
 
   roles:
     - { role: geerlingguy.apache }
@@ -215,7 +215,7 @@ Le fonti del software possono essere trovate nel [repository github](https://git
 
 Creeremo un playbook `playbook-deploy.yml` per gestire la nostra distribuzione:
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -257,7 +257,7 @@ TASK [ansistrano.deploy : ANSISTRANO | Change softlink to new release]
 TASK [ansistrano.deploy : ANSISTRANO | Clean up releases]
 
 PLAY RECAP ********************************************************************************************************************************************************************************************************
-192.168.1.11 : ok=25   changed=8    unreachable=0    failed=0    skipped=14   rescued=0    ignored=0   
+192.168.1.11 : ok=25   changed=8    unreachable=0    failed=0    skipped=14   rescued=0    ignored=0
 
 ```
 
@@ -342,7 +342,7 @@ La variabile `ansistrano_keep_releases` è usata per specificare il numero di ri
 
 * Utilizzando la variabile `ansistrano_keep_releases`, mantieni solo 3 rilasci del progetto. Verifica.
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -390,7 +390,7 @@ $ tree /var/www/site/
 
 ### Utilizzo di shared_path e shared_files
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -486,7 +486,7 @@ Non dimenticare di modificare la configurazione di Apache per tenere conto di qu
 
 Modifica il playbook per la configurazione del server `playbook-config-server.yml`
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -520,7 +520,7 @@ Modifica il playbook per la configurazione del server `playbook-config-server.ym
 
 Cambia il playbook per la distribuzione `playbook-deploy.yml`
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -587,7 +587,7 @@ La variabile `ansistrano_git_branch` è usata per specificare un `branch` o un `
 
 * Distribuisci il branch `releases/v1.1.0`:
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -628,7 +628,7 @@ $ curl http://192.168.1.11
 
 * Distribuisci il tag `v2.0.0`:
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -684,7 +684,7 @@ Un playbook può essere incluso attraverso le variabili fornite per questo scopo
 
 * Esempio semplice: invia un'email (o qualsiasi cosa desideri come la notifica di Slack) all'inizio della distribuzione:
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -710,7 +710,7 @@ Un playbook può essere incluso attraverso le variabili fornite per questo scopo
 
 Crea il file `deploy/before-setup-tasks.yml`:
 
-```bash
+```yaml
 ---
 - name: Send a mail
   mail:
@@ -735,7 +735,7 @@ Heirloom Mail version 12.5 7/5/10.  Type ? for help.
 
 * Probabilmente dovrai riavviare alcuni servizi alla fine della distribuzione, per esempio per pulire la cache. Riavviamo Apache alla fine della distribuzione:
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -762,7 +762,7 @@ Heirloom Mail version 12.5 7/5/10.  Type ? for help.
 
 Crea il file `deploy/after-symlink-tasks.yml`:
 
-```bash
+```yaml
 ---
 - name: restart apache
   systemd:
