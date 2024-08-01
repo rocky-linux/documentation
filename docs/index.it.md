@@ -34,7 +34,7 @@ Le sezioni principali del sito di documentazione sono:
 Noi di Rocky Linux vogliamo rendere il sito della documentazione il più accessibile possibile a tutti; *la traduzione in diverse lingue è una parte importante di questo obiettivo*. Se si fa clic sul selettore di lingua (simbolo comune) nel menu in alto, si vedranno le lingue in cui il sito è disponibile. Questo è composto da due parti:
 
 1. Localizzazione dell'interfaccia del sito web: se si sceglie un'altra lingua, ad esempio il francese, si noterà che l'interfaccia, ad esempio i navigatori "Avanti" e "Precedente", saranno localizzati.
-1. Contenuti: la traduzione dei contenuti è un compito continuo (significativo). Non tutti i contenuti sono ancora tradotti in tutte le lingue. Tutte le pagine che sono state tradotte (nella lingua selezionata) saranno visualizzate nella lingua scelta, mentre quelle che non sono state tradotte torneranno alla lingua predefinita, l'inglese. Se desiderate contribuire alla comunità attraverso le traduzioni, il team della documentazione sarà di sentire il vostro parere — vedi sotto per i dettagli.
+1. Contenuti: la traduzione dei contenuti è un [compito](https://crowdin.com/project/rockydocs/activity-stream) (significativo) [continuo](https://crowdin.com/project/rockydocs). Non tutti i contenuti sono ancora tradotti in tutte le lingue. Tutte le pagine che sono state tradotte (nella lingua selezionata) saranno visualizzate nella lingua scelta, mentre quelle che non sono state tradotte torneranno alla lingua predefinita, l'inglese. Se desiderate contribuire alla comunità attraverso le traduzioni, il team della documentazione sarà di sentire il vostro parere — vedi sotto per i dettagli.
 
 !!! note "Nota"
 
