@@ -114,7 +114,6 @@ The content discussed so far are simplistic options, but what about more complex
 Check the /var/log/cron* file, use `journalctl -u crond.service` to check the information about the daemon process, whether the script has x permission, etc., for troubleshooting.
 3. In addition to cronie, what cron variants are there?
 [fcron](http://fcron.free.fr/), the latest version is 3.3.0 (dev, 2016-08-14).
-[bcron](http://untroubled.org/bcron/), the latest version is 0.11 (2015-08-12).
 [cronsun](https://github.com/shunfei/cronsun), the latest version 0.3.5 (2018-11-20).
 
 ## Summary

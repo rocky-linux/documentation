@@ -36,7 +36,7 @@ If all goes well, you should receive a screen that looks something like this one
 
 DISA is just one of many Security Profiles supported by the Rocky Linux SCAP definitions. We also have profiles for:
 
-* [ANSSI](https://www.ssi.gouv.fr/en/)
+* [ANSSI](https://cyber.gouv.fr/en)
 * [CIS](https://cisecurity.org)
 * [Australian Cyber Security Center](https://cyber.gov.au)
 * [NIST-800-171](https://csrc.nist.gov/publications/detail/sp/800-171/rev-2/final)
