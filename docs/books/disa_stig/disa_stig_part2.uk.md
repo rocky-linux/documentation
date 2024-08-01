@@ -36,7 +36,7 @@ oscap info /usr/share/xml/scap/ssg/content/ssg-rl8-ds.xml
 
 DISA — це лише один із багатьох профілів безпеки, які підтримуються визначеннями Rocky Linux SCAP. У нас також є профілі для:
 
-* [ANSSI](https://www.ssi.gouv.fr/en/)
+* [ANSSI](https://cyber.gouv.fr/en)
 * [CIS](https://cisecurity.org)
 * [Australian Cyber Security Center](https://cyber.gov.au)
 * [NIST-800-171](https://csrc.nist.gov/publications/detail/sp/800-171/rev-2/final)
