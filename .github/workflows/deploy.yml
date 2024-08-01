@@ -1,0 +1,18 @@
+---
+name: Build and Deploy (Fastly)
+on:
+  push:
+    branches: ['main']
+  workflow_dispatch:
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Trigger rocky-linux/docs.rockylinux.org Deploy
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.CROSS_REPO_PAT }}
+          repository: rocky-linux/docs.rockylinux.org
+          event-type: deploy
