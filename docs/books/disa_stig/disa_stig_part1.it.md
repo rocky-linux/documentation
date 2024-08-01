@@ -92,7 +92,7 @@ Schema di partizionamento DISA STIG per un disco 30G. Il mio caso d'uso è un se
 
 ![Accetta Modifiche](images/disa_stig_pt1_img9.jpg)
 
-### Passo 5: Configura il software per il tuo ambiente: Installazione del Server senza una GUI.
+### Fase 5: Configurazione del software per l'ambiente: Installazione del server senza interfaccia grafica
 
 Questo avrà importanza in **Fase 6**, quindi se si utilizza un'interfaccia utente o una configurazione di workstation il profilo di sicurezza sarà diverso.
 
@@ -132,7 +132,7 @@ Nelle esercitazioni successive potremo unire il tutto a una configurazione azien
 
 ![Reboot](images/disa_stig_pt1_img18.jpg)
 
-### Fase 11: Accedere al sistema Rocky Linux 8 STIG!
+### Passo 11: Accesso al sistema Rocky Linux 8 STIG
 
 ![Avvertimento DoD](images/disa_stig_pt1_img19.jpg)
 
