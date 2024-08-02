@@ -11,10 +11,6 @@ tags:
 
 # Marksman - assistente del codice
 
-!!! danger "Istruzioni errate"
-
-    Con il rilascio della versione 2.5, le istruzioni contenute in questa pagina non sono più corrette; se ne sconsiglia l'uso per le nuove installazioni. Per maggiori informazioni si veda [la pagina principale della guida](../index.md).
-
 Marksman è uno strumento utile quando si redige un documento per Rocky Linux. Permette di inserire facilmente i simboli necessari per definire i tag del linguaggio *markdown*. Ciò consente di scrivere più velocemente e riduce la possibilità di errori.
 
 NvChad/Neovim include già dei widget di testo che aiutano nella scrittura, come la ripetizione delle parole più usate indicizzate in base alla frequenza di inserimento. Le nuove opzioni incluse in questo server linguistico arricchiranno questi widget.
@@ -30,7 +26,7 @@ NvChad/Neovim include già dei widget di testo che aiutano nella scrittura, come
 ## Requisiti e competenze
 
 - Una conoscenza di base del linguaggio Markdown, consigliata la lettura della [Guida Markdown](https://www.markdownguide.org/)
-- NvChad sulla macchina in uso con il [Template Chadr](./template_chadrc.md) correttamente installato
+- NvChad sulla macchina in uso correttamente installato
 
 **Livello di difficoltà** :star:
 
@@ -38,13 +34,13 @@ NvChad/Neovim include già dei widget di testo che aiutano nella scrittura, come
 
 ## Installazione di Marksman
 
-L'installazione del server linguistico non comporta particolari problemi, poiché è disponibile nativamente in **Mason**. Installatelo direttamente dalla *statusline* con il comando:
+L'installazione del server linguistico non comporta particolari problemi, poiché è disponibile nativamente in **Mason**. È possibile installarlo direttamente dalla *statusline* con il comando:
 
 `:MasonInstall marksman`
 
 Il comando aprirà l'interfaccia di *Mason* e installerà direttamente il server linguistico richiesto. Una volta completata l'installazione binaria, è possibile chiudere la schermata di *Mason* con il tasto ++"q"++.
 
-La sua installazione, tuttavia, non comporta ancora la sua integrazione nell'editor. Per abilitare questa funzione, si deve modificare il file `custom/configs/lspconfig.lua` del *Template Chadrc*.
+La sua installazione, tuttavia, non comporta ancora la sua integrazione nell'editor. Per abilitarlo, deve essere inserito nel file `configs/lspconfig.lua` della configurazione.
 
 ## Integrazione nell'editor
 
@@ -52,14 +48,12 @@ La sua installazione, tuttavia, non comporta ancora la sua integrazione nell'edi
 
     Il plugin [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) integra i server linguistici in NvChad. Questo plugin semplifica notevolmente la loro inclusione nella configurazione di NvChad.
 
-Se durante l'installazione dell'editor si è scelto di installare anche il *Template Chadrc*, questo creerà il file *lspconfig.lua* nella cartella `custom/configs`.
+Il file *lspconfig.lua* si occupa di inserire le chiamate necessarie per utilizzare i server linguistici e permette anche di indicare quelli installati. Per integrare *marksman* nella configurazione dei server linguistici dell'editor, è necessario modificare la stringa *local servers* aggiungendo il nuovo LSP.
 
-Questo file si occupa di inserire le chiamate necessarie per utilizzare i server linguistici e consente anche di specificare quelli da voi installati. Per integrare *marksman* nella configurazione dei server linguistici dell'editor, è necessario modificare la stringa *local servers* aggiungendo il nuovo LSP.
-
-Aprite il vostro NvChad sul file con il comando:
+Aprire NvChad sul file con il comando:
 
 ```bash
-nvim ~/.config/nvim/lua/custom/configs/lspconfig.lua
+nvim ~/.config/nvim/lua/configs/lspconfig.lua
 ```
 
 E modificare la stringa *local servers*, che al termine avrà il seguente aspetto:
@@ -100,7 +94,7 @@ Una volta completati tutti i passaggi per l'inserimento, l'attivazione del serve
 
 Il server linguistico fornisce molte scorciatoie che attivano l'assistenza alla scrittura. Questo include l'inserimento rapido di tag Markdown, la creazione di collegamenti e l'inserimento di immagini nel documento. Di seguito è riportato un elenco non esaustivo dei caratteri che attivano i vari snippet.
 
-Questi snippet vengono visualizzati all'interno di widget che contengono anche altre scorciatoie. Utilizzare il tasto ++tab++ per la navigazione del widget e selezionare quelli forniti da *marksman*.La chiave inserisce il tag *superscript*. Trademark<sup>TM</td> </tr> 
+Questi snippet vengono visualizzati all'interno di widget che contengono anche altre scorciatoie. Utilizzare il tasto ++tab++ per la navigazione del widget per selezionare quelli forniti da *marksman*.La chiave inserisce il tag *superscript*. Trademark<sup>TM</td> </tr> 
 
 <tr>
   <td>
@@ -144,11 +138,11 @@ Questi snippet vengono visualizzati all'interno di widget che contengono anche a
       !!! note "Dichiarazione del blocco di codice"
     </p>
     
-    <pre><code>Le regole del codice Markdown raccomandano di dichiarare sempre il codice utilizzato nel blocco, anche senza la necessità di evidenziazione per una corretta interpretazione. Se il codice al suo interno è troppo generico, si consiglia di usare "text" per la sua dichiarazione.
+    <pre><code>Le regole del codice Markdown raccomandano di dichiarare sempre il codice utilizzato nel blocco, anche senza evidenziare le caratteristiche per una corretta interpretazione. Se il codice al suo interno è troppo generico, si consiglia di usare "text" per la sua dichiarazione.
 </code></pre>
     
     <p spaces-before="0">
-      Le chiavi di attivazione per le scorciatoie di Markdown includono anche altre combinazioni che si possono scoprire con l'uso del server linguistico.
+      Le chiavi di attivazione per le scorciatoie Markdown includono anche altre combinazioni che si possono scoprire con l'uso del server linguistico.
     </p>
     
     
