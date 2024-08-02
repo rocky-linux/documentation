@@ -9,23 +9,23 @@ tags:
   - plugins
 ---
 
-# Gestione dei Plugin
+# :material-file-settings-outline: Gestione dei Plugin
 
-La gestione dei plugin in NvChad 2.0 è affidata a [folke/lazy.nvim](https://github.com/folke/lazy.nvim), che viene installato durante la prima installazione dalla procedura di bootstrap. Il plugin consente di eseguire tutte le operazioni comuni sui plugin, come l'installazione, l'aggiornamento, ecc.
+La gestione dei plugin in NvChad 2.0 è affidata a [folke/lazy.nvim](https://github.com/folke/lazy.nvim), questo plugin viene installato durante la prima installazione dalla procedura di bootstrap. Il plugin consente di eseguire tutte le operazioni comuni sui plugin, come l'installazione, l'aggiornamento, ecc.
 
 ![Lazy Nvim](../images/lazy_nvim.png)
 
-## Caratteristiche Principali
+## :material-application-import: Caratteristiche Principali
 
 - Gestione di tutte le operazioni sui plugins da un'interfaccia unificata.
 - Prestazioni ottimizzate del plugin grazie al caching e alla compilazione del bytecode del modulo Lua.
 - Controllo automatico e installazione dei plugin mancanti all'avvio, una funzione molto utile quando si trasferisce una configurazione da una macchina all'altra.
 - Profiler per la consultazione dei tempi di caricamento dei plugin. Permette di monitorare e risolvere i problemi causati da plugins difettosi.
-- Sincronizzazione dei plugins su più workstation memorizzando la revisione di tutti i plugins installati nel file _lazy-lock.json_.
+- Sincronizzazione dei plugin su più postazioni memorizzando la revisione di tutti i plugin installati nel file *lazy-lock.json*.
 
-## Operazioni Preliminari
+## :material-arrow-bottom-right-bold-outline: Operazioni Preliminari
 
-_lazy.nvim_ integra una funzione di controllo dello stato di salute dell'ambiente che può essere invocata con il comando `:checkhealth lazy`. Il comando dovrebbe restituire qualcosa del genere in un nuovo buffer:
+*lazy.nvim* integra una funzione di controllo dello stato di salute dell'ambiente che può essere invocata con il comando `:checkhealth lazy`. Il comando dovrebbe restituire qualcosa del genere in un nuovo buffer:
 
 ```text
 lazy: require("lazy.health").check()
@@ -49,19 +49,15 @@ Ora, dopo aver controllato l'ambiente e aver acquisito le conoscenze di base, po
 
 ## Inserimento di un plugin
 
-!!! note "Nota"
+Mentre la gestione dei plugin installati può essere comodamente eseguita dall'interfaccia *lazy.nvim*, l'inserimento di un nuovo plugin richiede la modifica manuale del file **lua/plugins/init.lua**.
 
-    In questi esempi si presume che durante l'installazione di NvChad si sia scelto di creare la struttura della cartella `custom` con il _template chadrc_.
-
-Mentre la gestione dei plugin installati può essere comodamente eseguita dall'interfaccia _lazy.nvim_, l'inserimento di un nuovo plugin richiede la modifica manuale del file **custom/plugins.lua**.
-
-In questo esempio installeremo il plugin [natecraddock/workspaces.nvim.](https://github.com/natecraddock/workspaces.nvim)  Questo plugin consente di salvare e utilizzare successivamente le sessioni di lavoro (workspaces) in modo da potervi accedere rapidamente. Apriamo il file con:
+In questo esempio installeremo il plugin [natecraddock/workspaces.nvim.](https://github.com/natecraddock/workspaces.nvim)  Questo plugin consente di salvare e utilizzare successivamente le sessioni di lavoro (workspace) in modo da potervi accedere rapidamente. Apriamo il file con:
 
 ```bash
-nvim ~/.config/nvim/lua/custom/plugins.lua
+nvim ~/.config/nvim/lua/plugins/init.lua
 ```
 
-e inseriamo il seguente codice dopo il plugin _better-escape.nvim_:
+e inseriamo il seguente codice dopo il plugin *better-escape.nvim*:
 
 ```lua
     -- Workspaces
@@ -83,10 +79,10 @@ Una volta salvato il file, riceveremo una notifica con la richiesta di approvazi
 ```text
 # Config Change Detected. Reloading...
 
-> - **changed**: `plugins.lua`
+- **changed**: `lua/plugins/init.lua`
 ```
 
-Questo grazie al meccanismo incorporato in _lazy.nvim_ che controlla lo stato dei plugins e delle sue configurazioni e permette quindi di eseguire operazioni sui plugins senza dover uscire dall'editor, operazione che era necessaria con la versione 1.0.
+Questo grazie al meccanismo incorporato in *lazy.nvim* che controlla lo stato dei plugin e delle sue configurazioni e permette quindi di eseguire operazioni sui plugin senza dover uscire dall'editor.
 
 Chiaramente risponderemo "sì".
 
@@ -94,7 +90,7 @@ Ora, se apriamo il gestore dei plugin con il comando `:Lazy`, scopriremo che il 
 
 ![Install Plugin](../images/lazy_install.png)
 
-A questo punto sarà _lazy.nvim_ a occuparsi di scaricare il repository nel percorso **.local/share/nvim/lazy/** e di eseguire la compilazione. Una volta terminata l'installazione, avremo una nuova cartella denominata _workspaces.nvim:_
+A questo punto sarà _lazy.nvim_ a occuparsi di scaricare il repository nel percorso **.local/share/nvim/lazy/** e di eseguire la compilazione. Una volta terminata l'installazione, avremo una nuova cartella denominata _workspaces.nvim_:
 
 ```text
 .local/share/nvim/lazy/workspaces.nvim/
@@ -114,31 +110,27 @@ A questo punto sarà _lazy.nvim_ a occuparsi di scaricare il repository nel perc
 └── stylua.toml
 ```
 
-Ora avremo le funzionalità del plugin che possono essere invocate con i comandi impostati nell'array:
+Ora abbiamo le funzionalità del plugin che possono essere invocate con i comandi impostati nell'array:
 
 ```lua
 cmd = { "WorkspacesList", "WorkspacesAdd", "WorkspacesOpen", "WorkspacesRemove" },
 ```
 
-L'inserimento comporta anche l'aggiunta di una stringa al file _lazy-lock.json_ per il monitoraggio dello stato e gli aggiornamenti successivi. La funzione del file _lazy-lock.json_ sarà descritta nella sezione corrispondente qui sotto.
+L'inserimento comporta anche l'aggiunta di una stringa al file *lazy-lock.json* per il monitoraggio dello stato e gli aggiornamenti successivi. La funzione del file *lazy-lock.json* sarà descritta nella sezione corrispondente.
 
 ```json
   "workspaces.nvim": { "branch": "master", "commit": "dd9574c8a6fbd4910bf298fcd1175a0222e9a09d" },
 ```
 
-## Rimozione di un plugin
+## :material-tray-remove: Rimozione di un plugin
 
-Come per l'installazione, la rimozione di un plugin dalla configurazione passa anche attraverso la modifica manuale del file _custom/plugins.lua_. In questo esempio stiamo per rimuovere il plugin [TimUntersberger/neogit](https://github.com/TimUntersberger/neogit) questo plugin permette una gestione dei repository git direttamente dall'editor.
+Come per l'installazione, la rimozione di un plugin dalla configurazione avviene modificando manualmente il file *lua/plugins/init.lua*. Per seguire l'esempio, rimuoveremo il plugin appena installato.
 
-!!! note "Nota"
-
-    La scelta del plugin è puramente casuale. Il plugin utilizzato per l'esempio non ha problemi a funzionare in NvChad.
-
-Apriamo il nostro editor e rimuoviamo il plugin dalla configurazione. Questo può essere fatto comodamente selezionando le quattro righe da eliminare con il mouse e quindi premendo ++"x"++ per eliminarle e ++ctrl++ + ++"s"++ per salvare il file.
+Apriamo il nostro editor e rimuoviamo il plugin dalla configurazione. È possibile farlo comodamente selezionando con il mouse le righe da eliminare e premendo ++"x "++ per eliminarle e ++ctrl++ ++"s "++ per salvare il file.
 
 ![Remove Plugin](../images/remove_plugin_01.png)
 
-Anche in questo caso riceveremo un avviso sulla modifica del file _plugins.lua_ al quale risponderemo "sì" e una volta aperto _Lazy_ avremo il nostro plugin contrassegnato come da rimuovere. La rimozione viene eseguita premendo il tasto ++"X"++.
+Again we will receive a notice about the modification of the *init.lua* file to which we will answer "yes" and once we open *Lazy* we will have our plugin marked as to be removed. La rimozione viene eseguita premendo il tasto ++"X"++.
 
 ![Lazy Clean](../images/remove_plugin_02.png)
 
@@ -146,7 +138,7 @@ La rimozione di un plugin consiste fondamentalmente nella rimozione della cartel
 
 ## Aggiornamento dei Plugins
 
-Una volta che i plugins sono installati e configurati, sono gestiti in modo indipendente da _lazy.nvim_. Per verificare la presenza di aggiornamenti, è sufficiente aprire il manager e digitare ++"C"++. _Lazy_ controllerà i repository dei plugins installati_(git fetch_) e poi ci presenterà un elenco di plugins aggiornabili che, una volta controllati, possono essere aggiornati tutti in una volta con ++"U"++ o singolarmente dopo averli selezionati con ++"u"++.
+Una volta installati e configurati, i plugin sono gestiti in modo indipendente da *lazy.nvim*. Per verificare la presenza di aggiornamenti, è sufficiente aprire il manager e digitare ++"C"++. _Lazy_ controllerà i repository dei plugins installati_(git fetch_) e poi ci presenterà un elenco di plugins aggiornabili che, una volta controllati, possono essere aggiornati tutti in una volta con ++"U"++ o singolarmente dopo averli selezionati con ++"u"++.
 
 ![Lazy Check](../images/lazy_check.png)
 
@@ -156,11 +148,11 @@ Una volta che i plugins sono installati e configurati, sono gestiti in modo indi
 
 Esiste anche la possibilità di eseguire l'intero ciclo di aggiornamento con il solo comando `Sync`. Dall'interfaccia digitando ++"S"++ o con il comando `:Lazy sync` invocheremo la funzione, che consiste nella concatenazione di `install` + `clean` + `update`.
 
-Il processo di aggiornamento, sia individuale che cumulativo, modificherà anche il file _lazy-lock.json._  In particolare, i commit saranno modificati per sincronizzarli con lo stato del repository su GitHub.
+Il processo di aggiornamento, sia individuale che cumulativo, modificherà anche il file _lazy-lock.json_. In particolare, i commit saranno modificati per sincronizzarli con lo stato del repository su GitHub.
 
 ## Funzionalità Aggiuntive
 
-Nella scrittura del plugin si è prestata particolare attenzione alle prestazioni e all'efficienza del codice, oltre a fornire un modo per valutare i tempi di avvio dei vari plugins. Viene fornito un _profiler_ che può essere invocato con il comando `:Lazy profile` o con il tasto ++"P"++ dell'interfaccia.
+Nella scrittura del plugin, si è prestata particolare attenzione alle prestazioni e all'efficienza del codice, oltre a fornire un modo per valutare i tempi di avvio dei vari plugin. Viene fornito un _profiler_ che può essere invocato con il comando `:Lazy profile` o con il tasto ++"P"++ dall'interfaccia.
 
 ![Lazy Profiler](../images/lazy_profile.png)
 
@@ -194,10 +186,10 @@ Lazy.nvim consente la sincronizzazione di tutti i plugin installati, memorizzand
 ...
 ```
 
-Grazie alla memorizzazione dei commit, possiamo vedere esattamente lo stato del plugin nel repository al momento dell'installazione o dell'aggiornamento. Questo ci permette, attraverso la funzione di `restore`, di riportarlo o portarlo allo stesso stato anche nell'editor. La funzione, richiamabile con il tasto ++"R"++ dell'interfaccia o con `:Lazy restore`, aggiorna tutti i plugin dell'editor allo stato definito nel file _lazy-lock.json_.
+Grazie alla memorizzazione dei commit, possiamo vedere esattamente lo stato del plugin nel repository al momento dell'installazione o dell'aggiornamento. Questo ci permette, attraverso la funzione di `restore`, di riportarlo o portarlo allo stesso stato anche nell'editor. La funzione, richiamabile con il tasto ++"R"++ dall'interfaccia o con `:Lazy restore`, aggiorna tutti i plugin dell'editor allo stato definito nel file _lazy-lock.json_.
 
 Copiando il file _lazy-lock.json_ da una configurazione stabile in un posto sicuro, si ha la possibilità di ripristinare l'editor in quella condizione se un aggiornamento dovesse creare problemi. Esportandolo invece su un'altra stazione di lavoro, possiamo utilizzarlo per configurare l'editor con le stesse funzionalità.
 
 Se invece lo mettiamo sotto un controllo di versione, possiamo ottenere la sincronizzazione della configurazione tra tutte le postazioni di lavoro utilizzate.
 
-Ora dopo aver illustrato il gestore dei plugins, possiamo andare avanti per analizzare l'interfaccia utente.
+Dopo aver descritto il gestore dei plugin, possiamo passare ad analizzare l'interfaccia utente.
