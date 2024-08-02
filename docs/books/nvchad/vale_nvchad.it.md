@@ -23,31 +23,30 @@ tags:
 
 Il plugin [nvim-lint](https://github.com/mfussenegger/nvim-lint) fornisce il supporto per l'inserimento dei ==linters== nell'editor, fornendo la correzione del codice o del contenuto sia per la parte sintattica che per quella semantica.
 
-Per installare il plugin, è necessario modificare il file `lua/plugins/init.lua` aggiungendo il seguente blocco di codice:
+Per installare il plugin *nvim-lint*, è sufficiente creare un file **nvim-lint.lua** nella cartella `lua/plugins`; al successivo avvio dell'istanza di Neovim, questo verrà integrato nella configurazione.
 
-```lua title="plugins.lua"
-  {
-    "mfussenegger/nvim-lint",
-    event = "VeryLazy",
-    config = function()
-      require "custom.configs.lint"
+Il contenuto del file è il seguente:
+
+```lua title="nvim-lint.lua"
+return {
+ {
+  "mfussenegger/nvim-lint",
+  enabled = true,
+  event = "VeryLazy",
+  config = function()
+   require("lint").linters_by_ft = {
+    markdown = { "markdownlint", "vale" },
+    yaml = { "yamllint" },
+   }
+
+   vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    callback = function()
+     require("lint").try_lint()
     end,
-  },
-```
-
-Il plugin ha un file di configurazione che deve essere posizionato nella cartella `lua/configs`. Al suo interno troviamo una tabella ==linters_by_ft== dove è possibile inserire i *linters* per i linguaggi utilizzati per lo sviluppo.
-
-```lua title="lint.lua"
-require("lint").linters_by_ft = {
-  markdown = { "markdownlint" },
-  yaml = { "yamllint" },
-}
-
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  callback = function()
-    require("lint").try_lint()
+   })
   end,
-})
+ },
+}
 ```
 
 Questo file di configurazione è impostato per lavorare con il codice markdown, ma può essere modificato o esteso con [quelli disponibili](https://github.com/mfussenegger/nvim-lint?tab=readme-ov-file#available-linters) sul sito del progetto.
@@ -80,7 +79,7 @@ La sola installazione di `vale` non è sufficiente. Sono necessari un paio di el
 
 === "Installazione dal percorso del file binario `vale`"
 
-    Se vi trovate nel percorso del binario `vale` qui: `~/.local/share/nvim/mason/packages/vale/` si può semplicemente creare il file `.vale.ini` qui, generare la cartella "styles" e poi spostare entrambi nella propria radice `~/`. La creazione del file `.vale.ini' è semplice utilizzando l'utilità di configurazione del sito web `vale.sh` (https://vale.sh/generator). Scegliere "Red Hat Documentation Style Guide" per lo stile di base e "alex" per lo stile supplementare. L'uso di 'alex' è facoltativo, ma aiuta a individuare e correggere le parole di genere, polarizzanti, razziali, ecc. Se si scelgono queste opzioni, la schermata dovrebbe apparire come questa:
+    Se vi trovate nel percorso del binario `vale` qui: `~/.local/share/nvim/mason/packages/vale/` si può semplicemente creare il file `.vale.ini` qui, generare la cartella "styles" e poi spostare entrambi nella propria root `~/`. La creazione del file `.vale.ini' è semplice utilizzando l'utilità di configurazione del sito web `vale.sh` (https://vale.sh/generator). Scegliere "Red Hat Documentation Style Guide" per lo stile di base e "alex" per lo stile supplementare. L'uso di 'alex' è facoltativo, ma aiuta a individuare e correggere le parole di genere, polarizzanti, razziali, ecc. Se si scelgono queste opzioni, la schermata dovrebbe apparire come questa: If you choose those options, your screen should look like this:
     
     ![vale_ini_nvchad](images/vale_ini_nvchad.png)
     
