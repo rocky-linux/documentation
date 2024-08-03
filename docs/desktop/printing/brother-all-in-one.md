@@ -42,7 +42,7 @@ A Software window launches that attempts to locate and install printer drivers. 
 
 1. [Download the Brother MFC-J480DW Printer driver bash script](https://support.brother.com/g/b/downloadtop.aspx?c=us&lang=en&prod=mfcj480dw_us_eu_as){target="_blank"}
 2. Open a terminal window.
-3.Go to the directory where you downloaded the file in the last step. e.g., `cd Downloads`
+3. Go to the directory where you downloaded the file in the last step. e.g., `cd Downloads`
 4. Enter this command to extract the downloaded file:
 
     ```bash
