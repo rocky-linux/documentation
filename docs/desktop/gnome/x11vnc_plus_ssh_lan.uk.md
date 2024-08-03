@@ -1,7 +1,7 @@
 ---
 title: Спільний доступ до робочого столу через x11vnc+SSH (LAN)
 author: Joseph Brinkman
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 ## Вступ
