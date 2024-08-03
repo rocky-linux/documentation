@@ -45,11 +45,11 @@ sudo dnf install ksnip -y
 
 ![ksnip](images/ksnip.png)
 
-![ksnip\_open](images/ksnip_image_opened.png)
-
 ## Annoter une image avec `Ksnip`
 
 `Ksnip` dispose d'outils pratiques et intuitifs pour annoter des captures d'écran.  Dans l'image, en bas à gauche se trouvent les options décrites ci-dessous.
+
+![ksnip\_open](images/ksnip_image_opened.png)
 
 | Option | Outil              | Description                                                                                                                                                                                                                                                                                                              |
 | ------ | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -59,10 +59,10 @@ sudo dnf install ksnip -y
 | 3b     | `Double Arrow`     | la deuxième option de flèche est accessible en cliquant sur la flèche vers le bas à côté de l'outil Arrow. Comme le suggère le nom de l'outil, il comporte une flèche aux deux extrémités.                                                                                               |
 | 3c     | `Line`             | la troisième option est accessible en cliquant sur la flèche vers le bas à côté de l'outil Arrow. Il remplace les flèches par une simple ligne.                                                                                                                                          |
 | 4      | `Pen`              | est utilisé pour créer des traits qui ressemblent à un stylo. Cliquez et déplacez le curseur sur la capture d’écran pour utiliser le stylo. ^1^                                                                                                                                          |
-| 5a     | `Marker Pen`       | l'outil est utilisé pour créer des traits qui ressemblent à un surligneur. Maintenez le clic et déplacez le curseur sur la capture d'écran pour utiliser le marqueur. ^1^                                                                                                                |
+| 5a     | `Marker Pen`       | L'outil par défaut marker est utilisé pour créer des traits qui ressemblent à un surligneur. Maintenez le clic et déplacez le curseur sur la capture d'écran pour utiliser le marqueur. ^1^                                                                                              |
 | 5b     | `Marker Rectangle` | la deuxième option de marqueur est accessible en cliquant sur la flèche vers le bas à côté de l'outil Marker. Lorsque vous cliquez avec le bouton gauche de la souris et faites glisser votre curseur, l'outil Marker Rectangle remplira le rectangle créé à partir de la sélection. ^1^ |
 | 5c     | `Marker Elipse`    | la troisième option de marqueur est accessible en cliquant sur la flèche vers le bas à côté de l'outil Marker. Lorsque vous cliquez avec le bouton gauche et faites glisser votre curseur, l'outil Marker Ellipse remplira l'ellipse créée à partir de la sélection. ^1^                 |
-| 6a     | `Text`             | l'outil `Text` par défaut qui est utilisé pour annoter une capture d'écran avec du texte. ^1^                                                                                                                                                                                                            |
+| 6a     | `Text`             | L'outil `Text` par défaut est utilisé pour annoter une capture d'écran avec du texte. ^1^                                                                                                                                                                                                                |
 | 6b     | `Text Pointer`     | la deuxième option de texte est accessible en cliquant sur la flèche vers le bas à côté de l'outil Text. Il attache un pointeur pour attirer l’attention sur le texte. ^1^                                                                                                               |
 | 6c     | `Text Arrow`       | la troisième option de texte est accessible en cliquant sur la flèche vers le bas à côté de l'outil Text. Il attache une flèche pour attirer l'attention sur le texte. ^1^                                                                                                               |
 | 7a     | `Number`           | l'outil Number par défaut, ajoute un numéro pour attirer l'attention et annoter la capture d'écran avec des numéros. ^1^                                                                                                                                                                                 |
