@@ -54,6 +54,9 @@ contributors: '@fromoz, Ganna Zhyrnova'
 * [Англійська](https://rocky-linux.github.io/documentation/RockyLinuxMiddlewaresGuide.pdf)
 * [Італійська](https://rocky-linux.github.io/documentation/RockyLinuxMiddlewaresGuide.it.pdf)
 
+### Веб-служби Rocky Linux (LAMP або LEMP)
+
+* [Англійська](https://rocky-linux.github.io/documentation/RockyLinuxWebServicesGuide.pdf)
 ### Вивчення RSync
 
 * [Англійська](https://rocky-linux.github.io/documentation/learning_rsync_rocky_linux.pdf)
