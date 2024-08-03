@@ -6,7 +6,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 ## Introduction
 
-This guide is for you if you want to share your (Gnome) desktop on Rocky Linux or access other shared desktops.
+If you want to share your (Gnome) desktop on Rocky Linux or access other shared desktops, this guide is for you.
 
 For beginners, you will be using RDP. RDP stands for Remote Desktop Protocol, and it does exactly what that implies: it lets you view and interact with computers from afar, all with a graphical interface. However, you must quickly dive into the command line to set it up.
 
@@ -42,7 +42,7 @@ Once you have that installed, you need to enable the service:
 sudo systemctl enable --now xrdp
 ```
 
-The RDP server should be installed, enabled, and running if all goes well. But you can't connect just yet; you need to open the correct port on your firewall first.
+If all goes well, the RDP server should be installed, enabled, and running. But you can't connect just yet; you need to open the correct port on your firewall first.
 
 If you want to learn more about how Rocky Linux's firewall app, `firewalld`, works, please see our [beginner's guide to `firewalld`](../../guides/security/firewalld-beginners.md). If you want to get moved along, run these commands:
 
@@ -63,7 +63,7 @@ You might want to log out if you do not want to reboot. RDP uses your user accou
 
 You have seen how to install an RDP server, and now you need an RDP client application. On Windows, the Remote Desktop Connection app does the trick quite nicely. If you want to access your Rocky Linux machine from another Linux machine, you will need to install a third-party option.
 
-On Gnome, Remmina gets my highest recommendation. It is not complex to use; it is stable and generally works.
+I highly recommend Remmina for Gnome. It is not complex to use, stable, and generally works.
 
 If you have Flatpak/Flathub installed, open up the Software app and search for Remmina.
 
@@ -75,9 +75,9 @@ Hit the plus button in the upper-left corner to add a connection. In the name fi
 
 ![The Remmina connection profile form](images/rdp_images/02-remmina-config.png)
 
-If your computers are not on the same network, I hope you know how to do port forwarding or that the remote computer has a static IP of some sort. That is all beyond the scope of this document.
+If your computers are not on the same network, I hope you know how to do port forwarding or that the remote computer has a static IP. That is all beyond the scope of this document.
 
-Scroll down for options like multi-monitor support, custom resolutions, and more. Also, the "Network connection type" option in your RDP client lets you balance bandwidth usage with image quality.
+Scroll down for options like multi-monitor support, custom resolutions, and more. Also, your RDP client's "Network connection type" option lets you balance bandwidth usage with image quality.
 
 Use LAN for the best quality if your computers are on the same network.
 
