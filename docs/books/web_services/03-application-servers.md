@@ -8,7 +8,7 @@ tags:
   - php-fpm
   - application server
   - dynamic language
----
+--- 
 
 ## PHP and PHP-FPM
 
@@ -22,14 +22,14 @@ In this chapter, you will learn about PHP and PHP-FPM.
 
 **Objectives**: In this chapter, you will learn how to:
 
-:heavy_check_mark: install a PHP application server
-:heavy_check_mark: configure PHP-FPM pool
-:heavy_check_mark: optimize a PHP-FPM application server
+:heavy_check_mark: install a PHP application server  
+:heavy_check_mark: configure PHP-FPM pool  
+:heavy_check_mark: optimize a PHP-FPM application server  
 
 :checkered_flag: **PHP**, **PHP-FPM**, **Application server**
 
-**Knowledge**: :star: :star: :star:
-**Complexity**: :star: :star: :star:
+**Knowledge**: :star: :star: :star:  
+**Complexity**: :star: :star: :star: 
 
 **Reading time**: 30 minutes
 
