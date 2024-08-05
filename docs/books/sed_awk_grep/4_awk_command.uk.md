@@ -55,7 +55,7 @@ gawk-4.2.1-4.el8.x86_64
 Простий приклад, який легко зрозуміти：
 
 ```bash
-Shell > df -hT 
+Shell > df -hT
 | 1             |     2        |  3    |  4   |  5    |   6   |   7            | 8       |
 |Filesystem     |    Type      | Size  | Used | Avail | Use%  | Mounted        | on      |←← 1 (first line)
 |devtmpfs       |    devtmpfs  | 1.8G  |   0  | 1.8G  |  0%   | /dev           |         |←← 2
@@ -937,7 +937,7 @@ False
    ...
    ```
 
-4. Символ pipe<a id=ps></a>
+4. Символ Pipe
 
    Ви можете використовувати команду bash у програмі awk, наприклад:
 
@@ -1030,14 +1030,14 @@ False
    Кілька гілок:
 
    ```bash
-   Shell > cat /etc/services | awk '{ \ 
-   if($1~/netbios/) 
-       {print $0} 
-   else if($2~/175/) 
-       {print "175"} 
-   else if($2~/137/) 
-       {print "137"} 
-   else {print "no"} 
+   Shell > cat /etc/services | awk '{ \
+   if($1~/netbios/)
+       {print $0}
+   else if($2~/175/)
+       {print "175"}
+   else if($2~/137/)
+       {print "137"}
+   else {print "no"}
    }'
    ```
 
@@ -1146,14 +1146,14 @@ False
      }
    }'
 
-   1                                                                                                                           
-   2                                                                                                                                         
-   4                                                                                                                                         
-   5                                                                                                                                         
-   6                                                                                                                                         
-   7                                                                                                                                         
-   8                                                                                                                                         
-   9                                                                                                                                         
+   1
+   2
+   4
+   5
+   6
+   7
+   8
+   9
    10
    ```
 
@@ -1325,7 +1325,7 @@ False
    Shell > cat /var/log/secure | egrep -o "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" | awk ' \
    {
      a[$1]++
-   } 
+   }
    END{
      for(v in a) print a[v],v
    }
@@ -1335,7 +1335,7 @@ False
    4 192.168.100.2
    ```
 
-   !!! info
+   !!! info "примітка"
 
    ```
     `a[$1]++` еквівалентно до `a[$1]+=1`
@@ -1370,7 +1370,7 @@ False
 
    ```bash
    Shell > ss -tulnp | awk -F " "  '/tcp/ {a[$2]++} END{for(i in a) print a[i],i}'
-   2 LISTEN  
+   2 LISTEN
    ```
 
 8. Вивести рядки на основі кількості входжень певного поля
@@ -1643,8 +1643,6 @@ False
    ```
 
    Подібно до команди `sed`, ви також можете використовувати символ "&" для посилання на вже збігені рядки.
-
-   [Перегляньте це тут](#symbol).
 
    ```bash
    Shell > vim /tmp/tmp-file1.txt
@@ -2015,8 +2013,6 @@ False
    ```
 
 7. pipe символ
-
-   Дивись [тут](#ps)
 
 8. Спеціальні функції
 
