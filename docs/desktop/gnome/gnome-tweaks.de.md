@@ -74,6 +74,6 @@ Mit _Workspaces_ können Sie ändern, wie Arbeitsbereiche erstellt werden (dynam
 Sie können alles auf die Standardeinstellungen zurücksetzen, indem Sie das Drei-Balken-Menü neben „Tweaks“ in der linken Ecke verwenden.
 ```
 
-## Conclusion
+## Zusammenfassung
 
 GNOME Tweaks ist ein ausgezeichnetes Werkzeug zum Anpassen Ihrer GNOME-Desktopumgebung.

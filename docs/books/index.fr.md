@@ -4,7 +4,7 @@ author: Steven Spencer
 contributors: '@fromoz, Ganna Zhyrnova'
 ---
 
-# Livres d'instruction Rocky Linux
+# Tutoriels Rocky Linux
 
 Vous avez trouvé la section **Livres** de la documentation. C'est là que la documentation de forme plus longue est conservée. Ces documents sont répartis en sections ou en **_chapitres_** afin de vous faciliter le travail, à votre rythme, et de suivre vos progrès. Ces documents ont été créés par des gens comme vous, avec une passion pour certains sujets.
 

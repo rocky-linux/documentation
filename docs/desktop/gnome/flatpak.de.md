@@ -262,6 +262,6 @@ Um ein Paket zu deinstallieren, verwenden Sie die „Anwendungs-ID“ aus der Au
 flatpak uninstall com.obsproject.Studio
 ```
 
-## Conclusion
+## Zusammenfassung
 
 Sie können Flathub und Flatpak verwenden, um Ihren GNOME-Desktop ganz einfach mit Anwendungen zu füllen, von Spielen bis hin zu Produktivitätstools.

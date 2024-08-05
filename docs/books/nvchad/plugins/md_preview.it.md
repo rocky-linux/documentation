@@ -11,10 +11,6 @@ tags:
 
 # Anteprima Markdown
 
-!!! danger "Istruzioni errate"
-
-    Con il rilascio della versione 2.5, le istruzioni contenute in questa pagina non sono più corrette; se ne sconsiglia l'uso per le nuove installazioni. Per maggiori informazioni si veda [la pagina principale della guida](../index.md).
-
 ## Introduzione
 
 Una delle caratteristiche del linguaggio Markdown che lo rendono ampiamente utilizzato nella scrittura di documentazione tecnica è la sua convertibilità. Il codice può essere convertito per la visualizzazione in molti formati (HTML, PDF, testo normale, ecc.), rendendo così il contenuto utilizzabile in numerosi scenari.
@@ -27,15 +23,19 @@ Per integrare questa funzionalità nel proprio editor, in questa pagina verranno
 
 ### Peek.nvim
 
-[Peek](https://github.com/toppair/peek.nvim) utilizza [Deno](https://deno.com/manual), un runtime JavaScript, TypeScript e WebAssembly con impostazioni sicure predefinite per il suo funzionamento. Per impostazione predefinita, Deno non consente l'accesso a file, rete o ambiente, a meno che non sia esplicitamente abilitato.
+[Peek](https://github.com/toppair/peek.nvim) utilizza [Deno](https://deno.com/manual), un runtime JavaScript, TypeScript e WebAssembly con impostazioni sicure predefinite per il suo funzionamento. Per impostazione predefinita, Deno non consente l'accesso a file, rete o ambiente, a meno che questo non sia esplicitamente abilitato.
 
-Se è stato installato anche il [Template Chadrc](../template_chadrc.md), questo componente sarà già disponibile perché è uno dei server linguistici installati di default. Nel caso in cui non sia ancora presente nell'editor, è possibile installarlo con il comando `:MasonInstall deno`.
+Per installare il server linguistico nella configurazione dell'editor, si utilizza il plugin *mason.nvim*, che fornisce il comando `:MasonInstall`, un comando che consente l'inclusione e la configurazione automatica di *Deno*.
+
+```text
+:MasonInstall deno
+```
 
 !!! Warning "Attenzione"
 
-    Il server linguistico **deve** essere installato prima di procedere all'installazione del plugin. In caso contrario, l'installazione fallirà e sarà necessario rimuovere il codice da **/custom/plugins.lua**, eseguire una pulizia della configurazione aprendo `Lazy` e digitando ++"X"++ per eliminare il plugin e quindi ripetere la procedura di installazione.
+    Il server linguistico **deve** essere installato prima di procedere all'installazione del plugin. In caso contrario, l'installazione fallirà e sarà necessario rimuovere il codice da **plugins/init.lua**, eseguire una pulizia della configurazione aprendo `Lazy` e digitando ++"X "++ per eliminare il plugin e quindi ripetere la procedura di installazione.
 
-Per installare il plugin è necessario modificare il file **/custom/plugins.lua** aggiungendo il seguente blocco di codice:
+Per installare il plugin è necessario modificare il file **plugins/init.lua** aggiungendo il seguente blocco di codice:
 
 ```lua
 {
@@ -67,7 +67,7 @@ La sua configurazione include già il comando per attivarlo `<leader>op`, che su
 
 ![Peek](./images/peek_command.png)
 
-Avete anche la stringa:
+È presente anche la stringa:
 
 ```lua
 opts = { theme = "dark", app = "browser" },
@@ -75,7 +75,7 @@ opts = { theme = "dark", app = "browser" },
 
 Che consente di passare le opzioni per il tema chiaro o scuro dell'anteprima e il metodo da usare per la visualizzazione.
 
-In questa configurazione, è stato scelto il metodo "browser", che apre il file da visualizzare nel browser predefinito del sistema, ma il plugin consente attraverso il metodo "webview" di visualizzare l'anteprima del file utilizzando solo **Deno** tramite il componente [webview_deno](https://github.com/webview/webview_deno).
+In questa configurazione, è stato scelto il metodo "browser", che apre il file da visualizzare nel browser predefinito del sistema, ma il plugin permette attraverso il metodo "webview" di visualizzare l'anteprima del file utilizzando solo **Deno** tramite il componente [webview_deno](https://github.com/webview/webview_deno).
 
 ![Peek Webview](./images/peek_webview.png)
 
@@ -83,7 +83,7 @@ In questa configurazione, è stato scelto il metodo "browser", che apre il file 
 
 [Markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim) è un plugin scritto in `node.js` (JavaScript). La sua installazione su NvChad non richiede alcuna dipendenza, poiché gli sviluppatori forniscono una versione precompilata che funziona perfettamente nell'editor.
 
-Per installare questa versione è necessario aggiungere questo blocco di codice al file **/custom/plugins.lua**:
+Per installare questa versione è necessario aggiungere questo blocco di codice al file **plugins/init.lua**:
 
 ```lua
 {
@@ -117,7 +117,7 @@ Come si può notare, per impostare le opzioni è necessario modificare la parte 
 let g:mkdp_browser = '/usr/bin/chromium-browser'
 ```
 
-Per interpretarlo correttamente in NvChad, è necessario modificare il testo sostituendo `let g:` con `vim.g.`.
+Per interpretarlo correttamente in NvChad, è necessario modificarlo sostituendo `let g:` con `vim.g.`.
 
 ```lua
 vim.g.mkdp_browser = "/usr/bin/chromium-browser"
@@ -125,16 +125,12 @@ vim.g.mkdp_browser = "/usr/bin/chromium-browser"
 
 In questo modo, alla prossima apertura di NvChad, verrà utilizzato `chromium-browser`, indipendentemente dal browser predefinito del sistema.
 
-La configurazione fornisce anche i comandi `:MarkdownPreview` e `:MarkdownPreviewStop` per aprire e chiudere l'anteprima, rispettivamente. Per un accesso più rapido ai comandi, è possibile mapparli nel file **/custom/mapping.lua** come segue:
+La configurazione fornisce anche i comandi `:MarkdownPreview` e `:MarkdownPreviewStop` per aprire e chiudere l'anteprima, rispettivamente. Per un accesso più rapido ai comandi, è possibile mapparli nel file **mapping.lua** come segue:
 
 ```lua
--- binding for Markdown Preview
-M.mdpreview = {
-    n = {
-        ["<leader>mp"] = { "<cmd> MarkdownPreview<CR>", "Open Preview" },
-        ["<leader>mc"] = { "<cmd> MarkdownPreviewStop<CR>", "Close Preview" },
-    },
-}
+-- mapping for Markdown Preview
+map("n", "<leader>mp", "<CMD> MarkdownPreview<CR>", { desc = "Open Preview" })
+map("n", "<leader>mc", "<CMD> MarkdownPreviewStop<CR>", { desc = "Close Preview" })
 ```
 
 In questo modo è possibile aprire l'anteprima del markdown digitando ++enter++ + ++"m"++ seguito da ++"p"++ e chiuderla con la combinazione ++enter++ + ++"m"++ seguito da ++"c"++.

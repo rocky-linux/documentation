@@ -1,7 +1,7 @@
 ---
 title: Розширення оболонки GNOME
 author: Joseph Brinkman
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 9.4
 tags:
   - робочий стіл
