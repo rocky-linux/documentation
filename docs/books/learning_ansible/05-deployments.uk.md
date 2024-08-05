@@ -125,7 +125,7 @@ ansible.posix:1.2.0 was installed successfully
 
 Наш playbook із налаштування сервера: `playbook-config-server.yml`
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -136,27 +136,27 @@ ansible.posix:1.2.0 was installed successfully
       DirectoryIndex index.php index.htm
     apache_vhosts:
       - servername: "website"
- documentroot: "{{ dest }}current/html"
+    documentroot: "{{ dest }}current/html"
 
   tasks:
 
     - name: create directory for website
       file:
- path: /var/www/site/
- state: directory
- mode: 0755
+        path: /var/www/site/
+        state: directory
+        mode: 0755
 
     - name: install git
       package:
- name: git
- state: latest
+        name: git
+        state: latest
 
     - name: permit traffic in default zone for http service
       ansible.posix.firewalld:
- service: http
- permanent: yes
- state: enabled
- immediate: yes
+        service: http
+        permanent: yes
+        state: enabled
+        immediate: yes
 
   roles:
     - { role: geerlingguy.apache }
@@ -215,7 +215,7 @@ Starting galaxy role install process
 
 Ми створимо playbook `playbook-deploy.yml` для керування розгортанням:
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -257,7 +257,7 @@ TASK [ansistrano.deploy : ANSISTRANO | Change softlink to new release]
 TASK [ansistrano.deploy : ANSISTRANO | Clean up releases]
 
 PLAY RECAP ********************************************************************************************************************************************************************************************************
-192.168.1.11 : ok=25   changed=8    unreachable=0    failed=0    skipped=14   rescued=0    ignored=0   
+192.168.1.11 : ok=25   changed=8    unreachable=0    failed=0    skipped=14   rescued=0    ignored=0
 
 ```
 
@@ -342,7 +342,7 @@ var/www/site
 
 * Використовуючи змінну `ansistrano_keep_releases`, збережіть лише 3 випуски проекту. Перевірка.
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -390,7 +390,7 @@ $ tree /var/www/site/
 
 ### Використання shared_paths і shared_files
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -486,7 +486,7 @@ $  tree -F /var/www/site/
 
 Змініть playbook для конфігурації сервера `playbook-config-server.yml`
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -520,7 +520,7 @@ $  tree -F /var/www/site/
 
 Змініть playbook для розгортання `playbook-deploy.yml`
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -587,7 +587,7 @@ $  tree -F /var/www/site/
 
 * Розгорніть гілку `releases/v1.1.0`:
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -628,7 +628,7 @@ $ curl http://192.168.1.11
 
 * Розгорніть тег `v2.0.0`:
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -684,7 +684,7 @@ Playbook можна включити за допомогою змінних, н�
 
 * Простий приклад: надішліть електронний лист (або будь-яке інше, наприклад сповіщення Slack) на початку розгортання:
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -710,7 +710,7 @@ Playbook можна включити за допомогою змінних, н�
 
 Створіть файл `deploy/before-setup-tasks.yml`:
 
-```bash
+```yaml
 ---
 - name: Send a mail
   mail:
@@ -735,7 +735,7 @@ Heirloom Mail version 12.5 7/5/10.  Type ? for help.
 
 * Можливо, вам доведеться перезапустити деякі служби наприкінці розгортання, наприклад, щоб очистити кеші. Давайте перезапустимо Apache наприкінці розгортання:
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -762,7 +762,7 @@ Heirloom Mail version 12.5 7/5/10.  Type ? for help.
 
 Створіть файл `deploy/after-symlink-tasks.yml`:
 
-```bash
+```yaml
 ---
 - name: restart apache
   systemd:
