@@ -23,31 +23,30 @@ tags:
 
 Плагін [nvim-lint](https://github.com/mfussenegger/nvim-lint) забезпечує підтримку вставки ==linters== у редактор шляхом виправлення коду або вмісту як для синтаксичної, так і для семантичної частин.
 
-Щоб установити плагін, потрібно відредагувати файл `lua/plugins/init.lua`, додавши наступний блок коду:
+Щоб установити плагін *nvim-lint*, просто створіть файл **nvim-lint.lua** в папці `lua/plugins`; під час наступного запуску екземпляра Neovim це буде інтегровано в конфігурацію.
 
-```lua title="plugins.lua"
-  {
-    "mfussenegger/nvim-lint",
-    event = "VeryLazy",
-    config = function()
-      require "custom.configs.lint"
+Вміст файлу такий:
+
+```lua title="nvim-lint.lua"
+return {
+ {
+  "mfussenegger/nvim-lint",
+  enabled = true,
+  event = "VeryLazy",
+  config = function()
+   require("lint").linters_by_ft = {
+    markdown = { "markdownlint", "vale" },
+    yaml = { "yamllint" },
+   }
+
+   vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    callback = function()
+     require("lint").try_lint()
     end,
-  },
-```
-
-Плагін має файл конфігурації, який потрібно розмістити в папці `lua/configs`. Усередині нього є таблиця ==linters_by_ft==, де ви можете ввести *лінтери* для мов, які використовуються для розробки.
-
-```lua title="lint.lua"
-require("lint").linters_by_ft = {
-  markdown = { "markdownlint" },
-  yaml = { "yamllint" },
-}
-
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  callback = function()
-    require("lint").try_lint()
+   })
   end,
-})
+ },
+}
 ```
 
 Цей файл конфігурації налаштовано на роботу з кодом markdown, але його можна змінити або розширити за допомогою [цих доступних](https://github.com/mfussenegger/nvim-lint?tab=readme-ov-file#available-linters) на сайті проекту.
