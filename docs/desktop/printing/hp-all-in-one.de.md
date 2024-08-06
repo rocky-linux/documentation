@@ -1,7 +1,7 @@
 ---
 title: Installation und Einrichtung eines HP All-in-One-Druckers
 author: Joseph Brinkman
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 9.4
 tags:
   - Desktop
@@ -26,13 +26,13 @@ sudo dnf install hplip-common.x86_64 hplip-libs.x86_64 hplip-gui
 
 ## Printer Setup
 
-Wenn Sie mit der Installation des Druckertreibers fertig sind, sollten Sie Ihren HP All-in-One Drucker zu Ihrer Rocky Workstation hinzufügen können. Stellen Sie sicher, dass der Drucker physisch mit demselben Netzwerk verbunden ist, entweder über WLAN oder eine Direktverbindung. Zu den Einstellungen gehen
+Wenn Sie mit der Installation des Druckertreibers fertig sind, sollten Sie Ihren HP All-in-One Drucker zu Ihrer Rocky Workstation hinzufügen können. Stellen Sie sicher, dass der Drucker physisch mit demselben Netzwerk verbunden ist, entweder über WLAN oder eine Direktverbindung. Gehen Sie zu den Einstellungen.
 
-Klicken Sie im linken Menü auf ++"Printers"++
+1. Klicken Sie im linken Menü auf ++"Printers"++
 
-Klicken Sie bitte auf ++"Add a Printer"++
+2. Klicken Sie bitte auf ++"Add a Printer"++
 
-Wählen Sie Ihren HP All-in-One Drucker aus.
+3. Wählen Sie Ihren HP All-in-One Drucker aus.
 
 ## Scanner Support
 
@@ -48,6 +48,6 @@ Die Benutzeroberfläche von `xsane` sieht ein wenig ungewöhnlich aus, aber ein 
 
 Eine umfassendere `xsane`-Anleitung finden Sie in diesem [Artikel der Fakultät für Mathematik der Universität Cambridge](https://www.maths.cam.ac.uk/computing/printing/xsane){target="_blank"}
 
-## Conclusion
+## Zusammenfassung
 
 Nach der Installation von `HPLIP` und `xsane` sollten Sie nun auf Ihrem HP All-in-One Drucker drucken und scannen können.
