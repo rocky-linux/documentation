@@ -4,8 +4,6 @@ author: Srinivas Nishant Viswanadha
 contributors: Steven Spencer, Antoine Le Morvan, Ganna Zhyrnova
 ---
 
-# Розділ: Робота з шаблонами Jinja в Ansible
-
 ## Вступ
 
 Ansible забезпечує потужний і простий спосіб керування конфігураціями за допомогою шаблонів Jinja через вбудований модуль `template`. Цей документ досліджує два важливі способи використання шаблонів Jinja в Ansible:
