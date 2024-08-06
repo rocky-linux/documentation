@@ -6,13 +6,13 @@ title: Part 2.1 Web Servers Apache
 
 ## Apache
 
-In this chapter, you will learn about Apache, the web server.
+In this chapter, you will learn about the web server Apache.
 
 ****
 
-**Objectives**: In this chapter, you will learn how to:
+**Objectives**: You will learn how to:
 
-:heavy_check_mark: install and configure apache
+:heavy_check_mark: install and configure Apache
 
 :checkered_flag: **apache**, **http**, **httpd**
 
@@ -25,19 +25,19 @@ In this chapter, you will learn about Apache, the web server.
 
 ### Generalities
 
-The Apache HTTP server is the work of a group of volunteers: The Apache Group. This group set out to build a Web server on the same level as commercial products, but as free software (its source code is available).
+The Apache HTTP server is the work of a group of volunteers: The Apache Group. This group set out to build a Web server on the same level as commercial products but as free software (its source code is available).
 
-Joining the original team were hundreds of users who, through their ideas, tests, and lines of code, contributed to making Apache the most widely used Web server in the world.
+Hundreds of users joined the original team and contributed ideas, tests, and lines of code to making Apache the most widely used Web server in the world.
 
-Apache's ancestor is the free server developed by the National Center for Supercomputing Applications at the University of Illinois. The evolution of this server came to a halt when the person in charge left the NCSA in 1994. Users continued to fix bugs and create extensions, which they distributed as "patches", hence the name "a patchee server".
+Apache's ancestor is the accessible server developed by the National Center for Supercomputing Applications at the University of Illinois. The evolution of this server came to a halt when the person in charge left the NCSA in 1994. Users continued to fix bugs and create extensions, which they distributed as "patches", hence the name "a patchee server".
 
 The release of Apache version 1.0 was on December 1, 1995 (over 30 years ago!).
 
-The development team coordinates its work by way of a mailing list, where discussions regarding proposals and changes to the software happen. Voting on changes happens before incorporation into the project. Anyone can join the development team: all you need to do to become a member of The Apache Group is make an active contribution to the project.
+The development team coordinates its work through a mailing list, where discussions regarding proposals and changes to the software occur. Changes are voted on before incorporation into the project. Anyone can join the development team. To become a member of The Apache Group, you must actively contribute to the project.
 
-The Apache server has a very strong presence on the Internet, still accounting for around 50% of market share for all active sites.
+The Apache server has a robust Internet presence, accounting for around 50% of the market share for all active sites.
 
-The market share lost by Apache often goes to its biggest challenger: the nginx server. The latter is faster at delivering web pages, and less functionally complete than the giant Apache.
+Apache often loses market share to its biggest challenger, the Nginx server. The latter is faster at delivering web pages but less functionally complete than the giant Apache.
 
 ### Installation
 
@@ -47,15 +47,15 @@ The administrator will have to choose between two installation methods:
 
 * **Package installation**: the distribution vendor supplies **stable, supported** (but sometimes older) versions
 
-* **Installation from source**: which involves compilation of the software by the administrator, who can specify the options that interest him or her, thus optimizing the service. Since Apache has a modular architecture, it is generally not necessary to re-compile the apache software to add or remove additional functionalities (add or remove modules).
+* **Installation from source**: This involves the administrator compiling the software, who can specify the options that interest him or her, thus optimizing the service. Since Apache has a modular architecture, it is generally unnecessary to re-compile the Apache software to add or remove additional functionalities (add or remove modules).
 
-The package-based installation method is strongly recommended. Additional repositories are available to install more recent versions of apache on older distributions, but nobody will provide support in the event of problems.
+The package-based installation method is strongly recommended. Additional repositories are available to install more recent versions of Apache on older distributions, but nobody will provide support in case of problems.
 
 On Enterprise Linux distributions, the `httpd` package provides the Apache server.
 
 In the future, you might have to install some extra modules. Here are some examples of modules and their roles:
 
-* **mod_access**: filters client access by host name, IP address or other characteristic
+* **mod_access**: filters client access by hostname, IP address, or other characteristic
 * **mod_alias**: enables the creation of aliases or virtual directories
 * **mod_auth**: authenticates clients
 * **mod_cgi**: executes CGI scripts
@@ -108,12 +108,12 @@ $ sudo systemctl status httpd
 
 Do not forget to open your firewall (see Security section).
 
-You can check now the availability of the service:
+You can now check the availability of the service:
 
-* from any web browser providing the IP address of your server (for example <http://192.168.1.100/>).
-* directly from your server.
+* From any web browser providing the IP address of your server (for example, <http://192.168.1.100/>).
+* Directly from your server.
 
-For that, you will have to install a text browser, for example elinks.
+To do so, you must install a text browser, such as elinks.
 
 ```bash
 sudo dnf install elinks
@@ -166,9 +166,9 @@ You will notice that the `/etc/httpd/logs` folder is a symbolic link to the `/va
 
 ### Configuration
 
-Initially, configuration of the Apache server was in a single `/etc/httpd/conf/httpd.conf` file. Over time, this file has become increasingly large and less readable.
+Initially, the Apache server's configuration was in a single `/etc/httpd/conf/httpd.conf` file. Over time, this file has become increasingly prominent and less readable.
 
-Modern distributions therefore tend to distribute Apache configuration over a series of `*.conf` files in the directories `/etc/httpd/conf.d` and `/etc/httpd/conf.modules.d`, attached to the main `/etc/httpd/conf/httpd.conf` file by the Include directive.
+Modern distributions, therefore, tend to distribute Apache configuration over a series of `*.conf` files in the directories `/etc/httpd/conf.d` and `/etc/httpd/conf.modules.d`, attached to the main `/etc/httpd/conf/httpd.conf` file by the Include directive.
 
 ```bash
 $ sudo grep "^Include" /etc/httpd/conf/httpd.conf
@@ -180,19 +180,19 @@ The `/etc/httpd/conf/httpd.conf` file is amply documented. In general, these com
 
 Global server configuration is in `/etc/httpd/conf/httpd.conf`.
 
-This file has 3 sections for configuring:
+This file has three sections for configuring:
 
 * in **section 1**, the global environment;
 * in **section 2**, the default site and default virtual site parameters;
 * in **section 3**, the virtual hosts.
 
-**Virtual hosting** lets you put **several virtual sites online** on the same server. The sites are then differentiated according to their domain names, IP addresses, and so on.
+**Virtual hosting** lets you put **several virtual sites online** on the same server. The sites are then differentiated according to their domain names, IP addresses, etc.
 
 Modifying a value in section 1 or 2 affects all hosted sites.
 
-In a shared environment, modifications are therefore in section 3.
+In a shared environment, modifications are, therefore, in section 3.
 
-To facilitate future updates, it is strongly recommended that you create a section 3 configuration file for each virtual site.
+To facilitate future updates, creating a section 3 configuration file for each virtual site is strongly recommended.
 
 Here is a minimal version of the `httpd.conf` file:
 
@@ -258,33 +258,33 @@ IncludeOptional conf.d/*.conf
 
 #### Section 1
 
-The various directives encountered in section 1 are :
+The various directives encountered in Section 1 are :
 
 | Option                 | Information                                                                                |
 | ---------------------- | ------------------------------------------------------------------------------------------ |
 | `ServerTokens`         | This directive will be in a future chapter.                                      |
 | `ServertRoot`          | Indicates the path to the directory containing all the files making up the Apache server.  |
-| `Timeout`              | The number of seconds before the expiry time of a too long request (incoming or outgoing). |
+| `Timeout`              | The number of seconds before the expiration time of a request that is too long (incoming or outgoing). |
 | `KeepAlive`            | Persistent connection (several requests per TCP connection).                               |
 | `MaxKeepAliveRequests` | Maximum number of persistent connections.                                                  |
 | `KeepAliveTimeout`     | Number of seconds to wait for the next client request before closing the TCP connection.   |
-| `Listen`               | Allow apache to listen on specific addresses or ports.                                     |
-| `LoadModule`           | Load add-on modules (fewer modules = greater security).                                    |
-| `Include`              | Include other server configuration files.                                                  |
-| `ExtendedStatus`       | Display more information about the server in the server-status module.                     |
+| `Listen`               | Allows Apache to listen to specific addresses or ports.                                     |
+| `LoadModule`           | Loads add-on modules (fewer modules = greater security).                                    |
+| `Include`              | Includes other server configuration files.                                                  |
+| `ExtendedStatus`       | Displays more information about the server in the server status module.                     |
 | `User` and `Group`     | Allows the launching of Apache processes with different users. Apache always starts as root, then changes its owner and group. |
 
 ##### Multi-Process Modules (MPM)
 
-The Apache server was designed to be a powerful and flexible server, capable of running on a wide variety of platforms.
+The Apache server was designed to be powerful and flexible, capable of running on various platforms.
 
-Different platforms and environments often mean different functionality, or the use of different methods to implement the same functionality as efficiently as possible.
+Different platforms and environments often mean different functionality or the use of other methods to implement the same functionality as efficiently as possible.
 
-Apache's modular design allows the administrator to choose which features to include in the server, by selecting which modules to load, either at compile-time or at run-time.
+Apache's modular design allows the administrator to choose which features to include in the server by selecting which modules to load, either at compile or run-time.
 
-This modularity also includes the most basic web server functions.
+This modularity also includes the most rudimentary web server functions.
 
-Certain modules, the Multi-Process Modules (MPM), are responsible for associating with the machine's network ports, accepting requests and distributing them among the various child processes.
+The Multi-Process Modules (MPM) modules are responsible for associating with the machine's network ports, accepting requests, and distributing them among the various child processes.
 
 Configuring MPM modules is in the `/etc/httpd/conf.modules.d/00-mpm.conf` configuration file:
 
@@ -318,9 +318,9 @@ As you can see, the default MPM is the `mpm_event`.
 
 The performance and capabilities of your web server depend heavily on the choice of MPM.
 
-Choosing one module over another is therefore a complex task, as is optimizing the chosen MPM module (number of clients, queries, and so on.).
+Choosing one module over another is a complex task, as is optimizing the chosen MPM module (number of clients, queries, etc.).
 
-By default, the Apache configuration assumes a moderately busy service (256 clients max).
+The Apache configuration assumes a moderately busy service (256 clients max) by default.
 
 ##### About keepalive directives
 
@@ -328,35 +328,35 @@ With the `KeepAlive` directive disabled, every resource request on the server re
 
 With the `KeepAlive` directive set to `On`, the server keeps the connection open with the client for the duration of the `KeepAlive`.
 
-Given that a web page contains several files (images, stylesheets, javascripts, etc.), this strategy is a quick winner.
+This strategy is a quick winner because a web page contains several files (images, stylesheets, Javascript, etc.).
 
 However, it is important to set this value as precisely as possible:
 
 * Too short a value penalizes the customer,
 * Too long a value penalizes server resources.
 
-`KeepAlive` values for individual customer virtual hosts allows more granularity per customer. In this case, setting `KeepAlive` values happens directly in the customer's VirtualHost or at proxy level (`ProxyKeepalive` and `ProxyKeepaliveTimeout`).
+`KeepAlive` values for individual customer virtual hosts allow more granularity per customer. In this case, setting `KeepAlive` values happens directly in the customer's VirtualHost or at the proxy level (`ProxyKeepalive` and `ProxyKeepaliveTimeout`).
 
 #### Section 2
 
-Section 2 sets the values used by the main server. The main server responds to all requests that are not handled by one of the Virtualhosts in section 3.
+Section 2 sets the values used by the main server. The main server responds to all requests not handled by one of the Virtualhosts in section 3.
 
 The values are also used as default values for virtual sites.
 
 | Option              | Information                                                                                         |
 | ------------------- | --------------------------------------------------------------------------------------------------- |
-| `ServerAdmin`       | specifies an e-mail address which will appear on certain auto-generated pages, such as error pages. |
-| `ServerName`        | specifies the name identifying the server. Can happen automatically, but it the recommendation is to specify it explicitly (IP address or DNS name). |
+| `ServerAdmin`       | specifies an e-mail address appearing on certain auto-generated pages, such as error pages. |
+| `ServerName`        | specifies the name identifying the server. It can happen automatically, but the recommendation is to specify it explicitly (IP address or DNS name). |
 | `DocumentRoot`      | specifies the directory containing files to serve to clients. Default /var/www/html/.           |
 | `ErrorLog`          | specifies the path to the error file.                                                               |
 | `LogLevel`          | debug, info, notice, warn, error, crit, alert, emerg.                                               |
 | `LogFormat`         | defines a specific log format. Done with the CustomLog directive.                               |
-| `CustomLog`         | specify path to access file.                                                                        |
+| `CustomLog`         | specifies the path to access the file.                                                                        |
 | `ServerSignature`   | seen in the security part.                                                                          |
 | `Alias`             | specifies a directory outside the tree and makes it accessible by context. The presence or absence of the last slash in the context is important. |
 | `Directory`         | specifies behaviors and access rights by directory.                                                 |
 | `AddDefaultCharset` | specifies the encoding format for pages sent (accented characters can be replaced by ?...).         |
-| `ErrorDocument`     | customized error pages.                                                                             |
+| `ErrorDocument`     | customizes error pages.                                                                             |
 | `server-status`     | report on server status.                                                                            |
 | `server-info`       | report on server configuration.                                                                     |
 
@@ -364,13 +364,13 @@ The values are also used as default values for virtual sites.
 
 The `ErrorLog` directive defines the error log to use.
 
-This directive defines the name of the file in which the server logs all errors it encounters. If the file path is not absolute, the assumption is to be relative to ServerRoot.
+This directive defines the file name in which the server logs all errors it encounters. If the file path is not absolute, the assumption is to be relative to ServerRoot.
 
 ##### The `DirectoryIndex` directive
 
 The DirectoryIndex directive defines the site's home page.
 
-This directive specifies the name of the file loaded first, which will act as the site index or home page.
+This directive specifies the file's name loaded first, which will act as the site index or home page.
 
 Syntax:
 
@@ -413,11 +413,11 @@ Example:
 </Directory>
 ```
 
-The `Directory` section defines a block of directives applying to a part of the server's file system. The directives contained here will only apply to the specified directory (and its sub-directories).
+The `Directory` section defines a block of directives applying to a part of the server's file system. The directives here will only apply to the specified directory (and sub-directories).
 
 The syntax of this block accepts wildcards, but it is preferable to use the DirectoryMatch block.
 
-In the following example, we're going to deny access to the server's local hard disk, regardless of the client. The "/" directory represents the root of the hard disk.
+In the following example, we'll deny access to the server's local hard disk, regardless of the client. The "/" directory represents the root of the hard disk.
 
 ```file
 <Directory />
@@ -425,7 +425,7 @@ In the following example, we're going to deny access to the server's local hard 
 </Directory>
 ```
 
-The following example shows authorizing access to the /var/www/html publishing directory for all clients.
+The following example shows authorizing access to all clients'/var/www/html publishing directory.
 
 ```file
 <Directory /var/www/html>
@@ -433,7 +433,7 @@ The following example shows authorizing access to the /var/www/html publishing d
 </Directory>
 ```
 
-When the server finds an `.htaccess` file, it needs to know whether directives placed in the file have authorization to modify the pre-existing configuration. The `AllowOverride` directive, controls that authorization in `Directory` directives. When set to `none`, `.htaccess` files are completely ignored.
+When the server finds an `.htaccess` file, it needs to know whether directives placed in the file have authorization to modify the pre-existing configuration. The `AllowOverride` directive controls the authorization in `Directory` directives. When set to `none`, `.htaccess` files are completely ignored.
 
 ##### The `mod_status`
 
@@ -467,9 +467,9 @@ Each virtual site corresponds to a different tree structure.
 
 Section 3 of the `httpd.conf` file declares these virtual hosts.
 
-To facilitate future updates, it is strongly recommended that you create a section 3 configuration file for each virtual site.
+It is strongly recommended that you create a section 3 configuration file for each virtual site to facilitate future updates.
 
-Choose virtual hosting "by IP" or "by name". For production use, it is not advisable to mix the two solutions.
+Choose virtual hosting "by IP" or "by name." Mixing the two solutions is not advisable for production use.
 
 * Configuring each virtual site in an independent configuration file
 * VirtualHosts are stored in `/etc/httpd/conf.d/`
@@ -488,11 +488,11 @@ The `VirtualHost` directive defines virtual hosts.
  </VirtualHost>
 ```
 
-If you configure the Apache server with the basic directives seen above, you will only be able to publish one site. Indeed, you can not publish multiple sites with the default settings: same IP address, same TCP port and no hostname or unique hostname.
+If you configure the Apache server with the basic directives seen above, you can only publish one site. Indeed, you can not publish multiple sites with the default settings: the same IP address, the same TCP port, and no hostname or unique hostname.
 
-The use of virtual sites will enable us to publish several websites on the same Apache server. You are going to define blocks, each of which will describe a website. In this way, each site will have its own configuration.
+Virtual sites will enable us to publish several websites on the same Apache server. You will define blocks, each describing a website. In this way, each site will have its own configuration.
 
-For ease of understanding, a website is often associated with a single machine. Virtual sites or virtual hosts are so called because they dematerialize the link between machine and website.
+For ease of understanding, a website is often associated with a single machine. Virtual sites or hosts are so-called because they dematerialize the link between machines and websites.
 
 Example 1:
 
@@ -510,7 +510,7 @@ Listen 192.168.0.11:9090
 </VirtualHost>
 ```
 
-IP-based virtual hosting is a method of applying certain guidelines based on the IP address and port on which the request is received. In general, this means serving different web sites on different ports or interfaces.
+IP-based virtual hosting applies specific guidelines based on the IP address and port on which the request is received. This generally means serving different websites on different ports or interfaces.
 
 ##### The `NameVirtualHost` directive
 
@@ -530,7 +530,7 @@ Example:
 NameVirtualHost 160.210.169.6:80
 ```
 
-The directive must come before the virtual site description blocks. It designates the IP addresses used to listen for client requests to virtual sites.
+The directive must come before the virtual site description blocks. It designates the IP addresses used to listen to client requests for virtual sites.
 
 To listen for requests on all the server's IP addresses, use the * character.
 
@@ -544,14 +544,14 @@ sudo systemctl reload httpd
 
 #### Manual
 
-There is a package containing a site that acts as an Apache user manual. It is called `httpd-manual`.
+A package called' httpd-manual' contains a site that acts as an Apache user manual.
 
 ```bash
 sudo dnf install httpd-manual
 sudo systemctl reload httpd
 ```
 
-When installed, you can access the manual with a web browser at <http://127.0.0.1/manual>.
+You can access the manual with a web browser at <http://127.0.0.1/manual> when installed.
 
 ```bash
 $ elinks http://127.0.0.1/manual
@@ -559,13 +559,13 @@ $ elinks http://127.0.0.1/manual
 
 #### The `apachectl` command
 
-The `apachectl` is the server control interface for Apache `httpd` server.
+The `apachectl` is the server control interface for the Apache `httpd` server.
 
-It is a very usefull command with the `-t` or `configtest` witch run a configuration file syntax test.
+It is a very useful command with the `-t` or `configtest`, which runs a configuration file syntax test.
 
 !!! NOTE
 
-    Very usefull when used with ansible handlers to test the configuration.
+    It is very useful when used with Ansible handlers to test the configuration.
 
 ### Security
 
@@ -583,7 +583,7 @@ By default, if SELinux security is active, it prevents the reading of a site fro
 
 The directory containing the site must have the security context `httpd_sys_content_t`.
 
-You can check current context with the command:
+You can check the current context with the command:
 
 ```bash
 * ls -Z /dir
@@ -595,7 +595,7 @@ Add context with the following command:
 sudo chcon -vR --type=httpd_sys_content_t /dir
 ```
 
-It also prevents the opening of a non-standard port. Opening the port is a manual operation, using the `semanage` command (not installed by default).
+It also prevents the opening of a non-standard port. Opening the port is a manual operation using the `semanage` command (not installed by default).
 
 ```bash
 sudo semanage port -a -t http_port_t -p tcp 1664
@@ -603,13 +603,13 @@ sudo semanage port -a -t http_port_t -p tcp 1664
 
 #### User and Group directives
 
-the `User` and `Group` directives define an Apache management account and group.
+The `User` and `Group` directives define an Apache management account and group.
 
-Historically, root ran Apache, which caused security problems. Apache is always run by root, but then changes its identity. Generally User `apache` and Group `apache`.
+Historically, root ran Apache, which caused security problems. The root always runs Apache, but then its identity is changed. Generally User `apache` and Group `apache`.
 
 Never ROOT!
 
-The Apache server (`httpd` process) starts with the `root` superuser account. Each client request triggers the creation of a "child" process. To limit risks, launching these child processes happens from a less privileged account.
+The Apache server (`httpd` process) starts with the `root` superuser account. Each client request triggers the creation of a "child" process. To limit risks, these child processes are launched from a less privileged account.
 
 The User and Group directives declare the account and group used to create child processes.
 
@@ -617,9 +617,9 @@ This account and group must exist in the system (by default, this happens during
 
 #### File permissions
 
-As a general security rule, web server content must not belong to the process running the server. In our case, the files should not belong to the `apache` user and group, since it has write access to the folders.
+As a general security rule, web server content must not belong to the process running the server. In our case, the files should not belong to the `apache` user and group since it has written access to the folders.
 
-You assign the contents to the unprivileged user or to the root user and the associated group. Incidentally, you also take the opportunity to restrict the group's access rights.
+You assign the contents to the unprivileged user, the root user, and the associated group. Incidentally, you also take the opportunity to restrict the group's access rights.
 
 ```bash
 cd /var/www/html
