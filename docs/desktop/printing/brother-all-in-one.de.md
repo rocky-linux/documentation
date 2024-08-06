@@ -1,7 +1,7 @@
 ---
 title: Installation und Einrichtung eines Brother All-in-One Druckers
 author: Joseph Brinkman
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 9.4
 tags:
   - Desktop
@@ -46,7 +46,7 @@ Es wird ein Softwarefenster geöffnet, das versucht, Druckertreiber zu finden un
 
 2. Öffnen Sie ein Terminalfenster.
 
-3. Wechseln Sie zu dem Verzeichnis, in das Sie die Datei im letzten Schritt heruntergeladen haben. zum Beispiel `cd Downloads`
+3. Wechseln Sie zu dem Verzeichnis, in das Sie die Datei im letzten Schritt heruntergeladen haben. Zum Beispiel, `cd Downloads`
 
 4. Geben Sie diesen Befehl ein, um die heruntergeladene Datei zu entpacken:
 
@@ -56,13 +56,13 @@ Es wird ein Softwarefenster geöffnet, das versucht, Druckertreiber zu finden un
 
 5. Holen Sie sich die Superuser-Autorisierung mit dem Befehl `su` oder `sudo su`.
 
-6. Folgendes Kommando ausführen:
+6. Starten Sie das Tool:
 
    ```bash
    bash linux-brprinter-installer-*.*.*-* Brother machine name
    ```
 
-7. Die Treiberinstallation wird gestartet. Befolgen Sie die Anweisungen auf dem Installationsbildschirm
+7. Die Treiberinstallation wird gestartet. Befolgen Sie die Anweisungen auf dem Installationsbildschirm.
 
 Der Installationsvorgang kann einige Zeit dauern. Warten Sie, bis es abgeschlossen ist. Wenn Sie fertig sind, können Sie optional einen Testdruck senden.
 
@@ -80,6 +80,6 @@ Die Benutzeroberfläche von `xsane` sieht ein wenig ungewöhnlich aus, aber ein 
 
 Eine umfassendere `xsane`-Anleitung finden Sie in diesem [Artikel der Fakultät für Mathematik der Universität Cambridge](https://www.maths.cam.ac.uk/computing/printing/xsane){target="_blank"}
 
-## Conclusion
+## Zusammenfassung
 
-Nach der Installation der erforderlichen Brother-Treiber und `xsane` sollten Sie nun auf Ihrem All-in-One-Drucker und Scanner von Brother drucken und scannen können.
+Nach der Installation der erforderlichen Brother-Treiber und `xsane` sollten Sie nun mit Ihrem All-in-One-Drucker und Scanner von Brother drucken und scannen können.
