@@ -1,20 +1,18 @@
 ---
 title: Desktop via RDP teilen
 author: Ezequiel Bruni
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 ## Einleitung
 
-Wenn Sie Ihren (GNOME-)Desktop unter Rocky Linux freigeben oder auf andere freigegebene Desktops zugreifen möchten, ist dies die richtige Anleitung für Sie. Besser noch, es ist nicht schwierig!
+Diese Anleitung ist für Sie, wenn Sie Ihren (GNOME-)Desktop auf Rocky Linux freigeben oder auf andere freigegebene Desktops zugreifen möchten.
 
 Das Thema dieser Anleitung ist RDP. RDP steht für Remote Desktop Protocol und tut genau das, was es bedeutet: Es ermöglicht Ihnen, Computer aus der Ferne anzuzeigen und mit ihnen zu interagieren und das alles über eine grafische Benutzeroberfläche. Sie müssen sich jedoch ein wenig mit der Befehlszeile befassen, um die Software einzurichten.
 
 !!! note "Anmerkung"
 
-```
-Standardmäßig bietet Rocky Linux die Möglichkeit, Ihren Desktop über ein anderes Protokoll namens VNC freizugeben. VNC ist recht nützlich, RDP bietet in der Regel ein viel reibungsloseres Erlebnis und kann mit ungewöhnlichen Monitorauflösungen umgehen.
-```
+Standardmäßig ermöglicht Rocky Linux Ihnen, Ihren Desktop über ein anderes VNC-Protokoll freizugeben. VNC ist durchaus brauchbar, aber RDP bietet normalerweise ein viel flüssigeres Erlebnis und kommt mit seltsamen Monitorauflösungen zurecht.
 
 ## Voraussetzungen
 
@@ -29,7 +27,7 @@ Für diese Anleitung wird davon ausgegangen, dass Sie Folgendes bereits eingeric
 !!! info "Info"
 
 ```
-Derzeit sind einige Projekte im Gange, um den Wayland-Anzeigeserver und RDP zu integrieren, neuere Versionen von GNOME verfügen über einen integrierten RDP-Server, der diesen Zweck erfüllt. Allerdings verfügt die GNOME-Version von Rocky Linux nicht über diese Funktion, sodass es viel einfacher ist, Ihre RDP-Sitzung mit x11 zu betreiben.
+Derzeit sind einige Projekte im Gange, um den Wayland-Display-Server und RDP zu integrieren, neuere Versionen von GNOME verfügen über einen integrierten RDP-Server, der diesen Zweck erfüllt. Allerdings verfügt die GNOME-Version von Rocky Linux nicht über diese Funktion, sodass es viel einfacher ist, Ihre RDP-Sitzung mit x11 zu betreiben.
 ```
 
 ## Rocky Linux GNOME-Desktop über RDP teilen
@@ -48,14 +46,15 @@ sudo systemctl enable --now xrdp
 
 Wenn alles gut geht, sollte der RDP-Server installiert, aktiviert und ausgeführt werden. Sie können jedoch noch keine Verbindung herstellen. Sie müssen zunächst den richtigen Port in Ihrer Firewall öffnen.
 
-Wenn Sie mehr darüber erfahren möchten, wie die Firewall-App `firewalld` von Rocky Linux funktioniert, lesen Sie bitte unseren [Leitfaden zu „firewalld“](../../guides/security/firewalld-beginners.md). Wenn Sie einfach weitermachen möchten, führen Sie folgende Befehle aus:
+Wenn Sie mehr darüber erfahren möchten, wie die Firewall-App `firewalld` von Rocky Linux funktioniert, lesen Sie bitte unseren Leitfaden zu
+. Wenn Sie einfach weitermachen möchten, führen Sie folgende Befehle aus:
 
 ```bash
 sudo firewall-cmd --zone=public --add-port=3389/tcp --permanent
 sudo firewall-cmd --reload
 ```
 
-Für Anfänger: Diese Befehle öffnen den RDP-Port in Ihrer Firewall, sodass Sie eingehende RDP-Verbindungen akzeptieren und die Firewall neu starten können, um die Änderungen anzuwenden. Wenn Sie möchten, können Sie an diesem Punkt Ihren PC sicherheitshalber neu starten.
+Für Anfänger: Diese Befehle öffnen den RDP-Port in Ihrer Firewall, sodass Sie eingehende RDP-Verbindungen akzeptieren und die Firewall neu starten können, um die Änderungen anzuwenden. Wenn Sie möchten, können Sie an diesem Punkt Ihren PC sicherheitshalber neu starten. Wenn Sie möchten, können Sie Ihren PC sicherheitshalber neu starten.
 
 Wenn Sie keinen Neustart durchführen möchten, sollten Sie sich abmelden. RDP verwendet aus Sicherheitsgründen die Anmeldeinformationen Ihres Benutzerkontos. Eine Remote-Anmeldung ist nicht möglich, wenn Sie bereits lokal bei Ihrem Desktop angemeldet sind. Zumindest nicht mit gleichen Benutzerkonto.
 
@@ -77,7 +76,7 @@ Wenn Sie `Flatpak`/`Flathub` installiert haben, öffnen Sie einfach die Software
 
 Installieren und starten. Hinweis: Dies ist insbesondere der Vorgang zum Hinzufügen einer RDP-Verbindung in Remmina, aber er ist für fast jede andere RDP-Client-App, die Sie wahrscheinlich finden werden, ähnlich.
 
-Wie auch immer, klicken Sie auf die Plus-Schaltfläche in der oberen linken Ecke, um eine Verbindung hinzuzufügen. Nennen Sie es im Namensfeld wie Sie möchten und geben Sie die IP-Adresse des Remote-Computers sowie den Benutzernamen und das Passwort Ihres Remote-Benutzerkontos ein. Denken Sie daran: Wenn sich Ihre Computer im selben Netzwerk befinden, sollten Sie die lokale IP-Adresse verwenden und nicht die im Internet gültige IP, die Sie auf einer Website wie „whatsmyip.com“ sehen würden.
+Wie auch immer, klicken Sie auf die Plus-Schaltfläche in der oberen linken Ecke, um eine Verbindung hinzuzufügen. Nennen Sie es im Namensfeld wie Sie möchten und geben Sie die IP-Adresse des Remote-Computers sowie den Benutzernamen und das Passwort Ihres Remote-Benutzerkontos ein. Denken Sie daran: Wenn sich Ihre Computer im selben Netzwerk befinden, sollten Sie die lokale IP-Adresse verwenden und nicht die im Internet gültige IP, die Sie auf einer Website wie `whatsmyip.com` sehen würden.
 
 ![The Remmina connection profile form](images/rdp_images/02-remmina-config.png)
 
@@ -87,12 +86,12 @@ Scrollen Sie nach unten, um Optionen wie Multi-Monitor-Unterstützung, benutzerd
 
 Wenn sich Ihre Computer im selben Netzwerk befinden, wählen Sie für die beste Qualität einfach LAN.
 
-Klicken Sie auf ++"Save"++ dann ++"Connect"++, und los!
+Klicken Sie auf ++"Save"++ dann ++"Connect"++.
 
-So sieht es mit dem Windows Remote Desktop Connection-Client aus. Der Autor hat das gesamte Dokument auf seinem lokalen Rocky Linux-Server mit RDP geschrieben. Es war kein Witz vom Autor, dass RDP seltsame Monitorauflösungen verarbeiten kann.
+So sieht es mit dem Windows Remote Desktop Connection-Client aus. Der Autor hat das gesamte Dokument auf seinem lokalen Rocky Linux-Server mit RDP geschrieben.
 
 ![A screenshot of my docs-writing environment, at a 5120x1440p resolution](images/rdp_images/03-rdp-connection.jpg)
 
 ## Zusammenfassung
 
-Fertig! Das ist alles, was Sie wissen müssen, um RDP auf Rocky Linux zum Laufen zu bringen und Ihren Desktop nach Herzenslust freizugeben. Wenn Sie lediglich aus der Ferne auf einige Dateien und Apps zugreifen müssen, ist dies genau das Richtige.
+Das ist alles, was Sie wissen müssen, um RDP auf Rocky Linux zum Laufen zu bringen und Ihren Desktop nach Herzenslust freizugeben. Dies reicht aus, wenn Sie nur remote auf einige Dateien und Apps zugreifen müssen.
