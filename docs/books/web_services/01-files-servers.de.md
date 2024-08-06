@@ -7,6 +7,12 @@ tags:
   - sftp
 ---
 
+!!! info
+
+```
+The content for this page has yet to be written.
+```
+
 <!---
 
 # Part 1. Files Servers
