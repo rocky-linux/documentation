@@ -1,7 +1,7 @@
 ---
 title: Screenshots mit Ksnip mit Anmerkungen versehen
 author: Joseph Brinkman
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.4
 tags:
   - Desktop
@@ -45,54 +45,39 @@ sudo dnf install ksnip -y
 
 ![ksnip](images/ksnip.png)
 
-![ksnip\_open](images/ksnip_image_opened.png)
-
-## Ein Bild mit Ksnip mit Anmerkungen versehen
+## Mit `Ksnip` ein Screenshot mit Anmerkungen versehen
 
 `Ksnip` verfügt über praktische und intuitive Tools zum Kommentieren von Screenshots.  Unten links im Bild sind die im Folgenden beschriebenen Optionen aufgeführt.
 
-Das Werkzeug `Select`: wird verwendet, um eine Auswahl zu treffen. Klicken Sie auf ein Element, um es auszuwählen, oder klicken Sie und ziehen Sie, um eine Auswahl zu treffen.
+![ksnip\_open](images/ksnip_image_opened.png)
 
-Das Werkzeug `Duplicate`: wird zum Duplizieren einer Auswahl verwendet. Klicken und ziehen Sie, um eine Auswahl zu treffen. Klicken und ziehen Sie dann die Auswahl, um sie zu verschieben oder weiter zu transformieren.
+| Option | Tool               | Beschreibung                                                                                                                                                                                                                                                                           |
+| ------ | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1      | `Select`           | das Werkzeug wird verwendet, um eine Auswahl zu treffen. Klicken Sie auf ein Element, um es auszuwählen, oder klicken Sie und ziehen Sie, um eine Auswahl zu treffen.                                                                                  |
+| 2      | `Duplicate`        | das Werkzeug wird zum Duplizieren einer Auswahl verwendet. Klicken und ziehen Sie, um eine Auswahl zu treffen. Dann klicken und ziehen Sie dann die Auswahl, um sie zu verschieben oder weiter zu transformieren.                      |
+| 3a     | `Arrow`            | das Standard Arrow-Tool, mit dem Sie durch Klicken und Ziehen einen Pfeil erstellen und von einer Position zu einer neuen Position bewegen können                                                                                                                                      |
+| 3b     | `Double Arrow`     | die zweite Arrow-Option erreichen Sie, indem Sie auf den Abwärtspfeil neben dem Arrow-Tool klicken. Wie der Werkzeug-Name vermuten lässt, verfügt das Tool an beiden Endpunkten über einen Pfeil.                                                      |
+| 3c     | `Line`             | die dritte Option erreichen Sie, indem Sie auf den Abwärtspfeil neben dem Arrow-Tool klicken. Es ersetzt Pfeile durch eine einfache Linie.                                                                                                             |
+| 4      | `Pen`              | macht Striche, die an einen Stift erinnern. Klicken Sie und bewegen Sie den Mauszeiger über den Screenshot, um den Stift zu verwenden. ^1^                                                                                                             |
+| 5a     | `Marker Pen`       | das Standard-Marker-Tool erzeugt Striche, die einem Textmarker ähneln. Um den Markierungsstift zu verwenden, halten Sie die Maustaste gedrückt und ziehen Sie den Cursor über den Screenshot. ^1^                                                      |
+| 5b     | `Marker Rectangle` | die zweite Marker-Option erreichen Sie, indem Sie auf den Abwärtspfeil neben dem Marker-Tool klicken. Wenn Sie mit der linken Maustaste klicken und den Cursor ziehen, füllt das Marker-Rectangle-Werkzeug das aus der Auswahl gebildete Rechteck. ^1^ |
+| 5c     | `Marker Elipse`    | die dritte Marker-Option erreichen Sie, indem Sie auf den Abwärtspfeil neben dem Marker-Tool klicken. Wenn Sie mit der linken Maustaste klicken und den Cursor ziehen, füllt das Marker-Ellipse-Werkzeug die aus der Auswahl erstellte Ellipse. ^1^    |
+| 6a     | `Text`             | Mit dem Standard-Textwerkzeug können Sie den Screenshot mit Text kommentieren. ^1^                                                                                                                                                                                     |
+| 6b     | `Text Pointer`     | die zweite Textoption erreichen Sie, indem Sie auf den Abwärtspfeil neben dem Textwerkzeug klicken. Es wird ein Zeiger angehängt, um die Aufmerksamkeit auf den Text zu lenken. ^1^                                                                    |
+| 6c     | `Text Arrow`       | die dritte Textoption erreichen Sie, indem Sie auf den Abwärtspfeil neben dem Textwerkzeug klicken. Um die Aufmerksamkeit auf den Text zu lenken, wird ein Pfeil angebracht. ^1^                                                                       |
+| 7a     | `Number`           | das Standard-Number-Tool fügt eine Zahl hinzu, um die Aufmerksamkeit auf den Screenshot zu lenken und ihn mit Zahlen zu kommentieren. ^1^                                                                                                                              |
+| 7b     | `Number Pointer`   | die zweite Option erreichen Sie, indem Sie auf den Abwärtspfeil neben dem Number-Tool klicken. Fügt eine Zahl mit einem Zeiger hinzu, um einen Screenshot ergänzend zu kommentieren. ^1^                                                               |
+| 7c     | `Number Arrow`     | die dritte Option erreichen Sie durch Klicken auf den Abwärtspfeil neben dem Number-Tool. Fügt eine Zahl mit einem Pfeil hinzu, um einen Screenshot ergänzend zu kommentieren. ^1^                                                                     |
+| 8a     | `Blur`             | das standardmäßige Blur-Tool, mit dem Sie durch Linksklicken und Ziehen Teile des Screenshots weichzeichnen können.                                                                                                                                                    |
+| 8b     | `Pixelate`         | die zweite Option des Weichzeichner-Werkzeugs erreichen Sie, indem Sie auf den Abwärtspfeil neben dem Blur-Tool klicken. Durch Linksklick und Ziehen können Sie überall auf dem Screenshot das Bild verpixeln.                                         |
+| 9a     | `Rectangle`        | mit dem standardmäßigen Rectangle Tool können Sie durch Klicken und Ziehen ein Rechteck erstellen. ^1^                                                                                                                                                                 |
+| 9b     | `Ellipse`          | die zweite Option des Rechteck-Werkzeugs, die Sie erreichen, indem Sie auf den Abwärtspfeil neben dem Rectangle Tool klicken. Ermöglicht Ihnen, durch Klicken und Ziehen eine Ellipse auf dem Bildschirm zu erstellen. ^1^                             |
+| 10     | `Sticker`          | platziert einen Sticker oder Emoji auf einem Screenshot. Durch Auswahl des Tools und klicken wird der Sticker platziert.                                                                                                                               |
 
-Das Werkzeug `Arrow`: wird zum Erstellen von Pfeilen verwendet. Klicken und ziehen Sie, um einen Pfeil zu erstellen.
-
-Das Werkzeug `Double Arrow` (auswählbar durch Klicken auf den Abwärtspfeil neben dem Pfeil): wird zum Erstellen doppelseitiger Pfeile verwendet. Klicken und ziehen Sie, um einen doppelseitigen Pfeil zu erstellen.
-
-Das Werkzeug `Line`: wird zum Erstellen gerader Linien verwendet. Klicken und ziehen Sie, um eine Linie zu erstellen.
-
-Das `Pen`-Werkzeug: wird verwendet, um Striche zu zeichnen, die einem Stift ähneln. Klicken Sie und bewegen Sie den Mauszeiger über den Screenshot, um den Stift zu verwenden. In der oberen Symbolleiste gibt es Anpassungsoptionen, mit denen Sie Stil und Strich des Stifts ändern können.
-
-Das Werkzeug `Marker Pen`: wird verwendet, um Striche zu erstellen, die einem Textmarker ähneln. Um den Markierungsstift zu verwenden, halten Sie die Maustaste gedrückt und ziehen Sie den Cursor über den Screenshot. Es gibt Anpassungen zum Ändern der Deckkraft in der oberen Symbolleiste.
-
-Das Werkzeug `Marker Rectangle` ist das Markierungsstift-Werkzeug, aber wenn Sie klicken und den Cursor ziehen, füllt das Markierungsrechteck-Werkzeug die rechteckige Auswahl. Es gibt Anpassungen zum Ändern der Deckkraft in der oberen Symbolleiste.
-
-Das Werkzeug `Marker Ellipse` ist das Markierungsstift-Werkzeug, aber wenn Sie mit der linken Maustaste klicken und den Cursor ziehen, füllt das Markierungsellipsen-Werkzeug die aus der Auswahl erstellte Ellipse. Es gibt Anpassungen zum Ändern der Deckkraft in der oberen Symbolleiste.
-
-Das Werkzeug `Text`: wird verwendet, um einen Screenshot mit Text zu kommentieren. Klicken Sie auf eine beliebige Stelle im Bild und beginnen Sie mit der Eingabe, um das Textwerkzeug zu verwenden. In der oberen Symbolleiste können Sie Rahmen, Farbe, Schriftfamilie, Schriftgröße, Schriftstil und Deckkraft Ihres Textes anpassen.
-
-Das Tool `Text Pointer`: wird verwendet, um einen Screenshot mit Text zu kommentieren, der an einen Zeiger angehängt ist. Der Zeiger soll die Aufmerksamkeit auf den Text lenken, ähnlich wie das `Text Arrow`-Werkzeug.
-
-Das Werkzeug `Text Arrow`: wird verwendet, um einen Screenshot mit Text zu kommentieren, der an einen Pfeil angehängt ist. Der Zeiger soll die Aufmerksamkeit auf den Text lenken, ähnlich wie das `Text Pointer`-Werkzeug.
-
-Das `Number`-Werkzeug: wird verwendet, um einen Screenshot mit einer numerischen Form zu kommentieren. Klicken Sie auf eine beliebige Stelle im Bild, um eine numerische Form zu platzieren. In der oberen Symbolleiste sind Anpassungsmöglichkeiten zum Ändern von Farbe, Breite und Deckkraft vorhanden.
-
-Das Werkzeug `Number Pointer`: wird verwendet, um einen Screenshot mit einer numerischen Form zu kommentieren, die an einen Zeiger angehängt ist. Klicken Sie auf eine beliebige Stelle im Bild, um eine numerische Form zu platzieren, die an einen Zeiger gebunden ist. In der oberen Symbolleiste sind Anpassungsmöglichkeiten zum Ändern von Farbe, Breite und Deckkraft vorhanden.
-
-Das Werkzeug `Number Arrow`: wird verwendet, um einen Screenshot mit einer numerischen Form zu kommentieren, die an einem Zeiger angebracht ist. Klicken Sie irgendwo auf das Bild, um eine numerische Form an einem Pfeil zu platzieren. In der oberen Symbolleiste sind Anpassungsmöglichkeiten zum Ändern von Farbe, Breite und Deckkraft vorhanden.
-
-Das `Blur`-Werkzeug: Wird zum Weichzeichnen einer Auswahl verwendet. Klicken Sie mit der linken Maustaste und ziehen Sie an eine beliebige Stelle im Screenshot, um eine Auswahl unscharf zu machen.
-
-Das Werkzeug `Pixelate`: wird zum Verpixeln einer Auswahl verwendet. Klicken Sie mit der linken Maustaste und ziehen Sie an einer beliebigen Stelle auf dem Screenshot, um eine Auswahl zu verpixeln.
-
-Das Werkzeug `Rectangle`: wird verwendet, um aus einer Auswahl ein Rechteck zu erstellen. Klicken Sie mit der linken Maustaste und ziehen Sie an einer beliebigen Stelle auf dem Screenshot, um eine rechteckige Auswahl zu treffen. In der oberen Symbolleiste sind Anpassungsmöglichkeiten zum Ändern von Farbe, Breite und Deckkraft vorhanden.
-
-Das Werkzeug `Ellipse`: wird verwendet, um aus einer Auswahl eine Ellipse zu erstellen. Klicken Sie mit der linken Maustaste und ziehen Sie an einer beliebigen Stelle im Screenshot, um eine Ellipse zu platzieren. In der oberen Symbolleiste sind Anpassungsmöglichkeiten zum Ändern von Farbe, Breite und Deckkraft vorhanden.
-
-Das Tool `Sticker`: wird verwendet, um einen Sticker oder ein Emoji auf einem Screenshot zu platzieren. Durch Auswahl des Tools und klicken wird der Sticker platziert.
-
-## Conclusion
+## Zusammenfassung
 
 Ksnip ist ein ausgezeichnetes Dienstprogramm zum Kommentieren von Screenshots. Es können auch Screenshots erstellt werden. Der Schwerpunkt dieses Handbuchs liegt jedoch auf den Kommentierung-Funktionen und -Tools, die Ksnip bereitstellt.
 
 Sehen Sie sich das [Ksnip GitHub Repo](https://github.com/ksnip/ksnip){target="_blank"} an, um mehr über dieses hervorragende Screenshot-Dienstprogramm zu erfahren.
+
+**1.** Für jedes der Werkzeuge, deren Beschreibung mit ==diesem hochgestellten Zeichen== (^1^) beginnt, sind nach der Werkzeugauswahl im oberen Menü verschiedene Befehlsoptionen verfügbar. Diese ändern die Deckkraft, den Rahmen, die Schriftart, den Schriftstil und andere Attribute.
