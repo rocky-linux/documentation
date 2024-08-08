@@ -544,7 +544,7 @@ sudo systemctl reload httpd
 
 #### Інструкція
 
-Є пакет який діє як інструкція користувача. Він називається `httpd-manual`.
+Пакет під назвою «httpd-manual» містить сайт, який діє як посібник користувача Apache.
 
 ```bash
 sudo dnf install httpd-manual
