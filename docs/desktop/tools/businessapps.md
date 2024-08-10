@@ -133,7 +133,7 @@ Looking for an alternative to Notion in the Software center? [AppFlowy](https://
 
     While every alternative app listed above is open source, they're not all "Free Libre and Open Source (FLOSS)". This means that some of them charge money for extra features, or premium versions of their services.
 
-## Microsoft Office
+## Microsoft Office (doesn't work) on Rocky Linux
 
 Ah Microsoft office. Newcomers to the Linux world might wonder what is so difficult about making that work. It isn't difficult at all, if you are okay with using the web version of Office365. That works just fine.
 
@@ -147,7 +147,7 @@ Even when the alternatives have all the features that a particular user might ne
 
 But, if Excel is not a huge part of your workflow, by all means check out the alternatives. They are *all* available in the Software center via Flathub.
 
-### Microsoft Office alternatives
+### Microsoft Office alternatives for Rocky Linux
 
 **LibreOffice**
 
