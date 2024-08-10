@@ -151,7 +151,7 @@ But, if Excel is not a huge part of your workflow, by all means check out the al
 
 **LibreOffice**
 
-LibreOffice is the de-facto standard in FLOSS office and productivity software. It covers most of your office needs: documents, spreadsheets, presentations, vector drawing software (built with printing in mind), and databases.
+[LibreOffice](https://www.libreoffice.org) is the de-facto standard in FLOSS office and productivity software. It covers most of your office needs: documents, spreadsheets, presentations, vector drawing software (built with printing in mind), and databases.
 
 It has decent but not perfect compatibility with Microsoft Office in general, but it's *very* good at handling open formats. If you want to divorce yourself from the Microsoft ecosystem completely, LibreOffice is probably your best option.
 
@@ -159,13 +159,13 @@ There is also a web-hosted version called Collabora Office, but that one has lim
 
 **OnlyOffice**
 
-OnlyOffice is a slightly less-comprehensive but still fantastic suite of apps that covers the creation of documents, presentations, spreadsheets, and PDF forms. Notably, there's also a PDF editor.
+[OnlyOffice](https://www.onlyoffice.com) is a slightly less-comprehensive but still fantastic suite of apps that covers the creation of documents, presentations, spreadsheets, and PDF forms. Notably, there's also a PDF editor.
 
 If you need Microsoft Office compatibility, particularly for documents and presentations, then OnlyOffice is probably your best choice. This author can attest that OnlyOffice is, in my experience, actually better at handling Word documents than the online version of Office365.
 
 **WPS Office**
 
-WPS Office, formerly Kingsoft Office, has actually been around the Linux ecosystem for quite some time. It also features support for docs, spreadsheets, presentations, and a PDF editor.
+[WPS Office](https://www.wps.com), formerly Kingsoft Office, has actually been around the Linux ecosystem for quite some time. It also features support for docs, spreadsheets, presentations, and a PDF editor.
 
 WPS Office has slightly better Microsoft Office compatibility than LibreOffice, but it is not as compatible as OnlyOffice. It also has fewer features, and is less customizable. I am not saying thay, they are. This is an excerpt from their own blog:
 
@@ -175,10 +175,9 @@ They themselves state that their primary focus is on creating a simpler and easi
 
 **Honorable mention: Calligra**
 
-The Calligra office suite is a project by the developers of KDE to create a user-friendly set of basic office apps that covers the creation of documents, spreadsheets, presentations, databases, flowcharts, vector drawing, ebooks, and more.
+The [Calligra](https://calligra.org) office suite is a FLOSS project by the developers of KDE to create a user-friendly set of basic office apps that covers the creation of documents, spreadsheets, presentations, databases, flowcharts, vector drawing, ebooks, and more.
 
 However, the Calligra apps aren't too easy install on Rocky Linux. If you have another machine running Fedora, I encourage you to give it a try. 
-
 
 ## Conclusion
 
