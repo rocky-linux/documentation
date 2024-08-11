@@ -20,7 +20,7 @@ In this chapter, you will learn about PHP and PHP-FPM.
 
 ****
 
-**Objectives**: In this chapter, you will learn how to:
+**Objectives**: You will learn how to:
 
 :heavy_check_mark: install a PHP application server  
 :heavy_check_mark: configure PHP-FPM pool  
@@ -108,7 +108,7 @@ To obtain a list of available versions, enter the following command:
 
  Rocky provides different PHP modules from its AppStream repository.
 
- You will note that the default version of a Rocky 8.9 is 7.2 that has already reached its end of life at the time of writing.
+ You will note that Rocky 8.9's default version is 7.2, which has already reached its end of life at the time of this writing.
 
  You can activate a newer module by entering the following command:
 
@@ -136,11 +136,11 @@ To obtain a list of available versions, enter the following command:
 
 You can now proceed to the installation of the PHP engine.
 
-### Installation of the PHP cgi mode
+### Installation of the PHP CGI mode
 
-First, install and use PHP in CGI mode. You can only make it work with the Apache web server and its `mod_php` module. You will see in the FastCGI part (php-fpm) of this document, how to integrate PHP in Nginx (but also Apache).
+First, install and use PHP in CGI mode. It can only work with the Apache web server and its `mod_php` module. This document's FastCGI part (php-fpm) explains how to integrate PHP in Nginx (but also Apache).
 
-The installation of PHP is relatively trivial since it consists of installing the main package and the few modules you will need.
+The installation of PHP is relatively trivial. It consists of installing the main package and the few modules you will need.
 
 The example below installs PHP with the modules usually installed with it.
 
@@ -150,7 +150,7 @@ The example below installs PHP with the modules usually installed with it.
  sudo dnf install php php-cli php-gd php-curl php-zip php-mbstring
  ```
 
- You will be prompted to import GPG keys for the epel9 (Extra Packages for Enterprise Linux 9) and Remi repositories during installation. Enter y to import the keys:
+ During installation, you will be prompted to import GPG keys for the epel9 (Extra Packages for Enterprise Linux 9) and Remi repositories. Enter y to import the keys:
 
  ```bash
  Extra Packages for Enterprise Linux 9 - x86_64
@@ -227,7 +227,7 @@ To serve PHP pages in CGI mode, you must install the Apache server, configure it
  sudo firewall-cmd --reload
  ```
 
-The default vhost should work out of the box. PHP provides a `phpinfo()` function that generates a summary table of its configuration. It is useful to test the good working of PHP. However, be careful not to leave such test files on your servers. They represent a huge security risk for your infrastructure.
+The default vhost should work out of the box. PHP provides a `phpinfo()` function that generates a summary table of its configuration. It is useful to test whether PHP is working well. However, be careful not to leave such test files on your servers. They represent a huge security risk for your infrastructure.
 
 Create the file `/var/www/html/info.php` (`/var/www/html` being the default vhost directory of the default Apache configuration):
 
@@ -342,9 +342,9 @@ pm = static
 pm.max_children = 10
 ```
 
-This configuration starts 10 processes.
+This configuration starts with 10 processes.
 
-In dynamic mode, PHP-FPM starts at *most* the number of processes specified by the value of `pm.max_children`. It first starts some processes corresponding to `pm.start_servers`, keeping at least the value of `pm.min_spare_servers` of inactive processes and at most `pm.max_spare_servers` of inactive processes.
+In dynamic mode, PHP-FPM starts at *most* the number of processes specified by the` pm.max_children` value. It first starts some processes corresponding to `pm.start_servers`, keeping at least the value of `pm.min_spare_servers` of inactive processes and, at most, `pm.max_spare_servers` of inactive processes.
 
 Example:
 
@@ -358,9 +358,9 @@ pm.max_spare_servers = 3
 
 PHP-FPM will create a new process to replace one that has processed several requests equivalent to `pm.max_requests`.
 
-By default the value of `pm.max_requests` is 0, meaning processes are never recycled. Using the `pm.max_requests` option can be interesting for applications with memory leaks.
+By default, the value of `pm.max_requests` is 0, meaning processes are never recycled. The `pm.max_requests` option can be attractive for applications with memory leaks.
 
-A third mode of operation is the `ondemand` mode. This mode only starts a process when it receives a request. It is not an optimal mode for sites with strong influences and is reserved for specific needs (sites with very weak requests, management backend, and so on.).
+A third mode of operation is the `ondemand` mode. This mode only starts a process when it receives a request. It is not an optimal mode for sites with strong influences and is reserved for specific needs (sites with feeble requests, management backend, etc.).
 
 !!! Note
 
@@ -368,7 +368,7 @@ A third mode of operation is the `ondemand` mode. This mode only starts a proces
 
 #### Process status
 
-PHP-FPM offers, like Apache and its `mod_status` module, a page indicating the status of the process.
+Like Apache and its `mod_status` module, PHP-FPM offers a page indicating the process's status.
 
 To activate the page, set its access path with the `pm.status_path` directive:
 
@@ -483,7 +483,7 @@ The configuration of Apache to use a PHP pool is quite simple. You have to use t
 
 ### Solid configuration of PHP pools
 
-Optimizing the number of requests served and analyzing the memory used by the PHP scripts, is necessary to optimize the maximum amount of launched threads.
+Optimizing the number of requests served and analyzing the memory used by the PHP scripts is necessary to maximize the number of launched threads.
 
 First of all, you need to know the average amount of memory used by a PHP process with the command:
 
@@ -493,13 +493,13 @@ while true; do ps --no-headers -o "rss,cmd" -C php-fpm | grep "pool www" | awk '
 
 This will give you a pretty accurate idea of the average memory footprint of a PHP process on this server.
 
-The result of the rest of this document is a memory footprint of 120MB per process at full load.
+The rest of this document results in a memory footprint of 120MB per process at full load.
 
 On a server with 8Gb of RAM, keeping 1Gb for the system and 1Gb for the OPCache (see the rest of this document), is 6Gb left to process PHP requests from clients.
 
 You can conclude that this server can accept at most **50 threads** `((6*1024) / 120)`.
 
-A good configuration of `php-fpm` specific to this use case is:
+An exemplary configuration of `php-fpm` specific to this use case is:
 
 ```bash
 pm = dynamic
@@ -545,10 +545,10 @@ opcache.max_accelerated_files=4000
 Where:
 
 * `opcache.memory_consumption` corresponds to the amount of memory needed for the opcache (increase this until obtaining a correct hit ratio).
-* `opcache.interned_strings_buffer` the amount of strings to cache.
+* `opcache.interned_strings_buffer` is the amount of strings to cache.
 * `opcache.max_accelerated_files` is near to the result of the `find ./ -iname "*.php"|wc -l` command.
 
-You can refer to an `info.php` page (including the `phpinfo();`) to configure the opcache (see for example the values of `Cached scripts` and `Cached strings`).
+To configure the opcache, refer to an `info.php` page (including the `phpinfo();`) (see, for example, the values of `Cached scripts` and `Cached strings`).
 
 !!! Note
 
