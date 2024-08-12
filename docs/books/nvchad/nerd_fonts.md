@@ -13,7 +13,7 @@ tags:
 
 ## :material-format-font: What is Nerd Fonts?
 
-![Nerd Fonts](images/nerd_fonts_site_small.png){ align=right } Nerd Fonts are a collection of modified fonts aimed at developers. In particular, "iconic fonts" such as [Font Awesome](https://fontawesome.com/), [Devicons](https://devicon.dev/), and [Octicons](https://primer.style/foundations/icons) are use to add extra glyphs.
+![Nerd Fonts](images/nerd_fonts_site_small.png){ align=right } Nerd Fonts are a collection of modified fonts aimed at developers. In particular, "iconic fonts" such as [Font Awesome](https://fontawesome.com/), [Devicons](https://devicon.dev/), and [Octicons](https://primer.style/foundations/icons) are used to add extra glyphs.
 
 Nerd Fonts also takes the most popular programming fonts such as MonoLisa or SourceCode Pro and modifies them by adding a group of glyphs (icons). A font patcher is available if the font you'd like to use has not already been edited.  There's also a preview feature where you can see how the font should look in the editor. For more information, check out the project's main [site](https://www.nerdfonts.com/).
 
