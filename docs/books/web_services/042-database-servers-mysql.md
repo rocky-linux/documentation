@@ -50,7 +50,7 @@ You can now follow the previous chapter by replacing the following commands:
 * `mariadb-dump` => `mysql_dump`
 * `mariadb-secure-installation` => `mysql_secure_installation`
 
-You will have to install a different repository to install the latest version of MySQL server.
+You will have to use a different repository to install the latest version of MySQL server.
 
 Visit this page: https://dev.mysql.com/downloads/repo/yum/ and copy the repository URL.
 
