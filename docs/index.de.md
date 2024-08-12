@@ -52,6 +52,6 @@ Wenn Sie zum ersten Mal die Rocky Linux Dokumentation-Seite besuchen, kann es se
 
 Wenn Sie nicht weiter kommen oder Fragen haben, ist die Rocky Linux Community da, um Ihnen zu helfen. Besuchen Sie das [Community-Forum](https://forums.rockylinux.org) und Sie werden Lösungen finden oder Fragen an die Community stellen können.
 
-## Mitwirken
+## Mitwirkung
 
 Haben Sie festgestellt, dass etwas fehlt? Haben Sie einen Fehler gefunden? Sie fragen sich, wie Sie ein eigenes Dokument erstellen oder wie Sie etwas hier reparieren oder anpassen können? Haben wir nicht gesagt, dass *Sie*, wenn Sie möchten, Teil der Rocky Linux Community sind? Nun, das bedeutet, dass *Sie* für uns wichtig sind und wir gern möchten, dass Sie sich uns anschließen und helfen diese Dokumentation zu verbessern. Wenn Sie daran interessiert sind, schauen Sie im [Contribution Guide](https://github.com/rocky-linux/documentation/blob/main/README.md) nach!
