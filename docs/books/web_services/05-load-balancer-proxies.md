@@ -145,7 +145,7 @@ To make the service transparent to the client, you'll need to change the default
 
 ![Transparent implementation for the customer](img/varnish_website_with_varnish_port_80.png)
 
-To provide an HTTPS service, you'll need to add either a loadbalancer upstream of the varnish service or a proxy service on the varnish server, such as Apache, Nginx or HAProxy.
+To provide an HTTPS service, you'll need to add either a load balancer upstream of the varnish service or a proxy service on the varnish server, such as Apache, Nginx or HAProxy.
 
 ### Configuration
 
