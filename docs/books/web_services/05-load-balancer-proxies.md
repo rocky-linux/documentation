@@ -270,7 +270,7 @@ sub vcl_deliver {
 }
 ```
 
-* **vcl_recv**: This routine is called before the request is sent to the backend. In this routine, you can modify HTTP headers, cookies, choose the backend, etc. See actions `set req`..
+* **vcl_recv**: This routine is called before the request is sent to the backend. In this routine, you can modify HTTP headers, cookies, choose the backend, etc. See actions `set req`.
 * **vcl_backend_response**: This routine is called after reception of the backend response (`beresp` means BackEnd RESPonse). See `set bereq.` and `set beresp.` actions.
 * **vcl_deliver**: This routine is useful for modifying Varnish output. If you need to modify the final object (add or remove a header, etc.), you can do so in `vcl_deliver`.
 
