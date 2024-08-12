@@ -443,7 +443,7 @@ sub vcl_recv {
 
 Backends can be marked as **sick** or **healthy** for administration or maintenance purposes. This action allows you to remove a node from the pool without having to modify the Varnish server configuration (and therefore without restarting it) or stop the backend service.
 
-View backend status : The `backend.list` command displays all backends, even those without a healthcheck (probe).
+View backend status : The `backend.list` command displays all backends, even those without a health check (probe).
 
 ```bash
 $ varnishadm backend.list
