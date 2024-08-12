@@ -1,6 +1,6 @@
 ---
 author: Antoine Le Morvan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 title: Part 4.2 Database Servers MySQL
 ---
 
@@ -14,9 +14,9 @@ In this chapter, you will learn how to install MySQL server.
 
 ---
 
-**Objectives**: In this chapter, you will learn how to:
+**Objectives**: You will learn how to:
 
-:heavy_check_mark: install, configure and secure MariaDB server and MySQL server;
+:heavy_check_mark: install, configure, and secure the MariaDB server and MySQL server;
 
 :checkered_flag: **RDBMS**, **database**, **MariaDB**, **MySQL**
 
@@ -43,14 +43,14 @@ and start the `mysqld` service:
 sudo systemctl enable mysqld.service --now
 ```
 
-You can now follow the previous chapter replacing the following commands:
+You can now follow the previous chapter by replacing the following commands:
 
 * `mariadb` => `mysql`
 * `mariadb-admin` => `mysql_admin`
 * `mariadb-dump` => `mysql_dump`
 * `mariadb-secure-installation` => `mysql_secure_installation`
 
-To install the latest version of mysql-server, you will have to install a different repository.
+You will have to use a different repository to install the latest version of MySQL server.
 
 Visit this page: https://dev.mysql.com/downloads/repo/yum/ and copy the repository URL.
 
@@ -123,7 +123,7 @@ Do not forget to re-enable and restart your server:
 sudo systemctl enable mysqld.service --now
 ```
 
-### Check your Knowledge MySQL
+### Check your Knowledge of MySQL
 
 :heavy_check_mark: Which MySQL database version is installed by default?
 
