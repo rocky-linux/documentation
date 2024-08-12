@@ -98,7 +98,7 @@ Several mechanisms are used to ensure high availability throughout a web chain:
 
 * if varnish is behind load balancers: as the LBs are generally in cluster mode, they are already in HA mode. A check from the LBs verifies varnish availability. If a varnish server no longer responds, it is automatically removed from the pool of available servers. In this case, varnish is in ACTIVE/ACTIVE mode.
 * if varnish isn't behind a LB cluster, clients address a VIP (see Heartbeat chapter), which is shared between the 2 varnishes. In this case, varnish is in ACTIVE/PASSIVE mode. If the active server is no longer available, the VIP switches to the second varnish node.
-* When a backend is no longer available, it can be removed from the varnish backend pool either automatically (with a healthcheck) or manually in CLI mode (usefull to ease the upgrades/updates).
+* When a backend is no longer available, it can be removed from the varnish backend pool either automatically (with a health check) or manually in CLI mode (useful to ease the upgrades/updates).
 
 #### Ensuring scalability
 
