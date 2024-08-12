@@ -1,12 +1,13 @@
 ---
 author: Antoine Le Morvan
 contributors: Steven Spencer, Ganna Zhyrnova
+title: Part 4.1 Database servers MariaDB
 tags:
   - mariadb
   - mysql
   - database
   - rdbms
-title: Part 4.1 Database servers MariaDB
+
 ---
 
 MySQL, MariaDB and PostgreSQL are open-source RDBMS (Relational DataBase Management System).
@@ -17,7 +18,7 @@ In this chapter, you will learn about the RDBMS MariaDB and MySQL.
 
 ****
 
-**Objectives**: In this chapter, you will learn how to:
+**Objectives**: You will learn how to:
 
 :heavy_check_mark: install, configure, and secure MariaDB server and MySQL server;  
 :heavy_check_mark: perform some administrative actions on databases and users.  
@@ -33,11 +34,11 @@ In this chapter, you will learn about the RDBMS MariaDB and MySQL.
 
 ### Generalities
 
-MySQL was developed by Michael "Monty" Widenius (a Finnish computer scientist) who founded MySQL AB in 1995. MySQL AB was acquired by SUN in 2008, which in turn was acquired by Oracle in 2009, which still owns the MySQL software and distributes it under a dual GPL and proprietary license.
+MySQL was developed by Michael "Monty" Widenius (a Finnish computer scientist),, who founded MySQL AB in 1995. MySQL AB was acquired by SUN in 2008, which in turn was acquired by Oracle in 2009. Oracle still owns the MySQL software and distributes it under a dual GPL and proprietary license.
 
-In 2009, Michael Widenius left SUN, founded Monty Program AB and launched the development of his community fork of MySQL : MariaDB under GPL license. Governance of the project is entrusted to the MariaDB Foundation, which ensures that the project remains free.
+In 2009, Michael Widenius left SUN, founded Monty Program AB, and launched the development of his community fork of MySQL: MariaDB under a GPL license. The MariaDB Foundation governs the project and ensures that it remains free.
 
-It was not long before the majority of Linux distributions offered MariaDB packages instead of MySQL ones, and major accounts such as Wikipedia and Google also adopted the community fork.
+It was not long before most Linux distributions offered MariaDB packages instead of MySQL ones, and major accounts such as Wikipedia and Google also adopted the community fork.
 
 MySQL and MariaDB are among the world's most widely used RDBMSs (professionally and by the general public), particularly for web applications (**LAMP**: Linux + Apache + Mysql-MariaDB + Php).
 
@@ -47,7 +48,7 @@ Mysql-MariaDB's main competitors are:
 * OracleDB,
 * Microsoft SQL Server.
 
-Databases services are multi-threaded and multi-user, run on most operating systems (Linux, Unix, BSD, Mac OSx, Windows), and are accessible from many programming languages (Php, Java, Python, C, C++, Perl, others).
+Database services are multi-threaded and multi-user, run on most operating systems (Linux, Unix, BSD, Mac OSx, Windows), and are accessible from many programming languages (PHP, Java, Python, C, C++, Perl, others).
 
 Support is offered for several engines, enabling the assignment of different engines to different tables within the same database, depending on requirements:
 
@@ -61,13 +62,13 @@ Memory
 :   tables are stored in memory.
 
 Archive
-:   data compression on insertion saves disk space, but slows down search queries (cold data).
+:   data compression on insertion saves disk space but slows down search queries (cold data).
 
 It is a matter of adopting an engine according to need: Archive for log storage, Memory for temporary data, and so on.
 
-MariaDB/MySQL uses port 3306/tcp for network communication.
+MariaDB/MySQL uses port 3306/TCP for network communication.
 
-As the default version supplied with Rocky is the MariaDB community version of the database, this chapter will deal with this version. Only the differences between MySQL and MariaDB are specifically dealt with.
+This chapter will deal with this version as the default version supplied with Rocky is the MariaDB community version of the database. Only the differences between MySQL and MariaDB are specifically dealt with.
 
 ### Installation
 
@@ -293,10 +294,10 @@ mariadb-admin -u root -p version
 
 MariaDB provides various logs:
 
-* **Error log**: This contains messages generated at service startup and shutdown, as well as important events (warnings and errors).
+* **Error log**: Contains messages generated at service startup and shutdown and important events (warnings and errors).
 * **Binary log**: This log (in binary format) records all actions that modify database structure or data. If you need to restore a database, you will need to restore the backup AND replay the binary log to recover the state of the database before the crash.
 * **Query log**: All client requests are logged here.
-* **Slow requests log**: Slow queries, i.e. those that take longer than a set time to execute, are logged separately in this log. By analyzing this file, you may be able to take steps to reduce execution time (e.g., by setting up indexes or modifying the client application).
+* **Slow requests log**: Slow queries, i.e., those that take longer than a set time to execute, are logged separately in this log. By analyzing this file, you may be able to take steps to reduce execution time (e.g., by setting up indexes or modifying the client application).
 
 With the exception of the binary log, these logs are in text format, so they can be used directly!
 
@@ -308,9 +309,9 @@ slow_query_log_file = /var/log/mysql/mysql-slow.log
 long_query_time     = 2
 ```
 
-The minimum value for the `long_query_time` variable is 0 and the default value is `10` seconds.
+The minimum value for the `long_query_time` variable is 0, and the default value is `10` seconds.
 
-Restart the service for the changes to take effect.
+Restart the service so the changes take effect.
 
 Once the log file is full, you can analyze it with the `mariadb-dumpslow` command.
 
@@ -329,26 +330,25 @@ Sort types can be :
 | Option      | Information                                                            |
 | ----------- | ---------------------------------------------------------------------- |
 | `c`         | according to number of requests.                                       |
-| `c`         | according to number of requests.                                       |
 | `t` or `at` | according to execution time or average execution time (a for average). |
 | `l` or `al` | according to lock time or its average.                                 |
 | `r` or `aR` | as a function of the number of lines returned or its average.          |
 
 ### About backup
 
-As with any RDBMS, backing up a database is done while the data modification is off-line. You can do this by:
+As with any RDBMS, backing up a database is done while the data modification is offline. You can do this by the following:
 
 * stopping the service, known as an offline backup;
-* while the service is running, buy temporarily locking out updates (suspending all modifications). This is an online backup.
-* using a snapshot of the LVM file system, enabling the backing up of data with a cold file system.
+* while the service runs by temporarily locking out updates (suspending all modifications). This is an online backup.
+* using a snapshot of the LVM file system, enabling data backup with a cold file system.
 
-The backup format can be an ASCII (text) file, representing the state of the database and its data in the form of SQL commands, or a binary file, corresponding to MySQL storage files.
+The backup format can be an ASCII (text) file, representing the state of the database and its data in the form of SQL commands or a binary file corresponding to MySQL storage files.
 
 While you can back up a binary file using common utilities such as tar or cpio, an ASCII file requires a utility such as `mariadb-dump`.
 
 The `mariadb-dump` command can perform a dump of your database.
 
-During the process, locking of some data access occurs.
+During the process, data access is locked.
 
 ```bash
 mariadb-dump -u root -p DATABASE_NAME > backup.sql
@@ -358,7 +358,7 @@ mariadb-dump -u root -p DATABASE_NAME > backup.sql
 
     Do not forget that after restoring a full backup, restoring the binary files (binlogs) completes the reconstitution of the data.
 
-The resulting file is usable to restore the database data. The database must still exist or you must have recreated it beforehand!:
+The resulting file is usable to restore the database data. The database must still exist, or you must have recreated it beforehand!:
 
 ```bash
 mariadb -u root -p DATABASE_NAME < backup.sql
@@ -372,11 +372,11 @@ Graphical tools exist to facilitate the administration and management of databas
 
 ### Workshop
 
-In this workshop, you will install, configure, and secure your mariadb server.
+In this workshop, you will install, configure, and secure your MariaDB server.
 
-#### Task 1 : Installation
+#### Task 1: Installation
 
-Install the mariadb-server package:
+Install the MariaDB-server package:
 
 ```bash
 $ sudo dnf install mariadb-server
@@ -481,7 +481,7 @@ Threads: 1  Questions: 9  Slow queries: 0  Opens: 17  Open tables: 10  Queries p
 
 As you can see, the `root` user does not need to provide a password. You will correct that during the next task.
 
-#### Task 2 : Secure your server
+#### Task 2: Secure your server
 
 Launch the `mariadb-secure-installation` and follow the instructions:
 
@@ -558,7 +558,7 @@ installation should now be secure.
 Thanks for using MariaDB!
 ```
 
-Try connecting again, with and without password to your server:
+Try connecting again, with and without a password to your server:
 
 ```bash
 $ mariadb -u root
@@ -584,9 +584,9 @@ sudo firewall-cmd --zone=public --add-service=mysql --permanent
 sudo firewall-cmd --reload
 ```
 
-#### Task 3 : Testing the installation
+#### Task 3: Testing the installation
 
-Verify your installation :
+Verify your installation:
 
 ```bash
 $ mysqladmin -u root -p version
@@ -603,9 +603,9 @@ Uptime:                 29 min 18 sec
 Threads: 1  Questions: 35  Slow queries: 0  Opens: 20  Open tables: 13  Queries per second avg: 0.019
 ```
 
-The `version` give you information about the server.
+The `version` gives you information about the server.
 
-#### Task 4 : Create a new database and a user
+#### Task 4: Create a new database and a user
 
 Create a new database:
 
@@ -613,15 +613,15 @@ Create a new database:
 MariaDB [(none)]> create database NEW_DATABASE_NAME;
 ```
 
-Create a new user and give him all rights on all table of that database:
+Create a new user and give him all rights on all tables of that database:
 
 ```sql
 MariaDB [(none)]> grant all privileges on NEW_DATABASE_NAME.* TO 'NEW_USER_NAME'@'localhost' identified by 'PASSWORD';
 ```
 
-Replace `localhost` per `%` if you want to grant access from everywhere or replace per IP addresses if you can.
+Replace `localhost` per `%` if you want to grant access from everywhere, or replace per IP address if possible.
 
-You can restrict the priveleges granted. There are different types of permissions to offer users:
+You can restrict the privileges granted. There are different types of permissions to offer users:
 
 * **SELECT**: read data
 * **USAGE**: authorization to connect to the server (given by default when a new user is created)
@@ -633,7 +633,7 @@ You can restrict the priveleges granted. There are different types of permission
 * **ALL PRIVILEGES**: all rights
 * **GRANT OPTION**: give or remove rights to other users
 
-Do not forget to reload apply the new rights:
+Do not forget to reload and apply the new rights:
 
 ```sql
 MariaDB [(none)]> flush privileges;
@@ -679,9 +679,9 @@ MariaDB [NEW_DATABASE_NAME]> INSERT INTO users (first_name, last_name, age) VALU
 Query OK, 1 row affected (0.004 sec)
 ```
 
-#### Task 5 : Create a remote user
+#### Task 5: Create a remote user
 
-In this task, you will create a new user, grant access from remote, and test a connection with that user.
+In this task, you will create a new user, grant access from the remote, and test a connection with that user.
 
 ```bash
 MariaDB [(none)]> grant all privileges on NEW_DATABASE_NAME.* TO 'NEW_USER_NAME'@'%' identified by 'PASSWORD';
@@ -701,7 +701,7 @@ Enter password:
 MariaDB [NEW_DATABASE_NAME]>
 ```
 
-#### Task 6 : Perform an upgrade
+#### Task 6: Perform an upgrade
 
 Enable the module needed:
 
@@ -764,7 +764,7 @@ Running transaction
 Complete!
 ```
 
-Your databases now need upgrading (check your `/var/log/messages` as the service complains):
+Your databases now need upgrading (check your `/var/log/messages` as the service complaints):
 
 ```text
 mariadb-check-upgrade[8832]: The datadir located at /var/lib/mysql needs to be upgraded using 'mariadb-upgrade' tool. This can be done using the following steps:
@@ -805,7 +805,7 @@ Phase 8/8: Running 'FLUSH PRIVILEGES'
 OK
 ```
 
-#### Task 6 : Perform a dump
+#### Task 6: Perform a dump
 
 The `mariadb-dump` command can perform a dump of your database.
 
@@ -860,7 +860,7 @@ UNLOCK TABLES;
 
 ### Check your Knowledge
 
-:heavy_check_mark: Which database version installs by default?
+:heavy_check_mark: Which database version is installed by default?
 
 * [ ] MySQL 5.5
 * [ ] MariaDB 10.5
@@ -876,7 +876,7 @@ UNLOCK TABLES;
 
 ### Conclusion
 
-In this chapter, you have installed and secured a MariaDB database server, created a database and a dedicated user.
+In this chapter, you have installed and secured a MariaDB database server and created a database and a dedicated user.
 
 These skills are a prerequisite for the administration of your databases.
 
