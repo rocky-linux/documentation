@@ -100,6 +100,6 @@ done
 rm -f $LOCKF
 ```
 
-## Conclusion
+## Zusammenfassung
 
 Scripting ist ein Freund des Systemadministrators. Mit einem Skript können bestimmte Aufgaben schnell erledigt werden, um die Bearbeitung von Prozessen zu vereinfachen. Dieser Stub bietet zwar keineswegs eine ausführliche Reihe von Skript-Routinen, aber einige gängige Anwendungsbeispiele.
