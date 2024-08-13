@@ -126,7 +126,7 @@ However, depending on your browser, you might have better luck screen sharing on
 
 ## Open source alternatives to common business apps
 
-If you have the option to choose your own software for work and productivity, you might consider changing up your routine and trying an open source alternative. In fact, most of the apps listed above can actually be replaced with a self-hosted or cloud-hosted instance of [Nextcloud(https://nextcloud.com)], along with some third-party apps that you can install on that platform.
+If you have the option to choose your own software for work and productivity, you might consider changing up your routine and trying an open source alternative. In fact, most of the apps listed above can actually be replaced with a self-hosted or cloud-hosted instance of [Nextcloud](https://nextcloud.com), along with some third-party apps that you can install on that platform.
 
 Seriously, it can handle file sync, project management, CRM, your calendar, note management, basic bookkeeping, your email, and even text and video chat with some work and setup. It really is that versatile.
 
