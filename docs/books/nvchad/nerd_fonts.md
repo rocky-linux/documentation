@@ -11,7 +11,7 @@ tags:
 
 # :material-format-font: Nerd Fonts - Fonts for Developers
 
-## :material-format-font: What is Nerd Fonts?
+## :material-format-font: What are Nerd Fonts?
 
 ![Nerd Fonts](images/nerd_fonts_site_small.png){ align=right } Nerd Fonts are a collection of modified fonts aimed at developers. In particular, "iconic fonts" such as [Font Awesome](https://fontawesome.com/), [Devicons](https://devicon.dev/), and [Octicons](https://primer.style/foundations/icons) are used to add extra glyphs.
 
