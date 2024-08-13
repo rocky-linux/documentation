@@ -1,6 +1,6 @@
 ---
 author: Antoine Le Morvan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 title: Частина 4.2 Сервери баз даних MySQL
 ---
 
