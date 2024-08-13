@@ -1,19 +1,19 @@
 ---
 author: Antoine Le Morvan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 title: Part 4.3 MariaDB database replication
 ---
 
 ## Secondary server with MariaDB
 
-In this chapter, you will learn how to configure a Primary/Secondary system servers with MariaDB.
+This chapter will teach you how to configure Primary/Secondary system servers with MariaDB.
 
 ****
 
-**Objectives**: In this chapter, you will learn how to:
+**Objectives**: You will learn how to:
 
 :heavy_check_mark: activate the binlogs in your servers;  
-:heavy_check_mark: setup a secondary server to replicate data from primary server.  
+:heavy_check_mark: set up a secondary server to replicate data from the primary server.  
 
 :checkered_flag: **MariaDB**, **Replication**, **Primary**, **Secondary**
 
@@ -26,7 +26,7 @@ In this chapter, you will learn how to configure a Primary/Secondary system serv
 
 ### Generalities secondary server with MariaDB
 
-As soon as you start using your database more intensively, you will need to replicate your data on several servers.
+As soon as you start using your database more intensively, you must replicate your data on several servers.
 
 This can be done in several ways:
 
@@ -35,7 +35,7 @@ This can be done in several ways:
 
 If your usage becomes even more demanding, you may consider switching to a primary/primary system: replications are then made crosswise, but beware of the risk of blocking the uniqueness of primary keys. Otherwise, you will need to switch to a more advanced clustering system.
 
-### Configuration secondary server with MariaDB
+### Configuration of secondary server with MariaDB
 
 #### How to activate the binlogs
 
@@ -51,7 +51,7 @@ log-basename=server1
 binlog-format=mixed
 ```
 
-for the primary server, and for the secondary server:
+for the primary server and for the secondary server:
 
 ```file
 [mariadb]
@@ -61,9 +61,9 @@ log-basename=server2
 binlog-format=mixed
 ```
 
-The `server_id` option must be unique on each server in the cluster, while the `log-basename` option allows you to specify a prefix to the binlog files. If you do not do this, you will not be able to rename your server in the future.
+The `server_id` option must be unique on each server in the cluster, while the `log-basename` option allows you to specify a prefix to the binlog files. If you do not do this, you cannot rename your server.
 
-You can now restart the mariadb service on both servers:
+You can now restart the MariaDB service on both servers:
 
 ```bash
 sudo systemctl restart mariadb
@@ -109,7 +109,7 @@ MariaDB [(none)]> GRANT REPLICATION SLAVE ON *.* TO 'replication'@'192.168.1.101
 Query OK, 0 rows affected (0.002 sec)
 ```
 
-If your primary server already contains data, you will need to lock new transactions while the exporting or importing of data occurs to the secondary server(s), and tell the secondary servers when to start replication. If your server does not yet contain any data, the procedure is greatly simplified.
+You must lock in new transactions if your primary server already contains data. In contrast, the exporting or importing of data occurs to the secondary server(s) and tells the secondary servers when to start replication. If your server does not yet contain any data, the procedure is greatly simplified.
 
 Prevent any changes to the data while you view the binary log position:
 
@@ -133,7 +133,7 @@ Do not quit your session to keep the lock.
 
 Record the File and Position details.
 
-If your server contains data, it is time to create a backup and import it onto your secondary server(s). Keep the lock for the duration of the backup, and release it as soon as the backup is complete. This reduces downtime (the time it takes to copy and import the data on the secondary servers).
+If your server contains data, it is time to create a backup and import it onto your secondary server(s). Keep the lock for the duration of the backup and release it as soon as the backup is complete. This reduces downtime (the time it takes to copy and import the data on the secondary servers).
 
 You can remove the lock now:
 
@@ -144,7 +144,7 @@ MariaDB [(none)]> UNLOCK TABLES;
 Query OK, 0 rows affected (0.000 sec)
 ```
 
-On the secondary server, you can now ready to setup the primary server to replicate with:
+On the secondary server, you can now set up the primary server to replicate with the following:
 
 ```bash
 MariaDB [(none)]> CHANGE MASTER TO
@@ -184,9 +184,9 @@ The `Seconds_Behind_Master` is an interesting value to monitor as it can help yo
 
 ### Workshop secondary server using MariaDB
 
-For this workshop, you will need two servers with MariaDB services installed, configured and secured as described in the previous chapters.
+For this workshop, you will need two servers with MariaDB services installed, configured, and secured, as described in the previous chapters.
 
-You will configure replication on the secondary server, then create a new database, insert data into it and check that the data is accessible on the secondary server.
+You will configure replication on the secondary server, create a new database, insert data into it, and check that it is accessible on the secondary server.
 
 Our two servers have the following IP addresses:
 
@@ -267,7 +267,7 @@ MariaDB [(none)]> SHOW SLAVE STATUS \G
 
 #### Task 4: Create a new database and a user
 
-On the primary:
+On the primary server:
 
 ```bash
 MariaDB [(none)]> create database NEW_DATABASE_NAME;
@@ -277,7 +277,7 @@ MariaDB [(none)]> grant all privileges on NEW_DATABASE_NAME.* TO 'NEW_USER_NAME'
 Query OK, 0 rows affected (0.004 sec)
 ```
 
-On the secondary, check for creation of the database:
+On the secondary server, check for the creation of the database:
 
 ```bash
 MariaDB [(none)]> show databases;
@@ -292,9 +292,7 @@ MariaDB [(none)]> show databases;
 +--------------------+
 ```
 
-Magic !
-
-On the secondary, try connecting the new user created on the primary:
+On the secondary server, try connecting the new user created on the primary:
 
 ```bash
 $ mariadb -u NEW_USER_NAME -p
@@ -331,7 +329,7 @@ Query OK, 1 row affected (0.004 sec)
 
 ```
 
-On the secondary, check that data are replicated:
+On the secondary server, check that data are replicated:
 
 ```bash
 MariaDB [(none)]> use NEW_DATABASE_NAME
@@ -354,26 +352,26 @@ MariaDB [NEW_DATABASE_NAME]> SELECT * FROM users;
 1 row in set (0.000 sec)
 ```
 
-### Check your Knowledge secondary server with MariaDB
+### Check your Knowledge of the secondary server with MariaDB
 
-:heavy_check_mark: Each server must have the same id within a cluster?
+:heavy_check_mark: Each server must have the same ID within a cluster.
 
 * [ ] True
 * [ ] False
 
-:heavy_check_mark: Binary logs must be enabled before replication is activated.?
+:heavy_check_mark: Binary logs must be enabled before replication is activated.
 
 * [ ] True
 * [ ] False
 * [ ] It depends
 
-### Conclusion secondary server with MariaDB
+### Conclusion about the secondary server with MariaDB
 
 As you can see, creating one or more secondary servers is a relatively easy action, but it does require service interruption on the main server.
 
-It does, however, offer many advantages: high data availability, load balancing, and simplified backup.
+However, it offers many advantages: high data availability, load balancing, and simplified backup.
 
-It goes without saying that, in the event of a main server crash, promotion of one of the secondary servers to main server can occur.
+In a central server crash, one of the secondary servers can be promoted to the central server.
 
 <!---
 
