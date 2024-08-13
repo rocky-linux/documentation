@@ -6,7 +6,7 @@ contributors: Ezequiel Bruni
 
 # bash - Skript Vorlage
 
-Wo iwir zuvor beschäftigt waren, hatten wir einen Top-Programmierer, der eine Reihe von Sprachen kannte. Er war auch der go-to guy, wenn wir Fragen hatten, wie man etwas mit einem Skript erledigen kann. Er hat schließlich einen kleinen Stub, eine Datei voller Skriptbeispiele, die wir einfach nach Bedarf anpassen und bearbeiten konnten. Letztendlich haben wir diese Routinen gut genug gemacht, dass wir nicht mehr auf den Stub schauen mussten, aber es war ein gutes Lernwerkzeug, und etwas, das andere für nützlich halten könnten.
+Wo der Autor zuvor beschäftigt war, gab es einen Top-Programmierer, der eine Reihe von Sprachen kannte. Er war auch DIE Anlaufstelle, wenn man Fragen hatte, wie man etwas mit einem Skript erledigen kann. Er hat schließlich einen kleinen Stub, eine Datei voller Skriptbeispiele, die wir einfach nach Bedarf anpassen und bearbeiten konnten. Letztendlich haben wir diese Routinen gut genug gemacht, dass wir nicht mehr auf den Stub schauen mussten, aber es war ein gutes Lernwerkzeug, und etwas, das andere für nützlich halten könnten.
 
 ## Der Aktuelle Stub
 
