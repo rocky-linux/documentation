@@ -24,9 +24,17 @@ nav:
   - web_services/00-toc.md
   - licence.md
   - web_services/01-files-servers.md
-  - web_services/02-web-servers.md
+  - web_services/02-web-servers-intro.md
+  - web_services/021-web-servers-apache.md
+  - web_services/022-web-servers-nginx.md
   - web_services/03-application-servers.md
   - web_services/04-databases-servers.md
+  - web_services/041-database-servers-mariadb.md
+  - web_services/042-database-servers-mysql.md
+  - web_services/043-database-servers-replication.md
   - web_services/05-load-balancer-proxies.md
+  - web_services/051-load-balancer-proxies-haproxy.md
+  - web_services/052-load-balancer-proxies-varnish.md
+  - web_services/053-load-balancer-proxies-haproxy-squid.md
   - web_services/06-mails-servers.md
   - web_services/07-high-availability.md
