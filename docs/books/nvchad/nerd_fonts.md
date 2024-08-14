@@ -1,7 +1,7 @@
 ---
 title: Installing Nerd Fonts
 author: Franco Colussi
-contributors: Steven Spencer, Ganna Zhyrnova
+contributors: Steven Spencer, Ganna Zhyrnova, Christine Belzie
 tested: 8.6, 9.0
 tags:
     - nvchad
@@ -11,11 +11,11 @@ tags:
 
 # :material-format-font: Nerd Fonts - Fonts for Developers
 
-Installation of Nerd Fonts does not change the function of Neovim or NvChad, but simply adds fonts that are more pleasing to the eye than whatever the standard terminal font is currently.
+## :material-format-font: What are Nerd Fonts?
 
-![Nerd Fonts](images/nerd_fonts_site_small.png){ align=right } Nerd Fonts are a collection of modified fonts aimed at developers. In particular, "iconic fonts" such as Font Awesome, Devicons, Octicons etc. are used to add extra glyphs.
+![Nerd Fonts](images/nerd_fonts_site_small.png){ align=right } Nerd Fonts are a collection of modified fonts aimed at developers. In particular, "iconic fonts" such as [Font Awesome](https://fontawesome.com/), [Devicons](https://devicon.dev/), and [Octicons](https://primer.style/foundations/icons) are used to add extra glyphs.
 
-Nerd Fonts takes the most popular programming fonts and modifies them by adding a group of glyphs (icons). A font patcher is also available if the font you'd like to use has not already been edited. A convenient preview is available on the site, allowing you to see how the font should look in the editor. For more information, check the project's main [site](https://www.nerdfonts.com/).
+Nerd Fonts also takes the most popular programming fonts such as MonoLisa or SourceCode Pro and modifies them by adding a group of glyphs (icons). A font patcher is available if the font you would like to use has not already been edited.  There is also a preview feature where you can see how the font should look in the editor. For more information, check out the project's main [site](https://www.nerdfonts.com/).
 
 ## :material-monitor-arrow-down-variant: Download
 
