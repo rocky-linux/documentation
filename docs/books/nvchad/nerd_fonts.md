@@ -13,9 +13,9 @@ tags:
 
 ## :material-format-font: What are Nerd Fonts?
 
-![Nerd Fonts](images/nerd_fonts_site_small.png){ align=right } Nerd Fonts are a collection of modified fonts aimed at developers. In particular, "iconic fonts" such as [Font Awesome](https://fontawesome.com/), [Devicons](https://devicon.dev/), and [Octicons](https://primer.style/foundations/icons) are used to add extra glyphs.
+![Nerd Fonts](images/nerd_fonts_site_small.png){ align=right } Nerd Fonts is a collection of modified fonts aimed at developers. In particular, "iconic fonts" such as [Font Awesome](https://fontawesome.com/), [Devicons](https://devicon.dev/), and [Octicons](https://primer.style/foundations/icons) are used to add extra glyphs.
 
-Nerd Fonts also takes the most popular programming fonts such as MonoLisa or SourceCode Pro and modifies them by adding a group of glyphs (icons). A font patcher is available if the font you would like to use has not already been edited.  There is also a preview feature where you can see how the font should look in the editor. For more information, check out the project's main [site](https://www.nerdfonts.com/).
+Nerd Fonts also takes the most popular programming fonts, such as MonoLisa or SourceCode Pro, and modifies them by adding a group of glyphs (icons). A font patcher is available if the font you would like to use has not already been edited.  There is also a preview feature to see how the font should look in the editor. Check out the project's main [site](https://www.nerdfonts.com/) for more information.
 
 ## :material-monitor-arrow-down-variant: Download
 
@@ -27,7 +27,7 @@ https://www.nerdfonts.com/font-downloads
 
 ### :material-monitor-arrow-down-variant: Installation procedure
 
-The installation of Nerd Fonts in Rocky Linux is done entirely from the command line thanks to the implementation of the procedure provided by the project repository [ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts), the procedure uses *git* to retrieve the required fonts and *fc-cache* for their configuration.
+The installation of Nerd Fonts in Rocky Linux is done entirely from the command line thanks to the implementation of the procedure provided by the project repository [ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts). The procedure uses *git* to retrieve the required fonts and *fc-cache* for their configuration.
 
 !!! Note
 
@@ -39,9 +39,9 @@ To begin, retrieve the necessary files from the project repository:
 git clone --filter=blob:none --sparse git@github.com:ryanoasis/nerd-fonts
 ```
 
-This command downloads only the necessary files omitting the fonts contained in *patched-fonts* so as not to weigh down the local repository with fonts that later will not be used, thus allowing for selective installation.  
+This command downloads only the necessary files, omitting the fonts contained in *patched-fonts* so as not to weigh down the local repository with fonts that will later not be used, thus allowing for selective installation.  
 This guide will use the [IBM Plex Mono](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/IBMPlexMono) font, which offers a clean and slightly typographic display, features that make it particularly suitable for writing Markdown documentation.  
-For an overview, with preview, of available fonts you can visit the [dedicated site](https://www.programmingfonts.org/#plex-mono).
+Visit the [dedicated site](https://www.programmingfonts.org/#plex-mono) for an overview and preview of available fonts.
 
 Go to the newly created folder and then download the font set with the commands:
 
@@ -58,9 +58,9 @@ The command will download the fonts to the *patched-fonts* folder and once finis
 
 !!! Note "Reserved Name"
 
-    The font during installation is renamed to *BlexMono* to comply with the SIL Open Font License (OFL) and in particular the [reserved name mechanism](http://scripts.sil.org/cms/scripts/page.php?item_id=OFL_web_fonts_and_RFNs#14cbfd4a).
+    The font during installation is renamed to *BlexMono* to comply with the SIL Open Font License (OFL) and, in particular, the [reserved name mechanism](http://scripts.sil.org/cms/scripts/page.php?item_id=OFL_web_fonts_and_RFNs#14cbfd4a).
 
-The *install.sh* script copies the fonts to the user folder `~/.local/share/fonts/` and invokes the *fc-cache* program to register them on the system. Once finished the fonts will be available for the terminal emulator, in particular we will find the following fonts installed:
+The *install.sh* script copies the fonts to the user folder `~/.local/share/fonts/` and invokes the *fc-cache* program to register them on the system. Once finished, the fonts will be available for the terminal emulator; in particular, we will find the following fonts installed:
 
 ```text title="~/.local/share/fonts/"
 NerdFonts/
@@ -84,8 +84,8 @@ NerdFonts/
 
 ## :material-file-cog-outline: Configuration
 
-At this point the Nerd Font of your choice should be available for selection. To actually select it you must refer to the desktop you are using.
+At this point, the Nerd Font of your choice should be available for selection. To select it, you must refer to the desktop you are using.
 
 ![Font Manager](images/font_nerd_view.png)
 
-If you are using the default Rocky Linux desktop (Gnome), to change the font in the terminal emulator you will just need to open `gnome-terminal`, go to "Preferences", and set the Nerd Font for your profile.
+If you are using the default Rocky Linux desktop (Gnome), to change the font in the terminal emulator, you just need to open `gnome-terminal`, go to "Preferences", and set the Nerd Font for your profile.
