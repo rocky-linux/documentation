@@ -1,66 +1,68 @@
 ---
 author: Antoine Le Morvan
 contributors: Steven Spencer, Ganna Zhyrnova
-title: Part 4.2 Database Servers MySQL
+title: Частина 4.2 Сервери баз даних MySQL
 ---
 
 ## MySQL
 
-In this chapter, you will learn how to install MySQL server.
+У цьому розділі ви дізнаєтеся, як встановити сервер MySQL.
 
-!!! NOTE
+!!! NOTE "Примітка"
 
-    Only notable differences between the MariaDB and MySQL versions are included.
+```
+Включено лише помітні відмінності між версіями MariaDB і MySQL.
+```
 
 ---
 
-**Objectives**: You will learn how to:
+**Цілі**: Ви дізнаєтеся, як:
 
-:heavy_check_mark: install, configure, and secure the MariaDB server and MySQL server;
+:heavy_check_mark: встановити, налаштувати та захистити сервер MariaDB і сервер MySQL;
 
 :checkered_flag: **RDBMS**, **database**, **MariaDB**, **MySQL**
 
-**Knowledge**: :star: :star: :star:  
-**Complexity**: :star: :star: :star:  
+**Знання**: :star: :star: :star:\
+**Складність**: :star: :star: :star:
 
-**Reading time**: 10 minutes
+**Час читання**: 10 хвилин
 
 ---
 
-### Installation of MySQL
+### Встановлення MySQL
 
-By default, the installed version of MySQL is version 8.0.
+За замовчуванням встановлена ​​версія MySQL 8.0.
 
-This time, you have to install the `mysql-server` package:
+Цього разу вам потрібно встановити пакет `mysql-server`:
 
 ```bash
 sudo dnf install mysql-server
 ```
 
-and start the `mysqld` service:
+і запустіть службу `mysqld`:
 
 ```bash
 sudo systemctl enable mysqld.service --now
 ```
 
-You can now follow the previous chapter by replacing the following commands:
+Тепер ви можете слідувати попередньому розділу, замінивши такі команди:
 
-* `mariadb` => `mysql`
-* `mariadb-admin` => `mysql_admin`
-* `mariadb-dump` => `mysql_dump`
-* `mariadb-secure-installation` => `mysql_secure_installation`
+- `mariadb` => `mysql`
+- `mariadb-admin` => `mysql_admin`
+- `mariadb-dump` => `mysql_dump`
+- `mariadb-secure-installation` => `mysql_secure_installation`
 
-You will have to use a different repository to install the latest version of MySQL server.
+Вам доведеться встановити інший репозиторій, щоб інсталювати останню версію сервера MySQL.
 
-Visit this page: https://dev.mysql.com/downloads/repo/yum/ and copy the repository URL.
+Відвідайте цю сторінку: https://dev.mysql.com/downloads/repo/yum/ і скопіюйте URL-адресу сховища.
 
-For example:
+Наприклад:
 
 ```bash
 sudo dnf install -y https://dev.mysql.com/get/mysql84-community-release-el9-1.noarch.rpm
 ```
 
-When completed, you can perform the `dnf update`:
+Після завершення ви можете виконати `dnf update`:
 
 ```bash
 $ dnf update
@@ -117,17 +119,17 @@ Installed:
 Complete!
 ```
 
-Do not forget to re-enable and restart your server:
+Не забудьте знову ввімкнути та перезапустити сервер:
 
 ```bash
 sudo systemctl enable mysqld.service --now
 ```
 
-### Check your Knowledge of MySQL
+### Перевірте свої знання MySQL
 
-:heavy_check_mark: Which MySQL database version is installed by default?
+:heavy_check_mark: Яка версія бази даних MySQL встановлена ​​за замовчуванням?
 
-* [ ] MySQL 5.5
-* [ ] MariaDB 10.5
-* [ ] MariaDB 11.11
-* [ ] Mysql 8
+- [ ] MySQL 5.5
+- [ ] MariaDB 10.5
+- [ ] MariaDB 11.11
+- [ ] Mysql 8
