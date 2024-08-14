@@ -1,6 +1,6 @@
 ---
 author: Antoine Le Morvan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 title: Part 7. High availability
 tags:
   - clustering
@@ -20,19 +20,19 @@ This availability is a performance measure expressed as a percentage obtained by
 | -------- | ----------------------------- |
 | 90%      | 876 hours                     |
 | 95%      | 438 hours                     |
-| 99%      | 87 hours et 36 minutes        |
+| 99%      | 87 hours 36 minutes        |
 | 99,9%    | 8 hours 45 minutes 36 seconds |
-| 99,99%   | 52 minutes, 33 seconds        |
-| 99,999%  | 5 minutes, 15 seconds         |
+| 99,99%   | 52 minutes 33 seconds        |
+| 99,999%  | 5 minutes 15 seconds         |
 | 99,9999% | 31,68 seconds                 |
 
-"High Availability" (**HA**) refers to all the measures taken to guarantee the highest possible availability of a service. In other words: its correct operation 24 hours a day.
+"High Availability" (**HA**) refers to all measures taken to guarantee a service's highest possible availability—that is, correct operation 24 hours a day.
 
 ### Overview
 
 A cluster is a "computer cluster", a group of two or more machines.
 
-A cluster allows :
+A cluster allows:
 
 * distributed computing by using the computing power of all the nodes
 * high availability: service continuity and automatic service failover in the event of a node failure
@@ -41,7 +41,7 @@ A cluster allows :
 
 * Active/passive services
 
-    Installing a cluster with two active/passive nodes by using Pacemaker and DRBD is a low-cost solution for many situations requiring a high-availability system.
+    Installing a cluster with two active/passive nodes using Pacemaker and DRBD is a low-cost solution for many situations requiring a high-availability system.
 
 * N+1 services
 
@@ -57,13 +57,13 @@ A cluster allows :
 
 #### VIP
 
-The VIP is a virtual IP address. This is the address assigned to an Active/Passive cluster. Assign the VIP to a cluster node that is active. If a service failure occurs, deactivation of the VIP occurs on the failed node while activation occurs on the node taking over. This is known as failover.
+The VIP is a virtual IP address assigned to an Active/Passive cluster. Assign the VIP to an active cluster node. If a service failure occurs, the VIP is deactivated on the failed node, while activation occurs on the node taking over. This is known as failover.
 
-Clients always address the cluster using VIP, making active server failovers transparent to them.
+Clients always address the cluster using VIP, making active server failovers transparent.
 
 #### Split-brain
 
-Split-brain is the main risk a cluster may encounter. This condition occurs when several nodes in a cluster think their neighbor is inactive. The node then tries to start the redundant service, and several nodes provide the same service, which can lead to annoying side-effects (duplicate VIPs on the network, competing data access, and so on.).
+Split-brain is the leading risk a cluster may encounter. This condition occurs when several nodes in a cluster think their neighbor is inactive. The node then tries to start the redundant service, and several nodes provide the same service, which can lead to annoying side effects (duplicate VIPs on the network, competing data access, and so on).
 
 Possible technical solutions to avoid this problem are:
 
@@ -76,7 +76,7 @@ In this chapter, you will learn about Pacemaker, a clustering solution.
 
 ****
 
-**Objectives**: In this chapter, you will learn how to:
+**Objectives**: You will learn how to:
 
 :heavy_check_mark: install and configure a Pacemaker cluster;
 :heavy_check_mark: administer a Pacemaker cluster.
@@ -92,7 +92,7 @@ In this chapter, you will learn about Pacemaker, a clustering solution.
 
 ### Generalities
 
-**Pacemaker** is the software part of the cluster that manages its resources (VIPs, services, data). It is responsible for starting, stopping and supervising cluster resources. It guarantees high node availability.
+**Pacemaker** is the software part of the cluster that manages its resources (VIPs, services, data). It is responsible for starting, stopping and, supervising cluster resources. It guarantees high node availability.
 
 Pacemaker uses the message layer provided by **corosync** (default) or **Heartbeat**.
 
@@ -104,43 +104,43 @@ Pacemaker consists of **5 key components**:
 * Policy Engine (**PEngine** or **PE**)
 * Fencing daemon (**STONITHd**)
 
-The CIB represents the cluster configuration and the current state of all cluster resources. The contents of the CIB are automatically synchronized across the entire cluster and used by the PEngine to calculate how to achieve the ideal cluster state.
+The CIB represents the cluster configuration and the current state of all cluster resources. Its contents are automatically synchronized across the entire cluster and used by the PEngine to calculate how to achieve the ideal cluster state.
 
 The list of instructions is then provided to the Designated Controller (DC). Pacemaker centralizes all cluster decisions by electing one of the CRMd instances as master.
 
-The DC executes the PEngine's instructions in the required order, transmitting them either to the local LRMd or to the CRMd of the other nodes via Corosync or Heartbeat.
+The DC executes the PEngine's instructions in the required order, transmitting them to the local LRMd or the CRMd of the other nodes via Corosync or Heartbeat.
 
-In some cases, it may be necessary to stop nodes to protect shared data or enable their recovery. Pacemaker comes with STONITHd for this purpose.
+Sometimes, stopping nodes to protect shared data or enable recovery may be necessary. Pacemaker comes with STONITHd for this purpose.
 
 #### Stonith
 
 Stonith is a component of Pacemaker. It stands for Shoot-The-Other-Node-In-The-Head, a recommended practice for ensuring the isolation of the malfunctioning node as quickly as possible (shut down or at least disconnected from shared resources), thus avoiding data corruption.
 
-An unresponsive node does not mean that it can no longer access data. The only way to ensure that a node is no longer accessing data before handing over to another node is to use STONITH, which will either shut down or restart the failed server.
+An unresponsive node does not mean that it can no longer access data. The only way to ensure that a node is no longer accessing data before handing it over to another node is to use STONITH, which will shut down or restart the failed server.
 
-STONITH also has a role to play if a clustered service is failing to shut down. In this case, Pacemaker uses STONITH to force the entire node to stop.
+STONITH also has a role if a clustered service fails to shut down. In this case, Pacemaker uses STONITH to force the entire node to stop.
 
 #### Quorum management
 
 The quorum represents the minimum number of nodes in operation to validate a decision, such as deciding which backup node should take over when one of the nodes is in error. By default, Pacemaker requires more than half the nodes to be online.
 
-When communication problems split a cluster into several groups of nodes, quorum prevents resources from starting up on more nodes than expected. A cluster is quorate when more than half of all nodes known to be online are in its group (active_nodes_group > active_total_nodes / 2 ).
+When communication problems split a cluster into several group nodes, quorum prevents resources from starting up on more nodes than expected. A cluster is quorate when more than half of all nodes known to be online are in its group (active_nodes_group > active_total_nodes / 2 ).
 
-The default decision when quorum is not reached is to disable all resources.
+When a quorum is not reached, the default decision is to turn off all resources.
 
 Case study:
 
-* On a **two-node cluster**, since reaching quorum **is not possible**, if there is a node failure, it must be ignored or the entire cluster will be shut down.
-* If a 5-node cluster is split into 2 groups of 3 and 2 nodes, the 3-node group will have quorum and continue to manage resources.
-* If a 6-node cluster is split into 2 groups of 3 nodes, no group will have quorum. In this case, pacemaker's default behavior is to stop all resources to avoid data corruption.
+* On a **two-node cluster**, since reaching quorum **is not possible**, a node failure must be ignored, or the entire cluster will be shut down.
+* If a 5-node cluster is split into 2 groups of 3 and 2 nodes, the 3-node group will have a quorum and continue to manage resources.
+* If a 6-node cluster is split into 2 groups of 3 nodes, no group will have a quorum. In this case, the pacemaker's default behavior is to stop all resources to avoid data corruption.
 
 #### Cluster communication
 
-Pacemaker uses either **Corosync** or **Heartbeat** (from the linux-ha project) for node-to-node communication and cluster management.
+A pacemaker uses either **Corosync** or **Heartbeat** (from the Linux-ha project) for node-to-node communication and cluster management.
 
 ##### Corosync
 
-**Corosync Cluster Engine** is a messaging layer between cluster members and integrates additional functionalities for implementing high availability within applications. The Corosync is derived from the OpenAIS project.
+**Corosync Cluster Engine** is a messaging layer between cluster members that integrates additional functionalities to implement high availability within applications. The Corosync derives from the OpenAIS project.
 
 Nodes communicate in Client/Server mode with the UDP protocol.
 
@@ -148,7 +148,7 @@ It can manage clusters of more than 16 Active/Passive or Active/Active modes.
 
 ##### Heartbeat
 
-Heartbeat technology is more limited than Corosync. It is not possible to create a cluster of more than 2 nodes, and its management rules are less sophisticated than those of its competitor.
+Heartbeat technology is more limited than Corosync. It is impossible to create a cluster of more than two nodes, and its management rules are less sophisticated than those of its competitor.
 
 !!! NOTE
 
@@ -158,9 +158,9 @@ Heartbeat technology is more limited than Corosync. It is not possible to create
 
 ##### The DRDB network raid
 
-DRDB is a block-type device driver that enables the implementation of RAID 1 (mirroring) over the network.
+DRDB is a block-type device driver enabling RAID 1 (mirroring) implementation over the network.
 
-DRDB can be useful when NAS or SAN technologies are not available, but a need exists for data synchronization.
+DRDB can be useful when NAS or SAN technologies are unavailable, but data synchronization is needed.
 
 ### Installation
 
@@ -214,7 +214,7 @@ systemd
 ...
 ```
 
-The pacemaker installation will therefore automatically install corosync and a CLI interface for pacemaker.
+The pacemaker installation will, therefore, automatically install corosync and a CLI interface for a pacemaker.
 
 Some information about the corosync package:
 
@@ -256,7 +256,7 @@ sudo firewall-cmd --reload
 
 The `pcs` package provides cluster management tools. The `pcs` command is a command-line interface for managing the **Pacemaker high-availability stack**.
 
-Cluster configuration could possibly be done by hand, but the pcs package makes managing (creating, configuring and troubleshooting) a cluster much easier!
+Cluster configuration could be done by hand, but the pcs package makes managing (creating, configuring, and troubleshooting) a cluster much easier!
 
 !!! NOTE
 
@@ -285,7 +285,7 @@ echo "pwdhacluster" | sudo passwd --stdin hacluster
 
     Please replace "pwdhacluster" with a more secure password.
 
-From any node, it is possible to authenticate as a hacluster user on all nodes, then use the `pcs` commands on them:
+From any node, it is possible to authenticate as a hacluster user on all nodes then use the `pcs` commands on them:
 
 ```bash
 $ sudo pcs host auth server1 server2
@@ -320,9 +320,9 @@ Cluster has been successfully set up.
 
 !!! NOTE
 
-    The pcs cluster setup command takes care of the quorum problem for two-node clusters. Such a cluster will therefore function correctly in the event of the failure of one of the two nodes. If you are manually configuring corosync or using another cluster management shell, you will need to configure corosync correctly yourself.
+    The pcs cluster setup command handles the quorum problem for two-node clusters. Such a cluster will, therefore, function correctly in the event of the failure of one of the two nodes. If you manually configure Corosync or use another cluster management shell, you must configure Corosync correctly.
 
-You can now start cluster:
+You can now start the cluster:
 
 ```bash
 $ sudo pcs cluster start --all
@@ -389,11 +389,11 @@ sudo pcs property set stonith-enabled=false
 
 !!! WARNING
 
-    Be careful not to leave `stonith` disabled on a production environment!
+    Be careful not to leave `stonith` disabled in a production environment!
 
 ##### VIP configuration
 
-The first resource you are going to create on your cluster is a VIP.
+The first resource you will create on your cluster is a VIP.
 
 List the standard resources available with the `pcs resource standards` command:
 
@@ -405,13 +405,13 @@ service
 systemd
 ```
 
-This VIP, corresponds to the IP address used by customers to access future cluster services. You must assign it to one of the nodes. Then, if a failure occurs, the cluster will switch this resource from one node to another to ensure continuity of service.
+This VIP corresponds to customers' IP addresses so they can access future cluster services. You must assign it to one of the nodes. Then, if a failure occurs, the cluster will switch this resource from one node to another to ensure continuity of service.
 
 ```bash
 pcs resource create myclusterVIP ocf:heartbeat:IPaddr2 ip=192.168.1.12 cidr_netmask=24 op monitor interval=30s
 ```
 
-The `ocf:heartbeat:IPaddr2` argument contains three fields that provide pacemaker with :
+The `ocf:heartbeat:IPaddr2` argument contains three fields that provide Pacemaker with the following:
 
 * the standard (here `ocf`)
 * the script namespace (here `heartbeat`)
@@ -450,7 +450,7 @@ $ ip add show dev enp0s3
 
 ###### Toggle tests
 
-From anywhere on the network, run the ping command on the VIP :
+From anywhere on the network, run the ping command on the VIP:
 
 ```bash
 ping 192.168.1.12
@@ -462,7 +462,7 @@ Put the active node on standby:
 sudo pcs node standby server1
 ```
 
-Check that all pings succeed during the operation: (no missing `icmp_seq`)
+Check that all pings succeed during the operation (no missing `icmp_seq`):
 
 ```bash
 64 bytes from 192.168.1.12: icmp_seq=39 ttl=64 time=0.419 ms
@@ -501,13 +501,14 @@ Return server1 to the pool:
 sudo pcs node unstandby server1
 ```
 
-Note that once server1 has been `unstandby`, the cluster returns to its normal state, but the resource is not transferred back to server1: it remains on server2.
+!!! Note 
+Once server1 has been `unstandby`, the cluster returns to its normal state, but the resource is not transferred back to server1: it remains on server2.
 
 ##### Service configuration
 
-You will install the Apache service on both nodes of your cluster. This service is only started on the active node, and will switch nodes at the same time as the VIP if a failure of the active node occurs.
+You will install the Apache service on both nodes of your cluster. This service is only started on the active node and will switch nodes at the same time as the VIP if the active node fails.
 
-Refer to the apache chapter for detailed installation instructions.
+Refer to the Apache chapter for detailed installation instructions.
 
 You must install `httpd` on both nodes:
 
@@ -519,7 +520,7 @@ sudo firewall-cmd --reload
 
 !!! WARNING
 
-    Don not start or activate the service yourself. Pacemaker will take care of it.
+    Do not start or activate the service yourself. The Pacemaker will take care of it.
 
 An HTML page containing the server name will show by default:
 
@@ -527,7 +528,7 @@ An HTML page containing the server name will show by default:
 echo "<html><body>Node $(hostname -f)</body></html>" | sudo tee "/var/www/html/index.html"
 ```
 
-The Pacemaker resource agent will use the `/server-status` page (see apache chapter) to determine its health status. You must activate it by creating the file `/etc/httpd/conf.d/status.conf` on both servers:
+The Pacemaker resource agent will use the `/server-status` page (see Apache chapter) to determine its health status. You must activate it by creating the file `/etc/httpd/conf.d/status.conf` on both servers:
 
 ```bash
 sudo vim /etc/httpd/conf.d/status.conf
@@ -537,7 +538,7 @@ sudo vim /etc/httpd/conf.d/status.conf
 </Location>
 ```
 
-To create a resource you will call "WebSite", you will call the apache script of the OCF resource and in the heartbeat namespace.
+To create a resource, you will call "WebSite"; you will call the Apache script of the OCF resource and in the heartbeat namespace.
 
 ```bash
 sudo pcs resource create WebSite ocf:heartbeat:apache configfile=/etc/httpd/conf/httpd.conf statusurl="http://localhost/server-status" op monitor interval=1min
@@ -560,7 +561,7 @@ Adding myclusterVIP WebSite (kind: Mandatory) (Options: first-action=start then-
 
 ###### Testing the failover
 
-You will perform a failover and test that your webserver is still available:
+You will perform a failover and test that your web server is still available:
 
 ```bash
 $ sudo pcs status
@@ -596,13 +597,13 @@ $ curl http://192.168.1.12/
 <html><body>Node server2</body></html>
 ```
 
-As you can see, your webservice is still working but on server2 now.
+As you can see, your web service is still working, but it is on server2 now.
 
 ```bash
 sudo pcs node unstandby server1
 ```
 
-Note that the service was only interrupted for a few seconds while the VIP switched over and the services restarted.
+Note that the service was only interrupted for a few seconds while the VIP switched over, and the services restarted.
 
 ### Cluster troubleshooting
 
@@ -635,9 +636,9 @@ Daemon Status:
   pcsd: active/enabled
 ```
 
-As you can see, one of the two server is offline.
+As you can see, one of the two servers is offline.
 
-#### The `pcs status corosync`
+#### The `pcs status corosync` command
 
 The `pcs status corosync` command provides information about the status of `corosync` nodes:
 
@@ -737,9 +738,9 @@ $ cat /etc/hosts
 
 You will use the VIP address of `192.168.1.12`.
 
-#### Task 1 : Installation and configuration
+#### Task 1: Installation and configuration
 
-To install Pacemaker. Remember to enable the `highavailability` repository.
+To install Pacemaker, enable the `highavailability` repository.
 
 On both nodes:
 
@@ -766,9 +767,9 @@ $ sudo pcs cluster enable --all
 $ sudo pcs property set stonith-enabled=false
 ```
 
-#### Task 2 : Adding a VIP
+#### Task 2: Adding a VIP
 
-The first resource you are going to create on your cluster is a VIP.
+The first resource you will create on your cluster is a VIP.
 
 ```bash
 pcs resource create myclusterVIP ocf:heartbeat:IPaddr2 ip=192.168.1.12 cidr_netmask=24 op monitor interval=30s
@@ -792,7 +793,7 @@ Full List of Resources:
   * myclusterVIP        (ocf:heartbeat:IPaddr2):         Started server2
 ```
 
-#### Task 3 : Installing the Apache server
+#### Task 3: Installing the Apache server
 
 Perform this installation on both nodes:
 
@@ -808,7 +809,7 @@ sudo vim /etc/httpd/conf.d/status.conf
 </Location>
 ```
 
-#### Task 4 : Adding the `httpd` resource
+#### Task 4: Adding the `httpd` resource
 
 Only on server1, add the new resource to the cluster with the needed constraints:
 
@@ -818,9 +819,9 @@ sudo pcs constraint colocation add WebSite with myclusterVIP INFINITY
 sudo pcs constraint order myclusterVIP then WebSite
 ```
 
-#### Task 5 : Test your cluster
+#### Task 5: Test your cluster
 
-You will perform a failover and test that your webserver is still available:
+You will perform a failover and test that your web server is still available:
 
 ```bash
 $ sudo pcs status
@@ -866,7 +867,7 @@ Note that the service was only interrupted for a few seconds while the VIP switc
 
 ### Check your knowledge
 
-:heavy_check_mark: The `pcs` command is the only one command to control a pacemaker cluster?
+:heavy_check_mark: Is the `pcs` command the only one to control a pacemaker cluster?
 
 :heavy_check_mark: Which command returns the cluster state?
 
