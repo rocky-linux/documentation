@@ -1,6 +1,6 @@
 ---
 author: Antoine Le Morvan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 title: Частина 4.3 Реплікація бази даних MariaDB
 ---
 
@@ -291,8 +291,6 @@ MariaDB [(none)]> show databases;
 | sys                |
 +--------------------+
 ```
-
-магія!
 
 На додатковому сервері спробуйте підключити нового користувача, створеного на основному:
 
