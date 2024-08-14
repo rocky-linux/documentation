@@ -894,7 +894,7 @@ Installed size: 214 k
 Is this ok [y/N]:
 ```
 
-### Conclusion
+### Zusammenfassung
 
 EPEL ist kein offizielles Repository für RHEL, aber es kann nützlich für Administratoren und Entwickler sein, die mit RHEL oder Derivaten arbeiten und einige Hilfsprogramme benötigen, die für RHEL aus einer vertrauenswürdigen Quelle erstellt wurden.
 
