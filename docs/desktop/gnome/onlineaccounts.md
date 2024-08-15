@@ -24,7 +24,7 @@ Either way, you will end up here:
 
 ![a screenshot of the GNOME Online Accounts settings panel](images/onlineaccounts-01.png)
 
-!!! Note
+!!! note
 
     You may have to click on a three-vertical-dots icon to access all the options shown here:
 
