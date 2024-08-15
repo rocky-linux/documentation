@@ -15,6 +15,6 @@ Der Code, das Skript oder das Beispiel für den Befehl sollte kurz sein. Wenn es
 * Ihre Motivation
 * Eine kurze Zusammenfassung
 
-## Beitrag
+## Mitwirkung
 
 Sie können zu Ihrem **Gemstone** auf die gleiche Weise beitragen, wie Sie zu anderen Dokumentationen beitragen (siehe: [Contribution Guide](../guides/contribute/README.md)). Wenn Sie ein Pull-Request auf GitHub senden, fügen Sie „gemstone“ in die Commit-Nachricht ein. Wenn Sie kein GitHub-Konto haben oder möchten, können Sie es einfach an den Kanal [Mattermost Documentation](https://chat.rockylinux.org/rocky-linux/channels/documentation) senden und wir bearbeiten und bauen Ihren **Gemstone** für Sie ein. Einfacher geht das nicht!
