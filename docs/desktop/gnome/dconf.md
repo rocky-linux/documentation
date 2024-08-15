@@ -12,7 +12,7 @@ However, this approach also means it is not as quickly configurable. If you can 
 
 But what if you want to see all the little settings, features, and configurations the GNOME developers have hidden? You can look up your current problem online and type in a command to change an obscure variable, or you can install `dconf Editor`.
 
-`dconf Editor` is a GNOME Settings app with *everything*. It might remind you a little bit of the Windows Registry, and it *is* similar. However, it is more readable; it only covers GNOME functionality, and some software is built for GNOME.
+`dconf Editor` is a GNOME Settings app with *everything*. It might remind you a little bit of the Windows Registry, and it *is* similar. However, it is more readable, and only covers GNOME functionality and some software that is built for GNOME.
 
 And you can also edit settings for GNOME extensions.
 
