@@ -140,7 +140,7 @@ Both Mattermost and Jitsi have Linux desktop clients on Flathub as well.
 
 The same goes for [Joplin](https://joplinapp.org) and [QOwnNotes](https://www.qownnotes.org/), and [Notesnook](https://notesnook.com), which are fantastic alternatives to Evernote.
 
-LAre you looking for an alternative to Notion in the Software center? [AppFlowy](https://appflowy.io) or [SiYuan](https://b3log.org/siyuan/en/) might be what you need.
+Are you looking for an alternative to Notion in the Software center? [AppFlowy](https://appflowy.io) or [SiYuan](https://b3log.org/siyuan/en/) might be what you need.
 
 !!! Note
 
