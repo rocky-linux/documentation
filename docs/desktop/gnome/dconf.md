@@ -16,7 +16,7 @@ But what if you want to see all the little settings, features, and configuration
 
 And you can also edit settings for GNOME extensions.
 
-!!! Warning
+!!! warning
 
     The comparison to the Windows Registry was entirely intentional. Like bad Registry keys, *some* of the GNOME Shell settings can break your GNOME installation or at least cause issues. You may need to restore the old settings via the command line.
 
