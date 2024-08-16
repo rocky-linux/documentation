@@ -110,7 +110,7 @@ Examples:
 
 Squid supports http and ftp protocols.
 
-The advantages of installing a solution based on the Squid server :
+The advantages of installing a solution based on the Squid server:
 
 * Hardware solutions are expensive;
 * Developed since 1996;
