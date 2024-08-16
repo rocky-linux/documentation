@@ -189,7 +189,7 @@ When the service is restarted, the Squid server will listen on the port defined 
 cache_mem taille KB|taille MB|taille GB
 ```
 
-For example :
+For example:
 
 ```bash
 cache_mem 1 GB
