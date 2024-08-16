@@ -410,7 +410,7 @@ squidclient -s -h localhost -p 8080 http://localhost/
 
 #### Analyze logs
 
-Squid's log records can be monitored with the command :
+Squid's log records can be monitored with the command:
 
 ```bash
 tail -f /var/log/squid/access.log
