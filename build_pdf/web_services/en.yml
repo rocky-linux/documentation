@@ -35,6 +35,6 @@ nav:
   - web_services/05-load-balancer-proxies.md
   - web_services/051-load-balancer-proxies-haproxy.md
   - web_services/052-load-balancer-proxies-varnish.md
-  - web_services/053-load-balancer-proxies-haproxy-squid.md
+  - web_services/053-load-balancer-proxies-squid.md
   - web_services/06-mails-servers.md
   - web_services/07-high-availability.md
