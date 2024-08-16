@@ -100,7 +100,7 @@ Examples:
 
 * 200 : ok
 * 301 : Moved Permanently
-* 302 : Moved Temporatly
+* 302 : Moved Temporarily
 * 304 : Not modified
 * 400 : Bad request
 * 401 : Unauthorized
