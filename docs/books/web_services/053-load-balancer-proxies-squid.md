@@ -61,7 +61,7 @@ In this way, a file downloaded once from the WAN (and therefore potentially from
 
 As we'll see later in this chapter, this isn't the only use for a proxy.
 
-A proxy can be deployed to :
+A proxy can be deployed to:
 
 * Deny access to certain resources based on various parameters,
 * Set up authentication and monitoring of clients' Internet activities,
