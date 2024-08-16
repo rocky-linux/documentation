@@ -38,16 +38,16 @@ sed -i 's/^\([^#].*\)**/# \1/g' /etc/httpd/conf.d/welcome.conf
 dnf -y remove httpd-manual
 dnf -y install mod_session
   
-echo “MaxKeepAliveRequests 100” > /etc/httpd/conf.d/disa-apache-stig.conf
-echo “SessionCookieName session path=/; HttpOnly; Secure;” >>  /etc/httpd/conf.d/disa-apache-stig.conf
-echo “Session On” >>  /etc/httpd/conf.d/disa-apache-stig.conf
-echo “SessionMaxAge 600” >>  /etc/httpd/conf.d/disa-apache-stig.conf
-echo “SessionCryptoCipher aes256” >>  /etc/httpd/conf.d/disa-apache-stig.conf
-echo “Timeout 10” >>  /etc/httpd/conf.d/disa-apache-stig.conf
-echo “TraceEnable Off” >>  /etc/httpd/conf.d/disa-apache-stig.conf
-echo “RequestReadTimeout 120” >> /etc/httpd/conf.d/disa-apache-stig.conf
+echo "MaxKeepAliveRequests 100" > /etc/httpd/conf.d/disa-apache-stig.conf
+echo "SessionCookieName session path=/\; HttpOnly\; Secure\;" >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "Session On" >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "SessionMaxAge 600" >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "SessionCryptoCipher aes256" >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "Timeout 10" >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "TraceEnable Off" >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "RequestReadTimeout 120" >> /etc/httpd/conf.d/disa-apache-stig.conf
 
-sed -i “s/^#LoadModule usertrack_module/LoadModule usertrack_module/g” /etc/httpd/conf.modules.d/00-optional.conf
+sed -i "s/^#LoadModule usertrack_module/LoadModule usertrack_module/g" /etc/httpd/conf.modules.d/00-optional.conf
 sed -i "s/proxy_module/#proxy_module/g" /etc/httpd/conf.modules.d/00-proxy.conf
 sed -i "s/proxy_ajp_module/#proxy_ajp_module/g" /etc/httpd/conf.modules.d/00-proxy.conf
 sed -i "s/proxy_balancer_module/#proxy_balancer_module/g" /etc/httpd/conf.modules.d/00-proxy.conf
@@ -81,7 +81,7 @@ If you’ve gotten this far, you’re probably interested in knowing more about 
 * Technical - 24  controls
 * Operational  - 23 controls
 
-We’re not going to cover the “why” for these changes in this article, just what needs to happen if it is a technical control.  If there is nothing we can change like in the case of an Operational control, the **Fix:** field will be none. The good news in a lot of these cases, this is already the default in Rocky Linux 8, so you don’t need to change anything at all.
+We’re not going to cover the "why" for these changes in this article, just what needs to happen if it is a technical control.  If there is nothing we can change like in the case of an Operational control, the **Fix:** field will be none. The good news in a lot of these cases, this is already the default in Rocky Linux 8, so you don’t need to change anything at all.
 
 ## Apache 2.4 V2R5 - Server Details
 
@@ -165,7 +165,7 @@ dnf remove httpd-manual
 
 ```bash
 dnf install mod_session
-echo “SessionCookieName session path=/; HttpOnly; Secure;” >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "SessionCookieName session path=/; HttpOnly; Secure;" >>  /etc/httpd/conf.d/disa-apache-stig.conf
 ```
 
 **(V-214269)** The Apache web server must remove all export ciphers to protect the confidentiality and integrity of transmitted information.
@@ -217,7 +217,7 @@ echo “SessionCookieName session path=/; HttpOnly; Secure;” >>  /etc/httpd/co
 **Fix:**  
 
 ```bash
-echo “MaxKeepAliveRequests 100” > /etc/httpd/conf.d/disa-apache-stig.conf
+echo "MaxKeepAliveRequests 100" > /etc/httpd/conf.d/disa-apache-stig.conf
 ```
 
 **(V-214229)** The Apache web server must perform server-side session management.
@@ -227,7 +227,7 @@ echo “MaxKeepAliveRequests 100” > /etc/httpd/conf.d/disa-apache-stig.conf
 **Fix:**  
 
 ```bash
-sed -i “s/^#LoadModule usertrack_module/LoadModule usertrack_module/g” /etc/httpd/conf.modules.d/00-optional.conf
+sed -i "s/^#LoadModule usertrack_module/LoadModule usertrack_module/g" /etc/httpd/conf.modules.d/00-optional.conf
 ```
 
 **(V-214266)** The Apache web server must prohibit or restrict the use of nonsecure or unnecessary ports, protocols, modules, and/or services.
@@ -320,7 +320,7 @@ Refer to <https://httpd.apache.org/docs/2.4/mod/mod_remoteip.html> for additiona
 **Fix:**  
 
 ```bash
-echo “Session On” >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "Session On" >>  /etc/httpd/conf.d/disa-apache-stig.conf
 ```
 
 **(V-214250)** The Apache web server must invalidate session identifiers upon hosted application user logout or other session termination.
@@ -330,7 +330,7 @@ echo “Session On” >>  /etc/httpd/conf.d/disa-apache-stig.conf
 **Fix:**  
 
 ```bash
-echo “SessionMaxAge 600” >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "SessionMaxAge 600" >>  /etc/httpd/conf.d/disa-apache-stig.conf
 ```
 
 **(V-214252)** The Apache web server must generate a session ID long enough that it cannot be guessed through brute force.
@@ -340,7 +340,7 @@ echo “SessionMaxAge 600” >>  /etc/httpd/conf.d/disa-apache-stig.conf
 **Fix:**  
 
 ```bash
-echo “SessionCryptoCipher aes256” >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "SessionCryptoCipher aes256" >>  /etc/httpd/conf.d/disa-apache-stig.conf
 ```
 
 **(V-214255)** The Apache web server must be tuned to handle the operational requirements of the hosted application.
@@ -350,7 +350,7 @@ echo “SessionCryptoCipher aes256” >>  /etc/httpd/conf.d/disa-apache-stig.con
 **Fix:**  
 
 ```bash
-echo “Timeout 10” >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "Timeout 10" >>  /etc/httpd/conf.d/disa-apache-stig.conf
 ```
 
 **(V-214254)** The Apache web server must be built to fail to a known safe state if system initialization fails, shutdown fails, or aborts fail.
@@ -366,7 +366,7 @@ echo “Timeout 10” >>  /etc/httpd/conf.d/disa-apache-stig.conf
 **Fix:**  
 
 ```bash
-echo “TraceEnable Off” >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "TraceEnable Off" >>  /etc/httpd/conf.d/disa-apache-stig.conf
 ```
 
 **(V-214230)** The Apache web server must use cryptography to protect the integrity of remote sessions.
@@ -386,7 +386,7 @@ sed -i "s/^#SSLProtocol.*/SSLProtocol -ALL +TLSv1.2/g" /etc/httpd/conf.d/ssl.con
 **Fix:**  
 
 ```bash
-echo “RequestReadTimeout 120” >> /etc/httpd/conf.d/disa-stig-apache.conf
+echo "RequestReadTimeout 120" >> /etc/httpd/conf.d/disa-stig-apache.conf
 ```
 
 **(V-214270)** The Apache web server must install security-relevant software updates within the configured time period directed by an authoritative source (e.g., IAVM, CTOs, DTMs, and STIGs).
