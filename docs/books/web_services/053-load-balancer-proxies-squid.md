@@ -324,7 +324,7 @@ acl name type argument
 
 The order of ACLs is cumulative. Several ACLs with the same name represent a single ACL.
 
-Examples :
+Examples:
 
 Lunchtime authorization:
 
