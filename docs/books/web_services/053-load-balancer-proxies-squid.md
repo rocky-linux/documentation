@@ -228,7 +228,7 @@ http_access allow|deny aclname
 
 Example:
 
-```
+```bash
 acl LUNCHTIME time 12:00-14:00
 http_access deny LUNCHTIME
 ```
@@ -389,7 +389,6 @@ Authentication can also be a legal necessity: remember to get your users to sign
 
 The `squidclient` command is used to test a request to the squid server.
 
-
 `squidclient` command syntax:
 
 ```bash
@@ -431,21 +430,113 @@ Decomposition of a log line:
 | Peer Code     | Inter-proxy response code             |
 | File type     | Mime type of request target           |
 
+### Security
+
+The firewall should be open for the listening port:
+
+```bash
+sudo firewall-cmd --add-port=3128/tcp --permanent
+sudo firewall-cmd --reload
+```
+
 ### Workshop
 
 In this workshop, you'll install squid on your server and use it to download updates.
 
-#### Task 1 : XXX
+#### Task 1 : Install and configure squid
 
-#### Task 2 : XXX
+Install squid:
 
-#### Task 3 : XXX
+```bash
+sudo dnf install squid
+sudo systemctl enable squid
+sudo firewall-cmd --add-port=3128/tcp --permanent
+sudo firewall-cmd --reload
+```
 
-#### Task 4 : XXX
+Uncomment in the `/etc/squid/squid.conf` file the following line to create a cache directory on disk:
+
+```bash
+cache_dir ufs /var/spool/squid 100 16 512
+```
+
+Adjust the cache size as required.
+
+Create the cache directories and start the service.
+
+```bash
+sudo squid -z
+sudo systemctl start squid
+```
+
+#### Task 2 : Use your proxy with curl
+
+Open a new terminal on your proxy server to follow the proxy's access.
+
+```bash
+sudo tail -f /var/log/squid/access.log
+```
+
+On the second terminal, use cURL to access to a web page through the proxy:
+
+```bash
+$ curl -I --proxy "http://192.168.1.10:3128" https://docs.rockylinux.org  
+HTTP/1.1 200 Connection established
+
+HTTP/2 200 
+content-type: text/html
+...
+```
+
+As you can see, two HTTP connections are established: the first one with the proxy and the second one from the proxy to the remote server.
+
+You can see the trace on your second terminal:
+
+```
+1723793294.548     77 192.168.1.10 TCP_TUNNEL/200 3725 CONNECT docs.rockylinux.org:443 - HIER_DIRECT/151.101.122.132 -
+```
+
+The content is not cached here as we request an https connexion to the remote server.
+
+
+#### Task 3 : Configure DNS to use your proxy server
+
+Modify the `/etc/dnf/dnf.conf` file to use the proxy squid:
+
+```bash
+[main]
+gpgcheck=1
+installonly_limit=3
+clean_requirements_on_remove=True
+best=True
+skip_if_unavailable=False
+proxy=http://192.168.1.10:3128
+```
+
+Clean your dnf cache and try an update:
+
+```bash
+sudo dnf clean all
+sudo dnf update
+```
+
+Check on your terminal that the dnf is connected to your proxy to download its update:
+
+```bash
+1723793986.725     20 192.168.1.10 TCP_MISS/200 5238 GET http://rocky.reloumirrors.net/9.4/extras/x86_64/os/repodata/7d78a729-8e9a-4066-96d4-ab8ed8f06ee8-FILELISTS.xml.gz - HIER_DIRECT/193.106.119.144 application/x-gzip
+...
+1723794176.255      1 192.168.1.10 TCP_HIT/200 655447 GET http://miroir.univ-lorraine.fr/rocky/9.4/AppStream/x86_64/os/repodata/1af312c9-7139-43ed-8761-90ba3cd55461-UPDATEINFO.xml.gz - HIER_NONE/- application/x-gzip
+```
+
+On the example above, you can see one connection with a TCP_MISS (not present in the cache) and another one with TCP_HIT (use the cache to answer the client).
+
+### Conclusion
+
+Congratulations! You now have the knowledge you need to install squid on your local network, enabling you to centralize your outgoing connections to the Internet and secure your local network.
 
 ### Check your Knowledge
 
-:heavy_check_mark: What is the port listened per default by a squid server? 
+:heavy_check_mark: What is the port listened per default by a squid server?
 
 * [ ] 8080  
 * [ ] 1234  
