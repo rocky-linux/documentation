@@ -290,7 +290,7 @@ cache_dir ufs /var/spool/squid/ 100 16 256
 | 16     | 16 top-level folders     |
 | 256    | 256 second-level folders |
 
-When the service is launched for the first time, the :
+When the service is launched for the first time, the cache directory have to be generate:
 
 ```bash
 sudo squid -z
