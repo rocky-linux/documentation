@@ -45,7 +45,7 @@ The client workstation is protected by two firewalls and never communicates dire
 
     This architecture requires browser configuration on the client workstation.
 
-With a captive proxy, there's no need to configure all client workstations.
+With a captive proxy, there is no need to configure all client workstations.
 
 The configuration takes place at the gateway level, which receives the client requests and transparently rewrites the frames to send them to the proxy.
 
