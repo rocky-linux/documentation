@@ -146,7 +146,7 @@ Service logs (stop and restart) are stored in `/var/log/squid.cache.log`, while 
 
 #### The `squid` command
 
-The `squid` command control the squid server.
+The `squid` command controls the squid server.
 
 Syntaxe of the command:
 
