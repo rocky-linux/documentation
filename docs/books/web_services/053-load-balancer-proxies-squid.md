@@ -161,7 +161,7 @@ squid [-z|-s|-k parse|-k rotate]
 | `-k parse`  | Test configuration file      |
 | `-k rotate` | Rotates logs                 |
 
-Logging client requests can quickly lead to the storage of large volumes of data.
+Logging client requests can quickly lead to the storage of large amount of data.
 
 It's a good idea to regularly create a new log file and archive the old one in compressed format.
 
