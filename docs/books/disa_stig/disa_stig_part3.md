@@ -39,7 +39,7 @@ dnf -y remove httpd-manual
 dnf -y install mod_session
   
 echo "MaxKeepAliveRequests 100" > /etc/httpd/conf.d/disa-apache-stig.conf
-echo "SessionCookieName session path=/\; HttpOnly\; Secure\;" >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "SessionCookieName session path=/; HttpOnly; Secure;" >>  /etc/httpd/conf.d/disa-apache-stig.conf
 echo "Session On" >>  /etc/httpd/conf.d/disa-apache-stig.conf
 echo "SessionMaxAge 600" >>  /etc/httpd/conf.d/disa-apache-stig.conf
 echo "SessionCryptoCipher aes256" >>  /etc/httpd/conf.d/disa-apache-stig.conf
