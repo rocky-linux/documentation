@@ -307,7 +307,7 @@ Syntax of the `http_access` directive
 http_access allow|deny [!]acl_name
 ```
 
-Example :
+Example:
 
 ```bash
 http_access allow LUNCHTIME
