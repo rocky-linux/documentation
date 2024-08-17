@@ -19,7 +19,8 @@ This guide assumes you have the following:
 ## Installation Process
 
 Go to Flatub.com, type "Audio Sharing" in the search bar, and click on **Install**.
-<!--- add screenshot here --->
+
+![Screenshot of the Audio Sharing app page on FlatHub, showing the install button being highlighted by a red rectangle](/gnome/images/audio-sharing_01.png)
 
 Then, use the following command to install the app
 `flatpak run de.haeckerfelix.AudioSharing`
@@ -27,8 +28,8 @@ Then, use the following command to install the app
 ## How to Use
 
 To use the app, scan the displayed QR code from the device which you want to use for receiving the audio.
-<!--- add screenshot here --->
- 
+
+![Screenshot of a QR code with instructions on how to share audio with another device](/gnome/images/audio-sharing_02.png)
  !!! note
 
  In order for the shared audio to play on the other device, make sure your it has a program that does RTSP(Real-Time Streaming Protocol) streams.  Check out the [FAQs section on the Audio Sharing repository](https://gitlab.gnome.org/World/AudioSharing/#faq) to learn more.  
