@@ -1,7 +1,7 @@
 ---
 title: Éditeur de Configuration – dconf
 author: Ezequiel Bruni
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 ## Introduction
@@ -14,7 +14,7 @@ Mais que faire si vous souhaitez voir en détail tous les paramètres, fonctionn
 
 `dconf Editor` est essentiellement une application de paramètres GNOME qui contient _tout_ et sait tout faire. En fait, cela pourrait vous rappeler un peu le registre Windows, et la fonction _est_ similaire. Cependant, il est plus lisible mais il ne couvre que les fonctionnalités de GNOME et certains des logiciels créés pour GNOME.
 
-Et vous pouvez également modifier les paramètres des extensions GNOME, ce qui est donc très cool.
+Et vous pouvez également modifier les paramètres des extensions GNOME.
 
 !!! warning "Avertissement"
 
@@ -31,15 +31,13 @@ Pour ce guide, vous aurez besoin des conditions suivantes :
 - Installation de Rocky Linux, GNOME inclus.
 - Les droits nécessaires pour l'installation de logiciels sur votre système (privilèges `sudo`).
 
-Voilà, c’est tout.
-
 ## `dconf Editor` — Installation
 
-Accédez à l'application `Software`, recherchez `Dconf Editor` et appuyez sur le bouton d'installation. Il est disponible dans le référentiel Rocky Linux par défaut.
+Accédez à l'application `Software`, recherchez `Dconf Editor` et appuyez sur le bouton d'installation. Il est disponible dans le dépôt de Rocky Linux par défaut.
 
 ![the GNOME software center, featuring dconf Editor](images/dconf-01.png)
 
-Pour ceux d'entre vous qui préfèrent la ligne de commande, c'est :
+Pour installer l'éditeur dconf avec la ligne de commande, procédez comme suit :
 
 ```bash
 sudo dnf install dconf-editor
@@ -47,21 +45,19 @@ sudo dnf install dconf-editor
 
 ## `dconf Editor` — Utilisation
 
-Une fois que vous aurez ouvert l’application, vous verrez trois éléments importants de l’interface utilisateur. Tout en haut se trouve le chemin. Oui, vos paramètres GNOME sont tous organisés selon une arborescence de dossiers.
+Une fois que vous aurez ouvert l’application, vous verrez trois éléments importants de l’interface utilisateur. Tout en haut se trouve le chemin. Les paramètres GNOME sont organisés selon une arborescence de dossiers.
 
-En haut à droite vous verrez un bouton avec une petite étoile. C'est le bouton Favoris, vous pouvez ainsi enregistrer votre état dans l'application et y revenir plus tard rapidement et facilement. En dessous se trouve le panneau principal dans lequel vous sélectionnez vos sous-dossiers de paramètres et modifiez les paramètres comme bon vous semble.
+En haut à droite vous verrez un bouton avec une petite étoile. C'est le bouton `Favorites`, vous pouvez ainsi enregistrer votre état dans l'application et y revenir plus tard rapidement et facilement. En dessous se trouve le panneau principal dans lequel vous sélectionnez vos sous-dossiers de paramètres et modifiez les paramètres comme bon vous semble.
 
 ![a screenshot of the dconf Editor window with arrows pointing at the aforementioned elements](images/dconf-02.png)
 
 À gauche du bouton `Favorites`, vous verrez le bouton `Search`, qui fait exactement ce que vous attendez.
 
-Et maintenant, que faire si vous souhaitez modifier certains paramètres dans le gestionnaire de fichiers ? Par exemple, l'auteur adore la barre latérale. L'auteur trouve ça bien pratique. Mais peut-être que vous ressentez différemment et que vous souhaitez effectuer des modifications. Donc, pour les besoins de ce guide, il faut continuer.
+Que faire si vous souhaitez modifier certains paramètres dans le gestionnaire de fichiers ? Par exemple, l'auteur adore la barre latérale. L'auteur trouve ça bien pratique. Mais peut-être que vous ressentez différemment et vous souhaitez effectuer des modifications. Donc, pour les besoins de ce guide, il faut continuer.
 
 ![a screenshot of the Nautilus file manager, with a threatening red X over the doomed sidebar](images/dconf-03.png)
 
-_Good night, sweet prince._
-
-Allez dans `/org/gnome/nautilus/window-state` et vous verrez une option appelée `start-with-sidebar`. Appuyez sur le bouton bascule et cliquez sur `Reload` lorsque cela apparaît comme ceci :
+Allez dans `/org/gnome/nautilus/window-state` et vous verrez une option appelée `start-with-sidebar`. Appuyez sur le bouton bascule et cliquez sur `Reload` lorsque l'écran apparaît comme ceci :
 
 ![a screenshot of dconf Editor, showing the toggle and reload button in question](images/dconf-04.png)
 
@@ -69,13 +65,13 @@ Si tout s'est bien passé, la prochaine fenêtre du navigateur de fichiers que v
 
 ![a screenshot of the file manager, bereft of its sidebar](images/dconf-05.png)
 
-Si cela vous semble incorrect — et l'auteur convient que cela devrait l'être –, rétablissez-le simplement, appuyez à nouveau sur `Reload` et ouvrez une nouvelle fenêtre du navigateur de fichiers.
+Si cela ne vous semble pas correct, rétablissez-le, appuyez à nouveau sur Recharger et ouvrez une nouvelle fenêtre du navigateur de fichiers.
 
-Enfin, vous pouvez également cliquer directement sur n'importe quel paramètre dans la fenêtre « dconf Editor » pour voir plus d'informations (et parfois plus d'options). Par exemple, voici à quoi ressemble l'écran des paramètres `initial-size` du gestionnaire de fichiers GNOME.
+Enfin, vous pouvez également cliquer directement sur n'importe quel paramètre dans la fenêtre `dconf Editor` pour voir plus d'informations (et parfois plus d'options). Par exemple, voici à quoi ressemble l'écran des paramètres `initial-size` du gestionnaire de fichiers GNOME.
 
 ![a screenshot of dconf Editor showing the initial-size settings for the file manager](images/dconf-06.png)
 
-## Maintenance
+## Dépannage
 
 Si vous modifiez vos paramètres dans `dconf Editor` et que vous ne voyez aucun changement, essayez alors l’une des solutions suivantes :
 
@@ -92,5 +88,3 @@ Cela pourrait être un bug, mais ce ne serait pas la première fois qu'un param�
 ## Conclusion
 
 C'est tout ce que vous devez savoir pour commencer. N'oubliez pas de garder une trace de toutes vos modifications, de ne pas modifier les paramètres sans savoir exactement ce qu'ils font, et amusez-vous à explorer les options qui s'offrent (pour la plupart) à votre disposition.
-
-Bonne chance !
