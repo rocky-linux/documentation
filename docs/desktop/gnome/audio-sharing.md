@@ -1,4 +1,4 @@
-﻿---
+---
 title: Audio Sharing
 author: Christine Belzie
 contributors: 
@@ -18,7 +18,7 @@ This guide assumes you have the following:
 
 ## Installation Process
 
-Go to Flatub.com, type "Audio Sharing" in the search bar, and click on **Install**.
+Go to Flathub.org, type "Audio Sharing" in the search bar, and click on **Install**.
 
 ![Screenshot of the Audio Sharing app page on FlatHub, showing the install button being highlighted by a red rectangle](/gnome/images/audio-sharing_01.png)
 
