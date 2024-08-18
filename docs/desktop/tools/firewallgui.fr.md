@@ -1,12 +1,12 @@
 ---
 title: Firewall GUI App
 author: Ezequiel Bruni
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 ## Introduction
 
-Vous souhaiteriez gérer votre pare-feu sans tout ce genre de choses en ligne de commande ? En fait, vous pouvez ! Il existe une excellente application spécialement conçue pour `firewalld`, le pare-feu utilisé dans Rocky Linux, et elle est disponible dans Flathub. Ce guide vous montrera comment la mettre en place et la faire fonctionner rapidement, ainsi que les bases de l'interface.
+Vous souhaiteriez gérer votre pare-feu sans tout ce genre de choses en ligne de commande ? Il existe une excellente application spécialement conçue pour `firewalld`, le pare-feu utilisé dans Rocky Linux, et elle est disponible dans Flathub. Ce guide vous montrera comment la mettre en place et la faire fonctionner rapidement, ainsi que les bases de l'interface.
 
 Nous n'aborderons pas tout ce que `firewalld` ou l'interface graphique peuvent accomplir, mais cela devrait suffire à vous permettre de démarrer.
 
@@ -28,11 +28,11 @@ Si vous n'êtes pas sûr de tout cela, veuillez consulter le [Guide du débutant
 
 ## Installer l'application
 
-Accédez simplement à l'application Software Center et recherchez « Firewall ». Il s'agit d'un package natif dans le référentiel Rocky Linux, et il s'appellera littéralement « Firewall », il devrait donc être facile à trouver.
+Accédez simplement à l'application Software Center et recherchez `Firewall`. Il s'agit d'un package natif dans le dépôt de Rocky Linux, et il s'appellera littéralement « Firewall », il devrait donc être facile à trouver.
 
 ![Firewall in the Software Center](images/firewallgui-01.png)
 
-Pour les curieux, il s'agit de `firewall-config` dans le dépôt et peut être installé avec la commande habituelle :
+Pour les curieux, il s'agit de `firewall-config` dans le dépôt et peut être installé avec la commande habituelle suivante :
 
 ```bash
 sudo dnf install firewall-config
@@ -42,7 +42,7 @@ Lorsque vous ouvrirez l’application, elle vous demandera votre mot de passe. E
 
 ## Modes de Configuration
 
-La première chose à prendre en compte est le mode de configuration dans lequel vous vous trouvez, qui est sélectionnable dans le menu déroulant en haut de la fenêtre. Les choix possibles sont les suivants : `Runtime` et `Permanent`.
+La première chose à prendre en compte est le mode de configuration dans lequel vous vous trouvez, qui est sélectionnable dans le menu déroulant en haut de la fenêtre. Vos choix possibles sont les suivants : `Runtime` et `Permanent`.
 
 ![le menu déroulant du mode de configuration se trouve en haut de la fenêtre](images/firewallgui-02.png)
 
@@ -52,13 +52,13 @@ Une fois que vous avez, par exemple, ouvert un port dans la zone Publique, vous 
 
 Le mode permanent est plus risqué à utiliser, mais ouvre toutes les fonctionnalités. Il permet la création de nouvelles zones, la configuration individuelle des services, la gestion de vos interfaces réseau et l'ajout d'IPSets (en d'autres termes, des ensembles d'adresses IP autorisées ou non à contacter votre ordinateur ou serveur).
 
-Après avoir apporté des modifications permanentes, accédez à « Options > Reload Firewalld » pour les activer correctement.
+Après avoir apporté des modifications permanentes, accédez à `Options > Reload Firewalld` pour les activer correctement.
 
 ## Gestion des Interfaces/Connections
 
 Le panneau tout à gauche, intitulé « Active Bindings », est l'endroit où vous trouverez vos connexions réseau et l'interface ajoutée manuellement. Si vous faites défiler vers le haut, vous verrez `my Ethernet connection` (eno1). Par défaut, la zone « public » inclut votre connexion réseau et est bien protégée.
 
-En bas du panneau, vous trouverez le bouton « Change Zone », qui vous permet d'attribuer votre connexion à une autre zone si vous le souhaitez. En mode `Permanent`, vous pourrez également créer vos propres Zones personnalisées.
+En bas du panneau, vous trouverez le bouton `Change Zone`, qui vous permet d'attribuer votre connexion à une autre zone si vous le souhaitez. En mode `Permanent`, vous pourrez également créer vos propres Zones personnalisées.
 
 ![a screenshot featuring the Active Bindings panel on the left of the window](images/firewallgui-03.png)
 
@@ -71,14 +71,14 @@ Pour la plupart des utilisateurs de bureau de base, c'est ici que vous passerez 
 !!! note "Remarque"
 
 ```
-Si vous installez vos applications et services à partir du référentiel, certains d'entre eux (généralement ceux conçus pour une utilisation sur Desktop) activeront automatiquement les services concernés ou ouvriront les ports appropriés. Cependant, si cela ne se produit pas, vous pouvez suivre les étapes ci-dessous pour tout faire manuellement.
+Si vous installez vos applications et services à partir du dépôt, certains d'entre eux (généralement ceux conçus pour une utilisation sur Desktop) activeront automatiquement les services concernés ou ouvriront les ports appropriés. Cependant, si cela ne se produit pas, vous pouvez suivre les étapes ci-dessous pour tout faire manuellement.
 ```
 
 ### Ajouter un Service à une Zone
 
 Les services sont des applications communes et des services d'arrière-plan que `firewalld` prend en charge par défaut. Vous pouvez les activer rapidement et facilement en faisant défiler la liste et en cliquant sur la case à cocher correspondante.
 
-Maintenant, si vous avez installé KDE Connect\* pour vous aider à synchroniser votre bureau avec d'autres appareils et que vous souhaitez l'autoriser à traverser votre pare-feu pour qu'il fonctionne réellement, vous devez :
+Maintenant, si vous avez installé KDE Connect\* pour vous aider à synchroniser votre bureau avec d'autres appareils et que vous souhaitez l'autoriser à traverser votre pare-feu pour qu'il fonctionne réellement, vous devez procéder comme suit :
 
 1. Tout d’abord, sélectionnez la zone que vous souhaitez modifier. Pour cet exemple, utilisez simplement la zone publique par défaut.
 2. Faites défiler la liste et sélectionnez `kdeconnect`.
@@ -94,7 +94,7 @@ Cependant, tous les programmes ne figurent pas dans la liste et vous devrez peut
 
 ### Ouverture de Ports sur une Zone
 
-Ouvrir des ports pour des applications spécifiques est assez simple. Assurez-vous simplement de lire la documentation pour connaître les ports dont vous avez besoin et c'est parti.
+Ouvrir des ports pour des applications spécifiques est assez simple. Assurez-vous simplement de lire la documentation pour connaître les ports dont vous avez besoin.
 
 1. Encore une fois, sélectionnez la zone que vous souhaitez modifier.
 2. Accédez à l’onglet Ports dans le panneau de droite.
@@ -106,8 +106,6 @@ Ouvrir des ports pour des applications spécifiques est assez simple. Assurez-vo
 
 ## Conclusion
 
-Eh bien, j’ai dit que nous garderions ce guide simple. Si vous voulez vraiment faire travailler votre cerveau, vous devriez essayer d'en lire davantage sur les principes fondamentaux de `firewalld`. Vous pouvez également utiliser l'onglet `Services` en haut du panneau de droite (à côté de `Zones`) pour configurer exactement le fonctionnement de vos services, ou contrôler l'accès des autres ordinateurs autorisés à communiquer avec le vôtre par l'intermédiaire les IPSets et les Sources.
+Si vous voulez vraiment faire travailler votre cerveau, vous devriez essayer d'en lire davantage sur les principes fondamentaux de `firewalld`. Vous pouvez également utiliser l'onglet `Services` en haut du panneau de droite (à côté de `Zones`) pour configurer exactement le fonctionnement de vos services, ou contrôler l'accès des autres ordinateurs autorisés à communiquer avec le vôtre par l'intermédiaire les IPSets et les Sources.
 
-Ou vous pouvez simplement ouvrir le port de votre serveur Jellyfin et poursuivre votre tâche. C'est de votre responsabilité. `firewalld` est un outil incroyablement puissant, et l'application Firewall peut vous aider à découvrir ses capacités d'une manière conviviale pour les débutants.
-
-Have fun, and stay safe out there!
+Ou vous pouvez simplement ouvrir le port de votre serveur Jellyfin et poursuivre votre tâche. `firewalld` est un outil incroyablement puissant, et l'application Firewall peut vous aider à découvrir ses capacités d'une manière conviviale pour les débutants.
