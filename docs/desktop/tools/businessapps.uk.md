@@ -182,7 +182,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 #### WPS Office
 
-[WPS Office](https://www.wps.com), раніше Kingsoft Office, існує в екосистемі Linux вже досить довго. Він також має менше функцій і менш настроюваний.
+[WPS Office](https://www.wps.com), раніше Kingsoft Office, існує в екосистемі Linux вже досить довго. Він також підтримує документи, електронні таблиці, презентації та редактор PDF.
 
 WPS Office має трохи кращу сумісність з Microsoft Office, ніж LibreOffice, але він не такий сумісний, як OnlyOffice. Він також має менше функцій і менш настроюваний. Це уривок з їх блогу:
 
