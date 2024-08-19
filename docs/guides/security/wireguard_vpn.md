@@ -54,7 +54,7 @@ Create a configuration file, with a name of your choice, ending with the `.conf`
     You can create multiple WireGuard VPN tunnels on the same machine, each using a different configuration file, network address, and UDP port.
 
 ```bash
-sudo touch wg0.conf
+sudo touch /etc/wireguard/wg0.conf
 ```
 
 Generate a new private and public key pair for the WireGuard server:
@@ -73,11 +73,8 @@ Paste the following:
 
 ```bash
 [Interface]
-
 PrivateKey = server_privatekey
-
 Address = x.x.x.x/24
-
 ListenPort = 51820
 ```
 
@@ -163,7 +160,7 @@ sudo mkdir -p /etc/wireguard
 Create a configuration file, giving it a name of your choice, ending with the `.conf` extension:
 
 ```bash
-sudo touch wg0.conf
+sudo touch /etc/wireguard/wg0.conf
 ```
 
 Generate a new private and public key pair:
@@ -209,6 +206,8 @@ You can find the server's public IP address using the following command on the s
 ```bash
 ip a | grep inet
 ```
+
+The peer's configuration file now includes a rule, `PersistentKeepalive = 25`. This rule tells the peer to ping the WireGuard server every 25 seconds to maintain the VPN tunnel's connection. Without this setting, the VPN tunnel will time out after a period of inactivity.
 
 ## Add the client key to the WireGuard server configuration
 
