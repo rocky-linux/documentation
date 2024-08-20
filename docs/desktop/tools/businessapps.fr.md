@@ -20,7 +20,7 @@ Cet article suppose les éléments suivants :
 
 ## Installation des logiciels professionnels courants sur Rocky Linux
 
-Pour la plupart d'entre eux, il vous suffit d'installer Flatpak et Flathub, d'aller dans `Software Center`, de rechercher ce que vous voulez et de l'installer. Cela prendra en charge bon nombre des options les plus courantes. Pour les autres, vous devrez utiliser les variantes web des applications.
+Pour la plupart d'entre eux, il vous suffit d'installer Flatpak et Flathub, d'aller dans `Software Center`, de rechercher ce dont vous avez besoin et de l'installer. Cela prendra en charge bon nombre des options les plus courantes. Pour les autres, vous devrez utiliser les variantes web des applications.
 
 ![A screenshot of Zoom in the software center](images/businessapps-01.png)
 
@@ -187,13 +187,13 @@ Si vous avez besoin de la compatibilité avec Microsoft Office, en particulier p
 
 WPS Office a une compatibilité avec Microsoft Office légèrement meilleure que LibreOffice, mais il n'est pas aussi compatible qu'OnlyOffice. Il possède également moins de fonctionnalités et est moins personnalisable. Voici un extrait de leur blog :
 
-![WPS Office a une interface plus moderne et conviviale que OnlyOffice. Il est également plus facile à apprendre et à utiliser, surtout pour les débutants. WPS Office propose également une gamme plus large de modèles et de thèmes, ce qui facilite la création de documents d'aspect professionnel. OnlyOffice est plus puissant et plus personnalisable que WPS Office. Il dispose d'une gamme plus large de fonctionnalités, notamment des outils de gestion de documents et de projets. OnlyOffice est également plus compatible avec les formats Microsoft Office que WPS Office.](images/businessapps-02.png)
+![WPS Office a une interface plus moderne et conviviale que OnlyOffice. Il est également plus facile à apprendre et à utiliser, surtout pour les débutants. WPS Office propose également une gamme plus large de modèles et de thèmes, ce qui facilite la création de documents d'aspect professionnel. OnlyOffice est plus puissant et plus personnalisable que WPS Office. Iel dispose d'une gamme plus large de fonctionnalités, notamment des outils de gestion de documents et de projets. OnlyOffice est également plus compatible avec les formats Microsoft Office que WPS Office.](images/businessapps-02.png)
 
 Leur objectif principal est de créer une expérience utilisateur plus simple et plus accessible qui pourrait mieux correspondre à ce que vous attendez.
 
 #### Calligra
 
-La suite bureautique [Calligra](https://calligra.org) est un projet FLOSS des développeurs KDE. Il fournit un ensemble pratique de programmes bureautiques de base pour créer des documents, des feuilles de calcul, des présentations, des bases de données, des organigrammes, des graphiques vectoriels, des livres électroniques, etc.
+La suite bureautique [Calligra](https://calligra.org) est un projet FLOSS des développeurs KDE. Iel fournit un ensemble pratique de programmes bureautiques de base pour créer des documents, des feuilles de calcul, des présentations, des bases de données, des organigrammes, des graphiques vectoriels, des livres électroniques, etc.
 
 Cependant, les applications Calligra ne sont pas faciles à installer sur Rocky Linux. Si vous disposez d’une autre machine Fedora, l’auteur vous encourage à l’essayer.
 
