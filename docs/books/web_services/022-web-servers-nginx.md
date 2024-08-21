@@ -53,7 +53,7 @@ Nginx offers the following basic functions:
 * Support for SSL/TLS and SNI;
 * HTTP/2 support.
 
-Other features :
+Other features:
 
 * Hosting by name or IP address;
 * Keepalive management of client connections;
