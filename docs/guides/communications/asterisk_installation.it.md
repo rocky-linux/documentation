@@ -262,4 +262,4 @@ Questo restituisce informazioni sul nome utente e sulla password che possono ess
 
 Le indicazioni di cui sopra vi permetteranno di essere operativi con il server, ma la configurazione finale, il collegamento dei dispositivi e l'ulteriore risoluzione dei problemi dipendono da voi.
 
-La gestione di un server di comunicazione Asterisk richiede molto tempo e impegno e richiede molte ricerche da parte di qualsiasi amministratore. Per ulteriori informazioni su come configurare e utilizzare Asterisk, consultate il [Wiki Asterisk qui](https://docs.asterisk.org/Configuration/).
+La gestione di un server di comunicazione Asterisk richiede molto tempo e impegno e richiede molte ricerche da parte di qualsiasi amministratore. Per ulteriori informazioni su come configurare e utilizzare Asterisk, consultate il [Wiki Asterisk qui](https://wiki.asterisk.org/wiki/display/AST/Getting+Started).

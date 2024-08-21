@@ -261,4 +261,4 @@ pjsip show auth 1101
 
 위의 단계를 통해 서버가 실행되게 됩니다. 그러나 구성을 완료하고 장치를 연결하며 추가적인 문제 해결은 별도로 진행해야 합니다.
 
-Asterisk 통신 서버를 운영하는 것은 많은 시간과 노력이 필요하며 어떤 관리자도 추가적인 연구가 필요할 수 있습니다. Asterisk를 구성하고 사용하는 방법에 대한 자세한 정보는 [Asterisk 위키](https://docs.asterisk.org/Configuration/)를 참조하세요.
+Asterisk 통신 서버를 운영하는 것은 많은 시간과 노력이 필요하며 어떤 관리자도 추가적인 연구가 필요할 수 있습니다. Asterisk를 구성하고 사용하는 방법에 대한 자세한 정보는 [Asterisk 위키](https://wiki.asterisk.org/wiki/display/AST/Getting+Started)를 참조하세요.
