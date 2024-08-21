@@ -46,7 +46,7 @@ Nginx offers the following basic functions:
 * Hosting of static web pages;
 * Automatic index page generation;
 * Accelerated reverse proxy with cache;
-* Load balancing ;
+* Load balancing;
 * Fault tolerance;
 * Cached support for FastCGI, uWSGI, SCGI and memcached cache server;
 * Various filters for gzip, xslt, ssi, image transformation, ...
