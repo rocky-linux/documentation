@@ -154,4 +154,5 @@ Many websites exist for practicing regular expression skills online, such as:
 * [regexr](https://regexr.com/)
 * [regelearn](https://regexlearn.com/)
 * [coding](https://coding.tools/regex-tester)
+- [cyrilex](https://extendsclass.com/regex-tester.html)
 
