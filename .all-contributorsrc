@@ -989,6 +989,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "cyrilbois",
+      "name": "cyril",
+      "avatar_url": "https://avatars.githubusercontent.com/u/38669260?v=4",
+      "profile": "https://extendsclass.com/",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
