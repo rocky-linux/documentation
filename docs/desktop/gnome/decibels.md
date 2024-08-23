@@ -6,7 +6,7 @@ contributors:
 
 ## Introduction
 
-The Audio Sharing app is a great tool for sending your computer's sound to other devices on your network.  You can use this app to play music in different rooms of your house, share sound during online presentations or Twitch streams, or listen to audio with friends and family at the same time.  Whether you're new to audio sharing or have some experience, this app makes it simple to stream your computer's sound to other devices.
+Decibels is an app that plays audio files. Its user-friendly interface makes uploading and playing your favorite song(s) and recordings of lectures, project ideas, and other files easy.
 
 ## Assumptions
 
@@ -18,16 +18,17 @@ This guide assumes you have the following:
 
 ## Installation Process
 
-Go to Flathub.org, type "Audio Sharing" in the search bar, and click on **Install**.
+Go to Flathub.org, type "Decibels" in the search bar, and click on **Install**.
 
 ![Screenshot of the Audio Sharing app page on FlatHub, showing the install button being highlighted by a red rectangle](/gnome/images/audio-sharing_01.png)
 
-Then, use the following command to install the app
-`flatpak run de.haeckerfelix.AudioSharing`
+Then, run the following command in your terminal:
+
+`flatpak run.org.gnome.Decibels`
 
 ## How to Use
 
-To use the app, scan the displayed QR code from the device which you want to use for receiving the audio.
+To use the app, do the following steps:
 
 ![Screenshot of a QR code with instructions on how to share audio with another device](/gnome/images/audio-sharing_02.png)
  !!! note
