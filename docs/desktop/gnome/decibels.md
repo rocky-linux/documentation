@@ -20,7 +20,7 @@ This guide assumes you have the following:
 
 Go to Flathub.org, type "Decibels" in the search bar, and click on **Install**.
 
-![Screenshot of the Audio Sharing app page on FlatHub, showing the install button being highlighted by a red rectangle](/gnome/images/audio-sharing_01.png)
+![Screenshot of the Decibels app page on FlatHub, showing the install button being highlighted by a red rectangle](/gnome/images/audio-sharing_01.png)
 
 Then, run the following command in your terminal:
 
@@ -30,11 +30,28 @@ Then, run the following command in your terminal:
 
 To use the app, do the following steps:
 
+1. Click on the app
 ![Screenshot of a QR code with instructions on how to share audio with another device](/gnome/images/audio-sharing_02.png)
- !!! note
+2. Click on Open
+![Screenshot of a QR code with instructions on how to share audio with another device](/gnome/images/audio-sharing_02.png)
+3. Pick your desired file
+![Screenshot of a QR code with instructions on how to share audio with another device](/gnome/images/audio-sharing_02.png)
 
- In order for the shared audio to play on the other device, make sure your it has a program that does RTSP(Real-Time Streaming Protocol) streams.  Check out the [FAQs section on the Audio Sharing repository](https://gitlab.gnome.org/World/AudioSharing/#faq) to learn more.  
+4. Click on the Open button
+![Screenshot of a QR code with instructions on how to share audio with another device](/gnome/images/audio-sharing_02.png)
+5. Play away!
+![Screenshot of a QR code with instructions on how to share audio with another device](/gnome/images/audio-sharing_02.png)
+
+### Keyboard Shortcuts
+
+Here are some ways you can use your keyboard to play and interact with your audio files
+
+- <kbd>CTRL</kbd> + <kbd>Shift</kbd>  + <kbd>O</kbd> = Open File
+- <kbd>Space</kbd> = Play/Pause
+- <kbd>← </kbd> = Move audio back 10 seconds
+- <kbd>→</kbd> = Move audio forward
+10 seconds
 
 ## Conclusion
 
-Eager to learn more about or have more ideas for this app? [Submit an issue in Audio Sharing's repository at GitLab](https://gitlab.gnome.org/World/AudioSharing/-/issues).
+Eager to learn more about or have more ideas for this app? [Submit an issue in Decibel's repository at GitLab](https://gitlab.gnome.org/GNOME/Incubator/decibels/-/issues).
