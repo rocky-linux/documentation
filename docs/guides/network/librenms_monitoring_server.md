@@ -125,7 +125,7 @@ LibreNMS documentation says that the above procedure might fail when you are beh
 You need to ensure the correct setting for the system and PHP. You can find a list of [valid timezone settings for PHP here](https://php.net/manual/en/timezones.php). For instance, for the Central timezone, a common entry is "America/Chicago". Start by editing the `php.ini` file:
 
 ```bash
-vi /etc/opt/remi/php81/php.ini
+vi /etc/php.ini
 ```
 
 Find the `date.timezone` line and modify it. Note that it is remarked out, so remove the ";" from the beginning of the line and add your timezone after the "=" sign. For the Central timezone example use:
@@ -187,14 +187,11 @@ Enter "exit" to exit out of `mariadb`.
 
 This not changed from the official documentation except for the path to the files. First, copy the `www.conf`:
 
-```bash
-cp /etc/opt/remi/php81/php-fpm.d/www.conf /etc/opt/remi/php81/php-fpm.d/librenms.conf
-```
-
 Change the `librenms.conf` file:
 
 ```bash
-vi /etc/opt/remi/php81/php-fpm.d/librenms.conf
+cp /etc/php-fpm.d/www.conf /etc/php-fpm.d/librenms.conf
+vi /etc/php-fpm.d/librenms.conf
 ```
 
 Change "[www]" to ["librenms]"
@@ -215,7 +212,7 @@ listen = /run/php-fpm-librenms.sock
 Save your changes and exit the file. If this is the only web service that will be running on this machine, you can remove the old <www.conf> file you copied:
 
 ```bash
-rm -f /etc/opt/remi/php81/php-fpm.d/www.conf
+rm -f /etc/php-fpm.d/www.conf
 ```
 
 ## Configure `httpd`
@@ -261,7 +258,7 @@ Enable  `httpd` and `php-fpm`:
 
 ```bash
 systemctl enable --now httpd
-systemctl enable --now php81-php-fpm
+systemctl enable --now php-fpm
 ```
 
 ## SELinux
