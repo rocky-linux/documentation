@@ -187,7 +187,7 @@ Si vous avez besoin de la compatibilité avec Microsoft Office, en particulier p
 
 WPS Office a une compatibilité avec Microsoft Office légèrement meilleure que LibreOffice, mais il n'est pas aussi compatible qu'OnlyOffice. Il possède également moins de fonctionnalités et est moins personnalisable. Voici un extrait de leur blog :
 
-![WPS Office a une interface plus moderne et conviviale que OnlyOffice. Il est également plus facile à apprendre et à utiliser, surtout pour les débutants. WPS Office propose également une gamme plus large de modèles et de thèmes, ce qui facilite la création de documents d'aspect professionnel. OnlyOffice est plus puissant et plus personnalisable que WPS Office. Iel dispose d'une gamme plus large de fonctionnalités, notamment des outils de gestion de documents et de projets. OnlyOffice est également plus compatible avec les formats Microsoft Office que WPS Office.](images/businessapps-02.png)
+![WPS Office possède une interface plus moderne et conviviale que OnlyOffice. Il est également plus facile à apprendre et à utiliser, surtout pour les débutants. WPS Office propose également une gamme plus large de modèles et de thèmes, ce qui facilite la création de documents d'aspect professionnel. OnlyOffice est plus puissant et plus personnalisable que WPS Office. Iel dispose d'une gamme plus large de fonctionnalités, notamment des outils de gestion de documents et de projets. OnlyOffice est également plus compatible avec les formats Microsoft Office que WPS Office.](images/businessapps-02.png)
 
 Leur objectif principal est de créer une expérience utilisateur plus simple et plus accessible qui pourrait mieux correspondre à ce que vous attendez.
 
