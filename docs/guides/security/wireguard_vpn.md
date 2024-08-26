@@ -21,7 +21,7 @@ The following are minimum requirements for this procedure:
 
 ## Installing WireGuard
 
-Install Extra Packages for Enterprise Linux(EPEL):
+Install Extra Packages for Enterprise Linux (EPEL):
 
 ```bash
 sudo dnf install epel-release
@@ -214,7 +214,7 @@ The peer's configuration file now includes a rule, `PersistentKeepalive = 25`. T
 Output the peer's public key and copy it:
 
 ```bash
-sudo cat /etc/wiregaurd/publickey
+sudo cat /etc/wireguard/publickey
 ```
 
 On the server, run the following command, replacing `peer_publickey` with the peers public key:
