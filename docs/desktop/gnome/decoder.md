@@ -19,7 +19,7 @@ This guide assumes you have the following:
 ## Installation Process
 
 1. Go to the Flathub website, type "Decoder" in the search bar, and click on **Install**.
-![Screenshot of the install button being highlighted by a red rectangle](/images/01_decoder.png)
+![Screenshot of the install button being highlighted by a red rectangle](images/01_decoder.png)
 
 1. Then, run the following command in your terminal
 `flatpak run com.belmoussaoui.Decoder`
@@ -34,15 +34,15 @@ There are two types of QR codes you can create on Decoder. Choose the option tha
 ### Text
 
 1. Click on the **Text** button
-![Screenshot of a red arrow pointing next to a grey button with the word, Scan written in black font](/images/02_decoder-text.png)
+![Screenshot of a red arrow pointing next to a grey button with the word, Scan written in black font](images/02_decoder-text.png)
 1. Add a link to your desired website and add a description
-![Screenshot of a red arrow pointing upwards the text box, containing the description "Check out this song" with a Youtube link next to it ](/images/03_decoder-text.png)
+![Screenshot of a red arrow pointing upwards the text box, containing the description "Check out this song" with a Youtube link next to it ](images/03_decoder-text.png)
 1. Click on **Create**
-![Screenshot of a red arrow pointing next to a grey button that has a QR code symbol and the word "Create" underneath it. ](/images/04_decoder-text.png)
+![Screenshot of a red arrow pointing next to a grey button that has a QR code symbol and the word "Create" underneath it. ](images/04_decoder-text.png)
 1. Click on **Save**
-![Screenshot of a red arrow pointing next to a grey button that has a QR code symbol and the word "Create" underneath it. ](/images/05_decoder-text.png)
+![Screenshot of a red arrow pointing next to a grey button that the word "Save" written in black. ](images/05_decoder-text.png)
 1. Click on **Export**
-<!--- add a screenshot here --->
+![Screenshot of a red arrow pointing next to a grey button that the word "Export" written in black. ](images/06_decoder-text.png)
 
 ### Wifi
 
