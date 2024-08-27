@@ -19,7 +19,7 @@ This guide assumes you have the following:
 ## Installation Process
 
 1. Go to the Flathub website, type "Decoder" in the search bar, and click on **Install**.
-![Screenshot of the install button being highlighted by a red rectangle](/images/01_decoder_01.png)
+![Screenshot of the install button being highlighted by a red rectangle](/images/01_decoder.png)
 
 1. Then, run the following command in your terminal
 `flatpak run com.belmoussaoui.Decoder`
@@ -34,10 +34,10 @@ There are two types of QR codes you can create on Decoder. Choose the option tha
 ### Text
 
 1. Click on the **Text** button
-![Screenshot of the install button being highlighted by a red rectangle](/images/01_decoder_01.png)
-1. Add a link to your desired website
-<!--- add a screenshot here --->
-1. Pick your desired file
+![Screenshot of the install button being highlighted by a red rectangle](/images/02_decoder-text.png)
+1. Add a link to your desired website and add a description
+![Screenshot of the install button being highlighted by a red rectangle](/images/03_decoder-text.png)
+1. Click on **Create**
 <!--- add a screenshot here --->
 1. Click on **Save**
 <!--- add a screenshot here --->
