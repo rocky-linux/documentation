@@ -90,23 +90,12 @@ Finally, you can choose any UDP port to accept connections with WireGuard VPN. H
 
 ## Enable IP forwarding
 
-IP forwarding allows the routing of packets between networks. To enable IP forwarding on your WireGuard server, use the below command to open the configuration file:
+IP forwarding allows the routing of packets between networks. This allows internal devices to communicate with each other through the WireGuard tunnel:
+
+Turn on IP forwarding for IPv4:
 
 ```bash
-sudo vim /etc/sysctl.d/99-sysctl.conf
-```
-
-Add a rule for IP forwarding. Turn on IP forwarding for IPv4 and IPv6. This allows internal devices to communicate with each other through the WireGuard tunnel:
-
-```bash
-net.ipv4.ip_forward = 1
-net.ipv6.conf.all.forwarding = 1
-```
-
-Apply these configuration changes with:
-
-```bash
-sudo sysctl -p
+sudo sysctl -w net.ipv4.ip_forward=1 && sudo sysctl -w net.ipv6.conf.all.forwarding=1
 ```
 
 ## Configure `firewalld`
