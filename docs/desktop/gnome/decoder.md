@@ -34,9 +34,9 @@ There are two types of QR codes you can create on Decoder. Choose the option tha
 ### Text
 
 1. Click on the **Text** button
-![Screenshot of the install button being highlighted by a red rectangle](/images/02_decoder-text.png)
+![Screenshot of a red arrow pointing next to a grey button with the word, Scan written in black font](/images/02_decoder-text.png)
 1. Add a link to your desired website and add a description
-![Screenshot of the install button being highlighted by a red rectangle](/images/03_decoder-text.png)
+![Screenshot of a red arrow pointing upwards the text box, containing the description "Check out this song" with a Youtube link next to it ](/images/03_decoder-text.png)
 1. Click on **Create**
 <!--- add a screenshot here --->
 1. Click on **Save**
