@@ -121,7 +121,7 @@ exit
 Вам потрібно переконатися, що налаштування системи та PHP є правильними. Ви можете знайти список [дійсних налаштувань часового поясу для PHP тут](https://php.net/manual/en/timezones.php). Наприклад, для центрального часового поясу стандартним записом є «Америка/Чикаго». Почніть із редагування файлу `php.ini`:
 
 ```bash
-vi /etc/opt/remi/php81/php.ini
+vi /etc/php.ini
 ```
 
 Знайдіть рядок `date.timezone` і змініть його. Зауважте, що це позначено, тому видаліть ";" від початку рядка та додайте свій часовий пояс після знака "=". Для прикладу центрального часового поясу використовуйте наступне:
@@ -183,14 +183,11 @@ FLUSH PRIVILEGES;
 
 Це не змінилося в офіційній документації, за винятком шляху до файлу. Спочатку скопіюйте `www.conf`:
 
-```bash
-cp /etc/opt/remi/php81/php-fpm.d/www.conf /etc/opt/remi/php81/php-fpm.d/librenms.conf
-```
-
 Змініть файл `librenms.conf`:
 
 ```bash
-vi /etc/opt/remi/php81/php-fpm.d/librenms.conf
+cp /etc/php-fpm.d/www.conf /etc/php-fpm.d/librenms.conf
+vi /etc/php-fpm.d/librenms.conf
 ```
 
 Змініть "[www]" на ["librenms]"
@@ -211,7 +208,7 @@ listen = /run/php-fpm-librenms.sock
 Збережіть зміни та вийдіть із файлу. Якщо це єдина веб-служба, яка працюватиме на цій машині, ви можете видалити старий файл www.conf, який ви скопіювали:
 
 ```bash
-rm -f /etc/opt/remi/php81/php-fpm.d/www.conf
+rm -f /etc/php-fpm.d/www.conf
 ```
 
 ## Налаштування `httpd`
@@ -257,7 +254,7 @@ rm /etc/httpd/conf.d/welcome.conf
 
 ```bash
 systemctl enable --now httpd
-systemctl enable --now php81-php-fpm
+systemctl enable --now php-fpm
 ```
 
 ## SELinux
