@@ -1,6 +1,7 @@
 ---
 title: Open VPN
 author: Joseph Brinkman
+contributors: Steven Spencer
 tested_with: 9.4
 tags:
   - security
@@ -9,14 +10,14 @@ tags:
 
 ## Introduction
 
-[OpenVPN](https://openvpn.net/) is a free and open source Virtual Private Network (VPN). This article will guide you through the process of setting up OpenVPN with X509 Public Key Infrastructure (PKI). This guide requires a Rocky Linux system with a public IP address as OpenVPN operates on a Client/Server model. The easiest way to achieve this is to spin-up a virtual private server (VPS) through a cloud provider of your choice. At the time of writing Google Cloud Platform offers an always free tier for their e2-micro instances. If you are looking for the simplest OpenVPN setup using a point-to-point (p2p) VPN with no PKI, refer to their [Static Key Mini-HOWTO](https://openvpn.net/community-resources/static-key-mini-howto/). 
+[OpenVPN](https://openvpn.net/) is a free and open source Virtual Private Network (VPN). This article will guide you through the process of setting up OpenVPN with X509 Public Key Infrastructure (PKI). This guide requires a Rocky Linux system with a public IP address as OpenVPN operates on a Client/Server model. The easiest way to achieve this is to spin-up a virtual private server (VPS) through a cloud provider of your choice. At the time of writing Google Cloud Platform offers an always free tier for their e2-micro instances. If you are looking for the simplest OpenVPN setup using a point-to-point (p2p) VPN with no PKI, refer to their [Static Key Mini-HOWTO](https://openvpn.net/community-resources/static-key-mini-howto/).
 
 ## Prerequisites and assumptions
 
 The following are minimum requirements for this procedure:
 
 * The ability to run commands as the root user or use `sudo` to elevate privileges
-* A Rocky Linux system with a publicly accessible IP 
+* A Rocky Linux system with a publicly accessible IP
 
 ## Install OpenVPN
 
@@ -32,7 +33,7 @@ Install OpenVPN:
 sudo dnf install openvpn -y
 ```
 
-## Set up Certificate Authority:
+## Set up Certificate Authority
 
 Install easy-rsa:
 
@@ -88,13 +89,13 @@ sudo ./easy-rsa/3/easyrsa gen-req server server
 
     You can repeat the below steps as many times needed for additional clients.
 
-Run the `easyrsa` script with `gen-req` and `nopass` parameters to generate client1's certificate with no password:
+Run the `easyrsa` script with `gen-req` and `nopass` parameters to generate client certificates with no password:
 
 ```bash
 sudo ./easy-rsa/3/easyrsa gen-req client1 nopass
 ```
 
-Run the `easyrsa` script with `sign-req` and `client` parameters to sign client1's certificate with no password:
+Run the `easyrsa` script with `sign-req` and `client` parameters to sign client certificates with no password:
 
 ```bash
 sudo ./easy-rsa/3/easyrsa sign-req client client1
@@ -108,7 +109,7 @@ sudo ./easy-rsa/3/easyrsa gen-dh
 
 ## Configure OpenVPN
 
-Now that the PKI has been created, its time to configure OpenVPN. 
+Once PKI creation is complete, it is time to configure OpenVPN.
 
 Copy `server.conf` sample file to `/etc/openvpn`:
 
@@ -122,7 +123,7 @@ Use your editor of choice to open and write to `server.conf`:
 sudo vim /etc/openvpn/server.conf
 ```
 
-Next we need to add the file paths for the certificate authority, server certificate, and server key to the OpenVpn server configuration file.
+Next you need to add the file paths for the certificate authority, server certificate, and server key to the OpenVpn server configuration file.
 
 Copy and paste the file paths for the keys and certificates on lines 78-80:
 
@@ -135,13 +136,14 @@ ca /etc/openvpn/easy-rsa/pki/ca.crt
 cert /etc/openvpn/easy-rsa/pki/issued/server.crt
 key /etc/openvpn/easy-rsa/pki/private/server.key  # This file should be kept secret
 ```
-Copy and paste the Diffie Hellman file's path on line 85 of the sample file `server.conf`:
+
+Copy and paste the Diffie Hellman file path on line 85 of the sample file `server.conf`:
 
 ```bash
 dh /etc/openvpn/easy-rsa/pki/dh.pem
 ```
 
-OpenVPN uses SSL by default but can optionally use TLS. This guide uses SSL. 
+OpenVPN uses SSL by default but can optionally use TLS. This guide uses SSL.
 
 Comment out `tls-auth ta.key` key-pair values on line 244:
 
@@ -153,15 +155,15 @@ Save before closing `server.conf`.
 
 ## Configure firewall
 
-OpenVPN runs on UDP port 1194 by default. We will use `firewalld` to allow traffic OpenVPN traffic into the server.
+OpenVPN runs on UDP port 1194 by default. You will use `firewalld` to allow OpenVPN traffic into the server.
 
-Install firewalld:
+Install `firewalld`:
 
 ```bash
 sudo dnf install firewalld -y
 ```
 
-Enable firewalld:
+Enable `firewalld`:
 
 ```bash
 sudo systemctl enable --now firewalld
@@ -209,7 +211,7 @@ bg
 
 ## Configure and start client
 
-OpenVPN needs to be installed on client's as well as the server to function. Install OpenVPN on the client if you haven't already:
+Besides the server, you need to install OpenVPN on all the clients to function. Install OpenVPN on the client if you have not already:
 
 ```bash
 sudo dnf install openvpn -y
@@ -221,15 +223,15 @@ Create new directories to store the client's keys, certs, and configuration file
 sudo mkdir -p /etc/openvpn/pki`
 ```
 
-Now copy the keys and certificates using a secure method of transport and place them in `/etc/openvpn/pki`. Some potential ways you can do this are using SFTP or SCP protocols. Check out Rocky linux guide [SSH Public and Private Key](https://docs.rockylinux.org/guides/security/ssh_public_private_keys/) to setup SSH access. 
+Now copy the keys and certificates using a secure method of transport and place them in `/etc/openvpn/pki`. Some potential ways you can do this are using SFTP or SCP protocols. Check out Rocky Linux guide [SSH Public and Private Key](https://docs.rockylinux.org/guides/security/ssh_public_private_keys/) to setup SSH access.
 
 These are the necessary certificates and keys needed for the client configuration and their filepaths on the server:
 
-- ca.crt
-- client1.crt
-- client1.key
+* ca.crt
+* client1.crt
+* client1.key
 
-After the necessary certificates and keys are stored in `/etc/openvpn/pki`, copy the sample file client.conf to `/etc/openvpn`:
+After storing the necessary certificates and keys in `/etc/openvpn/pki`, copy the sample file `client.conf` to `/etc/openvpn`:
 
 ```bash
 sudo cp /usr/share/doc/openvpn/sample/sample-config-files/client.conf /etc/openvpn
@@ -241,7 +243,7 @@ Open `client.conf` with an editor of your choice:
 sudo vim /etc/openvpn/client.conf`
 ```
 
-Map the filepaths of the necessary certificates and keys to the client configuration file. You can do this by copy and pasting the below text onto lines 88-90 of the sample file:
+Map the file paths of the necessary certificates and keys to the client configuration file. You can do this by copy and pasting these text lines onto lines 88-90 of the sample file:
 
 ```bash
 ca /etc/openvpn/pki/ca.crt
@@ -249,7 +251,7 @@ cert /etc/openvpn/pki/client1.crt
 key /etc/openvpn/pki/client1.key
 ```
 
-You will also need to set the server hostname/IP of the server, you can leave the default UDP port 1194. In the sample file, this is located on line 42:
+You will also need to set the server hostname or IP, you can leave the default UDP port 1194. In the sample file, this is on line 42:
 
 ```bash
 remote server 1194
@@ -270,6 +272,7 @@ bg
 ```
 
 Run the below command to view jobs running in background:
+
 ```bash
 jobs
 ```
@@ -280,6 +283,6 @@ Send a test ping to the server, by default its private address is `10.8.0.1`:
 ping 10.8.0.1
 ```
 
-## Conclusion 
+## Conclusion
 
-And there you have it, your own OpenVPN server up and running! With this basic configuration, you've secured a private tunnel for your systems to communicate over the greater internet. However, OpenVPN is highly customizable, and this guide leaves much to the imagination. You can further explore OpenVPN by checking out their [website](https://www.openvpn.net). You can also read more about OpenVPN right on your system - `man openvpn` - by using the man page. 
+You should now have your own OpenVPN server up and running! With this basic configuration, you have secured a private tunnel for your systems to communicate over the greater internet. However, OpenVPN is highly customizable, and this guide leaves much to the imagination. You can further explore OpenVPN by checking out their [website](https://www.openvpn.net). You can also read more about OpenVPN right on your system - `man openvpn` - by using the man page.
