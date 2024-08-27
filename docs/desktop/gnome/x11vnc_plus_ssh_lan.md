@@ -1,5 +1,5 @@
 ---
-title: Desktop Sharing via x11vnc+SSH (LAN)
+title: Desktop Sharing via x11vnc+SSH
 author: Joseph Brinkman
 contributors: Steven Spencer, Ganna Zhyrnova
 ---
@@ -149,8 +149,17 @@ Connect to the VNC server by entering 127.0.0.1 or localhost into TigerVNC and c
 
 Enter the x11vnc password you created earlier.
 
-## Conclusion
-
 ![TigerVNC viewer connected to an X session](images/x11vnc_plus_ssh_lan_images/x11vnc_over_ssh_lan_conclusion.webp)
+
+Congratulations! You can now remotely control the desktop!
+
+## Connecting to a machine across the internet
+
+So far, this article has shown you how to setup an x11vnc server and connect to it using VNC forwarded through an SSH tunnel. A seemingly obvious but nonetheless important detail to be aware of is that this method will only work for networked computers. Since the main use-case presented in this guide is remote support, it is reasonable to assume that you want to connect to a computer that is on a different local area network (LAN) than your own. A way to accomplish this is to setup a VPN. Both of the guides listed below will provide a suitable private tunnel to connect to your x11vnc server across the internet.
+
+-[OpenVPN](https://docs.rockylinux.org/guides/security/openvpn/)
+-[Wireguard VPN](https://docs.rockylinux.org/guides/security/wireguard_vpn/)
+
+## Conclusion
 
 You have successfully set up an x11vnc server and connected to it using a TigerVNC client. This solution is ideal for remote support, as it shares the same X session as the user, ensuring a seamless support experience.
