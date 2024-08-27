@@ -38,9 +38,9 @@ There are two types of QR codes you can create on Decoder. Choose the option tha
 1. Add a link to your desired website and add a description
 ![Screenshot of a red arrow pointing upwards the text box, containing the description "Check out this song" with a Youtube link next to it ](/images/03_decoder-text.png)
 1. Click on **Create**
-<!--- add a screenshot here --->
+![Screenshot of a red arrow pointing next to a grey button that has a QR code symbol and the word "Create" underneath it. ](/images/04_decoder-text.png)
 1. Click on **Save**
-<!--- add a screenshot here --->
+![Screenshot of a red arrow pointing next to a grey button that has a QR code symbol and the word "Create" underneath it. ](/images/05_decoder-text.png)
 1. Click on **Export**
 <!--- add a screenshot here --->
 
