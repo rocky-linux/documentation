@@ -1,7 +1,7 @@
 ---
 title: WireGuard VPN
 author: Joseph Brinkman
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.4
 tags:
   - security
@@ -10,11 +10,11 @@ tags:
 
 ## Introduction
 
-[WireGuard](https://www.wireguard.com/) is a free and open source peer-to-peer (P2P) Virtual Private Network (VPN). It is a light-weight and secure modern alternative to more conventional VPNs with large codebases that rely on TCP connections. Since WireGuard is a P2P VPN, each computer added to the WireGuard network communicates directly with each other. This guide uses a hub-spoke model, with a WireGuard peer assigned a public IP address as a gateway to pass all traffic. The purpose of doing this is allowing WireGuard traffic to bypass Carrier Grade NAT (CGNAT) without needing to enable port-forwarding on your router. This requires a Rocky Linux system with a public IP address. The easiest way to achieve this is to spin-up a virtual private server (VPS) through a cloud provider of your choice. At the time of writing Google Cloud Platform offers an always free tier for their e2-micro instances. 
+[WireGuard](https://www.wireguard.com/) is a free and open-source peer-to-peer (P2P) Virtual Private Network (VPN). It is a lightweight and secure modern alternative to conventional VPNs with large codebases that rely on TCP connections. Since WireGuard is a P2P VPN, each computer added to the WireGuard network communicates directly with each other. This guide uses a hub-spoke model, with a WireGuard peer assigned a public IP address as a gateway to pass all traffic. This allows WireGuard traffic to bypass Carrier Grade NAT (CGNAT) without enabling port-forwarding on your router. This requires a Rocky Linux system with a public IP address. The easiest way to achieve this is to spin up a virtual private server (VPS) through a cloud provider of your choice. At the time of writing, Google Cloud Platform offers a free tier for its e2-micro instances. 
 
 ## Prerequisites and assumptions
 
-The following are minimum requirements for this procedure:
+The minimum requirements for this procedure are the following:
 
 * The ability to run commands as the root user or use `sudo` to elevate privileges
 * A Rocky Linux system with a publicly accessible IP address
@@ -27,7 +27,7 @@ Install Extra Packages for Enterprise Linux (EPEL):
 sudo dnf install epel-release
 ```
 
-Update your systems packages:
+Update your system's packages:
 
 ```bash
 sudo dnf upgrade
@@ -47,7 +47,7 @@ Create a folder to put your WireGuard configuration files and keys:
 sudo mkdir -p /etc/wireguard
 ```
 
-Create a configuration file, with a name of your choice, ending with the `.conf` extension:
+Create a configuration file with a name of your choice ending with the `.conf` extension:
 
 !!! Note
 
@@ -78,15 +78,15 @@ Address = x.x.x.x/24
 ListenPort = 51820
 ```
 
-You will need to replace `privatekey` with the private key generated earlier. You can view the private key with:
+You must replace `privatekey` with the private key generated earlier. You can view the private key with:
 
 ```bash
 sudo cat /etc/wireguard/privatekey
 ```
 
-Next, you will need to replace `x.x.x.x/24` with a network address within the private IP address range defined by [RFC 1918](https://datatracker.ietf.org/doc/html/rfc1918). In this guide, our demonstration private IP is `10.255.255.0/24`.
+Next, you will need to replace `x.x.x.x/24` with a network address within the private IP address range defined by [RFC 1918](https://datatracker.ietf.org/doc/html/rfc1918). Our demonstration private IP in this guide is `10.255.255.0/24`.
 
-Finally, you can choose any UDP port to accept connections with WireGuard VPN. Here our demonstration UDP port is `51820`.  
+Finally, you can choose any UDP port to accept connections with WireGuard VPN. Here, our demonstration UDP port is `51820`.  
 
 ## Enable IP forwarding
 
@@ -118,7 +118,7 @@ Create a permanent firewall rule allowing traffic on UDP port 51820 in the publi
 sudo firewall-cmd --permanent --zone=public --add-port=51820/udp
 ```
 
-Next, allow traffic from the WireGuard interface to other interfaces in the internal zone.
+Next, traffic from the WireGuard interface will be allowed to other interfaces in the internal zone.
 
 ```bash
 sudo firewall-cmd --permanent --add-interface=wg0 --zone=internal
@@ -138,7 +138,7 @@ sudo firewall-cmd --reload
 
 ## Configure WireGuard peer
 
-Since all computers in a WireGuard network technically are peers, this process is nearly identical to configuring the WireGuard server, but with some slight differences in the configuration. 
+Since all computers in a WireGuard network are technically peers, this process is nearly identical to configuring the WireGuard server, but with slight differences. 
 
 Create a folder to put your WireGuard configuration files and keys:
 
@@ -196,7 +196,7 @@ You can find the server's public IP address using the following command on the s
 ip a | grep inet
 ```
 
-The peer's configuration file now includes a rule, `PersistentKeepalive = 25`. This rule tells the peer to ping the WireGuard server every 25 seconds to maintain the VPN tunnel's connection. Without this setting, the VPN tunnel will time out after a period of inactivity.
+The peer's configuration file now includes a `PersistentKeepalive = 25` rule. This rule tells the peer to ping the WireGuard server every 25 seconds to maintain the VPN tunnel's connection. Without this setting, the VPN tunnel will time out after inactivity.
 
 ## Add the client key to the WireGuard server configuration
 
@@ -206,7 +206,7 @@ Output the peer's public key and copy it:
 sudo cat /etc/wireguard/publickey
 ```
 
-On the server, run the following command, replacing `peer_publickey` with the peers public key:
+On the server, run the following command, replacing `peer_publickey` with the peer public key:
 
 ```bash
 sudo wg set wg0 peer peer_publickey allowed-ips 10.255.255.2
@@ -242,4 +242,4 @@ ping 10.255.255.1
 
 ## Conclusion
 
-By following this guide, you have successfully set up a WireGuard VPN using the hub-spoke model. This configuration provides a secure, modern, and efficient way to connect multiple devices across the internet. For further reading, checkout the [official WireGuard website](https://www.wireguard.com/).
+Following this guide, you have successfully set up a WireGuard VPN using the hub-spoke model. This configuration provides a secure, modern, and efficient way to connect multiple devices across the internet. Check the [official WireGuard website](https://www.wireguard.com/).

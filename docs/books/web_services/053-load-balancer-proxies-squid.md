@@ -1,6 +1,6 @@
 ---
 author: Antoine Le Morvan
-contributors: 
+contributors: Ganna Zhyrnova
 title: Part 5.3 Squid
 tags:
   - squid
@@ -10,11 +10,11 @@ tags:
 
 ## Squid
 
-In this chapter, you will learn about Squid, the HTTP proxy cache.
+This chapter will teach you about Squid, the HTTP proxy cache.
 
 ****
 
-**Objectives**: In this chapter, you will learn how to:
+**Objectives**: You will learn how to:
 
 :heavy_check_mark: install squid  
 :heavy_check_mark: configure it to be a proxy and cache HTTP content.  
@@ -32,12 +32,12 @@ In this chapter, you will learn about Squid, the HTTP proxy cache.
 
 Setting up a proxy server involves choosing between two types of architecture:
 
-* A standard proxy architecture, requiring specific configuration of each client and their web browsers
+* A standard proxy architecture requiring specific configuration of each client and their web browsers
 * Captive proxy architecture, which involves intercepting the frames sent by the client and rewriting them to the proxy server
 
-In either case, a break in the network occurs: A client can no longer physically address a remote server directly, without going through a proxy server.
+In either case, a break in the network occurs: A client can no longer physically address a remote server directly without going through a proxy server.
 
-Two firewalls protect the client workstation, never communicating directly with the outside network.
+Two firewalls protect the client workstation but never communicate directly with the outside network.
 
 ![Proxy-based architecture](img/squid-architecture-proxy.png)
 
@@ -45,9 +45,9 @@ Two firewalls protect the client workstation, never communicating directly with 
 
     This architecture requires browser configuration on the client workstation.
 
-There is no need to configure all client workstations with a captive proxy.
+You don't need to configure all client workstations with a captive proxy.
 
-The configuration takes place at the gateway level, which receives the client requests and transparently rewrites the frames to send them to the proxy.
+The configuration occurs at the gateway level, where it receives client requests and transparently rewrites the frames to send them to the proxy.
 
 ![Captive proxy-based architecture](img/squid-architecture-proxy-captif.png)
 
@@ -57,18 +57,18 @@ The configuration takes place at the gateway level, which receives the client re
 
 In the case of standard proxy or captive proxy architecture, one of the primary interests of this type of service is to act as a cache.
 
-In this way, a file downloaded once from the WAN (and therefore potentially from a slower link than the LAN) stores itself in memory in the proxy-cache, for subsequent clients to use. In this way, bandwidth optimization of the slow link occurs.
+In this way, a file downloaded once from the WAN (potentially from a slower link than the LAN) stores itself in memory in the proxy cache for subsequent clients to use. This optimizes bandwidth on the slow link.
 
-As you will see later, this is not the only use for a proxy.
+As you will see later, there are other uses for a proxy.
 
 Deploying a proxy can:
 
-* Deny access to certain resources based on various parameters
+* Deny access to specific resources based on various parameters
 * Set up authentication and monitoring of clients' Internet activities
 * Set up a hierarchy of distributed caches
 * Hide the LAN architecture from a WAN point of view (how many clients are there on the LAN?)
 
-The benefits are many:
+Among the advantages are the following:
 
 * Anonymity on the Internet
 * Authentication
@@ -86,7 +86,7 @@ The benefits are many:
 
     The proxy service becomes a critical service requiring high availability.
 
-When operating a Squid Proxy server, the administrator has to exploit the logs. It is therefore essential to know the main HTTP response codes.
+When operating a Squid Proxy server, the administrator must exploit the logs. Therefore, it is essential to know the main HTTP response codes.
 
 | Code | Categories             |
 |------|------------------------|
@@ -98,17 +98,17 @@ When operating a Squid Proxy server, the administrator has to exploit the logs. 
 
 Examples:
 
-* 200 : ok
-* 301 : Moved Permanently
-* 302 : Moved Temporarily
-* 304 : Not modified
-* 400 : Bad request
-* 401 : Unauthorized
-* 404 : Not found
+* 200: ok
+* 301: Moved Permanently
+* 302: Moved Temporarily
+* 304: Not modified
+* 400: Bad request
+* 401: Unauthorized
+* 404: Not found
 
 #### About Squid
 
-Squid supports HTTP and ftp protocols.
+Squid supports HTTP and FTP protocols.
 
 The advantages of installing a solution based on the Squid server:
 
@@ -148,7 +148,7 @@ Service logs (stop and restart) are in `/var/log/squid.cache.log`, while client 
 
 The `squid` command controls the squid server.
 
-Syntaxe of the command:
+Syntax of the command:
 
 ```bash
 squid [-z|-s|-k parse|-k rotate]
@@ -156,16 +156,16 @@ squid [-z|-s|-k parse|-k rotate]
 
 | Option      | Description                  |
 |-------------|------------------------------|
-| `-z`        | Initialize cache directories |
+| `-z`        | Initializes cache directories |
 | `-s`        | Enables syslog logging       |
 | `-k parse`  | Test configuration file      |
 | `-k rotate` | Rotates logs                 |
 
-Logging client requests can quickly lead to the storage of large amount of data.
+Logging client requests can quickly lead to storing large amounts of data.
 
 It is a good idea to regularly create a new log file and archive the old one in compressed format.
 
-Do this either manually, with the `-k rotate` option of the `squid` command, or automatically with the dedicated Linux service `logrotate`.
+You can do this either manually, with the `-k rotate` option of the `squid` command, or automatically with the dedicated Linux service `logrotate`.
 
 ### Configuration
 
@@ -179,7 +179,7 @@ http_port num_port
 
 !!! Note
 
-    By default, the port number is set to 3128, but it is frequently changed to 8080. Do not forget to open the corresponding firewall port!
+    The port number is set to 3128 by default but frequently changes to 8080. Remember to open the corresponding firewall port!
 
 When the service restarts, the Squid server will listen on the port defined by the `http_port` directive.
 
@@ -203,7 +203,7 @@ cache_mem 1 GB
 
 The Internet Cache Protocol (ICP) enables neighboring Squid servers to exchange requests. It is common practice to propose a hierarchy of proxies that share their information bases.
 
-The `icp_port` directive defines the port number Squid uses to send and receives ICP requests from neighboring Squid servers.
+The `icp_port` directive defines the port number Squid uses to send and receive ICP requests from neighboring Squid servers.
 
 !!! Tip
 
@@ -211,7 +211,7 @@ The `icp_port` directive defines the port number Squid uses to send and receives
 
 * Anonymous FTP user `ftp_user`
 
-The `ftp_user` directive associates an FTP user with anonymous FTP connections. The user must be a valid e-mail address.
+The `ftp_user` directive associates an FTP user with anonymous FTP connections. The user must have a valid e-mail address.
 
 ```bash
 ftp_user bob@rockylinux.lan
@@ -233,7 +233,7 @@ acl LUNCHTIME time 12:00-14:00
 http_access deny LUNCHTIME
 ```
 
-A larger discussion of ACLs is in the "Advanced configuration" section.
+A more extensive discussion of ACLs is in the "Advanced configuration" section.
 
 * Maximum size of a cached object `maximum_object_size`
 
@@ -249,7 +249,7 @@ Example:
 maximum_object_size 32 MB
 ```
 
-If the object size is greater than the `maximum_object_size` limit, the object is not cached.
+The object is not cached if the object size is greater than the `maximum_object_size` limit.
 
 * Proxy server name `visible_hostname`
 
@@ -267,7 +267,7 @@ visible_hostname proxysquid
 
 !!! Note
 
-    The value supplied may be different from the host name.
+    The value supplied may be different from the hostname.
 
 * Define a cache for squid `cache_ufs`
 
@@ -275,7 +275,7 @@ visible_hostname proxysquid
 cache_ufs format path size nbFolderNiv1 nbFolderNiv2
 ```
 
-It is possible to define multiple caches on different file systems to optimize access times.
+IDefining multiple caches on different file systems to optimize access times is possible.
 
 Example:
 
@@ -371,15 +371,15 @@ acl XXX proto HTTP FTP
 
 Different cache algorithms exist with different characteristics:
 
-* LRU - *Least Recently Used*: removes the oldest objects from RAM
+* LRU - *Least Recently Used*: removes the oldest objects from the RAM
 * LRU-THOLD: copies an object to the cache according to its size
 * MRU: *Most Recently Used*: deletes the least requested data
-* GDSF: *Greedy Dual Size Frequency*: deletes according to original size and access time with the smallest retained.
-* LFUDA: *Least Frequently Used With Dynamic Aging*: same as GDSF, but without the notion of size. Useful for caches with large files.
+* GDSF: *Greedy Dual Size Frequency*: deletes according to original size and access time with the smallest retained
+* LFUDA: *Least Frequently Used With Dynamic Aging*: same as GDSF, but without the notion of size. Useful for caches with large files
 
 #### Client authentication
 
-Squid relies on external programs to manage authentication. Basing it on a simple flat file such as `htpasswd` is possible, or on LDAP, SMB, PAM or other services.
+Squid relies on external programs to manage authentication. It can be based on a simple flat file such as `htpasswd` or on LDAP, SMB, PAM, or other services.
 
 Authentication can also be a legal necessity. Remember to get your users to sign a usage charter!
 
@@ -404,9 +404,9 @@ squidclient -s -h localhost -p 8080 http://localhost/
 | Option | Description                                   |
 |--------|-----------------------------------------------|
 | `-s`   | Silent mode (displays nothing in the console) |
-| `-h`   | Define target proxy                           |
+| `-h`   | Defines target proxy                          |
 | `-p`   | Listening port (default 3128)                 |
-| `-r`   | Force server to reload object                 |
+| `-r`   | Forces the server to reload the object        |
 
 #### Analyze logs
 
@@ -441,11 +441,11 @@ sudo firewall-cmd --reload
 
 ### Workshop
 
-In this workshop, you will install squid on your server and use it to download updates.
+In this workshop, you will install Squid on your server and use it to download updates.
 
-#### Task 1 : Install and configure squid
+#### Task 1: Install and configure Squid
 
-Install squid:
+Install Squid:
 
 ```bash
 sudo dnf install squid
@@ -469,7 +469,7 @@ sudo squid -z
 sudo systemctl start squid
 ```
 
-#### Task 2 : Use your proxy with curl
+#### Task 2: Use your proxy with curl
 
 Open a new terminal on your proxy server to follow the proxy's access.
 
@@ -477,7 +477,7 @@ Open a new terminal on your proxy server to follow the proxy's access.
 sudo tail -f /var/log/squid/access.log
 ```
 
-On the second terminal, use `curl` to access to a web page through the proxy:
+On the second terminal, use `curl` to access a web page through the proxy:
 
 ```bash
 $ curl -I --proxy "http://192.168.1.10:3128" https://docs.rockylinux.org  
@@ -488,7 +488,7 @@ content-type: text/html
 ...
 ```
 
-As you can see, two HTTP connections exist. The first one with the proxy and the second one from the proxy to the remote server.
+As you can see, two HTTP connections exist. The first is with the proxy, and the second is from the proxy to the remote server.
 
 You can see the trace on your second terminal:
 
@@ -496,9 +496,9 @@ You can see the trace on your second terminal:
 1723793294.548     77 192.168.1.10 TCP_TUNNEL/200 3725 CONNECT docs.rockylinux.org:443 - HIER_DIRECT/151.101.122.132 -
 ```
 
-The content is not cached here as you are requesting an `https` connexion to the remote server.
+The content is not cached here as you request an `https` connection to the remote server.
 
-#### Task 3 : Configure DNS to use your proxy server
+#### Task 3: Configure DNS to use your proxy server
 
 Edit the `/etc/dnf/dnf.conf` file to use the proxy squid:
 
@@ -527,15 +527,15 @@ Verify on your terminal that the `dnf` connection uses your proxy to download it
 1723794176.255      1 192.168.1.10 TCP_HIT/200 655447 GET http://miroir.univ-lorraine.fr/rocky/9.4/AppStream/x86_64/os/repodata/1af312c9-7139-43ed-8761-90ba3cd55461-UPDATEINFO.xml.gz - HIER_NONE/- application/x-gzip
 ```
 
-In this example, you can see one connection with a TCP_MISS (not present in the cache) and another one with TCP_HIT (use the cache to answer the client).
+In this example, you can see one connection with a TCP_MISS (not present in the cache) and another with TCP_HIT (use the cache to answer the client).
 
 ### Conclusion
 
-Congratulations! You now have the knowledge you need to install squid on your local network, enabling you to centralize your outgoing connections to the Internet and secure your local network.
+You now have the knowledge you need to install Squid on your local network. This will enable you to centralize your outgoing connections to the Internet and secure your local network.
 
 ### Check your Knowledge
 
-:heavy_check_mark: What is the port listened per default by a squid server?
+:heavy_check_mark: What is the port listened to by a squid server per default?
 
 * [ ] 8080  
 * [ ] 1234  
