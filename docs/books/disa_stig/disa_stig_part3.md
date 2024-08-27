@@ -12,14 +12,14 @@ tags:
 
 # Introduction
 
-In part 1 of this series we covered how to build our web server with the base RHEL8 DISA STIG applied, and in part 2 we learned how to test the STIG compliance with the OpenSCAP tool. Now we’re going to actually do something with the system, and build a simple web application and apply the DISA web server STIG: <https://www.stigviewer.com/stig/web_server/>
+In part 1 of this series, we covered how to build our web server with the base RHEL8 DISA STIG applied, and in part 2, we learned how to test the STIG compliance with the OpenSCAP tool. Now we’re going to do something with the system, build a simple web application and apply the DISA web server STIG: <https://www.stigviewer.com/stig/web_server/>
 
-First lets compare what we’re getting into here, the RHEL 8 DISA STIG is targeted at a very specific platform so the controls are pretty easy to understand in that context, test, and apply.  Application STIGs have to be portable across multiple platforms, so the content here is generic in order to work on different linux distributions (RHEL, Ubuntu, SuSE, etc)**. This means that tools like OpenSCAP won’t help us audit/remediate the configuration, we’re going to have to do this manually. Those STIGs are:
+First lets compare what we’re getting into here, the RHEL 8 DISA STIG is targeted at a very specific platform so the controls are pretty easy to understand in that context, test, and apply.  Application STIGs have to be portable across multiple platforms, so the content here is generic to work on different Linux distributions (RHEL, Ubuntu, SuSE, etc)**. Tools like OpenSCAP won’t help us audit/remediate the configuration. We’re going to have to do this manually. Those STIGs are:
 
-* Apache 2.4 V2R5 - Server; which applies to the web server itself
-* Apache 2.4 V2R5 - Site; Which applies to the web application / web site
+* Apache 2.4 V2R5 - Server, which applies to the web server itself
+* Apache 2.4 V2R5 - Site, which applies to the web application / website
 
-For our guide, we’re going to create a simple web server that does nothing more than serve static content. We can use the changes we make here to make a base image and then use this base image when we build more complex web servers later.
+For our guide, we will create a simple web server that does nothing more than serve static content. We can use the changes we make here to make a base image, and then we can use this base image when we build more complex web servers later.
 
 ## Apache 2.4 V2R5 Server Quickstart
 
@@ -68,7 +68,7 @@ systemctl start httpd
 
 ## Detail Controls Overview
 
-If you’ve gotten this far, you’re probably interested in knowing more about what the STIG wants us to do. It helps to understand the importance of the control, and then how it applies to the application. Sometimes the control is technical (change X setting to Y)  and other times it's operational (how you use it).  Generally speaking, a technical control is something you can change with code, and an operational control probably isn’t.
+If you’ve gotten this far, you’re probably interested in knowing more about what the STIG wants us to do. It helps to understand the importance of the control and how it applies to the application. Sometimes, the control is technical (change X setting to Y); other times, it's operational (how you use it).  Generally speaking, a technical control is something you can change with code, and an operational control probably isn’t.
 
 ### Levels
 
@@ -81,7 +81,7 @@ If you’ve gotten this far, you’re probably interested in knowing more about 
 * Technical - 24  controls
 * Operational  - 23 controls
 
-We’re not going to cover the "why" for these changes in this article, just what needs to happen if it is a technical control.  If there is nothing we can change like in the case of an Operational control, the **Fix:** field will be none. The good news in a lot of these cases, this is already the default in Rocky Linux 8, so you don’t need to change anything at all.
+We’re not going to cover the "why" of these changes in this article; we'll discuss what needs to happen if it is a technical control.  If there is nothing we can change, like in the case of an Operational control, the **Fix:** field will be none. The good news in a lot of these cases is that this is already the default in Rocky Linux 8, so you don’t need to change anything at all.
 
 ## Apache 2.4 V2R5 - Server Details
 
