@@ -1,7 +1,7 @@
 ---
-title: Open VPN
+title: OpenVPN
 author: Joseph Brinkman
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.4
 tags:
   - security
@@ -10,11 +10,11 @@ tags:
 
 ## Introduction
 
-[OpenVPN](https://openvpn.net/) is a free and open source Virtual Private Network (VPN). This article will guide you through the process of setting up OpenVPN with X509 Public Key Infrastructure (PKI). This guide requires a Rocky Linux system with a public IP address as OpenVPN operates on a Client/Server model. The easiest way to achieve this is to spin-up a virtual private server (VPS) through a cloud provider of your choice. At the time of writing Google Cloud Platform offers an always free tier for their e2-micro instances. If you are looking for the simplest OpenVPN setup using a point-to-point (p2p) VPN with no PKI, refer to their [Static Key Mini-HOWTO](https://openvpn.net/community-resources/static-key-mini-howto/).
+[OpenVPN](https://openvpn.net/) is a free and open-source Virtual Private Network (VPN). This article will guide you through setting up OpenVPN with X509 Public Key Infrastructure (PKI). This guide requires a Rocky Linux system with a public IP address, as OpenVPN operates on a Client/Server model. The easiest way to achieve this is to spin up a virtual private server (VPS) through a cloud provider of your choice. At the time of writing, Google Cloud Platform offers a free tier for its e2-micro instances. If you are looking for the most straightforward OpenVPN setup using a point-to-point (p2p) VPN with no PKI, refer to their [Static Key Mini-HOWTO](https://openvpn.net/community-resources/static-key-mini-howto/).
 
 ## Prerequisites and assumptions
 
-The following are minimum requirements for this procedure:
+The following are the minimum requirements for this procedure:
 
 * The ability to run commands as the root user or use `sudo` to elevate privileges
 * A Rocky Linux system with a publicly accessible IP
@@ -87,7 +87,7 @@ sudo ./easy-rsa/3/easyrsa gen-req server server
 
 !!! Note
 
-    You can repeat the below steps as many times needed for additional clients.
+    You can just repeat the below steps as many times as you need for additional clients.
 
 Run the `easyrsa` script with `gen-req` and `nopass` parameters to generate client certificates with no password:
 
@@ -123,13 +123,13 @@ Use your editor of choice to open and write to `server.conf`:
 sudo vim /etc/openvpn/server.conf
 ```
 
-Next you need to add the file paths for the certificate authority, server certificate, and server key to the OpenVpn server configuration file.
+Next, you must add the file paths for the certificate authority, server certificate, and server key to the OpenVPN server configuration file.
 
 Copy and paste the file paths for the keys and certificates on lines 78-80:
 
 !!! Note
 
-    In vim you can add line numbers to your current editing with `:set nu`
+    In Vim, you can add line numbers to your current editing with `:set nu`
 
 ```bash
 ca /etc/openvpn/easy-rsa/pki/ca.crt
@@ -203,7 +203,7 @@ According to [OpenVPN documentation](https://openvpn.net/community-resources/how
 sudo openvpn /etc/openvpn/server.conf
 ```
 
-After starting OpenVPN press `Ctrl + Z` then send the job to the background:
+After starting OpenVPN, press `Ctrl + Z`, then send the job to the background:
 
 ```bash
 bg
@@ -225,7 +225,7 @@ sudo mkdir -p /etc/openvpn/pki`
 
 Now copy the keys and certificates using a secure method of transport and place them in `/etc/openvpn/pki`. Some potential ways you can do this are using SFTP or SCP protocols. Check out Rocky Linux guide [SSH Public and Private Key](https://docs.rockylinux.org/guides/security/ssh_public_private_keys/) to setup SSH access.
 
-These are the necessary certificates and keys needed for the client configuration and their filepaths on the server:
+These are the necessary certificates and keys needed for the client configuration and their file paths on the server:
 
 * ca.crt
 * client1.crt
@@ -243,7 +243,7 @@ Open `client.conf` with an editor of your choice:
 sudo vim /etc/openvpn/client.conf`
 ```
 
-Map the file paths of the necessary certificates and keys to the client configuration file. You can do this by copy and pasting these text lines onto lines 88-90 of the sample file:
+Map the file paths of the necessary certificates and keys to the client configuration file. You can do this by copying and pasting these text lines onto lines 88-90 of the sample file:
 
 ```bash
 ca /etc/openvpn/pki/ca.crt
@@ -251,7 +251,7 @@ cert /etc/openvpn/pki/client1.crt
 key /etc/openvpn/pki/client1.key
 ```
 
-You will also need to set the server hostname or IP, you can leave the default UDP port 1194. In the sample file, this is on line 42:
+You will also need to set the server hostname or IP. You can leave the default UDP port 1194. In the sample file, this is on line 42:
 
 ```bash
 remote server 1194
@@ -271,13 +271,13 @@ After starting OpenVPN press `Ctrl + Z` then send the job to the background:
 bg
 ```
 
-Run the below command to view jobs running in background:
+Run the below command to view jobs running in the background:
 
 ```bash
 jobs
 ```
 
-Send a test ping to the server, by default its private address is `10.8.0.1`:
+Send a test ping to the server. By default, its private address is `10.8.0.1`:
 
 ```bash
 ping 10.8.0.1
