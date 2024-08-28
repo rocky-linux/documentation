@@ -1,5 +1,5 @@
 ---
-title: Install Software with AppImage
+title: Install Software with an AppImage
 author: Joseph Brinkman
 contributors: Steven Spencer, Ganna Zhyrnova
 ---
@@ -14,7 +14,7 @@ Installing programs on your Rocky Linux desktop with AppImage is a three-step pr
 2. Make the program executable
 3. Run the program to install it
 
-The example program used in this guide is Krita. You will download and install it using AppImage. Krita is a free and open-source graphic design software. Since this guide is about the functions of AppImage, there needs to be details on using Krita. You can [read more about it on their website](https://krita.org/).
+The example program used in this guide is Krita. You will download and install it using an AppImage. Krita is a free and open-source graphic design software. Since this guide is about the functions of AppImage, there are no details on using Krita. You can [read more about it on their website](https://krita.org/).
 
 ## Assumptions
 
@@ -87,4 +87,4 @@ Shortly after running the AppImage, Krita will launch.
 
 ## Conclusion
 
-This guide taught you how to download and use a program with an AppImage. AppImages are convenient for end-users because they do not need to know how to manage repositories, build from a source, or use the command line to use their favorite programs with an available AppImage.
+This guide taught you how to download and use a program with an AppImage. AppImages are convenient for end-users because they do not need to know how to manage repositories, build from source, or use the command line to use their favorite programs with an available AppImage.
