@@ -62,7 +62,6 @@ If your wifi network is hidden, click on the **Hidden** button.
 
 In addition to creating and generating QR codes, you can use Decoder to scan QR codes you saved on you computer. Here's how:
 
-
 1. Click on **Scan**
 ![Screenshot of a red circle on a grey button that has the word "Scan" written in black.](images/01_decoder-scan.png)
 1. Click on  **Choose from a Screenshot**
