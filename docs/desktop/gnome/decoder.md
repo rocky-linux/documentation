@@ -1,4 +1,4 @@
-﻿---
+---
 title: Decoder
 author: Christine Belzie
 contributors: 
@@ -56,7 +56,8 @@ There are two types of QR codes you can create on Decoder. Choose the option tha
 ![Screenshot of a red arrow pointing at a grey button that has the word "Save" written in black.](images/04_decoder-wifi.png)
 
 !!! tip
-If your wifi network is hidden, click on the **Hidden** button.
+
+    If your wifi network is hidden, click on the **Hidden** button.
 
 ### How to Scan a QR code
 
@@ -73,7 +74,8 @@ In addition to creating and generating QR codes, you can use Decoder to scan QR 
 1. Scan the QR code with your mobile device
 
 !!! note
- To scan a QR code straight from your computer, ensure that you grant the app access to your computer's camera.
+ 
+    To scan a QR code straight from your computer, ensure that you grant the app access to your computer's camera.
 
 ## Conclusion
 
