@@ -1,7 +1,7 @@
 ---
 title: Decibels
 author: Christine Belzie
-contributors: Steven Spencer 
+contributors: Steven Spencer, Ganna Zhyrnova 
 ---
 
 ## Introduction
@@ -18,7 +18,7 @@ This guide assumes you have the following:
 
 ## Installation Process
 
-Go to [Flathub.org](https://flathub.org) type "Decibels" in the search bar, and click on **Install**.
+Go to [Flathub.org](https://flathub.org), type "Decibels" in the search bar, and click on **Install**.
 
 ![Screenshot of the Decibels app page on FlatHub, showing the install button being highlighted by a red rectangle](images/01_decibels.png)
 
@@ -34,7 +34,7 @@ To use the app, do the following steps:
     ![Screenshot of Decibels' landing page with a red rectangle surrounding the blue open button](images/02_decibels.png)
 1. Pick your desired file and click on the **Open** that appears in the upper right corner of the screen
     ![Screenshot of Decibels file selection interface with numbered arrows indicating audio file and Open button](images/03_decibels.png)
-1. Play away!
+
 
 !!! note
 
@@ -47,4 +47,4 @@ To use the app, do the following steps:
 
 ## Conclusion
 
-Eager to learn more about or have more ideas for this app? [Submit an issue in Decibel's repository at GitLab](https://gitlab.gnome.org/GNOME/Incubator/decibels/-/issues).
+Are you eager to learn more about this app, or do you have more ideas for it? [Submit an issue in Decibel's repository at GitLab](https://gitlab.gnome.org/GNOME/Incubator/decibels/-/issues).
