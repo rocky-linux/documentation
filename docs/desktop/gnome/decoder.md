@@ -68,7 +68,7 @@ In addition to creating and generating QR codes, you can use Decoder to scan QR 
 1. Click on  **Choose from a Screenshot**
 <!--- add a screenshot here --->
 1. Pick your desired effects and click on **Take a Screenshot**
-![Screenshot of a grey square surrounding the options menu with a red arrow pointing towards it and the number one written on top. Next, there is a red square surrounding the "Take a Screenshot" button with a red arrow pointing upwards with the number two written underneath it.]
+![Screenshot of a grey square surrounding the options menu with a red arrow pointing towards it and the number one written on top. Next, there is a red square surrounding the "Take a Screenshot" button with a red arrow pointing upwards with the number two written underneath it.](images/03_decoder-scan.png)
 1. Click on **Share**
 ![Screenshot of a red arrow pointing at a blue button that has the word "Share" written in white.](images/04_decoder-scan.png)
 1. Scan the QR code with your mobile device
