@@ -19,7 +19,7 @@ This guide assumes you have the following:
 ## Installation Process
 
 Go to [Flathub.org](https://flathub.org), type "Valuta" in the search bar and click on **Install**
-![Screenshot of the Valuta page on the Flathub website. There, the blue install button is surrounded by a red rectangle]()
+![Screenshot of the Valuta page on the Flathub website. There, the blue install button is surrounded by a red square](/images/01_valuta.png)
 
 Then, use the following command to install the app in your terminal
 `flatpak run io.github.idevecore.Valuta`
