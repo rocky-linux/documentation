@@ -28,7 +28,7 @@ Then, use the following command to install the app in your terminal
 
 To use Valuta,  do the following:
 
-1. Choose the country that you currently live in from the dropdown menu and type the amount of cash you want to spensend
+1. Choose the country that you currently live in from the dropdown menu and type the amount of cash you want to spend.
 <!--- add screenshot here --->
 
 1. Choose the country you are traveling to from the dropdown menu.  From there, the converted amount automatically appears.
