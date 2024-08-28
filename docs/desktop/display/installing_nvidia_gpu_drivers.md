@@ -1,16 +1,16 @@
 ---
 title: Installing NVIDIA GPU Drivers
 author: Joseph Brinkman
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 ## Introduction
 
-Nvidia is one of the most popular GPU manufacturers. You can install Nvidia GPU drivers in more than one way. This guide uses Nvidia's official repository to install their drivers. For that reason, [Nvidia's installation guide](https://docs.nvidia.com/cuda/pdf/CUDA_Installation_Guide_Linux.pdf) is heavily referenced here.
+Nvidia is one of the most popular GPU manufacturers. You can install Nvidia GPU drivers in more than one way. This guide uses Nvidia's official repository to install their drivers. Therefore, [Nvidia's installation guide](https://docs.nvidia.com/cuda/pdf/CUDA_Installation_Guide_Linux.pdf) is heavily referenced here.
 
 !!! Note
 
-    The pre-installation actions link is broken in Nvidia's official guide. You will need to install necessary utilities and dependencies to install the Nvidia driver from their official repository. 
+    The link for pre-installation actions in Nvidia's official guide is broken. To install the Nvidia driver, you must install the necessary utilities and dependencies from their official repository. 
 
 Some other alternative ways to install Nvidia drivers include:
 
@@ -18,7 +18,7 @@ Some other alternative ways to install Nvidia drivers include:
 * Third-party RPMFusion repository
 * Third-party ELRepo driver
 
-In most cases, it is best to install Nvidia drivers from the official source. RPMFusion and ELRepo are available for those who prefer a community-based repository. For older hardware, RPMFusion works best. It is advisable to avoid using the `.run` installer. While convenient, using the `.run` installer is notorious for overwriting system files, and having incompatibility issues.
+In most cases, installing Nvidia drivers from the official source is best. RPMFusion and ELRepo are available for those who prefer a community-based repository. For older hardware, RPMFusion works best. It is advisable to avoid using the `.run` installer. While convenient, using the `.run` installer is notorious for overwriting system files, and having incompatibility issues.
 
 ## Assumptions
 
@@ -41,13 +41,13 @@ Installing development tools ensures necessary build dependencies:
 sudo dnf groupinstall "Development Tools" -y
 ```
 
-The `kernel-devel` package provides necessary headers and tools to build kernel modules:
+The `kernel-devel` package provides the necessary headers and tools to build kernel modules:
 
 ```bash
 sudo dnf install kernel-devel -y
 ```
 
-Dynamic Kernel Module Support (DKMS) is a program used to automatically rebuild kernel modules:
+Dynamic Kernel Module Support (DKMS) is a program used to rebuild kernel modules automatically:
 
 ```bash
 sudo dnf install dkms -y
@@ -61,7 +61,7 @@ Add the official Nvidia repository with the following command:
 
 !!! Note
 
-    If you are using Rocky 8, replace `rhel9` in the file path with `rhel8`.
+    If you use Rocky 8, replace `rhel9` in the file path with `rhel8`.
 
 ```bash
 sudo dnf config-manager --add-repo http://developer.download.nvidia/compute/cuda/repos/rhel9/$(uname -i)/cuda-rhel9.repo
@@ -79,9 +79,9 @@ Install the latest NVIDIA driver module for your system:
 sudo dnf module install nvidia-driver:latest-dkms -y
 ```
 
-## Disable nouveau
+## Disable Nouveau
 
-Nouveau is an open source NVIDIA driver that provides limited functionality compared to NVIDIA's proprietary drivers. It is best to disable it to avoid driver conflicts:
+Nouveau is an open-source NVIDIA driver that provides limited functionality compared to NVIDIA's proprietary drivers. It is best to disable it to avoid driver conflicts:
 
 Open the grub configuration file with an editor of your choice:
 
@@ -111,4 +111,4 @@ sudo reboot now
 
 ## Conclusion
 
-Congratulations! You have successfully installed NVIDIA GPU drivers on your system using NVIDIA's official repository. Enjoy the enhanced capabilities of your NVIDIA GPU that the default Nouveau drivers can not provide. 
+You have successfully installed NVIDIA GPU drivers on your system using NVIDIA's official repository. Enjoy the enhanced capabilities of your NVIDIA GPU that the default Nouveau drivers can not provide. 
