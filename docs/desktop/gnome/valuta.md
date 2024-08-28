@@ -19,7 +19,7 @@ This guide assumes you have the following:
 ## Installation Process
 
 Go to [Flathub.org](https://flathub.org), type "Valuta" in the search bar and click on **Install**
-<!--- add screenshot here --->
+![Screenshot of the Valuta page on the Flathub website. There, the blue install button is surrounded by a red rectangle]()
 
 Then, use the following command to install the app in your terminal
 `flatpak run io.github.idevecore.Valuta`
@@ -29,7 +29,7 @@ Then, use the following command to install the app in your terminal
 To use Valuta, do the following:
 
 1. Choose the country that you currently live in from the dropdown menu and type the amount of cash you want to spend.
-<!--- add screenshot here --->
+![Screenshot of a gray arrow with the number one on top, pointing down in the first section. It shows a textbox saying 1,000 with the acronym "USD" next to it](images/02_valuta.png)
 
 1. Choose the country you are traveling to from the dropdown menu.  From there, the converted amount automatically appears.
 <!--- add screenshot here-->
