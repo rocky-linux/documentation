@@ -79,4 +79,4 @@ In addition to creating and generating QR codes, you can use Decoder to scan QR 
 
 ## Conclusion
 
-Eager to learn more about or have more ideas for this app? [Submit an issue in Decoder's repository at GitLab](https://gitlab.gnome.org/World/decoder/-/issues).
+Whether it's to share a restaurant's Wi-Fi with friends, grow your business, or network with other professionals at a conference, Decoder can ease the process of creating and scanning QR codes. Eager to learn more about or have more ideas for this application? [Submit an issue to its repository at GitLab](https://gitlab.gnome.org/World/decoder/-/issues).
