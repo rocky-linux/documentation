@@ -6,7 +6,7 @@ contributors:
 
 ## Introduction
 
-Need a QR code for your website, app, and social media profiles? Check out  Decoder! :) It is app that where you can create, save, an export QR codes.
+Need a QR code for your website, app, and social media profiles? Check out  Decoder! :) It is an application that lets you can create, save, an export QR codes.
 
 ## Assumptions
 
