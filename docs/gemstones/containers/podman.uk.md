@@ -88,12 +88,7 @@ systemctl --user start nextcloud.service
 WantedBy=default.target
 ```
 
-Потім знову запустіть генератор і ввімкніть службу:
-
-```bash
-systemctl --user daemon-reload;
-systemctl --user enable nextcloud.service;
-```
+Оскільки згенеровані службові файли вважаються тимчасовими, їх не можна ввімкнути за допомогою systemd. Щоб пом’якшити це, генератор вручну застосовує встановлення під час створення. Це фактично також активує ці файли служб.
 
 Підтримуються інші типи файлів: pod, том, мережа, зображення та kube. [Pods](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html#pod-units-pod), наприклад, можна використовувати для групування контейнерів – згенерованого systemd служби та їхні залежності (створити pod перед контейнерами) автоматично керуються systemd.
 
