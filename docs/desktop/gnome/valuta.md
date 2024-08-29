@@ -1,4 +1,4 @@
----
+﻿---
  title: Valuta
  author: Christine Belzie
  contributors:
@@ -6,7 +6,7 @@
 
 ## Introduction
 
- If you travel frequently for businesses or moving to a new country, check out Valuta. It is a tool that quickly converts currencies from two countries .
+ If you travel frequently for businesses or moving to a new country, check out Valuta. It is a tool that quickly converts currencies from two countries.
 
 ## Assumptions
 
@@ -19,13 +19,19 @@ This guide assumes you have the following:
 ## Installation Process
 
 1. Go to [Flathub.org](https://flathub.org), type "Valuta" in the search bar and click on **Install**
-![Screenshot of the Valuta page on the Flathub website. There, the blue install button is surrounded by a red square](/images/01_valuta.png)
+![Screenshot of the Valuta page on the Flathub website. There, the blue install button is surrounded by a red square](images/01_valuta.png)
 
-2.Copy the manual script in your terminal:
-`flapak install flathub io.github.idevecore.Valuta`
+2. Copy the manual script in your terminal:
+
+```bash
+flapak install flathub io.github.idevecore.Valuta
+```
 
 3. Finally, copy the run command and run it in your terminal:
-`flatpak run io.github.idevecore.Valuta`
+
+```bash
+flatpak run io.github.idevecore.Valuta
+```
 
 ## How to Use
 
