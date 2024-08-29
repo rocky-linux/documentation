@@ -45,4 +45,4 @@ To use Valuta, do the following:
 
 ## Conclusion
 
-Whether it’s for a vacation or a business trip, Valuta is the tool that can ease the money conversion process. Eager to learn more about or have more ideas for this application? [Submit an issue in Valuta's repository at GitHub](https://github.com/ideveCore/valuta/issues).
+Whether it’s for a vacation or a business trip, Valuta simplifies currency conversion. Want to learn more or share ideas to improve it? [Submit an issue in Valuta's repository at GitHub](https://github.com/ideveCore/valuta/issues).
