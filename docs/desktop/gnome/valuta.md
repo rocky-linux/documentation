@@ -6,7 +6,7 @@
 
 ## Introduction
 
- If you travel frequently for businesses or moving to a new country, check out Valuta. It is a tool that quickly converts currencies from two countries.
+ If you often travel or are moving abroad, ease your planning with Valuta. This app quickly converts currencies between two countries.
 
 ## Assumptions
 
