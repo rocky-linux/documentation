@@ -1,7 +1,7 @@
 ---
 title: OpenVPN
 author: Joseph Brinkman
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.4
 tags:
   - безпека
@@ -207,7 +207,7 @@ sudo sysctl -w net.ipv4.ip_forward=1
 sudo openvpn /etc/openvpn/server.conf
 ```
 
-Після запуску OpenVPN натисніть `Ctrl + Z` і відправте завдання у фоновий режим:
+Після запуску OpenVPN натисніть `Ctrl + Z`, а потім відправте завдання у фоновий режим:
 
 ```bash
 bg
@@ -281,7 +281,7 @@ bg
 jobs
 ```
 
-Надішліть тестовий пінг на сервер, за замовчуванням його приватна адреса `10.8.0.1`:
+Надішліть тестовий пінг на сервер. За умовчанням його приватна адреса `10.8.0.1`:
 
 ```bash
 ping 10.8.0.1

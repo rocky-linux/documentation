@@ -1,7 +1,7 @@
 ---
 title: Встановлення програмного забезпечення за допомогою AppImage
 author: Joseph Brinkman
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 ## Вступ
@@ -39,7 +39,7 @@ AppImages — це зручний спосіб інсталювати прогр
 
 Після запуску панелі дій введіть 'files' в поле пошуку. Натисніть програму Files:
 
-![Activites pane on a Rocky linux system. 'Files' is typed into the search field. The Files app is hovered over.](images/searchbar_files_appimage.webp)
+![Activites pane on a Rocky Linux system. 'Files' is typed into the search field. The Files app is hovered over.](images/searchbar_files_appimage.webp)
 
 Файли будуть запущені в домашньому каталозі. Натисніть папку Downloads:
 
