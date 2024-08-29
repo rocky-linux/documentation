@@ -39,7 +39,7 @@ To use Valuta, do the following:
 1. Choose the country that you currently live in from the dropdown menu and type the amount of cash you want to spend.
 ![Screenshot of Valuta app showing 1000 USD in the input field, with a grey arrow pointing down to a grey box showing 1000 USD](images/02_valuta.png)
 
-1. Choose the country you are traveling to from the dropdown menu.  From there, the converted amount automatically appears.
+2. Choose the country you are traveling to from the dropdown menu.  From there, the converted amount automatically appears.
 ![Screenshot showing a grey arrow pointing upward to a green box displaying the converted amount, 899.52 EUR](images/03_valuta.png)
 
 ## Conclusion
