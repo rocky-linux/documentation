@@ -6,7 +6,7 @@
 
 ## Introduction
 
- If you often travel or are moving abroad, ease your planning with Valuta. This app quickly converts currencies between two countries.
+ If you often travel or are moving abroad, ease your planning with Valuta. This application quickly converts currencies between two countries.
 
 ## Assumptions
 
