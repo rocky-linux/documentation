@@ -22,7 +22,7 @@ This guide assumes you have the following:
 
 1. Go to [Flathub's website](https://flathub.org), type "File Shredder" in the search bar, and click on **Install**
 
-![manual install script and run script](images/file-shredder-install.png)
+![manual install script and run script](images/file-shredder-manual_install.png)
 
 2. Copy the manual script in your terminal:
 
