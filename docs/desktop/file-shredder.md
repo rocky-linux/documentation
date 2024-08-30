@@ -1,9 +1,9 @@
-﻿
- ———
- title: File Shredder
- author: Christine Belzie
- contributors:
-  ———
+---
+title: File Shredder 
+author: Christine Belzie
+contributors:  
+---
+ 
   ## Introduction
 
 Need to remove a postcard or a PDF file that contains information like your birthday? Check out File Shredder. It is an application that permanently removes sensitive information online. 
