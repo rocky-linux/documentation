@@ -20,7 +20,7 @@ This guide assumes you have the following:
 
 1. Go to [Flathub.org](https://flathub.org), type "Valuta" in the search bar and click  **Install** ![Screenshot of the Valuta page on Flathub with the blue install button highlighted in a red square](images/01_valuta.png)
  
-  ![manual install script and run script]
+  ![manual install script and run script](images/valuta-install.png)
 
 2. Copy the manual script in your terminal:
 
