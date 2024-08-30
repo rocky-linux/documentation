@@ -16,9 +16,12 @@ This guide assumes you have the following:
 - Flatpak
 - FlatHub
 
-## Installation Process
 
-1. Go to [Flathub.org](https://flathub.org), type "Valuta" in the search bar and click  **Install** ![Screenshot of the Valuta page on Flathub with the blue install button highlighted in a red square](images/01_valuta.png)
+## Installation process
+
+![Screenshot of the Valuta page on Flathub with the blue install button highlighted in a red square](images/01_valuta.png)
+
+1. Go to [Flathub.org](https://flathub.org), type "Valuta" in the search bar and click  **Install**
  
   ![manual install script and run script](images/valuta-install.png)
 
