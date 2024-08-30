@@ -22,7 +22,7 @@ This guide assumes you have the following:
 
 1. Go to [Flathub's website](https://flathub.org), type "File Shredder" in the search bar, and click on **Install**
 
-![manual install script and run script](images/file-shredder-manual_install.png)
+![manual install script and run script](images/file-shredder_install.png)
 
 2. Copy the manual script in your terminal:
 
@@ -36,6 +36,12 @@ This guide assumes you have the following:
     flatpak run flathub io.github.ADBeveridge.Raider
     ```
 
+/// Provides instructions for using the File Shredder application.
+///
+/// The File Shredder application allows users to permanently remove sensitive files from their system.
+/// To use the application, users can drag and drop files into the application or click the "Add file" button
+/// to select the files they want to remove. Once the files are added, the user can click the "Shred All"
+/// button to permanently delete the files from their system.
 ## How to Use
 
 To use File Shredder, do the following:
