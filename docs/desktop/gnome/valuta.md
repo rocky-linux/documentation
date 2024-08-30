@@ -6,7 +6,7 @@
 
 ## Introduction
 
- If you often travel or are moving abroad, ease your planning with Valuta. This application quickly converts currencies between two countries.
+ If you often travel or are moving abroad, ease your finanical planning with Valuta. This application quickly converts currencies between two countries.
 
 ## Assumptions
 
@@ -18,8 +18,10 @@ This guide assumes you have the following:
 
 ## Installation Process
 
-1. Go to [Flathub.org](https://flathub.org), type "Valuta" in the search bar and click on **Install**
-![Screenshot of the Valuta page on Flathub with the blue install button highlighted in a red square](images/01_valuta.png)
+1. Go to [Flathub.org](https://flathub.org), type "Valuta" in the search bar and click  **Install** ![Screenshot of the Valuta page on Flathub with the blue install button highlighted in a red square](images/01_valuta.png)
+ 
+  ![manual install script and run script]
+
 2. Copy the manual script in your terminal:
 
 ```bash
