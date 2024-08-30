@@ -1,7 +1,7 @@
 ---
 title: File Shredder 
 author: Christine Belzie
-contributors:  
+contributors: Steven Spencer 
 ---
  
 ## Introduction
@@ -42,7 +42,7 @@ To use File Shredder, do the following:
 
 1. Drag or click on **Add file** to pick the file(s) you want to remove
 
-   ![Screenshot of the File Shredder homepage, showing the add dropdown menu and drop here button being highlighted by red rectangles](images/02_file-shredder.png)
+   ![Screenshot of the File Shredder homepage, showing the add drop-down menu and drop here button being highlighted by red rectangles](images/02_file-shredder.png)
 
 2. Click on **Shred All**
 
