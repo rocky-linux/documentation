@@ -1,11 +1,11 @@
 ﻿---
-title: Decibels
+title: Screenshot
 author: Christine Belzie
 contributors: 
 ---
 ## Introduction
 
-Tired of using keyboard shortcuts like ++Ctrl++ + ++Shift++  + ++5++ to  take images on your screen? Meet Screenshot! It is an application that helps you take pictures on your screen.
+Tired of using your keyboard to take images on your computer screen? Meet Screenshot! It is an application that helps you quickly take onscreen images.
 
 ## Assumptions
 
@@ -15,27 +15,25 @@ This guide assumes you have the following:
 
 !!! note
 
-    This app is pre-installed on your desktop. 
+    According [to GNOME's website](https://apps.gnome.org/), this application is pre-installed on your desktop. 
 
 ## How to Use
 
 To use Screenshot,  do the following:
 
-   ![Screenshot of the Utilities page where a red arrow is shown pointing up to the Screenshot application’s logo]
+![Screenshot of image being taken by the application with the options present](images/screenshot-01.png)
 
-1. Pick the image you want to take a photo of and go to the Screenshot application
+1. Pick the onscreen image you want to screenshot, go to the application, choose the method that you want to use to take your picture.
 
-!!! tip
-To get a clear picture, the Screenshot application next to the image you want to take.
+2. Click **Take a Screenshot**
 
-    ![Screenshot of application’s effects]
+    ![Screenshot of taken picture of being saved with black arrows pointing at a textbox that contains the file name, "Linux.png" as well as Save and Copy buttons](images/screenshot-02.png)
 
-2. Choose the method that you want to use for your picture, click **Take a Screenshot**
-3. Click on **Download**
+3. Once you're satisfied with the screenshot, rename the file, and click on **Save**.
 
-!!! tip
+   !!! tip
 
-   Want to save your computer's storage? click on **Copy** to quickly add your screenshot to your project.
+    Want to save your computer's storage? Click on **Copy** to quickly add your screenshot to your work. 
 
 ## Conclusion
 
