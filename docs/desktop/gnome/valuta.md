@@ -28,11 +28,12 @@ This guide assumes you have the following:
 flapak install flathub io.github.idevecore.Valuta
 ```
 
-3. Finally, copy the run command and run it in your terminal:
 
-```bash
-flatpak run io.github.idevecore.Valuta
-```
+3. Finally, the manual script in your terminal:
+
+    ```bash
+    flatpak run flathub io.github.idevecore.Valuta
+    ```
 
 ## How to Use
 
