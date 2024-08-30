@@ -22,11 +22,12 @@ This guide assumes you have the following:
  
   ![manual install script and run script](images/valuta-install.png)
 
+
 2. Copy the manual script in your terminal:
 
-```bash
-flapak install flathub io.github.idevecore.Valuta
-```
+    ```bash
+    flatpak install flathub io.github.idevecore.Valuta
+    ```
 
 
 3. Finally, the manual script in your terminal:
