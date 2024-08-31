@@ -6,7 +6,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 ## Introduction
 
-Decibels is an application that plays audio files. Its user-friendly interface makes uploading and playing your favorite song(s) and recordings of lectures, project ideas, and other files easy.
+Decibels is an application that plays audio files. Its user-friendly interface makes uploading and playing your favorite song(s), recordings of lectures, project ideas, and other audio files, easy.
 
 ## Assumptions
 
