@@ -25,17 +25,17 @@ In this chapter, you will learn about the web server Nginx.
 
 ### Generalities
 
-**Nginx** is a **free HTTP web server under BSD license**. It was first developed in Russia in 2002 by Igor Sysoev. In addition to the standard features of a web server, Nginx provides a **reverse proxy** for the **HTTP** protocol, as well as a proxy for the **POP** and **IMAP** messaging protocols.
+**Nginx** is a **free HTTP web server under BSD license**. It was first developed in Russia in 2002 by Igor Sysoev. In addition to the standard features of a web server, Nginx provides a **reverse proxy** for the **HTTP** protocol, and a proxy for the **POP** and **IMAP** messaging protocols.
 
-The development of the nginx server is a response to the **C10K** problem: supporting 10,000 concurrent connections (common on the modern web) is a real challenge for web servers.
+The development of the Nginx server is a response to the **C10K** problem. That is, supporting ten thousand concurrent connections (common on the modern web). It is a real challenge for web servers.
 
 Commercial support is available from Nginx Inc.
 
 The server's internal architecture enables **very high performance** with **low memory consumption** compared to the Apache web server in particular.
 
-Modules complementing the basic functions of the nginx kernel are compile-time bound: they cannot be activated/deactivated on the fly.
+Modules complementing the basic functions of the Nginx kernel are compile-time bound. Meaning activation or deactivation cannot happen dynamically.
 
-Server processes are controlled by a master process, making it possible to **modify configuration or update software without stopping service**.
+Control of server processes is with a master process, making it possible to **modify configuration or update software without stopping the service**.
 
 Nginx has a significant market share of 28% on the busiest sites on the market, just behind Apache (41%).
 
@@ -43,24 +43,24 @@ Nginx has a significant market share of 28% on the busiest sites on the market, 
 
 Nginx offers the following basic functions:
 
-* Hosting of static web pages;
-* Automatic index page generation;
-* Accelerated reverse proxy with cache;
-* Load balancing;
-* Fault tolerance;
-* Cached support for FastCGI, uWSGI, SCGI and memcached cache server;
-* Various filters for gzip, xslt, ssi, image transformation, ...
-* Support for SSL/TLS and SNI;
-* HTTP/2 support.
+* Hosting of static web pages
+* Automatic index page generation
+* Accelerated reverse proxy with cache
+* Load balancing
+* Fault tolerance
+* Cached support for FastCGI, uWSGI, SCGI and memcached cache server
+* Various filters for gzip, xslt, ssi, image transformation, and more
+* Support for SSL/TLS and SNI
+* HTTP/2 support
 
 Other features:
 
-* Hosting by name or IP address;
-* Keepalive management of client connections;
-* Log management: syslog, rotation, buffer;
-* URI rewriting;
-* Access control: by IP, password, etc.
-* FLV and MP4 streaming.
+* Hosting by name or IP address
+* Keepalive management of client connections
+* Log management: syslog, rotation, buffer
+* URI rewriting
+* Access control: by IP, password, and more
+* FLV and MP4 streaming
 
 ### Installation
 
@@ -73,15 +73,15 @@ sudo systemctl enable nginx --now
 
 ### Configuration
 
-Nginx configuration is located in `/etc/nginx`:
+The location of the Nginx configuration is in `/etc/nginx/nginx.conf`.
 
-The `/etc/nginx/nginx.conf` file: global server configuration file. Settings affect the entire server.
+This configuration file is a global server configuration file. Settings affect the entire server.
 
 !!! NOTE
 
     The .htaccess file functionality known to Apache administrators does not exist in nginx!
 
-The `nginx.conf` file, stripped of all comments, is provided below for your information:
+Provided here is the `nginx.conf` file, stripped of all comments, for your information:
 
 ```bash
 user nginx;
@@ -126,12 +126,12 @@ Default configuration guidelines:
 | Directive                   | Description |
 |-----------------------------|-------------|
 | `user`                      | Defines the process owner `user` and `group`. If the group is not specified, the group with the same name as the user is used. |
-| `worker_processes`          | Defines the number of processes. The optimum value depends on many factors, such as the number of CPU cores, hard disk specifications, etc. In case of doubt, the nginx documentation suggests a starting value equivalent to the number of CPU cores available (the auto value will try to determine this). |
+| `worker_processes`          | Defines the number of processes. The optimum value depends on many factors, such as the number of CPU cores, hard disk specifications, etc. In case of doubt, the Nginx documentation suggests a starting value equivalent to the number of CPU cores available (the auto value will try to determine this). |
 | `pid`                       | Defines a file to store the pid value. |
 | `worker_connections`        | Sets the maximum number of simultaneous connections a worker process can open (to the client and to mandated servers). |
 | `tcp_nopush`                | `tcp_nopush` is inseparable from the sendfile option. It is used to optimize the quantity of information sent at a single time. Packets are only sent when they have reached their maximum size. |
 | `tcp_nodelay`               | Activating `tcp_nodelay` forces data contained in the socket to be sent immediately, regardless of packet size, which is the opposite of what `tcp_nopush` does. |
-| `sendfile`                  | Optimize the sending of static files (this option is not required for a proxy-inverse configuration). If sendfile is enabled, nginx ensures that all packets are completed before they are sent to the client (thanks to `tcp_nopush`). When the last packet arrives, nginx disables `tcp_nopush` and forces data to be sent using `tcp_nodelay`. |
+| `sendfile`                  | Optimize the sending of static files (this option is not required for a proxy-inverse configuration). If sendfile is enabled, Nginx ensures that all packets are completed before they are sent to the client (thanks to `tcp_nopush`). When the last packet arrives, Nginx disables `tcp_nopush` and forces data to be sent using `tcp_nodelay`. |
 | `keepalive_timeout`         | maximum time before closing an inactive connection.                                                |
 | `types_hash_max_size`       | Nginx maintains hash tables containing static information. Set the maximum size of the hash table. |
 | `include`                   | Include another file or files that match the template provided in the configuration.               |
@@ -143,7 +143,7 @@ Default configuration guidelines:
 | `gzip`                      | The ngx_http_gzip_module is a filter that compresses data transmitted in gzip format.              |
 | `gzip_disable`              | Disable gzip based on a regular expression.                                                        |
 
-The nginx configuration is structured as follows:
+The structure of the Nginx configuration is:
 
 ```text
 # global directives
@@ -157,14 +157,14 @@ http {
 
     # Configure the first server listening on port 80
     server {
-	    listen 80 default_server;
-	    listen [::]:80 default_server;
-	    root /var/www/html;
-	    index index.html index.htm;
-	    server_name _;
-	    location / {
-		    try_files $uri $uri/ =404;
-	    }
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        root /var/www/html;
+        index index.html index.htm;
+        server_name _;
+        location / {
+            try_files $uri $uri/ =404;
+        }
     }
 }
 
@@ -191,9 +191,9 @@ mail {
 
 ### https configuration
 
-To configure an https service, you need to add a server block, or modify an existing server block (a server block can listen on both port 443 and port 80).
+To configure an HTTPS service, you need to add a server block, or modify an existing server block. A server block can listen on both port 443 and port 80.
 
-This block can, for example, be added to the new `/etc/nginx/conf.d/default_https.conf` file:
+You can add this block, for example, to the new `/etc/nginx/conf.d/default_https.conf` file:
 
 ```bash
 server {
@@ -210,7 +210,7 @@ server {
 }
 ```
 
-or the default server can be modified to support https:
+or you can modify the default server to support HTTPS:
 
 ```bash
 server {
@@ -226,9 +226,9 @@ server {
 
 ### Log management
 
-The `error_log` directive is used to configure error logs.
+You can configure the `error_log` directive for error logs.
 
-Syntax of the error_log directive:
+Syntax of the `error_log` directive:
 
 ```bash
 error_log file [level];
@@ -238,7 +238,7 @@ The first parameter defines a file to receive error logs.
 
 The second parameter determines the log level: debug, info, notice, warn, error, crit, alert or emerg (see syslog chapter of our admin guide).
 
-Logs can be sent to syslog using the “syslog:” prefix.
+The function of sending logs to syslog is with the “syslog:” prefix.
 
 ```bash
 access_log syslog:server=192.168.1.100:5514,tag=nginx debug;
@@ -246,7 +246,7 @@ access_log syslog:server=192.168.1.100:5514,tag=nginx debug;
 
 ### Nginx as a reverse proxy
 
-Reverse proxy functionality is provided by the `ngx_http_upstream_module`. It lets you define groups of servers which are then called by the `proxy_pass` or `fastcgi_pass` directives, `memcached_pass`, etc.
+Reverse proxy functionality is with the `ngx_http_upstream_module`. It lets you define groups of servers which are then called by the `proxy_pass` or `fastcgi_pass` directives, `memcached_pass`, and more.
 
 Example of a basic configuration, which distributes the load 2/3 to the first server and 1/3 to the second application server:
 
@@ -263,7 +263,7 @@ Example of a basic configuration, which distributes the load 2/3 to the first se
     }
 ```
 
-Servers can be declared as backups:
+You can declare servers as backups:
 
 ```bash
     upstream frontservers {
@@ -273,7 +273,7 @@ Servers can be declared as backups:
     }
 ```
 
-The server directive accepts a number of arguments:
+The server directive accepts many arguments:
 
 * `max_fails=numberofattempts`: sets the number of connection attempts that must fail during the time period defined by the `fail_timeout` parameter for the server to be considered unavailable. Default value is 1, 0 disables functionality.
 * `fail_timeout=time`: sets the time during which a defined number of connections will cause the server to be unavailable, and sets the period of time during which the server will be considered unavailable. The default value is 10 seconds.
