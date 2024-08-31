@@ -1,7 +1,7 @@
 ---
 title: Screenshot 
 author: Christine Belzie
-contributors:  
+contributors: Steven Spencer  
 ---
 ## Introduction
 
@@ -27,13 +27,13 @@ To use Screenshot,  do the following:
 
 2. Click **Take a Screenshot**
 
-    ![Screenshot of taken picture of being saved with black arrows pointing at a textbox that contains the file name, "Linux.png" as well as Save and Copy buttons](images/screenshot-02.png)
+    ![Screenshot of taken picture of being saved with black arrows pointing at a text box that contains the file name, "Linux.png" as well as Save and Copy buttons](images/screenshot-02.png)
 
 3. Once you're satisfied with the screenshot, rename the file, and click on **Save**.
 
-   !!! tip
+!!! tip
 
-    Want to save your computer's storage? Click on **Copy** to quickly add your screenshot to your work. 
+    Want to save your computer's storage? Click on **Copy** to quickly add your screenshot to your work.
 
 ## Conclusion
 
