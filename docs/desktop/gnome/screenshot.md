@@ -37,4 +37,4 @@ To use Screenshot,  do the following:
 
 ## Conclusion
 
-Whether it’s a picture for your online collage, computer's background, or a tutorial that you are creating for your favorite product, GNOME's Screenshot is the tool help you get the screenshots you want. Eager to learn more about or have more ideas for this application? [Submit an issue to Screenshot’s repository at GitLab](https://gitlab.gnome.org/gnumdk/screenshot/-/issues).
+Whether it is a picture for your online collage, computer's background, or a tutorial that you are creating for your favorite product, GNOME's Screenshot is the tool help you get the screenshots you want. Eager to learn more about or have more ideas for this application? [Submit an issue to Screenshot’s repository at GitLab](https://gitlab.gnome.org/gnumdk/screenshot/-/issues).
