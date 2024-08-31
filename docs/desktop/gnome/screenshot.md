@@ -1,7 +1,7 @@
-﻿---
-title: Screenshot
+---
+title: Screenshot 
 author: Christine Belzie
-contributors: 
+contributors:  
 ---
 ## Introduction
 
