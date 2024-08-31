@@ -6,7 +6,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 ## Introduction
 
-Decibels is an app that plays audio files. Its user-friendly interface makes uploading and playing your favorite song(s) and recordings of lectures, project ideas, and other files easy.
+Decibels is an application that plays audio files. Its user-friendly interface makes uploading and playing your favorite song(s) and recordings of lectures, project ideas, and other files easy.
 
 ## Assumptions
 
@@ -39,7 +39,7 @@ Go to [Flathub.org](https://flathub.org), type "Decibels" in the search bar, and
 
 ## How to use
 
-To use the app, do the following steps:
+To use Decibels, do the following steps:
 
 1. Click on **Open**
     ![Screenshot of Decibels' landing page with a red rectangle surrounding the blue open button](images/02_decibels.png)
