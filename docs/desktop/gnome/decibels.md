@@ -42,8 +42,11 @@ Go to [Flathub.org](https://flathub.org), type "Decibels" in the search bar, and
 To use Decibels, do the following steps:
 
 1. Click on **Open**
+
     ![Screenshot of Decibels' landing page with a red rectangle surrounding the blue open button](images/02_decibels.png)
-1. Pick your desired file and click on the **Open** that appears in the upper right corner of the screen
+
+2. Pick your desired file and click on the **Open** that appears in the upper right corner of the screen
+
     ![Screenshot of Decibels file selection interface with numbered arrows indicating audio file and Open button](images/03_decibels.png)
 
 
