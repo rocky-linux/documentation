@@ -14,7 +14,7 @@ Le processus d'installation d'applications sur le Desktop Rocky Linux à l'aide 
 2. Rendez le programme exécutable
 3. Lancez l’application pour l’installer
 
-L'exemple d'application utilisé dans ce didacticiel est Krita. Vous le téléchargez et l'installez en utilisant AppImage. Krita est un logiciel de conception graphique libre et open-source. Étant donné que ce guide concerne les fonctionnalités d'`AppImage`, il n'entre pas dans les détails de l'utilisation de `Krita`. Sie können [mehr darüber auf der Website lesen](https://krita.org/).
+L'exemple d'application utilisé dans ce didacticiel est Krita. Vous le téléchargez et l'installez en utilisant AppImage. Krita est un logiciel de conception graphique libre et open-source. Étant donné que ce guide concerne les fonctionnalités d'`AppImage`, il n'entre pas dans les détails de l'utilisation de `Krita`. Vous pouvez [en savoir plus à ce sujet sur le site Web] (https://krita.org/).
 
 ## Prérequis
 
