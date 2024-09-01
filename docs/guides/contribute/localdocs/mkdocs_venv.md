@@ -278,6 +278,34 @@ INFO     -  [22:32:41] Serving on http://127.0.0.1:8000/
 [rocky_user@rl9 env]$
 ```
 
+### Create an alias for venv method
+
+You can create a bash alias to expedite the process of serving mkdocs with the venv method. 
+
+Run the command below to add the alias `venv` to your `.bash_profile`:
+
+```bash
+printf "# mkdocs alias\nalias venv='source $HOME/lab/rockydocs/env/bin/activate && mkdocs serve -f $HOME/lab/rockydocs/docs.rockylinux.org/mkdocs.yml'" >> ~/.bash_profile
+```
+
+Update the shell environment with your newly created alias:
+
+```bash
+source ~/.bash_profile
+```
+
+Now you can run `venv` to create a local development site with mkdocs using the venv method:
+
+```bash
+venv
+```
+
+You will still need to run `deactivate` to exit the virtual environment:
+
+```bash
+deactivate
+```
+
 ## Conclusions and final thoughts
 
 Verifying your new pages in a local development site assures us that your work will always conform to the online documentation site, allowing us to contribute optimally.
