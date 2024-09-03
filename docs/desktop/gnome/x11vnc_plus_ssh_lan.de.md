@@ -1,5 +1,5 @@
 ---
-title: Desktop Sharing (via x11vnc)
+title: Desktop Sharing via x11vnc+SSH
 author: Joseph Brinkman
 contributors: Steven Spencer, Ganna Zhyrnova
 ---
@@ -153,8 +153,17 @@ Stellen Sie eine Verbindung zum VNC-Server her, indem Sie 127.0.0.1 oder localho
 
 Geben Sie das zuvor erstellte x11vnc-Passwort ein.
 
-## Zusammenfassung
-
 ![TigerVNC viewer connected to an X session](images/x11vnc_plus_ssh_lan_images/x11vnc_over_ssh_lan_conclusion.webp)
+
+Herzlichen Glückwunsch! Jetzt können Sie Ihren Desktop aus der Ferne kontrollieren!
+
+## Verbindung zur Maschine über das Internet herstellen
+
+Bisher wurde Ihnen in diesem Artikel gezeigt, wie Sie einen x11vnc-Server einrichten und mithilfe von VNC, das über einen SSH-Tunnel weitergeleitet wird, eine Verbindung zu ihm herstellen. Ein scheinbar offensichtliches, aber dennoch wichtiges Detail, das Sie beachten sollten, ist, dass diese Methode nur für Computer funktioniert, die mit einem Netzwerk verbunden sind. Da der in diesem Handbuch vorgestellte Hauptanwendungsfall der Remote-Support ist, kann davon ausgegangen werden, dass Sie eine Verbindung zu einem Computer herstellen möchten, der sich in einem anderen lokalen Netzwerk (LAN) als Ihrem eigenen befindet. Eine Möglichkeit, dies zu erreichen, besteht darin, ein VPN einzurichten. Die beiden folgenden Anleitungen stellen einen geeigneten privaten Tunnel bereit, um über das Internet eine Verbindung zu Ihrem x11vnc-Server herzustellen.
+
+-[OpenVPN](https://docs.rockylinux.org/guides/security/openvpn/)
+-[Wireguard VPN](https://docs.rockylinux.org/guides/security/wireguard_vpn/)
+
+## Zusammenfassung
 
 Sie haben erfolgreich einen x11vnc-Server eingerichtet und über einen TigerVNC-Client eine Verbindung damit hergestellt. Diese Lösung ist ideal für den Remote-Support, da sie dieselbe X-Sitzung wie der Benutzer verwendet und so eine reibungslose Wartung gewährleistet.
