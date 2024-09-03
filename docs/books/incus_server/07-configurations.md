@@ -2,21 +2,19 @@
 title: 7 Container Configuration Options
 author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
-tested_with: 8.8, 9.2
+tested_with:  9.4
 tags:
-  - lxd
+  - incus 
   - enterprise
-  - lxd configuration
+  - incus configuration
 ---
 
-# Chapter 7: Container configuration options
-
-Throughout this chapter you will need to run commands as your unprivileged user ("lxdadmin" if you've been following from the beginning of this book).
+Throughout this chapter you will need to run commands as your unprivileged user ("incusadmin" if you've been following from the beginning of this book).
 
 There are a wealth of options for configuring the container after installation. Before seeing those, however, let us examine the `info` command for a container. In this example, you will use the ubuntu-test container:
 
 ```bash
-lxc info ubuntu-test
+incus info ubuntu-test
 ```
 
 This will show the following:
@@ -58,42 +56,42 @@ Resources:
       Packets sent: 0
 ```
 
-There is much good information there, from the profiles applied, to the memory in use, disk space in use, and more.
+Good information is there, from the profiles applied, to the memory in use, disk space in use, and more.
 
 ## A word about configuration and some options
 
-By default, LXD will assign the required system memory, disk space, CPU cores, and other resources, to the container. But what if you want to be more specific? That is totally possible.
+By default, Incus will assign the required system memory, disk space, CPU cores, and other resources, to the container. But what if you want to be more specific? That is totally possible.
 
-There are trade-offs to doing this, though. For instance, if you assign system memory and the container does not use it all, you have kept it from another container that might actually need it. The reverse, though, can happen. If a wants to use more than its share of memory, it can keep other containers from getting enough, thereby pinching their performance.
+There are trade-offs to doing this. For instance, if you assign system memory and the container does not use it all, you have kept it from another container that might actually need it. The reverse can happen too. If a container wants to use more than its share of memory, it can keep other containers from getting enough, thereby pinching their performance.
 
 Just remember that every action you make to configure a container _can_ have negative effects somewhere else.
 
 Rather than run through all of the options for configuration, use the tab auto-complete to see the options available:
 
 ```bash
-lxc config set ubuntu-test
+incus config set ubuntu-test
 ```
 
 and ++tab++.
 
-This shows you all of the options for configuring a container. If you have questions about what one of the configuration options does, head to the [official documentation for LXD](https://documentation.ubuntu.com/lxd/en/latest/config-options/) and do a search for the configuration parameter, or Google the entire string, such as `lxc config set limits.memory` and examine the results of the search.
+This shows you all of the options for configuring a container. If you have questions about what one of the configuration options does, head to the [official documentation for Incus](https://linuxcontainers.org/incus/docs/main/config-options/) and do a search for the configuration parameter, or Google the entire string, such as `incus config set limits.memory` and examine the results of the search.
 
 Here we examine a few of the most used configuration options. For example, if you want to set the max amount of memory that a container can use:
 
 ```bash
-lxc config set ubuntu-test limits.memory 2GB
+incus config set ubuntu-test limits.memory 2GB
 ```
 
 That says that if the memory is available to use, for example there is 2GB of memory available, then the container can actually use more than 2GB if it is available. It is a soft limit, for example.
 
 ```bash
-lxc config set ubuntu-test limits.memory.enforce 2GB
+incus config set ubuntu-test limits.memory.enforce 2GB
 ```
 
 That says that the container can never use more than 2GB of memory, whether it is currently available or not. In this case it is a hard limit.
 
 ```bash
-lxc config set ubuntu-test limits.cpu 2
+incus config set ubuntu-test limits.cpu 2
 ```
 
 That says to limit the number of CPU cores that the container can use to 2.
@@ -105,7 +103,7 @@ That says to limit the number of CPU cores that the container can use to 2.
 Remember when you set up our storage pool in the ZFS chapter? You named the pool "storage," but you could have named it anything. If you want to examine this, you can use this command, which works equally well for any of the other pool types too (as shown for dir):
 
 ```bash
-lxc storage show storage
+incus storage show storage
 ```
 
 This shows the following:
@@ -129,9 +127,9 @@ locations:
 This shows that all of our containers use our dir storage pool. When using ZFS, you can also set a disk quota on a container. Here is what that command looks like, setting a 2GB disk quota on the ubuntu-test container:
 
 ```bash
-lxc config device override ubuntu-test root size=2GB
+incus config device override ubuntu-test root size=2GB
 ```
 
-As stated earlier, use configuration options sparingly, unless you have got a container that wants to use way more than its share of resources. LXD, for the most part, will manage the environment well on its own.
+As stated earlier, use configuration options sparingly, unless you have got a container that wants to use way more than its share of resources. Incus, for the most part, will manage the environment well on its own.
 
 Many more options exist that might be of interest to some people. Doing your own research will help you to find out if any of those are of value in your environment.

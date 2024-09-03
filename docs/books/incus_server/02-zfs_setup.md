@@ -2,11 +2,11 @@
 title: 2 ZFS Setup
 author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
-tested_with: 8.8, 9.2
+tested_with: 9.4
 tags:
-  - lxd
+  - incus
   - enterprise
-  - lxd zfs
+  - incus zfs
 ---
 
 # Chapter 2: ZFS setup

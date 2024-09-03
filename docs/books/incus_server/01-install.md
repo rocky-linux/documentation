@@ -2,14 +2,12 @@
 title: 1 Install and Configuration
 author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
-tested_with: 8.8, 9.2
+tested_with: 9.4
 tags:
-  - lxd
+  - incus
   - enterprise
-  - lxd install
+  - incus install
 ---
-
-# Chapter 1: Install and configuration
 
 Throughout this chapter you will need to be the root user or you will need to be able to *sudo* to root.
 
@@ -18,7 +16,7 @@ Throughout this chapter you will need to be the root user or you will need to be
 LXD requires the EPEL (Extra Packages for Enterprise Linux) repository, which is easy to install using:
 
 ```bash
-dnf install epel-release
+dnf install epel-release -y
 ```
 
 When installed, verify there are no updates:
@@ -29,7 +27,7 @@ dnf upgrade
 
 If there were any kernel updates during the upgrade process, reboot the server.
 
-### OpenZFS repository for 8 and 9
+### OpenZFS repository
 
 Install the OpenZFS repository with:
 
@@ -37,35 +35,31 @@ Install the OpenZFS repository with:
 dnf install https://zfsonlinux.org/epel/zfs-release-2-2$(rpm --eval "%{dist}").noarch.rpm
 ```
 
-## Install `snapd`, `dkms`, `vim`, and `kernel-devel`
+## Install `dkms`, `vim`, and `kernel-devel`
 
-LXD installation requires a snap package on Rocky Linux. For this reason, you need to install `snapd` (and a few other useful programs) with:
+Install some needed packages:
 
 ```bash
-dnf install snapd dkms vim kernel-devel
+dnf install dkms vim kernel-devel bash-completion
 ```
 
-Now enable and start snapd:
+## Install Incus
+
+You will need the CRB repository available for some special packages, and Neil Hanlon's COPR (Cool Other Package Repo):
 
 ```bash
-systemctl enable snapd
+dnf config-manager --enable crb
+dnf copr enable neil/incus
+dnf install incus incus-tools
 ```
 
-Then run:
+Enable and start the service:
 
 ```bash
-systemctl start snapd
+systemctl enable incus --now
 ```
 
 Reboot the server before continuing here.
-
-## Install LXD
-
-Installing LXD requires the use of the snap command. At this point, you are just installing it, you are not doing the set up:
-
-```bash
-snap install lxd
-```
 
 ## Install OpenZFS
 
@@ -112,10 +106,6 @@ To make these kernel changes, you are going to create a file called `90-lxd-over
 vi /etc/sysctl.d/90-lxd-override.conf
 ```
 
-!!! warning "RL 9 and MAX value of `net.core.bpf_jit_limit`"
-
-    Because of recent kernel security updates, the max value of `net.core.bpf_jit_limit` appears to be 1000000000. Please adjust this value in the self-documenting file below if you are running Rocky Linux 9.x. If you set it above this limit **OR** if you fail to set it at all, it will default to the system default of 264241152, which may not be enough if you run a large number of containers.
-
 Place the following content in that file. Note that if you are wondering what you are doing here, the file content is self-documenting:
 
 ```bash
@@ -156,7 +146,7 @@ net.ipv6.neigh.default.gc_thresh3 = 8192
 
 # This is a limit on the size of eBPF JIT allocations which is usually set to PAGE_SIZE * 40000. Set this to 1000000000 if you are running Rocky Linux 9.x
 
-net.core.bpf_jit_limit = 3000000000
+net.core.bpf_jit_limit = 1000000000
 
 # This is the maximum number of keys a non-root user can use, should be higher than the number of containers
 
@@ -176,7 +166,7 @@ Save your changes and exit.
 
 At this point reboot the server.
 
-### Checking *sysctl.conf* values
+### Checking `sysctl.conf` values
 
 After the reboot, log back in as the root user to the server. You need to check that our override file has actually completed the job.
 
@@ -189,7 +179,7 @@ sysctl net.core.bpf_jit_limit
 Which will show you:
 
 ```bash
-net.core.bpf_jit_limit = 3000000000
+net.core.bpf_jit_limit = 1000000000 
 ```
 
 Do the same with a few other settings in the override file to verify the changes.
