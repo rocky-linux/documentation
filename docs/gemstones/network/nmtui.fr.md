@@ -5,7 +5,7 @@ contributors: Steven Spencer, Neil Hanlon
 update: 2021-10-23
 ---
 
-# Présentation de nmtui
+# Introduction
 
 Pour les utilisateurs qui sont nouveaux sur GNU/Linux la première chose à considérer est comment connecter la machine à Internet après avoir installé le système d'exploitation. Cet article vous indiquera comment configurer l'adresse IP, le masque de sous-réseau, la passerelle et le DNS. Il y a plusieurs moyens pour y parvenir. Que vous soyez novice ou expérimenté, vous pourrez débuter rapidement.
 
