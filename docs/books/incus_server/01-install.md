@@ -13,7 +13,7 @@ Throughout this chapter you will need to be the root user or you will need to be
 
 ## Install EPEL and OpenZFS repositories
 
-LXD requires the EPEL (Extra Packages for Enterprise Linux) repository, which is easy to install using:
+Incus requires the EPEL (Extra Packages for Enterprise Linux) repository, which is easy to install using:
 
 ```bash
 dnf install epel-release -y
@@ -71,7 +71,7 @@ dnf install zfs
 
 Most server kernel settings are not sufficient to run a large number of containers. If you assume from the beginning that you will use your server in production, you need to make these changes up front to avoid errors such as "Too many open files" from occurring.
 
-Luckily, tweaking the settings for LXD is not hard with a few file modifications and a reboot.
+Luckily, tweaking the settings for Incus is not hard with a few file modifications and a reboot.
 
 ### Modifying `limits.conf`
 
@@ -96,7 +96,7 @@ root            hard    nofile           1048576
 
 Save your changes and exit (++shift+colon+"w"+"q"+exclam++ for *vi*).
 
-### Modifying sysctl.conf with `90-lxd.override.conf`
+### Modifying `sysctl.conf` with `90-lxd.override.conf`
 
 With *systemd*, you can make changes to your system's overall configuration and kernel options *without* modifying the main configuration file. Instead, put your settings in a separate file that will override the particular settings you need.
 

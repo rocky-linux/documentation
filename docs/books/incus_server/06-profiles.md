@@ -25,15 +25,15 @@ For now, just be aware that this has drawbacks when choosing container images ba
 
 ## Creating A `macvlan` profile and assigning it
 
-To create our `macvlan` profile, use this command:
+To create your `macvlan` profile, use this command:
 
 ```bash
 incus profile create macvlan
 ```
 
-If you were on a multi-interface machine and wanted more than one `macvlan` template based on the network you wanted to reach, you might use "lanmacvlan" or "wanmacvlan" or any other name that you wanted to use to identify the profile. Using "macvlan" in our profile create statement is totally up to you.
+If you were on a multi-interface machine and wanted more than one `macvlan` template based on the network you wanted to reach, you might use "lanmacvlan" or "wanmacvlan" or any other name that you wanted to use to identify the profile. Using "macvlan" in your profile create statement is totally up to you.
 
-You want to change the `macvlan` interface, but before you do, you need to know what the parent interface is for our Incus server. This will be the interface that has a LAN (in this case) assigned IP. To find what interface that is, use:
+You want to change the `macvlan` interface, but before you do, you need to know what the parent interface is for your Incus server. This will be the interface that has a LAN (in this case) assigned IP. To find what interface that is, use:
 
 ```bash
 ip addr
@@ -135,7 +135,7 @@ incus list
 +-------------------+---------+----------------------+------+-----------+-----------+
 ```
 
-As you can see, our Rocky Linux 8.x container received the IP address from the LAN interface, whereas the Rocky Linux 9.x container did not.
+As you can see, your Rocky Linux 8.x container received the IP address from the LAN interface, whereas the Rocky Linux 9.x container did not.
 
 To further demonstrate the problem here, you need to run `dhclient` on the Rocky Linux 9.0 container. This will show us that the `macvlan` profile, *is* in fact applied:
 
@@ -157,7 +157,7 @@ Another container listing now shows the following:
 +-------------------+---------+----------------------+------+-----------+-----------+
 ```
 
-That should have happened with a stop and start of the container, but it does not. Assuming that you want to use a DHCP assigned IP address every time, you can fix this with a simple crontab entry. To do this, we need to gain shell access to the container by entering:
+That should have happened with a stop and start of the container, but it does not. Assuming that you want to use a DHCP assigned IP address every time, you can fix this with a simple crontab entry. To do this, you need to gain shell access to the container by entering:
 
 ```bash
 incus shell rockylinux-test-9
@@ -244,15 +244,15 @@ sleep 2
 /usr/sbin/ip route add default via 192.168.1.1
 ```
 
-What are we doing here?
+What are you doing here?
 
-* you rename eth0 to a new name that we can manage ("net0")
-* you assign the new static IP that we have allocated for our container (192.168.1.151)
+* you rename eth0 to a new name that you can manage ("net0")
+* you assign the new static IP that you have allocated for your container (192.168.1.151)
 * you bring up the new "net0" interface
 * you add a 2 second wait for the interface to be active before adding the default route
-* you need to add the default route for our interface
+* you need to add the default route for your interface
 
-Make our script executable with:
+Make your script executable with:
 
 ```bash
 chmod +x /usr/local/sbin/static
@@ -292,9 +292,9 @@ You should see success:
 
 ## Ubuntu macvlan
 
-Luckily, In Ubuntu's implementation of Network Manager, the macvlan stack is NOT broken. It is much easier to deploy!
+Luckily, In Ubuntu's implementation of Network Manager, the `macvlan` stack is NOT broken. It is much easier to deploy!
 
-Just like with your rockylinux-test-9 container, you need to assign the profile to our container:
+Just like with your rockylinux-test-9 container, you need to assign the profile to your container:
 
 ```bash
 incus profile assign ubuntu-test default,macvlan

@@ -13,7 +13,7 @@ This chapter uses a combination of the privileged (root) user, and the unprivile
 
 As noted at the beginning, the snapshot server for Incus must be a mirror of the production server in every way possible. The reason is that you might need to take it to production if the hardware fails on your primary server, and having backups, and a quick way to restart production containers, keeps those system administrator panic telephone calls and text messages to a minimum. THAT is ALWAYS good!
 
-The process of building the snapshot server is exactly like the production server. To fully emulate our production server set up, do all of **Chapters 1-4** again on the snapshot server, and when completed, return to this spot.
+The process of building the snapshot server is exactly like the production server. To fully emulate your production server set up, do all of **Chapters 1-4** again on the snapshot server, and when completed, return to this spot.
 
 You are back!! Congratulations, this must mean that you have successfully completed the basic installation for the snapshot server.
 
@@ -21,9 +21,9 @@ You are back!! Congratulations, this must mean that you have successfully comple
 
 Some housekeeping is necessary before continuing. First, if you are running in a production environment, you probably have access to a DNS server that you can use for setting up IP to name resolution.
 
-In our lab, we do not have that luxury. Perhaps you've got the same scenario running. For this reason, you are going to add both servers IP addresses and names to the /etc/hosts file on the primary and the snapshot server. You'll need to do this as your root (or _sudo_) user.
+In your lab, you do not have that luxury. Perhaps you have the same scenario running. For this reason, you are going to add both server's IP addresses and names to the `/etc/hosts` file on the primary and the snapshot server. You will need to do this as your root (or _sudo_) user.
 
-In our lab, the primary Incus server is running on 192.168.1.106 and the snapshot Incus server is running on 192.168.1.141. SSH into each server and add the following to the `/etc/hosts` file:
+In your lab, the primary Incus server is running on 192.168.1.106 and the snapshot Incus server is running on 192.168.1.141. SSH into each server and add the following to the `/etc/hosts` file:
 
 ```bash
 192.168.1.106 incus-primary
@@ -48,7 +48,7 @@ then reload:
 firewall-cmd reload
 ```
 
-Next, as our unprivileged (incusadmin) user, you need to set the trust relationship between the two machines. This is done by running the following on incus-primary:
+Next, as your unprivileged (incusadmin) user, you need to set the trust relationship between the two machines. This is done by running the following on incus-primary:
 
 ```bash
 incus remote add incus-snapshot
@@ -64,7 +64,7 @@ It does not hurt to have this in reverse also. For example, set the trust relati
 
 ### Migrating your first snapshot
 
-Before you can migrate your first snapshot, you need to have any profiles created on incus-snapshot that you have created on the incus-primary. In our case, this is the "macvlan" profile.
+Before you can migrate your first snapshot, you need to have any profiles created on incus-snapshot that you have created on the incus-primary. In this case, it is the "macvlan" profile.
 
 You will need to create this for incus-snapshot. Go back to [Chapter 6](06-profiles.md) and create the "macvlan" profile on incus-snapshot if you need to. If your two servers have the same parent interface names ("enp3s0" for example) then you can copy the "macvlan" profile over to incus-snapshot without recreating it:
 
@@ -78,7 +78,7 @@ With all of the relationships and profiles set up, the next step is to actually 
 incus snapshot rockylinux-test-9 rockylinux-test-9-snap1
 ```
 
-If you run the "info" command for `incus`, you can see the snapshot at the bottom of our listing:
+If you run the "info" command for `incus`, you can see the snapshot at the bottom of your listing:
 
 ```bash
 incus info rockylinux-test-9
@@ -90,7 +90,7 @@ Which will show something like this at the bottom:
 rockylinux-test-9-snap1 at 2021/05/13 16:34 UTC) (stateless)
 ```
 
-OK, fingers crossed! Let us try to migrate our snapshot:
+OK, fingers crossed! Let us try to migrate your snapshot:
 
 ```bash
 incus copy rockylinux-test-9/rockylinux-test-9-snap1 incus-snapshot:rockylinux-test-9
@@ -108,7 +108,7 @@ After a short time, the copy will be complete. Want to find out for sure? Do an 
 +-------------------+---------+------+------+-----------+-----------+
 ```
 
-Success! Try starting it. Because we are starting it on the incus-snapshot server, you need to stop it first on the incus-primary server to avoid an IP address conflict:
+Success! Try starting it. Because you are starting it on the incus-snapshot server, you need to stop it first on the incus-primary server to avoid an IP address conflict:
 
 ```bash
 incus stop rockylinux-test-9
@@ -126,7 +126,7 @@ Assuming all of this works without error, stop the container on incus-snapshot a
 
 The snapshots copied to incus-snapshot will be down when they migrate, but if you have a power event or need to reboot the snapshot server because of updates or something, you will end up with a problem. Those containers will try to start on the snapshot server creating a potential IP address conflict.
 
-To eliminate this, you need to set the migrated containers so that they will not start on reboot of the server. For our newly copied rockylinux-test-9 container, you will do this with:
+To eliminate this, you need to set the migrated containers so that they will not start on reboot of the server. For your newly copied rockylinux-test-9 container, you will do this with:
 
 ```bash
 incus config set rockylinux-test-9 boot.autostart 0
@@ -146,13 +146,13 @@ incus config set [container_name] snapshots.schedule "50 20 * * *"
 
 What this is saying is, do a snapshot of the container name every day at 8:50 PM.
 
-To apply this to our rockylinux-test-9 container:
+To apply this to your rockylinux-test-9 container:
 
 ```bash
 incus config set rockylinux-test-9 snapshots.schedule "50 20 * * *"
 ```
 
-You also want to set up the name of the snapshot to be meaningful by our date. Incus uses UTC everywhere, so our best bet to keep track of things, is to set the snapshot name with a date and time stamp that is in a more understandable format:
+You also want to set up the name of the snapshot to be meaningful by your date. Incus uses UTC everywhere, so your best bet to keep track of things, is to set the snapshot name with a date and time stamp that is in a more understandable format:
 
 ```bash
 incus config set rockylinux-test-9 snapshots.pattern "rockylinux-test-9{{ creation_date|date:'2006-01-02_15-04-05' }}"

@@ -69,14 +69,14 @@ What IPv6 address should be used? (CIDR subnet notation, “auto” or “none�
 If you want to use IPv6 on your Incus containers, you can turn on this option. That is up to you.
 
 ```text
-Would you like the LXD server to be available over the network? (yes/no) [default=no]: yes
+Would you like the Incus server to be available over the network? (yes/no) [default=no]: yes
 ```
 
 This is necessary to snapshot the server.
 
 ```text
-Address to bind LXD to (not including port) [default=all]:
-Port to bind LXD to [default=8443]:
+Address to bind Incus to (not including port) [default=all]:
+Port to bind Incus to [default=8443]:
 Trust password for new clients:
 Again:
 ```
