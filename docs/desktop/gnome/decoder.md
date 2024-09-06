@@ -1,12 +1,12 @@
 ---
 title: Decoder
 author: Christine Belzie
-contributors: Steven Spencer 
+contributors: Steven Spencer, Ganna Zhyrnova 
 ---
 
 ## Introduction
 
-Need a QR code for your website, application, or social media profiles? Check out  Decoder! It is an application that lets create, save, and export QR codes.
+Do you need a QR code for your website, application, or social media profiles? Check out Decoder! The application lets you create, save, and export QR codes.
 
 ## Assumptions
 
@@ -68,7 +68,7 @@ Two types of QR codes are available. Choose the option that best suits your need
 
 ### How to Scan a QR code
 
-In addition to creating and generating QR codes, you can use Decoder to scan QR codes you saved on you computer. Here is how:
+In addition to creating and generating QR codes, you can use Decoder to scan QR codes you saved on your computer. Do the following:
 
 ![Screenshot of a red circle on a grey button that has the word "Scan" written in black.](images/01_decoder-scan.png)
 
@@ -89,8 +89,8 @@ In addition to creating and generating QR codes, you can use Decoder to scan QR 
 
 !!! note
 
-    To scan a QR code straight from your computer, ensure that you grant the app access to your computer's camera.
+    To scan a QR code directly from your computer, you must grant the app access to your computer's camera.
 
 ## Conclusion
 
-Whether it is to share a restaurant's Wi-Fi with friends, grow your business, or network with other professionals at a conference, Decoder can ease the process of creating and scanning QR codes. Eager to learn more about or have more ideas for this application? [Submit an issue to its repository at GitLab](https://gitlab.gnome.org/World/decoder/-/issues).
+Whether it is to share a restaurant's Wi-Fi with friends, grow your business, or network with other professionals at a conference, Decoder can ease creating and scanning QR codes. Are you eager to learn more about this application or have more ideas for it? [Submit an issue to its repository at GitLab](https://gitlab.gnome.org/World/decoder/-/issues).
