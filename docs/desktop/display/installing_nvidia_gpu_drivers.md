@@ -10,7 +10,7 @@ Nvidia is one of the most popular GPU manufacturers. You can install Nvidia GPU 
 
 !!! Note
 
-    The link for pre-installation actions in Nvidia's official guide is broken. To install the Nvidia driver, you must install the necessary utilities and dependencies from their official repository. 
+    The link for pre-installation actions in Nvidia's official guide is broken. To install the Nvidia driver, you must install the necessary utilities and dependencies from their official repository.
 
 Some other alternative ways to install Nvidia drivers include:
 
