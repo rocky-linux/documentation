@@ -1,12 +1,12 @@
 ---
 title: File Shredder 
 author: Christine Belzie
-contributors: Steven Spencer 
+contributors: Steven Spencer, Ganna Zhyrnova 
 ---
  
 ## Introduction
 
-Need to remove a postcard or a PDF file that contains information like your birthday? Check out File Shredder. It is an application that permanently removes sensitive information online.
+Do you need to remove a postcard or a PDF file containing information like your birthday? Check out File Shredder, an application that permanently removes sensitive information online.
 
 ## Assumptions
 
@@ -50,4 +50,4 @@ To use File Shredder, do the following:
 
 ## Conclusion
 
-Whether it’s a Social Security file or a banking statement, File Shredder is the tool that makes it easy to shred files without needing to buy a shredder. Eager to learn more about or have more ideas for this application? [Submit an issue in File Shredder's repository at GitHub](https://github.com/ADBeveridge/raider/issues).
+Whether it’s a Social Security file or a banking statement, File Shredder is the tool that makes it easy to shred files without needing to buy a shredder. Are you eager to learn more about this application or have more ideas for it? [Submit an issue in File Shredder's repository at GitHub](https://github.com/ADBeveridge/raider/issues).
