@@ -6,11 +6,11 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 ## Introduction
 
-Nvidia is one of the most popular GPU manufacturers. You can install Nvidia GPU drivers in more than one way. This guide uses Nvidia's official repository to install their drivers. Therefore, [Nvidia's installation guide](https://docs.nvidia.com/cuda/pdf/CUDA_Installation_Guide_Linux.pdf) is heavily referenced here.
+NVIDIA^&reg;^ is one of the most popular GPU manufacturers. You can install NVIDIA GPU drivers in more than one way. This guide uses NVIDIA's official repository to install their drivers. Therefore, [NVIDIA's installation guide](https://docs.nvidia.com/cuda/pdf/CUDA_Installation_Guide_Linux.pdf) is heavily referenced here.
 
 !!! Note
 
-    The link for pre-installation actions in Nvidia's official guide is broken. To install the Nvidia driver, you must install the necessary utilities and dependencies from their official repository. 
+    The link for pre-installation actions in NVIDIA's official guide is broken. To install the NVIDIA driver, you must install the necessary utilities and dependencies from their official repository.
 
 Some other alternative ways to install Nvidia drivers include:
 
@@ -57,7 +57,7 @@ sudo dnf install dkms -y
 
 After installing the necessary prerequisites, it is time to install the Nvidia drivers.
 
-Add the official Nvidia repository with the following command:
+Add the official NVIDIA repository with the following command:
 
 !!! Note
 
