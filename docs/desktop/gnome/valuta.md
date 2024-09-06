@@ -40,7 +40,7 @@ This guide assumes you have the following:
 
 To use Valuta, do the following:
 
-1. CChoose your country from the drop-down menu and type the cash you want to spend.
+1. Choose your country from the drop-down menu and type the cash you want to spend.
 
     ![Screenshot of Valuta app showing 1000 USD in the input field, with a grey arrow pointing down to a grey box showing 1000 USD](images/02_valuta.png)
 
