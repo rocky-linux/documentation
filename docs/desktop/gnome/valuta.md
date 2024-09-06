@@ -1,12 +1,12 @@
 ---
 title: Valuta
 author: Christine Belzie
-contributors: Steven Spencer 
+contributors: Steven Spencer, Ganna Zhyrnova 
 ---
 
 ## Introduction
 
- If you often travel or are moving abroad, ease your financial planning with Valuta. This application quickly converts currencies between two countries.
+ If you often travel or move abroad, ease your financial planning with Valuta. This application quickly converts currencies between two countries.
 
 ## Assumptions
 
@@ -20,7 +20,7 @@ This guide assumes you have the following:
 
 ![Screenshot of the Valuta page on Flathub with the blue install button highlighted in a red square](images/01_valuta.png)
 
-1. Go to [Flathub.org](https://flathub.org), type "Valuta" in the search bar and click  **Install**
+1. Go to [Flathub.org](https://flathub.org), type "Valuta" in the search bar, and click  **Install**
 
     ![manual install script and run script](images/valuta-install.png)
 
@@ -40,11 +40,11 @@ This guide assumes you have the following:
 
 To use Valuta, do the following:
 
-1. Choose the country that you currently live in from the drop-down menu and type the amount of cash you want to spend.
+1. CChoose your country from the drop-down menu and type the cash you want to spend.
 
     ![Screenshot of Valuta app showing 1000 USD in the input field, with a grey arrow pointing down to a grey box showing 1000 USD](images/02_valuta.png)
 
-2. Choose the country you are traveling to from the drop-down menu. From there, the converted amount automatically appears.
+2. Select the country you are traveling to from the drop-down menu. The converted amount will automatically appear.
 
 ![Screenshot showing a grey arrow pointing upward to a green box displaying the converted amount, 899.52 EUR](images/03_valuta.png)
 
