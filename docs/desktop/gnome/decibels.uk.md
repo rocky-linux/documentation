@@ -22,17 +22,30 @@ Decibels — програма, яка відтворює аудіофайли. �
 
 ![Screenshot of the Decibels app page on FlatHub, showing the install button being highlighted by a red rectangle](images/01_decibels.png)
 
-Потім виконайте таку команду у вашому терміналі:
+![manual install script and run script](images/decibels-install.png)
 
-`flatpak run.org.gnome.Decibels`
+2. Скопіюйте сценарій встановлення вручну та запустіть його в терміналі:
+
+   ```bash
+   flatpak install flathub org.gnome.Decibels
+   ```
+
+3. Нарешті, скопіюйте команду запуску та запустіть її у своєму терміналі:
+
+   ```bash
+   flatpak run org.gnome.Decibels
+   ```
 
 ## Як використовувати
 
 Щоб скористатися програмою, виконайте такі дії:
 
 1. Натисніть _Open_
+
    ![Screenshot of Decibels' landing page with a red rectangle surrounding the blue open button](images/02_decibels.png)
+
 2. Виберіть потрібний файл і натисніть кнопку **Open**, яка з’явиться у верхньому правому куті екрана
+
    ![Screenshot of Decibels file selection interface with numbered arrows indicating audio file and Open button](images/03_decibels.png)
 
 !!! note "Примітка"
