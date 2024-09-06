@@ -64,7 +64,7 @@ Add the official Nvidia repository with the following command:
     If you use Rocky 8, replace `rhel9` in the file path with `rhel8`.
 
 ```bash
-sudo dnf config-manager --add-repo http://developer.download.nvidia/compute/cuda/repos/rhel9/$(uname -i)/cuda-rhel9.repo
+sudo dnf config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/rhel9/$(uname -i)/cuda-rhel9.repo
 ```
 
 Next, install a set of packages necessary for building and installing kernel modules:
