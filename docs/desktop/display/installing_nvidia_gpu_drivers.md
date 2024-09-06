@@ -12,13 +12,13 @@ NVIDIA^&reg;^ is one of the most popular GPU manufacturers. You can install NVID
 
     The link for pre-installation actions in NVIDIA's official guide is broken. To install the NVIDIA driver, you must install the necessary utilities and dependencies from their official repository.
 
-Some other alternative ways to install Nvidia drivers include:
+Some other alternative ways to install NVIDIA drivers include:
 
-* Nvidia's `.run` installer
+* NVIDIA's `.run` installer
 * Third-party RPMFusion repository
 * Third-party ELRepo driver
 
-In most cases, installing Nvidia drivers from the official source is best. RPMFusion and ELRepo are available for those who prefer a community-based repository. For older hardware, RPMFusion works best. It is advisable to avoid using the `.run` installer. While convenient, using the `.run` installer is notorious for overwriting system files, and having incompatibility issues.
+In most cases, installing NVIDIA drivers from the official source is best. RPMFusion and ELRepo are available for those who prefer a community-based repository. For older hardware, RPMFusion works best. It is advisable to avoid using the `.run` installer. While convenient, using the `.run` installer is notorious for overwriting system files, and having incompatibility issues.
 
 ## Assumptions
 
@@ -55,7 +55,7 @@ sudo dnf install dkms -y
 
 ## Install NVIDIA drivers
 
-After installing the necessary prerequisites, it is time to install the Nvidia drivers.
+After installing the necessary prerequisites, it is time to install the NVIDIA drivers.
 
 Add the official NVIDIA repository with the following command:
 
