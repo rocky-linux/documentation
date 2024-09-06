@@ -27,17 +27,17 @@ In this chapter, you will learn about the web server Nginx.
 
 **Nginx** is a **free HTTP web server under BSD license**. It was first developed in Russia in 2002 by Igor Sysoev. In addition to the standard features of a web server, Nginx provides a **reverse proxy** for the **HTTP** protocol, and a proxy for the **POP** and **IMAP** messaging protocols.
 
-The development of the Nginx server is a response to the **C10K** problem. That is, supporting ten thousand concurrent connections (common on the modern web). It is a real challenge for web servers.
+The development of the Nginx server is a response to the **C10K** problem, which supports ten thousand concurrent connections (standard on the modern web). This is a real challenge for web servers.
 
 Commercial support is available from Nginx Inc.
 
-The server's internal architecture enables **very high performance** with **low memory consumption** compared to the Apache web server in particular.
+The server's internal architecture enables **very high performance** with **low memory consumption** compared to the Apache web server.
 
-Modules complementing the basic functions of the Nginx kernel are compile-time bound. Meaning activation or deactivation cannot happen dynamically.
+Modules complementing the essential functions of the Nginx kernel are compile-time bound. This means activation or deactivation cannot happen dynamically.
 
-Control of server processes is with a master process, making it possible to **modify configuration or update software without stopping the service**.
+A master process controls server processes, making it possible to **modify configuration or update software without stopping the service**.
 
-Nginx has a significant market share of 28% on the busiest sites on the market, just behind Apache (41%).
+Nginx has a significant % market share of 28% on the busiest sites, just behind Apache (41%).
 
 #### Features
 
@@ -48,7 +48,7 @@ Nginx offers the following basic functions:
 * Accelerated reverse proxy with cache
 * Load balancing
 * Fault tolerance
-* Cached support for FastCGI, uWSGI, SCGI and memcached cache server
+* Cached support for FastCGI, uWSGI, SCGI, and Memcached cache server
 * Various filters for gzip, xslt, ssi, image transformation, and more
 * Support for SSL/TLS and SNI
 * HTTP/2 support
@@ -64,7 +64,7 @@ Other features:
 
 ### Installation
 
-Nginx is available directly from the appstream repository, and more recent versions are available as a dnf module.
+Nginx is available directly from the app stream repository, and more recent versions are available as a dnf module.
 
 ```bash
 sudo dnf install nginx
@@ -79,9 +79,9 @@ This configuration file is a global server configuration file. Settings affect t
 
 !!! NOTE
 
-    The .htaccess file functionality known to Apache administrators does not exist in nginx!
+    The .htaccess file functionality known to Apache administrators does not exist in Nginx!
 
-Provided here is the `nginx.conf` file, stripped of all comments, for your information:
+Provided here is the `nginx.conf` file, stripped of all comments:
 
 ```bash
 user nginx;
@@ -126,22 +126,22 @@ Default configuration guidelines:
 | Directive                   | Description |
 |-----------------------------|-------------|
 | `user`                      | Defines the process owner `user` and `group`. If the group is not specified, the group with the same name as the user is used. |
-| `worker_processes`          | Defines the number of processes. The optimum value depends on many factors, such as the number of CPU cores, hard disk specifications, etc. In case of doubt, the Nginx documentation suggests a starting value equivalent to the number of CPU cores available (the auto value will try to determine this). |
-| `pid`                       | Defines a file to store the pid value. |
-| `worker_connections`        | Sets the maximum number of simultaneous connections a worker process can open (to the client and to mandated servers). |
-| `tcp_nopush`                | `tcp_nopush` is inseparable from the sendfile option. It is used to optimize the quantity of information sent at a single time. Packets are only sent when they have reached their maximum size. |
-| `tcp_nodelay`               | Activating `tcp_nodelay` forces data contained in the socket to be sent immediately, regardless of packet size, which is the opposite of what `tcp_nopush` does. |
-| `sendfile`                  | Optimize the sending of static files (this option is not required for a proxy-inverse configuration). If sendfile is enabled, Nginx ensures that all packets are completed before they are sent to the client (thanks to `tcp_nopush`). When the last packet arrives, Nginx disables `tcp_nopush` and forces data to be sent using `tcp_nodelay`. |
-| `keepalive_timeout`         | maximum time before closing an inactive connection.                                                |
+| `worker_processes`          | Defines the number of processes. The optimum value depends on many factors, such as the number of CPU cores and hard disk specifications. In case of doubt, the Nginx documentation suggests a starting value equivalent to the number of CPU cores available (the auto value will try to determine this). |
+| `pid`                       | Defines a file to store the PID value. |
+| `worker_connections`        | Sets the maximum number of simultaneous connections a worker process can open (to the client and mandated servers). |
+| `tcp_nopush`                | `tcp_nopush` is inseparable from the sendfile option. It is used to optimize the quantity of information sent simultaneously. Packets are only sent when they have reached their maximum size. |
+| `tcp_nodelay`               | Activating `tcp_nodelay` forces data in the socket to be sent immediately, regardless of packet size, which is the opposite of what `tcp_nopush` does. |
+| `sendfile`                  | Optimizes the sending of static files (this option is not required for a proxy-inverse configuration). If sendfile is enabled, Nginx ensures that all packets are completed before they are sent to the client (thanks to `tcp_nopush`). When the last packet arrives, Nginx disables `tcp_nopush` and forces data to be sent using `tcp_nodelay`. |
+| `keepalive_timeout`         | The maximum time before closing an inactive connection.                                                |
 | `types_hash_max_size`       | Nginx maintains hash tables containing static information. Set the maximum size of the hash table. |
-| `include`                   | Include another file or files that match the template provided in the configuration.               |
+| `include`                   | Includes another file or files that match the template provided in the configuration.               |
 | `default_type`              | Default MIME type of a request.                                                                    |
 | `ssl_protocols`             | Accepted TLS protocol versions.                                                                    |
-| `ssl_prefer_server_ciphers` | Prefer server cipher suite to client cipher suite.                                                 |
-| `access_log`                | Configure access logs (see “log management” paragraph).                                            |
-| `error_log`                 | Configure error logs (see “log management” paragraph).                                             |
+| `ssl_prefer_server_ciphers` | Prefers server cipher suite to client cipher suite.                                                 |
+| `access_log`                | Configures access logs (see “log management” paragraph).                                            |
+| `error_log`                 | Configures error logs (see “log management” paragraph).                                             |
 | `gzip`                      | The ngx_http_gzip_module is a filter that compresses data transmitted in gzip format.              |
-| `gzip_disable`              | Disable gzip based on a regular expression.                                                        |
+| `gzip_disable`              | Disables gzip based on a regular expression.                                                        |
 
 The structure of the Nginx configuration is:
 
@@ -191,7 +191,7 @@ mail {
 
 ### https configuration
 
-To configure an HTTPS service, you need to add a server block, or modify an existing server block. A server block can listen on both port 443 and port 80.
+To configure an HTTPS service, you must add a server block or modify an existing one. A server block can listen on both port 443 and port 80.
 
 You can add this block, for example, to the new `/etc/nginx/conf.d/default_https.conf` file:
 
@@ -236,7 +236,7 @@ error_log file [level];
 
 The first parameter defines a file to receive error logs.
 
-The second parameter determines the log level: debug, info, notice, warn, error, crit, alert or emerg (see syslog chapter of our admin guide).
+The second parameter determines the log level: debug, info, notice, warn, error, crit, alert, or emerg (see syslog chapter of our admin guide).
 
 The function of sending logs to syslog is with the “syslog:” prefix.
 
@@ -275,5 +275,5 @@ You can declare servers as backups:
 
 The server directive accepts many arguments:
 
-* `max_fails=numberofattempts`: sets the number of connection attempts that must fail during the time period defined by the `fail_timeout` parameter for the server to be considered unavailable. Default value is 1, 0 disables functionality.
+* `max_fails=numberofattempts`: sets the number of connection attempts that must fail during the time period defined by the `fail_timeout` parameter for the server to be considered unavailable. The default value is 1; 0 disables functionality.
 * `fail_timeout=time`: sets the time during which a defined number of connections will cause the server to be unavailable, and sets the period of time during which the server will be considered unavailable. The default value is 10 seconds.
