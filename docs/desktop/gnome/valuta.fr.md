@@ -1,7 +1,7 @@
 ---
 title: Valuta
 author: Christine Belzie
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 ## Introduction
