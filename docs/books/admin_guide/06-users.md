@@ -381,7 +381,7 @@ sudo useradd -D -g 1000 -b /home -s /bin/bash
 | Option         | Description                                                                      |
 | -------------- | -------------------------------------------------------------------------------- |
 | `-D`           | Sets the default values for user creation.                                       |
-| `-b directory` | Sets the default login directory.                                                |
+| `-b base_directory` | Define the base directory for the user's home directory. If you do not specify this option, use the HOME variable in the /etc/default/useradd file or /home/  |
 | `-g group`     | Sets the default group.                                                          |
 | `-s shell`     | Sets the default shell.                                                          |
 | `-f`           | Sets the number of days after the password expires before disabling the account. |
