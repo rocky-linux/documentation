@@ -1,12 +1,12 @@
 ---
 title: Screenshot
 author: Christine Belzie
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 ## Introduction
 
-Fatigué d'utiliser votre clavier pour prendre des images sur l'écran de votre ordinateur ? Découvrez le logiciel `Screenshot` ! C'est une application qui vous aide à prendre rapidement des images à l'écran.
+Fatigué d'utiliser votre clavier pour prendre des images sur l'écran de votre ordinateur ? Découvrez le logiciel `Screenshot`, une application qui vous aide à prendre rapidement des images à l'écran.
 
 ## Prérequis
 
@@ -42,4 +42,4 @@ Vous souhaitez économiser l'espace de stockage de votre ordinateur ? Cliquez su
 
 ## Conclusion
 
-Qu'il s'agisse d'une image pour votre collage en ligne, de l'arrière-plan de votre ordinateur ou d'un tutoriel que vous créez pour votre produit préféré, `Screenshot` de GNOME est l'outil qui vous aide à obtenir les captures d'écran que vous souhaitez. Vous souhaitez en savoir plus ou avoir plus d'idées pour cette application ? [Soumettez un `issue` au référentiel Screenshot sur GitLab](https://gitlab.gnome.org/gnumdk/screenshot/-/issues).
+Qu'il s'agisse d'une image pour votre collage en ligne, de l'arrière-plan de votre ordinateur ou d'un tutoriel que vous créez pour votre produit préféré, `Screenshot` de GNOME est l'outil qui vous aide à obtenir les captures d'écran que vous souhaitez. Vous souhaitez en savoir plus ou proposer des idées pour cette application ? [Soumettez un `issue` au référentiel Screenshot sur GitLab](https://gitlab.gnome.org/gnumdk/screenshot/-/issues).
