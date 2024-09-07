@@ -1,12 +1,12 @@
 ---
 title: File Shredder
 author: Christine Belzie
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 ## Introduction
 
-Besoin de supprimer une carte postale ou un fichier PDF contenant des informations telles que votre date de naissance ? Découvrez `File Shredder`. Il s'agit d'une application qui supprime définitivement les informations sensibles en ligne.
+Besoin de supprimer une carte postale ou un fichier PDF contenant des informations telles que votre date de naissance ? Découvrez `File Shredder`, une application qui supprime définitivement les informations sensibles en ligne.
 
 ## Prérequis
 
