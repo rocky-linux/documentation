@@ -6,21 +6,21 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 ## Introduction
 
-Nvidia est l’un des fabricants de GPU les plus connus. Il existe plusieurs façons d'installer les pilotes GPU de Nvidia. Ce guide utilise le dépôt officiel de Nvidia pour installer leurs pilotes. Ainsi, le [Guide d'installation Nvidia] (https://docs.nvidia.com/cuda/pdf/CUDA_Installation_Guide_Linux.pdf) est largement référencé ici.
+NVIDIA^&reg;^ est l’un des fabricants de GPU les plus connus. Il existe plusieurs façons d'installer les pilotes GPU de NVIDIA. Ce guide utilise le dépôt officiel de NVIDIA pour installer leurs pilotes. Ainsi, le [Guide d'installation NVIDIA] (https://docs.nvidia.com/cuda/pdf/CUDA_Installation_Guide_Linux.pdf) est largement référencé ici.
 
 !!! note "Remarque"
 
 ```
-Le lien vers les étapes de pré-installation dans le manuel officiel de Nvidia ne fonctionne pas. Pour installer le pilote Nvidia depuis le dépôt officiel, vous devrez installer les utilitaires et dépendances nécessaires.
+Le lien vers les étapes de pré-installation dans le manuel officiel de NVIDIA ne fonctionne pas. Pour installer le pilote NVIDIA depuis le dépôt officiel, vous devrez installer les utilitaires et dépendances nécessaires.
 ```
 
-Voici d'autres méthodes de substitution pour installer les pilotes Nvidia :
+Voici d'autres méthodes de substitution pour installer les pilotes NVIDIA :
 
-- Nvidia's `.run` installer
+- NVIDIA's `.run` installer
 - Dépôt tiers RPMFusion
 - Pilote Third-party ELRepo
 
-Dans la plupart des cas, il est préférable d'installer les pilotes Nvidia à partir d'une source officielle. RPMFusion et ELRepo sont disponibles pour ceux qui préfèrent un dépôt communautaire. Pour les matériels plus anciens, RPMFusion fonctionne mieux. Il est recommandé d'éviter d'utiliser le programme d'installation `.run`. Bien que pratique, l'utilisation du programme d'installation `.run` est connue pour écraser les fichiers système et présente des problèmes d'incompatibilité.
+Dans la plupart des cas, il est préférable d'installer les pilotes NVIDIA à partir d'une source officielle. RPMFusion et ELRepo sont disponibles pour ceux qui préfèrent un dépôt communautaire. Pour les matériels plus anciens, RPMFusion fonctionne mieux. Il est recommandé d'éviter d'utiliser le programme d'installation `.run`. Bien que pratique, l'utilisation du programme d'installation `.run` est connue pour écraser les fichiers système et présente des problèmes d'incompatibilité.
 
 ## Prérequis
 
@@ -57,9 +57,9 @@ sudo dnf install dkms -y
 
 ## Installation des pilotes NVIDIA
 
-Après avoir installé les prérequis nécessaires, il est temps d'installer les pilotes Nvidia.
+Après avoir installé les prérequis nécessaires, il est temps d'installer les pilotes NVIDIA.
 
-Ajoutez le dépôt officiel Nvidia avec la commande suivante :
+Ajoutez le dépôt officiel NVIDIA avec la commande suivante :
 
 !!! note "Remarque"
 
@@ -68,7 +68,7 @@ Si vous utilisez Rocky Linux 8, remplacez `rhel9` dans le chemin du fichier par 
 ```
 
 ```bash
-sudo dnf config-manager --add-repo http://developer.download.nvidia/compute/cuda/repos/rhel9/$(uname -i)/cuda-rhel9.repo
+sudo dnf config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/rhel9/$(uname -i)/cuda-rhel9.repo
 ```
 
 Ensuite, installez un ensemble de packages nécessaires pour créer et installer les modules du noyau :
