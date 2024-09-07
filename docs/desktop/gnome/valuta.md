@@ -6,7 +6,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 ## Introduction
 
- If you often travel or move abroad, ease your financial planning with Valuta. This application quickly converts currencies between two countries.
+ If you often travel or move abroad, ease your financial planning with Valuta. This application quickly converts two currencies.
 
 ## Assumptions
 
