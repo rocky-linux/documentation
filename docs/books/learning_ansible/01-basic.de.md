@@ -622,7 +622,7 @@ Um mehr über Ansible zu erfahren und sich mit der Suche in der Ansible-Dokument
 
 !!! warning "Warnhinweis"
 
-    shell-Module vermeiden. Schauen Sie in der Dokumentation nach den passenden Modulen!
+    shell-Modul vermeiden. Schauen Sie in der Dokumentation nach den passenden Modulen!
 
 #### `setup` Modul: Einführung in facts
 
