@@ -96,14 +96,14 @@ root            hard    nofile           1048576
 
 Save your changes and exit (++shift+colon+"w"+"q"+exclam++ for *vi*).
 
-### Modifying `sysctl.conf` with `90-lxd.override.conf`
+### Modifying `sysctl.conf` with `90-incus-override.conf`
 
 With *systemd*, you can make changes to your system's overall configuration and kernel options *without* modifying the main configuration file. Instead, put your settings in a separate file that will override the particular settings you need.
 
-To make these kernel changes, you are going to create a file called `90-lxd-override.conf` in `/etc/sysctl.d`. To do this type:
+To make these kernel changes, you are going to create a file called `90-incus-override.conf` in `/etc/sysctl.d`. To do this type:
 
 ```bash
-vi /etc/sysctl.d/90-lxd-override.conf
+vi /etc/sysctl.d/90-incus-override.conf
 ```
 
 Place the following content in that file. Note that if you are wondering what you are doing here, the file content is self-documenting:

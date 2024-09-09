@@ -21,11 +21,11 @@ One of the deciding factors were the resignations of some lead developers for LX
 
 Throughout the process, the belief was that Canonical would continue to maintain links to the container images provided by Linux Containers, but because of a [licensing change](https://stgraber.org/2023/12/12/lxd-now-re-licensed-and-under-a-cla/) it became impossible for Linux Containers to continue to offer the container images within LXD. The meaning of this is that LXD will have container images, but they will not be the container images you might currently expect. Linux Containers continues to host and support their images if you are using Incus.
 
-This document is in the conversion process from LXD to Incus. Since the creation of a repository by Rocky Linux project infrastructure co-lead [Neil Hanlon](https://wiki.rockylinux.org/team/infrastructure/), you have the option of installing Incus prior to its inclusion in the EPEL (Extra Packages for Enterprise Linux repository).
+This document is a conversion of [the LXD book](../lxd_server/00-toc.md) to Incus. Since the creation of a repository by Rocky Linux project infrastructure co-lead [Neil Hanlon](https://wiki.rockylinux.org/team/infrastructure/), you have the option of installing Incus prior to its inclusion in the EPEL (Extra Packages for Enterprise Linux repository).
 
 !!! warning "Incus server not available on Rocky Linux 8"
 
-    The Incus server installation is available only for Rocky Linux 9.x and currently tested on Rocky Linux 9.4. If the EPEL repository eventually releases the Incus package for Rocky Linux 8.x, then we will change this warning.
+    The Incus server installation is available only for Rocky Linux 9.x and currently tested on Rocky Linux 9.4. If you need something that works on Rocky Linux 8.x, use the [previously mentioned LXD procedure](../lxd_server/00-toc.md).
 
 ## Introduction
 
