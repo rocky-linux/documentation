@@ -766,7 +766,7 @@ sudo passwd alain
 
 !!! Note
 
-    Regular users can change their own passwords using the `passwd` command (this requires requesting and passing the user's old password). The root(uid=0) user can change the password of any user. 
+    Users who can be logged in can use the passwd command to change their own passwords (this process requires requesting the user's old password). The root(uid=0) user can change the password of any user. 
 
 Changing passwords requires compliance with prescribed security policies, which involves **PAM (Pluggable Authentication Modules)** knowledge.
 
