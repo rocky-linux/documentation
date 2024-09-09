@@ -655,7 +655,7 @@ Re-enter new password:
 
 !!! note
 
-    In addition to using `gpasswd -a` to add users to a group, you can also use the `usermod -G` or `usermod -AG` mentioned earlier.
+    In addition to using `gpasswd -a` to add users to a group, you can also use the `usermod -G` or `usermod -aG` mentioned earlier.
 
 ### `id` command
 
