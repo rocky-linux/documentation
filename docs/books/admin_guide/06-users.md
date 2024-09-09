@@ -655,7 +655,7 @@ Re-enter new password:
 
 !!! note
 
-    In addition to using `gpasswd -a` to add users to a group, you can also use the `usermod -G` or `usermod -AG` mentioned earlier.
+    In addition to using `gpasswd -a` to add users to a group, you can also use the `usermod -G` or `usermod -aG` mentioned earlier.
 
 ### `id` command
 
@@ -766,9 +766,9 @@ sudo passwd alain
 
 !!! Note
 
-    Users can use the `passwd` command to change their passwords (the old password is requested). The administrator can change the passwords of all users without restriction.
+    Users who can be logged in can use the `passwd` command to change their own passwords (this process requires requesting the user's old password). The root(uid=0) user can change the password of any user. 
 
-They will have to comply with the security restrictions.
+Changing passwords requires compliance with prescribed security policies, which involves **PAM (Pluggable Authentication Modules)** knowledge.
 
 When managing user accounts by shell script, setting a default password after creating the user may be useful.
 
