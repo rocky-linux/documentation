@@ -1,8 +1,8 @@
 ---
-title: Task Management
+title: Task-Verwaltung
 ---
 
-# Task Management
+# Task-Verwaltung
 
 In diesem Kapitel erfahren Sie, wie Sie geplante Aufgaben verwalten.
 

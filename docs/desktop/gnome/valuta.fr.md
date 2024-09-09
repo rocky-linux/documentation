@@ -6,7 +6,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 ## Introduction
 
-Si vous voyagez souvent ou déménagez à l’étranger, facilitez votre planification financière avec Valuta. Cette application convertit rapidement les devises entre deux pays.
+Si vous voyagez souvent ou déménagez à l’étranger, facilitez votre planification financière avec Valuta. Cette application convertit rapidement des devises entre deux pays.
 
 ## Prérequis
 
@@ -40,7 +40,7 @@ Ce guide suppose que vous disposez de la configuration suivante :
 
 Pour utiliser le programme `Valuta`, procédez comme suit :
 
-1. Choisissez le pays dans lequel vous vivez actuellement dans le menu déroulant et saisissez le montant en espèces que vous souhaitez dépenser.
+1. Choisissez votre pays dans le menu déroulant et saisissez le montant en espèces que vous souhaitez dépenser.
 
    ![Screenshot of Valuta app showing 1000 USD in the input field, with a grey arrow pointing down to a grey box showing 1000 USD](images/02_valuta.png)
 
