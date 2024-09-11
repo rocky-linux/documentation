@@ -16,7 +16,7 @@ Contrairement à Wine, Proton ne nécessite généralement aucune configuration 
 
 - Une station de travail Rocky Linux avec un environnement de bureau
 - Flatpak
-- Steam-Konto
+- Compte Steam
 
 ## Installation de Steam
 
