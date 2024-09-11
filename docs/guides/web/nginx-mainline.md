@@ -265,49 +265,6 @@ The time is coming when browsers might stop letting people see sites without cer
 * If you want to see how to make *Nginx* work with PHP, and PHP-FPM specifically, check out our [guide to PHP on Rocky Linux](../web/php.md).
 * If you want to learn how to set up *Nginx* for multiple websites, we now have [a guide on just that subject](nginx-multisite.md).
 
-## Installing the Stable Branch From Rocky's Own Repos
-
-If you want to use the “stable” branch of `nginx`, even with its limitations, here's how you do it. First, make sure your OS is updated:
-
-```bash
-sudo dnf update
-```
-
-Then, look for the latest `nginx` version available in the default repos with:
-
-```bash
-sudo dnf module list nginx
-```
-
-That should get you a list that looks like this:
-
-```bash
-Rocky Linux 8 - AppStream
-Name       Stream        Profiles        Summary
-nginx      1.14 [d]      common [d]      nginx webserver
-nginx      1.16          common [d]      nginx webserver
-nginx      1.18          common [d]      nginx webserver
-nginx      1.20          common [d]      nginx webserver
-```
-
-Choose the highest number on the list, and enable its module like so:
-
-```bash
-sudo dnf module enable nginx:1.20
-```
-
-You'll be asked if you're sure you want to do this, so just enter `Y`. Then, use the default command to install `nginx`:
-
-```bash
-sudo dnf install nginx
-```
-
-Then you can enable the service and configure your server as detailed above.
-
-!!! Note
-
-    The default configuration file, in this case, is in the base `nginx` configuration folder at `/etc/nginx/nginx.conf`. The root website folder is the same, though.
-
 ## SELinux rules
 
 Beware that when enforced, nginx proxy_pass directives will fail with "502 Bad Gateway"
