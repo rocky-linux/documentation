@@ -607,45 +607,13 @@ Exit the shell for now, and let's start on the Nginx server.
 
 Again, we're keeping this short. If you want to use the latest (and recommended) version of Nginx in production, check out our [beginner's guide to installing Nginx](../web/nginx-mainline.md). That covers the full install guide, and some best practices for configuring your server.
 
-For testing and learning, you *could* just install Nginx normally, but I recommend installing the latest version, which is called the "mainline" branch.
-
 First, log into the container's shell:
 
 ```bash
 lxc exec nginx-server bash
 ```
 
-Then, install the `epel-release` repository so you can install the latest version of Nginx:
-
-```bash
-dnf install epel-release
-```
-
-Once that's done, search for the latest version of Nginx with:
-
-```bash
-dnf module list nginx
-```
-
-That should get you a list that looks like this:
-
-```bash
-Rocky Linux 8 - AppStream
-Name       Stream        Profiles        Summary
-nginx      1.14 [d]      common [d]      nginx webserver
-nginx      1.16          common [d]      nginx webserver
-nginx      1.18          common [d]      nginx webserver
-nginx      1.20          common [d]      nginx webserver
-nginx      mainline      common [d]      nginx webserver
-```
-
-The one you want is, you guessed it: the mainline branch. Enable the module with this command:
-
-```bash
-dnf enable module nginx:mainline
-```
-
-You'll be asked if you're sure you want to do this, so just choose `Y` as usual. Then, use the default command to install Nginx:
+Use the default command to install Nginx:
 
 ```bash
 dnf install nginx
