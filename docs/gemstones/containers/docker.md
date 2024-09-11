@@ -1,7 +1,7 @@
 ---
 title: Docker - Install Engine
 author: Wale Soyinka
-contributors: Neel Chauhan, Srinivas Nishant Viswanadha, Stein Arne Storslett, Ganna Zhyrnova
+contributors: Neel Chauhan, Srinivas Nishant Viswanadha, Stein Arne Storslett, Ganna Zhyrnova, Steven Spencer
 date: 2021-08-04
 tags:
   - docker
@@ -16,7 +16,7 @@ The Docker Engine can run native Docker-style container workloads on Rocky Linux
 Use the `dnf` utility to add the Docker repository to your Rocky Linux server. Type:
 
 ```bash
-sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
 ```
 
 ## Install the needed packages
