@@ -381,7 +381,7 @@ sudo useradd -D -g 1000 -b /home -s /bin/bash
 | Option         | Description                                                                      |
 | -------------- | -------------------------------------------------------------------------------- |
 | `-D`           | Sets the default values for user creation.                                       |
-| `-b base_directory` | Define the base directory for the user's home directory. If you do not specify this option, use the HOME variable in the /etc/default/useradd file or /home/  |
+| `-b base_directory` | Defines the base directory for the user's home directory. If you do not specify this option, use the HOME variable in the /etc/default/useradd file or /home/  |
 | `-g group`     | Sets the default group.                                                          |
 | `-s shell`     | Sets the default shell.                                                          |
 | `-f`           | Sets the number of days after the password expires before disabling the account. |
@@ -766,7 +766,7 @@ sudo passwd alain
 
 !!! Note
 
-    Users who can be logged in can use the `passwd` command to change their own passwords (this process requires requesting the user's old password). The root(uid=0) user can change the password of any user. 
+    Users logged in to the system can use the `passwd` command to change their passwords (this process requires requesting the user's old password). The root(uid=0) user can change the password of any user. 
 
 Changing passwords requires compliance with prescribed security policies, which involves **PAM (Pluggable Authentication Modules)** knowledge.
 
