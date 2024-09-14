@@ -873,6 +873,13 @@ Shell > id test2
 uid=1001(test2) gid=100(users) groups=100(users)
 ```
 
+!!! note
+
+    GNU/Linux has two group mechanisms:
+
+    1. Public group, its primary group is GID=100
+    2. Private group, that is, when adding users, a group with the same name is created as its primary group. This group mechanism is commonly used by RHEL and related downstream distributions.
+
 ### `/etc/login.defs` file
 
 ```bash
