@@ -9,7 +9,7 @@ tags:
   - incus install
 ---
 
-Throughout this chapter you will need to be the root user or you will need to be able to *sudo* to root.
+Throughout this chapter, you must be the root user or be able to *sudo* to root.
 
 ## Install EPEL and OpenZFS repositories
 
@@ -25,7 +25,7 @@ When installed, verify there are no updates:
 dnf upgrade
 ```
 
-If there were any kernel updates during the upgrade process, reboot the server.
+If there were kernel updates during the upgrade process, reboot the server.
 
 ### OpenZFS repository
 
@@ -45,7 +45,7 @@ dnf install dkms vim kernel-devel bash-completion
 
 ## Install Incus
 
-You will need the CRB repository available for some special packages, and Neil Hanlon's COPR (Cool Other Package Repo):
+You will need the CRB repository available for some special packages and Neil Hanlon's COPR (Cool Other Package Repo):
 
 ```bash
 dnf config-manager --enable crb
@@ -69,19 +69,19 @@ dnf install zfs
 
 ## Environment set up
 
-Most server kernel settings are not sufficient to run a large number of containers. If you assume from the beginning that you will use your server in production, you need to make these changes up front to avoid errors such as "Too many open files" from occurring.
+More than most server kernel settings is required to run many containers. If you assume from the beginning that you will use your server in production, you need to make these changes up front to avoid errors such as "Too many open files" from occurring.
 
 Luckily, tweaking the settings for Incus is not hard with a few file modifications and a reboot.
 
 ### Modifying `limits.conf`
 
-The first file you need to change is the `limits.conf` file. This file is self-documented. Examine the explanations in the comment in the file to understand what this file does. To make your modifications enter:
+The first file you must change is the `limits.conf` file. This file is self-documented. Examine the explanations in the comment in the file to understand what this file does. To make your modifications, enter:
 
 ```bash
 vi /etc/security/limits.conf
 ```
 
-This entire file consists of comments, and at the bottom, shows the current default settings. In the blank space above the end of file marker (#End of file) you need to add our custom settings. The end of the file will look like this when completed:
+This entire file consists of comments and, at the bottom, shows the current default settings. In the blank space above the end of the file marker (#End of file), you need to add our custom settings. The end of the file will look like this when completed:
 
 ```text
 # Modifications made for LXD
@@ -98,9 +98,9 @@ Save your changes and exit (++shift+colon+"w"+"q"+exclam++ for *vi*).
 
 ### Modifying `sysctl.conf` with `90-incus-override.conf`
 
-With *systemd*, you can make changes to your system's overall configuration and kernel options *without* modifying the main configuration file. Instead, put your settings in a separate file that will override the particular settings you need.
+With *systemd*, you can change your system's overall configuration and kernel options *without* modifying the main configuration file. Instead, put your settings in a separate file that will override the particular settings you need.
 
-To make these kernel changes, you are going to create a file called `90-incus-override.conf` in `/etc/sysctl.d`. To do this type:
+To make these kernel changes, you will create a file called `90-incus-override.conf` in `/etc/sysctl.d`. To do this, type the following:
 
 ```bash
 vi /etc/sysctl.d/90-incus-override.conf
@@ -164,7 +164,7 @@ fs.aio-max-nr = 524288
 
 Save your changes and exit.
 
-At this point reboot the server.
+At this point, reboot the server.
 
 ### Checking `sysctl.conf` values
 
