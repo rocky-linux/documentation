@@ -9,21 +9,21 @@ tags:
   - incus profiles
 ---
 
-Throughout this chapter you will need to run commands as your unprivileged user ("incusadmin" if you've been following from the beginning in this book).
+Throughout this chapter, you must run commands as your unprivileged user ("incusadmin" if you've followed this book from the beginning).
 
-You get a default profile when you install Incus, and you cannot remove this profile or modify it. That said, you can use the default profile to create new profiles to use with your containers.
+When you install Incus, you get a default profile, which you cannot remove or modify. You can use the default profile to create new profiles for your containers.
 
-If you examine your container listing, you will notice that the IP address in each case is from the bridged interface. In a production environment, you may want to use something else. This might be a DHCP assigned address from your LAN interface or even a statically assigned address from your WAN.
+If you examine your container listing, you will notice that the IP address in each case is from the bridged interface. In a production environment, you may want to use something else. This might be a DHCP-assigned address from your LAN interface or a statically assigned address from your WAN.
 
-If you configure your Incus server with two interfaces and assign each an IP on your WAN and LAN, it is possible to assign your container's IP addresses based on the interface the container needs to be facing.
+If you configure your Incus server with two interfaces and assign each an IP on your WAN and LAN, you can assign your container's IP addresses based on the interface the container needs to be facing.
 
-As of version 9.4 of Rocky Linux (and really any bug for bug copy of Red Hat Enterprise Linux) the method for assigning IP addresses statically or dynamically with the profiles does not work.
+As of Rocky Linux version 9.4 (and any bug for bug copy of Red Hat Enterprise Linux), the method for assigning IP addresses statically or dynamically with the profiles does not work.
 
-There are ways to get around this, but it is annoying. This appears to have something to do with changes made to Network Manager that affect `macvlan`. `macvlan` allows you to create many interfaces with different Layer 2 addresses.
+There are ways to get around this, but it isn't very pleasant. This appears to have something to do with changes made to Network Manager that affect `macvlan`. `macvlan` allows you to create many interfaces with different Layer 2 addresses.
 
-For now, just be aware that this has drawbacks when choosing container images based on RHEL.
+Be aware that this has drawbacks when choosing container images based on RHEL.
 
-## Creating A `macvlan` profile and assigning it
+## Creating a `macvlan` profile and assigning it
 
 To create your `macvlan` profile, use this command:
 
@@ -31,9 +31,9 @@ To create your `macvlan` profile, use this command:
 incus profile create macvlan
 ```
 
-If you were on a multi-interface machine and wanted more than one `macvlan` template based on the network you wanted to reach, you might use "lanmacvlan" or "wanmacvlan" or any other name that you wanted to use to identify the profile. Using "macvlan" in your profile create statement is totally up to you.
+If you were on a multi-interface machine and wanted more than one `macvlan` template based on the network you wanted to reach, you might use "lanmacvlan" or "wanmacvlan" or any other name that you tried to use to identify the profile. Using "macvlan" in your profile creation statement is up to you.
 
-You want to change the `macvlan` interface, but before you do, you need to know what the parent interface is for your Incus server. This will be the interface that has a LAN (in this case) assigned IP. To find what interface that is, use:
+You want to change the `macvlan` interface, but before you do, you need to know what the parent interface is for your Incus server. This interface will have a LAN (in this case) assigned IP. To find what interface that is, use:
 
 ```bash
 ip addr
@@ -52,15 +52,15 @@ Look for the interface with the LAN IP assignment in the 192.168.1.0/24 network:
 
 In this case, the interface is "enp3s0".
 
-Next change the profile:
+Next, change the profile:
 
 ```bash
 incus profile device add macvlan eth0 nic nictype=macvlan parent=enp3s0
 ```
 
-This command adds all of the necessary parameters to the `macvlan` profile required for use.
+This command adds all the parameters to the `macvlan` profile required for use.
 
-Examine what this command created, by using the command:
+Examine what this command created by using the command:
 
 ```bash
 incus profile show macvlan
@@ -80,9 +80,9 @@ name: macvlan
 used_by: []
 ```
 
-You can use profiles for many other things, but assigning a static IP to a container, or using your own DHCP server, are common needs.
+Profiles can be used for many other things, but assigning a static IP to a container or using your own DHCP server are common needs.
 
-To assign the `macvlan` profile to rockylinux-test-8 you need to do the following:
+To assign the `macvlan` profile to rockylinux-test-8, you need to do the following:
 
 ```bash
 incus profile assign rockylinux-test-8 default,macvlan
@@ -94,13 +94,13 @@ Do the same thing for rockylinux-test-9:
 incus profile assign rockylinux-test-9 default,macvlan
 ```
 
-This says, you want the default profile, and to apply the `macvlan` profile too.
+This says you want the default profile and to apply the `macvlan` profile too.
 
 ## Rocky Linux `macvlan`
 
-In RHEL distributions and clones, Network Manager has been in a constant state of change. Because of this, the way the `macvlan` profile works does not work (at least in comparison to other distributions), and requires a little additional work to assign IP addresses from DHCP or statically.
+The Network Manager has been constantly changing in RHEL distributions and clones. Because of this, the way the `macvlan` profile works does not work (at least in comparison to other distributions) and requires additional work to assign IP addresses from DHCP or statically.
 
-Remember that none of this has anything to do with Rocky Linux particularly, but with the upstream package implementation.
+Remember that none of this mainly has anything to do with Rocky Linux but with the upstream package implementation.
 
 If you want to run Rocky Linux containers and use `macvlan` to assign an IP address from your LAN or WAN networks, the process is different based on the container version of the operating system (8.x or 9.x).
 
@@ -137,7 +137,7 @@ incus list
 
 As you can see, your Rocky Linux 8.x container received the IP address from the LAN interface, whereas the Rocky Linux 9.x container did not.
 
-To further demonstrate the problem here, you need to run `dhclient` on the Rocky Linux 9.0 container. This will show us that the `macvlan` profile, *is* in fact applied:
+To further demonstrate the problem, you must run `dhclient` on the Rocky Linux 9.0 container. This will show us that the `macvlan` profile, *is* applied:
 
 ```bash
 incus exec rockylinux-test-9 dhclient
@@ -157,25 +157,25 @@ Another container listing now shows the following:
 +-------------------+---------+----------------------+------+-----------+-----------+
 ```
 
-That should have happened with a stop and start of the container, but it does not. Assuming that you want to use a DHCP assigned IP address every time, you can fix this with a simple crontab entry. To do this, you need to gain shell access to the container by entering:
+That should have happened with a stop and start of the container, but it does not. Assuming you want to use a DHCP-assigned IP address every time, you can fix this with a simple crontab entry. To do this, you need to gain shell access to the container by entering:
 
 ```bash
 incus shell rockylinux-test-9
 ```
 
-Next, lets determine the path to `dhclient`. To do this, because this container is from a minimal image, you will need to first install `which`:
+Next, let's determine the path to `dhclient`. To do this, because this container is from a minimal image, you will need first to install `which`:
 
 ```bash
 dnf install which
 ```
 
-then run:
+Then run:
 
 ```bash
 which dhclient
 ```
 
-which will return:
+Which will return:
 
 ```bash
 /usr/sbin/dhclient
@@ -193,7 +193,7 @@ Add this line:
 @reboot    /usr/sbin/dhclient
 ```
 
-The crontab command entered uses *vi* . To save your changes and exit  use ++shift+colon+"w"+"q"++.
+The crontab command entered uses *vi*. Use ++shift+colon+"w"+"q"++ to save your changes and exit.
 
 Exit the container and restart rockylinux-test-9:
 
@@ -218,7 +218,7 @@ Another listing will reveal that the container has the DHCP address assigned:
 
 ### Rocky Linux 9.x `macvlan` - The static IP fix
 
-To statically assign an IP address, things get even more convoluted. Since `network-scripts` is now deprecated in Rocky Linux 9.x, the only way to do this is through static assignment, and because of the way the containers use the network, you are not going to be able to set the route with a normal `ip route` statement. The problem turns out to be that the interface assigned when applying the `macvlan` profile (eth0 in this case), is not manageable with Network Manager. The fix is to rename the network interface on the container after restart and assign the static IP. You can do this with a script and run (again) within root's crontab. Do this with the `ip` command.
+When statically assigning an IP address, things get even more convoluted. Since `network-scripts` is now deprecated in Rocky Linux 9.x, the only way to do this is through static assignment, and because of the way the containers use the network, you are not going to be able to set the route with a normal `ip route` statement. The problem is that the interface assigned when applying the `macvlan` profile (eth0 in this case), is not manageable with Network Manager. The fix is to rename the container's network interface after restarting and assign the static IP. You can do this with a script and run (again) within root's crontab. Do this with the `ip` command.
 
 To do this, you need to gain shell access to the container again:
 
@@ -232,7 +232,7 @@ Next, you are going to create a bash script in `/usr/local/sbin` called "static"
 vi /usr/local/sbin/static
 ```
 
-The contents of this script are not difficult:
+The contents of this script are not complicated:
 
 ```bash
 #!/usr/bin/env bash
@@ -249,16 +249,16 @@ What are you doing here?
 * you rename eth0 to a new name that you can manage ("net0")
 * you assign the new static IP that you have allocated for your container (192.168.1.151)
 * you bring up the new "net0" interface
-* you add a 2 second wait for the interface to be active before adding the default route
+* you add a 2-second wait for the interface to be active before adding the default route
 * you need to add the default route for your interface
 
-Make your script executable with:
+Make your script executable with the following:
 
 ```bash
 chmod +x /usr/local/sbin/static
 ```
 
-Add this to root's crontab for the container with the @reboot time:
+Add this to the root's crontab for the container with the @reboot time:
 
 ```bash
 @reboot     /usr/local/sbin/static
@@ -292,7 +292,7 @@ You should see success:
 
 ## Ubuntu macvlan
 
-Luckily, In Ubuntu's implementation of Network Manager, the `macvlan` stack is NOT broken. It is much easier to deploy!
+Luckily, Ubuntu's implementation of Network Manager does not break the `macvlan` stack, making it much easier to deploy!
 
 Just like with your rockylinux-test-9 container, you need to assign the profile to your container:
 
@@ -300,7 +300,7 @@ Just like with your rockylinux-test-9 container, you need to assign the profile 
 incus profile assign ubuntu-test default,macvlan
 ```
 
-To find out if DHCP assigns an address to the container stop and start the container again:
+To find out if DHCP assigns an address to the container, stop and start the container again:
 
 ```bash
 incus restart ubuntu-test
@@ -322,7 +322,7 @@ List the containers again:
 
 Success!
 
-Configuring the Static IP is just a little different, but not at all hard. You need to change the `.yaml` file associated with the container's connection (`10-incus.yaml`). For this static IP, you will use 192.168.1.201:
+Configuring the Static IP is a little different, but not hard. You must change the `.yaml` file associated with the container's connection (`10-incus.yaml`). For this static IP, you will use 192.168.1.201:
 
 ```bash
 vi /etc/netplan/10-incus.yaml
@@ -342,7 +342,7 @@ network:
         addresses: [8.8.8.8,8.8.4.4]
 ```
 
-Save your changes and exit the container.
+Please save your changes and leave the container.
 
 Restart the container:
 
