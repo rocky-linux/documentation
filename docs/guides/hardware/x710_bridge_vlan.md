@@ -1,7 +1,7 @@
 ---
 title: Enabling VLAN Passthrough on Intel X710-series NICs
 author: Neel Chauhan
-contributors:
+contributors: Ganna Zhyrnova
 tested_with: 9.4
 tags:
   - hardware
@@ -9,7 +9,7 @@ tags:
 
 ## Introduction
 
-Some servers have Intel X710-series network interface cards (NICs) such as the author's Minisforum MS-01 used for a virtualized firewall. Unfortunately, the stock Rocky Linux driver has a [bug](https://community.intel.com/t5/Ethernet-Products/X710-strips-incoming-vlan-tag-with-SRIOV/m-p/551464) where VLANs are not passed through the bridge interfaces as expected. This happened to the author's MikroTik CHR virtual machine. Fortunately, it is fixable.
+Some servers have Intel X710-series network interface cards (NICs), such as the author's Minisforum MS-01, which is used for a virtualized firewall. Unfortunately, the stock Rocky Linux driver has a [bug](https://community.intel.com/t5/Ethernet-Products/X710-strips-incoming-vlan-tag-with-SRIOV/m-p/551464) where VLANs are not passed through the bridge interfaces as expected. This happened to the author's MikroTik CHR virtual machine. Fortunately, it is fixable.
 
 ## Prerequisites and assumptions
 
@@ -54,4 +54,4 @@ After installing the driver, you will need to reboot the server:
 
     sudo reboot
 
-After being rebooted, the X710 NICs should pass through VLANs via bridge interfaces successfully.
+After rebooting, the X710 NICs should pass through VLANs via bridge interfaces.
