@@ -9,7 +9,7 @@ tags:
   - incus images
 ---
 
-Throughout this chapter you will need to run commands as your unprivileged user ("incusadmin" if you have been following this book from the beginning).
+Throughout this chapter, you must run commands as your unprivileged user ("incusadmin" if you have followed this book from the beginning).
 
 ## List available images
 
@@ -21,7 +21,7 @@ incus image list images: | more
 
 Enter the space bar to page through the list. This list of containers and virtual machines continues to grow.
 
-The **last** thing you want to do is to page through looking for a container image to install, particularly if you know the image that you want to create. Change the command to show only Rocky Linux install options:
+The **last** thing you want to do is to look for a container image to install, particularly if you know the image you want to create. Change the command to show only Rocky Linux install options:
 
 ```bash
 incus image list images: | grep rocky
@@ -59,7 +59,7 @@ To start the container manually, use:
 incus start rockylinux-test-8
 ```
 
-To Rename the image (we are not going to do this here, but this is how to do it) first stop the container:
+To Rename the image (we are not going to do this here, but this is how to do it), first stop the container:
 
 ```bash
 incus stop rockylinux-test-8
@@ -73,7 +73,7 @@ incus move rockylinux-test-8 rockylinux-8
 
 If you followed this instruction anyway, stop the container and move it back to the original name to continue to follow along.
 
-For the purposes of this guide, go ahead and install two more images for now:
+For this guide, go ahead and install two more images for now:
 
 ```bash
 incus launch images:rockylinux/9 rockylinux-test-9
