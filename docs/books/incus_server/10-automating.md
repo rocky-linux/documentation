@@ -9,7 +9,7 @@ tags:
   - incus automation
 ---
 
-Throughout this chapter you will need to be root or able to `sudo` to become root.
+Throughout this chapter, you must be root or able to `sudo` to become root.
 
 Automating the snapshot process makes things a whole lot easier.
 
@@ -61,7 +61,7 @@ Your entry will look like this:
 
 Save your changes and exit.
 
-This will create a log in incusadmin's home directory called "refreshlog" which will give you knowledge of whether your process worked or not. Very important!
+This will create a log-in incusadmin's home directory called "refreshlog," which will give you knowledge of whether your process worked or not. Very important!
 
 The automated procedure will fail sometimes. This generally happens when a particular container fails to refresh. You can manually re-run the refresh with the following command (assuming rockylinux-test-9 here, is our container):
 
