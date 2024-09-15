@@ -10,7 +10,7 @@ tags:
 
 # Appendix A - workstation setup
 
-While not a part of the chapters for an Incus Server, this procedure will help those who want to have a lab environment, or semi-permanent OS and application, running on a Rocky Linux workstation or notebook.
+While not part of the chapters for an Incus Server, this procedure will help those who want to have a lab environment or semi-permanent OS and application running on a Rocky Linux workstation or notebook.
 
 ## Prerequisites
 
@@ -27,7 +27,7 @@ From the command line, install the EPEL repository:
 sudo dnf install epel-release -y
 ```
 
-When installation finishes, do an upgrade:
+When the installation finishes, do an upgrade:
 
 ```bash
 sudo dnf upgrade
@@ -53,17 +53,17 @@ sudo dnf install incus incus-tools
 sudo systemctl enable incus
 ```
 
-Reboot your notebook or workstation before continuing.
+Please reboot your notebook or workstation before you continue.
 
 ## Incus initialization
 
-If you have looked through the production server chapters, this is nearly the same as the production server initialization procedure.
+If you have looked through the production server chapters, this is nearly identical to the production server initialization procedure.
 
 ```bash
 sudo incus admin init
 ```
 
-This will start a question and answer dialog.
+This will start a question-and-answer dialog.
 
 Here are the questions and our answers for the script, with a little explanation where warranted:
 
@@ -79,7 +79,7 @@ Optionally, you can accept the default.
 Name of the storage backend to use (btrfs, dir, lvm, ceph) [default=btrfs]: dir
 ```
 
-Note that `dir` is somewhat slower than `zfs`. If you have the foresight to leave a disk empty, you can use that device (example: /dev/sdb) for the `zfs` device and then select `zfs`.
+Note that `dir` is somewhat slower than `zfs`. If you can leave a disk empty, you can use that device (example: /dev/sdb) for the `zfs` device and then select `zfs`.
 
 ```text
 Would you like to connect to a MAAS server? (yes/no) [default=no]:
@@ -94,7 +94,7 @@ What IPv4 address should be used? (CIDR subnet notation, “auto” or “none�
 What IPv6 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]: none
 ```
 
-If you want to use IPv6 on your Incus containers, you can turn on this option. That is up to you.
+You can turn on this option if you want to use IPv6 on your Incus containers.
 
 ```text
 Would you like the Incus server to be available over the network? (yes/no) [default=no]: yes
@@ -109,7 +109,7 @@ Trust password for new clients:
 Again:
 ```
 
-This trust password is how you will connect to the snapshot server or back from the snapshot server. Set this with something that makes sense in your environment. Save this entry to a secure location, such as a password manager.
+This trust password is how you will connect to or back from the snapshot server. Set it with something that makes sense in your environment. Save this entry to a secure location, such as a password manager.
 
 ```text
 Would you like stale cached images to be updated automatically? (yes/no) [default=yes]
@@ -124,11 +124,11 @@ The next thing you need to do is to add your user to the `incus-admin` group. Ag
 sudo usermod -a -G incus-admin [username]
 ```
 
-where [username] is your user on the system.
+Where [username] is your user on the system.
 
 ## Setting `subuid` and `subgid` values for `root`
 
-You need to set both the value of the root user's `subuid` and `subgid` (the range of subordinate user and group id's). This value should be:
+You must set both the value of the root user's `subuid` and `subgid` (the range of subordinate user and group IDs). This value should be:
 
 ```bash
 root:1000000:1000000000
@@ -140,14 +140,14 @@ To do this, edit the `/etc/subuid` and add that line. When completed, your file 
 root:1000000:1000000000
 ```
 
-Edit the `/etc/subgid` file and add that line again. Your file will look something like this:
+Add that line again to the `/etc/subgid` file. Your file will look something like this:
 
 ```bash
 incusadmin:100000:65536
 root:1000000:1000000000
 ```
 
-At this point, you have made a bunch of changes. Before you go any further, reboot your machine.
+You have made a number of changes at this point. Before you proceed, reboot your machine.
 
 ## Verifying the install
 
@@ -157,7 +157,7 @@ To ensure that `incus` started and that your user has privileges, from the shell
 incus list
 ```
 
-Note you have not used `sudo` here. Your user has the ability to enter these commands. You will see something like this:
+Note you have not used `sudo` here. Your user can enter these commands. You will see something like this:
 
 ```bash
 +------------+---------+----------------------+------+-----------+-----------+
@@ -169,7 +169,7 @@ If you do, you are looking good!
 
 ## The rest of it
 
-From this point, you can use the chapters from our "Incus Production Server" to continue on. There are some things on a workstation setup though that you need to pay less attention to. Here are the recommended chapters to get you going:
+From this point, you can use the chapters from our "Incus Production Server" to continue. There are some things on a workstation setup that you need to pay less attention to. Here are the recommended chapters to get you going:
 
 * [Chapter 5 - Setting Up And Managing Images](05-incus_images.md)
 * [Chapter 6 - Profiles](06-profiles.md)
@@ -181,4 +181,4 @@ From this point, you can use the chapters from our "Incus Production Server" to 
 
 ## Conclusion
 
-Incus is a powerful tool that you can use on workstations or servers for increased productivity. On a workstation, it is great for lab testing, but can also keep semi-permanent instances of operating systems and applications available in their own private space.
+Incus is a powerful tool for increased productivity on workstations or servers. It is great for lab testing on a workstation and can also keep semi-permanent instances of operating systems and applications available in their own private space.
