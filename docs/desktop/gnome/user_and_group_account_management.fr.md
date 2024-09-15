@@ -25,7 +25,7 @@ Cockpit est un outil d'administration avec un interface graphique Web pour les s
 
 ### Se connecter à Cockpit
 
-- Ouvrez votre navigateur Web et saisissez https://localhost:9090 dans la barre d'adresse
+- Ouvrez votre navigateur Web et saisissez <https://localhost:9090> dans la barre d'adresse
 
   > **Remarque** : Vous pouvez également saisir la même adresse sur la ligne de commande
 
@@ -202,4 +202,4 @@ En conclusion, ce guide vous a fourni les connaissances nécessaires pour gérer
 
 ## RÉFÉRENCES
 
-Installation de Cockpit : https://ciq.com/blog/how-to-administer-rocky-linux-with-cockpit/
+Installation de Cockpit : <https://ciq.com/blog/how-to-administer-rocky-linux-with-cockpit/>

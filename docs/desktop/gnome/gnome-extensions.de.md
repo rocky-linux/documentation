@@ -63,7 +63,7 @@ In diesem Beispiel installieren wir die beliebte Erweiterung `dash-to-dock`.
 
 GNOME-Erweiterungen werden auf `gnome.extensions.org` installiert und verwaltet.
 
-Um Ihre GNOME-Erweiterungen zu verwalten, gehen Sie zunächst zu https://extensions.gnome.org/local/
+Um Ihre GNOME-Erweiterungen zu verwalten, gehen Sie zunächst zu <https://extensions.gnome.org/local/>
 
 ![Manage GNOME extensions](images/gnome_extensions_images/gnome-shell-installed-extensions.webp)
 

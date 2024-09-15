@@ -154,7 +154,7 @@ There is no workaround for this. To avoid the error, use the Flathub resource in
 
 `Flathub` est une ressource Web permettant d'obtenir ou de soumettre des packages de bureau.
 
-Pour parcourir `Flathub`, veuillez consulter https://flathub.org/. Une énorme liste de packages de bureau sélectionnés existe ici, joliment divisés en catégories.
+Pour parcourir `Flathub`, veuillez consulter <https://flathub.org/>. Une énorme liste de packages de bureau sélectionnés existe ici, joliment divisés en catégories.
 
 ## Intégration de Flathub avec Flatpak
 

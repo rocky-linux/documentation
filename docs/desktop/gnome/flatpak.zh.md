@@ -153,7 +153,7 @@ No matches found
 
 Flatchub是一个用于获取或提交桌面软件包的web资源网站。
 
-要访问 Flathub, 查看 https://flathub.org/. 这里有非常多用心整理的桌面软件包，它们被很好地划分为不同的类别。
+要访问 Flathub, 查看 <https://flathub.org/>. 这里有非常多用心整理的桌面软件包，它们被很好地划分为不同的类别。
 
 ## Flathub 对接 Flatpak
 

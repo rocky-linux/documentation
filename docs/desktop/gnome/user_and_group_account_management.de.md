@@ -25,7 +25,7 @@ Cockpit ist ein webbasiertes Verwaltungstool mit grafischer Oberfläche für Lin
 
 ### Im Cockpit anmelden
 
-- Öffnen Sie Ihren Webbrowser und geben Sie https://localhost:9090 in die Adressleiste ein
+- Öffnen Sie Ihren Webbrowser und geben Sie <https://localhost:9090> in die Adressleiste ein
 
   > **Hinweis**: Sie können dieselbe Adresse auch in der Befehlszeile eingeben
 
@@ -202,4 +202,4 @@ Zusammenfassend: dieses Handbuch hat Ihnen das Wissen vermittelt, Benutzer- und 
 
 ## REFERENZEN
 
-Cockpit Installation: https://ciq.com/blog/how-to-administer-rocky-linux-with-cockpit/
+Cockpit Installation: <https://ciq.com/blog/how-to-administer-rocky-linux-with-cockpit/>
