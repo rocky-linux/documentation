@@ -1,7 +1,7 @@
 ---
 title: Docker - Інсталяція
 author: Wale Soyinka
-contributors: Neel Chauhan, Srinivas Nishant Viswanadha, Stein Arne Storslett, Ganna Zhyrnova
+contributors: Neel Chauhan, Srinivas Nishant Viswanadha, Stein Arne Storslett, Ganna Zhyrnova, Steven Spencer
 date: 2021-08-04
 tags:
   - docker
@@ -16,7 +16,7 @@ tags:
 Використовуйте утиліту `dnf`, щоб додати репозиторій Docker до вашого сервера Rocky Linux. Впишіть:
 
 ```bash
-sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
 ```
 
 ## Встановлення необхідних пакетів
