@@ -10,11 +10,11 @@ tags:
   - incus setup
 ---
 
-Throughout this chapter you will need to be root or able to `sudo` to become root. In addition, the assumption is that you have setup a ZFS storage pool described in [Chapter 2](02-zfs_setup.md). You can use a different storage pool if you have chosen not to use ZFS, but you will need to make adjustments to the initialization questions and answers.
+Throughout this chapter, you must be root or able to `sudo` to become root. In addition, you are assumed to have set up a ZFS storage pool as described in [Chapter 2](02-zfs_setup.md). You can use a different storage pool if you have chosen not to use ZFS, but you will need to adjust the initialization questions and answers.
 
 ## Incus initialization
 
-Your server environment is all set up. You are ready to initialize Incus. This is an automated script that asks a series of questions to get your Incus instance up and running:
+Your server environment is all setup. You are ready to initialize Incus. This is an automated script that asks a series of questions to get your Incus instance up and running:
 
 ```bash
 incus admin init
@@ -32,13 +32,13 @@ If interested in clustering, do some additional research on that [here](https://
 Do you want to configure a new storage pool? (yes/no) [default=yes]:
 ```
 
-This seems counter-intuitive. You have already created your ZFS pool, but it will become clear in a later question. Accept the default.
+This seems counterintuitive. You have already created your ZFS pool, but it will be clear in a later question. Accept the default.
 
 ```text
 Name of the new storage pool [default=default]: storage
 ```
 
-Leaving this "default" is an option, but for clarity, using the same name you gave our ZFS pool is better.
+Leaving this "default" is an option, but using the same name you gave our ZFS pool is better for clarity.
 
 ```text
 Name of the storage backend to use (btrfs, dir, lvm, zfs, ceph) [default=zfs]:
@@ -66,7 +66,7 @@ What IPv4 address should be used? (CIDR subnet notation, “auto” or “none�
 What IPv6 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]: none
 ```
 
-If you want to use IPv6 on your Incus containers, you can turn on this option. That is up to you.
+You can turn on this option to use IPv6 on your Incus containers.
 
 ```text
 Would you like the Incus server to be available over the network? (yes/no) [default=no]: yes
@@ -81,7 +81,7 @@ Trust password for new clients:
 Again:
 ```
 
-This trust password is how you will connect to the snapshot server or back from the snapshot server. Set this with something that makes sense in your environment. Save this entry to a secure location, such as a password manager.
+This trust password is how you will connect to or back from the snapshot server. Set it with something that makes sense in your environment. Save this entry to a secure location, such as a password manager.
 
 ```text
 Would you like stale cached images to be updated automatically? (yes/no) [default=yes]
@@ -90,7 +90,7 @@ Would you like a YAML "incus admin init" preseed to be printed? (yes/no) [defaul
 
 ## Setting up user privileges
 
-Before you continue on, you need to create your "incusadmin" user and ensure that it has the privileges it needs. You need the "incusadmin" user to be able to `sudo` to root and you need it to be a member of the `incus-admin` group. To add the user and ensure it is a member of both groups do:
+Before you continue, you must create your "incusadmin" user and ensure it has the necessary privileges. You need the "incusadmin" user to be able to `sudo` to root, and you need it to be a member of the `incus-admin` group. To add the user and ensure it is a member of both groups, do the following:
 
 ```bash
 useradd -G wheel,incus-admin incusadmin
@@ -106,7 +106,7 @@ As with the other passwords, save this to a secure location.
 
 ## Setting `subuid` and `subgid` values for `root`
 
-You need to set both the value of the root user's `subuid` and `subgid`(the range of subordinate user and group id's). This value should be:
+You must set both the value of the root user's `subuid` and `subgid`(the range of subordinate user and group IDs). This value should be:
 
 ```bash
 root:1000000:1000000000
