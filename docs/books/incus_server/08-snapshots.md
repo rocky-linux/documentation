@@ -9,11 +9,11 @@ tags:
   - incus snapshots
 ---
 
-Throughout this chapter you will need to run commands as your unprivileged user ("incusadmin" if you've been following along from the beginning of this book).
+Throughout this chapter, you must run commands as your unprivileged user ("incusadmin" if you've been following them from the beginning of this book).
 
-Container snapshots, along with a snapshot server (more on that later), are probably the most important aspect of running a production Incus server. Snapshots ensure quick recovery. It is a good idea to use them as a fail safe when updating the primary software that runs on a particular container. If something happens during the update that breaks that application, you just restore the snapshot and you are back up and running with only a few seconds worth of downtime.
+Container snapshots and a snapshot server (more on later) are the most critical aspects of running a production Incus server. Snapshots ensure quick recovery. It is a good idea to use them as a failsafe when updating the primary software that runs on a particular container. If something happens during the update that breaks that application, you just restore the snapshot, and you are back up and running with only a few seconds of downtime.
 
-The author used Incus containers for PowerDNS public facing servers, and the process of updating those applications became less worrisome, thanks to taking snapshots before every update.
+The author used Incus containers for PowerDNS public-facing servers, and updating those applications became less problematic, thanks to taking snapshots before every update.
 
 You can even snapshot a container when it is running.
 
@@ -25,13 +25,13 @@ Start by getting a snapshot of the ubuntu-test container by using this command:
 incus snapshot ubuntu-test ubuntu-test-1
 ```
 
-Here, you are calling the snapshot "ubuntu-test-1", but you can call it anything. To ensure that you have the snapshot, do an `incus info` of the container:
+Here, you call the snapshot "ubuntu-test-1", but you can call it anything. To ensure that you have the snapshot, do an `incus info` of the container:
 
 ```bash
 incus info ubuntu-test
 ```
 
-You have looked at an info screen already. If you scroll to the bottom, you now see:
+You have already looked at an info screen. If you scroll to the bottom, you now see:
 
 ```bash
 Snapshots:
@@ -54,7 +54,7 @@ touch this_file.txt
 
 Exit the container.
 
-Before restoring the container how it was prior to creating the file, the safest way to restore a container, particularly if there have been many changes, is to stop it first:
+Before restoring the container how it was before creating the file, the safest way to restore a container, mainly if there have been many changes, is to stop it first:
 
 ```bash
 incus stop ubuntu-test
@@ -72,9 +72,9 @@ Start the container again:
 incus start ubuntu-test
 ```
 
-If you get back into the container again and look, our "this_file.txt" that you created is now gone.
+If you return to the container again and look, the "this_file.txt" you created is gone.
 
-When you do not need a snapshot anymore you can delete it:
+When you do not need a snapshot anymore, you can delete it:
 
 ```bash
 incus delete ubuntu-test/ubuntu-test-1
@@ -82,7 +82,7 @@ incus delete ubuntu-test/ubuntu-test-1
 
 !!! warning
 
-    You should always delete snapshots with the container running. Why? Well the _incus delete_ command also works to delete the entire container. If we had accidentally hit enter after "ubuntu-test" in the command above, AND, if the container was stopped, the container would be deleted. No warning is given, it simply does what you ask.
+    You should permanently delete snapshots while the container is running. Why? Well, the _incus delete_ command also works to delete the entire container. If we accidentally hit enter after "ubuntu-test" in the command above, AND if the container was stopped, the container would be deleted. I just wanted to let you know that no warning is given. It simply does what you ask.
 
     If the container is running, however, you will get this message:
 
@@ -92,8 +92,8 @@ incus delete ubuntu-test/ubuntu-test-1
 
     So always delete snapshots with the container running.
 
-In the chapters that follow you will:
+In the chapters that follow, you will:
 
 * set up the process of creating snapshots automatically
-* set up expiration of a snapshot so that it goes away after a certain length of time
-* set up auto refreshing of snapshots to the snapshot server
+* set up the expiration of a snapshot so that it goes away after a certain length of time
+* set up auto-refreshing of snapshots to the snapshot server
