@@ -37,7 +37,7 @@ Install other repositories:
 
 ```bash
 sudo dnf config-manager --enable crb
-sudo copr enable neil/incus
+sudo dnf copr enable neil/incus
 ```
 
 Install some needed packages:
@@ -53,7 +53,7 @@ sudo dnf install incus incus-tools
 sudo systemctl enable incus
 ```
 
-Reboot your notebook or workstation
+Reboot your notebook or workstation before continuing.
 
 ## Incus initialization
 
@@ -125,6 +125,27 @@ sudo usermod -a -G incus-admin [username]
 ```
 
 where [username] is your user on the system.
+
+## Setting `subuid` and `subgid` values for `root`
+
+You need to set both the value of the root user's `subuid` and `subgid` (the range of subordinate user and group id's). This value should be:
+
+```bash
+root:1000000:1000000000
+```
+
+To do this, edit the `/etc/subuid` and add that line. When completed, your file will be:
+
+```bash
+root:1000000:1000000000
+```
+
+Edit the `/etc/subgid` file and add that line again. Your file will look something like this:
+
+```bash
+incusadmin:100000:65536
+root:1000000:1000000000
+```
 
 At this point, you have made a bunch of changes. Before you go any further, reboot your machine.
 
