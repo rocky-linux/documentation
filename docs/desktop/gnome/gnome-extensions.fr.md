@@ -63,7 +63,7 @@ Pour cet exemple, nous installerons l’extension populaire `Dash to Dock`.
 
 Les extensions GNOME sont installées et gérées à partir de gnome.extensions.org.
 
-Pour gérer vos extensions GNOME, rendez-vous d'abord sur https://extensions.gnome.org/local/
+Pour gérer vos extensions GNOME, rendez-vous d'abord sur <https://extensions.gnome.org/local/>
 
 ![Manage GNOME extensions](images/gnome_extensions_images/gnome-shell-installed-extensions.webp)
 
