@@ -1,12 +1,12 @@
 ---
 title: File Shredder
 author: Christine Belzie
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 ## Вступ
 
-Вам потрібно видалити листівку чи PDF-файл, що містить інформацію, як-от ваш день народження? Перевірте File Shredder. Це програма, яка назавжди видаляє конфіденційну інформацію в Інтернеті.
+Вам потрібно видалити листівку чи PDF-файл, що містить інформацію, як-от ваш день народження? Перевірте File Shredder.
 
 ## Припущення
 

@@ -1,7 +1,7 @@
 ---
 title: Декодер
 author: Christine Belzie
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 ## Вступ

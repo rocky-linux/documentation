@@ -68,7 +68,7 @@ sudo dnf install dkms -y
 ```
 
 ```bash
-sudo dnf config-manager --add-repo http://developer.download.nvidia/compute/cuda/repos/rhel9/$(uname -i)/cuda-rhel9.repo
+sudo dnf config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/rhel9/$(uname -i)/cuda-rhel9.repo
 ```
 
 Далі встановіть набір пакетів, необхідних для збирання та встановлення модулів ядра:

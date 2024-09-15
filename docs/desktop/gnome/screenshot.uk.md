@@ -1,12 +1,12 @@
 ---
 title: Screenshot
 author: Christine Belzie
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 ## Вступ
 
-Вам набридло використовувати клавіатуру для зйомки зображень на екрані комп’ютера? Зустрічайте Screenshot! Це програма, яка допомагає швидко робити зображення на екрані.
+Вам набридло використовувати клавіатуру для зйомки зображень на екрані комп’ютера? Зустрічайте Screenshot!
 
 ## Припущення
 
