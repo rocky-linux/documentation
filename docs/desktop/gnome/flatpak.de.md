@@ -154,7 +154,7 @@ There is no workaround for this. To avoid the error, use the Flathub resource in
 
 Flathub ist eine Webressource zum Abrufen oder Senden von Desktop-Paketen.
 
-Besuchen Sie https://flathub.org/, um Flathub zu durchsuchen. Hier gibt es eine riesige Liste kuratierter Desktop-Pakete, die übersichtlich in Kategorien unterteilt sind.
+Besuchen Sie <https://flathub.org/>, um Flathub zu durchsuchen. Hier gibt es eine riesige Liste kuratierter Desktop-Pakete, die übersichtlich in Kategorien unterteilt sind.
 
 ## Verwendung von Flathub zusammen mit Flatpak
 
