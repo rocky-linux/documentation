@@ -11,9 +11,9 @@ tags:
 
 # Chapter 2: ZFS setup
 
-Throughout this chapter you will need to be the root user or able to `sudo` to become root.
+Throughout this chapter, you must be the root user or able to `sudo` to become root.
 
-If you have already installed ZFS, this section will walk you through ZFS setup.
+If you have already installed ZFS, this section will walk you through the ZFS setup.
 
 ## Enabling ZFS and setting up the pool
 
@@ -23,9 +23,9 @@ First, enter this command:
 /sbin/modprobe zfs
 ```
 
-If there are no errors, it will return to the prompt and echo nothing. If you get an error, stop now and begin troubleshooting. Again, ensure that secure boot is off. That will be the most likely culprit.
+If there are no errors, it will return to the prompt and echo nothing. If you get an error, you can stop now and begin troubleshooting. Again, ensure that secure boot is off. That will be the most likely culprit.
 
-Next you need to examine the disks on our system, find out where the operating system is, and what is available to use for the ZFS pool. You will do this with `lsblk`:
+Next, you need to examine the disks on our system, find out where the operating system is, and determine what is available for the ZFS pool. You will do this with `lsblk`:
 
 ```bash
 lsblk
@@ -51,14 +51,14 @@ sdc      8:32   0 149.1G  0 disk
 └─sdc1   8:33   0 149.1G  0 part
 ```
 
-In this listing, you can see that */dev/sda* is in use by the operating system. You are going to use */dev/sdb* for our zpool. Note that if you have many available hard drives, you may want to consider using raidz (a software raid specifically for ZFS).
+This listing shows that the operating system uses */dev/sda*. You will use */dev/sdb* for our zpool. Note that if you have many available hard drives, you may want to consider using raidz (a software raid specifically for ZFS).
 
-That falls outside the scope of this document, but definitely is a consideration for production. It offers better performance and redundancy. For now, create your pool on the single device you have identified:
+That falls outside the scope of this document but is a consideration for production. It offers better performance and redundancy. For now, create your pool on the single device you have identified:
 
 ```bash
 zpool create storage /dev/sdb
 ```
 
-What this says is to create a pool called "storage" that is ZFS on the device */dev/sdb*.
+This says to create a pool called "storage" that is ZFS on the device */dev/sdb*.
 
 After creating the pool, reboot the server again.
