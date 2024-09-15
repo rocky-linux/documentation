@@ -63,7 +63,7 @@ gnome-shell --version
 
 Розширення GNOME встановлюються та керуються на gnome.extensions.org.
 
-Щоб керувати своїми розширеннями GNOME, спочатку перейдіть до https://extensions.gnome.org/local/
+Щоб керувати своїми розширеннями GNOME, спочатку перейдіть до <https://extensions.gnome.org/local/>
 
 ![Manage GNOME extensions](images/gnome_extensions_images/gnome-shell-installed-extensions.webp)
 
