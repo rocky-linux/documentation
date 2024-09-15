@@ -81,7 +81,7 @@ The first file you must change is the `limits.conf` file. This file is self-docu
 vi /etc/security/limits.conf
 ```
 
-This entire file consists of comments and, at the bottom, shows the current default settings. In the blank space above the end of the file marker (#End of file), you need to add our custom settings. The end of the file will look like this when completed:
+This entire file consists of comments and, at the bottom, shows the current default settings. You need to add our custom settings in the blank space above the end of the file marker (#End of file). The end of the file will look like this when completed:
 
 ```text
 # Modifications made for LXD
