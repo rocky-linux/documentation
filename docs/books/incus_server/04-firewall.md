@@ -31,7 +31,7 @@ You want to allow all traffic from the bridge. Just add the interface and change
 
 !!! warning
 
-    Changing the target of a `firewall' zone *must* be done with the `--permanent` option, so we might as well enter that flag in our other commands and forgo the `--runtime-to-permanent` option.
+    Changing the target of a `firewalld' zone *must* be done with the `--permanent` option, so we might as well enter that flag in our other commands and forgo the `--runtime-to-permanent` option.
 
 !!! Note
 
