@@ -82,7 +82,7 @@ client 172.20.0.254 {
 }
 ```
 
-Replace `172.20.0.254` and `secret123` with the IP address and secret value the clients will use. Repeat this for many clients.
+Replace `172.20.0.254` and `secret123` with the IP address and secret value the clients will use. Repeat this for other clients.
 
 ## Enabling FreeRADIUS
 
