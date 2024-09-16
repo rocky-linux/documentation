@@ -1,7 +1,7 @@
 ---
 title: Ігри на Linux з Proton
 author: Joseph Brinkman
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 ## Вступ

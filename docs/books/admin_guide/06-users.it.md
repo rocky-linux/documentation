@@ -378,14 +378,14 @@ Esempio:
 sudo useradd -D -g 1000 -b /home -s /bin/bash
 ```
 
-| Opzione        | Descrizione                                                                                  |
-| -------------- | -------------------------------------------------------------------------------------------- |
-| `-D`           | Imposta i valori predefiniti per la creazione dell'utente.                                   |
-| `-b directory` | Imposta la directory di accesso predefinita.                                                 |
-| `-g group`     | Imposta il gruppo predefinito.                                                               |
-| `-s shell`     | Imposta la shell predefinita.                                                                |
-| `-f`           | Imposta il numero di giorni dopo la scadenza della password prima di disabilitare l'account. |
-| `-e`           | Imposta la data di disabilitazione dell'account.                                             |
+| Opzione             | Descrizione                                                                                                                                                                |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-D`                | Imposta i valori predefiniti per la creazione dell'utente.                                                                                                                 |
+| `-b base_directory` | Definisce la directory di base per la home directory dell'utente. Se non si specifica questa opzione, si utilizza la variabile HOME nel file /etc/default/useradd o /home/ |
+| `-g group`          | Imposta il gruppo predefinito.                                                                                                                                             |
+| `-s shell`          | Imposta la shell predefinita.                                                                                                                                              |
+| `-f`                | Imposta il numero di giorni dopo la scadenza della password prima di disabilitare l'account.                                                                               |
+| `-e`                | Imposta la data di disabilitazione dell'account.                                                                                                                           |
 
 ### comando `usermod`
 
@@ -657,7 +657,7 @@ Re-enter new password:
 
 !!! note "Nota"
 
-    Oltre a usare `gpasswd -a` per aggiungere utenti a un gruppo, si può anche usare `usermod -G` o `usermod -AG` menzionati prima.
+    Oltre a usare `gpasswd -a` per aggiungere utenti a un gruppo, si può anche usare `usermod -G` o `usermod -aG` menzionati prima.
 
 ### comando `id`
 
@@ -768,9 +768,9 @@ sudo passwd alain
 
 !!! Note "Nota"
 
-    Gli utenti possono usare il comando `passwd` per cambiare la propria password (viene richiesta la vecchia password). L'amministratore può modificare le password di tutti gli utenti senza limitazioni.
+    Gli utenti connessi al sistema possono usare il comando `passwd` per cambiare la propria password (questo processo richiede la richiesta della vecchia password dell'utente). L'utente root(uid=0) può cambiare la password di qualsiasi utente.
 
-Dovranno rispettare le restrizioni di sicurezza.
+La modifica delle password richiede la conformità ai criteri di sicurezza prescritti, il che implica la conoscenza di **PAM (Pluggable Authentication Modules)**.
 
 Quando si gestiscono gli account utente tramite script di shell, può essere utile impostare una password predefinita dopo la creazione dell'utente.
 
@@ -875,6 +875,13 @@ Shell > id test2
 uid=1001(test2) gid=100(users) groups=100(users)
 ```
 
+!!! note "Nota"
+
+    GNU/Linux ha due meccanismi di gruppo:
+
+    1. Gruppo pubblico, il suo gruppo primario è GID=100
+    2. Gruppo privato, ovvero, quando si aggiungono utenti, viene creato un gruppo con lo stesso nome come gruppo primario. Questo meccanismo di gruppo è comunemente usato da RHEL e dalle relative distribuzioni a valle.
+
 ### file `/etc/login.defs`
 
 ```bash
@@ -900,7 +907,7 @@ USERGROUPS_ENAB yes
 ENCRYPT_METHOD SHA512
 ```
 
-`UMASK 022`: Ciò significa che il permesso di creare un file è 755 (rwxr-xr-x). Tuttavia, per motivi di sicurezza, GNU/Linux non prevede il permesso **x** per i file appena creati. Questa restrizione si applica a root (uid=0) e agli utenti ordinari (uid>=1000). Per esempio:
+`UMASK 022`: Questo significa che il permesso di creare un file è 755 (rwxr-xr-x). Tuttavia, per motivi di sicurezza, GNU/Linux non prevede il permesso **x** per i file appena creati. Questa restrizione si applica a root (uid=0) e agli utenti ordinari (uid>=1000). Per esempio:
 
 ```bash
 Shell > touch a.txt
