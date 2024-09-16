@@ -14,7 +14,7 @@ Throughout this chapter, you must be root or able to `sudo` to become root. In a
 
 ## Incus initialization
 
-Your server environment is all setup. You are ready to initialize Incus. This is an automated script that asks a series of questions to get your Incus instance up and running:
+Your server environment is all set up. You are ready to initialize Incus. This is an automated script that asks a series of questions to get your Incus instance up and running:
 
 ```bash
 incus admin init
