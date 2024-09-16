@@ -63,7 +63,7 @@ echo -n password | md5sum | awk '{print $1}'
 
 Replace `password` with the desired password.
 
-You will get an hash of `5f4dcc3b5aa765d61d8327deb882cf99`. In `users` file, insert the following instead:
+You will get a hash of `5f4dcc3b5aa765d61d8327deb882cf99`. In `users` file, insert the following instead:
 
 ```bash
 user    MD5-Password := "5f4dcc3b5aa765d61d8327deb882cf99"
