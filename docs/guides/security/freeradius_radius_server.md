@@ -21,7 +21,7 @@ The following are minimum requirements for using this procedure:
 * The ability to run commands as the root user or use `sudo` to elevate privileges
 * A RADIUS client, such as a router, switch or Wi-Fi access point
 
-## Installing Tailscale
+## Installing FreeRADIUS
 
 We can install FreeRADIUS from the `dnf` repositories:
 
@@ -105,7 +105,3 @@ add interface=combo3
 ```
 
 Replace `172.20.0.12` with the FreeRADIUS server's IP address and `secret123` with the secret we set earlier.
-
-## Conclusion
-
-Traditional VPN services using a VPN gateway are centralized. This requires manual configuration, setting up your firewall and giving user accounts. Tailscale solves this problem by its peer-to-peer model combined with network-level access control.
