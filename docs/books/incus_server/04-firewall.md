@@ -153,4 +153,4 @@ firewall-cmd --reload
 firewall-cmd --zone=public --list-all
 ```
 
-There may be other interfaces on your server that need to be considered. You can use built-in zones where appropriate, but if the names don't seem good enough, you can add zones. Just remember that if you have no services or protocols that you need to allow or reject specifically, you will need to change the zone target. You can do that if it works to use interfaces, as with the bridge. If you need more granular access to services, use source IPs instead.
+There may be other interfaces on your server to consider. You can use built-in zones where appropriate, but if the names don't seem good enough, you can add zones. Just remember that if you have no services or protocols that you need to allow or reject specifically, you will need to change the zone target. You can do that if it works to use interfaces, as with the bridge. If you need more granular access to services, use source IPs instead.
