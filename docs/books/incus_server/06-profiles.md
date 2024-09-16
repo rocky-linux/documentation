@@ -19,7 +19,7 @@ If you configure your Incus server with two interfaces and assign each an IP on 
 
 As of Rocky Linux version 9.4 (and any bug for bug copy of Red Hat Enterprise Linux), the method for assigning IP addresses statically or dynamically with the profiles does not work.
 
-There are ways to get around this, but it isn't very pleasant. This appears to have something to do with changes made to Network Manager that affect `macvlan`. `macvlan` allows you to create many interfaces with different Layer 2 addresses.
+There are ways to get around this, but it is unpleasant. This appears to have something to do with changes made to Network Manager that affect `macvlan`. `macvlan` allows you to create many interfaces with different Layer 2 addresses.
 
 Be aware that this has drawbacks when choosing container images based on RHEL.
 
@@ -163,7 +163,7 @@ That should have happened with a stop and start of the container, but it does no
 incus shell rockylinux-test-9
 ```
 
-Next, let's determine the path to `dhclient`. To do this, because this container is from a minimal image, you will need first to install `which`:
+Next, let us determine the path to `dhclient`. To do this, because this container is from a minimal image, you will need first to install `which`:
 
 ```bash
 dnf install which
