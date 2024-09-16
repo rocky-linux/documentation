@@ -1,7 +1,7 @@
 ---
 title: Gaming unter Linux mit Proton
 author: Joseph Brinkman
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 ## Einleitung
@@ -48,7 +48,7 @@ Wählen Sie ++"Compatibility"++ aus dem linken Menü in den Steam-Einstellungen.
 
 ![Compatibility settings](images/Timeline_1_01_10_58_27.jpg)
 
-Beachten Sie auf dem Foto oben, dass`Enable Steam Play for supported titles` aktiviert ist und `Enable Steam Play for all other titles` nicht. Dies bedeutet, dass Spiele, deren Funktionsfähigkeit auf Proton getestet und verifiziert wurde, spielbar sind, nicht verifizierte Spiele jedoch nicht laufen. Einige nicht verifizierte Titel funktionieren nahezu einwandfrei mit Proton, es fehlen jedoch Controller-Zuordnungen oder einige Kleinigkeiten. Aus diesem Grund empfiehlt der Autor, bei nicht unterstützten Titeln das Steam-Play zu aktivieren und diese selbst auszuprobieren!
+Beachten Sie auf dem Screenshot oben, dass`Enable Steam Play for supported titles` aktiviert ist und `Enable Steam Play for all other titles` nicht. Dies bedeutet, dass Spiele, deren Funktionsfähigkeit auf `Proton` getestet und verifiziert wurde, spielbar sind, nicht verifizierte Spiele jedoch nicht laufen. Einige nicht verifizierte Titel funktionieren nahezu einwandfrei mit `Proton`, es fehlen jedoch Controller-Zuordnungen oder einige Kleinigkeiten. Aus diesem Grund empfiehlt der Autor, bei nicht unterstützten Titeln das Steam-Play zu aktivieren und diese selbst auszuprobieren!
 
 Aktivieren Sie "Enable Steam Play for all other titles". Starten Sie Steam neu, wenn Sie dazu aufgefordert werden.
 
