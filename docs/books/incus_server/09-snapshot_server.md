@@ -19,7 +19,7 @@ If you are here, you have completed the basic installation for the snapshot serv
 
 ## Setting up the primary and snapshot server relationship
 
-I need some housekeeping before continuing. First, if you are running in a production environment, you probably have access to a DNS server to set up IP to name resolution.
+You need some housekeeping before continuing. First, if you are running in a production environment, you probably have access to a DNS server to set up IP to name resolution.
 
 In your lab, you do not have that luxury. Perhaps you have the same scenario running. For this reason, you will add both the server's IP addresses and names to the `/etc/hosts` file on the primary and the snapshot server. You must do this as your root (or _sudo_) user.
 
