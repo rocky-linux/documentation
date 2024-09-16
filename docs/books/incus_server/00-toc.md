@@ -17,7 +17,7 @@ Nearly a year ago now, the following announcement came out on the lxc-users mail
 
 > Canonical, the creator and main contributor of the LXD project has decided that after over 8 years as part of the Linux Containers community, the project would now be better served directly under Canonical’s own set of projects.
 
-One of the deciding factors was the resignations of some lead developers for LXD. These developers then forked LXD into Incus, announcing the fork in August 2023. A release version (0.1) came out in October 2023, and the developers have since rapidly built on that version with step releases through 0.7 (in March 2024). Following 0.7, the long-term support version, 6.0 LTS, was released on April 4, 2024. The current version is 6.4.
+One of the deciding factors was the resignations of some lead developers for LXD. These developers then forked LXD into Incus, announcing the fork in August 2023. A release version (0.1) came out in October 2023, and the developers have since rapidly built on that version with step releases through 0.7 (in March 2024). The release of the long-term support version (6.0 LTS) followed the 0.7 release. The current version is 6.5.
 
 Throughout the process, Canonical was believed to continue maintaining links to the container images provided by Linux Containers. However, a [licensing change](https://stgraber.org/2023/12/12/lxd-now-re-licensed-and-under-a-cla/) made it impossible for Linux Containers to continue offering the container images within LXD. This means that LXD will have container images, but they will not be what you might expect. Linux Containers continues to host and support their images if you are using Incus.
 
@@ -46,7 +46,7 @@ For those wanting to use Incus as a lab environment on their notebooks or workst
 * One Rocky Linux 9 server, nicely configured. Consider a separate hard disk for ZFS disk space in a production environment (you must do so if you use ZFS). And yes, the assumption here is a bare metal server, not a VPS (Virtual Private Server).
 * This is an advanced topic, but it is not too difficult to understand. If you follow these instructions from the beginning, you should be successful. That said, knowing a few basic things about container management will go a long way.
 * Comfort at the command line on your machine(s) and fluent in a command line editor. (Using _vi_ throughout these examples, but you can substitute in your favorite editor.)
-* You will need to be your unprivileged user for most of these processes. For the early setup steps, you will need to be the root user or be able to `sudo` to become so. Throughout these chapters, we assume your unprivileged user to be "incusadmin". You'll need to create this user account later in the process.
+* You will need to be your unprivileged user for most of these processes. For the early setup steps, you will need to be the root user or be able to `sudo` to become so. Throughout these chapters, we assume your unprivileged user to be "incusadmin". You will need to create this user account later in the process.
 * For ZFS, ensure that UEFI secure boot is NOT enabled. Otherwise, you must sign the ZFS module to get it to load.
 * Using Rocky Linux-based containers for the most part
 
