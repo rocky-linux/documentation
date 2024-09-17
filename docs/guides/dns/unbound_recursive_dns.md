@@ -65,7 +65,7 @@ Replace `192.168.0.0/16` and `2001:db8::/64` with the subnets for which you are 
 
 - The `interface` denotes the interfaces (IPv4 or IPv6) on which you want to listen for DNS queries. We are listening on all interfaces with `0.0.0.0` and `::`.
 - The `access-control` denotes which subnets (IPv4 or IPv6) you want to allow DNS queries from. We are allowing requests from `192.168.0.0/16` and `2001:db8::/64`.
-- The `forward-addr` defines the servers we will forward to. We are forwarding to Cloudflare's 1.1.1.1.
+- The `forward-addr` defines the servers we will forward to. We are forwarding to Cloudflare's `1.1.1.1` and `1.0.0.1`.
 
 ## Enabling Unbound
 
