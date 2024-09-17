@@ -15,11 +15,11 @@ This guide assumes you have the following:
 
 !!! note
 
-    According [to GNOME's website](https://apps.gnome.org/), this application is pre-installed on your desktop. 
+    According [to GNOME's website](https://apps.gnome.org/), this application is pre-installed on your desktop.
 
 ## How to Use
 
-To use Screenshot,  do the following:
+To use Screenshot, do the following:
 
 ![Screenshot of image being taken by the application with the options present](images/screenshot-01.png)
 
@@ -37,4 +37,4 @@ To use Screenshot,  do the following:
 
 ## Conclusion
 
-Whether it is a picture for your online collage, your computer's background, or a tutorial that you are creating for your favorite product, GNOME's Screenshot is the tool help you get the screenshots you want. Are you eager to learn more about this application or have more ideas for it? [Submit an issue to Screenshot’s repository at GitLab](https://gitlab.gnome.org/gnumdk/screenshot/-/issues).
+Whether it is a picture for your online collage, your computer's background, or a tutorial that you are creating for your favorite product, GNOME's Screenshot is the tool to help you get the screenshots you want. Are you eager to learn more about this application or have more ideas for it? [Submit an issue to Screenshot’s repository at GitLab](https://gitlab.gnome.org/gnumdk/screenshot/-/issues).
