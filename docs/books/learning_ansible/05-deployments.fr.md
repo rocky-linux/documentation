@@ -8,13 +8,18 @@ Dans ce chapitre vous allez apprendre le déploiement d'applications en utilisan
 
 ****
 
-**Objectifs** : Dans ce chapitre, vous apprendrez :
+**Objectifs** : Dans ce chapitre, vous apprendrez comment :
 
-:heavy_check_mark: Implémentation d'Ansistrano ; :heavy_check_mark: Configuration d'Ansistrano ; :heavy_check_mark: Utilisation de répertoires et de fichiers partagés entre des versions déployées ; :heavy_check_mark: Déploiement de différentes versions d'un site à partir de git ; :heavy_check_mark: Rétrospective entre différentes étapes de déploiement.
+:heavy_check_mark: Implémenter Ansistrano ;  
+:heavy_check_mark: Configurer Ansistrano ;  
+:heavy_check_mark: Utiliser des dossiers et des fichiers partagés entre les versions déployées ;  
+:heavy_check_mark: Déployer différentes versions d'un site depuis git ;  
+:heavy_check_mark: Réagir entre les étapes de déploiement.
 
 :checkered_flag: **ansible**, **ansistrano**, **rôles**, **déploiements**
 
-**Connaissances** : :star: :star: **Complexité** : :star: :star: :star:
+**Connaissances** : :star: :star:  
+**Complexité** : :star: :star: :star:
 
 **Temps de lecture** : 40 minutes
 
@@ -31,7 +36,7 @@ Ansistrano requiert les composants suivants :
 
 Il peut télécharger le code source à partir de `rsync`, `git`, `scp`, `http`, `S3`, ...
 
-!!! note "Note"
+!!! note "Remarque"
 
     Pour notre exemple de déploiement, nous utiliserons `git`.
 
@@ -111,7 +116,7 @@ Considérations techniques :
 
 * Nous allons déployer notre site dans le répertoire `/var/www/site/`.
 * Comme nous le verrons plus tard, `Ansistrano` va créer un lien symbolique qui pointe vers le répertoire de la version `actuelle`.
-* Le code source à déployer contient un répertoire `html` vers lequel <0>vhost</0> devrait pointer. L'indexe `DirectoryIndex` est représenté par le fichier `index.htm`.
+* Le code source à déployer contient un répertoire `html` vers lequel `vhost` devrait pointer. L'indexe `DirectoryIndex` est représenté par le fichier `index.htm`.
 * Le déploiement se faisant en utilisant `git`, le paquet correspondant sera installé.
 
 !!! note "Remarque"
