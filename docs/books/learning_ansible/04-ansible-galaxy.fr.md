@@ -10,13 +10,13 @@ Dans ce chapitre, vous apprendrez comment utiliser, installer et gérer les rôl
 
 **Objectifs** : Dans ce chapitre, vous apprendrez à :
 
-:heavy_check_mark: installer et gérer les collections.       
+:heavy_check_mark: installer et gérer les collections.  
 :heavy_check_mark: installer et gérer les rôles.
 
 :checkered_flag: **ansible**, **ansible-galaxy**, **rôles**, **collections**
 
-**Connaissances**: :star: :star:      
-**Complexité**: :star: :star: :star:
+**Connaissances** : :star: :star:  
+**Complexité** : :star: :star: :star:
 
 **Temps de lecture** : 41 minutes
 
@@ -32,7 +32,7 @@ La commande `ansible-galaxy` gère les rôles et les collections à l'aide de [g
 
 * Pour gérer les rôles :
 
-```
+```bash
 ansible-galaxy role [import|init|install|login|remove|...]
 ```
 
@@ -47,11 +47,11 @@ ansible-galaxy role [import|init|install|login|remove|...]
 
 * Pour gérer les collections :
 
-```
+```bash
 ansible-galaxy collection [import|init|install|login|remove|...]
 ```
 
-| Sous-commandes | Observation                                              |
+| Sous-commandes | Fonctionnalité                                           |
 | -------------- | -------------------------------------------------------- |
 | `init`         | générer le squelette d'une nouvelle collection.          |
 | `install`      | installer une collection.                                |
@@ -73,13 +73,13 @@ Vous pouvez vérifier le code dans le dépôt github du rôle [ici](https://gith
 
 * Installer le rôle. Ceci ne nécessite qu'une seule commande :
 
-```
+```bash
 ansible-galaxy role install alemorvan.patchmanagement
 ```
 
 * Créer un playbook pour inclure le rôle :
 
-```
+```bash
 - name: Start a Patch Management
   hosts: ansible_clients
   vars:
@@ -98,13 +98,13 @@ Nous allons créer des tâches qui seront exécutées avant et après le process
 
 * Créer le dossier `custom_tasks` :
 
-```
+```bash
 mkdir custom_tasks
 ```
 
-* Créer le `custom_tasks/pm_before_update_tasks_file.yml` (n'hésitez pas à changer le nom et le contenu de ce fichier)
+* Créer le fichier `custom_tasks/pm_before_update_tasks_file.yml` (n'hésitez pas à changer le nom et le contenu de ce fichier)
 
-```
+```bash
 ---
 - name: sample task before the update process
   debug:
@@ -113,7 +113,7 @@ mkdir custom_tasks
 
 * Créer le fichier `custom_tasks/pm_after_update_tasks_file.yml` (n'hésitez pas à changer le nom et le contenu de ce fichier)
 
-```
+```bash
 ---
 - name: sample task after the update process
   debug:
@@ -122,7 +122,7 @@ mkdir custom_tasks
 
 Et lancez votre première gestion des patchs:
 
-```
+```bash
 ansible-playbook patchmanagement.yml
 
 PLAY [Start a Patch Management] *************************************************************************
@@ -210,14 +210,14 @@ Vous pouvez également créer vos propres rôles pour vos propres besoins et les
 
 Un squelette de rôle, servant de point de départ pour le développement de rôles personnalisés, peut être généré par la commande `ansible-galaxy` :
 
-```
+```bash
 $ ansible-galaxy role init rocky8
 - Role rocky8 was created successfully
 ```
 
 La commande va générer l'arborescence suivante pour contenir le rôle `rocky8` :
 
-```
+```bash
 tree rocky8/
 rocky8/
 ├── defaults
@@ -260,7 +260,7 @@ Implémentons cela avec un rôle "go anywhere" qui créera un utilisateur par d�
 
 Nous allons créer un utilisateur `rockstar` sur tous nos serveurs. Comme nous ne voulons pas que cet utilisateur soit remplacé, définissons-le dans le fichier `vars/main.yml` :
 
-```
+```bash
 ---
 rocky8_default_group:
   name: rockstar
@@ -273,7 +273,7 @@ rocky8_default_user:
 
 Nous pouvons maintenant utiliser ces variables à l'intérieur de notre `tasks/main.yml` sans aucune inclusion.
 
-```
+```bash
 ---
 - name: Create default group
   group:
@@ -289,7 +289,7 @@ Nous pouvons maintenant utiliser ces variables à l'intérieur de notre `tasks/m
 
 Pour tester le nouveau rôle, créons un playbook `test-role.yml` dans le même répertoire que le rôle :
 
-```
+```bash
 ---
 - name: Test my role
   hosts: localhost
@@ -303,7 +303,7 @@ Pour tester le nouveau rôle, créons un playbook `test-role.yml` dans le même 
 
 et lancer :
 
-```
+```bash
 ansible-playbook test-role.yml
 
 PLAY [Test my role] ************************************************************************************
@@ -327,7 +327,7 @@ Voyons l'utilisation des variables par défaut.
 
 Créer une liste de paquets à installer par défaut sur vos serveurs et une liste vide de paquets à désinstaller. Modifier les fichiers `defaults/main.yml` et ajouter ces deux listes :
 
-```
+```bash
 rocky8_default_packages:
   - tree
   - vim
@@ -336,7 +336,7 @@ rocky8_remove_packages: []
 
 et les utiliser dans `tasks/main.yml` :
 
-```
+```bash
 - name: Install default packages (can be overridden)
   package:
     name: "{{ rocky8_default_packages }}"
@@ -350,7 +350,7 @@ et les utiliser dans `tasks/main.yml` :
 
 Testez votre rôle avec l'aide du playbook précédemment créé :
 
-```
+```bash
 ansible-playbook test-role.yml
 
 PLAY [Test my role] ************************************************************************************
@@ -376,7 +376,7 @@ localhost                  : ok=5    changed=0    unreachable=0    failed=0    s
 
 Vous pouvez maintenant remplacer `rocky8_remove_packages` dans votre playbook et désinstaller par exemple `cockpit` :
 
-```
+```bash
 ---
 - name: Test my role
   hosts: localhost
@@ -391,7 +391,7 @@ Vous pouvez maintenant remplacer `rocky8_remove_packages` dans votre playbook et
       become_user: root
 ```
 
-```
+```bash
 ansible-playbook test-role.yml
 
 PLAY [Test my role] ************************************************************************************
@@ -417,7 +417,7 @@ localhost                  : ok=5    changed=1    unreachable=0    failed=0    s
 
 Évidemment, il n'y a pas de limite à ce que vous pouvez améliorer dans le rôle. Imaginez que pour l'un de vos serveurs, vous avez besoin d'un paquet qui se trouve dans la liste de ceux à désinstaller. Vous pouvez par exemple, créer une liste modifiable des paquets à désinstaller et supprimer de cette liste les paquets qui restent nécessaires en utilisant le filtre `difference()` de jinja.
 
-```
+```bash
 - name: "Uninstall default packages (can be overridden) {{ rocky8_remove_packages }}"
   package:
     name: "{{ rocky8_remove_packages | difference(rocky8_specifics_packages) }}"
@@ -434,13 +434,13 @@ Les collections sont un format de distribution pour du contenu Ansible qui peut 
 
 Pour installer ou mettre à jour une collection :
 
-```
+```bash
 ansible-galaxy collection install namespace.collection [--upgrade]
 ```
 
 Vous pouvez alors utiliser la collection nouvellement installée en utilisant son espace de noms et son nom avant le nom du rôle ou du module :
 
-```
+```bash
 - import_role:
     name: namespace.collection.rolename
 
@@ -452,7 +452,7 @@ Vous pouvez trouver un index de collections [ici](https://docs.ansible.com/ansib
 
 Nous allons installer la collection `community.general` :
 
-```
+```bash
 ansible-galaxy collection install community.general
 Starting galaxy collection install process
 Process install dependency map
@@ -464,7 +464,7 @@ community.general:3.3.2 was installed successfully
 
 Nous pouvons maintenant utiliser le module nouvellement disponible `yum_versionlock` :
 
-```
+```bash
 - name: Start a Patch Management
   hosts: ansible_clients
   become: true
@@ -487,7 +487,7 @@ Nous pouvons maintenant utiliser le module nouvellement disponible `yum_versionl
         var: locks.meta.packages                            
 ```
 
-```
+```bash
 ansible-playbook versionlock.yml
 
 PLAY [Start a Patch Management] *************************************************************************
@@ -517,12 +517,12 @@ PLAY RECAP *********************************************************************
 
 Comme pour les rôles, vous pouvez créer une propre collection à l'aide de la commande `ansible-galaxy` :
 
-```
+```bash
 ansible-galaxy collection init rocky8.rockstarcollection
 - Collection rocky8.rockstarcollection was created successfully
 ```
 
-```
+```bash
 tree rocky8/rockstarcollection/
 rocky8/rockstarcollection/
 ├── docs
