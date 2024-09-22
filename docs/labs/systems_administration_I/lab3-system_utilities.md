@@ -606,7 +606,7 @@ Every program started on a Linux system has three open file descriptors, stdin (
 
 You will be using the concepts covered here a lot in Linux, so please pay particular attention to it. It can be a bit tricky.
 
-There will be times when you don’t want the user to see the output of a command- perhaps an error message. This will usually be because strange error messages often scare regular users. In this exercises you will send the output of your commands to the null device ( /dev/null/ ). The null device is like a “bit bucket”. Anything you place inside disappears forever. You can also send (or redirect) regular command output to the null device "null device".
+There will be times when you do not want the user to see the output of a command- perhaps an error message. This will usually be because strange error messages often scare regular users. In this exercise you will send the output of your commands to the null device ( /dev/null/ ). The null device is like a “bit bucket”. Anything you place inside disappears forever. You can also send (or redirect) regular command output to the null device "null device".
 
 Use the guidelines below:
 
@@ -660,7 +660,7 @@ Use the guidelines below:
 
         What happened here? How come the output still showed up on the screen (stdout)?
 
-5. For various reasons you may want to suppress error message such as the one above. To do this type:
+5. For various reasons you may want to suppress error messages such as the one above. To do this type:
 
     ```bash
     [root@localhost folder1]# ls –l te_file1 > /dev/null 2>&1
@@ -779,7 +779,7 @@ This exercise will discuss two of the most popular utilities used for searching 
 
 #### `find`
 
-The `find` utility has been around for along time. It recursively scans directories to find files that match a given criterion.
+The `find` utility has been around for a long time. It recursively scans directories to find files that match a given criterion.
 
 The general syntax for `find` is:
 
@@ -838,7 +838,7 @@ ACTION:
 
 -exec <command>: execute command <command> on each file found. The command line <command> must end with a ;, which you must escape so that the shell does not interpret it; the file position is marked with {}.
 
--ok <command>: same as -exec but ask confirmation for each command.
+-ok <command>: same as -exec but asks confirmation for each command.
 ```
 
 #### To use `find`
@@ -953,7 +953,7 @@ general usage: locate [-Vh] [--version] [--help]
     [root@localhost folder1]#
     ```
 
-    The semi-colon (;) used in the command above, allows you issue multiple commands on a single line!!
+    The semicolon (;) used in the command above, allows you to issue multiple commands on a single line!!
 
 2. Use `locate` to search for all the files in your pwd that have the suffix “temp”
 
@@ -967,7 +967,7 @@ general usage: locate [-Vh] [--version] [--help]
 
     Note that the three files you created in step 1 were NOT found.
 
-3. You will force an update of the database using `updatedb` to enable it take cognizance of all newly created files. Type:
+3. You will force an update of the database using `updatedb` to enable it to take cognizance of all newly created files. Type:
 
     ```bash
     [root@localhost folder1]# updatedb
