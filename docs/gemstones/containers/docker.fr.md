@@ -1,7 +1,7 @@
 ---
 title: Docker Engine
 author: Wale Soyinka
-contributors:
+contributors: Neel Chauhan, Srinivas Nishant Viswanadha, Stein Arne Storslett, Ganna Zhyrnova, Steven Spencer
 date: 2021-08-04
 tags:
   - docker
@@ -9,14 +9,14 @@ tags:
 
 # Introduction
 
-Le Docker Engine peut être utilisé en exécutant des charges de travail de type Docker natives sur des serveurs Rocky Linux. C'est parfois préférable que d'utiliser l'environnement complet Docker Desktop.
+Docker Engine peut être utilisé en exécutant des charges de travail de type Docker natives sur des serveurs Rocky Linux. C'est parfois préférable que d'utiliser l'environnement complet Docker Desktop.
 
 ## Ajouter le dépôt Docker
 
 Utilisez l'utilitaire `dnf` pour ajouter le référentiel docker à votre serveur Rocky Linux. Pour ce faire tapez la commande :
 
 ```bash
-sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
 ```
 
 ## Installer les paquets nécessaires
@@ -35,7 +35,25 @@ Utilisez l'utilitaire `systemctl` afin de configurer Docker pour démarrer autom
 sudo systemctl --now enable docker
 ```
 
-### Notes
+## Autoriser, si besoin est, un utilisateur non root à gérer Docker
+
+Ajoutez un utilisateur non root au groupe `docker` pour permettre à l'utilisateur de gérer `docker` sans `sudo`.
+
+Il s'agit d'une étape facultative mais elle peut être pratique si vous êtes l'utilisateur principal du système ou si vous souhaitez autoriser plusieurs utilisateurs à gérer Docker mais ne souhaitez pas leur accorder d'autorisations `sudo`.
+
+Entrer la commande suivante :
+
+```bash
+# Add the current user
+sudo usermod -a -G docker $(whoami)
+
+# Add a specific user
+sudo usermod -a -G docker custom-user
+```
+
+Pour être affecté au nouveau groupe, vous devez vous déconnecter et vous reconnecter. Vérifiez avec la commande `id` que le groupe a été ajouté.
+
+### Remarques
 
 ```docker
 docker-ce : ce paquet fournit la technologie sous-jacente pour construire et exécuter des docker containers (dockerd) 
