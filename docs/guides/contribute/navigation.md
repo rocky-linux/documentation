@@ -30,11 +30,11 @@ The assumption is that you have a local clone of the Rocky GitHub repository: <h
 
 ## Environment changes
 
-With these changes comes a real need to "see" how any changes you are making affect content, in the context of the website, *BEFORE* that content is committed to the document repository, and subsequently goes 'live'.
+With these changes comes a real need to "see" how any changes you are making affect content, in the context of the website, *BEFORE* committing that content to the documentation repository.
 
-MkDocs is a [Python](https://www.python.org) application and the extra packages it uses are also Python code, this means that the environment required to run MkDocs needs to be a **correctly configured Python environment**. Setting up Python for development tasks (which is what is being done running MkDocs) is not a trivial task, and instructions for that are out of the scope of this document. Some considerations are:
+MkDocs is a [Python](https://www.python.org) application and the extra packages it uses are also Python code, meaning that the environment required to run MkDocs needs to be a **correctly configured Python environment**. Setting up Python for development tasks (as is the case when running MkDocs) is not a trivial task, and instructions for that are out of the scope of this document. Some considerations are:
 
-- The version of Python should be >= 3.8, also **particular care must be taken not to use the 'system' Python version of a computer if the computer runs Linux/macOS**. For example, as of the writing of this document, the system version of Python on macOS is still version 2.7.
+- The version of Python must be >= 3.8. Also **take particular care not to use the 'system' Python version of a computer if the computer runs Linux or MacOS**. For example, as of the writing of this document, the system version of Python on MacOS is still version 2.7.
 - Running a Python 'virtual environment'. When running Python application project and installing packages, for example MkDocs, it is **strongly recommended** by the Python community to [create an isolated virtual environment](https://realpython.com/python-virtual-environments-a-primer/) for each project.
 - Use a modern IDE (Integrated Development Environment) that supports Python well. Two popular IDEs, which also have integrated support for running virtual environments, are:
     - PyCharm - (free version available) the leading IDE for Python <https://www.jetbrains.com/pycharm/>
@@ -42,16 +42,16 @@ MkDocs is a [Python](https://www.python.org) application and the extra packages 
 
 Doing this effectively requires:
 
-- Setting up a new Python project which, ideally, uses a virtual environment (above).
+- Setting up a new Python project using a virtual environment (above).
 - Installing `mkdocs`
 - Installing some python plugins
 - Cloning this Rocky GitHub repository:<https://github.com/rocky-linux/docs.rockylinux.org>
-- Linking to the `docs` folder within your cloned documentation repository (you can also just modify the mkdocs.yml file if you wish to load the correct folder, but linking keeps your mkdocs environment cleaner)
+- Linking to the `docs` folder within your cloned documentation repository (you can also just change the `mkdocs.yml` file if you wish to load the correct folder, but linking keeps your mkdocs environment cleaner)
 - Running `mkdocs serve` within your clone of docs.rockylinux.org
 
 !!! tip
 
-    You can build totally separate environments for `mkdocs` by using any of procedures found in the "Local Documentation" section of the "Contribute" menu.
+    You can build totally separate environments for `mkdocs` by using any of the procedures found in the [Local Documentation](localdocs/index.md) section of the "Contribute" menu.
 
 !!! Note
 
@@ -69,7 +69,7 @@ Inside your docs.rockylinux.org local (clone), do the following. This assumes th
 
 `ln -s /home/username/documentation/docs docs`
 
-Again, if you desire, you can modify the local copy of the `mkdocs.yml` file to set the path. If using this method, you would modify this line to point to your `documentation/docs` folder:
+Again, you can change the local copy of the `mkdocs.yml` file to set the path. If using this method, you will change this line to point to your `documentation/docs` folder:
 
 ```text
 docs_dir: 'docs/docs'
@@ -79,11 +79,11 @@ Once completed, you can try running `mkdocs serve` to see if you get your desire
 
 ## Navigation and other changes
 
-Navigation is handled with mkdocs `.pages` files **OR** by the value of the "title:" meta in the document front matter. The `.pages` files are not terribly complex, BUT, if something is left out, it can cause the server to fail to load. That's why this procedure is **ONLY** for Managers and Editors. These individuals are going to have the tools in place (local install of mkdocs, plus clones of both documentation and docs.rockylinux.org) so that something pushed and merged to GitHub will not break the serving of the documentation website. A contributor cannot be expected to have even one of these requirements.
+Mkdocs handles navigation with `.pages` files **OR** by the value of the "title:" meta in the document front matter. The `.pages` files are not terribly complex, BUT, if you leave something out, it can cause the server to fail to load. That is why this procedure is **ONLY** for Managers and Editors. These individuals are going to have the tools in place (local install of mkdocs, plus clones of both documentation and docs.rockylinux.org) so that something pushed and merged to GitHub will not break the serving of the documentation website. A contributor is not expected to have these requirements.
 
 ### `.pages` files
 
-As already stated, the `.pages` files are generally pretty simple. They are a YAML formatted file that `mkdocs` reads before rendering the content. To take a look at one of the more complex `.pages` files, let's look at the one created to help format the side navigation:
+As already stated, the `.pages` files are generally pretty simple. They are a YAML formatted file that `mkdocs` reads before rendering the content. To see one of the more complex `.pages` files, let us examine the one created to help format the side navigation:
 
 ```yaml
 ---
@@ -110,9 +110,9 @@ nav:
     - ...
 ```
 
-Here, the `index*md` shows the "Guides Home: ", `installation*.md` shows the "Installing Rocky Linux" document link, and the `migrate2rocky*.md` shows the "Migrating To Rocky Linux" document link. The "*" within each link allows that document to be in *any* language. Finally, by placing "Contribute" next, it falls beneath these items rather than in the normal (alphabetic) sort order. Looking down the list, you can see what each item is doing. Note that after the "Package Management: package_management" entry, there are actually two more folders (security and web). These do not require any additional formatting, so we are just telling `mkdocs` to load them normally with the "-..."
+Here, the `index*.md` shows the "Guides Home: ", `installation*.md` shows the "Installing Rocky Linux" document link, and the `migrate2rocky*.md` shows the "Migrating To Rocky Linux" document link. The `*` within each link allows that document to be in any language, for example, `index.fr.md`, `index.de.md`, and so on. Finally, by placing "Contribute" next, it falls beneath these items rather than in the normal (alphabetic) sort order. Looking down the list, you can see what each item is doing. Note that after the "Package Management: package_management" entry, two more folders (security and web) exit. These do not require any additional formatting. The `.pages` file tells `mkdocs` to load them normally with the `- ...`.
 
-You can also use YAML formatting within an actual file. A reason for doing this might be that the beginning heading of the file is so long, that it just doesn't display well in the navigation section.  As an example, take this document heading "# `mod_ssl` on Rocky Linux in an httpd Apache Web-Server Environment". That is very long. It displays very poorly in the side navigation once the "Web" navigation item is opened. To fix this, you can either work with the author to change his heading, or, you can change how it displays in the menu by adding a title before the heading inside the document. For the example document, there is a title added:
+You can also use YAML formatting within an actual file. A reason for doing this might be that the beginning heading of the file is too long and does not display well in the navigation section. As an example, take this document heading "# `mod_ssl` on Rocky Linux in an httpd Apache Web-Server Environment". That is too long. It displays poorly in the side navigation when the "Web" navigation item opens. To fix this, you can work with the author to change their heading, or, you can change how it displays in the menu by adding a title before the heading inside the document. In this example, adding a title to the front matter shortens the title length in the listing:
 
 ```text
 ---
@@ -122,8 +122,12 @@ title: Apache With `mod_ssl`
 
 This changes the title regarding the navigation but leaves the author's original title in place within the document.
 
-There will probably not be a lot of need for additional `.pages` files. They should be used economically.
+!!! info
+
+    In most cases, the author's title will be a level 1 heading and the title front matter will ALSO be a level 1 ("#") heading. This introduces a markdown error within the document. To get around this, either delete the author's title completely, or change it to a level 2 heading ("##").
+
+You should use `.pages` files economically, only when necessary.
 
 ## Conclusion
 
-While the navigational changes that might need to be made are not difficult, the potential for breaking the live documentation exists. For this reason, only managers and editors with the appropriate tooling in place should have the permissions to edit these files. Having a full environment available to view what the live pages will look like keeps the manager or editor from making a mistake while editing these files, breaking the live documentation.
+While making necessary navigational changes with `.pages` files are not difficult, the potential for breaking the live documentation exists. For this reason, only managers and editors with the appropriate tooling in place should have the permissions to edit these files. Having a full environment available to view what the live web pages display keeps the manager or editor from making a mistake when editing these files.
