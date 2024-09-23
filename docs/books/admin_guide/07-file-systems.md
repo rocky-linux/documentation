@@ -782,8 +782,8 @@ Their main features are:
 
 | Link types     | Description                                                                                                                                                                                                                                                                |
 | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| soft link file | Represents a shortcut similar to Windows. It has permission of 777 and points to the original file. When the original file is deleted, the linked file and the original file are displayed in red.                                                                         |
-| Hard link file | Represents the original file. It has the same *inode* number as the hard-linked file. They can be updated synchronously, including the contents of the file and when it was modified. Cannot cross partitions, cannot cross file systems. Cannot be used for directories. |
+| Soft link file | This file is similar to a shortcut for Windows. It has permission of 0777 and points to the original file. When the original file is deleted, you can use `ls -l` to view the output information of the soft link file. In the output information, the file name of the soft link appears in red, and the pointed original file appears in red with a flashing prompt.  |
+| Hard link file | This file represents different file mappings that occupy the same *inode* number. They can be updated synchronously (including file content, modification time, owner, group affiliation, access time, etc.). Hard linked files cannot span partitions and file systems, and cannot be used on directories. |
 
 Specific examples are as follows:
 
