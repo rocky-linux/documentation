@@ -327,7 +327,7 @@ sub vcl_backend_response {
 
 #### Розповсюдження запитів на різні бекенди
 
-Якщо розміщено кілька сайтів, наприклад сервер документів (\<docs.rockylinux.org>) і вікі (\<wiki.rockylinux.org>), можна розподіляти запити на правильну серверну частину.
+Якщо розміщено кілька сайтів, наприклад сервер документів (<docs.rockylinux.org>) і вікі (<wiki.rockylinux.org>), можна розподіляти запити на правильну серверну частину.
 
 Оголошення бекендів:
 
@@ -438,7 +438,7 @@ site.front02                   probe      Healthy 5/5
 varnishadm backend.set_health site.front01 auto
 ```
 
-Оголошення серверних модулів виконується наступним чином: https://github.com/mattiasgeniar/varnish-6.0-configuration-templates.
+Оголошення серверних модулів виконується наступним чином: <https://github.com/mattiasgeniar/varnish-6.0-configuration-templates>.
 
 ### Журнали Apache
 
