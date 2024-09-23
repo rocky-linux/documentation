@@ -19,7 +19,7 @@ bereit :heavy_check_mark: zwischen Bereitstellungsschritten reagieren.
 :checkered_flag: **ansible**, **ansistrano**, **Rollen**, **Bereitstellung**
 
 **Vorkenntnisse**: :star: :star:  
-**Komplexität**: :star: :star: :star:
+**Schwierigkeitsgrad**: :star: :star: :star:
 
 **Lesezeit**: 41 Minuten
 
@@ -125,7 +125,7 @@ Technische Überlegungen:
 
 Unser Playbook zur Konfiguration des Servers: `playbook-config-server.yml`
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -136,27 +136,27 @@ Unser Playbook zur Konfiguration des Servers: `playbook-config-server.yml`
       DirectoryIndex index.php index.htm
     apache_vhosts:
       - servername: "website"
- documentroot: "{{ dest }}current/html"
+    documentroot: "{{ dest }}current/html"
 
   tasks:
 
     - name: create directory for website
       file:
- path: /var/www/site/
- state: directory
- mode: 0755
+        path: /var/www/site/
+        state: directory
+        mode: 0755
 
     - name: install git
       package:
- name: git
- state: latest
+        name: git
+        state: latest
 
     - name: permit traffic in default zone for http service
       ansible.posix.firewalld:
- service: http
- permanent: yes
- state: enabled
- immediate: yes
+        service: http
+        permanent: yes
+        state: enabled
+        immediate: yes
 
   roles:
     - { role: geerlingguy.apache }
@@ -193,7 +193,7 @@ Content-Type: text/html; charset=iso-8859-1
 
 !!! note "Anmerkung"
 
-    Da wir noch keinen Code bereitgestellt haben, ist es normal, dass „curl“ einen HTTP-Code „404“ zurückgibt. Wir können aber bereits bestätigen, dass der Dienst „httpd“ funktioniert und die Firewall geöffnet ist.
+    Da wir noch keinen Code bereitgestellt haben, ist es normal, dass „curl“ einen HTTP-Code „404“ zurückgibt. Wir können aber bereits bestätigen, dass der Dienst `httpd` funktioniert und die Firewall geöffnet ist.
 
 ### Bereitstellung der Software
 
@@ -215,7 +215,7 @@ Die Softwarequellen finden Sie im [Github-Repository](https://github.com/alemorv
 
 Wir werden ein Playbook `playbook-deploy.yml` erstellen, um unsere Bereitstellung zu verwalten:
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -257,7 +257,7 @@ TASK [ansistrano.deploy : ANSISTRANO | Change softlink to new release]
 TASK [ansistrano.deploy : ANSISTRANO | Clean up releases]
 
 PLAY RECAP ********************************************************************************************************************************************************************************************************
-192.168.1.11 : ok=25   changed=8    unreachable=0    failed=0    skipped=14   rescued=0    ignored=0   
+192.168.1.11 : ok=25   changed=8    unreachable=0    failed=0    skipped=14   rescued=0    ignored=0
 
 ```
 
@@ -342,7 +342,7 @@ Die Variable `ansistrano_keep_releases` wird verwendet, um die Anzahl der aufzub
 
 * Mit der Variablen `ansistrano_keep_releases` behalten Sie nur drei Releases des Projekts. Bitte überprüfen.
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -390,7 +390,7 @@ $ tree /var/www/site/
 
 ### Verwendung von shared_paths und shared_files
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -486,7 +486,7 @@ Vergessen Sie nicht, Ihre Apache-Konfiguration entsprechend zu ändern!
 
 Bearbeiten Sie das Playbook für die Serverkonfiguration `playbook-config-server.yml`
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -520,7 +520,7 @@ Bearbeiten Sie das Playbook für die Serverkonfiguration `playbook-config-server
 
 Ändern Sie das Deployment-Playbook `playbook-deploy.yml`
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -587,7 +587,7 @@ Die Variable `ansistrano_git_branch` wird verwendet, um einen `branch` oder `tag
 
 * Den Branch `releases/v1.1.0` bereitstellen:
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -628,7 +628,7 @@ $ curl http://192.168.1.11
 
 * Das Git-Tag `v2.0.0` bereitstellen:
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -684,7 +684,7 @@ Vor und nach jedem dieser Schritte ist ein Eingriff möglich.
 
 * Einfaches Beispiel: zu Beginn der Bereitstellung eine E-Mail (oder eine beliebige Slack-Benachrichtigung) senden:
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -710,7 +710,7 @@ Vor und nach jedem dieser Schritte ist ein Eingriff möglich.
 
 Die Datei `deploy/before-setup-tasks.yml` erstellen:
 
-```bash
+```yaml
 ---
 - name: Send a mail
   mail:
@@ -735,7 +735,7 @@ Heirloom Mail version 12.5 7/5/10.  ?  zeigt Hilfe an.
 
 * Am Ende der Bereitstellung müssen Sie wahrscheinlich einige Dienste neu starten, beispielsweise um den Cache zu leeren. Nach Abschluss der Bereitstellung starten wir Apache neu:
 
-```bash
+```yaml
 ---
 - hosts: ansible_clients
   become: yes
@@ -762,7 +762,7 @@ Heirloom Mail version 12.5 7/5/10.  ?  zeigt Hilfe an.
 
 Erstellen Sie die Datei `deploy/after-symlink-tasks.yml`:
 
-```bash
+```yaml
 ---
 - name: restart apache
   systemd:

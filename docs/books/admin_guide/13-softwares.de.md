@@ -90,7 +90,7 @@ rpm -qf /path/to/file
 | `-f`             | Zeigt den Namen des Pakets, das die angegebene Datei enthält.                                                           |
 | `--last`         | Die Liste der Pakete wird nach dem Installationsdatum sortiert (die letzten installierten Pakete erscheinen als Erste). |
 
-!!! warning "Warnung"
+!!! warning "Warnhinweis"
 
     Nach der `-q` Option muss der Paketname genau sein. Platzhalter (wildcards) werden nicht unterstützt.
 
