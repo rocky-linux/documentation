@@ -12,7 +12,7 @@ For beginners, you will be using RDP. RDP stands for Remote Desktop Protocol, an
 
 !!! note
 
-   By default, Rocky Linux allows you to share your desktop via another VNC protocol. VNC is serviceable enough, but RDP usually offers a much smoother experience and can handle weird monitor resolutions.
+    By default, Rocky Linux allows you to share your desktop via another VNC protocol. VNC is serviceable enough, but RDP usually offers a much smoother experience and can handle weird monitor resolutions.
 
 ## Assumptions
 

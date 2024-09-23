@@ -6,9 +6,14 @@ tested_with: 8.5, 8.6
 tags:
   - contribute
   - local environment lxd
+  - local environment incus
 ---
 
 # Introduction
+
+!!! info
+
+    The procedures here will work with Incus as well as LXD.
 
 There are several ways to run a copy of `mkdocs` to see exactly how your Rocky Linux document will appear when merged on the live system. This particular document deals with using an LXD container on your local workstation to separate python code in `mkdocs` from other projects you might be working on.
 
