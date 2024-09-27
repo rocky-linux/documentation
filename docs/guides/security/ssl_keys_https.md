@@ -9,15 +9,12 @@ tags:
   - openssl
 ---
   
-# Generating SSL/TLS keys
-
 ## Prerequisites
 
-* A workstation and a server running Rocky Linux 
+* A workstation and a server running Rocky Linux
 * _OpenSSL_ installed on the machine that you are going to be generating the private key and CSR (Certificate Signing Request), and on the server where you will eventually be installing your key and certificates
 * Able to run commands comfortably from the command-line
 * Helpful: knowledge of SSL/TLS and OpenSSL commands
-
 
 ## Introduction
 
@@ -29,10 +26,13 @@ For the uninitiated, SSL/TLS private keys can have different sizes, measured in 
 
 As of 2021, a website's recommended private key size is still 2048 bits. You can go higher, but doubling the key size from 2048 bits to 4096 bits is only about 16% more secure, takes more space to store the key, and causes higher CPU loads when processing the key.
 
-This slows down your web site performance without gaining any significant security. Stick with the 2048 key size and always keep tabs on what is currently recommend
+This slows down your web site performance without gaining any significant security. Stick with the 2048 key size and always keep tabs on what the current recommendation is.
+
 To start with, ensure the installation of OpenSSL on your workstation and server:
 
-`dnf install openssl`
+```bash
+dnf install openssl
+```
 
 If it is not installed, your system will install it and any needed dependencies.
 
@@ -42,11 +42,13 @@ If you are not running your own DNS (Domain Name System), you can often use the 
 
 Generate the key using `openssl`:
 
-`openssl genrsa -des3 -out example.com.key.pass 2048`
+```bash
+openssl genrsa -des3 -out example.com.key.pass 2048
+```
 
 Note that you named the key, with a *.pass* extension. That is because when you run this command, it requests that you enter a passphrase. Enter a simplistic passphrase that you can remember as you are going to be removing this shortly:
 
-```
+```bash
 Enter pass phrase for example.com.key.pass:
 Verifying - Enter pass phrase for example.com.key.pass:
 ```
@@ -55,13 +57,15 @@ Next, remove that passphrase. This is because if you do not remove it, you will 
 
 You might not even be around to enter it, or worse, might not have a console available. Remove it now to avoid all of that:
 
-`openssl rsa -in example.com.key.pass -out example.com.key`
+```bash
+openssl rsa -in example.com.key.pass -out example.com.keys
+```
 
-This will request that passphrase once again to remove the passphrase from the key:
+This will request that passphrase again to remove the passphrase from the key:
 
 `Enter pass phrase for example.com.key.pass:`
 
-Your password is now removed from the key now that you have entered the passphrase a third time, and saved as *example.com.key*
+Your password is now removed from the key now that you have entered the passphrase a third time, and saved as _example.com.key_
 
 ## Generate the CSR
 
@@ -69,9 +73,11 @@ Next, you need to generate the CSR (certificate signing request) that you will u
 
 Prompting for several pieces of information occurs during the generation of the CSR. These are the X.509 attributes of the certificate.
 
-One of the prompts will be for "Common Name (e.g., YOUR domain name)". This field must have the fully qualified domain name of the server that the SSL/TLS is protecting. If the website to be protected will be https://www.example.com, then enter www.example.com at this prompt:
+One of the prompts will be for "Common Name (e.g., YOUR domain name)". This field must have the fully qualified domain name of the server that the SSL/TLS is protecting. If the website you are protecting is <https://www.example.com>, then enter <www.example.com> at this prompt:
 
-`openssl req -new -key example.com.key -out example.com.csr`
+```bash
+openssl req -new -key example.com.key -out example.com.csr
+```
 
 This opens up a dialog:
 
@@ -81,17 +87,17 @@ This opens up a dialog:
 
 `Locality Name (eg, city) [Default City]:` enter the full city name, for example "Omaha"
 
-`Organization Name (eg, company) [Default Company Ltd]:` If you want, you can enter an organization that this domain is a part of, or just hit <kbd>ENTER</kbd> to skip.
+`Organization Name (eg, company) [Default Company Ltd]:` If you want, you can enter an organization that this domain is a part of, or just hit ++enter++ to skip.
 
-`Organizational Unit Name (eg, section) []:` This would describe the division of the organization that your domain falls under. Again, you can just hit <kbd>ENTER</kbd> to skip.
+`Organizational Unit Name (eg, section) []:` This would describe the division of the organization that your domain falls under. Again, you can just hit ++enter++ to skip.
 
 `Common Name (eg, your name or your server's hostname) []:` Here, you have to enter your site hostname, example "www.example.com"
 
-`Email Address []:` This field is optional, you can decide to fill it out or just hit <kbd>ENTER</kbd> to skip.
+`Email Address []:` This field is optional, you can decide to fill it out or just hit ++enter++ to skip.
 
-Next, the procedure prompts you to enter extra attributes. Skipping these is possible by hitting <kbd>ENTER</kbd>:
+Next, the procedure prompts you to enter extra attributes. Skipping these is possible by hitting ++enter++:
 
-```
+```bash
 Please enter the following 'extra' attributes
 to be sent with your certificate request
 A challenge password []:
@@ -108,7 +114,7 @@ Each certificate vendor will have basically the same procedure. You purchase the
 
 Which will show you something like this:
 
-```
+```bash
 -----BEGIN CERTIFICATE REQUEST-----
 MIICrTCCAZUCAQAwaDELMAkGA1UEBhMCVVMxETAPBgNVBAgMCE5lYnJhc2thMQ4w
 DAYDVQQHDAVPbWFoYTEcMBoGA1UECgwTRGVmYXVsdCBDb21wYW55IEx0ZDEYMBYG
@@ -130,9 +136,8 @@ HFOltYOnfvz6tOEP39T/wMo=
 
 You want to copy everything including the "BEGIN CERTIFICATE REQUEST" and "END CERTIFICATE REQUEST" lines. Then paste these into the CSR field on the web site where you are purchasing the certificate.
 
-Before issuing your certificate, You may have to perform other verification steps depending on domain ownership, the registrar you are using, etc. When issued, it will include an intermediate certificate from the provider, which you will also use in the configuration.
+Before issuing your certificate, You may have to perform other verification steps depending on domain ownership and the registrar you are using.
 
 ## Conclusion
 
 Generating all of the bits and pieces for purchasing a web site certificate is not difficult using this procedure.
-
