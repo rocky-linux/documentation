@@ -9,26 +9,24 @@ tags:
   - certbot
 ---
 
-# Generating SSL keys - Let's Encrypt
-
 ## Prerequisites & assumptions
 
 - Comfort with the command line
 - Familiarity with securing web sites with SSL certificates is a plus
 - Knowledge of command line text editors (this example uses *vi*)
-- A web server open to the world and running on port 80 (http)
-- Familiarity with *ssh* (secure shell) and the ability to access your server with *ssh*
-- All commands assume that you are either the root user or that you have used *sudo* to gain root access.
+- A web server open to the world and running on port 80 (`http`)
+- Familiarity with *SSH* (secure shell) and the ability to access your server with *SSH*
+- All commands assume that you are the root user or that you have used `sudo` to gain root access
 
 ## Introduction
 
-One of the most popular ways to secure a web site currently is using Let's Encrypt SSL certificates, which are also free.
+One of the most popular ways to secure a web site is with Let's Encrypt SSL certificates, which are also free.
 
-These are actual certificates, not self-signed or snake oil, etc., so they are great for a low-budget security solution. This document will walk you through the process of installing and using Let's Encrypt certificates on a Rocky Linux web server.
+These are actual certificates, not self-signed or snake oil, so they are great for a low-budget security solution. This document will walk you through the process of installing and using Let's Encrypt certificates on a Rocky Linux web server.
 
 ## Installation
 
-To do the next steps, use *ssh* to log into your server. If your server's fully qualified DNS name was <www.myhost.com>, then you would use:
+To do the next steps, use `ssh` to log into your server. If your server's fully qualified DNS name was <www.myhost.com>, then you would use:
 
 ```bash
 ssh -l root www.myhost.com
@@ -40,21 +38,21 @@ Or, if you must access your server as an unprivileged user first. Use your usern
 ssh -l username www.myhost.com
 ```
 
-And then:
+Then:
 
 ```bash
 sudo -s
 ```
 
-You will need your *sudo* user's credentials in this case to gain access to the system as root.
+You will need your user's credentials in this case to gain access to the system as root.
 
-Let's Encrypt uses a package called *certbot* which needs to be installed via the EPEL repositories. Add those first:
+Let's Encrypt uses a package called *certbot* that you install with the EPEL repository. Add those first:
 
 ```bash
 dnf install epel-release
 ```
 
-Then install the appropriate packages, depending on whether you use Apache or Nginx as your web server. For Apache that is:
+Install the appropriate packages, depending on whether you use Apache or Nginx as your web server. For Apache that is:
 
 ```bash
 dnf install certbot python3-certbot-apache
@@ -72,23 +70,23 @@ You can always install both server modules if necessary.
 
     An earlier version of this guide required the snap package version of *certbot*, which was necessary at the time. The RPM versions have been re-tested recently, and are working now. That said, Certbot strongly recommends the use of the [snap install procedure](https://certbot.eff.org/instructions?ws=apache&os=centosrhel8). Rocky Linux 8 and 9 have *certbot* available in the EPEL, so we show that procedure here. If you would like to use the procedure recommended by Certbot, just follow that procedure instead.
 
-## Getting The Let's Encrypt Certificate for the Apache Server
+## Getting the Let's Encrypt Certificate for the Apache server
 
-There are two ways to retrieve your Let's Encrypt certificate, either using the command to modify the http configuration file for you, or to just retrieve the certificate. If you are using the procedure for a multi-site setup suggested for one or more sites in the procedure [Apache Web Server Multi-Site Setup](../web/apache-sites-enabled.md), then you will only want to retrieve your certificate.
+You can retrieve your Let's Encrypt certificate in two ways: Using the command to change the `http` configuration file for you, or retrieving the certificate only. If you are using the procedure for a multi-site setup suggested for one or more sites in the procedure [Apache Web Server Multi-Site Setup](../web/apache-sites-enabled.md), then just retrieve your certificate.
 
-We are assuming that you **are** using this procedure so we will only retrieve the certificate. If you are running a standalone web server using the default configuration, you can retrieve the certificate and modify the configuration file in one step using:
+The multi-site setup is the assumption here, so the instructions that follow will only retrieve the certificate. If you are running a standalone web server with the default configuration, you can retrieve the certificate and change the configuration file in one step:
 
 ```bash
 certbot --apache
 ```
 
-That's really the easiest way to get things done. However, sometimes you want to take a more manual approach and grab the certificate. To retrieve the certificate only, use this command:
+That is really the easiest way to get things done. However, sometimes you want to take a more manual approach and grab the certificate. To retrieve the certificate only, use this command:
 
 ```bash
 certbot certonly --apache
 ```
 
-Both commands will generate a set of prompts you need to answer. The first is to give an email address for important information:
+These commands will generate a set of prompts you need to answer. The first is to give an email address for important information:
 
 ```bash
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
@@ -97,7 +95,7 @@ Enter email address (used for urgent renewal and security notices)
  (Enter 'c' to cancel): yourusername@youremaildomain.com
 ```
 
-The next asks you to read and accept the terms of the subscriber agreement. Once you have read the agreement answer 'Y' to continue:
+The next asks you to read and accept the terms of the subscriber agreement. When you have read the agreement answer 'Y' to continue:
 
 ```bash
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -121,7 +119,7 @@ EFF news, campaigns, and ways to support digital freedom.
 (Y)es/(N)o:
 ```
 
-The next prompt asks you which domain you want the certificate for. It should display a domain in the listing based on your running web server. If so, enter the number next to the domain for which you are getting the certificate. In this case there is only one option ('1'):
+The next prompt asks you to identify the domain you want the certificate for. It may show a domain in the listing based on your running web server. If so, enter the number next to the domain that you are getting the certificate for. In this case, only one option ('1') exists:
 
 ```bash
 Which names would you like to activate HTTPS for?
@@ -132,7 +130,7 @@ Select the appropriate numbers separated by commas and/or spaces, or leave input
 blank to select all options shown (Enter 'c' to cancel):
 ```
 
-If all goes well, you should receive the following message:
+If all goes well, you will receive the following message:
 
 ```bash
 Requesting a certificate for your-server-hostname
@@ -157,11 +155,15 @@ IMPORTANT NOTES:
    Donating to EFF:                    https://eff.org/donate-le
 ```
 
-## The Site Configuration - https
+## The site configuration - `https`
 
-Applying the configuration file to our site is slightly different than if we were using a purchased SSL certificate from another provider (and if we didn't let *certbot* do it automatically).
+Applying the configuration file to our site is nearly identical to the procedure used for a purchased SSL certificate from another provider.
 
-A single PEM (Privacy Enhanced Mail) file includes the certificate and chain file. This is a common format for all certificate files now, so even though it has "Mail" in the reference, it is just a type of certificate file. To illustrate the configuration file, we will show it in it's entirety and then describe what is happening:
+A single PEM (Privacy Enhanced Mail) file includes the certificate and chain file. This is a common format for all certificate files now. Even though it has "Mail" in the reference, it is just a type of certificate file. An illustration of the configuration file follows, and a description of what is happening:
+
+!!! info
+
+    Previously, this documentation contained a line in the configuration for the `SSLCertificateChainFile` directive. Since Apache version 2.4.8, that directive is deprecated as the `SSLCertificateFile` directive [now extends to include the intermediate CA file](https://httpd.apache.org/docs/2.4/mod/mod_ssl.html#sslcertificatechainfile).
 
 ```bash
 <VirtualHost *:80>
@@ -188,7 +190,6 @@ A single PEM (Privacy Enhanced Mail) file includes the certificate and chain fil
 
         SSLCertificateFile /etc/letsencrypt/live/your-server-hostname/fullchain.pem
         SSLCertificateKeyFile /etc/letsencrypt/live/your-server-hostname/privkey.pem
-        SSLCertificateChainFile /etc/letsencrypt/live/your-server-hostname/fullchain.pem
 
         <Directory /var/www/sub-domains/com.yourdomain.www/html>
                 Options -ExecCGI -Indexes
@@ -203,21 +204,20 @@ A single PEM (Privacy Enhanced Mail) file includes the certificate and chain fil
 </VirtualHost>
 ```
 
-Here's what's happening above. You may want to review the [Apache Web Server Multi-Site Setup](../web/apache-sites-enabled.md) to see the differences in the application of an SSL purchased from another provider and the Let's Encrypt certificate:
+Here is what is happening:
 
-- Even though port 80 (standard http) is listening, we are redirecting all traffic to port 443 (https)
-- SSLEngine on - simply says to use SSL
-- SSLProtocol all -SSLv2 -SSLv3 -TLSv1 - says to use available protocols, except those found to have vulnerabilities. You should research periodically which protocols are currently acceptable for use.
-- SSLHonorCipherOrder on - this deals with the next line regarding the cipher suites, and says to deal with them in the order that they are given. This is another area where you should review the cipher suites that you want to include periodically
-- SSLCertificateFile - this is the PEM file, that contains the site certificate **AND** the intermediate certificate. We still need the 'SSLCertificateChainFile' line in our configuration, but it will simply specify the same PEM file again.
+- Even though port 80 (standard `http`) is listening, you are redirecting all traffic to port 443 (`https`)
+- SSLEngine on - says to use SSL
+- SSLProtocol all -SSLv2 -SSLv3 -TLSv1 - says to use available protocols, except those found to have vulnerabilities. You need to periodically research the protocols that are currently acceptable for use.
+- SSLHonorCipherOrder on - this deals with the next line regarding the cipher suites, and says to deal with them in the order listed. This is another area where you need to review the cipher suites that you want to include periodically
+- SSLCertificateFile - this is the PEM file, and includes the site certificate **AND** the intermediate certificate.
 - SSLCertificateKeyFile - the PEM file for the private key, generated with the *certbot* request.
-- SSLCertificateChainFile - the certificate from your certificate provider, often called the intermediate certificate, in this case exactly like the 'SSLCertificateFile' location above.
 
-Once you have made all of your changes, simply restart *httpd* and if it starts test your site to make sure you now have a valid certificate file showing. If so, you are ready to move on to the next step: automation.
+When you have made all of your changes, restart *httpd* and if it starts test your site to ensure you now have a valid certificate file showing. If so, you are ready to move on to the next step: automation.
 
 ## Using *certbot* With Nginx
 
-A quick note: using *certbot* with Nginx is pretty much the same as with Apache. Here's the short, short version of the guide:
+A quick note: using *certbot* with Nginx is pretty much the same as with Apache. Here is the short version of the guide:
 
 Run this command to get started:
 
@@ -225,7 +225,7 @@ Run this command to get started:
 certbot --nginx
 ```
 
-You will need to enter your email address and the site you want a certificate for. Assuming you have at least one site configured (with a domain name pointing at the server), you'll see a list like this:
+You will need to enter your email address and the site you want a certificate for. Assuming you have at least one site configured (with a domain name pointing at the server), you will see a list:
 
 ```bash
 1. yourwebsite.com
@@ -251,7 +251,7 @@ server {
 
 ```
 
-After *certbot* gets through with it, it'll look like a bit this:
+After *certbot* gets through with it, it will look like a bit this:
 
 ```bash
 server {
@@ -283,23 +283,21 @@ server {
 }
 ```
 
-Depending on a couple of things (for example, if you're using Nginx as a reverse proxy), you may need to dive into the new configuration file to fix up a few things that *certbot* won't handle perfectly on its own.
+If you are using Nginx as a reverse proxy, you may need to change the new configuration file to fix up a few things that *certbot* will not handle perfectly on its own.
 
-Or write your own configuration file the hard way.
-
-## Automating Let's Encrypt Certificate Renewal
+## Automating Let's Encrypt certificate renewal
 
 !!! note
 
     Replace occurences with "your-server-hostname" in these examples, with the actual domain name or hostname.
 
-The beauty of installing *certbot* is that the Let's Encrypt certificate will be automatically renewed. There is no need to create a process to do this. We do need to test the renewal with:
+The beauty of installing *certbot* is that the Let's Encrypt certificate will be automatically renewed. You need not create a process to do this. You *do* need to test the renewal with:
 
 ```bash
 certbot renew --dry-run
 ```
 
-When you run this command, you'll get a nice output showing the renewal process:
+When you run this command, you will get a nice output showing the renewal process:
 
 ```bash
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
@@ -327,13 +325,13 @@ Congratulations, all simulated renewals succeeded:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
 
-The command to renew *certbot* can be found using one of the following methods:
+You can renew the *certbot* certificate in one of the following ways:
 
 - By listing the contents of `/etc/crontab/`
 - By listing the contents of `/etc/cron.*/*`
 - By running `systemctl list-timers`
 
-In this example, we are using the last option and we can see that *certbot* exists and that it was installed with the `snap` procedure:
+Using the `systemctl list-timers` method, you can see that *certbot* exists and its installation was with the `snap` procedure:
 
 ```bash
 sudo systemctl list-timers
@@ -344,4 +342,4 @@ Sat 2021-04-03 07:12:00 UTC  14h left   n/a                          n/a        
 
 Let's Encrypt SSL certificates are yet another option for securing your web site with an SSL. Once installed, the system provides automatic renewal of certificates and will encrypt traffic to your web site.
 
-It should be noted that Let's Encrypt certificates are used for standard DV (Domain Validation) certificates. They cannot be used for OV (Organization Validation) or EV (Extended Validation) certificates.
+Let's Encrypt certificates are for standard DV (Domain Validation) certificates. Using them for OV (Organization Validation) or EV (Extended Validation) certificates is not possible.
