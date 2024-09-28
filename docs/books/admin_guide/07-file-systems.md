@@ -844,7 +844,7 @@ The description of **directory permissions** is as follows:
 | :-------------------: | ----------------------------------------------------------------------------------------------------------------------------------------- |
 |           r           | Read. Allows reading the contents of a directory (`ls -R`).                                                                               |
 |           w           | Write. Allows you to create, and delete files/directories in this directory, such as commands `mkdir`, `rmdir`, `rm`, `touch`, and so on. |
-|           x           | Execute. Allows descending in the directory (`cd`).                                                                                       |
+|           x           | Execute. Allows entry into directory (`cd`).                                                                                              |
 |           -           | No right                                                                                                                                  |
 
 !!! info
