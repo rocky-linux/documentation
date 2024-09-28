@@ -861,7 +861,7 @@ The description of **directory permissions** is as follows:
 
 !!! info
 
-    In some commands, it is possible to designate everyone with **a** (_all_). **a = ugo**.
+    In some commands, you can use *a* (_all_) to represent *ugo*. For example: `chmod a+x FileName` is equivalent to `chmod u+x,g+x,o+x FileName`.
 
 ### Attribute management
 
