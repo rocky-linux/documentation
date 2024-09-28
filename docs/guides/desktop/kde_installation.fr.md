@@ -19,29 +19,29 @@ Grâce à l'équipe de développement de Rocky Linux, il y a maintenant des imag
 
 ## Prérequis
 
-* Une machine, compatible avec Rocky Linux 9.0, (bureau, ordinateur portable ou serveur) sur laquelle vous voulez utiliser le bureau KDE.
-* Maîtriser la ligne de commande de manière à pouvoir réaliser certaines tâches, par exemple tester les sommes de contrôle de l'image.
-* La connaissance de la façon d'écrire une image amorçable sur DVD ou une clé USB.
+- Une machine, compatible avec Rocky Linux 9.0, (bureau, ordinateur portable ou serveur) sur laquelle vous voulez utiliser le bureau KDE.
+- Maîtriser la ligne de commande de manière à pouvoir réaliser certaines tâches, par exemple tester les sommes de contrôle de l'image.
+- La connaissance de la façon d'écrire une image amorçable sur DVD ou une clé USB.
 
 ## Obtenir, vérifier et créer une image Live de KDE
 
-Avant l'installation, la première étape consiste à télécharger l'image live et à l'enregistrer sur un DVD ou une clé USB. Comme indiqué précédemment, l'image autonome sera amorçable, tout comme tout autre support d'installation pour Linux. Vous pouvez trouver la dernière image KDE dans la section de téléchargement pour Rocky Linux 9 [images live](https://dl.rockylinux.org/pub/rocky/9.3/live/x86_64/).
+Avant l'installation, la première étape consiste à télécharger l'image live et à l'enregistrer sur un DVD ou une clé USB. Comme indiqué précédemment, l'image live sera amorçable, tout comme tout autre support d'installation pour Linux. Vous trouverez la dernière image KDE dans la section de téléchargement pour Rocky Linux 9 [images live](https://dl.rockylinux.org/pub/rocky/9.4/live/x86_64/).
 
 Notez que ce lien particulier suppose que x86_64 est l'architecture de votre processeur. Si vous avez une architecture aarch64, vous pouvez utiliser l'image correspondante à la place. Téléchargez à la fois l'image live et les fichiers de somme de contrôle.
 
 Maintenant vérifiez l'image avec le fichier CHECKSUM en utilisant la commande suivante (note : c'est un exemple ! Assurez-vous que le nom de votre image et les fichiers CHECKSUM correspondent) :
 
-```
+```text
 sha256sum -c CHECKSUM --ignore-missing Rocky-9-KDE-x86_64-latest.iso.CHECKSUM
 ```
 
 Si tout se passe bien, vous devriez obtenir ce message :
 
-```
+```text
 Rocky-9-KDE-x86_64-latest.iso: OK
 ```
 
-Si la somme de contrôle du fichier retourne OK, vous êtes maintenant prêt à enregistrer votre image ISO sur votre support de stockage. Nous supposons ici que vous savez enregistrer l'image sur votre support de stockage. Cette procédure est différente suivant l'OS que vous utilisez, les supports de stockage et les outils logiciels.
+Si la somme de contrôle du fichier retourne OK, vous êtes prêt à sauvegarder l'image ISO sur votre support de stockage. Nous supposons ici que vous savez enregistrer l'image sur votre support de stockage. Cette procédure est différente suivant l'OS que vous utilisez, les supports de stockage et les outils logiciels correspondants.
 
 ## Démarrage
 
@@ -97,7 +97,7 @@ Et finissez la configuration :
 
 ![kde_finish_config](images/kde_finish_config.png)
 
-Une fois cette étape terminée, le nom d'utilisateur que vous avez créé précédemment s'affiche. Entrez le mot de passe que vous avez créé pour l'utilisateur et appuyez sur <kbd>ENTER</kbd>. Cela devrait vous montrer un écran de bureau KDE :
+Une fois cette étape terminée, le nom d'utilisateur que vous avez créé précédemment s'affiche. Entrez le mot de passe que vous avez créé pour l'utilisateur et appuyez sur ++enter++. Cela devrait vous montrer un écran de bureau KDE :
 
 ![kde_screen](images/kde_screen.png)
 
