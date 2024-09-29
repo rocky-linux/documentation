@@ -22,34 +22,17 @@ PPPoE is a protocol used primarily by DSL and fiber-to-the-home ISPs where custo
 
 ## Installing accel-ppp
 
-As accel-ppp is not in the default Rocky or EPEL repositories, we first install the required packages to build it:
+First install EPEL:
 
 ```bash
-dnf install -y rpm-build make cmake gcc git openssl-devel pcre-devel kernel-modules-extra
+dnf install -y epel-release
 ```
 
-Subsequently, clone the accel-ppp source code to a folder:
+Subsequently, install accel-ppp:
 
 ```bash
-git clone https://github.com/accel-ppp/accel-ppp.git /opt/accel-ppp
-mkdir /opt/accel-ppp/build
-cd /opt/accel-ppp/build/
+dnf install -y accel-ppp
 ```
-
-Next, we need to build accel-ppp (Note: If you're running Rocky Linux 8.x substitute in `Centos8` for `Centos9`):
-
-```bash
-cmake -DCMAKE_INSTALL_PREFIX=/usr -DCPACK_TYPE=Centos9 ..
-make
-```
-
-Finally, we will build an `rpm` package and install it:
-
-```bash
-cpack -G RPM
-rpm -ivh accel-ppp.rpm
-```
-
 ## Setting up accel-ppp
 
 First, we need to enable IP forwarding:
