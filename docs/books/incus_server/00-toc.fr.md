@@ -13,7 +13,7 @@ tags:
 
 ### Présence de `Incus` sur Rocky Linux
 
-Il y a presque un an maintenant – 2023 ? –, l'annonce suivante est sortie sur la liste de diffusion lxc-users :
+Il y a plus d'un an maintenant – 2023 –, l'annonce suivante est sortie sur la liste de diffusion lxc-users :
 
 > Canonical, the creator and main contributor of the LXD project has decided that after over 8 years as part of the Linux Containers community, the project would now be better served directly under Canonical’s own set of projects.
 > —
