@@ -24,19 +24,19 @@ The minimum requirements for this procedure are the following:
 Install Extra Packages for Enterprise Linux (EPEL):
 
 ```bash
-sudo dnf install epel-release
+sudo dnf install epel-release -y
 ```
 
-Update your system's packages:
+Upgrade system packages:
 
 ```bash
-sudo dnf upgrade
+sudo dnf upgrade -y
 ```
 
 Install WireGuard:
 
 ```bash
-sudo dnf install wireguard-tools
+sudo dnf install wireguard-tools -y
 ```
 
 ## Configuring WireGuard Server
@@ -60,13 +60,13 @@ sudo touch /etc/wireguard/wg0.conf
 Generate a new private and public key pair for the WireGuard server:
 
 ```bash
-wg genkey | sudo tee /etc/wireguard/privatekey | wg pubkey | sudo tee /etc/wireguard/publickey
+wg genkey | sudo tee /etc/wireguard/wg0 | wg pubkey | sudo tee /etc/wireguard/wg0.pub
 ```
 
 Edit the configuration file with your editor of choice.
 
 ```bash
-sudo vim /etc/wireguard/wg0.conf
+sudo vi /etc/wireguard/wg0.conf
 ```
 
 Paste the following:
@@ -78,21 +78,21 @@ Address = x.x.x.x/24
 ListenPort = 51820
 ```
 
-You must replace `privatekey` with the private key generated earlier. You can view the private key with:
+You must replace the `server_privatekey` with the private key generated earlier. You can view the private key with:
 
 ```bash
-sudo cat /etc/wireguard/privatekey
+sudo cat /etc/wireguard/wg0
 ```
 
-Next, you will need to replace `x.x.x.x/24` with a network address within the private IP address range defined by [RFC 1918](https://datatracker.ietf.org/doc/html/rfc1918). Our demonstration private IP in this guide is `10.255.255.0/24`.
+Next, you will need to replace `x.x.x.x/24` with a network address within the private IP address range defined by [RFC 1918](https://datatracker.ietf.org/doc/html/rfc1918). The network address used in this guide is `10.255.255.0/24`.
 
-Finally, you can choose any UDP port to accept connections with WireGuard VPN. Here, our demonstration UDP port is `51820`.  
+Finally, you can choose any UDP port to accept connections with WireGuard VPN. UDP port `51820` is used for the purposes of this guide.  
 
 ## Enable IP forwarding
 
 IP forwarding allows the routing of packets between networks. This allows internal devices to communicate with each other through the WireGuard tunnel:
 
-Turn on IP forwarding for IPv4:
+Turn on IP forwarding for IPv4 and IPv6:
 
 ```bash
 sudo sysctl -w net.ipv4.ip_forward=1 && sudo sysctl -w net.ipv6.conf.all.forwarding=1
@@ -100,7 +100,7 @@ sudo sysctl -w net.ipv4.ip_forward=1 && sudo sysctl -w net.ipv6.conf.all.forward
 
 ## Configure `firewalld`
 
-If `firewalld` is not installed, install it:
+Install `firewalld`:
 
 ```bash
 sudo dnf install firewalld -y
@@ -155,7 +155,7 @@ sudo touch /etc/wireguard/wg0.conf
 Generate a new private and public key pair:
 
 ```bash
-wg genkey | sudo tee /etc/wireguard/privatekey | wg pubkey | sudo tee /etc/wireguard/publickey
+wg genkey | sudo tee /etc/wireguard/wg0 | wg pubkey | sudo tee /etc/wireguard/wg0.pub
 ```
 
 Edit the configuration file with your editor of choice, adding this content:
@@ -172,20 +172,20 @@ Endpoint = serverip:51820
 PersistentKeepalive = 25
 ```
 
-Replace `peer_privatekey` with the peer's private key stored in `/etc/wireguard/privatekey` on the peer.
+Replace `peer_privatekey` with the peer's private key stored in `/etc/wireguard/wg0` on the peer.
 
 You can use this command to output the key so you can copy it:
 
 ```bash
-sudo cat /etc/wireguard/privatekey
+sudo cat /etc/wireguard/wg0
 ```
 
-Replace `server_publickey` with the server's public key stored in `/etc/wireguard/publickey` on the server.
+Replace `server_publickey` with the server's public key stored in `/etc/wireguard/wg0.pub` on the server.
 
 You can use this command to output the key so you can copy it:
 
 ```bash
-sudo cat /etc/wireguard/publickey
+sudo cat /etc/wireguard/wg0.pub
 ```
 
 Replace `serverip` with the public IP of the WireGuard server.
@@ -198,22 +198,6 @@ ip a | grep inet
 
 The peer's configuration file now includes a `PersistentKeepalive = 25` rule. This rule tells the peer to ping the WireGuard server every 25 seconds to maintain the VPN tunnel's connection. Without this setting, the VPN tunnel will time out after inactivity.
 
-## Add the client key to the WireGuard server configuration
-
-Output the peer's public key and copy it:
-
-```bash
-sudo cat /etc/wireguard/publickey
-```
-
-On the server, run the following command, replacing `peer_publickey` with the peer public key:
-
-```bash
-sudo wg set wg0 peer peer_publickey allowed-ips 10.255.255.2
-```
-
-It is worth mentioning you can manually edit and add peers to the configuration file.
-
 ## Enable WireGuard VPN
 
 To enable WireGuard, you will run the following command on both the server and peer:
@@ -225,8 +209,57 @@ sudo systemctl enable wg-quick@wg0
 Then start the VPN by running this command on both the server and peer:
 
 ```bash
-systemctl start wg-quick@wg0
+sudo systemctl start wg-quick@wg0
 ```
+
+## Add the client key to the WireGuard server configuration
+
+Output the peer's public key and copy it:
+
+```bash
+sudo cat /etc/wireguard/wg0.pub
+```
+
+On the server, run the following command, replacing `peer_publickey` with the peer's public key:
+
+```bash
+sudo wg set wg0 peer peer_publickey allowed-ips 10.255.255.2
+```
+
+Using `wg set` only makes temporary changes to the WireGuard interface. For permanent configuration changes you can manually edit the configuration file and add the peer. You will need to reload the WireGuard interface after making any permanent configuration changes.
+
+Edit the server's configuration file with your editor of choice.
+
+```bash
+sudo vi /etc/wireguard/wg0.conf
+```
+
+Add the peer to configuration file. The contents should look similar to below:
+
+```bash
+[Interface]
+PrivateKey = +Eo5oVjt+d3XWvFWYcOChaLroGj5vapdXKH8UZ2T2Fc=
+Address = 10.255.255.1/24
+ListenPort = 51820
+
+[Peer]
+PublicKey = 1vSho8NvECkG1PVVk7avZWDmrd2VGZ2xTPaNe5+XKSg=
+AllowedIps = 10.255.255.2/32
+```
+
+Bring interface down:
+
+```bash
+sudo wg-quick down wg0
+```
+
+Bring interface up:
+
+```bash
+sudo wg-quick up wg0
+```
+
+## View WireGuard interfaces and test connectivity
 
 You can view WireGuard information on both the server and peer with:
 
