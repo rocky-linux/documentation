@@ -7,7 +7,7 @@ tags:
 
 # Notes de version de Rocky Linux
 
-Bienvenue sur notre liste de notes de version et de changements pour Rocky Linux. Vous trouverez les notes de publication des dernières versions avec les plus récentes en premier. Les dates de publication et les informations de support se trouvent ci-dessous.
+Bienvenue sur notre liste de notes de version et de changements pour Rocky Linux. Vous trouverez les notes de publication des dernières versions dans le menu en haut, à gauche, avec les plus récentes en premier. Les dates de publication et les informations de support se trouvent ci-dessous.
 
 ## Versions Rocky Linux
 
@@ -45,4 +45,4 @@ Rocky 8 (Code Name "Green Obsidian") a un support général jusqu'au 1er mai 202
 | 8.9     | 2023-11-22            | 4.18.0-513.5.1   |
 | 8.10    | 2024-05-31            | 4.18.0-553       |
 
-Si vous avez des questions ou des commentaires, veuillez nous joindre au forum de discussion [ici](https://chat.rockylinux.org/rocky-linux/channels/documentation).
+Si vous avez des questions ou des commentaires, veuillez nous joindre dans le forum de discussion [ici](https://chat.rockylinux.org/rocky-linux/channels/documentation).
