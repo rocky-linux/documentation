@@ -52,7 +52,7 @@ From the command-line enter:
 mkdir -p /etc/httpd/sites-available /etc/httpd/sites-enabled
 ```
 
-This will create both needed directories.
+This will create the needed directories.
 
 You also need a directory where our sites are going to be. This can be anywhere, but a good way to keep things organized is to create a "sub-domains" directory. Put this in /var/www: `mkdir /var/www/sub-domains/` to decrease complexity.
 
@@ -84,7 +84,7 @@ The other benefit of this method is that it allows us to fully specify everythin
 
 Say you have a website that loads a wiki. You will need a configuration file, which makes the site available on port 80.
 
-If you want to serve the website with SSL/TLS (and face it, in most cases you do), you need to add another (nearly the same) section to that file to enable port 443.
+If you want to serve the website with SSL/TLS (and face it, in most cases you do), you need to add another section to that file to enable port 443.
 
 You can examine that below in the [Configuration `https` using An SSL/TLS certificate](#configuration-https-using-an-ssltls-certificate) section.
 
@@ -197,6 +197,10 @@ A permanent redirect will teach the search engines, and soon any traffic to your
 
 Next, you need to define the `https` part of the configuration file:
 
+!!! info
+
+    As of Apache 2.4.8, the `SSLCertificateChainFile` directive is deprecated. The extension of the `SSLCertificateFile` directive includes the CA certificate of a the provider.
+
 ```apache
 <VirtualHost *:80>
         ServerName your-server-hostname
@@ -222,7 +226,6 @@ Next, you need to define the `https` part of the configuration file:
 
         SSLCertificateFile /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/com.wiki.www.crt
         SSLCertificateKeyFile /var/www/sub-domains/your-server-hostname/ssl/ssl.key/com.wiki.www.key
-        SSLCertificateChainFile /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/your_providers_intermediate_certificate.crt
 
         <Directory /var/www/sub-domains/your-server-hostname/html>
                 Options -ExecCGI -Indexes
@@ -242,9 +245,8 @@ So, breaking down this configuration further, after the normal portions of the c
 * SSLEngine on - says to use SSL/TLS
 * SSLProtocol all -SSLv2 -SSLv3 -TLSv1 - says to use all available protocols, except those with vulnerabilities. You should research periodically the protocols currently acceptable for use.
 * SSLHonorCipherOrder on - this deals with the next line regarding the cipher suites, and says to deal with them in the order shown. This is another area where reviewing the cipher suites should occur periodically.
-* SSLCertificateFile - is exactly what it says: the newly purchased and applied certificate file and its location
+* SSLCertificateFile - is exactly what it says: the newly purchased and applied certificate file and its location, including the Certificate Authority file (CA) from the provider
 * SSLCertificateKeyFile - the key you generated when creating your certificate signing request
-* SSLCertificateChainFile - the certificate from your certificate provider, often called the intermediate certificate
 
 Take everything live and if no errors exist when starting the web service, and if going to your website reveals `https` without errors, you are ready to go.
 
