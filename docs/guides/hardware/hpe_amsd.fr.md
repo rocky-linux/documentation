@@ -11,7 +11,13 @@ tags:
 
 ## Introduction
 
-Les serveurs HPE ProLiant disposent d'un logiciel complémentaire appelé Agentless Management Service qui [selon HPE](https://techlibrary.hpe.com/docs/iss/EL8000t/setup_install/GUID-1CF69B20-790A-4EDC-A162-9D64572ED9E8.html) "utilise la communication `out-of-band` pour une sécurité et une stabilité accrues." De plus, « avec la gestion sans agent, la surveillance de l'état et les alertes sont intégrées au système et commencent à fonctionner dès que l'alimentation auxiliaire est connectée à [votre serveur] ».
+Les serveurs HPE ProLiant disposent d'un logiciel complémentaire appelé Agentless Management Service qui, selon HPE :
+
+> utilise une communication hors bande – `out-of-band` – pour une sécurité et une stabilité accrues.
+
+En outre :
+
+> avec la gestion sans agent, la surveillance de l'état et les alertes sont intégrées au système et commencent à fonctionner dès que l'alimentation auxiliaire est connectée à votre serveur.
 
 Ceci est utilisé, par exemple, pour réduire la vitesse des ventilateurs sur un HPE ProLiant ML110 Gen11 dans le laboratoire personnel de l'auteur.
 
