@@ -89,7 +89,7 @@ Open the grub configuration file with an editor of your choice:
 sudo vim /etc/default/grub
 ```
 
-Add `nouveau.modset=0` and `rd.driver.blacklist=nouveau` at the end of `GRUB_CMDLINE_LINUX`.
+Add `nouveau.modeset=0` and `rd.driver.blacklist=nouveau` at the end of `GRUB_CMDLINE_LINUX`.
 
 The value of `GRUB_CMDLINE_LINUX` should look similar to the text below although it will not, nor does it need to be, an exact match:
 
