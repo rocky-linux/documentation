@@ -42,4 +42,4 @@ Möchten Sie Speicherplatz auf Ihrem Computer sparen? Klicken Sie auf **Copy**, 
 
 ## Zusammenfassung
 
-Egal, ob es sich um ein Bild für Ihre Online-Collage, den Hintergrund Ihres Computers oder ein Tutorial handelt, das Sie für Ihr Lieblingsprodukt erstellen – mit dem `Screenshot` von GNOME erhalten Sie die gewünschte Bilder. Sie möchten mehr über diese Anwendung erfahren oder haben weitere Ideen dazu? [Ein Issue in dem Screenshots Repository bei GitLab anlegen](https://gitlab.gnome.org/gnumdk/screenshot/-/issues).
+Ganz gleich, ob es sich um ein Bild für Ihre Online-Collage, den Hintergrund Ihres Computers oder ein Tutorial handelt, das Sie für Ihr Lieblingsprodukt erstellen, GNOMEs Screenshot ist das Tool, das Ihnen dabei hilft, die gewünschten Screenshots zu erstellen. Sie möchten mehr über diese Anwendung erfahren oder haben weitere Ideen dazu? [Ein Issue in dem Screenshots Repository bei GitLab anlegen](https://gitlab.gnome.org/gnumdk/screenshot/-/issues).

@@ -12,7 +12,9 @@ Das Thema dieser Anleitung ist RDP. RDP steht für Remote Desktop Protocol und t
 
 !!! note "Anmerkung"
 
-Standardmäßig ermöglicht Rocky Linux Ihnen, Ihren Desktop über ein anderes VNC-Protokoll freizugeben. VNC ist durchaus brauchbar, aber RDP bietet normalerweise ein viel flüssigeres Erlebnis und kommt mit seltsamen Monitorauflösungen zurecht.
+```
+Standardmäßig ermöglicht Rocky Linux Ihnen, Ihren Desktop über ein anderes VNC-Protokoll freizugeben. VNC ist durchaus nützlich, aber RDP bietet normalerweise ein viel flüssigeres Erlebnis und kommt mit ungewöhnlichen Monitorauflösungen zurecht.
+```
 
 ## Voraussetzungen
 
