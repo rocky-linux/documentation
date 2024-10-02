@@ -162,10 +162,10 @@ What this says is to run this command at 00 minute, 23 h, every day, every month
 ## Optional Flags
 
 ```bash
--n : Dry-Run to see what files wouold be transferred 
--v : list out all the files which are being transferred 
--vvv : to provide debug info while transferring files 
--z : to enable compression during the transfer 
+-n : Dry-Run to see what files would be transferred
+-v : list out all the files which are being transferred
+-vvv : to provide debug info while transferring files
+-z : to enable compression during the transfer
 ```
 
 ## Conclusions
