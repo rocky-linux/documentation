@@ -7,23 +7,21 @@ tags:
   - rsync
 ---
 
-# Using `rsync` To Keep Two Machines Synchronized
-
 ## Prerequisites
 
 This is everything you will need to understand and follow along with this guide:
 
-- A machine running Rocky Linux
+- A computer running Rocky Linux
 - To be comfortable with modifying configuration files from the command-line
 - Knowledge of how to use a command line editor (using _vi_ here, but you can use your favorite editor)
-- You will need root access, and ideally be signed in as the root user in your terminal
+- You will need root access or `sudo` privileges
 - Public and Private SSH key pairs
 - Able to create a bash script with `vi` or your favorite editor, and test it.
-- Able to use _crontab_ to automate the running of the script
+- Able to use `crontab` to automate the running of the script
 
 ## Introduction
 
-Using `rsync` over SSH is neither as powerful as [lsyncd](../backup/mirroring_lsyncd.md) (which allows you to watch a directory or file for changes and keep it synchronized in real time), or as flexible as [rsnapshot](../backup/rsnapshot_backup.md) (which offers the ability to backup multiple targets from a single machine). However, it provides the ability to keep two computers up to date on a schedule that you define.
+Using `rsync` over SSH is not as powerful as [lsyncd](../backup/mirroring_lsyncd.md) (which allows you to watch a directory or file for changes and keep it synchronized in real time), nor as flexible as [rsnapshot](../backup/rsnapshot_backup.md) (which offers the ability to backup multiple targets from a single computer). However, it provides the ability to keep two computers up to date on a schedule that you define.
 
 If you need to keep a set of directories on the target computer up to date, and you do not care about real-time synchronization as a feature, then `rsync` over SSH is probably the best solution.
 
@@ -31,21 +29,23 @@ For this procedure, you will be doing things as the root user. Either login as r
 
 ### Installing `rsync`
 
-Although `rsync` is probably already installed, it is best to update `rsync` to the latest version on the source and target computers. To ensure that `rsync` is up to date, do the following on both computers:
+Although `rsync` is probably already installed. To ensure that `rsync` is up to date, do the following on both computers:
 
-`dnf install rsync`
+```bash
+dnf install rsync
+```
 
 If the package is not installed, `dnf` will ask you to confirm the installation, if it is already installed, `dnf` will look for an update and prompt to install it.
 
-### Preparing The Environment
+### Preparing the environment
 
-This particular example will use `rsync` on the target machine to pull from the source instead of pushing from the source to the target. You need to set up an [SSH key pair](../security/ssh_public_private_keys.md) for this. Once the SSH key pair has been created and password-free access from the target computer to the source computer has been confirmed, you can start.
+This example will use `rsync` on the target computer to pull from the source instead of pushing from the source to the target. You need to set up an [SSH key pair](../security/ssh_public_private_keys.md) for this. After creating the SSH key pair, verify passwordless access from the target computer to the source computer.
 
-### `rsync` Parameters And Setting Up A Script
+### `rsync` parameters and setting up a script
 
-Before we get terribly carried away with setting up a script, we first need to decide what parameters we want to use with `rsync`. There are many possibilities, so take a look at the [manual for rsync](https://linux.die.net/man/1/rsync). The most common way to use `rsync` is to use the `-a` option, because `-a`, or archive, combines a number of options into one and these are very common options. What does -a include?
+Before script set up continues, you need to decide what parameters you want to use with `rsync`. Many possibilities exist. Review the [manual for rsync](https://linux.die.net/man/1/rsync) for a complete list. The most common way to use `rsync` is to use the `-a` option, because `-a`, or "archive", combines several common options into one. What does `-a` include?
 
-- `-r`, recurses the directories
+- `-r`, recurse the directories
 - `-l`, maintains symbolic links as symbolic links
 - `-p`, preserves permissions
 - `-t`, preserves modification times
@@ -53,75 +53,99 @@ Before we get terribly carried away with setting up a script, we first need to d
 - `-o`, preserves owner
 - `-D`, preserves device files
 
-The only other options that we need to specify in this example are:
+The only other options that you need to specify in this example are:
 
 - `-e`, specify the remote shell to use
-- `--delete`, which says if the target directory has a file in it that doesn't exist on the source, get rid of it
+- `--delete`, which says if the target directory has a file in it that does not exist on the source, get rid of it
 
-Next, we need to set up a script by creating a file for it (again, use your favorite editor if you are not familiar with vi). To create the file, just use this command:
-
-`vi /usr/local/sbin/rsync_dirs`
-
-And then make it executable:
-
-`chmod +x /usr/local/sbin/rsync_dirs`
-
-## Testing
-
-Now, scripting makes it super simple and safe so that you can test it fearlessly. Please note that the URL used below is "source.domain.com". Replace it with the domain or IP address of your own source computer, both will work. Also remember that in this example, the script is created on the "target" computer, because the file is pulled from the source computer:
+Next, set up a script on the target computer by creating a file for it (again, use your favorite editor if you are not familiar with `vi`). To create the file, just use this command:
 
 ```bash
-#!/bin/bash
+vi /usr/local/sbin/rsync_dirs
+```
+
+Add the content:
+
+```bash
+#!/usr/bin/env bash
 /usr/bin/rsync -ae ssh --delete root@source.domain.com:/home/your_user /home
 ```
 
+Replace "source.domain.com" with your own domain name, host name, or IP address.
+
+Make it executable:
+
+```bash
+chmod +x /usr/local/sbin/rsync_dirs
+```
+
+## Testing
+
+Scripting ensures you can test without worry.
+
 !!! warning
 
-    In this case, we assume that your home directory does not exist on the target machine. **If it exists, you may want to back it up before executing the script!**
+    In this case, the assumption is that your home directory does not exist on the target computer. **If it exists, you may want to back it up before executing the script!**
 
-Now run the script:
+Run the script:
 
-`/usr/local/sbin/rsync_dirs`
+```bash
+/usr/local/sbin/rsync_dirs
+```
 
-If all is well, you should get a completely synchronized copy of your home directory on the target machine. Check to be sure this is the case.
+If all is well, you will get a completely synchronized copy of your home directory on the target computer. Ensure this is the case.
 
-Assuming all of that worked out as we hoped, go ahead and create a new file on the source machine in your home directory:
+Assuming all of that worked, create a new file on the source computer in your home directory:
 
-`touch /home/your_user/testfile.txt`
-
-Run the script again:
-
-`/usr/local/sbin/rsync_dirs`
-
-Then verify that the target computer receives the new file. If so, the next step is to check the deletion process. Delete the file we just created on the source computer:
-
-`rm -f /home/your_user/testfile.txt`
+```bash
+touch /home/your_user/testfile.txt
+```
 
 Run the script again:
 
-`/usr/local/sbin/rsync_dirs`
+```bash
+/usr/local/sbin/rsync_dirs
+```
+
+Verify that the target computer receives the new file. If so, the next step is to verify the deletion process. Delete the file you just created on the source computer:
+
+```bash
+rm -f /home/your_user/testfile.txt
+```
+
+Run the script again:
+
+```bash
+/usr/local/sbin/rsync_dirs
+```
 
 Verify that the file no longer exists on the target computer.
 
-Finally, let's create a file on the target machine that doesn't exist on the source. So, on the target:
+Finally, create a file on the target computer that does not exist on the source:
 
-`touch /home/your_user/a_different_file.txt`
+```bash
+touch /home/your_user/a_different_file.txt
+```
 
 Run the script a final time:
 
-`/usr/local/sbin/rsync_dirs`
+```bash
+/usr/local/sbin/rsync_dirs
+```
 
-The file we just created on the target should now be gone, because it does not exist on the source.
+The file you created on the target should no-longer exist, because it does not exist on the source.
 
-Assuming all of this worked as expected, go ahead and modify the script to synchronize all the directories that you want.
+Assuming all of this worked as expected, change the script to synchronize all the directories that you want.
 
-## Automating Everything
+## Automating everything
 
-We may not want to manually run this script every time we want to synchronize, so the next step is to do this automatically. Suppose you want to run this script at 11 PM every night. To automate this, use crontab:
+You probably do not want to manually run this script every time you want to synchronize. Use a `crontab` to do this automatically on a schedule. To run this script at 11 PM every night:
 
-`crontab -e`
+```bash
+crontab -e
+```
 
-This will pull up the cron, which may look something like this:
+This will pull up and look similar to this:
 
 ```bash
 # Edit this file to introduce tasks to be run by cron.
@@ -149,17 +173,21 @@ This will pull up the cron, which may look something like this:
 # m h  dom mon dow   command
 ```
 
-The cron is set up on a 24-hour clock, so what we will need for our entry at the bottom of this file is:
+!!! info
 
-`00 23   *  *  *    /usr/local/sbin/rsync_dirs`
+    The example `crontab` shows an empty, but commented, file. The commenting does not show up on every computer instance and may be an empty file. On an active computer, you may see other entries.
 
-What this says is to run this command at 00 minute, 23 h, every day, every month, and every day of the week. Save your cron entry with:
+The `crontab` is on a 24-hour clock. You will need your entry at the bottom of this file is:
+
+```crontab
+00 23   *  *  *    /usr/local/sbin/rsync_dirs
+```
+
+What this says is to run this command at 00 minute, 23 h, every day, every month, and every day of the week. Save your `crontab` entry with:
 
 ++shift+colon+"w"+"q"+exclam++
 
-... or with the commands that your favorite editor uses for saving a file.
-
-## Optional Flags
+## Optional flags
 
 ```bash
 -n : Dry-Run to see what files would be transferred
@@ -170,4 +198,4 @@ What this says is to run this command at 00 minute, 23 h, every day, every month
 
 ## Conclusions
 
-Although `rsync` is not as flexible or powerful as other tools, it provides simple file synchronization, which is always useful.
+Although `rsync` is not as flexible or powerful as other tools, it provides file synchronization, which is always useful.
