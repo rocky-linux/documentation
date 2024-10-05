@@ -17,7 +17,7 @@ Ce guide suppose que vous disposez de la configuration suivante :
 !!! note "Remarque"
 
 ```
-    Selon [le site Web de GNOME](https://apps.gnome.org/), cette application est préinstallée sur votre bureau.
+Selon [le site Web de GNOME](https://apps.gnome.org/), cette application est préinstallée sur votre bureau.
 ```
 
 ## Mode d'emploi
@@ -37,7 +37,7 @@ Pour utiliser le programme `Screenshot`, procédez comme suit :
 !!! tip "Astuce"
 
 ```
-    Vous souhaitez économiser l'espace de stockage de votre ordinateur ? Cliquez sur **Copier** pour ajouter rapidement votre capture d'écran à votre travail.
+Vous souhaitez économiser l'espace de stockage de votre ordinateur ? Cliquez sur **Copy** pour ajouter rapidement votre capture d'écran à votre travail.
 ```
 
 ## Conclusion
