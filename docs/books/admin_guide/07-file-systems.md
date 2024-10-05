@@ -1018,7 +1018,7 @@ $ ls -la  umask_025
 
 !!! Note
 
-    `umask` modifies the mask until the disconnection.
+    In the above example, the operation of using commands to modify masks is only applicable to the currently connected session.
 
 !!! info
 
