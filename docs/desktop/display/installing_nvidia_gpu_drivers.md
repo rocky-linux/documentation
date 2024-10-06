@@ -70,7 +70,7 @@ sudo dnf config-manager --add-repo http://developer.download.nvidia.com/compute/
 Next, install a set of packages necessary for building and installing kernel modules:
 
 ```bash
-sudo dnf install kernel-headers-$(uname -r) kernel-devel-$(uname -r) tar bzip2 make automake gcc gcc-c++ pciutils elfutils-libelf-devel libglvnd-opengl libglvnd-glx libglv-devel acpid pkgconfig dkms -y
+sudo dnf install kernel-headers-$(uname -r) kernel-devel-$(uname -r) tar bzip2 make automake gcc gcc-c++ pciutils elfutils-libelf-devel libglvnd-opengl libglvnd-glx libglvnd-devel acpid pkgconf dkms -y
 ```
 
 Install the latest NVIDIA driver module for your system:
