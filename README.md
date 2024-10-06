@@ -2,7 +2,7 @@
 
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-109-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-110-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Introduction
@@ -340,6 +340,7 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Atroskelis"><img src="https://avatars.githubusercontent.com/u/6087274?v=4?s=100" width="100px;" alt="Atroskelis"/><br /><sub><b>Atroskelis</b></sub></a><br /><a href="#content-Atroskelis" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://christinebelzie.carrd.co/"><img src="https://avatars.githubusercontent.com/u/105683440?v=4?s=100" width="100px;" alt="Christine Belzie"/><br /><sub><b>Christine Belzie</b></sub></a><br /><a href="#content-CBID2" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://extendsclass.com/"><img src="https://avatars.githubusercontent.com/u/38669260?v=4?s=100" width="100px;" alt="cyril"/><br /><sub><b>cyril</b></sub></a><br /><a href="#content-cyrilbois" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/singraber"><img src="https://avatars.githubusercontent.com/u/26900609?v=4?s=100" width="100px;" alt="Andreas Singraber"/><br /><sub><b>Andreas Singraber</b></sub></a><br /><a href="#content-singraber" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>
