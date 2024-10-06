@@ -66,7 +66,7 @@ Example:
 |  Option    |  Description                     |
 |------------|----------------------------------|
 | `-e`       | Displays all processes.          |
-| `-f`       | Displays additional information. |
+| `-f`       | Display full format list.        |
 | `-u` login | Displays the user's processes.   |
 
 Some additional options:
@@ -77,7 +77,7 @@ Some additional options:
 | `-t tty`              | Displays the processes running from the terminal. |
 | `-p PID`              | Displays the process information.                 |
 | `-H`                  | Displays the information in a tree structure.     |
-| `-I`                  | Displays additional information.                  |
+| `-l`                  | Display in long format.                           |
 | `--sort COL`          | Sort the result according to a column.            |
 | `--headers`           | Displays the header on each terminal page. |
 | `--format "%a %b %c"` | Customize the output display format.              |
