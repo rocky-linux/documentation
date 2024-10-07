@@ -23,7 +23,7 @@ Contrairement à Wine, Proton ne nécessite généralement aucune configuration 
 Installez Steam avec Flatpak:
 
 ```bash
-flatpak install steam 
+flatpak install steam
 ```
 
 Entrez l'option `20` pour choisir `app/com.valvesoftware.Steam/x86_64/stable` et appuyez sur ++enter++ pour installer Steam.
