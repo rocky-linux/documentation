@@ -135,7 +135,7 @@ Cette procédure vous permettra d'utiliser MATE sur Rocky Linux.
 
     ### 9: Étapes Finales
 
-    Si votre système a été installé avec Gnome ou un autre interface de bureau avant d'installer MATE, vous devriez vous préparer à redémarrer le système. Si aucune interface de bureau n'a été installée, vous devrez utiliser la commande suivante pour définir la cible graphique :
+    Si votre système a été installé avec GNOME ou un autre interface de bureau avant d'installer MATE, vous devriez vous préparer à redémarrer le système. Si aucune interface de bureau n'a été installée, vous devrez utiliser la commande suivante pour définir la cible graphique :
 
     ```
     sudo systemctl set-default graphical.target
