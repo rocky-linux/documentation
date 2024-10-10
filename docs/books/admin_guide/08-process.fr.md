@@ -10,13 +10,13 @@ Dans ce chapitre, vous apprendrez comment travailler avec les processus.
 
 **Objectifs** : Dans ce chapitre, les futurs administrateurs Linux vont apprendre comment :
 
-:heavy_check_mark: Reconnaître le `PID` et le `PPID` d'un processus ;   
-:heavy_check_mark: Voir et rechercher des processus ;   
+:heavy_check_mark: Reconnaître le `PID` et le `PPID` d'un processus ;  
+:heavy_check_mark: Voir et rechercher des processus ;  
 :heavy_check_mark: Gérer les processus.
 
 :checkered_flag: **processus**, **linux**
 
-**Connaissances** : :star: :star:   
+**Connaissances** : :star: :star:  
 **Complexité** : :star:
 
 **Temps de lecture** : 20 minutes
@@ -31,37 +31,39 @@ Quand un programme s'exécute, le système va créer un processus en plaçant le
 
 Chaque processus a :
 
-* un _PID_ : _**P**rocessus **ID**entificateur_, un identifiant de processus unique ;
-* un _PPID_: _**P**rocessus **P**arent **ID**entificateur_, identifiant unique du processus parent.
+* un *PID* : ***P**rocessus **ID**entificateur*, un identifiant de processus unique
+* un *PPID*: ***P**rocessus **P**arent **ID**entificateur*, identifiant unique du processus parent
 
 Par filiations successives, le processus `init` est le père de tous les processus.
 
-* Un processus est toujours créé par un processus parent ;
+* Un processus est toujours créé par un processus parent
 * Un processus parent peut avoir plusieurs processus enfants.
 
-Il y a une relation parent/enfant entre les processus. Un processus fils est le résultat du processus parent appelant la primitive _fork()_ et dupliquant son propre code pour créer un enfant. Le _PID_ de l'enfant est renvoyé au processus parent afin qu'ils puissent communiquer. Chaque enfant a l'identifiant de son parent, le _PPID_.
+Il y a une relation parent/enfant entre les processus. Un processus fils est le résultat du processus parent appelant la primitive *fork()* et dupliquant son propre code pour créer un enfant. Le *PID* de l'enfant est renvoyé au processus parent afin qu'ils puissent communiquer. Chaque enfant a l'identifiant de son parent, le *PPID*.
 
-Le numéro _PID_ représente le processus lors de l'exécution. Une fois le processus terminé, le numéro est à nouveau disponible pour un autre processus. Lancer une même commande plusieurs fois va produire un nouveau _PID_ pour chaque processus.<!-- TODO !\[Parent/child relationship between processes\](images/FON-050-001.png) -->!!! note "Remarque"
+Le numéro *PID* représente le processus lors de l'exécution. Une fois le processus terminé, le numéro est à nouveau disponible pour un autre processus. Lancer une même commande plusieurs fois va produire un nouveau *PID* pour chaque processus.<!-- TODO !\[Parent/child relationship between processes\](images/FON-050-001.png) -->!!! note "Remarque"
 
     Il ne faut pas confondre les processus avec les <em x-id="4">threads</em>. Chaque processus a son propre contexte (resources et espace de mémoire), tandis que les _threads_ appartenant à un même processus partagent le même contexte.
 
 ## Visualisation des processus
 
 La commande `ps` affiche l'état des processus en cours d'exécution.
-```
+
+```bash
 ps [-e] [-f] [-u login]
 ```
 
 Exemple :
-```
+
+```bash
 # ps -fu root
 ```
 
-| Option     | Observation                               |
-| ---------- | ----------------------------------------- |
-| `-e`       | Affiche tous les processus.               |
-| `-f`       | Affiche des informations supplémentaires. |
-| `-u` login | Affiche les processus de l'utilisateur.   |
+| Option     | Observation                                   |
+| ---------- | --------------------------------------------- |
+| `-e`       | Affiche tous les processus.                   |
+| `-f`       | Affichage la liste complète des informations. |
+| `-u` login | Affiche les processus de l'utilisateur.       |
 
 Quelques options supplémentaires :
 
@@ -71,7 +73,7 @@ Quelques options supplémentaires :
 | `-t tty`              | Affiche les processus exécutés depuis le terminal.          |
 | `-p PID`              | Affiche les informations du processus.                      |
 | `-H`                  | Affiche les informations dans une structure d'arborescence. |
-| `-I`                  | Affiche des informations supplémentaires.                   |
+| `-l`                  | Affichage en format long.                                   |
 | `--sort COL`          | Trier le résultat en fonction d'une colonne.                |
 | `--headers`           | Affiche l'en-tête sur chaque page du terminal.              |
 | `--format "%a %b %c"` | Personnaliser le format d'affichage de sortie.              |
@@ -80,7 +82,7 @@ Sans une option spécifiée, la commande `ps` n'affiche que les processus exécu
 
 Le résultat est affiché en colonnes :
 
-```
+```bash
 # ps -ef
 UID  PID PPID C STIME  TTY TIME      CMD
 root 1   0    0 Jan01  ?   00:00/03 /sbin/init
@@ -99,7 +101,7 @@ root 1   0    0 Jan01  ?   00:00/03 /sbin/init
 
 Le comportement du contrôle peut être entièrement personnalisé :
 
-```
+```bash
 # ps -e --format "%P %p %c %n" --sort ppid --headers
  PPID   PID COMMAND          NI
     0     1 systemd           0
@@ -119,14 +121,14 @@ Le processus utilisateur :
 * est démarré à partir d'un terminal associé à un utilisateur ;
 * accède à des ressources via des requêtes ou des démons.
 
-Le processus système (_daemon_ ) :
+Le processus système (*daemon*) :
 
 * est démarré par le système ;
-* n'est associé à aucun terminal, et appartient à un utilisateur système (souvent `root`) ;
+* n'est associé à aucun terminal, et appartient à un utilisateur système (souvent `root`)
 * est chargé au démarrage, est en mémoire, et attend un appel ;
 * est généralement identifié par la lettre `d` associée au nom du processus.
 
-Les processus système sont donc appelés démons (_**D**isk **A**nd **E**xecution **MON**itor_).
+Les processus système sont donc appelés daemons (***D**isk **A**nd **E**xecution **MON**itor*).
 
 ## Permissions et droits
 
@@ -142,13 +144,13 @@ Chaque fois qu'un fichier est accédé, le système vérifie les droits du proce
 
 Un processus ne peut pas être exécuté indéfiniment, car cela se ferait au détriment d'autres processus en cours d'exécution et empêcherait le multitâche.
 
-Le temps total de traitement disponible est donc divisé en petites plages et chaque processus (avec priorité) accède au processeur de manière séquentielle. Le processus prendra plusieurs états au cours de sa vie parmi les états suivants :
+Le temps total de traitement disponible est donc divisé en petites plages et chaque processus (avec sa propre priorité) accède au processeur de manière séquentielle. Le processus prendra plusieurs états au cours de sa vie parmi les états suivants :
 
 * ready : en attente de la disponibilité du processus ;
 * in execution : en cours d'exécution, accède au processeur ;
 * suspended : en attente d'une E/S (entrée/sortie) ;
 * suspended : en attente d'un signal d'un autre processus ;
-* zombie: demande de destruction ;
+* zombie: demande de destruction
 * dead  : le père du processus tue son fils.
 
 Le séquençage de la fin du processus est le suivant :
@@ -161,9 +163,11 @@ Lorsqu'un processus parent meurt, on dit que ses enfants sont orphelins. Ils son
 
 ### La priorité d'un processus
 
-Le processeur tourne en partageant avec chaque processus une quantité de temps de processeur.
+GNU/Linux appartient à la famille des systèmes d'exploitation à temps partagé. Les processeurs fonctionnent en temps partagé et chaque processus se voit attribué du temps processeur. Les processus peuvent être classifiés par priorité :
 
-Les processus sont classés par priorité dont la valeur varie de **-20** (la priorité la plus élevée) à **+19** (la priorité la plus basse).
+* Processus en temps réel : le processus avec une priorité **0-99** est planifié par un algorithme de scheduling en temps réel.
+* Processus ordinaires : les processus avec des priorités dynamiques de **100-139** sont planifiés à l'aide d'un algorithme de scheduling équilibré.
+* Nice value : un paramètre utilisé pour ajuster la priorité d'un processus ordinaire. La plage de valeurs s'étend de **-20** à **19**.
 
 La priorité par défaut d'un processus est **0**.
 
@@ -186,23 +190,23 @@ Les contraintes du mode asynchrone :
 
 La commande `kill` envoie un signal d'arrêt à un processus.
 
-```
+```bash
 kill [-signal] PID
 ```
 
 Exemple :
 
-```
-$ kill -9 1664
+```bash
+kill -9 1664
 ```
 
-| Code | Signal    | Observation                       |
-| ---- | --------- | --------------------------------- |
-| `2`  | _SIGINT_  | Fin immédiate du processus        |
-| `9`  | _SIGKILL_ | Interrompre le processus (CTRL+D) |
-| `15` | _SIGTERM_ | Fin du processus de nettoyage     |
-| `18` | _SIGCONT_ | Reprendre le processus            |
-| `19` | _SIGSTOP_ | Suspendre le processus            |
+| Code | Signal    | Observation                              |
+| ---- | --------- | ---------------------------------------- |
+| `2`  | *SIGINT*  | Fin immédiate du processus               |
+| `9`  | *SIGKILL* | Interrompre le processus (++control+d++) |
+| `15` | *SIGTERM* | Fin du processus de nettoyage            |
+| `18` | *SIGCONT* | Reprendre le processus                   |
+| `19` | *SIGSTOP* | Suspendre le processus                   |
 
 Les signaux sont les moyens de communication entre les processus. La commande `kill` envoie un signal à un processus.
 
@@ -218,14 +222,14 @@ Les signaux sont les moyens de communication entre les processus. La commande `k
 
 `nohup` permet le lancement d'un processus indépendamment d'une connexion.
 
-```
+```bash
 commande nohup
 ```
 
 Exemple :
 
-```
-$ nohup myprogram.sh 0</dev/null &
+```bash
+nohup myprogram.sh 0</dev/null &
 ```
 
 `nohup` ignore le signal `SIGHUP` envoyé lorsqu'un utilisateur se déconnecte.
@@ -236,27 +240,27 @@ $ nohup myprogram.sh 0</dev/null &
 
 ### [CTRL] + [Z]
 
-En appuyant simultanément sur les touches <kbd>CTRL</kbd> + <kbd>Z</kbd> , le processus synchronisé est temporairement suspendu. L'accès à l'invite est restauré après avoir affiché le numéro du processus qui vient d'être suspendu.
+En appuyant simultanément sur les touches ++control+z++, le processus synchronisé est temporairement suspendu. L'accès à l'invite est restauré après avoir affiché le numéro du processus qui vient d'être suspendu.
 
 ### `&` instruction
 
-L'instruction `&` exécute la commande de manière asynchrone (la commande est alors appelée _job_) et affiche le nombre de _jobs_. L'accès à l'invite est alors retourné.
+L'instruction `&` exécute la commande de manière asynchrone (la commande est alors appelée *job*) et affiche l'identifiant du *job*. L'accès à l'invite est alors retourné.
 
 Exemple :
 
-```
+```bash
 $ time ls -lR / > list.ls 2> /dev/null &
 [1] 15430
 $
 ```
 
-Le numéro du _job_ est obtenu lors du traitement en arrière-plan et est affiché entre crochets, suivi du numéro `PID`.
+Le numéro du *job* est obtenu lors du traitement en arrière-plan et est affiché entre crochets, suivi de l'identifiant `PID`.
 
 ### Les commandes `fg` et `bg`
 
 La commande `fg` met le processus au premier plan:
 
-```
+```bash
 $ time ls -lR / > list.ls 2>/dev/null &
 $ fg 1
 time ls -lR / > list.ls 2/dev/null
@@ -264,7 +268,7 @@ time ls -lR / > list.ls 2/dev/null
 
 alors que la commande `bg` la place en arrière-plan :
 
-```
+```bash
 [CTRL]+[Z]
 ^Z
 [1]+ Stopped
@@ -273,7 +277,7 @@ $ bg 1
 $
 ```
 
-S'il a été mis en arrière-plan quand il a été créé avec l'argument `&` ou plus tard avec les clés <kbd>CTRL</kbd> +<kbd>Z</kbd> , un processus peut être ramené au premier plan avec la commande `fg` et son numéro de tâche.
+S'il a été mis en arrière-plan quand il a été créé avec l'argument `&` ou plus tard avec les touches ++control+z++, un processus peut être ramené au premier plan avec la commande `fg` et son numéro de 'job'.
 
 ### La commande `jobs`
 
@@ -281,7 +285,7 @@ La commande `jobs` affiche la liste des processus exécutés en arrière-plan et
 
 Exemple :
 
-```
+```bash
 $ jobs
 [1]- Running    sleep 1000
 [2]+ Running    find / > arbo.txt
@@ -290,43 +294,46 @@ $ jobs
 Les colonnes représentent :
 
 1. numéro de tâche.
-2. l'ordre dans lequel les processus s'exécutent
-- a `+` : ce processus est le processus suivant à exécuter par défaut avec `fg` ou `bg` ;
-- a `-` : ce processus est le prochain processus à prendre le `+` ; `+`
-3.  _Running_ (processus en cours) ou _Stopped_ (processus suspendu).
+2. l'ordre dans lequel les processus s'exécutent :
+
+   * a `+` : ce processus est le processus suivant à exécuter par défaut avec `fg` ou `bg` ;
+   * a `-` : ce processus est le prochain processus à prendre le `+` ; `+`
+
+3. *Running* (processus en cours) ou *Stopped* (processus suspendu)
 4. la commande
 
 ### Les commandes `nice` et `renice`
 
 La commande `nice` permet l'exécution d'une commande en spécifiant sa priorité.
 
-```
+```bash
 nice priorité commande
 ```
 
 Exemple :
 
-```
-$ nice -n+15 find / -name "file"
+```bash
+nice -n+15 find / -name "file"
 ```
 
 Contrairement à `root`, un utilisateur standard ne peut que réduire la priorité d'un processus. Seules les valeurs entre +0 et +19 seront acceptées.
 
 !!! tip "Astuce"
 
-    Cette dernière restriction peut être evitée par utilisateur ou par groupe en modifiant le fichier `/etc/security/limits.conf` file.
+    Cette dernière restriction peut être evitée par utilisateur ou par groupe en modifiant le fichier `/etc/security/limits.conf`.
 
 La commande `renice` vous permet de modifier la priorité d'un processus en cours.
 
-```
+```bash
 renice priority [-g GID] [-p PID] [-u UID]
 ```
 
 Exemple :
 
+```bash
+renice +15 -p 1664
 ```
-$ renice +15 -p 1664
-```
+
 | Option | Observation                                |
 | ------ | ------------------------------------------ |
 | `-g`   | `GID` du groupe propriétaire du processus. |
@@ -347,7 +354,7 @@ La commande `renice` agit sur des processus déjà en cours d'exécution. Il est
 
 La commande `top` affiche les processus et leur consommation de ressources.
 
-```
+```bash
 $ top
 PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND
 2514 root 20 0       15    5.5 0:01.14   top
@@ -364,29 +371,120 @@ PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND
 | `TIME+`   | Temps d'utilisation du processeur. |
 | `COMMAND` | Commande exécutée.                 |
 
-La commande `top` permet d'afficher les processus en temps réel et en mode interactif.
+La commande `top` permet de piloter les processus en temps réel et en mode interactif.
 
 ### Les commandes `pgrep` et `pkill`
 
-La commande `pgrep` recherche les processus en cours pour trouver un nom de processus et affiche le _PID_ correspondant aux critères de sélection sur la sortie standard.
+La commande `pgrep` cherche parmi les processus en cours pour trouver un nom de processus et affiche l'identifiant *PID* correspondant aux critères de sélection sur la sortie standard.
 
-La commande `pkill` enverra le signal spécifié (par défaut _SIGTERM_) à chaque processus indiqué par son nom.
+La commande `pkill` enverra le signal spécifié (par défaut *SIGTERM*) à chaque processus.
 
-```
+```bash
 pgrep process
-pkill [-signal] process
+pkill [option] [-signal] process
 ```
 
 Exemples :
 
-* Récupère le numéro de processus de `sshd`:
+* Récupère le numéro de processus de `sshd` :
 
-```
-$ pgrep -u root sshd
-```
+  ```bash
+  pgrep -u root sshd
+  ```
 
 * Terminer tous les processus de `tomcat` :
 
+  ```bash
+  pkill tomcat
+  ```
+
+!!! note
+
+    Avant de détruire un processus, il est préférable de savoir exactement à quoi il sert ; sinon, cela peut entraîner des pannes du système ou d’autres problèmes imprévisibles.
+
+En plus d'envoyer des signaux aux processus concernés, la commande `pkill` peut également mettre fin à la session de connexion de l'utilisateur en fonction du numéro de terminal, par exemple :
+
+```bash
+pkill -t pts/1
 ```
-$ pkill tomcat
+
+### La commande `killall`
+
+La fonction de cette commande est approximativement la même que celle de la commande `pkill`. La syntaxe est la suivante —`killall [option] [ -s SIGNAL | -SIGNAL ] NAME`. Le signal par défaut est *SIGTERM*.
+
+| Options | Observation                                                            |
+|:------- |:---------------------------------------------------------------------- |
+| `-l`    | répertorie tous les noms de signaux connus                             |
+| `-i`    | demande de confirmation avant destruction du processus                 |
+| `-I`    | correspondance du nom du processus qui ne tient pas compte de la casse |
+
+Exemple :
+
+```bash
+killall tomcat
 ```
+
+### La commande `pstree`
+
+Cette commande affiche la progression dans un style d'arborescence et son utilisation est la suivante - `pstree [option]`.
+
+| Option | Observation                                         |
+|:------ |:--------------------------------------------------- |
+| `-p`   | Affiche l'identifiant PID du processus              |
+| `-R`   | trier la sortie par PID                             |
+| `-h`   | met en évidence le processus actuel et ses ancêtres |
+| `-u`   | affichage des transitions d'UID                     |
+
+```bash
+$ pstree -pnhu
+systemd(1)─┬─systemd-journal(595)
+           ├─systemd-udevd(625)
+           ├─auditd(671)───{auditd}(672)
+           ├─dbus-daemon(714,dbus)
+           ├─NetworkManager(715)─┬─{NetworkManager}(756)
+           │                     └─{NetworkManager}(757)
+           ├─systemd-logind(721)
+           ├─chronyd(737,chrony)
+           ├─sshd(758)───sshd(1398)───sshd(1410)───bash(1411)───pstree(1500)
+           ├─tuned(759)─┬─{tuned}(1376)
+           │            ├─{tuned}(1381)
+           │            ├─{tuned}(1382)
+           │            └─{tuned}(1384)
+           ├─agetty(763)
+           ├─crond(768)
+           ├─polkitd(1375,polkitd)─┬─{polkitd}(1387)
+           │                       ├─{polkitd}(1388)
+           │                       ├─{polkitd}(1389)
+           │                       ├─{polkitd}(1390)
+           │                       └─{polkitd}(1392)
+           └─systemd(1401)───(sd-pam)(1404)
+```
+
+### Processus orphelin et Processus zombie
+
+**processus orphelin** : Lorsqu'un processus parent meurt, on dit que ses enfants sont orphelins. Le processus `init` adopte ces processus d'état spéciaux et la collecte des statuts est terminée jusqu'à leur destruction. D'un point de vue conceptuel, l'existence de processus orphelins ne pose aucun problème.
+
+**processus zombie** : une fois qu'un processus enfant a terminé son travail et est terminé, son processus parent doit appeler la fonction de traitement du signal wait() ou waitpid() pour obtenir l'état de terminaison du processus enfant. Si le processus parent ne le fait pas, même si le processus enfant est déjà terminé, il conserve néanmoins certaines informations sur l'état de sortie dans la table des processus système. Étant donné que le processus parent ne peut pas obtenir les informations d'état du processus enfant, ces processus continueront d'occuper des ressources dans la table des processus. Nous appelons les processus dans cet état des `zombie`s.
+
+Risques :
+
+* ils occupent les ressources du système et entraînent une diminution des performances de la machine,
+* et sont incapables de générer de nouveaux processus enfants.
+
+Comment pouvons-nous vérifier la présence de processus zombies dans le système actuel ?
+
+```bash
+ps -lef | awk '{print $2}' | grep Z
+```
+
+Les caractères suivants peuvent apparaître dans cette colonne :
+
+* **D** - `sleep` ininterrompu (généralement IO)
+* **I** - `thread` de noyau inactif
+* **R** - en cours d'exécution ou exécutable (`runnable`, dans la file d'attente d'exécution)
+* **S** - `sleep` interruptible (en attente d'un événement pour continuer)
+* **T** - stoppé par le signal de contrôle de tâche
+* **t** - arrêté par le débogueur pendant le traçage
+* **W** - pagination (non valide depuis le noyau 2.6.xx)
+* **X** - mort (ne devrait jamais apparaître)
+* **Z** - processus défunt (`zombie`), terminé mais non récupéré par son parent
