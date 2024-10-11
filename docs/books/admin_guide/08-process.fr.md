@@ -59,11 +59,11 @@ Exemple :
 # ps -fu root
 ```
 
-| Option     | Observation                                   |
-| ---------- | --------------------------------------------- |
-| `-e`       | Affiche tous les processus.                   |
-| `-f`       | Affichage la liste complète des informations. |
-| `-u` login | Affiche les processus de l'utilisateur.       |
+| Option     | Observation                                      |
+| ---------- | ------------------------------------------------ |
+| `-e`       | Affiche tous les processus.                      |
+| `-f`       | Affichage de la liste complète des informations. |
+| `-u` login | Affiche les processus de l'utilisateur.          |
 
 Quelques options supplémentaires :
 
