@@ -10,13 +10,13 @@ In diesem Kapitel erfahren Sie, wie Sie mit Prozessen arbeiten.
 
 **Ziele**: In diesem Kapitel lernen zukünftige Linux-Administratoren Folgendes:
 
-:heavy_check_mark: die `PID` und `PPID` eines Prozesses;   
-erkennen :heavy_check_mark: Prozesse anschauen und durchsuchen;   
+:heavy_check_mark: die `PID` und `PPID` eines Prozesses erkennen;  
+:heavy_check_mark: Prozesse anschauen und durchsuchen;  
 :heavy_check_mark: Prozesse verwalten.
 
 :checkered_flag: **Prozess**, **Linux**
 
-**Vorkenntnisse**: :star: :star:   
+**Vorkenntnisse**: :star: :star:  
 **Komplexität**: :star:
 
 **Lesezeit**: 23 Minuten
@@ -31,36 +31,38 @@ Wenn ein Programm läuft, startet das System einen Prozess, indem es die Program
 
 Jeder Prozess wird durch Folgendes charakterisiert:
 
-* eine _PID_: _**P**rocess **ID**entifier_, ein eindeutiger Prozess-Identifikator;
-* _PPID_: _**P**arent **P**rozess **ID**entifikator_, eindeutige Kennung des Elternprozesses.
+* eine _PID_: ***P**rocess **ID**entifier*, ein eindeutiger Prozess-Identifikator
+* *PPID*: ***P**arent **P**rozess **ID**entifikator*, eindeutige Kennung des Elternprozesses
 
 Durch aufeinanderfolgende Vererbung ist der `init`-Prozess der Vater aller Prozesse.
 
-* Ein Prozess wird immer von einem übergeordneten Prozess abgeleitet;
+* Ein Prozess wird immer von einem übergeordneten Prozess abgeleitet
 * Ein übergeordneter Prozess kann mehrere Child-Prozesse haben.
 
-Es gibt eine Parent-/Child-Beziehung zwischen Prozessen. Ein Kindprozess ist das Ergebnis des Elternprozesses, der die Primitive _fork()_ aufruft und seinen eigenen Code dupliziert, um ein Kind zu erstellen. Die _PID_ des Kindes wird an den Elternprozess zurückgegeben, damit es mit ihm kommunizieren kann. Jedes Kind hat eine Eltern-Identifikation, die _PPID_.
+Es gibt eine Parent-/Child-Beziehung zwischen Prozessen. Ein Kindprozess ist das Ergebnis des Elternprozesses, der die Primitive *fork()* aufruft und seinen eigenen Code dupliziert, um ein Kind zu erstellen. Die *PID* des Kindes wird an den Elternprozess zurückgegeben, damit es mit ihm kommunizieren kann. Jedes Kind hat eine Eltern-Identifikation, die *PPID*.
 
-Die _PID_-Nummer repräsentiert den Prozess zum Zeitpunkt der Ausführung. Wenn der Prozess beendet ist, steht die Nummer für einen anderen Prozess wieder zur Verfügung. Wenn Sie den gleichen Befehl mehrmals ausführen, wird jedes Mal eine andere _PID_-Nummer erzeugt.<!-- TODO !\[Parent/child relationship between processes\](images/FON-050-001.png) -->!!! note "Anmerkung"
+Die *PID*-Nummer repräsentiert den Prozess zum Zeitpunkt der Ausführung. Wenn der Prozess beendet ist, steht die Nummer für einen anderen Prozess wieder zur Verfügung. Wenn Sie den gleichen Befehl mehrmals ausführen, wird jedes Mal eine andere *PID*-Nummer erzeugt.<!-- TODO !\[Parent/child relationship between processes\](images/FON-050-001.png) -->!!! note "Anmerkung"
 
     Prozesse dürfen nicht mit _threads_ verwechselt werden. Jeder Prozess hat seinen eigenen Speicher-Kontext (Ressourcen und Adressraum), während _threads_ aus demselben Prozess diesen Kontext gemeinsam teilen.
 
 ## Prozesse anzeigen
 
 Das Kommando `ps` zeigt den Status laufender Prozesse an.
-```
+
+```bash
 ps [-e] [-f] [-u login]
 ```
 
 Beispiel:
-```
+
+```bash
 # ps -fu root
 ```
 
 | Option     | Beschreibung                         |
 | ---------- | ------------------------------------ |
 | `-e`       | Zeigt alle Prozesse an.              |
-| `-f`       | Zeigt zusätzliche Information an.    |
+| `-f`       | Zeigt die gesamten Informationen an. |
 | `-u` login | Zeigt die Prozesse des Benutzers an. |
 
 Einige zusätzliche Optionen:
@@ -71,7 +73,7 @@ Einige zusätzliche Optionen:
 | `-t tty`              | Zeigt die Prozesse, die vom Terminal ausgeführt werden. |
 | `-p PID`              | Zeigt die Prozessinformation an.                        |
 | `-H`                  | Zeigt die Informationen als Baumstruktur an.            |
-| `-I`                  | Zeigt zusätzliche Information an.                       |
+| `-l`                  | Zeigt ausführliche Information an.                      |
 | `--sort COL`          | Sortiert das Ergebnis nach einer Spalte.                |
 | `--headers`           | Zeigt den Header auf jeder Seite des Terminals an.      |
 | `--format "%a %b %c"` | Passt das Ausgabeformat an.                             |
@@ -80,7 +82,7 @@ Ohne Angabe einer Option zeigt der Befehl `ps` nur Prozesse an, die vom aktuelle
 
 Das Ergebnis wird in Spalten angezeigt:
 
-```
+```bash
 # ps -ef
 UID PID PPID C STIME TTY TIME CMD
 root 1 0 Jan01 ?   00:00/03  /sbin/init
@@ -99,7 +101,7 @@ root 1 0 Jan01 ?   00:00/03  /sbin/init
 
 Das Verhalten der Steuerung kann vollständig angepasst werden:
 
-```
+```bash
 # ps -e --format "%P %p %c %n" --sort ppid --headers
  PPID   PID COMMAND          NI
     0     1 systemd           0
@@ -119,14 +121,14 @@ Der Benutzerprozess:
 * wird von einem Terminal gestartet, das einem Benutzer zugeordnet ist;
 * hat Zugriff auf Ressourcen über Anfragen oder Daemons.
 
-Der Systemprozess (_daemon_):
+Der Systemprozess (*daemon*):
 
 * wird vom System gestartet;
 * ist keinem Terminal zugeordnet und gehört einem Systembenutzer (oft `root`);
 * wird beim Booten geladen, befindet sich im Speicher und wartet auf einen Aufruf;
 * wird normalerweise durch den Buchstaben `d` identifiziert, der dem Prozessnamen assoziiert ist.
 
-Systemprozesse werden daher als Daemons bezeichnet (_**D**isk **A**nd **E**xecution **MON**itor_).
+Systemprozesse werden daher als 'Daemon's bezeichnet (***D**isk **A**nd **E**xecution **MON**itor*).
 
 ## Berechtigungen und Rechte
 
@@ -161,9 +163,11 @@ Wenn ein Elternprozess nicht mehr existiert, werden seine Kinder als Orphan beze
 
 ### Die Priorität eines Prozesses
 
-Der Prozessor arbeitet in time-sharing, wobei jedem Prozess eine bestimmte Menge Prozessorzeit zugewiesen wird.
+GNU/Linux gehört zur Familie der Time-Sharing-Betriebssysteme. Prozessoren arbeiten im Time-Sharing-Verfahren, und jeder Prozess nimmt etwas Prozessorzeit in Anspruch. Prozesse werden nach Priorität klassifiziert:
 
-Die Prozesse sind nach Priorität klassifiziert, deren Wert von **-20** (die höchste Priorität) bis **+19** (die niedrigste Priorität) variiert.
+* Echtzeitprozess: Der Prozess mit der Priorität **0-99** wird durch einen Echtzeit-Scheduling-Algorithmus geplant.
+* Gewöhnliche Prozesse: Prozesse mit dynamischen Prioritäten von **100–139** werden mithilfe eines vollständig fairen Schedulings-Algorithmus geplant.
+* Nice-Wert: ein Parameter, mit dem die Priorität eines normalen Prozesses angepasst wird. Der Wertebereich liegt zwischen **-20** und **19**.
 
 Die Standardpriorität eines Prozesses ist **0**.
 
@@ -186,466 +190,301 @@ Die Einschränkungen des asynchronen Modus:
 
 Der `kill` Befehl sendet ein Stoppsignal an einen Prozess.
 
-```
+```bash
 kill [-signal] PID
 ```
 
 Beispiel:
 
+```bash
+kill -9 1664
 ```
-$ kill -9 1664
-```Unterbreche den Prozess (<kbd>STRG</kdb> + <kdb>D</kdb>)</td> </tr> 
 
-<tr>
-  <td>
-    <code>15</code>
-  </td>
-  
-  <td>
-    <em x-id="4">SIGTERM</em>
-  </td>
-  
-  <td>
-    Bereinigung und Beenden des Prozesses
-  </td>
-</tr>
+| Code | Signal    | Beschreibung                             |
+| ---- | --------- | ---------------------------------------- |
+| `2`  | *SIGINT*  | Sofortige Beendigung des Prozesses       |
+| `9`  | *SIGKILL* | Den Prozess unterbrechen (++control+d++) |
+| `15` | *SIGTERM* | Bereinigung und Beenden des Prozesses    |
+| `18` | *SIGCONT* | Prozess fortsetzen                       |
+| `19` | *SIGSTOP* | Prozess anhalten                         |
 
-<tr>
-  <td>
-    <code>18</code>
-  </td>
-  
-  <td>
-    <em x-id="4">SIGCONT</em>
-  </td>
-  
-  <td>
-    Prozess fortsetzen
-  </td>
-</tr>
+Signale sind das Mittel der Kommunikation zwischen den Prozessen. Der `kill` Befehl sendet ein Signal an einen Prozess.
 
-<tr>
-  <td>
-    <code>19</code>
-  </td>
-  
-  <td>
-    <em x-id="4">SIGSTOP</em>
-  </td>
-  
-  <td>
-    Prozess anhalten
-  </td>
-</tr></tbody> </table> 
+!!! tip "Hinweis"
 
-<p spaces-before="0">
-  Signale sind das Mittel der Kommunikation zwischen den Prozessen. Der <code>kill</code> Befehl sendet ein Signal an einen Prozess.
-</p>
+    Die komplette Liste der Signale, die vom `kill` Befehl unterstüzt werden, kann durch folgendes Kommando ausgegeben werden:
 
-<p spaces-before="0">
-  !!! tip "Hinweis"
-</p>
+    ```
+    $ man 7 signal
+    ```
 
-<pre><code>Die komplette Liste der Signale, die vom `kill` Befehl unterstüzt werden, kann durch folgendes Kommando ausgegeben werden:
-</code></pre>
+### `nohup` Befehl
 
-<pre><code>    $ man 7 signal
-</code></pre>
+`nohup` erlaubt das Starten eines Prozesses unabhängig von einer Verbindung.
 
+```bash
+nohup Befehl
+```
 
+Beispiel:
 
-<h3 spaces-before="0">
-  <code>nohup</code> Befehl
-</h3>
+```bash
+nohup myprogram.sh 0</dev/null &
+```
 
-<p spaces-before="0">
-  <code>nohup</code> erlaubt das Starten eines Prozesses unabhängig von einer Verbindung.
-</p>
+Durch `nohup` wird das `SIGHUP` Signal ignoriert, das gesendet wird, wenn ein Benutzer sich ausloggt.
 
-<pre><code>nohup Befehl
-</code></pre>
+!!! note "Hinweis"
 
-<p spaces-before="0">
-  Beispiel:
-</p>
+    `nohup` behandelt Standard-Ausgabe und -Fehler, aber keine Standardeingabe, daher die Umleitung dieser Eingabe nach `/dev/null`.
 
-<pre><code>$ nohup myprogram.sh 0&lt;/dev/null &
-</code></pre>
+### [CTRL] + [Z]
 
-<p spaces-before="0">
-  Durch <code>nohup</code> wird das <code>SIGHUP</code> Signal ignoriert, das gesendet wird, wenn ein Benutzer sich ausloggt.
-</p>
+Durch gleichzeitiges Drücken der ++control+z++ Tasten wird der Synchronprozess vorübergehend unterbrochen. Der Zugriff auf die Eingabeaufforderung wird wiederhergestellt, nachdem die Nummer des gerade unterbrochenen Prozesses angezeigt wurde.
 
-<p spaces-before="0">
-  !!! note "Hinweis"
-</p>
+### `&` Anweisung
 
-<pre><code>`nohup` behandelt Standard-Ausgabe und -Fehler, aber keine Standardeingabe, daher die Umleitung dieser Eingabe nach `/dev/null`.
-</code></pre>
+Die Anweisung `&` führt den Befehl asynchron aus (der Befehl wird dann *job* genannt) und zeigt die Id-Nummer vom *job* an. Der Zugriff auf die Eingabeaufforderung wird zurückgestellt.
 
+Beispiel:
 
-
-<h3 spaces-before="0">
-  [CTRL] + [Z]
-</h3>
-
-<p spaces-before="0">
-  Durch gleichzeitiges Drücken der <kbd>STRG</kbd> + <kbd>Z</kbd> Tasten wird der Synchronprozess vorübergehend unterbrochen. Der Zugriff auf die Eingabeaufforderung wird wiederhergestellt, nachdem die Nummer des gerade unterbrochenen Prozesses angezeigt wurde.
-</p>
-
-
-
-<h3 spaces-before="0">
-  <code>&</code> Anweisung
-</h3>
-
-<p spaces-before="0">
-  Die Anweisung <code>&</code> führt den Befehl asynchron aus (der Befehl wird dann <em x-id="4">job</em> genannt) und zeigt die Id-Nummer vom <em x-id="4">job</em> an. Der Zugriff auf die Eingabeaufforderung wird zurückgestellt.
-</p>
-
-<p spaces-before="0">
-  Beispiel:
-</p>
-
-<pre><code>$ time ls -lR / &gt; list.ls 2&gt; /dev/null &
+```bash
+$ time ls -lR / > list.ls 2> /dev/null &
 [1] 15430
 $
-</code></pre>
+```
 
-<p spaces-before="0">
-  Die <em x-id="4">Job</em>-Nummer wird während der Hintergrundverarbeitung abgerufen und in eckigen Klammern angezeigt, gefolgt von der <code>PID</code>-Nummer.
-</p>
+Die *Job*-Nummer wird während der Hintergrundverarbeitung abgerufen und in eckigen Klammern angezeigt, gefolgt von der `PID`-Nummer.
 
+### `fg` und `bg` Befehle
 
+Der `fg` Befehl stellt den Prozess in den Vordergrund:
 
-<h3 spaces-before="0">
-  <code>fg</code> und <code>bg</code> Befehle
-</h3>
-
-<p spaces-before="0">
-  Der <code>fg</code> Befehl stellt den Prozess in den Vordergrund:
-</p>
-
-<pre><code>$ time ls -lR / &gt; list.ls 2&gt;/dev/null &
+```bash
+$ time ls -lR / > list.ls 2>/dev/null &
 $ fg 1
-time ls -lR / &gt; list.ls 2/dev/null
-</code></pre>
+time ls -lR / > list.ls 2/dev/null
+```
 
-<p spaces-before="0">
-  während der Befehl <code>bg</code> ihn im Hintergrund platziert:
-</p>
+während der Befehl `bg` ihn im Hintergrund platziert:
 
-<pre><code>[CTRL]+[Z]
+```bash
+[CTRL]+[Z]
 ^Z
 [1]+ Stopped
 $ bg 1
 [1] 15430
 $
-</code></pre>
+```
 
-<p spaces-before="0">
-  Ob es im Hintergrund gesetzt wurde, als es mit dem <code>&</code> Argument erstellt wurde oder später mit den <kbd>STRG</kbd> +<kbd>Z</kbd> Tasten erstellt wurde, kann ein Prozess mit dem Befehl <code>fg</code> und seiner Jobnummer wieder in den Vordergrund gebracht werden.
-</p>
+Ob es im Hintergrund gesetzt wurde, als es mit dem `&` Argument oder später mit den ++control+z++ Tasten erstellt wurde, kann ein Prozess mit dem Befehl `fg` und seiner Jobnummer wieder in den Vordergrund gebracht werden.
 
+### `jobs` Befehl
 
+Der Befehl `jobs` zeigt die Liste der im Hintergrund laufenden Prozesse an und gibt deren Jobnummer an.
 
-<h3 spaces-before="0">
-  <code>jobs</code> Befehl
-</h3>
+Beispiel:
 
-<p spaces-before="0">
-  Der Befehl <code>jobs</code> zeigt die Liste der im Hintergrund laufenden Prozesse an und gibt deren Jobnummer an.
-</p>
-
-<p spaces-before="0">
-  Beispiel:
-</p>
-
-<pre><code>$ jobs
+```bash
+$ jobs
 [1]- Running    sleep 1000
-[2]+ Running    find / &gt; arbo.txt
-</code></pre>
+[2]+ Running    find / > arbo.txt
+```
 
-<p spaces-before="0">
-  Die Spalten repräsentieren:
-</p>
+Die Spalten repräsentieren:
 
-<ol start="1">
-  <li>
-    Jobnummer;
-  </li>
-  
-  <li>
-    die Reihenfolge in der die Prozesse ausgeführt werden
-  </li>
-</ol>
+1. Jobnummer;
+2. die Reihenfolge in der die Prozesse ausgeführt werden:
 
-<ul>
-  <li>
-    ein <code>+</code> : Dieser Prozess ist der nächste Prozess, der standardmäßig mit <code>fg</code> oder <code>bg</code> ausgeführt wird;
-  </li>
-  <li>
-    ein <code>-</code> : Dieser Prozess ist der nächste Prozess, der die <code>+</code> übernimmt <code>+</code>
-  </li>
-</ul>
+   * ein `+` : Dieser Prozess ist der nächste Prozess, der standardmäßig mit `fg` oder `bg` ausgeführt wird;
+   * ein `-` : Dieser Prozess ist der nächste Prozess, der die `+` übernimmt `+`
 
-<ol start="3">
-  <li>
-    <em x-id="4">Running</em> (laufender Prozess) oder <em x-id="4">Stopped</em> (abgehängter Prozess)  
-  </li>
-  
-  <li>
-    der Kommando
-  </li>
-</ol>
+3. *Running* (laufender Prozess) oder *Stopped* (abgebrochener Prozess)
+4. der Kommando
 
+### `nice` und `renice` Befehle
 
+Der Befehl `nice` erlaubt die Ausführung eines Befehls, wobei seine Priorität angegeben wird.
 
-<h3 spaces-before="0">
-  <code>nice</code> und <code>renice</code> Befehle
-</h3>
+```bash
+nice priority command
+```
 
-<p spaces-before="0">
-  Der Befehl <code>nice</code> erlaubt die Ausführung eines Befehls, wobei seine Priorität angegeben wird.
-</p>
+Beispiel:
 
-<pre><code>nice priority command
-</code></pre>
+```bash
+nice -n+15 find / -name "file"
+```
 
-<p spaces-before="0">
-  Beispiel:
-</p>
+Anders als `root` kann ein Standardbenutzer die Priorität eines Prozesses nur reduzieren. Nur Werte zwischen +0 und +19 werden akzeptiert.
 
-<pre><code>$ nice -n+15 find / -name "file"
-</code></pre>
+!!! tip "Hinweis"
 
-<p spaces-before="0">
-  Anders als <code>root</code> kann ein Standardbenutzer die Priorität eines Prozesses nur reduzieren. Nur Werte zwischen +0 und +19 werden akzeptiert.
-</p>
+    Diese letzte Einschränkung kann pro Benutzer oder pro Gruppe aufgehoben werden, indem die Datei `/etc/security/limits.conf` angepasst wird.
 
-<p spaces-before="0">
-  !!! tip "Hinweis"
-</p>
+Mit dem `renice` Befehl können Sie die Priorität eines laufenden Prozesses ändern.
 
-<pre><code>Diese letzte Einschränkung kann pro Benutzer oder pro Gruppe aufgehoben werden, indem die Datei `/etc/security/limits.conf` geändert wird.
-</code></pre>
+```bash
+renice priority [-g GID] [-p PID] [-u UID]
+```
 
-<p spaces-before="0">
-  Mit dem <code>renice</code> Befehl können Sie die Priorität eines laufenden Prozesses ändern.
-</p>
+Beispiel:
 
-<pre><code>renice priority [-g GID] [-p PID] [-u UID]
-</code></pre>
+```bash
+renice +15 -p 1664
+```
 
-<p spaces-before="0">
-  Beispiel:
-</p>
+| Option | Beschreibung                      |
+| ------ | --------------------------------- |
+| `-g`   | `GID` der Prozessbesitzer-Gruppe. |
+| `-p`   | `PID` des Prozesses.              |
+| `-u`   | `UID` des Prozess-Owner.          |
 
-<pre><code>$ renice +15 -p 1664
-</code></pre>
-<table spaces-before="0">
-  <tr>
-    <th>
-      Option
-    </th>
-    
-    <th>
-      Beschreibung
-    </th>
-  </tr>
-  
-  <tr>
-    <td>
-      <code>-g</code>
-    </td>
-    
-    <td>
-      <code>GID</code> der Prozessbesitzer-Gruppe.
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      <code>-p</code>
-    </td>
-    
-    <td>
-      <code>PID</code> des Prozesses.
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      <code>-u</code>
-    </td>
-    
-    <td>
-      <code>UID</code> des Prozess-Owner.
-    </td>
-  </tr>
-</table>
+Der `renice` Befehl wirkt auf bereits laufende Prozesse. Es ist daher möglich, die Priorität eines bestimmten Prozesses, aber auch mehrerer Prozesse zu ändern, die einem Benutzer oder einer Gruppe angehören.
 
-<p spaces-before="0">
-  Der <code>renice</code> Befehl wirkt auf bereits laufende Prozesse. Es ist daher möglich, die Priorität eines bestimmten Prozesses, aber auch mehrerer Prozesse zu ändern, die einem Benutzer oder einer Gruppe angehören.
-</p>
+!!! tip "Hinweis"
 
-<p spaces-before="0">
-  !!! tip "Hinweis"
-</p>
+    Der `pidof`-Befehl, kombiniert mit dem `xargs` Befehl (siehe den Kurs über erweiterte Befehle), erlaubt es, eine neue Priorität in einem einzigen Befehl anzuwenden:
 
-<pre><code>Der `pidof`-Befehl, kombiniert mit dem `xargs` Befehl (siehe den Kurs über erweiterte Befehle), erlaubt es, eine neue Priorität in einem einzigen Befehl anzuwenden:
-</code></pre>
+    ```
+    $ pidof sleep | xargs renice 20
+    ```
 
-<pre><code>    $ pidof sleep | xargs renice 20
-</code></pre>
+### `top` Befehl
 
+Der `top` Befehl zeigt die Prozesse und den Ressourcenverbrauch an.
 
+```bash
+$ top
+PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND
+2514 root 20 0       15    5.5 0:01.14   top
+```
 
-<h3 spaces-before="0">
-  <code>top</code> Befehl
-</h3>
+| Spalte    | Beschreibung                   |
+| --------- | ------------------------------ |
+| `PID`     | Prozess IDentifikationsnummer. |
+| `USER`    | Besitzer.                      |
+| `PR`      | Prozesspriorität.              |
+| `NI`      | Nice-Wert.                     |
+| `%CPU`    | Prozessorlast                  |
+| `%MEM`    | Speicherauslastung.            |
+| `TIME+`   | Prozessor-Nutzungszeit.        |
+| `COMMAND` | Befehl ausgeführt.             |
 
-<p spaces-before="0">
-  Der <code>top</code> Befehl zeigt die Prozesse und den Ressourcenverbrauch an.
-</p>
+Der `top` Befehl erlaubt die Kontrolle der Prozesse in Echtzeit und im interaktiven Modus.
 
-<pre><code>$ Top
-PID USER PR NI ... %CPU %MEM TIME+ COMMAND
-2514 root 20 0 15 5.5 0:01.14 top
-</code></pre>
+### `pgrep` und `pkill` Befehle
 
-<table spaces-before="0">
-  <tr>
-    <th>
-      Spalte
-    </th>
-    
-    <th>
-      Beschreibung
-    </th>
-  </tr>
-  
-  <tr>
-    <td>
-      <code>PID</code>
-    </td>
-    
-    <td>
-      Prozess IDentifikationsnummer.
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      <code>USER</code>
-    </td>
-    
-    <td>
-      Besitzer.
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      <code>PR</code>
-    </td>
-    
-    <td>
-      Prozesspriorität.
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      <code>NI</code>
-    </td>
-    
-    <td>
-      Nice-Wert.
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      <code>%CPU</code>
-    </td>
-    
-    <td>
-      Prozessorlast
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      <code>%MEM</code>
-    </td>
-    
-    <td>
-      Speicherauslastung.
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      <code>TIME+</code>
-    </td>
-    
-    <td>
-      Prozessor-Nutzungszeit.
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      <code>COMMAND</code>
-    </td>
-    
-    <td>
-      Befehl ausgeführt.
-    </td>
-  </tr>
-</table>
+Der `pgrep` Befehl durchsucht die laufenden Prozesse nach einem Prozessnamen und zeigt auf der Standardausgabe die *PID* an, die den Auswahlkriterien entspricht.
 
-<p spaces-before="0">
-  Der <code>top</code> Befehl erlaubt die Kontrolle der Prozesse in Echtzeit und im interaktiven Modus.
-</p>
+Der Befehl `pkill` sendet das angegebene Signal (standardmäßig *SIGTERM*) an jeden Prozess.
 
+```bash
+pgrep process
+pkill [option] [-signal] process
+```
 
+Beispiele:
 
-<h3 spaces-before="0">
-  <code>pgrep</code> und <code>pkill</code> Befehle
-</h3>
+* Prozessnummer von `sshd` ermitteln:
 
-<p spaces-before="0">
-  Der <code>pgrep</code> Befehl durchsucht die laufenden Prozesse nach einem Prozessnamen und zeigt auf der Standardausgabe die <em x-id="4">PID</em> an, die den Auswahlkriterien entspricht.
-</p>
+  ```bash
+  pgrep -u root sshd
+  ```
 
-<p spaces-before="0">
-  Der Befehl <code>pkill</code> sendet das angegebene Signal (standardmäßig <em x-id="4">SIGTERM</em>) an jeden Prozess.
-</p>
+* Alle `tomcat` Prozesse endgültig beenden:
 
-<pre><code>pgrep process
-pkill [-signal] process
-</code></pre>
+  ```bash
+  pkill tomcat
+  ```
 
-<p spaces-before="0">
-  Beispiele:
-</p>
+!!! note "Anmerkung"
 
-<ul>
-  <li>
-    Prozessnummer von <code>sshd</code> ermitteln:
-  </li>
-</ul>
+    Bevor Sie einen Prozess beenden, sollten Sie genau wissen, wozu er dient. Andernfalls kann es zu Systemabstürzen oder anderen unvorhersehbaren Problemen kommen.
 
-<pre><code>$ pgrep -u root sshd
-</code></pre>
+Zusätzlich zum Senden von Signalen an die relevanten Prozesse kann der Befehl `pkill` auch die Verbindungssitzung des Benutzers entsprechend der Terminalnummer beenden, wie zum Beispiel:
 
-<ul>
-  <li>
-    Alle <code>tomcat</code> Prozesse endgültig beenden:
-  </li>
-</ul>
+```bash
+pkill -t pts/1
+```
 
-<pre><code>$ pkill tomcat
-</code></pre>
+### Das Kommando `killall`
+
+Die Funktion dieses Befehls entspricht in etwa der des Befehls `pkill`. Die Syntax ist folgende — `killall [option] [ -s SIGNAL | -SIGNAL ] NAME`. Das Default-Signal ist *SIGTERM*.
+
+| Option | Beschreibung                                                                            |
+|:------ |:--------------------------------------------------------------------------------------- |
+| `-l`   | listet sämtliche bekannten Signalnamen auf                                              |
+| `-i`   | vor dem Schließen nach einer Bestätigung fragen                                         |
+| `-I`   | Groß- und Kleinschreibung wird bei der Prozessnamenübereinstimmung nicht berücksichtigt |
+
+Beispiel:
+
+```bash
+killall tomcat
+```
+
+### Das Kommando `pstree`
+
+Dieser Befehl zeigt den Fortschritt baumartig an und wird wie folgt verwendet: `pstree [option]`.
+
+| Option | Beschreibung                                          |
+|:------ |:----------------------------------------------------- |
+| `-p`   | Zeigt die PID des Prozesses an                        |
+| `-n`   | sortiert die Ausgabe nach PID                         |
+| `-h`   | hebt den aktuellen Prozess und seine Vorfahren hervor |
+| `-u`   | zeigt UID-Übergänge                                   |
+
+```bash
+$ pstree -pnhu
+systemd(1)─┬─systemd-journal(595)
+           ├─systemd-udevd(625)
+           ├─auditd(671)───{auditd}(672)
+           ├─dbus-daemon(714,dbus)
+           ├─NetworkManager(715)─┬─{NetworkManager}(756)
+           │                     └─{NetworkManager}(757)
+           ├─systemd-logind(721)
+           ├─chronyd(737,chrony)
+           ├─sshd(758)───sshd(1398)───sshd(1410)───bash(1411)───pstree(1500)
+           ├─tuned(759)─┬─{tuned}(1376)
+           │            ├─{tuned}(1381)
+           │            ├─{tuned}(1382)
+           │            └─{tuned}(1384)
+           ├─agetty(763)
+           ├─crond(768)
+           ├─polkitd(1375,polkitd)─┬─{polkitd}(1387)
+           │                       ├─{polkitd}(1388)
+           │                       ├─{polkitd}(1389)
+           │                       ├─{polkitd}(1390)
+           │                       └─{polkitd}(1392)
+           └─systemd(1401)───(sd-pam)(1404)
+```
+
+### Orphan- und Zombie-Prozesse
+
+**verwaister Prozess**: Wenn ein übergeordneter Prozess stirbt, gelten seine untergeordneten Prozesse als Waisen. Der Init-Prozess übernimmt diese speziellen Statusprozesse und die Statuserfassung wird abgeschlossen, bis sie zerstört werden. Konzeptionell gesehen ist der `orphanage`-Prozess unproblematisch.
+
+**Zombie-Prozess**: Nachdem ein untergeordneter Prozess seine Arbeit abgeschlossen und beendet wurde, muss sein übergeordneter Prozess die Signalverarbeitungsfunktion wait() oder waitpid() aufrufen, um den Beendigungsstatus des untergeordneten Prozesses abzurufen. Wenn der übergeordnete Prozess dies nicht tut, behält der untergeordnete Prozess, obwohl er bereits beendet wurde, dennoch einige Informationen zum Beendigungsstatus in der Systemprozesstabelle bei. Da der übergeordnete Prozess die Statusinformationen des untergeordneten Prozesses nicht abrufen kann, belegen diese Prozesse weiterhin Ressourcen in der Prozesstabelle. Prozesse in diesem Zustand bezeichnen wir als Zombies.
+
+Hazard:
+
+* Sie belegen Systemressourcen und ggf. führen zu einer Verringerung der Maschinenleistung.
+* Es können keine neuen untergeordneten Prozesse generiert werden.
+
+Wie können Sie das aktuelle System auf Zombie-Prozesse überprüfen?
+
+```bash
+ps -lef | awk '{print $2}' | grep Z
+```
+
+Diese Zeichen können in der Spalte erscheinen:
+
+* **D** – ununterbrochener Zustand (normalerweise IO)
+* **I** - Idle kernel thread
+* **R** - läuft oder ausführbar (on run queue, Warteschleife)
+* **S** – unterbrechbarer `sleep` (Warten auf ein Ereignis zum Abschluss)
+* **T** - gestoppt durch `job control signal`
+* **t** - vom Debugger während Tracing gestoppt
+* **W** – Paging (nicht gültig seit dem 2.6.xx-Kernel)
+* **X** - dead (sollte niemals vorkommen)
+* **Z** - nicht mehr aktiver ("Zombie") Prozess, der beendet, aber nicht von seinem übergeordneten Prozess abgerufen wurde

@@ -10,8 +10,8 @@ Dans ce chapitre, vous allez apprendre à gérer les tâches planifiées.
 
 **Objectifs** : Dans ce chapitre, les futurs administrateurs Linux vont apprendre comment :
 
-:heavy_check_mark: Linux gère la planification des tâches planifiées ;   
-:heavy_check_mark: restreindre l'utilisation de **`cron`** à certains utilisateurs ;   
+:heavy_check_mark: Linux gère la planification des tâches planifiées ;  
+:heavy_check_mark: restreindre l'utilisation de **`cron`** à certains utilisateurs ;  
 :heavy_check_mark: planifier des tâches.
 
 :checkered_flag: **crontab**, **crond**, **planification**, **linux**
@@ -48,7 +48,7 @@ Le service `cron` est exécuté par un démon `crond` présent en mémoire.
 
 Pour vérifier son statut :
 
-```
+```bash
 [root] # systemctl status crond
 ```
 
@@ -58,13 +58,13 @@ Pour vérifier son statut :
 
 Initialisation du démon `crond` manuellement :
 
-```
+```bash
 [root]# systemctl {status|start|restart|stop} crond
 ```
 
 Initialisation du démon `crond` au démarrage :
 
-```
+```bash
 [root]# systemctl enable crond
 ```
 
@@ -105,15 +105,16 @@ Par défaut, `/etc/cron.deny` existe et est vide et `/etc/cron.allow` n'existe p
 
 Seul **user1** pourra utiliser `cron`.
 
-```
+```bash
 [root]# vi /etc/cron.allow
 user1
 ```
 
 ### Interdire un utilisateur
+
 Seul **user2** ne pourra pas utiliser `cron`.
 
-```
+```bash
 [root]# vi /etc/cron.deny
 user2
 ```
@@ -132,13 +133,13 @@ Ce fichier contient toutes les informations dont `crond` a besoin de savoir conc
 
 La commande `crontab` est utilisée pour gérer le fichier de planification.
 
-```
+```bash
 crontab [-u utilisateur] [-e | -l | -r]
 ```
 
 Exemple :
 
-```
+```bash
 [root]# crontab -u user1 -e
 ```
 
@@ -149,7 +150,7 @@ Exemple :
 | `-u`   | Nom de l'utilisateur dont le fichier de planification doit être manipulé |
 | `-r`   | Supprime le fichier de planification                                     |
 
-!!! Warning "Avertissement"
+!!! warning "Avertissement"
 
     `crontab` sans option efface le fichier schedule existant et attends la saisie de nouvelles lignes par l'utilisateur. Vous devez utiliser <kbd>ctrl</kbd> + <kbd>d</kbd> pour quitter le mode éditeur.
     
@@ -184,7 +185,7 @@ Le fichier `crontab` est structuré selon les règles suivantes.
 * Chaque ligne se termine par un retour chariot ;
 * Un `#` au début de la ligne indique un commentaire.
 
-```
+```bash
 [root]# crontab –e
 10 4 1 * * /root/scripts/backup.sh
 1  2 3 4 5       6
@@ -216,25 +217,25 @@ Exemples :
 
 Script exécuté le 15 avril à 10h25:
 
-```
+```bash
 25 10 15 04 * /root/scripts/script > /log/…
 ```
 
 Run at 11am and then at 4pm every day:
 
-```
+```bash
 00 11,16 * * * /root/scripts/scrip t > /log/…
 ```
 
 Courir chaque heure de 11h à 16h tous les jours:
 
-```
+```bash
 00 11-16 * * * /root/scripts/script > /log/…
 ```
 
 Lancer toutes les 10 minutes pendant les heures de travail :
 
-```
+```bash
 */10 8-17 * * 1-5 /root/scripts/script > /log/…
 ```
 
@@ -253,12 +254,12 @@ Pour l'utilisateur root `crontab` a également des paramètres de temps spéciau
 
 Un utilisateur, rockstar, veut éditer son fichier `crontab` :
 
-1) `crond` vérifie s'il est autorisé (`/etc/cron.allow` et `/etc/cron.deny`).
+1. `crond` vérifie s'iel est autorisé (`/etc/cron.allow` et `/etc/cron.deny`).
 
-2) S'il est autorisé, il accède à son fichier `crontab` (`/var/spool/cron/rockstar`).
+2. S'iel l'est, il accède à son fichier `crontab` (`/var/spool/cron/rockstar`).
 
-Chaque minute `crond` lit les fichiers de planification.
+    Chaque minute, `crond` lit les fichiers de planification.
 
-3) Il exécute les tâches planifiées.
+3. Iel exécute les tâches planifiées.
 
-4) Il log systématiquement dans un fichier journal (`/var/log/cron`).
+4. Iel rend compte systématiquement dans un fichier log (`/var/log/cron`).
