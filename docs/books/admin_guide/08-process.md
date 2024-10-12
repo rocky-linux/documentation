@@ -207,10 +207,10 @@ kill -9 1664
 | Code | Signal    | Description                                            |
 |------|-----------|--------------------------------------------------------|
 | `2`  | *SIGINT*  | Immediate termination of the process                   |
-| `9`  | *SIGKILL* | Interrupt the process (++control+d++) |
+| `9`  | *SIGKILL* | Interrupt the process (++control+"d"++)                |
 | `15` | *SIGTERM* | Clean termination of the process                       |
-| `18` | *SIGCONT* | Resume the process                                     |
-| `19` | *SIGSTOP* | Suspend the process                                    |
+| `18` | *SIGCONT* | Resume the process. Processes that use the SIGSTOP signal can use it to continue running |
+| `19` | *SIGSTOP* | Suspend the process (Stop process). The effect of this signal is equivalent to ++ctrl+"z"++ |
 
 Signals are the means of communication between processes. The `kill` command sends a signal to a process.
 
@@ -242,9 +242,9 @@ nohup myprogram.sh 0</dev/null &
 
     `nohup` handles standard output and error but not standard input, hence the redirection of this input to `/dev/null`.
 
-### [CTRL] + [Z]
+### [Ctrl] + [z]
 
-By pressing the ++control+z++ keys simultaneously, the synchronous process is temporarily suspended. Access to the prompt is restored after displaying the number of the process that has just been suspended.
+By pressing the ++control+"z"++ keys simultaneously, the synchronous process is temporarily suspended. Access to the prompt is restored after displaying the number of the process that has just been suspended.
 
 ### `&` instruction
 
@@ -281,7 +281,7 @@ $ bg 1
 $
 ```
 
-Whether it was put in the background when it was created with the `&` argument or later with the ++control+z++ keys, a process can be brought back to the foreground with the `fg` command and its job number.
+Whether it was put in the background when it was created with the `&` argument or later with the ++control+"z"++ keys, a process can be brought back to the foreground with the `fg` command and its job number.
 
 ### `jobs` command
 
