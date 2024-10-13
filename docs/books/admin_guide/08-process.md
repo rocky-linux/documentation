@@ -314,17 +314,31 @@ The command `nice` allows the execution of a command by specifying its priority.
 nice priority command
 ```
 
-Example:
+Usage example:
 
 ```bash
-nice -n+15 find / -name "file"
+nice --adjustment=-5 find / -name "file"
+
+nice -n -5 find / -name "file"
+
+nice --5 find / -name "file"
+
+nice -n 5 find / -name "file"
+
+nice find / -name "file"
 ```
 
-Unlike `root`, a standard user can only reduce the priority of a process. Only values between +0 and +19 will be accepted.
+Unlike `root`, a standard user can only reduce the priority of a process and only values between 0 and 19 will be accepted.
+
+As shown in the example above, the first three commands indicate setting the Nice value to "-5", while the second command is our recommended usage. The fourth command indicates setting the Nice value to "5". For the fifth command, do not type any options to set the Nice value to "10".
 
 !!! Tip
 
-    This last limitation can be lifted per-user or per-group by modifying the `/etc/security/limits.conf` file.
+    "Nice" is the abbreviation for "niceness". 
+    
+    Directly typing the `nice` command will return the Nice value of the current shell. 
+    
+    You can lift the Nice value limit for each user or group by modifying the `/etc/security/limits.conf` file.
 
 The `renice` command allows you to change the priority of a running process.
 
@@ -335,7 +349,7 @@ renice priority [-g GID] [-p PID] [-u UID]
 Example:
 
 ```bash
-renice +15 -p 1664
+renice -n 15 -p 1664
 ```
 
 | Option | Description                       |
@@ -351,8 +365,10 @@ The `renice` command acts on processes already running. It is therefore possible
     The `pidof` command, coupled with the `xargs` command (see the Advanced Commands course), allows a new priority to be applied in a single command:
 
     ```
-    $ pidof sleep | xargs renice 20
+    $ pidof sleep | xargs renice -n 20
     ```
+
+To adapt to different distributions, you should try to use command forms such as `nice -n 5` or `renice -n 6` as much as possible.
 
 ### `top` command
 
