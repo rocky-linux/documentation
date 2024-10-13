@@ -200,13 +200,13 @@ Beispiel:
 kill -9 1664
 ```
 
-| Code | Signal    | Beschreibung                             |
-| ---- | --------- | ---------------------------------------- |
-| `2`  | *SIGINT*  | Sofortige Beendigung des Prozesses       |
-| `9`  | *SIGKILL* | Den Prozess unterbrechen (++control+d++) |
-| `15` | *SIGTERM* | Bereinigung und Beenden des Prozesses    |
-| `18` | *SIGCONT* | Prozess fortsetzen                       |
-| `19` | *SIGSTOP* | Prozess anhalten                         |
+| Code | Signal    | Beschreibung                                                                                                 |
+| ---- | --------- | ------------------------------------------------------------------------------------------------------------ |
+| `2`  | *SIGINT*  | Sofortige Beendigung des Prozesses                                                                           |
+| `9`  | *SIGKILL* | Den Prozess unterbrechen (++control+"d"++)                                                                   |
+| `15` | *SIGTERM* | Bereinigung und Beenden des Prozesses                                                                        |
+| `18` | *SIGCONT* | Prozess fortsetzen. Prozesse, die durch das Signal SIGSTOP gestoppt wurden, können dank SIGCONT weiterlaufen |
+| `19` | *SIGSTOP* | Prozess unterbrechen (Stop process). Die Wirkung dieses Signals entspricht ++ctrl+"z"++                      |
 
 Signale sind das Mittel der Kommunikation zwischen den Prozessen. Der `kill` Befehl sendet ein Signal an einen Prozess.
 
@@ -238,9 +238,9 @@ Durch `nohup` wird das `SIGHUP` Signal ignoriert, das gesendet wird, wenn ein Be
 
     `nohup` behandelt Standard-Ausgabe und -Fehler, aber keine Standardeingabe, daher die Umleitung dieser Eingabe nach `/dev/null`.
 
-### [CTRL] + [Z]
+### [Ctrl] + [z]
 
-Durch gleichzeitiges Drücken der ++control+z++ Tasten wird der Synchronprozess vorübergehend unterbrochen. Der Zugriff auf die Eingabeaufforderung wird wiederhergestellt, nachdem die Nummer des gerade unterbrochenen Prozesses angezeigt wurde.
+Durch gleichzeitiges Drücken der ++control+"z"++ Tasten wird der Synchronprozess vorübergehend unterbrochen. Der Zugriff auf die Eingabeaufforderung wird wiederhergestellt, nachdem die Nummer des gerade unterbrochenen Prozesses angezeigt wurde.
 
 ### `&` Anweisung
 
@@ -277,7 +277,7 @@ $ bg 1
 $
 ```
 
-Ob es im Hintergrund gesetzt wurde, als es mit dem `&` Argument oder später mit den ++control+z++ Tasten erstellt wurde, kann ein Prozess mit dem Befehl `fg` und seiner Jobnummer wieder in den Vordergrund gebracht werden.
+Ob es im Hintergrund gesetzt wurde, als es mit dem `&` Argument oder später mit der Tastenkombination ++control+"z"++ erstellt wurde, kann ein Prozess mit dem Befehl `fg` und seiner Jobnummer wieder in den Vordergrund gebracht werden.
 
 ### `jobs` Befehl
 
