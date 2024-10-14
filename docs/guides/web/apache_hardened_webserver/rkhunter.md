@@ -9,11 +9,11 @@ tags:
   - rkhunter
 ---
 
-# Rootkit hunter
+# Rootkit Hunter
 
 ## Introduction
 
-Rootkit hunter (`rkhunter`) is a well known tool for checking vulnerabilities, rootkits, back doors, and possible local exploits on a server. It is possible to use it on _any_ server used for _any_ purpose. When tuned and automated, it can report any suspicious activity to the system administrator. This procedure outlines the installation, tuning, and use of rootkit hunter.
+Rootkit Hunter (`rkhunter`) is a well known tool for checking vulnerabilities, rootkits, back doors, and possible local exploits on a server. It is possible to use it on _any_ server used for _any_ purpose. When tuned and automated, it can report any suspicious activity to the system administrator. This procedure outlines the installation, tuning, and use of Rootkit Hunter.
 
 `rkhunter` is just one possible part of a hardened server setup. Use it alone or with other tools to maximize security.
 
