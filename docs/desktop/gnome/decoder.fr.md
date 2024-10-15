@@ -1,7 +1,7 @@
 ---
 title: Decoder
 author: Christine Belzie
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 ## Introduction

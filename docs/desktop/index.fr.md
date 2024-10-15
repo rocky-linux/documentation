@@ -1,5 +1,5 @@
 ---
-title: Desktop
+title: Environnement de Bureau
 author: Steven Spencer
 contributors: null
 ---

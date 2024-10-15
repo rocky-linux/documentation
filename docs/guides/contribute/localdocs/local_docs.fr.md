@@ -1,7 +1,7 @@
 ---
 title: Méthode rapide
 author: Lukas Magauer
-contributors: Steven Spencer, Anna Zhyrnova
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.6, 9.0
 tags:
   - documentation

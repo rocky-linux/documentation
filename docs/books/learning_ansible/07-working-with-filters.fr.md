@@ -1,7 +1,7 @@
 ---
 title: Travailler avec les Filtres
 author: Antoine Le Morvan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 # Ansible - Utilisation de filtres

@@ -200,13 +200,13 @@ Exemple :
 kill -9 1664
 ```
 
-| Code | Signal    | Observation                              |
-| ---- | --------- | ---------------------------------------- |
-| `2`  | *SIGINT*  | Fin immédiate du processus               |
-| `9`  | *SIGKILL* | Interrompre le processus (++control+d++) |
-| `15` | *SIGTERM* | Fin du processus de nettoyage            |
-| `18` | *SIGCONT* | Reprendre le processus                   |
-| `19` | *SIGSTOP* | Suspendre le processus                   |
+| Code | Signal    | Observation                                                                                                                  |
+| ---- | --------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `2`  | *SIGINT*  | Fin immédiate du processus                                                                                                   |
+| `9`  | *SIGKILL* | Interrompre le processus (++control+"d"++)                                                                                   |
+| `15` | *SIGTERM* | Fin du processus de nettoyage                                                                                                |
+| `18` | *SIGCONT* | Reprendre le processus. Les processus suspendus par le signal SIGSTOP peuvent continuer à s'exécuter grâce au signal SIGCONT |
+| `19` | *SIGSTOP* | Suspendre le processus (Stop process). L'effet de ce signal est équivalent à ++ctrl+"z"++                                    |
 
 Les signaux sont les moyens de communication entre les processus. La commande `kill` envoie un signal à un processus.
 
@@ -238,9 +238,9 @@ nohup myprogram.sh 0</dev/null &
 
     `nohup` gère la sortie standard et d'erreur, mais pas l'entrée standard, d'où la redirection de cette entrée vers `/dev/null`.
 
-### [CTRL] + [Z]
+### [Ctrl] + [z]
 
-En appuyant simultanément sur les touches ++control+z++, le processus synchronisé est temporairement suspendu. L'accès à l'invite est restauré après avoir affiché le numéro du processus qui vient d'être suspendu.
+En appuyant simultanément sur les touches ++control+"z"++, le processus synchronisé est temporairement suspendu. L'accès à l'invite est restauré après avoir affiché le numéro du processus qui vient d'être suspendu.
 
 ### `&` instruction
 
@@ -277,7 +277,7 @@ $ bg 1
 $
 ```
 
-S'il a été mis en arrière-plan quand il a été créé avec l'argument `&` ou plus tard avec les touches ++control+z++, un processus peut être ramené au premier plan avec la commande `fg` et son numéro de 'job'.
+S'il a été mis en arrière-plan quand il a été créé avec l'argument `&` ou plus tard avec les touches ++control+"z"++, un processus peut être ramené au premier plan avec la commande `fg` et son numéro de `job`.
 
 ### La commande `jobs`
 
