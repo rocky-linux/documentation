@@ -9,30 +9,24 @@ tags:
   - rkhunter
 ---
 
-# Rootkit hunter
+# Rootkit Hunter
 
 ## Introduction
 
-Rootkit hunter`(rkhunter`) est un outil bien connu pour vérifier les vulnérabilités, les rootkits, les portes dérobées et les éventuels exploits locaux sur un serveur. Il est possible de l'utiliser sur _n'importe quel_ serveur destiné à _n’importe_ quel usage. Une fois réglé et automatisé, il peut signaler toute activité suspecte à l'administrateur du système. Cette procédure décrit l'installation, le réglage et l'utilisation de rootkit hunter.
+Rootkit Hunter (`rkhunter`) est un outil bien connu pour vérifier les vulnérabilités, les rootkits, les portes dérobées et les éventuels exploits locaux sur un serveur. Il est possible de l'utiliser sur _n'importe quel_ serveur destiné à _n’importe_ quel usage. Une fois réglé et automatisé, il peut signaler toute activité suspecte à l'administrateur du système. Ce guide décrit l'installation, le réglage et l'utilisation de Rootkit Hunter.
+
+`rkhunter` n'est qu'un élément parmi d'autres d'une configuration de serveur web Apache renforcé. Utilisez-le seul ou avec d'autres outils pour maximiser la sécurité.
 
 ## Prérequis
 
-* Maîtrise d'un éditeur de ligne de commande (nous utilisons `vi` dans cet exemple)
+* Maîtrise d'un éditeur de ligne de commande (nous utilisons `vi` dans nos exemples)
 * Être à l'aise avec la saisie de commandes à partir de la ligne de commande, la consultation de journaux et d'autres tâches générales d'administrateur de systèmes
 * Il est utile de comprendre ce qui peut déclencher une réponse à des fichiers modifiés sur le système de fichiers (comme les mises à jour de paquets)
 * Exécuter toutes les commandes en tant que root ou en tant qu'utilisateur normal avec `sudo`
 
-Ce document a été écrit à l'origine en conjonction avec les routines du serveur web durci Apache, mais il fonctionne également sur un serveur utilisant n'importe quel logiciel.
+Ce document a été écrit à l'origine en conjonction avec les routines du serveur web Apache renforcé, mais il fonctionne également sur un serveur utilisant n'importe quel logiciel.
 
-## Introduction
-
-`rkhunter` (Root Kit Hunter) est un outil Unix qui recherche les rootkits, les portes dérobées et les éventuels exploits locaux. Il s'agit d'un élément important d'un serveur renforcé, qui informe rapidement l'administrateur lorsque quelque chose de suspect se produit sur le système de fichiers du serveur, à condition qu'il soit correctement configuré.
-
-`rkhunter` n'est qu'un élément parmi d'autres d'une configuration de serveur web Apache renforcé. Utilisez-le seul ou avec d'autres outils pour maximiser la sécurité. Si vous souhaitez l'utiliser avec d'autres outils de durcissement, reportez-vous au [guide du serveur Web Apache renforcé](index.md).
-
-Ce document utilise également toutes les hypothèses et conventions décrites dans le document original. Il est conseillé de l'examiner avant de poursuivre.
-
-## Étapes globales
+## Étapes Générales
 
 1. installer `rkhunter`
 2. configurer `rkhunter`
@@ -44,13 +38,13 @@ Ce document utilise également toutes les hypothèses et conventions décrites d
 
 `rkhunter` nécessite le dépôt EPEL (Extra Packages for Enterprise Linux). Installez ce référentiel si ce n'est pas déjà fait :
 
-```
+```bash
 dnf install epel-release
 ```
 
 Installer `rkhunter` :
 
-```
+```bash
 dnf install rkhunter
 ```
 
@@ -62,16 +56,15 @@ Les seules options de configuration que vous _devez_ définir sont celles qui co
 
     La modification de _tout_ fichier de configuration sous Linux comporte certains risques. Avant de modifier **n'importe quel** fichier de configuration sous Linux, il est recommandé de créer une sauvegarde du fichier de configuration _original_, au cas où vous devriez revenir à la configuration originale.
 
-
 Pour modifier le fichier de configuration, exécutez la commande suivante :
 
-```
+```bash
 vi /etc/rkhunter.conf
 ```
 
 Recherche de :
 
-```
+```bash
 #MAIL-ON-WARNING=me@mydomain root@mydomain
 ```
 
@@ -81,8 +74,7 @@ Remplacez `root@mydomain` par `root@whatever_the_server_name_is`.
 
 Vous voudrez probablement décommenter (et modifier en fonction de vos besoins) la ligne `MAIL-CMD` :
 
-
-```
+```bash
 MAIL_CMD=mail -s "[rkhunter] Avertissements trouvés pour ${HOST_NAME}"
 ```
 
@@ -96,7 +88,7 @@ Vous devrez également déplacer le script ailleurs que dans `/etc/cron.daily/`,
 
 Si vous souhaitez tester `rkhunter` avant de commencer, y compris toutes les fonctionnalités de messagerie, exécutez `rkhunter --check` à partir de la ligne de commande. S'il est installé et fonctionne correctement, vous devriez recevoir un message similaire à celui qui suit :
 
-```
+```bash
 [root@sol admin]# rkhunter --check
 [Rootkit Hunter version 1.4.6]
 
@@ -252,7 +244,7 @@ Performing file properties checks
 
 Si la configuration du courrier électronique pose des problèmes, ne passez pas à l'étape suivante. Lorsque la confirmation du courrier électronique fonctionne, mais avant d'autoriser l'exécution automatique de `rkhunter`, exécutez à nouveau la commande manuellement avec l'option "--propupd" pour créer le fichier `rkhunter.dat`. Cela permet de reconnaître votre environnement et votre configuration :
 
-```
+```bash
 rkhunter --propupd
 ```
 
