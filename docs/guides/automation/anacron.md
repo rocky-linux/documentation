@@ -5,8 +5,6 @@ contributors: Steven Spencer, Ganna Zhyrnova
 update : 2021-10-20
 ---
 
-# `anacron` - Run Commands Regularly
-
 ## Prerequisites
 
 - A computer running Rocky Linux.
@@ -20,7 +18,7 @@ update : 2021-10-20
 
 ## Introduction
 
-`anacron` runs commands on a regular basis, and the operating frequency is defined in units of days. It is suitable for computers that do not run 24/7, such as laptops and desktops. Suppose you have a scheduled task (such as a backup script) to be run in the early morning of every day using crontab. When you fall asleep, your desktop or notebook is off. Your backup script will not run. However, if you use `anacron`, you can rest assured that the next time you turn on the desktop or notebook, the backup script will run.**
+`anacron` runs commands on a regular basis, and the operating frequency is in units of days. It is suitable for computers that do not run 24x7, such as laptops and desktops. Suppose you have a scheduled running a task (such as a backup script) in the early morning of every day by using `crontab`. When you fall asleep, your desktop or notebook is off. Your backup script will not run. However, if you use `anacron`, you can rest assured that the next time you turn on the desktop or notebook, the backup script will run.**
 
 The appearance of `anacron` is not to replace `crontab`, but to complement `crontab`. Their relationship is as follows:
 
@@ -66,7 +64,7 @@ START_HOURS_RANGE=3-22
 @monthly 45 cron.monthly nice run-parts /etc/cron.monthly
 ```
 
-**/etc/cron.hourly/** -Through `journalctl -u crond.service`, you can know that the files put inside are actually called by crond.server, which means that the command will be executed after the first minute of every hour. As follows:
+**/etc/cron.hourly/** -Through `journalctl -u crond.service`, you can know that the files put inside are actually called by `crond`, which means that the command will run after the first minute of every hour. As follows:
 
 ```bash
 shell > cat /etc/cron.d/0hourly
