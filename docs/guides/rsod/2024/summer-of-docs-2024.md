@@ -2,8 +2,9 @@
 title: Rocky Linux Summer of Docs 2024
 ---
 
+!!! NOTE "Project Completed"
 
-# Rocky Linux Summer of Docs 2024
+    This project has ended. Watch for future RSOD programs.
 
 ## Project: Desktop User Documentation Enhancement
 
