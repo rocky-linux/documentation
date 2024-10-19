@@ -330,7 +330,7 @@ nice find / -name "file"
 
 Unlike `root`, a standard user can only reduce the priority of a process and only values between 0 and 19 will be accepted.
 
-As shown in the example above, the first three commands indicate setting the Nice value to "-5", while the second command is our recommended usage. The fourth command indicates setting the Nice value to "5". For the fifth command, not typing any options means that the Nice value is set to "10."
+As shown in the example above, the first three commands indicate setting the Nice value to "-5", while the second command is our recommended usage. The fourth command indicates setting the Nice value to "5". For the fifth command, not typing any options means that the Nice value is set to "10".
 
 !!! Tip
 
