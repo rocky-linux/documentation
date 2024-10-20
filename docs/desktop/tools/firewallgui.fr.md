@@ -56,7 +56,7 @@ Après avoir apporté des modifications permanentes, accédez à `Options > Relo
 
 ## Gestion des Interfaces/Connections
 
-Le panneau tout à gauche, intitulé « Active Bindings », est l'endroit où vous trouverez vos connexions réseau et l'interface ajoutée manuellement. Si vous faites défiler vers le haut, vous verrez `my Ethernet connection` (eno1). Par défaut, la zone « public » inclut votre connexion réseau et est bien protégée.
+Le panneau tout à gauche, intitulé `Active Bindings`, est l'endroit où vous trouverez vos connexions réseau et l'interface ajoutée manuellement. Si vous faites défiler vers le haut, vous verrez `my Ethernet connection` (eno1). Par défaut, la zone « public » inclut votre connexion réseau et est bien protégée.
 
 En bas du panneau, vous trouverez le bouton `Change Zone`, qui vous permet d'attribuer votre connexion à une autre zone si vous le souhaitez. En mode `Permanent`, vous pourrez également créer vos propres Zones personnalisées.
 
