@@ -1,8 +1,8 @@
 ---
 title: MariaDB Database Server
 author: Steven Spencer
-contributors: Ezequiel Bruni, William Perron, Ganna Zhyrnova
-tested_with: 8.5, 8.6, 9.0
+contributors: Ezequiel Bruni, William Perron, Ganna Zhyrnova, Joseph Brinkman
+tested_with: 8.5, 8.6, 9.0, 9.2
 tags:
   - database
   - mariadb
@@ -20,7 +20,7 @@ tags:
 
 ## Introduction
 
-The *mariadb-server* and it is client *mariadb* are the open source alternatives to *mysql-server* and *mysql*, and they share command structure. *mariadb-server* is running on many web servers, due to the popular [Wordpress CMS](https://wordpress.org/) which requires it. This database, though, has many other uses.
+The *mariadb-server* and its client *mariadb* are the open source alternatives to *mysql-server* and *mysql*, and they share command structure. *mariadb-server* is running on many web servers, due to the popular [Wordpress CMS](https://wordpress.org/) which requires it. This database, though, has many other uses.
 
 If you want to use this along with other tools for hardening a web server, refer back to the [Apache Hardened Web Server guide](../web/apache_hardened_webserver/index.md).
 
@@ -28,27 +28,29 @@ If you want to use this along with other tools for hardening a web server, refer
 
 You need to install *mariadb-server*:
 
-`dnf install mariadb-server`
+```bash
+dnf install mariadb-server
+```
 
 ## Securing `mariadb-server`
 
 To strengthen the security of *mariadb-server* you need to run a script, but before you do, you need to enable and start mariadb:
 
-`systemctl enable mariadb`
-
-Then:
-
-`systemctl start mariadb`
+```bash
+systemctl enable --now mariadb
+```
 
 Next, run this command:
 
-`mysql_secure_installation`
+```bash
+mysql_secure_installation
+```
 
 !!! tip
 
     The version of mariadb-server that comes enabled by default in Rocky Linux 8.5 is 10.3.32. You can install 10.5.13 by enabling the module:
 
-    ```
+    ```bash
     dnf module enable mariadb:10.5
     ```
 
@@ -68,7 +70,7 @@ so you should just press enter here.
 Enter current password for root (enter for none):
 ```
 
-Since this is a brand-new installation, no root password set. Just hit ++enter++ here.
+Since this is a brand-new installation, no root password is set. Just hit ++enter++ here.
 
 The next part of the dialog continues:
 
@@ -76,7 +78,7 @@ The next part of the dialog continues:
 OK, successfully used password, moving on...
 
 Setting the root password ensures that nobody can log into the MariaDB
-root user without the proper authorisation.
+root user without the proper authorization.
 
 Set root password? [Y/n]
 ```
@@ -101,7 +103,7 @@ Next the dialog deals with the anonymous user:
 ```text
 By default, a MariaDB installation has an anonymous user, allowing anyone
 to log into MariaDB without having to have a user account created for
-them.  This is intended only for testing, and to make the installation
+them. This is intended only for testing, and to make the installation
 go a bit smoother.  You should remove them before moving into a
 production environment.
 
@@ -167,9 +169,9 @@ Thanks for using MariaDB!
 
 MariaDB will now be ready to use.
 
-### Rocky 9.0 changes
+### Rocky 9.x changes
 
-Rocky Linux 9.0 uses `mariadb-server-10.5.13-2` as the default mariadb-server version. As of version 10.4.3, a new plugin is automatically enabled in the server which changes the `mariadb-secure-installation` dialog. That plugin is `unix-socket` authentication. [This article](https://mariadb.com/kb/en/authentication-plugin-unix-socket/) explains the new feature well. Essentially, using unix-socket authentication uses the logged-in user's credentials to access the database. It makes it so that if the root user, for example, logs in and then uses `mysqladmin` to create or delete a database (or any other function) that no password is needed for access. Same works with `mysql`. It also means there is no password to compromise remotely. This depends on the security of the users set up on the server for all of the database protection.
+Rocky Linux 9.2 uses `mariadb-server-10.5.22` as the default mariadb-server version. As of version 10.4.3, a new plugin is automatically enabled in the server which changes the `mariadb-secure-installation` dialog. That plugin is `unix-socket` authentication. [This article](https://mariadb.com/kb/en/authentication-plugin-unix-socket/) explains the new feature well. Essentially, using unix-socket authentication uses the logged-in user's credentials to access the database. It makes it so that if the root user, for example, logs in and then uses `mysqladmin` to create or delete a database (or any other function) that no password is needed for access. Same works with `mysql`. It also means there is no password to compromise remotely. This depends on the security of the users set up on the server for all of the database protection.
 
 The second dialog during the `mariadb-secure-installation` after the password is set for the administrative user is:
 
@@ -196,4 +198,4 @@ For more information on this feature, refer to the link above. There is a way to
 
 ## Conclusion
 
-A database server, such as *mariadb-server*, can be used for many purposes. Because of the popularity of the Wordpress CMS, it is often found on web servers. Before you run the database in production, however, it is a good idea to strengthen its security.
+A database server, such as *mariadb-server*, can be used for many purposes. Because of the popularity of the [Wordpress CMS](wordpress.org), it is often found on web servers. Before you run the database in production, however, it is a good idea to strengthen its security.
