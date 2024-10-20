@@ -54,6 +54,9 @@ Our books can be downloaded in PDF format for offline reading.
 * [Inglês](https://rocky-linux.github.io/documentation/RockyLinuxMiddlewaresGuide.pdf)
 * [Italiano](https://rocky-linux.github.io/documentation/RockyLinuxMiddlewaresGuide.it.pdf)
 
+### Rocky Linux Web Services (LAMP ou LEMP)
+
+* [Inglês](https://rocky-linux.github.io/documentation/RockyLinuxWebServicesGuide.pdf)
 ### Tutorial 'RSync'
 
 * [Inglês](https://rocky-linux.github.io/documentation/learning_rsync_rocky_linux.pdf)

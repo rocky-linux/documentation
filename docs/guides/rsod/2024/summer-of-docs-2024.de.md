@@ -2,13 +2,20 @@
 title: Rocky Linux Summer of Docs 2024
 ---
 
-# Rocky Linux Summer of Docs 2024
+!!! note "Projekt Abgeschlossen"
+
+```
+Dieses Projekt ist beendet. Halten Sie Ausschau nach zukünftigen RSOD-Programmen.
+```
+
 
 ## Projekt: Erweiterung der Desktop-Benutzer-Dokumentation
 
 Das Ziel unserer ersten Rocky Linux (RL) Summer of Docs-Initiative besteht darin, eine neue Dokumentationskategorie für Enterprise Linux Desktop-Benutzer zu erstellen.
 
-Dieses Projekt, inspiriert vom hochgeschätzten und gleichnamigen Google Season of Docs-Projekt, zielt darauf ab, eine Lücke in der aktuellen RL-Dokumentation zu schließen.
+
+Dieses Projekt, inspiriert vom geschätzten und gleichnamigen `Google Season of Docs`-Projekt, zielt darauf ab, eine Lücke in der aktuellen RL-Dokumentation zu schließen.
+
 
 Durch die Entwicklung umfassender, benutzerfreundlicher und mehrsprachiger Desktop-Benutzerhandbücher können wir die Benutzerbasis von RL erweitern und seine Benutzerfreundlichkeit verbessern. Dadurch wird Rocky Linux für ein breiteres Publikum attraktiver und seine Position auf dem Enterprise-Linux-Markt gestärkt.
 
@@ -21,7 +28,7 @@ Durch die Entwicklung umfassender, benutzerfreundlicher und mehrsprachiger Deskt
 
 ## Kalender
 
-- **15. Juni – 30. Juni**: Erste Bewertung, Sprintplanung, Teilnehmerauswahl, Onboarding, Themenauswahl und Einrichtung der virtuellen Desktop-Umgebung.
+- **15. Juni – 30. Juni**: Erste Bewertung, Sprintplanung, Teilnehmerauswahl, Onboarding, Themenauswahl und Einrichtung einer virtuellen Desktop-Umgebung.
 - **1. Juli – 30. August**: Erstellung von Inhalten und Übersetzungen.
 - **1. Sept. – 15. September**: Überarbeitungen basierend auf dem Feedback der Community und den endgültigen Übersetzungen.
 
@@ -32,6 +39,8 @@ Dieses Projekt ist für jedermann offen. Interessierte Kandidaten sollten eine E
 - Portfolios oder sonstige Open-Source-Beiträge
 - Vorgeschlagene Themen/Titel für die RL-Desktop-Dokumentation
 - Sprachen für die Übersetzung auswählen
+
+(Wenn Sie Fragen haben oder Hilfe bei der Teilnahme benötigen, kontaktieren Sie uns bitte unter https://chat.rockylinux.org.)
 
 ## Förderung
 

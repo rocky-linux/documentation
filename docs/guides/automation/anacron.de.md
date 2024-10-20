@@ -5,8 +5,6 @@ contributors: Steven Spencer, Ganna Zhyrnova
 update: 2021-10-20
 ---
 
-# `anacron` - Kommandos Automatisierung
-
 ## Voraussetzungen
 
 - Eine Maschine, auf der Rocky Linux läuft.
@@ -20,7 +18,7 @@ update: 2021-10-20
 
 ## Einleitung
 
-`anacron` wird verwendet, um Befehle automatisiert auszuführen. Die Einheit für die Wiederholung der Jobs ist der Tag. Es eignet sich für Computer, die nicht rund um die Uhr in Betrieb sind, wie zum Beispiel Laptops und Desktops. Angenommen, Sie haben eine geplante Aufgabe (z. B., ein Sicherungsskript), die jeden Tag frühmorgens mithilfe von `crontab` ausgeführt werden soll. Wenn Sie einschlafen, wird Ihr Desktop/Laptop heruntergefahren. Ihr Backup-Skript wird nicht ausgeführt. Wenn Sie jedoch `anacron` verwenden, können Sie sicher sein, dass das Sicherungsskript beim nächsten Einschalten des Desktops oder Notebooks ausgeführt wird.**
+`anacron` wird verwendet, um Befehle automatisiert auszuführen. Die Einheit für die Wiederholung der Jobs ist der Tag. Es eignet sich für Computer, die nicht rund um die Uhr in Betrieb sind, wie zum Beispiel Laptops und Desktops. Angenommen, Sie haben eine geplante Aufgabe (z. B., ein Sicherungsskript), die jeden Tag frühmorgens mithilfe von `crontab`\` ausgeführt werden soll. Wenn Sie einschlafen, wird Ihr Desktop/Laptop heruntergefahren. Ihr Backup-Skript wird nicht ausgeführt. Wenn Sie jedoch `anacron` verwenden, können Sie sicher sein, dass das Sicherungsskript beim nächsten Einschalten des Desktops oder Notebooks ausgeführt wird.**
 
 Die Implementierung und der Einsatz von `anacron` soll `crontab` nicht ersetzen, sondern `crontab` ergänzen. Ihre Verbindung zueinander ist wie folgt:
 
@@ -66,7 +64,7 @@ START_HOURS_RANGE=3-22
 @monthly 45 cron.monthly nice run-parts /etc/cron.monthly
 ```
 
-**/etc/cron.hourly/** - Durch `journalctl -u crond.service` können Sie feststellen, dass die eingefügten Dateien tatsächlich von crond.server aufgerufen werden. Das bedeutet, dass der Befehl nach der ersten Minute jeder Stunde ausgeführt wird. Wie folgt:
+**/etc/cron.hourly/** - Durch `journalctl -u crond.service` können Sie feststellen, dass die eingefügten Dateien tatsächlich von `crond` aufgerufen werden. Das bedeutet, dass der Befehl nach der ersten Minute jeder Stunde ausgeführt wird. Wie folgt:
 
 ```bash
 shell > cat /etc/cron.d/0hourly
