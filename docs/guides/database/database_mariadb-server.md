@@ -70,7 +70,7 @@ so you should just press enter here.
 Enter current password for root (enter for none):
 ```
 
-Since this is a brand-new installation, no root has been password set. Just hit ++enter++ here.
+Since this is a brand-new installation, no root password is set. Just hit ++enter++ here.
 
 The next part of the dialog continues:
 
