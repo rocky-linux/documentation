@@ -8,11 +8,14 @@ title: Rocky Linux Summer of Docs 2024
 Dieses Projekt ist beendet. Halten Sie Ausschau nach zukünftigen RSOD-Programmen.
 ```
 
+
 ## Projekt: Erweiterung der Desktop-Benutzer-Dokumentation
 
 Das Ziel unserer ersten Rocky Linux (RL) Summer of Docs-Initiative besteht darin, eine neue Dokumentationskategorie für Enterprise Linux Desktop-Benutzer zu erstellen.
 
+
 Dieses Projekt, inspiriert vom geschätzten und gleichnamigen `Google Season of Docs`-Projekt, zielt darauf ab, eine Lücke in der aktuellen RL-Dokumentation zu schließen.
+
 
 Durch die Entwicklung umfassender, benutzerfreundlicher und mehrsprachiger Desktop-Benutzerhandbücher können wir die Benutzerbasis von RL erweitern und seine Benutzerfreundlichkeit verbessern. Dadurch wird Rocky Linux für ein breiteres Publikum attraktiver und seine Position auf dem Enterprise-Linux-Markt gestärkt.
 

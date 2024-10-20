@@ -1007,6 +1007,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "andcscott",
+      "name": "Andrew Scott",
+      "avatar_url": "https://avatars.githubusercontent.com/u/91222421?v=4",
+      "profile": "https://andyscott.me",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,

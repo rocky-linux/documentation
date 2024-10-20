@@ -12,6 +12,7 @@ Ce projet est achevé. Surveillez les futurs programmes RSOD.
 
 L'objectif de notre première initiative `Rocky Linux (RL) Summer of Docs` est de créer une nouvelle catégorie de documentation pour les utilisateurs d'Enterprise Linux Desktop.
 
+
 Ce projet, inspiré du projet très estimé et éponyme Google Season of Docs, vise à combler une lacune dans la documentation RL actuelle.
 
 En développant des guides d'utilisation complets, conviviaux et multilingues, nous pouvons élargir la base d'utilisateurs de RL et améliorer sa convivialité. Cela rendra Rocky Linux plus attrayant pour un public plus large, renforçant ainsi sa position sur le marché de l'Enterprise Linux.
