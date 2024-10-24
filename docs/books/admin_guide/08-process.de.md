@@ -293,7 +293,7 @@ $ jobs
 
 Die Spalten repräsentieren:
 
-1. Jobnummer;
+1. Jobnummer
 2. die Reihenfolge in der die Prozesse ausgeführt werden:
 
    * ein `+` : Dieser Prozess ist der nächste Prozess, der standardmäßig mit `fg` oder `bg` ausgeführt wird;
