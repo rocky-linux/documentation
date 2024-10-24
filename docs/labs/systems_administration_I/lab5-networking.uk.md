@@ -255,12 +255,6 @@ tags:
      ip -6 address add 2001:db8::1/64 dev macvtap1
     ```
 
-2. Далі для `macvtap1` призначте адресу 2001:db8::2/64 IPv6, виконавши:
-
-    ```bash
-    # ip -6 address add 2001:db8::2/64 dev macvtap1
-    ```
-
 3. Перевірте призначення адрес IPv6, введіть:
 
     ```bash

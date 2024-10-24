@@ -256,12 +256,6 @@ Now that you have set up the `macvtap` interfaces, you safely perform the variou
      ip -6 address add 2001:db8::1/64 dev macvtap1
     ```
 
-2. Next for `macvtap1` assign the 2001:db8::2/64 IPv6 address by running:
-
-    ```bash
-    # ip -6 address add 2001:db8::2/64 dev macvtap1
-    ```
-
 3. Verify the IPv6 address assignments, type:
 
     ```bash
