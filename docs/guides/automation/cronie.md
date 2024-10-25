@@ -118,4 +118,4 @@ Check the /var/log/cron* file, use `journalctl -u crond.service` to check the in
 
 ## Summary
 
-For Rocky Linux desktop users or system administrators, cronie is a very powerful tool. It allows the automation of tasks and scripts so you do not have to remember to run them manually. Although the basic knowledge is not hard, the actual task can be complex. For more information about `crontab`, visit [crontab man page](https://man7.org/linux/man-pages/man5/crontab.5.html). You can also search for "crontab" on the Internet, which provides you with a large number of search results and help you fine-tune the `crontab` expression.
+For Rocky Linux desktop users or system administrators, cronie is a very powerful tool. It allows the automation of tasks and scripts so you do not have to remember to run them manually. Although the basic knowledge is not hard, the actual task can be complex. For more information about `crontab`, visit [crontab man page](https://man7.org/linux/man-pages/man5/crontab.5.html). You can also search for "crontab" on the Internet, which provides you with a large number of search results and helps you fine-tune the `crontab` expression.
