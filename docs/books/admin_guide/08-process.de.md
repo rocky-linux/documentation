@@ -310,17 +310,31 @@ Der Befehl `nice` erlaubt die Ausführung eines Befehls, wobei seine Priorität 
 nice priority command
 ```
 
-Beispiel:
+Anwendungs-Beispiel:
 
 ```bash
-nice -n+15 find / -name "file"
+nice --adjustment=-5 find / -name "file"
+
+nice -n -5 find / -name "file"
+
+nice --5 find / -name "file"
+
+nice -n 5 find / -name "file"
+
+nice find / -name "file"
 ```
 
-Anders als `root` kann ein Standardbenutzer die Priorität eines Prozesses nur reduzieren. Nur Werte zwischen +0 und +19 werden akzeptiert.
+Im Gegensatz zu `root` kann ein Standardbenutzer nur die Priorität eines Prozesses reduzieren und es werden nur Werte zwischen 0 und 19 akzeptiert.
+
+Wie im obigen Beispiel gezeigt, zeigen die ersten drei Befehle an, den Nice-Wert auf `-5` zu setzen, während der zweite Befehl unsere empfohlene Verwendung ist. Der vierte Befehl gibt an, den Nice-Wert auf `5`zu setzen. Wenn Sie beim fünften Befehl keine Optionen eingeben, wird der Nice-Wert auf `10` gesetzt.
 
 !!! tip "Hinweis"
 
-    Diese letzte Einschränkung kann pro Benutzer oder pro Gruppe aufgehoben werden, indem die Datei `/etc/security/limits.conf` angepasst wird.
+    `Nice` ist die Abkürzung für „Niceness“. 
+    
+    Die direkte Eingabe des Befehls `nice` gibt den Nice-Wert der aktuellen Shell zurück. 
+    
+    Sie können das Nice-Wert-Limit für jeden Benutzer oder jede Gruppe anheben, indem Sie die Datei `/etc/security/limits.conf` ändern.
 
 Mit dem `renice` Befehl können Sie die Priorität eines laufenden Prozesses ändern.
 
@@ -331,7 +345,7 @@ renice priority [-g GID] [-p PID] [-u UID]
 Beispiel:
 
 ```bash
-renice +15 -p 1664
+renice -n 15 -p 1664
 ```
 
 | Option | Beschreibung                      |
@@ -347,8 +361,10 @@ Der `renice` Befehl wirkt auf bereits laufende Prozesse. Es ist daher möglich, 
     Der `pidof`-Befehl, kombiniert mit dem `xargs` Befehl (siehe den Kurs über erweiterte Befehle), erlaubt es, eine neue Priorität in einem einzigen Befehl anzuwenden:
 
     ```
-    $ pidof sleep | xargs renice 20
+    $ pidof sleep | xargs renice -n 20
     ```
+
+Zur Anpassung an unterschiedliche Distributionen sollten Sie möglichst Befehlsformen wie `nice -n 5` oder `renice -n 6` verwenden.
 
 ### `top` Befehl
 
@@ -402,7 +418,7 @@ Beispiele:
 
     Bevor Sie einen Prozess beenden, sollten Sie genau wissen, wozu er dient. Andernfalls kann es zu Systemabstürzen oder anderen unvorhersehbaren Problemen kommen.
 
-Zusätzlich zum Senden von Signalen an die relevanten Prozesse kann der Befehl `pkill` auch die Verbindungssitzung des Benutzers entsprechend der Terminalnummer beenden, wie zum Beispiel:
+Zusätzlich zum Senden von Signalen an die relevanten Prozesse kann der Befehl `pkill` auch die Verbindungssitzung des Benutzers entsprechend der Terminal-Nummer beenden, wie zum Beispiel:
 
 ```bash
 pkill -t pts/1
@@ -426,7 +442,7 @@ killall tomcat
 
 ### Das Kommando `pstree`
 
-Dieser Befehl zeigt den Fortschritt baumartig an und wird wie folgt verwendet: `pstree [option]`.
+Dieser Befehl zeigt den Fortschritt baumartig an und wird wie folgt verwendet:<br/> `pstree [option]`
 
 | Option | Beschreibung                                          |
 |:------ |:----------------------------------------------------- |
@@ -462,7 +478,7 @@ systemd(1)─┬─systemd-journal(595)
 
 ### Orphan- und Zombie-Prozesse
 
-**verwaister Prozess**: Wenn ein übergeordneter Prozess stirbt, gelten seine untergeordneten Prozesse als Waisen. Der Init-Prozess übernimmt diese speziellen Statusprozesse und die Statuserfassung wird abgeschlossen, bis sie zerstört werden. Konzeptionell gesehen ist der `orphanage`-Prozess unproblematisch.
+**verwaister Prozess – orphan**: Wenn ein übergeordneter Prozess stirbt, gelten seine untergeordneten Prozesse als Waisen. Der Init-Prozess übernimmt diese speziellen Statusprozesse und die Statuserfassung wird abgeschlossen, bis sie zerstört werden. Konzeptionell gesehen ist der `orphanage`-Prozess unproblematisch.
 
 **Zombie-Prozess**: Nachdem ein untergeordneter Prozess seine Arbeit abgeschlossen und beendet wurde, muss sein übergeordneter Prozess die Signalverarbeitungsfunktion wait() oder waitpid() aufrufen, um den Beendigungsstatus des untergeordneten Prozesses abzurufen. Wenn der übergeordnete Prozess dies nicht tut, behält der untergeordnete Prozess, obwohl er bereits beendet wurde, dennoch einige Informationen zum Beendigungsstatus in der Systemprozesstabelle bei. Da der übergeordnete Prozess die Statusinformationen des untergeordneten Prozesses nicht abrufen kann, belegen diese Prozesse weiterhin Ressourcen in der Prozesstabelle. Prozesse in diesem Zustand bezeichnen wir als Zombies.
 
