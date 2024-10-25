@@ -310,19 +310,33 @@ La commande `nice` permet l'exécution d'une commande en spécifiant sa priorit�
 nice priorité commande
 ```
 
-Exemple :
+Exemple d'utilisation :
 
 ```bash
-nice -n+15 find / -name "file"
+nice --adjustment=-5 find / -name "file"
+
+nice -n -5 find / -name "file"
+
+nice --5 find / -name "file"
+
+nice -n 5 find / -name "file"
+
+nice find / -name "file"
 ```
 
-Contrairement à `root`, un utilisateur standard ne peut que réduire la priorité d'un processus. Seules les valeurs entre +0 et +19 seront acceptées.
+Contrairement à `root`, un utilisateur standard ne peut que réduire la priorité d'un processus et seules les valeurs comprises entre 0 et 19 seront acceptées.
+
+Comme indiqué dans l'exemple ci-dessus, les trois premières commandes indiquent de définir la valeur Nice à `-5`, tandis que la deuxième commande est votre utilisation recommandée. La quatrième commande indique de définir la valeur Nice à `5`. Pour la cinquième commande, ne pas saisir d'options signifie que la valeur Nice est définie à `10`.
 
 !!! tip "Astuce"
 
-    Cette dernière restriction peut être evitée par utilisateur ou par groupe en modifiant le fichier `/etc/security/limits.conf`.
+    `nice` est l'abréviation de `niceness`. 
+    
+    Taper directement la commande `nice` renverra la valeur Nice du shell actuel. 
+    
+    Vous pouvez lever la limite de valeur Nice pour chaque utilisateur ou groupe en modifiant le fichier `/etc/security/limits.conf`.
 
-La commande `renice` vous permet de modifier la priorité d'un processus en cours.
+La commande `renice` vous permet de modifier la priorité d'un processus en cours d'exécution.
 
 ```bash
 renice priority [-g GID] [-p PID] [-u UID]
@@ -331,7 +345,7 @@ renice priority [-g GID] [-p PID] [-u UID]
 Exemple :
 
 ```bash
-renice +15 -p 1664
+renice -n 15 -p 1664
 ```
 
 | Option | Observation                                |
@@ -347,8 +361,10 @@ La commande `renice` agit sur des processus déjà en cours d'exécution. Il est
     La commande `pidof`, associée à la commande `xargs` (voir le cours Commandes Avancées), permet d'appliquer une nouvelle priorité en une seule commande :
 
     ```
-    $ pidof sleep | xargs renice 20
+    $ pidof sleep | xargs renice -n 20
     ```
+
+Pour vous adapter à différentes distributions, vous devriez essayer d'utiliser autant que possible des formes de commande telles que `nice -n 5` ou `renice -n 6`.
 
 ### La commande `top`
 
@@ -398,7 +414,7 @@ Exemples :
   pkill tomcat
   ```
 
-!!! note
+!!! note "Remarque"
 
     Avant de détruire un processus, il est préférable de savoir exactement à quoi il sert ; sinon, cela peut entraîner des pannes du système ou d’autres problèmes imprévisibles.
 
@@ -426,7 +442,7 @@ killall tomcat
 
 ### La commande `pstree`
 
-Cette commande affiche la progression dans un style d'arborescence et son utilisation est la suivante - `pstree [option]`.
+Cette commande affiche l'arborescence des processus et son utilisation est la suivante :<br/> `pstree [option]`.
 
 | Option | Observation                                         |
 |:------ |:--------------------------------------------------- |
@@ -462,7 +478,7 @@ systemd(1)─┬─systemd-journal(595)
 
 ### Processus orphelin et Processus zombie
 
-**processus orphelin** : Lorsqu'un processus parent meurt, on dit que ses enfants sont orphelins. Le processus `init` adopte ces processus d'état spéciaux et la collecte des statuts est terminée jusqu'à leur destruction. D'un point de vue conceptuel, l'existence de processus orphelins ne pose aucun problème.
+**orphan — processus orphelin** : Lorsqu'un processus parent meurt, on dit que ses enfants sont orphelins. Le processus init adopte ces processus d'état spéciaux et la collecte de status est effectuée jusqu'à ce qu'ils soient détruits. D'un point de vue conceptuel, l'existence de processus orphelins ne pose aucun problème.
 
 **processus zombie** : une fois qu'un processus enfant a terminé son travail et est terminé, son processus parent doit appeler la fonction de traitement du signal wait() ou waitpid() pour obtenir l'état de terminaison du processus enfant. Si le processus parent ne le fait pas, même si le processus enfant est déjà terminé, il conserve néanmoins certaines informations sur l'état de sortie dans la table des processus système. Étant donné que le processus parent ne peut pas obtenir les informations d'état du processus enfant, ces processus continueront d'occuper des ressources dans la table des processus. Nous appelons les processus dans cet état des `zombie`s.
 
