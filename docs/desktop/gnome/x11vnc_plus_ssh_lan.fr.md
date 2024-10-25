@@ -10,7 +10,7 @@ x11vnc est un logiciel VNC qui se distingue par l'utilisation de la session X ex
 
 Dans ce guide, vous apprenez à configurer un serveur `x11vnc` et à vous y connecter à distance.
 
-!!! note
+!!! note "Remarque"
 
 ```
 L’un des principaux avantages de l’utilisation de x11vnc basée sur SSH est qu’il élimine le besoin d’ouvrir des ports supplémentaires sur votre machine, minimisant ainsi la surface de vulnérabilité du système.
@@ -82,7 +82,7 @@ sudo vim /etc/systemd/system/x11vnc.service
 
 Copiez et collez le texte suivant dans le fichier, puis enregistrez et fermez :
 
-!!! note
+!!! note "Remarque"
 
 ```
 Remplacez le chemin `rfbauth` par le chemin d'accès au fichier de mots de passe que vous avez créé précédemment. Remplacez les valeurs `User` et `Group` caractérisant l'utilisateur auquel vous souhaitez fournir une assistance à distance.
