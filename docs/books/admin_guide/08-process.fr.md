@@ -11,7 +11,7 @@ Dans ce chapitre, vous apprendrez comment travailler avec les processus.
 **Objectifs** : Dans ce chapitre, les futurs administrateurs Linux vont apprendre comment :
 
 :heavy_check_mark: Reconnaître le `PID` et le `PPID` d'un processus ;  
-:heavy_check_mark: Voir et rechercher des processus ;  
+:heavy_check_mark: Afficher et rechercher des processus ;  
 :heavy_check_mark: Gérer les processus.
 
 :checkered_flag: **processus**, **linux**
@@ -19,7 +19,7 @@ Dans ce chapitre, vous apprendrez comment travailler avec les processus.
 **Connaissances** : :star: :star:  
 **Complexité** : :star:
 
-**Temps de lecture** : 20 minutes
+**Temps de lecture** : 23 minute
 
 ****
 
