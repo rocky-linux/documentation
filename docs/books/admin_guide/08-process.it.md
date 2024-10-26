@@ -59,11 +59,11 @@ Esempio:
 # ps -fu root
 ```
 
-| Opzione    | Descrizione                        |
-| ---------- | ---------------------------------- |
-| `-e`       | Visualizza tutti i processi.       |
-| `-f`       | Visualizza ulteriori informazioni. |
-| `-u` login | Visualizza i processi dell'utente. |
+| Opzione    | Descrizione                               |
+| ---------- | ----------------------------------------- |
+| `-e`       | Visualizza tutti i processi.              |
+| `-f`       | Visualizza l'elenco completo dei formati. |
+| `-u` login | Visualizza i processi dell'utente.        |
 
 Alcune opzioni aggiuntive:
 
@@ -73,7 +73,7 @@ Alcune opzioni aggiuntive:
 | `-t tty`              | Visualizza i processi in esecuzione dal terminale.      |
 | `-p PID`              | Visualizza le informazioni del processo.                |
 | `-H`                  | Visualizza le informazioni in una struttura ad albero.  |
-| `-I`                  | Visualizza ulteriori informazioni.                      |
+| `-l`                  | Visualizza in formato esteso.                           |
 | `--sort COL`          | Ordina il risultato secondo una colonna.                |
 | `--headers`           | Visualizza l'intestazione di ogni pagina del terminale. |
 | `--format "%a %b %c"` | Personalizza il formato di visualizzazione dell'uscita. |
@@ -200,13 +200,13 @@ Esempio:
 kill -9 1664
 ```
 
-| Codice | Segnale   | Descrizione                               |
-| ------ | --------- | ----------------------------------------- |
-| `2`    | *SIGINT*  | Arresto immediato del processo            |
-| `9`    | *SIGKILL* | Interruzione del processo (++control+d++) |
-| `15`   | *SIGTERM* | Arresto pulito del processo               |
-| `18`   | *SIGCONT* | Riprendere il processo                    |
-| `19`   | *SIGSTOP* | Sospendere il processo                    |
+| Codice | Segnale   | Descrizione                                                                                                     |
+| ------ | --------- | --------------------------------------------------------------------------------------------------------------- |
+| `2`    | *SIGINT*  | Arresto immediato del processo                                                                                  |
+| `9`    | *SIGKILL* | Interruzione del processo (++control+d++)                                                                       |
+| `15`   | *SIGTERM* | Arresto pulito del processo                                                                                     |
+| `18`   | *SIGCONT* | Riprendere il processo. I processi che utilizzano il segnale SIGSTOP possono usarlo per continuare l'esecuzione |
+| `19`   | *SIGSTOP* | Sospendere il processo (Stop process). L'effetto di questo segnale è equivalente a ++ctrl+"z ”++                |
 
 I segnali sono i mezzi di comunicazione tra i processi. Il comando `kill` invia un segnale a un processo.
 
@@ -238,7 +238,7 @@ nohup myprogram.sh 0</dev/null &
 
     `nohup` gestisce l'output e l'error standard ma non l'input standard, da cui il reindirizzamento di questo input a `/dev/null`.
 
-### [CTRL] + [Z]
+### [Ctrl] + [z]
 
 Premendo la combinazione ++control+z++ contemporaneamente, il processo sincrono è temporaneamente sospeso. L'accesso al prompt viene ripristinato dopo aver visualizzato il numero del processo che è stato appena sospeso.
 
@@ -310,19 +310,33 @@ Il comando `nice` consente l'esecuzione di un comando specificando la sua priori
 comando nice priority
 ```
 
-Esempio:
+Esempio di utilizzo:
 
 ```bash
-nice -n+15 find / -name "file"
+nice --adjustment=-5 find / -name "file"
+
+nice -n -5 find / -name "file"
+
+nice --5 find / -name "file"
+
+nice -n 5 find / -name "file"
+
+nice find / -name "file"
 ```
 
-A differenza di `root`, un utente standard può solo ridurre la priorità di un processo. Saranno accettati solo valori tra +0 e +19.
+A differenza di `root`, un utente standard può solo ridurre la priorità di un processo e saranno accettati solo valori compresi tra 0 e 19.
 
-!!! Tip "Suggerimento"
+Come mostrato nell'esempio precedente, i primi tre comandi indicano l'impostazione del valore di Nice a “-5”, mentre il secondo comando è quello consigliato. Il quarto comando indica l'impostazione del valore di Nice su “5”. Per il quinto comando, il fatto di non digitare alcuna opzione significa che il valore di Nice è impostato su “10”.
 
-    Quest'ultima limitazione può essere eliminata per utente o per gruppo modificando il file `/etc/security/limits.conf`.
+!!! tip "Suggerimento"
 
-Il comando `renice` ti consente di modificare la priorità di un processo di esecuzione.
+    “Nice” è l'abbreviazione di ‘niceness’. 
+    
+    Digitando direttamente il comando `nice` si ottiene il valore Nice della shell corrente. 
+    
+    È possibile eliminare il limite del valore di Nice per ciascun utente o gruppo modificando il file `/etc/security/limits.conf`.
+
+Esempio:
 
 ```bash
 renice priority [-g GID] [-p PID] [-u UID]
@@ -331,7 +345,7 @@ renice priority [-g GID] [-p PID] [-u UID]
 Esempio:
 
 ```bash
-renice +15 -p 1664
+renice -n 15 -p 1664
 ```
 
 | Opzione | Descrizione                                 |
@@ -347,8 +361,10 @@ Il comando `renice` agisce sui processi già in esecuzione. È quindi possibile 
     Il comando `pidof`, associato al comando `xargs` (vedi il corso Comandi avanzati), permette di applicare una nuova priorità in un singolo comando:
 
     ```
-    $ pidof sleep | xargs renice 20
+    $ pidof sleep | xargs renice -n 20
     ```
+
+Per adattarsi a distribuzioni diverse, si dovrebbe cercare di usare il più possibile forme di comando come `nice -n 5` o `renice -n 6`.
 
 ### comando `top`
 
@@ -426,7 +442,7 @@ killall tomcat
 
 ### comando `pstree`
 
-Questo comando visualizza l'avanzamento in una struttura ad albero e il suo utilizzo è - `pstree [opzione]`.
+Questo comando visualizza l'avanzamento in uno stile ad albero e il suo utilizzo è - `pstree [option]`.
 
 | Opzione | Descrizione                                           |
 |:------- |:----------------------------------------------------- |
@@ -466,7 +482,7 @@ systemd(1)─┬─systemd-journal(595)
 
 **processo zombie**: Dopo che un processo figlio ha completato il suo lavoro e viene terminato, il suo processo genitore deve chiamare la funzione di elaborazione del segnale wait() o waitpid() per ottenere lo stato di cessazione del processo figlio. Se il processo padre non lo fa, anche se il processo figlio è già uscito, conserva alcune informazioni sullo stato di uscita nella tabella dei processi di sistema. Poiché il processo padre non può ottenere le informazioni sullo stato del processo figlio, questi processi continueranno a occupare risorse nella tabella dei processi. I processi in questo stato vengono chiamati zombie.
 
-Pericolo:
+Rischio:
 
 * Occupano le risorse del sistema e causano una riduzione delle prestazioni della macchina.
 * Impossibile generare nuovi processi figli.
