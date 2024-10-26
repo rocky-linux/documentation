@@ -779,10 +779,10 @@ Esistono due tipi di file di collegamento:
 
 Le loro caratteristiche principali sono:
 
-| Tipi di link   | Descrizione                                                                                                                                                                                                                                                                                                                                            |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| file soft link | Una scorciatoia simile a quella di Windows. Ha un permesso di 777 e punta al file originale. Quando il file originale viene eliminato, il file collegato e il file originale vengono visualizzati in rosso.                                                                                                                                            |
-| File hard link | Il file originale ha lo stesso numero di _inode_ del file collegato. Ha lo stesso numero *inode* del file collegato fisicamente. Possono essere aggiornati in modo sincrono, includendo il contenuto del file e quando è stato modificato. Non è possibile attraversare le partizioni, né i file system. Non può essere utilizzato per le directory. |
+| Tipi di link   | Descrizione                                                                                                                                                                                                                                                                                                                                                                         |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| file soft link | Una scorciatoia simile a quella di Windows. Ha un permesso di 777 e punta al file originale. Quando il file originale viene eliminato, il file collegato e il file originale vengono visualizzati in rosso. Nelle informazioni di output, il nome del file del soft link appare in rosso, mentre il file originale puntato appare in rosso con un messaggio lampeggiante.           |
+| File hard link | Il file originale ha lo stesso numero di _inode_ del file collegato. Possono essere aggiornati in modo sincrono (compresi il contenuto del file, l'ora di modifica, il proprietario, l'appartenenza al gruppo, l'ora di accesso, ecc.). I file con collegamenti rigidi non possono essere utilizzati in partizioni e file system e non possono essere utilizzati nelle directory. |
 
 Esempi specifici sono i seguenti:
 
@@ -1017,7 +1017,7 @@ $ ls -la  umask_025
 
 !!! Note "Nota"
 
-    `umask` modifica la maschera fino alla disconnessione.
+    Nell'esempio precedente, l'operazione di utilizzo dei comandi per modificare le maschere è applicabile solo alla sessione attualmente connessa.
 
 !!! info "Informazione"
 
