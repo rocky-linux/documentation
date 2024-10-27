@@ -10,13 +10,13 @@ title: 进程管理
 
 **目标**：在本章中，未来的 Linux 管理员将学习如何：
 
-:heavy_check_mark: 识别进程的 `PID` 和 `PPID`；   
-:heavy_check_mark: 查看并搜索进程；   
+:heavy_check_mark: 识别进程的 `PID` 和 `PPID`；  
+:heavy_check_mark: 查看并搜索进程；  
 :heavy_check_mark: 管理进程。
 
 :checkered_flag: **进程**，**linux**
 
-**知识性**: :star: :star:   
+**知识性**: :star: :star:  
 **复杂度**: :star:
 
 **阅读时间**: 20 分钟
@@ -31,37 +31,39 @@ title: 进程管理
 
 每个进程都有：
 
-* _PID_：_**P**rocess **ID**entifier_，唯一的进程标识符
-* _PPID_：_**P**arent **P**rocess **ID**entifier_，父进程的唯一标识符
+* *PID*：***P**rocess **ID**entifier*,，唯一的进程标识符
+* *PPID*：***P**arent **P**rocess **ID**entifier*，父进程的唯一标识符
 
 通过连续的隶属关系，`init` 进程是所有进程之父。
 
 * 一个进程始终由父进程创建
 * 一个父进程可以有多个子进程
 
-进程之间存在父/子关系。 子进程是父进程调用 _fork()_ 原语并复制自己的代码来创建子进程的结果。 子进程的 _PID_ 会返回给父进程，以便父进程与之对话。 每个子进程都有父进程的标识符 _PPID_ 。
+进程之间存在父/子关系。 子进程是父进程调用 *fork()* 原语并复制自己的代码来创建子进程的结果。 子进程的 *PID* 会返回给父进程，以便父进程与之对话。 每个子进程都有父进程的标识符 *PPID* 。
 
-_PID_ 数字代表执行时的进程。 当进程结束时，该数字可再次用于另一个进程。 多次运行同一命令将每次产生不同的 _PID_。<!-- TODO !\[Parent/child relationship between processes\](images/FON-050-001.png) -->!!! note "说明"
+*PID* 数字代表执行时的进程。 当进程结束时，该数字可再次用于另一个进程。 多次运行同一命令将每次产生不同的 *PID*。<!-- TODO !\[Parent/child relationship between processes\](images/FON-050-001.png) -->!!! note "说明"
 
     请不要将进程与 _线程_ 混淆。 每个进程都有自己的内存上下文（资源和地址空间），而来自同一进程的 _线程_ 则 共享相同的上下文。
 
 ## 查看进程
 
 `ps` 命令显示正在运行的进程的状态。
-```
+
+```bash
 ps [-e] [-f] [-u login]
 ```
 
 示例：
-```
+
+```bash
 # ps -fu root
 ```
 
-| 选项         | 说明       |
-| ---------- | -------- |
-| `-e`       | 显示所有进程。  |
-| `-f`       | 显示附加信息。  |
-| `-u` login | 显示用户的进程。 |
+| 选项         | 说明        |
+| ---------- | --------- |
+| `-e`       | 显示所有进程。   |
+| `-f`       | 显示完整格式列表。 |
+| `-u` login | 显示用户的进程。  |
 
 一些附加选项：
 
@@ -71,7 +73,7 @@ ps [-e] [-f] [-u login]
 | `-t tty`              | 显示从终端运行的进程。   |
 | `-p PID`              | 显示进程信息。       |
 | `-H`                  | 以树结构显示信息。     |
-| `-I`                  | 显示附加信息。       |
+| `-l`                  | 以长格式显示。       |
 | `--sort COL`          | 根据列对结果进行排序。   |
 | `--headers`           | 在终端的每一页上显示标题。 |
 | `--format "%a %b %c"` | 自定义输出显示格式。    |
@@ -80,7 +82,7 @@ ps [-e] [-f] [-u login]
 
 结果以列形式显示：
 
-```
+```bash
 # ps -ef
 UID  PID PPID C STIME  TTY TIME      CMD
 root 1   0    0 Jan01  ?   00:00/03  /sbin/init
@@ -99,7 +101,7 @@ root 1   0    0 Jan01  ?   00:00/03  /sbin/init
 
 该控件的行为可以完全自定义：
 
-```
+```bash
 # ps -e --format "%P %p %c %n" --sort ppid --headers
  PPID   PID COMMAND          NI
     0     1 systemd           0
@@ -119,14 +121,14 @@ root 1   0    0 Jan01  ?   00:00/03  /sbin/init
 * 从与用户相关联的终端启动
 * 通过请求或守护进程访问资源
 
-系统进程（_守护进程_）：
+系统进程（*守护进程*）：
 
 * 由系统启动
 * 不与任何终端关联，并且由系统用户所有（通常为 `root` ）
 * 在启动时加载并驻留在内存中，正在等待调用
 * 通常用与进程名相关的字母 `d` 来标识
 
-因此，系统进程被称为守护进程（(_**D**isk **A**nd **E**xecution **MON**itor_）
+因此，系统进程被称为守护进程（***D**isk **A**nd **E**xecution **MON**itor*）
 
 ## 权限
 
@@ -188,25 +190,25 @@ GNU/Linux 属于分时操作系统家族。 处理器以分时方式工作，每
 
 `kill` 命令向进程发送停止信号。
 
-```
+```bash
 kill [-signal] PID
 ```
 
 示例：
 
-```
-$ kill -9 1664
+```bash
+kill -9 1664
 ```
 
-| 代码   | 信号        | 说明                                   |
-| ---- | --------- | ------------------------------------ |
-| `2`  | _SIGINT_  | 立即终止进程                               |
-| `9`  | _SIGKILL_ | 中断进程（<kbd>CTRL</kbd> + <kbd>D</kbd>） |
-| `15` | _SIGTERM_ | 优雅地终止进程                              |
-| `18` | _SIGCONT_ | 恢复进程                                 |
-| `19` | _SIGSTOP_ | 挂起进程                                 |
+| 代码   | 信号        | 说明                                |
+| ---- | --------- | --------------------------------- |
+| `2`  | *SIGINT*  | 立即终止进程                            |
+| `9`  | *SIGKILL* | 中断进程（++control+"d"++）             |
+| `15` | *SIGTERM* | 优雅地终止进程                           |
+| `18` | *SIGCONT* | 恢复进程。 使用 SIGSTOP 信号的进程可以使用它继续运行。  |
+| `19` | *SIGSTOP* | 挂起进程（暂停进程）。 此信号的效果相当于++ctrl+"z"++ |
 
-信号是进程之间的通信手段。 `kill`命令的作用就是向进程发送信号。
+信号是进程之间的通信手段。 `kill` 命令的作用就是向进程发送信号。
 
 !!! Tip "提示"
 
@@ -220,14 +222,14 @@ $ kill -9 1664
 
 `nohup` 允许独立于连接之外启动进程。
 
-```
+```bash
 nohup command
 ```
 
 示例：
 
-```
-$ nohup myprogram.sh 0</dev/null &
+```bash
+nohup myprogram.sh 0</dev/null &
 ```
 
 `nohup` 命令会忽略用户注销时发送的 `SIGHUP` 信号。
@@ -236,29 +238,29 @@ $ nohup myprogram.sh 0</dev/null &
 
     `nohup` 能处理标准输出和标准错误输出，但不处理标准输入，因此会将标准输入重定向到 `/dev/null`。
 
-### [CTRL] + [Z]
+### [Ctrl] + [z]
 
-通过同时按下 <kbd>CTRL</kbd> + <kbd>Z</kbd> 键，同步进程将暂时暂停。 在显示刚刚被暂停进程的编号后，将恢复对提示符的访问。
+通过同时按下 ++control+"z"++ 键，同步进程将暂时暂停。 在显示刚刚被暂停进程的编号后，将恢复对提示符的访问。
 
 ### `&` 指令
 
-`&` 语句异步执行命令（该命令被称为 _作业_）并显示 _作业_ 编号。 然后返回对提示符的访问权限。
+`&` 语句异步执行命令（该命令被称为 *作业*）并显示 *作业* 编号。 然后返回对提示符的访问权限。
 
 示例：
 
-```
+```bash
 $ time ls -lR / > list.ls 2> /dev/null &
 [1] 15430
 $
 ```
 
-_作业_ 编号是在后台处理过程中获得的，显示在方括号中，后面跟着 `PID` 编号。
+*作业* 编号是在后台处理过程中获得的，显示在方括号中，后面跟着 `PID` 编号。
 
 ### `fg` 和 `bg` 命令
 
 `fg` 命令将进程置于前台：
 
-```
+```bash
 $ time ls -lR / > list.ls 2>/dev/null &
 $ fg 1
 time ls -lR / > list.ls 2/dev/null
@@ -266,7 +268,7 @@ time ls -lR / > list.ls 2/dev/null
 
 而命令 `bg` 将其置于后台：
 
-```
+```bash
 [CTRL]+[Z]
 ^Z
 [1]+ Stopped
@@ -275,15 +277,15 @@ $ bg 1
 $
 ```
 
-无论是在使用 `&` 参数创建进程时将其置于后台，还是随后使用 <kbd>CTRL</kbd> + <kbd>Z</kbd> 键将其置于后台，都可以使用 `fg` 命令及其作业编号将进程带回前台。
+无论是在使用 `&` 参数创建进程时将其置于后台，还是随后使用 ++control+"z"++ 键将其置于后台，都可以使用 `fg` 命令及其作业编号将进程带回前台。
 
 ### `jobs` 命令
 
-`job` 命令显示后台运行的进程列表，并指定它们的作业编号。
+`jobs` 命令显示后台运行的进程列表，并指定它们的作业编号。
 
 示例：
 
-```
+```bash
 $ jobs
 [1]- Running    sleep 1000
 [2]+ Running    find / > arbo.txt
@@ -293,63 +295,82 @@ $ jobs
 
 1. 作业编号
 2. 进程运行的顺序
-- `+`：未指定作业编号时，`fg` 和 `bg` 命令默认选择的进程
-- `-`：下一个进程选择 `+`
-3.  _正在运行_（正在运行的进程）或_已停止_（已挂起的进程）
+
+   * `+`：未指定作业编号时，`fg` 和 `bg` 命令默认选择的进程
+   * `-`：下一个进程选择 `+`
+
+3. *Running*（正在运行的进程）或*Stoped*（已挂起的进程）
 4. 命令
 
 ### `nice` 和 `renice` 命令
 
 命令 `nice` 允许通过指定优先级来执行命令。
 
-```
+```bash
 nice priority command
 ```
 
-示例：
+用法示例：
 
-```
-$ nice -n+15 find / -name "file"
+```bash
+nice --adjustment=-5 find / -name "file"
+
+nice -n -5 find / -name "file"
+
+nice --5 find / -name "file"
+
+nice -n 5 find / -name "file"
+
+nice find / -name "file"
 ```
 
-与 `root` 用户不同，标准的普通用户只能降低进程的优先级。 只接受 +0 到 +19 之间的值。
+与 `root` 不同，标准用户只能降低进程的优先级且只接受0到19之间的值。
+
+如上例所示，前三个命令表示将 Nice 值设置为 "-5"，而第二个命令是我们推荐的用法。 第四个命令指示将 Nice 值设置为 "5"。 对于第五个命令，不键入任何选项意味着 Nice 值设置为 "10"。
 
 !!! Tip "提示"
 
-    通过修改 `/etc/security/limits.conf` 文件，可以针对每个用户或每个组取消最后这项限制。
+    "Nice" 是 "niceness" 的缩写。 
+    
+    直接键入`nice` 命令将返回当前 shell 的 Nice 值。 
+    
+    您可以通过修改 `/etc/security/limits.conf` 文件来解除每个用户或组的 Nice 值限制。
 
 使用 `renice` 命令可以更改正在运行中的进程优先级。
 
-```
+```bash
 renice priority [-g GID] [-p PID] [-u UID]
 ```
 
 示例：
 
+```bash
+renice -n 15 -p 1664
 ```
-$ renice +15 -p 1664
-```
+
 | 选项   | 说明            |
 | ---- | ------------- |
 | `-g` | 进程所属组的 `GID`。 |
 | `-p` | 进程的 `PID`。    |
 | `-u` | 进程所有者的 `UID`。 |
 
-`renice` 命令作用于已经运行的进程。 因此，我们可以改变特定进程的优先级，也可以改变属于用户或组的几个进程的优先级。
+`renice` 命令作用于已经运行的进程。 因此，我们可以改变一个特定进程的优先级，也可以改变属于一个用户或一个组的几个进程的优先级。
 
 !!! Tip "提示"
 
     `pidof` 命令与 `xargs` 命令相结合（请参阅 "高级命令" 课程），可允许在单个命令中应用新的优先级：
 
     ```
-    $ pidof sleep | xargs renice 20
+    $ pidof sleep | xargs renice -n 20
     ```
+
+为了适应不同的发行版，您应该尽可能多地使用 `nice -n 5` 或 `renice -n 6` 等命令形式。
 
 ### `top` 命令
 
 `top` 命令用于显示进程及其资源消耗。
 
-```
+```bash
 $ top
 PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND
 2514 root 20 0       15    5.5 0:01.14   top
@@ -366,31 +387,31 @@ PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND
 | `TIME+`   | 处理器使用时间。 |
 | `COMMAND` | 已执行命令。   |
 
-`top` 命令允许以交互模式实时控制进程。
+`top` 命令还允许以交互模式实时控制进程。
 
 ### `pgrep` 和 `pkill` 命令
 
-`pgrep` 命令可在运行的进程中搜索进程名，并在标准输出中显示与选择条件匹配的 _PID_。
+`pgrep` 命令可在运行的进程中搜索进程名，并在标准输出中显示与选择条件匹配的 *PID*。
 
-`pkill` 命令将向每个进程发送指定的信号（默认情况下为 _SIGTERM_）。
+`pkill` 命令将向每个进程发送指定的信号（默认情况下为 *SIGTERM*）。
 
-```
+```bash
 pgrep process
-pkill [-signal] process
+pkill [option] [-signal] process
 ```
 
 示例：
 
 * 从 `sshd` 中获取进程编号：
 
-  ```
-  $ pgrep -u root sshd
+  ```bash
+  pgrep -u root sshd
   ```
 
 * 结束所有 `tomcat` 进程：
 
-  ```
-  $ pkill tomcat
+  ```bash
+  pkill tomcat
   ```
 
 !!! note "说明"
@@ -399,13 +420,13 @@ pkill [-signal] process
 
 除了向相关进程发送信号外，`pkill` 命令还可以根据终端号结束用户的连接会话，例如：
 
-```
-$ pkill -t pts/1
+```bash
+pkill -t pts/1
 ```
 
 ### `killall` 命令
 
-此命令的功能与 `pkill` 命令大致相同。 用法为 - `killall [option] [ -s SIGNAL | -SIGNAL ] NAME`。 默认的信号为 _SIGTERM_。
+此命令的功能与 `pkill` 命令大致相同。 用法为 - `killall [option] [ -s SIGNAL | -SIGNAL ] NAME`。 默认的信号为 *SIGTERM*。
 
 | 选项   | 说明            |
 |:---- |:------------- |
@@ -415,8 +436,8 @@ $ pkill -t pts/1
 
 示例：
 
-```
-$ killall tomcat
+```bash
+killall tomcat
 ```
 
 ### `pstree` 命令
@@ -457,7 +478,7 @@ systemd(1)─┬─systemd-journal(595)
 
 ### 孤儿进程和僵尸进程
 
-**孤儿进程**：当父进程死亡时，其子进程被称为孤儿。 Init 进程收养这些特殊状态的进程并完成状态收集，直到它们被销毁。 从概念上讲，孤儿院进程不会造成任何危害。
+**孤儿进程**：当父进程死亡时，其子进程被称为孤儿。 init 进程收养这些特殊状态的进程并完成状态收集，直到它们被销毁。 从概念上讲，孤儿院进程不会造成任何危害。
 
 **僵尸进程**：当子进程完成其工作并被终止后，其父进程需要调用信号处理函数 wait() 或 waitpid() 来获取子进程的终止状态。 如果父进程没有这样做，那么尽管子进程已经退出，但它仍然会在系统进程表中保留一些退出状态信息。 由于父进程无法获取子进程的状态信息，这些进程将持续占用进程表中的资源。 我们将这种状态下的进程称为僵尸。
 
@@ -468,8 +489,8 @@ systemd(1)─┬─systemd-journal(595)
 
 如何检查当前系统中是否存在僵尸进程？
 
-```
-$ ps -lef | awk '{print $2}' | grep Z
+```bash
+ps -lef | awk '{print $2}' | grep Z
 ```
 
 此列中可能显示以下字符：
