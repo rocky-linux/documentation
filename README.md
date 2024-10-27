@@ -105,13 +105,13 @@ Maybe you’ve found a broken link or incorrect information while exploring the 
 
     If you have to make changes, you will suddenly understand why you need a local repository. The team can [talk you through](https://chat.rockylinux.org/rocky-linux/channels/documentation) what to do next. In good news, it’s still fixable.
 
-Need more in-depth explanation? Here are the [same directions](https://docs.rockylinux.org/guides/contribute/beginners) with more elaboration under the heading, "Submit an update."
+Need more in-depth explanation? Here are the [same directions](https://docs.rockylinux.org/guides/contribute/beginners/) with more elaboration under the heading, "Submit an update."
 
 Success? Welcome to the team, you are officially a Rocky Linux documentation contributor. Your profile will be added to the contributor list at the bottom of this document shortly.
 
 ### Become a frequent contributor
 
-For more than a word or two of occasional edits, we recommend that you [setup a local repository](https://docs.rockylinux.org/guides/contribute/createnew) on your own machine. From there, you can revise documentation from your clone of the RL repository, Commit it to your online GitHub repository, and then create Pull Requests to merge with the main repository.
+For more than a word or two of occasional edits, we recommend that you [setup a local repository](https://docs.rockylinux.org/guides/contribute/createnew/) on your own machine. From there, you can revise documentation from your clone of the RL repository, Commit it to your online GitHub repository, and then create Pull Requests to merge with the main repository.
 
 Advanced users may wish to create a complete documentation server on your local Linux workstation or VM. We have guides to set that up with [Docker](https://docs.rockylinux.org/guides/contribute/localdocs/rockydocs_web_dev/) or [LXD](https://docs.rockylinux.org/guides/contribute/localdocs/mkdocs_lsyncd/). We also have a [fast documentation system](https://docs.rockylinux.org/guides/contribute/localdocs/local_docs/) with special caveats if you are using Python on the same server.
 
@@ -143,7 +143,7 @@ To add more advanced elements to your Markdown-formatted document beyond text, v
 
 #### Contribute
 
-The process for [submitting original content](https://docs.rockylinux.org/guides/contribute/createnew)  is similar to updating an existing document from your local repository. Create a new document within your Markdown editor, Commit it to your GitHub repository, then submit a Pull Request to merge into the main branch of the repository. The documentation leads will decide where the new document will live.
+The process for [submitting original content](https://docs.rockylinux.org/guides/contribute/createnew/)  is similar to updating an existing document from your local repository. Create a new document within your Markdown editor, Commit it to your GitHub repository, then submit a Pull Request to merge into the main branch of the repository. The documentation leads will decide where the new document will live.
 
 ## Special Notes
 
