@@ -20,8 +20,7 @@ In diesem Kapitel werden GNU/Linux Distributionen behandelt.
 
 :checkered_flag: **Allgemeines**, **Linux**, **Distributionen**
 
-**Vorwissen**: :star:
-
+**Vorkenntnisse**: :star:  
 **Schwierigkeitsgrad**: :star:
 
 **Lesezeit**: 11 Minuten
@@ -30,9 +29,9 @@ In diesem Kapitel werden GNU/Linux Distributionen behandelt.
 
 ## Was ist ein Betriebsystem?
 
-Linux, UNIX, BSD, VxWorks, Windows und MacOS sind Beispiele für **Betriebssysteme**.
+Linux, UNIX, BSD, VxWorks, Windows und macOS sind Beispiele für **Betriebssysteme**.
 
-!!! Abstrakt
+!!! abstract "Abstrakt"
 
     Ein Betriebssystem ist eine Sammlung von Programmen, die die **verfügbaren Komponenten eines Computers verwalten**.
 
@@ -62,11 +61,11 @@ Als Teil dieser Ressourcenverwaltung muss das Betriebssystem Folgendes tun:
 
 * Von **1964 bis 1968**: MULTICS (MULTiplexed Information and Computing Service) wurde für das MIT entwickelt, sowie für Bell Labs (AT&T) und General Electric.
 
-* **1969 – 1971**: Nach dem Rückzug von Bell (1969) und dann von General Electric aus dem Projekt wurden zwei Entwickler, Ken Thompson und Dennis Ritchie (zu denen später Brian Kernighan hinzukam), die MULTICS für zu komplex hielten, mit der Entwicklung von UNIX (UNiplexed Information and Computing Service) betraut. Ursprünglich im Assembler entwickelt, entwickelten die Designer von UNIX die B-Sprache und dann die C-Sprache (1971) und schrieben UNIX. Seit 1970 ist das Referenzdatum (epoch) der UNIX/Linux-Systeme noch am 01. Januar 1970 festgelegt.
+* **1969 – 1971**: Nach dem Rückzug von Bell (1969) und dann von General Electric aus dem Projekt wurden zwei Entwickler, Ken Thompson und Dennis Ritchie (zu denen später Brian Kernighan hinzukam), die MULTICS für zu komplex hielten, mit der Entwicklung von UNIX (UNiplexed Information and Computing Service) betraut. Ursprünglich im Assembler implementiert, entwickelten die Designer von UNIX die B-Sprache und dann die C-Sprache (1971) und schrieben UNIX. Seit 1970 ist das Referenzdatum (epoch) der UNIX/Linux-Systeme noch am 01. Januar 1970 festgelegt.
 
-Die Programmiersprache C ist noch heute eine der beliebtesten Programmiersprachen. Eine Low-Level-Sprache, nahe der Hardware, sie ermöglicht die Anpassung des Betriebssystems an jede Maschinenarchitektur.
+Die Programmiersprache C ist noch heute eine der beliebtesten Programmiersprachen. Eine Hardware-nahe Sprache, sie ermöglicht die Anpassung des Betriebssystems an jede Maschinenarchitektur.
 
-UNIX ist ein offenes und sich entwickelndes Betriebssystem, das eine wichtige Rolle in der Geschichte der Informatik gespielt hat. Es war die Basis für viele andere Systeme: Linux, BSD, MacOS, etc.
+UNIX ist ein offenes und sich entwickelndes Betriebssystem, das eine wichtige Rolle in der Geschichte der Informatik gespielt hat. Es war die Basis für viele andere Systeme: GNU/Linux, BSD, macOS, etc.
 
 UNIX ist noch heute relevant (HP-UX, AIX, Solaris, etc.)
 
@@ -108,9 +107,9 @@ UNIX ist noch heute relevant (HP-UX, AIX, Solaris, etc.)
 TODO: graphics with market share for servers and pc.
 -->
 
-Trotz seiner großen Verbreitung ist Linux in der breiten Öffentlichkeit noch relativ unbekannt. Linux versteckt sich in **Smartphones**, **Fernsehgeräten**, **Internetboxen**, usw. Fast **70% der Websites** auf der Welt werden auf einem Linux oder UNIX Server gehostet!
+Trotz seiner großen Verbreitung ist Linux in der breiten Öffentlichkeit noch relativ unbekannt. Linux versteckt sich in **Smartphones**, **Fernsehgeräten**, **Internetboxen**, usw. Fast **70% der Websites** auf der Welt werden auf einem GNU/Linux- oder UNIX-Server gehostet!
 
-Linux ist in etwa **3 % der Personal Computer**, aber in mehr als **82 % der Smartphones** verbaut. Das Betriebssystem **Android** verwendet beispielsweise einen Linux-Kernel.
+Linux ist in etwa **3 % der Personalcomputer**, aber in mehr als **82 % der Smartphones** verbaut. Das Betriebssystem **Android** verwendet beispielsweise einen Linux-Kernel.
 
 <!-- TODO: review those stats -->
 
@@ -149,7 +148,7 @@ Der Zweck von MULTICS war es, mehreren Benutzern die Möglichkeit zu geben, von 
 
 #### Multi-Prozessor
 
-Linux ist in der Lage, mit Multicore-Computern oder mit Multi-Core-Prozessoren zu arbeiten.
+Linux ist in der Lage, mit Multi-prozessor--Computern oder mit Multicore-Prozessoren zu arbeiten.
 
 #### Multi-Plattform
 
@@ -164,7 +163,7 @@ Linux ist in einer Hochsprache geschrieben, die beim Kompilieren an verschiedene
 
 #### Offen
 
-Linux basiert auf anerkannten Standards wie [POSIX](http://en.wikipedia.org/wiki/POSIX), [TCP/IP](https://en.wikipedia.org/wiki/Internet_protocol_suite), [NFS](https://en.wikipedia.org/wiki/Network_File_System) und [Samba](https://en.wikipedia.org/wiki/Samba_(software)), die es ihm erlauben, Daten und Dienste mit anderen Applikationssystemen zu teilen.
+Linux basiert auf anerkannten Standards wie [POSIX](http://de.wikipedia.org/wiki/POSIX), [TCP/IP](https://en.wikipedia.org/wiki/Internet_protocol_suite), [NFS](https://en.wikipedia.org/wiki/Network_File_System) und [Samba](https://en.wikipedia.org/wiki/Samba_(software)), die es ihm erlauben, Daten und Dienste mit anderen Applikationssystemen zu teilen.
 
 ### Die UNIX/Linux Philosophie
 
@@ -177,7 +176,7 @@ Linux basiert auf anerkannten Standards wie [POSIX](http://en.wikipedia.org/wiki
 
 ## GNU/Linux-Distributionen
 
-Eine Linux-Distribution ist ein **konsistenter Softwaresatz**, der rund um den Linux-Kernel zusammengestellt ist und zusammen mit den für die Selbstverwaltung erforderlichen Komponenten (Installation, Entfernung, Konfiguration) installiert werden kann. Es gibt **assoziative** oder **Community**-Distributionen (Debian, Rocky) und ** kommerzielle **Distributionen (Red Hat, Ubuntu).
+Eine Linux-Distribution ist ein **konsistenter Softwaresatz**, der rund um den Linux-Kernel zusammengestellt ist und zusammen mit den für die Selbstverwaltung erforderlichen Komponenten (Installation, Entfernung, Konfiguration) installiert werden kann. Es gibt **assoziative** oder **Community-Distributionen** (Debian, Rocky) und **kommerzielle** Distributionen (Red Hat, Ubuntu).
 
 Jede Distribution bietet eine oder mehrere **Desktop-Umgebungen** und stellt eine Reihe vorinstallierter Software und eine Bibliothek mit zusätzlicher Software bereit. Konfigurationsoptionen (zum Beispiel Kernel- oder Dienste-Optionen) sind spezifisch für jede Distribution.
 
@@ -185,35 +184,35 @@ Dieses Prinzip ermöglicht es, Distributionen auf **Einsteiger** (Ubuntu, Linux 
 
 ### Desktop-Umgebungen
 
-Es gibt viele grafische Umgebungen wie **GNOME**, **KDE**, **LXDE **, **XFCE** usw. Für jeden ist etwas dabei, und ihre **Ergonomie** kann sich mit den Systemen von Microsoft oder Apple messen.
+Es gibt viele grafische Umgebungen wie **GNOME**, **KDE**, **LXDE**, **XFCE** usw. Für jeden ist etwas dabei, und ihre **Ergonomie** kann sich mit den Systemen von Microsoft oder Apple messen.
 
-Warum also gibt es so wenig Begeisterung für Linux, wenn dieses System **frei** ist? Könnte es daran liegen, dass so viele Editoren (Adobe) und Hersteller (Nvidia) nicht immer mitspielen und selten eine Version ihrer Software oder __Treiber__ für GNU/Linux bereitstellen? Vielleicht ist es die Angst vor Veränderungen, oder die Schwierigkeit zu finden, wo man einen Linux-Computer kaufen kann, oder zu wenige Spiele, die unter Linux verteilt werden. Zumindest diese letzte Ausrede sollte mit dem Aufkommen der Spiele-Engine Steam für Linux nicht mehr lange zutreffen.
+Warum also gibt es so wenig Begeisterung für Linux, wenn dieses System **frei** ist? Könnte es daran liegen, dass so viele Hersteller nicht immer mitspielen und selten eine Version ihrer Software oder __Treiber__ für GNU/Linux bereitstellen? Vielleicht ist es die Angst vor Veränderungen, oder die Schwierigkeit zu finden, wo man einen Linux-Computer kaufen kann oder zu wenige Spiele, die unter Linux vertrieben werden. Zumindest diese letzte Ausrede sollte mit dem Aufkommen der Spiele-Engine Steam für Linux nicht mehr lange zutreffen.
 
-![GNOME-Desktop](images/01-presentation-gnome.png)
+![GNOME Desktop](images/01-presentation-gnome.png)
 
-Die **GNOME 3**-Desktopumgebung verwendet nicht mehr das Konzept des Desktops, sondern das der GNOME-Shell (nicht zu verwechseln mit der Befehlszeilen-Shell). Es dient als Arbeitsfläche, als Dashboard, als Benachrichtigungsbereich und als Fensterauswahl. Die GNOME-Desktopumgebung basiert auf der **GTK+** Komponentenbibliothek.
+Die **GNOME 3**-Desktopumgebung verwendet nicht mehr das Konzept des Desktops, sondern das der GNOME-Shell (nicht zu verwechseln mit der Befehlszeilen-Shell). Es dient als Desktop, Dashboard, Benachrichtigung-Bereich und Fensterauswahl. Die GNOME-Desktopumgebung basiert auf der **GTK+**-Komponentenbibliothek.
 
-![KDE-Desktop](images/01-presentation-kde.png)
+![KDE Desktop](images/01-presentation-kde.png)
 
-Die **KDE**-Desktopumgebung basiert auf der **Qt**-Komponentenbibliothek. Es wird traditionell für Benutzer empfohlen, die mit einer Windows-Umgebung vertraut sind.
+Die **KDE**-Desktopumgebung basiert auf der **Qt**-Komponentenbibliothek. Es wird traditionell für Benutzer empfohlen, die mit einer Windowsumgebung vertraut sind.
 
-![Tux - das Linux-Maskottchen](images/tux.png)
+![Tux - The Linux mascot](images/tux.png)
 
-### Freie Software versus Open source
+### Freie Software versus Open Source
 
 Ein Benutzer eines Microsoft- oder Mac-Betriebssystems muss eine Lizenz erwerben, um das Betriebssystem zu nutzen. Diese Lizenz ist mit Kosten verbunden, obwohl sie in der Regel transparent ist (der Preis der Lizenz ist im Preis des Computers inbegriffen).
 
-In der Welt **GNU/Linux** bietet die Bewegung der Freien Software freie Distributionen.
+In der Welt **GNU/Linux**-Welt bietet die Bewegung der Freien Software überwiegend freie Distributionen.
 
 **Frei** ist gemeint im Sinne von Freiheit nicht von Freibier!
 
 **Open Source**: die Quellen sind verfügbar, es ist möglich, sie einzusehen und verändern, aber nur unter bestimmte Bedingungen.
 
-Eine freie Software ist notwendigerweise Open-Source, aber das Gegenteil trifft nicht zu, da Open-Source-Software sich von der Freiheit unterscheidet, die die GPL-Lizenz bietet.
+Eine freie Software – im Sinne von Freiheit – ist notwendigerweise Open Source, aber das Gegenteil ist nicht der Fall, da sich Open-Source-Software von der Freiheit unterscheidet, die die GPL-Lizenz bietet.
 
 #### GNU GPL (GNU General Public License)
 
-Die **GPL** garantiert dem Autor einer Software ihr geistiges Eigentum, erlaubt aber Modifikationen, Weitergabe oder Weiterverkauf von Software durch Dritte, vorausgesetzt, der Quelltext ist in der Software enthalten. Die GPL ist die Lizenz, die aus dem **GNU**-Projekt (GNU ist Nicht UNIX) hervorgegangen ist, das maßgeblich an der Entwicklung von GNU/Linux beteiligt war.
+Die **GPL** garantiert dem Autor einer Software ihr geistiges Eigentum, gestattet jedoch die Änderung, Weitergabe oder den Weiterverkauf der Software durch Dritte, vorausgesetzt, dass der Quellcode und die GPL-Lizenz in der Software enthalten sind. Die GPL ist die Lizenz, die aus dem **GNU**-Projekt (GNU ist Nicht UNIX) hervorgegangen ist, das maßgeblich an der Entwicklung von GNU/Linux beteiligt war.
 
 Das bedeutet:
 
@@ -222,11 +221,11 @@ Das bedeutet:
 * Die Freiheit, Kopien weiterzugeben.
 * Die Freiheit, das Programm zu verbessern und diese Verbesserungen zum Nutzen der gesamten Community zu veröffentlichen.
 
-Auf der anderen Seite können auch Produkte, die unter der GPL lizenziert sind, Kosten verursachen. Dabei geht es nicht um das Produkt selbst, sondern um die **Garantie, dass ein Entwicklerteam weiter daran arbeitet. Es geht auch darum es weiterzuentwickeln und Fehler zu beheben oder sogar Benutzerunterstützung zu leisten**.
+Andererseits können auch unter der GPL lizenzierte Produkte Kosten verursachen. Dabei geht es nicht um das Produkt selbst, sondern um die **Garantie, dass ein Entwicklerteam weiter daran arbeitet. Es geht auch darum es weiterzuentwickeln und Fehler zu beheben oder sogar Benutzerunterstützung zu leisten**.
 
 ## Anwendungsbereiche
 
-Eine Linux-Distribution zeichnet sich aus für:
+Eine Linux-Distribution zeichnet sich aus durch:
 
 * **Server**: HTTP, E-Mail, Groupware, File-Sharing usw.
 * **Sicherheit**: Gateway, Firewall, Router, Proxy, usw.
@@ -239,11 +238,11 @@ Linux ist eine geeignete Wahl für das Hosting von Datenbanken, Websites, als Ma
 
 ### Allgemeines
 
-Die **Shell**, bekannt als _Kommandoschnittstelle_, ermöglicht Benutzern Befehle an das Betriebssystem zu schicken. Sie ist heute weniger sichtbar seit der Implementierung von grafischen Schnittstellen aber bleibt ein privilegiertes Mittel auf Linux-Systemen, die nicht alle über grafische Schnittstellen verfügen und deren Dienste nicht immer über eine Schnittstelle für Einstellungen verfügen.
+Die **Shell**, bekannt als _Kommandoschnittstelle_, ermöglicht Benutzern Befehle an das Betriebssystem zu schicken. Es ist heute seit der Implementierung grafischer Schnittstellen weniger sichtbar, bleibt jedoch ein privilegiertes Mittel auf Linux-Systemen, die nicht alle über grafische Schnittstellen verfügen und deren Dienste nicht immer über eine Einstellungsschnittstelle verfügen.
 
 Sie bietet eine echte Programmiersprache mit den klassischen Strukturen (Schleifen, Abzweigungen) und allgemeine Bestandteile (Variablen, Übergabe von Parametern und Unterprogramme). Sie erlaubt die Erstellung von Skripten zur Automatisierung bestimmter Aktionen (Backups, Erstellung von Benutzerkonten, Systemüberwachung, usw.).
 
-Es gibt verschiedene Arten von Shells, die auf einer Plattform oder nach den Vorlieben des Benutzers konfiguriert werden können. Einige Beispiele sind:
+Es stehen mehrere Shell-Typen zur Verfügung, die auf einer Plattform oder entsprechend den Vorlieben des Benutzers konfiguriert werden können. Einige Beispiele sind folgende:
 
 * sh, die POSIX Standard Shell
 * csh, Kommando-Orientierte Shell in C
@@ -259,7 +258,7 @@ Es gibt verschiedene Arten von Shells, die auf einer Plattform oder nach den Vor
 
 ### Grundsatz
 
-![Arbeitsweise der SHELL](images/shell-principle.png)
+![Operating principle of the SHELL](images/shell-principle.png)
 
 ## Testen Sie Ihr Wissen
 
@@ -268,7 +267,7 @@ Es gibt verschiedene Arten von Shells, die auf einer Plattform oder nach den Vor
 * [ ] Wahr
 * [ ] Falsch
 
-:heavy_check_mark: Das Betriebssystem ist notwendig z.B. um:
+:heavy_check_mark: Das Betriebssystem ist für Folgendes erforderlich:
 
 * [ ] Physischen und virtuellen Speicher verwalten.
 * [ ] Direkten Zugriff auf Geräte zulassen
@@ -298,7 +297,7 @@ Es gibt verschiedene Arten von Shells, die auf einer Plattform oder nach den Vor
 * [ ] Red Hat
 * [ ] Arch
 
-:heavy_check_mark: ist der Linux-Kernel:
+:heavy_check_mark: Ist der Linux-Kernel:
 
 * [ ] Multitasking
 * [ ] Multi-User

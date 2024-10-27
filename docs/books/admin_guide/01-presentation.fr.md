@@ -29,7 +29,7 @@ Dans ce chapitre, vous allez en apprendre plus à propos des distributions GNU/L
 
 ## Qu'est-ce qu'un système d'exploitation ?
 
-Linux, UNIX, BSD, VxWorks, Windows et MacOS sont tous des **systèmes d'exploitation**.
+Linux, UNIX, BSD, VxWorks, Windows et macOS sont tous des **systèmes d'exploitation**.
 
 !!! abstract "Abstract"
 
