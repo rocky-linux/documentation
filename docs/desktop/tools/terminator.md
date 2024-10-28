@@ -60,6 +60,22 @@ There are also several keybindings available for those who prefer not to move th
 
 ![Terminator window with 3 split terminals](images/terminator-03.png)
 
+Finally, it can also be useful to set up a keyboard shortcut to open your new terminal. To do this, start by opening the Settings menu. The menu can be accessed in a few different ways, so for this guide we're simply going to right click on the desktop and left click "Settings." 
+
+![Desktop context menu with "Settings" highlighted](images/terminator-04.png)
+
+From here, navigate to the "Keyboard" section using the menu on the left, then click "Customize Shortcuts" at the bottom.
+
+![GNOME Settings Keyboard Menu](images/terminator-05.png)
+
+If this is your first time setting a custom shortcut you'll see a button titled "Add Shortcut." Otherwise you'll see a list of your shortcuts with a plus sign at the bottom. Click whichever applies to your situation to open the "Add Custom Shortcut" dialog. In the *Name* field type an easy to remember nickname for your shortcut. For the *Command* field, type the name of our program: `terminator`. Then click "Set Shortcut" to set your new key combination.
+
+![Add Custom Shortcut dialog](images/terminator-06.png)
+
+While __CTRL + ALT + T__ is a traditional choice feel free to choose whatever combination you wish, you can always update the shortcut name and key combination later. To save your shortcut click "Add" in the top right of the Add Custom Shortcut dialog.
+
+![Add Custom Shortcut dialog completed for Terminator](images/terminator-07.png)
+
 ## Conclusion
 
-Terminator is a powerful terminal emulator for both regular users and power users alike. These examples only represent a small fraction of Terminator's capabilities.. While this guide provides an overview of the installation steps for Rocky Linux you might want to take a examine the [documentation](https://gnome-terminator.readthedocs.io/en/latest/) for a full explanation of Terminator's features.
+Terminator is a powerful terminal emulator for both regular users and power users alike. These examples only represent a small fraction of Terminator's capabilities. While this guide provides an overview of the installation steps for Rocky Linux you might want to take a examine the [documentation](https://gnome-terminator.readthedocs.io/en/latest/) for a full explanation of Terminator's features.
