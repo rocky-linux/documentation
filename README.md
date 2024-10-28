@@ -2,7 +2,7 @@
 
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-112-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-113-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Introduction
@@ -343,6 +343,9 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/singraber"><img src="https://avatars.githubusercontent.com/u/26900609?v=4?s=100" width="100px;" alt="Andreas Singraber"/><br /><sub><b>Andreas Singraber</b></sub></a><br /><a href="#content-singraber" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://andyscott.me"><img src="https://avatars.githubusercontent.com/u/91222421?v=4?s=100" width="100px;" alt="Andrew Scott"/><br /><sub><b>Andrew Scott</b></sub></a><br /><a href="#content-andcscott" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/CracktheDom"><img src="https://avatars.githubusercontent.com/u/85846263?v=4?s=100" width="100px;" alt="CracktheDom"/><br /><sub><b>CracktheDom</b></sub></a><br /><a href="#content-CracktheDom" title="Content">🖋</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/webgtx"><img src="https://avatars.githubusercontent.com/u/62614322?v=4?s=100" width="100px;" alt="Alex Zolotarov"/><br /><sub><b>Alex Zolotarov</b></sub></a><br /><a href="#content-webgtx" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>
