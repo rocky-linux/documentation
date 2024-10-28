@@ -198,4 +198,4 @@ For more information on this feature, refer to the link above. There is a way to
 
 ## Conclusion
 
-A database server, such as *mariadb-server*, can be used for many purposes. Because of the popularity of the [Wordpress CMS](wordpress.org), it is often found on web servers. Before you run the database in production, however, it is a good idea to strengthen its security.
+A database server, such as *mariadb-server*, can be used for many purposes. Because of the popularity of the [Wordpress CMS](https://wordpress.org), it is often found on web servers. Before you run the database in production, however, it is a good idea to strengthen its security.
