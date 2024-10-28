@@ -1025,6 +1025,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "webgtx",
+      "name": "Alex Zolotarov",
+      "avatar_url": "https://avatars.githubusercontent.com/u/62614322?v=4",
+      "profile": "https://github.com/webgtx",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
