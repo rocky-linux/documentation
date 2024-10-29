@@ -36,7 +36,7 @@ And there you have it. Now, you can start Kitty.
 
 ### Configuration File
 
-Once you have started **Kitty** you can open Kitty configuration file with `Control`+`Shift`+'F2'. 
+Once you have started **Kitty** you can open Kitty configuration file with `Control`+`Shift`+`F2`. 
 Alternatively, you can find configuration file at `$HOME/.config/kitty`.
 
 We are not going to go deep into configuration file itself, just keep in mind that you can change any default shortcuts, or anything related to the appearance.
