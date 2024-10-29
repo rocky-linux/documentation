@@ -60,11 +60,11 @@ There are also several keybindings available for those who prefer not to move th
 
 ![Terminator window with 3 split terminals](images/terminator-03.png)
 
-Finally, it can also be useful to set up a keyboard shortcut to open your new terminal. To do this, start by opening the Settings menu. The menu can be accessed in a few different ways, so for this guide we're simply going to right click on the desktop and left click "Settings." 
+Finally, it can also be useful to set up a keyboard shortcut to open your new terminal. To do this, start by opening the Settings menu. You can access the menu in a few different ways, so for this guide you are going to right-click the desktop and left-click "Settings."
 
 ![Desktop context menu with "Settings" highlighted](images/terminator-04.png)
 
-From here, navigate to the "Keyboard" section using the menu on the left, then click "Customize Shortcuts" at the bottom.
+From here, navigate to the "Keyboard" section by using the menu on the left, then click "Customize Shortcuts" at the bottom.
 
 ![GNOME Settings Keyboard Menu](images/terminator-05.png)
 
@@ -72,7 +72,7 @@ If this is your first time setting a custom shortcut you'll see a button titled 
 
 ![Add Custom Shortcut dialog](images/terminator-06.png)
 
-While __CTRL + ALT + T__ is a traditional choice feel free to choose whatever combination you wish, you can always update the shortcut name and key combination later. To save your shortcut click "Add" in the top right of the Add Custom Shortcut dialog.
+While ++ctrl+alt+"T"++ is a traditional choice feel free to choose whatever combination you wish. You can always update the shortcut name and key combination later. To save your shortcut click "Add" in the top right of the Add Custom Shortcut dialog.
 
 ![Add Custom Shortcut dialog completed for Terminator](images/terminator-07.png)
 
