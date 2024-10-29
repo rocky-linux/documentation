@@ -8,8 +8,8 @@ tested with: 9
 ## Introduction
 
 **Kitty is a blazing fast terminal emulator on steroids**, anything you can possibly imagine is customizable in Kitty.
-You can utilize tab management, tilling, image previews, and many more just within this terminal emulator. 
-You can basically replace tmux or even a Window Manager with **Kitty** (if you work mostly within a terminal).
+You can use tab management, tiling, image previews, and many more options, just within this terminal emulator.
+You can even replace `tmux` or even a Window Manager with **Kitty** (if you work mostly within a terminal).
 
 ## Assumptions
 
@@ -24,49 +24,47 @@ You can basically replace tmux or even a Window Manager with **Kitty** (if you w
 dnf install -y epel-release
 ```
 
-Next, install **Kitty** 
+Next, install **Kitty**:
 
 ```bash
 dnf install -y kitty
 ```
 
-And there you have it. Now, you can start Kitty.
+Once installed, you can start Kitty.
 
 ## Quick Overview
 
-### Configuration File
+### Configuration file
 
-Once you have started **Kitty** you can open Kitty configuration file with `Control`+`Shift`+`F2`. 
-Alternatively, you can find configuration file at `$HOME/.config/kitty`.
+Once you have started **Kitty** you can open Kitty configuration file with ++ctrl+shift+f2++.
+You can also find the configuration file at `$HOME/.config/kitty`.
 
-We are not going to go deep into configuration file itself, just keep in mind that you can change any default shortcuts, or anything related to the appearance.
+This document is not going to go deep into the configuration file itself. Just know that you can change any default shortcuts, or anything related to the appearance, in the configuration.
 
 ### Tabs
 
-You can create a new tab with `Control`+`Shift`+`T`.
+You can create a new tab with ++ctrl+shift+t++.
 
-You can close a tab with `Control`+`Shift`+`W`*or*`Q`
+You can close a tab with ++ctrl+shift+w++ *or* ++ctrl+shift+q++.
 
-You can select tabs with `Control`+`Shift`+`[Arrow Keys]`
+You can select tabs with ++ctrl+shift+left++ *or* ++ctrl+shift+right++.
 
 ![kittytabs](./images/kitty_tabs.png)
 
-### Tilling
+### Tiling
 
-Press `Control`+`Shift`+`Enter` to open a new pane/window.
-You can press it multiple times to create a tilling layout. 
+Press ++ctrl+shift+enter++ to open a new pane or window.
+You can press it many times to create a tiling layout.
 
-You can switch layouts with `Control`+`Shift`+`L`.
+You can switch layouts with ++ctrl+shift+l++.
 
-You can select windows/panes with `Control`+`Shift`+`[`*or*`]`.
-Alternatively, you can just click on the pane/window with your mouse.
+You can select windows or panes with ++ctrl+shift+bracket-left++ or ++ctrl+shift+bracket-right++.
+If you prefer, you can just click the pane or window with your mouse.
 
-![kittytilling](./images/kitty_tilling.png)
+![kittytiling](./images/kitty_tilling.png)
 
 ## Conclusion
 
-Kitty offers a lot of features out of the box.
-If you already have configured window manager, zsh, or tmux on your workstation.
-You probably don't really need Kitty if you are not willing to reconfigure everything from scratch.
-Consider the fact that you can combine zsh shortcuts, tmux tilling, and many wm features just in one terminal emulator.
-But if you haven't tried any of these powertools yet, **author** would definitely recommend you to start with Kitty.
+Kitty offers many features without additional configuration.
+If you already have a configured window manager, `zsh`, or `tmux` on your workstation, you probably do not need Kitty. Consider the fact that you can combine `zsh` shortcuts, `tmux` tiling, and many window manager features, just in one terminal emulator.
+But, if you have not tried any of these power tools yet, the **author** would definitely recommend that you start with Kitty.
