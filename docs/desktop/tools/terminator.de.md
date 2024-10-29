@@ -60,6 +60,22 @@ Für diejenigen, die ihre Hand nicht gerne zwischen Tastatur und Maus hin- und h
 
 ![Terminator window with 3 split terminals](images/terminator-03.png)
 
+Schließlich kann es auch nützlich sein, eine Tastenkombination zum Öffnen Ihres neuen Terminals einzurichten. Öffnen Sie dazu zunächst das Menü `Settings`. Sie können auf das Menü auf verschiedene Arten zugreifen. Für diese Anleitung klicken Sie mit der rechten Maustaste auf den Desktop und dann mit der linken Maustaste auf `Settings`.
+
+![Desktop context menu with "Settings" highlighted](images/terminator-04.png)
+
+Navigieren Sie von hier aus zum Abschnitt `Keyboard`, indem Sie das Menü auf der linken Seite verwenden, und klicken Sie dann unten auf `Customize Shortcuts`.
+
+![GNOME Settings Keyboard Menu](images/terminator-05.png)
+
+Wenn Sie zum ersten Mal eine benutzerdefinierte Verknüpfung festlegen, wird eine Schaltfläche mit der Bezeichnung `Add Shortcut` angezeigt. Andernfalls wird Ihnen unten eine Liste Ihrer Tastenkombinationen mit einem Pluszeichen angezeigt. Klicken Sie auf die für Ihre Situation zutreffende Option, um das Dialogfeld `Add Custom Shortcut` zu öffnen. Geben Sie im Feld _Name_ eine leicht zu merkende Bezeichnung für Ihre Verknüpfung ein. Geben Sie für das Feld _Command_ den Namen unseres Programms ein: `terminator`. Klicken Sie anschließend auf `Set Shortcut`, um Ihre neue Tastenkombination festzulegen.
+
+![Add Custom Shortcut dialog](images/terminator-06.png)
+
+Obwohl ++ctrl+alt+"T"++ die traditionelle Wahl ist, können Sie jede beliebige Kombination wählen. Sie können den Namen und die Tastenkombination der Verknüpfung später jederzeit aktualisieren. Um Ihre Verknüpfung zu speichern, klicken Sie oben rechts im Dialogfeld `Add Custom Shortcut` auf `Add`.
+
+![Add Custom Shortcut dialog completed for Terminator](images/terminator-07.png)
+
 ## Zusammenfassung
 
-Terminator ist ein leistungsstarker Terminal-Emulator sowohl für normale als auch für erfahrene Benutzer. Diese Beispiele stellen nur einen kleinen Teil der Fähigkeiten von Terminator dar… Während dieses Handbuch einen Überblick über die Installationsschritte für Rocky Linux bietet, möchten Sie vielleicht einen Blick auf die [Dokumentation](https://gnome-terminator.readthedocs.io/en/latest/) werfen, um eine vollständige Erklärung der Funktionen von Terminator zu erhalten.
+Terminator ist ein leistungsstarker Terminal-Emulator sowohl für normale als auch für erfahrene Benutzer. Diese Beispiele stellen nur einen kleinen Teil der Fähigkeiten von `Terminator` dar. Während dieses Handbuch einen Überblick über die Installationsschritte für Rocky Linux bietet, möchten Sie vielleicht einen Blick auf die [Dokumentation](https://gnome-terminator.readthedocs.io/en/latest/) werfen, um eine vollständige Erklärung der Funktionen von Terminator zu erhalten.
