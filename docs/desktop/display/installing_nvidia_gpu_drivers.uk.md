@@ -74,7 +74,7 @@ sudo dnf config-manager --add-repo http://developer.download.nvidia.com/compute/
 Далі встановіть набір пакетів, необхідних для збирання та встановлення модулів ядра:
 
 ```bash
-sudo dnf install kernel-headers-$(uname -r) kernel-devel-$(uname -r) tar bzip2 make automake gcc gcc-c++ pciutils elfutils-libelf-devel libglvnd-opengl libglvnd-glx libglv-devel acpid pkgconfig dkms -y
+sudo dnf install kernel-headers-$(uname -r) kernel-devel-$(uname -r) tar bzip2 make automake gcc gcc-c++ pciutils elfutils-libelf-devel libglvnd-opengl libglvnd-glx libglvnd-devel acpid pkgconf dkms -y
 ```
 
 Встановіть найновіший модуль драйвера NVIDIA для вашої системи:
@@ -93,7 +93,7 @@ Nouveau — це драйвер NVIDIA з відкритим вихідним к
 sudo vim /etc/default/grub
 ```
 
-Додайте `nouveau.modeset=0` і `rd.driver.blacklist=nouveau` в кінці `GRUB_CMDLINE_LINUX`.
+Додайте `nouveau.modeset=0` та `rd.driver.blacklist=nouveau` в кінець `GRUB_CMDLINE_LINUX`.
 
 Значення `GRUB_CMDLINE_LINUX` має виглядати подібно до наведеного нижче тексту, хоча воно не буде і не повинно бути точним збігом:
 
