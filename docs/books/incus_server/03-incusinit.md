@@ -10,7 +10,7 @@ tags:
   - incus setup
 ---
 
-Throughout this chapter, you must be root or able to `sudo` to become root. In addition, you are assumed to have set up a ZFS storage pool as described in [Chapter 2](02-zfs_setup.md). You can use a different storage pool if you have chosen not to use ZFS, but you will need to adjust the initialization questions and answers.
+Throughout this chapter, you must be root or able to `sudo` to become root. In addition, you are assumed to have set up a ZFS storage pool as described in [Chapter 2](02-zfs_setup.md). If you have chosen not to use ZFS, you can use a different storage pool, but you will need to adjust the initialization questions and answers.
 
 ## Incus initialization
 
