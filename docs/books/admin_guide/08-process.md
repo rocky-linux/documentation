@@ -207,10 +207,10 @@ kill -9 1664
 | Code | Signal    | Description                                            |
 |------|-----------|--------------------------------------------------------|
 | `2`  | *SIGINT*  | Immediate termination of the process                   |
-| `9`  | *SIGKILL* | Interrupt the process (++control+"d"++)                |
+| `9`  | *SIGKILL* | Interrupts the process (++control+"d"++)                |
 | `15` | *SIGTERM* | Clean termination of the process                       |
-| `18` | *SIGCONT* | Resume the process. Processes that use the SIGSTOP signal can use it to continue running |
-| `19` | *SIGSTOP* | Suspend the process (Stop process). The effect of this signal is equivalent to ++ctrl+"z"++ |
+| `18` | *SIGCONT* | Resumes the process. Processes that use the SIGSTOP signal can use it to continue running |
+| `19` | *SIGSTOP* | Suspends the process (Stops process). The effect of this signal is equivalent to ++ctrl+"z"++ |
 
 Signals are the means of communication between processes. The `kill` command sends a signal to a process.
 
@@ -244,7 +244,7 @@ nohup myprogram.sh 0</dev/null &
 
 ### [Ctrl] + [z]
 
-By pressing the ++control+"z"++ keys simultaneously, the synchronous process is temporarily suspended. Access to the prompt is restored after displaying the number of the process that has just been suspended.
+The synchronous process is temporarily suspended by pressing the ++control+"z"++ keys simultaneously. Access to the prompt is restored after displaying the number of the process that has just been suspended.
 
 ### `&` instruction
 
@@ -358,7 +358,7 @@ renice -n 15 -p 1664
 | `-p`   | `PID` of the process.             |
 | `-u`   | `UID` of the process owner.       |
 
-The `renice` command acts on processes already running. It is therefore possible to change the priority of a specific process and several processes belonging to a user or a group.
+The `renice` command acts on existing processes. Therefore, it is possible to change the priority of a specific process and several processes belonging to a user or a group.
 
 !!! Tip
 
