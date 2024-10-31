@@ -5,16 +5,16 @@ contributors: Steven Spencer, Ganna Zhyrnova
 update: 2021-10-26
 ---
 
-## Prerequisite
+## Prerequisites
 
 * A computer running Rocky Linux
 * Know how to use your favorite editor to change the configuration file in the command line environment (this article will use `vi`)
-* You have understood the basic knowledge of bash, python or other scripting or programming tools, and expect to run the script automatically
+* You have understood the basic knowledge of bash, python, or other scripting or programming tools and expect to run the script automatically
 * You have connected to your computer by SSH (it can be root user or ordinary user with UID greater than 1000)
 
 ## `cron` introduction
 
-GNU/Linux provides the *cron* system, which is a time-based `cron` jobs program for automated processes. It is not hard, but quite powerful. Want a script or program to run at 5 PM every day? `cron` can do it. There are different branches (or variants) of `cron`, which have the same functions. This document uses **cronie** and the version is 1.5.2. You can click [here](https://github.com/cronie-crond/cronie) to find the latest version and update log.
+GNU/Linux provides the *cron* system, a time-based `cron` jobs program for automated processes. It is not hard but quite powerful. Do you want a script or program to run at 5 PM daily? `cron` can do it. There are different branches (or variants) of `cron`, which have the same functions. This document uses **cronie**, and the version is 1.5.2. Click [here](https://github.com/cronie-crond/cronie) to find the latest version and update the log.
 
 ## `cronie` description
 
@@ -23,7 +23,7 @@ GNU/Linux provides the *cron* system, which is a time-based `cron` jobs program 
 * **crond.service** -cronie's daemon, you can manage the daemon by `systemctl start | restart | stop | status`
 * **/etc/crontab** -Assign cron jobs to different users, usually we are more accustomed to using `crontab -e` . For example, if you are currently logged in as the root user, type `crontab -e` and you will see specific cron jobs in the file /var/spool/cron/root after saving.
 * **/var/log/cron** \*  - cronie's log, by default, does log rotation and ends with a date suffix. Here, it means wildcard.
-* **anacron** -part of cronie. For more information about `anacron`, see [anacron-automation commands](anacron.md).
+* **anacron** - part of cronie. For more information about `anacron`, see [anacron-automation commands](anacron.md).
 
 ## `crontab` Command
 
@@ -65,7 +65,7 @@ MAILTO=root
 
 In the example that follows, assuming you are performing this operation as the root user, type the following:
 
-* `crontab -e` which will show the timed tasks of the root user. If you use `vi` as the default system editor, press ++i++ key to enter the insert mode.
+* `crontab -e` will show the root user's timed tasks. If you use `vi` as the default system editor, press ++i++ key to enter the insert mode.
 * "#" means this is a line of comment.
 
 ```bash
@@ -76,7 +76,7 @@ In the example that follows, assuming you are performing this operation as the r
 * After entering this line (again assuming `vi` is the system editor), press ++escape++ to exit insert mode
 * Save and exit your file with ++shift+colon+"w"+"q"+exclam++ (displayed at the bottom of the editor)
 
-The script will run every night at 22:00. This is a simplistic example. Things can become more complicated if you need something more elaborate.
+The script will run every night at 22:00. This is a simplistic example. If you need something more elaborate, things can become more complicated.
 
 !!! tip "Attention"
 
@@ -118,4 +118,4 @@ Check the /var/log/cron* file, use `journalctl -u crond.service` to check the in
 
 ## Summary
 
-For Rocky Linux desktop users or system administrators, cronie is a very powerful tool. It allows the automation of tasks and scripts so you do not have to remember to run them manually. Although the basic knowledge is not hard, the actual task can be complex. For more information about `crontab`, visit [crontab man page](https://man7.org/linux/man-pages/man5/crontab.5.html). You can also search for "crontab" on the Internet, which provides you with a large number of search results and helps you fine-tune the `crontab` expression.
+For Rocky Linux desktop users or system administrators, cronie is a powerful tool. It allows the automation of tasks and scripts, so you do not have to remember to run them manually. Although the basic knowledge is not hard, the task can be complex. For more information about `crontab`, visit [crontab man page](https://man7.org/linux/man-pages/man5/crontab.5.html). You can also search for "crontab" on the Internet, which provides many search results and helps you fine-tune the `crontab` expression.
