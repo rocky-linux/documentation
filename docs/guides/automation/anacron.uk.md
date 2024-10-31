@@ -5,8 +5,6 @@ contributors: Steven Spencer, Ganna Zhyrnova
 update: 2021-10-20
 ---
 
-# `anacron` - Регулярне виконання команд
-
 ## Передумови
 
 - Комп’ютер під керуванням Rocky Linux.
@@ -66,7 +64,7 @@ START_HOURS_RANGE=3-22
 @monthly 45 cron.monthly nice run-parts /etc/cron.monthly
 ```
 
-**/etc/cron.hourly/** - За допомогою `journalctl -u crond.service` ви можете знати, що файли, розміщені всередині, насправді викликаються crond.server, що означає, що команда виконуватиметься після першої хвилини кожної години. Таким чином:
+**/etc/cron.hourly/** - За допомогою `journalctl -u crond.service` ви можете знати, що файли, розміщені всередині, насправді викликаються `crond` , що означає, що команда виконуватиметься після першої хвилини кожної години. Таким чином:
 
 ```bash
 shell > cat /etc/cron.d/0hourly

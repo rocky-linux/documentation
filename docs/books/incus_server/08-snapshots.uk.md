@@ -38,7 +38,7 @@ Snapshots:
   ubuntu-test-1 (taken at 2021/04/29 15:57 UTC) (stateless)
 ```
 
-Success! Наш снепшот на місці.
+Успішно! Наш снепшот на місці.
 
 Тепер перейдіть до контейнера ubuntu-test:
 
