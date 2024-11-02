@@ -16,19 +16,19 @@ tags:
 - Our example will use the [Apache Sites Enabled](../web/apache-sites-enabled.md) for setup. Review that if necessary.
 - This document will use "example.com" as the domain name throughout
 - You must be root or able to `sudo` to elevate privileges
-- Assuming a fresh install of the operating system, however that is not a requirement
+- Assuming a fresh install of the operating system, however, that is not a requirement
 
 ## Introduction
 
 Documentation can take many forms in an organization. Having a repository that you can reference for that documentation is invaluable. A wiki (meaning _quick_ in Hawaiian), is a way to keep documentation, process notes, corporate knowledge bases, and even code examples, in a centralized location. IT professionals who keep a wiki, even secretly, have a built-in insurance policy against forgetting an obscure routine.
 
-DokuWiki is a mature, fast, wiki that runs without a database, has built-in security features, and is not complex to deploy. For more information, examine their [web page](https://www.dokuwiki.org/dokuwiki).
+DokuWiki is a mature, fast wiki that runs without a database, has built-in security features, and is not complex to deploy. For more information, examine their [web page](https://www.dokuwiki.org/dokuwiki).
 
-DokuWiki is just one of many wikis available, though it is a pretty good one. One big pro is that DokuWiki is relatively lightweight and can run on a server that is already running other services, provided you have space and memory available.
+DokuWiki is one of many wikis available, though it is a good one. One big pro is that DokuWiki is relatively lightweight and can run on a server that is already running other services, provided you have available space and memory.
 
 ## Installing dependencies
 
-The minimum PHP version for DokuWiki is now 7.2, which is exactly what Rocky Linux 8 has by default. Because of modules, Rocky Linux 8 can install up to version 8.2. Rocky Linux 9.0 has PHP version 8.0 by default, and modules that allow up to 8.2. Note that some of the packages listed here might already exist:
+The minimum PHP version for DokuWiki is now 7.2, which Rocky Linux 8 has by default. Because of the modules, Rocky Linux 8 can be installed up to version 8.2. Rocky Linux 9.0 has PHP version 8.0 by default and modules that allow up to 8.2. Note that some of the packages listed here might already exist:
 
 ```bash
 dnf install tar wget httpd php php-gd php-xml php-json php-mbstring
@@ -87,7 +87,7 @@ That configuration file will be similar to this:
 </VirtualHost>
 ```
 
-Note that the "AllowOverride All" above, allows the `.htaccess` (directory specific security) file to work.
+Note that the "AllowOverride All" above allows the `.htaccess` (directory-specific security) file to work.
 
 Go ahead and link the configuration file into sites-enabled, but do not start web services as yet:
 
@@ -111,9 +111,9 @@ In your server, change to the root directory.
 cd /root
 ```
 
-Since your environment is ready to go, get the latest stable version of DokuWiki. You can find this by going to [the download page](https://download.dokuwiki.org/) and on the left side of the page under "Version" you will see "Stable (Recommended) (direct link)."
+Since your environment is ready to go, get the latest stable version of DokuWiki. You can find this by going to [the download page](https://download.dokuwiki.org/), and on the left side of the page, under "Version," you will see "Stable (Recommended) (direct link)."
 
-Right-click on the "(direct link)" portion of this and copy the link. In the console of your DokuWiki server, type `wget` and a space and then paste in your copied link in the terminal. You should get something similar to this:
+Right-click on the "(direct link)" portion of this and copy the link. In the console of your DokuWiki server, type `wget` and a space and then paste your copied link into the terminal. You should get something similar to this:
 
 ```bash
 wget https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz
@@ -125,7 +125,7 @@ Before we decompress the archive, examine the contents with `tar ztf`:
 tar ztvf dokuwiki-stable.tgz
 ```
 
-Notice the named dated directory ahead of all the other files that looks similar to this:
+Notice the named dated directory ahead of all the other files that look similar to this:
 
 ```text
 ... (more above)
@@ -135,7 +135,7 @@ dokuwiki-2020-07-29/inc/lang/fr/recent.txt
 ... (more below)
 ```
 
-You do not want that leading named directory when decompressing the archive, so you are going to use some options with `tar` to exclude it. The first option is the "--strip-components=1" that removes the leading directory. The second option is the "-C" option that tells `tar` where you want the archive decompressed to. The decompression will be similar to this:
+You do not want that leading named directory when decompressing the archive, so you will use some options with `tar` to exclude it. The first option is the "--strip-components=1" that removes the leading directory. The second option is the "-C" option, which tells `tar` where you want the archive decompressed. The decompression will be similar to this:
 
 ```bash
 tar xzf dokuwiki-stable.tgz  --strip-components=1 -C /var/www/sub-domains/com.example/html/
@@ -143,9 +143,9 @@ tar xzf dokuwiki-stable.tgz  --strip-components=1 -C /var/www/sub-domains/com.ex
 
 Once you have run this command, all of DokuWiki should be in your _DocumentRoot_.
 
-You need to make a copy of the _.htaccess.dist_ file that came with DokuWiki and keep the old one there too, in case you need to revert to the original in the future.
+You need to make a copy of the _.htaccess.dist_ file that came with DokuWiki and keep the old one there, in case you need to revert to the original.
 
-In the process, you will be changing the name of this file to _.htaccess_. This is what _apache_ will be looking for. To do this:
+In the process, you will change this file's name to _.htaccess_. This is what _apache_ will be looking for. To do this:
 
 ```bash
 cp /var/www/sub-domains/com.example/html/.htaccess{.dist,}
@@ -159,15 +159,15 @@ chown -Rf apache.apache /var/www/sub-domains/com.example/html
 
 ## Setting up DNS or `/etc/hosts`
 
-Before you will be able to access the DokuWiki interface, you will need to set name resolution for this site. For testing purposes, you can use your _/etc/hosts_ file.
+Before you can access the DokuWiki interface, you must set the name resolution for this site. You can use your _/etc/hosts_ file for testing purposes.
 
-In this example, assume that DokuWiki will be running on a private IPv4 address of 10.56.233.179. Assume you are modifying the _/etc/hosts_ file on a Linux workstation as well. To do this, run:
+In this example, assume that DokuWiki will run on a private IPv4 address of 10.56.233.179. Assume you are also modifying the _/etc/hosts_ file on a Linux workstation. To do this, run:
 
 ```bash
 sudo vi /etc/hosts
 ```
 
-Then change your hosts file to look similar to this (note the IP address above in the example):
+Then change your host file to look similar to this (note the IP address above in the example):
 
 ```bash
 127.0.0.1 localhost
@@ -182,7 +182,7 @@ ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 ```
 
-Once you have finished testing and are ready to take things live for everyone, you will need to add this host to a DNS server. You could do this by using a [Private DNS Server](../dns/private_dns_server_using_bind.md), or a public-facing DNS server.
+Once you have finished testing and are ready to take things live for everyone, you must add this host to a DNS server. You could use a [Private DNS Server](../dns/private_dns_server_using_bind.md), or a public-facing DNS server.
 
 ## Starting `httpd`
 
@@ -233,17 +233,17 @@ Your wiki is now ready for you to add content.
 
 ## Securing DokuWiki
 
-Besides the ACL policy that you just created, consider:
+Besides the ACL policy that you just created, consider the following:
 
 ### Your `firewalld` firewall
 
 !!! note
 
-    This firewall example make no assumptions about what other services you might need to allow on your Dokuwiki server. These rules are based on your testing environment and **ONLY** deal with allowing access to a LOCAL network ip block. You will need more services allowed for a production server.
+    This firewall example does not assume what other services you might need to allow on your DokuWiki server. These rules are based on your testing environment and **ONLY** deal with allowing access to a LOCAL network IP block. You will need more services allowed for a production server.
 
-Before you call everything done, you need to think about security. First, you should be running a firewall on the server.
+Before you call everything done, you need to consider security. First, you should run a firewall on the server.
 
-The assumption here is that anyone on the 10.0.0.0/8 network is on your private Local Area Network, and that those are the only people who need access to the site.
+The assumption is that anyone on the 10.0.0.0/8 network is on your private Local Area Network and that those are the only people who need access to the site.
 
 If you are using `firewalld` as your firewall, use the following rule syntax:
 
@@ -280,8 +280,8 @@ trusted (active)
 
 ### SSL
 
-For the best security, you should consider using an SSL for encrypted web traffic. You can purchase an SSL from an SSL provider or use [Let's Encrypt](../security/generating_ssl_keys_lets_encrypt.md).
+You should consider using an SSL for encrypted web traffic for the best security. You can purchase an SSL from an SSL provider or use [Let's Encrypt](../security/generating_ssl_keys_lets_encrypt.md).
 
 ## Conclusion
 
-Whether you need to document processes, company policies, program code, or something else, a wiki is a great way to get that done. DokuWiki is a product that is secure, flexible, easy to use, relatively easy to install and deploy, and is a stable project that has been around for many years.
+Whether you need to document processes, company policies, program code, or something else, a wiki is a great way to do it. DokuWiki is a secure, flexible, easy-to-use product that is also relatively easy to install and deploy. It is also a stable project that has been around for many years.
