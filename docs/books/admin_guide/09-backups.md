@@ -52,7 +52,7 @@ These operations consist of saving information in a file, on a peripheral or a s
 
 ### The process
 
-Backups require a lot of discipline and rigor from the system administrator. It is necessary to ask the following questions:
+Backups require a lot of discipline and rigor from the system administrator. System administrator need to consider the following issues before performing backup operations:
 
 * What is the appropriate medium?
 * What should be backed up?
@@ -63,13 +63,19 @@ Backups require a lot of discipline and rigor from the system administrator. It 
 * Automatic or manual?
 * Where to store it?
 * How long will it be kept?
+* Is there a cost issue to consider?
+
+In addition to the above mentioned issues, system administrator should also consider the economic cost, performance, data importance, bandwidth usage and other factors according to the actual use scenario.
 
 ### Backup methods
 
-* **Complete**: one or more **filesystems** are backed up (kernel, data, utilities, ...).
-* **Partial**: one or more **files** are backed up (configurations, directories, ...).
-* **Differential**: only files modified since the last **complete** backup are backed up.
-* **Incremental**: only files modified since the last backup are backed up.
+* **Full backup**: refers to a one-time copy of all files, folders or data in the hard disk or database.
+* **Incremental backup**: refers to the backup of the data updated after the last Full backup or Incremental backup.  
+* **Differential backup**: Refers to the backup of the changed files after the Full backup.
+* **Selective backup (Partial backup)**: Refers to backing up a part of the system.
+* **Cold backup**: refers to the backup when the system is in shutdown or maintenance state.  The backed up data is exactly the same as the data in the system during this period.
+* **Hot backup**: Refers to the backup when the system is in normal operation.  As the data in the system is updated at any time, the backed-up data has a certain lag relative to the real data of the system.
+* **Remote backup**: refers to backing up data in another geographic location to avoid data loss and service interruption caused by fire, natural disasters, theft, etc.
 
 ### Periodicity
 
