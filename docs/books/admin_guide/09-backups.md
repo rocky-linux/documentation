@@ -52,7 +52,7 @@ These operations consist of saving information in a file, on a peripheral or a s
 
 ### The process
 
-Backups require a lot of discipline and rigor from the system administrator. It is necessary to ask the following questions:
+Backups require a lot of discipline and rigor from the system administrator. System administrator need to consider the following issues before performing backup operations:
 
 * What is the appropriate medium?
 * What should be backed up?
@@ -63,6 +63,9 @@ Backups require a lot of discipline and rigor from the system administrator. It 
 * Automatic or manual?
 * Where to store it?
 * How long will it be kept?
+* Is there a cost issue to consider?
+
+In addition to the above mentioned issues, system administrator should also consider the economic cost, performance, data importance, bandwidth usage and other factors according to the actual use scenario.
 
 ### Backup methods
 
