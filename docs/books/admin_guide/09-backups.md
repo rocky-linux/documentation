@@ -25,9 +25,9 @@ In this chapter you will learn how to back up and restore your data with Linux.
 
 !!! Note
 
-    Throughout this chapter the command structures use "device" to specify both a target location for backup, and the source location when restoring. The device can be either external media or a local file. You should get a feel for this as the chapter unfolds, but you can always refer back to this note for clarification if you need to.
+    Throughout this chapter, the command structures use "device" to specify both a target location for backup and the source location when restoring. The device can be either external media or a local file. You should get a feel for this as the chapter unfolds, but you can always refer back to this note for clarification if you need to.
 
-The backup will answer a need to conserve and restore data in a sure and effective way.
+The backup will answer the need to conserve and restore data effectively.
 
 The backup allows you to protect yourself from the following:
 
@@ -35,7 +35,7 @@ The backup allows you to protect yourself from the following:
 * **Deletion**: voluntary or involuntary. Human or technical. Virus, ...
 * **Integrity**: data becomes unusable.
 
-No system is infallible, no human is infallible, so to avoid losing data, it must be backed up to be able to restore after a problem.
+No system is infallible, and no human is infallible, so to avoid losing data, it must be backed up so that it can be restored after a problem.
 
 The backup media should be kept in another room (or building) than the server so that a disaster does not destroy the server and the backups.
 
@@ -43,16 +43,16 @@ In addition, the administrator must regularly check that the media are still rea
 
 ## Generalities
 
-There are two principles, the **backup** and the **archive**.
+There are two principles: the **backup** and the **archive**.
 
 * The archive destroys the information source after the operation.
 * The backup preserves the source of information after the operation.
 
-These operations consist of saving information in a file, on a peripheral or a supported media (tapes, disks, ...).
+These operations consist of saving information in a file, on a peripheral, or on a supported media (tapes, disks, etc.).
 
 ### The process
 
-Backups require a lot of discipline and rigor from the system administrator. System administrator need to consider the following issues before performing backup operations:
+Backups require a lot of discipline and rigor from the system administrator. System administrators need to consider the following issues before performing backup operations:
 
 * What is the appropriate medium?
 * What should be backed up?
@@ -65,16 +65,16 @@ Backups require a lot of discipline and rigor from the system administrator. Sys
 * How long will it be kept?
 * Is there a cost issue to consider?
 
-In addition to the above mentioned issues, system administrator should also consider the economic cost, performance, data importance, bandwidth usage and other factors according to the actual use scenario.
+In addition to the above-mentioned issues, the system administrator should also consider the economic cost, performance, data importance, bandwidth usage, and other factors according to the actual use scenario.
 
 ### Backup methods
 
-* **Full backup**: refers to a one-time copy of all files, folders or data in the hard disk or database.
-* **Incremental backup**: refers to the backup of the data updated after the last Full backup or Incremental backup.  
+* **Full backup** refers to a one-time copy of all files, folders, or data on the hard disk or database.
+* **Incremental backup**: refers to the backup of the data updated after the last Full or Incremental backup.  
 * **Differential backup**: Refers to the backup of the changed files after the Full backup.
 * **Selective backup (Partial backup)**: Refers to backing up a part of the system.
-* **Cold backup**: refers to the backup when the system is in shutdown or maintenance state.  The backed up data is exactly the same as the data in the system during this period.
-* **Hot backup**: Refers to the backup when the system is in normal operation.  As the data in the system is updated at any time, the backed-up data has a certain lag relative to the real data of the system.
+* **Cold backup**: This refers to the backup when the system is in shutdown or maintenance mode. The backed-up data is exactly the same as the data in the system during this period.
+* **Hot backup**: This refers to the backup when the system is in normal operation. As the system's data can be updated at any time, the backed-up data has a certain lag relative to the system's real data.
 * **Remote backup**: refers to backing up data in another geographic location to avoid data loss and service interruption caused by fire, natural disasters, theft, etc.
 
 ### Periodicity
@@ -84,20 +84,20 @@ In addition to the above mentioned issues, system administrator should also cons
 
 !!! Tip
 
-    Before a system change, it can be useful to make a backup. However, there is no point in backing up data every day that is only changed every month.
+    Before a system change, it can be useful to make a backup. However, there is no point in backing up data every day that only changes every month.
 
 ### Restoration methods
 
-Depending on the utilities available, it will be possible to perform several types of restorations.
+Depending on the utilities available, performing several types of restorations will be possible.
 
 * **Complete restoration**: trees, ...
 * **Selective restoration**: part of tree, files, ...
 
-It is possible to restore a whole backup, but it is also possible to restore only a part of it. However, when restoring a directory, the files created after the backup are not deleted.
+It is possible to restore a whole backup or only a part of it. However, when restoring a directory, the files created after the backup are not deleted.
 
 !!! Tip
 
-    To recover a directory as it was at the time of the backup, it is necessary to completely delete its contents before launching the restoration.
+    To recover a directory as it was before the backup, it is necessary to completely delete its contents before launching the restoration.
 
 ### The tools
 
@@ -127,7 +127,7 @@ The commands we will use here are `tar` and `cpio`.
 
 ### Naming convention
 
-The use of a naming convention makes it possible to quickly target the contents of a backup file and thus avoid hazardous restorations.
+The use of a naming convention allows one to quickly target the contents of a backup file and thus avoid hazardous restorations.
 
 * name of the directory;
 * utility used;
@@ -136,11 +136,11 @@ The use of a naming convention makes it possible to quickly target the contents 
 
 !!! Tip
 
-    The name of the backup must be an explicit name.
+    The name of the backup must be explicit.
 
 !!! Note
 
-    The notion of extension under Linux does not exist. In other words, our use of extensions here is for the human operator. If the systems administrator sees a `.tar.gz` or `.tgz` file extension, for instance, then he knows how to deal with the file.
+    The notion of extension under Linux does not exist. In other words, we use extensions here for the human operator. If the systems administrator sees a `.tar.gz` or `.tgz` file extension, for instance, then he knows how to deal with the file.
 
 ### Contents of a backup
 
@@ -182,7 +182,7 @@ The right questions to ask are:
 
 !!! Warning
 
-    Before a restoration, it is important to take time to think about and determine the most appropriate method to avoid mistakes.
+    Before a restoration, it is important to consider and determine the most appropriate method to avoid mistakes.
 
 Restorations are usually performed after a problem has occurred that needs to be resolved quickly. A poor restoration can, in some cases, make the situation worse.
 
@@ -190,7 +190,7 @@ Restorations are usually performed after a problem has occurred that needs to be
 
 The default utility for creating backups on UNIX systems is the `tar` command. These backups can be compressed by `bzip2`, `xz`, `lzip`, `lzma`, `lzop`, `gzip`, `compress` or `zstd`.
 
-`tar` allows you to extract a single file or a directory from a backup, view its contents or validate its integrity.
+`tar` allows you to extract a single file or a directory from a backup, view its contents, or validate its integrity.
 
 #### Estimate the size of a backup
 
@@ -211,7 +211,7 @@ $ tar cjf - /directory/to/backup/ | wc -c
 
 #### Naming convention for a `tar` backup
 
-Here is an example of a naming convention for a `tar` backup, knowing that the date is to be added to the name.
+Here is an example of a naming convention for a `tar` backup, knowing that the date will be added to the name.
 
 | keys    | Files   | Suffix           | Functionality                                |
 |---------|---------|------------------|----------------------------------------------|
@@ -247,7 +247,7 @@ Example:
 
 !!! Tip
 
-    The hyphen (`-`) in front of the `tar` keys is not necessary!
+    The hyphen (`-`) in front of the `tar` keys is unnecessary!
 
 ##### Create a backup in absolute mode
 
@@ -285,7 +285,7 @@ tar cvzf backup.tar.gz dirname/
 
 !!! Note
 
-    The `.tgz` extension is an equivalent extension to `.tar.gz`.
+    The `.tgz` extension is equivalent to `.tar.gz`.
 
 !!! Note
 
@@ -309,9 +309,9 @@ tar cvfj backup.tar.bz2 dirname/
 
 ##### Compression `compress`, `gzip`, `bzip2`, `lzip` and `xz`
 
-Compression, and consequently decompression, will have an impact on resource consumption (time and CPU usage).
+Compression, and consequently decompression, will impact resource consumption (time and CPU usage).
 
-Here is a ranking of the compression of a set of text files, from least to most efficient:
+Here is a ranking of the compression of a set of text files from least to most efficient:
 
 * compress (`.tar.Z`)
 * gzip (`.tar.gz`)
