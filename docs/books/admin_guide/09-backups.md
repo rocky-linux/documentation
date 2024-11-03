@@ -65,17 +65,17 @@ Backups require a lot of discipline and rigor from the system administrator. Sys
 * How long will it be kept?
 * Is there a cost issue to consider?
 
-In addition to the above mentioned issues, system administrator should also consider the economic cost, performance, data importance, bandwidth usage and other factors according to the actual use scenario.
+In addition to the above issues, system administrators should also consider factors such as performance, data importance, bandwidth consumption, and maintenance complexity based on actual situations.
 
 ### Backup methods
 
-* **Full backup**: refers to a one-time copy of all files, folders or data in the hard disk or database.
-* **Incremental backup**: refers to the backup of the data updated after the last Full backup or Incremental backup.  
+* **Full backup**: Refers to a one-time copy of all files, folders or data in the hard disk or database.
+* **Incremental backup**: Refers to the backup of the data updated after the last Full backup or Incremental backup.
 * **Differential backup**: Refers to the backup of the changed files after the Full backup.
 * **Selective backup (Partial backup)**: Refers to backing up a part of the system.
-* **Cold backup**: refers to the backup when the system is in shutdown or maintenance state.  The backed up data is exactly the same as the data in the system during this period.
+* **Cold backup**: Refers to the backup when the system is in shutdown or maintenance state.  The backed up data is exactly the same as the data in the system during this period.
 * **Hot backup**: Refers to the backup when the system is in normal operation.  As the data in the system is updated at any time, the backed-up data has a certain lag relative to the real data of the system.
-* **Remote backup**: refers to backing up data in another geographic location to avoid data loss and service interruption caused by fire, natural disasters, theft, etc.
+* **Remote backup**: Refers to backing up data in another geographic location to avoid data loss and service interruption caused by fire, natural disasters, theft, etc.
 
 ### Periodicity
 
@@ -99,7 +99,7 @@ It is possible to restore a whole backup, but it is also possible to restore onl
 
     To recover a directory as it was at the time of the backup, it is necessary to completely delete its contents before launching the restoration.
 
-### The tools
+### The tools and related technologies
 
 There are many utilities to make backups.
 
@@ -124,6 +124,8 @@ The commands we will use here are `tar` and `cpio`.
 !!! Note
 
     These commands save in a proprietary and standardized format.
+
+**Replication**: A backup technology that copies a set of data from one data source to another or multiple data sources, mainly divided into **Synchronous Replication** and **Asynchronous Replication**. For novice system administrators, this is an advanced part of backup, so this basic document will not elaborate on these contents.
 
 ### Naming convention
 
