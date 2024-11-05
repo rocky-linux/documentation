@@ -354,7 +354,7 @@ renice -n 15 -p 1664
 | `-p`   | `PID` des Prozesses.              |
 | `-u`   | `UID` des Prozess-Owner.          |
 
-Der `renice` Befehl wirkt auf bereits laufende Prozesse. Es ist daher möglich, die Priorität eines bestimmten Prozesses, aber auch mehrerer Prozesse zu ändern, die einem Benutzer oder einer Gruppe angehören.
+Der `renice` Befehl wirkt auf bereits laufende Prozesse. Daher ist es möglich, die Priorität eines bestimmten Prozesses und mehrerer Prozesse zu ändern, die einem Benutzer oder einer Gruppe gehören.
 
 !!! tip "Hinweis"
 
