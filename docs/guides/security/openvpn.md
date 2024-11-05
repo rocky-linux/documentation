@@ -82,7 +82,7 @@ sudo ./easy-rsa/3/easyrsa gen-req server nopass
 Run the `easyrsa` script with `sign-req` and `server` parameters to sign the server certificate:
 
 ```bash
-sudo ./easy-rsa/3/easyrsa gen-req server server
+sudo ./easy-rsa/3/easyrsa sign-req server server
 ```
 
 !!! Note
@@ -172,7 +172,7 @@ sudo systemctl enable --now firewalld
 Allow OpenVPN through the firewall by adding it as a service:
 
 ```bash
-sudo firewall-cmd --add-service=open-vpn --permanent
+sudo firewall-cmd --add-service=openvpn --permanent
 ```
 
 Enable network address translation (NAT) and hide public client IP addresses by adding a masquerade rule to the firewall:
