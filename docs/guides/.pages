@@ -21,6 +21,7 @@ nav:
     - File Sharing Services: file_sharing
     - Hardware: hardware
     - Interoperability: interoperability
+    - Kernel: kernel
     - Mirror Management: mirror_management
     - Network: network
     - Package Management: package_management
