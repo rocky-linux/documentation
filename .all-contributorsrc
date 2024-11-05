@@ -1034,6 +1034,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "KronwarsCZ",
+      "name": "Petr Budai",
+      "avatar_url": "https://avatars.githubusercontent.com/u/39410042?v=4",
+      "profile": "https://github.com/KronwarsCZ",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
