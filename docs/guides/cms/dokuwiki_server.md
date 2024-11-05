@@ -28,7 +28,7 @@ DokuWiki is one of many wikis available, though it is a good one. One big pro is
 
 ## Installing dependencies
 
-The minimum PHP version for DokuWiki is now 7.2, which Rocky Linux 8 has by default. Because of the modules, Rocky Linux 8 can be installed up to version 8.2. Rocky Linux 9.0 has PHP version 8.0 by default and modules that allow up to 8.2. Note that some of the packages listed here might already exist:
+The minimum PHP version for DokuWiki is now 7.2, which Rocky Linux 8 has by default. Because of the modules, Rocky Linux 8 can install up to version 8.2. Rocky Linux 9.0 has PHP version 8.0 by default and modules that allow up to 8.2. Note that some of the packages listed here might already exist:
 
 ```bash
 dnf install tar wget httpd php php-gd php-xml php-json php-mbstring
