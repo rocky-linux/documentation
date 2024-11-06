@@ -52,6 +52,6 @@ If this is your first time visiting the Rocky Linux Documentation site then like
 
 If you get stuck and have a question the Rocky Linux community is there to help. Visit the [community forum](https://forums.rockylinux.org) and you can search for solutions or post your own questions to the community.
 
-## Contributing
+### Contributing
 
 Did you find something missing? Did you find an error? Are you wondering how to create a document of your own, or how to fix things here? Remember how we said that *you* were the Rocky community? That means that *you* are important to us and we want you to join us, if you like, and help make this documentation better. If you are interested in this, head over to our [Contribution Guide](https://github.com/rocky-linux/documentation/blob/main/README.md) to find out how you can do that!
