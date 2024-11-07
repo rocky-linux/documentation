@@ -14,7 +14,7 @@ author: Steven Spencer
 
 ## Utilisation de `sed`
 
-Utiliser `sed` pour la recherche et le remplacement est la préférence personnelle de l'auteur, car vous pouvez utiliser un délimiteur de votre choix, qui rend très pratique le remplacement de choses comme les liens web contenant « / ». Les exemples par défaut pour l'édition en place en utilisant `sed` montrent des choses comme dans cet exemple :
+Utiliser `sed` pour la recherche et le remplacement est la préférence personnelle de l'auteur, car vous pouvez utiliser un délimiteur de votre choix, qui rend très pratique le remplacement de choses comme les liens web contenant « / ». Les exemples par défaut d'édition à l'aide de `sed` montrent des éléments comme dans cet exemple :
 
 `sed -i 's/search_for/replace_with/g' /path/filename`
 
