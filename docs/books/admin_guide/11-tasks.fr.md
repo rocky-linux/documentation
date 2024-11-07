@@ -227,7 +227,7 @@ Run at 11am and then at 4pm every day:
 00 11,16 * * * /root/scripts/scrip t > /log/…
 ```
 
-Courir chaque heure de 11h à 16h tous les jours:
+Lancer à chaque heure de 11 h à 16 h tous les jours :
 
 ```bash
 00 11-16 * * * /root/scripts/script > /log/…
