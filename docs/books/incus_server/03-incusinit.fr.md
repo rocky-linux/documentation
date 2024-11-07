@@ -10,7 +10,7 @@ tags:
   - incus setup
 ---
 
-Tout au long de ce chapitre, vous devez être l'utilisateur root ou pouvoir utiliser `sudo` pour obtenir les privilèges nécessaires. De plus, vous êtes supposé avoir configuré un pool de stockage ZFS comme décrit dans le [Chapitre 2](02-zfs_setup.md). Vous pouvez utiliser un pool de stockage différent si vous avez choisi de ne pas utiliser ZFS, mais vous devrez ajuster les questions et réponses d'initialisation.
+Tout au long de ce chapitre, vous devez être l'utilisateur root ou pouvoir utiliser `sudo` pour obtenir les privilèges nécessaires. De plus, vous êtes supposé avoir configuré un pool de stockage ZFS comme décrit dans le [Chapitre 2](02-zfs_setup.md). Vous pouvez utiliser un pool de stockage différent si vous avez choisi de ne pas utiliser ZFS, mais vous devrez ajuster les réponses aux questions lors de l'initialisation.
 
 ## Initialisation de `Incus`
 
