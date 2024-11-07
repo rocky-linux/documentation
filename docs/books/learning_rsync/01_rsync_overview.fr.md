@@ -1,5 +1,5 @@
 ---
-title: description succincte de rsync
+title: Description succincte de rsync
 author: tianci li
 contributors: Steven Spencer, Ganna Zhyrnova
 update: 2022-03-08
