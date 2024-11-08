@@ -19,7 +19,7 @@ Dans ce chapitre, vous apprendrez comment travailler avec les processus.
 **Connaissances** : :star: :star:  
 **Complexité** : :star:
 
-**Temps de lecture** : 23 minute
+**Temps de lecture** : 23 minutes
 
 ****
 
@@ -200,13 +200,13 @@ Exemple :
 kill -9 1664
 ```
 
-| Code | Signal    | Observation                                                                                                                  |
-| ---- | --------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `2`  | *SIGINT*  | Fin immédiate du processus                                                                                                   |
-| `9`  | *SIGKILL* | Interrompre le processus (++control+"d"++)                                                                                   |
-| `15` | *SIGTERM* | Fin du processus de nettoyage                                                                                                |
-| `18` | *SIGCONT* | Reprendre le processus. Les processus suspendus par le signal SIGSTOP peuvent continuer à s'exécuter grâce au signal SIGCONT |
-| `19` | *SIGSTOP* | Suspendre le processus (Stop process). L'effet de ce signal est équivalent à ++ctrl+"z"++                                    |
+| Code | Signal    | Observation                                                                                                                         |
+| ---- | --------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `2`  | *SIGINT*  | Fin immédiate du processus                                                                                                          |
+| `9`  | *SIGKILL* | Interruption de processus (++control+"d"++)                                                                                         |
+| `15` | *SIGTERM* | Fin du processus de nettoyage                                                                                                       |
+| `18` | *SIGCONT* | Reprise du processus suspendu. Les processus suspendus par le signal SIGSTOP peuvent continuer à s'exécuter grâce au signal SIGCONT |
+| `19` | *SIGSTOP* | Suspension de processus (Stop process). L'effet de ce signal est équivalent à ++ctrl+"z"++                                          |
 
 Les signaux sont les moyens de communication entre les processus. La commande `kill` envoie un signal à un processus.
 
@@ -240,7 +240,7 @@ nohup myprogram.sh 0</dev/null &
 
 ### [Ctrl] + [z]
 
-En appuyant simultanément sur les touches ++control+"z"++, le processus synchronisé est temporairement suspendu. L'accès à l'invite est restauré après avoir affiché le numéro du processus qui vient d'être suspendu.
+En appuyant simultanément sur les touches ++control+"z"++, le processus synchrone est temporairement suspendu. L'accès à l'invite est restauré après avoir affiché le numéro du processus qui vient d'être suspendu.
 
 ### `&` instruction
 
