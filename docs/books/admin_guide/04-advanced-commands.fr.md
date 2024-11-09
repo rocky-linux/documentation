@@ -39,7 +39,7 @@ antoine
 steven
 ```
 
-!!! note "Note"
+!!! note "Remarque "
 
     `uniq` nécessite que le fichier d'entrée soit trié car il ne compare que des lignes consécutives.
 
@@ -216,7 +216,7 @@ L’option `-I` permet de spécifier un caractère (dans notre exemple le caract
 
 Le paquet `yum-utils` est une collection d’utilitaires de différents auteurs pour `yum`, qui le rendent plus simple et plus puissant à utiliser.
 
-!!! note "Note"
+!!! note "Remarque "
 
     Bien que `yum` ait été remplacé par `dnf` dans Rocky Linux 8, le nom du paquet est resté `yum-utils` mais il peut tout aussi bien être installé avec le paquet `dnf-utils`. Ce sont des utilitaires YUM classiques implémentés comme des CLI au-dessus de DNF pour maintenir une compatibilité ascendante avec `yum-3`.
 
@@ -268,7 +268,7 @@ $ repoquery -l yum-utils
 
 La commande `yumdownloader` télécharge les paquets RPM depuis les dépôts.  Équivalent à `dnf download --downloadonly --downloaddir ./ package-name`
 
-!!! Note
+!!! note "Remarque"
 
     Cette commande est très pratique pour construire un dépôt local de quelques rpms !
 
@@ -331,7 +331,7 @@ La commande `watch` exécute régulièrement une commande et affiche le résulta
 
 L’option `-n` permet de spécifier le nombre de secondes entre chaque exécution de la commande.
 
-!!! Note
+!!! note "Remarque"
 
     Pour quitter la commande `watch`, vous devez appuyer sur les touches : <kbd>CTRL</kbd>+<kbd>C</kbd> pour terminer le processus.
 
