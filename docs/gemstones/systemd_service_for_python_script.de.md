@@ -21,7 +21,7 @@ Wir werden sehen, wie dieses Skript als `systemd` Dienst ausgeführt wird, wie d
 
 Beginnen wir damit, einige Python-Abhängigkeiten zu installieren, die für das Skript benötigt werden, um das Kommando journalctl zu verwenden:
 
-```
+```bash
 shell > sudo dnf install python36-devel systemd-devel
 shell > sudo pip3 install systemd
 ```
@@ -30,7 +30,7 @@ shell > sudo pip3 install systemd
 
 Lass uns das folgende Skript `my_service.py` anschauen:
 
-```
+```python
 """
 Sample script to run as script
 """
@@ -86,7 +86,7 @@ Jetzt, da wir ein Skript haben, das als Grundlage für Ihre Phantasie dienen kan
 
 Lass uns die Datei `my_service.service` erstellen und sie nach `/etc/systemd/system/` kopieren.
 
-```
+```bash
 [Unit]
 Description=My Service
 After=multi-user.target
@@ -109,7 +109,7 @@ Wie Sie sehen können, wird das Skript von `/opt/my_service/` gestartet. Denken 
 
 Neuen Dienst aktivieren und starten:
 
-```
+```bash
 shell > sudo systemctl daemon-reload
 shell > sudo systemctl enable my_service.service
 shell > sudo systemctl start my_service.service
@@ -119,7 +119,7 @@ shell > sudo systemctl start my_service.service
 
 Wir können die Protokolle jetzt via journalctl anzeigen:
 
-```
+```bash
 shell > journalctl -f -u my_service
 oct. 14 11:07:48 rocky8 systemd[1]: Started My Service.
 oct. 14 11:07:49 rocky8 __main__[270267]: [INFO] Starting the service
@@ -129,13 +129,13 @@ oct. 14 11:09:49 rocky8 __main__[270267]: [INFO] Total duration: 120
 
 Lass uns nun sehen, was passiert, wenn das Skript abgestürzt ist:
 
-```
+```bash
 shell > ps -elf | grep my_service
 4 S root      270267       1  0  80   0 - 82385 -      11:07 ?        00:00:00 /usr/bin/python3 my_service.py
 shell > sudo kill -9 270267
 ```
 
-```
+```bash
 shell > journalctl -f -u my_service
 oct. 14 11:10:49 rocky8 __main__[270267]: [INFO] Total duration: 180
 oct. 14 11:11:49 rocky8 __main__[270267]: [INFO] Total duration: 240
@@ -150,7 +150,7 @@ oct. 14 11:12:19 rocky8 __main__[270863]: [INFO] Starting the service
 
 Wir können auch 5 Minuten warten, bis das Skript selbst abstürzt (entfernen Sie dies für Ihre Produktion):
 
-```
+```bash
 oct. 14 11:16:02 rocky8 systemd[1]: Started My Service.
 oct. 14 11:16:03 rocky8 __main__[271507]: [INFO] Starting the service
 oct. 14 11:17:03 rocky8 __main__[271507]: [INFO] Total duration: 60
@@ -169,7 +169,7 @@ oct. 14 11:21:03 rocky8 __main__[271993]: [INFO] Starting the service
 
 Wie Sie sehen können, ist die Neustartfunktion von systemd sehr nützlich.
 
-## Fazit
+## Zusammenfassung
 
 `systemd` und `journald` stellen uns die Werkzeuge zur Verfügung, um robuste und leistungsstarke Skripte so einfach wie möglich zu machen, dass sie unsere alten zuverlässigen Crontab-Skripte ersetzen.
 

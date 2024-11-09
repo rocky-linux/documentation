@@ -62,8 +62,10 @@ fs.inotify.max_user_watches = 1048576
 ## Commandes associées
 
 L'outil inotify-tools a deux commandes, à savoir :
-*   **inotifywait** : pour une surveillance continue, résultats de sortie en temps réel. Elle est généralement utilisée avec l'outil de sauvegarde incrémentiel rsync. Parce qu'il s'agit d'une surveillance du système de fichiers, la commande peut être utilisée dans un script. Nous présenterons le script spécifique plus tard.
-*   **inotifywatch** : pour une surveillance à court terme, les résultats de sortie après que la tâche soit terminée.
+
+* **inotifywait** : pour une surveillance continue et des résultats de sortie en temps réel. Il est généralement utilisé avec l'outil de sauvegarde incrémentielle `rsync`. Parce qu'il s'agit d'une surveillance du système de fichiers, il peut être utilisé avec un script. L'auteur présentera plus tard l'implémentation spécifique du script.
+
+* **inotifywatch** : pour la surveillance à court terme, affiche les résultats une fois la tâche terminée.
 
 `inotifywait` a principalement les options suivantes :
 

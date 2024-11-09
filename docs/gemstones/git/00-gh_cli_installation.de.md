@@ -6,14 +6,14 @@ tags:
   - GitHub CLI
   - gh
   - git
-  - GitHub
+  - github
 ---
 
 ## Einleitung
 
 Dieses Gemstone behandelt die Installation und Grundeinrichtung des GitHub CLI-Tools (gh) auf dem Rocky Linux-System. Mit diesem Tool können Benutzer direkt über die Befehlszeile mit GitHub-Repositorys interagieren.
 
-## Problembeschreibung
+## Beschreibung des Problems
 
 Benutzer benötigen eine bequeme Möglichkeit zur Interaktion mit GitHub, ohne die Befehlszeilen-Umgebung zu verlassen.
 
@@ -22,7 +22,7 @@ Benutzer benötigen eine bequeme Möglichkeit zur Interaktion mit GitHub, ohne d
 - Eine Maschine, auf der Rocky Linux läuft
 - Terminal-Zugriff
 - Grundlegende Erfahrung mit der Linux-Kommandozeilenschnittstelle
-- Ein bestehender Github-Account
+- Ein bestehender GitHub-Account
 
 ## Prozedur
 
