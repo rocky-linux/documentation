@@ -1,5 +1,5 @@
 ---
-title: Incus Server. Introduction 
+title: Introduction 
 author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with:  9.4
@@ -9,9 +9,9 @@ tags:
   - enterprise
 ---
 
-## Creating an Incus server
+# Creating an Incus server
 
-### Incus status on Rocky Linux
+## Incus status on Rocky Linux
 
 Nearly a year ago now, the following announcement came out on the lxc-users mailing list:
 
