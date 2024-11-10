@@ -27,7 +27,7 @@ dnf upgrade
 
 Si des mises à jour du noyau ont été effectuées pendant le processus de mise à niveau, redémarrez le serveur.
 
-### Le Dépôt OpenZFS
+### Le dépôt OpenZFS
 
 Installez le dépôt OpenZFS en utilisant la commande suivante :
 
@@ -81,7 +81,7 @@ Le premier fichier que vous devez modifier est `limits.conf`. Ce fichier est aut
 vi /etc/security/limits.conf
 ```
 
-La plus grande partie de ce fichier est constitué de commentaires et, en bas, affiche les paramètres par défaut actuels. Vous devez ajouter les paramètres personnalisés dans l'espace vide au-dessus de la fin du marqueur de fichier (#Fin du fichier). La fin du fichier ressemblera à ceci lorsque vous aurez terminé :
+La plus grande partie de ce fichier est constitué de commentaires et, en bas, affiche les paramètres par défaut actuels. Vous devez ajouter les paramètres personnalisés dans l'espace vide au-dessus de la fin du marqueur de fichier (#End of file). La fin du fichier ressemblera à ceci lorsque vous aurez terminé :
 
 ```text
 # Modifications made for LXD
@@ -168,7 +168,7 @@ Enregistrez vos modifications et quittez l'éditeur.
 
 ### Vérification des variables dans `sysctl.conf`
 
-Une fois le redémarrage terminé, reconnectez-vous sur le serveur. Nous devons vérifier que notre fichier de remplacement a effectivement fait le travail.
+Une fois le redémarrage terminé, reconnectez-vous sur le serveur. Vous devoez vérifier que le fichier de remplacement a effectivement fait le travail.
 
 Ce n'est pas difficile à faire. Il n'est pas nécessaire de vérifier tous les paramètres, sauf si vous le souhaitez, mais en vérifier quelques-uns permettra de s'assurer que les paramètres sont enregistrés. Pour ce faire, utilisez la commande `sysctl` :
 
