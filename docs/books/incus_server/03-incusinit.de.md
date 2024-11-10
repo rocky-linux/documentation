@@ -1,10 +1,10 @@
 ---
-title: "Kapitel 3: Incus-Initialisierung und Benutzerkonfiguration"
+title: "Kapitel 3: Incus-Initialisierung und Benutzer-Konfiguration"
 author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
 tags:
-  - incus
+  - Incus
   - enterprise
   - Incus-Initialisierung
   - incus setup
@@ -27,7 +27,7 @@ Hier sind die Fragen und unsere Antworten zum Skript, ggf. mit einer kleinen Erk
 Would you like to use clustering? (yes/no) [default=no]:
 ```
 
-If interested in clustering, do some additional research on that [here](https://linuxcontainers.org/incus/docs/main/explanation/clustering/)
+Wenn Sie sich für Clustering interessieren, können Sie [hier](https://linuxcontainers.org/incus/docs/main/explanation/clustering/) weitere Informationen dazu finden.
 
 ```text
 Do you want to configure a new storage pool? (yes/no) [default=yes]:
