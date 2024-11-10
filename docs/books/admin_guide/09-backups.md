@@ -65,7 +65,7 @@ Backups require a lot of discipline and rigor from the system administrator. Sys
 * How long will it be kept?
 * Is there a cost issue to consider?
 
-In addition to these issues, system administrators should also consider factors such as cost, performance, data importance, bandwidth consumption, and maintenance complexity based on actual situations.
+In addition to these issues, system administrators should also consider factors such as performance, data importance, bandwidth consumption, and maintenance complexity based on actual situations.
 
 ### Backup methods
 
