@@ -1,5 +1,5 @@
 ---
-title: Incus Server. Einleitung
+title: Incus Server Einleitung
 author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
