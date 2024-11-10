@@ -1,10 +1,10 @@
 ---
-title: 2 ZFS Setup
+title: "Kapitel 2: ZFS Setup"
 author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
 tags:
-  - incus
+  - Incus
   - enterprise
   - incus zfs
 ---
@@ -51,7 +51,7 @@ sdc      8:32   0 149.1G  0 disk
 └─sdc1   8:33   0 149.1G  0 part
 ```
 
-Diese Auflistung zeigt, dass das Betriebssystem _/dev/sda_ verwendet. Sie werden _/dev/sdb_ für das `zpool` verwenden. Beachten Sie: Wenn Sie über viele verhandene Festplatten verfügen, sollten Sie die Verwendung von `raidz` (ein Software-Raid speziell für ZFS) in Betracht ziehen.
+Diese Auflistung zeigt, dass das Betriebssystem _/dev/sda_ verwendet. Sie werden _/dev/sdb_ für das `zpool` verwenden. Beachten Sie, wenn Sie über viele verhandene Festplatten verfügen, sollten Sie die Verwendung von `raidz` (ein Software-Raid speziell für ZFS) in Betracht ziehen.
 
 Dies liegt außerhalb des Rahmens dieses Dokuments, ist jedoch für die Produktion zu berücksichtigen. Es bietet eine bessere Leistung und Redundanz. Erstellen Sie zunächst Ihren Pool auf dem einzelnen Device, das Sie identifiziert haben:
 
