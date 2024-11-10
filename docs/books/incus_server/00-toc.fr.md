@@ -1,5 +1,5 @@
 ---
-title: Serveur Incus -  Introduction
+title: Introduction
 author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
@@ -9,9 +9,9 @@ tags:
   - entreprise
 ---
 
-## Création d'un Serveur Incus
+# Création d'un Serveur Incus
 
-### Présence de `Incus` sur Rocky Linux
+## Présence de `Incus` sur Rocky Linux
 
 Il y a plus d'un an maintenant – 2023 –, l'annonce suivante est sortie sur la liste de diffusion lxc-users :
 
