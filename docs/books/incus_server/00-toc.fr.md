@@ -1,15 +1,15 @@
 ---
-title: Serveur Incus. Introduction
+title: Serveur Incus -  Introduction
 author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
 tags:
   - lxd
-  - incus
+  - Incus
   - entreprise
 ---
 
-## Création d'un serveur Incus
+## Création d'un Serveur Incus
 
 ### Présence de `Incus` sur Rocky Linux
 
@@ -20,16 +20,16 @@ Il y a plus d'un an maintenant – 2023 –, l'annonce suivante est sortie sur l
 > Canonical, le créateur et principal contributeur du projet LXD, a décidé qu'après plus de 8 ans au sein de la communauté Linux Containers, le projet serait désormais mieux servi directement dans le cadre du propre ensemble de projets de Canonical.
 > —
 
-L’un des facteurs décisifs a été la démission de certains développeurs principaux de LXD. Ces développeurs ont ensuite bifurqué LXD vers Incus, annonçant le fork en août 2023. Une version de publication (0.1) est sortie en octobre 2023, et les développeurs ont depuis rapidement développé cette version avec des versions progressives jusqu'à la 0.7 (en mars 2024). La sortie de la version de support à long terme (6.0 LTS) a suivi la sortie de la version 0.7. 2024-09-25 : La version actuelle est 6.5.
+L’un des facteurs décisifs a été la démission de certains développeurs principaux de LXD. Ces développeurs ont ensuite forké LXD vers Incus, annonçant le fork en août 2023. Une version de publication (0.1) est sortie en octobre 2023, et les développeurs ont depuis rapidement développé cette version avec des versions progressives jusqu'à la 0.7 (en mars 2024). La sortie de la version de support à long terme (6.0 LTS) a suivi la sortie de la version 0.7. 2024-09-25 : La version actuelle est 6.5.
 
 Tout au long du processus, Canonical était censé continuer à maintenir des liens vers les images de conteneurs fournies par Linux Containers. Cependant, un [changement de licence](https://stgraber.org/2023/12/12/lxd-now-re-licensed-and-under-a-cla/) a rendu impossible pour Linux Containers de continuer à proposer les images de conteneurs dans LXD. Cela signifie que LXD aura des images de conteneur, mais elles ne seront pas ce à quoi vous pourriez vous attendre. Linux Containers continue d'héberger et de prendre en charge leurs images si vous utilisez Incus.
 
 Ce document est une conversion du [livre LXD](../lxd_server/00-toc.md) vers Incus. Depuis la création d'un référentiel par le co-responsable de l'infrastructure du projet Rocky Linux [Neil Hanlon](https://wiki.rockylinux.org/team/infrastructure/), vous avez la possibilité d'installer Incus avant son inclusion dans le référentiel EPEL (Extra Packages for Enterprise Linux).
 
-!!! warning "Le serveur Incus n'est pas disponible sur Rocky Linux 8"
+!!! warning "Le serveur Incus n'est PAS disponible sur Rocky Linux 8"
 
 ```
-L'installation du serveur Incus n'est disponible que pour Rocky Linux 9.x et est actuellement testée sur Rocky Linux 9.4. Si vous avez besoin de quelque chose qui fonctionne sur Rocky Linux 8.x, utilisez la [procédure LXD mentionnée précédemment](../lxd_server/00-toc.md).
+L'installation du serveur Incus n'est disponible que pour Rocky Linux 9.x et est actuellement testée sur Rocky Linux 9.4. Si vous avez besoin de quelque chose qui fonctionne sur Rocky Linux 8.x, utilisez la [procédure LXD précédente](../lxd_server/00-toc.md).
 ```
 
 ## Introduction
@@ -38,7 +38,7 @@ Incus est le mieux décrit sur le [site officiel](https://linuxcontainers.org/in
 
 Il est très puissant, et avec le matériel approprié et configuré, peut être mis à profit pour exécuter beaucoup d'instances de serveurs sur un seul matériel. Si vous associez cela à un serveur de snapshot, vous avez également un ensemble de conteneurs que vous pouvez faire tourner presque immédiatement si votre serveur principal se trouve déconnecté.
 
-!!! warning "Ceci n'est pas une sauvegarde"
+!!! warning "Ceci n'est PAS une sauvegarde"
 
 ```
 Il ne faut pas considérer cela comme une sauvegarde traditionnelle. Vous avez toujours besoin d'un système de sauvegarde classique, tel que [rsnapshot](../../guides/backup/rsnapshot_backup.md).
@@ -55,7 +55,7 @@ Pour ceux qui souhaitent utiliser Incus comme environnement de laboratoire sur l
 - Vous devriez maîtriser la ligne de commande sur chaque machine et pouvoir utiliser un éditeur de texte comme `vi` (par exemple). (L'auteur utilise _vi_ dans ces exemples, mais vous pouvez le remplacer par votre éditeur préféré.)
 - Il suffit d'être un utilisateur sans privilège pour la majeure partie de ces procédures. Pour les premières étapes de configuration, vous devrez être connecté en tant qu'utilisateur root ou pouvoir utiliser `sudo` pour le devenir. Tout au long de ces chapitres, nous supposons que votre utilisateur non privilégié est `incusadmin`. Vous devrez créer ce compte utilisateur ultérieurement dans le processus.
 - Pour ZFS, vérifiez que le démarrage sécurisé d'UEFI n'est PAS activé. Sinon, vous devrez signer cryptographiquement le module ZFS pour pouvoir le charger.
-- Nous utilisons principalement des conteneurs basés sur Rocky Linux
+- Nous utilisons principalement des conteneurs basés sur Rocky Linux.
 
 !!! info "Info"
 
@@ -65,9 +65,9 @@ L'auteur inclut une méthodologie pour utiliser un système de fichiers ZFS. Veu
 
 ## Synopsis
 
-- **Chapitre 1 : Installation et configuration** traite de l’installation du serveur principal. Généralement, la bonne façon de mettre en œuvre Incus en production est d'avoir un serveur principal et un serveur d'instantanés.
+- **Chapitre 1 : Installation et configuration** traite de l’installation du serveur principal. Généralement, la bonne façon de mettre en œuvre Incus en production est d'avoir un serveur principal et un serveur de snapshots.
 - **Chapitre 2 : Configuration de ZFS** décrit la configuration et l’installation de ZFS. ZFS est un gestionnaire de volume logique et système de fichiers open-source créé par Sun Microsystems, à l'origine pour son système d'exploitation Solaris.
-- **Chapitre 3 : Initialisation d'Incus et configuration de l'utilisateur** traite de l'initialisation et des options de base, ainsi que de la configuration de votre utilisateur non privilégié que vous utiliserez pendant la majeure partie du reste de la procédure
+- **Chapitre 3 : Initialisation d'Incus et configuration de l'utilisateur** traite de l'initialisation et des options de base, ainsi que de la configuration de votre utilisateur non privilégié que vous utiliserez pendant la majeure partie du reste de la procédure.
 - **Chapitre 4 : Configuration du pare-feu** Contient les options de configuration `firewalld`
 - **Chapitre 5 : Configuration et gestion des images** décrit la procédure d'installation des images de système d'exploitation dans un conteneur et leur configuration
 - **Chapitre 6 : Profils** traite de l'ajout de profils et de leur application aux conteneurs et couvre principalement `macvlan` et son importance pour l'adressage IP sur votre LAN ou WAN
