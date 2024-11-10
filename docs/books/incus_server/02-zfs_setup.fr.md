@@ -9,7 +9,7 @@ tags:
   - incus zfs
 ---
 
-# Chapitre 2 : ZFS Setup
+# Chapitre 2 : Mise en Place de ZFS
 
 Tout au long de ce chapitre, vous devez être l'utilisateur root ou pouvoir utiliser `sudo` pour obtenir les privilèges nécessaires.
 
