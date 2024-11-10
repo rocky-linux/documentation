@@ -4,7 +4,7 @@ author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
 tags:
-  - incus
+  - Incus
   - entreprise
   - initialisation de incus
   - incus setup
@@ -20,7 +20,7 @@ Votre environnement de serveur est prêt. Vous êtes prêt à initialiser Incus.
 incus admin init
 ```
 
-Voici les questions et nos réponses pour le script, avec une petite explication lorsque cela est nécessaire :
+Voici les questions et réponses pour le script, avec une petite explication lorsque cela est nécessaire :
 
 ```text
 Would you like to use clustering? (yes/no) [default=no]:
