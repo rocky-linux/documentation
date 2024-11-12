@@ -1,5 +1,5 @@
 ---
-title: Сервер Incus. Вступ
+title: Вступ
 author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
@@ -9,9 +9,9 @@ tags:
   - enterprise
 ---
 
-## Створення сервера Incus
+# Створення сервера Incus
 
-### Статус Incus на Rocky Linux
+## Статус Incus на Rocky Linux
 
 Майже рік тому в списку розсилки lxc-users з’явилося таке оголошення:
 

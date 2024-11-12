@@ -29,7 +29,7 @@ Wenn während des Upgrade-Vorgangs Kernel-Updates durchgeführt wurden, starten 
 
 ### OpenZFS-Repository
 
-Installieren bitte Sie das OpenZFS Repository wie folgt mit:
+Installieren Sie das OpenZFS Repository wie folgt mit:
 
 ```bash
 dnf install https://zfsonlinux.org/epel/zfs-release-2-2$(rpm --eval "%{dist}").noarch.rpm
@@ -168,7 +168,7 @@ Starten Sie an diesem Punkt den Server neu.
 
 ### Überprüfung der `sysctl.conf`-Werte
 
-Sobald der Neustart abgeschlossen ist, melden Sie sich erneut mit dem Server an. Wir müssen überprüfen, ob unsere Datei überschrieben wurde.
+Sobald der Neustart abgeschlossen ist, melden Sie sich erneut beim Server an. Wir müssen überprüfen, ob unsere Datei überschrieben wurde.
 
 Das ist einfach zu bewerkstelligen. Es ist nicht notwendig, jede Einstellung zu überprüfen, es sei denn, Sie möchten, aber wenn Sie einige überprüfen, werden die Einstellungen geändert. Tun Sie dies mit dem `sysctl`-Befehl:
 
