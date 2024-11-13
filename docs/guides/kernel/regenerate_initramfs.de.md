@@ -1,5 +1,5 @@
 ---
-title: Regenerate `initramfs`
+title: Regenerierung des `initramfs`
 author: Neel Chauhan
 contributors: Steven Spencer
 tested_with: 9.4
@@ -11,7 +11,7 @@ tags:
 
 Ein `initramfs` ist das Root-Dateisystem innerhalb eines Linux-Kernels, das beim Booten des Systems mitwirkt. Es enthält die Kernmodule, die zum Booten von Linux erforderlich sind.
 
-Manchmal möchte ein Linux-Administrator das `initramfs` neu generieren, etwa wenn er einen Treiber auf die schwarze Liste setzen oder ein Out-of-Band-Modul einbinden möchte. Der Autor hat dies getan, um [Intel vPro auf einem Minisforum MS-01 zu aktivieren](https://spaceterran.com/posts/step-by-step-guide-enabling-intel-vpro-on-your-minisforum-ms-01-bios/).
+Manchmal möchte ein Linux-Administrator das `initramfs` neu generieren, etwa wenn er einen Treiber auf die schwarze Liste setzen oder ein Out-of-Band Modul einbinden möchte. Der Autor hat dies getan, um [Intel vPro auf einem Minisforum MS-01 zu aktivieren](https://spaceterran.com/posts/step-by-step-guide-enabling-intel-vpro-on-your-minisforum-ms-01-bios/).
 
 ## Voraussetzungen
 
