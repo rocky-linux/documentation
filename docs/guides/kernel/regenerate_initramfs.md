@@ -11,7 +11,7 @@ tags:
 
 An `initramfs` is the root file system inside a Linux kernel to help boot the system. It contains the core modules needed to boot Linux.
 
-Sometimes, an Linux administrator might want to regenerate the `initramfs`, say if they want to blacklist a driver or include a out-of-band module. The author did this to [enable Intel vPro on a Minisforum MS-01](https://spaceterran.com/posts/step-by-step-guide-enabling-intel-vpro-on-your-minisforum-ms-01-bios/).
+Sometimes, a Linux administrator might want to regenerate the `initramfs`, say if they want to blacklist a driver or include an out-of-band module. The author did this to [enable Intel vPro on a Minisforum MS-01](https://spaceterran.com/posts/step-by-step-guide-enabling-intel-vpro-on-your-minisforum-ms-01-bios/).
 
 ## Requirements
 
