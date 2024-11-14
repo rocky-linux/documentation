@@ -65,7 +65,7 @@ Backups require a lot of discipline and rigor from the system administrator. Sys
 * How long will it be kept?
 * Is there a cost issue to consider?
 
-In addition to these issues, system administrators should also consider factors such as cost, performance, data importance, bandwidth consumption, and maintenance complexity based on actual situations.
+In addition to these issues, system administrators should also consider factors such as performance, data importance, bandwidth consumption, and maintenance complexity based on actual situations.
 
 ### Backup methods
 
@@ -77,10 +77,10 @@ In addition to these issues, system administrators should also consider factors 
 * **Hot backup**: Refers to the backup when the system is in normal operation.  As the data in the system is updated at any time, the backed-up data has a certain lag relative to the real data of the system.
 * **Remote backup**: Refers to backing up data in another geographic location to avoid data loss and service interruption caused by fire, natural disasters, theft, etc.
 
-### Periodicity
+### Frequency of backups
 
-* **Pre-current**: at a given time (before a system update, ...).
-* **Periodic**: Daily, weekly, monthly, ...
+* **Periodic**: Backup within a specific time period before a major system update (usually during off-peak hours)
+* **cycle**: Backup in units of days, weeks, months, etc
 
 !!! Tip
 
