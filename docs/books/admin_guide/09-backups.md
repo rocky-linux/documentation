@@ -79,7 +79,7 @@ In addition to these issues, system administrators should also consider factors 
 
 ### Frequency of backups
 
-* **aperiodic**: Backup within a specific time period before a major system update (usually in the early morning hours)
+* **Periodic**: Backup within a specific time period before a major system update (usually during off-peak hours)
 * **cycle**: Backup in units of days, weeks, months, etc
 
 !!! Tip
