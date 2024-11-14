@@ -519,12 +519,12 @@ sudo dnf clean all
 sudo dnf update
 ```
 
-Verify on your terminal that the `dnf` connection uses your proxy to download its update:
+Verify on your terminal that the `dnf` connection uses your proxy to download its update. Note that the "URL of repository" in the line that follows will be replaced with the actual mirror URL.:
 
 ```bash
-1723793986.725     20 192.168.1.10 TCP_MISS/200 5238 GET http://rocky.reloumirrors.net/9.4/extras/x86_64/os/repodata/7d78a729-8e9a-4066-96d4-ab8ed8f06ee8-FILELISTS.xml.gz - HIER_DIRECT/193.106.119.144 application/x-gzip
+1723793986.725     20 192.168.1.10 TCP_MISS/200 5238 GET "URL of repository"/9.4/extras/x86_64/os/repodata/7d78a729-8e9a-4066-96d4-ab8ed8f06ee8-FILELISTS.xml.gz - HIER_DIRECT/193.106.119.144 application/x-gzip
 ...
-1723794176.255      1 192.168.1.10 TCP_HIT/200 655447 GET http://miroir.univ-lorraine.fr/rocky/9.4/AppStream/x86_64/os/repodata/1af312c9-7139-43ed-8761-90ba3cd55461-UPDATEINFO.xml.gz - HIER_NONE/- application/x-gzip
+1723794176.255      1 192.168.1.10 TCP_HIT/200 655447 GET "URL of repository"/9.4/AppStream/x86_64/os/repodata/1af312c9-7139-43ed-8761-90ba3cd55461-UPDATEINFO.xml.gz - HIER_NONE/- application/x-gzip
 ```
 
 In this example, you can see one connection with a TCP_MISS (not present in the cache) and another with TCP_HIT (use the cache to answer the client).
