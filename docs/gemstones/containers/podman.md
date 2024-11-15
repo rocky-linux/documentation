@@ -53,7 +53,7 @@ while rootless files can be placed in either of
 - `/etc/containers/systemd/users/$(UID)`
 - `/etc/containers/systemd/users/`
 
-While single containers, pods, images, networks, volumes, and kube files are supported, let's focus on our Nextcloud example. Create a new file `~/.config/containers/systemd/nextcloud.cotainer` with the following content:
+While single containers, pods, images, networks, volumes, and kube files are supported, let's focus on our Nextcloud example. Create a new file `~/.config/containers/systemd/nextcloud.container` with the following content:
 
 ```systemd
 [Container]
