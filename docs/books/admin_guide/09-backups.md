@@ -86,18 +86,20 @@ In addition to these issues, system administrators should also consider factors 
 
     Before a system change, it can be useful to make a backup. However, there is no point in backing up data every day that only changes every month.
 
-### Restoration methods
+### Recover methods
 
-Depending on the utilities available, performing several types of restorations will be possible.
+Depending on the utilities available, performing several types of recover will be possible.
 
-* **Complete restoration**: trees, ...
-* **Selective restoration**: part of tree, files, ...
+In some relational database management systems, the corresponding operations of "recover" (sometimes "recovery" is used in documentation) and "restore" are different, which requires you to consult the official documentation for further information. This basic document will not go into too much detail regarding this part of RDBMS.
 
-It is possible to restore a whole backup or only a part of it. However, when restoring a directory, the files created after the backup are not deleted.
+* **Full recover**: Data recovery based on Full backup or "Full backup + Incremental backup" or "Full backup + Differential backup".
+* **Selective recover**: Data recovery based on Selective backup (Partial backup).
+
+It is possible to recover a whole backup or only a part of it. However, when restoring a directory, the files created after the backup are not deleted.
 
 !!! Tip
 
-    To recover a directory as it was before the backup, it is necessary to completely delete its contents before launching the restoration.
+    For security reasons, it is recommended that you store the restored directory or file in the /tmp directory before performing the recovery operation to avoid situations where old files (old directory) overwrite new files (new directory). It is not recommended to directly delete directories or files in the currently active operating system before performing a recovery operation.
 
 ### The tools and related technologies
 
