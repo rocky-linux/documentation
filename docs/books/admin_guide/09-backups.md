@@ -95,11 +95,11 @@ In some relational database management systems, the corresponding operations of 
 * **Full recover**: Data recovery based on Full backup or "Full backup + Incremental backup" or "Full backup + Differential backup".
 * **Selective recover**: Data recovery based on Selective backup (Partial backup).
 
-It is possible to recover a whole backup or only a part of it. However, when restoring a directory, the files created after the backup are not deleted.
+It is not recommended to directly delete directories or files in the currently active operating system before performing a recovery operation (unless you know what will happen after deletion). If you don't know what will happen, you can perform a 'snapshot' operation on the current operating system.
 
 !!! Tip
 
-    For security reasons, it is recommended that you store the restored directory or file in the /tmp directory before performing the recovery operation to avoid situations where old files (old directory) overwrite new files (new directory). It is not recommended to directly delete directories or files in the currently active operating system before performing a recovery operation.
+    For security reasons, it is recommended that you store the restored directory or file in the /tmp directory before performing the recovery operation to avoid situations where old files (old directory) overwrite new files (new directory).
 
 ### The tools and related technologies
 
