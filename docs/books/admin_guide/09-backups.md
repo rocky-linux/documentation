@@ -121,7 +121,7 @@ The commands we will use here are `tar` and `cpio`.
   1. retains owners;
   2. retains groups, dates and rights;
   3. skips damaged files;
-  4. entire file system.
+  4. can be used for the entire file system.
 
 !!! Note
 
