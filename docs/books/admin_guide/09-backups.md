@@ -146,27 +146,21 @@ The use of a naming convention allows one to quickly target the contents of a ba
 
     In the Linux world, except for a few exceptions in GUI environments (such as .jpg, .mp4, .gif, etc.), most files do not have the concept of extension. In other words, most file extensions are not required. The reason for artificially adding suffixes is to facilitate recognition by human users. If the systems administrator sees a `.tar.gz` or `.tgz` file extension, for instance, then he knows how to deal with the file.
 
-### Contents of a backup
+### Properties of the backup file
 
-A backup generally contains the following elements:
+A single backup file can include the following properties:
 
-* the file;
-* the name;
-* the owner;
-* the size;
-* the permissions;
-* access date.
+* file name (including manually added suffixes);
+* backup the atime, ctime, mtime, btime (crtime) of the file itself;
+* file size of the backup file itself;
+* the properties or characteristics of files or directories in the backup file will be partially preserved. For example, mtime for files or directories will be retained, but `inode` number will not be retained.
 
-!!! Note
+### Storage methods
 
-    The `inode` number is missing.
+There are two different storage methods:
 
-### Storage modes
-
-There are two different storage modes:
-
-* file on disk;
-* device.
+* Internal: Store backup files on the current working disk.
+* External: Store backup files on external devices. External devices can be USB drives, CDs, disks, servers, or NAS, etc.
 
 ## Tape ArchiveR - `tar`
 
