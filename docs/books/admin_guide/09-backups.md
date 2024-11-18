@@ -144,7 +144,7 @@ The use of a naming convention allows one to quickly target the contents of a ba
 
 !!! Note
 
-    The notion of extension under Linux does not exist. In other words, we use extensions here for the human operator. If the systems administrator sees a `.tar.gz` or `.tgz` file extension, for instance, then he knows how to deal with the file.
+    In the Linux world, except for a few exceptions in GUI environments (such as .jpg, .mp4, .gif, etc.), most files do not have the concept of extension. In other words, most file extensions are not required. The reason for artificially adding suffixes is to facilitate recognition by human users. If the systems administrator sees a `.tar.gz` or `.tgz` file extension, for instance, then he knows how to deal with the file.
 
 ### Contents of a backup
 
