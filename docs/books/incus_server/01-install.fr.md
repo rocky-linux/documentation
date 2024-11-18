@@ -4,7 +4,7 @@ author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
 tags:
-  - incus
+  - Incus
   - entreprise
   - installation d'incus
 ---
