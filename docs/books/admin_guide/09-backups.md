@@ -48,7 +48,7 @@ There are two principles: the **backup** and the **archive**.
 * The archive destroys the information source after the operation.
 * The backup preserves the source of information after the operation.
 
-These operations consist of saving information in a file, on a peripheral, or on a supported media (tapes, disks, etc.).
+These operations consist of saving information in a file, on a peripheral, or on a supported media (tapes, disks, and so on).
 
 ### The process
 
@@ -75,7 +75,7 @@ In addition to these issues, system administrators should also consider factors 
 * **Selective backup (Partial backup)**: Refers to backing up a part of the system.
 * **Cold backup**: Refers to the backup when the system is in shutdown or maintenance state.  The backed up data is exactly the same as the data in the system during this period.
 * **Hot backup**: Refers to the backup when the system is in normal operation.  As the data in the system is updated at any time, the backed-up data has a certain lag relative to the real data of the system.
-* **Remote backup**: Refers to backing up data in another geographic location to avoid data loss and service interruption caused by fire, natural disasters, theft, etc.
+* **Remote backup**: Refers to backing up data in another geographic location to avoid data loss and service interruption caused by fire, natural disasters, theft, and more.
 
 ### Frequency of backups
 
@@ -121,7 +121,7 @@ The commands we will use here are `tar` and `cpio`.
   1. retains owners;
   2. retains groups, dates and rights;
   3. skips damaged files;
-  4. entire file system.
+  4. can be used for the entire file system.
 
 !!! Note
 
@@ -144,29 +144,23 @@ The use of a naming convention allows one to quickly target the contents of a ba
 
 !!! Note
 
-    The notion of extension under Linux does not exist. In other words, we use extensions here for the human operator. If the systems administrator sees a `.tar.gz` or `.tgz` file extension, for instance, then he knows how to deal with the file.
+    In the Linux world, except for a few exceptions in GUI environments (such as .jpg, .mp4, .gif), most files do not have the concept of extension. In other words, most file extensions are not required. The reason for artificially adding suffixes is to facilitate recognition by human users. If the systems administrator sees a `.tar.gz` or `.tgz` file extension, for instance, then he knows how to deal with the file.
 
-### Contents of a backup
+### Properties of the backup file
 
-A backup generally contains the following elements:
+A single backup file can include the following properties:
 
-* the file;
-* the name;
-* the owner;
-* the size;
-* the permissions;
-* access date.
+* file name (including manually added suffixes);
+* backup the atime, ctime, mtime, btime (crtime) of the file itself;
+* file size of the backup file itself;
+* the properties or characteristics of files or directories in the backup file will be partially preserved. For example, mtime for files or directories will be retained, but `inode` number will not be retained.
 
-!!! Note
+### Storage methods
 
-    The `inode` number is missing.
+There are two different storage methods:
 
-### Storage modes
-
-There are two different storage modes:
-
-* file on disk;
-* device.
+* Internal: Store backup files on the current working disk.
+* External: Store backup files on external devices. External devices can be USB drives, CDs, disks, servers, or NAS, and more.
 
 ## Tape ArchiveR - `tar`
 
@@ -293,7 +287,7 @@ tar cvzf backup.tar.gz dirname/
 
 !!! Note
 
-    Keeping the `cvf` (`tvf` or `xvf`) keys unchanged for all backup operations and simply adding the compression key to the end of the keys makes the command easier to understand (e.g., `cvfz` or `cvfj`, etc.).
+    Keeping the `cvf` (`tvf` or `xvf`) keys unchanged for all backup operations and simply adding the compression key to the end of the keys makes the command easier to understand (such as: `cvfz` or `cvfj`, and others).
 
 ##### Creating a compressed backup with `bzip`
 
@@ -384,7 +378,7 @@ tar tvfz backup.tar.gz
 tar tvfj backup.tar.bz2
 ```
 
-When the number of files in a backup becomes large, it is possible to *pipe* the result of the `tar` command to a *pager* (`more`, `less`, `most`, etc.):
+When the number of files in a backup becomes large, it is possible to *pipe* the result of the `tar` command to a *pager* (`more`, `less`, `most`, and others):
 
 ```bash
 tar tvf backup.tar | less
