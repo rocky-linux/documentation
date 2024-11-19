@@ -203,7 +203,7 @@ kill -9 1664
 | Codice | Segnale   | Descrizione                                                                                                     |
 | ------ | --------- | --------------------------------------------------------------------------------------------------------------- |
 | `2`    | *SIGINT*  | Arresto immediato del processo                                                                                  |
-| `9`    | *SIGKILL* | Interruzione del processo (++control+d++)                                                                       |
+| `9`    | *SIGKILL* | Interruzione del processo (++control+"d"++)                                                                     |
 | `15`   | *SIGTERM* | Arresto pulito del processo                                                                                     |
 | `18`   | *SIGCONT* | Riprendere il processo. I processi che utilizzano il segnale SIGSTOP possono usarlo per continuare l'esecuzione |
 | `19`   | *SIGSTOP* | Sospendere il processo (Stop process). L'effetto di questo segnale è equivalente a ++ctrl+"z ”++                |
@@ -240,7 +240,7 @@ nohup myprogram.sh 0</dev/null &
 
 ### [Ctrl] + [z]
 
-Premendo la combinazione ++control+z++ contemporaneamente, il processo sincrono è temporaneamente sospeso. L'accesso al prompt viene ripristinato dopo aver visualizzato il numero del processo che è stato appena sospeso.
+Il processo sincrono viene temporaneamente sospeso premendo contemporaneamente i tasti ++control+"z ”++. L'accesso al prompt viene ripristinato dopo aver visualizzato il numero del processo che è stato appena sospeso.
 
 ### istruzione `&`
 
@@ -354,7 +354,7 @@ renice -n 15 -p 1664
 | `-p`    | `PID` del processo.                         |
 | `-u`    | `UID` del proprietario del processo.        |
 
-Il comando `renice` agisce sui processi già in esecuzione. È quindi possibile modificare la priorità di un processo specifico, ma anche di diversi processi appartenenti a un utente o un gruppo.
+Il comando `renice` agisce sui processi già in esecuzione. Pertanto, è possibile modificare la priorità di un processo specifico e di più processi appartenenti a un utente o a un gruppo.
 
 !!! Tip "Suggerimento"
 

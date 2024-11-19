@@ -5,8 +5,6 @@ contributors: Steven Spencer, Ganna Zhyrnova
 update: 2021-10-20
 ---
 
-# anacron - Exécution de tâches périodiques
-
 ## Prérequis
 
 - Un ordinateur fonctionnant sous Rocky Linux.
@@ -20,7 +18,7 @@ update: 2021-10-20
 
 ## Introduction
 
-`anacron` est utilisé pour exécuter des commandes périodiquement et la fréquence de fonctionnement est définie en unités de jours. Il convient aux ordinateurs qui ne fonctionnent pas 24/7, tels que les ordinateurs portables et les ordinateurs de bureau. Supposons que vous ayez une tâche planifiée (comme un script de sauvegarde) à exécuter tôt le matin à l'aide de crontab. Lorsque vous vous endormez, votre ordinateur de bureau ou votre ordinateur portable est éteint. Votre script de sauvegarde ne sera pas exécuté. Cependant, si vous utilisez `anacron`, vous pouvez être assuré que la prochaine fois que vous allumerez l'ordinateur, le script de sauvegarde sera exécuté.
+`anacron` est utilisé pour exécuter des commandes périodiquement et la fréquence de fonctionnement est définie en unités de jours. Il convient aux ordinateurs qui ne fonctionnent pas 24h sur 24, 7 jours sur 7, tels que les ordinateurs portables et les ordinateurs de bureau. Supposons que vous ayez une tâche planifiée (comme un script de sauvegarde) à exécuter tôt le matin à l'aide de `crontab`. Lorsque vous vous endormez, votre ordinateur de bureau ou votre ordinateur portable est éteint. Votre script de sauvegarde ne sera pas exécuté. Cependant, si vous utilisez `anacron`, vous pouvez être assuré que la prochaine fois que vous allumerez l'ordinateur, le script de sauvegarde sera exécuté.
 
 La finalité de `anacron` n'est pas de remplacer `crontab`, mais de compléter `crontab`. Leur relation est la suivante :
 
@@ -66,7 +64,7 @@ START_HOURS_RANGE=3-22
 @monthly 45 cron.monthly nice run-parts /etc/cron.monthly
 ```
 
-**/etc/cron.hourly/** -Grâce à `journalctl -u crond.service`, vous pouvez constater que les fichiers placés à l'intérieur sont en fait appelés par `crond.server`, ce qui signifie que la commande sera exécutée après la première minute de chaque heure. Comme suit :
+**/etc/cron.hourly/** -Grâce à `journalctl -u crond.service`, vous pouvez savoir que les fichiers placés à l'intérieur sont en fait appelés par `crond`, ce qui signifie que la commande s'exécutera après la première minute de chaque heure. Comme suit :
 
 ```bash
 shell > cat /etc/cron.d/0hourly
