@@ -468,4 +468,4 @@ Restoring a few files or an entire backup involves copying the files you want fr
 
 Getting the setup right with `rsnapshot` is a little daunting at first, but can save you loads of time backing up your machines or servers.
 
-`rsnapshot` is powerful, fast, and economical on disk space usage. You can find more on `rsnapshot`, by visiting [rsnapshot.org](https://rsnapshot.org/download.html).
+`rsnapshot` is powerful, fast, and economical on disk space usage. You can find more on `rsnapshot`, by visiting [the rsnapshot github](https://github.com/rsnapshot/rsnapshot).
