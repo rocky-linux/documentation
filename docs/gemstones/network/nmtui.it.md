@@ -26,12 +26,11 @@ shell > nmtui
 | Esci                          |          |
 |                               | \<OK\> |
 
-È possibile utilizzare il tasto <kbd>Tab</kbd> o i tasti <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> per selezionare la specifica Se si desidera modificare le informazioni di rete, selezionare **Modifica una connessione** e quindi <kbd>Invio</kbd>. Selezionare una scheda di rete diversa e scegliere **Modifica...** per modificarla.
+È possibile utilizzare il tasto ++tab++ o i tasti ++arrow-up++ ++arrow-down++ ++arrow-left++ ++arrow-right++ per selezionare la specifica Se si desidera modificare le informazioni di rete, selezionare **Modifica una connessione** e quindi ++enter++. Selezionare una scheda di rete diversa e scegliere **Modifica...** per modificarla.
 
 ### DHCP IPv4
 
 Per IPv4, se si tratta di ottenere informazioni di rete con DHCP, è sufficiente selezionare *IPv4 CONFIGURATION* **&lt;Automatic&gt;**, ed eseguire nel terminale `systemctl restart NetworkManager.service`. Questo funziona nella maggior parte dei casi. In rari casi, è necessario disabilitare e abilitare la scheda di rete affinché la modifica abbia effetto. Ad esempio: `nmcli connection down ens33`, `nmcli connection up ens33`
-
 
 ### Correggere manualmente le informazioni di rete
 
