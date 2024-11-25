@@ -22,9 +22,9 @@ C'est aussi l'un des environnements de bureau les plus faciles à combiner avec 
     
     L'équipe de développement de Rocky Linux 9 a facilité l'installation de XFCE et d'autres environnements de bureau populaires, en incluant des images de live CD. Une image d'installation autonome, pour ceux qui ne savent peut-être pas ce que c'est, est une image amorçable qui chargera le système d'exploitation sans installation. Une fois chargé, vous pouvez l'installer sur le disque de votre ordinateur et l'utiliser.
     
-    ## 9.0: Télécharger, vérifier et enregistrer l'Image Live XFCE
+    ## 9: Obtenir, vérifier et écrire l'image live XFCE
     
-    Avant l'installation, la première étape consiste à télécharger l'image live et à l'enregistrer sur un DVD ou une clé USB. Comme indiqué précédemment, l'image sera amorçable, tout comme avec tout autre support d'installation pour Linux. Vous pouvez trouver l'image XFCE la plus récente dans la section téléchargement pour Rocky Linux 9 [images live](https://dl.rockylinux.org/pub/rocky/9.4/live/x86_64/). Notez que ce lien particulier suppose que x86_64 est l'architecture de votre processeur. 
+    Avant l'installation, la première étape consiste à télécharger l'image live et à l'écrire sur un DVD ou une clé USB. Comme indiqué précédemment, l'image sera amorçable, tout comme avec tout autre support d'installation pour Linux. Vous pouvez trouver l'image XFCE la plus récente dans la section téléchargement pour Rocky Linux 9 [images live](https://dl.rockylinux.org/pub/rocky/9.5/live/x86_64/). Notez que ce lien particulier suppose que x86_64 est l'architecture de votre processeur. 
     
     Au Moment de l'écriture de cet article, vous pouvez utiliser l'architecture x86_64 ou aarch64 pour cette image live. Téléchargez à la fois l'image live et les fichiers de vérification correspondants. 
     
