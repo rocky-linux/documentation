@@ -590,7 +590,7 @@ Remember, we declared in Packer a provisioner, which in our case corresponds to 
 
 There are different types of provisioners, we could also have used Ansible. You are free to explore these possibilities.
 
-This file can be completely changed, but this provides an example of what can be done with a script, in this case `requirements.sh`:
+This file can be completely changed, but this provides an example of what can be done with a script, in this case `requirements.sh`. Note below "URL of knowledge base article" replaces a broken URL, but does not change the meaning:
 
 ```bash
 #!/bin/sh -eux
@@ -602,7 +602,7 @@ echo "Installing cloud-init..."
 dnf -y install cloud-init
 
 # see https://bugs.launchpad.net/cloud-init/+bug/1712680
-# and https://kb.vmware.com/s/article/71264
+# and "URL to knowlege base article"
 # Virtual Machine customized with cloud-init is set to DHCP after reboot
 echo "manual_cache_clean: True " > /etc/cloud/cloud.cfg.d/99-manual.cfg
 
