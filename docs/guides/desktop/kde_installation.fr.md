@@ -25,7 +25,7 @@ Grâce à l'équipe de développement de Rocky Linux, il y a maintenant des imag
 
 ## Obtenir, vérifier et créer une image Live de KDE
 
-Avant l'installation, la première étape consiste à télécharger l'image live et à l'enregistrer sur un DVD ou une clé USB. Comme indiqué précédemment, l'image live sera amorçable, tout comme tout autre support d'installation pour Linux. Vous trouverez la dernière image KDE dans la section de téléchargement pour Rocky Linux 9 [images live](https://dl.rockylinux.org/pub/rocky/9.4/live/x86_64/).
+Avant l'installation, la première étape consiste à télécharger l'image live et à l'enregistrer sur un DVD ou une clé USB. Comme indiqué précédemment, l'image live sera amorçable, tout comme tout autre support d'installation pour Linux. Vous trouverez la dernière image KDE dans la section de téléchargement pour Rocky Linux 9 [images live](https://dl.rockylinux.org/pub/rocky/9.5/live/x86_64/).
 
 Notez que ce lien particulier suppose que x86_64 est l'architecture de votre processeur. Si vous avez une architecture aarch64, vous pouvez utiliser l'image correspondante à la place. Téléchargez à la fois l'image live et les fichiers de somme de contrôle.
 
@@ -103,4 +103,4 @@ Une fois cette étape terminée, le nom d'utilisateur que vous avez créé préc
 
 ## Conclusion
 
-Grâce à l'équipe de développement de Rocky Linux, il y a plusieurs environnements de bureau que vous pouvez installer à partir d'images en direct pour Rocky Linux 9.0. Pour ceux qui n'aiment pas trop le bureau GNOME par défaut, KDE est une autre option et peut facilement être installé avec l'image live.
+Grâce à l'équipe de développement de Rocky Linux, il y a plusieurs environnements de bureau que vous pouvez installer à partir d'images live pour Rocky Linux 9.x. Pour ceux qui n'aiment pas trop le bureau GNOME par défaut, KDE est une autre option et peut facilement être installé avec l'image live.
