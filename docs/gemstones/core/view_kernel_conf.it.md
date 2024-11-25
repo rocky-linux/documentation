@@ -14,13 +14,12 @@ tags:
 
 Il kernel Linux memorizza le informazioni sul kernel in esecuzione in due luoghi, tramite file system speciali:[(Una sintesi di questi](https://www.landoflinux.com/linux_procfs_sysfs.html))
 
-  - Il vecchio [procfs](https://man7.org/linux/man-pages/man5/procfs.5.html) che monta `/proc` (verificabile  tramite `mount -l -t proc`)
-  - Il [sysfs](https://man7.org/linux/man-pages/man5/sysfs.5.html) più recente che monta `/sys` (verificare tramite `mount -l -t sysfs`)
+- Il vecchio [procfs](https://man7.org/linux/man-pages/man5/procfs.5.html) che monta `/proc` (verificabile  tramite `mount -l -t proc`)
+- Il [sysfs](https://man7.org/linux/man-pages/man5/sysfs.5.html) più recente che monta `/sys` (verificare tramite `mount -l -t sysfs`)
 
 !!! warning "Attenzione"
 
     Siate cauti nell'esaminare i file qui menzionati, la loro modifica può cambiare il comportamento del kernel in esecuzione!
-
 
 Queste due interfacce consentono di visualizzare e modificare i parametri del kernel in esecuzione.
 
@@ -58,11 +57,11 @@ cat /boot/config-$(uname -r) | grep -i <keyword>
 
 I risultati mostreranno:
 
-  - "=m" se compilato come modulo del kernel
-  - "=y" se compilato staticamente nel kernel
-  - "is not set" se l'impostazione è stata commentata
-  - un valore numerico
-  - un valore stringa quotato
+- `=m` se compilato come modulo del kernel
+- `=y` se compilato staticamente nel kernel
+- `is not set` se l'impostazione è stata commentata
+- un valore numerico
+- un valore stringa quotato
 
 Alcune distribuzioni, come Gentoo e Arch, utilizzano il modulo `configs` del kernel per fornire `/proc/config.gz` come impostazione predefinita:
 
@@ -88,7 +87,6 @@ modprobe configs
     Questo documento non copre attualmente i pacchetti del kernel che potrebbero provenire da repository non predefiniti, come ad esempio:
     
     appstream-debug, appstream-source, baseos-debug, baseos-source, o devel
-
 
 I pacchetti `kernel-devel` installano il file di configurazione utilizzato per compilare ogni pacchetto standard del kernel installato come file ASCII nel seguente percorso:
 
@@ -153,6 +151,6 @@ ls -lh /sys/module/ | grep -i <keyword>
 
 ma è più facile leggere o analizzare l'output del campo "Used-by" in [`lsmod`](https://man7.org/linux/man-pages/man8/lsmod.8.html).
 
-## Riferimento:
+## Riferimento
 
 [depmod](https://man7.org/linux/man-pages/man8/depmod.8.html), [ls](https://man7.org/linux/man-pages/man1/ls.1.html), [lsmod](https://man7.org/linux/man-pages/man8/lsmod.8.html), [modinfo](https://man7.org/linux/man-pages/man8/modinfo.8.html), [modprobe](https://man7.org/linux/man-pages/man8/modprobe.8.html), [modules.dep](https://man7.org/linux/man-pages/man5/modules.dep.5.html), [namespaces](https://man7.org/linux/man-pages/man7/namespaces.7.html), [procfs](https://man7.org/linux/man-pages/man5/procfs.5.html), [sysctl](https://man7.org/linux/man-pages/man8/sysctl.8.html), [sysfs](https://man7.org/linux/man-pages/man5/sysfs.5.html), [uname](https://man7.org/linux/man-pages/man8/uname26.8.html)
