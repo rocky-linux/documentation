@@ -44,7 +44,7 @@ _PID_ 번호는 실행 당시의 프로세스를 나타냅니다. 프로세스�
 
 <!-- TODO !\[Parent/child relationship between processes\](images/FON-050-001.png) -->
 
-!!! !!!
+!!! note
 
     프로세스를 _threads_와 혼동해서는 안 됩니다. 각 프로세스에는 고유한 메모리 컨텍스트(자원 및 주소 공간)가 있으며 동일한 프로세스의 _threads_는 이 동일한 컨텍스트를 공유합니다.
 
