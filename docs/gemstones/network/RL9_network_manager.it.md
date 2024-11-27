@@ -15,7 +15,7 @@ Introduzione ufficiale - NetworkManager è una suite di strumenti standard per l
 
 La suite comprende principalmente due strumenti a riga di comando:
 
-* `nmtui`. Configurare la rete con un'interfaccia grafica.
+- `nmtui`. Configurare la rete con un'interfaccia grafica.
 
 ```bash
 shell > dnf -y install NetworkManager NetworkManager-tui
@@ -30,7 +30,7 @@ shell > nmtui
 | Esci                          |    |
 |                               | OK |
 
-* `nmcli`. Per configurare la rete, utilizzare la riga di comando pura o interattiva.
+- `nmcli`. Per configurare la rete, utilizzare la riga di comando pura o interattiva.
 
 ```bash
 Shell > nmcli connection show
@@ -45,15 +45,15 @@ Per RockyLinux 8.x, abbiamo introdotto come configurare la rete [in questo docum
 Per RockyLinux 9.x, se si va nella directory **/etc/sysconfig/network-scripts/**, ci sarà un testo di descrizione **readme-ifcfg-rh.txt** che richiede di andare nella directory **/etc/NetworkManager/system-connections/**.
 
 ```bash
-Shell > cd /etc/NetworkManager/system-connections/  && ls 
+Shell > cd /etc/NetworkManager/system-connections/  && ls
 ens160.nmconnection
 ```
 
 `Ens160` si riferisce al nome della scheda di rete del sistema. Vi chiederete perché il nome sembra così strano? Questo è dovuto al gestore di dispositivi `udev`. Supporta diversi schemi di denominazione. Per impostazione predefinita, i nomi fissi vengono assegnati in base al firmware, alla topologia e alle informazioni sulla posizione. I suoi vantaggi includono:
 
-* I nomi dei dispositivi sono completamente prevedibili.
-* I nomi dei dispositivi rimangono fissi anche se si aggiunge o si rimuove hardware, perché non avviene una nuova enumerazione.
-* L'hardware difettoso può essere sostituito senza problemi.
+- I nomi dei dispositivi sono completamente prevedibili.
+- I nomi dei dispositivi rimangono fissi anche se si aggiunge o si rimuove hardware, perché non avviene una nuova enumerazione.
+- L'hardware difettoso può essere sostituito senza problemi.
 
 In RHEL 9 e nei sistemi operativi corrispondenti alla versione della comunità, la denominazione coerente dei dispositivi è abilitata per impostazione predefinita. Il gestore di dispositivi `udev` genera i nomi dei dispositivi secondo il seguente schema:
 
@@ -67,19 +67,19 @@ In RHEL 9 e nei sistemi operativi corrispondenti alla versione della comunità, 
 
 `udev` device Manager nomina il prefisso della NIC in base al tipo di interfaccia:
 
-* **en** per Ethernet.
-* **wl** per LAN senza fili (WLAN).
-* **ww** per la rete wireless wide area (WWAN).
-* **ib**, rete InfiniBand.
-* **sl**, linea seriale Protocollo Internet (slip)
+- **en** per Ethernet.
+- **wl** per LAN senza fili (WLAN).
+- **ww** per la rete wireless wide area (WWAN).
+- **ib**, rete InfiniBand.
+- **sl**, linea seriale Protocollo Internet (slip)
 
 Aggiungere alcuni suffissi al prefisso, come ad esempio:
 
-* **o** on-board_index_number
-* **s** hot_plug_slot_index_number **[f]** function **[d]** device_id
-* **x** MAC_address
-* **[P]** domain number **p** bus **s** slot **[f]** function **[d]** device_id
-* **[P]** domain number **p** buss **s** slot **[f]** function **[u]** usb port **[c]** config **[i]** interface
+- **o** on-board_index_number
+- **s** hot_plug_slot_index_number **[f]** function **[d]** device_id
+- **x** MAC_address
+- **[P]** domain number **p** bus **s** slot **[f]** function **[d]** device_id
+- **[P]** domain number **p** buss **s** slot **[f]** function **[u]** usb port **[c]** config **[i]** interface
 
 È possibile utilizzare `man 7 systemd.net-naming-scheme` per ottenere informazioni più dettagliate.
 
@@ -133,7 +133,7 @@ Shell > nmcli connection modify CONNECTION_NAME autoconnect yes ipv6.method dhcp
 
 #### Aggregazione dei collegamenti
 
-Alcuni utilizzano più schede di rete per l'aggregazione dei collegamenti. All'inizio, utilizzando la tecnologia **bonding**, c'erano sette modalità di lavoro (0~6) e la modalità bond supportava solo due schede di rete al massimo; in seguito, la tecnologia **teaming** è stata gradualmente utilizzata come alternativa, ci sono cinque modalità di lavoro e la modalità team può utilizzare fino a otto schede di rete. Il link di confronto tra bonding e teaming [può essere trovato a questo link](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-comparison_of_network_teaming_to_bonding).
+Alcuni utilizzano più schede di rete per l'aggregazione dei collegamenti. Agli inizi, utilizzando la tecnologia <strong x-id=“1”>bonding</strong>, esistevano sette modalità di lavoro (0~6) e la modalità bond supportava al massimo due schede di rete. In seguito, la tecnologia <strong x-id=“1”>teaming</strong> è stata gradualmente utilizzata come alternativa; esistono cinque modalità di lavoro e la modalità team può utilizzare fino a otto schede di rete. Il link di confronto tra bonding e teaming [può essere trovato a questo link](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-comparison_of_network_teaming_to_bonding).
 
 Ad esempio, la modalità 0 di bonding:
 
@@ -177,9 +177,9 @@ method=disabled
 [proxy]
 ```
 
-* Le righe che iniziano con # e le righe vuote sono considerate commenti;
-* Racchiusa tra [ e ] c'è la sezione che intende dichiarare il titolo e sotto di essa ci sono le coppie chiave-valore specifiche contenute. Ogni titolo dichiarato e la sua coppia chiave-valore formano un segmento di sintassi;
-* Qualsiasi file con il suffisso .nmconnection può essere utilizzato da **NetworkManager**.
+- Le righe che iniziano con # e le righe vuote sono considerate commenti;
+- Racchiusa tra [ e ] c'è la sezione che intende dichiarare il titolo e sotto di essa ci sono le coppie chiave-valore specifiche contenute. Ogni titolo dichiarato e la sua coppia chiave-valore formano un segmento di sintassi;
+- Qualsiasi file con il suffisso .nmconnection può essere utilizzato da **NetworkManager**.
 
 I nomi dei titoli di **connessione** possono contenere queste coppie chiave-valore comuni:
 
