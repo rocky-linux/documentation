@@ -1034,6 +1034,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "metalllinux",
+      "name": "Howard",
+      "avatar_url": "https://avatars.githubusercontent.com/u/87049949?v=4",
+      "profile": "https://github.com/metalllinux",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
