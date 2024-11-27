@@ -31,8 +31,8 @@ When a program runs, the system will create a process by placing the program dat
 
 Each process has:
 
-* a *PID*: ***P**rocess **ID**entifier*, a unique process identifier
-* a *PPID*: ***P**arent **P**rocess **ID**entifier*, unique identifier of parent process
+* a *PID*: _**P**rocess **ID**entifier_, a unique process identifier
+* a *PPID*: _**P**arent **P**rocess **ID**entifier_, unique identifier of parent process
 
 By successive filiations, the `init` process is the father of all processes.
 
