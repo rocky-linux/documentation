@@ -35,14 +35,14 @@ Cette procédure vous permettra d'utiliser MATE sur Rocky Linux.
     suivante (notez qu'il s'agit d'un exemple ! Assurez-vous que le nom de votre image et les fichiers CHECKSUM correspondent) :
 
     ```
-    sha256sum -c CHECKSUM --ignore-missing Rocky-9.4-MATE-x86_64-20221124.0.iso.CHECKSUM
+    sha256sum -c CHECKSUM --ignore-missing Rocky-9.5-MATE-x86_64-20221124.0.iso.CHECKSUM
     ```
 
 
     Si tout se passe bien, vous devriez obtenir ce message :
 
     ```
-    Rocky-9.4-MATE-x86_64-20221124.0.iso: OK
+    Rocky-9.5-MATE-x86_64-20221124.0.iso: OK
     ```
 
 

@@ -31,7 +31,7 @@ title: 进程管理
 
 每个进程都有：
 
-* *PID*：***P**rocess **ID**entifier*,，唯一的进程标识符
+* *PID*：***P**rocess **ID**entifier*，唯一的进程标识符
 * *PPID*：***P**arent **P**rocess **ID**entifier*，父进程的唯一标识符
 
 通过连续的隶属关系，`init` 进程是所有进程之父。
