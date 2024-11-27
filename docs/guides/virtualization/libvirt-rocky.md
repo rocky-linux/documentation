@@ -134,4 +134,4 @@ virsh undefine --domain <YOUR_VM_NAME> --nvram
 
 ## Conclusion
 
-* libvirt provides many possiblities and allows you to install and manages your virtual machines with ease. If you have further additions or alterations to this document you would like to share, the author kindly invites you to do so.
+* libvirt provides many possibilities and allows you to install and manage your virtual machines with ease. If you have further additions or alterations to this document you would like to share, the author kindly invites you to do so.
