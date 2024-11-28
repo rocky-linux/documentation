@@ -33,7 +33,7 @@ L'hardening dei server Web può assumere molte forme, tra cui uno o tutti gli st
 
 Potreste utilizzare un paio di questi strumenti e non gli altri. Per chiarezza e leggibilità, questo documento è suddiviso in documenti separati per ogni strumento. L'eccezione sarà il firewall basato sui pacchetti`(firewalld`) di cui al presente documento principale.
 
-* Un buon firewall con filtro dei pacchetti basato sulle porte (iptables, firewalld, o firewall hardware - utilizzaremo `firewalld` per i nostri esempi) [procedura`firewalld`](#iptablesstart)
+* Un buon firewall con filtro dei pacchetti basato sulle porte (iptables, firewalld o hardware firewall - useremo `firewalld` per i nostri esempi) <a href=“#configurazione-firewalld”>procedura `firewalld`</a>
 * Un sistema di rilevamento delle intrusioni basato su host (HIDS), in questo caso _ossec-hids_ [Apache Hardened Web Server - ossec-hids](ossec-hids.md)
 * Un firewall per applicazioni basate sul Web (WAF), con regole `mod_security` [Apache Hardened Web Server - mod_security](modsecurity.md)
 * Rootkit Hunter`(rkhunter`): Uno strumento di scansione che controlla il malware Linux [Apache Hardened Web Server - rkhunter](rkhunter.md)
@@ -72,9 +72,9 @@ Il diagramma mostra la nostra disposizione generale. Il `firewalld`, basato sui 
 
 In ogni sezione del pacchetto sono elencati i file di installazione necessari e le procedure di configurazione.
 
-## <a name="iptablesstart"></a>Configurazione di `firewalld`
+## Configurazione di `firewalld`
 
-```
+```bash
 firewall-cmd --zone=trusted --add-source=192.168.1.2 --permanent
 firewall-cmd --zone=trusted --add-service=ssh --permanent
 firewall-cmd --zone=public --remove-service=ssh --permanent
@@ -85,6 +85,7 @@ firewall-cmd --zone=public --add-port=20/tcp --permanent
 firewall-cmd --zone=public --add-port=7000-7500/tcp --permanent
 firewall-cmd --reload
 ```
+
 Ecco cosa sta succedendo:
 
 * impostare la nostra zona fidata sull'indirizzo IP del firewall hardware
