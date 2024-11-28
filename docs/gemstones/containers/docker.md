@@ -16,7 +16,7 @@ The Docker Engine can run native Docker-style container workloads on Rocky Linux
 Use the `dnf` utility to add the Docker repository to your Rocky Linux server. Type:
 
 ```bash
-sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
 ```
 
 ## Install the needed packages
@@ -24,7 +24,7 @@ sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker
 Install the latest version of Docker Engine, `containerd`, and Docker Compose, by running:
 
 ```bash
-sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 ```
 
 ## Start and enable Docker (`dockerd`)
@@ -32,7 +32,7 @@ sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 Use `systemctl` to configure Docker to automatically startup upon reboot and simultaneously start it now. Type:
 
 ```bash
-sudo systemctl --now enable docker
+systemctl --now enable docker
 ```
 
 ## Optionally allow a non-root user to manage docker
@@ -45,10 +45,10 @@ Type:
 
 ```bash
 # Add the current user
-sudo usermod -a -G docker $(whoami)
+usermod -a -G docker $(whoami)
 
 # Add a specific user
-sudo usermod -a -G docker custom-user
+usermod -a -G docker custom-user
 ```
 
 To be assigned the new group, you must log out and in again. Check with the `id` command to verify that the group has been added.
