@@ -160,10 +160,10 @@ Per installare PHP, aggiungere prima il repository Remi (nota: se si utilizza Ro
 dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
 ```
 
-Successivamente, occorre installare PHP (nota: se si utilizza un'altra versione di PHP, sostituire la versione desiderata al posto di php81):
+Successivamente, occorre installare PHP (nota: se si utilizza un'altra versione di PHP, sostituire la versione desiderata con php83):
 
 ```bash
-dnf install -y php81-php-fpm
+dnf install -y php83-php-fpm
 ```
 
 Se sono necessari altri moduli PHP (ad esempio, GD), aggiungerli al comando precedente.
@@ -171,13 +171,13 @@ Se sono necessari altri moduli PHP (ad esempio, GD), aggiungerli al comando prec
 Quindi, occorre configurare PHP per l'ascolto su un socket TCP:
 
 ```bash
-vim /etc/opt/remi/php81/php-fpm.d/www.conf
+vim /etc/opt/remi/php83/php-fpm.d/www.conf
 ```
 
 Quindi, trovare la riga:
 
 ```bash
-listen = /var/opt/remi/php81/run/php-fpm/www.sock
+listen = /var/opt/remi/php83/run/php-fpm/www.sock
 ```
 
 Sostituirla con questa:
@@ -186,7 +186,7 @@ Sostituirla con questa:
 listen = 127.0.0.1:9000
 ```
 
-Quindi salvare e uscire dal file www.conf e aprire il file Caddy:
+Quindi salvare e uscire dal file www\.conf e aprire il file Caddy:
 
 ```bash
 vim /etc/caddy/Caddyfile

@@ -9,7 +9,7 @@ tags:
   - rkhunter
 ---
 
-# Rootkit hunter
+# Rootkit Hunter
 
 ## Introduzione
 

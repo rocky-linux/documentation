@@ -1,21 +1,19 @@
 ---
-title: Lavorare con i Modelli Jinja
+title: Lavorare con i modelli Jinja in Ansible
 author: Srinivas Nishant Viswanadha
 contributors: Steven Spencer, Antoine Le Morvan, Ganna Zhyrnova
 ---
 
-# Capitolo: Lavorare con i modelli Jinja in Ansible
-
 ## Introduzione
 
-Ansible fornisce un modo potente e semplice per gestire le configurazioni utilizzando i modelli Jinja attraverso il modulo integrato `template`. Questo capitolo esplora due modi essenziali per utilizzare i modelli Jinja in Ansible:
+Ansible fornisce un modo potente e semplice per gestire le configurazioni utilizzando i modelli Jinja attraverso il modulo integrato `template`. Questo documento esplora due modi essenziali per utilizzare i modelli Jinja in Ansible:
 
 - aggiungere variabili a un file di configurazione
 - costruire file complessi con loop e strutture di dati intricate.
 
 ## Aggiunta di variabili a un file di configurazione
 
-### Passo 1: creare un modello Jinja
+### Step 1: Creare un template Jinja
 
 Creare un file modello Jinja, ad esempio `sshd_config.j2`, con segnaposti per le variabili:
 
@@ -27,7 +25,7 @@ PermitRootLogin {{ permit_root_login }}
 # Add more variables as needed
 ```
 
-### Passo 2: utilizzare il modulo template di Ansible
+### Step 2: Utilizzare il modulo template di Ansible
 
 Nel playbook di Ansible, utilizzare il modulo `template` per rendere il template Jinja con valori specifici:
 
@@ -46,7 +44,7 @@ Nel playbook di Ansible, utilizzare il modulo `template` per rendere il template
       # Add more variables as needed
 ```
 
-### Passo 3: applicare le modifiche alla configurazione
+### Step 3: Applicare la modifica della configurazione
 
 Eseguire il playbook Ansible per applicare le modifiche agli host di destinazione:
 
@@ -58,9 +56,9 @@ Questa fase garantisce che le modifiche alla configurazione siano applicate in m
 
 ## Costruire un file completo con loop e strutture dati complesse
 
-### Passo 1: migliorare un modello Jinja
+### Step 1: Migliorare il template Jinja
 
-Estendere il modello Jinja per gestire loop e strutture di dati complesse. Ecco un esempio di configurazione di un'ipotetica applicazione con più componenti:
+Estendere il modello Jinja per gestire loop e strutture di dati complesse. Ecco un esempio di configurazione di un'ipotetica applicazione con diversi componenti:
 
 ```jinja
 # /path/to/app_config.j2
@@ -73,7 +71,7 @@ Estendere il modello Jinja per gestire loop e strutture di dati complesse. Ecco 
 {% endfor %}
 ```
 
-### Passaggio 2: integrare il modulo template Ansible
+### Step 2: Integrazione del modulo template di Ansible
 
 Nel playbook di Ansible, integrare il modulo `template` per generare un file di configurazione completo:
 
@@ -105,7 +103,7 @@ ansible-playbook your_playbook.yml
 
 Questa fase garantisce che le modifiche alla configurazione siano applicate in modo coerente a tutta l'infrastruttura.
 
-Il modulo `template` di Ansible può utilizzare i template Jinja per generare dinamicamente file di configurazione durante l'esecuzione del playbook. Questo modulo consente di separare la logica di configurazione e dati, rendendo i playbook Ansible più flessibili e facili da gestire.
+Il modulo `template` di Ansible consente di utilizzare i modelli Jinja per generare dinamicamente i file di configurazione durante l'esecuzione del playbook. Questo modulo consente di separare la logica di configurazione dai dati, rendendo i playbook di Ansible più flessibili e mantenibili.
 
 ### Caratteristiche principali
 
@@ -123,7 +121,7 @@ Il modulo `template` di Ansible può utilizzare i template Jinja per generare di
    - Le variabili possono essere passate direttamente nel playbook o caricate da file esterni, consentendo la generazione di configurazioni flessibili e dinamiche.
 
 5. **Esecuzione idempotente:**
-   - Il modulo template supporta l'esecuzione idempotente, garantendo che il template venga applicato solo se vengono rilevate modifiche.
+   - Il modulo dei template supporta l'esecuzione idempotente, assicurando che il template venga applicato solo se vengono rilevate delle modifiche.
 
 ### Esempio di un playbook
 
