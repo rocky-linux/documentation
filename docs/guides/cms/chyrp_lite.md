@@ -1,13 +1,12 @@
 ---
 title: Chyrp Lite
 author: Neel Chauhan
-contributors:
+contributors: Steven Spencer
 tested_with: 9.5
 tags:
   - cms
+  - blogging
 ---
-
-# Chyrp Lite
 
 ## Introduction
 
@@ -40,7 +39,7 @@ Subsequently, open the `Caddyfile`:
 vi /etc/caddy/Caddyfile
 ```
 
-Add the following to your Caddyfile:
+Add the following to your `Caddyfile`:
 
 ```bash
 your.domain.name {
@@ -66,7 +65,11 @@ systemctl enable --now caddy
 
 ## Installing PHP
 
-To install PHP, we will need the Remi repository. To install the Remi repository run (note: if you are using Rocky Linux 8.x, substitute in 8 next to `release-` below):
+!!! note
+
+    If you are running Rocky Linux 8.x, substitute 8 next to the release in the remi package install line. 
+
+To install PHP, you will need the Remi repository. To install the Remi repository run:
 
 ```bash
 dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
@@ -84,13 +87,13 @@ Next, open the PHP configuration file:
 vi /etc/opt/remi/php83/php-fpm.d/www.conf
 ```
 
-Navigate down to the `listen =` line and set it to the following:
+Go down to the `listen =` line and set it to the following:
 
 ```bash
 listen = 127.0.0.1:9000
 ```
 
-Now exit `vi` with `:wq!` and enable PHP:
+Exit `vi` with `:wq!` and enable PHP:
 
 ```bash
 systemctl enable --now php83-php-fpm.service
@@ -105,7 +108,7 @@ cd /var/www
 wget https://github.com/xenocrat/chyrp-lite/archive/refs/tags/v2024.03.zip
 ```
 
-Next, unzip and move the extracted folder:
+Next, decompress and move the extracted folder:
 
 ```bash
 unzip v2024.03.zip
@@ -134,18 +137,18 @@ restorecon -Rv /var/www/chyrp-lite
 restorecon -Rv /var/www/chyrp-lite-data
 ```
 
-Now on a client machine, open up a web browser to `https://your.domain.name/install.php` and run the installer (replace `your.domain.name` with your actual domain name or hostname):
+On a client machine, open up a web browser to `https://your.domain.name/install.php` and run the installation program (replace `your.domain.name` with your actual domain name or hostname):
 
 ![Chyrp Lite Setup](../images/chyrp_lite_setup.png)
 
-In the **Database** section, select a pathname in the `chyrp-lite-data` directory made above, such as `/var/www/chyrp-lite-data/sqlite.db`.
+In the **Database** section, select a pathname in the `chyrp-lite-data` directory made earlier, such as `/var/www/chyrp-lite-data/sqlite.db`.
 
-Then fill in the other fields, which should be self-explanatory.
+Then complete the other fields, which should be self-explanatory.
 
-Next click **Install me** and then **Take me to my site**. Your Chyrp site should be installed and visitable:
+Next click **Install me** and then **Take me to my site**. You should now be able to visit a completed installation of your Chyrp site:
 
 ![Chyrp Lite](../images/chyrp_lite.png)
 
 ## Conclusion
 
-Considering that WordPress has evolved into a swiss army knife of web development, it's not surprising some webmasters (the author included) would prefer a lightweight blogging engine. Chyrp Lite is perfect in for those users.
+Considering that WordPress has evolved into a Swiss army knife of web development, it is not surprising some webmasters (the author included) would prefer a lightweight blogging engine. Chyrp Lite is perfect in for those users.
