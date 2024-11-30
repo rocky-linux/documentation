@@ -41,7 +41,11 @@ Durch aufeinanderfolgende Vererbung ist der `init`-Prozess der Vater aller Proze
 
 Es gibt eine Parent-/Child-Beziehung zwischen Prozessen. Ein Kindprozess ist das Ergebnis des Elternprozesses, der die Primitive *fork()* aufruft und seinen eigenen Code dupliziert, um ein Kind zu erstellen. Die *PID* des Kindes wird an den Elternprozess zurückgegeben, damit es mit ihm kommunizieren kann. Jedes Kind hat eine Eltern-Identifikation, die *PPID*.
 
-Die *PID*-Nummer repräsentiert den Prozess zum Zeitpunkt der Ausführung. Wenn der Prozess beendet ist, steht die Nummer für einen anderen Prozess wieder zur Verfügung. Wenn Sie den gleichen Befehl mehrmals ausführen, wird jedes Mal eine andere *PID*-Nummer erzeugt.<!-- TODO !\[Parent/child relationship between processes\](images/FON-050-001.png) -->!!! note "Anmerkung"
+Die *PID*-Nummer repräsentiert den Prozess zum Zeitpunkt der Ausführung. Wenn der Prozess beendet ist, steht die Nummer für einen anderen Prozess wieder zur Verfügung. Wenn Sie den gleichen Befehl mehrmals ausführen, wird jedes Mal eine andere *PID*-Nummer erzeugt.
+
+<!-- TODO !\[Parent/child relationship between processes\](images/FON-050-001.png) -->
+
+!!! note "Anmerkung"
 
     Prozesse dürfen nicht mit _threads_ verwechselt werden. Jeder Prozess hat seinen eigenen Speicher-Kontext (Ressourcen und Adressraum), während _threads_ aus demselben Prozess diesen Kontext gemeinsam teilen.
 
