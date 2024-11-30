@@ -1,7 +1,7 @@
 ---
 title: Prefazione
 author: Antoine Le Morvan
-contributors: Steven Spencer, Ganna Zhyrnova
+contributors: Steven Spencer, Franco Colussi, Ganna Zhyrnova
 tags:
   - web
   - services
