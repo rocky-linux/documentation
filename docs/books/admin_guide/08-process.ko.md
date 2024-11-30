@@ -10,12 +10,12 @@ title: 프로세스 관리
 
 **목표**: 이 문서에서는 미래의 Linux 관리자가 다음을 수행하는 방법을 배웁니다.
 
-:heavy_check_mark: 프로세스의 `PID` 및 `PPID` 인식   
+:heavy_check_mark: 프로세스의 `PID` 및 `PPID` 인식
 :heavy_check_mark: 프로세스 보기 및 검색 :heavy_check_mark: 프로세스 관리
 
 :checkered_flag: **프로세스**, **linux**
 
-**지식**: :star: :star:   
+**지식**: :star: :star:
 **복잡성**: :star:
 
 **소요 시간**: 20분
@@ -44,18 +44,20 @@ _PID_ 번호는 실행 당시의 프로세스를 나타냅니다. 프로세스�
 
 <!-- TODO !\[Parent/child relationship between processes\](images/FON-050-001.png) -->
 
-!!! !!!
+!!! Note
 
     프로세스를 _threads_와 혼동해서는 안 됩니다. 각 프로세스에는 고유한 메모리 컨텍스트(자원 및 주소 공간)가 있으며 동일한 프로세스의 _threads_는 이 동일한 컨텍스트를 공유합니다.
 
 ## 프로세스 보기
 
 `ps` 명령은 실행 중인 프로세스의 상태를 표시합니다.
+
 ```
 ps [-e] [-f] [-u login]
 ```
 
 예시:
+
 ```
 # ps -fu root
 ```
