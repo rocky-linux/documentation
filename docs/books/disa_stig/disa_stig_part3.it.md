@@ -12,14 +12,14 @@ tags:
 
 # Introduzione
 
-Nella prima parte di questa serie abbiamo spiegato come costruire il nostro server web con la STIG RHEL8 DISA di base applicata e nella seconda parte abbiamo imparato a testare la conformità STIG con lo strumento OpenSCAP. Ora faremo qualcosa con il sistema, costruendo una semplice applicazione web e applicando la STIG del server web DISA: <https://www.stigviewer.com/stig/web_server/>
+Nella prima parte di questa serie, abbiamo spiegato come costruire il nostro server web con la STIG RHEL8 DISA di base applicata e, nella seconda parte, abbiamo imparato a testare la conformità STIG con lo strumento OpenSCAP. Ora faremo qualcosa con il sistema, costruendo una semplice applicazione web e applicando la STIG del server web DISA: <a href=“https://www.stigviewer.com/stig/web_server/” x-nc=“1”>https://www.stigviewer.com/stig/web_server/</a>
 
-Per prima cosa confrontiamo ciò che stiamo affrontando: la STIG DISA di RHEL 8 è indirizzata a una piattaforma molto specifica, quindi i controlli sono abbastanza facili da capire in quel contesto, da testare e da applicare.  Le STIG delle applicazioni devono essere portabili su più piattaforme, quindi il contenuto è generico per funzionare su diverse distribuzioni Linux (RHEL, Ubuntu, SuSE, ecc.) **. Ciò significa che strumenti come OpenSCAP non ci aiuteranno a verificare/rimediare la configurazione, dovremo farlo manualmente. Questi STIG sono:
+Per prima cosa confrontiamo ciò che stiamo affrontando: la STIG DISA di RHEL 8 è indirizzata a una piattaforma molto specifica, quindi i controlli sono abbastanza facili da capire in quel contesto, da testare e da applicare.  Le STIG delle applicazioni devono essere portabili su più piattaforme, quindi il contenuto qui presente è generico per funzionare su diverse distribuzioni Linux (RHEL, Ubuntu, SuSE, ecc.)**. Strumenti come OpenSCAP non ci aiutano a verificare/recuperare la configurazione. Andremo a farlo manualmente. Questi STIG sono:
 
 * Apache 2.4 V2R5 - Server; che si applica al server web stesso
 * Apache 2.4 V2R5 - Sito; Che si applica all'applicazione web/sito web
 
-Per la nostra guida, creeremo un semplice server web che non fa altro che servire contenuti statici. Possiamo usare le modifiche apportate qui per creare un'immagine di base e poi usare questa immagine di base quando costruiamo server web più complessi in seguito.
+Per la nostra guida, creeremo un semplice server web che non fa altro che servire contenuti statici. Possiamo usare le modifiche apportate qui per creare un'immagine di base, che potremo poi usare quando costruiremo server web più complessi.
 
 ## Avvio rapido del server Apache 2.4 V2R5
 
@@ -38,16 +38,16 @@ sed -i 's/^\([^#].*\)**/# \1/g' /etc/httpd/conf.d/welcome.conf
 dnf -y remove httpd-manual
 dnf -y install mod_session
 
-echo “MaxKeepAliveRequests 100” > /etc/httpd/conf.d/disa-apache-stig.conf
-echo “SessionCookieName session path=/; HttpOnly; Secure;” >>  /etc/httpd/conf.d/disa-apache-stig.conf
-echo “Session On” >>  /etc/httpd/conf.d/disa-apache-stig.conf
-echo “SessionMaxAge 600” >>  /etc/httpd/conf.d/disa-apache-stig.conf
-echo “SessionCryptoCipher aes256” >>  /etc/httpd/conf.d/disa-apache-stig.conf
-echo “Timeout 10” >>  /etc/httpd/conf.d/disa-apache-stig.conf
-echo “TraceEnable Off” >>  /etc/httpd/conf.d/disa-apache-stig.conf
-echo “RequestReadTimeout 120” >> /etc/httpd/conf.d/disa-apache-stig.conf
+echo "MaxKeepAliveRequests 100" > /etc/httpd/conf.d/disa-apache-stig.conf
+echo "SessionCookieName session path=/; HttpOnly; Secure;" >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "Session On" >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "SessionMaxAge 600" >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "SessionCryptoCipher aes256" >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "Timeout 10" >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "TraceEnable Off" >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "RequestReadTimeout 120" >> /etc/httpd/conf.d/disa-apache-stig.conf
 
-sed -i “s/^#LoadModule usertrack_module/LoadModule usertrack_module/g” /etc/httpd/conf.modules.d/00-optional.conf
+sed -i "s/^#LoadModule usertrack_module/LoadModule usertrack_module/g" /etc/httpd/conf.modules.d/00-optional.conf
 sed -i "s/proxy_module/#proxy_module/g" /etc/httpd/conf.modules.d/00-proxy.conf
 sed -i "s/proxy_ajp_module/#proxy_ajp_module/g" /etc/httpd/conf.modules.d/00-proxy.conf
 sed -i "s/proxy_balancer_module/#proxy_balancer_module/g" /etc/httpd/conf.modules.d/00-proxy.conf
@@ -68,7 +68,7 @@ systemctl start httpd
 
 ## Panoramica dei Controlli Dettagliati
 
-Se siete arrivati fin qui, probabilmente siete interessati a saperne di più su ciò che la STIG vuole che facciamo. È utile capire l'importanza del controllo e quindi come si applica all'applicazione. A volte il controllo è tecnico (cambiare l'impostazione X in Y) e altre volte è operativo (come lo si usa).  In generale, un controllo tecnico è qualcosa che si può modificare con il codice, mentre un controllo operativo probabilmente no.
+Se siete arrivati fin qui, probabilmente siete interessati a saperne di più su ciò che la STIG vuole che facciamo. Aiuta a capire l'importanza del controllo e come si applica all'applicazione. A volte il controllo è tecnico (cambiare l'impostazione X in Y); altre volte è operativo (come lo si usa).  In generale, un controllo tecnico è qualcosa che si può modificare con il codice, mentre un controllo operativo probabilmente no.
 
 ### Livelli
 
@@ -81,7 +81,7 @@ Se siete arrivati fin qui, probabilmente siete interessati a saperne di più su 
 * Tecnico - 24 controlli
 * Operativo - 23 controlli
 
-In questo articolo non tratteremo il "perché" di queste modifiche, ma solo ciò che deve accadere se si tratta di un controllo tecnico.  Se non c'è nulla da modificare, come nel caso di un controllo Operational, il campo **Fix:** sarà vuoto. La buona notizia è che in molti di questi casi si tratta già dell'impostazione predefinita di Rocky Linux 8, quindi non è necessario cambiare nulla.
+In questo articolo non tratteremo il “perché” di queste modifiche; discuteremo di ciò che deve accadere se si tratta di un controllo tecnico.  Se non c'è nulla da modificare, come nel caso di un controllo Operational, il campo <strong x-id=“1”>Fix:</strong> sarà vuoto. La buona notizia in molti di questi casi è che questa è già l'impostazione predefinita in Rocky Linux 8, quindi non è necessario cambiare nulla.
 
 ## Apache 2.4 V2R5 - Dettagli del Server
 
@@ -165,7 +165,7 @@ dnf remove httpd-manual
 
 ```bash
 dnf install mod_session
-echo “SessionCookieName session path=/; HttpOnly; Secure;” >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "SessionCookieName session path=/; HttpOnly; Secure;" >>  /etc/httpd/conf.d/disa-apache-stig.conf
 ```
 
 **(V-214269)** Il server web Apache deve rimuovere tutti i cifrari di esportazione per proteggere la riservatezza e l'integrità delle informazioni trasmesse.
@@ -217,7 +217,7 @@ echo “SessionCookieName session path=/; HttpOnly; Secure;” >>  /etc/httpd/co
 **Fix:**
 
 ```bash
-echo “MaxKeepAliveRequests 100” > /etc/httpd/conf.d/disa-apache-stig.conf
+echo "MaxKeepAliveRequests 100" > /etc/httpd/conf.d/disa-apache-stig.conf
 ```
 
 **(V-214229)** Il server web Apache deve eseguire la gestione della sessione lato server.
@@ -227,7 +227,7 @@ echo “MaxKeepAliveRequests 100” > /etc/httpd/conf.d/disa-apache-stig.conf
 **Fix:**
 
 ```bash
-sed -i “s/^#LoadModule usertrack_module/LoadModule usertrack_module/g” /etc/httpd/conf.modules.d/00-optional.conf
+sed -i "s/^#LoadModule usertrack_module/LoadModule usertrack_module/g" /etc/httpd/conf.modules.d/00-optional.conf
 ```
 
 **(V-214266)** Il server web Apache deve vietare o limitare l'uso di porte, protocolli, moduli e/o servizi non sicuri o non necessari.
@@ -320,7 +320,7 @@ Fare riferimento a <https://httpd.apache.org/docs/2.4/mod/mod_remoteip.html> per
 **Fix:**
 
 ```bash
-echo “Session On” >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "Session On" >>  /etc/httpd/conf.d/disa-apache-stig.conf
 ```
 
 **(V-214250)** Il server web Apache deve invalidare gli identificatori di sessione al momento del logout dell'utente dell'applicazione ospitata o al termine di un'altra sessione.
@@ -330,7 +330,7 @@ echo “Session On” >>  /etc/httpd/conf.d/disa-apache-stig.conf
 **Fix:**
 
 ```bash
-echo “SessionMaxAge 600” >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "SessionMaxAge 600" >>  /etc/httpd/conf.d/disa-apache-stig.conf
 ```
 
 **(V-214252)** Il server Web Apache deve generare un ID di sessione sufficientemente lungo da non poter essere indovinato con la forza bruta.
@@ -340,7 +340,7 @@ echo “SessionMaxAge 600” >>  /etc/httpd/conf.d/disa-apache-stig.conf
 **Fix:**
 
 ```bash
-echo “SessionCryptoCipher aes256” >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "SessionCryptoCipher aes256" >>  /etc/httpd/conf.d/disa-apache-stig.conf
 ```
 
 **(V-214255)** Il server web Apache deve essere regolato per gestire i requisiti operativi dell'applicazione ospitata.
@@ -350,7 +350,7 @@ echo “SessionCryptoCipher aes256” >>  /etc/httpd/conf.d/disa-apache-stig.con
 **Fix:**
 
 ```bash
-echo “Timeout 10” >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "Timeout 10" >>  /etc/httpd/conf.d/disa-apache-stig.conf
 ```
 
 **(V-214254)** Il server web Apache deve essere costruito in modo da fallire in uno stato sicuro noto se l'inizializzazione del sistema fallisce, lo spegnimento fallisce o le interruzioni falliscono.
@@ -366,7 +366,7 @@ echo “Timeout 10” >>  /etc/httpd/conf.d/disa-apache-stig.conf
 **Fix:**
 
 ```bash
-echo “TraceEnable Off” >>  /etc/httpd/conf.d/disa-apache-stig.conf
+echo "TraceEnable Off" >>  /etc/httpd/conf.d/disa-apache-stig.conf
 ```
 
 **(V-214230)** Il server Web Apache deve utilizzare la crittografia per proteggere l'integrità delle sessioni remote.
