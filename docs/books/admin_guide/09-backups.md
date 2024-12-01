@@ -222,6 +222,10 @@ Common auxiliary options:
 
 Other auxiliary options are explained in the following examples.
 
+!!! warning "Version difference"
+
+    In some older versions of tar, options are referred to as "key(s)", which means that using options with a "-" prefix may cause the `tar` to not work as expected. At this point, you need to remove the "-" prefix to make it work properly.
+
 The `tar` in different distributions may have different default options, so be careful when using them!
 
 ```bash
