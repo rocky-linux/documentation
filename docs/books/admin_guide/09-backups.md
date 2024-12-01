@@ -144,7 +144,7 @@ The use of a naming convention allows one to quickly target the contents of a ba
 
 !!! Note
 
-    In the Linux world, except for a few exceptions in GUI environments (such as .jpg, .mp4, .gif), most files do not have the concept of extension. In other words, most file extensions are not required. The reason for artificially adding suffixes is to facilitate recognition by human users. If the systems administrator sees a `.tar.gz` or `.tgz` file extension, for instance, then he knows how to deal with the file.
+    In the Linux world, except for a few exceptions in GUI environments (such as .jpg, .mp4, .gif), most files do not have the concept of extension. In other words, most files do not require an extension. The reason for artificially adding suffixes is to facilitate recognition by human users. If the systems administrator sees a `.tar.gz` or `.tgz` file extension, for instance, then he knows how to deal with the file.
 
 ### Properties of the backup file
 
@@ -166,9 +166,95 @@ There are two different storage methods:
 
 The `tar` command allows saving on several successive media (multi-volume options).
 
-It is possible to extract all or part of a backup.
+You can extract some or all of the files from the archive file.
 
-`tar` implicitly backs up in relative mode even if the path of the information to be backed up is mentioned in absolute mode. However, backups and restores in absolute mode are possible.
+When using `tar`, please note that it has two saving modes:
+
+* **Relative mode** (default): Remove the leading character '/' from the file to be archived. Even if you have added the file to be archived with an absolute path, the leading character "/" will still be removed in this mode.
+* **absolute mode**: Keep the leading character '/' and include it as part of the file name.
+
+When you use `tar`, you will encounter suffixes such as `.tar.gz`, `.tar.xz`, `.tar.bz2`, which indicate creating an archive first (categorizing related files as a single file), and then compressing the file using the relevant compression type or compression algorithm.
+
+The compression type or compression algorithm can be `gzip`, `bzip2`, `xz`, `zstd` etc.
+
+`tar` allows you to extract a single file or a directory from a backup, view its contents, or validate its integrity.
+
+The usage of creating an archive and using compression is:
+
+* `tar [option] [PATH] [DIR1] ... [FILE1] ...`. For example `tar -zvcf /tmp/Fullbackup-20241201.tar.gz /etc/ /var/log/`
+
+The usage to extract a file from an archive is:
+
+* `tar [option] [PATH] -C [dir]`. For example `tar -zvxf /tmp/Fullbackup-20241201.tar.gz -C /tmp/D1`
+
+!!! tip "antic"
+
+    When you extract files from archived files `tar` will automatically select the compression type based on the manually added suffix. For example, for `.tar.gz` files, you can directly use `tar -vxf` without using the `tar -zvxf`.
+    This has the same effect on creating archives. For example, if the target archive file extension is `.tar.gz`, `tar` will automatically choose `gzip` as its compression type without adding the `-z` option.
+
+Operating parameters or types:
+
+| types | describe |
+| :---: | :---: |
+| `-A`  | Merge the current archive with an existing archive |
+| `-c`  | Create archive. Very commonly used  |
+| `-d`  | Compare the differences between archived and corresponding unarchived files |
+| `-r`  | Append the file to the end of the archive |
+| `-t`  | Lists the contents of the archive |
+| `-u`  | Only newer files are appended to the archive |
+| `-x`  | Extract from archive. Very commonly used |
+
+!!! Tip
+
+    In terms of operation types, in order to preserve user habits, we recommend that you keep the prefix "-". Of course, it's not required. The operational parameters here indicate what your primary function is with `tar`. In other words, you need to choose one of the above types.
+
+Common auxiliary options:
+
+| option | describe |
+| :---: | :---: |
+| `-z`  | Use `gzip` as its compression type. Both creating archives and extracting from archives are applicable |
+| `-v`  | Display detailed processing details |
+| `-f`  | Specify the file name for archiving (including file suffix) |
+| `-j`  | Use `bzip2` as its compression type. Both creating archives and extracting from archives are applicable |
+| `-J`  | Use `xz` as its compression type. Both creating archives and extracting from archives are applicable |
+| `-C`  | Save location after extracting files from the archive |
+| `-P`  | Save using absolute mode |
+
+Other auxiliary options are explained in the following examples.
+
+The `tar` in different distributions may have different default options, so be careful when using them!
+
+```bash
+# RockyLinux 8 and Fedora 41
+--format=gnu -f- -b20 --quoting-style=escape --rmt-command=/etc/rmt
+--rsh-command=/usr/bin/ssh
+```
+
+### Compression efficiency and frequency of use
+
+`tar` itself does not have compression capabilities, so it needs to be used in conjunction with other compression tools. Please note that! Compression, and consequently decompression, will impact resource consumption (time and CPU usage).
+
+Here is a ranking of the compression of a set of text files from least to most efficient:
+
+* compress (`.tar.Z`) - Less usage
+* gzip (`.tar.gz`) - Frequent use
+* bzip2 (`.tar.bz2`) - Frequent use
+* lzip (`.tar.lz`) - Less usage
+* xz (`.tar.xz`) - Frequent use
+
+### Naming convention for a `tar` backup
+
+Here is an example of a naming convention for a `tar` backup, knowing that the date will be added to the name.
+
+| Main function and auxiliary options   | Files   | Suffix | Functionality   |
+|--------  |---------|------------------|----------------------------------------------|
+| `-cvf`   | `home`  | `home.tar`       | `/home` in relative mode, uncompressed form  |
+| `-cvfP`  | `/etc`  | `etc.A.tar`      | `/etc` in absolute mode, no compression      |
+| `-cvfz`  | `usr`   | `usr.tar.gz`     | `/usr` in relative mode, *gzip* compression  |
+| `-cvfj`  | `usr`   | `usr.tar.bz2`    | `/usr` in relative mode, *bzip2* compression |
+| `-cvfPz` | `/home` | `home.A.tar.gz`  | `home` in absolute mode, *gzip* compression  |
+| `-cvfPj` | `/home` | `home.A.tar.bz2` | `home` in absolute mode, *bzip2* compression |
+| …        |         |                  |                                              |
 
 ### Restoration guidelines
 
@@ -184,42 +270,26 @@ The right questions to ask are:
 
 Restorations are usually performed after a problem has occurred that needs to be resolved quickly. A poor restoration can, in some cases, make the situation worse.
 
-### Backing up with `tar`
-
-The default utility for creating backups on UNIX systems is the `tar` command. These backups can be compressed by `bzip2`, `xz`, `lzip`, `lzma`, `lzop`, `gzip`, `compress` or `zstd`.
-
-`tar` allows you to extract a single file or a directory from a backup, view its contents, or validate its integrity.
-
 #### Estimate the size of a backup
 
-The following command estimates the size in kilobytes of a possible *tar* file:
+The following command estimates the size in bytes of a possible *tar* file:
 
 ```bash
-$ tar cf - /directory/to/backup/ | wc -c
-20480
-$ tar czf - /directory/to/backup/ | wc -c
-508
-$ tar cjf - /directory/to/backup/ | wc -c
-428
+$ du -sh /etc/
+27M     /etc/
+
+$ tar -cf - /etc/ | wc -c
+tar: Removing leading `/' from member names
+25917440
+
+$ tar -Jcf - /etc/ | wc -c
+tar: Removing leading `/' from member names
+3723032
 ```
 
 !!! Warning
 
     Beware, the presence of "-" in the command line disturbs `zsh`. Switch to `bash`!
-
-#### Naming convention for a `tar` backup
-
-Here is an example of a naming convention for a `tar` backup, knowing that the date will be added to the name.
-
-| keys    | Files   | Suffix           | Functionality                                |
-|---------|---------|------------------|----------------------------------------------|
-| `cvf`   | `home`  | `home.tar`       | `/home` in relative mode, uncompressed form  |
-| `cvfP`  | `/etc`  | `etc.A.tar`      | `/etc` in absolute mode, no compression      |
-| `cvfz`  | `usr`   | `usr.tar.gz`     | `/usr` in relative mode, *gzip* compression  |
-| `cvfj`  | `usr`   | `usr.tar.bz2`    | `/usr` in relative mode, *bzip2* compression |
-| `cvfPz` | `/home` | `home.A.tar.gz`  | `home` in absolute mode, *gzip* compression  |
-| `cvfPj` | `/home` | `home.A.tar.bz2` | `home` in absolute mode, *bzip2* compression |
-| …       |         |                  |                                        |
 
 #### Create a backup
 
@@ -304,18 +374,6 @@ tar cvfj backup.tar.bz2 dirname/
 !!! Note
 
     The `.tbz` and `.tb2` extensions are equivalent to `.tar.bz2` extensions.
-
-##### Compression `compress`, `gzip`, `bzip2`, `lzip` and `xz`
-
-Compression, and consequently decompression, will impact resource consumption (time and CPU usage).
-
-Here is a ranking of the compression of a set of text files from least to most efficient:
-
-* compress (`.tar.Z`)
-* gzip (`.tar.gz`)
-* bzip2 (`.tar.bz2`)
-* lzip (`.tar.lz`)
-* xz (`.tar.xz`)
 
 #### Add a file or directory to an existing backup
 
