@@ -9,7 +9,7 @@ tags:
 
 <!-- markdownlint-disable MD025 MD007 -->
 
-Rocky Linux ist Teil der Enterprise Linux-Familie und eignet sich daher besonders zum Hosten von Webdiensten wie Dateiservern (FTP, sFTP), Webservern (Apache, Nginx), Anwendungsservern (PHP, Python), Datenbankservern (MariaDB, MySQL, PostgreSQL) oder spezifischere Dienste wie Lastausgleich, Caching, Proxy oder Reverse-Proxy (HAProxy, Varnish, Squid).
+Rocky Linux ist Teil der Enterprise Linux-Familie und eignet sich daher besonders zum Hosten von Webdiensten wie Dateiservern (FTP, sFTP), Webservern (Apache, Nginx), Anwendungsservern (PHP, Python), Datenbankservern (MariaDB, MySQL, PostgreSQL) oder spezifische Dienste wie Lastausgleich, Caching, Proxy oder Reverse-Proxy (HAProxy, Varnish, Squid).
 
 Ohne E-Mail wäre das Internet nicht das, was es heute geworden ist. Webdienste nutzen in der Regel in großem Umfang Mailserver (Postfix).
 
