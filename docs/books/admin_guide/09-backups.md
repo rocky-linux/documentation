@@ -171,7 +171,7 @@ You can extract some or all of the files from the archive file.
 When using `tar`, please note that it has two saving modes:
 
 * **Relative mode** (default): Remove the leading character '/' from the file to be archived. Even if you have added the file to be archived with an absolute path, the leading character "/" will still be removed in this mode.
-* **absolute mode**: Keep the leading character '/' and include it as part of the file name.
+* **Absolute mode**: Keep the leading character '/' and include it as part of the file name.
 
 When you use `tar`, you will encounter suffixes such as `.tar.gz`, `.tar.xz`, `.tar.bz2`, which indicate creating an archive first (categorizing related files as a single file), and then compressing the file using the relevant compression type or compression algorithm.
 
@@ -295,81 +295,51 @@ tar: Removing leading `/' from member names
 
 ##### Create a backup in relative mode
 
-Creating a non-compressed backup in relative mode is done with the `cvf` keys:
+Creating a non-compressed backup in relative mode is done with the `-cvf` options:
 
 ```bash
-tar c[vf] [device] [file(s)]
+tar -c[vf] [device] [file(s)]
 ```
 
 Example:
 
 ```bash
-[root]# tar cvf /backups/home.133.tar /home/
+[root]# tar -cvf /backups/home.133.tar /home/
 ```
-
-| Key | Description                                            |
-|-----|--------------------------------------------------------|
-| `c` | Creates a backup.                                      |
-| `v` | Displays the name of the processed files.              |
-| `f` | Allows you to specify the name of the backup (medium). |
-
-!!! Tip
-
-    The hyphen (`-`) in front of the `tar` keys is unnecessary!
 
 ##### Create a backup in absolute mode
 
-Creating a non-compressed backup explicitly in absolute mode is done with the `cvfP` keys:
+Creating a non-compressed backup explicitly in absolute mode is done with the `-cvfP` options:
 
 ```bash
-tar c[vf]P [device] [file(s)]
+tar -c[vf]P [device] [file(s)]
 ```
 
 Example:
 
 ```bash
-[root]# tar cvfP /backups/home.133.P.tar /home/
+[root]# tar -cvfP /backups/home.133.P.tar /home/
 ```
-
-| Key | Description                       |
-|-----|-----------------------------------|
-| `P` |Creates a backup in absolute mode. |
-
-!!! Warning
-
-    With the `P` key, the path of the files to be backed up must be entered as **absolute**. If the two conditions (key `P` and path **absolute**) are not indicated, the backup is in relative mode.
 
 ##### Creating a compressed backup with `gzip`
 
-Creating a compressed backup with `gzip` is done with the `cvfz` keys:
+Creating a compressed backup with `gzip` is done with the `-cvfz` options:
 
 ```bash
-tar cvzf backup.tar.gz dirname/
+tar -cvzf backup.tar.gz dirname/
 ```
-
-| Key | Description                      |
-|-----|----------------------------------|
-| `z` |Compresses the backup in *gzip*. |
 
 !!! Note
 
     The `.tgz` extension is equivalent to `.tar.gz`.
 
-!!! Note
-
-    Keeping the `cvf` (`tvf` or `xvf`) keys unchanged for all backup operations and simply adding the compression key to the end of the keys makes the command easier to understand (such as: `cvfz` or `cvfj`, and others).
-
 ##### Creating a compressed backup with `bzip`
 
-Creating a compressed backup with `bzip` is done with the keys `cvfj`:
+Creating a compressed backup with `bzip` is done with the options `-cvfj`:
 
 ```bash
-tar cvfj backup.tar.bz2 dirname/
+tar -cvfj backup.tar.bz2 dirname/
 ```
-
-| Key | Description                       |
-|-----|-----------------------------------|
-| `j` |Compresses the backup in *bzip2*. |
 
 !!! Note
 
@@ -380,7 +350,7 @@ tar cvfj backup.tar.bz2 dirname/
 It is possible to add one or more items to an existing backup.
 
 ```bash
-tar {r|A}[key(s)] [device] [file(s)]
+tar {r|A}[option(s)] [device] [file(s)]
 ```
 
 To add `/etc/passwd` to the backup `/backups/home.133.tar`:
@@ -392,20 +362,15 @@ To add `/etc/passwd` to the backup `/backups/home.133.tar`:
 Adding a directory is similar. Here add `dirtoadd` to `backup_name.tar`:
 
 ```bash
-tar rvf backup_name.tar dirtoadd
+tar -rvf backup_name.tar dirtoadd
 ```
-
-| Key | Description                                                                      |
-|-----|----------------------------------------------------------------------------------|
-| `r` |Adds one or more files at the end of a direct access media backup (hard disk).   |
-| `A` |Adds one or more files at the end of a backup on sequential access media (tape). |
 
 !!! Note
 
     It is not possible to add files or folders to a compressed backup.
 
-    ```
-    $ tar rvfz backup.tgz filetoadd
+    ```bash
+    $ tar -rvfz backup.tgz filetoadd
     tar: Cannot update compressed archives
     Try `tar --help' or `tar --usage' for more information.
     ```
@@ -421,30 +386,22 @@ tar rvf backup_name.tar dirtoadd
 Viewing the contents of a backup without extracting it is possible.
 
 ```bash
-tar t[key(s)] [device]
+tar -t[option(s)] [device]
 ```
-
-| Key |Description                                           |
-|-----|-------------------------------------------------------|
-| `t` |Displays the content of a backup (compressed or not). |
 
 Examples:
 
 ```bash
-tar tvf backup.tar
-tar tvfz backup.tar.gz
-tar tvfj backup.tar.bz2
+tar -tvf backup.tar
+tar -tvfz backup.tar.gz
+tar -tvfj backup.tar.bz2
 ```
 
 When the number of files in a backup becomes large, it is possible to *pipe* the result of the `tar` command to a *pager* (`more`, `less`, `most`, and others):
 
 ```bash
-tar tvf backup.tar | less
+tar -tvf backup.tar | less
 ```
-
-!!! Tip
-
-    To list or retrieve the contents of a backup, it is not necessary to mention the compression algorithm used when the backup was created. That is, a `tar tvf` is equivalent to `tar tvfj`, to read the contents, and a `tar xvf` is equivalent to `tar xvfj`, to extract.
 
 !!! Tip
 
@@ -452,24 +409,24 @@ tar tvf backup.tar | less
 
 #### Check the integrity of a backup
 
-The integrity of a backup can be tested with the `W` key at the time of its creation:
+The integrity of a backup can be tested with the `W` option at the time of its creation:
 
 ```bash
-tar cvfW file_name.tar dir/
+tar -cvfW file_name.tar dir/
 ```
 
-The integrity of a backup can be tested with the key `d` after its creation:
+The integrity of a backup can be tested with the type `-d` after its creation:
 
 ```bash
-tar vfd file_name.tar dir/
+tar -vfd file_name.tar dir/
 ```
 
 !!! Tip
 
     By adding a second `v` to the previous key, you will get the list of archived files as well as the differences between the archived files and those present in the file system.
 
-    ```
-    $ tar vvfd  /tmp/quodlibet.tar .quodlibet/
+    ```bash
+    $ tar -vvfd  /tmp/quodlibet.tar .quodlibet/
     drwxr-x--- rockstar/rockstar     0 2021-05-21 00:11 .quodlibet/
     -rw-r--r-- rockstar/rockstar     0 2021-05-19 00:59 .quodlibet/queue
     […]
@@ -479,10 +436,10 @@ tar vfd file_name.tar dir/
     […]
     ```
 
-The `W` key is also used to compare the content of an archive against the filesystem:
+The `-W` option is also used to compare the content of an archive against the filesystem:
 
 ```bash
-$ tar tvfW file_name.tar
+$ tar -tvfW file_name.tar
 Verify 1/file1
 1/file1: Mod time differs
 1/file1: Size differs
@@ -490,7 +447,7 @@ Verify 1/file2
 Verify 1/file3
 ```
 
-The verification with the `W` key cannot be done with a compressed archive. The key ++d++ must be used:
+The verification with the `-W` option cannot be done with a compressed archive. The key ++d++ must be used:
 
 ```bash
 tar dfz file_name.tgz
@@ -499,7 +456,7 @@ tar dfj file_name.tar.bz2
 
 #### Extract (*untar*) a backup
 
-Extract (*untar*) a ``*.tar`` backup is done with the `xvf` keys:
+Extract (*untar*) a ``*.tar`` backup is done with the `-xvf` options:
 
 Extract the `etc/exports` file from the `/savings/etc.133.tar` backup into the `etc` directory of the active directory:
 
@@ -525,20 +482,16 @@ tar xvfP /backups/etc.133.P.tar
 
     Check the contents of the backup.
 
-| Key |Description                                       |
-|------|----------------------------------------------------|
-| `x`  |Extracts files from the backup, compressed or not. |
-
-Extracting a *tar-gzipped* (`*.tar.gz`) backup is done with the `xvfz` keys:
+Extracting a *tar-gzipped* (`*.tar.gz`) backup is done with the `-xvfz` options:
 
 ```bash
-tar xvfz backup.tar.gz
+tar -xvfz backup.tar.gz
 ```
 
-Extracting a *tar-bzipped* (`*.tar.bz2`) backup is done with the `xvfj` keys:
+Extracting a *tar-bzipped* (`*.tar.bz2`) backup is done with the `-xvfj` options:
 
 ```bash
-tar xvfj backup.tar.bz2
+tar -xvfj backup.tar.bz2
 ```
 
 !!! Tip
@@ -551,7 +504,7 @@ tar xvfj backup.tar.bz2
 
 ##### Extract only a file from a *tar* backup
 
-To extract a specific file from a *tar* backup, specify the name of that file at the end of the `tar xvf` command.
+To extract a specific file from a *tar* backup, specify the name of that file at the end of the `tar -xvf` command.
 
 ```bash
 tar xvf backup.tar /path/to/file
@@ -560,16 +513,16 @@ tar xvf backup.tar /path/to/file
 The previous command extracts only the `/path/to/file` file from the `backup.tar` backup. This file will be restored to the `/path/to/` directory created, or already present, in the active directory.
 
 ```bash
-tar xvfz backup.tar.gz /path/to/file
-tar xvfj backup.tar.bz2 /path/to/file
+tar -xvfz backup.tar.gz /path/to/file
+tar -xvfj backup.tar.bz2 /path/to/file
 ```
 
 ##### Extract a folder from a backup *tar*
 
-To extract only one directory (including its subdirectories and files) from a backup, specify the directory name at the end of the `tar xvf` command.
+To extract only one directory (including its subdirectories and files) from a backup, specify the directory name at the end of the `tar -xvf` command.
 
 ```bash
-tar xvf backup.tar /path/to/dir/
+tar -xvf backup.tar /path/to/dir/
 ```
 
 To extract multiple directories, specify each of the names one after the other:
