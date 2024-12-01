@@ -171,7 +171,7 @@ You can extract some or all of the files from the archive file.
 When using `tar`, please note that it has two saving modes:
 
 * **Relative mode** (default): Remove the leading character '/' from the file to be archived. Even if you have added the file to be archived with an absolute path, the leading character "/" will still be removed in this mode.
-* **Absolute mode**: Keep the leading character '/' and include it as part of the file name.
+* **Absolute mode**: Keep the leading character '/' and include it as part of the file name. To enable this save mode, you need to use the `-P` option. In this mode, all files you add must be represented as absolute paths.
 
 When you use `tar`, you will encounter suffixes such as `.tar.gz`, `.tar.xz`, `.tar.bz2`, which indicate creating an archive first (categorizing related files as a single file), and then compressing the file using the relevant compression type or compression algorithm.
 
@@ -295,37 +295,25 @@ tar: Removing leading `/' from member names
 
     Beware, the presence of "-" in the command line disturbs `zsh`. Switch to `bash`!
 
-#### Create a backup
-
-##### Create a backup in relative mode
+#### Create an archive non-compressed backup
 
 Creating a non-compressed backup in relative mode is done with the `-cvf` options:
 
 ```bash
 tar -c[vf] [device] [file(s)]
-```
 
-Example:
-
-```bash
 [root]# tar -cvf /backups/home.133.tar /home/
 ```
-
-##### Create a backup in absolute mode
 
 Creating a non-compressed backup explicitly in absolute mode is done with the `-cvfP` options:
 
 ```bash
 tar -c[vf]P [device] [file(s)]
-```
 
-Example:
-
-```bash
 [root]# tar -cvfP /backups/home.133.P.tar /home/
 ```
 
-##### Creating a compressed backup with `gzip`
+##### Creating a compressed backup with `gzip` (Relative mode)
 
 Creating a compressed backup with `gzip` is done with the `-cvfz` options:
 
@@ -333,9 +321,9 @@ Creating a compressed backup with `gzip` is done with the `-cvfz` options:
 tar -cvzf backup.tar.gz dirname/
 ```
 
-##### Creating a compressed backup with `bzip`
+##### Creating a compressed backup with `bzip2` (Relative mode)
 
-Creating a compressed backup with `bzip` is done with the options `-cvfj`:
+Creating a compressed backup with `bzip2` is done with the options `-cvfj`:
 
 ```bash
 tar -cvfj backup.tar.bz2 dirname/
