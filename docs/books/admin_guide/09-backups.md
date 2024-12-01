@@ -237,8 +237,8 @@ The `tar` in different distributions may have different default options, so be c
 Here is a ranking of the compression of a set of text files from least to most efficient:
 
 * compress (`.tar.Z`) - Less usage
-* gzip (`.tar.gz`) - Frequent use
-* bzip2 (`.tar.bz2`) - Frequent use
+* gzip (`.tar.gz` or `.tgz`) - Frequent use
+* bzip2 (`.tar.bz2` or `.tb2` or `.tbz`) - Frequent use
 * lzip (`.tar.lz`) - Less usage
 * xz (`.tar.xz`) - Frequent use
 
@@ -329,10 +329,6 @@ Creating a compressed backup with `gzip` is done with the `-cvfz` options:
 tar -cvzf backup.tar.gz dirname/
 ```
 
-!!! Note
-
-    The `.tgz` extension is equivalent to `.tar.gz`.
-
 ##### Creating a compressed backup with `bzip`
 
 Creating a compressed backup with `bzip` is done with the options `-cvfj`:
@@ -340,10 +336,6 @@ Creating a compressed backup with `bzip` is done with the options `-cvfj`:
 ```bash
 tar -cvfj backup.tar.bz2 dirname/
 ```
-
-!!! Note
-
-    The `.tbz` and `.tb2` extensions are equivalent to `.tar.bz2` extensions.
 
 #### Add a file or directory to an existing backup
 
@@ -409,7 +401,7 @@ tar -tvf backup.tar | less
 
 #### Check the integrity of a backup
 
-The integrity of a backup can be tested with the `W` option at the time of its creation:
+The integrity of a backup can be tested with the `-W` option at the time of its creation:
 
 ```bash
 tar -cvfW file_name.tar dir/
@@ -447,11 +439,11 @@ Verify 1/file2
 Verify 1/file3
 ```
 
-The verification with the `-W` option cannot be done with a compressed archive. The key ++d++ must be used:
+The verification with the `-W` option cannot be done with a compressed archive. The type `-d` must be used:
 
 ```bash
-tar dfz file_name.tgz
-tar dfj file_name.tar.bz2
+tar -dfz file_name.tgz
+tar -dfj file_name.tar.bz2
 ```
 
 #### Extract (*untar*) a backup
@@ -467,13 +459,13 @@ tar xvf /backups/etc.133.tar etc/exports
 Extract all files from the compressed backup `/backups/home.133.tar.bz2` into the active directory:
 
 ```bash
-[root]# tar xvfj /backups/home.133.tar.bz2
+[root]# tar -xvfj /backups/home.133.tar.bz2
 ```
 
 Extract all files from the backup `/backups/etc.133.P.tar` to their original directory:
 
 ```bash
-tar xvfP /backups/etc.133.P.tar
+tar -xvfP /backups/etc.133.P.tar
 ```
 
 !!! Warning
@@ -493,14 +485,6 @@ Extracting a *tar-bzipped* (`*.tar.bz2`) backup is done with the `-xvfj` options
 ```bash
 tar -xvfj backup.tar.bz2
 ```
-
-!!! Tip
-
-    To extract or list the contents of a backup, it is not necessary to mention the compression algorithm used to create the backup. That is, a `tar xvf` is equivalent to `tar xvfj`, to extract the contents, and a `tar tvf` is equivalent to `tar tvfj`, to list.
-
-!!! Warning
-
-    To restore the files in their original directory (key `P` of a `tar xvf`), you must have generated the backup with the absolute path. That is, with the `P` key of a `tar cvf`.
 
 ##### Extract only a file from a *tar* backup
 
@@ -528,9 +512,9 @@ tar -xvf backup.tar /path/to/dir/
 To extract multiple directories, specify each of the names one after the other:
 
 ```bash
-tar xvf backup.tar /path/to/dir1/ /path/to/dir2/
-tar xvfz backup.tar.gz /path/to/dir1/ /path/to/dir2/
-tar xvfj backup.tar.bz2 /path/to/dir1/ /path/to/dir2/
+tar -xvf backup.tar /path/to/dir1/ /path/to/dir2/
+tar -xvfz backup.tar.gz /path/to/dir1/ /path/to/dir2/
+tar -xvfj backup.tar.bz2 /path/to/dir1/ /path/to/dir2/
 ```
 
 ##### Extract a group of files from a *tar* backup using regular expressions (*regex*)
@@ -540,7 +524,7 @@ Specify a regular expression (*regex*) to extract the files matching the specifi
 For example, to extract all files with the extension `.conf`:
 
 ```bash
-tar xvf backup.tar --wildcards '*.conf'
+tar -xvf backup.tar --wildcards '*.conf'
 ```
 
 keys:
