@@ -196,10 +196,10 @@ Operating parameters or types:
 
 | types | describe |
 | :---: | :---: |
-| `-A`  | Merge the current archive with an existing archive |
+| `-A`  | Merge the current archive with an existing archive. Only applicable to archive non-compressed files of the `.tar` type |
 | `-c`  | Create archive. Very commonly used  |
 | `-d`  | Compare the differences between archived and corresponding unarchived files |
-| `-r`  | Append the file to the end of the archive |
+| `-r`  | Append the file to the end of the archive. Only applicable to archive non-compressed files of the `.tar` type  |
 | `-t`  | Lists the contents of the archive |
 | `-u`  | Only newer files are appended to the archive |
 | `-x`  | Extract from archive. Very commonly used |
@@ -279,14 +279,14 @@ Restorations are usually performed after a problem has occurred that needs to be
 The following command estimates the size in bytes of a possible *tar* file:
 
 ```bash
-$ du -sh /etc/
+[root]# du -sh /etc/
 27M     /etc/
 
-$ tar -cf - /etc/ | wc -c
+[root]# tar -cf - /etc/ | wc -c
 tar: Removing leading `/' from member names
 25917440
 
-$ tar -Jcf - /etc/ | wc -c
+[root]# tar -Jcf - /etc/ | wc -c
 tar: Removing leading `/' from member names
 3723032
 ```
@@ -300,16 +300,20 @@ tar: Removing leading `/' from member names
 Creating a non-compressed backup in relative mode is done with the `-cvf` options:
 
 ```bash
+# usage：
 tar -c[vf] [device] [file(s)]
 
+# example:
 [root]# tar -cvf /backups/home.133.tar /home/
 ```
 
 Creating a non-compressed backup explicitly in absolute mode is done with the `-cvfP` options:
 
 ```bash
+# usage：
 tar -c[vf]P [device] [file(s)]
 
+# example:
 [root]# tar -cvfP /backups/home.133.P.tar /home/
 ```
 
@@ -318,7 +322,8 @@ tar -c[vf]P [device] [file(s)]
 Creating a compressed backup with `gzip` is done with the `-cvfz` options:
 
 ```bash
-tar -cvzf backup.tar.gz dirname/
+# example:
+[root]# tar -cvzf etc-backup-20241201.tar.gz /etc/
 ```
 
 ##### Creating a compressed backup with `bzip2` (Relative mode)
@@ -326,7 +331,8 @@ tar -cvzf backup.tar.gz dirname/
 Creating a compressed backup with `bzip2` is done with the options `-cvfj`:
 
 ```bash
-tar -cvfj backup.tar.bz2 dirname/
+# example:
+[root]# tar -cvfj usr-backup.tar.bz2 /usr/
 ```
 
 #### Add a file or directory to an existing backup
@@ -334,19 +340,22 @@ tar -cvfj backup.tar.bz2 dirname/
 It is possible to add one or more items to an existing backup.
 
 ```bash
+# usage：
 tar {r|A}[option(s)] [device] [file(s)]
 ```
 
 To add `/etc/passwd` to the backup `/backups/home.133.tar`:
 
 ```bash
-[root]# tar rvf /backups/home.133.tar /etc/passwd
+# example:
+[root]# tar -rvf /backups/home.133.tar /etc/passwd
 ```
 
 Adding a directory is similar. Here add `dirtoadd` to `backup_name.tar`:
 
 ```bash
-tar -rvf backup_name.tar dirtoadd
+# usage：
+tar -rvf [Backup-FileName] [DIR1] ... [FILE1] ...
 ```
 
 !!! Note
@@ -354,7 +363,7 @@ tar -rvf backup_name.tar dirtoadd
     It is not possible to add files or folders to a compressed backup.
 
     ```bash
-    $ tar -rvfz backup.tgz filetoadd
+    [root]# tar -rvfz backup.tgz /etc/passwd
     tar: Cannot update compressed archives
     Try `tar --help' or `tar --usage' for more information.
     ```
@@ -370,21 +379,19 @@ tar -rvf backup_name.tar dirtoadd
 Viewing the contents of a backup without extracting it is possible.
 
 ```bash
+# usage：
 tar -t[option(s)] [device]
-```
 
-Examples:
-
-```bash
-tar -tvf backup.tar
-tar -tvfz backup.tar.gz
-tar -tvfj backup.tar.bz2
+# example:
+[root]# tar -tvf backup.tar
+[root]# tar -tvfz backup.tar.gz
+[root]# tar -tvfj backup.tar.bz2
 ```
 
 When the number of files in a backup becomes large, it is possible to *pipe* the result of the `tar` command to a *pager* (`more`, `less`, `most`, and others):
 
 ```bash
-tar -tvf backup.tar | less
+[root]# tar -tvf backup.tar | less
 ```
 
 !!! Tip
