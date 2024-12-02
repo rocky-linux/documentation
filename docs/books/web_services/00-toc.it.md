@@ -9,7 +9,7 @@ tags:
 
 <!-- markdownlint-disable MD025 MD007 -->
 
-Rocky Linux fa parte della famiglia Enterprise Linux, che lo rende particolarmente adatto a ospitare servizi web come file server (FTP, sFTP), web server (apache, nginx), application server (PHP, Python), database server (MariaDB, Mysql, PostgreSQL) o servizi più specifici come il bilanciamento del carico, il caching, il proxy o il reverse proxy (HAProxy, Varnish, Squid).
+Rocky Linux fa parte della famiglia Enterprise Linux, che lo rende particolarmente adatto a ospitare servizi web come file server (FTP, sFTP), web server (apache, nginx), application server (PHP, Python), database server (MariaDB, MySQL, PostgreSQL) o servizi più specifici come il bilanciamento del carico, il caching, il proxy o il reverse proxy (HAProxy, Varnish, Squid).
 
 Il web non sarebbe quello che è senza la posta elettronica. I servizi web fanno generalmente largo uso di server di posta (Postfix).
 
