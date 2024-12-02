@@ -1,6 +1,6 @@
 ---
 author: Wale Soyinka
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested on: Tutte le versioni
 tags:
   - network file system
@@ -73,7 +73,7 @@ SYNOPSIS
 
 1. Assicurarsi di aver effettuato l'accesso al sistema come utente con privilegi di amministrazione.
 
-2. Iniziare installando il pacchetto `nfs-utils`. Questo pacchetto fornisce varie utilità da utilizzare con i client e server NFS. Digitate:
+2. Iniziare installando il pacchetto `nfs-utils`. Questo pacchetto fornisce varie utilità da utilizzare con i client e server NFS. Digitare:
 
     ```bash
     dnf -y install nfs-utils
@@ -84,7 +84,9 @@ SYNOPSIS
     ```bash
      systemctl show  -p "Wants"  nfs-server
     ```
+
     **RISULTATO**
+
     ```bash
     Wants=nfs-idmapd.service nfsdcld.service rpcbind.socket rpc-statd-notify.service rpc-statd.service auth-rpcgss-module.service network-online.target
     ```
@@ -98,6 +100,7 @@ SYNOPSIS
     ```
 
     **RISULTATO**
+
     ```bash
     program vers proto   port  service
     100000    4   tcp    111  portmapper
@@ -108,22 +111,26 @@ SYNOPSIS
 
     Dall'output di esempio sopra riportato, si può notare che un servizio `portmapper` è registrato sul server RPC in esecuzione su localhost.
 
-    !!! Question "Domanda"
+    !!! Question "Domande"
 
-     A) Cos'è portmapper? 
-     B) Avete scoperto il significato dei vari campi (intestazione della colonna) del comando 'rpcinfo'? (Program, Vers, proto, and service.)
+     1. Cos'è portmapper? 
+    
+     2. Scoprire il significato dei diversi campi del comando `rpcinfo` (intestazioni di colonna) (Programma, Vers, proto e servizio)
 
 5. Controlla lo stato di `nfs-server.service`. Digitare:
 
     ```bash
     systemctl status nfs-server
     ```
+
    **RISULTATO**
+
    ```bash
     ● nfs-server.service - NFS server and services
     Loaded: loaded (/usr/lib/systemd/system/nfs-server.service; disabled; vendor preset: disabled)
     Active: inactive (dead)
     ```
+
     nfs-server.service non è attualmente in esecuzione, secondo l'output del nostro sistema demo.
 
 6. Utilizzare systemctl per avviare il daemon nfs-server. Digitare:
@@ -201,6 +208,7 @@ Verrà creata e condivisa una directory chiamata `/mnt/nfs`. Questa directory sa
     /mnt/nfs    172.16.99.0/24(rw)   localhost(rw)
     EOF
     ```
+
     Per creare la voce si può anche utilizzare un qualsiasi editor di testo con cui si ha familiarità.
 
 5. Verificare il contenuto di `/etc/exports` per assicurarsi che non ci siano errori.
@@ -217,7 +225,9 @@ Verrà creata e condivisa una directory chiamata `/mnt/nfs`. Questa directory sa
     exportfs -s
     ```
 
-    Elencate di seguito i risultati ottenuti.
+    !!! question "Domanda"
+
+     Qual è stato il risultato? Fare un elenco dei contenuti dell'output.
 
 ## Esercizio 3
 
@@ -257,8 +267,10 @@ Verrà testata la configurazione del server NFS da *Esercizio 1* provando ad acc
     ```bash
     showmount  -e localhost
     ```
+
     **RISULTATO**
-    ```
+
+    ```bash
     Export list for localhost:
     /mnt/nfs 172.16.99.0/24,localhost
     ```
@@ -278,7 +290,9 @@ Verrà testata la configurazione del server NFS da *Esercizio 1* provando ad acc
     ```bash
     rm -rf 1nfs  2nfs
     ```
+
     **RISULTATO**
+
     ```bash
     rm: cannot remove '1nfs': Permission denied
     rm: cannot remove '2nfs': Permission denied
@@ -288,7 +302,7 @@ Verrà testata la configurazione del server NFS da *Esercizio 1* provando ad acc
 
      Il tentativo di eliminazione dei file è riuscito?
 
-7. Ora provare a creare altri file (6nfs, 7nfs, 8nfs) sulla condivisione NFS. Digitare:
+6. Ora provare a creare altri file (6nfs, 7nfs, 8nfs) sulla condivisione NFS. Digitare:
 
     ```bash
     touch {6..8}nfs
@@ -297,7 +311,6 @@ Verrà testata la configurazione del server NFS da *Esercizio 1* provando ad acc
     !!! Question "Domanda"
 
      Il tentativo di creazione del file è andato a buon fine? Perché pensi che sia fallito?
-
 
 ESEGUIRE L'ESERCIZIO DAL SISTEMA PARTNER
 
@@ -322,7 +335,9 @@ ESEGUIRE L'ESERCIZIO DAL SISTEMA PARTNER
     ```bash
      mount -t nfs4
     ```
+
     **RISULTATO**
+
     ```bash
     172.16.99.100:/mnt/nfs on /mnt/nfs-remote type nfs4 (rw,relatime,vers=4.2,rsize=1048576,wsize=1048576,namlen=255
     ...<SNIP>...
@@ -334,7 +349,9 @@ ESEGUIRE L'ESERCIZIO DAL SISTEMA PARTNER
     cd /mnt/nfs-remote ; rm -f   
     ```
 
-    Il vostro tentativo è andato a buon fine?
+    !!! question "Domanda"
+
+     Il tentativo è riuscito?
 
 6. Uscire dal serverPR come superutente e rientrare come utente non privilegiato "ying"
 
@@ -346,7 +363,7 @@ ESEGUIRE L'ESERCIZIO DAL SISTEMA PARTNER
 
 8. Prendete nota del contenuto della directory. Se si vedono i file previsti, il laboratorio NFS è stato completato con successo!
 
-    !!! question "Domande"
+    !!! question "Attività di laboratorio:"
    
         1. Impostare la configurazione NFS sul server locale (serverXY), in modo tale che il superutente del server H.Q. (hq.example.org) sarà in grado di montare la condivisione nfs (/mnt/nfsXY) per utilizzarla sulla macchina hq.
        
@@ -359,4 +376,3 @@ ESEGUIRE L'ESERCIZIO DAL SISTEMA PARTNER
         ```bash
         /mnt/nfs    172.16.99.0/24(rw)   localhost(rw,no_root_squash)
         ```
-
