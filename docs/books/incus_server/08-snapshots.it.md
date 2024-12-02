@@ -83,7 +83,7 @@ incus delete ubuntu-test/ubuntu-test-1
 !!! warning "Attenzione"
 
 ````
-È necessario eliminare in modo permanente le istantanee mentre il contenitore è in esecuzione. Perché? Il comando _incus delete_ funziona anche per cancellare l'intero contenitore. Se per sbaglio si preme invio dopo “ubuntu-test” nel comando precedente, E se il contenitore è stato arrestato, il contenitore viene cancellato. Volevo solo informarvi che non viene fornito alcun avviso. Fa semplicemente quello che si chiede.
+È necessario eliminare in modo permanente le snapshot mentre il container è in esecuzione. Perché? Il comando _incus delete_ funziona anche per cancellare l'intero container. Se per sbaglio si preme invio dopo “ubuntu-test” nel comando precedente, E se il container è stato arrestato, il container viene cancellato. Volevo solo informarvi che non viene fornito alcun avviso. Fa semplicemente quello che si chiede.
 
 Se il contenitore è in esecuzione, tuttavia, verrà visualizzato questo messaggio:
 
