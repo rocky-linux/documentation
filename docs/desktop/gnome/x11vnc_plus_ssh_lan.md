@@ -155,7 +155,7 @@ Congratulations! You can now remotely control the desktop!
 
 ## Connecting to a machine across the internet
 
-So far, this article has shown you how to setup an x11vnc server and connect to it using VNC forwarded through an SSH tunnel. It's important to note that this method will only work for computers on the same local area network (LAN). Assuming that you want to connect to a computer that is on a different LAN. A way to accomplish this is to setup a VPN. Below are a few guides on how to setup a VPN:
+So far, this article has shown you how to setup an x11vnc server and connect to it using VNC forwarded through an SSH tunnel. It is important to note that this method will only work for computers on the same local area network (LAN). Assuming that you want to connect to a computer that is on a different LAN. A way to accomplish this is to setup a VPN. Below are a few guides on how to setup a VPN:
 
 -[OpenVPN](https://docs.rockylinux.org/guides/security/openvpn/)
 -[Wireguard VPN](https://docs.rockylinux.org/guides/security/wireguard_vpn/)
