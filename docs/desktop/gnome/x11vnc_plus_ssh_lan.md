@@ -6,7 +6,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 ## Introduction
 
-x11vnc is a powerful VNC program that stands out by using the existing X session rather than starting a new one. This feature makes it an excellent tool for remote support, as it allows you to control a user's screen or X session from a distance.
+x11vnc is a powerful VNC program. What makes x11vnc different from other VNC programs is an administrator can grab a user's existing X session rather than be forced to create a new one. This makes X11VNC ideal for providing remote support to Linux desktops.
 
 This guide teaches you how to set up an X11vnc server and how to connect to it remotely.
 
@@ -155,11 +155,11 @@ Congratulations! You can now remotely control the desktop!
 
 ## Connecting to a machine across the internet
 
-So far, this article has shown you how to setup an x11vnc server and connect to it using VNC forwarded through an SSH tunnel. A seemingly obvious but nonetheless important detail to be aware of is that this method will only work for networked computers. Since the main use-case presented in this guide is remote support, it is reasonable to assume that you want to connect to a computer that is on a different local area network (LAN) than your own. A way to accomplish this is to setup a VPN. Both of the guides listed below will provide a suitable private tunnel to connect to your x11vnc server across the internet.
+So far, this article has shown you how to setup an x11vnc server and connect to it using VNC forwarded through an SSH tunnel. It is important to note that this method will only work for computers on the same local area network (LAN). Assuming that you want to connect to a computer that is on a different LAN. A way to accomplish this is to setup a VPN. Below are a few guides on how to setup a VPN:
 
 -[OpenVPN](https://docs.rockylinux.org/guides/security/openvpn/)
 -[Wireguard VPN](https://docs.rockylinux.org/guides/security/wireguard_vpn/)
 
 ## Conclusion
 
-You have successfully set up an x11vnc server and connected to it using a TigerVNC client. This solution is ideal for remote support, as it shares the same X session as the user, ensuring a seamless support experience.
+Congratulations! You have successfully set up a x11vnc server and connected to it using a TigerVNC client. This solution is ideal for remote support, as it shares the same X session as the user, ensuring a seamless support experience.
