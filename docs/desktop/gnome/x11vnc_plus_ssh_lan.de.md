@@ -159,10 +159,10 @@ Herzlichen Glückwunsch! Jetzt können Sie Ihren Desktop aus der Ferne kontrolli
 
 ## Verbindung zur Maschine über das Internet herstellen
 
-Bisher wurde Ihnen in diesem Artikel gezeigt, wie Sie einen x11vnc-Server einrichten und mithilfe von VNC, das über einen SSH-Tunnel weitergeleitet wird, eine Verbindung zu ihm herstellen. Bitte beachten Sie, dass diese Methode nur für Computer funktioniert, die sich im gleichen lokalen Netzwerk (LAN) befinden. Angenommen, Sie möchten eine Verbindung zu einem Computer herstellen, der sich in einem anderen LAN befindet. Eine Möglichkeit, dies zu erreichen, besteht darin, ein VPN einzurichten. Nachfolgend finden Sie einige Anleitungen zum Einrichten eines VPN:
+Bisher hat Ihnen dieser Artikel gezeigt, wie Sie einen x11vnc-Server einrichten und mithilfe von VNC, das über einen SSH-Tunnel weitergeleitet wird, eine Verbindung zu ihm herstellen. Bitte beachten Sie, dass diese Methode nur für Computer funktioniert, die sich im gleichen lokalen Netzwerk (LAN) befinden. Angenommen, Sie möchten eine Verbindung zu einem Computer herstellen, der sich in einem anderen LAN befindet. Eine Möglichkeit, dies zu erreichen, besteht darin, ein VPN einzurichten. Nachfolgend finden Sie einige Anleitungen zum Einrichten eines VPN:
 
--[OpenVPN](https://docs.rockylinux.org/guides/security/openvpn/)
--[Wireguard VPN](https://docs.rockylinux.org/guides/security/wireguard_vpn/)
+- [OpenVPN](https://docs.rockylinux.org/guides/security/openvpn/)
+- [Wireguard VPN](https://docs.rockylinux.org/guides/security/wireguard_vpn/)
 
 ## Zusammenfassung
 
