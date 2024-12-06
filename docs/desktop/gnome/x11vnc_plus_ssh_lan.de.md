@@ -6,7 +6,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 ## Einleitung
 
-x11vnc ist ein leistungsstarkes VNC-Programm, das sich dadurch auszeichnet, dass es die vorhandene X-Sitzung verwendet, anstatt eine neue zu starten. Diese Funktion macht es zu einem hervorragenden Tool für den Remote-Support, da es Ihnen ermöglicht, den Bildschirm oder die X-Sitzung eines Benutzers aus der Ferne zu steuern.
+x11vnc ist ein leistungsstarkes VNC-Programm. Der Unterschied zwischen x11vnc und anderen VNC-Programmen besteht darin, dass ein Administrator die vorhandene X-Sitzung eines Benutzers übernehmen kann, anstatt gezwungen zu sein, eine neue zu erstellen. Dies macht X11VNC ideal für die Fernwartung von Linux-Desktops.
 
 In diesem Handbuch erfahren Sie, wie Sie einen x11vnc-Server einrichten und eine Remote-Verbindung dazu herstellen.
 
@@ -159,11 +159,11 @@ Herzlichen Glückwunsch! Jetzt können Sie Ihren Desktop aus der Ferne kontrolli
 
 ## Verbindung zur Maschine über das Internet herstellen
 
-Bisher wurde Ihnen in diesem Artikel gezeigt, wie Sie einen x11vnc-Server einrichten und mithilfe von VNC, das über einen SSH-Tunnel weitergeleitet wird, eine Verbindung zu ihm herstellen. Ein scheinbar offensichtliches, aber dennoch wichtiges Detail, das Sie beachten sollten, ist, dass diese Methode nur für Computer funktioniert, die mit einem Netzwerk verbunden sind. Da der in diesem Handbuch vorgestellte Hauptanwendungsfall der Remote-Support ist, kann davon ausgegangen werden, dass Sie eine Verbindung zu einem Computer herstellen möchten, der sich in einem anderen lokalen Netzwerk (LAN) als Ihrem eigenen befindet. Eine Möglichkeit, dies zu erreichen, besteht darin, ein VPN einzurichten. Die beiden folgenden Anleitungen stellen einen geeigneten privaten Tunnel bereit, um über das Internet eine Verbindung zu Ihrem x11vnc-Server herzustellen.
+Bisher wurde Ihnen in diesem Artikel gezeigt, wie Sie einen x11vnc-Server einrichten und mithilfe von VNC, das über einen SSH-Tunnel weitergeleitet wird, eine Verbindung zu ihm herstellen. Bitte beachten Sie, dass diese Methode nur für Computer funktioniert, die sich im gleichen lokalen Netzwerk (LAN) befinden. Angenommen, Sie möchten eine Verbindung zu einem Computer herstellen, der sich in einem anderen LAN befindet. Eine Möglichkeit, dies zu erreichen, besteht darin, ein VPN einzurichten. Nachfolgend finden Sie einige Anleitungen zum Einrichten eines VPN:
 
 -[OpenVPN](https://docs.rockylinux.org/guides/security/openvpn/)
 -[Wireguard VPN](https://docs.rockylinux.org/guides/security/wireguard_vpn/)
 
 ## Zusammenfassung
 
-Sie haben erfolgreich einen x11vnc-Server eingerichtet und über einen TigerVNC-Client eine Verbindung damit hergestellt. Diese Lösung ist ideal für den Remote-Support, da sie dieselbe X-Sitzung wie der Benutzer verwendet und so eine reibungslose Wartung gewährleistet.
+Herzlichen Glückwunsch! Sie haben erfolgreich einen `x11vnc`-Server eingerichtet und über einen `TigerVNC`-Client eine Verbindung dazu hergestellt. Diese Lösung ist ideal für die Fernwartung, da sie dieselbe X-Sitzung wie der Benutzer nutzt und so einen nahtlosen Support gewährleistet.
