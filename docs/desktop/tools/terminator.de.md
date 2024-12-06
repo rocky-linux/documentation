@@ -1,7 +1,7 @@
 ---
 title: Terminator ein Terminal Emulator
 author: Andrew Scott
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 9.4
 ---
 
@@ -16,7 +16,7 @@ Terminator ist ein auf GNOME Terminal basierender Terminal-Emulator, der erweite
 
 ## Installation von Terminator
 
-Terminator befindet sich im Repository „Extra Packages for Enterprise Linux“ (EPEL), das bei einer Neuinstallation nicht verfügbar ist. Also müssen wir zuerst EPEL zu Rocky Linux hinzufügen.
+Terminator befindet sich im Repository `Extra Packages for Enterprise Linux` (EPEL), das bei einer Neuinstallation nicht verfügbar ist. Also müssen wir zuerst EPEL zu Rocky Linux hinzufügen.
 
 - Schritt 1 (optional): Aktivieren Sie das CodeReady Builder (CRB)-Repository
 
@@ -54,7 +54,7 @@ Um mit der Anpassung Ihres neuen Terminals zu beginnen, öffnen Sie das Kontextm
 
 ![Terminator context menu](images/terminator-02.png)
 
-Von diesem Menü aus können wir das Fenster teilen, neue Registerkarten öffnen und das Layout wechseln. Es ist auch möglich, das Design über das Untermenü `Preferences` anzupassen. Es lohnt sich möglicherweise, sich etwas Zeit zu nehmen, um sich mit den verfügbaren Optionen vertraut zu machen, da viele Einstellungen über den Rahmen dieses Handbuchs hinausgehen.
+Von diesem Menü aus können Sie das Fenster teilen, neue Registerkarten öffnen und das Layout wechseln. Es ist auch möglich, das Design über das Untermenü `Preferences` anzupassen. Es lohnt sich möglicherweise, sich etwas Zeit zu nehmen, um sich mit den verfügbaren Optionen vertraut zu machen, da viele Einstellungen über den Rahmen dieses Handbuchs hinausgehen.
 
 Für diejenigen, die ihre Hand nicht gerne zwischen Tastatur und Maus hin- und herbewegen, stehen auch mehrere Tastenkombinationen zur Verfügung. Beispielsweise teilt ++shift+ctrl+"O"++ das Fenster horizontal in mehrere Terminals auf. Darüber hinaus werden das mehrmalige Aufteilen des Fensters und die Neuanordnung per Drag & Drop unterstützt.
 
