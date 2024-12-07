@@ -9,34 +9,36 @@ tags:
   - archive
 ---
 
-# Overview
+## Overview
 
 `tar` is a powerful tool for archiving files in GNU/Linux and UNIX operating systems, and it stands for "tape archive".
 
-Initially, tar archives were used to store files conveniently on magnetic tape. The name "Tar" comes from this use; it stands for tape archiver. Despite the utility's name, Tar can direct its output to available devices, files, or other programs (using pipes), it can even access remote devices or files (as archives).
+Storing files conveniently on magnetic tape was the initial use of tar archives. The name "Tar" comes from this use. Despite the utility's name, `tar` can direct its output to available devices, files, or other programs (using pipes). It can even access remote devices or files (as archives).
 
-The `tar` currently used on GNU/Linux operating systems is derived from "GNU Tar". You can browse and download all versions of `tar` on [this ftp server](https://ftp.gnu.org/gnu/tar/).
+The `tar` currently used on GNU/Linux operating systems came originally from "GNU Tar". You can browse and download all versions of `tar` on [this ftp server](https://ftp.gnu.org/gnu/tar/).
 
-The `tar` in different distributions may have different default options, so be careful when using them!
+!!! note
 
-```bash
-# RockyLinux 8 and Fedora 41
-Shell > tar --show-defaults
---format=gnu -f- -b20 --quoting-style=escape --rmt-command=/etc/rmt --rsh-command=/usr/bin/ssh
-```
+    The `tar` in different distributions might have different default options, so be careful when using them.
+
+    ```bash
+    # RockyLinux 8 and Fedora 41
+    Shell > tar --show-defaults
+    --format=gnu -f- -b20 --quoting-style=escape --rmt-command=/etc/rmt --rsh-command=/usr/bin/ssh
+    ```
 
 ## Use `tar`
 
-When using `tar`, please note that it has two saving modes:
+When using `tar`, note that it has two saving modes:
 
-* **Relative mode** (default): Remove the leading character '/' from the file to be archived. Even if you have added the file to be archived with an absolute path, the leading character "/" will still be removed in this mode.
-* **Absolute mode**: Keep the leading character '/' and include it as part of the file name. To enable this save mode, you need to use the `-P` option. In this mode, all files you add must be represented as absolute paths. For security reasons, you should not use this save mode in most cases unless there are special scenario requirements.
+* **Relative mode** (default): Remove the leading character '/' from the file. Even if you have added the file with an absolute path, `tar` will remove the leading character "/" in this mode.
+* **Absolute mode**: Keep the leading character '/' and include it as part of the file name. To enable this save mode, you need to use the `-P` option. In this mode, you must represent all files as absolute paths. For security reasons, you should not use this save mode in most cases unless there are special scenario requirements.
 
-When you use `tar`, you will encounter suffixes such as `.tar.gz`, `.tar.xz`, `.tar.bz2`, which indicate creating an archive first (categorizing related files as a single file), and then compressing the file using the relevant compression type or compression algorithm.
+When you use `tar`, you will encounter suffixes such as `.tar.gz`, `.tar.xz`, `.tar.bz2`, which indicate creating an archive first (categorizing related files as a single file), and then compressing the file with the relevant compression type or compression algorithm.
 
-The compression type or compression algorithm can be `gzip`, `bzip2`, `xz`, `zstd` etc.
+The compression type or compression algorithm can be `gzip`, `bzip2`, `xz`, `zstd` and others.
 
-`tar` allows you to extract a single file or a directory from a backup, view its contents, or validate its integrity.
+`tar` allows the extraction of a single file or a directory from a backup, the viewing of its contents, or validation of its integrity.
 
 The usage of creating an archive and using compression is:
 
@@ -49,7 +51,7 @@ The usage to extract a file from an archive is:
 !!! tip "antic"
 
     When you extract files from archived files `tar` will automatically select the compression type based on the manually added suffix. For example, for `.tar.gz` files, you can directly use `tar -vxf` without using the `tar -zvxf`. 
-    For creating archive compressed files, the compression type **must be** selected.
+    For creating archive compressed files, you **must** select the compression type.
 
 !!! Note
 
@@ -64,13 +66,13 @@ Operating parameters or types:
 | `-d`  | Compare the differences between archived and corresponding unarchived files |
 | `-r`  | Append the files or directories to the end of the archive. Only applicable to archive non-compressed files of the `.tar` type  |
 | `-t`  | Lists the contents of the archive |
-| `-u`  | Only newer files are appended to the archive. Only applicable to archive non-compressed files of the `.tar` type |
+| `-u`  | Only appends newer files to the archive. Only applicable to archive non-compressed files of the `.tar` type |
 | `-x`  | Extract from archive. Very commonly used |
 | `--delete` | Delete files or directories from the ".tar" archive. Only applicable to archive non-compressed files of the `.tar` type |
 
 !!! Tip
 
-    In terms of operation types, in order to preserve user habits, we recommend that you keep the prefix "-". Of course, it's not required. The operational parameters here indicate what your primary function is with `tar`. In other words, you need to choose one of the above types.
+    In terms of operation types, in order to preserve user habits, the author recommends that you keep the prefix "-". Of course, it is not required. The operational parameters here indicate what your primary function is with `tar`. In other words, you need to choose one of the above types.
 
 Common auxiliary options:
 
@@ -84,7 +86,7 @@ Common auxiliary options:
 | `-C`  | Save location after extracting files from the archive |
 | `-P`  | Save using absolute mode |
 
-Other auxiliary options are explained in the following examples.
+The author explains other auxiliary options in the following examples.
 
 !!! warning "Version difference"
 
@@ -94,38 +96,38 @@ Other auxiliary options are explained in the following examples.
 
 `tar` provides three styles of options:
 
-1. Traditional style. Its usage is: 
+1. Traditional style. Its usage is:
 
-   * `tar {A|c|d|r|t|u|x}[GnSkUWOmpsMBiajJzZhPlRvwo] [ARG...]`.
+    * `tar {A|c|d|r|t|u|x}[GnSkUWOmpsMBiajJzZhPlRvwo] [ARG...]`.
 
 2. UNIX-style (The short-option style of GNU/Linux). Its usage is:
 
-   * `tar -A [OPTIONS] ARCHIVE ARCHIVE`
-   * `tar -c [-f ARCHIVE] [OPTIONS] [FILE...]`
-   * `tar -d [-f ARCHIVE] [OPTIONS] [FILE...]`
-   * `tar -t [-f ARCHIVE] [OPTIONS] [MEMBER...]`
-   * `tar -r [-f ARCHIVE] [OPTIONS] [FILE...]`
-   * `tar -u [-f ARCHIVE] [OPTIONS] [FILE...]`
-   * `tar -x [-f ARCHIVE] [OPTIONS] [MEMBER...]`
+    * `tar -A [OPTIONS] ARCHIVE ARCHIVE`
+    * `tar -c [-f ARCHIVE] [OPTIONS] [FILE...]`
+    * `tar -d [-f ARCHIVE] [OPTIONS] [FILE...]`
+    * `tar -t [-f ARCHIVE] [OPTIONS] [MEMBER...]`
+    * `tar -r [-f ARCHIVE] [OPTIONS] [FILE...]`
+    * `tar -u [-f ARCHIVE] [OPTIONS] [FILE...]`
+    * `tar -x [-f ARCHIVE] [OPTIONS] [MEMBER...]`
 
 3. GNU-style (The long-option style of GNU/Linux). Its usage is:
 
-   * `tar {--catenate|--concatenate} [OPTIONS] ARCHIVE ARCHIVE`
-   * `tar --create [--file ARCHIVE] [OPTIONS] [FILE...]`
-   * `tar {--diff|--compare} [--file ARCHIVE] [OPTIONS] [FILE...]`
-   * `tar --delete [--file ARCHIVE] [OPTIONS] [MEMBER...]`
-   * `tar --append [-f ARCHIVE] [OPTIONS] [FILE...]`
-   * `tar --list [-f ARCHIVE] [OPTIONS] [MEMBER...]`
-   * `tar --test-label [--file ARCHIVE] [OPTIONS] [LABEL...]`
-   * `tar --update [--file ARCHIVE] [OPTIONS] [FILE...]`
-   * `tar --update [-f ARCHIVE] [OPTIONS] [FILE...]`
-   * `tar {--extract|--get} [-f ARCHIVE] [OPTIONS] [MEMBER...]`
+    * `tar {--catenate|--concatenate} [OPTIONS] ARCHIVE ARCHIVE`
+    * `tar --create [--file ARCHIVE] [OPTIONS] [FILE...]`
+    * `tar {--diff|--compare} [--file ARCHIVE] [OPTIONS] [FILE...]`
+    * `tar --delete [--file ARCHIVE] [OPTIONS] [MEMBER...]`
+    * `tar --append [-f ARCHIVE] [OPTIONS] [FILE...]`
+    * `tar --list [-f ARCHIVE] [OPTIONS] [MEMBER...]`
+    * `tar --test-label [--file ARCHIVE] [OPTIONS] [LABEL...]`
+    * `tar --update [--file ARCHIVE] [OPTIONS] [FILE...]`
+    * `tar --update [-f ARCHIVE] [OPTIONS] [FILE...]`
+    * `tar {--extract|--get} [-f ARCHIVE] [OPTIONS] [MEMBER...]`
 
 Generally speaking, the second method is more commonly used and in line with the user's habits on GNU/Linux.
 
 ### Compression efficiency and frequency of use
 
-`tar` itself does not have compression capabilities, so it needs to be used in conjunction with other compression tools. Please note that! Compression, and consequently decompression, will impact resource consumption (time and CPU usage).
+`tar` itself does not have compression capabilities, so you need to use it in conjunction with other compression tools. Compression, and also decompression, will impact resource consumption (time and CPU usage).
 
 Here is a ranking of the compression of a set of text files from least to most efficient:
 
@@ -137,7 +139,7 @@ Here is a ranking of the compression of a set of text files from least to most e
 
 ### Naming convention for a `tar`
 
-Here is an example of a naming convention for a `tar` backup, knowing that the date will be added to the name.
+Here are examples of naming conventions for `tar` backups. You will probably add the date to the name as well:
 
 | Main function and auxiliary options   | Files   | Suffix | Functionality   |
 |--------  |---------|------------------|----------------------------------------------|
@@ -147,7 +149,6 @@ Here is an example of a naming convention for a `tar` backup, knowing that the d
 | `-cvfj`  | `usr`   | `usr.tar.bz2`    | `/usr` in relative mode, *bzip2* compression |
 | `-cvfPz` | `/home` | `home.A.tar.gz`  | `home` in absolute mode, *gzip* compression  |
 | `-cvfPj` | `/home` | `home.A.tar.bz2` | `home` in absolute mode, *bzip2* compression |
-| …        |         |                  |                                              |
 
 ### Example of use
 
@@ -161,7 +162,7 @@ Here is an example of a naming convention for a `tar` backup, knowing that the d
 
     Due to `tar` working in relative mode by default, the first line of the command output will display the following text:
 
-    ```
+    ```bash
     tar: Removing leading '/' from member names
     ```
 
@@ -250,7 +251,7 @@ Here is an example of a naming convention for a `tar` backup, knowing that the d
 
 !!! warning
 
-    Whether you use the `-A` or `-r` option, please pay attention to the saving mode of the relevant archive files.
+    Whether you use the `-A` or `-r` option, pay attention to the saving mode of the relevant archive files.
 
 !!! warning
 
@@ -277,11 +278,11 @@ Here is an example of a naming convention for a `tar` backup, knowing that the d
     Shell > cd / ; tar -dvf /tmp/etc-20241207.tar.gz etc/
     ```
 
-    For storage methods that use relative mode, when using the `-d` type, please switch the file path to '/'.
+    For storage methods that use relative mode, when using the `-d` type,  switch the file path to '/'.
 
-### `-u` type
+#### `-u` type
 
-1. If there are multiple versions of the same file, the `-u` type can be used:
+1. If there are multiple versions of the same file, you can use the `-u` type:
 
     ```bash
     Shell > touch /tmp/tmpfile1
@@ -298,7 +299,7 @@ Here is an example of a naming convention for a `tar` backup, knowing that the d
     -rw-r--r-- root/root        10 2024-12-07 18:54 tmp/tmpfile1
     ```
 
-### `--delete` type
+#### `--delete` type
 
 1. You can also use `--delete` to delete files from the ".tar" file.
 
@@ -308,12 +309,11 @@ Here is an example of a naming convention for a `tar` backup, knowing that the d
     Shell > tar --delete -vf /tmp/etc.tar etc/motd.d/
     ```
 
-    When deleting, all files with the same name are deleted from the archive.
+    When deleting, you will delete all files with the same name from the archive.
 
+## Terminology explanation
 
-## Terminology Explanation
+Some website documents mention two terms:
 
-In some website documents, two terms are mentioned:
-
-* **tarfile** - Refers to uncompressed archive files, such as ".tar" files
+* **tar file** - Refers to uncompressed archive files, such as ".tar" files
 * **tarball** - Refers to compressed archive files, such as ".tar.gz" and ".tar.xz"
