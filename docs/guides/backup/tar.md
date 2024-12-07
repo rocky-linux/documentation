@@ -11,15 +11,15 @@ tags:
 
 ## Overview
 
-`tar` is a powerful tool for archiving files in GNU/Linux and UNIX operating systems, and it stands for "tape archive".
+`tar` is a tool for archiving files on Linux and other UNIX operating systems and stands for "tape archive".
 
-Storing files conveniently on magnetic tape was the initial use of tar archives. The name "Tar" comes from this use. Despite the utility's name, `tar` can direct its output to available devices, files, or other programs (using pipes). It can even access remote devices or files (as archives).
+Storing files conveniently on magnetic tape was the initial use of tar archives. The name "tar" comes from this use. Despite the utility's name, `tar` can direct its output to available devices, files, or other programs (using pipes) and can access remote devices or files (as archives).
 
-The `tar` currently used on GNU/Linux operating systems came originally from "GNU Tar". You can browse and download all versions of `tar` on [this ftp server](https://ftp.gnu.org/gnu/tar/).
+The `tar` currently used on modern Linux came originally from the [GNU Project](https://www.gnu.org/). You can browse and download all versions of `tar` on [GNU's website](https://ftp.gnu.org/gnu/tar/).
 
 !!! note
 
-    The `tar` in different distributions might have different default options, so be careful when using them.
+    The `tar` in different distributions may have different default options. Be careful when using them.
 
     ```bash
     # RockyLinux 8 and Fedora 41
@@ -55,9 +55,9 @@ The usage to extract a file from an archive is:
 
 !!! Note
 
-    In the GNU/Linux world, except for a few exceptions in GUI environments (such as .jpg, .mp4, .gif), most files do not have the concept of extension. In other words, most files do not require an extension. The reason for artificially adding suffixes is to facilitate recognition by human users. If the systems administrator sees a `.tar.gz` or `.tgz` file extension, for instance, then he knows how to deal with the file.
+    In Linux, outside of desktop environments, files do not have the concept of extensions. In other words, most files do not require an extension. The reason for extensions is to facilitate recognition by human users. For instance, if a systems administrator sees a file with a `.tar.gz` or `.tgz` extension, then they know how to deal with the file.
 
-Operating parameters or types:
+### Operating parameters or types
 
 | types | describe |
 | :---: | :--- |
@@ -74,7 +74,7 @@ Operating parameters or types:
 
     In terms of operation types, in order to preserve user habits, the author recommends that you keep the prefix "-". Of course, it is not required. The operational parameters here indicate what your primary function is with `tar`. In other words, you need to choose one of the above types.
 
-Common auxiliary options:
+### Common auxiliary options
 
 | option | describe |
 | :---: | :--- |
@@ -96,11 +96,11 @@ The author explains other auxiliary options in the following examples.
 
 `tar` provides three styles of options:
 
-1. Traditional style. Its usage is:
+1. Traditional style argument usage is:
 
     * `tar {A|c|d|r|t|u|x}[GnSkUWOmpsMBiajJzZhPlRvwo] [ARG...]`.
 
-2. UNIX-style (The short-option style of GNU/Linux). Its usage is:
+2. Short-form argument usage is:
 
     * `tar -A [OPTIONS] ARCHIVE ARCHIVE`
     * `tar -c [-f ARCHIVE] [OPTIONS] [FILE...]`
@@ -110,7 +110,7 @@ The author explains other auxiliary options in the following examples.
     * `tar -u [-f ARCHIVE] [OPTIONS] [FILE...]`
     * `tar -x [-f ARCHIVE] [OPTIONS] [MEMBER...]`
 
-3. GNU-style (The long-option style of GNU/Linux). Its usage is:
+3. Long-form argument usage is:
 
     * `tar {--catenate|--concatenate} [OPTIONS] ARCHIVE ARCHIVE`
     * `tar --create [--file ARCHIVE] [OPTIONS] [FILE...]`
@@ -123,23 +123,23 @@ The author explains other auxiliary options in the following examples.
     * `tar --update [-f ARCHIVE] [OPTIONS] [FILE...]`
     * `tar {--extract|--get} [-f ARCHIVE] [OPTIONS] [MEMBER...]`
 
-Generally speaking, the second method is more commonly used and in line with the user's habits on GNU/Linux.
+Generally speaking, the second method is more commonly used and in line with the habits of most Linux users.
 
 ### Compression efficiency and frequency of use
 
-`tar` itself does not have compression capabilities, so you need to use it in conjunction with other compression tools. Compression, and also decompression, will impact resource consumption (time and CPU usage).
+`tar` itself does not have compression capabilities, so it's used in conjunction with other compression tools. Compression and decompression, will impact resource consumption.
 
 Here is a ranking of the compression of a set of text files from least to most efficient:
 
-* compress (`.tar.Z`) - Less usage
-* gzip (`.tar.gz` or `.tgz`) - Frequent use
-* bzip2 (`.tar.bz2` or `.tb2` or `.tbz`) - Frequent use
-* lzip (`.tar.lz`) - Less usage
-* xz (`.tar.xz`) - Frequent use
+* compress (`.tar.Z`) - Less popular
+* gzip (`.tar.gz` or `.tgz`) - Popular
+* bzip2 (`.tar.bz2` or `.tb2` or `.tbz`) - Popular
+* lzip (`.tar.lz`) - Less popular
+* xz (`.tar.xz`) - Popular
 
 ### Naming convention for a `tar`
 
-Here are examples of naming conventions for `tar` backups. You will probably add the date to the name as well:
+Here are examples of naming conventions for `tar` archives:
 
 | Main function and auxiliary options   | Files   | Suffix | Functionality   |
 |--------  |---------|------------------|----------------------------------------------|
@@ -149,6 +149,8 @@ Here are examples of naming conventions for `tar` backups. You will probably add
 | `-cvfj`  | `usr`   | `usr.tar.bz2`    | `/usr` in relative mode, *bzip2* compression |
 | `-cvfPz` | `/home` | `home.A.tar.gz`  | `home` in absolute mode, *gzip* compression  |
 | `-cvfPj` | `/home` | `home.A.tar.bz2` | `home` in absolute mode, *bzip2* compression |
+
+You may also add the date to the filename.
 
 ### Example of use
 
@@ -160,7 +162,7 @@ Here are examples of naming conventions for `tar` backups. You will probably add
     Shell > tar -czvf /tmp/etc-20241207.tar.gz /etc/
     ```
 
-    Due to `tar` working in relative mode by default, the first line of the command output will display the following text:
+    Due to `tar` working in relative mode by default, the first line of the command output will display the following:
 
     ```bash
     tar: Removing leading '/' from member names
@@ -176,7 +178,7 @@ Here are examples of naming conventions for `tar` backups. You will probably add
     -rw-r--r-- 1 root root 744K Dec  7 14:40 /tmp/log-20241207.tar.xz
     ```
 
-3. Estimate file size without generating files:
+3. Estimate file size without generating an archive:
 
     ```bash
     Shell > tar -cJf - /etc | wc -c
@@ -184,7 +186,7 @@ Here are examples of naming conventions for `tar` backups. You will probably add
     3721884
     ```
 
-    The output unit of the `wc -c` command is "bytes".
+    The output unit of the `wc -c` command is bytes.
 
 4. Cut large ".tar.gz" files:
 
@@ -198,7 +200,7 @@ Here are examples of naming conventions for `tar` backups. You will probably add
     -rw-r--r-- 1 root root  70K Dec  7 20:46 etc-backup20241207.tar.gz.03
     ```
 
-    The first "-" represents the output parameter of `tar`; the second "-" represents the input parameter of `split`.
+    The first "-" represents the input parameters of `tar` while the second `-` tells `tar` to redirect the output to `stdout`..
 
     To extract these cut small files, you can point to the following operation:
 
@@ -210,7 +212,7 @@ Here are examples of naming conventions for `tar` backups. You will probably add
 
 #### `-x` type
 
-1. Download the Redis source code and extract it to the **/etc/local/src/** directory：
+1. Download the Redis source code and extract it to the `/usr/local/src/` directory：
 
     ```bash
     Shell > wget -c https://github.com/redis/redis/archive/refs/tags/7.4.1.tar.gz
@@ -278,11 +280,11 @@ Here are examples of naming conventions for `tar` backups. You will probably add
     Shell > cd / ; tar -dvf /tmp/etc-20241207.tar.gz etc/
     ```
 
-    For storage methods that use relative mode, when using the `-d` type,  switch the file path to '/'.
+    For storage methods that use relative mode, when using the `-d` type, switch the file path to '/'.
 
 #### `-u` type
 
-1. If there are multiple versions of the same file, you can use the `-u` type:
+1. If there are multiple files, you can use the `-u` type:
 
     ```bash
     Shell > touch /tmp/tmpfile1
@@ -301,7 +303,7 @@ Here are examples of naming conventions for `tar` backups. You will probably add
 
 #### `--delete` type
 
-1. You can also use `--delete` to delete files from the ".tar" file.
+1. You can also use `--delete` to delete files inside a `.tar` file.
 
     ```bash
     Shell > tar --delete -vf /tmp/log.tar tmp/tmpfile1
@@ -309,11 +311,11 @@ Here are examples of naming conventions for `tar` backups. You will probably add
     Shell > tar --delete -vf /tmp/etc.tar etc/motd.d/
     ```
 
-    When deleting, you will delete all files with the same name from the archive.
+    When deleting you will delete all files with the same name from the archive.
 
-## Terminology explanation
+## Common terminology
 
-Some website documents mention two terms:
+Some websites mention two terms:
 
 * **tar file** - Refers to uncompressed archive files, such as ".tar" files
 * **tarball** - Refers to compressed archive files, such as ".tar.gz" and ".tar.xz"
