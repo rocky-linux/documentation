@@ -96,11 +96,11 @@ The author explains other auxiliary options in the following examples.
 
 `tar` provides three styles of options:
 
-1. Traditional style argument usage is:
+1. Traditional style:
 
     * `tar {A|c|d|r|t|u|x}[GnSkUWOmpsMBiajJzZhPlRvwo] [ARG...]`.
 
-2. Short-form argument usage is:
+2. The usage of the short-option style is:
 
     * `tar -A [OPTIONS] ARCHIVE ARCHIVE`
     * `tar -c [-f ARCHIVE] [OPTIONS] [FILE...]`
@@ -110,7 +110,7 @@ The author explains other auxiliary options in the following examples.
     * `tar -u [-f ARCHIVE] [OPTIONS] [FILE...]`
     * `tar -x [-f ARCHIVE] [OPTIONS] [MEMBER...]`
 
-3. Long-form argument usage is:
+3. The usage of the long-option style is:
 
     * `tar {--catenate|--concatenate} [OPTIONS] ARCHIVE ARCHIVE`
     * `tar --create [--file ARCHIVE] [OPTIONS] [FILE...]`
@@ -156,7 +156,7 @@ You may also add the date to the filename.
 
 #### `-c` type
 
-1. Archive and compress **/etc/** in relative mode, with a suffix of ".tar.gz":
+1. Archive and compress **/etc/** in relative mode, with a suffix of `.tar.gz`:
 
     ```bash
     Shell > tar -czvf /tmp/etc-20241207.tar.gz /etc/
@@ -188,7 +188,7 @@ You may also add the date to the filename.
 
     The output unit of the `wc -c` command is bytes.
 
-4. Cut large ".tar.gz" files:
+4. Cut large `.tar.gz` files:
 
     ```bash
     Shell > cd /tmp/ ; tar -czf - /etc/  | split -d -b 2M - etc-backup20241207.tar.gz.
@@ -200,7 +200,7 @@ You may also add the date to the filename.
     -rw-r--r-- 1 root root  70K Dec  7 20:46 etc-backup20241207.tar.gz.03
     ```
 
-    The first "-" represents the input parameters of `tar` while the second `-` tells `tar` to redirect the output to `stdout`..
+    The first "-" represents the input parameters of `tar` while the second "-" tells `tar` to redirect the output to `stdout`.
 
     To extract these cut small files, you can point to the following operation:
 
@@ -228,7 +228,7 @@ You may also add the date to the filename.
 
 #### `-A` or `-r` type
 
-1. Append one ".tar" file to another ".tar" file:
+1. Append one `.tar` file to another `.tar` file:
 
     ```bash
     Shell > tar -cvf /tmp/etc.tar /etc/
@@ -240,7 +240,7 @@ You may also add the date to the filename.
 
     This means appending "log.tar" to "etc.tar".
 
-2. Append files or directories to a ".tar" file:
+2. Append files or directories to a `.tar` file:
 
     ```bash
     Shell > tar -rvf /tmp/log.tar /etc/chrony.conf
@@ -284,7 +284,7 @@ You may also add the date to the filename.
 
 #### `-u` type
 
-1. If there are multiple files, you can use the `-u` type:
+1. If there are multiple versions of the same file, you can use the `-u` type:
 
     ```bash
     Shell > touch /tmp/tmpfile1
@@ -317,5 +317,5 @@ You may also add the date to the filename.
 
 Some websites mention two terms:
 
-* **tar file** - Refers to uncompressed archive files, such as ".tar" files
-* **tarball** - Refers to compressed archive files, such as ".tar.gz" and ".tar.xz"
+* **tarfile** - Refers to uncompressed archive files, such as `.tar` files
+* **tarball** - Refers to compressed archive files, such as `.tar.gz` and `.tar.xz`
