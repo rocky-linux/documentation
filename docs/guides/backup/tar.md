@@ -11,11 +11,11 @@ tags:
 
 ## Overview
 
-`tar` is a tool for archiving files on Linux and other UNIX operating systems and stands for "tape archive".
+`tar` is a tool for archiving files on GNU/Linux and other UNIX operating systems and stands for "tape archive".
 
 Storing files conveniently on magnetic tape was the initial use of tar archives. The name "tar" comes from this use. Despite the utility's name, `tar` can direct its output to available devices, files, or other programs (using pipes) and can access remote devices or files (as archives).
 
-The `tar` currently used on modern Linux came originally from the [GNU Project](https://www.gnu.org/). You can browse and download all versions of `tar` on [GNU's website](https://ftp.gnu.org/gnu/tar/).
+The `tar` currently used on modern GNU/Linux came originally from the [GNU Project](https://www.gnu.org/). You can browse and download all versions of `tar` on [GNU's website](https://ftp.gnu.org/gnu/tar/).
 
 !!! note
 
@@ -55,7 +55,7 @@ The usage to extract a file from an archive is:
 
 !!! Note
 
-    In Linux, outside of desktop environments, files do not have the concept of extensions. In other words, most files do not require an extension. The reason for extensions is to facilitate recognition by human users. For instance, if a systems administrator sees a file with a `.tar.gz` or `.tgz` extension, then they know how to deal with the file.
+    In GNU/Linux, outside of desktop environments, files do not have the concept of extensions. In other words, most files do not require an extension. The reason for extensions is to facilitate recognition by human users. For instance, if a systems administrator sees a file with a `.tar.gz` or `.tgz` extension, then they know how to deal with the file.
 
 ### Operating parameters or types
 
@@ -123,7 +123,7 @@ The author explains other auxiliary options in the following examples.
     * `tar --update [-f ARCHIVE] [OPTIONS] [FILE...]`
     * `tar {--extract|--get} [-f ARCHIVE] [OPTIONS] [MEMBER...]`
 
-Generally speaking, the second method is more commonly used and in line with the habits of most Linux users.
+Generally speaking, the second method is more commonly used and in line with the habits of most GNU/Linux users.
 
 ### Compression efficiency and frequency of use
 
