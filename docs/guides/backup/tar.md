@@ -86,7 +86,7 @@ The usage to extract a file from an archive is:
 | `-C`  | Save location after extracting files from the archive |
 | `-P`  | Save using absolute mode |
 
-The author explains other auxiliary options in the following examples.
+For other auxiliary options not mentioned, see `man 1 tar`
 
 !!! warning "Version difference"
 
@@ -127,7 +127,7 @@ Generally speaking, the second method is more commonly used and in line with the
 
 ### Compression efficiency and frequency of use
 
-`tar` itself does not have compression capabilities, so it's used in conjunction with other compression tools. Compression and decompression, will impact resource consumption.
+`tar` itself does not have compression capabilities, so it needs to be used in conjunction with other compression tools. Compression and decompression, will impact resource consumption.
 
 Here is a ranking of the compression of a set of text files from least to most efficient:
 
