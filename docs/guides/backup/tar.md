@@ -55,7 +55,7 @@ The usage to extract a file from an archive is:
 
 !!! Note
 
-    In GNU/Linux, outside of desktop environments, files do not have the concept of extensions. In other words, most files do not require an extension. The reason for extensions is to facilitate recognition by human users. For instance, if a systems administrator sees a file with a `.tar.gz` or `.tgz` extension, then they know how to deal with the file.
+    In GNU/Linux, most files do not require an extension except for the desktop environment (GUI). The reason for artificially adding suffixes is to facilitate recognition by human users. If the systems administrator sees a `.tar.gz` or `.tgz` file extension, for instance, then he knows how to deal with the file.
 
 ### Operating parameters or types
 
