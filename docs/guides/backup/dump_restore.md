@@ -225,5 +225,5 @@ The mode (flag) can be one of the following:
     restore > ?
     ```
 
-    In this mode, you can type ++?++ to view the available interactive commands.
+    In this mode, you can type ++question++ to view the available interactive commands.
   
