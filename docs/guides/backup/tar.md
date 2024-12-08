@@ -11,7 +11,7 @@ tags:
 
 ## Overview
 
-`tar` is a tool for archiving files on GNU/Linux and other UNIX operating systems and stands for "tape archive".
+`tar` is a tool used to process archive files on GNU/Linux and other UNIX operating systems and stands for "tape archive".
 
 Storing files conveniently on magnetic tape was the initial use of tar archives. The name "tar" comes from this use. Despite the utility's name, `tar` can direct its output to available devices, files, or other programs (using pipes) and can access remote devices or files (as archives).
 
