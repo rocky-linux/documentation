@@ -1,7 +1,7 @@
 ---
 title: Knot Autoritativer DNS
 author: Neel Chauhan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.4
 tags:
   - dns
@@ -129,4 +129,4 @@ example.com mail is handled by 10 mail.another.com.
 
 Während die meisten Menschen Dienste von Drittanbietern für DNS nutzen, gibt es Szenarien, in denen selbst gehostetes DNS gewünscht ist. Beispielsweise hosten Telekommunikations-, Hosting- und Social-Media-Unternehmen eine große Anzahl von DNS-Einträgen, bei denen auch gehostete Dienste unerwünscht sind.
 
-Knot ist eines von vielen Open-Source-Tools, das das Hosten von DNS möglich macht. Herzlichen Glückwunsch, Sie haben Ihren eigenen DNS-Server! Glück auf!
+Knot ist eines von vielen Open-Source-Tools, das das Hosten von DNS möglich macht. Herzlichen Glückwunsch, Sie haben Ihren eigenen DNS-Server!
