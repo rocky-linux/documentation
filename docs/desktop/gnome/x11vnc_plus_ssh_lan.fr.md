@@ -6,7 +6,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 ## Introduction
 
-x11vnc est un logiciel VNC qui se distingue par l'utilisation de la session X existante plutôt que d'en démarrer une nouvelle. Cette fonctionnalité en fait un excellent outil d'assistance délocalisée, car elle vous permet de contrôler à distance l'écran ou la session X d'un utilisateur.
+x11vnc est un logiciel VNC très performant. Ce qui différencie x11vnc des autres programmes VNC est qu'un administrateur peut récupérer la session X existante d'un utilisateur plutôt que d'être obligé d'en créer une nouvelle. Cela rend `X11VNC` idéal pour fournir une assistance à distance aux postes de travail Linux.
 
 Dans ce guide, vous apprenez à configurer un serveur `x11vnc` et à vous y connecter à distance.
 
@@ -159,11 +159,11 @@ Félicitations ! Vous pouvez désormais contrôler votre ordinateur à distance 
 
 ## Connexion à la machine via Internet
 
-Jusqu'à présent, cet article vous a montré comment configurer un serveur x11vnc et vous y connecter à l'aide de VNC transféré via un tunnel SSH. Un détail apparemment évident mais important à prendre en compte est que cette méthode ne fonctionnera que pour les ordinateurs connectés à un réseau. Étant donné que le principal cas d'utilisation présenté dans ce guide est l'assistance à distance, il est raisonnable de supposer que vous souhaitez vous connecter à un ordinateur situé sur un réseau local (LAN) différent du vôtre. Le moyen d'y parvenir est de mettre en place un VPN. Les deux guides ci-dessous fourniront un tunnel privé approprié pour vous connecter à votre serveur x11vnc via Internet.
+Jusqu'à présent, cet article vous a montré comment configurer un serveur x11vnc et vous y connecter à l'aide de VNC communiquant via un tunnel SSH. Il est important de noter que cette méthode ne fonctionnera que pour les ordinateurs sur le même réseau local (LAN). En supposant que vous souhaitiez vous connecter à un ordinateur qui se trouve sur un autre réseau local. Un moyen d’y parvenir est de mettre en place un VPN. Vous trouverez ci-dessous quelques guides sur la façon de configurer un VPN :
 
--[OpenVPN](https://docs.rockylinux.org/guides/security/openvpn/)
--[Wireguard VPN](https://docs.rockylinux.org/guides/security/wireguard_vpn/)
+- [OpenVPN](https://docs.rockylinux.org/guides/security/openvpn/)
+- [Wireguard VPN](https://docs.rockylinux.org/guides/security/wireguard_vpn/)
 
 ## Conclusion
 
-Vous avez configuré avec succès un serveur x11vnc et vous y êtes connecté à l'aide d'un client TigerVNC. Cette solution est idéale pour la maintenance à distance, car elle partage la même session X que l’utilisateur, garantissant une expérience d’assistance transparente.
+Félicitations ! Vous avez réussi à configurer un serveur `x11vnc` et à vous y connecter à l'aide d'un client `TigerVNC`. Cette solution est idéale pour la maintenance à distance, car elle partage la même session X que l’utilisateur, garantissant une expérience d’assistance transparente.

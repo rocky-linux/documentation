@@ -1,7 +1,7 @@
 ---
 title: Unbound – Résolveur DNS récursif
 author: Neel Chauhan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.4
 tags:
   - dns
@@ -65,7 +65,7 @@ Remplacez `192.168.0.0/16` et `2001:db8::/64` par les sous-réseaux pour lesquel
 
 - La variable `interface` indique les interfaces (IPv4 ou IPv6) sur lesquelles vous souhaitez écouter les requêtes DNS. Nous écoutons sur toutes les interfaces avec `0.0.0.0` et `::`.
 - La variable `access-control` indique les sous-réseaux (IPv4 ou IPv6) à partir desquels vous souhaitez autoriser les requêtes DNS. Nous autorisons les requêtes provenant de `192.168.0.0/16` et `2001:db8::/64`.
-- La variable `forward-addr` définit les serveurs vers lesquels nous transmettrons. Nous transmettons vers la version 1.1.1.1 de Cloudflare.
+- La variable `forward-addr` définit les serveurs vers lesquels nous transmettrons. Nous transmettons vers `1.1.1.1` et `1.0.0.1` de Cloudflare.
 
 ## Activation de Unbound
 
@@ -97,4 +97,4 @@ google.com mail is handled by 10 smtp.google.com.
 
 La plupart des gens utilisent le résolveur DNS de leur routeur domestique ou des résolveurs DNS publics gérés par les FAI et les entreprises technologiques. Dans les labos à domicile et les grands réseaux, il est courant d'exécuter un résolveur à l'échelle du réseau pour réduire la latence et la charge du réseau en mettant en cache les requêtes DNS pour les sites Web couramment demandés tels que Google. Un résolveur à l'échelle du réseau autorise également les services intranet tels que SharePoint et Active Directory.
 
-Unbound est l'un des nombreux outils open source qui rendent possible la résolution DNS. Félicitations, vous possédez votre propre résolveur DNS ! À bientôt !
+Unbound est l'un des nombreux outils open source qui rendent possible la résolution DNS. Félicitations, vous possédez votre propre résolveur DNS !
