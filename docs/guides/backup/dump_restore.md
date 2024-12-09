@@ -1,7 +1,7 @@
 ---
 title: dump and restore command
 author: tianci li
-contributors: 
+contributors: Steven Spencer 
 tested_with: 8.10
 tags:
   - dump
@@ -11,7 +11,7 @@ tags:
 
 ## Overview
 
-`dump` examines files in a filesystem, determines which ones need to be backed up, and copies those files to a specified disk, tape or other storage medium. The `restore` command performs the inverse function of `dump`.
+`dump` examines files in a filesystem, determines which to back up, and copies those files to a specified disk, tape or other storage medium. The `restore` command performs the inverse function of `dump`.
 
 This utility is applicable to the following file systems:
 
@@ -21,17 +21,17 @@ This utility is applicable to the following file systems:
 
 !!! tip
 
-    For the xfs file system, please use `xfsdump`.
+    For the xfs file system, use `xfsdump`.
 
 [This](https://dump.sourceforge.io/) is the homepage of the project.
 
-Before using this utility, please execute the following command to install it:
+Before using this utility, run the following command to install it:
 
 ```bash
 Shell > dnf -y install dump
 ```
 
-After installation, two commonly used command tools will be released:
+After installation, two commonly used command tools are available:
 
 * `dump`
 * `restore`
@@ -47,11 +47,11 @@ Common options are:
 
 * `-<level>` - Backup level. When in actual use, please replace "level" with any number from 0-9. The number 0 represents full backup, while other numbers represent incremental backup.
 * `-f <File-Name>` - Specify the file name and path after backup.
-* `-u` - After a successful backup, record the backup time in the **/etc/dumpdates** file. When the backed up object is an independent partition, you can use the `-u` option. However, when the backup object is a non-partitioned directory, the `-u` option cannot be used.
+* `-u` - After a successful backup, record the backup time in the **/etc/dumpdates** file. When the backed up object is an independent partition, you can use the `-u` option. However, when the backup object is a non-partitioned directory, you cannot use the `-u` option.
 * `-v` - Display the processing details during the backup process.
 * `-W` - An option for viewing dump information.
-* `-z[LEVEL]` - Adjust the compression level using the zlib library, with a default compression level of 2. In other words, you can compress the backup file to `.gz` format. The adjustable range of compression level is 1-9.
-* `-j[LEVEL]` - Adjust the compression level using the bzlib library, with a default compression level of 2. In other words, you can compress the backup file to `.bz2` format. The adjustable range of compression level is 1-9.
+* `-z[LEVEL]` - Adjust the compression level using the zlib library, with a default compression level of 2. For example, you can compress the backup file to `.gz` format. The adjustable range of compression level is 1-9.
+* `-j[LEVEL]` - Adjust the compression level using the bzlib library, with a default compression level of 2. For example, you can compress the backup file to `.bz2` format. The adjustable range of compression level is 1-9.
 
 #### Example of using `dump`
 
@@ -144,7 +144,7 @@ Common options are:
     /dev/nvme0n1p2        (     /) Last dump: Level 1, Date Sun Dec  8 19:38:51 2024
     ```
 
-4. For non-partitioned directory, only Full Backup (`-0`) can be used and the `-u` option cannot be used:
+4. For non-partitioned directory, you can only use the Full Backup (`-0`) option, not the `-u` option:
 
     ```bash
     Shell > dump -0uj -f /tmp/etc-full-20241208.bak.bz2 /etc/
@@ -191,16 +191,16 @@ The usage of this command is - `restore <mode(flag)> [option(s)] -f <Dump-File>`
 
 The mode (flag) can be one of the following:
 
-* `-C` - Comparison mode. Restore reads the backup and compares its contents with files present on the disk, it is mostly used for comparison after performing a backup on a partition In this mode, only changes based on the original data will be compared. If there is new data on the disk, it cannot be detected and compared.
+* `-C` - Comparison mode. Restore reads the backup and compares its contents with files present on the disk, it is mostly used for comparison after performing a backup on a partition In this mode, `restore` will only compare changes based on the original data. If there is new data on the disk, you cannot compare or detect it.
 * `-i` - Interactive mode. This mode allows interactive restoration of files from a dump.
 * `-t` - List mode. List what data is in the backup file.
-* `-r` - Restore (rebuild) mode. If it is a "Full Backup + Incremental Backup" method, it needs to be restored in chronological order.
+* `-r` - Restore (rebuild) mode. If it is a "Full Backup + Incremental Backup" method, restoring data will occur in chronological order.
 * `-x` - Extraction mode. Extract some or all files from the backup file.
 
 #### Example of using `restore`
 
 1. Restore data from /tmp/etc-full-20241208.bak.bz2 :
-   
+
     ```bash
     Shell > mkdir /tmp/data/
 
@@ -214,7 +214,7 @@ The mode (flag) can be one of the following:
     -rw-------   1 root root 5107632 Dec  8 20:39 restoresymtable
     ```
 
-    As you can see, a file named restoresymtable appears after a successful restore. This file is an important file that is relied upon for performing incremental backup system restore operations.
+    As you can see, a file named `restoresymtable` shows up after a successful restore. This file is important. It is for incremental backup system restore operations.
 
 2. Process backup files in Interactive mode:
 
@@ -226,4 +226,3 @@ The mode (flag) can be one of the following:
     ```
 
     In this mode, you can type ++question++ to view the available interactive commands.
-  
