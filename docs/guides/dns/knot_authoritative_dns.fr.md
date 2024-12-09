@@ -1,7 +1,7 @@
 ---
 title: Knot Authoritative DNS
 author: Neel Chauhan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.4
 tags:
   - dns
@@ -129,4 +129,4 @@ example.com mail is handled by 10 mail.another.com.
 
 Même si la plupart des gens utilisent des services tiers pour le DNS, il existe des scénarios dans lesquels l'auto-hébergement du DNS est souhaité. Par exemple, les sociétés de télécommunications, d’hébergement et de médias sociaux accueillent un grand nombre d’entrées DNS où les services hébergés ne sont pas les bienvenus.
 
-Knot est l'un des nombreux outils open source permettant l'hébergement de DNS. Félicitations, vous disposez de votre propre serveur DNS ! À bientôt !
+Knot est l'un des nombreux outils open source permettant l'hébergement de DNS. Félicitations, vous disposez de votre propre serveur DNS !
