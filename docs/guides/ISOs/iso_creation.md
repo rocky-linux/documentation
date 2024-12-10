@@ -96,7 +96,7 @@ firewall --enabled
 repo --name=extra-repo --baseurl=file:///run/install/repo/baseos/
 %end
 ```
-* Then point the `mkkiso` command directly to the repository directory and build the ISO:
+* Then point the `mkksiso` command directly to the repository directory and build the ISO:
 ```
 mkksiso --add ~/baseos --ks example-ks.cfg ~/Rocky-9.5-x86_64-dvd.iso ~/Rocky-9.5-x86_64-dvd-new.iso
 ```
