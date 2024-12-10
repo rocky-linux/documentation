@@ -11,7 +11,7 @@ tags:
 
 ## Introduction
 
-You might need to Create a custom ISO for a many reasons. Perhaps you want to make a change to the boot process, add specific packages, or update a configuration file.
+You might need to create a custom ISO for many reasons. Perhaps you want to make a change to the boot process, add specific packages, or update a configuration file.
 
 This guide will instruct you from start to finish on how to build your own Rocky Linux ISO.
 
