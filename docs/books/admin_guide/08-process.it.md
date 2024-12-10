@@ -41,11 +41,7 @@ Da filiazioni successive, il processo `init` è il padre di tutti i processi.
 
 C'è una relazione genitore/figlio tra i processi. Un processo figlio è il risultato di un genitore che chiama la primitiva *fork()* e duplica il suo codice per creare un figlio. Il *PID* del processo figlio viene restituito al processo genitore in modo che possa comunicare. Ogni processo figlio ha l'identificatore del suo processo genitore, il *PPID*.
 
-Il numero *PID* rappresenta il processo al momento dell'esecuzione. Al termine del processo, il numero è nuovamente disponibile per un altro processo. Eseguendo più volte lo stesso comando si otterrà ogni volta un *PID* diverso.
-
-<!-- TODO !\[Parent/child relationship between processes\](images/FON-050-001.png) -->
-
-!!! Note "Nota"
+Il numero *PID* rappresenta il processo al momento dell'esecuzione. Al termine del processo, il numero è nuovamente disponibile per un altro processo. Eseguendo più volte lo stesso comando si otterrà ogni volta un *PID* diverso.<!-- TODO !\[Parent/child relationship between processes\](images/FON-050-001.png) -->!!! Note "Nota"
 
     I processi non devono essere confusi con i _threads_. Ogni processo ha il suo contesto di memoria (risorse e spazio degli indirizzi), mentre i _thread_ dello stesso processo condividono questo contesto.
 
