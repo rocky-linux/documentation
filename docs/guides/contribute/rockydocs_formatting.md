@@ -7,7 +7,7 @@ tags:
   - formatting
 ---
 
-# Introduction
+## Introduction
 
 This guide highlights our more advanced formatting options, including admonitions, numbered lists, tables, and more.
 
@@ -32,6 +32,19 @@ A document might or might not need to contain any of these elements. However, if
     ```
 
     The key here is that you can use as many of the 2 through 6 headings as necessary, but only **ONE** level 1 heading. While the document will appear correct with more than one level 1 heading, the automatically generated table of contents for the document that appears on the right-hand side will **NOT** display correctly (or sometimes at all) with more than one. Keep this in mind when writing your documents.
+
+    Another important note about the Level 1 heading: If the `title:` meta is in use, then this will be the default Level 1 heading. You should not add another one. An example is that this document's title meta is:
+
+    ```
+    ---
+    title: Document Formatting
+    ```
+
+    The very first heading added, then, is "Introduction" at Level 2.
+
+    ```
+    ## Introduction
+    ```
 
 !!! warning "A note about supported HTML elements"
 
