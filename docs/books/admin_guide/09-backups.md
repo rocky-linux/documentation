@@ -109,7 +109,7 @@ There are many utilities to make backups.
 * **graphical tools**;
 * **command line tools**: `tar`, `cpio`, `pax`, `dd`, `dump`, ...
 
-The commands we will use here are `tar` and `cpio`.
+The commands we will use here are `tar` and `cpio`. If you want to learn about the `dump` tool, please refer to [this document](../../guides/backup/dump_restore.md).
 
 * `tar`:
   
@@ -168,7 +168,7 @@ The `tar` command allows saving on several successive media (multi-volume option
 
 It is possible to extract all or part of a backup.
 
-`tar` implicitly backs up in relative mode even if the path of the information to be backed up is mentioned in absolute mode. However, backups and restores in absolute mode are possible.
+`tar` implicitly backs up in relative mode even if the path of the information to be backed up is mentioned in absolute mode. However, backups and restores in absolute mode are possible. If you want to see a separate example of the usage of `tar`, please refer to [this document](../../guides/backup/tar.md).
 
 ### Restoration guidelines
 
@@ -192,7 +192,7 @@ The default utility for creating backups on UNIX systems is the `tar` command. T
 
 #### Estimate the size of a backup
 
-The following command estimates the size in kilobytes of a possible *tar* file:
+The following command estimates the size in bytes of a possible *tar* file:
 
 ```bash
 $ tar cf - /directory/to/backup/ | wc -c
