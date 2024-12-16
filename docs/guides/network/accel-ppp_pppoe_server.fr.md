@@ -7,7 +7,7 @@ tags:
   - réseau
 ---
 
-# accel-ppp – Serveur PPPoE
+# `accel-ppp` – Serveur `PPPoE`
 
 ## Introduction
 
