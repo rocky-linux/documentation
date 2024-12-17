@@ -61,7 +61,7 @@ The usage to extract a file from an archive is:
 
 | types | describe |
 | :---: | :--- |
-| `-A`  | Merge the current archive with an existing archive. Only applicable to archive non-compressed files of the `.tar` type |
+| `-A`  | Append all files in one archive to the end of another archive. Only applicable to archive non-compressed files of the `.tar` type |
 | `-c`  | Create archive. Very commonly used  |
 | `-d`  | Compare the differences between archived and corresponding unarchived files |
 | `-r`  | Append the files or directories to the end of the archive. Only applicable to archive non-compressed files of the `.tar` type  |
@@ -147,8 +147,8 @@ Here are examples of naming conventions for `tar` archives:
 | `-cvfP`  | `/etc`  | `etc.A.tar`      | `/etc` in absolute mode, no compression      |
 | `-cvfz`  | `usr`   | `usr.tar.gz`     | `/usr` in relative mode, *gzip* compression  |
 | `-cvfj`  | `usr`   | `usr.tar.bz2`    | `/usr` in relative mode, *bzip2* compression |
-| `-cvfPz` | `/home` | `home.A.tar.gz`  | `home` in absolute mode, *gzip* compression  |
-| `-cvfPj` | `/home` | `home.A.tar.bz2` | `home` in absolute mode, *bzip2* compression |
+| `-cvfPz` | `/home` | `home.A.tar.gz`  | `/home` in absolute mode, *gzip* compression  |
+| `-cvfPj` | `/home` | `home.A.tar.bz2` | `/home` in absolute mode, *bzip2* compression |
 
 You may also add the date to the filename.
 
@@ -238,7 +238,7 @@ You may also add the date to the filename.
     Shell > tar -Avf /tmp/etc.tar /tmp/log.tar
     ```
 
-    This means appending "log.tar" to "etc.tar".
+    This means that all files in "log.tar" will be appended to the end of "etc.tar".
 
 2. Append files or directories to a `.tar` file:
 

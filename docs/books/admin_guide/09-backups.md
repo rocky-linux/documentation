@@ -217,8 +217,8 @@ Here is an example of a naming convention for a `tar` backup, knowing that the d
 | `cvfP`  | `/etc`  | `etc.A.tar`      | `/etc` in absolute mode, no compression      |
 | `cvfz`  | `usr`   | `usr.tar.gz`     | `/usr` in relative mode, *gzip* compression  |
 | `cvfj`  | `usr`   | `usr.tar.bz2`    | `/usr` in relative mode, *bzip2* compression |
-| `cvfPz` | `/home` | `home.A.tar.gz`  | `home` in absolute mode, *gzip* compression  |
-| `cvfPj` | `/home` | `home.A.tar.bz2` | `home` in absolute mode, *bzip2* compression |
+| `cvfPz` | `/home` | `home.A.tar.gz`  | `/home` in absolute mode, *gzip* compression  |
+| `cvfPj` | `/home` | `home.A.tar.bz2` | `/home` in absolute mode, *bzip2* compression |
 | …       |         |                  |                                        |
 
 #### Create a backup
@@ -245,7 +245,7 @@ Example:
 
 !!! Tip
 
-    The hyphen (`-`) in front of the `tar` keys is unnecessary!
+    The hyphen (`-`) in front of the `tar` keys is optional!
 
 ##### Create a backup in absolute mode
 
@@ -267,7 +267,7 @@ Example:
 
 !!! Warning
 
-    With the `P` key, the path of the files to be backed up must be entered as **absolute**. If the two conditions (key `P` and path **absolute**) are not indicated, the backup is in relative mode.
+    With the `P` key, the path of the files to be backed up must be entered as **absolute**. If the two conditions (`P` key and **absolute** path) are not indicated, the backup is in relative mode.
 
 ##### Creating a compressed backup with `gzip`
 
@@ -289,9 +289,9 @@ tar cvzf backup.tar.gz dirname/
 
     Keeping the `cvf` (`tvf` or `xvf`) keys unchanged for all backup operations and simply adding the compression key to the end of the keys makes the command easier to understand (such as: `cvfz` or `cvfj`, and others).
 
-##### Creating a compressed backup with `bzip`
+##### Creating a compressed backup with `bzip2`
 
-Creating a compressed backup with `bzip` is done with the keys `cvfj`:
+Creating a compressed backup with `bzip2` is done with the keys `cvfj`:
 
 ```bash
 tar cvfj backup.tar.bz2 dirname/
@@ -305,7 +305,7 @@ tar cvfj backup.tar.bz2 dirname/
 
     The `.tbz` and `.tb2` extensions are equivalent to `.tar.bz2` extensions.
 
-##### Compression `compress`, `gzip`, `bzip2`, `lzip` and `xz`
+##### Comparison of compression efficiency
 
 Compression, and consequently decompression, will impact resource consumption (time and CPU usage).
 
@@ -339,8 +339,8 @@ tar rvf backup_name.tar dirtoadd
 
 | Key | Description                                                                      |
 |-----|----------------------------------------------------------------------------------|
-| `r` |Adds one or more files at the end of a direct access media backup (hard disk).   |
-| `A` |Adds one or more files at the end of a backup on sequential access media (tape). |
+| `r` | Append the files or directories to the end of the archive.                       |
+| `A` | Append all files in one archive to the end of another archive.         |
 
 !!! Note
 
@@ -378,7 +378,7 @@ tar tvfz backup.tar.gz
 tar tvfj backup.tar.bz2
 ```
 
-When the number of files in a backup becomes large, it is possible to *pipe* the result of the `tar` command to a *pager* (`more`, `less`, `most`, and others):
+When the number of files in the backup increases, you can use pipe characters (`|`) and some commands (`less`, `more`, `most`, and others) to achieve the effect of paging viewing:
 
 ```bash
 tar tvf backup.tar | less
@@ -386,11 +386,11 @@ tar tvf backup.tar | less
 
 !!! Tip
 
-    To list or retrieve the contents of a backup, it is not necessary to mention the compression algorithm used when the backup was created. That is, a `tar tvf` is equivalent to `tar tvfj`, to read the contents, and a `tar xvf` is equivalent to `tar xvfj`, to extract.
+    To list or retrieve the contents of a backup, it is not necessary to mention the compression algorithm used when the backup was created. That is, a `tar tvf` is equivalent to `tar tvfj`, to read the contents. The compression type or algorithm **must** only be selected when creating a compressed backup.
 
 !!! Tip
 
-    Always check the contents of a backup.
+    You should always check and view the contents of the backup file before performing a restore operation.
 
 #### Check the integrity of a backup
 
