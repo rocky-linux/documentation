@@ -1,21 +1,19 @@
 ---
-title: Utilisation de Modèle Jinja
+title: Utilisation de Modèle Jinja avec Ansible
 author: Srinivas Nishant Viswanadha
 contributors: Steven Spencer, Antoine Le Morvan, Ganna Zhyrnova
 ---
 
-# Chapitre : Les Templates Jinja pour Ansible
-
 ## Introduction
 
-Ansible fournit un moyen puissant et simple de gérer les configurations à l'aide de modèles Jinja via le module `template` intégré. Ce chapitre explore deux façons essentielles d'utiliser les modèles Jinja dans Ansible :
+Ansible fournit un moyen puissant et simple de gérer les configurations à l'aide de modèles Jinja via le module `template` intégré. Ce document explore deux manières essentielles d'utiliser les modèles Jinja dans Ansible :
 
 - ajouter des variables à un fichier de configuration
-- créer des fichiers complexes avec des boucles et des structures de données complexes.
+- créer des fichiers complexes avec des boucles et des structures de données élaborées.
 
 ## Ajouter des variables à un fichier de configuration
 
-### Étape 1 : créer un modèle Jinja
+### Étape n°1 : créer un modèle Jinja
 
 Créez un fichier modèle Jinja, par exemple `sshd_config.j2`, avec des espaces réservés pour les variables :
 
@@ -27,7 +25,7 @@ PermitRootLogin {{ permit_root_login }}
 # Add more variables as needed
 ```
 
-### Étape 2 : utiliser le module de template Ansible
+### Étape n°2 : utiliser le module de template Ansible
 
 Dans votre playbook Ansible, utilisez le module `template` pour restituer le modèle Jinja avec des valeurs spécifiques :
 
@@ -46,7 +44,7 @@ Dans votre playbook Ansible, utilisez le module `template` pour restituer le mod
       # Add more variables as needed
 ```
 
-### Étape 3 : appliquer les modifications de configuration
+### Étape n°3 : appliquer les modifications de configuration
 
 Exécutez le playbook Ansible pour appliquer les modifications aux hôtes cibles :
 
@@ -56,11 +54,11 @@ ansible-playbook your_playbook.yml
 
 Cette étape garantit que les modifications de configuration sont appliquées de manière cohérente sur l’ensemble de votre infrastructure.
 
-## Création d'un fichier complet avec des boucles et des structures de données complexes
+## Création d'un fichier complet avec des boucles et des structures de données élaborées
 
-### Étape 1 : améliorer le modèle Jinja
+### Étape n°1 : Améliorer le modèle Jinja
 
-Étendez votre modèle Jinja pour gérer les boucles et les structures de données complexes. Voici un exemple de configuration d'une application hypothétique avec plusieurs composants :
+Étendez votre modèle Jinja pour gérer les boucles et les structures de données complexes. Voici un exemple de configuration d’une application hypothétique avec plusieurs composants :
 
 ```jinja
 # /path/to/app_config.j2
@@ -73,7 +71,7 @@ Cette étape garantit que les modifications de configuration sont appliquées de
 {% endfor %}
 ```
 
-### Étape 2 : intégrer le module template Ansible
+### Étape n°2 : intégrer le module template Ansible
 
 Dans votre playbook Ansible, intégrez le module `template` pour générer un fichier de configuration complet :
 
@@ -105,7 +103,7 @@ ansible-playbook your_playbook.yml
 
 Cette étape garantit que les modifications de configuration sont appliquées de manière cohérente sur l’ensemble de votre infrastructure.
 
-Le module Ansible `template` fournit un moyen d'utiliser les modèles Jinja pour générer dynamiquement des fichiers de configuration pendant l'exécution du playbook. Ce module vous permet de séparer la logique de configuration et les données, rendant vos playbooks Ansible plus flexibles et maintenables.
+Le module Ansible `template` vous permet d'utiliser des modèles Jinja pour générer des fichiers de configuration de manière dynamique pendant l'exécution du playbook. Ce module vous permet de séparer la logique de configuration et les données, rendant vos playbooks Ansible plus flexibles et plus faciles à maintenir.
 
 ### Principales caractéristiques
 
@@ -119,11 +117,11 @@ Le module Ansible `template` fournit un moyen d'utiliser les modèles Jinja pour
 3. **Chemins Source et de Destination :**
    - Spécifie le fichier modèle Jinja source et le chemin de destination pour le fichier de configuration généré.
 
-4. \*\* Passage variable : \*\*
+4. \*\* Passage de variable : \*\*
    - Les variables peuvent être transmises directement dans la tâche playbook ou chargées à partir de fichiers externes, permettant une génération de configuration flexible et dynamique.
 
 5. **Exécution Idempotente :**
-   - Le module `template` prend en charge l'exécution idempotente, garantissant que le modèle n'est appliqué que si des modifications sont détectées.
+   - Le module `template` d'Ansible prend en charge l'exécution idempotente des modèles, garantissant que le modèle n'est appliqué que si des modifications sont détectées.
 
 ### Exemple de playbook snippet
 
