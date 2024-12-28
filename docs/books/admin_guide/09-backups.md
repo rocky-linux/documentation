@@ -432,7 +432,7 @@ Verify 1/file2
 Verify 1/file3
 ```
 
-The verification with the `W` key cannot be done with a compressed archive. The key ++d++ must be used:
+The verification of compressed archives cannot be completed using the `W` key. The key `d` must be used:
 
 ```bash
 tar dfz file_name.tgz
@@ -443,13 +443,13 @@ tar dfj file_name.tar.bz2
 
 Extract (*untar*) a ``*.tar`` backup is done with the `xvf` keys:
 
-Extract the `etc/exports` file from the `/savings/etc.133.tar` backup into the `etc` directory of the active directory:
+Extract the `etc/exports` file from the `/savings/etc.133.tar` backup into the `etc` directory of the current directory:
 
 ```bash
 tar xvf /backups/etc.133.tar etc/exports
 ```
 
-Extract all files from the compressed backup `/backups/home.133.tar.bz2` into the active directory:
+Extract all files from the compressed backup `/backups/home.133.tar.bz2` into the current directory:
 
 ```bash
 [root]# tar xvfj /backups/home.133.tar.bz2
@@ -463,13 +463,13 @@ tar xvfP /backups/etc.133.P.tar
 
 !!! Warning
 
-    Go to the right place.
+    For security reasons, caution should be exercised when extracting backup files saved in absolute mode.
 
-    Check the contents of the backup.
+    Once again, it should be emphasized that before performing extraction operations, you should always check the contents of the backup files (especially those saved in absolute mode)
 
 | Key |Description                                       |
 |------|----------------------------------------------------|
-| `x`  |Extracts files from the backup, compressed or not. |
+| `x`  | Extract files from backups (whether compressed or not) |
 
 Extracting a *tar-gzipped* (`*.tar.gz`) backup is done with the `xvfz` keys:
 
