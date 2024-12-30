@@ -127,10 +127,10 @@ Application Options:
 
 Mémoriser la liste des commandes n'est pas nécessaire, mais savoir comment y accéder et utiliser l'option `--help` est essentiel.
 
-!!! warning "Avertissement"
+!!! warning "Rocky Linux 8.x et `flatpak search`"
 
 ````
-If you are on a version of Rocky Linux 9.x, you will experience this bug. When running the command:
+If you are on a version of Rocky Linux 8.x, you will experience this bug. When running the command:
 
 ```bash
 flatpak search [packagename]
@@ -264,4 +264,4 @@ flatpak uninstall com.obsproject.Studio
 
 ## Conclusion
 
-Vous pouvez utiliser Flathub et Flatpak pour remplir facilement votre bureau GNOME avec des applications, des jeux aux outils de productivité.
+Vous pouvez utiliser `Flathub` et `Flatpak` pour remplir facilement votre bureau GNOME avec des applications, incluant des jeux jusqu'aux outils de productivité.
