@@ -22,7 +22,7 @@ You can even snapshot a container when it is running.
 Start by getting a snapshot of the ubuntu-test container by using this command:
 
 ```bash
-incus snapshot ubuntu-test ubuntu-test-1
+incus snapshot create ubuntu-test ubuntu-test-1
 ```
 
 Here, you call the snapshot "ubuntu-test-1", but you can call it anything. To ensure that you have the snapshot, do an `incus info` of the container:
@@ -63,7 +63,7 @@ incus stop ubuntu-test
 Restore it:
 
 ```bash
-incus restore ubuntu-test ubuntu-test-1
+incus snapshot restore ubuntu-test ubuntu-test-1
 ```
 
 Start the container again:
@@ -77,7 +77,7 @@ If you return to the container again and look, the "this_file.txt" you created i
 When you do not need a snapshot anymore, you can delete it:
 
 ```bash
-incus delete ubuntu-test/ubuntu-test-1
+incus snapshot delete ubuntu-test ubuntu-test-1
 ```
 
 !!! warning
