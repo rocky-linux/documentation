@@ -463,9 +463,9 @@ tar xvfP /backups/etc.133.P.tar
 
 !!! Warning
 
-    For security reasons, caution should be exercised when extracting backup files saved in absolute mode.
+    For security reasons, you should use caution when extracting backup files saved in absolute mode.
 
-    Once again, it should be emphasized that before performing extraction operations, you should always check the contents of the backup files (especially those saved in absolute mode)
+    Once again, before performing extraction operations, you should always check the contents of the backup files (particularly those saved in absolute mode).
 
 | Key |Description                                       |
 |------|----------------------------------------------------|
