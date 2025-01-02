@@ -22,7 +22,7 @@ Vous pouvez même faire un Snapshot d'un conteneur pendant qu'il est en cours d'
 Nous commencerons par obtenir un instantané du conteneur ubuntu-test en utilisant cette commande :
 
 ```bash
-incus snapshot ubuntu-test ubuntu-test-1
+incus snapshot create ubuntu-test ubuntu-test-1
 ```
 
 Ici, vous appelez l'instantané `ubuntu-test-1`, mais vous pouvez l'appeler comme vous le souhaitez. Pour vous assurer que vous disposez de l'instantané, effectuez une `incus info` du conteneur :
@@ -63,7 +63,7 @@ incus stop ubuntu-test
 Restaurez-le :
 
 ```bash
-incus restore ubuntu-test ubuntu-test-1
+incus snapshot restore ubuntu-test ubuntu-test-1
 ```
 
 Redémarrer le conteneur :
@@ -77,7 +77,7 @@ Si vous revenez au conteneur et regardez, le fichier `this_file.txt` que vous av
 Lorsque vous n’avez plus besoin d’un instantané, vous pouvez le supprimer :
 
 ```bash
-incus delete ubuntu-test/ubuntu-test-1
+incus snapshot delete ubuntu-test ubuntu-test-1
 ```
 
 !!! warning "Avertissement"
