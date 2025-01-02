@@ -54,6 +54,38 @@ Aktivieren Sie "Enable Steam Play for all other titles". Starten Sie Steam neu, 
 
 ![Steam play for all other titles toggled](images/Timeline_1_01_11_07_44.jpg)
 
+!!! warning "Kompatibilität ist nicht immer universell!"
+
+````
+Viele Leute berichten von Problemen mit ProtonDB-kompatiblen Spielen, während Linux-kompatible Spiele einwandfrei funktionieren. Dies liegt oft an SELinux-Richtlinien, die das Dateisystem schützen.
+
+Überprüfen Sie zunächst den SELinux-Status des Systems mit:
+
+```
+sestatus
+```
+
+Dadurch wird eines von drei Ergebnissen zurückgegeben:
+
+* SELinux-Status: disabled (wenn der SELinux-Schutz vollständig ausgeschaltet ist)
+* SELinux-Status: permissive (wenn SELinux im permissiven Modus ist)
+* SELinux-Status: enforcing (wenn SELinux Ihr System vollständig schützt)
+
+Wenn SELinux deaktiviert ist, ist es nicht die Ursache für Ihre Probleme mit dem Spiel. Wenn es im erzwingenden Modus ist, könnte es der Übeltäter sein. Versuchen Sie, SELinux vor dem Spielen vorübergehend in den permissiven Modus zu versetzen, und zwar mit:
+
+```
+sudo setenforce 0
+```
+
+Denken Sie nach dem Spielen daran, Ihre SELinux-Richtlinie wieder auf „Enforceing“ zu setzen, und zwar mit:
+
+```
+sudo setenforce 1
+```
+
+Für eine dauerhaftere Lösung, bei der die SELinux-Richtlinien beibehalten werden, müssen Sie herausfinden, welche Regel Ihr Spiel blockiert. Dazu benötigen Sie ein umfassenderes Verständnis von SELinux und den zugrunde liegenden Tools. Werfen Sie einen Blick auf [unseren Leitfaden zur SELinux-Sicherheit](../../guides/security/learning_selinux.md), um einen genaueren Blick auf SELinux zu werfen.
+````
+
 ## Zusammenfassung
 
 Laden Sie nach dem Neustart von `Steam` Ihren Lieblings-Windows-Titel herunter und probieren Sie ihn aus! Es ist keine weitere Konfiguration erforderlich. Viel Spaß!
