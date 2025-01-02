@@ -17,7 +17,7 @@ Il y a plus d'un an maintenant – 2023 –, l'annonce suivante est sortie sur l
 
 > Canonical, the creator and main contributor of the LXD project has decided that after over 8 years as part of the Linux Containers community, the project would now be better served directly under Canonical’s own set of projects.
 > —
-> Canonical, le créateur et principal contributeur du projet LXD, a décidé qu'après plus de 8 ans au sein de la communauté Linux Containers, le projet serait désormais mieux servi directement dans le cadre du propre ensemble de projets de Canonical.
+> Canonical, le créateur et principal contributeur du projet LXD, a décidé qu'après plus de 8 ans au sein de la communauté Linux Containers, le projet serait désormais mieux servi directement dans le cadre de l'ensemble des projets propres à Canonical.
 > —
 
 L’un des facteurs décisifs a été la démission de certains développeurs principaux de LXD. Ces développeurs ont ensuite forké LXD vers Incus, annonçant le fork en août 2023. Une version de publication (0.1) est sortie en octobre 2023, et les développeurs ont depuis rapidement développé cette version avec des versions progressives jusqu'à la 0.7 (en mars 2024). La sortie de la version de support à long terme (6.0 LTS) a suivi la sortie de la version 0.7. 2024-09-25 : La version actuelle est 6.5.
