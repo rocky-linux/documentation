@@ -1,5 +1,5 @@
 ---
-title: Aktuelle Kernelkonfiguration anzeigen
+title: Anzeige der Kernelkonfiguration
 author: David Hensley
 contributors: Steven Spencer
 tested_with: 8.5
