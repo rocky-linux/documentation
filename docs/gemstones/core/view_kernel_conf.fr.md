@@ -1,5 +1,5 @@
 ---
-title: Analyse de la Configuration Actuelle du Noyau
+title: Analyse de la Configuration du Noyau
 author: David Hensley
 contributors: Steven Spencer
 tested_with: 8.5
