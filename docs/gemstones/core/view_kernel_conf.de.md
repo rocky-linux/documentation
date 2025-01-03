@@ -14,13 +14,12 @@ tags:
 
 Der Linux-Kernel speichert laufende Kernelinformationen an zwei Stellen durch spezielle Dateisysteme: ([Eine Zusammenfassung von ihnen](https://www.landoflinux.com/linux_procfs_sysfs.html))
 
-  - Der ältere [procfs](https://man7.org/linux/man-pages/man5/procfs.5.html), der `/proc` mountet (vergewissern Sie sich über `mount -l -t proc`)
-  - Die neueren [sysfs](https://man7.org/linux/man-pages/man5/sysfs.5.html) die `/sys` mountet (überprüfen mit `mount -l -t sysfs`)
+- Der ältere [procfs](https://man7.org/linux/man-pages/man5/procfs.5.html), der `/proc` mountet (vergewissern Sie sich über `mount -l -t proc`)
+- Die neueren [sysfs](https://man7.org/linux/man-pages/man5/sysfs.5.html) die `/sys` mountet (überprüfen mit `mount -l -t sysfs`)
 
 !!! warning "Warnhinweis"
 
     Seien Sie vorsichtig, wenn Sie die hier genannten Dateien untersuchen, Änderungen können das Verhalten des aktuellen Kernels ändern!
-
 
 Diese beiden Schnittstellen erlauben es Ihnen, die Parameter des aktuell laufenden Kernels anzuzeigen und zu ändern.
 
@@ -58,11 +57,11 @@ cat /boot/config-$(uname -r) | grep -i <keyword>
 
 Ergebnisse werden angezeigt:
 
-  - "=m" wenn als Kernelmodul kompiliert
-  - "=y" wenn statisch in den Kernel kompiliert
-  - "is not set", wenn diese Einstellung auskommentiert wurde
-  - numerischer Wert
-  - String-Wert
+- `=m` wenn als Kernelmodul kompiliert
+- `=y` wenn statisch in den Kernel kompiliert
+- `is not set`, wenn diese Einstellung auskommentiert wurde
+- numerischer Wert
+- String-Wert
 
 Einige Distributionen, wie Gentoo und Arch, verwenden das `configs` Kernelmodul um `/proc/config.gz` standardmäßig bereitzustellen:
 
@@ -88,7 +87,6 @@ modprobe configs
     Dieses Dokument deckt derzeit keine Kernel-Pakete ab, die möglicherweise von Nicht-Standard-Repos stammen, wie z.B.:
     
     appstream-debug, appstream-source, baseos-debug, baseos-source oder devel
-
 
 Die `kernel-devel` Pakete installieren die Konfigurationsdatei, die verwendet wird, um jedes installierte Standard-Kernel-Paket als ASCII-Datei an der folgenden Stelle zu kompilieren:
 
@@ -153,6 +151,6 @@ Sie können in der Datei nach Abhängigkeiten des Kernelmoduls suchen:
 
 aber es ist einfacher, die Ausgabe des Feldes "Used-by" in [`lsmod`](https://man7.org/linux/man-pages/man8/lsmod.8.html) zu lesen oder zu parsen.
 
-## Referenzen:
+## Referenz
 
 [depmod](https://man7.org/linux/man-pages/man8/depmod.8.html), [ls](https://man7.org/linux/man-pages/man1/ls.1.html), [lsmod](https://man7.org/linux/man-pages/man8/lsmod.8.html), [modinfo](https://man7.org/linux/man-pages/man8/modinfo.8.html), [modprobe](https://man7.org/linux/man-pages/man8/modprobe.8.html), [modules.dep](https://man7.org/linux/man-pages/man5/modules.dep.5.html), [namespaces](https://man7.org/linux/man-pages/man7/namespaces.7.html), [procfs](https://man7.org/linux/man-pages/man5/procfs.5.html), [sysctl](https://man7.org/linux/man-pages/man8/sysctl.8.html), [sysfs](https://man7.org/linux/man-pages/man5/sysfs.5.html), [uname](https://man7.org/linux/man-pages/man8/uname26.8.html)
