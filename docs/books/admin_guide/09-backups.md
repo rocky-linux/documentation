@@ -432,7 +432,7 @@ Verify 1/file2
 Verify 1/file3
 ```
 
-The verification of compressed archives cannot be completed using the `W` key. The key `d` must be used:
+You cannot verify the compressed archive with the `W` key. You must use the `d` key instead.
 
 ```bash
 tar dfz file_name.tgz
