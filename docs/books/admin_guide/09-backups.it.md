@@ -109,7 +109,7 @@ Esistono molte utilità per eseguire i backup.
 * **strumenti grafici**;
 * **strumenti da riga di comando**: `tar`, `cpio`, `pax`, `dd`, `dump`, ...
 
-I comandi che utilizzeremo qui sono `tar` e `cpio`.
+I comandi che utilizzeremo qui sono `tar` e `cpio`. Per informazioni sullo strumento `dump`, consultare <a href=“../../guides/backup/dump_restore.md”>questo documento</a>.
 
 * `tar`:
 
@@ -168,7 +168,7 @@ Il comando `tar` consente di salvare su più supporti successivi (opzioni multi-
 
 È possibile estrarre tutto o parte di un backup.
 
-`tar` esegue implicitamente il backup in modalità relativa anche se il percorso delle informazioni di cui eseguire il backup è indicato in modalità assoluta. Tuttavia, è possibile eseguire backup e ripristini in modalità assoluta.
+`tar` esegue implicitamente il backup in modalità relativa anche se il percorso delle informazioni di cui eseguire il backup è indicato in modalità assoluta. Tuttavia, è possibile eseguire backup e ripristini in modalità assoluta. Se si vuole vedere un esempio separato dell'uso di `tar`, si faccia riferimento a <a href=“../../guide/backup/tar.md”>questo documento</a>.
 
 ### Linee guida per il ripristino
 
@@ -245,7 +245,7 @@ Esempio:
 
 !!! Tip "Suggerimento"
 
-    Il trattino (-) davanti alle opzioni di 'tar' non è necessario!
+    Il trattino (-) davanti alle opzioni di 'tar' è opzionale!
 
 ##### Creare un backup in modalità assoluta
 
@@ -289,9 +289,9 @@ tar cvzf backup.tar.gz dirname/
 
     Mantenere le chiavi `cvf` (`tvf` o `xvf`) invariate per tutte le operazioni di backup e aggiungere semplicemente la chiave di compressione alla fine delle chiavi rende il comando più facile da capire (ad esempio, `cvfz` o `cvfj`, ecc.).
 
-##### Creazione di un backup compresso con `bzip`
+##### Creazione di un backup compresso con `bzip2`
 
-La creazione di un backup compresso con `bzip` viene eseguita con le opzioni `cvfj`:
+La creazione di un backup compresso con `bzip2` viene eseguita con le opzioni `cvfj`:
 
 ```bash
 tar cvfj backup.tar.bz2 dirname/
@@ -305,7 +305,7 @@ tar cvfj backup.tar.bz2 dirname/
 
     Le estensioni `.tbz` e `.tb2` sono equivalenti alle estensioni `.tar.bz2`.
 
-##### Compressione `compress`, `gzip`, `bzip2`, `lzip` e `xz`
+##### Confronto dell'efficienza di compressione
 
 La compressione e la conseguente decompressione hanno un impatto sul consumo di risorse (tempo e utilizzo della CPU).
 
@@ -337,10 +337,10 @@ L'aggiunta di una directory è simile. Qui aggiungiamo `dirtoadd` a `backup_name
 tar rvf backup_name.tar dirtoadd
 ```
 
-| Opzione | Descrizione                                                                                     |
-| ------- | ----------------------------------------------------------------------------------------------- |
-| `r`     | Aggiunge uno o più file alla fine di un backup multimediale ad accesso diretto (disco rigido).  |
-| `A`     | Aggiunge uno o più file al termine di un backup su un supporto di accesso sequenziale (nastro). |
+| Opzione | Descrizione                                                          |
+| ------- | -------------------------------------------------------------------- |
+| `r`     | Aggiunge i file o le directory alla fine dell'archivio.              |
+| `A`     | Aggiunge tutti i file di un archivio alla fine di un altro archivio. |
 
 !!! Note "Nota"
 
@@ -378,7 +378,7 @@ tar tvfz backup.tar.gz
 tar tvfj backup.tar.bz2
 ```
 
-Quando il numero di file in un backup diventa grande, è possibile inviare in *pipe* il risultato del comando `tar` ad un *impaginatore* (`more`, `less`, `most`, ecc.):
+Quando il numero di file nel backup aumenta, è possibile utilizzare i caratteri pipe (`|`) e alcuni comandi (`less`, `more`, `most`, e altri) per ottenere l'effetto della visualizzazione a paginazione:
 
 ```bash
 tar tvf backup.tar | less
@@ -386,11 +386,11 @@ tar tvf backup.tar | less
 
 !!! Tip "Suggerimento"
 
-    Per elencare o recuperare il contenuto di un backup, non è necessario menzionare l'algoritmo di compressione utilizzato quando è stato creato il backup. Cioè, un `tar tvf` è equivalente a `tar tvfj`, per leggere il contenuto, e un `tar xvf` è equivalente a `tar xvfj`, per estrarre.
+    Per elencare o recuperare il contenuto di un backup, non è necessario menzionare l'algoritmo di compressione utilizzato quando è stato creato il backup. Cioè, un `tar tvf` è equivalente a `tar tvfj`, per leggere il contenuto. Il tipo o l'algoritmo di compressione deve essere selezionato solo quando si crea un backup compresso.
 
 !!! Tip "Suggerimento"
 
-    Controlla sempre il contenuto di un backup.
+    È sempre consigliabile controllare e visualizzare il contenuto del file di backup prima di eseguire un'operazione di ripristino.
 
 #### Verificare l'integrità di un backup
 
@@ -432,7 +432,7 @@ Verify 1/file2
 Verify 1/file3
 ```
 
-La verifica con l'opzione `W` non può essere eseguita con un archivio compresso. Deve essere utilizzata l'opzione ++d++:
+Non è possibile verificare l'archivio compresso con il chiave `W`. Si deve invece utilizzare la chiave `d`.
 
 ```bash
 tar dfz file_name.tgz
@@ -463,13 +463,13 @@ tar xvfP /backups/etc.133.P.tar
 
 !!! warning "Attenzione"
 
-    Portarsi nel posto giusto.
+    Per motivi di sicurezza, è necessario prestare attenzione quando si estraggono file di backup salvati in modalità assoluta.
     
-    Controllare il contenuto del backup.
+    Ancora una volta, prima di eseguire operazioni di estrazione, è necessario controllare sempre il contenuto dei file di backup (in particolare quelli salvati in modalità assoluta).
 
 | Opzione | Descrizione                                   |
 | ------- | --------------------------------------------- |
-| `x`     | Estrarre i file dal backup, compressi o meno. |
+| `x`     | Estrarre i file dai backup (compressi o meno) |
 
 L'estrazione di un backup *tar-gzipped* (`*.tar.gz`) viene eseguita con le opzioni `xvfz`:
 
