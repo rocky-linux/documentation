@@ -2,7 +2,7 @@
 title: Metodo VENV di Python
 author: Franco Colussi
 contributors: Steven Spencer, Ganna Zhyrnova
-tested_with: 8.7, 9.1
+tested_with: 8.7, 9.1, 9.4
 tags:
   - mkdocs
   - testing
@@ -276,6 +276,34 @@ INFO     -  [22:32:41] Serving on http://127.0.0.1:8000/
 (env) [rocky_user@rl9 env]$
 (env) [rocky_user@rl9 env]$ deactivate
 [rocky_user@rl9 env]$
+```
+
+### Creare un alias per il metodo venv
+
+È possibile creare un alias bash per accelerare il processo di utilizzo di mkdocs con il metodo venv.
+
+Eseguite il comando seguente per aggiungere l'alias `venv` al vostro `.bash_profile`:
+
+```bash
+printf "# mkdocs alias\nalias venv='source $HOME/lab/rockydocs/env/bin/activate && mkdocs serve -f $HOME/lab/rockydocs/docs.rockylinux.org/mkdocs.yml'" >> ~/.bash_profile
+```
+
+Aggiornare l'ambiente della shell con l'alias appena creato:
+
+```bash
+source ~/.bash_profile
+```
+
+Ora è possibile eseguire `venv` per creare un sito di sviluppo locale con mkdocs usando il metodo venv:
+
+```bash
+venv
+```
+
+È comunque necessario eseguire `deactivate` per uscire dall'ambiente virtuale:
+
+```bash
+deactivate
 ```
 
 ## Conclusioni e considerazioni finali
