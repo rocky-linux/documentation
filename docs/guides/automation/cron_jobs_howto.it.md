@@ -16,7 +16,7 @@ tags:
 - Un computer con Rocky Linux in esecuzione
 - Una certa dimestichezza nel modificare i file di configurazione dalla riga di comando utilizzando il proprio editor preferito (utilizzando `vi` qui)
 
-## Presupposto
+## Presupposti
 
 - Conoscenza di base di bash, python o altri strumenti di scripting o programmazione, e si desidera che uno script venga eseguito automaticamente
 - Che si stia operando come utente root o che si abbia la possibilità di `sudo -s`  
@@ -85,7 +85,7 @@ Se si è in grado di lasciare che il sistema esegua automaticamente gli script e
 
 ### Creare il proprio `cron`
 
-Se gli orari automatici e randomizzati non funzionano bene in [Per le postazioni di lavoro sopra](#for-workstations) e gli orari programmati in [Per i server sopra](#for-servers), è possibile crearne di propri. In questo esempio, si presume che l'operazione venga eseguita come utente root. [vedere Ipotesi](#assumptions) Per fare questo, digitate quanto segue:
+Se gli orari automatici e randomizzati non funzionano bene in [Per le postazioni di lavoro sopra](#per-le-workstations) e gli orari programmati in [Per i server sopra](#per-i-servers), è possibile crearne di propri. In questo esempio, si presume che l'operazione venga eseguita come utente root. [vedere Ipotesi](#presupposti) Per fare questo, digitate quanto segue:
 
 `crontab -e`
 
