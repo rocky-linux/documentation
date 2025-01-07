@@ -36,7 +36,7 @@ Incorporate in ogni sistema Linux da molte versioni, le directory `cron` "dot" a
 
 #### <a name="for_servers"></a>Per i Server
 
-Come detto nell'introduzione, `cron` normalmente esegue `anacron` attualmente per eseguire gli script in queste directory "dot". È *possibile* che si vogliano usare queste directory "dot" anche sui server e, in tal caso, è necessario eseguire due passaggi per verificare che queste directory "dot" vengano eseguite secondo un sistema di pianificazione rigoroso. Per farlo, è necessario installare un pacchetto e rimuoverne un altro:
+Come detto nell'introduzione, `cron` normalmente esegue `anacron` attualmente per eseguire gli script in queste directory "dot". È _possibile_ che si vogliano usare queste directory "dot" anche sui server e, in tal caso, è necessario eseguire due passaggi per verificare che queste directory "dot" vengano eseguite secondo un sistema di pianificazione rigoroso. Per farlo, è necessario installare un pacchetto e rimuoverne un altro:
 
 `dnf install cronie-noanacron`
 
@@ -85,7 +85,7 @@ Se si è in grado di lasciare che il sistema esegua automaticamente gli script e
 
 ### Creare il proprio `cron`
 
-Se gli orari automatici e randomizzati non funzionano bene in [Per le postazioni di lavoro sopra](#for-workstations) e gli orari programmati in [Per i server sopra](#for-servers), è possibile crearne di propri. In questo esempio, si presume che l'operazione venga eseguita come utente root. [vedere Ipotesi](#assumptions) Per fare questo, digitate quanto segue:
+Se gli orari automatici e randomizzati non funzionano bene in [Per le postazioni di lavoro sopra](#per-le-workstations) e gli orari programmati in [Per i server sopra](#per-i-server), è possibile crearne di propri. In questo esempio, si presume che l'operazione venga eseguita come utente root. [vedere Ipotesi](#assumptions) Per fare questo, digitate quanto segue:
 
 `crontab -e`
 
