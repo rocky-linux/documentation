@@ -22,7 +22,7 @@ tags:
 Ми почнемо з отримання снепшот контейнера ubuntu-test за допомогою цієї команди:
 
 ```bash
-incus snapshot ubuntu-test ubuntu-test-1
+incus snapshot create ubuntu-test ubuntu-test-1
 ```
 
 Тут ви називаєте знімок "ubuntu-test-1", але ви можете називати його як завгодно. Щоб переконатися, що у вас є знімок, виконайте `incus info` контейнера:
@@ -63,7 +63,7 @@ incus stop ubuntu-test
 Потім відновіть його:
 
 ```bash
-incus restore ubuntu-test ubuntu-test-1
+incus snapshot restore ubuntu-test ubuntu-test-1
 ```
 
 Потім знову запустіть контейнер:
@@ -77,7 +77,7 @@ incus start ubuntu-test
 Якщо знімок більше не потрібен, його можна видалити:
 
 ```bash
-incus delete ubuntu-test/ubuntu-test-1
+incus snapshot delete ubuntu-test ubuntu-test-1
 ```
 
 !!! warning "Важливо"
