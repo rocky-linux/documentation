@@ -7,16 +7,14 @@ update: 13-Feb-2023
 
 # Esecuzione del sito docs.rockylinux.org in locale per lo sviluppo web | Podman
 
-
 Questo documento spiega come ricreare ed eseguire una copia locale dell'intero sito web docs.rockylinux.org sulla vostra macchina locale. Utilizzare una copia locale del sito web della documentazione può essere utile nei seguenti scenari:
 
 * Siete interessati a conoscere e a contribuire agli aspetti dello sviluppo web del sito docs.rockylinux.org
 * Siete un autore e volete vedere come i vostri documenti verranno visualizzati sul sito web della documentazione prima di inviarli
 
-
 ## Creare l'ambiente del contenuti
 
-1. Assicuratevi che i prerequisiti siano soddisfatti. In caso contrario, passare alla sezione "[Impostare-i-prerequisiti](#setup-the-prerequisites)" e poi tornare qui.
+1. Assicuratevi che i prerequisiti siano soddisfatti. In caso contrario, passare alla sezione "[Impostare-i-prerequisiti](#impostazione-dei-prerequisiti)" e poi tornare qui.
 
 2. Passare dalla directory di lavoro corrente del sistema locale alla cartella in cui si intende effettuare le operazioni di scrittura. Ci riferiremo a questa directory come `$ROCKYDOCS` nel resto di questa guida. Per la nostra dimostrazione, `$ROCKYDOCS` punta a `$HOME/projects/rockydocs` sul nostro sistema demo.
 
@@ -44,10 +42,9 @@ git clone https://github.com/rocky-linux/docs.rockylinux.org.git
 
 Ora avrete una cartella `$ROCKYDOCS/docs.rockylinux.org`. In questa cartella è possibile sperimentare i propri contributi di sviluppo web.
 
-
 ## Creare e avviare l'ambiente di sviluppo web RockyDocs
 
-5.  Assicurarsi che Podman sia attivo e funzionante sulla macchina locale (si può controllare con `systemctl`). Eseguire il test con l'esecuzione:
+5. Assicurarsi che Podman sia attivo e funzionante sulla macchina locale (si può controllare con `systemctl`). Eseguire il test con l'esecuzione:
 
 ```
 systemctl  enable --now podman.socket
@@ -97,13 +94,11 @@ Salvare il file con il nome `docker-compose.yml` nella cartella di lavoro $ROCKY
 curl -SL https://raw.githubusercontent.com/rocky-linux/documentation-test/main/docs/labs/docker-compose-rockydocs.yml -o docker-compose.yml
 ```
 
-
 7. Infine, utilizzare docker-compose per creare il servizio. Digitate:
 
 ```
 docker-compose  up
 ```
-
 
 ## Visualizzare il sito web locale docs.rockylinux.org
 
@@ -116,14 +111,11 @@ firewall-cmd  --reload
 
 Con il container attivo e funzionante, ora si dovrebbe essere in grado di puntare il browser web al seguente URL per visualizzare la copia locale del sito:
 
-http://localhost:8001
+<http://localhost:8001>
 
 O
 
 http://SERVER_IP:8001
-
-
-
 
 ## Impostazione dei prerequisiti
 
@@ -144,18 +136,16 @@ curl -SL https://github.com/docker/compose/releases/download/v2.16.0/docker-comp
 chmod 755 /usr/local/bin/docker-compose
 ```
 
-
 Correggere i permessi sul socket docker. Digitate:
 
 ```
 sudo chmod 666 /var/run/docker.sock
 ```
 
-
-### Note:
+### Note
 
 * Le istruzioni contenute in questa guida **NON** sono un prerequisito per gli autori della documentazione Rocky o per i contributori di contenuti
 * L'intero ambiente viene eseguito in un container Podman e quindi è necessario che Podman sia correttamente configurato sulla propria macchina locale
-* Il container è costruito sulla base dell'immagine docker ufficiale di Rocky Linux 9.1, disponibile qui https://hub.docker.com/r/rockylinux/rockylinux
+* Il container è costruito sulla base dell'immagine docker ufficiale di Rocky Linux 9.1, disponibile qui <https://hub.docker.com/r/rockylinux/rockylinux>
 * Il container mantiene il contenuto della documentazione separato dal motore web (mkdocs)
-* Il container avvia un server web locale in ascolto sulla porta 8001. 
+* Il container avvia un server web locale in ascolto sulla porta 8001.
