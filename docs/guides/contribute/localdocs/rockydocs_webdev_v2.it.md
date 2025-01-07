@@ -14,7 +14,7 @@ Questo documento spiega come ricreare ed eseguire una copia locale dell'intero s
 
 ## Creare l'ambiente del contenuti
 
-1. Assicuratevi che i prerequisiti siano soddisfatti. In caso contrario, passare alla sezione "[Impostazione dei prerequisiti](#impostazione-dei-prerequisiti)" e poi tornare qui.
+1. Assicuratevi che i prerequisiti siano soddisfatti. In caso contrario, passare alla sezione "[Impostazione dei prerequisiti](#impostazione-dei-prerequisiti)" e poi ritornare qui.
 
 2. Passare dalla directory di lavoro corrente del sistema locale alla cartella in cui si intende effettuare le operazioni di scrittura. Nel resto di questa guida ci riferiremo a questa directory come `$ROCKYDOCS`. Per la nostra dimostrazione, `$ROCKYDOCS` punta a `$HOME/projects/rockydocs` sul nostro sistema demo.
 
