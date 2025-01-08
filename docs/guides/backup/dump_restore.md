@@ -11,9 +11,9 @@ tags:
 
 ## Overview
 
-`dump` examines files in a filesystem, determines which to back up, and copies those files to a specified disk, tape or other storage medium. The `restore` command performs the inverse function of `dump`.
+`dump` examines files in a filesystem, determines which to back up, and copies those files to a specified disk, tape, or other storage medium. The `restore` command performs the inverse function of `dump`.
 
-This utility is applicable to the following file systems:
+This utility applies to the following file systems:
 
 * ext2
 * ext3
@@ -23,7 +23,7 @@ This utility is applicable to the following file systems:
 
     For the xfs file system, use `xfsdump`.
 
-[This](https://dump.sourceforge.io/) is the homepage of the project.
+[This](https://dump.sourceforge.io/) is the project's homepage.
 
 Before using this utility, run the following command to install it:
 
@@ -45,9 +45,9 @@ There are two main uses for this command:
 
 Common options are:
 
-* `-<level>` - Backup level. When in actual use, please replace "level" with any number from 0-9. The number 0 represents full backup, while other numbers represent incremental backup.
+* `-<level>` - Backup level. Please replace "level" with any number from 0-9 when used. The number 0 represents full backup, while other numbers represent incremental backup.
 * `-f <File-Name>` - Specify the file name and path after backup.
-* `-u` - After a successful backup, record the backup time in the **/etc/dumpdates** file. When the backed up object is an independent partition, you can use the `-u` option. However, when the backup object is a non-partitioned directory, you cannot use the `-u` option.
+* `-u` - After a successful backup, record the backup time in the **/etc/dumpdates** file. You can use the `-u` option when the backed-up object is an independent partition. However, you cannot use the `-u` option when the backup object is a non-partitioned directory.
 * `-v` - Display the processing details during the backup process.
 * `-W` - An option for viewing dump information.
 * `-z[LEVEL]` - Adjust the compression level using the zlib library, with a default compression level of 2. For example, you can compress the backup file to `.gz` format. The adjustable range of compression level is 1-9.
@@ -191,10 +191,10 @@ The usage of this command is - `restore <mode(flag)> [option(s)] -f <Dump-File>`
 
 The mode (flag) can be one of the following:
 
-* `-C` - Comparison mode. Restore reads the backup and compares its contents with files present on the disk, it is mostly used for comparison after performing a backup on a partition In this mode, `restore` will only compare changes based on the original data. If there is new data on the disk, you cannot compare or detect it.
+* `-C` - Comparison mode. Restore reads the backup and compares its contents with files on the disk. It is mainly used to compare after performing a backup on a partition. In this mode, `restore` only compares changes based on the original data. If there is new data on the disk, you cannot compare or detect it.
 * `-i` - Interactive mode. This mode allows interactive restoration of files from a dump.
 * `-t` - List mode. List what data is in the backup file.
-* `-r` - Restore (rebuild) mode. If it is a "Full Backup + Incremental Backup" method, restoring data will occur in chronological order.
+* `-r` - Restore (rebuild) mode. If it is a "Full Backup + Incremental Backup" method, restoring data will occur chronologically.
 * `-x` - Extraction mode. Extract some or all files from the backup file.
 
 #### Example of using `restore`
@@ -225,4 +225,4 @@ The mode (flag) can be one of the following:
     restore > ?
     ```
 
-    In this mode, you can type ++question++ to view the available interactive commands.
+    You can type ++question++ to view the available interactive commands in this mode.
