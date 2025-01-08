@@ -127,7 +127,7 @@ Memorizing the list of commands is unnecessary, but knowing how to get to the li
 
 !!! warning "Rocky Linux 8.x and `flatpak search`"
 
-    If you are on a version of Rocky Linux 8.x, you will experience this bug. When running the command:
+    If you are on a Rocky Linux 8.x version, you will experience this bug. When running the command:
 
     ```bash
     flatpak search [packagename]
