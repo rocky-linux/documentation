@@ -1,7 +1,7 @@
 ---
 title: tar command
 author: tianci li
-contributors: 
+contributors: Ganna Zhyrnova
 tested_with: 8.10
 tags:
   - tar
@@ -11,15 +11,15 @@ tags:
 
 ## Overview
 
-`tar` is a tool used to process archive files on GNU/Linux and other UNIX operating systems and stands for "tape archive".
+`tar` is a tool for processing archive files on GNU/Linux and other UNIX operating systems. It stands for "tape archive."
 
-Storing files conveniently on magnetic tape was the initial use of tar archives. The name "tar" comes from this use. Despite the utility's name, `tar` can direct its output to available devices, files, or other programs (using pipes) and can access remote devices or files (as archives).
+Storing files conveniently on magnetic tape was the initial use of tar archives. The name "tar" comes from this use. Despite the utility's name, `tar` can direct its output to available devices, files, or other programs (using pipes) and access remote devices or files (as archives).
 
-The `tar` currently used on modern GNU/Linux came originally from the [GNU Project](https://www.gnu.org/). You can browse and download all versions of `tar` on [GNU's website](https://ftp.gnu.org/gnu/tar/).
+The `tar` currently used on modern GNU/Linux initially came from the [GNU Project](https://www.gnu.org/). You can browse and download all versions of `tar` on [GNU's website](https://ftp.gnu.org/gnu/tar/).
 
 !!! note
 
-    The `tar` in different distributions may have different default options. Be careful when using them.
+    The `tar` in different distributions may have different default options. Please be careful when you use them.
 
     ```bash
     # RockyLinux 8 and Fedora 41
@@ -32,13 +32,13 @@ The `tar` currently used on modern GNU/Linux came originally from the [GNU Proje
 When using `tar`, note that it has two saving modes:
 
 * **Relative mode** (default): Remove the leading character '/' from the file. Even if you have added the file with an absolute path, `tar` will remove the leading character "/" in this mode.
-* **Absolute mode**: Keep the leading character '/' and include it as part of the file name. To enable this save mode, you need to use the `-P` option. In this mode, you must represent all files as absolute paths. For security reasons, you should not use this save mode in most cases unless there are special scenario requirements.
+* **Absolute mode**: Keep the leading character '/' and include it in the file name. You need to use the `-P` option to enable this save mode. In this mode, you must represent all files as absolute paths. For security reasons, you should not use this save mode in most cases unless there are special scenario requirements.
 
-When you use `tar`, you will encounter suffixes such as `.tar.gz`, `.tar.xz`, `.tar.bz2`, which indicate creating an archive first (categorizing related files as a single file), and then compressing the file with the relevant compression type or compression algorithm.
+When you use `tar,` you will encounter suffixes such as `.tar.gz`, `.tar.xz`, and `.tar.bz2`, which indicate that you create an archive first (categorizing related files as a single file) and then compress the file with the relevant compression type or algorithm.
 
-The compression type or compression algorithm can be `gzip`, `bzip2`, `xz`, `zstd` and others.
+The compression type or algorithm can be gzip, bzip2, xz, zstd, or another.
 
-`tar` allows the extraction of a single file or a directory from a backup, the viewing of its contents, or validation of its integrity.
+`tar` allows the extraction of a single file or a directory from a backup, viewing its contents, or validating its integrity.
 
 The usage of creating an archive and using compression is:
 
@@ -50,47 +50,47 @@ The usage to extract a file from an archive is:
 
 !!! tip "antic"
 
-    When you extract files from archived files `tar` will automatically select the compression type based on the manually added suffix. For example, for `.tar.gz` files, you can directly use `tar -vxf` without using the `tar -zvxf`. 
-    For creating archive compressed files, you **must** select the compression type.
+   When you extract files from archived files, `tar` automatically selects the compression type based on the manually added suffix. For example, for `.tar.gz` files, you can directly use `tar -vxf` without using `tar -zvxf`. 
+You **must** select the compression type for creating archive compressed files.
 
 !!! Note
 
-    In GNU/Linux, most files do not require an extension except for the desktop environment (GUI). The reason for artificially adding suffixes is to facilitate recognition by human users. If the systems administrator sees a `.tar.gz` or `.tgz` file extension, for instance, then he knows how to deal with the file.
+    In GNU/Linux, most files do not require an extension except for the desktop environment (GUI). The reason for artificially adding suffixes is to facilitate human users' recognition. If the systems administrator sees a `.tar.gz` or `.tgz` file extension, for instance, then he knows how to deal with the file.
 
 ### Operating parameters or types
 
-| types | describe |
+| types | description |
 | :---: | :--- |
-| `-A`  | Append all files in one archive to the end of another archive. Only applicable to archive non-compressed files of the `.tar` type |
-| `-c`  | Create archive. Very commonly used  |
-| `-d`  | Compare the differences between archived and corresponding unarchived files |
-| `-r`  | Append the files or directories to the end of the archive. Only applicable to archive non-compressed files of the `.tar` type  |
+| `-A`  | Appends all files in one archive to the end of another archive. Only applicable to archive non-compressed files of the `.tar` type |
+| `-c`  | Creates archive. Very commonly used  |
+| `-d`  | Compares the differences between archived and corresponding unarchived files |
+| `-r`  | Appends the files or directories to the end of the archive. Only applicable to archive non-compressed files of the `.tar` type  |
 | `-t`  | Lists the contents of the archive |
 | `-u`  | Only appends newer files to the archive. Only applicable to archive non-compressed files of the `.tar` type |
 | `-x`  | Extract from archive. Very commonly used |
-| `--delete` | Delete files or directories from the ".tar" archive. Only applicable to archive non-compressed files of the `.tar` type |
+| `--delete` | Deletes files or directories from the ".tar" archive. Only applicable to archive non-compressed files of the `.tar` type |
 
 !!! Tip
 
-    In terms of operation types, in order to preserve user habits, the author recommends that you keep the prefix "-". Of course, it is not required. The operational parameters here indicate what your primary function is with `tar`. In other words, you need to choose one of the above types.
+    The author recommends keeping the prefix "-" to preserve user habits regarding operation types. Of course, it won't be required. The operational parameters here indicate your primary function with `tar`. In other words, you need to choose one of the above types.
 
 ### Common auxiliary options
 
-| option | describe |
+| option | description |
 | :---: | :--- |
 | `-z`  | Use `gzip` as its compression type. Both creating archives and extracting from archives are applicable |
-| `-v`  | Display detailed processing details |
-| `-f`  | Specify the file name for archiving (including file suffix) |
+| `-v`  | Displays detailed processing details |
+| `-f`  | Specifies the file name for archiving (including file suffix) |
 | `-j`  | Use `bzip2` as its compression type. Both creating archives and extracting from archives are applicable |
 | `-J`  | Use `xz` as its compression type. Both creating archives and extracting from archives are applicable |
-| `-C`  | Save location after extracting files from the archive |
-| `-P`  | Save using absolute mode |
+| `-C`  | Saves location after extracting files from the archive |
+| `-P`  | Saves using the absolute mode |
 
 For other auxiliary options not mentioned, see `man 1 tar`
 
 !!! warning "Version difference"
 
-    In some older versions of tar, option(s) are referred to as "key(s)", which means that using options with a "-" prefix may cause the `tar` to not work as expected. At this point, you need to remove the "-" prefix to make it work properly.
+    In some older versions of tar, option(s) are referred to as "key(s)", which means that using options with a "-" prefix may cause the `tar` not to work as expected. At this point, you need to remove the "-" prefix to make it work properly.
 
 ### About styles of options
 
@@ -123,11 +123,11 @@ For other auxiliary options not mentioned, see `man 1 tar`
     * `tar --update [-f ARCHIVE] [OPTIONS] [FILE...]`
     * `tar {--extract|--get} [-f ARCHIVE] [OPTIONS] [MEMBER...]`
 
-Generally speaking, the second method is more commonly used and in line with the habits of most GNU/Linux users.
+The second method is more commonly used and is in line with the habits of most GNU/Linux users.
 
 ### Compression efficiency and frequency of use
 
-`tar` itself does not have compression capabilities, so it needs to be used in conjunction with other compression tools. Compression and decompression, will impact resource consumption.
+`tar` does not have compression capabilities, so it must be used with other compression tools. Compression and decompression will impact resource consumption.
 
 Here is a ranking of the compression of a set of text files from least to most efficient:
 
@@ -253,11 +253,11 @@ You may also add the date to the filename.
 
 !!! warning
 
-    Whether you use the `-A` or `-r` option, pay attention to the saving mode of the relevant archive files.
+    Whether you use the `-A` or `-r` option, consider the saving mode of the relevant archive files.
 
 !!! warning
 
-    `-A` and `-r` are not applicable for archived compress files.
+    `-A` and `-r` are not applicable for archived compressed files.
 
 #### `-t` type
 
@@ -311,7 +311,7 @@ You may also add the date to the filename.
     Shell > tar --delete -vf /tmp/etc.tar etc/motd.d/
     ```
 
-    When deleting you will delete all files with the same name from the archive.
+    When deleting, you will delete all files with the same name from the archive.
 
 ## Common terminology
 
