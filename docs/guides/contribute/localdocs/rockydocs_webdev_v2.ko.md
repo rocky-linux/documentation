@@ -7,16 +7,14 @@ update: 13-Feb-2023
 
 # 웹 개발을 위해 로컬에서 docs.rockylinux.org 웹 사이트 실행 | Podman
 
-
 이 문서는 로컬 컴퓨터에서 전체 docs.rockylinux.org 웹 사이트의 로컬 복사본을 재생성하고 실행하는 단계를 안내합니다. 문서 웹 사이트의 로컬 복사본을 실행하는 것은 다음과 같은 경우에 유용합니다:
 
 * docs.rockylinux.org 웹 사이트의 웹 개발 측면에 관심이 있는 경우 기여하고자 할 수 있습니다.
 * 문서 작성자이며, 기여하기 전에 문서가 어떻게 렌더링되고 보일지 보고 싶을 수 있습니다.
 
-
 ## 콘텐츠 환경 생성하기
 
-1. 필수 사항이 충족되었는지 확인하세요. 그렇지 않은 경우"[사전 요구 사항 설정](#setup-the-prerequisites)"으로 건너뛰고 이후 다시 돌아옵니다.
+1. 필수 사항이 충족되었는지 확인하세요. 그렇지 않은 경우"[사전 요구 사항 설정](#_2)"으로 건너뛰고 이후 다시 돌아옵니다.
 
 2. 현재 작업 디렉토리를 로컬 시스템에서 글을 작성할 폴더로 변경합니다. 이 가이드의 나머지 부분에서 이 디렉토리를 `$ROCKYDOCS`로 지칭합니다.  데모 시스템에서 `$ROCKYDOCS`는 `$HOME/projects/rockydocs`를 가리킵니다.
 
@@ -44,10 +42,9 @@ git clone https://github.com/rocky-linux/docs.rockylinux.org.git
 
 이제 `$ROCKYDOCS/docs.rockylinux.org` 폴더가 생겼을 것입니다. 이 폴더에서 웹 개발 기여를 실험할 수 있습니다.
 
-
 ## Rocky Docs 웹 개발 환경 생성 및 시작
 
-5.  로컬 컴퓨터에서 Podman이 실행되고 있는지 확인하세요 (`systemctl`로 확인 가능). 다음 명령을 실행하여 확인합니다:
+5. 로컬 컴퓨터에서 Podman이 실행되고 있는지 확인하세요 (`systemctl`로 확인 가능). 다음 명령을 실행하여 확인합니다:
 
 ```
 systemctl  enable --now podman.socket
@@ -97,13 +94,11 @@ services:
 curl -SL https://raw.githubusercontent.com/rocky-linux/documentation-test/main/docs/labs/docker-compose-rockydocs.yml -o docker-compose.yml
 ```
 
-
 7. 마지막으로 docker-compose를 사용하여 서비스를 시작합니다. 다음과 같이 입력합니다:
 
 ```
 docker-compose  up
 ```
-
 
 ## 로컬 docs.rockylinux.org 웹사이트 보기
 
@@ -116,14 +111,11 @@ firewall-cmd  --reload
 
 컨테이너가 실행되고 있으므로 웹 브라우저를 다음 URL로 이동하여 로컬 사이트의 복사본을 보여줄 수 있습니다:
 
-http://localhost:8001
+<http://localhost:8001>
 
 또는
 
 http://<SERVER_IP>:8001
-
-
-
 
 ## 전제 조건 설정
 
@@ -144,18 +136,16 @@ curl -SL https://github.com/docker/compose/releases/download/v2.16.0/docker-comp
 chmod 755 /usr/local/bin/docker-compose
 ```
 
-
 docker 소켓의 권한을 수정합니다. 다음과 같이 입력합니다:
 
 ```
 sudo chmod 666 /var/run/docker.sock
 ```
 
-
 ### 참고 사항
 
 * 이 가이드의 지침은 Rocky 문서 작성자/콘텐츠 기여자의 전제 조건이 **아닙니다**.
 * 전체 환경은 Podman 컨테이너에서 실행되므로 로컬 컴퓨터에 Podman을 올바르게 설정해야 합니다.
-* 컨테이너는 https://hub.docker.com/r/rockylinux/rockylinux에서 사용할 수 있는 공식 Rocky Linux 9.1 도커 이미지 위에 구축됩니다.
+* 컨테이너는 <https://hub.docker.com/r/rockylinux/rockylinux에서> 사용할 수 있는 공식 Rocky Linux 9.1 도커 이미지 위에 구축됩니다.
 * 컨테이너는 문서 콘텐츠를 웹 엔진(mkdocs)에서 분리하여 보관합니다.
-* 컨테이너는 포트 8001에서 수신 대기 중인 로컬 웹 서버를 시작합니다. 
+* 컨테이너는 포트 8001에서 수신 대기 중인 로컬 웹 서버를 시작합니다.
