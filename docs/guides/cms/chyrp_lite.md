@@ -145,7 +145,7 @@ In the **Database** section, select a pathname in the `chyrp-lite-data` director
 
 Then, complete the other fields, which should be self-explanatory.
 
-Nex,t click **Install me** and then **Take me to my site**. You should now be able to visit a completed installation of your Chyrp site:
+Next, click **Install me** and then **Take me to my site**. You should now be able to visit a completed installation of your Chyrp site:
 
 ![Chyrp Lite](../images/chyrp_lite.png)
 
