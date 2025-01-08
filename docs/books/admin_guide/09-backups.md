@@ -125,7 +125,7 @@ The commands we will use here are `tar` and `cpio`. If you want to learn about t
 
 !!! Note
 
-    These commands are saved in a proprietary and standardized format.
+    These commands save in a proprietary and standardized format.
 
 **Replication**: A backup technology that copies a set of data from one data source to another or multiple data sources, mainly divided into **Synchronous Replication** and **Asynchronous Replication**. This is an advanced backup part for novice system administrators, so this basic document will not elaborate on these contents.
 
