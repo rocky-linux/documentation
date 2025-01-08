@@ -25,7 +25,7 @@ Using `rsync` over SSH is not as powerful as [lsyncd](../backup/mirroring_lsyncd
 
 If you need to keep a set of directories on the target computer up to date, and you do not care about real-time synchronization as a feature, then `rsync` over SSH is probably the best solution.
 
-For this procedure, you will be working as the root user. Either log in as root or use the `sudo -s` command to switch to the root user in your terminal.
+You will be working as the root user for this procedure. Either log in as root or use the `sudo -s` command to switch to the root user in your terminal.
 
 ### Installing `rsync`
 
@@ -43,9 +43,9 @@ This example will use `rsync` on the target computer to pull from the source ins
 
 ### `rsync` parameters and setting up a script
 
-Before the script setup continues, you must decide what parameters to use with `rsync`. Many possibilities exist. Review the [manual for rsync](https://linux.die.net/man/1/rsync) for a complete list. The most common way to use `rsync` is to use the `-a` option, because `-a`, or "archive", combines several common options. What does `-a` include?
+Before the script setup continues, you must decide what parameters to use with `rsync`. Many possibilities exist. Review the [manual for rsync](https://linux.die.net/man/1/rsync) for a complete list. The most common way to use `rsync` is to use the `-a` option because `-a`, or "archive", combines several common options. What does `-a` include?
 
-- `-r`, recurse the directories
+- `-r`, recurses the directories
 - `-l`, maintains symbolic links as symbolic links
 - `-p`, preserves permissions
 - `-t`, preserves modification times
@@ -135,11 +135,11 @@ Run the script a final time:
 
 The file you created on the target should no longer exist because it does not exist on the source.
 
-Assuming all of this worked as expected, change the script to synchronize all the directories you want.
+Assuming all this worked as expected, change the script to synchronize all your desired directories.
 
 ## Automating everything
 
-You may not want to run this script every time you want to synchronize manually. Use a `crontab` to do this automatically on a schedule. To run this script at 11 PM every night:
+You may not want to run this script whenever you want to synchronize manually. Use a `crontab` to do this automatically on a schedule. To run this script at 11 PM every night:
 
 ```bash
 crontab -e
@@ -183,17 +183,17 @@ The `crontab` is on a 24-hour clock. You will need your entry at the bottom of t
 00 23   *  *  *    /usr/local/sbin/rsync_dirs
 ```
 
-What this says is to run this command at 00 minutes, 23 h, every day, every month, and every day of the week. Save your `crontab` entry with:
+This says to run this command at 00 minutes and 23 hours daily, every month, and every day of the week. Save your `crontab` entry with:
 
 ++shift+colon+"w"+"q"+exclam++
 
 ## Optional flags
 
 ```bash
--n : Dry-Run to see what files would be transferred
--v : list out all the files which are being transferred
--vvv : to provide debug info while transferring files
--z : to enable compression during the transfer
+-n: Dry-Run to see what files would be transferred
+-v: list out all the files that are being transferred
+-vvv: to provide debug info while transferring files
+-z: to enable compression during the transfer
 ```
 
 ## Conclusions
