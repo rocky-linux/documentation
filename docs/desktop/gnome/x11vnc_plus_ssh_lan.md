@@ -155,11 +155,11 @@ Congratulations! You can now remotely control the desktop!
 
 ## Connecting to a machine across the internet
 
-So far, this article has shown you how to set up an x11vnc server and connect to it using VNC forwarded through an SSH tunnel. It is important to note that this method will only work for computers on the same local area network (LAN). Assuming that you want to connect to a computer that is on a different LAN. A way to accomplish this is to set up a VPN. Below are a few guides on how to set up a VPN:
+So far, this article has shown you how to set up an x11vnc server and connect to it using VNC forwarded through an SSH tunnel. It is important to note that this method will only work for computers on the same local area network (LAN). Assuming you want to connect to a computer on a different LAN. A way to accomplish this is to set up a VPN. Below are a few guides on how to set up a VPN:
 
 * [OpenVPN](https://docs.rockylinux.org/guides/security/openvpn/)
 * [Wireguard VPN](https://docs.rockylinux.org/guides/security/wireguard_vpn/)
 
 ## Conclusion
 
-Congratulations! You have successfully set up a x11vnc server and connected to it using a TigerVNC client. This solution is ideal for remote support, as it shares the same X session as the user, ensuring a seamless support experience.
+Congratulations! You have successfully set up an x11vnc server and connected to it using a TigerVNC client. This solution is ideal for remote support, as it shares the same X session as the user, ensuring a seamless support experience.
