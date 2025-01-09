@@ -1,7 +1,7 @@
 ---
 title: WordPress на LAMP
 author: Joseph Brinkman
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.2
 ---
 
@@ -96,9 +96,9 @@ PHP — це програмування, яке використовується
     sudo systemctl restart httpd
 ```
 
-Використовуйте `curl`, щоб завантажити останню версію WordPress:
-
 ## Отримайте та розпакуйте WordPress
+
+Використовуйте `curl`, щоб завантажити останню версію WordPress:
 
 ```bash
     curl -O https://wordpress.org/latest.tar.gz
