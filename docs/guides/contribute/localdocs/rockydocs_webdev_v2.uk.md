@@ -12,9 +12,33 @@ update: 13 лютого 2023 р
 - Вам цікаво дізнатися про аспекти веб-розробки веб-сайту docs.rockylinux.org і зробити свій внесок у них
 - Ви автор і хотіли б побачити, як ваші документи відображатимуться/виглядатимуть на веб-сайті документів, перш ніж надсилати їх
 
+## Налаштування передумов
+
+Встановіть і налаштуйте Podman та інші інструменти, виконавши:
+
+```bash
+sudo dnf -y install podman podman-docker git
+
+sudo systemctl enable --now  podman.socket
+```
+
+Встановіть docker-compose і зробіть його виконуваним. Впишіть:
+
+```bash
+curl -SL https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+
+chmod 755 /usr/local/bin/docker-compose
+```
+
+Виправте дозволи на сокет докера. Впишіть:
+
+```bash
+sudo chmod 666 /var/run/docker.sock
+```
+
 ## Створення середовища вмісту
 
-1. Переконайтеся, що передумови виконано. Якщо ні, перейдіть до розділу «[Налаштування попередніх умов](#_2)», а потім поверніться сюди.
+1. Переконайтеся, що передумови виконано.
 
 2. Змініть поточний робочий каталог у вашій локальній системі на папку, у якій ви збираєтеся писати. Ми будемо посилатися на цей каталог як `$ROCKYDOCS` в решті цього посібника. Для нашої демонстрації тут `$ROCKYDOCS` вказує на `$HOME/projects/rockydocs` у нашій демонстраційній системі.
 
@@ -116,31 +140,7 @@ update: 13 лютого 2023 р
 
   <http://SERVER_IP:8001>
 
-## Налаштування передумов
-
-Встановіть і налаштуйте Podman та інші інструменти, виконавши:
-
-```bash
-sudo dnf -y install podman podman-docker git
-
-sudo systemctl enable --now  podman.socket
-```
-
-Встановіть docker-compose і зробіть його виконуваним. Впишіть:
-
-```bash
-curl -SL https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
-
-chmod 755 /usr/local/bin/docker-compose
-```
-
-Виправте дозволи на сокет докера. Впишіть:
-
-```bash
-sudo chmod 666 /var/run/docker.sock
-```
-
-### Примітки
+## Примітки:
 
 - Інструкції в цьому посібнику **НЕ** є обов’язковою умовою для авторів документації Rocky або учасників вмісту
 - Все середовище працює в контейнері Podman, тому вам потрібно буде правильно налаштувати Podman на вашій локальній машині
