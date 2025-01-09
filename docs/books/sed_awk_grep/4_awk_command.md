@@ -1798,7 +1798,7 @@ Like most programming languages, `awk` also supports arrays, which are divided i
 | command \| getline [var]  | Assign the result to "$0" or the variable "var" |
 | next                      | Stop the current input record and perform the following actions|
 | print                     | Print the result |
-| printf                    | See [here](#printf-commands)|
+| printf                    | See the section for that command in this document|
 | system(cmd-line)          | Execute the command and return the status code. 0 indicates that the command was executed successfully; non-0 indicates that the execution failed |
 | print ... >> file         | Output redirection |
 | print ... \| command      | Print the output and use it as input to the command |

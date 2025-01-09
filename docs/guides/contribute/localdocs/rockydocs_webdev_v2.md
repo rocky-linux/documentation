@@ -13,9 +13,33 @@ Running a local copy of the documentation website might be useful in the followi
 - You are interested in learning about and contributing to the web development aspects of the docs.rockylinux.org website
 - You are an author and you'd like to see how your documents will render/look on the docs website before contributing them
 
+## Setup the prerequisites
+
+Install and setup Podman and other tools by running:
+
+```bash
+sudo dnf -y install podman podman-docker git
+
+sudo systemctl enable --now  podman.socket
+```
+
+Install docker-compose and make it executable. Type:
+
+```bash
+curl -SL https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+
+chmod 755 /usr/local/bin/docker-compose
+```
+
+Fix permissions on docker socket. Type:
+
+```bash
+sudo chmod 666 /var/run/docker.sock
+```
+
 ## Create the content environment
 
-1. Ensure that the prerequisites are satisfied. If not please skip to the "[Setup the prerequisites](#setup-the-prerequisites)" section and then return here.
+1. Ensure that the prerequisites are satisfied.
 
 2. Change the current working directory on your local system to a folder where you intend to do your writing.
   We will refer to this directory as
@@ -119,31 +143,7 @@ If you have a firewall running on your Rocky Linux system, ensure that port 8001
 
   <http://SERVER_IP:8001>
 
-## Setup the prerequisites
-
-Install and setup Podman and other tools by running:
-
-```bash
-sudo dnf -y install podman podman-docker git
-
-sudo systemctl enable --now  podman.socket
-```
-
-Install docker-compose and make it executable. Type:
-
-```bash
-curl -SL https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
-
-chmod 755 /usr/local/bin/docker-compose
-```
-
-Fix permissions on docker socket. Type:
-
-```bash
-sudo chmod 666 /var/run/docker.sock
-```
-
-### Notes
+## Notes
 
 - The instructions in this guide are **NOT** a prerequisite for Rocky documentation authors or content contributors
 - The entire environment runs in a Podman container and so you will need Podman properly setup on your local machine

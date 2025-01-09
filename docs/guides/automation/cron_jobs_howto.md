@@ -85,7 +85,7 @@ Provided you are good with just letting the system auto-run your scripts, and al
 
 ### Create your own `cron`
 
-If the automated, randomized times do not work well in [For Workstations above](#for-workstations), and the scheduled times in the [For Servers above](#for-servers), you can create your own. In this example, the assumption is you are doing this as the root user. [see Assumptions](#assumptions) To do this, type the following:
+If the automated, randomized times do not work well for workstations, or the scheduled times for servers, you can create your own. In this example, the assumption is you are doing this as the root user. To do this, type the following:
 
 `crontab -e`
 

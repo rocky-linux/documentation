@@ -26,14 +26,13 @@ Whether you are hosting many websites for customers or a single important websit
 
 With many web sites uploaded by your customers, one of them will probably upload a Content Management System (CMS) with the possibility of vulnerabilities. Most customers focus on ease of use, not security, and what happens is that updating their own CMS becomes a process that falls out of their priority list altogether.
 
-
 While notifying customers of vulnerabilities in their CMS is possible for a company with a large IT staff, this might not be realistic for a small IT team. The best defense is a hardened web server.
 
 Web server hardening can take many forms, including any or all of the tools here and possibly others not defined.
 
 You might use a couple of these tools and not the others. For clarity and readability this document splits into separate documents for each tool. The exception will be the packet-based firewall (`firewalld`) in this main document.
 
-* A good packet filter firewall based on ports (iptables, firewalld, or hardware firewall - using `firewalld` for our examples) [`firewalld` procedure](#configuring-firewalld)
+* A good packet filter firewall based on ports (iptables, firewalld, or hardware firewall - using `firewalld` for our examples)  See the `firewalld` procedure later in this document.
 * A Host-based Intrusion Detection System (HIDS), in this case _ossec-hids_ [Apache Hardened Web Server - ossec-hids](ossec-hids.md)
 * A Web-based Application Firewall (WAF), with `mod_security` rules [Apache Hardened Web Server - mod_security](modsecurity.md)
 * Rootkit Hunter (`rkhunter`): A scan tool that checks against Linux malware [Apache Hardened Web Server - rkhunter](rkhunter.md)
