@@ -539,12 +539,12 @@ sudo dnf clean all
 sudo dnf update
 ```
 
-Переконайтеся на своєму терміналі, що підключення `dnf` використовує ваш проксі для завантаження свого оновлення:
+Переконайтеся на своєму терміналі, що підключення `dnf` використовує ваш проксі для завантаження свого оновлення. Зауважте, що «URL-адресу сховища» у наступному рядку буде замінено фактичною URL-адресою дзеркала:
 
 ```bash
-1723793986.725     20 192.168.1.10 TCP_MISS/200 5238 GET http://rocky.reloumirrors.net/9.4/extras/x86_64/os/repodata/7d78a729-8e9a-4066-96d4-ab8ed8f06ee8-FILELISTS.xml.gz - HIER_DIRECT/193.106.119.144 application/x-gzip
+1723793986.725     20 192.168.1.10 TCP_MISS/200 5238 GET "URL of repository"/9.4/extras/x86_64/os/repodata/7d78a729-8e9a-4066-96d4-ab8ed8f06ee8-FILELISTS.xml.gz - HIER_DIRECT/193.106.119.144 application/x-gzip
 ...
-1723794176.255      1 192.168.1.10 TCP_HIT/200 655447 GET http://miroir.univ-lorraine.fr/rocky/9.4/AppStream/x86_64/os/repodata/1af312c9-7139-43ed-8761-90ba3cd55461-UPDATEINFO.xml.gz - HIER_NONE/- application/x-gzip
+1723794176.255      1 192.168.1.10 TCP_HIT/200 655447 GET "URL of repository"/9.4/AppStream/x86_64/os/repodata/1af312c9-7139-43ed-8761-90ba3cd55461-UPDATEINFO.xml.gz - HIER_NONE/- application/x-gzip
 ```
 
 У цьому прикладі ви можете побачити одне з’єднання з TCP_MISS (немає в кеші), а інше — з TCP_HIT (використовуйте кеш для відповіді клієнту).

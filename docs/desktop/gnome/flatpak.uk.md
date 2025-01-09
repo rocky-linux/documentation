@@ -127,21 +127,21 @@ Application Options:
 
 Запам'ятовувати список команд непотрібно, але знати, як отримати доступ до списку та скористатися опцією `--help` - це гарна ідея.
 
-!!! warning "Важливо"
+!!! warning "Rocky Linux 8.x та `flatpak search`"
 
 ````
-Якщо ви використовуєте версію Rocky Linux 9.x, ви зіткнетеся з цією помилкою. Під час виконання команди:
+Якщо ви користуєтеся версією Rocky Linux 8.x, ви зіткнетеся з цією помилкою. Під час виконання команди:
 
 ```bash
 flatpak search [packagename]
 ```
 
-Якщо [назва пакета] — це пакет, який ви шукаєте, ви отримаєте:
+Де [packagename] — пакет, який ви шукаєте, ви отримаєте:
 
 ```text
 F: Failed to parse /var/lib/flatpak/appstream/flathub/x86_64/active/appstream.xml.gz file: Error on line 4065 char 29: <p> already set '
   Organic Maps is a free Android & iOS offline maps app for travelers,
-  tourists, hikers, drivers and cyclists.
+  tourists, hikers, drivers, and cyclists.
   It uses crowd-sourced OpenStreetMap data and is developed with love by
   ' and tried to replace with ' ('
 No matches found

@@ -492,7 +492,7 @@ varnishadm
 varnish> ban req.url ~ ".css$"
 200
 
-varnish> ban req.http.host == www.example.com
+varnish> ban req.http.host == example.com
 200
 
 varnish> ban req.http.host ~ .
@@ -502,7 +502,7 @@ varnish> ban req.http.host ~ .
 через запит HTTP PURGE:
 
 ```bash
-curl -X PURGE http://www.example.org/foo.txt
+curl -X PURGE http://example.org/foo.txt
 ```
 
 Налаштування Varnish для прийняття цього запиту виконується за допомогою:

@@ -118,25 +118,25 @@ lxd init
 
 Ecco le domande e le nostre risposte per lo script, con una piccola spiegazione dove necessario:
 
-```
+```text
 Would you like to use LXD clustering? (yes/no) [default=no]:
 ```
 
 Se siete interessati al clustering, fate ulteriori ricerche al riguardo [qui](https://documentation.ubuntu.com/lxd/en/latest/clustering/). Altrimenti, basta premere "Invio" per accettare l'opzione predefinita.
 
-```
+```text
 Do you want to configure a new storage pool? (yes/no) [default=yes]:
 ```
 
  Accettare l'impostazione predefinita.
 
-```
+```text
 Name of the new storage pool [default=default]: server-storage
 ```
 
 Scegliere un nome per il pool di archiviazione. Mi piace chiamarlo come il server su cui gira LXD. (Un pool di archiviazione è in pratica una quantità prestabilita di spazio su disco rigido messa da parte per i vostri container)
 
-```
+```text
 Name of the storage backend to use (btrfs, dir, lvm, zfs, ceph) [default=zfs]: lvm
 ```
 
@@ -144,25 +144,25 @@ La domanda precedente riguarda il tipo di file system che si desidera utilizzare
 
 In un ambiente virtuale, ho scoperto che "LVM" funziona bene e di solito è quello che uso. È possibile accettare l'impostazione predefinita alla domanda successiva.
 
-```
+```text
 Create a new LVM pool? (yes/no) [default=yes]:
 ```
 
 Se si dispone di un disco rigido o di una partizione specifica che si desidera utilizzare per l'intero pool di archiviazione, scrivere " yes". Se state facendo tutto questo su un VPS, probabilmente *dovrete* scegliere "no".
 
-```
-`Would you like to use an existing empty block device (e.g. a disk or partition)? (yes/no) [default=no]:`
+```text
+`Would you like to use an existing empty block device (e.g. a disk or partition)? (yes/no) [default=no]:
 ```
 
 Il Metal As A Service (MAAS) non rientra nell'ambito di questo documento. Accettare le impostazioni predefinite.
 
-```
+```text
 Would you like to connect to a MAAS server? (yes/no) [default=no]:
 ```
 
 E ancora altri default. È tutto a posto.
 
-```
+```text
 Would you like to create a new local network bridge? (yes/no) [default=yes]:
 
 What should the new bridge be called? [default=lxdbr0]: `
@@ -172,19 +172,19 @@ What IPv4 address should be used? (CIDR subnet notation, “auto” or “none�
 
 Se si desidera utilizzare IPv6 sui propri contenitori LXD, è possibile attivare la prossima opzione. Questo dipende da voi, ma per lo più non dovrebbe essere necessario.
 
-```
+```text
 What IPv6 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]:
 ```
 
 Questo è necessario per eseguire facilmente il backup del server e può consentire di gestire l'installazione di LXD da altri computer. Se tutto questo vi sembra buono, rispondete " yes"
 
-```
+```text
 Would you like the LXD server to be available over the network? (yes/no) [default=no]: yes
 ```
 
 Se avete risposto sì alle ultime domande, scegliete i valori predefiniti:
 
-```
+```text
 Address to bind LXD to (not including port) [default=all]:
 
 Port to bind LXD to [default=8443]:
@@ -192,7 +192,7 @@ Port to bind LXD to [default=8443]:
 
 Ora vi verrà chiesta una password di fiducia. È il modo in cui ci si connette al server host LXC da altri computer e server, quindi è necessario impostare qualcosa che abbia senso nel proprio ambiente. Salvate la password in un luogo sicuro, ad esempio in un gestore di password.
 
-```
+```text
 Trust password for new clients:
 
 Again:
@@ -200,7 +200,7 @@ Again:
 
 E poi continuare a utilizzare i valori predefiniti da qui in avanti:
 
-```
+```text
 Would you like stale cached images to be updated automatically? (yes/no) [default=yes]
 
 Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:
@@ -496,7 +496,7 @@ Non sarà possibile eliminare il container se è in esecuzione, quindi lo si pu�
 lxc delete my-container --force
 ```
 
-Ora, grazie al completamento del comando Tab, all'errore dell'utente e al fatto che la "d" si trova accanto alla "s" sulla maggior parte delle tastiere, è possibile cancellare accidentalmente i container.
+Ora, grazie al completamento del comando ++tab++, all'errore dell'utente e al fatto che ++d++ si trova accanto a ++s++ sulla maggior parte delle tastiere, è possibile cancellare accidentalmente i contenitori.
 
 Per evitare che ciò accada, è possibile impostare qualsiasi container come "protetto" (facendo in modo che il processo di cancellazione richieda un passo in più) con questo comando:
 
@@ -588,7 +588,7 @@ nano /etc/httpd/conf.d/real-ip.conf
 
 E aggiungere questo testo:
 
-```
+```bash
 RemoteIPHeader X-Real-IP
 RemoteIPTrustedProxy proxy-server.lxd
 ```
@@ -607,45 +607,13 @@ Uscire dalla shell per ora e iniziare con il server Nginx.
 
 Anche in questo caso, la faremo breve. Se volete usare la versione più recente (e consigliata) di Nginx in produzione, consultate la nostra [guida per principianti all'installazione di Nginx](../web/nginx-mainline.md). Questo contiene la guida completa all'installazione e alcune buone pratiche per la configurazione del server.
 
-Per i test e l'apprendimento, *potreste* installare Nginx normalmente, ma vi consiglio di installare l'ultima versione, che è chiamata ramo "mainline".
-
 Per prima cosa, accedere alla shell del container:
 
 ```bash
 lxc exec nginx-server bash
 ```
 
-Quindi, installare il repository `epel-release` in modo da poter installare l'ultima versione di Nginx:
-
-```bash
-dnf install epel-release
-```
-
-Una volta fatto questo, cercare l'ultima versione di Nginx con:
-
-```bash
-dnf module list nginx
-```
-
-Si dovrebbe ottenere un elenco simile a questo:
-
-```bash
-Rocky Linux 8 - AppStream
-Name       Stream        Profiles        Summary
-nginx      1.14 [d]      common [d]      nginx webserver
-nginx      1.16          common [d]      nginx webserver
-nginx      1.18          common [d]      nginx webserver
-nginx      1.20          common [d]      nginx webserver
-nginx      mainline      common [d]      nginx webserver
-```
-
-Quella desiderata è, avete indovinato, il ramo mainline. Abilitare il modulo con questo comando:
-
-```bash
-dnf enable module nginx:mainline
-```
-
-Ti verrà chiesto se sei sicuro di volerlo fare, quindi scegli `Y` come al solito. Quindi, utilizzare il comando predefinito per installare Nginx:
+Utilizzare il comando predefinito per installare Nginx:
 
 ```bash
 dnf install nginx
@@ -748,7 +716,7 @@ nano /etc/nginx/conf.d/apache-server.conf
 
 Quindi incollate questo test, modificate il nome del dominio secondo necessità e salvatelo:
 
-```
+```apache
 upstream apache-server {
     server apache-server.lxd:80;
 }
@@ -772,12 +740,12 @@ server {
 
 Vediamo di scomporlo un po':
 
-* La sezione `upstream` definisce esattamente dove il reverse proxy invierà tutto il suo traffico. In particolare, invia il traffico al nome di dominio interno del container "apache-server": `apache-server.lxd`.
-* Le due righe che iniziano con `listen` indicano al server di ascoltare il traffico in arrivo sulla porta 80 con il protocollo proxy. La prima via IPv4 e la seconda via IPv6.
-* La funzione `server_name` prende tutto il traffico che arriva specificamente da "apache.server.test" e lo instrada attraverso il reverse proxy.
-* La funzione `proxy-pass` è la parte che dirige effettivamente tutto il traffico catturato dalla variabile `server_name` e lo invia al server definito nella sezione `upstream`.
-* La funzione `proxy_redirect` può apparentemente interferire con i reverse proxy, quindi ci assicuriamo che sia disattivata.
-* Tutte le opzioni `proxy-set-header` inviano al server web informazioni come l'IP dell'utente e altro.
+1. La sezione `upstream` definisce esattamente dove il reverse proxy invierà tutto il suo traffico. In particolare, invia il traffico al nome di dominio interno del container "apache-server": `apache-server.lxd`.
+2. Le due righe che iniziano con `listen` indicano al server di ascoltare il traffico in arrivo sulla porta 80 con il protocollo proxy. La prima via IPv4 e la seconda via IPv6.
+3. La funzione `server_name` prende tutto il traffico che arriva specificamente da "apache.server.test" e lo instrada attraverso il reverse proxy.
+4. La funzione `proxy-pass` è la parte che dirige effettivamente tutto il traffico catturato dalla variabile `server_name` e lo invia al server definito nella sezione `upstream`.
+5. La funzione `proxy_redirect` può apparentemente interferire con i reverse proxy, quindi ci assicuriamo che sia disattivata.
+6. Tutte le opzioni `proxy-set-header` inviano al server web informazioni come l'IP dell'utente e altro.
 
 !!! warning "Attenzione"
 
@@ -793,7 +761,8 @@ Ricaricare il server con `systemctl restart nginx`, quindi puntare il browser su
 
     È possibile assegnare ai file di configurazione il nome che si preferisce. Per le esercitazioni sto usando nomi semplificati, ma alcuni sysadmin raccomandano nomi basati sul dominio attuale, ma al contrario. È un'organizzazione basata sull'ordine alfabetico.
     
-    es. "apache.server.test" otterrebbe un file di configurazione chiamato `test.server.apache.conf`.
+    Ad esempio, “apache.server.test” otterrà un file di configurazione chiamato `test.server.apache.conf`.
+
 #### Direzione del traffico al server Nginx
 
 Ripetere il procedimento. Creare un file come in precedenza:
@@ -804,7 +773,7 @@ nano /etc/nginx/conf.d/nginx-server.conf
 
 Aggiungere il testo appropriato:
 
-```
+```nginx
 upstream nginx-server {
     server rocky-nginx.lxd:80;
 }
@@ -841,6 +810,7 @@ lxc exec apache-server systemctl restart httpd && lxc exec nginx-server restart 
 Questo applicherà i file "real-ip.conf" che abbiamo creato nelle rispettive configurazioni dei server.
 
 #### Ottenere i certificati SSL per i tuoi siti web
+
 Ottenere certificati SSL ufficiali e corretti è più facile con Let's Encrypt e una piccola applicazione chiamata certbot. certbot rileva automaticamente i vostri siti web, ottiene i certificati SSL e configura i siti stessi. Rinnova anche i certificati per voi ogni 30 giorni circa, senza alcun intervento da parte vostra o cron job.
 
 Tutto questo deve essere fatto dal container "proxy-server", quindi si deve accedere a quella shell. Una volta lì, installare i repository EPEL, proprio come si è fatto sull'host. Assicurarsi che il container sia stato prima aggiornato:
@@ -871,7 +841,7 @@ Certbot leggerà la configurazione di Nginx e capirà quanti siti web avete e se
 
 Le domande più importanti sono le seguenti. Inserite il vostro indirizzo e-mail quando vedete questo:
 
-```
+```bash
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
 Enter email address (used for urgent renewal and security notices)
  (Enter 'c' to cancel):
@@ -879,7 +849,7 @@ Enter email address (used for urgent renewal and security notices)
 
 Qui è possibile scegliere per quali siti web ottenere i certificati. Basta premere invio per ottenere i certificati per tutti quanti.
 
-```
+```text
 Which names would you like to activate HTTPS for?
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 1: apache.server.test
@@ -893,14 +863,14 @@ Verrà visualizzato un testo di conferma e la procedura sarà conclusa. Ma se an
 
 Andate nei file `apache-server.conf` e `nginx-server.conf` e trovate le due righe seguenti:
 
-```
+```bash
 listen [::]:443 ssl ipv6only=on; # managed by Certbot
 listen 443 ssl; # managed by Certbot
 ```
 
 Sì, manca l'impostazione `proxy_protocol` e questo non va bene. Aggiungetelo voi stessi.
 
-```
+```bash
 listen proxy_protocol [::]:443 ssl ipv6only=on; # managed by Certbot
 listen proxy_protocol 443 ssl; # managed by Certbot
 ```

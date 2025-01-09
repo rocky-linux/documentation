@@ -1,8 +1,8 @@
 ---
 title: Сервер бази даних MariaDB
 author: Steven Spencer
-contributors: Ezequiel Bruni, William Perron, Ganna Zhyrnova
-tested_with: 8.5, 8.6, 9.0
+contributors: Ezequiel Bruni, William Perron, Ganna Zhyrnova, Joseph Brinkman
+tested_with: 8.5, 8.6, 9.0, 9.2
 tags:
   - бази даних
   - mariadb
@@ -32,23 +32,34 @@ Wordpress CMS</1 > яка цього вимагає. Однак ця база д
 
 Вам потрібно встановити *mariadb-server*:
 
-`dnf install mariadb-server`
+
+
+```bash
+dnf install mariadb-server
+```
+
 
 
 
 ## Захист mariadb-сервера
 
-Щоб посилити безпеку *mariadb-server*, нам потрібно запустити сценарій, але перед тим, як це зробити, нам потрібно ввімкнути та запустити mariadb:
+Щоб посилити безпеку *mariadb-сервера*, вам потрібно запустити сценарій, але перед тим, як це зробити, вам потрібно ввімкнути та запустити mariadb:
 
-`systemctl enable mariadb`
 
-І потім:
 
-`systemctl start mariadb`
+```bash
+systemctl enable --now mariadb
+```
+
 
 Далі виконайте цю команду:
 
-`mysql_secure_installation`
+
+
+```bash
+mysql_secure_installation
+```
+
 
 !!! tip "Підказка"
 
@@ -57,7 +68,7 @@ Wordpress CMS</1 > яка цього вимагає. Однак ця база д
 
 
 
-    ```
+    ```bash
     dnf module enable mariadb:10.5
     ```
 
@@ -92,7 +103,7 @@ Enter current password for root (enter for none):
 OK, successfully used password, moving on...
 
 Setting the root password ensures that nobody can log into the MariaDB
-root user without the proper authorisation.
+root user without the proper authorization.
 
 Set root password? [Y/n]
 ```
@@ -126,7 +137,7 @@ Reloading privilege tables..
 ```text
 By default, a MariaDB installation has an anonymous user, allowing anyone
 to log into MariaDB without having to have a user account created for
-them.  This is intended only for testing, and to make the installation
+them. This is intended only for testing, and to make the installation
 go a bit smoother.  You should remove them before moving into a
 production environment.
 
@@ -209,7 +220,7 @@ Thanks for using MariaDB!
 
 ### Зміни Rocky Linux 9.0
 
-Rocky Linux 9.0 використовує `mariadb-server-10.5.13-2` як версію mariadb-server за умовчанням. Починаючи з версії 10.4.3, на сервері автоматично вмикається новий плагін, який змінює діалогове вікно `mariadb-secure-installation`. Цей плагін є автентифікацією `unix-socket`. [Ця стаття](https://mariadb.com/kb/en/authentication-plugin-unix-socket/) добре пояснює нову функцію. По суті, використання автентифікації `unix-socket` використовує облікові дані користувача, який увійшов у систему, для доступу до бази даних. Це робить так, що якщо користувач root, наприклад, увійшов, а потім використав `mysqladmin` для створення або видалення бази даних (або будь-якої іншої функції), для доступу не потрібен пароль. Те саме працює з `mysql`. Це також означає, що немає пароля для віддаленого зламу. Це залежить від безпеки користувачів, налаштованих на сервері для захисту всіх баз даних.
+Rocky Linux 9.2 використовує `mariadb-server-10.5.22` як версію mariadb-server за умовчанням. Починаючи з версії 10.4.3, на сервері автоматично вмикається новий плагін, який змінює діалогове вікно `mariadb-secure-installation`. Цей плагін є автентифікацією `unix-socket`. [Ця стаття](https://mariadb.com/kb/en/authentication-plugin-unix-socket/) добре пояснює нову функцію. По суті, під час автентифікації unix-сокетів для доступу до бази даних використовуються облікові дані користувача, який увійшов у систему. Це робить так, що якщо користувач root, наприклад, увійшов, а потім використав `mysqladmin` для створення або видалення бази даних (або будь-якої іншої функції), для доступу не потрібен пароль. Те саме працює з `mysql`. Це також означає, що немає пароля для віддаленого зламу. Це залежить від безпеки користувачів, налаштованих на сервері для захисту всіх баз даних.
 
 Друге діалогове вікно під час `mariadb-secure-installation` після встановлення пароля для адміністратора:
 
@@ -247,4 +258,4 @@ MariaDB [(none)]>
 
 ## Висновок
 
-Сервер бази даних, такий як *mariadb-server*, можна використовувати для багатьох цілей. Через популярність CMS Wordpress її часто можна знайти на веб-серверах. Однак перед тим, як запускати базу даних у виробництві, доцільно посилити її захист.
+Сервер бази даних, такий як *mariadb-server*, можна використовувати для багатьох цілей. Через популярність [CMS Wordpress](https://wordpress.org) її часто можна знайти на веб-серверах. Однак перед тим, як запускати базу даних у виробництві, доцільно посилити її захист.

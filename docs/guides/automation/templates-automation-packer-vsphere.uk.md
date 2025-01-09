@@ -590,7 +590,7 @@ systemctl start vmtoolsd
 
 Існують різні типи провайдерів, ми також могли б використати Ansible. Ви можете вільно досліджувати ці можливості.
 
-Цей файл можна повністю змінити, але це приклад того, що можна зробити за допомогою сценарію, у цьому випадку `requirements.sh`:
+Цей файл можна повністю змінити, але це приклад того, що можна зробити за допомогою сценарію, у цьому випадку `requirements.sh`. Примітка нижче "URL-адреса статті бази знань" замінює пошкоджену URL-адресу, але не змінює значення:
 
 ```bash
 #!/bin/sh -eux
@@ -602,7 +602,7 @@ echo "Installing cloud-init..."
 dnf -y install cloud-init
 
 # see https://bugs.launchpad.net/cloud-init/+bug/1712680
-# and https://kb.vmware.com/s/article/71264
+# and "URL to knowlege base article"
 # Virtual Machine customized with cloud-init is set to DHCP after reboot
 echo "manual_cache_clean: True " > /etc/cloud/cloud.cfg.d/99-manual.cfg
 
