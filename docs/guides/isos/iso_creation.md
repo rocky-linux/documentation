@@ -1,7 +1,7 @@
 ---
 title: Creating a Custom Rocky Linux ISO
 author: Howard Van Der Wal
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 9.5
 tags:
 - create
@@ -11,15 +11,15 @@ tags:
 
 ## Introduction
 
-You might need to create a custom ISO for many reasons. Perhaps you want to make a change to the boot process, add specific packages, or update a configuration file.
+You might need to create a custom ISO for many reasons. Perhaps you want to change the boot process, add specific packages, or update a configuration file.
 
 This guide will instruct you from start to finish on how to build your own Rocky Linux ISO.
 
 ## Prerequisites
 
-* A 64 bit machine running Rocky Linux 9 to build the new ISO image.
-* A Rocky Linux 9 DVD ISO image.
-* A `kickstart` file to apply to the ISO.
+* A 64-bit machine running Rocky Linux 9
+* A Rocky Linux 9 DVD ISO image
+* A `kickstart` file to apply to the ISO
 * Read the Lorax [Quickstart](https://weldr.io/lorax/lorax.html#quickstart) and [mkksiso](https://weldr.io/lorax/mkksiso.html) documentation to become familiar with how to create the `Anaconda` `boot.iso`.
 
 ## Package installation and setup
@@ -118,4 +118,4 @@ mkksiso --add ~/baseos --ks example-ks.cfg ~/Rocky-9.5-x86_64-dvd.iso ~/Rocky-9.
 
 ## Conclusion
 
-What has been discussed here are just a few of the options available to tweak and build your own Rocky Linux ISO. For further ways, including modifying the kernel cmdline arguments, the author highly recommends to go through the [mkksiso](https://weldr.io/lorax/mkksiso.html) documentation in more detail.
+I'm sharing a few options to tweak and build your Rocky Linux ISO here. For further ways, including modifying the kernel cmdline arguments, the author highly recommends going through the [mkksiso](https://weldr.io/lorax/mkksiso.html) documentation in more detail.
