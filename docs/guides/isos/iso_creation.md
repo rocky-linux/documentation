@@ -17,9 +17,9 @@ This guide will instruct you from start to finish on how to build your own Rocky
 
 ## Prerequisites
 
-* A 64-bit machine running Rocky Linux 9 builds the new ISO image.
-* A Rocky Linux 9 DVD ISO image.
-* A `kickstart` file to apply to the ISO.
+* A 64-bit machine running Rocky Linux 9
+* A Rocky Linux 9 DVD ISO image
+* A `kickstart` file to apply to the ISO
 * Read the Lorax [Quickstart](https://weldr.io/lorax/lorax.html#quickstart) and [mkksiso](https://weldr.io/lorax/mkksiso.html) documentation to become familiar with how to create the `Anaconda` `boot.iso`.
 
 ## Package installation and setup
