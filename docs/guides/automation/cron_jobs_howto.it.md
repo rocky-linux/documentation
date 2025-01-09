@@ -85,7 +85,7 @@ Se si è in grado di lasciare che il sistema esegua automaticamente gli script e
 
 ### Creare il proprio `cron`
 
-Se gli orari automatici e randomizzati non funzionano bene in [Per le postazioni di lavoro sopra](#per-le-workstations) e gli orari programmati in [Per i server sopra](#per-i-servers), è possibile crearne di propri. In questo esempio, si presume che l'operazione venga eseguita come utente root. [vedere Ipotesi](#presupposti) Per fare questo, digitate quanto segue:
+Se gli orari automatici e randomizzati non funzionano bene in [Per le postazioni di lavoro sopra](#per-le-workstations) e gli orari programmati in [Per i server sopra](#per-i-server), è possibile crearne di propri. In questo esempio, si presume che l'operazione venga eseguita come utente root. [vedere Ipotesi](#presupposti) Per fare questo, digitate quanto segue:
 
 `crontab -e`
 
