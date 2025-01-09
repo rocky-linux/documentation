@@ -20,7 +20,7 @@ tags:
 
 - Grundlegendes Wissen über Bash, Python oder andere Skript-/Programmierwerkzeuge und der Wunsch nach automatischer Ausführung eines Skripts
 - Dass Sie entweder als Root-Benutzer angemeldet sind oder mit `sudo -s`  
-  **zu root wechseln können (Sie können bestimmte Skripte in Ihren eigenen Verzeichnissen als Ihren eigenen Benutzer ausführen. In diesem Fall ist der Root-Wechsel nicht notwendig).**
+  ** zu root wechseln können (Sie können bestimmte Skripte in Ihren eigenen Verzeichnissen als Ihren eigenen Benutzer ausführen. In diesem Fall ist der Root-Wechsel nicht notwendig).**
 
 ## Einleitung
 
@@ -85,7 +85,7 @@ Wenn Sie die Möglichkeit haben, dass das System Skripte automatisch zu einem be
 
 ### Eigenen `cron` erstellen
 
-Natürlich, wenn die automatisierten zufälligen Zeiten in [für Workstations oberhalb](#fur-workstations) nicht gut funktionieren, und die geplanten Zeiten in den [für Server oben](#fur-server), dann können Sie Ihre eigenen erstellen. In diesem Beispiel gehen wir davon aus, dass Sie dies als root tun. [Siehe Voraussetzungen](#voraussetzungen_1) Um dies zu tun, geben Sie folgendes ein:
+Natürlich, wenn die automatisierten zufälligen Zeiten in [für Workstations oberhalb](#for-workstations) nicht gut funktionieren, und die geplanten Zeiten in den [für Server oben](#for-servers), dann können Sie Ihre eigenen erstellen. In diesem Beispiel gehen wir davon aus, dass Sie dies als root tun. [Siehe Voraussetzungen](#assumptions) Um dies zu tun, geben Sie folgendes ein:
 
 `crontab -e`
 

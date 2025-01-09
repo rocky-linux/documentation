@@ -22,32 +22,16 @@ PPPoE — це протокол, який використовується в о
 
 ## Встановлення accel-ppp
 
-Оскільки accel-ppp відсутній у сховищах Rocky або EPEL за замовчуванням, ми спочатку встановлюємо необхідні пакунки для його створення:
+Спочатку встановіть EPEL:
 
 ```bash
-dnf install -y rpm-build make cmake gcc git openssl-devel pcre-devel kernel-modules-extra
+dnf install -y epel-release
 ```
 
-Згодом клонуйте вихідний код accel-ppp до папки:
+Згодом встановіть accel-ppp:
 
 ```bash
-git clone https://github.com/accel-ppp/accel-ppp.git /opt/accel-ppp
-mkdir /opt/accel-ppp/build
-cd /opt/accel-ppp/build/
-```
-
-Далі нам потрібно створити accel-ppp (Примітка: якщо ви використовуєте Rocky Linux 8.x, замініть у `Centos8` `Centos9`):
-
-```bash
-cmake -DCMAKE_INSTALL_PREFIX=/usr -DCPACK_TYPE=Centos9 ..
-make
-```
-
-Нарешті, ми створимо пакет `rpm` і встановимо його:
-
-```bash
-cpack -G RPM
-rpm -ivh accel-ppp.rpm
+dnf install -y accel-ppp
 ```
 
 ## Налаштування accel-ppp

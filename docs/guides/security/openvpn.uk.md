@@ -82,7 +82,7 @@ sudo ./easy-rsa/3/easyrsa gen-req server nopass
 Запустіть сценарій `easyrsa` з параметрами `sign-req` і `server`, щоб підписати сертифікат сервера:
 
 ```bash
-sudo ./easy-rsa/3/easyrsa gen-req server server
+sudo ./easy-rsa/3/easyrsa sign-req server server
 ```
 
 !!! Note "Примітка"
@@ -176,7 +176,7 @@ sudo systemctl enable --now firewalld
 Дозвольте OpenVPN через брандмауер, додавши його як службу:
 
 ```bash
-sudo firewall-cmd --add-service=open-vpn --permanent
+sudo firewall-cmd --add-service=openvpn --permanent
 ```
 
 Увімкніть трансляцію мережевих адрес (NAT) і приховайте публічні IP-адреси клієнтів, додавши правило маскараду до брандмауера:

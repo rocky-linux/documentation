@@ -9,12 +9,36 @@ update: 13-Feb-2023
 
 Questo documento spiega come ricreare ed eseguire una copia locale dell'intero sito web docs.rockylinux.org sulla vostra macchina locale. Utilizzare una copia locale del sito web della documentazione può essere utile nei seguenti scenari:
 
-* Siete interessati a conoscere e a contribuire agli aspetti dello sviluppo web del sito docs.rockylinux.org
-* Siete un autore e volete vedere come i vostri documenti verranno visualizzati sul sito web della documentazione prima di inviarli
+- Siete interessati a conoscere e a contribuire agli aspetti dello sviluppo web del sito docs.rockylinux.org
+- Siete un autore e volete vedere come i vostri documenti verranno visualizzati sul sito web della documentazione prima di inviarli
+
+## Impostazione dei prerequisiti
+
+Installare e configurare Podman e altri strumenti eseguendo:
+
+```bash
+sudo dnf -y install podman podman-docker git
+
+sudo systemctl enable --now  podman.socket
+```
+
+Installare docker-compose e renderlo eseguibile. Digitare:
+
+```bash
+curl -SL https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+
+chmod 755 /usr/local/bin/docker-compose
+```
+
+Correggere i permessi sul socket docker. Digitare:
+
+```bash
+sudo chmod 666 /var/run/docker.sock
+```
 
 ## Creare l'ambiente del contenuti
 
-1. Assicuratevi che i prerequisiti siano soddisfatti. In caso contrario, passare alla sezione "[Impostare-i-prerequisiti](#impostazione-dei-prerequisiti)" e poi tornare qui.
+1. Assicuratevi che i prerequisiti siano soddisfatti.
 
 2. Passare dalla directory di lavoro corrente del sistema locale alla cartella in cui si intende effettuare le operazioni di scrittura. Nel resto di questa guida ci riferiremo a questa directory come `$ROCKYDOCS`. Per la nostra dimostrazione, `$ROCKYDOCS` punta a `$HOME/projects/rockydocs` sul nostro sistema demo.
 
@@ -99,7 +123,6 @@ Ora avrete una cartella `$ROCKYDOCS/docs.rockylinux.org`. In questa cartella è 
     docker-compose  up
     ```
 
-
 ## Visualizzare il sito web locale docs.rockylinux.org
 
 Se sul sistema Rocky Linux è attivo un firewall, assicurarsi che la porta 8001 sia aperta. Digitare:
@@ -117,32 +140,7 @@ Se sul sistema Rocky Linux è attivo un firewall, assicurarsi che la porta 8001 
 
   <http://SERVER_IP:8001>
 
-## Impostazione dei prerequisiti
-
-Installare e configurare Podman e altri strumenti eseguendo:
-
-```bash
-sudo dnf -y install podman podman-docker git
-
-sudo systemctl enable --now  podman.socket
-```
-
-Installare docker-compose e renderlo eseguibile. Digitare:
-
-```bash
-curl -SL https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
-
-chmod 755 /usr/local/bin/docker-compose
-```
-
-Correggere i permessi sul socket docker. Digitare:
-
-```bash
-
-sudo chmod 666 /var/run/docker.sock
-```
-
-### Note
+## Note
 
 - Le istruzioni contenute in questa guida **NON** sono un prerequisito per gli autori della documentazione Rocky o per i contributori di contenuti
 - L'intero ambiente viene eseguito in un container Podman e quindi è necessario che Podman sia correttamente configurato sulla propria macchina locale
