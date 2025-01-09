@@ -12,7 +12,7 @@ tested_with: 9.2
 
 ## Introduction
 
-WordPress is an open-source content management system (CMS) noted for its [famous 5-minute install](https://developer.wordpress.org/advanced-administration/before-install/howto-install/). It is commonly deployed on a LAMP (Linux, Apache, MySQL, PHP) stack. Although efficient local development tools such as [XAMPP](https://www.apachefriends.org/), [Vagrant](https://www.vagrantup.com/), and [wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/) are widely available, manually installing WordPress on LAMP for local development provides a valuable hands-on approach for beginners seeking greater understanding.
+WordPress is an open source content management system (CMS) noted for its [famous 5-minute install](https://developer.wordpress.org/advanced-administration/before-install/howto-install/). It is commonly deployed on a LAMP (Linux, Apache, MySQL, PHP) stack. Although efficient local development tools such as [XAMPP](https://www.apachefriends.org/), [Vagrant](https://www.vagrantup.com/), and [wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/) are widely available, manually installing WordPress on LAMP for local development provides a valuable hands-on approach for beginners seeking greater understanding.
 
 This guide assumes you already have Rocky Linux 9.x installed, thereby covering the 'L' part of the LAMP stack.
 
