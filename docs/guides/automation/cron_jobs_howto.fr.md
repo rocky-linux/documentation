@@ -20,13 +20,13 @@ tags:
 
 - Connaissances de base de bash, python ou d'autres outils de programmation et le désir d'avoir un script exécuté automatiquement
 - Que vous puissiez être utilisateur root ou que vous ayez la possibilité d'utiliser `sudo -s`  
-  **(Vous pouvez exécuter certains scripts dans vos propres répertoires en tant que votre propre utilisateur, Dans ce cas, le passage à root n'est pas nécessaire)**.
+  ** (Vous pouvez exécuter certains scripts dans vos propres répertoires en tant que votre propre utilisateur, Dans ce cas, le passage à root n'est pas nécessaire)**.
 
 ## Introduction
 
 Linux fournit le système _cron_, un planificateur de tâches basé sur le temps, pour automatiser les processus. C'est assez simple et pourtant assez puissant. Vous voulez qu'un script ou un programme soit lancé tous les jours à 17h ? C'est ici que vous configurez cela.
 
-Le _crontab_ est essentiellement une liste où les utilisateurs ajoutent leurs propres tâches automatisées. Et il existe un certain nombre d'options qui peuvent encore simplifier les choses. Ce document va explorer certains de ces éléments. C'est un moyen de se rafraîchir la mémoire pour ceux qui ont une certaine expérience et les nouveaux utilisateurs peuvent ajouter le système `cron` à leur répertoire.
+Le *crontab* est essentiellement une liste où les utilisateurs ajoutent leurs propres tâches automatisées. Et il existe un certain nombre d'options qui peuvent encore simplifier les choses. Ce document va explorer certains de ces éléments. C'est un moyen de se rafraîchir la mémoire pour ceux qui ont une certaine expérience et les nouveaux utilisateurs peuvent ajouter le système `cron` à leur répertoire.
 
 `anacron` est discuté brièvement ici en référence aux répertoires "dot" de `cron`. `anacron` est exécuté par `cron` et est avantageux pour les machines qui ne sont pas toujours opérationnelles, telles que les postes de travail et les ordinateurs portables. La raison en est que tant que `cron` exécute des tâches sur une planification, si la machine est éteinte lorsque la tâche est planifiée, la tâche ne s'exécutera pas. Avec `anacron` la tâche est exécutée lorsque la machine est à nouveau allumée même si l'exécution programmée est dans le passé. `anacron` cependant, utilise une approche plus randomisée pour exécuter des tâches où le timing n'est pas exact. Cela a du sens pour les postes de travail et les ordinateurs portables, mais pas tant pour les serveurs. Cela peut être un problème pour des choses comme les sauvegardes de serveur, par exemple, qui doivent être exécutées à un moment précis. C'est là que `cron` continue à fournir la meilleure solution pour les administrateurs de serveurs. Tout cela étant dit, les administrateurs de serveurs et les utilisateurs de postes de travail ou d'ordinateurs portables peuvent profiter des deux approches. Vous pouvez facilement adapter àvos besoins. Pour plus d'informations sur `anacron` voir [anacron - Automatisation des commandes](anacron.md).
 
@@ -36,7 +36,7 @@ Construits dans tous les systèmes Linux pour de nombreuses versions maintenant,
 
 #### Pour les Serveurs
 
-Comme indiqué dans l'introduction, `cron` exécute normalement `anacron` pour exécuter des scripts dans ces répertoires "dot". Vous pouvez _pouvez_, cependant, vouloir utiliser ces répertoires « dot » sur les serveurs également, et si c'est le cas, alors il y a deux étapes que vous pouvez faire pour vous assurer que ces répertoires « dot » sont exécutés sur un calendrier strict. Pour ce faire, nous devons installer un paquet et en supprimer un autre :
+Comme indiqué dans l'introduction, `cron` exécute normalement `anacron` pour exécuter des scripts dans ces répertoires "dot". Vous pouvez *pouvez*, cependant, vouloir utiliser ces répertoires « dot » sur les serveurs également, et si c'est le cas, alors il y a deux étapes que vous pouvez faire pour vous assurer que ces répertoires « dot » sont exécutés sur un calendrier strict. Pour ce faire, nous devons installer un paquet et en supprimer un autre :
 
 `dnf install cronie-noanacron`
 
@@ -85,7 +85,7 @@ Donc pourvu que vous ayez tout à fait raison de laisser le système exécuter a
 
 ### Créer votre propre `cron`
 
-Si les horaires automatisés et aléatoires ne fonctionnent pas bien dans [Pour les postes de travail ci-dessus](#pour-postes-de-travail) et les horaires planifiés dans [Pour les serveurs ci-dessus](#pour-les-serveurs), vous pouvez créer les vôtres. Dans cet exemple, nous supposons que vous faites cela en tant que root. [voir les hypothèses](#prerequis_1) Pour cela, tapez ce qui suit :
+Si les horaires automatisés et aléatoires ne fonctionnent pas bien dans [Pour les postes de travail ci-dessus](#for-workstations) et les horaires planifiés dans [Pour les serveurs ci-dessus](#for-servers), vous pouvez créer les vôtres. Dans cet exemple, nous supposons que vous faites cela en tant que root. [voir les hypothèses](#assumptions) Pour cela, tapez ce qui suit :
 
 `crontab -e`
 
@@ -119,7 +119,7 @@ Cela va générer le `crontab` de l'utilisateur root tel qu'il existe actuelleme
 
 Notez que ce fichier particulier `crontab` a une partie de sa propre documentation intégrée. Ce n'est pas toujours le cas. Lors de la modification d'un `crontab` sur un conteneur ou un système d'exploitation minimaliste, le `crontab` sera un fichier vide à moins qu'une entrée n'y ait déjà été placée.
 
-Supposons que nous avons un script de sauvegarde que nous voulons exécuter à 22h la nuit. Le `crontab` utilise une horloge de 24 heures, donc ce serait 22:00. Supposons que le script de sauvegarde est appelé "backup" et qu'il se trouve actuellement dans le répertoire _/usr/local/sbin_.
+Supposons que nous avons un script de sauvegarde que nous voulons exécuter à 22h la nuit. Le `crontab` utilise une horloge de 24 heures, donc ce serait 22:00. Supposons que le script de sauvegarde est appelé "backup" et qu'il se trouve actuellement dans le répertoire */usr/local/sbin*.
 
 !!! note Remarque
 
@@ -192,7 +192,7 @@ Lorsqu'il s'agit de déterminer quand exécuter un script, il faut prendre le te
 
 ## Conclusion
 
-Le système _cron/crontab_ est un outil puissant pour l'administrateur système ou l'utilisateur de bureau de Rocky Linux. Il vous permet d'automatiser des tâches et des scripts afin que vous n'ayez pas à vous souvenir de les exécuter manuellement. Des exemples plus complexes sont présentés ici :
+Le système *cron/crontab* est un outil puissant pour l'administrateur système ou l'utilisateur de bureau de Rocky Linux. Il vous permet d'automatiser des tâches et des scripts afin que vous n'ayez pas à vous souvenir de les exécuter manuellement. Des exemples plus complexes sont présentés ici :
 
 - Pour les machines qui ne sont **pas en marche tous les jours** 24 heures sur 24, veuillez consulter l'article [anacron - Automatisation des commandes](anacron.md).
 - Pour une description concise des processus `cron`, consultez [cronie - Tâches chronométrées](cronie.md)
