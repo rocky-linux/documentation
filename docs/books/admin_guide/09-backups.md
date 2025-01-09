@@ -4,7 +4,7 @@ title: Backup and Restore
 
 # Backup and Restore
 
-In this chapter you will learn how to back up and restore your data with Linux.
+In this chapter, you will learn how to back up and restore your data using Linux.
 
 ****
 
@@ -35,7 +35,7 @@ The backup allows you to protect yourself from the following:
 * **Deletion**: voluntary or involuntary. Human or technical. Virus, ...
 * **Integrity**: data becomes unusable.
 
-No system is infallible, and no human is infallible, so to avoid losing data, it must be backed up so that it can be restored after a problem.
+No system is infallible, and no human is infallible, so to avoid losing data, it must be backed up to restore it after a problem.
 
 The backup media should be kept in another room (or building) than the server so that a disaster does not destroy the server and the backups.
 
@@ -48,7 +48,7 @@ There are two principles: the **backup** and the **archive**.
 * The archive destroys the information source after the operation.
 * The backup preserves the source of information after the operation.
 
-These operations consist of saving information in a file, on a peripheral, or on a supported media (tapes, disks, and so on).
+These operations consist of saving information in a file, on a peripheral, or a supported media (tapes, disks, and so on).
 
 ### The process
 
@@ -69,17 +69,17 @@ In addition to these issues, system administrators should also consider factors 
 
 ### Backup methods
 
-* **Full backup**: Refers to a one-time copy of all files, folders or data in the hard disk or database.
+* **Full backup**: Refers to a one-time copy of all files, folders, or data in the hard disk or database.
 * **Incremental backup**: Refers to the backup of the data updated after the last Full backup or Incremental backup.
 * **Differential backup**: Refers to the backup of the changed files after the Full backup.
 * **Selective backup (Partial backup)**: Refers to backing up a part of the system.
-* **Cold backup**: Refers to the backup when the system is in shutdown or maintenance state.  The backed up data is exactly the same as the data in the system during this period.
-* **Hot backup**: Refers to the backup when the system is in normal operation.  As the data in the system is updated at any time, the backed-up data has a certain lag relative to the real data of the system.
+* **Cold backup**: Refers to the backup when the system is in a shutdown or maintenance state.  The backed-up data is precisely the same as the data in the system during this period.
+* **Hot backup**: Refers to the backup when the system is operating normally.  As the data in the system is updated at any time, the backed-up data has a certain lag relative to the system's real data.
 * **Remote backup**: Refers to backing up data in another geographic location to avoid data loss and service interruption caused by fire, natural disasters, theft, and more.
 
 ### Frequency of backups
 
-* **Periodic**: Backup within a specific time period before a major system update (usually during off-peak hours)
+* **Periodic**: Backup within a specific period before a major system update (usually during off-peak hours)
 * **cycle**: Backup in units of days, weeks, months, etc
 
 !!! Tip
@@ -88,18 +88,18 @@ In addition to these issues, system administrators should also consider factors 
 
 ### Recover methods
 
-Depending on the utilities available, performing several types of recover will be possible.
+Depending on the utilities available, performing several types of recovery will be possible.
 
-In some relational database management systems, the corresponding operations of "recover" (sometimes "recovery" is used in documentation) and "restore" are different, which requires you to consult the official documentation for further information. This basic document will not go into too much detail regarding this part of RDBMS.
+In some relational database management systems, the corresponding operations of "recover" (sometimes "recovery" is used in the documentation) and "restore" are different. For further information, consult the official documentation. This basic document will not go into too much detail regarding this part of RDBMS.
 
 * **Full recover**: Data recovery based on Full backup or "Full backup + Incremental backup" or "Full backup + Differential backup".
 * **Selective recover**: Data recovery based on Selective backup (Partial backup).
 
-It is not recommended to directly delete directories or files in the currently active operating system before performing a recovery operation (unless you know what will happen after deletion). If you don't know what will happen, you can perform a 'snapshot' operation on the current operating system.
+We do not recommend directly deleting directories or files in the currently active operating system before performing a recovery operation (unless you know what will happen after deletion). If you don't know what will happen, you can perform a 'snapshot' operation on the current operating system.
 
 !!! Tip
 
-    For security reasons, it is recommended that you store the restored directory or file in the /tmp directory before performing the recovery operation to avoid situations where old files (old directory) overwrite new files (new directory).
+    For security reasons, storing the restored directory or file in the /tmp directory before performing the recovery operation is recommended to avoid situations where old files (old directory) overwrite new files (new directory).
 
 ### The tools and related technologies
 
@@ -127,11 +127,11 @@ The commands we will use here are `tar` and `cpio`. If you want to learn about t
 
     These commands save in a proprietary and standardized format.
 
-**Replication**: A backup technology that copies a set of data from one data source to another or multiple data sources, mainly divided into **Synchronous Replication** and **Asynchronous Replication**. For novice system administrators, this is an advanced part of backup, so this basic document will not elaborate on these contents.
+**Replication**: A backup technology that copies a set of data from one data source to another or multiple data sources, mainly divided into **Synchronous Replication** and **Asynchronous Replication**. This is an advanced backup part for novice system administrators, so this basic document will not elaborate on these contents.
 
 ### Naming convention
 
-The use of a naming convention allows one to quickly target the contents of a backup file and thus avoid hazardous restorations.
+Using a naming convention allows one to quickly target a backup file's contents and thus avoid hazardous restorations.
 
 * name of the directory;
 * utility used;
@@ -144,7 +144,7 @@ The use of a naming convention allows one to quickly target the contents of a ba
 
 !!! Note
 
-    In the Linux world, except for a few exceptions in GUI environments (such as .jpg, .mp4, .gif), most files do not have the concept of extension. In other words, most file extensions are not required. The reason for artificially adding suffixes is to facilitate recognition by human users. If the systems administrator sees a `.tar.gz` or `.tgz` file extension, for instance, then he knows how to deal with the file.
+    In the Linux world, most files do not have the extension concept except for a few exceptions in GUI environments (such as .jpg, .mp4, .gif). In other words, most file extensions are not required. The reason for artificially adding suffixes is to facilitate recognition by human users. If the systems administrator sees a `.tar.gz` or `.tgz` file extension, for instance, then he knows how to deal with the file.
 
 ### Properties of the backup file
 
@@ -339,8 +339,8 @@ tar rvf backup_name.tar dirtoadd
 
 | Key | Description                                                                      |
 |-----|----------------------------------------------------------------------------------|
-| `r` | Append the files or directories to the end of the archive.                       |
-| `A` | Append all files in one archive to the end of another archive.         |
+| `r` | Appends the files or directories to the end of the archive.                       |
+| `A` | Appends all files in one archive to the end of another archive.         |
 
 !!! Note
 
@@ -390,7 +390,7 @@ tar tvf backup.tar | less
 
 !!! Tip
 
-    You should always check and view the contents of the backup file before performing a restore operation.
+    You should always check and view the backup file's contents before performing a restore operation.
 
 #### Check the integrity of a backup
 
@@ -432,7 +432,7 @@ Verify 1/file2
 Verify 1/file3
 ```
 
-You cannot verify the compressed archive with the `W` key. You must use the `d` key instead.
+You cannot verify the compressed archive with the `W` key. Instead, you must use the `d` key.
 
 ```bash
 tar dfz file_name.tgz
@@ -469,7 +469,7 @@ tar xvfP /backups/etc.133.P.tar
 
 | Key |Description                                       |
 |------|----------------------------------------------------|
-| `x`  | Extract files from backups (whether compressed or not) |
+| `x`  | Extracts files from backups (whether compressed or not) |
 
 Extracting a *tar-gzipped* (`*.tar.gz`) backup is done with the `xvfz` keys:
 
@@ -542,10 +542,10 @@ The `cpio` command allows saving on several successive media without specifying 
 
 It is possible to extract all or part of a backup.
 
-There is no option, unlike the `tar` command, to backup and compress at the same time.
+Unlike the `tar` command, there is no option to backup and compress simultaneously.
 So, it is done in two steps: backup and compression.
 
-To perform a backup with `cpio`, you have to specify a list of files to backup.
+To perform a backup with `cpio`, you must specify a list of files to backup.
 
 This list is provided with the commands `find`, `ls` or `cat`.
 
@@ -661,12 +661,12 @@ $ ls /backups/etc.A.cpio*
 find /etc | cpio –o | gzip > /backups/etc.A.cpio.gz
 ```
 
-There is no option, unlike the `tar` command, to save and compress at the same time.
-So it is done in two steps: saving and compressing.
+Unlike the `tar` command, there is no option to save and compress simultaneously.
+So, it is done in two steps: saving and compressing.
 
-The syntax of the first method is easier to understand and remember, because it is done in two steps.
+The syntax of the first method is easier to understand and remember because it is done in two steps.
 
-For the first method, the backup file is automatically renamed by the `gzip` utility which adds `.gz` to the end of the file name. Similarly, the `bzip2` utility automatically adds `.bz2`.
+For the first method, the backup file is automatically renamed by the `gzip` utility, which adds `.gz` to the end of the file name. Similarly, the `bzip2` utility automatically adds `.bz2`.
 
 ### Read the contents of a backup
 
@@ -687,7 +687,7 @@ cpio -tv </backups/etc.152.cpio | less
 | `-t`    | Reads a backup.           |
 | `-v`    | Displays file attributes. |
 
-After making a backup, you need to read its contents to be sure that there were no errors.
+After making a backup, you need to read its contents to ensure there are no errors.
 
 In the same way, before performing a restore, you must read the contents of the backup that will be used.
 
@@ -715,9 +715,9 @@ cpio -iv </backups/etc.152.cpio | less
 
 !!! Warning
 
-    By default, at the time of restoration, files on the disk whose last modification date is more recent or equal to the date of the backup are not restored (in order to avoid overwriting recent information with older information).
+    By default, at the time of restoration, files on the disk whose last modification date is more recent or equal to the date of the backup are not restored (to avoid overwriting recent information with older information).
 
-    The `u` option, on the other hand, allows you to restore older versions of the files.
+    On the other hand, the `u` option allows you to restore older versions of the files.
 
 Examples:
 
@@ -737,7 +737,7 @@ cpio –iuvF home.A.cpio
 
 * Restore an absolute backup in relative mode
 
-The long option `no-absolute-filenames` allows a restoration in relative mode. Indeed the `/` at the beginning of the path will be removed.
+The long option `no-absolute-filenames` allows a restoration in relative mode. Indeed, the `/` at the beginning of the path will be removed.
 
 ```bash
 cpio --no-absolute-filenames -divuF home.A.cpio
@@ -755,7 +755,7 @@ cpio –iv <etc.cpio
 
 * Absolute restoration of a file or directory
 
-The restoration of a particular file or directory requires the creation of a list file that must then be deleted.
+Restoring a particular file or directory requires the creation of a list file that must then be deleted.
 
 ```bash
 echo "/etc/passwd" > tmp
@@ -772,7 +772,7 @@ Using compression at the time of a backup can have a number of drawbacks:
 
 !!! Note
 
-    It is therefore better to make a backup and compress it than to compress it during the backup.
+    It is, therefore, better to make a backup and compress it than to compress it during the backup.
 
 ### Compressing with `gzip`
 
@@ -816,7 +816,7 @@ usr.cpio.bz2
 
 The file name is given the extension `.bz2`.
 
-Compression by `bzip2` is better than compression by `gzip` but it takes longer to execute.
+Compression by `bzip2` is better than compression by `gzip`, but executing it takes longer.
 
 ### Decompressing with `gunzip`
 

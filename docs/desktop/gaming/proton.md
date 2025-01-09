@@ -30,11 +30,11 @@ Enter option `20` to choose `app/com.valvesoftware.Steam/x86_64/stable` and pres
 
 ![Installing Steam option 20](images/Timeline_1_01_00_22_00.jpg)
 
-After installing Steam it will automatically start updating.
+After installing Steam, it will automatically start updating.
 
 ![Steam updates](images/Timeline_1_01_04_16_00.jpg)
 
-After updating, you must sign into your Steam account. If you do not have an account, you should sign up for one.
+After updating, you must sign into your Steam account. You should sign up for an account if you do not have one.
 
 ![Steam](images/Timeline_1_01_06_09_04.jpg)
 
@@ -56,7 +56,7 @@ Toggle "Enable Steam Play for all other titles". Restart Steam when prompted.
 
 !!! warning "Compatibility is not always universal"
 
-    Many people report issues with ProtonDB compatible games, while Linux compatible games work fine. This is often due to SELinux policies protecting the filesystem.
+    Many people report issues with ProtonDB-compatible games, while Linux-compatible games work fine. This is often due to SELinux policies protecting the filesystem.
 
     First, check the system's SELinux status with:
 
@@ -70,7 +70,7 @@ Toggle "Enable Steam Play for all other titles". Restart Steam when prompted.
     * SELinux status:                 permissive (if SELinux is in permissive mode)
     * SELinux status:                 enforcing (if SELinux is fully protecting your system)
 
-    If SELinux is disabled, it is not going to be what is causing your issues with the game. If it is in enforcing mode, then it could be the culprit. Try temporarily setting SELinux to permissive mode prior to gameplay with:
+    If SELinux is disabled, it will not be what is causing your issues with the game. If it is in enforcing mode, then it could be the culprit. Try temporarily setting SELinux to permissive mode before gameplay with:
 
     ```
     sudo setenforce 0
@@ -82,7 +82,7 @@ Toggle "Enable Steam Play for all other titles". Restart Steam when prompted.
     sudo setenforce 1
     ```
 
-    For a more permanent solution that keeps SELinux policies in place, you will need to research what rule is blocking your game, which requires a more thorough understanding of SELinux and the underlying tools. Take a look at [our guide on SELinux Security](../../guides/security/learning_selinux.md) for a more thorough look at SELinux.
+    For a more permanent solution that keeps SELinux policies in place, you must research what rule is blocking your game, which requires a more thorough understanding of SELinux and the underlying tools. Look at [our guide on SELinux Security](../../guides/security/learning_selinux.md) for a more thorough look at SELinux.
 
 ## Conclusion
 

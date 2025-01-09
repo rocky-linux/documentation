@@ -9,12 +9,12 @@ update: 13-Feb-2023
 
 Questo documento spiega come ricreare ed eseguire una copia locale dell'intero sito web docs.rockylinux.org sulla vostra macchina locale. Utilizzare una copia locale del sito web della documentazione può essere utile nei seguenti scenari:
 
-- Siete interessati a conoscere e a contribuire agli aspetti dello sviluppo web del sito docs.rockylinux.org
-- Siete un autore e volete vedere come i vostri documenti verranno visualizzati sul sito web della documentazione prima di inviarli
+* Siete interessati a conoscere e a contribuire agli aspetti dello sviluppo web del sito docs.rockylinux.org
+* Siete un autore e volete vedere come i vostri documenti verranno visualizzati sul sito web della documentazione prima di inviarli
 
 ## Creare l'ambiente del contenuti
 
-1. Assicuratevi che i prerequisiti siano soddisfatti. In caso contrario, passare alla sezione "[Impostazione dei prerequisiti](#impostazione-dei-prerequisiti)" e poi ritornare qui.
+1. Assicuratevi che i prerequisiti siano soddisfatti. In caso contrario, passare alla sezione "[Impostare-i-prerequisiti](#impostazione-dei-prerequisiti)" e poi tornare qui.
 
 2. Passare dalla directory di lavoro corrente del sistema locale alla cartella in cui si intende effettuare le operazioni di scrittura. Nel resto di questa guida ci riferiremo a questa directory come `$ROCKYDOCS`. Per la nostra dimostrazione, `$ROCKYDOCS` punta a `$HOME/projects/rockydocs` sul nostro sistema demo.
 
@@ -99,6 +99,7 @@ Ora avrete una cartella `$ROCKYDOCS/docs.rockylinux.org`. In questa cartella è 
     docker-compose  up
     ```
 
+
 ## Visualizzare il sito web locale docs.rockylinux.org
 
 Se sul sistema Rocky Linux è attivo un firewall, assicurarsi che la porta 8001 sia aperta. Digitare:
@@ -137,6 +138,7 @@ chmod 755 /usr/local/bin/docker-compose
 Correggere i permessi sul socket docker. Digitare:
 
 ```bash
+
 sudo chmod 666 /var/run/docker.sock
 ```
 
