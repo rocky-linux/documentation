@@ -1,7 +1,7 @@
 ---
 title: Увімкнення VLAN Passthrough на мережевих картах серії Intel X710
 author: Neel Chauhan
-contributors: null
+contributors: Ganna Zhyrnova
 tested_with: 9.4
 tags:
   - обладнання
