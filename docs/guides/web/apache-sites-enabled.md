@@ -86,7 +86,7 @@ Say you have a website that loads a wiki. You will need a configuration file, wh
 
 If you want to serve the website with SSL/TLS (and face it, in most cases you do), you need to add another section to that file to enable port 443.
 
-You can examine that below in the [Configuration `https` using An SSL/TLS certificate](#configuration-https-using-an-ssltls-certificate) section.
+You can examine that below in the "Configuration `https` using An SSL/TLS certificate" section.
 
 You first need to create this configuration file in *sites-available*:
 
