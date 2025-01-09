@@ -96,15 +96,15 @@ After installing PHP, you must reload Apache to install it as an Apache module a
     sudo systemctl restart httpd
 ```
 
-Use `curl` to download the latest version of WordPress:
-
 ## Fetch and unpack WordPress
+
+Use `curl` do download the latest version of WordPress:
 
 ```bash
     curl -O https://wordpress.org/latest.tar.gz
 ```
 
-User `tar` to extract the downloaded archive:
+Use `tar` to extract the downloaded archive:
 
 ```bash
     tar -xzvf latest.tar.gz
@@ -132,7 +132,7 @@ Set permissions for the WordPress files:
     sudo chmod -R 755 /var/www/html/
 ```
 
-Login to the MySQL CLI:
+Login to the MySQL cli:
 
 ## Configure database
 
@@ -172,7 +172,7 @@ Flush privileges to ensure the application of changes:
     FLUSH PRIVILEGES;
 ```
 
-Exit the MySQL CLI:
+Exit the MySQL cli:
 
 ```bash
     EXIT;
