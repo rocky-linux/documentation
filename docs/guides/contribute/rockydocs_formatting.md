@@ -54,9 +54,29 @@ A document might or might not need to contain any of these elements. However, if
 
     If you need to use a supported HTML element, see if you can find another way to write your document that will not use these elements. If you must use them, it is still allowed.
 
+!!! info "A Note About Links"
+
+    Links are not special formatting, but standard methods of referencing other documents (internal links) or external web pages. However, there is one particular type of link that you should not use when composing documents for Rocky Linux, and it is an anchor, or link to a spot in the same document.
+
+    Anchors work in the source language for Rocky Linux (English), but as soon as they are translated by our Crowdin interface, they break in those languages. This happens because an acceptable anchor in markdown that does not contain HTML elements, uses the header to create the link:
+
+    ```
+    ## A Header
+
+    Some text
+
+    A Link to [that header](#-a-header)
+    ```
+
+    This link is found by hovering your mouse over the permalink in a created document, but is essentially the header with the "#" plus the header in lower-case seperated by a dash (-).
+
+    When the document is translated, though, the header is translated BUT the link is outside of what Crowdin allows to be translated, so it remains in its original (English) state.
+
+    If you find yourself in need of using an anchor, take a look at your document and see if reorganization of the content will make that anchor unneccessary. Just know that if you use an anchor in a newly composed document, that anchor will break once translation of that document occurs.
+
 ## Admonitions
 
-Admonitions are special visual "boxes" that allow you to call attention to important facts and highlight them. The following are types of admonitions:
+Admonitions are special visual "boxes" that call attention to important facts and highlight them. The following are types of admonitions:
 
 | type       | Description                                               |
 |------------|-----------------------------------------------------------|
