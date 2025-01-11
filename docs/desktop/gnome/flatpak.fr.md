@@ -130,7 +130,7 @@ Mémoriser la liste des commandes n'est pas nécessaire, mais savoir comment y a
 !!! warning "Rocky Linux 8.x et `flatpak search`"
 
 ````
-If you are on a version of Rocky Linux 8.x, you will experience this bug. When running the command:
+If you are on a Rocky Linux 8.x version, you will experience this bug. When running the command:
 
 ```bash
 flatpak search [packagename]
