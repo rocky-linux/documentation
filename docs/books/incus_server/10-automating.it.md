@@ -1,5 +1,5 @@
 ---
-title: 10 Automatizzare
+title: 10 Automazione delle Snapshot
 author: Spencer Steven
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
@@ -13,7 +13,7 @@ Nel corso di questo capitolo, è necessario essere l'utente root o essere in gra
 
 L'automazione del processo di snapshot rende le cose molto più facili.
 
-## Automatizzazione del Processo di Copia di Istantanee
+## Automazione del Processo di Copia delle Snapshot
 
 Eseguire questa procedura su incus-primary. La prima cosa da fare è creare uno script che verrà eseguito da cron in /usr/local/sbin chiamato "refresh-containers" :
 
