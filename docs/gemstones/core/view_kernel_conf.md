@@ -12,7 +12,7 @@ tags:
 
 # View Current Kernel Configuration
 
-The Linux kernel stores running kernel information in two places via special filesystems: ([A summary of them](https://www.landoflinux.com/linux_procfs_sysfs.html))
+The Linux kernel stores running kernel information in two places via special filesystems:
 
 - The older [procfs](https://man7.org/linux/man-pages/man5/procfs.5.html) which mounts `/proc` (verify via `mount -l -t proc`)
 - The newer [sysfs](https://man7.org/linux/man-pages/man5/sysfs.5.html) which mounts `/sys`    (verify via `mount -l -t sysfs`)
