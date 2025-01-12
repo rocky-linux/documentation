@@ -137,7 +137,7 @@ restorecon -Rv /var/www/chyrp-lite
 restorecon -Rv /var/www/chyrp-lite-data
 ```
 
-On a client machine, open up a web browser to `https://your.domain.name/install.php` and run the installation program (replace `your.domain.name` with your actual domain name or hostname):
+On a client machine, open up a web browser to `https://example.com/install.php` and run the installation program (replace `example.com` with your actual domain name or hostname):
 
 ![Chyrp Lite Setup](../images/chyrp_lite_setup.png)
 

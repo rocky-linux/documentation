@@ -496,7 +496,7 @@ varnish> ban req.http.host ~ .
 via an HTTP PURGE request:
 
 ```bash
-curl -X PURGE http://example.org/foo.txt
+curl -X PURGE http://example.com/foo.txt
 ```
 
 Configuring Varnish to accept this request is done with:
