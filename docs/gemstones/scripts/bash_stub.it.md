@@ -1,7 +1,7 @@
 ---
 title: bash - Script Stub
 author: Steven Spencer
-contributors: Ezequiel Bruni, Franco Colussi
+contributors: Ezequiel Bruni
 ---
 
 # Bash - Script Stub
@@ -12,7 +12,7 @@ Dove lavoravo prima, avevamo un programmatore eccezionale che conosceva un sacco
 
 Lo stub è ben documentato, ma si tenga presente che questo non è assolutamente uno script esaustivo! Si potrebbero aggiungere molte altre routine. Se **avete** esempi che si adattano bene a questo stub, sentitevi liberi di aggiungere qualche modifica:
 
-```
+```bash
 #!/bin/sh
 
 # By exporting the path, this keeps you from having to enter full paths for commands that exist in those paths:
@@ -20,11 +20,11 @@ Lo stub è ben documentato, ma si tenga presente che questo non è assolutamente
 export PATH="$PATH:/bin:/usr/bin:/usr/local/bin"
 
 # Determine and save absolute path to program directory.
-# Attention! In bash, ' ' rappresenta la stringa stessa; ma " " è un po' diverso. $, ` ` e \ rappresentano rispettivamente i valori delle variabili di chiamata, i comandi di riferimento e i caratteri di escape
-# When done will be in same directory as script
+# Attention! In bash, the ' 'represents the string itself; But " " is a little different. $, ` `, and \ represent call variable values, reference commands, and escape characters, respectively
+# When done will be in same directory as script:
 
-PGM=`basename $0`               # Name of the program
-CDIR=`pwd`                  # Save directory program was run from
+PGM=`basename $0` # Name of the program
+CDIR=`pwd` # Save directory program was run from
 
 PDIR=`dirname $0`
 cd $PDIR
@@ -41,8 +41,8 @@ runby="root"
 iam=`/usr/bin/id -un`
 if [ $iam != "$runby" ]
 then
-    echo "$PGM : program must be run by user \"$runby\""
-    exit
+  echo "$PGM : program must be run by user \"$runby\""
+  exit
 fi
 
 # Check for missing parameter.
@@ -50,9 +50,9 @@ fi
 
 if [ "$1" = "" ]
 then
-    echo "$PGM : parameter 1 is required"
-    echo "Usage: $PGM param-one"
-    exit
+  echo "$PGM : parameter 1 is required"
+  echo "Usage: $PGM param-one"
+  exit
 fi
 
 # Prompt for data (in this case a yes/no response that defaults to "N"):
@@ -61,8 +61,8 @@ fi
 read yn
 if [ "$yn" != "y" ] && [ "$yn" != "Y" ]
 then
-    echo "Cancelling..."
-    exit;
+  echo "Cancelling..."
+  exit;
 fi
 
 # If only one copy of your script can run at a time, use this block of code.
@@ -72,27 +72,27 @@ fi
 LOCKF="/tmp/${PGM}.lock"
 if [ ! -e $LOCKF ]
 then
-    touch $LOCKF
+  touch $LOCKF
 else
-    echo "$PGM: cannot continue -- lock file exists"
-    echo
-    echo "To continue make sure this program is not already running, then delete the"
-    echo "lock file:"
-    echo
-    echo "    rm -f $LOCKF"
-    echo
-    echo "Aborting..."
-    exit 0
+  echo "$PGM: cannot continue -- lock file exists"
+  echo
+  echo "To continue make sure this program is not already running, then delete the"
+  echo "lock file:"
+  echo
+  echo "    rm -f $LOCKF"
+  echo
+  echo "Aborting..."
+  exit 0
 fi
 
 script_list=`ls customer/*`
 
 for script in $script_list
 do
-    if [ $script != $PGM ]
-    then
-        echo "./${script}"
-    fi
+  if [ $script != $PGM ]
+  then
+    echo "./${script}"
+  fi
 done
 
 # Remove the lock file
