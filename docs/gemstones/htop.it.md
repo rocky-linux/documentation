@@ -11,6 +11,7 @@ tags:
 # htop - Gestione dei processi
 
 ## installare `htop`
+
 Ogni amministratore di sistema ama utilizzare alcuni dei comandi più comuni. Oggi raccomando `htop` come alternativa al comando `top`. Per utilizzare normalmente il comando `htop`, è necessario prima installarlo.
 
 ``` bash
@@ -23,9 +24,10 @@ dnf -y install htop
 ```
 
 ## Utilizzare `htop`
+
 È sufficiente digitare `htop` nel terminale e l'interfaccia interattiva è la seguente:
 
-```
+```bash
 0[ |||                      3%]     Tasks: 22, 46thr, 174 kthr 1 running
 1[ |                        1%]     Load average: 0.00 0.00 0.05
 Mem[ |||||||           197M/8G]     Uptime: 00:31:39
@@ -34,7 +36,7 @@ PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Command(mer
 ...
 ```
 
-<kbd>F1</kbd>Help   <kbd>F2</kbd>Setup  <kbd>F3</kbd>Search <kbd>F4</kbd>Filter <kbd>F5</kbd>Tree   <kbd>F6</kbd>SortBy <kbd>F7</kbd>Nice   <kbd>F8</kbd>Nice+  <kbd>F9</kbd>Kill   <kbd>F10</kbd>Quit
+++f1++ Help ++f2++ Setup ++f3++ Search ++f4++ Filter ++f5++ Tree ++f6++ SortBy ++f7++ Nice ++f8++ Nice ++f9++ Kill ++f10++ Quit
 
 ### Descrizione Superiore
 
@@ -84,13 +86,15 @@ PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Command(mer
 * Command - Il comando corrispondente al processo
 
 ### Descrizione del tasto di scelta rapida
-Nell'interfaccia interattiva, premere il tasto <kbd>F1</kbd> per visualizzare la descrizione del tasto di scelta rapida corrispondente.
 
-* I tasti direzionali su, giù, sinistra e destra consentono di scorrere l'interfaccia interattiva e <kbd>spazio</kbd> può contrassegnare il processo corrispondente, che è contrassegnato in giallo.
-* I pulsanti <kbd>N</kbd>, <kbd>P</kbd>, <kbd>M</kbd> e <kbd>T</kbd> indicano rispettivamente PID, CPU%, MEM%, TIME+ e sono usati per l'ordinamento. Naturalmente, è anche possibile fare clic con il mouse per ordinare in ordine crescente o decrescente un determinato campo.
+Nell'interfaccia interattiva, premere il tasto ++f1++ per visualizzare la descrizione del tasto di scelta rapida corrispondente.
+
+* I tasti direzionali su, giù, sinistra e destra consentono di scorrere l'interfaccia interattiva e ++space++ può contrassegnare il processo corrispondente, che è contrassegnato in giallo.
+* I pulsanti ++n++, ++p++, ++m++ e ++t++ indicano rispettivamente PID, CPU%, MEM%, TIME+ e sono usati per l'ordinamento. Naturalmente, è anche possibile fare clic con il mouse per ordinare in ordine crescente o decrescente un determinato campo.
 
 ### Altri strumenti comunemente utilizzati
-Per gestire il processo, utilizzare il tasto <kbd>F9</kbd> per inviare diversi segnali al processo. L'elenco dei segnali si trova in `kill -l`. Quelli più comunemente utilizzati sono:
+
+Per gestire il processo, utilizzare il tasto ++f9++ per inviare diversi segnali al processo. L'elenco dei segnali si trova in `kill -l`. Quelli più comunemente utilizzati sono:
 
 | Segnale | Descrizione                                                                                                                                                                                         |
 | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -99,4 +103,5 @@ Per gestire il processo, utilizzare il tasto <kbd>F9</kbd> per inviare diversi s
 | 15      | Il segnale predefinito per il comando kill. A volte, se si è verificato un problema nel processo e il processo non può essere terminato normalmente con questo segnale, si proverà con il segnale 9 |
 
 ## Fine
+
 `htop` è molto più facile da usare rispetto al `top` fornito con il sistema, è più intuitivo e migliora notevolmente l'uso quotidiano. Per questo motivo `htop` è di solito uno dei primi pacchetti che l'autore installa dopo aver installato un nuovo sistema operativo.

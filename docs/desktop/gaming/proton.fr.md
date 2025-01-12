@@ -71,13 +71,13 @@ Cela renverra l'un des trois résultats suivants :
 * SELinux status : permissive (si SELinux est en mode permissif)
 * SELinux status : enforcing (si SELinux protège entièrement votre système)
 
-Si SELinux est désactivé, ce n'est pas ce qui cause vos problèmes avec le jeu. S'il est en mode enforcing, il pourrait en être le coupable. Essayez de définir temporairement SELinux en mode permissif avant de commencer à jouer avec :
+Si SELinux est désactivé, ce n'est pas ce qui cause vos problèmes avec le jeu. S'il est en mode enforcing, il pourrait en être le coupable. Essayez de définir temporairement SELinux en mode permissif avant de commencer à jouer :
 
 ```
 sudo setenforce 0
 ```
 
-Une fois le jeu terminé, n'oubliez pas de rétablir l'application de votre politique SELinux avec :
+Une fois le jeu terminé, n'oubliez pas de rétablir l'application de votre politique SELinux :
 
 ```
 sudo setenforce 1

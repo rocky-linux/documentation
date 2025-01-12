@@ -24,19 +24,19 @@ tags:
 Встановіть додаткові пакети для Enterprise Linux (EPEL):
 
 ```bash
-sudo dnf install epel-release
+sudo dnf install epel-release -y
 ```
 
 Оновіть пакети вашої системи:
 
 ```bash
-sudo dnf upgrade
+sudo dnf upgrade -y
 ```
 
 Встановити WireGuard:
 
 ```bash
-sudo dnf install wireguard-tools
+sudo dnf install wireguard-tools -y
 ```
 
 ## Налаштування сервера WireGuard
@@ -62,13 +62,13 @@ sudo touch /etc/wireguard/wg0.conf
 Створіть нову пару закритого та відкритого ключів для сервера WireGuard:
 
 ```bash
-wg genkey | sudo tee /etc/wireguard/privatekey | wg pubkey | sudo tee /etc/wireguard/publickey
+wg genkey | sudo tee /etc/wireguard/wg0 | wg pubkey | sudo tee /etc/wireguard/wg0.pub
 ```
 
 Відредагуйте файл конфігурації за допомогою обраного вами редактора.
 
 ```bash
-sudo vim /etc/wireguard/wg0.conf
+sudo vi /etc/wireguard/wg0.conf
 ```
 
 Вставте наступне:
@@ -80,10 +80,10 @@ Address = x.x.x.x/24
 ListenPort = 51820
 ```
 
-Ви повинні замінити `privatekey` на закритий ключ, згенерований раніше. Ви можете переглянути закритий ключ за допомогою:
+Ви повинні замінити `server_privatekey` на закритий ключ, згенерований раніше. Ви можете переглянути закритий ключ за допомогою:
 
 ```bash
-sudo cat /etc/wireguard/privatekey
+sudo cat /etc/wireguard/wg0
 ```
 
 Далі вам потрібно буде замінити `x.x.x.x/24` на мережеву адресу в межах діапазону приватних IP-адрес, визначеного [RFC 1918] (https://datatracker.ietf.org/doc/html/rfc1918). Наша демонстраційна приватна IP-адреса в цьому посібнику – `10.255.255.0/24`.
@@ -94,7 +94,7 @@ sudo cat /etc/wireguard/privatekey
 
 IP-переадресація дозволяє маршрутизувати пакети між мережами. Це дозволяє внутрішнім пристроям спілкуватися один з одним через тунель WireGuard:
 
-Увімкніть IP-переадресацію для IPv4:
+Увімкніть IP-переадресацію для IPv4 і IPv6:
 
 ```bash
 sudo sysctl -w net.ipv4.ip_forward=1 && sudo sysctl -w net.ipv6.conf.all.forwarding=1
@@ -102,7 +102,7 @@ sudo sysctl -w net.ipv4.ip_forward=1 && sudo sysctl -w net.ipv6.conf.all.forward
 
 ## Налаштуйте `firewalld`
 
-Якщо `firewalld` не встановлено, встановіть його:
+Встановіть `firewalld`:
 
 ```bash
 sudo dnf install firewalld -y
@@ -157,7 +157,7 @@ sudo touch /etc/wireguard/wg0.conf
 Створіть нову пару закритого та відкритого ключів:
 
 ```bash
-wg genkey | sudo tee /etc/wireguard/privatekey | wg pubkey | sudo tee /etc/wireguard/publickey
+wg genkey | sudo tee /etc/wireguard/wg0 | wg pubkey | sudo tee /etc/wireguard/wg0.pub
 ```
 
 Відредагуйте файл конфігурації за допомогою обраного вами редактора, додавши цей вміст:
@@ -174,20 +174,20 @@ Endpoint = serverip:51820
 PersistentKeepalive = 25
 ```
 
-Замініть `peer_privatekey` на закритий ключ пір, який зберігається в `/etc/wireguard/privatekey` на пірі.
+Замініть `peer_privatekey` на закритий ключ пір, який зберігається в `/etc/wireguard/wg0` на пірі.
 
 Ви можете використати цю команду, щоб вивести ключ, щоб ви могли його скопіювати:
 
 ```bash
-sudo cat /etc/wireguard/privatekey
+sudo cat /etc/wireguard/wg0
 ```
 
-Замініть `server_publickey` на відкритий ключ сервера, який зберігається в `/etc/wireguard/publickey` на сервері.
+Замініть `server_publickey` на відкритий ключ сервера, який зберігається в `/etc/wireguard/wg0.pub` на сервері.
 
 Ви можете використати цю команду, щоб вивести ключ, щоб ви могли його скопіювати:
 
 ```bash
-sudo cat /etc/wireguard/publickey
+sudo cat /etc/wireguard/wg0.pub
 ```
 
 Замініть `serverip` загальнодоступною IP-адресою сервера WireGuard.
@@ -200,22 +200,6 @@ ip a | grep inet
 
 Файл конфігурації вузла тепер містить правило `PersistentKeepalive = 25`. Це правило вказує одноранговому вузлу перевіряти сервер WireGuard кожні 25 секунд, щоб підтримувати з’єднання VPN-тунелю. Без цього параметра тунель VPN закінчуватиметься після бездіяльності.
 
-## Додайте ключ клієнта до конфігурації сервера WireGuard
-
-Виведіть відкритий ключ партнера та скопіюйте його:
-
-```bash
-sudo cat /etc/wireguard/publickey
-```
-
-На сервері виконайте наступну команду, замінивши `peer_publickey` на одноранговий відкритий ключ:
-
-```bash
-sudo wg set wg0 peer peer_publickey allowed-ips 10.255.255.2
-```
-
-Варто зазначити, що ви можете вручну редагувати та додавати вузли до файлу конфігурації.
-
 ## Увімкніть WireGuard VPN
 
 Щоб увімкнути WireGuard, ви запустите таку команду як на сервері, так і на одноранговому пристрої:
@@ -227,8 +211,57 @@ sudo systemctl enable wg-quick@wg0
 Потім запустіть VPN, виконавши цю команду як на сервері, так і на одноранговому пристрої:
 
 ```bash
-systemctl start wg-quick@wg0
+sudo systemctl start wg-quick@wg0
 ```
+
+## Додайте ключ клієнта до конфігурації сервера WireGuard
+
+Виведіть відкритий ключ партнера та скопіюйте його:
+
+```bash
+sudo cat /etc/wireguard/wg0.pub
+```
+
+На сервері виконайте наступну команду, замінивши `peer_publickey` відкритим ключем однорангового вузла:
+
+```bash
+sudo wg set wg0 peer peer_publickey allowed-ips 10.255.255.2
+```
+
+Використання `wg set` вносить лише тимчасові зміни в інтерфейс WireGuard. Для постійних змін конфігурації ви можете вручну відредагувати файл конфігурації та додати вузла. Вам потрібно буде перезавантажити інтерфейс WireGuard після внесення будь-яких постійних змін конфігурації.
+
+Відредагуйте файл конфігурації сервера за допомогою обраного редактора.
+
+```bash
+sudo vi /etc/wireguard/wg0.conf
+```
+
+Додайте вузол до файлу конфігурації. Вміст має виглядати приблизно так:
+
+```bash
+[Interface]
+PrivateKey = +Eo5oVjt+d3XWvFWYcOChaLroGj5vapdXKH8UZ2T2Fc=
+Address = 10.255.255.1/24
+ListenPort = 51820
+
+[Peer]
+PublicKey = 1vSho8NvECkG1PVVk7avZWDmrd2VGZ2xTPaNe5+XKSg=
+AllowedIps = 10.255.255.2/32
+```
+
+Відключити інтерфейс:
+
+```bash
+sudo wg-quick down wg0
+```
+
+Вивести інтерфейс:
+
+```bash
+sudo wg-quick up wg0
+```
+
+## Перегляньте інтерфейси WireGuard і перевірте підключення
 
 Ви можете переглядати інформацію WireGuard як на сервері, так і на одноранговому пристрої за допомогою:
 

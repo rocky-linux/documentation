@@ -4,7 +4,7 @@ title: Backup e Ripristino
 
 # Backup e ripristino
 
-In questo capitolo imparerai come eseguire il backup e ripristinare i tuoi dati con Linux.
+In questo capitolo si apprenderà come eseguire il backup e il ripristino dei dati utilizzando Linux.
 
 ****
 
@@ -35,7 +35,7 @@ Il backup consente di proteggersi dai seguenti problemi:
 * **Cancellazione**: volontaria o involontaria. Umana o tecnica. Virus, ...
 * **Integrità** : i dati diventano inutilizzabili.
 
-Nessun sistema è infallibile e nessun essere umano è infallibile, quindi per evitare di perdere i dati è necessario eseguirne il backup in modo da poterli ripristinare dopo un problema.
+Nessun sistema è infallibile e nessun essere umano è infallibile, quindi per evitare di perdere i dati è necessario eseguire un backup per ripristinarli dopo un problema.
 
 Il supporto di backup dovrebbe essere tenuto in un'altra stanza (o edificio) rispetto al server in modo che un disastro non distrugga il server e i backup.
 
@@ -48,7 +48,7 @@ Esistono due principi: il <strong x-id=“1”>backup</strong> e l'<strong x-id=
 * L'archivio distrugge la fonte delle informazioni dopo l'operazione.
 * Il backup conserva la fonte delle informazioni dopo l'operazione.
 
-Queste operazioni consistono nel salvare le informazioni in un file, su una periferica o su un media supportato (nastri, dischi, ecc.).
+Queste operazioni consistono nel salvare le informazioni in un file, su una periferica o su un supporto (nastri, dischi e così via).
 
 ### Il processo
 
@@ -69,17 +69,17 @@ Oltre a questi aspetti, gli amministratori di sistema devono considerare anche f
 
 ### Metodi di backup
 
-* <strong x-id=“1”>Backup completo</strong>: Si riferisce a una copia una tantum di tutti i file, le cartelle o i dati presenti nel disco rigido o nel database.
+* <strong x-id=“1”>Backup completo</strong>: Si riferisce a una copia unica di tutti i file, le cartelle o i dati presenti nel disco rigido o nel database.
 * <strong x-id=“1”>Backup incrementale</strong>: Si riferisce al backup dei dati aggiornati dopo l'ultimo backup completo o incrementale.
 * <strong x-id=“1”>Backup differenziale</strong>: Si riferisce al backup dei file modificati dopo il backup completo.
 * <strong x-id=“1”>Backup selettivo (backup parziale)</strong>: Si riferisce al backup di una parte del sistema.
-* <strong x-id=“1”>Backup a freddo</strong>: Si riferisce al backup quando il sistema è in stato di arresto o di manutenzione.  I dati di backup sono esattamente gli stessi dei dati nel sistema durante questo periodo.
-* <strong x-id=“1”>Backup a caldo</strong>: Si riferisce al backup quando il sistema è in funzionamento normale.  Poiché i dati nel sistema vengono aggiornati in qualsiasi momento, i dati di backup hanno un certo ritardo rispetto ai dati reali del sistema.
+* <strong x-id=“1”>Backup a freddo</strong>: Si riferisce al backup quando il sistema è in stato di arresto o di manutenzione.  Durante questa fase i dati di backup e i dati presenti nel sistema sono esattamente gli stessi.
+* <strong x-id=“1”>Backup a caldo</strong>: Si riferisce al backup quando il sistema è in funzionamento normale.  Poiché i dati del sistema vengono aggiornati in qualsiasi momento, i dati di backup hanno un certo ritardo rispetto ai dati reali del sistema.
 * <strong x-id=“1”>Backup remoto</strong>: Si riferisce al backup dei dati in un'altra località geografica per evitare la perdita di dati e l'interruzione del servizio causati da incendi, disastri naturali, furti, ecc.
 
 ### Frequenza dei backup
 
-* <strong x-id=“1”>Periodico</strong>: Eseguire il backup in un periodo di tempo specifico prima di un aggiornamento importante del sistema (di solito durante le ore non di punta)
+* <strong x-id=“1”>Periodico</strong>: Eseguire il backup in un periodo specifico prima di un aggiornamento importante del sistema (di solito durante le ore non di punta)
 * <strong x-id=“1”>ciclico</strong>: backup in unità di giorni, settimane, mesi, ecc
 
 !!! Tip "Suggerimento"
@@ -90,7 +90,7 @@ Oltre a questi aspetti, gli amministratori di sistema devono considerare anche f
 
 A seconda delle utilità disponibili, sarà possibile eseguire diversi tipi di ripristino.
 
-In alcuni sistemi di gestione di database relazionali, le operazioni corrispondenti di “recupero” (a volte nella documentazione si usa “recovery”) e “ripristino” sono diverse, per cui è necessario consultare la documentazione ufficiale per ulteriori informazioni. Questo documento di base non entrerà troppo nel dettaglio di questa parte degli RDBMS.
+In alcuni sistemi di gestione di database relazionali, le operazioni corrispondenti di “recupero” (a volte nella documentazione si usa “recovery”) e “ripristino” sono diverse, per cui è necessario consultare la documentazione ufficiale per ulteriori informazioni. Per ulteriori informazioni consultare la documentazione ufficiale. Questo documento di base non entrerà troppo nel dettaglio di questa parte degli RDBMS.
 
 * <strong x-id=“1”>Ripristino completo</strong>: Ripristino dei dati basato sul backup completo o sul “backup completo + backup incrementale” o sul “backup completo + backup differenziale”.
 * <strong x-id=“1”>Ripristino selettivo</strong>: Ripristino dei dati basato su un backup selettivo (backup parziale).
@@ -127,7 +127,7 @@ I comandi che utilizzeremo qui sono `tar` e `cpio`. Per informazioni sullo strum
 
     Questi comandi salvano in un formato proprietario e standardizzato.
 
-**Replication**: Una tecnologia di backup che copia un insieme di dati da un'origine dati a un'altra o a più origini dati, principalmente suddivisa in **Replica Sincrona** e **Replica Asincrona**. Per gli amministratori di sistema alle prime armi, questa è una parte avanzata del backup, quindi questo documento di base non approfondirà questi contenuti.
+**Replication**: Una tecnologia di backup che copia un insieme di dati da un'origine dati a un'altra o a più origini dati, principalmente suddivisa in **Replica Sincrona** e **Replica Asincrona**. Si tratta di una parte di backup avanzato per gli amministratori di sistema meno esperti, pertanto questo documento di base non approfondirà questi contenuti.
 
 ### Convenzione di denominazione
 
@@ -542,7 +542,7 @@ Il comando `cpio` consente di salvare su più supporti successivi senza specific
 
 È possibile estrarre tutto o parte di un backup.
 
-Non c'è alcuna opzione, a differenza del comando `tar`, per eseguire il backup e comprimere allo stesso tempo. Quindi è fatto in due passaggi: backup e compressione.
+A differenza del comando `tar`, non esiste un'opzione per eseguire il backup e la compressione contemporaneamente. Quindi è fatto in due passaggi: backup e compressione.
 
 Per eseguire un backup con `cpio`, è necessario specificare un elenco di file di cui eseguire il backup.
 
@@ -660,11 +660,11 @@ $ ls /backups/etc.A.cpio*
 find /etc | cpio –o | gzip > /backups/etc.A.cpio.gz
 ```
 
-Non c'è alcuna opzione, a differenza del comando `tar`, per salvare e comprimere allo stesso tempo. Quindi è fatto in due passaggi: salvataggio e compressione.
+A differenza del comando `tar`, non esiste un'opzione per salvare e comprimere contemporaneamente. Quindi, si procede in due fasi: salvataggio e compressione.
 
-La sintassi del primo metodo è più facile da capire e ricordare, perché viene eseguita in due passaggi.
+La sintassi del primo metodo è più facile da capire e ricordare perché si svolge in due fasi.
 
-Per il primo metodo, il file di backup viene automaticamente rinominato dall'utilità `gzip` che aggiunge `.gz` alla fine del nome del file. Allo stesso modo l'utilità `bzip2` aggiunge automaticamente `.bz2`.
+Con il primo metodo, il file di backup viene rinominato automaticamente dall'utilità `gzip`, che aggiunge `.gz` alla fine del nome del file. Allo stesso modo l'utilità `bzip2` aggiunge automaticamente `.bz2`.
 
 ### Leggere il contenuto di un backup
 
@@ -685,7 +685,7 @@ cpio -tv </backups/etc.152.cpio | less
 | `-t`    | Legge un backup.                   |
 | `-v`    | Visualizza gli attributi del file. |
 
-Dopo aver eseguito un backup, è necessario leggerne il contenuto per essere sicuri che non ci siano stati errori.
+Dopo aver eseguito un backup, è necessario leggerne il contenuto per verificare che non vi siano errori.
 
 Allo stesso modo, prima di eseguire un ripristino, è necessario leggere il contenuto del backup che verrà utilizzato.
 
@@ -713,9 +713,9 @@ cpio -iv /backups/etc.152.cpio | less
 
 !!! warning "Attenzione"
 
-    Per impostazione predefinita, al momento del ripristino, i file sul disco la cui ultima data di modifica è più recente o uguale alla data del backup non vengono ripristinati (per evitare di sovrascrivere le informazioni recenti con informazioni più vecchie).
+    Per impostazione predefinita, al momento del ripristino, i file sul disco la cui data di ultima modifica è più recente o uguale alla data del backup non vengono ripristinati (per evitare di sovrascrivere informazioni recenti con informazioni più vecchie).
     
-    L'opzione `u`, d'altra parte, consente di ripristinare le versioni precedenti dei file.
+    D'altra parte, l'opzione `u` consente di ripristinare le versioni precedenti dei file.
 
 Esempi:
 
@@ -735,7 +735,7 @@ cpio –iuvF home.A.cpio
 
 * Ripristinare un backup assoluto in modalità relativa
 
-L'opzione lunga `no-absolute-filenames` consente un ripristino in modalità relativa. Infatti la `/` all'inizio del percorso verrà rimossa.
+L'opzione lunga `no-absolute-filenames` consente un ripristino in modalità relativa. Infatti, la `/` all'inizio del percorso verrà rimossa.
 
 ```bash
 cpio --no-absolute-filenames -divuF home.A.cpio
@@ -753,7 +753,7 @@ cpio –iv etc.cpio
 
 * Ripristino in modalità assoluta di un file o di una directory
 
-Il ripristino di un particolare file o directory richiede la creazione di un file di elenco che deve poi essere eliminato.
+Il ripristino di un particolare file o directory richiede la creazione di un file di elenco che deve essere poi cancellato.
 
 ```bash
 echo "/etc/passwd" > tmp
@@ -770,7 +770,7 @@ L'utilizzo della compressione al momento di un backup può avere una serie di in
 
 !!! Note "Nota"
 
-    È quindi meglio fare un backup e comprimerlo piuttosto che comprimerlo durante il backup.
+    Pertanto, è meglio eseguire un backup e comprimerlo piuttosto che comprimerlo durante il backup.
 
 ### Compressione con `gzip`
 
@@ -814,7 +814,7 @@ usr.cpio.bz2
 
 Al nome del file viene assegnata l'estensione `.bz2`.
 
-La compressione con `bzip2` è migliore della compressione con `gzip` ma ci vuole più tempo per eseguirla.
+La compressione con `bzip2` è migliore di quella con `gzip`, ma l'esecuzione richiede più tempo.
 
 ### Decompressione con `gunzip`
 

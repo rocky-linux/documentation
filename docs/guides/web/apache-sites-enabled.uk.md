@@ -86,7 +86,7 @@ Include /etc/httpd/sites-enabled
 
 Якщо ви хочете обслуговувати веб-сайт за допомогою SSL/TLS (і погодьтеся, у більшості випадків ви це робите), додайте ще один (майже ідентичний) розділ до цього файлу, щоб увімкнути порт 443.
 
-Ви можете перевірити це нижче в розділі [Конфігурація `https` за допомогою сертифіката SSL/TLS](#https-ssltls).
+Ви можете перевірити це нижче в розділі «Конфігурація `https` за допомогою сертифіката SSL/TLS».
 
 Спочатку вам потрібно створити цей файл конфігурації в *sites-available*:
 
@@ -197,6 +197,10 @@ cp /root/com.wiki.www.crt /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/
 
 Далі вам потрібно визначити частину `https` файлу конфігурації:
 
+!!! info
+
+    Починаючи з Apache 2.4.8, директива `SSLCertificateChainFile` застаріла. Розширення директиви `SSLCertificateFile` включає сертифікат CA постачальника.
+
 ```apache
 <VirtualHost *:80>
         ServerName your-server-hostname
@@ -222,7 +226,6 @@ cp /root/com.wiki.www.crt /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/
 
         SSLCertificateFile /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/com.wiki.www.crt
         SSLCertificateKeyFile /var/www/sub-domains/your-server-hostname/ssl/ssl.key/com.wiki.www.key
-        SSLCertificateChainFile /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/your_providers_intermediate_certificate.crt
 
         <Directory /var/www/sub-domains/your-server-hostname/html>
                 Options -ExecCGI -Indexes
@@ -244,7 +247,6 @@ cp /root/com.wiki.www.crt /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/
 * SSLHonorCipherOrder on -це стосується наступного рядка, що стосується наборів шифрів, і каже мати справу з ними у вказаному порядку. Це ще одна область, де періодично слід переглядати набори шифрів.
 * SSLCertificateFile - це саме те, що в ньому сказано: нещодавно придбаний і застосований файл сертифіката та його розташування
 * SSLCertificateKeyFile - ключ, який ви створили під час створення запиту на підписання сертифіката
-* SSLCertificateChainFile - сертифікат від постачальника сертифікатів, який часто називають проміжним сертифікатом
 
 Візьміть усе в режимі реального часу, і якщо веб-служба не запускає жодних помилок і якщо перехід на ваш веб-сайт показує `https` без помилок, ви готові до роботи.
 

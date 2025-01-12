@@ -1,5 +1,5 @@
 ---
-title: 8 Istantanee del contenitore
+title: 8 Container Snapshots
 author: Spencer Steven
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
@@ -11,7 +11,7 @@ tags:
 
 In questo capitolo, i comandi devono essere eseguiti come utente non privilegiato (“incusadmin” se li avete seguiti dall'inizio di questo libro).
 
-I container snapshot e un server snapshot (di cui si parlerà più avanti) sono gli aspetti più critici della gestione di un server Incus in produzione. Le istantanee garantiscono un ripristino rapido. È buona prassi usarli come misura salvavita quando si aggiorna il software principale che gira su un particolare container. Se durante l'aggiornamento accade qualcosa che interrompe l'applicazione, è sufficiente ripristinare lo snapshot per tornare operativi con pochi secondi di inattività.
+I container snapshot e un server snapshot (di cui si parlerà più avanti) sono gli aspetti più critici della gestione di un server Incus in produzione. Le snapshot garantiscono un ripristino rapido. È buona prassi usarli come misura salvavita quando si aggiorna il software principale che gira su un particolare container. Se durante l'aggiornamento accade qualcosa che interrompe l'applicazione, è sufficiente ripristinare lo snapshot per tornare operativi con pochi secondi di inattività.
 
 L'autore ha utilizzato i container Incus per i server PowerDNS rivolti al pubblico e l'aggiornamento di queste applicazioni è diventato meno problematico, grazie alla creazione di snapshots prima di ogni aggiornamento.
 
@@ -22,7 +22,7 @@ L'autore ha utilizzato i container Incus per i server PowerDNS rivolti al pubbli
 Iniziate ottenendo un'istantanea del container ubuntu-test con questo comando:
 
 ```bash
-incus snapshot ubuntu-test ubuntu-test-1
+incus snapshot create ubuntu-test ubuntu-test-1
 ```
 
 Qui si nomina lo snapshot “ubuntu-test-1”, ma si può nominarlo in qualsiasi modo. Per assicurarsi di avere uno snapshot, eseguire un `incus info` del container:
@@ -63,7 +63,7 @@ incus stop ubuntu-test
 Ripristino:
 
 ```bash
-incus restore ubuntu-test ubuntu-test-1
+incus snapshot restore ubuntu-test ubuntu-test-1
 ```
 
 Avviare nuovamente il container:
@@ -77,7 +77,7 @@ Se si ritorna al container e si controlla di nuovo, il “this_file.txt” creat
 Quando non si ha più bisogno di uno snapshot, è possibile cancellarlo:
 
 ```bash
-incus delete ubuntu-test/ubuntu-test-1
+incus snapshot delete ubuntu-test ubuntu-test-1
 ```
 
 !!! warning "Attenzione"
