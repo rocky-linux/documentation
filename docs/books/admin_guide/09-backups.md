@@ -522,9 +522,9 @@ tar xvfz backup.tar.gz /path/to/dir1/ /path/to/dir2/
 tar xvfj backup.tar.bz2 /path/to/dir1/ /path/to/dir2/
 ```
 
-##### Extract a group of files from a *tar* backup using regular expressions (*regex*)
+##### Extract a group of files from a *tar* backup using wildcard
 
-Specify a regular expression (*regex*) to extract the files matching the specified selection pattern.
+Specify a wildcard to extract the files matching the specified selection pattern.
 
 For example, to extract all files with the extension `.conf`:
 
@@ -534,7 +534,16 @@ tar xvf backup.tar --wildcards '*.conf'
 
 keys:
 
-* **--wildcards *.conf** corresponds to files with the extension `.conf`.
+* __--wildcards *.conf__ corresponds to files with the extension `.conf`.
+
+!!! tip "Expanded Knowledge"
+
+    Although wildcard characters and regular expressions usually have the same symbol or style, the objects they match are completely different, so people often confuse them.
+
+    **wildcard (wildcard character)**: used to match file or directory names. 
+    **regular expression**: used to match the content of a file.
+
+    You can see an introduction with extra detail in [this document](../sed_awk_grep/1_regular _expressions_vs_wildcards.md).
 
 ## *CoPy Input Output* - `cpio`
 
