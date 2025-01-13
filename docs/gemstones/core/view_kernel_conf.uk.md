@@ -12,7 +12,7 @@ tags:
 
 # Перегляд поточної конфігурації ядра
 
-Ядро Linux зберігає поточну інформацію про ядро у двох місцях за допомогою спеціальних файлових систем: ([їх короткий опис](https://www.landoflinux.com/linux_procfs_sysfs.html))
+Ядро Linux зберігає поточну інформацію про ядро ​​у двох місцях за допомогою спеціальних файлових систем:
 
 - Старіші [procfs](https://man7.org/linux/man-pages/man5/procfs.5.html), які монтують `/proc` (перевірте за допомогою `mount -l -t proc`)
 - Новіший [sysfs](https://man7.org/linux/man-pages/man5/sysfs.5.html), який монтує `/sys` (перевірити за допомогою `mount -l -t sysfs`)
