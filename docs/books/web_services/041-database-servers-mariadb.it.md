@@ -19,12 +19,12 @@ In questo capitolo, imparerete a conoscere gli RDBMS MariaDB e MySQL.
 
 **Obiettivi**: si imparerà a:
 
-:heavy_check_mark: installare, configurare e proteggere il server MariaDB e il server MySQL;\
+:heavy_check_mark: installare, configurare e proteggere il server MariaDB e il server MySQL;
 :heavy_check_mark: eseguire alcune azioni amministrative su database e utenti.
 
 :checkered_flag: **RDBMS**, **database**, **MariaDB**, **MySQL**
 
-**Conoscenza**: :star: :star: :star:\
+**Conoscenza**: :star: :star: :star:
 **Complessità**: :star: :star: :star:
 
 **Tempo di lettura**: 30 minuti
