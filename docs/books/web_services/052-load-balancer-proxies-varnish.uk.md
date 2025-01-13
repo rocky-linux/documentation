@@ -502,7 +502,7 @@ varnish> ban req.http.host ~ .
 через запит HTTP PURGE:
 
 ```bash
-curl -X PURGE http://example.org/foo.txt
+curl -X PURGE http://example.com/foo.txt
 ```
 
 Налаштування Varnish для прийняття цього запиту виконується за допомогою:
