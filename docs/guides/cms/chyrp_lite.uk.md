@@ -139,7 +139,7 @@ restorecon -Rv /var/www/chyrp-lite
 restorecon -Rv /var/www/chyrp-lite-data
 ```
 
-На клієнтській машині відкрийте веб-браузер за адресою `https://your.domain.name/install.php` і запустіть програму інсталяції (замініть `your.domain.name` фактичним ім'ям домену або ім'ям хоста):
+На клієнтській машині відкрийте веб-браузер за адресою `https://example.com/install.php` і запустіть програму інсталяції (замініть `example.com` фактичним іменем домену чи хосту):
 
 ![Chyrp Lite Setup](../images/chyrp_lite_setup.png)
 
