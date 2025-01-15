@@ -49,7 +49,7 @@ You'll need:
 systemctl enable --now firewalld
 ```
 
-The `--now` flag starts the service as soon as it is enabled and let's you skip the `systemctl start firewalld` step.
+The `--now` flag starts the service as soon as it is enabled and lets you skip the `systemctl start firewalld` step.
 
 As with all services on Rocky Linux, you can check if the firewall is running with:
 
