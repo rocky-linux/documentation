@@ -554,26 +554,40 @@ It is possible to extract all or part of a backup.
 Unlike the `tar` command, there is no option to backup and compress simultaneously.
 So, it is done in two steps: backup and compression.
 
-To perform a backup with `cpio`, you must specify a list of files to backup.
+`cpio` has three operating modes, each corresponding to a different function:
 
-This list is provided with the commands `find`, `ls` or `cat`.
+1. **copy-out mode** - Create a backup (archive). You can enable this mode through the `-o` or `--create` options. In this mode, you must generate a list of files with a specific command (`find`, `ls` or `cat`) and pass it to cpio.
 
-* `find` : browses a tree, recursive or not;
-* `ls` : lists a directory, recursive or not;
-* `cat` : reads a file containing the trees or files to be saved.
+   * `find` : browses a tree, recursive or not;
+   * `ls` : lists a directory, recursive or not;
+   * `cat` : reads a file containing the trees or files to be saved.
 
-!!! Note
+    !!! Note
 
-    `ls` cannot be used with `-l` (details) or `-R` (recursive).
+        `ls` cannot be used with `-l` (details) or `-R` (recursive).
 
-    It requires a simple list of names.
+        It requires a simple list of names.
 
-### Create a backup with `cpio` command
+2. **copy-in mode** – extracts files from an archive. You can enable this mode through the `-i` option.
+3. **copy-pass mode** – copies files from one directory to another. You can enable this mode through the `-p` or `--pass-through` options.
+
+Like the `tar` command, users need to pay attention to how the file list is saved (**absolute path** or **relative path**) when creating an archive.
+
+secondary function:
+
+1. `-t` - Print a table of contents of the input.
+2. `-A` - Append to an existing archive. Only works in copy-in mode.
+
+!!! note
+
+    Some options of `cpio` need to be combined with the correct operating mode to work properly, see `man 1 cpio`
+
+### copy-out mode
 
 Syntax of the `cpio` command:
 
 ```bash
-[files command |] cpio {-o| --create} [-options] [<file-list] [>device]
+[files command |] cpio {-o| --create} [-options] [< file-list] [> device]
 ```
 
 Example:
@@ -590,7 +604,7 @@ Using the name of a backup media:
 find /etc | cpio -ovF /backups/etc.cpio
 ```
 
-The result of the `find` command is sent as input to the `cpio` command via a *pipe* (character `|`, ++alt-graph+6++).
+The result of the `find` command is sent as input to the `cpio` command via a *pipe* (character `|`, ++left-shift+backslash++).
 
 Here, the `find /etc` command returns a list of files corresponding to the contents of the `/etc` directory (recursively) to the `cpio` command, which performs the backup.
 
@@ -598,9 +612,9 @@ Do not forget the `>` sign when saving or the `F save_name_cpio`.
 
 | Options |Description                                    |
 |---------|------------------------------------------------|
-| `-o`    |Creates a backup (*output*).                   |
+| `-o`    |Create a backup through _cp-out_ mode.                   |
 | `-v`    |Displays the name of the processed files.      |
-| `-F`    |Designates the backup to be modified (medium). |
+| `-F`    |Backup to specific media, which can replace standard input ("<") and standard output (">") in the `cpio` command |
 
 Backup to a media:
 
@@ -613,16 +627,12 @@ The media can be of several types:
 * tape drive: `/dev/rmt0`;
 * a partition: `/dev/sda5`, `/dev/hda5`, etc.
 
-### Type of backup
-
-#### Backup with relative path
+#### Relative and absolute paths of file list
 
 ```bash
 cd /
 find etc | cpio -o > /backups/etc.cpio
 ```
-
-#### Backup with absolute path
 
 ```bash
 find /etc | cpio -o > /backups/etc.A.cpio
@@ -634,10 +644,10 @@ find /etc | cpio -o > /backups/etc.A.cpio
 
     If the path indicated in the `find` command is **relative**, then the backup will be done in **relative**.
 
-### Add to a backup
+#### Append files to existing backups
 
 ```bash
-[files command |] cpio {-o| --create} -A [-options] [<fic-list] {F|>device}
+[files command |] cpio {-o| --create} -A [-options] [< fic-list] {F| > device}
 ```
 
 Example:
@@ -650,10 +660,10 @@ Adding files is only possible on direct access media.
 
 | Option | Description                                 |
 |--------|---------------------------------------------|
-| `-A`   | Adds one or more files to a backup on disk. |
+| `-A`   | Append one or more files to an existing backup. |
 | `-F`   | Designates the backup to be modified.       |
 
-### Compressing a backup
+#### Compressing a backup
 
 * Save **then** compress
 
@@ -682,13 +692,13 @@ For the first method, the backup file is automatically renamed by the `gzip` uti
 Syntax of the `cpio` command to read the contents of a *cpio* backup:
 
 ```bash
-cpio -t [-options] [<fic-list]
+cpio -t [-options] [< fic-list]
 ```
 
 Example:
 
 ```bash
-cpio -tv </backups/etc.152.cpio | less
+cpio -tv < /backups/etc.152.cpio | less
 ```
 
 | Options |Description               |
@@ -700,18 +710,18 @@ After making a backup, you need to read its contents to ensure there are no erro
 
 In the same way, before performing a restore, you must read the contents of the backup that will be used.
 
-### Restore a backup
+### copy-in mode
 
 Syntax of the `cpio` command to restore a backup:
 
 ```bash
-cpio {-i| --extract} [-E file] [-options] [<device]
+cpio {-i| --extract} [-E file] [-options] [< device]
 ```
 
 Example:
 
 ```bash
-cpio -iv </backups/etc.152.cpio | less
+cpio -iv < /backups/etc.152.cpio | less
 ```
 
 | Options                      | Description                                                         |
@@ -759,7 +769,7 @@ cpio --no-absolute-filenames -divuF home.A.cpio
 * Restore a relative backup
 
 ```bash
-cpio –iv <etc.cpio
+cpio –iv < etc.cpio
 ```
 
 * Absolute restoration of a file or directory
@@ -805,9 +815,9 @@ The file receives the extension `.gz`.
 
 It keeps the same rights and the same last access and modification dates.
 
-### Compressing with `bunzip2`
+### Compressing with `bzip2`
 
-The `bunzip2` command also compresses data.
+The `bzip2` command also compresses data.
 
 Syntax of the `bzip2` command:
 
@@ -851,7 +861,8 @@ The file name is truncated by `gunzip` and the extension `.gz` is removed.
 
 * `.z` ;
 * `-z` ;
-* `_z` .
+* `_z` ;
+* `-gz` ;
 
 ### Decompressing with `bunzip2`
 
