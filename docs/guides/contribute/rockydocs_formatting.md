@@ -68,11 +68,11 @@ A document might or might not need to contain any of these elements. However, if
     A Link to [that header](#-a-header)
     ```
 
-    This link is found by hovering your mouse over the permalink in a created document, but is essentially the header with the "#" plus the header in lower-case seperated by a dash (-).
+    This link is found by hovering your mouse over the permalink in a created document, but is essentially the header with the "#" plus the header in lower-case separated by a dash (-).
 
     When the document is translated, though, the header is translated BUT the link is outside of what Crowdin allows to be translated, so it remains in its original (English) state.
 
-    If you find yourself in need of using an anchor, take a look at your document and see if reorganization of the content will make that anchor unneccessary. Just know that if you use an anchor in a newly composed document, that anchor will break once translation of that document occurs.
+    If you find yourself in need of using an anchor, take a look at your document and see if reorganization of the content will make that anchor unnecessary. Just know that if you use an anchor in a newly composed document, that anchor will break once translation of that document occurs.
 
 ## Admonitions
 
@@ -560,7 +560,7 @@ The last code shows that certain characters require their HTML character code if
 
 In actual text, you would escape the character. For example, `\|` will show the pipe symbol, `\>` will show the angle bracket symbol, `\+` will show the plus sign, `\-` will show the minus sign, and `\!` will show the exclamation mark.
 
-You can see that if we get rid of the back ticks in this sentence:
+You can see that if we get rid of the backticks in this sentence:
 
 In actual text, you would escape the character. For example, \| will show the pipe symbol, \> will show the angle bracket symbol, \+ will show the plus sign, \- will show the minus sign, and \! will show the exclamation mark.
 
