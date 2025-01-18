@@ -150,9 +150,9 @@ Create a new database for your WordPress website:
 
 Create a user with a password for your database:
 
-!!! Note
+!!! note
 
-    It is highly reccomended to use a stronger password.
+    It is highly recommended to use a stronger password.
 
 ## Create a new user and password
 
