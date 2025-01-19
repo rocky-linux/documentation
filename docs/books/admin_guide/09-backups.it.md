@@ -522,9 +522,9 @@ tar xvfz backup.tar.gz /path/to/dir1/ /path/to/dir2/
 tar xvfj backup.tar.bz2 /path/to/dir1/ /path/to/dir2/
 ```
 
-##### Estrarre un gruppo di file da un backup *tar* utilizzando espressioni regolari (_regex_)
+##### Estrarre un gruppo di file da un <em x-id=“3”>tar</em> di backup usando i caratteri jolly
 
-Specificate un (*regex*) per estrarre i file corrispondenti al modello di selezione specificato.
+Specificare un carattere jolly per estrarre i file che corrispondono al modello di selezione specificato.
 
 Ad esempio, per estrarre tutti i file con l'estensione `.conf` :
 
@@ -536,6 +536,15 @@ chiavi :
 
 * `--wildcards *.conf` corrisponde ai file con estensione `.conf`.
 
+!!! tip "Approfondimento"
+
+    Sebbene i caratteri wildcard e le regular expressions abbiano solitamente gli stessi simboloi o stili, gli oggetti a cui corrispondono sono completamente diversi, per cui spesso vengono confusi.
+    
+    **wildcard (wildcard character)**: utilizzato per associare i nomi di file o directory. 
+    **regular expression**: utilizzata per individuare il contenuto di un file.
+    
+    È possibile vedere un'introduzione con maggiori dettagli in [questo documento](../sed_awk_grep/1_espressioni_regolari_vs_wildcards.md).
+
 ## *CoPy Input Output* - `cpio`
 
 Il comando `cpio` consente di salvare su più supporti successivi senza specificare alcuna opzione.
@@ -544,26 +553,40 @@ Il comando `cpio` consente di salvare su più supporti successivi senza specific
 
 A differenza del comando `tar`, non esiste un'opzione per eseguire il backup e la compressione contemporaneamente. Quindi è fatto in due passaggi: backup e compressione.
 
-Per eseguire un backup con `cpio`, è necessario specificare un elenco di file di cui eseguire il backup.
+`cpio` ha tre modalità operative, ciascuna corrispondente a una funzione diversa:
 
-Questo elenco è fornito con i comandi `find`, `ls` o `cat`.
+1. **copy-out mode** - Creare un backup (archivio). È possibile attivare questa modalità mediante l'opzione `-o` o `--create`. In questa modalità, è necessario generare un elenco di file con un comando specifico (`find`, `ls` o `cat`) e passarlo a cpio.
 
-* `find` : naviga in un albero, ricorsivo o meno;
-* `ls` : elencare una directory, ricorsiva o meno;
-* `cat` : legge un file contenente gli alberi delle directory o i file da salvare.
+   * `find` : naviga in un albero, ricorsivo o meno;
+   * `ls` : elencare una directory, ricorsiva o meno;
+   * `cat` : legge un file contenente gli alberi delle directory o i file da salvare.
 
-!!! Note "Nota"
+    !!! Note "Nota"
 
-    `ls` non può essere usato con `-l` (dettagli) o `-R` (ricorsivo).
-    
-    Richiede un semplice elenco di nomi.
+        `ls` non può essere usato con `-l` (dettagli) o `-R` (ricorsivo).
 
-### Creare un backup con il comando `cpio`
+        Richiede un semplice elenco di nomi.
+
+2. **copy-in mode** – estrae i file da un archivio. È possibile attivare questa modalità tramite l'opzione `-i`.
+3. **copy-pass mode** – copia i file da una directory a un'altra. È possibile attivare questa modalità attraverso le opzioni `-p` o `--pass-through`.
+
+Come per il comando `tar`, gli utenti devono prestare attenzione a come viene salvato l'elenco dei file (**percorso assoluto** o <strong x-id=“1”>percorso relativo</strong>) quando si crea un archivio.
+
+funzione secondaria:
+
+1. `-t` - Stampa un indice del contenuto dell'input.
+2. `-A` - Aggiunge a un archivio esistente. Funziona solo in modalità copy-in.
+
+!!! note "Nota"
+
+    Alcune opzioni di `cpio` devono essere combinate con la modalità operativa corretta per funzionare correttamente, vedere `man 1 cpio`
+
+### modalità copy-out
 
 Sintassi del comando `cpio`:
 
 ```bash
-[files command |] cpio {-o| --create} [-options] [<file-list] [>device]
+[files command |] cpio {-o| --create} [-options] [< file-list] [> device]
 ```
 
 Esempio:
@@ -574,23 +597,23 @@ Con un reindirizzamento dell'output di `cpio`:
 find /etc | cpio -ov > /backups/etc.cpio
 ```
 
-Utilizzo del nome di un supporto di backup:
+Utilizzando il nome di un supporto di backup:
 
 ```bash
 find /etc | cpio -ovF /backups/etc.cpio
 ```
 
-Il risultato del comando `find` viene inviato come input al comando `cpio` tramite una *pipe* (carattere `|`, ++alt-graph+6++).
+Il risultato del comando `find` viene inviato come input al comando `cpio` tramite una <em x-id=“3”>pipe</em> (carattere `|`, ++left-shift+backslash++).
 
-Qui, il comando `find /etc` restituisce un elenco di file corrispondenti al contenuto della directory `/etc` (ricorsivamente) al comando `cpio`, che esegue il backup.
+In questo caso, il comando `find /etc` restituisce un elenco di file corrispondenti al contenuto della directory `/etc` (in modo ricorsivo) al comando `cpio`, che esegue il backup.
 
-Non dimenticare il segno `>` durante il salvataggio o l'opzione `F save_name_cpio`.
+Non dimenticare il segno `>` quando si salva o il comando `F save_name_cpio`.
 
-| Opzioni | Descrizione                              |
-| ------- | ---------------------------------------- |
-| `-o`    | Crea un backup (*output*).               |
-| `-v`    | Visualizza il nome dei file elaborati.   |
-| `-F`    | Indica il backup da modificare (medium). |
+| Opzioni | Descrizione                                                                                                            |
+| ------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `-o`    | Creare un backup attraverso la modalità <em x-id=“4”>cp-out</em>.                                                      |
+| `-v`    | Visualizza il nome dei file elaborati.                                                                                 |
+| `-F`    | Backup su supporti specifici, che può sostituire lo standard input (“<”) e lo standard output (“>”) nel comando `cpio` |
 
 Backup su un supporto:
 
@@ -603,16 +626,12 @@ Il supporto può essere di vari tipi:
 * unità nastro: `/dev/rmt0`  ;
 * una partizione: `/dev/sda5`, `/dev/hda5`, etc.
 
-### Tipo di backup
-
-#### Backup con percorso relativo
+#### Percorsi relativi e assoluti dell'elenco file
 
 ```bash
 cd /
 find etc | cpio -o > /backups/etc.cpio
 ```
-
-#### Backup con percorso assoluto
 
 ```bash
 find /etc | cpio -o > /backups/etc.A.cpio
@@ -624,10 +643,10 @@ find /etc | cpio -o > /backups/etc.A.cpio
     
     Se il percorso indicato nel comando `find` è **relativo** il backup verrà eseguito come **relativo**.
 
-### Aggiungere a un backup
+#### Aggiungere file ai backup esistenti
 
 ```bash
-[files command |] cpio {-o| --create} -A [-options] [<fic-list] {F|>device}
+[files command |] cpio {-o| --create} -A [-options] [< fic-list] {F| > device}
 ```
 
 Esempio:
@@ -636,14 +655,14 @@ Esempio:
 find /etc/shadow | cpio -o -AF SystemFiles.A.cpio
 ```
 
-L'aggiunta di file è possibile solo su supporti ad accesso diretto.
+L'aggiunta di file è possibile solo sui supporti ad accesso diretto.
 
 | Opzione | Descrizione                                   |
 | ------- | --------------------------------------------- |
 | `-A`    | Aggiunge uno o più file a un backup su disco. |
 | `-F`    | Indica il backup da modificare.               |
 
-### Compressione di un backup
+#### Comprimere un backup
 
 * Salva **poi** comprimi
 
@@ -677,7 +696,7 @@ cpio -t [-options] [<fic-list]
 Esempio:
 
 ```bash
-cpio -tv </backups/etc.152.cpio | less
+cpio -tv < /backups/etc.152.cpio | less
 ```
 
 | Opzioni | Descrizione                        |
@@ -689,12 +708,12 @@ Dopo aver eseguito un backup, è necessario leggerne il contenuto per verificare
 
 Allo stesso modo, prima di eseguire un ripristino, è necessario leggere il contenuto del backup che verrà utilizzato.
 
-### Ripristinare un backup
+### modalità copy-in
 
 Sintassi del comando `cpio` per ripristinare un backup:
 
 ```bash
-cpio {-i| --extract} [-E file] [-options] [<device]
+cpio {-i| --extract} [-E file] [-options] [< device]
 ```
 
 Esempio:
@@ -743,12 +762,12 @@ cpio --no-absolute-filenames -divuF home.A.cpio
 
 !!! Tip "Suggerimento"
 
-    La creazione di directory è forse necessaria, quindi l'utilizzo dell'opzione `d`
+    La creazione di directory è forse necessaria, da qui l'uso dell'opzione `d`
 
 * Ripristinare un backup relativo
 
 ```bash
-cpio –iv etc.cpio
+cpio –iv < etc.cpio
 ```
 
 * Ripristino in modalità assoluta di un file o di una directory
@@ -763,7 +782,7 @@ rm -f tmp
 
 ## Utilità di Compressione - decompressione
 
-L'utilizzo della compressione al momento di un backup può avere una serie di inconvenienti:
+L'uso della compressione al momento del backup può presentare una serie di inconvenienti:
 
 * Allunga il tempo di backup e il tempo di ripristino.
 * Rende impossibile aggiungere file al backup.
@@ -841,6 +860,7 @@ Il nome del file viene troncato da `gunzip` e l'estensione `.gz` viene rimossa.
 * `.z` ;
 * `-z` ;
 * `_z` .
+* `-gz` ;
 
 ### Decompressione con `bunzip2`
 

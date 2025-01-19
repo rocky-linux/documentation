@@ -12,7 +12,7 @@ tags:
 
 # Visualizzare la configurazione attuale del kernel
 
-Il kernel Linux memorizza le informazioni sul kernel in esecuzione in due luoghi, tramite file system speciali:[(Una sintesi di questi](https://www.landoflinux.com/linux_procfs_sysfs.html))
+Il kernel di Linux memorizza le informazioni del kernel in esecuzione in due luoghi tramite speciali filesystem:
 
 - Il vecchio [procfs](https://man7.org/linux/man-pages/man5/procfs.5.html) che monta `/proc` (verificabile  tramite `mount -l -t proc`)
 - Il [sysfs](https://man7.org/linux/man-pages/man5/sysfs.5.html) più recente che monta `/sys` (verificare tramite `mount -l -t sysfs`)
