@@ -7,7 +7,7 @@ contributors:
 
 ## Open source or open-source, the debate is over
 
-There was a time when using the hyphenated version of open source was acceptable if used as an adjective before a noun, but no more. The reason? Open source has become part of the lexicon as a compound noun. Using it as an adjective is no-longer acceptable practice. Lexicalization is the process where a word or phrase becomes an established part of a language, in this case, our technical language. Consider this from the Open Source Initiative:
+There was a time when using the hyphenated version of open source was acceptable if used as an adjective before a noun, but no more. The reason? Open source has become part of the lexicon as a compound noun. Using it as an adjective is no-longer acceptable practice. Lexicalization is the process where a word or phrase becomes an established part of a language, in this case our technical language. Here is how the Open Source Initiative describes it:
 
 > The word open in “open source” does not have the meaning “open” as one would find in the dictionary. Instead, “open source” also entails user freedoms, inasmuch as users of the software for any purpose do not have to negotiate with the rights owners to enjoy (use/improve/share/monetise) the software. That is, it is not only about transparency.
 
@@ -23,7 +23,7 @@ Other examples of compound nouns that became part of the lexicon are:
 
 These are all compound nouns. It is pretty easy to see why that is the case. Their meaning as separate words is different from what they mean together. *Yellow* and *journalism* mean different things separately. *Yellow* is a color between green and orange in the spectrum. *Journalism* is the activity or responsibility of writing for a magazine, news, or web resource.  **But** *yellow journalism* is a type of journalism that uses sensationalism and exaggeration. It is a noun.
 
-These are not part of our technical vocabulary, but it is easy to see how they relate to open source.
+These are not part of our technical vocabulary, but it is easy to see how they relate to open source, which is.
 
 ## Conclusions
 

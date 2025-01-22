@@ -7,19 +7,19 @@ contributors:
 
 ## Active verses passive voice
 
-There is a huge debate these days on the use of active voice in documentation. There should not be. The reason is that using active voice helps create documentation that is direct and clear. I read a social media post recently where they were questioning this reality. The gist of the conversation was: *'Passive voice does not seem that bad in documentation, should I care?'* I can assure you that it **does** matter, and you **should** care. Passive voice is often ambiguous and unclear. Passive voice can lead to confusion in technical writing, particularly where your audience varies and where translations occur. Our goal with Rocky Linux documentation is to have great documentation, and great documentation does not include the use of passive voice. Let us take into account this from our "Style Guide":
+There is a huge debate these days on the use of active voice in documentation. There should not be. The reason is that using active voice helps create documentation that is direct and clear. I read a social media post recently where they were questioning this reality. The gist of the conversation was: *'Passive voice does not seem that bad in documentation, should I care?'* I can assure you that it **does** matter, and you **should** care. Passive voice is often ambiguous and unclear. Passive voice can lead to confusion in technical writing, particularly where your audience varies and where translations occur. Our goal with Rocky Linux documentation is to have great documentation, and great documentation does not include the use of passive voice. Examine this from our "Style Guide":
 
 > Say what you mean in as few words as possible.
 
-Active voice forces this. Take into account this passive voice instruction:
+Active voice forces this. Here is an example of a passive voice instruction:
 
 For our web platform, Apache must be installed using this command: `sudo dnf install httpd`
 
-The active voice equal:
+While here is the active voice equal:
 
 For your web platform, install Apache with this command: `sudo dnf install httpd`
 
-A couple of things are notable in this example. The passive voice phrase has 11 words while the active voice has 9. The active voice phrase directs the user to "install" Apache, rather than telling them it "must be installed." In both examples, though, the instruction, the most important element, is buried within the body of the sentence. While 9 words is an improvement, we can do more. If you remember the "Say what you mean in as few words as possible" rule, then consider this:
+A couple of things are notable in this example. The passive voice phrase has 11 words while the active voice has 9. The active voice phrase directs the user to "install" Apache, rather than telling them it "must be installed." In both examples, though, the instruction, the most important element, hides in the body of the sentence. While 9 words is an improvement, we can do more. If you remember the "Say what you mean in as few words as possible" rule, then consider this:
 
 Install Apache with: `sudo dnf install httpd`
 
@@ -35,13 +35,14 @@ When I first started writing documentation for Rocky Linux back in 2021, I start
 
     These almost always lead to phrasing that is first, indirect, and often includes passive voice. Use 'you' or 'your' in your writing of instructions.
 
-* Watch for verbs such as: 'was', 'were', 'are', 'been', 'be', and so on, followed by a past participle phrase usually ending in "ed." Examples:
+* Watch for verbs such as: 'was', 'were', 'are', 'been', 'be', and so on, followed by a past participle phrase usually (but not always) ending in "ed." Examples:
 
     * "was created"
     * "were backed up"
     * "are manipulated"
     * "been restored"
     * "be installed"
+    * "is hidden"
 
     Each of these is an example of passive voice.
 
