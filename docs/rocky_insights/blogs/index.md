@@ -6,7 +6,7 @@ contributors:
 
 ## Why this section?
 
-Towards the end of 2024, it became evident that not every document in the Rocky Linux documentation cache will be an how-to guide. We needed a spot for longer, more in-depth explanations. Enter this blog.
+Towards the end of 2024, it became evident that not every document in the Rocky Linux documentation cache will be a how-to guide. We needed a spot for longer, more in-depth explanations. Enter this blog.
 
 ## Who can write here?
 
