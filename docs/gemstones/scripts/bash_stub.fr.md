@@ -1,10 +1,10 @@
 ---
-title: bash - Ébauche de script
+title: bash – Ébauche de script
 author: Steven Spencer
 contributors: Ezequiel Bruni
 ---
 
-# Bash - Ébauche de script
+# Ébauche de script `bash`
 
 Là où l'auteur était précédemment employé, il y avait un as de l'informatique qui connaissait un tas de langages de programmation. Il était aussi le gars à consulter quand vous aviez des questions sur la façon d'accomplir quelque chose avec un script. Il a finalement créé une petite ébauche, un fichier plein d'exemples de scripts que vous pourriez tout simplement supprimer et éditer au besoin. Finalement, l'auteur est devenu assez expérimenté dans ces routines pour ne pas avoir à consulter l'exemple, mais c'était un bon outil d'apprentissage et quelque chose que d'autres pourraient trouver utile.
 
