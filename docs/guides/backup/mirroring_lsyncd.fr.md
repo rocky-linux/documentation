@@ -22,17 +22,17 @@ tags:
 
 ## Introduction
 
-Il est en fait possible de mettre complètement en miroir un serveur à l'aide de `lsyncd` en spécifiant soigneusement les répertoires et fichiers que vous souhaitez synchroniser. Mais vous devez tout configurer depuis la ligne de commande.
+Si vous souhaitez synchroniser automatiquement des fichiers et des dossiers entre ordinateurs, `lsyncd` est une excellente solution. Mais vous devez tout configurer depuis la ligne de commande.
 
 C'est un programme qui vaut la peine d'être appris pour tout administrateur système.
 
-La meilleure description de `lsyncd`, vient de sa propre page de manuel — `man lsyncd`. Légèrement paraphrasé, `lsyncd` est une solution Live Mirror légère qui n'est pas difficile à installer. Il ne nécessite pas de nouveaux systèmes de fichiers ou périphériques de blocs et ne nuit pas aux performances du système de fichiers local. En bref, il duplique les fichiers.
+La meilleure description de `lsyncd`, vient de sa propre page de manuel — `man lsyncd`. Légèrement paraphrasé, `lsyncd` est une solution de miroir live qui n'est pas difficile à installer. Il ne nécessite pas de nouveaux systèmes de fichiers ou périphériques en mode bloc et ne nuit pas aux performances du système de fichiers local. En bref, il duplique les fichiers.
 
 `lsyncd` surveille l'interface du moniteur d'événements d'une arborescence de répertoires locale (`inotify`). Il agrège et combine les événements pendant quelques secondes et génère un (ou plusieurs) processus pour synchroniser les modifications. Par défaut, il s'agit de `rsync`.
 
-Pour les besoins de ce guide, vous appellerez le système contenant les fichiers originaux la « source » et celui avec lequel vous effectuez la synchronisation sera la « cible ». Il est en fait possible de refléter complètement un serveur en utilisant `lsyncd` en spécifiant soigneusement les répertoires et les fichiers que vous souhaitez synchroniser.
+Pour les besoins de ce guide, vous appellerez le système contenant les fichiers originaux la « source » et celui avec lequel vous effectuez la synchronisation sera la « cible ». En utilisant `lsyncd`, vous pouvez mettre en miroir complètement un serveur en spécifiant soigneusement les répertoires et les fichiers que vous souhaitez synchroniser.
 
-Pour la synchronisation à distance, vous voudrez également configurer les [paires de clé privée-publique SSH de Rocky Linux](../security/ssh_public_private_keys.md). Les exemples utilisent ici SSH (port 22).
+Pour la synchronisation à distance, vous pouvez également configurer les [Paires de clé privée-publique SSH de Rocky Linux](../security/ssh_public_private_keys.md). Les exemples utilisent ici SSH (port 22).
 
 ## Installation de `lsyncd`
 
@@ -78,8 +78,7 @@ dnf groupinstall 'Development Tools'
     dnf config-manager --enable crb
     ```
 
-
-    Faire cela en 9 étapes avant les étapes suivantes vous permettra de terminer la construction sans revenir en arrière.
+   Effectuer ces neuf étapes avant les étapes suivantes vous permettra de terminer la construction sans revenir en arrière.
 
 Voici les dépendances nécessaires pour `lsyncd` :
 
@@ -125,20 +124,20 @@ make
 make install
 ```
 
-Une fois terminé, le binaire `lsyncd` devrait être installé et prêt à être utilisé dans */usr/local/bin*
+Une fois terminé, vous aurez le binaire `lsyncd` installé et prêt à être utilisé dans */usr/local/bin*
 
 ### `lsyncd` Systemd Service
 
-Avec la méthode d'installation RPM, le service `systemd` sera installé pour vous, mais si vous choisissez d'installer à partir des sources, vous devrez créer ce service `systemd` vous-même. Bien que vous puissiez démarrer le logiciel sans le service systemd, vous devez vous assurer qu'il est bien *lancé* au démarrage du système. Sinon, un redémarrage du serveur arrêtera votre effort de synchronisation. Si vous oubliez de le redémarrer manuellement, cela posera problème !
+Avec la méthode d'installation RPM, le service systemd sera installé automatiquement, mais si vous l'installez à partir de la source, vous devrez créer le service systemd. Bien que vous puissiez démarrer le binaire sans le service systemd, vous devrez vous assurer qu'il est lancé *automatiquement* au démarrage du système. Sinon, un redémarrage du serveur arrêtera votre effort de synchronisation. Si vous oubliez de le redémarrer manuellement, cela posera problème !
 
 La création du service `systemd` n'est pas très difficile et vous fera gagner beaucoup de temps à long terme.
 
 #### Créer le fichier du service `lsyncd`
 
-Ce fichier peut être créé n'importe où, même à la racine du système de fichiers de votre serveur. Une fois qu'il est créé, vous pouvez facilement le déplacer au bon endroit.
+Vous pouvez créer ce fichier n'importe où, même dans le répertoire `root` de votre serveur. Une fois qu'il est créé, vous pouvez facilement le déplacer au bon endroit.
 
 ```bash
-vi /root/lsyncd.service`
+vi /root/lsyncd.service
 ```
 
 Le contenu de ce fichier sera le suivant :
@@ -213,8 +212,8 @@ Décomposons un peu ces commandes :
 - Dans la section de synchronisation `default.rsyncssh` il est indiqué d'utiliser `rsync` en combinaison avec `ssh`
 - La variable `source=` indique le chemin du répertoire depuis lequel vous êtes en train de synchroniser
 - La variable `host=` contient notre machine cible vers laquelle nous sommes en train de synchroniser
-- La variable `excludeFrom=` indique à `lsyncd` où se trouve le fichier d'exclusions. Elle doit exister, mais elle peut être vide.
-- La variable `targetdir=` indique le répertoire cible vers lequel vous envoyez des fichiers. Dans la plupart des cas, cela sera égal à la source, mais pas toujours.
+- La variable `excludeFrom=` indique à `lsyncd` où se trouve le fichier d'exclusions. Elle doit exister, mais elle peut très bien être vide.
+- La variable `targetdir=` indique le répertoire cible vers lequel vous envoyez des fichiers. Cela sera généralement égal à la source, mais pas toujours.
 - Ensuite, nous avons la section `rsync=` qui contient les options avec lesquelles nous exécutons `rsync`.
 - La variable `ssh=` indique le port SSH qui est en train d'écouter sur la machine cible
 
@@ -222,7 +221,7 @@ Si vous ajoutez plusieurs répertoires à synchroniser, vous devez répéter tou
 
 ## Le fichier `lsyncd.exclude`
 
-Comme il a été noté précédemment, le fichier `excludeFrom` doit exister. Créez ce fichier comme suit :
+Comme indiqué précédemment, le fichier `excludeFrom` doit exister. Créez ce fichier comme suit :
 
 ```bash
 touch /etc/lsyncd.exclude
@@ -239,19 +238,19 @@ Par exemple, si vous synchronisez le dossier `/etc` sur votre ordinateur, il y a
 
 ## Test et Lancement du Service `lsyncd`
 
-Maintenant que tout le reste est mis en place, nous pouvons tester l'ensemble. Assurez-vous que notre service systemd `lsyncd.service` va bien démarrer :
+Maintenant que tout le reste est mis en place, vous pouvez tester l'ensemble. Assurez-vous que le service systemd `lsyncd.service` va bien démarrer :
 
 ```bash
 systemctl start lsyncd
 ```
 
-Si aucune erreur n'apparaît après l'exécution de cette commande, vérifiez l'état du service, juste pour vous assurer :
+Si aucune erreur n'apparaît après l'exécution de cette commande, vérifiez l'état du service simplement pour vous assurer :
 
 ```bash
 systemctl status lsyncd
 ```
 
-Si cela montre le service en cours d'exécution, utilisez tail pour examiner les deux fichiers de log et assurez-vous que tout s'affiche correctement :
+Si le service est en cours d'exécution, utilisez tail pour voir les extrémités des deux fichiers journaux et assurez-vous que tout s'affiche correctement :
 
 ```bash
 tail /var/log/lsyncd.log
@@ -264,7 +263,7 @@ En supposant que tout cela semble correct, accédez au répertoire `/home/[user]
 touch /home/[user]/testfile
 ```
 
-Allez sur la machine cible et vérifiez si le fichier apparaît. Si tel est le cas, tout fonctionne comme il se doit. Définissez le service `lsyncd.service` pour qu'il soit lancé automatiquement au démarrage du système avec :
+Allez sur la machine cible et vérifiez si le fichier apparaît. Si tel est le cas, tout fonctionne comme il se doit. Réglez le service `lsyncd.service` pour qu'il soit lancé automatiquement au démarrage du système avec :
 
 ```bash
 systemctl enable lsyncd
@@ -272,9 +271,9 @@ systemctl enable lsyncd
 
 ## N’oubliez Pas d'être Prudent
 
-Chaque fois que vous synchronisez un ensemble de fichiers ou de répertoires sur une autre machine, réfléchissez soigneusement aux conséquences sur la machine cible. Si vous revenez au **fichier lsyncd.exclude** dans notre exemple ci-dessus, pouvez-vous imaginer ce qui pourrait arriver si vous omettez d'exclure */etc/fstab* ?
+Chaque fois que vous synchronisez un ensemble de fichiers ou de répertoires avec un autre ordinateur, réfléchissez bien à son effet sur l’ordinateur cible. Supposons que vous reveniez au **fichier lsyncd.exclude** dans l'exemple ci-dessus, pouvez-vous imaginer ce qui pourrait arriver si vous ne parveniez pas à exclure */etc/fstab* ?
 
-`fstab` est le fichier utilisé pour configurer les lecteurs de stockage sur n'importe quel ordinateur Linux. Les disques et les étiquettes sont presque certainement différents selon les machines. Le prochain redémarrage de l’ordinateur cible échouerait probablement complètement.
+`fstab` est le fichier qui configure les périphériques de stockage sur n'importe quel ordinateur Linux. Les disques et les étiquettes sont différents selon les machines. Le prochain redémarrage de l’ordinateur cible échouera probablement complètement.
 
 ## Conclusion et Références
 
