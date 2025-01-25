@@ -97,6 +97,8 @@ The value of `GRUB_CMDLINE_LINUX` should look similar to the text below although
 GRUB_CMDLINE_LINUX="resume=/dev/mapper/rl-swap rd.lvm.lv=rl/root rd.lvm.lv=rl/swap crashkernel=auto rhgb quiet nouveau.modeset=0 rd.driver.blacklist=nouveau"
 ```
 
+Save your changes with: ++shift+colon+"w"+"q"+exclam++
+
 Reload the grub environment:
 
 ```bash
@@ -111,4 +113,4 @@ sudo reboot now
 
 ## Conclusion
 
-You have successfully installed NVIDIA GPU drivers on your system using NVIDIA's official repository. Enjoy the enhanced capabilities of your NVIDIA GPU that the default Nouveau drivers can not provide. 
+You have successfully installed NVIDIA GPU drivers on your system using NVIDIA's official repository. Enjoy the enhanced capabilities of your NVIDIA GPU that the default Nouveau drivers can not provide.
