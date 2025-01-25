@@ -1,5 +1,5 @@
 ---
-title: Netzwerk Implementierung
+title: Netzwerk-Implementierung
 ---
 
 # Implementierung des Netzwerks

@@ -1,5 +1,5 @@
 ---
-title: Ansible Grundlagen
+title: Ansible-Grundlagen
 author: Antoine Le Morvan
 contributors: Steven Spencer, tianci li, Aditya Putta, Ganna Zhyrnova
 update: 2021-12-15
@@ -57,7 +57,7 @@ Es wird Ihnen bei folgenden Aufgaben helfen:
     
     Am 17. Oktober 2015 wurde AnsibleWorks (das Unternehmen hinter Ansible) von Red Hat für 150 Millionen Dollar übernommen.
 
-![Die Features von Ansible](images/ansible-001.png)
+![The features of Ansible](images/ansible-001.png)
 
 Um eine grafische Oberfläche für Ihre tägliche Arbeit mit Ansible bereitzustellen, können Sie einige Tools wie Ansible Tower (Red Hat) installieren, das nicht kostenlos ist, oder sein Open-Source-Gegenstück Awx, oder es können auch andere Projekte wie Jenkins und das hervorragende Rundeck verwendet werden.
 
