@@ -558,13 +558,13 @@ So, it is done in two steps: backup and compression.
 
 1. **copy-out mode** - Create a backup (archive). You can enable this mode through the `-o` or `--create` options. In this mode, you must generate a list of files with a specific command (`find`, `ls` or `cat`) and pass it to cpio.
 
-   * `find` : browses a tree, recursive or not;
-   * `ls` : lists a directory, recursive or not;
-   * `cat` : reads a file containing the trees or files to be saved.
+   * `find` : browses a tree, recursive or not. Supports both absolute path and relative path file lists.
+   * `ls` : lists a directory, recursive or not. Only supports file lists with relative paths.
+   * `cat` : reads a file containing the trees or files to be saved. The content of the file read by the `cat` command is the file list, with one line representing one file. Only supports file lists with absolute paths.
 
     !!! Note
 
-        `ls` cannot be used with `-l` (details) or `-R` (recursive).
+        The `ls` command cannot type any additional options or manipulate objects.
 
         It requires a simple list of names.
 
@@ -575,8 +575,8 @@ Like the `tar` command, users need to pay attention to how the file list is save
 
 secondary function:
 
-1. `-t` - Print a table of contents of the input.
-2. `-A` - Append to an existing archive. Only works in copy-in mode.
+1. `-t` - Print a table of contents of the input. Only works in copy-in mode.
+2. `-A` - Append to an existing archive. Only works in copy-out mode.
 
 !!! note
 
@@ -660,7 +660,7 @@ Adding files is only possible on direct access media.
 
 | Option | Description                                 |
 |--------|---------------------------------------------|
-| `-A`   | Append one or more files to an existing backup. |
+| `-A`   | Append one or more files to an existing backup. Only works in copy-out mode.|
 | `-F`   | Designates the backup to be modified.       |
 
 #### Compressing a backup
@@ -703,7 +703,7 @@ cpio -tv < /backups/etc.152.cpio | less
 
 | Options |Description               |
 |---------|---------------------------|
-| `-t`    | Reads a backup.           |
+| `-t`    | Reads a backup. Only works in copy-in mode. |
 | `-v`    | Displays file attributes. |
 
 After making a backup, you need to read its contents to ensure there are no errors.
@@ -729,7 +729,7 @@ cpio -iv < /backups/etc.152.cpio | less
 | `-i`                         | Restores a complete backup.                                          |
 | `-E file`                    | Restores only the files whose name is contained in file.            |
 | `--make-directories` or `-d` | Rebuilds the missing tree structure.                                |
-| `-u`                         | Replaces all files even if they exist.                              |
+| `-u`                         | Replaces all files even if they exist. This option can work in copy-in mode or copy-pass mode.                              |
 | `--no-absolute-filenames`    | Allows to restore a backup made in absolute mode in a relative way. |
 
 !!! Warning
