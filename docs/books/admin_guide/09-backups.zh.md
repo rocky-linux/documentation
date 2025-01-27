@@ -1,177 +1,200 @@
 ---
-title: Backup and Restore
+title: 备份和还原
 ---
 
-# Backup and Restore
+# 备份和还原
 
-In this chapter you will learn how to back up and restore your data with Linux.
+在本章中，您将学习如何使用 Linux 备份和还原您的数据。
 
 ****
 
-**Objectives** : In this chapter, future Linux administrators will learn how to:
+**目标**： 在本章中，未来的 Linux 管理员们将学习如何：
 
-:heavy_check_mark: use the `tar` and `cpio` command to make a backup;   
-:heavy_check_mark: check their backups and restore data;   
-:heavy_check_mark: compress or decompress their backups.
+:heavy_check_mark: 使用 `tar` 和 `cpio` 命令进行备份；  
+:heavy_check_mark: 检查他们的备份并恢复数据。  
+:heavy_check_mark: 压缩或解压他们的备份。
 
-:checkered_flag: **backup**, **restore**, **compression**
+:checkered_flag: **备份**, **恢复**, **压缩**
 
-**Knowledge**: :star: :star: :star:   
-**Complexity**: :star: :star:
+**知识性**: :star: :star: :star:  
+**复杂性**: :star: :star:
 
 **阅读时间**: 40 分钟
 
 ****
 
-!!! Note Throughout this chapter the command structures use "device" to specify both a target location for backup, and the source location when restoring. The device can be either external media or a local file. You should get a feel for this as the chapter unfolds, but you can always refer back to this note for clarification if you need to.
+!!! note "说明"
 
-The backup will answer a need to conserve and restore data in a sure and effective way.
+    在本章中，命令结构通过使用 "device" 来指定备份的目标位置以及还原时的源位置。 该设备可以是外部介质，也可以是本地文件。 随着本章的展开，你应该对这一点有所了解，但如果你需要的话，可以随时参考这篇笔记以获得解释。
 
-The backup allows you to protect yourself from the following:
+备份满足了以确切且有效的方式保存和恢复数据的需求。
 
-* **Destruction**: voluntary or involuntary. Human or technical. Virus, ...
-* **Deletion**: voluntary or involuntary. Human or technical. Virus, ...
-* **Integrity** : data becomes unusable.
+备份使您可以保护自己免受以下情况的影响：
 
-No system is infallible, no human is infallible, so to avoid losing data, it must be backed up to be able to restore after a problem.
+* **数据破坏**：自愿或非自愿的。 人为的或技术手段的。 病毒等
+* **数据删除**：自愿或非自愿的。 人为的或技术手段的。 病毒等
+* **完整性**：数据变得不可用。
 
-The backup media should be kept in another room (or building) than the server so that a disaster does not destroy the server and the backups.
+没有系统是绝对可靠的，也没有人是万无一失的，所以为了避免丢失数据，必须对数据进行备份，以便在出现问题后能够恢复。
 
-In addition, the administrator must regularly check that the media are still readable.
+备份介质应该保存在服务器以外的另一个房间（或建筑物）中，这样灾难就不会破坏服务器和备份。
+
+此外，管理员必须定期检查介质是否仍可读。
 
 ## 概论
 
-There are two principles, the **backup** and the **archive**.
+有两个规范，即 **备份** 和 **归档**。
 
-* The archive destroys the information source after the operation.
-* The backup preserves the source of information after the operation.
+* 存档会在操作后销毁信息源。
+* 备份会在操作后保留信息源。
 
-These operations consist of saving information in a file, on a peripheral or a supported media (tapes, disks, ...).
+这些操作包括将信息保存到文件、外设或支持的介质（磁带、磁盘等）中。
 
-### The process
+### 流程
 
-Backups require a lot of discipline and rigor from the system administrator. It is necessary to ask the following questions:
+备份需要系统管理员严格遵守规定。 系统管理员在执行备份操作之前需要考虑以下问题：
 
-* What is the appropriate medium?
-* What should be backed up?
-* How many copies?
-* How long will the backup take?
-* Method?
-* How often?
-* Automatic or manual?
-* Where to store it?
-* How long will it be kept?
+* 合适的媒介是什么？
+* 应该备份什么？
+* 有多少份？
+* 备份需要多长时间？
+* 方法？
+* 多久一次？
+* 自动或手动？
+* 存储在哪里？
+* 要保存多久？
+* 是否有成本问题需要考虑？
 
-### Backup methods
+除了这些问题外，系统管理员还应该根据实际情况考虑性能、数据重要性、带宽消耗和维护复杂性等因素。
 
-* **Complete**: one or more **filesystems** are backed up (kernel, data, utilities, ...).
-* **Partial**: one or more **files** are backed up (configurations, directories, ...).
-* **Differential**: only files modified since the last **complete** backup are backed up.
-* **Incremental**: only files modified since the last backup are backed up.
+### 备份方法
 
-### Periodicity
+* **全量备份**：指把硬盘或数据库内的所有文件、文件夹或数据作一次性的复制。
+* **增量备份**：指对上一次全量备份或增量备份后更新的数据进行备份。
+* **差异备份** ：指全量备份后兑变更文件的备份。
+* **选择性备份（部分备份）**：指备份系统的一部分。
+* **冷备份**：指系统处于关闭或维护状态时的备份。  备份的数据与该时间段内系统的数据完全一致。
+* **热备份**： 指系统正常运行时的备份。  由于系统中的数据随时在更新，备份的数据相对于系统的实际数据有一定的滞后性。
+* **异地备份**：指将数据备份到另一个地理位置，以避免因火灾、自然灾害、盗窃等造成的数据丢失和服务中断。
 
-* **Pre-current** : at a given time (before a system update, ...).
-* **Periodic**: Daily, weekly, monthly, ...
+### 备份频率
 
-!!! Tip Before a system change, it can be useful to make a backup. However, there is no point in backing up data every day that is only changed every month.
+* **定期**：在主要系统更新之前的特定时间段内进行备份（通常在非高峰时段）
+* **循环**：以天、周、月等为单位进行备份
 
-### Restoration methods
+!!! Tip "提示"
 
-Depending on the utilities available, it will be possible to perform several types of restorations.
+    在系统更改之前，进行备份可能很有用。 然而，每天备份每月都会变更的数据是没有意义的。
 
-* **Complete restoration**: trees, ...
-* **Selective restoration**: part of tree, files, ...
+### 恢复方法
 
-It is possible to restore a whole backup but it is also possible to restore only a part of it. However, when restoring a directory, the files created after the backup are not deleted.
+根据可用的实用程序，可以进行几种类型的恢复。
 
-!!! Tip To recover a directory as it was at the time of the backup, it is necessary to completely delete its contents before launching the restoration.
+在某些关系数据库管理系统中，"recover"（有时在文档中使用 "recovery" ）和 "restore" 的相应操作是不同的，这要求您查阅官方文档以获取更多信息。 有关更多信息，请参阅官方文档。 本基础文档不会详细介绍 RDBMS 的这一部分。
 
-### The tools
+* **完全恢复**：数据恢复基于全量备份或 "全量备份+增量备份" 或 "全量备份+差异备份" 。
+* **选择性恢复**：数据恢复基于选择性备份（部分备份）。
 
-There are many utilities to make backups.
+我们不建议在执行恢复操作之前直接删除当前活动操作系统中的目录或文件（除非您知道删除后会发生什么）。 如果你不知道会发生什么，你可以在当前操作系统上执行 "快照" 操作。
 
-* **editor tools** ;
-* **graphical tools**;
-* **command line tools**: `tar`, `cpio`, `pax`, `dd`, `dump`, ...
+!!! Tip "提示"
 
-The commands we will use here are `tar` and `cpio`.
+    出于安全原因，建议您在执行恢复操作之前将还原的目录或文件存储在 /tmp 目录中，以避免旧文件（旧目录）覆盖新文件（新目录）的情况。
 
-* `tar`:
-  * easy to use ;
-  * allows adding files to an existing backup.
-* `cpio` :
-  * retains owners;
-  * retains groups, dates and rights;
-  * skips damaged files;
-  * complete file system.
+### 工具与相关技术
 
-!!! Note These commands save in a proprietary and standardized format.
+有许多实用程序可以进行备份。
 
-### Naming convention
+* **编辑器工具**;
+* **图形工具**;
+* **命令行工具**：`tar`、`cpio`、`pax`、`dd`、`dump` 等
 
-The use of a naming convention makes it possible to quickly target the contents of a backup file and thus avoid hazardous restorations.
+我们在这里使用的命令是 `tar` 和 `cpio` 。 如果您想了解 `dump` 工具，请参阅 [本文档](../../guides/backup/dump_restore.md)。
 
-* name of the directory;
-* utility used;
-* options used;
-* date.
+* `tar`：
 
-!!! Tip The name of the backup must be an explicit name.
+  1. 易于使用；
+  2. 允许将文件添加到现有备份中。
 
-!!! Note The notion of extension under Linux does not exist. In other words, our use of extensions here is for the human operator. If the systems administrator sees a `.tar.gz` or `.tgz` file extension, for instance, then he knows how to deal with the file.
+* `cpio`：
 
-### Contents of a backup
+  1. 保留所有者；
+  2. 保留所有组、日期和权限。
+  3. 跳过损坏的文件；
+  4. 可对整个文件系统使用。
 
-A backup generally contains the following elements:
+!!! note "说明"
 
-* the file;
-* the name;
-* the owner;
-* the size;
-* the permissions
-* access date.
+    这些命令以专有的和标准化的格式保存。
 
-!!! Note The `inode` number is missing.
+**Replication**：一种将一组数据从一个数据源复制到另外一个或多个数据源的备份技术，主要分为 **同步复制** 和 **异步复制** 。 这是面向新手系统管理员的高级备份部分，因此这份基础文档不会详述这些内容。
 
-### Storage modes
+### 命名惯例
 
-There are two different storage modes:
+使用命名约定可以让人们迅速定位备份文件的内容，从而避免危险的恢复操作。
 
-* file on disk;
-* device.
+* 目录名称；
+* 所使用的实用工具；
+* 所使用的选项；
+* 日期。
 
-## Tape ArchiveR - `tar`
+!!! Tip "提示"
 
-The `tar` command allows saving on several successive media (multi-volume options).
+    备份的名称必须是一目了然的。
 
-It is possible to extract all or part of a backup.
+!!! note "说明"
 
-`tar` implicitly backs up in relative mode even if the path of the information to be backed up is mentioned in absolute mode. However, backups and restores in absolute mode are possible.
+    在 Linux 系统中，除了图形用户界面（GUI）环境中的少数例外情况（如 .jpg、.mp4、.gif）外，大多数文件都没有扩展名的概念。 换句话说，大多数文件不需要扩展名。 人为添加后缀的原因是为了方便人类用户识别。 例如，如果系统管理员看到 `.tar.gz` 或 `.tgz` 文件扩展名，那么他就知道如何处理该文件。
 
-### Restoration guidelines
+### 备份文件属性
 
-The right questions to ask are:
+单个备份文件可以包含以下属性：
 
-* what: partial or complete;
-* where: the place where the data will be restored;
-* how: absolute or relative.
+* 文件名（包括手动添加的后缀）；
+* 备份文件本身的 atime、ctime、mtime、btime (crtime)；
+* 备份文件本身的文件大小；
+* 备份文件中的文件或目录的属性或特征将被部分保留。 例如，保留文件或目录的 mtime，但不保留 `inode` 号。
 
-!!! Warning Before a restoration, it is important to take time to think about and determine the most appropriate method to avoid mistakes.
+### 存储方法
 
-Restorations are usually performed after a problem has occurred that needs to be resolved quickly. A poor restoration can, in some cases, make the situation worse.
+有两种不同的存储方法：
 
-### Backing up with `tar`
+* 内部：将备份文件存储在当前工作磁盘上。
+* 外部：将备份文件存储在外部设备上。 外部设备可以是 USB 驱动器、CD、磁盘、服务器或 NAS 等。
 
-The default utility for creating backups on UNIX systems is the `tar` command. These backups can be compressed by `bzip2`, `xz`, `lzip`, `lzma`, `lzop`, `gzip`, `compress` or `zstd`.
+## 磁带归档 - `tar`
 
-`tar` allows you to extract a single file or a directory from a backup, view its contents or validate its integrity.
+`tar` 命令允许在多个连续介质上保存（multi-volume 选项）。
 
-#### Estimate the size of a backup
+可以提取全部或部分备份。
 
-The following command estimates the size in kilobytes of a possible _tar_ file:
+即使以绝对模式提到要备份的信息的路径，`tar` 也会隐式地以相对模式备份。 但是，可以在绝对模式下进行备份和恢复。 如果您想查看 `tar` 用法的单独示例，请参阅 [本文档](../../guides/backup/tar.md)。
 
-```
+### 恢复指南
+
+要提出的正确问题是：
+
+* 什么：部分或全部；
+* 哪里：数据将被恢复的地方；
+* 方式：绝对或相对。
+
+!!! warning "警告"
+
+    在恢复之前，重要的是要考虑并确定最合适的方法来避免错误。
+
+恢复通常是在出现需要迅速解决的问题后进行的。 在某些情况下，糟糕的恢复会使情况变得更糟。
+
+### 用 `tar` 备份
+
+用于在 UNIX 系统上创建备份的默认实用程序是 `tar` 命令。 这些备份可以通过 `bzip2`、`xz`、`lzip`、`lzma`、`lzop`、`gzip`、`compress` 或 `zstd` 进行压缩。
+
+`tar` 允许您从备份中提取单个文件或目录，查看其内容或验证其完整性。
+
+#### 估计备份的大小
+
+以下的命令是估计一个可能的 *tar* 文件大小（以字节为单位）：
+
+```bash
 $ tar cf - /directory/to/backup/ | wc -c
 20480
 $ tar czf - /directory/to/backup/ | wc -c
@@ -180,137 +203,148 @@ $ tar cjf - /directory/to/backup/ | wc -c
 428
 ```
 
-!!! Warning Beware, the presence of "-" in the command line disturbs `zsh`. Switch to `bash`!
+!!! warning "警告"
 
-#### Naming convention for a `tar` backup
+    请注意，命令行中的 "-" 会干扰 `zsh` 。 请切换到 `bash` ！
 
-Here is an example of a naming convention for a `tar` backup, knowing that the date is to be added to the name.
+#### `tar` 备份的命名惯例
 
-| keys    | Files   | Suffix           | Observation                                  |
-| ------- | ------- | ---------------- | -------------------------------------------- |
-| `cvf`   | `home`  | `home.tar`       | `/home` in relative mode, uncompressed form  |
-| `cvfP`  | `/etc`  | `etc.A.tar`      | `/etc` in absolute mode, no compression      |
-| `cvfz`  | `usr`   | `usr.tar.gz`     | `/usr` in relative mode, _gzip_ compression  |
-| `cvfj`  | `usr`   | `usr.tar.bz2`    | `/usr` in relative mode, _bzip2_ compression |
-| `cvfPz` | `/home` | `home.A.tar.gz`  | `home` in absolute mode, _gzip_ compression  |
-| `cvfPj` | `/home` | `home.A.tar.bz2` | `home` in absolute mode, _bzip2_ compression |
-| …       |         |                  |                                              |
+这是一个 `tar` 备份命名惯例的示例，必要时请将日期添加到名称中。
 
-#### Create a backup
+| 键       | 文件      | 后缀名              | 功能                           |
+| ------- | ------- | ---------------- | ---------------------------- |
+| `cvf`   | `home`  | `home.tar`       | `/home` 在相对模式下，未压缩的形式        |
+| `cvfP`  | `/etc`  | `etc.A.tar`      | `/etc` 在绝对模式下，没有压缩           |
+| `cvfz`  | `usr`   | `usr.tar.gz`     | `/usr` 在相对模式下， 使用 *gzip* 压缩  |
+| `cvfj`  | `usr`   | `usr.tar.bz2`    | `/usr` 在相对模式下，使用 *bzip2* 压缩  |
+| `cvfPz` | `/home` | `home.A.tar.gz`  | `/home` 在绝对模式下，使用 *gzip* 压缩  |
+| `cvfPj` | `/home` | `home.A.tar.bz2` | `/home` 在绝对模式下，使用 *bzip2* 压缩 |
+| …       |         |                  |                              |
 
-##### Create a backup in relative mode
+#### 创建备份
 
-Creating a non-compressed backup in relative mode is done with the `cvf` keys:
+##### 在相对模式下创建备份
 
-```
+使用 `cvf` 键以相对模式创建非压缩备份：
+
+```bash
 tar c[vf] [device] [file(s)]
 ```
 
-Example:
+示例：
 
-```
+```bash
 [root]# tar cvf /backups/home.133.tar /home/
 ```
 
+| 键   | 说明              |
+| --- | --------------- |
+| `c` | 创建备份。           |
+| `v` | 显示已处理文件的名称。     |
+| `f` | 允许您指定备份（介质）的名称。 |
 
-| Key | Description                                            |
-| --- | ------------------------------------------------------ |
-| `c` | Creates a backup.                                      |
-| `v` | Displays the name of the processed files.              |
-| `f` | Allows you to specify the name of the backup (medium). |
+!!! Tip "提示"
 
-!!! Tip The hyphen (`-`) in front of the `tar` keys is not necessary!
+    `tar` 键前的连字符（`-`）是可选的！
 
-##### Create a backup in absolute mode
+##### 在绝对模式下创建备份
 
-Creating a non-compressed backup explicitly in absolute mode is done with the `cvfP` keys:
+使用 `cvfP` 键在绝对模式下显式创建非压缩备份：
 
+```bash
+tar c[vf]P [device] [file(s)]
 ```
-$ tar c[vf]P [device] [file(s)]
-```
 
-Example:
+示例：
 
-```
+```bash
 [root]# tar cvfP /backups/home.133.P.tar /home/
 ```
 
-| Key | Description                       |
-| --- | --------------------------------- |
-| `P` | Create a backup in absolute mode. |
+| 键   | 说明          |
+| --- | ----------- |
+| `P` | 在绝对模式下创建备份。 |
 
+!!! warning "警告"
 
-!!! Warning With the `P` key, the path of the files to be backed up must be entered as **absolute**. If the two conditions (key `P` and path **absolute**) are not indicated, the backup is in relative mode.
+    使用 `P` 键，需要备份的文件路径必须以 **绝对** 的形式输入。 如果未指示这两个条件（`P` 键和 **绝对** 路径），则备份处于相对模式。
 
-##### Creating a compressed backup with `gzip`
+##### 使用 `gzip` 创建压缩备份
 
-Creating a compressed backup with `gzip` is done with the `cvfz` keys:
+使用 `cvfz `键创建 `gzip` 压缩备份：
 
-```
-$ tar cvzf backup.tar.gz dirname/
-```
-
-| Key | Description                      |
-| --- | -------------------------------- |
-| `z` | Compresses the backup in _gzip_. |
-
-
-!!! Note The `.tgz` extension is an equivalent extension to `.tar.gz`.
-
-!!! Note Keeping the `cvf` (`tvf` or `xvf`) keys unchanged for all backup operations and simply adding the compression key to the end of the keys makes the command easier to understand (e.g. `cvfz` or `cvfj`, etc.).
-
-##### Creating a compressed backup with `bzip`
-
-Creating a compressed backup with `bzip` is done with the keys `cvfj`:
-
-```
-$ tar cvfj backup.tar.bz2 dirname/
+```bash
+tar cvzf backup.tar.gz dirname/
 ```
 
-| Key | Description                       |
-| --- | --------------------------------- |
-| `j` | Compresses the backup in _bzip2_. |
+| 键   | 说明             |
+| --- | -------------- |
+| `z` | 用 *gzip* 压缩备份。 |
 
-!!! Note The `.tbz` and `.tb2` extensions are equivalent to `.tar.bz2` extensions.
+!!! note "说明"
 
-##### Compression `compress`, `gzip`, `bzip2`, `lzip` and `xz`
+    `.tgz` 扩展名等效于 `.tar.gz`。
 
-Compression, and consequently decompression, will have an impact on resource consumption (time and CPU usage).
+!!! note "说明"
 
-Here is a ranking of the compression of a set of text files, from least to most efficient:
+    对于所有备份操作，保持 `cvf`（`tvf` 或 `xvf`）键不变，只需在键的末尾添加压缩键，即可使命令更容易理解（例如：`cvfz` 或 `cvfj` 等）。
 
-- compress (`.tar.Z`)
-- gzip (`.tar.gz`)
-- bzip2 (`.tar.bz2`)
-- lzip (`.tar.lz`)
-- xz (`.tar.xz`)
+##### 使用 `bzip2` 创建压缩备份
 
-#### Add a file or directory to an existing backup
+使用 `bzip2` 创建压缩备份是通过 `cvfj` 键完成的：
 
-It is possible to add one or more items to an existing backup.
-
+```bash
+tar cvfj backup.tar.bz2 dirname/
 ```
+
+| 键   | 说明              |
+| --- | --------------- |
+| `j` | 用 *bzip2* 压缩备份。 |
+
+!!! note "说明"
+
+    `.tbz` 和 `.tb2` 扩展名等同于 `.tar.bz2` 扩展名。
+
+##### 压缩效率比较
+
+压缩和随后的解压缩将影响资源消耗（时间和 CPU 使用率）。
+
+下面是一组文本文件的压缩效率从低到高的排序：
+
+* compress （`.tar.Z`）
+* gzip（`.tar.gz`）
+* bzip2（`.tar.bz2`）
+* lzip（`.tar.lz`）
+* xz（`.tar.xz`）
+
+#### 将文件或目录添加到现有备份
+
+可以向现有备份添加一个或多个项目。
+
+```bash
 tar {r|A}[key(s)] [device] [file(s)]
 ```
 
-To add `/etc/passwd` to the backup `/backups/home.133.tar`:
+将 `/etc/passwd` 添加到 `/backups/home.133.tar` 备份中：
 
-```
+```bash
 [root]# tar rvf /backups/home.133.tar /etc/passwd
 ```
 
-Adding a directory is similar. Here add `dirtoadd` to `backup_name.tar`:
+添加目录与此类似。 在这里，将 `dirtoadd` 添加到 `backup_name.tar` ：
 
+```bash
+tar rvf backup_name.tar dirtoadd
 ```
-$ tar rvf backup_name.tar dirtoadd
-```
 
-| Key | Description                                                                      |
-| --- | -------------------------------------------------------------------------------- |
-| `r` | Adds one or more files at the end of a direct access media backup (hard disk).   |
-| `A` | Adds one or more files at the end of a backup on sequential access media (tape). |
+| 键   | 说明                      |
+| --- | ----------------------- |
+| `r` | 将文件或目录追加到归档的末尾。         |
+| `A` | 将一个归档中的所有文件追加到另一个归档的末尾。 |
 
-!!! Note It is not possible to add files or folders to a compressed backup.
+!!! note "说明"
+
+    无法将文件或文件夹添加到压缩备份中。
 
     ```
     $ tar rvfz backup.tgz filetoadd
@@ -318,55 +352,63 @@ $ tar rvf backup_name.tar dirtoadd
     Try `tar --help' or `tar --usage' for more information.
     ```
 
-!!! Note If the backup was performed in relative mode, add files in relative mode. If the backup was done in absolute mode, add files in absolute mode.
+!!! note "说明"
 
-    Mixing modes can cause problems when restoring.
+    如果备份是在相对模式下执行的，请以相对模式添加文件。 如果备份是以绝对模式完成的，请以绝对模式添加文件。
+    
+    恢复时，混合模式可能会导致问题。
 
-#### List the contents of a backup
+#### 列出备份的内容
 
-Viewing the contents of a backup without extracting it is possible.
+可以在不提取备份的情况下查看备份内容。
 
-```
+```bash
 tar t[key(s)] [device]
 ```
 
-| Key | Description                                           |
-| --- | ----------------------------------------------------- |
-| `t` | Displays the content of a backup (compressed or not). |
+| 键   | 说明               |
+| --- | ---------------- |
+| `t` | 显示备份的内容（无论是否压缩）。 |
 
-Examples:
+示例：
 
-```
-$ tar tvf backup.tar
-$ tar tvfz backup.tar.gz
-$ tar tvfj backup.tar.bz2
-```
-
-When the number of files in a backup becomes large, it is possible to _pipe_ the result of the `tar` command to a _pager_ (`more`, `less`, `most`, etc.):
-
-```
-$ tar tvf backup.tar | less
+```bash
+tar tvf backup.tar
+tar tvfz backup.tar.gz
+tar tvfj backup.tar.bz2
 ```
 
-!!! Tip To list or retrieve the contents of a backup, it is not necessary to mention the compression algorithm used when the backup was created. That is, a `tar tvf` is equivalent to `tar tvfj`, to read the contents, and a `tar xvf` is equivalent to `tar xvfj`, to extract.
+当备份中的文件数量增加时，您可以使用管道符（`|`）和一些命令（`less`、`more`、`most` 以及其他）来实现分页查看的效果：
 
-!!! Tip Always check the contents of a backup.
-
-#### Check the integrity of a backup
-
-The integrity of a backup can be tested with the `W` key at the time of its creation:
-
-```
-$ tar cvfW file_name.tar dir/
+```bash
+tar tvf backup.tar | less
 ```
 
-The integrity of a backup can be tested with the key `d` after its creation:
+!!! Tip "提示"
 
-```
-$ tar vfd file_name.tar dir/
+    要列出或检索备份的内容，不必提及创建备份时使用的压缩算法。 也就是说，读取内容时，`tar tvf` 等同于 `tar tvfj`。 仅在创建压缩备份时才 **必须** 选择压缩类型或算法。
+
+!!! Tip "提示"
+
+    在执行还原操作之前，您应该始终检查和查看备份文件的内容。
+
+#### 检查备份的完整性
+
+备份的完整性可以在创建时使用 `W` 键进行测试：
+
+```bash
+tar cvfW file_name.tar dir/
 ```
 
-!!! Tip By adding a second `v` to the previous key, you will get the list of archived files as well as the differences between the archived files and those present in the file system.
+备份创建后，可以使用 `d` 键测试备份的完整性：
+
+```bash
+tar vfd file_name.tar dir/
+```
+
+!!! Tip "提示"
+
+    通过在前一个键中添加第二个 `v`，您将得到归档文件的列表以及归档文件与文件系统中已存在文件之间的差异。
 
     ```
     $ tar vvfd  /tmp/quodlibet.tar .quodlibet/
@@ -379,9 +421,9 @@ $ tar vfd file_name.tar dir/
     […]
     ```
 
-The `W` key is also used to compare the content of an archive against the filesystem:
+`W` 键还用于将归档的内容与文件系统进行比较：
 
-```
+```bash
 $ tar tvfW file_name.tar
 Verify 1/file1
 1/file1: Mod time differs
@@ -390,423 +432,458 @@ Verify 1/file2
 Verify 1/file3
 ```
 
-The verification with the `W` key cannot be done with a compressed archive. The key `d` must be used:
+您无法使用 `W` 键验证压缩归档。 相反，您必须使用 `d` 键。
 
-```
-$ tar dfz file_name.tgz
-$ tar dfj file_name.tar.bz2
-```
-
-#### Extract (_untar_) a backup
-
-Extract (_untar]_) a `*.tar` backup is done with the `xvf` keys:
-
-Extract the `etc/exports` file from the `/savings/etc.133.tar` backup into the `etc` directory of the active directory:
-
-```
-$ tar xvf /backups/etc.133.tar etc/exports
+```bash
+tar dfz file_name.tgz
+tar dfj file_name.tar.bz2
 ```
 
-Extract all files from the compressed backup `/backups/home.133.tar.bz2` into the active directory:
+#### 提取（*解压缩*）备份
 
+使用 `xvf` 键提取（*解压缩*）`*.tar` 备份：
+
+将 `/savings/etc.133.tar` 备份文件中的 `etc/exports` 文件提取到当前目录的 `etc` 目录中：
+
+```bash
+tar xvf /backups/etc.133.tar etc/exports
 ```
+
+将压缩备份 `/backups/home.133.tar.bz2` 中的所有文件提取到当前目录中：
+
+```bash
 [root]# tar xvfj /backups/home.133.tar.bz2
 ```
 
-Extract all files from the backup `/backups/etc.133.P.tar` to their original directory:
+将备份 `/backups/etc.133.P.tar` 中的所有文件提取到其原始目录：
 
-```
-$ tar xvfP /backups/etc.133.P.tar
-```
-
-!!! Warning Go to the right place.
-
-    Check the contents of the backup.
-
-| Key | Description                                       |
-| --- | ------------------------------------------------- |
-| `x` | Extract files from the backup, compressed or not. |
-
-
-Extracting a _tar-gzipped_ (`*.tar.gz`) backup is done with the `xvfz` keys:
-
-```
-$ tar xvfz backup.tar.gz
+```bash
+tar xvfP /backups/etc.133.P.tar
 ```
 
-Extracting a _tar-bzipped_ (`*.tar.bz2`) backup is done with the `xvfj` keys:
+!!! warning "警告"
 
-```
-$ tar xvfj backup.tar.bz2
-```
+    出于安全原因，提取以绝对模式保存的备份文件时应谨慎。
+    
+    同样，在执行提取操作之前，您应该始终检查备份文件的内容（尤其是以绝对模式保存的文件）。
 
-!!! Tip To extract or list the contents of a backup, it is not necessary to mention the compression algorithm used to create the backup. That is, a `tar xvf` is equivalent to `tar xvfj`, to extract the contents, and a `tar tvf` is equivalent to `tar tvfj`, to list.
+| 键   | 说明                |
+| --- | ----------------- |
+| `x` | 从备份中提取文件（无论是否压缩）。 |
 
-!!! Warning To restore the files in their original directory (key `P` of a `tar xvf`), you must have generated the backup with the absolute path. That is, with the `P` key of a `tar cvf`.
+使用 `xvfz` 键提取 *tar-gzipped* （`*.tar.gz`）备份：
 
-##### Extract only a file from a _tar_ backup
-
-To extract a specific file from a _tar_ backup, specify the name of that file at the end of the `tar xvf` command.
-
-```
-$ tar xvf backup.tar /path/to/file
+```bash
+tar xvfz backup.tar.gz
 ```
 
-The previous command extracts only the `/path/to/file` file from the `backup.tar` backup. This file will be restored to the `/path/to/` directory created, or already present, in the active directory.
+使用 `xvfj` 键提取 *tar-bzipped* （`*.tar.bz2`）备份：
 
-```
-$ tar xvfz backup.tar.gz /path/to/file
-$ tar xvfj backup.tar.bz2 /path/to/file
-```
-
-##### Extract a folder from a backup _tar_
-
-To extract only one directory (including its subdirectories and files) from a backup, specify the directory name at the end of the `tar xvf` command.
-
-```
-$ tar xvf backup.tar /path/to/dir/
+```bash
+tar xvfj backup.tar.bz2
 ```
 
-To extract multiple directories, specify each of the names one after the other:
+!!! Tip "提示"
 
-```
-$ tar xvf backup.tar /path/to/dir1/ /path/to/dir2/
-$ tar xvfz backup.tar.gz /path/to/dir1/ /path/to/dir2/
-$ tar xvfj backup.tar.bz2 /path/to/dir1/ /path/to/dir2/
-```
+    要提取或列出备份的内容，不需要提及用于创建备份的压缩算法。 也就是说，`tar xvf` 相当于 `tar xvfj`，用于提取内容，`tar tvf` 相当于 `tar tvfj`，用于列出。
 
-##### Extract a group of files from a _tar_ backup using regular expressions (_regex_)
+!!! warning "警告"
 
-Specify a _regex_ to extract the files matching the specified selection pattern.
+    要将文件恢复到原始目录（`tar xvf` 的 `P` 键），你必须使用绝对路径生成备份。 也就是说，使用 `tar cvf` 的 `P` 键。
 
-For example, to extract all files with the extension `.conf` :
+##### 仅从 *tar* 备份中提取文件
 
-```
-$ tar xvf backup.tar --wildcards '*.conf'
+要从 *tar* 备份中提取特定文件，请在 `tar xvf` 命令的末尾指定该文件的名称。
+
+```bash
+tar xvf backup.tar /path/to/file
 ```
 
-keys :
+前面的命令仅从 `backup.tar` 备份中提取 `/path/to/file`文件。 此文件将被还原到活动目录中已创建或已存在的 `/path/to/` 目录中。
 
-  * **--wildcards *.conf** corresponds to files with the extension `.conf`.
-
-## _CoPy Input Output_ - `cpio`
-
-The `cpio` command allows saving on several successive media without specifying any options.
-
-It is possible to extract all or part of a backup.
-
-There is no option, unlike the `tar` command, to backup and compress at the same time. So it is done in two steps: backup and compression.
-
-To perform a backup with `cpio`, you have to specify a list of files to backup.
-
-This list is provided with the commands `find`, `ls` or `cat`.
-
-* `find` : browse a tree, recursive or not;
-* `ls` : list a directory, recursive or not;
-* `cat` : reads a file containing the trees or files to be saved.
-
-!!! Note `ls` cannot be used with `-l` (details) or `-R` (recursive).
-
-    It requires a simple list of names.
-
-### Create a backup with `cpio` command
-
-Syntax of the `cpio` command:
-
-```
-[files command |] cpio {-o| --create} [-options] [<file-list] [>device]
+```bash
+tar xvfz backup.tar.gz /path/to/file
+tar xvfj backup.tar.bz2 /path/to/file
 ```
 
-Example:
+##### 从备份 *tar* 中提取文件夹
 
-With a redirection of the output of `cpio`:
+要从备份中仅提取一个目录（包括其子目录和文件），请在 `tar xvf` 命令的结尾处指定目录名称。
 
-```
-$ find /etc | cpio -ov > /backups/etc.cpio
-```
-
-Using the name of a backup media :
-
-```
-$ find /etc | cpio -ovF /backups/etc.cpio
+```bash
+tar xvf backup.tar /path/to/dir/
 ```
 
-The result of the `find` command is sent as input to the `cpio` command via a _pipe_ (character `|`, <kbd>AltGr</kbd> + <kbd>6</kbd>).
+要提取多个目录，请依次指定每个目录的名称：
 
-Here, the `find /etc` command returns a list of files corresponding to the contents of the `/etc` directory (recursively) to the `cpio` command, which performs the backup.
-
-Do not forget the `>` sign when saving or the `F save_name_cpio`.
-
-| Options | Description                                    |
-| ------- | ---------------------------------------------- |
-| `-o`    | Creates a backup (_output_).                   |
-| `-v`    | Displays the name of the processed files.      |
-| `-F`    | Designates the backup to be modified (medium). |
-
-Backup to a media :
-
-```
-$ find /etc | cpio -ov > /dev/rmt0
+```bash
+tar xvf backup.tar /path/to/dir1/ /path/to/dir2/
+tar xvfz backup.tar.gz /path/to/dir1/ /path/to/dir2/
+tar xvfj backup.tar.bz2 /path/to/dir1/ /path/to/dir2/
 ```
 
-The support can be of several types:
+##### 使用通配符从 *tar* 备份中提取一组文件
 
-* tape drive: `/dev/rmt0`  ;
-* a partition: `/dev/sda5`, `/dev/hda5`, etc.
+指定通配符以提取与指定选择模式匹配的文件。
 
-### Type of backup
+例如，要提取扩展名为 `.conf` 的所有文件：
 
-#### Backup with relative path
-
-```
-$ cd /
-$ find etc | cpio -o > /backups/etc.cpio
+```bash
+tar xvf backup.tar --wildcards '*.conf'
 ```
 
-#### Backup with absolute path
+键：
 
+* __--wildcards *.conf__ 对应于扩展名为 `.conf` 的文件。
+
+!!! tip "扩展知识"
+
+    虽然通配符和正则表达式通常具有相同的符号或样式，但它们匹配的对象完全不同，因此人们经常混淆它们。
+    
+    **通配符**：用于匹配文件名或目录名。 
+    **正则表达式**：用于匹配文件的内容。
+    
+    您可以在 [此文档](../sed_awk_grep/1_regular _expressions_vs_wildcards.md) 中看到更详细的介绍。
+
+## *CoPy Input Output* - `cpio`
+
+`cpio` 命令允许在不指定任何选项的情况下在多个连续介质上进行保存。
+
+可以提取全部或部分备份。
+
+与 `tar` 命令不同的是，它没有同时备份和压缩的选项。 因此，它分两步完成：备份和压缩。
+
+`cpio` 拥有三种操作模式，每种模式对应着一种不同的功能：
+
+1. **copy-out 模式** - 创建备份（归档）。 您可以通过 `-o` 或 `--create` 选项启用此模式。 在此模式中，您必须使用特定命令（`find`、`ls`或 `cat`）生成一个文件列表并将其传递给 cpio。
+
+   * `find`：浏览树（无论是否递归）；
+   * `ls`：列出一个目录（无论是否递归）；
+   * `cat`：读取包含要保存的树或文件的文件。
+
+    !!! note "说明"
+
+        `ls` 不能与 `-l`（细节）或 `-R`（递归）一起使用。
+
+        它需要一个简单的名称列表。
+
+2. **copy-in 模式** – 从归档中提取文件。 您可以通过 `-i` 选项启用此模式。
+3. **copy-pass 模式** - 将文件从一个目录复制到另一个目录。 您可以通过 `-p` 或 `--pass-through` 选项启用此模式。
+
+与 `tar` 命令一样，用户在创建归档时需要注意文件列表的保存方式（**绝对路径** 或 **相对路径**）。
+
+次要功能：
+
+1. `-t` - 打印输入的内容表。
+2. `-A` - 追加到现有归档。 仅工作在 copy-in 模式。
+
+!!! note "注意"
+
+    `cpio` 的一些选项需要与正确的操作模式相结合才能正常工作，参见 `man 1 cpio`。
+
+### copy-out 模式
+
+`cpio` 命令的语法：
+
+```bash
+[files command |] cpio {-o| --create} [-options] [< file-list] [> device]
 ```
-$ find /etc | cpio -o > /backups/etc.A.cpio
+
+示例：
+
+使用 `cpio` 输出的重定向：
+
+```bash
+find /etc | cpio -ov > /backups/etc.cpio
 ```
 
-!!! Warning If the path specified in the `find` command is **absolute** then the backup will be performed in **absolute**.
+使用备份介质名称：
 
-    If the path indicated in the `find` command is **relative** then the backup will be done in **relative**.
-
-### Add to a backup
-
-```
-[files command |] cpio {-o| --create} -A [-options] [<fic-list] {F|>device}
+```bash
+find /etc | cpio -ovF /backups/etc.cpio
 ```
 
-Example:
+`find` 命令的结果作为输入通过 *管道*（字符 `|`, ++left-shift+backslash++）发送到 `cpio` 命令。
 
+在这里，`find /etc` 命令向执行备份的 `cpio` 命令返回与 `/etc` 目录内容（递归）对应的文件列表。
+
+保存时不要忘记 `>` 符号或 `F save_name_cpio`。
+
+| 选项   | 说明                                          |
+| ---- | ------------------------------------------- |
+| `-o` | 使用 _cp-out_ 模式创建备份。                         |
+| `-v` | 显示已处理文件的名称。                                 |
+| `-F` | 备份到指定介质，可以替换 `cpio` 命令中的标准输入（"<"）和标准输出（">"） |
+
+备份到介质：
+
+```bash
+find /etc | cpio -ov > /dev/rmt0
 ```
-$ find /etc/shadow | cpio -o -AF SystemFiles.A.cpio
+
+介质可以有多种类型：
+
+* 磁带驱动器：`/dev/rmt0`；
+* 一个分区：`/dev/sda5`、`/dev/hda5` 等。
+
+#### 文件列表的相对和绝对路径
+
+```bash
+cd /
+find etc | cpio -o > /backups/etc.cpio
 ```
 
-Adding files is only possible on direct access media.
-
-| Option | Description                                 |
-| ------ | ------------------------------------------- |
-| `-A`   | Adds one or more files to a backup on disk. |
-| `-F`   | Designates the backup to be modified.       |
-
-### Compressing a backup
-
-* Save **then** compress
-
+```bash
+find /etc | cpio -o > /backups/etc.A.cpio
 ```
+
+!!! warning "警告"
+
+    如果 `find` 命令中指定的路径是 **绝对**，则将在 **绝对** 路径中执行备份。
+    
+    如果 `find` 命令中指定的路径是 **相对**，则将在 **相对** 路径中执行备份。
+
+#### 向现有备份追加文件
+
+```bash
+[files command |] cpio {-o| --create} -A [-options] [< fic-list] {F| > device}
+```
+
+示例：
+
+```bash
+find /etc/shadow | cpio -o -AF SystemFiles.A.cpio
+```
+
+只能在直接访问介质上添加文件。
+
+| 选项   | 说明              |
+| ---- | --------------- |
+| `-A` | 向现有备份追加一个或多个文件。 |
+| `-F` | 指定要修改的备份。       |
+
+#### 压缩备份
+
+* 保存 **然后** 压缩
+
+```bash
 $ find /etc | cpio  –o > etc.A.cpio
 $ gzip /backups/etc.A.cpio
 $ ls /backups/etc.A.cpio*
 /backups/etc.A.cpio.gz
 ```
 
-* Save **and** compress
+* 保存 **并** 压缩
 
-```
-$ find /etc | cpio –o | gzip > /backups/etc.A.cpio.gz
-```
-
-There is no option, unlike the `tar` command, to save and compress at the same time. So it is done in two steps: saving and compressing.
-
-The syntax of the first method is easier to understand and remember, because it is done in two steps.
-
-For the first method, the backup file is automatically renamed by the `gzip` utility which adds `.gz` to the end of the file name. Similarly the `bzip2` utility automatically adds `.bz2`.
-
-### Read the contents of a backup
-
-Syntax of the `cpio` command to read the contents of a _cpio_ backup:
-
-```
-cpio -t [-options] [<fic-list]
+```bash
+find /etc | cpio –o | gzip > /backups/etc.A.cpio.gz
 ```
 
-Example:
+与 `tar` 命令不同的是没有同时保存和压缩的选项。 因此，它分两步完成：保存和压缩。
 
-```
-$ cpio -tv </backups/etc.152.cpio | less
-```
+第一个方法的语法更容易理解和记忆，因为它分两步完成。
 
-| Options | Description               |
-| ------- | ------------------------- |
-| `-t`    | Reads a backup.           |
-| `-v`    | Displays file attributes. |
+对于第一种方法，`gzip` 实用程序会自动重命名备份文件，并在文件名末尾添加 `.gz`。 同样，`bzip2` 实用程序会自动添加 `.bz2`。
 
-After making a backup, you need to read its contents to be sure that there were no errors.
+### 读取备份的内容
 
-In the same way, before performing a restore, you must read the contents of the backup that will be used.
+读取 *cpio* 备份内容的 `cpio` 命令语法：
 
-### Restore a backup
-
-Syntax of the `cpio` command to restore a backup:
-
-```
-cpio {-i| --extract} [-E file] [-options] [<device]
+```bash
+cpio -t [-options] [< fic-list]
 ```
 
-Example:
+示例：
 
-```
-$ cpio -iv </backups/etc.152.cpio | less
-```
-
-| Options                      | Description                                                         |
-| ---------------------------- | ------------------------------------------------------------------- |
-| `-i`                         | Restore a complete backup.                                          |
-| `-E file`                    | Restores only the files whose name is contained in file.            |
-| `--make-directories` or `-d` | Rebuilds the missing tree structure.                                |
-| `-u`                         | Replaces all files even if they exist.                              |
-| `--no-absolute-filenames`    | Allows to restore a backup made in absolute mode in a relative way. |
-
-!!! Warning By default, at the time of restoration, files on the disk whose last modification date is more recent or equal to the date of the backup are not restored (in order to avoid overwriting recent information with older information).
-
-    The `u` option, on the other hand, allows you to restore older versions of the files.
-
-Examples:
-
-* Absolute restoration of an absolute backup
-
-```
-$ cpio –ivF home.A.cpio
+```bash
+cpio -tv < /backups/etc.152.cpio | less
 ```
 
-* Absolute restoration on an existing tree structure
+| 选项   | 说明      |
+| ---- | ------- |
+| `-t` | 读取备份。   |
+| `-v` | 显示文件属性。 |
 
-The `u` option allows you to overwrite existing files at the location where the restore takes place.
+备份之后，您需要读取其内容以确保没有错误。
 
-```
-$ cpio –iuvF home.A.cpio
-```
+同样，在执行恢复之前，必须读取将要使用的备份的内容。
 
-* Restore an absolute backup in relative mode
+### copy-in 模式
 
-The long option `no-absolute-filenames` allows a restoration in relative mode. Indeed the `/` at the beginning of the path will be removed.
+用于恢复备份的 `cpio` 命令语法：
 
-```
-$ cpio --no-absolute-filenames -divuF home.A.cpio
-```
-
-!!! Tip The creation of directories is perhaps necessary, hence the use of the `d` option
-
-* Restore a relative backup
-
-```
-$ cpio –iv <etc.cpio
+```bash
+cpio {-i| --extract} [-E file] [-options] [< device]
 ```
 
-* Absolute restoration of a file or directory
+示例：
 
-The restoration of a particular file or directory requires the creation of a list file that must then be deleted.
-
+```bash
+cpio -iv < /backups/etc.152.cpio | less
 ```
+
+| 选项                          | 说明                 |
+| --------------------------- | ------------------ |
+| `-i`                        | 恢复完整的备份。           |
+| `-E file`                   | 仅恢复文件名包含在文件中的文件。   |
+| `--make-directories` 或 `-d` | 重建缺失的树结构。          |
+| `-u`                        | 替换所有文件，即使它们存在。     |
+| `--no-absolute-filenames`   | 允许以相对方式恢复绝对模式下的备份。 |
+
+!!! warning "警告"
+
+    默认情况下，在恢复时不恢复磁盘上最后修改日期较新或等于备份日期的文件（以避免用较旧的信息覆盖最近的信息）。
+    
+    另一方面，`u` 选项允许您恢复文件的旧版本。
+
+示例：
+
+* 绝对备份的绝对恢复
+
+```bash
+cpio –ivF home.A.cpio
+```
+
+* 对现有树结构进行绝对恢复
+
+`u` 选项允许您覆盖恢复位置的现有文件。
+
+```bash
+cpio –iuvF home.A.cpio
+```
+
+* 以相对模式恢复绝对备份
+
+长选项 `no-absolute-filename` 允许在相对模式下进行恢复。 实际上，路径开头的 `/` 将被删除。
+
+```bash
+cpio --no-absolute-filenames -divuF home.A.cpio
+```
+
+!!! Tip "提示"
+
+    创建目录可能是必要的，因此需要使用 `d` 选项
+
+* 恢复相对备份
+
+```bash
+cpio –iv < etc.cpio
+```
+
+* 文件或目录的绝对恢复
+
+恢复特定的文件或目录需要创建一个列表文件，然后必须删除该文件。
+
+```bash
 echo "/etc/passwd" > tmp
 cpio –iuE tmp -F etc.A.cpio
 rm -f tmp
 ```
 
-## Compression - decompression utilities
+## 压缩 - 解压缩实用程序
 
-Using compression at the time of a backup can have a number of drawbacks:
+在备份时使用压缩可能会有许多缺点：
 
-* Lengthens the backup time as well as the restore time.
-* It makes it impossible to add files to the backup.
+* 延长了备份时间和恢复时间。
+* 这使得无法将文件添加到备份中。
 
-!!! Note It is therefore better to make a backup and compress it than to compress it during the backup.
+!!! note "说明"
 
-### Compressing with `gzip`
+    因此，最好进行备份并压缩它，而不是在备份过程中压缩它。
 
-The `gzip` command compresses data.
+### 使用 `gzip` 进行压缩
 
-Syntax of the `gzip` command:
+`gzip` 命令压缩数据。
 
-```
+`gzip` 命令的语法：
+
+```bash
 gzip [options] [file ...]
 ```
 
-Example:
+示例：
 
-```
+```bash
 $ gzip usr.tar
 $ ls
 usr.tar.gz
 ```
 
-The file receives the extension `.gz`.
+该文件的扩展名为 `.gz`。
 
-It keeps the same rights and the same last access and modification dates.
+它保留相同的权限以及相同的最后访问和修改日期。
 
-### Compressing with `bunzip2`
+### 使用 `bzip2` 进行压缩
 
-The `bunzip2` command also compresses data.
+`bzip2` 命令也压缩数据。
 
-Syntax of the `bzip2` command:
+`bzip2` 命令的语法：
 
-```
+```bash
 bzip2 [options] [file ...]
 ```
 
-Example:
+示例：
 
-```
+```bash
 $ bzip2 usr.cpio
 $ ls
 usr.cpio.bz2
 ```
 
-The file name is given the extension `.bz2`.
+文件的扩展名为 `.bz2`。
 
-Compression by `bzip2` is better than compression by `gzip` but it takes longer to execute.
+`bzip2` 压缩比 `gzip` 压缩要好，但执行它需要更长的时间。
 
-### Decompressing with `gunzip`
+### 使用 `gunzip` 进行解压缩
 
-The `gunzip` command decompresses compressed data.
+`gunzip` 命令用来解压压缩的数据。
 
-Syntax of the `gunzip` command:
+`gunzip` 命令的语法：
 
-```
+```bash
 gunzip [options] [file ...]
 ```
 
-Example:
+示例：
 
-```
+```bash
 $ gunzip usr.tar.gz
 $ ls
 usr.tar
 ```
 
-The file name is truncated by `gunzip` and the extension `.gz` is removed.
+文件名被 `gunzip` 截断，扩展名 `.gz` 被删除。
 
-`gunzip` also decompresses files with the following extensions:
+`gunzip` 还解压缩具有以下扩展名的文件：
 
-* `.z` ;
-* `-z` ;
-* `_z` .
+* `.z`；
+* `-z`；
+* `_z`；
+* `-gz`；
 
-### Decompressing with `bunzip2`
+### 使用 `bunzip2` 进行解压缩
 
-The `bunzip2` command decompresses compressed data.
+`bunzip2` 命令用来解压压缩的数据。
 
-Syntax of the `bzip2` command:
+`bzip2` 命令的语法：
 
-```
+```bash
 bzip2 [options] [file ...]
 ```
 
-Example:
+示例：
 
-```
+```bash
 $ bunzip2 usr.cpio.bz2
 $ ls
 usr.cpio
 ```
 
-The file name is truncated by `bunzip2` and the extension `.bz2` is removed.
+文件名被 `bunzip2` 截断，扩展名 `.bz2` 被删除。
 
-`bunzip2` also decompresses the file with the following extensions:
+`bunzip2` 还解压缩具有以下扩展名的文件：
 
-* `-bz` ;
-* `.tbz2` ;
-* `tbz` .
+* `-bz`；
+* `.tbz2`；
+* `tbz`。
