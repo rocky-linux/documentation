@@ -556,11 +556,11 @@ So, it is done in two steps: backup and compression.
 
 `cpio` has three operating modes, each corresponding to a different function:
 
-1. **copy-out mode** - Create a backup (archive). You can enable this mode through the `-o` or `--create` options. In this mode, you must generate a list of files with a specific command (`find`, `ls` or `cat`) and pass it to cpio.
+1. **copy-out mode** - Creates a backup (archive). Enable this mode through the `-o` or `--create` options. In this mode, you must generate a list of files with a specific command (`find`, `ls`, or `cat`) and pass it to cpio.
 
-   * `find` : browses a tree, recursive or not;
-   * `ls` : lists a directory, recursive or not;
-   * `cat` : reads a file containing the trees or files to be saved.
+   * `find`: browses a tree, recursive or not;
+   * `ls`: lists a directory, recursive or not;
+   * `cat`: reads a file containing the trees or files to be saved.
 
     !!! Note
 
@@ -571,16 +571,16 @@ So, it is done in two steps: backup and compression.
 2. **copy-in mode** – extracts files from an archive. You can enable this mode through the `-i` option.
 3. **copy-pass mode** – copies files from one directory to another. You can enable this mode through the `-p` or `--pass-through` options.
 
-Like the `tar` command, users need to pay attention to how the file list is saved (**absolute path** or **relative path**) when creating an archive.
+Like the `tar` command, users must consider how the file list is saved (**absolute path** or **relative path**) when creating an archive.
 
-secondary function:
+Secondary function:
 
-1. `-t` - Print a table of contents of the input.
-2. `-A` - Append to an existing archive. Only works in copy-in mode.
+1. `-t` - Prints a table of input contents.
+2. `-A` - Appends to an existing archive. It only works in copy-in mode.
 
 !!! note
 
-    Some options of `cpio` need to be combined with the correct operating mode to work properly, see `man 1 cpio`
+    Some options of `cpio` need to be combined with the correct operating mode to work correctly. See `man 1 cpio`
 
 ### copy-out mode
 
@@ -612,7 +612,7 @@ Do not forget the `>` sign when saving or the `F save_name_cpio`.
 
 | Options |Description                                    |
 |---------|------------------------------------------------|
-| `-o`    |Create a backup through _cp-out_ mode.                   |
+| `-o`    |Creates a backup through _cp-out_ mode.                   |
 | `-v`    |Displays the name of the processed files.      |
 | `-F`    |Backup to specific media, which can replace standard input ("<") and standard output (">") in the `cpio` command |
 
@@ -627,7 +627,7 @@ The media can be of several types:
 * tape drive: `/dev/rmt0`;
 * a partition: `/dev/sda5`, `/dev/hda5`, etc.
 
-#### Relative and absolute paths of file list
+#### Relative and absolute paths of the file list
 
 ```bash
 cd /
@@ -640,9 +640,9 @@ find /etc | cpio -o > /backups/etc.A.cpio
 
 !!! Warning
 
-    If the path specified in the `find` command is **absolute**, then the backup will be performed in **absolute**.
+    If the path specified in the `find` command is **absolute**, the backup will be performed in **absolute**.
 
-    If the path indicated in the `find` command is **relative**, then the backup will be done in **relative**.
+    If the path indicated in the `find` command is **relative**, the backup will be done in **relative**.
 
 #### Append files to existing backups
 
@@ -660,7 +660,7 @@ Adding files is only possible on direct access media.
 
 | Option | Description                                 |
 |--------|---------------------------------------------|
-| `-A`   | Append one or more files to an existing backup. |
+| `-A`   | Appends one or more files to an existing backup. |
 | `-F`   | Designates the backup to be modified.       |
 
 #### Compressing a backup
@@ -859,10 +859,10 @@ The file name is truncated by `gunzip` and the extension `.gz` is removed.
 
 `gunzip` also decompresses files with the following extensions:
 
-* `.z` ;
-* `-z` ;
-* `_z` ;
-* `-gz` ;
+* `.z`;
+* `-z`;
+* `_z`;
+* `-gz`;
 
 ### Decompressing with `bunzip2`
 
@@ -882,10 +882,10 @@ $ ls
 usr.cpio
 ```
 
-The file name is truncated by `bunzip2` and the extension `.bz2` is removed.
+The file name is truncated by `bunzip2`, and the extension `.bz2` is removed.
 
 `bunzip2` also decompresses the file with the following extensions:
 
-* `-bz` ;
-* `.tbz2` ;
-* `tbz` .
+* `-bz`;
+* `.tbz2`;
+* `tbz`.
