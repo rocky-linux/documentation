@@ -101,6 +101,8 @@ sudo vim /etc/default/grub
 GRUB_CMDLINE_LINUX="resume=/dev/mapper/rl-swap rd.lvm.lv=rl/root rd.lvm.lv=rl/swap crashkernel=auto rhgb quiet nouveau.modeset=0 rd.driver.blacklist=nouveau"
 ```
 
+Збережіть зміни за допомогою: ++shift+двокрапка+"w"+"q"+exclam++
+
 Перезавантажте середовище grub:
 
 ```bash

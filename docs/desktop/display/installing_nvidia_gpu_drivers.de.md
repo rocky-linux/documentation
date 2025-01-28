@@ -101,6 +101,8 @@ Der Wert von `GRUB_CMDLINE_LINUX` sollte in etwa dem folgenden Text ähneln, obw
 GRUB_CMDLINE_LINUX="resume=/dev/mapper/rl-swap rd.lvm.lv=rl/root rd.lvm.lv=rl/swap crashkernel=auto rhgb quiet nouveau.modeset=0 rd.driver.blacklist=nouveau"
 ```
 
+speichern Sie Ihre Änderungen mit: ++shift++colon+"w"+"q"++
+
 Laden Sie die Grub-Umgebung neu:
 
 ```bash

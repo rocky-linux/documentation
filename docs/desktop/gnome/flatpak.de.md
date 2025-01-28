@@ -130,7 +130,7 @@ Es ist nicht notwendig, sich die Liste der Befehle zu merken, es ist aber eine g
 !!! warning "Rocky Linux 8.x und `flatpak search`"
 
 ````
-If you are on a version of Rocky Linux 8.x, you will experience this bug. When running the command:
+If you are on a Rocky Linux 8.x version, you will experience this bug. When running the command:
 
 ```bash
 flatpak search [packagename]
