@@ -83,26 +83,8 @@ sudo dnf module install nvidia-driver:latest-dkms -y
 
 Nouveau is an open-source NVIDIA driver that provides limited functionality compared to NVIDIA's proprietary drivers. It is best to disable it to avoid driver conflicts:
 
-Open the grub configuration file with an editor of your choice:
-
 ```bash
-sudo vim /etc/default/grub
-```
-
-Add `nouveau.modeset=0` and `rd.driver.blacklist=nouveau` at the end of `GRUB_CMDLINE_LINUX`.
-
-The value of `GRUB_CMDLINE_LINUX` should look similar to the text below although it will not, nor does it need to be, an exact match:
-
-```bash
-GRUB_CMDLINE_LINUX="resume=/dev/mapper/rl-swap rd.lvm.lv=rl/root rd.lvm.lv=rl/swap crashkernel=auto rhgb quiet nouveau.modeset=0 rd.driver.blacklist=nouveau"
-```
-
-Save your changes with: ++shift+colon+"w"+"q"+exclam++
-
-Reload the grub environment:
-
-```bash
-grub2-mkconfig -o /boot/grub2/grubenv
+sudo grubby --args="nouveau.modeset=0 rd.driver.blacklist=nouveau" --update-kernel=ALL
 ```
 
 Reboot:
