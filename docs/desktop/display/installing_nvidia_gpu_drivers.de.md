@@ -87,26 +87,8 @@ sudo dnf module install nvidia-driver:latest-dkms -y
 
 `Nouveau` ist ein Open-Source-NVIDIA-Treiber, der im Vergleich zu den proprietären Treibern von NVIDIA nur begrenzte Funktionalität bietet. Um Treiberkonflikte zu vermeiden, deaktivieren Sie es am besten:
 
-Öffnen Sie die Grub-Konfigurationsdatei mit einem Editor Ihrer Wahl:
-
 ```bash
-sudo vim /etc/default/grub
-```
-
-Fügen Sie am Ende von `GRUB_CMDLINE_LINUX` `nouveau.modeset=0` und `rd.driver.blacklist=nouveau` hinzu.
-
-Der Wert von `GRUB_CMDLINE_LINUX` sollte in etwa dem folgenden Text ähneln, obwohl er nicht exakt übereinstimmen muss:
-
-```bash
-GRUB_CMDLINE_LINUX="resume=/dev/mapper/rl-swap rd.lvm.lv=rl/root rd.lvm.lv=rl/swap crashkernel=auto rhgb quiet nouveau.modeset=0 rd.driver.blacklist=nouveau"
-```
-
-speichern Sie Ihre Änderungen mit: ++shift++colon+"w"+"q"++
-
-Laden Sie die Grub-Umgebung neu:
-
-```bash
-grub2-mkconfig -o /boot/grub2/grubenv
+sudo grubby --args="nouveau.modeset=0 rd.driver.blacklist=nouveau" --update-kernel=ALL
 ```
 
 Reboot:
