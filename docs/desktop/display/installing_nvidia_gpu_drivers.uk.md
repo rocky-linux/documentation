@@ -87,26 +87,8 @@ sudo dnf module install nvidia-driver:latest-dkms -y
 
 Nouveau — це драйвер NVIDIA з відкритим вихідним кодом, який надає обмежену функціональність порівняно з пропрієтарними драйверами NVIDIA. Найкраще відключити його, щоб уникнути конфліктів драйверів:
 
-Відкрийте файл конфігурації grub за допомогою редактора на ваш вибір:
-
 ```bash
-sudo vim /etc/default/grub
-```
-
-Додайте `nouveau.modeset=0` та `rd.driver.blacklist=nouveau` в кінець `GRUB_CMDLINE_LINUX`.
-
-Значення `GRUB_CMDLINE_LINUX` має виглядати подібно до наведеного нижче тексту, хоча воно не буде і не повинно бути точним збігом:
-
-```bash
-GRUB_CMDLINE_LINUX="resume=/dev/mapper/rl-swap rd.lvm.lv=rl/root rd.lvm.lv=rl/swap crashkernel=auto rhgb quiet nouveau.modeset=0 rd.driver.blacklist=nouveau"
-```
-
-Збережіть зміни за допомогою: ++shift+двокрапка+"w"+"q"+exclam++
-
-Перезавантажте середовище grub:
-
-```bash
-grub2-mkconfig -o /boot/grub2/grubenv
+sudo grubby --args="nouveau.modeset=0 rd.driver.blacklist=nouveau" --update-kernel=ALL
 ```
 
 Перезавантаження:
