@@ -18,17 +18,17 @@ Anyone who has GitHub credentials can submit a suggested article here. Review th
 
 You should ensure your document fits the requirements for this section. For instance:
 
-* Does it fit here? For instance, is this a fit for this blog-style format? Is it information worth sharing?
+* Does it fit here? Is it information worth sharing? Is it a blog-style document?
 * Does it expand on a subject important to documentarians?
 * Will the submission enhance the overall quality of all of the Rocky Linux documentation?
 
 ## What kind of information?
 
-The first two documents here should give you an idea of what fits. Throughout 2024, we made a concerted effort to eliminate or drastically reduce passive voice in the how-to documents. The document [Active voice: The way to simple, clear, communication](active_voice.md) describes the importance of active voice in the tone of the documentation, the ease of reading and understanding, and the simplification in translating to other languages.  The document [Open source: Why it is never hyphenated](open_source.md) discusses the big debate over this subject and the reasoning behind our decision not to hyphenate. Get the idea? These are informative documents that do not include how-to information, except perhaps as examples.
+The first two documents here should give you an idea of what fits. Throughout 2024, we made a concerted effort to eliminate or drastically reduce passive voice in the how-to documents. The document [Active voice: The way to simple, clear, communication](active_voice.md) describes the importance of active voice in the tone of the documentation, the ease of reading and understanding, and the simplification in translating to other languages. The document [Open source: Why it is never hyphenated](open_source.md) discusses the big debate over this subject and the reasoning behind our decision not to hyphenate. Get the idea? These are informative documents that do not include how-to information, except perhaps as examples.
 
 ## Growth of this blog?
 
-The expectation is that this set of documents will grow more slowly than the how-to documents. That is alright. It is the quality and fit of the documents here that is most important.
+This set of documents will likely grow more slowly than the how-to documents. That is as expected. It is the quality and fit of the documents here that is most important.
 
 ## Feedback
 
