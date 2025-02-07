@@ -1,10 +1,9 @@
 ---
-title: Updating versions of Rocky
+title: Performing unsupported upgrades between Major Rocky Linux releases
 author: Steven Spencer
 contributors:
 ---
 
-(OR **How to duplicate a machine install**)
 
 ## Introduction
 
@@ -12,15 +11,15 @@ Since day one of the Rocky Linux project, there are those who have asked: ==How 
 
 !!! note "Caveats"
 
-    Even given this procedure, many things can go wrong when going from an older version of one operating system (OS) to a newer version of the same or different OS. Programs become obsolete, replaced by the maintainers as completely different package names, or the names simply do not match up from one OS to the next. In addition, you need to know about your machine's repositories and verify that they exist for the new OS. If going from a much older version to a much newer version, ensure that your CPU and other machine requirements match the new version. For this reason, you must remain cautious and note any errors or problems while performing this procedure. Here, the author has used Rocky Linux 8 as the old version and Rocky Linux 9 as the new major version. The formulation of all examples uses these two versions. Always proceed at your own risk.
+    Even given this procedure, many things can go wrong when going from an older version of one operating system (OS) to a newer version of the same or different OS. Programs become obsolete, replaced by the maintainers with completely different package names, or the names simply do not match up from one OS to the next. In addition, you need to know about your machine's software repositories and also verify that they are still functional for the new OS. If going from a much older version to a much newer version, ensure that your CPU and other machine requirements match the new version. For these and many other reasons, you must remain cautious and note any errors or problems while performing this procedure. Here, the author has used Rocky Linux 8 as the old version and Rocky Linux 9 as the new major version. The formulation of all examples uses these two versions. Always proceed at your own risk.
 
 ## Example old machine
 
-The old machine used here is Rocky Linux 8. In the example machine, the installation of the Extra Packages for Enterprise Linux (EPEL) repository and a few packages exist.
+The old machine used here is Rocky Linux 8. In the example machine, the package providing the Extra Packages for Enterprise Linux (EPEL) repository is installed, along with a a few other packages.
 
 !!! info "Code Ready Builder"
 
-    In Rocky Linux 8, and in other branded versions of 8, the Code Ready Builder (CRB) repository that exists in 9 is PowerTools. If moving from an 8 version to 9 where you have the EPEL, you will need to enable the CRB on your new machine with:
+    The PowerTools functionality in Rocky Linux 8.* has been deprecated and replaced by the Code Ready Builder (CRB) repository in Rocky Linux 9.*. If moving from an 8 version to 9 where you have the EPEL, you will need to enable the CRB on your new machine with:
 
     ```bash
     sudo dnf config-manager --enable crb
@@ -130,11 +129,11 @@ Because you just made many changes, you should reboot before continuing.
 
 ### Restore your backups
 
-Once you have all of the packages installed, restore your backups, configuration files, scripts, and other utilities that you backed up before moving to your new machine.
+Once you have all of the packages installed, restore your backups, modified configuration files, scripts, and other utilities that you backed up before moving to your new machine.
 
 ## Conclusion
 
-There is no magic routine (supported by Rocky Linux) to move from one major version to another. Rocky Linux developers support only a fresh install and recovery of backups. The routine provided here, gives you a method to move from one major version to another, while following the Rocky team's best practices.
+There is no magic routine (supported by Rocky Linux) to move from one major version to another. Rocky Linux developers support only a fresh install. The routine provided here, gives you a method to move from one major version to another, while following the Rocky team's best practices.
 
 This procedure assumes an installation that is not complex. The complexity of your installation might require more steps. Use this procedure as guide.
 
