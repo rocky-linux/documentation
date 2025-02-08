@@ -1,13 +1,14 @@
 ---
-title: Performing unsupported upgrades between Major Rocky Linux releases
+title: Rocky supported version upgrades
 author: Steven Spencer
 contributors:
 ---
 
+**OR** How to duplicate any Rocky machine.
 
 ## Introduction
 
-Since day one of the Rocky Linux project, there are those who have asked: ==How do you upgrade from CentOS 7 to Rocky 8, or Rocky 8 to Rocky 9?== The answer is always the same: **The project does not support in-place upgrades of one major version to another major version. You need to reinstall to move to the next major version.** To be clear, this **IS** the correct answer. This document hopes to give users a method of moving from one major version to the next, using the correct Rocky supported procedure of a fresh installation.
+Since day one of the Rocky Linux project, there are those who have asked: ==How do you upgrade from CentOS 7 to Rocky 8, or Rocky 8 to Rocky 9?== The answer is always the same: **The project does not support in-place upgrades of one major version to another major version. You need to reinstall to move to the next major version.** To be clear, this **IS** the correct answer. This document hopes to give users a method of moving from one major version to the next, using the correct Rocky supported procedure of a fresh installation. You can use this method to do a rebuild of the same Rocky Linux version as well. For example, 9.5 to a fresh 9.5 install with all of the packages.
 
 !!! note "Caveats"
 
@@ -15,11 +16,11 @@ Since day one of the Rocky Linux project, there are those who have asked: ==How 
 
 ## Example old machine
 
-The old machine used here is Rocky Linux 8. In the example machine, the package providing the Extra Packages for Enterprise Linux (EPEL) repository is installed, along with a a few other packages.
+The old machine used here is Rocky Linux 8. The installation includes several packages from the Extra Packages for Enterprise Linux (EPEL) repository.
 
 !!! info "Code Ready Builder"
 
-    The PowerTools functionality in Rocky Linux 8.* has been deprecated and replaced by the Code Ready Builder (CRB) repository in Rocky Linux 9.*. If moving from an 8 version to 9 where you have the EPEL, you will need to enable the CRB on your new machine with:
+    The Code Ready Builder (CRB) repository in Rocky Linux 9, replaces functionality in the deprecated PowerTools repository that existed in version 8. If moving from an 8 version to 9 where you have the EPEL, you will need to enable the CRB on your new machine with:
 
     ```bash
     sudo dnf config-manager --enable crb
