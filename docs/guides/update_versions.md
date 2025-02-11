@@ -35,7 +35,7 @@ Since day one of the Rocky Linux project, there are those who have asked: ==How 
 
 !!! warning "Version 10 is unknown"
 
-    Because of the huge changes between 9.5 and the upcoming version 10, this procedure **might not work** to move between 9.5 and 10. This will be explored once the release of 10 occurs. 
+    Because of the huge changes between 9.5 and the upcoming version 10, this procedure **might not work** to move between 9.5 and 10. The exploration of this will occur once there is a release of 10 to test. 
 
 ### Example old machine
 
