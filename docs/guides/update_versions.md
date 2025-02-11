@@ -20,7 +20,7 @@ Since day one of the Rocky Linux project, there are those who have asked: ==How 
 2. Obtain a list of repositories from the old installation (`repolist.txt`).
 3. Obtain a list of packages from the old installation (`installed.txt`).
 4. Backup all data, configuration, utilities, and scripts from the old installation to a non-volatile location along with the `.txt` files created.
-5. Verify that the hardware you will be installing to supports the operating system that you are installing. (CPU, memory, disk space, and so on.)
+5. Verify that the hardware you will be installing on supports the operating system that you are installing. (CPU, memory, disk space, and so on.)
 6. Perform a fresh install of the operating system you are using on the hardware.
 7. Do a `dnf upgrade` to get any packages that might have updated since the creation of the ISO file.  
 8. Create any needed users by examining the `userid.txt` file.
