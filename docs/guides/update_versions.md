@@ -83,7 +83,7 @@ sudo sed -i '/kernel/d' installed.txt
 
 #### Backup any data
 
-This can encompass many things. Please make sure you know the purpose of the machine you are replacing and all of its program components (database, mail server, DNS, and more). If you have any doubts, please just back it up.
+This can encompass many things. Make sure you know the purpose of the machine you are replacing and all of its program components (database, mail server, DNS, and more). If you have any doubts, just back it up.
 
 #### Copy files
 
@@ -153,7 +153,7 @@ xorg-x11-font-utils.x86_64
 
 !!! note
 
-    If you need the functionality of these missing packages on your fresh install, save them in a file for use later. You can see the availability status of missing packages by using the following:
+    If you need the functionality of these missing packages on your fresh install, save them in a file for use later. You can see the availability status of missing packages by using this command:
 
     ```bash
     sudo dnf whatprovides [package_name]
