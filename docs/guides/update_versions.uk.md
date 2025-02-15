@@ -1,7 +1,7 @@
 ---
 title: Пітдтримка оновленних версій Rocky Linux
 author: Steven Spencer
-contributors: null
+contributors: Ganna Zhyrnova
 ---
 
 **АБО** Як дублювати будь-яку машину Rocky.

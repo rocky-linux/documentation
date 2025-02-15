@@ -1,7 +1,7 @@
 ---
 title: Comment gérer un `Kernel panic`
 author: Antoine Le Morvan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.4
 tags:
   - kernel
@@ -19,7 +19,7 @@ Heureusement pour nous, il y a toujours quelque chose que nous pouvons faire pou
 
 ## Essayez de redémarrer avec le noyau précédent
 
-La première chose à essayer est de redémarrer avec le kernel précédent.
+La première chose à essayer est de redémarrer avec le noyau précédent.
 
 - Redémarrer le système.
 - Une fois que vous avez atteint l'écran de démarrage de GRUB 2, déplacez la sélection vers l'entrée de menu correspondant au noyau précédent et appuyez sur la touche ++enter++.
@@ -37,7 +37,7 @@ Le moyen le plus simple de procéder consiste à désinstaller la version du noy
 ````
 Vous ne pouvez pas supprimer un noyau en cours d'exécution.
 
-Pour afficher la version du noyau actuellement exécuté :
+Pour afficher la version du noyau actif :
 
 ```bash
 uname -r
@@ -110,7 +110,7 @@ Pour cela, vous devrez peut-être configurer une adresse IP temporaire grâce à
 
 Si aucune des méthodes ci-dessus ne fonctionne, il est toujours possible de démarrer à partir de l'image ISO d'installation et de réparer le système.
 
-Cette méthode n'est pas couverte par cette documentation.
+Cette procédure n'est pas couverte par la présente documentation.
 
 ## Maintenance du Système
 

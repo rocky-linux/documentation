@@ -1,7 +1,7 @@
 ---
 title: SSH Certificate Authorities and Key Signing
 author: Julian Patocki
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - sécurité
   - ssh
@@ -14,12 +14,12 @@ tags:
 - Savoir utiliser les outils de ligne de commande
 - Gestion de contenus à partir de la ligne de commande
 - Une certaine expérience des clés SSH est souhaitée mais pas indispensable
-- Une connaissance de base de SSH et de l'infrastructure de clés publiques est utile mais facultative
+- Une connaissance de base de SSH et de l'infrastructure de clés publiques est utile mais bien facultative
 - Un serveur qui exécute le daemon `sshd`.
 
 ## Introduction
 
-La connexion SSH initiale avec un hôte distant n'est pas sécurisée si vous ne pouvez pas vérifier l'empreinte digitale de la clé de l'hôte distant. L'utilisation d'une autorité de certification pour signer les clés publiques des hôtes distants garantit la sécurité de la connexion initiale pour chaque utilisateur qui fait confiance à l'autorité de certification.
+La connexion SSH initiale avec un hôte distant n'est pas sécurisée si vous ne pouvez pas vérifier l'empreinte digitale de la clé de l'hôte distant. L'utilisation d'une autorité de certification pour signer les clés publiques des hôtes distants garantit la sécurité de la connexion initiale pour chaque utilisateur qui doit faire confiance à l'autorité de certification.
 
 Les autorités de certification peuvent également être utilisées pour signer les clés SSH des utilisateurs. Au lieu de distribuer la clé à chaque hôte distant, une seule signature suffit à autoriser l'utilisateur à se connecter à plusieurs serveurs.
 
@@ -167,7 +167,7 @@ La ligne suivante indique la liste de révocation :
 RevokedKeys /etc/ssh/revokation_list.krl
 ```
 
-Il est nécessaire de redémarrer le démon SSHD pour que la configuration soit rechargée :
+Il est nécessaire de redémarrer le démon SSHD pour que la configuration soit effective :
 
 ```bash
 [user@rocky-vm ~]$ sudo systemctl restart sshd
@@ -205,4 +205,4 @@ La maintenance et la mise à jour des listes de révocation sont très important
 ## Conclusion
 
 SSH est l'un des protocoles les plus importants pour gérer des serveurs distants. La mise en œuvre d’autorités de certification peut s’avérer utile, en particulier dans les environnements plus vastes comportant de nombreux serveurs et utilisateurs.
-Il est important de bien tenir à jour des listes de révocation. It ensures the **REVOCATION** of compromised keys easily without replacing the whole key infrastructure.
+Il est important de bien tenir à jour des listes de révocation. Il révoque facilement les clés compromises sans remplacer l’ensemble de l’infrastructure critique.
