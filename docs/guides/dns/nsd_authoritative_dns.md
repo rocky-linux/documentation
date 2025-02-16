@@ -115,6 +115,83 @@ example.com mail is handled by 10 mail.another.com.
 %
 ```
 
+## Secondary DNS Server
+
+It is generally a norm to run one or more secondary authoritative DNS servers in case the primary server goes down. NSD has a feature that allows for DNS records to be synced from a primary server to as many backup servers.
+
+To enable a backup sevrer, generate the signing keys on the primary zone:
+
+```bash
+$ nsd-control-setup
+```
+
+The following files will need to be copied to the backup server in the `/etc/nsd/` directory:
+
+* `nsd_control.key`
+* `nsd_control.pem`
+* `nsd_server.key`
+* `nsd_server.pem`
+
+On all the DNS servers add the following above the `zone:` directive:
+
+```bash
+remote-control:
+        control-enable: yes
+        control-interface: 0.0.0.0
+        control-port: 8952
+        server-key-file: "/etc/nsd/nsd_server.key"
+        server-cert-file: "/etc/nsd/nsd_server.pem"
+        control-key-file: "/etc/nsd/nsd_control.key"
+        control-cert-file: "/etc/nsd/nsd_control.pem"
+```
+
+Also enable the firewall entries:
+
+```bash
+firewall-cmd --zone=public --add-port=8952/tcp
+firewall-cmd --runtime-to-permanent
+```
+
+On the primary server, change the zone to match the following:
+
+```bash
+zone:
+    name: example.com
+    zonefile: /etc/nsd/example.com.zone
+    allow-notify: NS2_IP NOKEY
+    provide-xfr: NS2_IP NOKEY
+    outgoing-interface: NS1_IP
+```
+
+Replace `NS1_IP1 and `NS2_IP2` with the public IP addresses of the primary and secondary nameservers.
+
+On the secondary server add the zone:
+
+```bash
+zone:
+    name: fourplex.net
+    notify: NS1_IP NOKEY
+    request-xfr: NS1_IP NOKEY
+    outgoing-interface: NS2_IP
+```
+
+Replace `NS1_IP1 and `NS2_IP2` with the public IP addresses of the primary and secondary nameservers.
+
+Restart NSD on both nameservers:
+
+```bash
+NS1# systemctl restart --now nsd
+```
+
+To download the zone file to the secondary nameserver from the primary one:
+
+```bash
+nsd-control notify -s NS2_IP
+```
+
+Replace `NS2_IP2` with the public IP addresses of the secondary nameserver.
+
+
 ## Conclusion
 
 Most people use third-party services for DNS. However, there are scenarios where self-hosting DNS is desired. For instance, telecom, hosting, and social media companies host many DNS entries where hosted services are undesirable.
