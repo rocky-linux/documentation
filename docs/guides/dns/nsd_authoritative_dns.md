@@ -115,24 +115,24 @@ example.com mail is handled by 10 mail.another.com.
 %
 ```
 
-## Secondary DNS Server
+## Secondary DNS server
 
-It is generally a norm to run one or more secondary authoritative DNS servers in case the primary server goes down. NSD has a feature that allows for DNS records to be synced from a primary server to as many backup servers.
+It is generally a norm to run one or more secondary authoritative DNS servers in case the primary server goes down. NSD has a feature that allows for the syncing of DNS records from a primary server to one or many backup servers.
 
-To enable a backup sevrer, generate the signing keys on the primary zone:
+To enable a backup server, generate the signing keys on the primary zone:
 
 ```bash
-$ nsd-control-setup
+nsd-control-setup
 ```
 
-The following files will need to be copied to the backup server in the `/etc/nsd/` directory:
+You will need to copy the following files to the backup server in the `/etc/nsd/` directory:
 
-* `nsd_control.key`
-* `nsd_control.pem`
-* `nsd_server.key`
-* `nsd_server.pem`
+- `nsd_control.key`
+- `nsd_control.pem`
+- `nsd_server.key`
+- `nsd_server.pem`
 
-On all the DNS servers add the following above the `zone:` directive:
+On all the DNS servers add the following before the `zone:` directive:
 
 ```bash
 remote-control:
@@ -163,7 +163,7 @@ zone:
     outgoing-interface: NS1_IP
 ```
 
-Replace `NS1_IP1 and `NS2_IP2` with the public IP addresses of the primary and secondary nameservers.
+Replace `NS1_IP1` and `NS2_IP2` with the public IP addresses of the primary and secondary nameservers.
 
 On the secondary server add the zone:
 
@@ -175,7 +175,7 @@ zone:
     outgoing-interface: NS2_IP
 ```
 
-Replace `NS1_IP1 and `NS2_IP2` with the public IP addresses of the primary and secondary nameservers.
+Replace `NS1_IP1` and `NS2_IP2` with the public IP addresses of the primary and secondary nameservers.
 
 Restart NSD on both nameservers:
 
@@ -191,9 +191,8 @@ nsd-control notify -s NS2_IP
 
 Replace `NS2_IP2` with the public IP addresses of the secondary nameserver.
 
-
 ## Conclusion
 
-Most people use third-party services for DNS. However, there are scenarios where self-hosting DNS is desired. For instance, telecom, hosting, and social media companies host many DNS entries where hosted services are undesirable.
+Most people use third-party services for DNS. However, there are scenarios where self-hosting DNS is desirable. Telecommunication, hosting, and social media companies, for example, host many DNS entries where hosted services are undesirable.
 
-NSD is one of many open-source tools that make hosting DNS possible. Congratulations, you have your very own DNS server!
+NSD is one of many open source tools that make hosting DNS possible.
