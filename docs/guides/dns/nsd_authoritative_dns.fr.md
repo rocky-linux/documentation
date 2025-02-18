@@ -115,8 +115,84 @@ example.com mail is handled by 10 mail.another.com.
 %
 ```
 
+## Serveur DNS secondaire
+
+Il est généralement courant d’exécuter un ou plusieurs serveurs DNS secondaires faisant autorité au cas où le serveur principal tomberait en panne. NSD dispose d'une fonctionnalité qui permet la synchronisation des enregistrements DNS d'un serveur principal vers un ou plusieurs serveurs de sauvegarde.
+
+Pour activer un serveur de sauvegarde, générez les clés de signature sur la zone primaire :
+
+```bash
+nsd-control-setup
+```
+
+Vous devrez copier les fichiers suivants sur le serveur de sauvegarde dans le répertoire `/etc/nsd/` :
+
+- `nsd_control.key`
+- `nsd_control.pem`
+- `nsd_server.key`
+- `nsd_server.pem`
+
+Sur tous les serveurs DNS, ajoutez ce qui suit avant la directive `zone:` :
+
+```bash
+remote-control:
+        control-enable: yes
+        control-interface: 0.0.0.0
+        control-port: 8952
+        server-key-file: "/etc/nsd/nsd_server.key"
+        server-cert-file: "/etc/nsd/nsd_server.pem"
+        control-key-file: "/etc/nsd/nsd_control.key"
+        control-cert-file: "/etc/nsd/nsd_control.pem"
+```
+
+Activez également les entrées du pare-feu :
+
+```bash
+firewall-cmd --zone=public --add-port=8952/tcp
+firewall-cmd --runtime-to-permanent
+```
+
+Sur le serveur principal, modifiez la zone pour qu'elle corresponde à ce qui suit :
+
+```bash
+zone:
+    name: example.com
+    zonefile: /etc/nsd/example.com.zone
+    allow-notify: NS2_IP NOKEY
+    provide-xfr: NS2_IP NOKEY
+    outgoing-interface: NS1_IP
+```
+
+Remplacez `NS1_IP1` et `NS2_IP2` par les adresses IP publiques des serveurs de noms primaire et secondaire.
+
+Sur le serveur secondaire, ajoutez la zone comme suit :
+
+```bash
+zone:
+    name: fourplex.net
+    notify: NS1_IP NOKEY
+    request-xfr: NS1_IP NOKEY
+    outgoing-interface: NS2_IP
+```
+
+Remplacez `NS1_IP1` et `NS2_IP2` par les adresses IP publiques des serveurs de noms primaire et secondaire.
+
+Redémarrez NSD sur les deux serveurs de noms :
+
+```bash
+NS1# systemctl restart --now nsd
+```
+
+Pour télécharger le fichier de zone sur le serveur de noms secondaire à partir du serveur principal :
+
+```bash
+nsd-control notify -s NS2_IP
+```
+
+Remplacez `NS2_IP2` par les adresses IP publiques du serveur de noms secondaire.
+
 ## Conclusion
 
-La plupart des gens utilisent des services tiers pour le DNS. Cependant, il existe des scénarios dans lesquels l'auto-hébergement DNS est souhaité. Par exemple, les sociétés de télécommunications, d’hébergement et de médias sociaux accueillent un grand nombre d’entrées DNS où les services hébergés ne sont pas les bienvenus.
+La plupart des gens utilisent des services tiers pour le DNS. Cependant, il existe des scénarios dans lesquels l'auto-hébergement DNS est souhaitable. Les sociétés de télécommunications, d’hébergement et de médias sociaux, par exemple, hébergent de nombreuses entrées DNS dans lesquelles les services hébergés ne sont pas souhaitables voire indésirables.
 
-NSD est l’un des nombreux outils open source qui rendent possible l’hébergement DNS. Félicitations, vous disposez de votre propre serveur DNS !
+NSD est l’un des nombreux outils open source qui rendent possible l’hébergement DNS.
