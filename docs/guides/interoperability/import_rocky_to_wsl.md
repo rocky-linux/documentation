@@ -15,7 +15,7 @@ tags:
 
 The Windows-Subsystem for Linux feature has to be enabled. This is possible with one of these options:
 
-- Since very shortly there is now [a new WSL version available in the Microsoft Store](https://apps.microsoft.com/store/detail/windows-subsystem-for-linux/9P9TQF7MRM4R), which has more features, use this if possible
+- [A newer WSL version with extra features is available in the Microsoft Store](https://apps.microsoft.com/store/detail/windows-subsystem-for-linux/9P9TQF7MRM4R). Use this newer version whenever possible.
 - Open an administrative Terminal (either PowerShell or Command-Prompt) and
   run `wsl --install` ([ref.](https://docs.microsoft.com/en-us/windows/wsl/install))
 - Go to the graphical Windows Settings and enable the optional feature `Windows-Subsystem for Linux`
