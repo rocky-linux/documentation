@@ -15,7 +15,7 @@ tags:
 
 La fonctionnalité Windows-Subsystem pour Linux doit être activée. Ceci est possible avec l'une de ces options :
 
-- Depuis très peu de temps, il existe désormais [une nouvelle version WSL disponible dans le Microsoft Store](https://apps.microsoft.com/store/detail/windows-subsystem-for-linux/9P9TQF7MRM4R), qui possède plus de fonctionnalités, utilisez-la si possible
+- [Une version WSL plus récente avec des fonctionnalités supplémentaires est disponible dans Microsoft Store](https://apps.microsoft.com/store/detail/windows-subsystem-for-linux/9P9TQF7MRM4R). Utilisez la nouvelle version tant que possible.
 - Ouvrez un terminal d'administration (PowerShell ou invite de commande) et exécutez la commande suivante :<br/>`wsl --install` ([ref.](https://docs.microsoft.com/en-us/windows/wsl/install))
 - Accédez aux paramètres graphiques de Windows et activez la fonctionnalité facultative `Windows-Subsystem for Linux`
 
