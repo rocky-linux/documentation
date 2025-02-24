@@ -5,9 +5,13 @@ contributors: Ganna Zhyrnova
 update: 13-Feb-2023
 ---
 
+!!! warning "Possible failure ahead!"
+
+    People attempting recent builds with this procedure reported failures and the fact that the GitHub resources are 2-3 years old and not under maintenance. Proceed at your own risk. You may be further ahead to use one of the other local document procedures. Archival of this procedure is probable in the near future.
+
 # Running the docs.rockylinux.org website locally for web development | Podman
 
-This document walks through how to recreate and run a local copy of the entire docs.rockylinux.org website on your local machine.
+This document walks through how to re-create and run a local copy of the entire docs.rockylinux.org website on your local machine.
 Running a local copy of the documentation website might be useful in the following scenarios:
 
 - You are interested in learning about and contributing to the web development aspects of the docs.rockylinux.org website
