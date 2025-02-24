@@ -136,7 +136,7 @@ podman run -d -p 8080:80 nextcloud
 - `/etc/containers/systemd/users/$(UID)`
 - `/etc/containers/systemd/users/`
 
-Окрім окремих контейнерів, підтримуються файли pod, image, network, volume і kube. Давайте зосередимося на нашому прикладі Nextcloud. Створіть новий файл ~/.config/containers/systemd/nextcloud.cotainer із таким вмістом:
+Окрім окремих контейнерів, підтримуються файли pod, image, network, volume і kube. Давайте зосередимося на нашому прикладі Nextcloud. Створіть новий файл `~/.config/containers/systemd/nextcloud.container` з таким вмістом:
 
 ```systemd
 [Container]
