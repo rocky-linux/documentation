@@ -7,7 +7,7 @@ update: 13-Feb-2023
 
 !!! warning "Possible failure ahead!"
 
-    People attempting recent builds with this procedure reported failures and the fact that the GitHub resources are 2-3 years old and not under maintenance. Proceed at your own risk. You may be further ahead to use one of the other local document procedures. Archival of this procedure is probable in the near future.
+    People attempting recent builds with this procedure reported failures. Proceed at your own risk. Updating or archival of this procedure is likely in the future.
 
 # Running the docs.rockylinux.org website locally for web development | Podman
 
