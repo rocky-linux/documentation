@@ -555,7 +555,7 @@ A differenza del comando `tar`, non esiste un'opzione per eseguire il backup e l
 
 `cpio` ha tre modalità operative, ciascuna corrispondente a una funzione diversa:
 
-1. **copy-out mode** - Creare un backup (archivio). È possibile attivare questa modalità mediante l'opzione `-o` o `--create`. In questa modalità, è necessario generare un elenco di file con un comando specifico (`find`, `ls` o `cat`) e passarlo a cpio.
+1. **copy-out mode** - Crea un backup (archivio). È possibile attivare questa modalità mediante l'opzione `-o` o `--create`. In questa modalità, è necessario generare un elenco di file con un comando specifico (`find`, `ls` o `cat`) e passarlo a cpio.
 
    * `find` : naviga in un albero, ricorsivo o meno;
    * `ls` : elencare una directory, ricorsiva o meno;
@@ -572,14 +572,14 @@ A differenza del comando `tar`, non esiste un'opzione per eseguire il backup e l
 
 Come per il comando `tar`, gli utenti devono prestare attenzione a come viene salvato l'elenco dei file (**percorso assoluto** o <strong x-id=“1”>percorso relativo</strong>) quando si crea un archivio.
 
-funzione secondaria:
+Funzione secondaria:
 
 1. `-t` - Stampa un indice del contenuto dell'input.
 2. `-A` - Aggiunge a un archivio esistente. Funziona solo in modalità copy-in.
 
 !!! note "Nota"
 
-    Alcune opzioni di `cpio` devono essere combinate con la modalità operativa corretta per funzionare correttamente, vedere `man 1 cpio`
+    Alcune opzioni di `cpio` devono essere combinate con la modalità operativa corretta per funzionare correttamente. Vedere `man 1 cpio`
 
 ### modalità copy-out
 
