@@ -7,19 +7,19 @@ update: 13-Feb-2023
 
 !!! warning "Possible failure ahead!"
 
-    People attempting recent builds with this procedure reported failures. Proceed at your own risk. Updating or archival of this procedure is likely in the future.
+    People who attempted recent builds with this procedure reported failures. Please proceed at your own risk. Updating or archiving this procedure is likely in the future.
 
 # Running the docs.rockylinux.org website locally for web development | Podman
 
-This document walks through how to re-create and run a local copy of the entire docs.rockylinux.org website on your local machine.
+This document walks you through recreating and running a local copy of the entire docs.rockylinux.org website on your local machine.
 Running a local copy of the documentation website might be useful in the following scenarios:
 
 - You are interested in learning about and contributing to the web development aspects of the docs.rockylinux.org website
-- You are an author and you'd like to see how your documents will render/look on the docs website before contributing them
+- You are an author, and you'd like to see how your documents will render/look on the docs website before contributing them
 
 ## Setup the prerequisites
 
-Install and setup Podman and other tools by running:
+Install and set up Podman and other tools by running:
 
 ```bash
 sudo dnf -y install podman podman-docker git
@@ -75,7 +75,7 @@ You will now have a `$ROCKYDOCS/docs.rockylinux.org` folder. This folder is wher
 
 ## Create and Start the RockyDocs web development environment
 
-1. Ensure you have Podman up and running on your local machine (you can check with `systemctl`). Test by running:
+1. Ensure Podman is up and running on your local machine (you can check with `systemctl`). Test by running:
 
     ```bash
     systemctl  enable --now podman.socket
