@@ -117,7 +117,7 @@ example.com mail is handled by 10 mail.another.com.
 
 ## Secondary DNS server
 
-Running one or more secondary authoritative DNS servers is generally the norm - especially useful when the primary server goes down. NSD has feature allows for syncing DNS records from a primary server to one or many backup servers.
+Running one or more secondary authoritative DNS servers is generally the norm. This is especially useful when the primary server goes down. NSD has feature allows for syncing DNS records from a primary server to one or many backup servers.
 
 To enable a backup server, generate the signing keys on the primary zone:
 
