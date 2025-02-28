@@ -117,7 +117,7 @@ example.com mail is handled by 10 mail.another.com.
 
 ## Secondary DNS server
 
-Running one or more secondary authoritative DNS servers is generally a norm in case the primary server goes down. NSD has feature allows for syncing DNS records from a primary server to one or many backup servers.
+Running one or more secondary authoritative DNS servers is generally the norm - especially useful when the primary server goes down. NSD has feature allows for syncing DNS records from a primary server to one or many backup servers.
 
 To enable a backup server, generate the signing keys on the primary zone:
 
@@ -193,6 +193,6 @@ Replace `NS2_IP2` with the public IP addresses of the secondary nameserver.
 
 ## Conclusion
 
-Most people use third-party DNS services. However, there are scenarios where self-hosting DNS is desirable. For example, telecommunications, hosting, and social media companies host many DNS entries where hosted services are undesirable.
+Most people use third-party DNS services. However, there are scenarios where self-hosting DNS is desirable. For example, telecommunications, hosting, and social media companies maintain their own DNS entries when third-party DNS services are undesirable.
 
 NSD is one of many open source tools that make hosting DNS possible.
