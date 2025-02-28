@@ -117,7 +117,7 @@ example.com mail is handled by 10 mail.another.com.
 
 ## Secondary DNS server
 
-It is generally a norm to run one or more secondary authoritative DNS servers in case the primary server goes down. NSD has a feature that allows for the syncing of DNS records from a primary server to one or many backup servers.
+Running one or more secondary authoritative DNS servers is generally the norm. This is especially useful when the primary server goes down. NSD has feature allows for syncing DNS records from a primary server to one or many backup servers.
 
 To enable a backup server, generate the signing keys on the primary zone:
 
@@ -132,7 +132,7 @@ You will need to copy the following files to the backup server in the `/etc/nsd/
 - `nsd_server.key`
 - `nsd_server.pem`
 
-On all the DNS servers add the following before the `zone:` directive:
+On all the DNS servers, add the following before the `zone:` directive:
 
 ```bash
 remote-control:
@@ -145,7 +145,7 @@ remote-control:
         control-cert-file: "/etc/nsd/nsd_control.pem"
 ```
 
-Also enable the firewall entries:
+Also, enable the firewall entries:
 
 ```bash
 firewall-cmd --zone=public --add-port=8952/tcp
@@ -165,7 +165,7 @@ zone:
 
 Replace `NS1_IP1` and `NS2_IP2` with the public IP addresses of the primary and secondary nameservers.
 
-On the secondary server add the zone:
+On the secondary server, add the zone:
 
 ```bash
 zone:
@@ -193,6 +193,6 @@ Replace `NS2_IP2` with the public IP addresses of the secondary nameserver.
 
 ## Conclusion
 
-Most people use third-party services for DNS. However, there are scenarios where self-hosting DNS is desirable. Telecommunication, hosting, and social media companies, for example, host many DNS entries where hosted services are undesirable.
+Most people use third-party DNS services. However, there are scenarios where self-hosting DNS is desirable. For example, telecommunications, hosting, and social media companies maintain their own DNS entries when third-party DNS services are undesirable.
 
 NSD is one of many open source tools that make hosting DNS possible.
