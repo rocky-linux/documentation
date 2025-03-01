@@ -117,7 +117,7 @@ example.com mail is handled by 10 mail.another.com.
 
 ## Serveur DNS secondaire
 
-Il est généralement courant d’exécuter un ou plusieurs serveurs DNS secondaires faisant autorité au cas où le serveur principal tomberait en panne. NSD dispose d'une fonctionnalité qui permet la synchronisation des enregistrements DNS d'un serveur principal vers un ou plusieurs serveurs de sauvegarde.
+L’exécution d’un ou plusieurs serveurs DNS secondaires faisant autorité est généralement la norme. Ceci est particulièrement utile lorsque le serveur principal tombe en panne. `NSD` possède une fonctionnalité permettant de synchroniser les enregistrements DNS d'un serveur principal vers un ou plusieurs serveurs de sauvegarde.
 
 Pour activer un serveur de sauvegarde, générez les clés de signature sur la zone primaire :
 
@@ -193,6 +193,6 @@ Remplacez `NS2_IP2` par les adresses IP publiques du serveur de noms secondaire.
 
 ## Conclusion
 
-La plupart des gens utilisent des services tiers pour le DNS. Cependant, il existe des scénarios dans lesquels l'auto-hébergement DNS est souhaitable. Les sociétés de télécommunications, d’hébergement et de médias sociaux, par exemple, hébergent de nombreuses entrées DNS dans lesquelles les services hébergés ne sont pas souhaitables voire indésirables.
+La plupart des gens utilisent des services tiers pour le `DNS`. Cependant, il existe des scénarios dans lesquels l'auto-hébergement `DNS` est souhaitable. Les sociétés de télécommunications, d’hébergement et de médias sociaux, par exemple, hébergent de nombreuses entrées DNS dans lesquelles les services hébergés ne sont pas souhaitables voire indésirables.
 
 NSD est l’un des nombreux outils open source qui rendent possible l’hébergement DNS.
