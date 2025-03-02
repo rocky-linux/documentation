@@ -525,7 +525,7 @@ logvol / --fstype="xfs" --size=10240 --name=lv_root --vgname=vg_root
 logvol swap --fstype="swap" --size=4092 --name=lv_swap --vgname=vg_root
 ```
 
-The next section concerns the packages that will be installed. Une « bonne pratique » consiste à limiter la quantité de packages installés à ceux dont vous avez besoin, ce qui limite la surface d'attaque, en particulier dans un environnement serveur.
+La section suivante concerne les packages qui seront installés. Une « bonne pratique » consiste à limiter la quantité de packages installés à ceux dont vous avez besoin, ce qui limite la surface d'attaque, en particulier dans un environnement serveur.
 
 !!! note "Remarque"
 
