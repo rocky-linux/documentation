@@ -1,29 +1,29 @@
 ---
 title: Hurricane Electric IPv6 Tunnel
 author: Neel Chauhan
-contributors:
+contributors: Steven Spencer
 tested_with: 9.5
 tags:
   - network
 ---
 
-# Hurricane Electric IPv6 Tunnel
+# Hurricane Electric IPv6 tunnel
 
-IPv6 needs no introduction, but in case you aren't aware, IPv6 is the replacement for the more-popular IPv4 protocol which uses 128-bit hexadecimal addresses inatead of 32-bit decimal ones.
+IPv6 needs no introduction, but in case you are not aware, IPv6 is the replacement for the more popular IPv4 protocol that uses 128-bit hexadecimal addresses instead of 32-bit decimal ones.
 
-[Hurricane Electric](https://he.net) is an internet service provider which runs the free [Tunnel Broker](https://tunnelbroker.net/) service to give IPv6 connectivity behind IPv4-only networks, among other things.
+[Hurricane Electric](https://he.net) is an internet service provider. Among its other service, Hurricane Electric runs the free [Tunnel Broker](https://tunnelbroker.net/) service to give IPv6 connectivity behind IPv4-only networks.
 
 ## Introduction
 
-Thanks to the IPv4
+Thanks to IPv4.
 
 ## Prerequisites
 
 - A [free Hurricane Electric IPv6 tunnel](https://tunnelbroker.net/)
 
-- A Rocky Linux server with a public IP address and non-filtered ICMP
+- A Rocky Linux server with a public IP address and non-filtered Internet Control Message Protocol (otherwise known as ICMP).
 
-## Getting an IPv6 Tunnel
+## Getting an IPv6 tunnel
 
 First, create an account at [tunnelbroker.net](https://tunnelbroker.net/).
 
@@ -31,9 +31,9 @@ When you have an account, select **Create Regular Tunnel** in the **User Functio
 
 ![HE.net sidebar](../images/henet_1.png)
 
-Then enter in your public IPv4 address, choose your endpoint location and click **Create Tunnel**.
+Then enter in your public IPv4 address, select your endpoint location and click **Create Tunnel**.
 
-## Setting up the IPv6 Tunnel
+## Setting up the IPv6 tunnel
 
 The good news is that an IPv6 tunnel only needs one command:
 
