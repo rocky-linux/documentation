@@ -15,7 +15,7 @@ IPv6 needs no introduction, but in case you are not aware, IPv6 is the replaceme
 
 ## Introduction
 
-Thanks to IPv4.
+Thanks to the IPv4 depletion a need for an expanded IP addressing space has arisen in the form of IPv6. However, many networks still lack IPv6 support due to the ubiquity of Network Address Translation (NAT). Because of this Hurricane Electric offers IPv6 tunnels.
 
 ## Prerequisites
 
