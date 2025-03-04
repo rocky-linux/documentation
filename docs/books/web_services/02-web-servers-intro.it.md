@@ -24,9 +24,9 @@ Gli attuali protocolli HTTP sono la versione 1.1, ampiamente utilizzata, e le ve
 Una responce HTTP è un insieme di righe inviate al browser dal server. Che include:
 
 - Una **status line**: specifica la versione del protocollo e lo stato di elaborazione della richiesta utilizzando un codice e un testo esplicativo. La riga comprende tre elementi separati da uno spazio:
-  - La versione del protocollo utilizzata
-  - Lo status code
-  - Il significato del codice
+    - La versione del protocollo utilizzata
+    - Lo status code
+    - Il significato del codice
 
 - **Response header fields**: queste righe opzionali forniscono informazioni aggiuntive sulla risposta e/o sul server. Ogni riga è composta da un nome che qualifica il header type, seguito da due punti (:) e dal header value.
 
