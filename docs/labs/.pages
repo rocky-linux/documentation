@@ -5,4 +5,5 @@ nav:
     - System Administration II Labs: systems_administration_II
     - Networking Labs: networking
     - Security Labs: security
+    - Kubernetes the Hard Way (Rocky Linux): kubernetes-the-hard-way
     
