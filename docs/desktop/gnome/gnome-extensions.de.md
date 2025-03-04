@@ -56,7 +56,7 @@ In diesem Beispiel installieren wir die beliebte Erweiterung `dash-to-dock`.
 
 1. Gehen Sie zur [Webseite der Dash-to-Dock-Erweiterung](https://extensions.gnome.org/extension/307/dash-to-dock/){target="_blank"}
 2. Erweiterung von „aus“ auf „ein“ umschalten
-   ![Erweiterung umschalten](images/gnome_extensions_images/gnome-shell-extensions-toggle-btn.webp)
+  ![Erweiterung umschalten](images/gnome_extensions_images/gnome-shell-extensions-toggle-btn.webp)
 3. Wenn Sie zur Installation der Erweiterung aufgefordert werden, klicken Sie auf `yes`.
 
 ## Installierte Erweiterungen verwalten
