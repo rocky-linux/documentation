@@ -26,15 +26,15 @@ Accédez à [Flathub.org](https://flathub.org), tapez `Decibels` dans la barre d
 
 2. Copiez le script d'installation manuelle et exécutez-le dans un terminal :
 
-   ```bash
-   flatpak install flathub org.gnome.Decibels
-   ```
+    ```bash
+    flatpak install flathub org.gnome.Decibels
+    ```
 
 3. Enfin, copiez la commande à lancer et exécutez-la dans votre terminal :
 
-   ```bash
-   flatpak run org.gnome.Decibels
-   ```
+    ```bash
+    flatpak run org.gnome.Decibels
+    ```
 
 ## Mode d'emploi
 
@@ -42,11 +42,11 @@ Pour utiliser le programme `Decibels`, procédez comme suit :
 
 1. Cliquez sur **Open**
 
-   ![Screenshot of Decibels' landing page with a red rectangle surrounding the blue open button](images/02_decibels.png)
+    ![Screenshot of Decibels' landing page with a red rectangle surrounding the blue open button](images/02_decibels.png)
 
 2. Sélectionnez le fichier souhaité et cliquez sur le bouton **Open** qui apparaîtra dans le coin supérieur droit de l'écran
 
-   ![Screenshot of Decibels file selection interface with numbered arrows indicating audio file and Open button](images/03_decibels.png)
+    ![Screenshot of Decibels file selection interface with numbered arrows indicating audio file and Open button](images/03_decibels.png)
 
 !!! note "Remarque"
 
