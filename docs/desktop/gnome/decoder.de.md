@@ -20,19 +20,19 @@ Für diese Anleitung benötigen Sie Folgendes:
 
 1. Gehen Sie zu [Flathub.org] (https://flathub.org), geben Sie `Decoder` in die Suchleiste ein und klicken Sie auf **Install**. ![Screenshot of the install button highlighted by a red rectangle](images/01_decoder.png)
 
-   ![manual install script and run script](images/decoder_install.png)
+    ![manual install script and run script](images/decoder_install.png)
 
 2. Kopieren Sie das manuelle Installationsskript und führen Sie es in einem Terminal aus:
 
-   ```bash
-   flatpak install flathub com.belmoussaoui.Decoder
-   ```
+    ```bash
+    flatpak install flathub com.belmoussaoui.Decoder
+    ```
 
 3. Kopieren Sie abschließend den Ausführungsbefehl und rufen Sie ihn in Ihrem Terminal auf:
 
-   ```bash
-   flatpak run com.belmoussaoui.Decoder
-   ```
+    ```bash
+    flatpak run com.belmoussaoui.Decoder
+    ```
 
 ## So erstellen Sie einen QR-Code
 
@@ -51,7 +51,7 @@ Es stehen zwei Arten von QR-Codes zur Verfügung. Wählen Sie die Option, die Ih
 
 3. Auf **Create** klicken
 
-   ![Screenshot of the Save and Export screen with arrows](images/03_decoder-text.png)
+    ![Screenshot of the Save and Export screen with arrows](images/03_decoder-text.png)
 
 4. Auf **Save** klicken
 
@@ -77,15 +77,15 @@ Zusätzlich zum Erstellen und Generieren von QR-Codes können Sie mit Decoder au
 
 1. Auf **Scan** klicken
 
-   ![Screenshot of the rectangular button with the words "From a Screenshot" written in white.](images/02_decoder-scan.png)
+    ![Screenshot of the rectangular button with the words "From a Screenshot" written in white.](images/02_decoder-scan.png)
 
 2. Auf  **From a Screenshot** klicken
 
-   ![Screenshot of grey square surrounding options menu, and red square surrounding the "Take a Screenshot button"](images/03_decoder-scan.png)
+    ![Screenshot of grey square surrounding options menu, and red square surrounding the "Take a Screenshot button"](images/03_decoder-scan.png)
 
 3. Wählen Sie die gewünschten Effekte aus und klicken Sie auf **Screenshot erstellen**
 
-   ![Screenshot of a red arrow pointing at a blue button that has the word "Share" written in white](images/04_decoder-scan.png)
+    ![Screenshot of a red arrow pointing at a blue button that has the word "Share" written in white](images/04_decoder-scan.png)
 
 4. Auf **Share** klicken
 

@@ -30,7 +30,7 @@ Gehen Sie wie folgt vor, um `Screenshot` zu verwenden:
 
 2. Auf **Take a Screenshot** klicken
 
-   ![Screenshot of taken picture of being saved with black arrows pointing at a text box that contains the file name, "Linux.png" as well as Save and Copy buttons](images/screenshot-02.png)
+    ![Screenshot of taken picture of being saved with black arrows pointing at a text box that contains the file name, "Linux.png" as well as Save and Copy buttons](images/screenshot-02.png)
 
 3. Wenn Sie mit dem Screenshot zufrieden sind, benennen Sie die Datei um und klicken Sie auf **Save**.
 

@@ -49,7 +49,7 @@ sudo dnf install ksnip -y
 
 `Ksnip` verfügt über praktische und intuitive Tools zum Kommentieren von Screenshots.  Unten links im Bild sind die im Folgenden beschriebenen Optionen aufgeführt.
 
-![ksnip\_open](images/ksnip_image_opened.png)
+![ksnip_open](images/ksnip_image_opened.png)
 
 | Option | Tool               | Beschreibung                                                                                                                                                                                                                                                                           |
 | ------ | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

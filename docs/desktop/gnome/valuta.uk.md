@@ -22,19 +22,19 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 1. Перейдіть на [Flathub.org](https://flathub.org), введіть «Valuta» в рядку пошуку та натисніть **Install**
 
-   ![manual install script and run script](images/valuta-install.png)
+ ![manual install script and run script](images/valuta-install.png)
 
 2. Скопіюйте скрипт у свій термінал:
 
-   ```bash
-   flatpak install flathub io.github.idevecore.Valuta
-   ```
+ ```bash
+ flatpak install flathub io.github.idevecore.Valuta
+ ```
 
 3. Нарешті, скрипт у вашому терміналі:
 
-   ```bash
-   flatpak run flathub io.github.idevecore.Valuta
-   ```
+ ```bash
+ flatpak run flathub io.github.idevecore.Valuta
+ ```
 
 ## Як використовувати
 
@@ -42,7 +42,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 1. Виберіть свою країну зі спадного меню та введіть суму готівки, яку хочете витратити.
 
-   ![Screenshot of Valuta app showing 1000 USD in the input field, with a grey arrow pointing down to a grey box showing 1000 USD](images/02_valuta.png)
+ ![Screenshot of Valuta app showing 1000 USD in the input field, with a grey arrow pointing down to a grey box showing 1000 USD](images/02_valuta.png)
 
 2. Виберіть країну, до якої ви подорожуєте, зі спадного меню. Звідти автоматично з’являється конвертована сума.
 

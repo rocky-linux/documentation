@@ -57,7 +57,7 @@ De plus, il existe une catégorie `Explore` pour parcourir toutes les catégorie
 
 Recherchez une AppImage que vous souhaitez utiliser :
 
-![select\_AppImage](images/appimagepool/appimagepool_select.jpg)
+![select_AppImage](images/appimagepool/appimagepool_select.jpg)
 
 Cliquez sur sa miniature et téléchargez. Après quelques instants d’attente, l’AppImage sera téléchargée sur votre système et prête à être utilisée !
 

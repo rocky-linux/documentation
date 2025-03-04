@@ -57,7 +57,7 @@ Darüber hinaus gibt es eine Kategorie `Explore`, in der Sie alle verfügbaren K
 
 Suchen Sie nach einem AppImage, das Sie verwenden möchten:
 
-![select\_AppImage](images/appimagepool/appimagepool_select.jpg)
+![select_AppImage](images/appimagepool/appimagepool_select.jpg)
 
 Klicken Sie auf das Miniaturbild und laden Sie es herunter. Nach einigen Augenblicken Wartezeit wird das AppImage auf Ihr System heruntergeladen und ist einsatzbereit!
 
