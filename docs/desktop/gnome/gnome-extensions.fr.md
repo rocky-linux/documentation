@@ -56,7 +56,7 @@ Pour cet exemple, nous installerons l’extension populaire `Dash to Dock`.
 
 1. Rendez-vous sur [page Web de l'extension Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/){target="_blank"}
 2. Passer l'extension de "off" à "on"
-   ![Toggle extension](images/gnome_extensions_images/gnome-shell-extensions-toggle-btn.webp)
+  ![Toggle extension](images/gnome_extensions_images/gnome-shell-extensions-toggle-btn.webp)
 3. Lorsque vous êtes invité à installer l’extension, cliquez sur `yes`.
 
 ## Gestion des Extensions Installées
