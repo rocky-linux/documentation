@@ -40,9 +40,9 @@ tags:
 
 ## Завантаження та встановлення драйверів
 
-[Інструкції зі встановлення сценарію встановлення драйвера Brother:](https://support.brother.com/g/b/downloadlist.aspx?\&c=us\&lang=en\&prod=mfcj480dw_us_eu_as\&os=127){target="_blank"}
+Інструкції зі встановлення сценарію встановлення драйвера Brother:{target="_blank"}
 
-1. [Завантажте сценарій bash для драйвера принтера Brother MFC-J480DW](https://support.brother.com/g/b/downloadtop.aspx?c=us\&lang=en\&prod=mfcj480dw_us_eu_as){target="_blank"}
+1. Завантажте сценарій bash для драйвера принтера Brother MFC-J480DW{target="_blank"}
 
 2. Відкрийте вікно терміналу.
 
@@ -50,17 +50,17 @@ tags:
 
 4. Введіть цю команду, щоб розпакувати завантажений файл:
 
-   ```bash
-   gunzip linux-brprinter-installer-*.*.*-*.gz
-   ```
+  ```bash
+  gunzip linux-brprinter-installer-*.*.*-*.gz
+  ```
 
 5. Отримайте авторизацію суперкористувача за допомогою команди `su` або `sudo su`.
 
 6. Запустіть інструмент:
 
-   ```bash
-   bash linux-brprinter-installer-*.*.*-* Brother machine name
-   ```
+  ```bash
+  bash linux-brprinter-installer-*.*.*-* Brother machine name
+  ```
 
 7. Розпочнеться установка драйвера. Дотримуйтеся вказівок на екрані встановлення.
 
