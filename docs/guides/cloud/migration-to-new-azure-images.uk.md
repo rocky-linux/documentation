@@ -40,10 +40,10 @@ erockyenterprisesoftwarefoundationinc1653071250513`
 
 1. **Перейдіть** до Azure Marketplace.
 2. **Шукайте** нові зображення Rocky Linux під обліковим записом видавця `resf` або перейдіть до Галереї спільноти.
-   - Поточні посилання на Marketplace:
-     - [Rocky Linux x86_64](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/resf.rockylinux-x86_64)
-   - [Rocky Linux aarch64](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/resf.rockylinux-aarch64)
-   - Повні інструкції щодо доступу до зображень спільнотної галереї можна знайти в цій [повідомленні новин](https://rockylinux.org/news/rocky-on-azure-community-gallery/)
+    - Поточні посилання на Marketplace:
+        - [Rocky Linux x86_64](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/resf.rockylinux-x86_64)
+    - [Rocky Linux aarch64](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/resf.rockylinux-aarch64)
+    - Повні інструкції щодо доступу до зображень спільнотної галереї можна знайти в цій [повідомленні новин](https://rockylinux.org/news/rocky-on-azure-community-gallery/)
 3. **Виберіть** потрібну версію Rocky Linux і **створіть нову віртуальну машину**. Під час налаштування ви можете вибрати той самий розмір віртуальної машини та інші конфігурації, що й ваша існуюча віртуальна машина, щоб забезпечити сумісність.
 
 ## Крок 3: Передайте дані
