@@ -57,7 +57,7 @@ flatpak install flathub io.github.prateekmedia.appimagepool
 
 Знайдіть AppImage, який ви хочете використовувати:
 
-![select\_AppImage](images/appimagepool/appimagepool_select.jpg)
+![select_AppImage](images/appimagepool/appimagepool_select.jpg)
 
 Клацніть на іконку та завантажте його. Через кілька хвилин очікування AppImage буде у вашій системі та готовий до використання!
 
