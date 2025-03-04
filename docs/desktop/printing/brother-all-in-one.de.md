@@ -40,9 +40,9 @@ Es wird ein Softwarefenster geöffnet, das versucht, Druckertreiber zu finden un
 
 ## Herunterladen und Installieren der Treiber
 
-[Anleitung zur Installation des Brother-Treiberinstallationsskripts:](https://support.brother.com/g/b/downloadlist.aspx?\&c=us\&lang=en\&prod=mfcj480dw_us_eu_as\&os=127){target="_blank"}
+Anleitung zur Installation des Brother-Treiberinstallationsskripts:{target="_blank"}
 
-1. [Laden Sie das Bash-Skript für den Brother MFC-J480DW-Druckertreiber herunter](https://support.brother.com/g/b/downloadtop.aspx?c=us\&lang=en\&prod=mfcj480dw_us_eu_as){target="_blank"}
+1. Laden Sie das Bash-Skript für den Brother MFC-J480DW-Druckertreiber herunter{target="_blank"}
 
 2. Öffnen Sie ein Terminalfenster.
 
@@ -50,17 +50,17 @@ Es wird ein Softwarefenster geöffnet, das versucht, Druckertreiber zu finden un
 
 4. Geben Sie diesen Befehl ein, um die heruntergeladene Datei zu entpacken:
 
-   ```bash
-   gunzip linux-brprinter-installer-*.*.*-*.gz
-   ```
+  ```bash
+  gunzip linux-brprinter-installer-*.*.*-*.gz
+  ```
 
 5. Holen Sie sich die Superuser-Autorisierung mit dem Befehl `su` oder `sudo su`.
 
 6. Starten Sie das Tool:
 
-   ```bash
-   bash linux-brprinter-installer-*.*.*-* Brother machine name
-   ```
+  ```bash
+  bash linux-brprinter-installer-*.*.*-* Brother machine name
+  ```
 
 7. Die Treiberinstallation wird gestartet. Befolgen Sie die Anweisungen auf dem Installationsbildschirm.
 
