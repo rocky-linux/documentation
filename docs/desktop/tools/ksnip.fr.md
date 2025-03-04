@@ -49,7 +49,7 @@ sudo dnf install ksnip -y
 
 `Ksnip` dispose d'outils pratiques et intuitifs pour annoter des captures d'écran.  Dans l'image, en bas à gauche se trouvent les options décrites ci-dessous.
 
-![ksnip\_open](images/ksnip_image_opened.png)
+![ksnip_open](images/ksnip_image_opened.png)
 
 | Option | Outil              | Description                                                                                                                                                                                                                                                                                                              |
 | ------ | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
