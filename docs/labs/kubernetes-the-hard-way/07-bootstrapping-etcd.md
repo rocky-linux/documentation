@@ -1,10 +1,10 @@
-# Bootstrapping the etcd Cluster
+# Bootstrapping the `etcd` Cluster
 
-Kubernetes components are stateless and store cluster state in [etcd](https://github.com/etcd-io/etcd). In this lab you will bootstrap a three node etcd cluster and configure it for high availability and secure remote access.
+Kubernetes components are stateless and store cluster state in [etcd](https://github.com/etcd-io/etcd). In this lab you will bootstrap a three node `etcd` cluster and configure it for high availability and secure remote access.
 
 ## Prerequisites
 
-Copy `etcd` binaries and systemd unit files to the `server` instance:
+Copy `etcd` binaries and `systemd` unit files to the `server` instance:
 
 ```bash
 scp \
@@ -13,17 +13,17 @@ scp \
   root@server:~/
 ```
 
-The commands in the following sections of this lab must be run on the `server` machine. Login to the `server` machine using the `ssh` command. Example:
+You must run the commands in the following sections of this lab on the `server` machine. Login to the `server` machine with the `ssh` command. Example:
 
 ```bash
 ssh root@server
 ```
 
-## Bootstrapping an etcd Cluster
+## Bootstrapping an `etcd` Cluster
 
-### Install the etcd Binaries
+### Install the `etcd` Binaries
 
-If you don't already have it installed, first install the `tar` utility using `dnf`. And then extract and install the `etcd` server and the `etcdctl` command line utility:
+If you do not already have it installed, first install the `tar` utility with `dnf`. Then extract and install the `etcd` server and the `etcdctl` command line utility:
 
 ```bash
   dnf -y install tar
@@ -31,7 +31,7 @@ If you don't already have it installed, first install the `tar` utility using `d
   mv etcd-v3.4.36-linux-amd64/etcd* /usr/local/bin/
 ```
 
-### Configure the etcd Server
+### Configure the `etcd` Server
 
 ```bash
   mkdir -p /etc/etcd /var/lib/etcd
@@ -40,9 +40,9 @@ If you don't already have it installed, first install the `tar` utility using `d
     /etc/etcd/
 ```
 
-Each etcd member must have a unique name within an etcd cluster. Set the etcd name to match the hostname of the current compute instance:
+Each `etcd` member must have a unique name within an `etcd` cluster. Set the `etcd` name to match the hostname of the current compute instance:
 
-Create the `etcd.service` systemd unit file:
+Create the `etcd.service` `systemd` unit file:
 
 ```bash
 mv etcd.service /etc/systemd/system/
@@ -50,15 +50,17 @@ chmod 644 /etc/systemd/system/etcd.service
 ```
 
 !!! Note
-  Although considered bad security form, you might have to temporarily or permanently disable SELinux if you run into any issues starting the etcd systemd service. The proper fix is to investigate and create the needed policy files using tools such as ausearch, audit2allow and so on.  
-  The commands get SELinux out of the way and disable it is by running the following:
-  
-  ```bash
-  sudo sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
-  setenforce 0
-  ```
 
-### Start the etcd Server
+    Although considered bad security form, you might have to temporarily or permanently disable SELinux if you run into any issues starting the `etcd` `systemd` service. The proper fix is to investigate and create the needed policy files with tools such as `ausearch`, `audit2allow` and others.
+
+    The commands get SELinux out of the way and disable it is by running the following:
+  
+    ```bash
+    sudo sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+    setenforce 0
+    ```
+
+### Start the `etcd` Server
 
 ```bash
   systemctl daemon-reload
@@ -68,7 +70,7 @@ chmod 644 /etc/systemd/system/etcd.service
 
 ## Verification
 
-List the etcd cluster members:
+List the `etcd` cluster members:
 
 ```bash
 etcdctl member list

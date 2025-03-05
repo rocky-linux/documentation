@@ -1,10 +1,18 @@
 # Provisioning a CA and Generating TLS Certificates
 
-In this lab you will provision a [PKI Infrastructure](https://en.wikipedia.org/wiki/Public_key_infrastructure) using openssl to bootstrap a Certificate Authority, and generate TLS certificates for the following components: kube-apiserver, kube-controller-manager, kube-scheduler, kubelet, and kube-proxy. The commands in this section should be run from the `jumpbox`.
+In this lab you will provision a [PKI Infrastructure](https://en.wikipedia.org/wiki/Public_key_infrastructure) using `openssl` to bootstrap a Certificate Authority, and generate TLS certificates for the following components:
+
+* kube-apiserver
+* kube-controller-manager
+* kube-scheduler
+* kubelet
+* kube-proxy
+
+Run the commands in this lab from the `jumpbox`.
 
 ## Certificate Authority
 
-In this section you will provision a Certificate Authority that can be used to generate additional TLS certificates for the other Kubernetes components. Setting up CA and generating certificates using `openssl` can be time-consuming, especially when doing it for the first time. To streamline this lab, I've included an openssl configuration file `ca.conf`, which defines all the details needed to generate certificates for each Kubernetes component. 
+In this section you will provision a Certificate Authority that you will use to generate additional TLS certificates for the other Kubernetes components. Setting up CA and generating certificates using `openssl` can be time-consuming, especially when doing it for the first time. To streamline this lab, the inclusion of an `openssl` configuration file, `ca.conf`, will help define all the details needed to generate certificates for each Kubernetes component.
 
 Take a moment to review the `ca.conf` configuration file:
 
@@ -12,9 +20,9 @@ Take a moment to review the `ca.conf` configuration file:
 cat ca.conf
 ```
 
-You don't need to understand everything in the `ca.conf` file to complete this tutorial, but you should consider it a starting point for learning `openssl` and the configuration that goes into managing certificates at a high level.
+You do not need to understand everything in the `ca.conf` file to complete this tutorial, but you should consider it a starting point for learning `openssl` and the configuration that goes into managing certificates at a high level.
 
-Every certificate authority starts with a private key and root certificate. In this section we are going to create a self-signed certificate authority, and while that's all we need for this tutorial, this shouldn't be considered something you would do in a real-world production environment.
+Every certificate authority starts with a private key and root certificate. In this section you are going to create a self-signed certificate authority, and while that is all you need for this tutorial, you should not consider this something you would do in a real-world production environment.
 
 Generate the CA configuration file, certificate, and private key:
 
@@ -32,8 +40,9 @@ Results:
 ca.crt ca.key
 ```
 
-!!! Tip:
-    To view the details encoded in the generated certificate file (ca.crt), you can use this openssl command `openssl x509 -in ca.crt -text -noout | less`.  
+!!! tip
+
+    To view the details encoded in the generated certificate file (ca.crt), you can use this openssl command `openssl x509 -in ca.crt -text -noout | less`.
 
 ## Create Client and Server Certificates
 
@@ -68,7 +77,7 @@ for i in ${certs[*]}; do
 done
 ```
 
-The results of running the above command will generate a private key, certificate request, and signed SSL certificate for each of the Kubernetes components. You can list the generated files with the following command:
+The results of running this command will generate a private key, certificate request, and signed SSL certificate for each of the Kubernetes components. You can list the generated files with the following command:
 
 ```bash
 ls -1 *.crt *.key *.csr
@@ -76,7 +85,7 @@ ls -1 *.crt *.key *.csr
 
 ## Distribute the Client and Server Certificates
 
-In this section you will copy the various certificates to every machine at a path where each Kubernetes component will search for its certificate pair. In a real-world environment these certificates should be treated like a set of sensitive secrets as they are used as credentials by the Kubernetes components to authenticate to each other.
+In this section you will copy the various certificates to every machine at a path where each Kubernetes component will search for its certificate pair. In a real-world environment, you would treat these certificates as a set of sensitive secrets because Kubernetes uses them to authenticate to each other.
 
 Copy the appropriate certificates and private keys to the `node-0` and `node-1` machines:
 
@@ -104,6 +113,6 @@ scp \
   root@server:~/
 ```
 
-> The `kube-proxy`, `kube-controller-manager`, `kube-scheduler`, and `kubelet` client certificates will be used to generate client authentication configuration files in the next lab.
+> You will use the `kube-proxy`, `kube-controller-manager`, `kube-scheduler`, and `kubelet` client certificates to generate client authentication configuration files in the next lab.
 
 Next: [Generating Kubernetes Configuration Files for Authentication](05-kubernetes-configuration-files.md)

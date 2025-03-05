@@ -8,11 +8,11 @@ In this section you will generate kubeconfig files for the `kubelet` and the `ad
 
 ### The kubelet Kubernetes Configuration File
 
-When generating kubeconfig files for Kubelets the client certificate matching the Kubelet's node name must be used. This will ensure Kubelets are properly authorized by the Kubernetes [Node Authorizer](https://kubernetes.io/docs/admin/authorization/node/).
+When generating kubeconfig files for Kubelets, matching Kubelet's node name to the client certificate is a must. This will ensure Kubelets are properly authorized by the Kubernetes [Node Authorizer](https://kubernetes.io/docs/admin/authorization/node/).
 
-> The following commands must be run in the same directory used to generate the SSL certificates during the [Generating TLS Certificates](04-certificate-authority.md) lab.
+> You must run the following commands in the same directory used to generate the SSL certificates during the [Generating TLS Certificates](04-certificate-authority.md) lab.
 
-Generate a kubeconfig file for the node-0 and node-1 worker nodes:
+Generate a kubeconfig file for the `node-0` and `node-1` worker nodes:
 
 ```bash
 for host in node-0 node-1; do
@@ -109,7 +109,6 @@ Results:
 kube-controller-manager.kubeconfig
 ```
 
-
 ### The kube-scheduler Kubernetes Configuration File
 
 Generate a kubeconfig file for the `kube-scheduler` service:
@@ -176,7 +175,7 @@ admin.kubeconfig
 
 ## Distribute the Kubernetes Configuration Files
 
-Copy the `kubelet` and `kube-proxy` kubeconfig files to the node-0 and node-1 instances:
+Copy the `kubelet` and `kube-proxy` kubeconfig files to the `node-0` and `node-1` instances:
 
 ```bash
 for host in node-0 node-1; do

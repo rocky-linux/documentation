@@ -1,4 +1,4 @@
-# Configuring kubectl for Remote Access
+# Configuring `kubectl` for Remote Access
 
 In this lab you will generate a kubeconfig file for the `kubectl` command line utility based on the `admin` user credentials.
 
@@ -8,7 +8,7 @@ In this lab you will generate a kubeconfig file for the `kubectl` command line u
 
 Each kubeconfig requires a Kubernetes API Server to connect to.
 
-You should be able to ping `server.kubernetes.local` based on the `/etc/hosts` DNS entry from a previous lap.
+You should be able to ping `server.kubernetes.local` based on the `/etc/hosts` DNS entry from a previous lab.
 
 ```bash
 curl -k --cacert ca.crt \
@@ -47,8 +47,8 @@ Generate a kubeconfig file suitable for authenticating as the `admin` user:
 
   kubectl config use-context kubernetes-the-hard-way
 ```
-The results of running the command above should create a kubeconfig file in the default location `~/.kube/config` used by the  `kubectl` commandline tool. This also means you can run the `kubectl` command without specifying a config.
 
+The results of running these commands should create a kubeconfig file in the default location `~/.kube/config` used by the  `kubectl` command line tool. This also means you can run the `kubectl` command without specifying a configuration.
 
 ## Verification
 
@@ -70,7 +70,7 @@ List the nodes in the remote Kubernetes cluster:
 kubectl get nodes
 ```
 
-```
+```text
 NAME     STATUS   ROLES    AGE   VERSION
 node-0   Ready    <none>   30m   v1.31.2
 node-1   Ready    <none>   35m   v1.31.2

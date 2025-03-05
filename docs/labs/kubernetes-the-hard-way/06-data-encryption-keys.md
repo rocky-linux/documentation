@@ -14,14 +14,14 @@ export ENCRYPTION_KEY=$(head -c 32 /dev/urandom | base64)
 
 ## The Encryption Config File
 
-Create the `encryption-config.yaml` encryption config file:
+Create the `encryption-config.yaml` encryption configuration file:
 
 ```bash
 envsubst < configs/encryption-config.yaml \
   > encryption-config.yaml
 ```
 
-Copy the `encryption-config.yaml` encryption config file to each controller instance:
+Copy the `encryption-config.yaml` encryption configuration file to each controller instance:
 
 ```bash
 scp encryption-config.yaml root@server:~/

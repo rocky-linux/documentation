@@ -13,7 +13,7 @@ kubectl create secret generic kubernetes-the-hard-way \
   --from-literal="mykey=mydata"
 ```
 
-Print a hexdump of the `kubernetes-the-hard-way` secret stored in etcd:
+Print a hexdump of the `kubernetes-the-hard-way` secret stored in `etcd`:
 
 ```bash
 ssh root@server \
@@ -46,7 +46,7 @@ ssh root@server \
 0000015a
 ```
 
-The etcd key should be prefixed with `k8s:enc:aescbc:v1:key1`, which indicates the `aescbc` provider was used to encrypt the data with the `key1` encryption key.
+The prefix of the `etcd` key should be `k8s:enc:aescbc:v1:key1`, which indicates using the `aescbc` provider to encrypt the data with the `key1` encryption key.
 
 ## Deployments
 
@@ -92,7 +92,7 @@ Forwarding from 127.0.0.1:8080 -> 80
 Forwarding from [::1]:8080 -> 80
 ```
 
-In a new terminal make an HTTP request using the forwarding address:
+In a new terminal make an HTTP request with the forwarding address:
 
 ```bash
 curl --head http://127.0.0.1:8080
@@ -110,7 +110,7 @@ ETag: "67a34638-267"
 Accept-Ranges: bytes
 ```
 
-Switch back to the previous terminal and stop the port forwarding to the `nginx` pod by typing `[CTRL]` + `[C]`:
+Switch back to the previous terminal and stop the port forwarding to the `nginx` pod by typing ++ctrl+c++:
 
 ```text
 Forwarding from 127.0.0.1:8080 -> 80
@@ -138,7 +138,7 @@ kubectl logs $POD_NAME
 
 In this section you will verify the ability to [execute commands in a container](https://kubernetes.io/docs/tasks/debug-application-cluster/get-shell-running-container/#running-individual-commands-in-a-container).
 
-Print the nginx version by executing the `nginx -v` command in the `nginx` container:
+Print the `nginx` version by executing the `nginx -v` command in the `nginx` container:
 
 ```bash
 kubectl exec -ti $POD_NAME -- nginx -v
@@ -150,16 +150,16 @@ nginx version: nginx/1.27.4
 
 ## Services
 
-In this section you will verify the ability to expose applications using a [Service](https://kubernetes.io/docs/concepts/services-networking/service/).
+In this section you will verify the ability to expose applications with a [Service](https://kubernetes.io/docs/concepts/services-networking/service/).
 
-Expose the `nginx` deployment using a [NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) service:
+Expose the `nginx` deployment with a [NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) service:
 
 ```bash
 kubectl expose deployment nginx \
   --port 80 --type NodePort
 ```
 
-> The LoadBalancer service type can not be used because your cluster is not configured with [cloud provider integration](https://kubernetes.io/docs/getting-started-guides/scratch/#cloud-provider). Setting up cloud provider integration is out of scope for this tutorial.
+> You cannot use the LoadBalancer service type because your cluster is not configured with [cloud provider integration](https://kubernetes.io/docs/getting-started-guides/scratch/#cloud-provider). Setting up cloud provider integration is out of scope for this tutorial.
 
 Retrieve the node port assigned to the `nginx` service:
 
@@ -168,9 +168,7 @@ NODE_PORT=$(kubectl get svc nginx \
   --output=jsonpath='{range .spec.ports[0]}{.nodePort}')
 ```
 
-
-
-Make an HTTP request using the IP address and the `nginx` node port:
+Make an HTTP request with the IP address and the `nginx` node port:
 
 ```bash
 curl -I http://node-0:${NODE_PORT}

@@ -1,10 +1,10 @@
 # Bootstrapping the Kubernetes Control Plane
 
-In this lab you will bootstrap the Kubernetes control plane. The following components will be installed on the controller machine: Kubernetes API Server, Scheduler, and Controller Manager.
+In this lab you will bootstrap the Kubernetes control plane. You will install the following components on the controller machine: Kubernetes API Server, Scheduler, and Controller Manager.
 
 ## Prerequisites
 
-Connect to the `jumpbox` and copy Kubernetes binaries and systemd unit files to the `server` instance:
+Connect to the `jumpbox` and copy Kubernetes binaries and `systemd` unit files to the `server` instance:
 
 ```bash
 scp \
@@ -20,7 +20,7 @@ scp \
   root@server:~/
 ```
 
-The commands in the following sections of this lab must be run on the `server` machine. Login to the controller instance using the `ssh` command. Example:
+You must run the commands in the following sections of this lab on the `server` machine. Login to the controller instance with the `ssh` command. Example:
 
 ```bash
 ssh root@server
@@ -61,7 +61,7 @@ Install the Kubernetes binaries:
     /var/lib/kubernetes/
 ```
 
-Create the `kube-apiserver.service` systemd unit file:
+Create the `kube-apiserver.service` `systemd` unit file:
 
 ```bash
 mv kube-apiserver.service /etc/systemd/system/kube-apiserver.service
@@ -75,7 +75,7 @@ Move the `kube-controller-manager` kubeconfig into place:
 mv kube-controller-manager.kubeconfig /var/lib/kubernetes/
 ```
 
-Create the `kube-controller-manager.service` systemd unit file:
+Create the `kube-controller-manager.service` `systemd` unit file:
 
 ```bash
 mv kube-controller-manager.service /etc/systemd/system/
@@ -95,7 +95,7 @@ Create the `kube-scheduler.yaml` configuration file:
 mv kube-scheduler.yaml /etc/kubernetes/config/
 ```
 
-Create the `kube-scheduler.service` systemd unit file:
+Create the `kube-scheduler.service` `systemd` unit file:
 
 ```bash
 mv kube-scheduler.service /etc/systemd/system/
@@ -115,7 +115,6 @@ mv kube-scheduler.service /etc/systemd/system/
 
 > Allow up to 10 seconds for the Kubernetes API Server to fully initialize.
 
-
 ### Verification
 
 ```bash
@@ -128,11 +127,11 @@ Kubernetes control plane is running at https://127.0.0.1:6443
 
 ## RBAC for Kubelet Authorization
 
-In this section you will configure RBAC permissions to allow the Kubernetes API Server to access the Kubelet API on each worker node. Access to the Kubelet API is required for retrieving metrics, logs, and executing commands in pods.
+In this section you will configure RBAC permissions to allow the Kubernetes API Server to access the Kubelet API on each worker node. Retrieving metrics, logs, and executing commands in pods, requires access to the Kubelet API.
 
-> This tutorial sets the Kubelet `--authorization-mode` flag to `Webhook`. Webhook mode uses the [SubjectAccessReview](https://kubernetes.io/docs/admin/authorization/#checking-api-access) API to determine authorization.
+> This tutorial sets the Kubelet `--authorization-mode` flag to `Webhook`. `Webhook` mode uses the [SubjectAccessReview](https://kubernetes.io/docs/admin/authorization/#checking-api-access) API to determine authorization.
 
-The commands in this section will affect the entire cluster and only need to be run on the controller node.
+You only need to run the commands in this section on the controller node, which will affect the entire cluster.
 
 ```bash
 ssh root@server
@@ -145,9 +144,9 @@ kubectl apply -f kube-apiserver-to-kubelet.yaml \
   --kubeconfig admin.kubeconfig
 ```
 
-### Verification
+### RBAC Verification
 
-At this point the Kubernetes control plane is up and running. Run the following commands from the `jumpbox` machine to verify it's working:
+At this point the Kubernetes control plane is up and running. Run the following commands from the `jumpbox` machine to verify it is working:
 
 Make a HTTP request for the Kubernetes version info:
 
