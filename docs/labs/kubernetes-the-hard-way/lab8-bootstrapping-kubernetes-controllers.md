@@ -13,7 +13,7 @@ tags:
 This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower).
 Unlike the original that bases itself on Debian like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
 
-# Bootstrapping the Kubernetes Control Plane
+# Lab 8: Bootstrapping the Kubernetes Control Plane
 
 In this lab you will bootstrap the Kubernetes control plane. The following components will be installed on the controller machine: Kubernetes API Server, Scheduler, and Controller Manager.
 
