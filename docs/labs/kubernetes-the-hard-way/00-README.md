@@ -4,7 +4,6 @@ author: Wale Soyinka
 contributors: Steven Spencer
 ---
 
-
 This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower).
 Unlike the original that bases itself on Debian like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
 
@@ -30,7 +29,7 @@ Kubernetes The Hard Way guides you through bootstrapping a basic Kubernetes clus
 
 Component versions:
 
-* [kubernetes](https://github.com/kubernetes/kubernetes) v1.31.x
+* [kubernetes](https://github.com/kubernetes/kubernetes) v1.32.x
 * [containerd](https://github.com/containerd/containerd) v2.0.x
 * [cni](https://github.com/containernetworking/cni) v1.6.x
 * [etcd](https://github.com/etcd-io/etcd) v3.4.x
