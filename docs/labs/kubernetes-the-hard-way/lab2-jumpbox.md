@@ -1,3 +1,12 @@
+---
+author: Wale Soyinka 
+tags:
+  - kubernetes
+  - k8s
+  - lab exercise
+---
+
+
 # Set Up The Jumpbox
 
 In this lab you will set up one of the four machines to be a `jumpbox`. You will use this machine to run commands in this tutorial. While the use of a dedicated machine is to ensure consistency, you can run these commands from just about any machine, including your personal workstation running macOS or Linux.
@@ -110,4 +119,4 @@ Kustomize Version: v5.5.0
 
 At this point, you have set up `jumpbox` with all the command line tools and utilities necessary to complete the labs in this tutorial.
 
-Next: [Provisioning Compute Resources](03-compute-resources.md)
+Next: [Provisioning Compute Resources](lab3-compute-resources.md)
