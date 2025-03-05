@@ -36,4 +36,4 @@ After running the `uname` command you should see the following output:
 
 The `x86_64` that you see in the output confirms that the system is a x86_64 architecture. This should be the case for various AMD and Intel based systems.
 
-Next: [setting-up-the-jumpbox](02-jumpbox.md)
+Next: [setting-up-the-jumpbox](lab2-jumpbox.md)
