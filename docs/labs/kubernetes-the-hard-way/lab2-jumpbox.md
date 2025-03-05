@@ -7,7 +7,7 @@ tags:
 ---
 
 
-# Set Up The Jumpbox
+# Lab 2: Set Up The Jumpbox
 
 In this lab you will set up one of the four machines to be a `jumpbox`. You will use this machine to run commands in this tutorial. While the use of a dedicated machine is to ensure consistency, you can run these commands from just about any machine, including your personal workstation running macOS or Linux.
 
