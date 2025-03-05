@@ -11,7 +11,7 @@ This is a fork of the original ["Kubernetes the hard way"](https://github.com/ke
 Unlike the original that bases itself on Debian like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
 
 
-# Cleaning Up
+# Lab 13: Cleaning Up
 
 In this lab you will delete the compute resources created during this tutorial.
 
