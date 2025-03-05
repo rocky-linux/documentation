@@ -1,3 +1,20 @@
+---
+author: Wale Soyinka
+contributors: Steven Spencer
+tags:
+  - kubernetes
+  - k8s
+  - lab exercise
+  - runc
+  - containerd
+  - etcd
+  - kubectl
+---
+
+This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower).
+Unlike the original that bases itself on Debian like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
+
+
 # Configuring kubectl for Remote Access
 
 In this lab you will generate a kubeconfig file for the `kubectl` command line utility based on the `admin` user credentials.
@@ -76,4 +93,4 @@ node-0   Ready    <none>   30m   v1.31.2
 node-1   Ready    <none>   35m   v1.31.2
 ```
 
-Next: [Provisioning Pod Network Routes](11-pod-network-routes.md)
+Next: [Provisioning Pod Network Routes](lab11-pod-network-routes.md)
