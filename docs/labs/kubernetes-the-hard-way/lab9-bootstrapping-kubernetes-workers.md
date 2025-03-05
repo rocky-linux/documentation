@@ -11,16 +11,15 @@ tags:
   - kubectl
 ---
 
-This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower).
-Unlike the original that bases itself on Debian like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
-
 # Lab 9: Bootstrapping the Kubernetes Worker Nodes
 
-In this lab you will bootstrap two Kubernetes worker nodes. The following components will be installed: [runc](https://github.com/opencontainers/runc), [container networking plugins](https://github.com/containernetworking/cni), [containerd](https://github.com/containerd/containerd), [kubelet](https://kubernetes.io/docs/admin/kubelet), and [kube-proxy](https://kubernetes.io/docs/concepts/cluster-administration/proxies).
+> This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower). Unlike the original that bases itself on Debian like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
+
+In this lab you will bootstrap two Kubernetes worker nodes. You will install the following components: [runc](https://github.com/opencontainers/runc), [container networking plugins](https://github.com/containernetworking/cni), [containerd](https://github.com/containerd/containerd), [kubelet](https://kubernetes.io/docs/admin/kubelet), and [kube-proxy](https://kubernetes.io/docs/concepts/cluster-administration/proxies).
 
 ## Prerequisites
 
-From the `jumpbox`, copy Kubernetes binaries and systemd unit files to each worker instance:
+From the `jumpbox`, copy Kubernetes binaries and `systemd` unit files to each worker instance:
 
 ```bash
 for host in node-0 node-1; do
@@ -57,9 +56,9 @@ for host in node-0 node-1; do
 done
 ```
 
-The commands in this lab must be separately run on each worker instance: `node-0`, `node-1`. We'll only show the required steps and commands for node-0. You'll need to repeat the exact steps and commands on node-1. 
+The commands in this lab must be separately run on each worker instance: `node-0`, `node-1`. The steps for `node-0` are the only ones shown. You will need to repeat the exact steps and commands on `node-1`.
 
-Login to the worker node-0 instance using the `ssh` command.
+Login to the worker `node-0` instance with the `ssh` command.
 
 ```bash
 ssh root@node-0
@@ -67,26 +66,26 @@ ssh root@node-0
 
 ## Provisioning a Kubernetes Worker Node
 
-Install the OS dependencies:
+Install the operating system dependencies:
 
 ```bash
   dnf -y update
   dnf -y install socat conntrack ipset tar
 ```
 
-> The socat binary enables support for the `kubectl port-forward` command.
+> The `socat` binary enables support for the `kubectl port-forward` command.
 
 ### Disable Swap
 
-By default, the kubelet will fail to start if [swap](https://help.ubuntu.com/community/SwapFaq) is enabled. It is [recommended](https://github.com/kubernetes/kubernetes/issues/7294) that swap be disabled to ensure Kubernetes can provide proper resource allocation and quality of service.
+If you have [swap](https://help.ubuntu.com/community/SwapFaq) enabled, the kubelet will fail to start. The [recommendation is to disable swap](https://github.com/kubernetes/kubernetes/issues/7294) to ensure Kubernetes provides proper resource allocation and quality of service.
 
-Verify if swap is enabled:
+Verify if swap is on:
 
 ```bash
 swapon --show
 ```
 
-If output is empty then swap is not enabled. If swap is enabled run the following command to disable swap immediately:
+If output is empty then swap is not enabled. If the output is not empty, run the following command to disable swap immediately:
 
 ```bash
 swapoff -a
@@ -131,7 +130,7 @@ Create the `bridge` network configuration file:
 mv 10-bridge.conf 99-loopback.conf /etc/cni/net.d/
 ```
 
-### Configure containerd
+### Configure `containerd`
 
 Install the `containerd` configuration files:
 
@@ -158,8 +157,10 @@ Create the `kubelet-config.yaml` configuration file:
 ```
 
 !!! Note
-  Although considered bad security form, you might have to temporarily or permanently disable SELinux if you run into any issues starting the needed systemd services. The proper fix is to investigate and create the needed policy files using tools such as ausearch, audit2allow and so on.  
-  The fix for getting SELinux out of the way and disabling it is by running the following:
+
+    Although considered bad security form, you might have to temporarily or permanently disable SELinux if you run into any issues starting the needed systemd services. The proper fix is to investigate and create the needed policy files using tools such as ausearch, audit2allow and so on.  
+
+    The fix for getting SELinux out of the way and disabling it is by running the following:
   
   ```bash
   sudo sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
@@ -184,19 +185,17 @@ List the registered Kubernetes nodes:
 ssh root@server "kubectl get nodes --kubeconfig admin.kubeconfig"
 ```
 
-```
+```text
 NAME     STATUS   ROLES    AGE    VERSION
 node-0   Ready    <none>   1m     v1.32.0
 ```
 
 After completing all the previous steps in this lab on both `node-0` and `node-1` the output of the `kubectl get nodes` command should show:
 
-```
+```text
 NAME     STATUS   ROLES    AGE    VERSION
 node-0   Ready    <none>   1m     v1.32.0
 node-1   Ready    <none>   10s    v1.32.0
 ```
-
-
 
 Next: [Configuring kubectl for Remote Access](lab10-configuring-kubectl.md)

@@ -1,11 +1,11 @@
 ---
 author: Wale Soyinka 
+contributors: Steven Spencer
 tags:
   - kubernetes
   - k8s
   - lab exercise
 ---
-
 
 # Lab 2: Set Up The Jumpbox
 
@@ -56,7 +56,7 @@ pwd
 
 ## Download Binaries
 
-Here you will download the binaries for the various Kubernetes components. Store these binaries in the `Downloads` directory on the `jumpbox`. This will reduce the amount of internet bandwidth required to complete this tutorial as you avoid downloading the binaries multiple times for each machine in our Kubernetes cluster.
+Here you will download the binaries for the various Kubernetes components. Store these binaries in the `Downloads` directory on the `jumpbox`. This will reduce the amount of internet bandwidth required to complete this tutorial as you avoid downloading the binaries many times for each machine in our Kubernetes cluster.
 
 The `download.txt` file lists the binaries you will download, which you can review using the `cat` command:
 
@@ -95,7 +95,7 @@ total 557M
 -rw-r--r--. 1 root 11M Feb 13 20:19 runc.amd64
 ```
 
-## Install kubectl
+## Install `kubectl`
 
 In this section you will install the `kubectl`, the official Kubernetes client command line tool, on the `jumpbox` machine. You will use `kubectl` to interact with the Kubernetes control plane after provisioning of your cluster completes later in this tutorial.
 

@@ -11,12 +11,11 @@ tags:
   - kubectl
 ---
 
-This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower).
-Unlike the original that bases itself on Debian like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
-
 # Lab 11: Provisioning Pod Network Routes
 
-Pods scheduled to a node receive an IP address from the node's Pod CIDR range. At this point pods can not communicate with other pods running on different nodes due to missing network [routes](https://cloud.google.com/compute/docs/vpc/routes).
+> This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower). Unlike the original that bases itself on Debian like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
+
+Pods scheduled to a node receive an IP address from the node's Pod CIDR range. At this point pods cannot communicate with other pods running on different nodes due to missing network [routes](https://cloud.google.com/compute/docs/vpc/routes).
 
 In this lab you will create a route for each worker node that maps the node's Pod CIDR range to the node's internal IP address.
 
@@ -57,7 +56,7 @@ ssh root@node-1 <<EOF
 EOF
 ```
 
-## Verification 
+## Verification
 
 ```bash
 ssh root@server ip route
@@ -89,6 +88,5 @@ default via XXX.XXX.XXX.XXX dev ens160
 10.200.0.0/24 via XXX.XXX.XXX.XXX dev ens160 
 XXX.XXX.XXX.0/24 dev ens160 proto kernel scope link src XXX.XXX.XXX.XXX 
 ```
-
 
 Next: [Smoke Test](lab12-smoke-test.md)
