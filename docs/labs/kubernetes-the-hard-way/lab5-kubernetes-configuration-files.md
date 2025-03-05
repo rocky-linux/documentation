@@ -7,11 +7,9 @@ tags:
   - lab exercise
 ---
 
-This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower).
-Unlike the original that bases itself on Debian like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
-
-
 # Lab 5: Generating Kubernetes Configuration Files for Authentication
+
+> This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower). Unlike the original that bases itself on Debian (or similar) distributions for ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
 
 In this lab you will generate [Kubernetes client configuration files](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/), typically called kubeconfigs, which configure Kubernetes clients to connect and authenticate to Kubernetes API Servers.
 
@@ -21,9 +19,9 @@ In this section you will generate kubeconfig files for the `kubelet` and the `ad
 
 ### The kubelet Kubernetes Configuration File
 
-When generating kubeconfig files for Kubelets the client certificate matching the Kubelet's node name must be used. This will ensure Kubelets are properly authorized by the Kubernetes [Node Authorizer](https://kubernetes.io/docs/admin/authorization/node/).
+When generating kubeconfig files for Kubelets you must match the client certificate to the Kubelet's node name. This will ensure Kubelets are properly authorized by the Kubernetes [Node Authorizer](https://kubernetes.io/docs/admin/authorization/node/).
 
-> The following commands must be run in the same directory used to generate the SSL certificates during the [Generating TLS Certificates](04-certificate-authority.md) lab.
+> The following commands must be run in the same directory used to generate the SSL certificates during the [Generating TLS Certificates](lab4-certificate-authority.md) lab.
 
 Generate a kubeconfig file for the node-0 and node-1 worker nodes:
 
@@ -122,7 +120,6 @@ Results:
 kube-controller-manager.kubeconfig
 ```
 
-
 ### The kube-scheduler Kubernetes Configuration File
 
 Generate a kubeconfig file for the `kube-scheduler` service:
@@ -189,7 +186,7 @@ admin.kubeconfig
 
 ## Distribute the Kubernetes Configuration Files
 
-Copy the `kubelet` and `kube-proxy` kubeconfig files to the node-0 and node-1 instances:
+Copy the `kubelet` and `kube-proxy` kubeconfig files to the `node-0` and `node-1` instances:
 
 ```bash
 for host in node-0 node-1; do

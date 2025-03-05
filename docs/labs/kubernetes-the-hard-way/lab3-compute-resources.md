@@ -1,5 +1,6 @@
 ---
 author: Wale Soyinka 
+contributors: Steven Spencer
 tags:
   - kubernetes
   - k8s
@@ -42,7 +43,7 @@ You will use SSH to configure the machines in the cluster. Verify that you have 
 
 If you have `root` SSH access for each of your machines you can skip this section.
 
-By default, a new `Rocky Linux` install disables SSH access for the `root` user. This is for security reasons, as the `root` user has total administrative control of unix-like systems. Weak passwords are very bad for internet connected machines. As mentioned earlier, you are going to enable `root` access over SSH to streamline the steps in this tutorial. Security is a trade-off, and in this case, you are optimizing for convenience. 
+By default, a new `Rocky Linux` install disables SSH access for the `root` user. This is for security reasons, as the `root` user has total administrative control of unix-like systems. Weak passwords are very bad for internet connected machines. As mentioned earlier, you are going to enable `root` access over SSH to streamline the steps in this tutorial. Security is a trade-off, and in this case, you are optimizing for convenience.
 
 Log on to each machine using SSH and your user account, then switch to the `root` user with the `su` command:
 
