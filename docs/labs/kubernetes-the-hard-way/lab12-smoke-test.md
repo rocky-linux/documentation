@@ -14,7 +14,7 @@ tags:
 This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower).
 Unlike the original that bases itself on Debian like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
 
-# Smoke Test
+# Lab 12: Smoke Test
 
 In this lab you will complete a series of tasks to ensure your Kubernetes cluster is functioning correctly.
 
