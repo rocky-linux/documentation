@@ -7,7 +7,7 @@ contributors: Steven Spencer
 This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower).
 Unlike the original that bases itself on Debian like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
 
-# Kubernetes The Hard Way
+# Kubernetes The Hard Way (Rocky Linux)
 
 This tutorial walks you through setting up Kubernetes the hard way. This guide is not for someone looking for a fully automated tool to bring up a Kubernetes cluster. Kubernetes The Hard Way, designed for learning, means taking the long route to ensure you understand each task required to bootstrap a Kubernetes cluster.
 
