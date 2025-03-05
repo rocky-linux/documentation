@@ -1,3 +1,16 @@
+---
+author: Wale Soyinka
+contributors: Steven Spencer
+tags:
+  - kubernetes
+  - k8s
+  - lab exercise
+---
+
+This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower).
+Unlike the original that bases itself on Debian like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
+
+
 # Generating Kubernetes Configuration Files for Authentication
 
 In this lab you will generate [Kubernetes client configuration files](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/), typically called kubeconfigs, which configure Kubernetes clients to connect and authenticate to Kubernetes API Servers.
@@ -199,4 +212,4 @@ scp admin.kubeconfig \
   root@server:~/
 ```
 
-Next: [Generating the Data Encryption Config and Key](06-data-encryption-keys.md)
+Next: [Generating the Data Encryption Config and Key](lab6-data-encryption-keys.md)
