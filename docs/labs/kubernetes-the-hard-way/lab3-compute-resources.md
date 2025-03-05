@@ -1,3 +1,11 @@
+---
+author: Wale Soyinka 
+tags:
+  - kubernetes
+  - k8s
+  - lab exercise
+---
+
 # Provisioning Compute Resources
 
 Kubernetes requires a set of machines to host the Kubernetes control plane and the worker nodes where containers are ultimately run. In this lab you will provision the machines required for setting up a Kubernetes cluster.
@@ -218,4 +226,4 @@ done < machines.txt
 
 At this point you can use hostnames when connecting to machines from your `jumpbox` machine, or any of the three machines in the Kubernetes cluster. Instead of using IP addresses you can now connect to machines by using a hostname such as `server`, `node-0`, or `node-1`.
 
-Next: [Provisioning a CA and Generating TLS Certificates](04-certificate-authority.md)
+Next: [Provisioning a CA and Generating TLS Certificates](lab4-certificate-authority.md)
