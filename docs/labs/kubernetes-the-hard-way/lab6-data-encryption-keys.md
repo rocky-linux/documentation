@@ -11,7 +11,7 @@ This is a fork of the original ["Kubernetes the hard way"](https://github.com/ke
 Unlike the original that bases itself on Debian like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
 
 
-# Generating the Data Encryption Config and Key
+# Lab 6: Generating the Data Encryption Config and Key
 
 Kubernetes stores a variety of data including cluster state, application configurations, and secrets. Kubernetes supports the ability to [encrypt](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data) cluster data at rest.
 
