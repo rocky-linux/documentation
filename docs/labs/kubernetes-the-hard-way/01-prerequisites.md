@@ -1,3 +1,12 @@
+---
+author: Wale Soyinka 
+tags:
+  - kubernetes
+  - k8s
+  - lab exercise
+---
+
+
 # Prerequisites
 
 In this lab you will review the machine requirements necessary to follow this tutorial.
