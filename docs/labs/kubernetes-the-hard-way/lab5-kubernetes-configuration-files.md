@@ -11,7 +11,7 @@ This is a fork of the original ["Kubernetes the hard way"](https://github.com/ke
 Unlike the original that bases itself on Debian like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
 
 
-# Generating Kubernetes Configuration Files for Authentication
+# Lab 5: Generating Kubernetes Configuration Files for Authentication
 
 In this lab you will generate [Kubernetes client configuration files](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/), typically called kubeconfigs, which configure Kubernetes clients to connect and authenticate to Kubernetes API Servers.
 
