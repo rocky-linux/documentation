@@ -1,3 +1,18 @@
+---
+author: Wale Soyinka
+contributors: Steven Spencer
+tags:
+  - kubernetes
+  - k8s
+  - lab exercise
+  - runc
+  - containerd
+  - etcd
+  - kubectl
+---
+
+This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower).
+Unlike the original that bases itself on Debian like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
 # Provisioning Pod Network Routes
 
 Pods scheduled to a node receive an IP address from the node's Pod CIDR range. At this point pods can not communicate with other pods running on different nodes due to missing network [routes](https://cloud.google.com/compute/docs/vpc/routes).
@@ -75,4 +90,4 @@ XXX.XXX.XXX.0/24 dev ens160 proto kernel scope link src XXX.XXX.XXX.XXX
 ```
 
 
-Next: [Smoke Test](12-smoke-test.md)
+Next: [Smoke Test](lab12-smoke-test.md)
