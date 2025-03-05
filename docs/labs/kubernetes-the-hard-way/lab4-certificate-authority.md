@@ -1,3 +1,12 @@
+---
+author: Wale Soyinka 
+tags:
+  - kubernetes
+  - k8s
+  - lab exercise
+---
+
+
 # Provisioning a CA and Generating TLS Certificates
 
 In this lab you will provision a [PKI Infrastructure](https://en.wikipedia.org/wiki/Public_key_infrastructure) using openssl to bootstrap a Certificate Authority, and generate TLS certificates for the following components: kube-apiserver, kube-controller-manager, kube-scheduler, kubelet, and kube-proxy. The commands in this section should be run from the `jumpbox`.
@@ -106,4 +115,4 @@ scp \
 
 > The `kube-proxy`, `kube-controller-manager`, `kube-scheduler`, and `kubelet` client certificates will be used to generate client authentication configuration files in the next lab.
 
-Next: [Generating Kubernetes Configuration Files for Authentication](05-kubernetes-configuration-files.md)
+Next: [Generating Kubernetes Configuration Files for Authentication](lab5-kubernetes-configuration-files.md)
