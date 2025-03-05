@@ -1,3 +1,19 @@
+---
+author: Wale Soyinka
+contributors: Steven Spencer
+tags:
+  - kubernetes
+  - k8s
+  - lab exercise
+  - runc
+  - containerd
+  - etcd
+  - kubectl
+---
+
+This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower).
+Unlike the original that bases itself on Debian like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
+
 # Bootstrapping the Kubernetes Worker Nodes
 
 In this lab you will bootstrap two Kubernetes worker nodes. The following components will be installed: [runc](https://github.com/opencontainers/runc), [container networking plugins](https://github.com/containernetworking/cni), [containerd](https://github.com/containerd/containerd), [kubelet](https://kubernetes.io/docs/admin/kubelet), and [kube-proxy](https://kubernetes.io/docs/concepts/cluster-administration/proxies).
@@ -183,4 +199,4 @@ node-1   Ready    <none>   10s    v1.32.0
 
 
 
-Next: [Configuring kubectl for Remote Access](10-configuring-kubectl.md)
+Next: [Configuring kubectl for Remote Access](lab10-configuring-kubectl.md)
