@@ -15,7 +15,7 @@ This is a fork of the original ["Kubernetes the hard way"](https://github.com/ke
 Unlike the original that bases itself on Debian like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
 
 
-# Configuring kubectl for Remote Access
+# Lab 10: Configuring kubectl for Remote Access
 
 In this lab you will generate a kubeconfig file for the `kubectl` command line utility based on the `admin` user credentials.
 
