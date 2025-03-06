@@ -19,17 +19,17 @@ tags:
 
 1. Створіть нову гілку під назвою my-local-branch. Зробіть так, щоб нова локальна гілка відстежувала основну гілку віддаленого сховища з назвою origin. Впишіть:
 
-   ```bash
-   git checkout -b my-local-branch origin/main
-   ```
+  ```bash
+  git checkout -b my-local-branch origin/main
+  ```
 
 2. Використовуйте команду `git branch -vv`, щоб переконатися, що гілка є гілкою відстеження. Впишіть:
 
-   ```bash
-   git branch -vv
-   ```
+  ```bash
+  git branch -vv
+  ```
 
-   Шукайте гілки з `[origin/main]`, що вказує, що вони відстежують `origin/main`.
+  Шукайте гілки з `[origin/main]`, що вказує, що вони відстежують `origin/main`.
 
 ## Non-Tracking Branch
 
@@ -37,9 +37,9 @@ tags:
 
 1. Створіть нову локальну гілку без відстеження під назвою my-feature-branch. Впишіть:
 
-   ```bash
-   git checkout -b my-feature-branch
-   ```
+  ```bash
+  git checkout -b my-feature-branch
+  ```
 
 2. Гілки без відстеження не відображатимуть віддалену гілку поруч із ними у виводі git branch -vv. Перевірте, чи my-feature-branch є гілкою без відстеження.
 
@@ -47,26 +47,26 @@ tags:
 
 1. За бажанням, спочатку переконайтеся, що останні зміни з основної гілки об’єднано в цільову гілку. Впишіть:
 
-   ```bash
-   git checkout my-feature-branch
-   git merge main
-   ```
+  ```bash
+  git checkout my-feature-branch
+  git merge main
+  ```
 
 2. Налаштувати відстеження до віддаленого відділення:
 
-   ```bash
-   git branch --set-upstream-to=origin/main my-feature-branch
-   ```
+  ```bash
+  git branch --set-upstream-to=origin/main my-feature-branch
+  ```
 
-   Вихід: \`Гілка 'my-feature-branch' налаштована для відстеження віддаленої гілки 'main' від 'origin'.'
+  Вихід: \`Гілка 'my-feature-branch' налаштована для відстеження віддаленої гілки 'main' від 'origin'.'
 
 3. Перевірте зміну. Впишіть:
 
-   ```bash
-   git branch -vv
-   ```
+  ```bash
+  git branch -vv
+  ```
 
-   Тепер `my-feature-branch` має показувати `[origin/main]`, що вказує на відстеження.
+  Тепер `my-feature-branch` має показувати `[origin/main]`, що вказує на відстеження.
 
 ## Висновок
 
