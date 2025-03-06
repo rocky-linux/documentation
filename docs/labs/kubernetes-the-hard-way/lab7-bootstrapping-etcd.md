@@ -1,6 +1,6 @@
 ---
 author: Wale Soyinka
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - kubernetes
   - k8s
@@ -9,9 +9,9 @@ tags:
 
 # Lab 7: Bootstrapping the `etcd` Cluster
 
-> This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower).Unlike the original that bases itself on Debian like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
+> This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower). Unlike the original, which bases itself on Debian-like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux, which runs on x86_64 architecture.
 
-Kubernetes components are stateless and store cluster state in [etcd](https://github.com/etcd-io/etcd). In this lab you will bootstrap a three node `etcd` cluster and configure it for high availability and secure remote access.
+Kubernetes components are stateless and store cluster state in [etcd](https://github.com/etcd-io/etcd). In this lab, you will bootstrap a three node `etcd` cluster and configure it for high availability and secure remote access.
 
 ## Prerequisites
 
@@ -34,7 +34,7 @@ ssh root@server
 
 ### Install the etcd Binaries
 
-If you do not already have it installed, first install the `tar` utility with `dnf`. And then extract and install the `etcd` server and the `etcdctl` command line utility:
+If you do not already have it installed, first install the `tar` utility with `dnf`. Then, extract and install the `etcd` server and the `etcdctl` command line utility:
 
 ```bash
   dnf -y install tar
@@ -62,9 +62,9 @@ chmod 644 /etc/systemd/system/etcd.service
 
 !!! Note
 
-    Although considered bad security form, you might have to temporarily or permanently disable SELinux if you run into any issues starting the `etcd` `systemd` service. The proper fix is to investigate and create the needed policy files with tools such as `ausearch`, `audit2allow` and others.  
+    Although it is considered a bad security form, you might have to temporarily or permanently disable SELinux if you run into any issues starting the `etcd` `systemd` service. The proper fix is to investigate and create the needed policy files with tools such as `ausearch`, `audit2allow`, and others.  
 
-    The commands get SELinux out of the way and disable it is by running the following:
+    The commands get SELinux out of the way and disable it by running the following:
 
   ```bash
   sudo sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
