@@ -1,6 +1,6 @@
 ---
 author: Wale Soyinka
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - kubernetes
   - k8s
@@ -13,13 +13,13 @@ tags:
 
 # Lab 12: Smoke Test
 
-> This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower). Unlike the original that bases itself on Debian like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
+> This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower). Unlike the original, which bases itself on Debian-like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux, which runs on x86_64 architecture.
 
-In this lab you will complete a series of tasks to ensure your Kubernetes cluster is functioning correctly.
+In this lab, you will complete tasks to ensure your Kubernetes cluster functions correctly.
 
 ## Data Encryption
 
-In this section you will verify the ability to [encrypt secret data at rest](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/#verifying-that-data-is-encrypted).
+In this section, you will verify the ability to [encrypt secret data at rest](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/#verifying-that-data-is-encrypted).
 
 Create a generic secret:
 
@@ -65,7 +65,7 @@ You need to prefix the `etcd` key with `k8s:enc:aescbc:v1:key1`, which indicates
 
 ## Deployments
 
-In this section you will verify the ability to create and manage [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/).
+In this section, you will verify the ability to create and manage [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/).
 
 Create a deployment for the [nginx](https://nginx.org/en/) web server:
 
@@ -87,7 +87,7 @@ nginx-54c98b4f84-dfwl9   1/1     Running   0          71s
 
 ### Port Forwarding
 
-In this section you will verify the ability to access applications remotely using [port forwarding](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/).
+In this section, you will verify the ability to access applications remotely using [port forwarding](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/).
 
 Retrieve the full name of the `nginx` pod:
 
@@ -107,7 +107,7 @@ Forwarding from 127.0.0.1:8080 -> 80
 Forwarding from [::1]:8080 -> 80
 ```
 
-In a new terminal make an HTTP request with the forwarding address:
+In a new terminal, make an HTTP request with the forwarding address:
 
 ```bash
 curl --head http://127.0.0.1:8080
@@ -136,7 +136,7 @@ Handling connection for 8080
 
 ### Logs
 
-In this section you will verify the ability to [retrieve container logs](https://kubernetes.io/docs/concepts/cluster-administration/logging/).
+In this section, you will verify the ability to [retrieve container logs](https://kubernetes.io/docs/concepts/cluster-administration/logging/).
 
 Print the `nginx` pod logs:
 
@@ -151,7 +151,7 @@ kubectl logs $POD_NAME
 
 ### Exec
 
-In this section you will verify the ability to [execute commands in a container](https://kubernetes.io/docs/tasks/debug-application-cluster/get-shell-running-container/#running-individual-commands-in-a-container).
+In this section, you will verify the ability to [execute commands in a container](https://kubernetes.io/docs/tasks/debug-application-cluster/get-shell-running-container/#running-individual-commands-in-a-container).
 
 Print the `nginx` version by executing the `nginx -v` command in the `nginx` container:
 
@@ -165,7 +165,7 @@ nginx version: nginx/1.27.4
 
 ## Services
 
-In this section you will verify the ability to expose applications with a [Service](https://kubernetes.io/docs/concepts/services-networking/service/).
+In this section, you will verify the ability to expose applications with a [Service](https://kubernetes.io/docs/concepts/services-networking/service/).
 
 Expose the `nginx` deployment using a [NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) service:
 
@@ -174,7 +174,7 @@ kubectl expose deployment nginx \
   --port 80 --type NodePort
 ```
 
-> You cannot use the LoadBalancer service type because your cluster is not configured with [cloud provider integration](https://kubernetes.io/docs/getting-started-guides/scratch/#cloud-provider). Setting up cloud provider integration is out of scope for this tutorial.
+> You cannot use the LoadBalancer service type because your cluster is not configured with [cloud provider integration](https://kubernetes.io/docs/getting-started-guides/scratch/#cloud-provider). This tutorial does not cover setting up cloud provider integration.
 
 Retrieve the node port assigned to the `nginx` service:
 
