@@ -1,0 +1,17 @@
+---
+nav:
+    - ... | lab0-README*.md
+    - ... | lab1-prerequisites*.md
+    - ... | lab2-jumpbox*.md
+    - ... | lab3-compute-resources*.md
+    - ... | lab4-certificate-authority*.md
+    - ... | lab5-kubernetes-configuration-files*.md
+    - ... | lab6-data-encryption-keys*.md
+    - ... | lab7-bootstrapping-etcd*.md
+    - ... | lab8-bootstrapping-kubernetes-controllers*.md
+    - ... | lab9-bootstrapping-kubernetes-workers*.md
+    - ... | lab10-configuring-kubectl*.md
+    - ... | lab11-pod-network-routes*.md
+    - ... | lab12-smoke-test*.md
+    - ... | lab13-cleanup*.md
+    - ...
