@@ -1,6 +1,6 @@
 ---
 author: Wale Soyinka
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - kubernetes
   - k8s
@@ -12,9 +12,9 @@ tags:
 
 # Lab 8: Bootstrapping the Kubernetes Control Plane
 
-> This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower). Unlike the original that bases itself on Debian like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
+> This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower). Unlike the original, which bases itself on Debian-like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux, which runs on x86_64 architecture.
 
-In this lab you will bootstrap the Kubernetes control plane. You will install the following components on the controller machine: Kubernetes API Server, Scheduler, and Controller Manager.
+In this lab, you will bootstrap the Kubernetes control plane. You will install the following components on the controller machine: Kubernetes API Server, Scheduler, and Controller Manager.
 
 ## Prerequisites
 
@@ -141,17 +141,17 @@ Kubernetes control plane is running at https://127.0.0.1:6443
 
 ## RBAC for Kubelet Authorization
 
-In this section you will configure RBAC permissions to allow the Kubernetes API Server to access the Kubelet API on each worker node. Access to the Kubelet API is required for retrieving metrics, logs, and executing commands in pods.
+In this section, you will configure RBAC permissions to allow the Kubernetes API Server to access the Kubelet API on each worker node. Access to the Kubelet API is required to retrieve metrics and logs and execute commands in pods.
 
 > This tutorial sets the Kubelet `--authorization-mode` flag to `Webhook`. `Webhook` mode uses the [SubjectAccessReview](https://kubernetes.io/docs/admin/authorization/#checking-api-access) API to determine authorization.
 
-Run the commands in this section on the controller node, which will affect the entire cluster.
+Run the commands in this section on the controller node, affecting the entire cluster.
 
 ```bash
 ssh root@server
 ```
 
-Create the `system:kube-apiserver-to-kubelet` [ClusterRole](https://kubernetes.io/docs/admin/authorization/rbac/#role-and-clusterrole) with permissions to access the Kubelet API and perform most common tasks associated with managing pods:
+Create the `system:kube-apiserver-to-kubelet` [ClusterRole](https://kubernetes.io/docs/admin/authorization/rbac/#role-and-clusterrole) with permissions to access the Kubelet API and perform the most common tasks associated with managing pods:
 
 ```bash
 kubectl apply -f kube-apiserver-to-kubelet.yaml \
@@ -160,9 +160,9 @@ kubectl apply -f kube-apiserver-to-kubelet.yaml \
 
 ### RBAC Verification
 
-At this point the Kubernetes control plane is up and running. Run the following commands from the `jumpbox` machine to verify it is working:
+At this point, the Kubernetes control plane is up and running. Run the following commands from the `jumpbox` machine to verify it is working:
 
-Make a HTTP request for the Kubernetes version info:
+Make an HTTP request for the Kubernetes version info:
 
 ```bash
 curl -k --cacert ca.crt https://server.kubernetes.local:6443/version
