@@ -1,6 +1,6 @@
 ---
 author: Wale Soyinka
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - kubernetes
   - k8s
@@ -13,17 +13,17 @@ tags:
 
 # Lab 11: Provisioning Pod Network Routes
 
-> This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower). Unlike the original that bases itself on Debian like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
+> This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower). Unlike the original, which bases itself on Debian-like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux, which runs on x86_64 architecture.
 
-Pods scheduled to a node receive an IP address from the node's Pod CIDR range. At this point pods cannot communicate with other pods running on different nodes due to missing network [routes](https://cloud.google.com/compute/docs/vpc/routes).
+Pods scheduled to a node receive an IP address from the node's Pod CIDR range. Currently, pods cannot communicate with other pods running on different nodes due to missing network [routes](https://cloud.google.com/compute/docs/vpc/routes).
 
-In this lab you will create a route for each worker node that maps the node's Pod CIDR range to the node's internal IP address.
+In this lab, you will create a route for each worker node that maps the node's Pod CIDR range to the node's internal IP address.
 
 > There are [other ways](https://kubernetes.io/docs/concepts/cluster-administration/networking/#how-to-achieve-this) to implement the Kubernetes networking model.
 
 ## The Routing Table
 
-In this section you will gather the information required to create routes in the `kubernetes-the-hard-way` VPC network.
+In this section, you will gather the information required to create routes in the `kubernetes-the-hard-way` VPC network.
 
 Print the internal IP address and Pod CIDR range for each worker instance:
 
