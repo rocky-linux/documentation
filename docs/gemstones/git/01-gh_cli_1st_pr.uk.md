@@ -28,56 +28,56 @@ tags:
 ## Етапи рішення
 
 1. **Розгалужте репозиторій за допомогою GitHub CLI**:
-   Розгалужте репозиторій вище за течією до свого облікового запису.
+  Розгалужте репозиторій вище за течією до свого облікового запису.
 
-   ```bash
-   gh repo fork https://github.com/rocky-linux/documentation --clone
-   ```
+  ```bash
+  gh repo fork https://github.com/rocky-linux/documentation --clone
+  ```
 
 2. **Перейдіть до каталогу сховища**:
 
-   ```bash
-   cd documentation
-   ```
+  ```bash
+  cd documentation
+  ```
 
 3. **Додайте репозиторій Upstream**:
 
-   ```bash
-   git remote add upstream https://github.com/rocky-linux/documentation.git
-   ```
+  ```bash
+  git remote add upstream https://github.com/rocky-linux/documentation.git
+  ```
 
 4. **Створіть нову гілку**:
-   Створіть нову гілку для свого внеску. Впишіть:
+  Створіть нову гілку для свого внеску. Впишіть:
 
-   ```bash
-   git checkout -b new-gemstone
-   ```
+  ```bash
+  git checkout -b new-gemstone
+  ```
 
 5. **Додайте свій новий документ**:
-   Використовуйте свій улюблений текстовий редактор, щоб створити та відредагувати новий файл внеску.
-   Для цього прикладу ми створимо новий файл під назвою `gemstome_new_pr.md` і збережемо його в каталозі `docs/gemstones/`.
+  Використовуйте свій улюблений текстовий редактор, щоб створити та відредагувати новий файл внеску.
+  Для цього прикладу ми створимо новий файл під назвою `gemstome_new_pr.md` і збережемо його в каталозі `docs/gemstones/`.
 
 6. **Зафіксуйте свої зміни**:
-   Створіть і зафіксуйте новий файл. Впишіть:
+  Створіть і зафіксуйте новий файл. Впишіть:
 
-   ```bash
-   git add docs/gemstones/gemstome_new_pr.md
-   git commit -m "Add new Gemstone document"
-   ```
+  ```bash
+  git add docs/gemstones/gemstome_new_pr.md
+  git commit -m "Add new Gemstone document"
+  ```
 
 7. **Натисніть на свою вилку**:
-   Надішліть зміни у свій форк/копію сховища документації Rocky Linux. Впишіть:
+  Надішліть зміни у свій форк/копію сховища документації Rocky Linux. Впишіть:
 
-   ```bash
-   git push origin new-gemstone
-   ```
+  ```bash
+  git push origin new-gemstone
+  ```
 
 8. **Створіть запит на отримання**:
-   Створіть запит на отримання до репозиторію вище за течією.
+  Створіть запит на отримання до репозиторію вище за течією.
 
-   ```bash
-   gh pr create --base main --head wsoyinka:new-gemstone --title "New Gemstone: Creating PRs via CLI" --body "Guide on how to contribute to documentation using CLI"
-   ```
+  ```bash
+  gh pr create --base main --head wsoyinka:new-gemstone --title "New Gemstone: Creating PRs via CLI" --body "Guide on how to contribute to documentation using CLI"
+  ```
 
 ## Додаткова інформація (необов'язково)
 
