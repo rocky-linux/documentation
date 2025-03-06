@@ -1,6 +1,6 @@
 ---
 author: Wale Soyinka
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - kubernetes
   - k8s
@@ -9,13 +9,13 @@ tags:
 
 # Lab 5: Generating Kubernetes Configuration Files for Authentication
 
-> This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower). Unlike the original that bases itself on Debian (or similar) distributions for ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
+> This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower). Unlike the original, which is based on Debian (or similar) distributions for ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
 
-In this lab you will generate [Kubernetes client configuration files](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/), typically called kubeconfigs, which configure Kubernetes clients to connect and authenticate to Kubernetes API Servers.
+In this lab, you will generate [Kubernetes client configuration files](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/), which are typically called kubeconfigs. These files configure Kubernetes clients to connect to and authenticate with Kubernetes API Servers.
 
 ## Client Authentication Configs
 
-In this section you will generate kubeconfig files for the `kubelet` and the `admin` user.
+In this section, you will generate kubeconfig files for the `kubelet` and the `admin` user.
 
 ### The kubelet Kubernetes Configuration File
 
