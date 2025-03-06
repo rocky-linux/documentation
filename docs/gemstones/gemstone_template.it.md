@@ -31,15 +31,15 @@ Delineare la procedura o la soluzione con passi numerati:
 
 1. **Primo passo**:
 
-   Istruzioni ed esempi di comandi.
+  Istruzioni ed esempi di comandi.
 
-   ```bash
-   Comando o frammento di codice
-   ```
+  ```bash
+  Comando o frammento di codice
+  ```
 
 2. **Secondo passo**:
 
-   Proseguire con le istruzioni dettagliate.
+  Proseguire con le istruzioni dettagliate.
 
 ## Informazioni aggiuntive (facoltative)
 
