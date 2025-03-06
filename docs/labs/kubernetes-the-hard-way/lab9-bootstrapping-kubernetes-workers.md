@@ -1,6 +1,6 @@
 ---
 author: Wale Soyinka
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - kubernetes
   - k8s
@@ -13,9 +13,9 @@ tags:
 
 # Lab 9: Bootstrapping the Kubernetes Worker Nodes
 
-> This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower). Unlike the original that bases itself on Debian like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux running on x86_64 architecture.
+> This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower). Unlike the original, which bases itself on Debian-like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux, which runs on x86_64 architecture.
 
-In this lab you will bootstrap two Kubernetes worker nodes. You will install the following components: [runc](https://github.com/opencontainers/runc), [container networking plugins](https://github.com/containernetworking/cni), [containerd](https://github.com/containerd/containerd), [kubelet](https://kubernetes.io/docs/admin/kubelet), and [kube-proxy](https://kubernetes.io/docs/concepts/cluster-administration/proxies).
+In this lab, you will bootstrap two Kubernetes worker nodes. You will install the following components: [runc](https://github.com/opencontainers/runc), [container networking plugins](https://github.com/containernetworking/cni), [containerd](https://github.com/containerd/containerd), [kubelet](https://kubernetes.io/docs/admin/kubelet), and [kube-proxy](https://kubernetes.io/docs/concepts/cluster-administration/proxies).
 
 ## Prerequisites
 
@@ -56,7 +56,7 @@ for host in node-0 node-1; do
 done
 ```
 
-The commands in this lab must be separately run on each worker instance: `node-0`, `node-1`. The steps for `node-0` are the only ones shown. You will need to repeat the exact steps and commands on `node-1`.
+The commands in this lab must be run separately on each worker instance: `node-0` and `node-1`. The steps for `node-0` are the only ones shown. You must repeat the exact steps and commands on `node-1`.
 
 Login to the worker `node-0` instance with the `ssh` command.
 
@@ -73,7 +73,7 @@ Install the operating system dependencies:
   dnf -y install socat conntrack ipset tar
 ```
 
-> The `socat` binary enables support for the `kubectl port-forward` command.
+> The `socat` binary supports the `kubectl port-forward` command.
 
 ### Disable Swap
 
@@ -85,13 +85,13 @@ Verify if swap is on:
 swapon --show
 ```
 
-If output is empty then swap is not enabled. If the output is not empty, run the following command to disable swap immediately:
+If the output is empty, then the swap is not enabled. If the output is not empty, run the following command to disable swap immediately:
 
 ```bash
 swapoff -a
 ```
 
-To ensure swap remains off after reboot comment out the line that automatically mounts the swap volume in the `/etc/fstab` file. Type:
+To ensure swap remains off after reboot, comment out the line that automatically mounts the swap volume in the `/etc/fstab` file. Type:
 
 ```bash
 sudo sed -i '/swap/s/^/#/' /etc/fstab
@@ -158,7 +158,7 @@ Create the `kubelet-config.yaml` configuration file:
 
 !!! Note
 
-    Although considered bad security form, you might have to temporarily or permanently disable SELinux if you run into any issues starting the needed systemd services. The proper fix is to investigate and create the needed policy files using tools such as ausearch, audit2allow and so on.  
+    Although this is considered a bad security form, you might have to temporarily or permanently disable SELinux if you run into any issues starting the needed systemd services. The proper fix is to investigate and create the required policy files using tools such as ausearch, audit2allow, etc.  
 
     The fix for getting SELinux out of the way and disabling it is by running the following:
   
@@ -190,7 +190,7 @@ NAME     STATUS   ROLES    AGE    VERSION
 node-0   Ready    <none>   1m     v1.32.0
 ```
 
-After completing all the previous steps in this lab on both `node-0` and `node-1` the output of the `kubectl get nodes` command should show:
+After completing all the previous steps in this lab on both `node-0` and `node-1`, the output of the `kubectl get nodes` command should show:
 
 ```text
 NAME     STATUS   ROLES    AGE    VERSION
