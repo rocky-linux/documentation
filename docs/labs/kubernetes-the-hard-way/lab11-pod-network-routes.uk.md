@@ -13,7 +13,9 @@ tags:
 
 # Лабораторна робота 11: Надання мережевих маршрутів Pod
 
-> Це вітка оригінального ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way), яку спочатку створив Келсі Хайтауер (GitHub: kelseyhightower). На відміну від оригіналу, який базується на дистрибутивах, подібних до Debian, для архітектури ARM64, ця гілка націлена на дистрибутиви Enterprise Linux, такі як Rocky Linux, що працюють на архітектурі x86_64.
+!!! info
+
+    Це гілка розгалуження від оригінальної ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way), Келсі Хайтауера (GitHub: kelseyhightower). На відміну від оригіналу, який базується на дистрибутивах, подібних до Debian, для архітектури ARM64, ця гілка націлена на дистрибутиви Enterprise Linux, такі як Rocky Linux, який працює на архітектурі x86_64.
 
 Поди, заплановані на вузол, отримують IP-адресу з діапазону CIDR модуля вузла. Наразі модулі не можуть обмінюватися даними з іншими модулями, що працюють на різних вузлах, через відсутність мережевих [маршрутів](https://cloud.google.com/compute/docs/vpc/routes).
 
