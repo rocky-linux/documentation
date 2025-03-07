@@ -13,7 +13,9 @@ tags:
 
 # Лабораторна робота 12: Smoke Test
 
-> Це вітка оригінального ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way), яку спочатку створив Келсі Хайтауер (GitHub: kelseyhightower). На відміну від оригіналу, який базується на дистрибутивах, подібних до Debian, для архітектури ARM64, ця гілка націлена на дистрибутиви Enterprise Linux, такі як Rocky Linux, що працюють на архітектурі x86_64.
+!!! info
+
+    Це гілка розгалуження від оригінальної ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way), Келсі Хайтауера (GitHub: kelseyhightower). На відміну від оригіналу, який базується на дистрибутивах, подібних до Debian, для архітектури ARM64, ця гілка націлена на дистрибутиви Enterprise Linux, такі як Rocky Linux, який працює на архітектурі x86_64.
 
 У цій лабораторній роботі ви виконуватимете завдання, щоб переконатися, що ваш кластер Kubernetes функціонує правильно.
 
