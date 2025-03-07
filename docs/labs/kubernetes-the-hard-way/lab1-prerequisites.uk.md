@@ -1,6 +1,6 @@
 ---
 author: Wale Soyinka
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - kubernetes
   - k8s
