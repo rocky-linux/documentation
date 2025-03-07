@@ -13,7 +13,9 @@ tags:
 
 # Лабораторна робота 10: Налаштування `kubectl` для віддаленого доступу
 
-> Це вітка оригінального ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way), яку спочатку створив Келсі Хайтауер (GitHub: kelseyhightower). На відміну від оригіналу, який базується на дистрибутивах, подібних до Debian, для архітектури ARM64, ця гілка націлена на дистрибутиви Enterprise Linux, такі як Rocky Linux, що працюють на архітектурі x86_64.
+!!! info
+
+    Це гілка розгалуження від оригінальної ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way), Келсі Хайтауера (GitHub: kelseyhightower). На відміну від оригіналу, який базується на дистрибутивах, подібних до Debian, для архітектури ARM64, ця гілка націлена на дистрибутиви Enterprise Linux, такі як Rocky Linux, який працює на архітектурі x86_64.
 
 У цій лабораторній роботі ви створите файл kubeconfig для утиліти командного рядка `kubectl` на основі облікових даних користувача `admin`.
 
@@ -23,7 +25,7 @@ tags:
 
 Для підключення кожного kubeconfig потрібен сервер Kubernetes API.
 
-На основі DNS-запису `/etc/hosts` з попередньої лабораторії ви повинні мати можливість перевірити ping` server.kubernetes.local`.
+На основі DNS-запису `/etc/hosts` з попередньої лабораторії ви повинні мати можливість перевірити ping`server.kubernetes.local`.
 
 ```bash
 curl -k --cacert ca.crt \
