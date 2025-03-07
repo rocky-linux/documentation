@@ -9,6 +9,10 @@ tags:
 
 # Lab 2: Set Up The Jumpbox
 
+!!! info
+
+    This is a fork of the original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) originally written by Kelsey Hightower (GitHub: kelseyhightower). Unlike the original, which bases itself on Debian-like distributions for the ARM64 architecture, this fork targets Enterprise Linux distributions such as Rocky Linux, which runs on x86_64 architecture.
+
 In this lab, you will set up one of the four machines as a `jumpbox`. You will use this machine to run commands in this tutorial. While a dedicated machine is used to ensure consistency, you can run these commands from just about any machine, including your personal workstation running macOS or Linux.
 
 Think of the `jumpbox` as the administration machine you will use as a home base when setting up your Kubernetes cluster from the ground up. One thing you need to do before you get started is to install a few command line utilities and clone the Kubernetes The Hard Way git repository, which contains some additional configuration files that you will use to configure various Kubernetes components throughout this tutorial.
