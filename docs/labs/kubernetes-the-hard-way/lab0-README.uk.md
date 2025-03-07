@@ -1,7 +1,7 @@
 ---
 title: Вступ
 author: Wale Soyinka
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 # Kubernetes The Hard Way (Rocky Linux)
