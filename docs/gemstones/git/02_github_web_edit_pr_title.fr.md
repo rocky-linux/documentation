@@ -26,13 +26,13 @@ Parfois, il peut être nécessaire de modifier le titre d'une requête PR après
 ### Utilisation de l'interface Web de GitHub
 
 1. **Accéder à la requète Pull Request**:
-   - Accédez au référentiel où se trouve la requête PR.
-   - Cliquez sur `Pull requests` et sélectionnez la requête PR que vous souhaitez modifier.
+  - Accédez au référentiel où se trouve la requête PR.
+  - Cliquez sur `Pull requests` et sélectionnez la requête PR que vous souhaitez modifier.
 
 2. **Édition du Titre de PR**:
-   - Cliquez sur le titre de la Pull Request.
-   - Une boîte de texte modifiable apparaîtra.
-   - Modifiez le titre, appuyez sur ++enter++ ou cliquez en dehors de la zone de texte pour enregistrer les modifications.
+  - Cliquez sur le titre de la Pull Request.
+  - Une boîte de texte modifiable apparaîtra.
+  - Modifiez le titre, appuyez sur ++enter++ ou cliquez en dehors de la zone de texte pour enregistrer les modifications.
 
 ## Informations Supplémentaires (facultatif)
 

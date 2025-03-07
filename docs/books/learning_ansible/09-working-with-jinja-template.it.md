@@ -108,20 +108,20 @@ Il modulo `template` di Ansible consente di utilizzare i modelli Jinja per gener
 ### Caratteristiche principali
 
 1. **Rendering del template:**
-   - Il modulo esegue il rendering dei template Jinja per creare file di configurazione con contenuti dinamici.
-   - Le variabili definite nel playbook o nell'inventario possono essere inserite nei modelli, consentendo configurazioni dinamiche.
+  - Il modulo esegue il rendering dei template Jinja per creare file di configurazione con contenuti dinamici.
+  - Le variabili definite nel playbook o nell'inventario possono essere inserite nei modelli, consentendo configurazioni dinamiche.
 
 2. **Utilizzo di Jinja2:**
-   - Il modulo `template` sfrutta il motore di creazione di template Jinja2, offrendo potenti funzionalità come istruzioni condizionali, cicli e filtri per la manipolazione avanzata dei template.
+  - Il modulo `template` sfrutta il motore di creazione di template Jinja2, offrendo potenti funzionalità come istruzioni condizionali, cicli e filtri per la manipolazione avanzata dei template.
 
 3. **Percorsi di origine e destinazione:**
-   - Specifica il file template Jinja di origine e il percorso di destinazione per il file di configurazione generato.
+  - Specifica il file template Jinja di origine e il percorso di destinazione per il file di configurazione generato.
 
 4. **Passare le variabili:**
-   - Le variabili possono essere passate direttamente nel playbook o caricate da file esterni, consentendo la generazione di configurazioni flessibili e dinamiche.
+  - Le variabili possono essere passate direttamente nel playbook o caricate da file esterni, consentendo la generazione di configurazioni flessibili e dinamiche.
 
 5. **Esecuzione idempotente:**
-   - Il modulo dei template supporta l'esecuzione idempotente, assicurando che il template venga applicato solo se vengono rilevate delle modifiche.
+  - Il modulo dei template supporta l'esecuzione idempotente, assicurando che il template venga applicato solo se vengono rilevate delle modifiche.
 
 ### Esempio di un playbook
 
@@ -142,24 +142,24 @@ Il modulo `template` di Ansible consente di utilizzare i modelli Jinja per gener
 ### Casi d'uso
 
 1. **Gestione della configurazione:**
-   - Ideale per gestire le configurazioni di sistema generando dinamicamente file in base a parametri specifici.
+  - Ideale per gestire le configurazioni di sistema generando dinamicamente file in base a parametri specifici.
 
 2. **Setup Applicativi:**
-   - Utile per creare file di configurazione per applicazioni specifiche con impostazioni diverse.
+  - Utile per creare file di configurazione per applicazioni specifiche con impostazioni diverse.
 
 3. **Infrastruttura come codice:**
-   - Facilita le pratiche di Infrastruttura come Codice consentendo adattamenti dinamici alle configurazioni in base alle variabili.
+  - Facilita le pratiche di Infrastruttura come Codice consentendo adattamenti dinamici alle configurazioni in base alle variabili.
 
 ### Buone pratiche
 
 1. **Separazione degli interessi:**
-   - Mantenere la logica di configurazione effettiva nei modelli Jinja, separandola dalla struttura principale del playbook.
+  - Mantenere la logica di configurazione effettiva nei modelli Jinja, separandola dalla struttura principale del playbook.
 
 2. **Controllo Versione:**
-   - Salvare i modelli Jinja in repository con controllo delle versioni per un miglior monitoraggio ed una migliore collaborazione.
+  - Salvare i modelli Jinja in repository con controllo delle versioni per un miglior monitoraggio ed una migliore collaborazione.
 
 3. **Testabilità:**
-   - Testare i modelli in modo indipendente per assicurarsi che producano l'output di configurazione previsto.
+  - Testare i modelli in modo indipendente per assicurarsi che producano l'output di configurazione previsto.
 
 Sfruttando il modulo `template`, gli utenti Ansible possono migliorare la gestibilità e la flessibilità delle attività di configurazione, promuovendo un approccio più snello ed efficiente alla configurazione del sistema e delle applicazioni.
 

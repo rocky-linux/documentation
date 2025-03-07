@@ -1,12 +1,14 @@
 ---
 title: Вступ
 author: Wale Soyinka
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 # Kubernetes The Hard Way (Rocky Linux)
 
-> Це вітка оригінального ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way), яку спочатку створив Келсі Хайтауер (GitHub: kelseyhightower). На відміну від оригіналу, який базується на дистрибутивах, подібних до Debian, для архітектури ARM64, ця гілка націлена на дистрибутиви Enterprise Linux, такі як Rocky Linux, що працюють на архітектурі x86_64.
+!!! info
+
+    Це гілка розгалуження від оригінальної ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way), Келсі Хайтауера (GitHub: kelseyhightower). На відміну від оригіналу, який базується на дистрибутивах, подібних до Debian, для архітектури ARM64, ця гілка націлена на дистрибутиви Enterprise Linux, такі як Rocky Linux, який працює на архітектурі x86_64.
 
 Цей підручник допоможе вам налаштувати Kubernetes the hard way. Цей посібник не для тих, хто шукає повністю автоматизований інструмент для запуску кластера Kubernetes. Kubernetes The Hard Way, розроблений для навчання, та це означає що вам доведеться пройти довгий шлях, щоб переконатися, що ви розумієте кожне завдання, необхідне для завантаження кластера Kubernetes.
 
