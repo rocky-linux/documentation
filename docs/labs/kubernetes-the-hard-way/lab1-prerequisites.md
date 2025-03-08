@@ -17,7 +17,7 @@ In this lab, you will review the machine requirements necessary to follow this t
 
 ## Virtual or Physical Machines
 
-This tutorial requires four (4) virtual or physical x86_64 machines running Debian 12 (bookworm). The following table lists the four machines and their CPU, memory, and storage requirements.
+This tutorial requires four (4) virtual or physical x86_64 machines running Rocky Linux 9.5 (Incus or LXD containers should also work). The following table lists the four machines and their CPU, memory, and storage requirements.
 
 | Name    | Description            | CPU | RAM   | Storage |
 |---------|------------------------|-----|-------|---------|
