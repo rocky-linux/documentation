@@ -153,7 +153,7 @@ Run the commands in this section on the controller node, affecting the entire cl
 ssh root@server
 ```
 
-Create the `system:kube-apiserver-to-kubelet` [ClusterRole](https://kubernetes.io/docs/admin/authorization/rbac/#role-and-clusterrole) with permissions to access the Kubelet API and perform the most common tasks associated with managing pods:
+Create the `system:kube-apiserver-to-kubelet` [ClusterRole](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole) with permissions to access the Kubelet API and perform the most common tasks associated with managing pods:
 
 ```bash
 kubectl apply -f kube-apiserver-to-kubelet.yaml \
