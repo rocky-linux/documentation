@@ -21,7 +21,7 @@ In this section, you will generate kubeconfig files for the `kubelet` and the `a
 
 ### The kubelet Kubernetes Configuration File
 
-When generating kubeconfig files for Kubelets you must match the client certificate to the Kubelet's node name. This will ensure Kubelets are properly authorized by the Kubernetes [Node Authorizer](https://kubernetes.io/docs/admin/authorization/node/).
+When generating kubeconfig files for Kubelets you must match the client certificate to the Kubelet's node name. This will ensure Kubelets are properly authorized by the Kubernetes [Node Authorizer](https://kubernetes.io/docs/reference/access-authn-authz/node/).
 
 > The following commands must be run in the same directory used to generate the SSL certificates during the [Generating TLS Certificates](lab4-certificate-authority.md) lab.
 
