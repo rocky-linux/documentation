@@ -87,7 +87,7 @@ actions:
 
 I'm not going to go into every detail of the customization options, but you can also use text inputs and dropdown menus to add variables and options to the commands you want to run. If you do, OliveTin will prompt you for input before the command is run.
 
-By doing this, you can run any program, control remote machines with SSH, trigger webhooks, and more. Check out [the official documentation](https://docs.olivetin.app/actions.html) for more ideas.
+By doing this, you can run any program, control remote machines with SSH, trigger webhooks, and more. Check out [the official documentation](https://docs.olivetin.app/action_examples/intro.html) for more ideas.
 
 But here's an example of my own: I have a personal script that I use to generate LXD containers with web servers pre-installed on them. With OliveTin, I was able to quickly make a GUI for said script like this:
 

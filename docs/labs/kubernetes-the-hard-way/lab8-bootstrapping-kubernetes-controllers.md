@@ -145,7 +145,7 @@ Kubernetes control plane is running at https://127.0.0.1:6443
 
 In this section, you will configure RBAC permissions to allow the Kubernetes API Server to access the Kubelet API on each worker node. Access to the Kubelet API is required to retrieve metrics and logs and execute commands in pods.
 
-> This tutorial sets the Kubelet `--authorization-mode` flag to `Webhook`. `Webhook` mode uses the [SubjectAccessReview](https://kubernetes.io/docs/admin/authorization/#checking-api-access) API to determine authorization.
+> This tutorial sets the Kubelet `--authorization-mode` flag to `Webhook`. `Webhook` mode uses the [SubjectAccessReview](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/subject-access-review-v1/) API to determine authorization.
 
 Run the commands in this section on the controller node, affecting the entire cluster.
 
