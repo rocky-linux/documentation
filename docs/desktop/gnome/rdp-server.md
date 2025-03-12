@@ -34,7 +34,7 @@ You need an RDP server to make your Rocky Linux desktop-accessible remotely. For
 
 !!! info
 
-    The xrdp package is in [EPEL repository](https://wiki.rockylinux.org/rocky/repo/#community-approved-repositories), which provides rebuilds of Fedora packages for every supported Enterprise Linux. If you haven't enabled it, use the following commands to do so. You [should also enable CRB](https://wiki.rockylinux.org/rocky/repo/#notes-on-epel) (called "PowerTools in Rocky Linux 8) before adding EPEL repository.
+    The xrdp package is in [EPEL repository](https://wiki.rockylinux.org/rocky/repo/#community-approved-repositories), which provides rebuilds of Fedora packages for every supported Enterprise Linux. If you haven't enabled it, use the following commands to do so. You [should also enable CRB](https://wiki.rockylinux.org/rocky/repo/#notes-on-epel) (called 'PowerTools' in Rocky Linux 8) before adding EPEL repository.
 
     In Rocky Linux 8, use these commands to add EPEL repository:
 
@@ -50,7 +50,7 @@ You need an RDP server to make your Rocky Linux desktop-accessible remotely. For
     sudo dnf install epel-release
     ```
 
-After adding EPEL repository (or if you have already added it), use the following command to install xrdp.
+After adding EPEL repository (or if you have already added it), use the following command to install xrdp:
 
 ```bash
 sudo dnf install xrdp
