@@ -30,11 +30,11 @@ For this guide, the assumption is that you have the following set up already:
 
 ## Sharing your Rocky Linux Gnome desktop with RDP
 
-You need an RDP server to make your Rocky Linux desktop-accessible remotely. For our purposes, 'xrdp' will be more than enough. You'll need to use the terminal for it, though, because it's a CLI-only program.
+You need an RDP server to make your Rocky Linux desktop-accessible remotely. For our purposes, 'xrdp' will be more than enough. You will need to use the terminal for it, though, because it is a CLI-only program.
 
 !!! info
 
-    The xrdp package is in [EPEL repository](https://wiki.rockylinux.org/rocky/repo/#community-approved-repositories), which provides rebuilds of Fedora packages for every supported Enterprise Linux. If you haven't enabled it, use the following commands. You [should also enable CRB](https://wiki.rockylinux.org/rocky/repo/#notes-on-epel) (called 'PowerTools' in Rocky Linux 8) before adding the EPEL repository.
+    The xrdp package is in [EPEL repository](https://wiki.rockylinux.org/rocky/repo/#community-approved-repositories), which provides rebuilds of Fedora packages for every supported Enterprise Linux. If you have not enabled it, use the following commands. You [should also enable CRB](https://wiki.rockylinux.org/rocky/repo/#notes-on-epel) (called 'PowerTools' in Rocky Linux 8) before adding the EPEL repository.
 
     In Rocky Linux 8, use these commands to add the EPEL repository:
 
@@ -62,7 +62,7 @@ Once you have that installed, you need to enable the service:
 sudo systemctl enable --now xrdp
 ```
 
-The RDP server should be installed, enabled, and running if all goes well. However, you won't be able to connect just yet; first, you'll need to open the right port on your firewall.
+The RDP server should be installed, enabled, and running if all goes well. However, you will not be able to connect just yet; first, you will need to open the right port on your firewall.
 
 If you want to learn more about how Rocky Linux's firewall app, `firewalld`, works, please see our [beginner's guide to `firewalld`](../../guides/security/firewalld-beginners.md). If you want to get moved along, run these commands:
 
@@ -91,7 +91,7 @@ If you have Flatpak/Flathub installed, you can open the Software app and search 
 
 You can just install and launch it. Note that this is the process for adding an RDP connection in Remmina, but it is similar to almost every other RDP client app you will likely find.
 
-Hit the plus button in the upper-left corner to add a connection. In the name field, name the connection what you like, and enter the remote computer's IP address, along with your remote user account's username and password. Remember, if your computers are on the same network, you want to use their local IP address, not the one you'd see on a site like "whatsmyip.com."
+Hit the plus button in the upper-left corner to add a connection. In the name field, name the connection what you like, and enter the remote computers IP address, along with your remote user account's username and password. Remember, if your computers are on the same network, you want to use their local IP address, not the one you would see on a site like "whatsmyip.com."
 
 ![The Remmina connection profile form](images/rdp_images/02-remmina-config.png)
 
