@@ -21,7 +21,7 @@ tags:
 
 ### Файл конфігурації kubelet Kubernetes
 
-Під час генерації файлів kubeconfig для Kubelets ви повинні зіставити сертифікат клієнта з назвою вузла Kubelet. Це забезпечить належну авторизацію Kubelets Kubernetes [Node Authorizer](https://kubernetes.io/docs/admin/authorization/node/).
+Під час генерації файлів kubeconfig для Kubelets ви повинні зіставити сертифікат клієнта з назвою вузла Kubelet. Це забезпечить належну авторизацію Kubelets Kubernetes [Node Authorizer](https://kubernetes.io/docs/reference/access-authn-authz/node/).
 
 > Наступні команди потрібно виконати в тому самому каталозі, який використовується для створення сертифікатів SSL під час лабораторної роботи [Створення сертифікатів TLS](lab4-certificate-authority.md).
 
