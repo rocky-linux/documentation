@@ -30,27 +30,27 @@ For this guide, the assumption is that you have the following set up already:
 
 ## Sharing your Rocky Linux Gnome desktop with RDP
 
-You need an RDP server to make your Rocky Linux desktop-accessible remotely. For our purposes, 'xrdp' will more than suffice. You'll need to use the terminal for it, though, as it's a CLI-only program.
+You need an RDP server to make your Rocky Linux desktop-accessible remotely. For our purposes, 'xrdp' will be more than enough. You will need to use the terminal for it, though, because it is a CLI-only program.
 
 !!! info
 
-    The xrdp package is in [EPEL repository](https://wiki.rockylinux.org/rocky/repo/#community-approved-repositories), which provides rebuilds of Fedora packages for every supported Enterprise Linux. If you haven't enabled it, use the following commands to do so. You [should also enable CRB](https://wiki.rockylinux.org/rocky/repo/#notes-on-epel) (called 'PowerTools' in Rocky Linux 8) before adding EPEL repository.
+    The xrdp package is in [EPEL repository](https://wiki.rockylinux.org/rocky/repo/#community-approved-repositories), which provides rebuilds of Fedora packages for every supported Enterprise Linux. If you have not enabled it, use the following commands. You [should also enable CRB](https://wiki.rockylinux.org/rocky/repo/#notes-on-epel) (called 'PowerTools' in Rocky Linux 8) before adding the EPEL repository.
 
-    In Rocky Linux 8, use these commands to add EPEL repository:
+    In Rocky Linux 8, use these commands to add the EPEL repository:
 
     ```bash
     sudo dnf config-manager --set-enabled powertools
     sudo dnf install epel-release
     ```
 
-    In Rocky Linux 9, use these commands to add EPEL repository:
+    In Rocky Linux 9, use these commands to add the EPEL repository:
 
     ```bash
     sudo dnf config-manager --set-enabled crb
     sudo dnf install epel-release
     ```
 
-After adding EPEL repository (or if you have already added it), use the following command to install xrdp:
+After adding the EPEL repository (or if you have already added it), use the following command to install xrdp:
 
 ```bash
 sudo dnf install xrdp
@@ -62,7 +62,7 @@ Once you have that installed, you need to enable the service:
 sudo systemctl enable --now xrdp
 ```
 
-If all goes well, the RDP server should be installed, enabled, and running. But you can't connect just yet; you need to open the correct port on your firewall first.
+The RDP server should be installed, enabled, and running if all goes well. However, you will not be able to connect just yet; first, you will need to open the right port on your firewall.
 
 If you want to learn more about how Rocky Linux's firewall app, `firewalld`, works, please see our [beginner's guide to `firewalld`](../../guides/security/firewalld-beginners.md). If you want to get moved along, run these commands:
 
@@ -73,7 +73,7 @@ sudo firewall-cmd --reload
 
 For beginners, those commands open the RDP port in your firewall so you can accept incoming RDP connections. Then, restart the firewall to apply the changes. If you feel so inclined, you can reboot your PC just to be safe.
 
-You might want to log out if you do not want to reboot. RDP uses your user account credentials for security. Logging in remotely while already logged into your desktop locally is not possible. At least, not on the same user account.
+You should log out if you do not want to reboot. RDP uses your user account credentials for security. Logging in remotely while already logged into your desktop locally is not possible. At least, not on the same user account.
 
 !!! info
 
@@ -85,17 +85,17 @@ You have seen how to install an RDP server, and now you need an RDP client appli
 
 I highly recommend Remmina for Gnome. It is not complex to use, stable, and generally works.
 
-If you have Flatpak/Flathub installed, open up the Software app and search for Remmina.
+If you have Flatpak/Flathub installed, you can open the Software app and search for Remmina.
 
 ![The Gnome Software app on the Remmina page](images/rdp_images/01-remmina.png)
 
-Install it and launch it. Note: this is the process for adding an RDP connection in Remmina, but it is similar to almost every other RDP client app you are likely to find.
+You can just install and launch it. Note that this is the process for adding an RDP connection in Remmina, but it is similar to almost every other RDP client app you will likely find.
 
-Hit the plus button in the upper-left corner to add a connection. In the name field, call it what you like, and enter the remote computer's IP address, along with your remote user account's username and password. Remember, if your computers are on the same network, you want to use their local IP address, not the one you'd see on a site like "whatsmyip.com".
+Hit the plus button in the upper-left corner to add a connection. In the name field, name the connection what you like, and enter the remote computers IP address, along with your remote user account's username and password. Remember, if your computers are on the same network, you want to use their local IP address, not the one you would see on a site like "whatsmyip.com."
 
 ![The Remmina connection profile form](images/rdp_images/02-remmina-config.png)
 
-If your computers are not on the same network, I hope you know how to do port forwarding or that the remote computer has a static IP. That is all beyond the scope of this document.
+If your computers are not on the same network, I hope you know how to do port forwarding or that the remote computer has a static IP. However, that is beyond the scope of this document.
 
 Scroll down for options like multi-monitor support, custom resolutions, and more. Also, your RDP client's "Network connection type" option lets you balance bandwidth usage with image quality.
 
@@ -109,4 +109,4 @@ This is what it looks like with the Windows Remote Desktop Connection client. Th
 
 ## Conclusion
 
-That is all you need to know to run RDP on Rocky Linux and share your desktop. This will do the trick if you only need to access some files and apps remotely.
+You only need to know this to run RDP on Rocky Linux and share it on your desktop. This will work if you only need to access some files and apps remotely.
