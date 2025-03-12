@@ -145,7 +145,7 @@ Kubernetes control plane is running at https://127.0.0.1:6443
 
 У цьому розділі ви налаштуєте дозволи RBAC, щоб дозволити серверу API Kubernetes отримувати доступ до API Kubelet на кожному робочому вузлі. Доступ до Kubelet API потрібен для отримання показників і журналів, а також для виконання команд у модулях.
 
-> Цей підручник встановлює прапор Kubelet `--authorization-mode` на `Webhook`. Режим `Webhook` використовує [SubjectAccessReview](https://kubernetes.io/docs/admin/authorization/#checking-api-access) API для визначення авторизації.
+> Цей підручник встановлює прапор Kubelet `--authorization-mode` на `Webhook`. Режим `Webhook` використовує [SubjectAccessReview](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/subject-access-review-v1/) API для визначення авторизації.
 
 Виконайте команди в цьому розділі на вузлі контролера, впливаючи на весь кластер.
 
@@ -153,7 +153,7 @@ Kubernetes control plane is running at https://127.0.0.1:6443
 ssh root@server
 ```
 
-Створіть `system:kube-apiserver-to-kubelet` [ClusterRole](https://kubernetes.io/docs/admin/authorization/rbac/#role-and-clusterrole) із дозволами на доступ до API Kubelet і виконання найпоширеніших завдань, пов’язаних із керуванням пакетами:
+Створіть `system:kube-apiserver-to-kubelet` [ClusterRole](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole) із дозволами на доступ до API Kubelet і виконання найпоширеніших завдань, пов’язаних із керуванням пакетами:
 
 ```bash
 kubectl apply -f kube-apiserver-to-kubelet.yaml \
