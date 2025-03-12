@@ -17,7 +17,7 @@ tags:
 
     Це гілка розгалуження від оригінальної ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way), Келсі Хайтауера (GitHub: kelseyhightower). На відміну від оригіналу, який базується на дистрибутивах, подібних до Debian, для архітектури ARM64, ця гілка націлена на дистрибутиви Enterprise Linux, такі як Rocky Linux, який працює на архітектурі x86_64.
 
-У цій лабораторній роботі ви завантажите два робочі вузли Kubernetes. Ви встановите такі компоненти: [runc](https://github.com/opencontainers/runc), [плагіни мережевих контейнерів](https://github.com/containernetworking/cni), [containerd](https://github.com/containerd/containerd), [kubelet](https://kubernetes.io/docs/admin/kubelet) і [kube-proxy](https://kubernetes.io/docs/concepts/cluster-administration/proxies).
+У цій лабораторній роботі ви завантажите два робочі вузли Kubernetes. Ви встановите такі компоненти: [[runc](https://github.com/opencontainers/runc), [плагіни мережевих контейнерів](https://github.com/containernetworking/cni), [containerd](https://github.com/containerd/containerd), [kubelet](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/) і [kube-proxy](https://kubernetes.io/docs/concepts/cluster-administration/proxies).
 
 ## Передумови
 
