@@ -1,7 +1,7 @@
 ---
 title: Desktop Sharing via RDP
 author: Ezequiel Bruni
-contributors: Steven Spencer, Ganna Zhyrnova
+contributors: Steven Spencer, Ganna Zhyrnova, Zhang Zhuyue
 ---
 
 ## Introduction
@@ -31,6 +31,26 @@ For this guide, the assumption is that you have the following set up already:
 ## Sharing your Rocky Linux Gnome desktop with RDP
 
 You need an RDP server to make your Rocky Linux desktop-accessible remotely. For our purposes, 'xrdp' will more than suffice. You'll need to use the terminal for it, though, as it's a CLI-only program.
+
+!!! info
+
+    The xrdp package is in [EPEL repository](https://wiki.rockylinux.org/rocky/repo/#community-approved-repositories), which provides rebuilds of Fedora packages for every supported Enterprise Linux. If you haven't enabled it, use the following commands to do so. You [should also enable CRB](https://wiki.rockylinux.org/rocky/repo/#notes-on-epel) (called "PowerTools in Rocky Linux 8) before adding EPEL repository.
+
+    In Rocky Linux 8, use these commands to add EPEL repository:
+
+    ```bash
+    sudo dnf config-manager --set-enabled powertools
+    sudo dnf install epel-release
+    ```
+
+    In Rocky Linux 9, use these commands to add EPEL repository:
+
+    ```bash
+    sudo dnf config-manager --set-enabled crb
+    sudo dnf install epel-release
+    ```
+
+After adding EPEL repository (or if you have already added it), use the following command to install xrdp.
 
 ```bash
 sudo dnf install xrdp
