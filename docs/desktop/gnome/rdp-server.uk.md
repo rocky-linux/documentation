@@ -1,7 +1,7 @@
 ---
 title: Спільний доступ до робочого столу через RDP
 author: Ezequiel Bruni
-contributors: Steven Spencer, Ganna Zhyrnova
+contributors: Steven Spencer, Ganna Zhyrnova, Zhang Zhuyue
 ---
 
 ## Вступ
@@ -34,7 +34,29 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 ## Спільне використання робочого столу Rocky Linux Gnome за допомогою RDP
 
-Щоб зробити ваш робочий стіл Rocky Linux віддалено доступним, вам потрібен сервер RDP. Для наших цілей «xrdp» буде більш ніж достатньо. Однак для цього вам потрібно буде використовувати термінал, оскільки це програма, яка працює лише з CLI.
+Щоб зробити ваш робочий стіл Rocky Linux віддалено доступним, вам потрібен сервер RDP. Для наших цілей 'xrdp' буде більш ніж достатньо. Однак для цього вам потрібно буде використовувати термінал, оскільки це програма, яка працює лише з CLI.
+
+!!! info "примітка"
+
+````
+Пакет xrdp знаходиться в [репозиторії EPEL](https://wiki.rockylinux.org/rocky/repo/#community-approved-repositories), який забезпечує перебір пакетів Fedora для всіх підтримуваних Enterprise Linux. Якщо ви не включили його, використовуйте наступні команди. Вам [также слід включити CRB](https://wiki.rockylinux.org/rocky/repo/#notes-on-epel) (називається «PowerTools» у Rocky Linux 8) перед додаванням репозиторію EPEL.
+
+У Rocky Linux 8 використовуйте ці команди, щоб додати репозиторій EPEL:
+
+```bash
+sudo dnf config-manager --set-enabled powertools
+sudo dnf install epel-release
+```
+
+У Rocky Linux 9 використовуйте ці команди, щоб додати репозиторій EPEL:
+
+```bash
+sudo dnf config-manager --set-enabled crb
+sudo dnf install epel-release
+```
+````
+
+Після додавання репозиторію EPEL (або якщо ви його вже додали), скористайтеся такою командою для встановлення xrdp:
 
 ```bash
 sudo dnf install xrdp
@@ -59,7 +81,7 @@ sudo firewall-cmd --reload
 
 Ви можете вийти, якщо не хочете перезавантажуватись. RDP використовує облікові дані вашого облікового запису користувача для безпеки. Увійти віддалено, якщо ви вже ввійшли на свій робочий стіл локально, неможливо. Принаймні, не в тому самому обліковому записі користувача.
 
-!!! info "примітка"
+!!! info
 
 ```
 Ви також можете використовувати програму Firewall, щоб керувати `firewalld` і відкривати будь-які порти, які хочете. Слідкуйте за посиланням на мій посібник із встановлення та використання програми Firewall.
