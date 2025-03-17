@@ -87,32 +87,32 @@ Este paso de verificación de medios puede ahorrarle la molestía de iniciar la 
 
 6. Seleccione el idioma que desea utilizar para realizar la instalación en esta pantalla. Para esta guía seleccionamos *Inglés (Estados Unidos)*. A continuación, haga clic en el botón ++"continuar"++.
 
-## Installation Summary
+## Resumen de instalación
 
-The `Installation Summary` screen is an all-in-one area where you make important decisions about installing the system.
+La pantalla de `Resumen de instalación` es un área todo-en-uno donde tomas decisiones importantes sobre la instalación del sistema.
 
-The screen is roughly divided into the following sections:
+La pantalla se divide aproximadamente en las siguientes secciones:
 
-- *LOCALIZATION*
+- *LOCALIZACION*
 - *SOFTWARE*
-- *SYSTEM*
-- *USER SETTINGS*
+- *SISTEMA*
+- *CONFIGURACIONES DE USUARIO*
 
-We will delve into each of these sections next and make changes where necessary.
+A continuación profundizaremos en cada una de estas secciones y haremos cambios cuando sea necesario.
 
-### Localization Section
+### Sección de Localización
 
-This section customizes items related to the system's geographic location. This includes – Keyboard, Language Support, Time and Date.
+Esta sección personaliza elementos relacionados con la ubicación geográfica del sistema. Esto incluye el teclado, Soporte de Idioma, Hora y Fecha.
 
-#### Keyboard
+#### Teclado
 
-In this guide's demo system, we accept the default value (*English US*) and make no changes.
+En esta guía de deomostración, aceptamos el valor predeterminado (*English US*) y no hacemos cambios.
 
-However, if you need to make any changes here, from the *Installation Summary* screen, click the ++"keyboard"++ option to specify the system's keyboard layout. Using the ++plus++ button, you can add additional keyboard layouts if you need to in the ensuing screen and even specify your preferred order.
+Sin embargo, si necesita hacer algún cambio aquí, desde la pantalla *Resumen de la instalación*, haga clic en la opción ++"teclado"++ para especificar el diseño del teclado del sistema. Usando el botón de ++más++, puede agregar diseños adicionales de teclado si es necesario en la pantalla subsiguiente e incluso especificar su orden preferido.
 
-Click ++"done"++ when you are finished with this screen.
+Haz clic en ++"hecho"++ cuando hayas terminado con esta pantalla.
 
-#### Language Support
+#### Soporte de Idioma
 
 The `Language Support` option on the *Installation Summary* screen lets you specify support for additional languages.
 
