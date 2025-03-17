@@ -60,28 +60,32 @@ Si has descargado la imagen Rocky Linux ISO(s) sobre una distribución de Linux 
 
 !!! Consejo
 
-    Before installing properly, the system’s Unified Extensible Firmware Interface (UEFI) or Basic Input/Output System (BIOS) should be preconfigured to boot from the correct medium.
+    Antes de realizar una instalación de manera correcta, la Interfaz de firmware extensible unificada (UEFI) o el Sistema básico de entrada/salida (BIOS) del sistema deben estar preconfigurados para arrancar desde el medio correcto. 
 
-If the computer is set up to boot from the media with the ISO file, we can begin the installation.
+Si el ordenador está configurado para arrancar desde los medios con el archivo ISO, podemos comenzar la instalación.
 
-1. Insert and boot from the installation medium (optical disk, USB flash drive, and so on).
+    Una vez que el ordenador ha arrancado, se ve la pantalla de salpicadura de bienvenida Rocky Linux 9.
 
-2. Once the computer has booted, you see the Rocky Linux 9 welcome splash screen.
+    Rocky Linux installation splash screen
 
-    ![Rocky Linux installation splash screen](images/install_9_3_01.png)
+1. Insertar y arrancar desde el medio de instalación (disco óptico, unidad flash USB, u otro medio).
 
-3. If you do not press any key, the installation program starts a countdown, after which the installation process automatically executes the default, highlighted, option:
+2. Una vez que el ordenador ha arrancado, se ve la pantalla inicial de bienvenida Rocky Linux 9. 
+
+    ![Pantalla inicial de bienvenida de instalación](images/install_9_3_01.png)
+
+3. Si no pulsa ninguna tecla, el programa de instalación inicia una cuenta atrás, después de la cual el proceso de instalación se ejecutará automáticamente con la opción resaltada predeterminada:
 
     `Test this media & install Rocky Linux 9.3`
 
-    You can also press ++enter++ at any time to start the process immediately.
+    También puedes pulsar ++entrar++ en cualquier momento para iniciar el proceso inmediatamente.
 
-4. A quick media verification step takes place.  
-This media verification step can save you the trouble of starting the installation only to find out halfway through that the installation program has to stop because of bad installation media.
+4. Se realiza un paso de verificación rápido de medios.
+Este paso de verificación de medios puede ahorrarle la molestía de iniciar la instalación, sólo para comprobar que a mitad de camino el programa de instalación tiene que detenerse debido a un mal medio de instalación.
 
-5. After the media check runs to completion and the media is successfully verified to be usable, the installation program automatically continues to the next screen.
+5. Después de que la verificación de los medios se ejecuta hasta terminar y el medio se verifica con éxito para ser utilizado, el programa de instalación continúa automáticamente hasta la siguiente pantalla.
 
-6. Select the language you want to use to perform the installation in this screen. For this guide, we select *English (United States)*. Then click the ++"continue"++ button.
+6. Seleccione el idioma que desea utilizar para realizar la instalación en esta pantalla. Para esta guía seleccionamos *Inglés (Estados Unidos)*. A continuación, haga clic en el botón ++"continuar"++.
 
 ## Installation Summary
 
