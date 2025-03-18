@@ -28,7 +28,7 @@ Rocky-<MAJOR#>.<MINOR#>-<ARCH>-<VARIANT>.iso
 
 Por ejemplo, `Rocky-9.3-x86_64-minimal.iso`
 
-!!! Nota
+¡¡¡ Nota !!!
 
     La página Web del proyecto Rocky lista diversos servidores de réplicas alrededor del mundo. Elegir el servidor de réplica que geográficamente esté más cerca a tu ubicación. La lista oficial de servidores mirrors pueden ser encontrados en (https://mirrors.rockylinux.org/mirrormanager/mirrors).
 
@@ -58,7 +58,7 @@ Si has descargado la imagen Rocky Linux ISO(s) sobre una distribución de Linux 
 
 ## La Instalación
 
-!!! Consejo
+¡¡¡ Consejo !!!
 
     Antes de realizar una instalación de manera correcta, la Interfaz de firmware extensible unificada (UEFI) o el Sistema básico de entrada/salida (BIOS) del sistema deben estar preconfigurados para arrancar desde el medio correcto. 
 
@@ -114,93 +114,93 @@ Haz clic en ++"hecho"++ cuando hayas terminado con esta pantalla.
 
 #### Soporte de Idioma
 
-The `Language Support` option on the *Installation Summary* screen lets you specify support for additional languages.
+La opción de `Soporte de Idioma` en la pantalla *Resumen de instalación* le permite especificar soporte para idiomas adicionales.
 
-We will accept the default value - **English (United States)** and make no change, click ++"done"++.
+Aceptaremos el valor predeterminado - **Inglés (Estados Unidos)** y no realizamos cambios, hacemos clic en ++"hecho"++.
 
-#### Time & Date
+#### Hora y Fecha
 
-Click the ++"Time & Date"++ option on the main *Installation Summary* screen to bring up another screen that will allow you to select the time zone in which the machine is located. Scroll through the list of regions and cities and select the area closest to you.
+Haz clic en la opción ++"Fecha y Hora"++ en la pantalla principal del *Resumen de Instalación* para obtener otra pantalla que le permitirá seleccionar la zona horaria en la que se encuentra la máquina. Desplácese a través de la lista de regiones y ciudades y seleccione la zona más cercana a usted.
 
-Depending on your installation source, the *Network Time* option could be set to *ON* or *OFF* by default. Accept the default *ON* setting; this allows the system to automatically set the correct time using the Network Time Protocol (NTP).
+Dependiendo de su fuente de instalación, la opción "Fecha/Hora de Red" podría configurarse en *ON* u *OFF* por defecto. Aceptar la configuración predeterminada *ON*; esto permite que el sistema establezca automáticamente el tiempo correcto usando el Protocolo de Tiempo de red (NTP).
 
-Click ++"done"++ after making any changes.
+Haga clic en ++"hecho"++ después de hacer cualquier cambio.
 
-### Software Section
+### Sección de Software
 
-Under the *Software* section of the *Installation Summary* screen, you can select or change the installation source as well as additional packages (applications) that get installed.
+En la sección de Software de la pantalla de *Resumen de Instalación*, puede seleccionar o cambiar la fuente de instalación, así como paquetes (aplicaciones) adicionales que se instalan.
 
-#### Installation Source
+#### Fuente de instalación
 
-Because the installation uses a Rocky Linux 9 ISO image, you will notice that *Local Media* is automatically specified under the Installation Source section of the main *Installation Summary* screen. You can accept the preset defaults.
+Debido a que la instalación utiliza una imagen ISO de Rocky Linux 9, notará que *Local Media* se especifica automáticamente en la sección Fuente de instalación de la pantalla principal de *Resumen de Instalación*. Puede aceptar los predeterminados preestablecidos.
 
-!!! Tip
+¡¡¡ Consejo !!!
 
-    The installation Source area allows you to perform a network-based installation (for example, if you use the Rocky Linux boot ISO - Rocky-9.3-x86_64-boot.iso). For a network-based installation, you need first to ensure that a network adapter on the target system is properly configured, and can reach the internet. To perform a network-based installation, click `Installation Source` and then select the `On the network` radio button. Once selected, choose `https` as the protocol and type the following URL in the text field `download.rockylinux.org/pub/rocky/9/BaseOS/x86_64/os`. Click `Done`.
+    El área de Fuente de instalación le permite especificar una instalación a través de red (por ejemplo, si usa el arranque ISO de Rocky Linux - Rocky-9.3-x86_64-boot.iso). Para una instalación a través de red, necesita primero asegurarse que existe un adaptador de red configurado correctamente en el sistema y que puede alcanzar Internet. Para realizar una instalación a través de red, haga clic en `Origen de Instalación` y seleccione la opción `A través de red`. Una vez seleccionada, seleccionar `https` como protocolo y escriba la siguiente URL en el campo de texto `download.rockylinux.org/pub/rocky/9/BaseOS/x86_64/os`. Haga clic en `Hecho`.
 
-#### Software Selection
+#### Selección de Software
 
-Clicking the ++"Software Selection"++ option on the main *Installation Summary* screen presents you with the installation section where you can pick the exact software packages installed on the system. The software selection area is divided into:
+Al hacer clic en la opción ++"Software Selection"++ en la pantalla principal de *Resumen de Instalación* se presenta la sección de instalación donde puede elegir los paquetes de software exactos instalados en el sistema. El área de selección de software se divide en:
 
-- **Base Environment**: Minimal Installation and Custom operating system
-- **Additional software for Selected Environment**: Selecting a Base Environment on the left side presents a variety of related additional software to install for the given environment on the right side. Note that this only applies if you were installing from a full Rocky Linux 9.2 DVD or have additional repositories configured.
+- **Entorno Base**: Instalación mínima y sistema operativo personalizado
+- **Software adicional para el entorno seleccionado**: Seleccionando un entorno base en el lado izquierdo, presenta en el lado derecho una variedad de software adicional relacionado a instalar. Tenga en cuenta que esto sólo se aplica si estaba instalando desde un DVD completo de Rocky Linux 9.2 o tiene repositorios adicionales configurados.
 
-Select the *Minimal Install* (Basic functionality) option.
+Seleccione la opción *Instalación Mínima* (funcionalidad básica).
 
-Click ++"done"++ at the top of the screen.
+Haz clic en ++"Hecho"++ en la parte superior de la pantalla.
 
-### System Section
+### Sección del Sistema
 
-The System section of the *Installation Summary* screen is used for customizing and making changes to things related to the underlying hardware of the target system. This is where you create your hard disk drive partitions or volumes, specify the file system, specify the network configuration, enable or disable KDUMP or select a Security Profile.
+La sección Sistema de la pantalla de *Resumen de instalación* se utiliza para personalizar y hacer cambios en las cuestiones relacionadas con el hardware subyacente del sistema de destino. Aquí es donde crea sus particiones o volúmenes de unidad de disco duro, especifica el sistema de archivos, especifica la configuración de red, habilita o deshabilita KDUMP o selecciona un Perfil de Seguridad.
 
-#### Installation Destination
+#### Destino de la Instalación
 
-From the *Installation Summary* screen, click the ++"Installation Destination"++ option. This takes you to the corresponding task area.
+Desde la pantalla de *Resumen de instalación*, haga clic en la opción ++"Installation Destination"++ . Esto le lleva al área de tareas correspondiente.
 
-You will see a screen displaying all the candidate disk drives that you have available on the target system. If you have only one disk drive on the system, as on our sample system, you see the drive listed under *Local Standard Disks* with a check mark beside it. Clicking the disk icon will toggle on or off the disk selection check mark. Keep it checked to select the disk.
+Verá una pantalla que muestra todas las unidades de disco candidatas que tiene disponible en el sistema de destino. Si usted tiene sólo una unidad de disco en el sistema, como en nuestro ejemplo, ve la unidad listada bajo *Discos Estándar Locales* con una marca de verificación a su lado. Al hacer clic en el icono de disco, cambiará activada o desactivada la marca de verificación de selección de disco. Mantenlo activado para seleccionar el disco.
 
-Under the *Storage Configuration* section:
+Bajo la sección *Configuración de Almacenamiento*:
 
-1. Select the ++"Automatic"++ radio button.
+1. Seleccione la opción ++"Automático"++.
 
-2. Click ++"done"++ at the top of the screen.
+2. Haz clic en ++"Hecho"++ en la parte superior de la pantalla.
 
-3. Once the installation program determines that you have a usable disk, it returns to the *Installation Summary* screen.
+3. Una vez que el programa de instalación determina que tiene un disco utilizable, vuelve a la pantalla *Resumen de Instalación*.
 
-### Network & Host Name
+### Red y nombre de Host (hostname)
 
-The next important task of the installation procedure under the System area deals with network configuration, where you can configure or tweak network-related settings for the system.
+La siguiente tarea importante del procedimiento de instalación en el Área del Sistema se refiere a la configuración de la red, donde puede configurar o ajustar la configuración de la red para el sistema.
 
-!!! Note
+¡¡¡ Nota !!! 
 
-    After you click on the ++"Network & Hostname"++ option, all correctly detected network interface hardware (such as Ethernet, wireless network cards, and so on) will be listed in the left pane of the network configuration screen. Depending on your specific hardware setup, Ethernet devices in Linux have names similar to `eth0`, `eth1`, `ens3`, `ens4`, `em1`, `em2`, `p1p1`, `enp0s3`, and so on. 
-    You can configure each interface using DHCP or manually set the IP address. 
-    If you choose to configure manually, be sure to have all the required information ready, such as the IP address, netmask, and so on.
+    Tras hacer clic en la opción ++"Red y nombre de host"++, todo el hardware de interfaz de red detectado correctamente (como Ethernet, tarjetas de red inalámbricas, etc.) aparecerá en el panel izquierdo de la pantalla de configuración de red. Según la configuración de hardware, los dispositivos Ethernet en Linux tienen nombres similares a `eth0`, `eth1`, `ens3`, `ens4`, `em1`, `em2`, `p1p1`, `enp0s3`, etc.
+    Puede configurar cada interfaz mediante DHCP o configurar manualmente la dirección IP.
+    Si opta por la configuración manual, asegúrese de tener a mano toda la información necesaria, como la dirección IP, máscara de red, etc.
 
-Clicking the ++"Network & Hostname"++ button in the main *Installation Summary* screen opens the corresponding configuration screen. Here, you can configure the system's hostname.
+Al hacer clic en el botón ++"Network & Hostname"++ en la pantalla principal de *Resumen de Instalación* se abre la pantalla de configuración correspondiente. Aquí, puede configurar el nombre de host del sistema (hostname).
 
-!!! Note
+¡¡¡ Nota !!!
 
-    You can easily change the system hostname later on after the OS has been installed.
+    Puede cambiar el nombre de host fácilmente después o una vez que el SO ha sido instalado.
 
-The next important configuration task is related to the network interfaces on the system.
+La siguiente tarea de configuración importante está relacionada con las interfaces de red del sistema.
 
-1. Verify that the left pane lists an Ethernet card (or any network card.)
-2. Click any of the detected network devices in the left pane to select it.  
-The selected network adapter's configurable properties appear in the screen's right pane.
+1. Verifique que el panel izquierdo enumera una tarjeta Ethernet (o cualquier tarjeta de red.)
+2. Haga clic en cualquiera de los dispositivos de red detectados en el panel izquierdo para seleccionarlo.
+Las propiedades configurables del adaptador de red seleccionado aparecen en el panel derecho de la pantalla.
 
-!!! Note
+¡¡¡ Nota !!!
 
-    On our sample system, we have two Ethernet devices (`ens3` and `ens4`), all of which are in a connected state. The type, name, quantity, and state of the network devices on your system may vary from the ones on our demo system.
+    En nuestro ejemplo, tenemos dos dispositivos Ethernet en estado conectados (`ens3` y `ens4`). El tipo, nombre, cantidad y estado de los dispositivos de red de su sistema pueden ser diferentes a los de nuestro ejemplo.
 
-Verify the switch of the device you want to configure is flipped to the `ON` (blue) position in the right pane.
-We'll accept all the defaults in this section.
+Verificar el interruptor del dispositivo que desea configurar está situado en posición `ON` (azul) en el panel derecho. 
+Aceptaremos todos los valores por defecto de esta sección.
 
-Click ++"done"++ to return to the main *Installation Summary* screen.
+Haz clic en ++"hecho"++ para volver a la pantalla principal de *Resumen de Instalación*.
 
-!!! Warning
+¡¡¡ Aviso !!!
 
-    Pay attention to the IP address of the server in this section of this installer. If you don’t have physical or easy console access to the system, this information will come in handy later on when you need to connect to the server to continue working on it after the OS installation is completed.
+    Preste atención a la dirección IP del servidor en esta sección del instalador. Si no tiene acceso físico o fácil al sistema mediante la consola, esta información le será útil más adelante cuando necesite conectarse al servidor para continuar trabajando en él una vez finalizada la instalación del sistema operativo.
 
 ### User Settings Section
 
