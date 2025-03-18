@@ -1,12 +1,12 @@
 ---
-Title: Installing Rocky Linux 9
+Title: Instalación de Rocky Linux 9
 author: Wale Soyinka
 contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 # Instalación de Rocky Linux 9
 
-Esta es una guía detallada para instalar la versión de 64 bits de la distribución de Rocky Linux en un sistema independiente. Vamos a realizar una instalación de servidor. Realizaremos los pasos de instalación y personalización en las siguientes secciones.
+Esta es una guía detallada para instalar la versión de 64 bits de la distribución de Rocky Linux en un sistema independiente. Vamos a realizar una instalación de clase servidor. Realizaremos los pasos de instalación y personalización en las siguientes secciones.
 
 ## Prerequisitos de instalación de SO
 
@@ -30,11 +30,11 @@ Por ejemplo, `Rocky-9.3-x86_64-minimal.iso`
 
 ¡¡¡ Nota !!!
 
-    La página Web del proyecto Rocky lista diversos servidores de réplicas alrededor del mundo. Elegir el servidor de réplica que geográficamente esté más cerca a tu ubicación. La lista oficial de servidores mirrors pueden ser encontrados en (https://mirrors.rockylinux.org/mirrormanager/mirrors).
+    La página Web del proyecto Rocky muestra un listado de diversos servidores de réplicas alrededor del mundo. Elegir el servidor de réplica que geográficamente esté más cerca a tu ubicación. La lista oficial de servidores de réplica pueden ser encontrados en (https://mirrors.rockylinux.org/mirrormanager/mirrors).
 
 ## Verificar el Programa de Instalación del Archivo ISO
 
-Si has descargado la imagen Rocky Linux ISO(s) sobre una distribución de Linux existente, puedes usar la utilidad `sha256sum` para verificar que los archivos(s) descargado(s) no están corruptos. Mostraremos un ejemplo de la verificación del archivo `Rocky-9.3-x86_64-minimal.iso` comprobando su suma de verificación.
+Si ha descargado la imagen Rocky Linux ISO(s) sobre una distribución de Linux existente, puedes usar la utilidad `sha256sum` para verificar que los archivos(s) descargado(s) no están corruptos. Mostraremos un ejemplo de la verificación del archivo `Rocky-9.3-x86_64-minimal.iso` comprobando su suma de verificación.
 
 1. Descargue el archivo que contiene las sumas de verificación oficiales para las ISO disponibles.
 
@@ -44,7 +44,7 @@ Si has descargado la imagen Rocky Linux ISO(s) sobre una distribución de Linux 
     wget -O CHECKSUM https://download.rockylinux.org/pub/rocky/9.3/isos/x86_64/CHECKSUM
     ```
 
-3. Usa la utilidad `sha256sum` para verificar la integridad del archivo ISO frente a cualquier corrupción o la manipulación.
+3. Use la utilidad `sha256sum` para verificar la integridad del archivo ISO frente a cualquier corrupción o la manipulación.
 
     ```bash
     sha256sum -c CHECKSUM --ignore-missing
@@ -118,7 +118,7 @@ La opción de `Soporte de Idioma` en la pantalla *Resumen de instalación* le pe
 
 Aceptaremos el valor predeterminado - **Inglés (Estados Unidos)** y no realizamos cambios, hacemos clic en ++"hecho"++.
 
-#### Hora y Fecha
+#### Fecha y Hora
 
 Haz clic en la opción ++"Fecha y Hora"++ en la pantalla principal del *Resumen de Instalación* para obtener otra pantalla que le permitirá seleccionar la zona horaria en la que se encuentra la máquina. Desplácese a través de la lista de regiones y ciudades y seleccione la zona más cercana a usted.
 
@@ -167,7 +167,7 @@ Bajo la sección *Configuración de Almacenamiento*:
 
 3. Una vez que el programa de instalación determina que tiene un disco utilizable, vuelve a la pantalla *Resumen de Instalación*.
 
-### Red y nombre de Host (hostname)
+### Red y nombre de Host
 
 La siguiente tarea importante del procedimiento de instalación en el Área del Sistema se refiere a la configuración de la red, donde puede configurar o ajustar la configuración de la red para el sistema.
 
