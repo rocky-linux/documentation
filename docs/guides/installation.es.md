@@ -140,7 +140,7 @@ Debido a que la instalación utiliza una imagen ISO de Rocky Linux 9, notará qu
 
 #### Selección de Software
 
-Al hacer clic en la opción ++"Software Selection"++ en la pantalla principal de *Resumen de Instalación* se presenta la sección de instalación donde puede elegir los paquetes de software exactos instalados en el sistema. El área de selección de software se divide en:
+Al Haga clic en la opción ++"Software Selection"++ en la pantalla principal de *Resumen de Instalación* se presenta la sección de instalación donde puede elegir los paquetes de software exactos instalados en el sistema. El área de selección de software se divide en:
 
 - **Entorno Base**: Instalación mínima y sistema operativo personalizado
 - **Software adicional para el entorno seleccionado**: Seleccionando un entorno base en el lado izquierdo, presenta en el lado derecho una variedad de software adicional relacionado a instalar. Tenga en cuenta que esto sólo se aplica si estaba instalando desde un DVD completo de Rocky Linux 9.2 o tiene repositorios adicionales configurados.
@@ -157,7 +157,7 @@ La sección Sistema de la pantalla de *Resumen de instalación* se utiliza para 
 
 Desde la pantalla de *Resumen de instalación*, haga clic en la opción ++"Installation Destination"++ . Esto le lleva al área de tareas correspondiente.
 
-Verá una pantalla que muestra todas las unidades de disco candidatas que tiene disponible en el sistema de destino. Si usted tiene sólo una unidad de disco en el sistema, como en nuestro ejemplo, ve la unidad listada bajo *Discos Estándar Locales* con una marca de verificación a su lado. Al hacer clic en el icono de disco, cambiará activada o desactivada la marca de verificación de selección de disco. Mantenlo activado para seleccionar el disco.
+Verá una pantalla que muestra todas las unidades de disco candidatas que tiene disponible en el sistema de destino. Si usted tiene sólo una unidad de disco en el sistema, como en nuestro ejemplo, ve la unidad listada bajo *Discos Estándar Locales* con una marca de verificación a su lado. Al Haga clic en el icono de disco, cambiará activada o desactivada la marca de verificación de selección de disco. Mantenlo activado para seleccionar el disco.
 
 Bajo la sección *Configuración de Almacenamiento*:
 
@@ -173,11 +173,11 @@ La siguiente tarea importante del procedimiento de instalación en el Área del 
 
 ¡¡¡ Nota !!! 
 
-    Tras hacer clic en la opción ++"Red y nombre de host"++, todo el hardware de interfaz de red detectado correctamente (como Ethernet, tarjetas de red inalámbricas, etc.) aparecerá en el panel izquierdo de la pantalla de configuración de red. Según la configuración de hardware, los dispositivos Ethernet en Linux tienen nombres similares a `eth0`, `eth1`, `ens3`, `ens4`, `em1`, `em2`, `p1p1`, `enp0s3`, etc.
+    Tras Haga clic en la opción ++"Red y nombre de host"++, todo el hardware de interfaz de red detectado correctamente (como Ethernet, tarjetas de red inalámbricas, etc.) aparecerá en el panel izquierdo de la pantalla de configuración de red. Según la configuración de hardware, los dispositivos Ethernet en Linux tienen nombres similares a `eth0`, `eth1`, `ens3`, `ens4`, `em1`, `em2`, `p1p1`, `enp0s3`, etc.
     Puede configurar cada interfaz mediante DHCP o configurar manualmente la dirección IP.
     Si opta por la configuración manual, asegúrese de tener a mano toda la información necesaria, como la dirección IP, máscara de red, etc.
 
-Al hacer clic en el botón ++"Network & Hostname"++ en la pantalla principal de *Resumen de Instalación* se abre la pantalla de configuración correspondiente. Aquí, puede configurar el nombre de host del sistema (hostname).
+Al Haga clic en el botón ++"Network & Hostname"++ en la pantalla principal de *Resumen de Instalación* se abre la pantalla de configuración correspondiente. Aquí, puede configurar el nombre de host del sistema (hostname).
 
 ¡¡¡ Nota !!!
 
@@ -198,92 +198,86 @@ Aceptaremos todos los valores por defecto de esta sección.
 
 Haz clic en ++"hecho"++ para volver a la pantalla principal de *Resumen de Instalación*.
 
-¡¡¡ Aviso !!!
+¡¡¡ Advertencia !!!
 
     Preste atención a la dirección IP del servidor en esta sección del instalador. Si no tiene acceso físico o fácil al sistema mediante la consola, esta información le será útil más adelante cuando necesite conectarse al servidor para continuar trabajando en él una vez finalizada la instalación del sistema operativo.
 
-### User Settings Section
+### Sección de Configuraciones de Usuario
 
-This section can be used for creating a password for the `root` user account and also for creating new administrative or non-administrative accounts.
+Esta sección se puede utilizar para crear una contraseña para la cuenta `root` y también para la creación de nuevas cuentas administrativas o no administrativas.
 
-#### Root Password
+#### Contraseña de Root
 
-1. Click the *Root Password* field under *User Settings* to start the *Root Password* task screen.
+1. Haga clic en el campo *Contraseña Root* en "Configuraciones de usuario" para iniciar la pantalla de cambio de *Contraseña Root*.
 
-    !!! Warning
+    ¡¡¡ Advertencia !!!
 
-        The root superuser is the most privileged account on the system. Therefore, if you choose to use or enable it, it is crucial that you protect this account with a strong password.
+        El superusuario root es la cuenta con más privilegios del sistema. Por lo tanto, si decide usarlo o habilitarlo, es fundamental protegerlo con una contraseña segura. 
 
-2. In the *Root Password* text box, set a strong password for the root user.
+2. En el cuadro de texto de *Contraseña Root*, establezca una contraseña fuerte para el usuario de raíz.
 
-3. Enter the same password again in the *Confirm* text box.
+3. Introduzca de nuevo la misma contraseña en el cuadro de texto *Confirmar*.
 
-4. Click ++"done"++.
+4. Haga clic en ++"Hecho"++.
 
-#### User Creation
+#### Creación de Usuario
 
-To create a user:
+Para crear un usuario:
 
-1. Click the *User Creation* field under *User Settings* to start the *Create User* task screen.  
-This task area allows you to create a privileged or non-privileged (non-administrative) user account.
+1. Haga clic en el campo *Creación de Usuario* en la *Configuraciones de usuario* para iniciar la pantalla de *Crear Usuario*.
+Este área de tarea le permite crear una cuenta de usuario privilegiado o no privilegiado (cuenta no administrativa).
 
-    !!! Info
+    !!! Información
 
-        Creating and using a non-privileged account for day-to-day tasks on a system is a good system administration practice.
+        Crear y utilizar una cuenta sin privilegios para las tareas diarias en un sistema es una buena práctica de administración del sistema.
 
-    We’ll create a regular user that can invoke superuser (administrator) powers when needed.
+    Crearemos un usuario regular que pueda invocar los poderes de superusuario (administrador) cuando sea necesario.
 
-2. Complete the fields in the *Create User* screen with the following information:
+2. Completa los campos en la pantalla *Crear Usuario* con la siguiente información:
 
-    - **Full name**:
-    `rockstar`
-    - **Username**:
-    `rockstar`
-    - **Make this user administrator**:
-    Checked
-    - **Require a password to use this account**:
-    Checked
-    - **Password**:
-    `04302021`
-    - **Confirm password**:
-    `04302021`
+    - **Nombre completo**: `rockstar`
+    - **Nombre de Usuario**: `rockstar`
+    - **Hacer este usuario administrador**: Marcar para seleccionar si.
+    - **Requiere una contraseña para usar esta cuenta**:  Marcar para seleccionar si.
+    - **Contraseña**: `04302021`
+    - **Confirmar contraseña**: `04302021`
 
-3. Click ++"done"++.
+3. Haga clic en ++"Hecho"++.
 
-## Installer Phase
+## Fase de instalación
 
-Once you are satisfied with your choices for the various installation tasks, the next phase of the installation process will begin the installation proper.
+Una vez que está de acuerdo con sus opciones para las diversas tareas de instalación, la siguiente fase del proceso de instalación comenzará la instalación propiamente dicha.
 
-### Start the Installation
+### Inicia la instalación
 
-Once you are satisfied with your choices for the various installation tasks, click the ++"Begin Installation"++ button on the main *Installation Summary* screen.
+Una vez que está de acuerdo con sus opciones para las diversas tareas de instalación, haga clic en el botón ++"Inicio de entrada"++ en la pantalla principal de *Resumen de Instalación*.
 
-The installation will begin, and the installation program will show the progress of the installation.
-After the installation begins, various tasks will begin running in the background, such as partitioning the disk, formatting the partitions or LVM volumes, checking for and resolving software dependencies, writing the operating system to the disk, and so on.
+La instalación comenzará, y el programa de instalación mostrará el progreso de la instalación. 
+Una vez que comience la instalación, varias tareas comenzarán a funcionar en segundo plano, como particionar el disco, formatear las particiones o volúmenes LVM, comprobar y resolver dependencias de software, escribir el sistema operativo en el disco, y así sucesivamente.
 
-!!! Note
+¡¡¡ Nota !!!
 
-    If you do not wish to continue after clicking the Begin Installation button, you can still safely exit the installation without losing data. To quit the installer, simply reset your system by clicking the Quit button, pressing ctrl-alt-del on the keyboard, or pushing the reset or power switch.
+    Si no desea continuar después de hacer clic en el botón "Iniciar instalación", puede salir de la instalación de forma segura sin perder datos. Para salir del instalador, simplemente reinicie el sistema haciendo clic en el botón "Salir", presionando Ctrl+Alt+Supr o presionando el botón de reinicio o de encendido.
 
-### Complete the Installation
+### Completa la instalación
 
-After the installation program has completed its work, you will see a final installation progress screen with a complete message.
+Después de que el programa de instalación haya completado su trabajo, verá una pantalla final de progreso de instalación con un mensaje completo.
 
-Finally, complete the entire procedure by clicking the ++"Reboot System"++ button. The system restarts.
+Finalmente, complete todo el procedimiento haciendo clic en el botón ++"Reiniciar Sistema"++. El sistema se reinicia.
 
-### Log In
+### Iniciar sesión
 
-The system is now set up and ready for use. You will see the Rocky Linux console.
+El sistema está ahora listo para su uso. Verás la consola Rocky Linux.
 
-![Rocky Linux Welcome Screen](images/installation_9_F02.png)
+![Pantalla de Bienvenida de Rocky Linux](images/installation_9_F02.png)
 
-To log onto the system:
+Para iniciar sesión en el sistema:
 
-1. Type `rockstar` at the login prompt and press ++enter++.
+1. Escriba 'rockstar' en el prompt de inicio de sesión y pulse de ++Intro++.
 
-2. At the Password prompt, type `04302021` (rockstar’s password) and press ++enter++ (the password will ***not*** be echoed to the screen, that is normal).
+2. En el prompt de la contraseña, escriba `04302021` (contraseña de rockstar) y pulse ++intro++ (la contraseña no se muestra en pantalla, eso es normal).
 
-3. Run the `whoami` command after login.  
-This command shows the name of the currently logged in user.
+3. Ejecute el comando `whoami` después de iniciar sesión.
+Este comando muestra el nombre del usuario actualmente registrado.
 
-![Login Screen](images/installation_9.0_F03.png)
+![Pantalla de Inicio de Sesión](images/installation_9.0_F03.png)
