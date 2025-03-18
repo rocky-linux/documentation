@@ -8,7 +8,7 @@ contributors: Ganna Zhyrnova
 
 Citation à partir du site Web du projet :
 
-> Flatpak est un framework permettant de distribuer des applications de bureau sur diverses distributions Linux. Il a été créé par des développeurs qui ont une longue expérience sur Linux-Desktop et est exécuté comme un projet open-source indépendant.
+> `Flatpak` est un framework permettant de distribuer des applications de bureau sur diverses distributions Linux. Il a été créé par des développeurs qui ont une longue expérience sur Linux-Desktop et est intégré comme un projet open-source indépendant.
 
 Flatpak est installé par défaut lors de l'installation de Rocky Linux avec des sélections de logiciels incluant GNOME (« Server with GUI » ou « Workstation »). Une installation manuelle est également possible (voir procédure incluse). C'est un excellent moyen de peupler votre environnement de bureau avec des outils que vous souhaitez utiliser.
 
