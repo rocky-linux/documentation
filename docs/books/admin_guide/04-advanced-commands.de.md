@@ -10,11 +10,12 @@ Erweiterte Befehle bieten eine bessere Anpassung und Steuerung in speziellen Sit
 
 **Ziele**: In diesem Kapitel werden zukünftige Linux-Administratoren Folgendes lernen:
 
-:heavy_check_mark: einige nützliche Befehle, die im vorherigen Kapitel nicht behandelt wurden. :heavy_check_mark: einige erweiterte Befehle.
+:heavy_check_mark: Einige nützliche Befehle, die im vorherigen Kapitel nicht enthalten sind;  
+:heavy_check_mark: Einige erweiterte Befehle.
 
 :checkered_flag: **Benutzerbefehle**, **Linux**
 
-**Vorkenntnisse**: :star:   
+**Vorkenntnisse**: :star:  
 **Schwierigkeitsgrad**: :star: :star: :star:
 
 **Lesezeit**: 23 Minuten
@@ -332,7 +333,8 @@ Mit der Option `-n` können Sie die Anzahl der Sekunden zwischen jeder Ausführu
 
 !!! note "Anmerkung"
 
-    .
+    Um den `watch` Befehl zu verlassen, müssen Sie Folgendes eingeben: 
+    ++control+c++, um den Prozess zu beenden.
 
 Beispiele:
 
@@ -371,7 +373,7 @@ Im Gegensatz zu dem, was der Name vermuten lässt, wird der Befehl `install` nic
 Der Befehl kombiniert das Kopieren von Dateien (`cp`) und das Erstellen von Ordnern (`mkdir`) sowie die Zugriffsverwaltung (`chmod`, `chown`) und andere nützliche Funktionen (wie Backups).
 
 ```bash
-install source dest  
+install source dest
 install -t directory source [...]
 install -d directory
 ```
@@ -420,7 +422,7 @@ Dieses Kommando spart Zeit. Kombiniert Eigentümer-, Eigentümergruppen- und Rec
 sudo install -v -o rocky -g users -m 644 -D -t ~/samples/ src/sample.txt
 ```
 
- !!! note "Anmerkung"
+!!! note "Anmerkung"
 
      In diesem Fall ist `sudo` notwendig, um die Eigenschaften zu ändern.
 
@@ -439,3 +441,83 @@ Das Suffix kann mit der Option `-S` festgelegt werden:
 $ install -v -b -S ".bak" -D -t ~/samples/ src/sample.txt
 'src/sample.txt' -> '~/samples/sample.txt' (archive: '~/samples/sample.txt.bak')
 ```
+
+## Das Kommando `tree`
+
+Anzeigen der Dateien oder Verzeichnisse innerhalb eines Verzeichnisses in einer Baumansicht.
+
+| Optionen | Beschreibung                                              |
+|:-------- |:--------------------------------------------------------- |
+| `-a`     | Alle Dateien werden gelistet                              |
+| `-h`     | Zeigt die Größe verständlicher an                         |
+| `-u`     | Zeigt den Dateieigentümer oder die UID-Nummer an          |
+| `-g`     | Zeigt den Besitzer der Dateigruppe oder die GID-Nummer an |
+| `-p`     | Zeigt die Datei-Privilegien an                            |
+
+Zum Beispiel:
+
+```bash
+$ tree -hugp /etc/yum.repos.d/
+/etc/yum.repos.d/
+├── [-rw-r--r-- root     root      1.6K]  epel-modular.repo
+├── [-rw-r--r-- root     root      1.3K]  epel.repo
+├── [-rw-r--r-- root     root      1.7K]  epel-testing-modular.repo
+├── [-rw-r--r-- root     root      1.4K]  epel-testing.repo
+├── [-rw-r--r-- root     root       710]  Rocky-AppStream.repo
+├── [-rw-r--r-- root     root       695]  Rocky-BaseOS.repo
+├── [-rw-r--r-- root     root      1.7K]  Rocky-Debuginfo.repo
+├── [-rw-r--r-- root     root       360]  Rocky-Devel.repo
+├── [-rw-r--r-- root     root       695]  Rocky-Extras.repo
+├── [-rw-r--r-- root     root       731]  Rocky-HighAvailability.repo
+├── [-rw-r--r-- root     root       680]  Rocky-Media.repo
+├── [-rw-r--r-- root     root       680]  Rocky-NFV.repo
+├── [-rw-r--r-- root     root       690]  Rocky-Plus.repo
+├── [-rw-r--r-- root     root       715]  Rocky-PowerTools.repo
+├── [-rw-r--r-- root     root       746]  Rocky-ResilientStorage.repo
+├── [-rw-r--r-- root     root       681]  Rocky-RT.repo
+└── [-rw-r--r-- root     root      2.3K]  Rocky-Sources.repo
+
+0 directories, 17 files
+```
+
+## Das Kommando `stat`
+
+Der Befehl `stat` zeigt den Status einer Datei oder eines Dateisystems an.
+
+```bash
+$ stat /root/anaconda-ks.cfg
+  File: /root/anaconda-ks.cfg
+  Size: 1352            Blocks: 8          IO Block: 4096   regular file
+Device: 10302h/66306d   Inode: 2757097     Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: (    0/    root)   Gid: (    0/    root)
+Access: 2024-01-20 13:04:57.012033583 +0800
+Modify: 2023-09-25 14:04:48.524760784 +0800
+Change: 2024-01-24 16:37:34.315995221 +0800
+ Birth: 2
+```
+
+* `File` – Zeigt den Pfad der Datei an.
+* `Size` – Zeigt die Dateigröße in Bytes an. Wenn es sich um ein Verzeichnis handelt, werden die festen 4096 Bytes angezeigt, die der Verzeichnisname belegt.
+* `Blocks` – Zeigt die Anzahl der zugewiesenen Blöcke an. Bitte beachten! Die Größe jedes Blocks in diesem Befehl beträgt 512 Byte. Die Standardgröße jedes Blocks in `ls -ls` beträgt 1024 Bytes.
+* `Device` – Gerätenummer in dezimaler oder hexadezimaler Form.
+* `Inode` – Ein Inode ist eine eindeutige Identifikationsnummer, die der Linux-Kernel einer Datei oder einem Verzeichnis zuordnet.
+* `Links` - Anzahl Hard-Links. Hardlinks werden manchmal auch als physische Links bezeichnet.
+* `Access` – Die letzte Zugriffszeit von Dateien und Verzeichnissen, d. h., `atime` in GNU/Linux.
+* `Modify` – Der letzte Änderungszeitpunkt von Dateien und Verzeichnissen, d. h. `mtime` in GNU/Linux.
+* `Change` – Der letzte Zeitpunkt der Änderung der Eigenschaft, d. h. `ctime` in GNU/Linux.
+* `Birth` - Birth time (Zeitstempel der Kreation). In einigen Dokumenten wird es als `btime` oder `crtime` abgekürzt. Sie benötigen eine Dateisystem- und Kernelversion, die höher als eine bestimmte Version ist, um die Erstellungszeit anzuzeigen.
+
+Im Kontext der Dateien:
+
+**atime** – Nach dem Zugriff auf den Dateiinhalt mit Befehlen wie `cat`, `less`, `more` und `head` kann die `atime` der Datei aktualisiert werden. Bitte beachten! Die `atime` der Datei wird nicht in Echtzeit aktualisiert und man muss aus Leistungsgründen eine Zeit lang warten, bevor sie angezeigt werden kann. **mtime** – Durch Ändern des Dateiinhalts kann die `mtime` der Datei aktualisiert werden (z. B. durch Anhängen oder Überschreiben des Dateiinhalts durch Umleitung). Da die Dateigröße eine Eigenschaft der Datei ist, wird auch die `ctime` gleichzeitig aktualisiert. **ctime** – Durch Ändern des Eigentümers, der Gruppe, der Berechtigungen, der Dateigröße und der Links (Soft- und Hardlinks) der Datei wird `ctime` aktualisiert.
+
+Im Kontext der Verzeichnisse:
+
+**atime** – Nachdem Sie mit dem Befehl `cd` ein neues Verzeichnis aufgerufen haben, auf das noch nie zuvor zugegriffen wurde, können Sie die `atime` dieses Verzeichnisses aktualisieren und korrigieren. **mtime** – Durch Ausführen von Vorgängen wie Erstellen, Löschen und Umbenennen von Dateien in diesem Verzeichnis werden `mtime` und `ctime` des Verzeichnisses aktualisiert. **ctime** – Wenn sich die Berechtigungen, der Eigentümer, die Gruppe usw. eines Verzeichnisses ändern, wird die `ctime` des Verzeichnisses aktualisiert.
+
+!!! tip "Hinweis"
+
+    * Wenn Sie eine neue Datei oder ein neues Verzeichnis erstellen, sind dessen `atime`, `mtime` und `ctime` genau gleich
+    * Wenn der Dateiinhalt geändert wird, werden `mtime` und `ctime` der Datei zwangsläufig aktualisiert.
+    * Wenn im Verzeichnis eine brandneue Datei erstellt wird, werden `atime`, `ctime` und `mtime` dieses Verzeichnisses gleichzeitig aktualisiert.
+    * Wenn die `mtime` eines Verzeichnisses aktualisiert wird, muss die `ctime` dieses Verzeichnisses aktualisiert werden.
