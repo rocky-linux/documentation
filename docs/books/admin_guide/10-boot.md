@@ -101,45 +101,81 @@ Why protect the bootloader with a password?
 
 To password protect the GRUB2 bootloader:
 
-* Remove `-unrestricted` from the main `CLASS=` statement in the `/etc/grub.d/10_linux` file.
+1. Log in to the operating system as root user and execute the `grub2-mkpasswd-pbkdf2` command. The output of this command is as follows:
 
-* If a user has not yet been configured, use the `grub2-setpassword` command to provide a password for the root user:
+    ```bash
+    Enter password:
+    Reenter password:
+    PBKDF2 hash of your password is grub.pbkdf2.sha512.10000.D0182EDB28164C19454FA94421D1ECD6309F076F1135A2E5BFE91A5088BD9EC87687FE14794BE7194F67EA39A8565E868A41C639572F6156900C81C08C1E8413.40F6981C22F1F81B32E45EC915F2AB6E2635D9A62C0BA67105A9B900D9F365860E84F1B92B2EF3AA0F83CECC68E13BA9F4174922877910F026DED961F6592BB7
+    ```
+
+    You need to enter your password in the interaction. The ciphertext of the password is the long string "grub.pbkdf2.sha512...".
+
+2. Paste the password ciphertext in the last line of the  **/etc/grub.d/00_header** file. The pasted format is as follows:
+
+    ```
+    cat <<EOF
+    set superusers='frank'
+    password_obkdf2 frank grub.pbkdf2.sha512.10000.D0182EDB28164C19454FA94421D1ECD6309F076F1135A2E5BFE91A5088BD9EC87687FE14794BE7194F67EA39A8565E868A41C639572F6156900C81C08C1E8413.40F6981C22F1F81B32E45EC915F2AB6E2635D9A62C0BA67105A9B900D9F365860E84F1B92B2EF3AA0F83CECC68E13BA9F4174922877910F026DED961F6592BB7
+    EOF
+    ```
+
+    The 'frank' user can be replaced with any custom user.
+
+    You can also set a plaintext password, for example:
+
+    ```
+    cat <<EOF
+    set superusers='frank'
+    password frank rockylinux8.x
+    EOF
+    ```
+
+3. The final step is to execute the command `grub2-mkconfig -o /boot/grub2/grub.cfg` to update the settings of GRUB2.
+
+4. Restart the operating system to verify the encryption of GRUB2. Select the first boot menu item and type the ++"e"++ key, and then enter the corresponding user and password.
+
+    ```
+    Enter username:
+    frank
+    Enter password:
+
+    ```
+
+    After successful verification, enter ++ctrl+"x"++ to start the operating system.
+
+Sometimes you may see in some documents that the `grub2-set-password` (`grub2-setpassword`) command is used to protect the GRUB2 bootloader:
+
+| command | Core functions | Configuration file modification method | automaticity |
+| :---    | :---           | :--- |  :--- |
+| `grub2-set-password` | Set password and update configuration | Auto Completion | high |
+| `grub2-mkpasswd-pbkdf2` | Only generate encrypted hash values | Manual editing is required | low |
+
+Log in to the operating system as the root user and execute the `gurb2-set-password` command as follows:
 
 ```bash
-# grub2-setpassword
+[root] # grub2-set-password
+Enter password:
+Confirm password:
+
+[root] # cat /boot/grub2/user.cfg
+GRUB2_PASSWORD=grub.pbkdf2.sha512.10000.32E5BAF2C2723B0024C1541F444B8A3656E0A04429EC4BA234C8269AE022BD4690C884B59F344C3EC7F9AC1B51973D65F194D766D06ABA93432643FC94119F17.4E16DF72AA1412599EEA8E90D0F248F7399E45F34395670225172017FB99B61057FA64C1330E2EDC2EF1BA6499146400150CA476057A94957AB4251F5A898FC3
+
+[root] # grub2-mkconfig -o /boot/grub2/grub.cfg
+
+[root] # reboot
 ```
 
-A `/boot/grub2/user.cfg` file will be created if it was not already present. It contains the hashed password of the GRUB2.
+After executing the `grub2-set-password` command, the **/boot/grub2/user.cfg** file will be automatically generated.
 
-!!! Note
+Select the first boot menu item and type the ++"e"++ key, and then enter the corresponding user and password:
 
-    This command only supports configurations with a single root user.
-
-```bash
-[root]# cat /boot/grub2/user.cfg
-GRUB2_PASSWORD=grub.pbkdf2.sha512.10000.CC6F56....A21
 ```
+Enter username:
+root
+Enter password:
 
-* Recreate the configuration file with the `grub2-mkconfig` command:
-
-```bash
-[root]# grub2-mkconfig -o /boot/grub2/grub.cfg
-Generating grub configuration file ...
-Found linux image: /boot/vmlinuz-3.10.0-327.el7.x86_64
-Found initrd image: /boot/initramfs-3.10.0-327.el7.x86_64.img
-Found linux image: /boot/vmlinuz-0-rescue-f9725b0c842348ce9e0bc81968cf7181
-Found initrd image: /boot/initramfs-0-rescue-f9725b0c842348ce9e0bc81968cf7181.img
-done
 ```
-
-* Restart the server and check.
-
-All entries defined in the GRUB menu will now require a user and password to be entered at each boot. The system will not boot a kernel without direct user intervention from the console.
-
-* When the user is requested, enter `root`;
-* When a password is requested, enter the password provided at the `grub2-setpassword` command.
-
-To protect only the editing of GRUB menu entries and access to the console, the execution of the `grub2-setpassword` command is sufficient. There may be cases where you have good reasons for doing only that. This might be particularly true in a remote data center where entering a password each time a server is rebooted is either difficult or impossible to do.
 
 ## Systemd
 
@@ -179,6 +215,8 @@ Systemd introduces the concept of unit files, also known as systemd units.
 * System services do not inherit any context (like HOME and PATH environment variables). Each service operates in its own execution context.
 
 All service unit operations are subject to a default timeout of 5 minutes to prevent a malfunctioning service from freezing the system.
+
+Due to space limitations, this document will not provide a very detailed introduction to Systemd. If you are interested in Systemd, we have provided a very detailed introduction in [this document](./16-about-sytemd.md),
 
 ### Managing system services
 
