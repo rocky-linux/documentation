@@ -177,8 +177,6 @@ Enter password:
 
 ```
 
-Please note that! The above example only applies to modified boot menu items (The currently active menu boot item).
-
 ## Systemd
 
 *Systemd* is a service manager for the Linux operating systems.
