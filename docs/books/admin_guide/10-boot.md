@@ -133,7 +133,7 @@ To password protect the GRUB2 bootloader:
 
 3. The final step is to execute the command `grub2-mkconfig -o /boot/grub2/grub.cfg` to update the settings of GRUB2.
 
-4. Restart the operating system to verify the encryption of GRUB2. Select the first boot menu item and type the ++"e"++ key., and then enter the corresponding user and password.
+4. Restart the operating system to verify the encryption of GRUB2. Select the first boot menu item and type the ++"e"++ key, and then enter the corresponding user and password.
 
     ```
     Enter username:
@@ -168,7 +168,7 @@ GRUB2_PASSWORD=grub.pbkdf2.sha512.10000.32E5BAF2C2723B0024C1541F444B8A3656E0A044
 
 After executing the `grub2-set-password` command, the **/boot/grub2/user.cfg** file will be automatically generated.
 
-Select the first boot menu item and type the ++"e"++ key., and then enter the corresponding user and password:
+Select the first boot menu item and type the ++"e"++ key, and then enter the corresponding user and password:
 
 ```
 Enter username:
