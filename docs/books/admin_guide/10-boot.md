@@ -10,7 +10,7 @@ In this chapter, you will learn how the system starts.
 **Objectives**: In this chapter, future Linux administrators will learn:
 
 :heavy_check_mark: The different stages of the booting process;  
-:heavy_check_mark: How Rocky Linux supports this boot by using GRUB2 and systemd;  
+:heavy_check_mark: How Rocky Linux supports this boot by using GRUB2 and `systemd`;  
 :heavy_check_mark: How to protect GRUB2 from an attack;  
 :heavy_check_mark: How to manage the services;  
 :heavy_check_mark: How to access logs from `journald`.  
@@ -25,7 +25,7 @@ In this chapter, you will learn how the system starts.
 
 ## The boot process
 
-It is important to understand the boot process of Linux in order to be able to solve problems that may occur.
+It is important to understand the boot process of Linux to be able to solve problems that might occur.
 
 The boot process includes:
 
@@ -78,9 +78,9 @@ root          1      0  0 02:10 ?        00:00:02 /usr/lib/systemd/systemd --swi
 
 ### `systemd`
 
-Systemd is the parent of all system processes. It reads the target of the `/etc/systemd/system/default.target` link (e.g., `/usr/lib/systemd/system/multi-user.target`) to determine the default target of the system. The file defines the services to be started.
+`systemd` is the parent of all system processes. It reads the target of the `/etc/systemd/system/default.target` link (e.g., `/usr/lib/systemd/system/multi-user.target`) to determine the default target of the system. The file defines the services to start.
 
-Systemd then places the system in the target-defined state by performing the following initialization tasks:
+`systemd` then places the system in the target-defined state by performing the following initialization tasks:
 
 1. Set the machine name
 2. Initialize the network
@@ -113,18 +113,18 @@ To password protect the GRUB2 bootloader:
 
 2. Paste the password ciphertext in the last line of the  **/etc/grub.d/00_header** file. The pasted format is as follows:
 
-    ```
+    ```bash
     cat <<EOF
     set superusers='frank'
     password_obkdf2 frank grub.pbkdf2.sha512.10000.D0182EDB28164C19454FA94421D1ECD6309F076F1135A2E5BFE91A5088BD9EC87687FE14794BE7194F67EA39A8565E868A41C639572F6156900C81C08C1E8413.40F6981C22F1F81B32E45EC915F2AB6E2635D9A62C0BA67105A9B900D9F365860E84F1B92B2EF3AA0F83CECC68E13BA9F4174922877910F026DED961F6592BB7
     EOF
     ```
 
-    The 'frank' user can be replaced with any custom user.
+    You can replace the 'frank' user with any custom user.
 
     You can also set a plaintext password, for example:
 
-    ```
+    ```bash
     cat <<EOF
     set superusers='frank'
     password frank rockylinux8.x
@@ -135,7 +135,7 @@ To password protect the GRUB2 bootloader:
 
 4. Restart the operating system to verify the encryption of GRUB2. Select the first boot menu item and type the ++"e"++ key, and then enter the corresponding user and password.
 
-    ```
+    ```bash
     Enter username:
     frank
     Enter password:
@@ -146,10 +146,10 @@ To password protect the GRUB2 bootloader:
 
 Sometimes you may see in some documents that the `grub2-set-password` (`grub2-setpassword`) command is used to protect the GRUB2 bootloader:
 
-| command | Core functions | Configuration file modification method | automaticity |
-| :---    | :---           | :--- |  :--- |
-| `grub2-set-password` | Set password and update configuration | Auto Completion | high |
-| `grub2-mkpasswd-pbkdf2` | Only generate encrypted hash values | Manual editing is required | low |
+| command                 | Core functions                        | Configuration file modification method | automaticity |
+|-------------------------|---------------------------------------|----------------------------------------|--------------|
+| `grub2-set-password`    | Set password and update configuration | Auto Completion                        | high         |
+| `grub2-mkpasswd-pbkdf2` | Only generate encrypted hash values   | Requires manual editing                | low          |
 
 Log in to the operating system as the root user and execute the `gurb2-set-password` command as follows:
 
@@ -170,7 +170,7 @@ After executing the `grub2-set-password` command, the **/boot/grub2/user.cfg** f
 
 Select the first boot menu item and type the ++"e"++ key, and then enter the corresponding user and password:
 
-```
+```bash
 Enter username:
 root
 Enter password:
@@ -181,16 +181,16 @@ Enter password:
 
 *Systemd* is a service manager for the Linux operating systems.
 
-It is developed to:
+The development of `systemd` was to:
 
 * remain compatible with older SysV initialization scripts,
 * provide many features, such as parallel start of system services at system startup, on-demand activation of daemons, support for snapshots, or management of dependencies between services.
 
 !!! Note
 
-    Systemd is the default initialization system since RedHat/CentOS 7.
+    `systemd` is the default initialization system since RedHat/CentOS 7.
 
-Systemd introduces the concept of unit files, also known as systemd units.
+`systemd` introduces the concept of unit files, also known as `systemd` units.
 
 | Type         | File extension | Functionality                              |
 |--------------|----------------|------------------------------------------|
@@ -202,25 +202,25 @@ Systemd introduces the concept of unit files, also known as systemd units.
 
     There are many types of units: Device unit, Mount unit, Path unit, Scope unit, Slice unit, Snapshot unit, Socket unit, Swap unit, Timer unit.
 
-* Systemd supports system state snapshots and restore.
+* `systemd` supports system state snapshots and restore.
 
-* Mount points can be configured as systemd targets.
+* You can configure mount points as `systemd` targets.
 
-* At startup, systemd creates listening sockets for all system services that support this type of activation and passes these sockets to these services as soon as they are started. This makes it possible to restart a service without losing a single message sent to it by the network during its unavailability. The corresponding socket remains accessible and all messages are queued.
+* At startup, `systemd` creates listening sockets for all system services that support this type of activation and passes these sockets to these services as soon as they start. This makes it possible to restart a service without losing a single message sent to it by the network during its unavailability. The corresponding socket remains accessible all messages queue up.
 
-* System services that use D-BUS for their inter-process communications can be started on demand the first time they are used by a client.
+* System services that use D-BUS for their inter-process communications can start on-demand the first time the client uses them.
 
-* Systemd stops or restarts only running services. Previous versions (before RHEL7) attempted to stop services directly without checking their current status.
+* `systemd` stops or restarts only running services. Previous versions (before RHEL7) attempted to stop services directly without checking their current status.
 
 * System services do not inherit any context (like HOME and PATH environment variables). Each service operates in its own execution context.
 
 All service unit operations are subject to a default timeout of 5 minutes to prevent a malfunctioning service from freezing the system.
 
-Due to space limitations, this document will not provide a very detailed introduction to Systemd. If you are interested in Systemd, we have provided a very detailed introduction in [this document](./16-about-sytemd.md),
+Due to space limitations, this document will not provide a very detailed introduction to `systemd`. If you have an interest in exploring `systemd` further, there is a very detailed introduction in [this document](./16-about-sytemd.md),
 
 ### Managing system services
 
-Service units end with the `.service` file extension and have a similar purpose to init scripts. The `systemctl` command is used to `display`, `start`, `stop`, `restart` a system service:
+Service units end with the `.service` file extension and have a similar purpose to init scripts. The use of `systemctl` command is to `display`, `start`, `stop`, or `restart` a system service:
 
 | systemctl                                 | Description                             |
 |-------------------------------------------|-----------------------------------------|
@@ -256,7 +256,7 @@ To list all units currently loaded:
 systemctl list-units --type service
 ```
 
-To list all units to check if they are activated:
+To check the activation status of all units, you can list them with:
 
 ```bash
 systemctl list-unit-files --type service
@@ -294,11 +294,11 @@ WantedBy=multi-user.target
 
 ### Using system targets
 
-On Rocky8/RHEL8, the concept of run levels has been replaced by Systemd targets.
+`systemd` targets replace the concept of run levels on Rocky8/RHEL8.
 
-Systemd targets are represented by target units. Target units end with the `.target` file extension and their sole purpose is to group other Systemd units into a chain of dependencies.
+The representation of `systemd` targets is by target units. Target units end with the `.target` file extension and their sole purpose is to group other `systemd` units into a chain of dependencies.
 
-For example, the `graphical.target` unit, which is used to start a graphical session, starts system services such as the **GNOME display manager** (`gdm.service`) or the **accounts service** (`accounts-daemon.service`) and also activates the `multi-user.target` unit.
+For example, the `graphical.target` unit that starts a graphical session, starts system services such as the **GNOME display manager** (`gdm.service`) or the **accounts service** (`accounts-daemon.service`) and also activates the `multi-user.target` unit.
 
 Similarly, the `multi-user.target` unit starts other essential system services, such as **NetworkManager** (`NetworkManager.service`) or **D-Bus** (`dbus.service`) and activates another target unit named `basic.target`.
 
@@ -312,7 +312,7 @@ Similarly, the `multi-user.target` unit starts other essential system services, 
 
 #### The default target
 
-To determine which target is used by default:
+To determine the default target used by default:
 
 ```bash
 systemctl get-default
@@ -383,7 +383,7 @@ To change the current target and enter `rescue mode` in the current session:
 systemctl rescue
 ```
 
-**Emergency mode** provides the most minimalist environment possible and allows the system to be repaired even in situations where the system is unable to enter rescue mode. In the emergency mode, the system mounts the root file system only for reading. It will not attempt to mount any other local file system, will not activate any network interface, and will start some essential services.
+**Emergency mode** provides the most minimalist environment possible and allows the repairing of the system even in situations where the system is unable to enter rescue mode. In the emergency mode, the system mounts the root file system only for reading. It will not attempt to mount any other local file system, will not activate any network interface, and will start some essential services.
 
 To change the current target and enter emergency mode in the current session:
 
@@ -393,7 +393,7 @@ systemctl emergency
 
 #### Shutdown, suspension and hibernation
 
-The `systemctl` command replaces a number of power management commands used in previous versions:
+The `systemctl` command replaces many power management commands used in previous versions:
 
 |Old command          | New command              | Description            |
 |---------------------|--------------------------|------------------------|
@@ -406,9 +406,9 @@ The `systemctl` command replaces a number of power management commands used in p
 
 ### The `journald` process
 
-Log files can, in addition to `rsyslogd`, also be managed by the `journald` daemon which is a component of `systemd`.
+You can manage log files can, in addition to `rsyslogd`, with the `journald` daemon that is a component of `systemd`.
 
-The `journald` daemon captures Syslog messages, kernel log messages, messages from the initial RAM disk and from the start of boot, as well as messages written to the standard output and the standard error output of all services, then indexes them and makes them available to the user.
+The `journald` daemon captures Syslog messages, kernel log messages, messages from the initial RAM disk and from the start of boot, and messages written to the standard output and the standard error output of all services, then indexes them and makes them available to the user.
 
 The format of the native log file, which is a structured and indexed binary file, improves searches and allows for faster operation, it also stores metadata information, such as timestamps or user IDs.
 
@@ -422,10 +422,10 @@ journalctl
 
 The command lists all log files generated on the system. The structure of this output is similar to that used in `/var/log/messages/` but it offers some improvements:
 
-* the priority of entries is marked visually;
-* timestamps are converted to the local time zone of your system;
-* all logged data is displayed, including rotating logs;
-* the beginning of a start is marked with a special line.
+* shows the priority of entries is visually marked
+* shows the conversion of timestamps to the local time zone of your system
+* all logged data is displayed, including rotating logs
+* shows the marking of the beginning of a start with a special line
 
 #### Using continuous display
 
@@ -435,7 +435,7 @@ With continuous display, log messages are displayed in real time.
 journalctl -f
 ```
 
-This command returns a list of the ten most recent log lines. The journalctl utility then continues to run and waits for new changes to occur before displaying them immediately.
+This command returns a list of the ten most recent log lines. The `journalctl` utility then continues to run and waits for new changes to occur before displaying them immediately.
 
 #### Filtering messages
 
