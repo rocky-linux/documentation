@@ -67,7 +67,7 @@ pulp rpm repository create --name "R92_BaseOS_Vault" --remote "rocky_92_baseos_v
 
 !!! note
 
-    It is important to add "--skip-type treeinfo", otherwise instead of just BaseOS or AppStream, you end up with a weird mix of both. This probably due to an issue with repositories that are not dependency closed. If the remote was not specified before, you can add it, otherwise, if you added it at time of creation, it is not necessary to mention the remote in the sync as it is implied.
+    It is important to add "--skip-type treeinfo", otherwise instead of just BaseOS or AppStream, you end up with a weird mix of both. This is probably due to an issue with repositories that are not dependency closed. If the remote was not specified before, you can add it, otherwise, if you added it at the time of creation, it is not necessary to mention the remote in the sync as it is implied.
 
 ```bash
 pulp rpm repository sync --name "R92_AppStream_Vault" --skip-type treeinfo
