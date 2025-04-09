@@ -2,7 +2,7 @@
 
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-114-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-115-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Introduction
@@ -347,6 +347,7 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/metalllinux"><img src="https://avatars.githubusercontent.com/u/87049949?v=4?s=100" width="100px;" alt="Howard"/><br /><sub><b>Howard</b></sub></a><br /><a href="#content-metalllinux" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/rjys365"><img src="https://avatars.githubusercontent.com/u/11705106?v=4?s=100" width="100px;" alt="rjys365"/><br /><sub><b>rjys365</b></sub></a><br /><a href="#content-rjys365" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/dvdgomez"><img src="https://avatars.githubusercontent.com/u/108831013?v=4?s=100" width="100px;" alt="David Gomez"/><br /><sub><b>David Gomez</b></sub></a><br /><a href="#content-dvdgomez" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>
