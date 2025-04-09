@@ -45,9 +45,9 @@ The next 64 bytes contain the partition table of the disk.
 
 The Rocky 8 distribution's default bootloader is **GRUB2** (GRand Unified Bootloader). GRUB2 replaces the old GRUB bootloader (also called GRUB legacy).
 
-The GRUB 2 configuration file is located under `/boot/grub2/grub.cfg`, but this file should not be edited directly.
+You can locate the GRUB 2 configuration file under `/boot/grub2/grub.cfg`, but you should not edit this file directly.
 
-The GRUB2 menu configuration settings are located under `/etc/default/grub` and are used to generate the `grub.cfg` file.
+You can find the GRUB2 menu configuration settings under `/etc/default/grub`.  The `grub2-mkdconfig` command uses these to generate the `grub.cfg` file.
 
 ```bash
 # cat /etc/default/grub
@@ -59,7 +59,7 @@ GRUB_CMDLINE_LINUX="rd.lvm.lv=rhel/swap crashkernel=auto rd.lvm.lv=rhel/root rhg
 GRUB_DISABLE_RECOVERY="true"
 ```
 
-If one or more of these parameters is changed, the `grub2-mkconfig` command must be run to regenerate the `/boot/grub2/grub.cfg` file.
+If you change one or more of these parameters, you must run the `grub2-mkconfig` command to regenerate the `/boot/grub2/grub.cfg` file.
 
 ```bash
 [root] # grub2-mkconfig –o /boot/grub2/grub.cfg
@@ -131,7 +131,7 @@ To password-protect the GRUB2 bootloader:
     EOF
     ```
 
-3. The final step is to execute the command `grub2-mkconfig -o /boot/grub2/grub.cfg` to update GRUB2's settings.
+3. The final step is to run the command `grub2-mkconfig -o /boot/grub2/grub.cfg` to update GRUB2's settings.
 
 4. Restart the operating system to verify GRUB2's encryption. Select the first boot menu item, type the ++"e"++ key, and then enter the corresponding user and password.
 
@@ -216,7 +216,7 @@ The development of `systemd` was to:
 
 All service unit operations are subject to a 5-minute default timeout to prevent a malfunctioning service from freezing the system.
 
-Due to space limitations, this document will not provide a detailed introduction to `systemd`. If you are interested in exploring `systemd` further, there is a very detailed introduction in [this document](./16-about-sytemd.md).
+Due to space limitations, this document will not provide a detailed introduction to `systemd`. If you have an interest in exploring `systemd` further, there is a very detailed introduction in [this document](./16-about-sytemd.md).
 
 ### Managing system services
 
