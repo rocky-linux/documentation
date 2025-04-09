@@ -25,27 +25,27 @@ In this chapter, you will learn how the system starts.
 
 ## The boot process
 
-It is important to understand the boot process of Linux to be able to solve problems that might occur.
+It is essential to understand the boot process of Linux to solve problems that might occur.
 
 The boot process includes:
 
 ### The BIOS startup
 
-The **BIOS** (Basic Input/Output System) performs the **POST** (power on self-test) to detect, test and initialize the system hardware components.
+The **BIOS** (Basic Input/Output System) performs the **POST** (power on self-test) to detect, test, and initialize the system hardware components.
 
 It then loads the **MBR** (Master Boot Record).
 
 ### The Master boot record (MBR)
 
-The Master Boot Record is the first 512 bytes of the boot disk. The MBR discovers the boot device and loads the bootloader **GRUB2** into memory and transfers control to it.
+The Master Boot Record is the first 512 bytes of the boot disk. The MBR discovers the boot device, loads the bootloader **GRUB2** into memory, and transfers control to it.
 
 The next 64 bytes contain the partition table of the disk.
 
 ### The GRUB2 bootloader
 
-The default bootloader for the Rocky 8 distribution is **GRUB2** (GRand Unified Bootloader). GRUB2 replaces the old GRUB bootloader (also called GRUB legacy).
+The Rocky 8 distribution's default bootloader is **GRUB2** (GRand Unified Bootloader). GRUB2 replaces the old GRUB bootloader (also called GRUB legacy).
 
-The GRUB 2 configuration file is located under `/boot/grub2/grub.cfg` but this file should not be edited directly.
+The GRUB 2 configuration file is located under `/boot/grub2/grub.cfg`, but this file should not be edited directly.
 
 The GRUB2 menu configuration settings are located under `/etc/default/grub` and are used to generate the `grub.cfg` file.
 
@@ -59,7 +59,7 @@ GRUB_CMDLINE_LINUX="rd.lvm.lv=rhel/swap crashkernel=auto rd.lvm.lv=rhel/root rhg
 GRUB_DISABLE_RECOVERY="true"
 ```
 
-If changes are made to one or more of these parameters, the `grub2-mkconfig` command must be run to regenerate the `/boot/grub2/grub.cfg` file.
+If one or more of these parameters is changed, the `grub2-mkconfig` command must be run to regenerate the `/boot/grub2/grub.cfg` file.
 
 ```bash
 [root] # grub2-mkconfig –o /boot/grub2/grub.cfg
@@ -96,10 +96,10 @@ root          1      0  0 02:10 ?        00:00:02 /usr/lib/systemd/systemd --swi
 Why protect the bootloader with a password?
 
 1. Prevent *Single* user mode access - If an attacker can boot into single user mode, he becomes the root user.
-2. Prevent access to GRUB console - If an attacker manages to use GRUB console, he can change its configuration or collect information about the system by using the `cat` command.
-3. Prevent access to insecure operating systems. If there is a dual boot on the system, an attacker can select an operating system like DOS at boot time that ignores access controls and file permissions.
+2. Prevent access to GRUB console - If an attacker manages to use the GRUB console, he can change its configuration or collect information about the system by using the `cat` command.
+3. Prevent access to insecure operating systems. If the system has dual boot, an attacker can select an operating system like DOS at boot time that ignores access controls and file permissions.
 
-To password protect the GRUB2 bootloader:
+To password-protect the GRUB2 bootloader:
 
 1. Log in to the operating system as root user and execute the `grub2-mkpasswd-pbkdf2` command. The output of this command is as follows:
 
@@ -131,9 +131,9 @@ To password protect the GRUB2 bootloader:
     EOF
     ```
 
-3. The final step is to execute the command `grub2-mkconfig -o /boot/grub2/grub.cfg` to update the settings of GRUB2.
+3. The final step is to execute the command `grub2-mkconfig -o /boot/grub2/grub.cfg` to update GRUB2's settings.
 
-4. Restart the operating system to verify the encryption of GRUB2. Select the first boot menu item and type the ++"e"++ key, and then enter the corresponding user and password.
+4. Restart the operating system to verify GRUB2's encryption. Select the first boot menu item, type the ++"e"++ key, and then enter the corresponding user and password.
 
     ```bash
     Enter username:
@@ -144,12 +144,12 @@ To password protect the GRUB2 bootloader:
 
     After successful verification, enter ++ctrl+"x"++ to start the operating system.
 
-Sometimes you may see in some documents that the `grub2-set-password` (`grub2-setpassword`) command is used to protect the GRUB2 bootloader:
+Sometimes, you may see in some documents that the `grub2-set-password` (`grub2-setpassword`) command is used to protect the GRUB2 bootloader:
 
 | command                 | Core functions                        | Configuration file modification method | automaticity |
 |-------------------------|---------------------------------------|----------------------------------------|--------------|
-| `grub2-set-password`    | Set password and update configuration | Auto Completion                        | high         |
-| `grub2-mkpasswd-pbkdf2` | Only generate encrypted hash values   | Requires manual editing                | low          |
+| `grub2-set-password`    | Sets password and update configuration | Auto Completion                        | high         |
+| `grub2-mkpasswd-pbkdf2` | Only generates encrypted hash values   | Requires manual editing                | low          |
 
 Log in to the operating system as the root user and execute the `gurb2-set-password` command as follows:
 
@@ -200,23 +200,23 @@ The development of `systemd` was to:
 
 !!! Note
 
-    There are many types of units: Device unit, Mount unit, Path unit, Scope unit, Slice unit, Snapshot unit, Socket unit, Swap unit, Timer unit.
+    There are many types of units: Device unit, Mount unit, Path unit, Scope unit, Slice unit, Snapshot unit, Socket unit, Swap unit, and Timer unit.
 
 * `systemd` supports system state snapshots and restore.
 
 * You can configure mount points as `systemd` targets.
 
-* At startup, `systemd` creates listening sockets for all system services that support this type of activation and passes these sockets to these services as soon as they start. This makes it possible to restart a service without losing a single message sent to it by the network during its unavailability. The corresponding socket remains accessible all messages queue up.
+* At startup, `systemd` creates listening sockets for all system services that support this type of activation and passes these sockets to these services as soon as they start. This makes it possible to restart a service without losing a single message sent to it by the network during its unavailability. The corresponding socket remains accessible while all messages queue up.
 
-* System services that use D-BUS for their inter-process communications can start on-demand the first time the client uses them.
+* System services that use D-BUS for inter-process communications can start on-demand the first time the client uses them.
 
 * `systemd` stops or restarts only running services. Previous versions (before RHEL7) attempted to stop services directly without checking their current status.
 
-* System services do not inherit any context (like HOME and PATH environment variables). Each service operates in its own execution context.
+* System services do not inherit any context (like HOME and PATH environment variables). Each service operates in its execution context.
 
-All service unit operations are subject to a default timeout of 5 minutes to prevent a malfunctioning service from freezing the system.
+All service unit operations are subject to a 5-minute default timeout to prevent a malfunctioning service from freezing the system.
 
-Due to space limitations, this document will not provide a very detailed introduction to `systemd`. If you have an interest in exploring `systemd` further, there is a very detailed introduction in [this document](./16-about-sytemd.md),
+Due to space limitations, this document will not provide a detailed introduction to `systemd`. If you are interested in exploring `systemd` further, there is a very detailed introduction in [this document](./16-about-sytemd.md).
 
 ### Managing system services
 
@@ -232,7 +232,7 @@ Service units end with the `.service` file extension and have a similar purpose 
 | systemctl try-restart *name*.service      | Restarts a service only if it is running |
 | systemctl list-units --type service --all | Displays the status of all services      |
 
-The `systemctl` command is also used for the `enable` or `disable` of system a service and displaying associated services:
+The `systemctl` command is also used for the `enable` or `disable` of a system service and displaying associated services:
 
 | systemctl                                | Description                                             |
 |------------------------------------------|---------------------------------------------------------|
@@ -296,9 +296,9 @@ WantedBy=multi-user.target
 
 `systemd` targets replace the concept of run levels on Rocky8/RHEL8.
 
-The representation of `systemd` targets is by target units. Target units end with the `.target` file extension and their sole purpose is to group other `systemd` units into a chain of dependencies.
+The representation of `systemd` targets is by target units. Target units end with the `.target` file extension, and their sole purpose is to group other `systemd` units into a chain of dependencies.
 
-For example, the `graphical.target` unit that starts a graphical session, starts system services such as the **GNOME display manager** (`gdm.service`) or the **accounts service** (`accounts-daemon.service`) and also activates the `multi-user.target` unit.
+For example, the `graphical.target` unit that starts a graphical session starts system services such as the **GNOME display manager** (`gdm.service`) or the **accounts service** (`accounts-daemon.service`) and also activates the `multi-user.target` unit.
 
 Similarly, the `multi-user.target` unit starts other essential system services, such as **NetworkManager** (`NetworkManager.service`) or **D-Bus** (`dbus.service`) and activates another target unit named `basic.target`.
 
@@ -306,8 +306,8 @@ Similarly, the `multi-user.target` unit starts other essential system services, 
 |-------------------|-----------------------------------------------------------|
 | poweroff.target   | Shuts down the system and turns it off                    |
 | rescue.target     | Activates a rescue shell                                  |
-| multi-user.target | Activates a multi-user system without graphical interface |
-| graphical.target  | Activates a multi-user system with graphical interface    |
+| multi-user.target | Activates a multi-user system without a graphical interface |
+| graphical.target  | Activates a multi-user system with a graphical interface    |
 | reboot.target     | Shuts down and restarts the system                        |
 
 #### The default target
@@ -371,9 +371,9 @@ To switch to a different target unit in the current session:
 systemctl isolate name.target
 ```
 
-The **Rescue mode** provides a simple environment to repair your system in cases where it is impossible to perform a normal boot process.
+The **Rescue mode** provides a simple environment for repairing your system in cases where a normal boot process is impossible.
 
-In `rescue mode`, the system attempts to mount all local file systems and start several important system services, but does not enable a network interface or allow other users to connect to the system at the same time.
+In `rescue mode,` the system attempts to mount all local file systems and start several important system services but does not enable a network interface or allow other users to connect to the system simultaneously.
 
 On Rocky 8, the `rescue mode` is equivalent to the old `single user mode` and requires the root password.
 
@@ -383,7 +383,7 @@ To change the current target and enter `rescue mode` in the current session:
 systemctl rescue
 ```
 
-**Emergency mode** provides the most minimalist environment possible and allows the repairing of the system even in situations where the system is unable to enter rescue mode. In the emergency mode, the system mounts the root file system only for reading. It will not attempt to mount any other local file system, will not activate any network interface, and will start some essential services.
+**Emergency mode** provides the most minimalist environment possible and allows the system to be repaired even in situations where it is unable to enter rescue mode. In emergency mode, the system mounts the root file system only for reading. It will not attempt to mount any other local file system, will not activate any network interface, and will start some essential services.
 
 To change the current target and enter emergency mode in the current session:
 
@@ -391,7 +391,7 @@ To change the current target and enter emergency mode in the current session:
 systemctl emergency
 ```
 
-#### Shutdown, suspension and hibernation
+#### Shutdown, suspension, and hibernation
 
 The `systemctl` command replaces many power management commands used in previous versions:
 
@@ -406,11 +406,11 @@ The `systemctl` command replaces many power management commands used in previous
 
 ### The `journald` process
 
-You can manage log files can, in addition to `rsyslogd`, with the `journald` daemon that is a component of `systemd`.
+You can manage log files with the `journald` daemon, a component of `systemd 'in addition to ' rsyslogd`.
 
-The `journald` daemon captures Syslog messages, kernel log messages, messages from the initial RAM disk and from the start of boot, and messages written to the standard output and the standard error output of all services, then indexes them and makes them available to the user.
+The `journald` daemon captures Syslog messages, kernel log messages, messages from the initial RAM disk and the start of boot, and messages written to the standard output and the standard error output of all services, then indexes them and makes them available to the user.
 
-The format of the native log file, which is a structured and indexed binary file, improves searches and allows for faster operation, it also stores metadata information, such as timestamps or user IDs.
+The native log file's format, which is a structured and indexed binary file, improves searches and allows for faster operation. It also stores metadata information, such as timestamps or user IDs.
 
 ### `journalctl` command
 
