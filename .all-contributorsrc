@@ -1043,6 +1043,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "dvdgomez",
+      "name": "David Gomez",
+      "avatar_url": "https://avatars.githubusercontent.com/u/108831013?v=4",
+      "profile": "https://github.com/dvdgomez",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
