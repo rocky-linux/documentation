@@ -87,6 +87,16 @@ Nouveau is an open-source NVIDIA driver that provides limited functionality comp
 sudo grubby --args="nouveau.modeset=0 rd.driver.blacklist=nouveau" --update-kernel=ALL
 ```
 
+!!! Note
+
+    For systems with secure boot enabled you need to perform this step:
+    ```bash
+    sudo mokutil --import /var/lib/dkms/mok.pub
+    ```
+    The `mokutil` command will prompt for you to make up a password, which will be used during reboot.
+    
+    After the reboot, your system should ask you if you want to enroll a key or something like that, say yes and it asks for the password you gave in the `mokutil` command.
+
 Reboot:
 
 ```bash
