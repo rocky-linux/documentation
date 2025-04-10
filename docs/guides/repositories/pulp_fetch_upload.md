@@ -45,6 +45,8 @@ $ podman run --detach \
 
 If you browse to `http://localhost:8080/pulp/content/` you should now see "Index of /pulp/content/" that for now is empty, but that you will populate with your repositories by the end of this guide.
 
+![empty_index](images/empty_pulp_index.png)
+
 ## Create Pulp Remotes
 
 Think of Pulp remotes as remote source repositories. In this case, the remote source repositories are BaseOS and AppStream from Rocky Linux 9.2 vault. You will use these remotes to sync to your repositories that you will create with Pulp. Please check the [Pulp official documentation](https://pulpproject.org/) for more on remote policies.
@@ -93,6 +95,8 @@ pulp rpm distribution create --name "Copy of AppStream 92 RL Vault" --base-path 
 ```
 
 If you check `http://localhost:8080/pulp/content/` you should see your two repositories that are copies of the Rocky Linux 9.2 AppStream and BaseOS vault repositories.
+
+![content_index](images/pulp_index_content.png)
 
 ## Conclusion
 
