@@ -10,7 +10,7 @@ In questo capitolo verrà illustrato come si avvia il sistema.
 **Obiettivi** : In questo capitolo, i futuri amministratori Linux apprenderanno:
 
 :heavy_check_mark: Le diverse fasi del processo di avvio;  
-:heavy_check_mark: Come Rocky Linux supporta questo avvio tramite Grub2 e systemd;  
+:heavy_check_mark: Come Rocky Linux supporta questo avvio tramite Grub2 e `systemd`;  
 :heavy_check_mark: Come proteggere Grub2 da un attacco;  
 :heavy_check_mark: Come gestire i servizi;  
 :heavy_check_mark: Come accedere ai registri di log con `journald`.
@@ -25,19 +25,19 @@ In questo capitolo verrà illustrato come si avvia il sistema.
 
 ## Il processo di avvio
 
-È importante capire il processo di avvio di Linux per poter risolvere i problemi che potrebbero verificarsi.
+È importante capire il processo di boot di Linux per risolvere problemi nel caso si verifichino.
 
 Il processo di avvio include:
 
 ### L'avvio del BIOS
 
-Il **BIOS** (Basic Input/Output System) esegue il **POST** (power on self test) per rilevare, testare e inizializzare i componenti hardware del sistema.
+Il **BIOS** (Basic Input/Output System) esegue il **POST** (power on self test) per rilevare, testare e inizializzare i componenti hardware di sistema.
 
 Quindi carica il **MBR** (Master Boot Record).
 
 ### Il Master boot record (MBR)
 
-Il Master Boot Record sono i primi 512 byte del disco di avvio. Il MBR trova il dispositivo di avvio e carica il bootloader **GRUB2** in memoria passando il controllo ad esso.
+Il Master Boot Record sono i primi 512 byte del disco di avvio. Il MBR trova il dispositivo di boot e carica il bootloader **GRUB2** in memoria passando il controllo quest'ultimo.
 
 I successivi 64 byte contengono la tabella delle partizioni del disco.
 
@@ -45,9 +45,9 @@ I successivi 64 byte contengono la tabella delle partizioni del disco.
 
 Il bootloader predefinito per la distribuzione Rocky 8 è **GRUB2** (GRand Unified Bootloader). GRUB2 sostituisce il vecchio. GRUB bootloader (chiamato anche GRUB legacy).
 
-Il file di configurazione di GRUB2 si trova in `/boot/grub2/grub.cfg` ma questo file non dovrebbe mai essere modificato direttamente.
+Il file di configurazione di GRUB 2 si trova in `/boot/grub2/grub.cfg` ma questo file non dovrebbe mai essere modificato direttamente.
 
-Le impostazioni di configurazione del menu GRUB2 si trovano in `/etc/default/grub` e sono usate per generare il file `grub.cfg`.
+Le impostazioni di configurazione del menu di GRUB2 si trovano in `/etc/default/grub`.  Il comando `grub2-mkdconfig` li utilizza per generare il file `grub.cfg`.
 
 ```bash
 # cat /etc/default/grub
@@ -59,7 +59,7 @@ GRUB_CMDLINE_LINUX="rd.lvm.lv=rhel/swap crashkernel=auto rd.lvm.lv=rhel/root rhg
 GRUB_DISABLE_RECOVERY="true"
 ```
 
-Se vengono apportate modifiche a uno o più di questi parametri, deve essere eseguito il comando `grub2-mkconfig` per rigenerare il file `/boot/grub2/grub.cfg`.
+Se si modifica uno o più di questi parametri, deve essere eseguito il comando `grub2-mkconfig` per ri-generare il file `/boot/grub2/grub.cfg`.
 
 ```bash
 [root] # grub2-mkconfig –o /boot/grub2/grub.cfg
@@ -78,9 +78,9 @@ root          1      0  0 02:10 ?        00:00:02 /usr/lib/systemd/systemd --swi
 
 ### `systemd`
 
-Systemd è il genitore di tutti i processi di sistema. Legge il target del link `/etc/systemd/system/default.target` (es. `/usr/lib/systemd/system/multi-user.target`) per determinare l'obiettivo predefinito del sistema. Il file definisce i servizi da avviare.
+`systemd` è il genitore di tutti i processi di sistema. Legge il target del link `/etc/systemd/system/default.target` (es. `/usr/lib/systemd/system/multi-user.target`) per determinare l'obiettivo predefinito del sistema. Il file indica i servizi da avviare.
 
-Systemd posiziona quindi il sistema nello stato definito dall'obiettivo eseguendo le seguenti attività di inizializzazione:
+`systemd` pone quindi il sistema nello stato definito dall'obiettivo eseguendo le seguenti operazioni di inizializzazione:
 
 1. Imposta il nome della macchina
 2. Inizializza la rete
@@ -96,50 +96,75 @@ Systemd posiziona quindi il sistema nello stato definito dall'obiettivo eseguend
 Perché proteggere il bootloader con una password?
 
 1. Prevenire l'accesso in *Single user mode* - Se un utente malintenzionato può avviare in single user mode, diventa l'utente root.
-2. Impedire l'accesso alla console di GRUB - Se un utente malintenzionato riesce a utilizzare la console Grub, può modificare la sua configurazione o raccogliere informazioni sul sistema utilizzando il comando `cat`.
-3. Impedire l'accesso ai sistemi operativi insicuri. Se c'è un doppio avvio sul sistema, un utente malintenzionato può selezionare un sistema operativo come DOS che all'avvio ignora i controlli di accesso e le autorizzazioni dei file.
+2. Impedire l'accesso alla console di GRUB - Se un utente malintenzionato riesce a utilizzare la console GRUB, potrebbe modificare la sua configurazione o raccogliere informazioni di sistema con il comando `cat`.
+3. Impedire l'accesso ai sistemi operativi insicuri. Se il sistema è configurato con dual boot, un utente malintenzionato putrebbe selezionare un sistema operativo come DOS che in fase di boot ignora controlli d'accesso e autorizzazioni dei file.
 
 Per proteggere con password il bootloader GRUB2:
 
-* Rimuovere `-unrestricted` dalla dichiarazione principale `CLASS=` nel file `/etc/grub.d/10_linux`.
+1. Accedere al sistema operativo come utente root ed eseguire il comando `grub2-mkpasswd-pbkdf2`. L'output del comando è il seguente:
 
-* Se un utente non è stato ancora configurato, utilizzare il comando `grub2-setpassword` per fornire una password per l'utente root:
+    ```bash
+    Enter password:
+    Reenter password:
+    PBKDF2 hash of your password is grub.pbkdf2.sha512.10000.D0182EDB28164C19454FA94421D1ECD6309F076F1135A2E5BFE91A5088BD9EC87687FE14794BE7194F67EA39A8565E868A41C639572F6156900C81C08C1E8413.40F6981C22F1F81B32E45EC915F2AB6E2635D9A62C0BA67105A9B900D9F365860E84F1B92B2EF3AA0F83CECC68E13BA9F4174922877910F026DED961F6592BB7
+    ```
+
+    È necessario inserire la password. Il ciphertext della password è la long string “grub.pbkdf2.sha512...”.
+
+2. Incollare il ciphertext della password nell'ultima riga del file <strong x-id=“1”>/etc/grub.d/00_header</strong>. Il formato del testo incollato è il seguente:
+
+    ```bash
+    cat <<EOF
+    set superusers='frank'
+    password_obkdf2 frank grub.pbkdf2.sha512.10000.D0182EDB28164C19454FA94421D1ECD6309F076F1135A2E5BFE91A5088BD9EC87687FE14794BE7194F67EA39A8565E868A41C639572F6156900C81C08C1E8413.40F6981C22F1F81B32E45EC915F2AB6E2635D9A62C0BA67105A9B900D9F365860E84F1B92B2EF3AA0F83CECC68E13BA9F4174922877910F026DED961F6592BB7
+    EOF
+    ```
+
+    È possibile sostituire l'utente 'frank' con un qualsiasi utente.
+
+    È anche possibile impostare una password in chiaro, ad esempio:
+
+    ```bash
+    cat <<EOF
+    set superusers='frank'
+    password frank rockylinux8.x
+    EOF
+    ```
+
+3. Il passo finale consiste nell'eseguire il comando `grub2-mkconfig -o /boot/grub2/grub.cfg` per aggiornare le impostazioni di GRUB2.
+
+4. Riavviare il sistema operativo per verificare la crittografia di GRUB2. Selezionare la prima voce del menu di avvio, digitare il tasto ++"e"++, quindi inserire l'utente e la password corrispondenti.
+
+    ```bash
+    Enter username:
+    frank
+    Enter password:
+
+    ```
+
+    Dopo l'esito positivo della verifica, digitare ++ctrl+"x"++ per avviare il sistema operativo.
+
+A volte, in alcuni documenti, si può notare che il comando `grub2-set-password` (`grub2-setpassword`) viene usato per proteggere il bootloader di GRUB2:
+
+| comando                 | Funzione di base                              | Metodo per modificare il file di configurazione | automatismo |
+| ----------------------- | --------------------------------------------- | ----------------------------------------------- | ----------- |
+| `grub2-set-password`    | Imposta password e aggiorna la configurazione | Completamento automatico                        | Elevato     |
+| `grub2-mkpasswd-pbkdf2` | Genera solo valori hash encrypted             | Richiede intervento manuale                     | basso       |
+
+Accedere al sistema operativo come utente root ed eseguire il comando `gurb2-set-password` come segue:
 
 ```bash
 # grub2-setpassword
 ```
 
-Un file `/boot/grub2/user.cfg` sarà creato se non era già presente. Contiene la password hashed. di GRUB2.
+Dopo l'esecuzione del comando `grub2-set-password`, il file **/boot/grub2/user.cfg** verrà generato automaticamente.
 
-!!! Note "Nota"
-
-    Questo comando supporta solo le configurazioni con un singolo utente root.
+Selezionare la prima voce del menu di avvio e digitare il tasto ++"e"++ , quindi inserire l'utente e la password corrispondenti:
 
 ```bash
-[root]# cat /boot/grub2/user.cfg
-GRUB2_PASSWORD=grub.pbkdf2.sha512.10000.CC6F56....A21
+Questo comando supporta solo le configurazioni con un singolo utente root.
+
 ```
-
-* Ricreare il file di configurazione con il comando `grub2-mkconfig`:
-
-```bash
-[root]# grub2-mkconfig -o /boot/grub2/grub.cfg
-Generating grub configuration file ...
-Found linux image: /boot/vmlinuz-3.10.0-327.el7.x86_64
-Found initrd image: /boot/initramfs-3.10.0-327.el7.x86_64.img
-Found linux image: /boot/vmlinuz-0-rescue-f9725b0c842348ce9e0bc81968cf7181
-Found initrd image: /boot/initramfs-0-rescue-f9725b0c842348ce9e0bc81968cf7181.img
-done
-```
-
-* Riavviare il sistema e controllare.
-
-Tutte le voci definite nel menu GRUB richiederanno ora un utente e una password da inserire a ciascun avvio. Il sistema non avvierà un kernel senza l'intervento diretto dell'utente dalla console.
-
-* Quando viene richiesto l'utente, inserire `root`;
-* Quando viene richiesta una password, inserire la password fornita al comando `grub2-setpassword`.
-
-Per proteggere solo la modifica delle voci del menu GRUB e l'accesso alla console, l'esecuzione del comando `grub2-setpassword` è sufficiente. Ci possono però essere casi in cui ci sono buone ragioni per non farlo. Questo potrebbe essere particolarmente vero in un data center remoto in cui l'inserimento di una password ogni volta che viene riavviato un server è difficile o impossibile da fare.
 
 ## Systemd
 
@@ -166,19 +191,21 @@ Systemd introduce il concetto di file di unità, noti anche come unità di syste
 
     Ci sono molti tipi di unità: Device unit, Mount unit, Path unit, Scope unit, Slice unit, Snapshot unit, Socket unit, Swap unit, Timer unit.
 
-* Systemd supporta le istantanee dello stato del sistema e il ripristino.
+* `Systemd` supporta le istantanee dello stato del sistema e il ripristino.
 
-* Mount points possono essere configurati come target di systemd.
+* Mount points possono essere configurati come target di `systemd`.
 
-* All'avvio, systemd crea socket di ascolto per tutti i servizi di sistema che supportano questo tipo di attivazione e passa questi socket ai relativi servizi non appena vengono avviati. Ciò consente di riavviare un servizio senza perdere un singolo messaggio inviato dalla rete durante la sua indisponibilità. Il socket corrispondente rimane accessibile e tutti i messaggi vengono accodati.
+* All'avvio, `systemd` crea socket di ascolto per tutti i servizi di sistema che supportano questo tipo di attivazione e passa questi socket ai relativi servizi non appena vengono avviati. Ciò consente di riavviare un servizio senza perdere un singolo messaggio inviato dalla rete durante la sua indisponibilità. Il socket corrispondente rimane accessibile e tutti i messaggi vengono accodati.
 
 * I servizi di sistema che utilizzano D-BUS per le comunicazioni tra processi possono essere avviati su richiesta la prima volta che vengono utilizzati da un client.
 
-* Systemd arresta o riavvia solo i servizi in esecuzione. Le versioni precedenti (prima di RHEL7) tentavano di arrestare direttamente i servizi senza controllarne lo stato corrente.
+* `Systemd` arresta o riavvia solo i servizi in esecuzione. Le versioni precedenti (prima di RHEL7) tentavano di arrestare direttamente i servizi senza controllarne lo stato corrente.
 
 * I servizi di sistema non ereditano alcun contesto (come le variabili di ambiente HOME e PATH). Ogni servizio opera nel proprio contesto di esecuzione.
 
 Tutte le operazioni delle unità di servizio sono soggette a un timeout predefinito di 5 minuti per evitare che un servizio malfunzionante blocchi il sistema.
+
+Per motivi di spazio, questo documento non fornirà un'introduzione dettagliata a `systemd`. Se si è interessati a esplorare ulteriormente `systemd` , c'è un'introduzione molto dettagliata in <a href=“./16-about-sytemd.md”>questo documento</a>.
 
 ### Gestione dei servizi di sistema
 
@@ -187,22 +214,22 @@ Le unità di servizio terminano con l'estensione di file `.service` e hanno uno 
 | systemctl                                 | Descrizione                                   |
 | ----------------------------------------- | --------------------------------------------- |
 | systemctl start *name*.service            | Avviare un servizio                           |
-| systemctl stop *name*.service             | Arresta un servizio                           |
+| systemctl stop *name*.service             | Arrestare un servizio                         |
 | systemctl restart *name*.service          | Riavviare un servizio                         |
 | systemctl reload *name*.service           | Ricaricare una configurazione                 |
-| systemctl status *name*.service           | Controlla se un servizio è in esecuzione      |
+| systemctl status *name*.service           | Controllare se un servizio è in esecuzione    |
 | systemctl try-restart *name*.service      | Riavviare un servizio solo se è in esecuzione |
 | systemctl list-units --type service --all | Visualizzare lo stato di tutti i servizi      |
 
-Il comando `systemctl` viene utilizzato anche per `abilitare` o `disabilitare` un servizio di sistema e la visualizzazione dei servizi associati:
+Il comando `systemctl` viene utilizzato anche per `enable` o `disable` un servizio di sistema e la visualizzazione dei servizi associati:
 
-| systemctl                                | Descrizione                                                  |
-| ---------------------------------------- | ------------------------------------------------------------ |
-| systemctl enable *name*.service          | Attivare un servizio                                         |
-| systemctl disable *name*.service         | Disabilitare un servizio                                     |
-| systemctl list-unit-files --type service | Elenca tutti i servizi e i controlli se sono in esecuzione   |
-| systemctl list-dependencies --after      | Elenca i servizi che si avviano prima dell'unità specificata |
-| systemctl list-dependencies --before     | Elenca i servizi che si avviano dopo l'unità specificata     |
+| systemctl                                | Descrizione                                                    |
+| ---------------------------------------- | -------------------------------------------------------------- |
+| systemctl enable *name*.service          | Attivare un servizio                                           |
+| systemctl disable *name*.service         | Disabilitare un servizio                                       |
+| systemctl list-unit-files --type service | Elencare tutti i servizi e i controlli se sono in esecuzione   |
+| systemctl list-dependencies --after      | Elencare i servizi che si avviano prima dell'unità specificata |
+| systemctl list-dependencies --before     | Elencare i servizi che si avviano dopo l'unità specificata     |
 
 Esempi:
 
@@ -256,9 +283,9 @@ WantedBy=multi-user.target
 
 ### Utilizzo degli obiettivi di sistema
 
-Su Rocky8/RHEL8, il concetto di runlevel è stato sostituito dagli obiettivi systemd.
+Su Rocky8/RHEL8, il concetto di runlevel è stato sostituito dagli obiettivi `systemd`.
 
-I sistemi di destinazione sono rappresentati da unità di destinazione. Le unità di destinazione terminano con l'estenzione `.target` e il loro unico scopo è di raggruppare altre unità systemd in una catena di dipendenze.
+La rappresentazione dei target di `systemd` è per unità di destinazione. Le unità di destinazione terminano con l'estenzione `.target` e il loro unico scopo è di raggruppare altre unità `systemd` in una catena di dipendenze.
 
 Ad esempio, l'unità `graphical.target`, che viene utilizzata per avviare una sessione grafica, inizializza i servizi di sistema come il **GNOME display manager** (`gdm.service`) o l'**accounts service** (`accounts-daemon.service`) e attiva anche l'unità `multi-user.target`.
 
@@ -335,9 +362,9 @@ systemctl isolate name.target
 
 La **Modalità di ripristino** fornisce un ambiente semplice per riparare il sistema nei casi in cui è impossibile eseguire un normale processo di avvio.
 
-In `modalità di ripristino`, il sistema tenta di montare tutti i file system locali e avviare diversi servizi di sistema importanti, ma non abilita un'interfaccia di rete o consente ad altri utenti di connettersi al sistema contemporaneamente.
+In `rescue mode`, il sistema tenta di montare tutti i file system locali e avviare diversi servizi di sistema importanti, ma non abilita un'interfaccia di rete o consente ad altri utenti di connettersi al sistema contemporaneamente.
 
-Su Rocky 8, la `modalità di ripristino` è equivalente al vecchio `single user mode` e richiede la password di root.
+Su Rocky 8, la `rescue mode` è equivalente al vecchio `single user mode` e richiede la password di root.
 
 Per modificare la destinazione corrente immettere `rescue mode` nella sessione corrente:
 
@@ -372,7 +399,7 @@ I file di registro possono, oltre a `rsyslogd`, essere gestiti anche dal demone 
 
 Il demone `journald` cattura i messaggi Syslog, i messaggi di registro del kernel, i messaggi dal disco RAM iniziale e dall'inizio dell'avvio, nonché i messaggi scritti nell'output standard e l'output di errore standard di tutti i servizi, quindi li indicizza e li rende disponibili all'utente.
 
-Il formato del file di registro nativo, che è un file binario strutturato e indicizzato, migliora le ricerche e consente un funzionamento più rapido, memorizza anche le informazioni dei metadati, come i timestamp o gli ID utente.
+Il formato del file di log nativo, che è un file binario strutturato e indicizzato, migliora le ricerche e consente un funzionamento più rapido. Memorizza anche informazioni sui metadati, come i timestamp o gli ID utente.
 
 ### comando `journalctl`
 
@@ -382,7 +409,7 @@ Il comando `journalctl` visualizza i file di registro.
 journalctl
 ```
 
-Il comando elenca tutti i file di registro generati sul sistema. La struttura di questa uscita è simile a quella utilizzata in `/var/log/messages/` ma offre alcuni miglioramenti:
+Il comando elenca tutti i file di registro generati sul sistema. La struttura di questo output è simile a quella utilizzata in `/var/log/messages/` ma offre alcuni miglioramenti:
 
 * la priorità delle voci è segnata visivamente;
 * i timestamp sono convertiti nella zona oraria locale del sistema;
