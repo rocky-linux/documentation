@@ -24,7 +24,7 @@ sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker
 Установіть останню версію Docker Engine, `container` і Docker Compose, виконавши:
 
 ```bash
-sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
 ## Запустіть і ввімкніть Docker (`dockerd`)
@@ -56,8 +56,9 @@ sudo usermod -a -G docker custom-user
 ### Примітки
 
 ```docker
-docker-ce: цей пакет надає основну технологію для створення та запуску docker контейнерів (dockerd)
-docker-ce-cli: надає інтерфейс командного рядка (CLI) клієнтський інструмент докера (докер)
-containerd.io: забезпечує середовище виконання контейнера (runc)
-docker-compose-plugin: плагін, який надає підкоманду «docker compose». 
+docker-ce               : Цей пакунок надає базову технологію для створення та запуску контейнерів докерів (dockerd) 
+docker-ce-cli           : Надає інтерфейс командного рядка (CLI) клієнтський інструмент докера (докер)
+containerd.io           : Забезпечує середовище виконання контейнера (runc)
+docker-buildx-plugin    : Плагін Docker Buildx для Docker CLI
+docker-compose-plugin   : Плагін, який надає підкоманду 'docker compose' 
 ```
