@@ -13,7 +13,7 @@ tags:
 
 ## Introduction
 
-Developers who use Rocky Linux often require different remote RPM repositories to support their operations. Pulp is an open-source project that can help developers meet this need by facilitating fetching and distributing different RPM repositories. This guide shows a simple example of using Pulp to fetch BaseOS and AppStream from the Rocky Linux vault.
+Developers who use Rocky Linux often require different remote RPM repositories to support their operations. Pulp is an open source project that can help developers meet this need by facilitating fetching and distributing different RPM repositories. This guide shows a simple example of using Pulp to fetch BaseOS and AppStream from the Rocky Linux vault.
 
 ## Requirements
 
@@ -43,7 +43,7 @@ $ podman run --detach \
              pulp/pulp
 ```
 
-If you browse to `http://localhost:8080/pulp/content/`, you should now see the "Index of /pulp/content/" that is currently empty but will be filled with your repositories by the end of this guide.
+If you browse to `http://localhost:8080/pulp/content/`, you should now see the "Index of /pulp/content/" that is currently empty. You will fill these with your repositories by the end of this guide.
 
 ![empty_index](images/empty_pulp_index.png)
 
@@ -69,7 +69,7 @@ pulp rpm repository create --name "R92_BaseOS_Vault" --remote "rocky_92_baseos_v
 
 !!! note
 
-    It is important to add "--skip-type treeinfo". Otherwise, instead of just BaseOS or AppStream, you end up with a weird mix of both. This is probably due to an issue with repositories that are not dependent and are closed. If the remote was not specified before, you can just add it; otherwise, if you added it at the time of creation, it isn't necessary to mention the remote in the sync, as implied.
+    It is important to add "--skip-type treeinfo". Otherwise, instead of just BaseOS or AppStream, you end up with a weird mix of both. This is probably due to an issue with repositories that are dependency closed. If the remote was not specified before, you can just add it. If you added it at the time of creation, it is not necessary to mention the remote in the sync, as implied.
 
 ```bash
 pulp rpm repository sync --name "R92_AppStream_Vault" --skip-type treeinfo
@@ -100,4 +100,4 @@ If you check `http://localhost:8080/pulp/content/,` you should see your two repo
 
 ## Conclusion
 
-Pulp can be a very versatile tool for fetching multiple repositories and distributing them as needed. This is a basic example; however, you can use Pulp in a variety of deployment scenarios and organize repositories more complexly and advancedly. Please check the [official documentation](https://pulpproject.org/) for more information.
+Pulp can be a very versatile tool for fetching multiple repositories and distributing them as needed. While this is a basic example, you can use Pulp in a variety of deployment scenarios that are more complex and advanced. Please check the [official documentation](https://pulpproject.org/) for more information.
