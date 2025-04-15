@@ -45,9 +45,9 @@ The next 64 bytes contain the partition table of the disk.
 
 The Rocky 8 distribution's default bootloader is **GRUB2** (GRand Unified Bootloader). GRUB2 replaces the old GRUB bootloader (also called GRUB legacy).
 
-You can locate the GRUB 2 configuration file under `/boot/grub2/grub.cfg`, but you should not edit this file directly.
+You can locate the GRUB2 configuration file under `/boot/grub2/grub.cfg`, but you should not edit this file directly.
 
-You can find the GRUB2 menu configuration settings under `/etc/default/grub`.  The `grub2-mkdconfig` command uses these to generate the `grub.cfg` file.
+You can find the GRUB2 menu configuration settings under `/etc/default/grub`.  The `grub2-mkconfig` command uses these to generate the `grub.cfg` file.
 
 ```bash
 # cat /etc/default/grub
@@ -220,24 +220,24 @@ Due to space limitations, this document will not provide a detailed introduction
 
 ### Managing system services
 
-Service units end with the `.service` file extension and have a similar purpose to init scripts. The use of `systemctl` command is to `display`, `start`, `stop`, or `restart` a system service:
+Service units end with the `.service` file extension and have a similar purpose to init scripts. The use of `systemctl` command is to `display`, `start`, `stop`, or `restart` a system service. Except for very few cases, the `systemctl` single line command can operate on one or more units in most cases (not limited to the unit type of ".service"). You can view it through the help system.
 
 | systemctl                                 | Description                             |
 |-------------------------------------------|-----------------------------------------|
-| systemctl start *name*.service            | Starts a service                         |
-| systemctl stop *name*.service             | Stops a service                         |
-| systemctl restart *name*.service          | Restarts a service                       |
-| systemctl reload *name*.service           | Reloads a configuration                  |
-| systemctl status *name*.service           | Checks if a service is running          |
-| systemctl try-restart *name*.service      | Restarts a service only if it is running |
+| systemctl start *name*.service ...        | Start one or more services              |
+| systemctl stop *name*.service ...         | Stop one or more services               |
+| systemctl restart *name*.service ...      | Restart one or more services            |
+| systemctl reload *name*.service ...       | Reload one or more services             |
+| systemctl status *name*.service ...       | Check one or more services status       |
+| systemctl try-restart *name*.service ...  | Restart one or more services (If they are running)      |
 | systemctl list-units --type service --all | Displays the status of all services      |
 
 The `systemctl` command is also used for the `enable` or `disable` of a system service and displaying associated services:
 
 | systemctl                                | Description                                             |
 |------------------------------------------|---------------------------------------------------------|
-| systemctl enable *name*.service            | Activates a service                                      |
-| systemctl disable *name*.service           | Disables a service                                       |
+| systemctl enable *name*.service ...      | Activates one or more services                          |
+| systemctl disable *name*.service ...     | Disables one or more services                           |
 | systemctl list-unit-files --type service | Lists all services and checks if they are running       |
 | systemctl list-dependencies --after      | Lists the services that start before the specified unit |
 | systemctl list-dependencies --before     | Lists the services that start after the specified unit  |
