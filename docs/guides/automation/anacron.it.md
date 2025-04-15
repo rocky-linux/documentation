@@ -5,22 +5,20 @@ contributors: Steven Spencer, Ganna Zhyrnova
 update: 2022-02-13
 ---
 
-# `anacron` - Eseguire i Comandi con Regolarità
-
 ## Prerequisiti
 
-* Un computer con Rocky Linux in esecuzione.
-* Sapere come utilizzare l'editor preferito per modificare il file di configurazione (ad esempio *vim*) nell'ambiente da riga di comando.
-* Comprendere la gestione di base dei pacchetti RPM.
+- Un computer con Rocky Linux in esecuzione.
+- Sapere come utilizzare l'editor preferito per modificare il file di configurazione (ad esempio *vim*) nell'ambiente da riga di comando.
+- Comprendere la gestione di base dei pacchetti RPM.
 
 ## Presupposti
 
-* Disponete di conoscenze di base di bash, python o altri strumenti di scripting o di programmazione e volete eseguire lo script automaticamente.
-* Ci si è collegati come utente root o si è passati a root con `su - root`.
+- Disponete di conoscenze di base di bash, python o altri strumenti di scripting o di programmazione e volete eseguire lo script automaticamente.
+- Ci si è collegati come utente root o si è passati a root con `su - root`.
 
-## `anacron` Introduzione
+## Introduzione
 
-**`anacron` esegue i comandi su base regolare e la frequenza operativa è definita in unità di giorni. È adatto ai computer che non funzionano 24/7, come i computer portatili e i desktop. Supponiamo che abbiate un compito programmato (come uno script di backup) da eseguire la mattina presto di ogni giorno usando crontab. Quando ci si addormenta, il desktop o il notebook sono spenti. Lo script di backup non viene eseguito. Tuttavia, se si utilizza `anacron`, si può essere certi che la prossima volta che si accende il desktop o il notebook, lo script di backup verrà eseguito.**
+`anacron` esegue i comandi su base regolare e la frequenza operativa è espressa in unità di giorni. È adatto ai computer che non funzionano 24 ore su 24, 7 giorni su 7, come i computer portatili e i desktop. Si supponga di aver programmato l'esecuzione di un'attività (ad esempio uno script di backup) al mattino presto di ogni giorno utilizzando `crontab`. Quando ci si addormenta, il desktop o il notebook sono spenti. Lo script di backup non verrà eseguito. Tuttavia, se si utilizza `anacron`, si può essere certi che la prossima volta che si accende il desktop o il notebook, lo script di backup verrà eseguito.
 
 L'aspetto di `anacron` non è quello di sostituire `crontab`, ma di completare `crontab`. La loro relazione è la seguente:
 
@@ -45,6 +43,7 @@ shell > rpm -ql cronie-anacron
 ```
 
 Prima controlla il file di configurazione predefinito:
+
 ```bash
 shell > cat /etc/anacrontab
 # /etc/anacrontab: configuration file for anacron
@@ -65,7 +64,7 @@ START_HOURS_RANGE=3-22
 @monthly 45 cron.monthly nice run-parts /etc/cron.monthly
 ```
 
-**/etc/cron.hourly/** -Tramite `journalctl -u crond.service`, potete sapere che i file messi dentro sono effettivamente chiamati da crond.server, il che significa che il comando sarà eseguito dopo il primo minuto di ogni ora. Come segue:
+**/etc/cron.hourly/** -Attraverso `journalctl -u crond.service`, si può sapere che i file inseriti sono effettivamente richiamati da `crond`, il che significa che il comando verrà eseguito dopo il primo minuto di ogni ora. Come segue:
 
 ```bash
 shell > cat /etc/cron.d/0hourly
@@ -75,7 +74,8 @@ PATH=/sbin:/bin:/usr/sbin:/usr/bin
 MAILTO=root
 01 *  *  *  * root run-parts /etc/cron.hourly
 ```
-```
+
+```bash
 shell > journalctl -u crond.service
 - Logs begin at Wed 2021-10-20 19:27:39 CST, end at Wed 2021-10-20 23:32:42 CST. -
 October 20 19:27:42 li systemd[1]: Started Command Scheduler.
@@ -86,7 +86,6 @@ October 20 20:01:01 li CROND[1897]: (root) CMD (run-parts /etc/cron.hourly)
 October 20 21:01:01 li CROND[1922]: (root) CMD (run-parts /etc/cron.hourly)
 October 20 22:01:01 li CROND[1947]: (root) CMD (run-parts /etc/cron.hourly)
 October 20 23:01:01 li CROND[2037]: (root) CMD (run-parts /etc/cron.hourly)
-
 ```
 
 Per ulteriori informazioni sui file di configurazione, [consultare la pagina del manuale](https://man7.org/linux/man-pages/man5/anacrontab.5.html)
@@ -94,7 +93,6 @@ Per ulteriori informazioni sui file di configurazione, [consultare la pagina del
 ## Utilizzo da parte dell'utente
 
 Per far sì che alcuni file vengano eseguiti entro questi tempi definiti automaticamente, è sufficiente copiare il file di script nella directory pertinente e verificare che abbia **il permesso di esecuzione (chmod +x)**. Pertanto, è sufficiente lasciare che il sistema esegua automaticamente lo script in uno di questi momenti programmati, semplificando così l'attività di automazione.
-
 
 Utilizziamo cron.daily per illustrare il processo di esecuzione di /etc/anacrontab:
 
