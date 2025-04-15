@@ -91,6 +91,20 @@ sudo dnf module install nvidia-driver:latest-dkms -y
 sudo grubby --args="nouveau.modeset=0 rd.driver.blacklist=nouveau" --update-kernel=ALL
 ```
 
+!!! note "Anmerkung"
+
+````
+Bei Systemen mit aktiviertem Secure Boot führen Sie folgenden Schritt aus:
+
+```bash
+sudo mokutil --import /var/lib/dkms/mok.pub
+```
+
+Der Befehl `mokutil` fordert Sie zur Eingabe eines Passworts auf, das beim Neustart verwendet wird.
+
+Nach dem Neustart werden Sie gefragt, ob Sie einen Schlüssel oder Ähnliches registrieren möchten. Bestätigen Sie mit `yes`, und Sie werden nach dem Passwort gefragt, das Sie im Befehl `mokutil` angegeben haben.
+````
+
 Reboot:
 
 ```bash
