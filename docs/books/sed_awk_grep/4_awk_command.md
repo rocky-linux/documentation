@@ -18,14 +18,14 @@ The name comes from the first letters of the last names of three famous people:
 Similar to shell (bash, csh, zsh, and ksh), `awk` has derivatives with the development of history:
 
 * `awk`: Born in 1977 Bell Labs.
-* `nawk` (new awk): It was born in 1985 and is an updated and enhanced version of `awk`. It was widely used with Unix System V Release 3.1 (1987). The old version of `awk` is called `oawk` (old awk).
-* `gawk` (GNU awk): It was written by Paul Rubin in 1986. The GNU Project was born in 1984.
-* `mawk`: was written in 1996 by Mike Brennan, the interpreter of the awk programming language.
+* `nawk` (new awk): Created in 1985 and is an updated and enhanced version of `awk`. It was widely used with Unix System V Release 3.1 (1987). `oawk` refers to old versions of `awk`.
+* `gawk` (GNU awk): Written by Paul Rubin in 1986. The GNU Project came to life in 1984.
+* `mawk`: Written in 1996 by Mike Brennan, the interpreter of the `awk` programming language.
 * `jawk`: Implementation of `awk` in JAVA
 
-In the GNU/Linux operating system, the usual `awk` refers to `gawk`.  However, some distributions, such as Ubuntu or Debian, use `mawk` as their default `awk`.
+In the GNU/Linux operating system, the usual `awk` refers to `gawk`. However, some distributions, such as Ubuntu or Debian, use `mawk` as their default `awk`.
 
-In the Rocky Linux 8.8, `awk` refers to `gawk`.
+In all recent versions of Rocky Linux, `awk` refers to `gawk`.
 
 ```bash
 Shell > whereis awk
@@ -1035,7 +1035,7 @@ ID      Name
 
     The basic syntax format is - `while (condition) statement`
 
-    Traverse and print out the fields of all row records.
+    Traverse and print the fields of all row records.
 
     ```bash
     Shell > tail -n 2 /etc/services
@@ -1067,7 +1067,7 @@ ID      Name
 
     The basic syntax format is - `for (expr1; expr2; expr3) statement`
 
-    Traverse and print out the fields of all row records.
+    Traverse and print the fields of all row records.
 
     ```bash
     Shell > tail -n 2 /etc/services | awk '{ \
