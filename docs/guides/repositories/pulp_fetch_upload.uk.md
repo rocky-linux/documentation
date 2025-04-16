@@ -1,7 +1,7 @@
 ---
 title: Отримання та розповсюдження сховища RPM за допомогою Pulp
 author: David Gomez
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 9.2
 tags:
   - Fetch
@@ -43,7 +43,7 @@ $ podman run --detach \
              pulp/pulp
 ```
 
-Якщо ви перейдете до `http://localhost:8080/pulp/content/`, ви побачите «Індекс /pulp/content/», який наразі порожній, але буде заповнений вашими сховищами до кінця цього посібника.
+Якщо ви перейдете до `http://localhost:8080/pulp/content/`, ви побачите «Index of /pulp/content/», який наразі порожній. Ви заповните їх своїми репозиторіями до кінця цього посібника.
 
 ![empty_index](images/empty_pulp_index.png)
 
