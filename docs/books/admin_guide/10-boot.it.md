@@ -209,7 +209,7 @@ Per motivi di spazio, questo documento non fornirà un'introduzione dettagliata 
 
 ### Gestione dei servizi di sistema
 
-Le unità di servizio terminano con l'estensione di file `.service` e hanno uno scopo simile a quello degli script di init. Il comando `systemctl` viene utilizzato per `visualizzare`, `avviare`, `fermare`, `riavviare` un servizio di sistema:
+Le unità di servizio terminano con l'estensione di file `.service` e hanno uno scopo simile a quello degli script di init. Il comando `systemctl` viene utilizzato per `visualizzare`, `avviare`, `fermare`, `riavviare` un servizio di sistema: A parte in rari casi, la riga di comando `systemctl` lavora generalmente su una o piu' unita' (non si limita solo al tipo di unità “.service”.). È possibile visionarlo attraverso il sistema help.
 
 | systemctl                                 | Descrizione                                   |
 | ----------------------------------------- | --------------------------------------------- |
