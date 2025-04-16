@@ -6,7 +6,7 @@ tags:
   - grep
   - sed
   - awk
-  - Regular expression
+  - Espressione regolare
 ---
 
 # Panoramica
