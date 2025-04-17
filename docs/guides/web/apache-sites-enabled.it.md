@@ -52,7 +52,7 @@ Dalla riga di comando inserire:
 mkdir -p /etc/httpd/sites-available /etc/httpd/sites-enabled
 ```
 
-In questo modo verranno create entrambe le directory necessarie.
+In questo modo verranno create le directory necessarie.
 
 È necessaria anche una directory in cui inserire i nostri siti. Può essere ovunque, ma un buon modo per tenere le cose organizzate è creare una directory "sub-domains". Per ridurre la complessità, mettere questo in /var/www: `mkdir /var/www/sub-domains/`.
 
@@ -121,9 +121,9 @@ Il contenuto del file di configurazione sarà simile a questo:
 </VirtualHost>
 ```
 
-Una volta creato, è necessario scriverlo (salvarlo) con ++shift+:+wq++.
+Una volta creato, è necessario scriverlo (salvarlo) con ++shift+colon+w+q++.
 
-Nell'esempio, il caricamento del sito wiki avviene dalla sottodirectory "html" di _your-server-hostname_, il che significa che il percorso creato in _/var/www_ (sopra) avrà bisogno di alcune directory aggiuntive per soddisfare questa esigenza:
+Nell'esempio, il caricamento del sito wiki avviene dalla sottodirectory "html" di *your-server-hostname*, il che significa che il percorso creato in */var/www* (sopra) avrà bisogno di alcune directory aggiuntive per soddisfare questa esigenza:
 
 ```bash
 mkdir -p /var/www/sub-domains/your-server-hostname/html
@@ -137,7 +137,7 @@ Copiare i file nel percorso creato:
 cp -Rf wiki_source/* /var/www/sub-domains/your-server-hostname/html/
 ```
 
-## <a name="https"></a>Configurazione `https` con un certificato SSL/TLS
+## Configurazione `https` con un certificato SSL/TLS
 
 Come detto in precedenza, ogni server Web creato al giorno d'oggi *dovrebbe* funzionare con SSL/TLS (il secure socket layer).
 
@@ -197,6 +197,10 @@ Un reindirizzamento permanente insegnerà ai motori di ricerca e presto tutto il
 
 Successivamente, è necessario definire la parte `https` del file di configurazione:
 
+!!! info "Informazione"
+
+    A partire da Apache 2.4.8, la direttiva `SSLCertificateChainFile' è deprecata. L'estensione della direttiva `SSLCertificateFile` include il certificato CA di un provider.
+
 ```apache
 <VirtualHost *:80>
         ServerName your-server-hostname
@@ -222,7 +226,6 @@ Successivamente, è necessario definire la parte `https` del file di configurazi
 
         SSLCertificateFile /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/com.wiki.www.crt
         SSLCertificateKeyFile /var/www/sub-domains/your-server-hostname/ssl/ssl.key/com.wiki.www.key
-        SSLCertificateChainFile /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/your_providers_intermediate_certificate.crt
 
         <Directory /var/www/sub-domains/your-server-hostname/html>
                 Options -ExecCGI -Indexes
@@ -242,15 +245,14 @@ Perciò, dopo le normali porzioni di configurazione, si passa alla sezione SSL/T
 * SSLEngine on - dice di utilizzare SSL/TLS
 * SSLProtocol all -SSLv2 -SSLv3 -TLSv1 - dice di usare tutti i protocolli disponibili, tranne quelli con vulnerabilità. È necessario ricercare periodicamente i protocolli attualmente accettabili.
 * SSLHonorCipherOrder on - si occupa della riga successiva relativa alle suite di cifratura e dice di trattarle nell'ordine indicato. Anche in questo caso la revisione delle suite di cifratura dovrebbe avvenire periodicamente.
-* SSLCertificateFile - è esattamente quello che dice: il file del certificato appena acquistato e applicato e il suo percorso
+* SSLCertificateFile - è esattamente ciò che dice: il file del certificato appena acquistato e applicato e la sua posizione, compreso il file dell'autorità di certificazione (CA) del provider
 * SSLCertificateKeyFile - la chiave generata durante la creazione della richiesta di firma del certificato
-* SSLCertificateChainFile - il certificato del fornitore di certificati, spesso chiamato certificato intermedio
 
-Se all'avvio del servizio web non si verificano errori e se l'accesso al vostro sito web mostra `https` senza errori, siete pronti a partire.
+Se all'avvio del servizio web non si riscontrano errori e se il sito web risulta `https` senza errori, siete pronti a partire.
 
-## Portare in diretta
+## Portare tutto live
 
-Ricordate che il nostro file *httpd.conf* include */etc/httpd/sites-enabled* alla fine del file. Quando `httpd` si riavvia, caricherà i file di configurazione presenti nella cartella *sites-enabled*. Il fatto è che tutti i nostri file di configurazione sono in *sites-available*.
+Remember that our *httpd.conf* file is including */etc/httpd/sites-enabled* at the end of the file. Quando `httpd` si riavvia, caricherà i file di configurazione presenti nella cartella *sites-enabled*. Il fatto è che tutti i nostri file di configurazione sono in *sites-available*.
 
 Questo è stato progettato in modo da poter rimuovere le cose quando o se `httpd` non si riavvia. Per abilitare il nostro file di configurazione, è necessario creare un collegamento simbolico a tale file in *sites-enabled* e avviare o riavviare il servizio web. Per farlo, si utilizza questo comando:
 
@@ -260,4 +262,4 @@ ln -s /etc/httpd/sites-available/your-server-hostname /etc/httpd/sites-enabled/
 
 Questo creerà il collegamento al file di configurazione in *sites-enabled*.
 
-Ora basta avviare `httpd` con `systemctl start httpd`. Oppure riavviatelo se è già in funzione: `systemctl restart httpd` e, supponendo che il servizio web si riavvii, potete andare a fare dei test sul vostro sito.
+Ora basta avviare `httpd` con `systemctl start httpd`. Oppure riavviatelo se è già in funzione: `systemctl restart httpd`, e supponendo che il servizio web si riavvii, ora si può andare a fare qualche test sul proprio sito.
