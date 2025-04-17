@@ -12,12 +12,12 @@ tags:
 
 ## Prerequisiti e presupposti
 
-* Un server con Rocky Linux
-* Alcuni server interni che necessitano solo di un accesso locale, non tramite Internet
-* Diverse postazioni di lavoro che devono accedere agli stessi server presenti sulla stessa rete
-* Un buon livello di confidenza con l'inserimento di comandi dalla riga di comando
-* Familiarità con un editor a riga di comando ( in questo esempio si usa _vi_)
-* In grado di utilizzare _firewalld_ per la creazione di regole del firewall
+- Un server con Rocky Linux
+- Alcuni server interni che necessitano solo di un accesso locale, non tramite Internet
+- Diverse postazioni di lavoro che devono accedere agli stessi server presenti sulla stessa rete
+- Un buon livello di confidenza con l'inserimento di comandi dalla riga di comando
+- Familiarità con un editor a riga di comando ( in questo esempio si usa *vi*)
+- In grado di utilizzare *firewalld* per la creazione di regole firewall
 
 ## Introduzione
 
@@ -25,7 +25,7 @@ I server DNS esterni, o pubblici, mappano gli hostname in indirizzi IP e, nel ca
 
 Su una rete privata, in particolare una rete per lo sviluppo di molti sistemi, è possibile utilizzare il file */etc/hosts* della propria workstation Rocky Linux per mappare un nome a un indirizzo IP.
 
-Questo funzionerà per _la vostra workstation_, ma non per qualsiasi altro computer della rete. Il metodo migliore per rendere le cose universalmente applicabili è quello di prendersi un po' di tempo e creare un server DNS locale e privato per gestire questo aspetto per tutti i vostri computer.
+Questo funzionerà per la *vostra* workstation, ma non per qualsiasi altro computer della rete. Il metodo migliore per rendere le cose universalmente applicabili è quello di prendersi un po' di tempo e creare un server DNS locale e privato per gestire questo aspetto per tutti i vostri computer.
 
 Supponiamo di creare server e resolver DNS pubblici a livello di produzione. In questo caso, l'autore raccomanda il più robusto [PowerDNS](https://www.powerdns.com/) DNS autorevole e ricorsivo, installabile sui server Rocky Linux. Tuttavia, questo documento si riferisce a una rete locale che non espone i propri server DNS al mondo esterno. Ecco perché l'autore ha scelto `bind` per questo esempio.
 
@@ -39,35 +39,35 @@ Il server autorevole è l'area di archiviazione di tutti gli indirizzi IP e i no
 
 Il primo passo è l'installazione dei pacchetti:
 
-```
+```bash
 dnf install bind bind-utils
 ```
 
-_bind_ è il demone di servizio di `named`. Abilitare l'avvio al boot:
+*bind* è il demone di servizio di `named`. Abilitare l'avvio al boot:
 
-```
+```bash
 systemctl enable named
 ```
 
 Avviare `named`:
 
-```
+```bash
 systemctl start named
 ```
 
 ## Configurazione
 
-Prima di apportare modifiche a qualsiasi file di configurazione, creare una copia di backup del file di lavoro originale installato, _named.conf_:
+Prima di apportare modifiche a qualsiasi file di configurazione, creare una copia di backup del file di lavoro originale installato, *named.conf*:
 
-```
+```bash
 cp /etc/named.conf /etc/named.conf.orig
 ```
 
 Questo aiuterà in futuro se si verificano errori nel file di configurazione. È *sempre* una buona idea fare una copia di backup prima di apportare modifiche.
 
-Modificare il file _named.conf_. L'autore utilizza _vi_ , ma è possibile sostituire l'editor a riga di comando preferito:
+Modificare il file *named.conf.*. L'autore utilizza *vi*, ma è possibile sostituire l'editor della riga di comando preferito:
 
-```
+```bash
 vi /etc/named.conf
 ```
 
@@ -77,7 +77,7 @@ Questo è utile, soprattutto quando si aggiunge questo DNS alle nostre postazion
 
 In questo modo, gli altri server DNS configurati subentreranno quasi immediatamente per cercare i servizi basati su Internet:
 
-```
+```bash
 options {
 #       listen-on port 53 { 127.0.0.1; };
 #       listen-on-v6 port 53 { ::1; };
@@ -85,7 +85,7 @@ options {
 
 Infine, si può andare in fondo al file *named.conf* e aggiungere una sezione per la vostra rete. Il nostro esempio è "ourdomain", quindi inserite il nome che volete dare agli host della vostra LAN:
 
-```
+```bash
 # primary forward and reverse zones
 //forward zone
 zone "ourdomain.lan" IN {
@@ -103,7 +103,7 @@ zone "1.168.192.in-addr.arpa" IN {
 };
 ```
 
-Salvare le modifiche (per _vi_, `SHIFT:wq!`)
+Salvare le modifiche (per *vi*, ++shift+colon+w+q+exclam++)
 
 ## I record di forward e reverse
 
@@ -111,13 +111,13 @@ Salvare le modifiche (per _vi_, `SHIFT:wq!`)
 
 Il primo è il file forward per mappare il nostro indirizzo IP al nome dell'host. Anche in questo caso, il nostro esempio è "ourdomain". Si noti che l'IP del nostro DNS locale è 192.168.1.136. Aggiungere gli host in fondo a questo file.
 
-```
+```bash
 vi /var/named/ourdomain.lan.db
 ```
 
 Una volta completato, il file avrà un aspetto simile a questo:
 
-```
+```bash
 $TTL 86400
 @ IN SOA dns-primary.ourdomain.lan. admin.ourdomain.lan. (
     2019061800 ;Serial
@@ -143,13 +143,13 @@ Aggiungere tutti gli host e gli indirizzi IP necessari e salvare le modifiche.
 
 È necessario un file reverse per mappare il nostro hostname all'indirizzo IP. In questo caso, l'unica parte dell'IP di cui si ha bisogno è l'ultimo ottetto (in un indirizzo IPv4 ogni numero separato da un "." è un ottetto) dell'host, il PTR e l'hostname.
 
-```
+```bash
 vi /var/named/ourdomain.lan.rev
 ```
 
 Una volta completato, il file avrà un aspetto simile a questo:
 
-```
+```bash
 $TTL 86400
 @ IN SOA dns-primary.ourdomain.lan. admin.ourdomain.lan. (
     2019061800 ;Serial
@@ -174,28 +174,28 @@ Aggiungere tutti i nomi di host presenti nel file forward e salvare le modifiche
 
 ### Cosa significa tutto questo
 
-Dal momento che tutto questo è stato aggiunto e ci si sta preparando a riavviare il nostro server DNS _bind_, esploriamo alcune delle terminologie utilizzate in questi due file.
+Dal momento che tutto questo è stato aggiunto e che ci si sta preparando a riavviare il nostro server DNS *bind*, esploriamo alcune delle terminologie utilizzate in questi due file.
 
 Far funzionare le cose non è sufficiente se non si conosce il significato di ogni termine, giusto?
 
-* **TTL** sta per "Time To Live". Il TTL indica al server DNS per quanto tempo conservare la cache prima di richiederne una nuova copia. In questo caso, il TTL è l'impostazione predefinita per tutti i record, a meno che non si inserisca manualmente un TTL specifico. L'impostazione predefinita è 86400 secondi o 24 ore.
-* **IN** sta per Internet. In questo caso, Internet non viene utilizzato. Consideratela invece come una Intranet.
-* **SOA** sta per "Start Of Authority" o per il server DNS primario del dominio
-* **NS** sta per "name server"
-* **Serial** è il valore utilizzato dal server DNS per verificare che il contenuto del file di zona sia aggiornato
-* **Refresh** specifica la frequenza con cui un server DNS slave richiede il trasferimento di una zona dal server master
-* **Retry** specifica il tempo di attesa, in secondi, prima di ritentare un trasferimento di zona non riuscito
-* **Expire** specifica quanto tempo un server slave aspetterà per rispondere a una query quando il master non è raggiungibile
-* **A** È l'indirizzo host o il record di inoltro e si trova solo nel file di inoltro
-* **PTR** Il record del puntatore è meglio conosciuto come "reverse " e si trova solo nel nostro file reverse
+- **TTL** sta per "Time To Live". Il TTL indica al server DNS per quanto tempo conservare la cache prima di richiederne una nuova copia. In questo caso, il TTL è l'impostazione predefinita per tutti i record, a meno che non si inserisca manualmente un TTL specifico. L'impostazione predefinita è 86400 secondi o 24 ore.
+- **IN** sta per Internet. In questo caso, Internet non viene utilizzato. Consideratela invece come una Intranet.
+- **SOA** sta per "Start Of Authority" o per il server DNS primario del dominio
+- **NS** sta per "name server"
+- **Serial** è il valore utilizzato dal server DNS per verificare che il contenuto del file di zona sia aggiornato
+- **Refresh** specifica la frequenza con cui un server DNS slave richiede il trasferimento di una zona dal server master
+- **Retry** specifica il tempo di attesa, in secondi, prima di ritentare un trasferimento di zona non riuscito
+- **Expire** specifica quanto tempo un server slave aspetterà per rispondere a una query quando il master non è raggiungibile
+- **A** È l'indirizzo host o il record di inoltro e si trova solo nel file di inoltro
+- **PTR** Il record del puntatore è meglio conosciuto come "reverse " e si trova solo nel nostro file reverse
 
 ## Test della configurazione
 
-Una volta creati tutti i file, è necessario assicurarsi che i file di configurazione e le zone siano in ordine prima di avviare nuovamente il servizio _bind_.
+Una volta creati tutti i file, è necessario assicurarsi che i file di configurazione e le zone siano in ordine prima di riavviare il servizio *bind*.
 
 Controllare la configurazione principale:
 
-```
+```bash
 named-checkconf
 ```
 
@@ -203,33 +203,33 @@ Questo restituirà un risultato vuoto se tutto è a posto.
 
 Controllare la zona forward:
 
-```
+```bash
 named-checkzone ourdomain.lan /var/named/ourdomain.lan.db
 ```
 
 Se tutto è a posto, si ottiene un risultato simile a questo:
 
-```
+```bash
 zone ourdomain.lan/IN: loaded serial 2019061800
 OK
 ```
 
 Infine, controllare la zona reverse:
 
-```
+```bash
 named-checkzone 192.168.1.136 /var/named/ourdomain.lan.rev
 ```
 
 Che restituirà qualcosa di simile se tutto è a posto:
 
-```
+```bash
 zone 192.168.1.136/IN: loaded serial 2019061800
 OK
 ```
 
-Se tutto sembra a posto, riavviare _bind_:
+Se tutto sembra a posto, riavviare *bind*:
 
-```
+```bash
 systemctl restart named
 ```
 
@@ -350,13 +350,13 @@ systemctl restart named
     ```
 
 
-    Mostrato qui sotto:
+    In basso, la foto:
     
-    ![Aggiungi filtro IPv6](images/dns_filter.png)
+    ![Add Filter IPv6](images/dns_filter.png)
     
-    Una volta effettuata questa modifica, salvarla e uscire da `named.conf` (per _vi_, `SHIFT:wq!`).
+    Una volta effettuata questa modifica, salvarla e uscire dal `nominato.conf` (per *vi*, ++shift+colon+w+q+exclam++)
     
-    È necessario apportare una modifica simile in `/etc/sysconfig/named`:
+    È necessario apportare una modifica simile a `/etc/sysconfig/named`:
 
     ```
     vi /etc/sysconfig/named
@@ -370,7 +370,7 @@ systemctl restart named
     ```
 
 
-    Salvare le modifiche (di nuovo, per _vi_, `SHIFT:wq!`).
+    Salvare le modifiche (di nuovo, per *vi*, ++shift+colon+w+q+exclam++)
     
     
     ## 8 Macchine di prova
@@ -430,7 +430,6 @@ systemctl restart named
 
     Ora sarete in grado di raggiungere qualsiasi cosa nel dominio *ourdomain.lan* dalle vostre postazioni di lavoro, oltre a poter risolvere e raggiungere gli indirizzi Internet.
 
-
 ## Regole del firewall - `firewalld`
 
 !!! note "`firewalld` come impostazione predefinita"
@@ -441,33 +440,33 @@ L'autore non fa alcuna ipotesi sulla rete o sui servizi di cui potreste avere bi
 
 Il primo passo è aggiungere la nostra rete LAN alla zona "trusted":
 
-```
+```bash
 firewall-cmd --zone=trusted --add-source=192.168.1.0/24 --permanent
 ```
 
 Aggiungiamo i nostri due servizi alla zona "trusted":
 
-```
+```bash
 firewall-cmd --zone=trusted --add-service=ssh --permanent
 firewall-cmd --zone=trusted --add-service=dns --permanent
 ```
 
 Rimuovere il servizio SSH dalla zona "public", che è attiva per impostazione predefinita:
 
-```
+```bash
 firewall-cmd --zone=public --remove-service=ssh --permanent
 ```
 
 Ricaricare il firewall ed elencare le zone modificate:
 
-```
+```bash
 firewall-cmd --reload
 firewall-cmd --zone=trusted --list-all
 ```
 
 Questo mostrerà che i servizi e la rete di origine sono stati aggiunti correttamente:
 
-```
+```bash
 trusted (active)
     target: ACCEPT
     icmp-block-inversion: no
@@ -486,13 +485,13 @@ trusted (active)
 
 L'elenco della zona "public " mostrerà che l'accesso SSH non è più consentito:
 
-```
+```bash
 firewall-cmd --zone=public --list-all
 ```
 
 Mostra:
 
-```
+```bash
 public
     target: default
     icmp-block-inversion: no
@@ -513,6 +512,6 @@ Queste regole consentono di ottenere la risoluzione DNS sul server DNS privato d
 
 ## Conclusioni
 
-Modificando */etc/hosts* su una singola workstation si ottiene l'accesso a una macchina della rete interna, ma si può usare solo su quella macchina. Un server DNS privato che utilizza _bind_ consente di aggiungere host al DNS e, a condizione che le workstation abbiano accesso a quel server DNS privato, saranno in grado di raggiungere questi server locali.
+Modificando */etc/hosts* su una singola workstation si ottiene l'accesso a una macchina della rete interna, ma si può usare solo su quella macchina. Un server DNS privato che utilizza il *bind* vi consentirà di aggiungere host al DNS e, a condizione che le workstation abbiano accesso a quel server DNS privato, saranno in grado di raggiungere questi server locali.
 
 Se non avete bisogno che le macchine risolvano su Internet, ma avete bisogno di un accesso locale da diverse macchine ai server locali, prendete in considerazione un server DNS privato.
