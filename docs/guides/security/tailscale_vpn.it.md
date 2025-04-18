@@ -1,7 +1,7 @@
 ---
 title: Tailscale VPN
 author: Neel Chauhan
-contributors: Steven Spencer, Franco Colussi
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.3
 tags:
   - security

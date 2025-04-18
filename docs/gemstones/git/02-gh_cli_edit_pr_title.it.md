@@ -15,7 +15,7 @@ Questa Gemma spiega come modificare o cambiare il titolo di una richiesta di pul
 
 ## Descrizione del problema
 
-A volte può essere necessario modificare il titolo di un PR dopo la sua creazione per riflettere meglio i cambiamenti o le discussioni in corso.
+A volte, il titolo di un PR dopo la sua creazione può dover essere modificato per riflettere meglio i cambiamenti o le discussioni in corso.
 
 ## Prerequisiti
 
@@ -27,17 +27,20 @@ A volte può essere necessario modificare il titolo di un PR dopo la sua creazio
 ### Utilizzare la CLI di GitHub
 
 1. **Controllare il ramo corrispondente**:
-   - Assicurarsi di essere nel ramo associato al PR.
-     ```bash
-     git checkout branch-name
-     ```
+  - Assicurarsi di essere nel ramo associato al PR.
+
+    ```bash
+    git checkout branch-name
+    ```
 
 2. **Modificare il PR usando la CLI**:
-   - Utilizzare il seguente comando per modificare il PR:
-     ```bash
-     gh pr edit PR_NUMBER --title "New PR Title"
-     ```
-   - Sostituire `PR_NUMBER` con il numero della richiesta di pull e `"New PR Title"` con il titolo desiderato.
+  - Utilizzare il seguente comando per modificare il PR:
+
+    ```bash
+    gh pr edit PR_NUMBER --title "New PR Title"
+    ```
+
+  - Sostituire `PR_NUMBER` con il numero della richiesta di pull e `"New PR Title"` con il titolo desiderato.
 
 ## Informazioni aggiuntive (facoltative)
 

@@ -26,13 +26,13 @@ A volte può essere necessario modificare il titolo di un PR dopo la sua creazio
 ### Utilizzare l'interfaccia web di GitHub
 
 1. **Andare alla richiesta di pull**:
-   - Andare al repository dove si trova il PR.
-   - Cliccare su "Pull requests" e selezionare il PR che si desidera modificare.
+  - Andare al repository dove si trova il PR.
+  - Cliccare su "Pull requests" e selezionare il PR che si desidera modificare.
 
 2. **Modificare il titolo del PR**:
-   - Cliccare sul titolo del PR.
-   - Apparirà una casella di testo modificabile.
-   - Modificare il titolo, premere ++enter++ o cliccare al di fuori della casella di testo per salvare le modifiche.
+  - Cliccare sul titolo del PR.
+  - Apparirà una casella di testo modificabile.
+  - Modificare il titolo, premere ++enter++ o cliccare al di fuori della casella di testo per salvare le modifiche.
 
 ## Informazioni aggiuntive (facoltative)
 

@@ -1,7 +1,7 @@
 ---
 title: Flusso di lavoro Feature Branch in Git
 author: Wale Soyinka
-contributors: null
+contributors: Ganna Zhyrnova
 tags:
   - git
   - Feature Branch Workflow
@@ -30,40 +30,54 @@ L'utente "rockstar" ha effettuato il fork di questo repository e useremo `https:
 ## Procedura
 
 1. Se non è stato ancora fatto, clonare il vostro fork:
-   ```bash
-   git clone https://github.com/rockstar/documentation.git
-   cd documentation
-   ```
-2. Aggiungere l'upstream remoto:
-   ```bash
-   git remote add upstream https://github.com/rocky-linux/documentation.git
-   ```
-3. Recuperare le modifiche a monte:
-   ```bash
-   git fetch upstream
-   ```
-4. Creare una nuova Feature Branch:
-   ```bash
-   git checkout -b feature-branch-name
-   ```
-5. Apportare le modifiche, aggiungere nuovi file e fare il commit:
 
-   ```bash
-   git add .
-   git commit -m "Implementing feature X"
-   ```
+  ```bash
+  git clone https://github.com/rockstar/documentation.git
+  cd documentation
+  ```
+
+2. Aggiungere l'upstream remoto:
+
+  ```bash
+  git remote add upstream https://github.com/rocky-linux/documentation.git
+  ```
+
+3. Recuperare le modifiche a monte:
+
+  ```bash
+  git fetch upstream
+  ```
+
+4. Creare una nuova Feature Branch:
+
+  ```bash
+  git checkout -b feature-branch-name
+  ```
+
+5. Apportare modifiche, aggiungere nuovi file e fare il commit:
+
+  ```bash
+  git add .
+  git commit -m "Implementing feature X"
+  ```
+
 6. Tenete aggiornata il vostro Ramo. Unire regolarmente le modifiche provenienti dall'upstream per evitare conflitti:
-   ```bash
-   git pull upstream main --rebase
-   ```
+
+  ```bash
+  git pull upstream main --rebase
+  ```
+
 7. Spingere verso il vostro fork, digitare:
-   ```bash
-   git push origin feature-branch-name
-   ```
+
+  ```bash
+  git push origin feature-branch-name
+  ```
+
 8. Creare una Pull Request:
-   ```bash
-   gh pr create --base main --head rockstar:feature-branch-name --title "New Feature X" --body "Long Description of the feature"
-   ```
+
+  ```bash
+  gh pr create --base main --head rockstar:feature-branch-name --title "New Feature X" --body "Long Description of the feature"
+  ```
 
 ## Conclusione
 
@@ -72,11 +86,11 @@ Il flusso di lavoro Feature Branch è una tecnica di collaborazione comune, che 
 Le fasi di alto livello coinvolte sono:
 
 1. Clonare il repository principale: Clonare direttamente il repository principale del progetto sul computer locale.
-2. Creare una Feature Branch: Per ogni nuova attività, creare un nuovo ramo dal ramo principale con un nome descrittivo.
+2. Creare un ramo di funzioni: Per ogni nuova attività, creare un nuovo ramo del ramo principale con un nome descrittivo.
 3. Inviare le modifiche: Lavorare sulla funzionalità o sulla correzione nel proprio ramo e inviare le modifiche.
-4. Mantenere il ramo aggiornato: Eseguire regolarmente il merge o il rebase con il ramo principale per rimanere aggiornati con le sue modifiche.
-5. Aprire una Pull Request: Una volta che la vostra funzionalità è pronta, spingere il ramo nel repository principale e aprite un PR per la revisione.
-6. Revisione e integrazione del codice: Dopo la revisione e l'approvazione, il ramo viene unito al ramo principale.
+4. Mantenere il ramo aggiornato: Eseguire regolarmente il merge o il rebase con il ramo principale per rimanere aggiornati sulle modifiche.
+5. Aprire una richiesta di pull: Spingere il ramo nel repository principale e aprire una PR per la revisione una volta che la funzionalità è pronta.
+6. Revisione e fusione del codice: Il ramo viene unito al ramo principale dopo la revisione e l'approvazione.
 
 _Benefici_:
 

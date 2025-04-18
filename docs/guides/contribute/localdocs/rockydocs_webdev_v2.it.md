@@ -5,9 +5,13 @@ contributors: Ganna Zhyrnova
 update: 13-Feb-2023
 ---
 
+!!! warning "Possibile fallimento in vista!"
+
+    Le persone che hanno tentato di eseguire build recenti con questa procedura hanno riportato dei fallimenti. Procedere a proprio rischio e pericolo. È probabile che questa procedura venga aggiornata o archiviata in futuro.
+
 # Esecuzione del sito docs.rockylinux.org in locale per lo sviluppo web | Podman
 
-Questo documento spiega come ricreare ed eseguire una copia locale dell'intero sito web docs.rockylinux.org sulla vostra macchina locale. Utilizzare una copia locale del sito web della documentazione può essere utile nei seguenti scenari:
+Questo documento illustra come ricreare ed eseguire una copia locale dell'intero sito web docs.rockylinux.org sul vostro computer locale. Utilizzare una copia locale del sito web della documentazione può essere utile nei seguenti scenari:
 
 - Siete interessati a conoscere e a contribuire agli aspetti dello sviluppo web del sito docs.rockylinux.org
 - Siete un autore e volete vedere come i vostri documenti verranno visualizzati sul sito web della documentazione prima di inviarli
@@ -132,7 +136,7 @@ Se sul sistema Rocky Linux è attivo un firewall, assicurarsi che la porta 8001 
   firewall-cmd  --reload
   ```
 
-  Con il container attivo e funzionante, ora si dovrebbe essere in grado di puntare il browser web al seguente URL per visualizzare la copia locale del sito:
+  Con il contenitore attivo e funzionante, ora si dovrebbe essere in grado di puntare il browser web al seguente URL per visualizzare la copia locale del sito:
 
   <http://localhost:8001>
 

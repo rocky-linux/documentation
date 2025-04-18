@@ -6,20 +6,20 @@ contributors: Steven Spencer, Ryan Johnson, Pedro Garcia, Ganna Zhyrnova
 
 # Creazione automatica di template con Packer e distribuzione con Ansible in un ambiente VMware vSphere
 
-**Conoscenza**: :star: :star: :star   
+**Conoscenza**: :star: :star: :star  
 **Complessità**: :star: :star: :star: :star:
 
 **Tempo di lettura**: 30 minuti
 
 ## Prerequisiti, presupposti e note generali
 
-* È disponibile un ambiente vSphere e un utente con accesso garantito
-* Un server web interno per archiviare i file
-* Accesso web ai repository Rocky Linux
-* Una ISO di Rocky Linux
-* Un ambiente Ansible disponibile.
-* Si presuppone che abbiate una certa conoscenza di ogni prodotto menzionato. In caso contrario, prima di iniziare, è necessario consultare la documentazione.
-* Vagrant **non è** in uso qui. È stato sottolineato che con Vagrant sarebbe stata fornita una chiave SSH non autofirmata. Se volete approfondire l'argomento, potete farlo, ma non è oggetto di questo documento.
+- È disponibile un ambiente vSphere e un utente con accesso garantito
+- Un server web interno per archiviare i file
+- Accesso web ai repository Rocky Linux
+- Una ISO di Rocky Linux
+- Un ambiente Ansible disponibile.
+- Si presuppone che abbiate una certa conoscenza di ogni prodotto menzionato. In caso contrario, prima di iniziare, è necessario consultare la documentazione.
+- Vagrant **non è** in uso qui. È stato sottolineato che con Vagrant sarebbe stata fornita una chiave SSH non autofirmata. Se volete approfondire l'argomento, potete farlo, ma non è oggetto di questo documento.
 
 ## Introduzione
 
@@ -41,19 +41,19 @@ Packer è uno strumento di imaging di macchine virtuali open-source, rilasciato 
 
 Con Packer è possibile creare immagini da utilizzare sulle seguenti piattaforme:
 
-* Il [sito web di Packer](https://www.packer.io/).
-* [Azure](https://azure.microsoft.com).
-* [GCP](https://cloud.google.com).
-* [DigitalOcean](https://www.digitalocean.com).
-* [OpenStack](https://www.openstack.org).
-* [VirtualBox](https://www.virtualbox.org/).
-* [VMware](https://www.vmware.com).
+- Il [sito web di Packer](https://www.packer.io/).
+- [Azure](https://azure.microsoft.com).
+- [GCP](https://cloud.google.com).
+- [DigitalOcean](https://www.digitalocean.com).
+- [OpenStack](https://www.openstack.org).
+- [VirtualBox](https://www.virtualbox.org/).
+- [VMware](https://www.vmware.com).
 
 Per ulteriori informazioni, potete consultare queste risorse:
 
-* Il [sito web di Packer](https://www.packer.io/)
-* [Documentazione Packer](https://www.packer.io/docs)
-* La [documentazione](https://www.packer.io/docs/builders/vsphere/vsphere-iso) del costruttore `vsphere-iso`
+- Il [sito web di Packer](https://www.packer.io/)
+- [Documentazione Packer](https://www.packer.io/docs)
+- La [documentazione](https://www.packer.io/docs/builders/vsphere/vsphere-iso) del costruttore `vsphere-iso`
 
 ### Installazione di Packer
 
@@ -63,29 +63,25 @@ Esistono due modi per installare Packer nel sistema Rocky Linux.
 
 HashiCorp mantiene e firma pacchetti per diverse distribuzioni Linux. Per installare Packer nel nostro sistema Rocky Linux, seguite i passi successivi:
 
-
-#### Scaricare e installare dal sito web di Packer
-
 1. Installare dnf-config-manager:
 
-```bash
-$ sudo dnf install -y dnf-plugins-core
-```
+    ```bash
+    sudo dnf install -y dnf-plugins-core
+    ```
 
 2. Aggiungere il repository HashiCorp ai repository disponibili nel nostro sistema Rocky Linux:
 
-```bash
-$ sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
-```
+    ```bash
+    sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
+    ```
 
 3. Installare Packer:
 
-```bash
-$ sudo dnf -y install packer
-```
+    ```bash
+    sudo dnf -y install packer
+    ```
 
 #### Scaricare e installare dal sito web di Packer
-
 
 Si può iniziare scaricando i binari per la propria piattaforma con [Packer downloads](https://www.packer.io/downloads).
 
@@ -93,26 +89,27 @@ Si può iniziare scaricando i binari per la propria piattaforma con [Packer down
 
 2. Da una shell o da un terminale, scaricatelo utilizzando lo strumento `wget`:
 
-```bash
-$ wget https://releases.hashicorp.com/packer/1.8.3/packer_1.8.3_linux_amd64.zip
-```
-Verrà scaricato un file .zip.
+    ```bash
+    wget https://releases.hashicorp.com/packer/1.8.3/packer_1.8.3_linux_amd64.zip
+    ```
 
-3.  Per decomprimere l'archivio scaricato, eseguire il seguente comando nella shell:
+    Verrà scaricato un file .zip.
 
-```bash
-$ unzip packer_1.8.3_linux_amd64.zip
-```
+3. Per decomprimere l'archivio scaricato, eseguire il seguente comando nella shell:
 
-!!! tip "Suggerimento"
+    ```bash
+    unzip packer_1.8.3_linux_amd64.zip
+    ```
 
-    Se si ottiene un errore e non si ha l'applicazione unzip installata sul sistema, è possibile installarla eseguendo questo comando ```sudo dnf install unzip```.
+    !!! tip "Suggerimento"
 
-4. Spostate l'applicazione Packer nella cartella bin:
+     Se si ottiene un errore e non si ha l'applicazione unzip installata sul sistema, è possibile installarla eseguendo questo comando ``sudo dnf install unzip``.
 
-```bash
-$ sudo mv packer /usr/local/bin/
-```
+4. Spostare l'applicazione Packer nella cartella bin:
+
+    ```bash
+    sudo mv packer /usr/local/bin/
+    ```
 
 #### Verifica della corretta installazione di Packer
 
@@ -147,18 +144,18 @@ Poiché ci collegheremo a un server VMware vCenter per inviare i nostri comandi 
 
 Creiamo un file nascosto con le nostre credenziali nella nostra home directory. Si tratta di un file json:
 
-```
+```bash
 $ vim .vsphere-secrets.json {
     "vcenter_username": "rockstar",
     "vcenter_password": "mysecurepassword"
   }
 ```
 
-Queste credenziali hanno bisogno di qualche assegnazione di accesso al vostro ambiente vSphere.
+Queste credenziali devono garantire l'accesso all'ambiente vSphere.
 
 Creiamo un file json (in futuro, il formato di questo file cambierà in HCL):
 
-```
+```json
 {
   "variables": {
     "version": "0.0.X",
@@ -221,13 +218,14 @@ Creiamo un file json (in futuro, il formato di questo file cambierà in HCL):
   ]
 }
 ```
+
 In seguito, descriveremo ogni sezione di questo file.
 
 ### Sezione Variabili
 
 In una prima fase, dichiariamo le variabili, soprattutto per motivi di leggibilità:
 
-```
+```json
 "variables": {
   "version": "0.0.X",
   "HTTP_IP": "fileserver.rockylinux.lan",
@@ -241,21 +239,21 @@ Useremo la variabile `version` più tardi nel nome del modello che creeremo. È 
 
 Un file Kickstart contiene le risposte alle domande poste durante il processo di installazione. Questo file passa tutto il suo contenuto ad Anaconda (il processo di installazione), il che permette di automatizzare completamente la creazione del modello.
 
-L'autore preferisce memorizzare il file `ks.cfg` in un server web interno accessibile dal suo modello, ma esistono altre possibilità che si possono scegliere di adottare.
+L'autore preferisce memorizzare il file `ks.cfg` in un server web interno accessibile dal suo modello, ma esistono altre possibilità che si può scegliere di utilizzare al suo posto.
 
-Ad esempio, il file `ks.cfg` è accessibile dalla macchina virtuale a questo URL nel nostro laboratorio: http://fileserver.rockylinux.lan/packer/rockylinux/8/ks.cfg. Avrete bisogno di impostare qualcosa di simile per usare questo metodo.
+Ad esempio, nel nostro laboratorio il file `ks.cfg` è accessibile dalla macchina virtuale a questo URL: <http://fileserver.rockylinux.lan/packer/rockylinux/8/ks.cfg>. Per utilizzare questo metodo è necessario impostare qualcosa di simile.
 
 Poiché vogliamo mantenere la password privata, essa viene dichiarata come variabile sensibile. Esempio:
 
-```
-  "sensitive-variables": ["vcenter_password"],
+```json
+"sensitive-variables": ["vcenter_password"],
 ```
 
 ### Sezione Provisioners
 
-La prossima parte è interessante, e sarà coperta più tardi fornendovi lo script per `requirements.sh`:
+La parte successiva è interessante e sarà trattata più avanti fornendo lo script `requirements.sh`:
 
-```
+```json
 "provisioners": [
   {
     "type": "shell",
@@ -266,88 +264,87 @@ La prossima parte è interessante, e sarà coperta più tardi fornendovi lo scri
 ],
 ```
 
-Al termine dell'installazione, la VM si riavvierà. Non appena Packer rileva un indirizzo IP (grazie ai VMware Tools), copierà il `requirements.sh` e lo eseguirà. È una bella funzione per pulire la macchina virtuale dopo il processo di installazione (rimuovere le chiavi SSH, pulire la cronologia, ecc.) e installare qualche pacchetto extra.
+Al termine dell'installazione, la macchina virtuale si riavvia. Non appena Packer rileva un indirizzo IP (grazie a VMware Tools), copia il file `requirements.sh` e lo esegue. È una bella funzione per pulire la macchina virtuale dopo il processo di installazione (rimuovere le chiavi SSH, pulire la cronologia, ecc.) e installare qualche pacchetto extra.
 
 ### La sezione dei builders
 
-Potete dichiarare uno o più builders per puntare a qualcosa di diverso dal vostro ambiente vSphere (forse un template Vagrant).
+È possibile dichiarare uno o più costruttori per puntare a qualcosa di diverso dal proprio ambiente vSphere (magari un modello Vagrant).
 
-Ma qui stiamo usando il builder `vsphere-iso`:
+Ma qui stiamo usando `vsphere-iso` builder:
 
-
-```
+```json
 "builders": [
   {
     "type": "vsphere-iso",
 ```
 
-Questo builder ci permette di configurare l'hardware di cui abbiamo bisogno:
+Questo costruttore ci permette di configurare l'hardware necessario:
 
-```
-  "CPUs": 2,
-  "CPU_hot_plug": true,
-  "RAM": 2048,
-  "RAM_hot_plug": true,
-  "disk_controller_type": "pvscsi",
-  "guest_os_type": "centos8_64Guest",
-  "network_adapters": [
-    {
-      "network_card": "vmxnet3",
-      "network": "net_infra"
-    }
-  ],
-  "storage": [
-    {
-      "disk_size": 40000,
-      "disk_thin_provisioned": true
-    }
-  ],
+```json
+"CPUs": 2,
+"CPU_hot_plug": true,
+"RAM": 2048,
+"RAM_hot_plug": true,
+"disk_controller_type": "pvscsi",
+"guest_os_type": "centos8_64Guest",
+"network_adapters": [
+  {
+    "network_card": "vmxnet3",
+    "network": "net_infra"
+  }
+],
+"storage": [
+  {
+    "disk_size": 40000,
+    "disk_thin_provisioned": true
+  }
+],
 ```
 
-!!! Note "Nota"
+!!! note "Nota"
 
     Non dimenticherete mai più di includere CPU_hot_plug, perché ora è automatico!
 
 Si possono fare cose più interessanti con il disco, la CPU e così via. Se si desidera effettuare altre regolazioni, consultare la documentazione.
 
-Per iniziare l'installazione, avete bisogno di un'immagine ISO di Rocky Linux. Ecco un esempio di come utilizzare un'immagine situata in una libreria di contenuti vSphere. Naturalmente è possibile memorizzare l'ISO altrove. Nel caso di una libreria di contenuti vSphere, è necessario ottenere il percorso completo del file ISO sul server che ospita la libreria di contenuti. In questo caso si tratta di Synology, quindi direttamente su DSM explorer.
+Per avviare l'installazione, è necessaria un'immagine ISO di Rocky Linux. Ecco un esempio di come utilizzare un'immagine situata in una libreria di contenuti vSphere. Naturalmente è possibile memorizzare l'ISO altrove. Nel caso di una libreria di contenuti vSphere, è necessario ottenere il percorso completo del file ISO sul server che ospita la libreria di contenuti. In questo caso si tratta di Synology, quindi direttamente su DSM explorer.
 
+```json
+"iso_paths": [
+  "[datasyno-contentlibrary-mylib] contentlib-a86ad29a-a43b-4717-97e6-593b8358801b/3a381c78-b9df-45a6-82e1-3c07c8187dbe/Rocky-8.4-x86_64-minimal_72cc0cc6-9d0f-4c68-9bcd-06385a506a5d.iso"
+],
 ```
-  "iso_paths": [
-    "[datasyno-contentlibrary-mylib] contentlib-a86ad29a-a43b-4717-97e6-593b8358801b/3a381c78-b9df-45a6-82e1-3c07c8187dbe/Rocky-8.4-x86_64-minimal_72cc0cc6-9d0f-4c68-9bcd-06385a506a5d.iso"
-  ],
-```
 
-Poi devi fornire il comando completo da inserire durante il processo di installazione: configurazione dell'IP e trasmissione del percorso del file di risposta Kickstart.
+Quindi è necessario fornire il comando completo da inserire durante il processo di installazione: configurazione dell'IP e trasmissione del percorso del file di risposta di Kickstart.
 
-!!! Note "Nota" 
+!!! note "Nota"
 
     Questo esempio prende in considerazione il caso più complesso: l'utilizzo di un IP statico. Se si dispone di un server DHCP, il processo sarà molto più semplice.
 
 Questa è la parte più divertente della procedura: Sono sicuro che andrete ad ammirare la console VMware durante la generazione, solo per vedere l'inserimento automatico dei comandi durante l'avvio.
 
-```
+```json
 "boot_command": [
 "<up><tab> text ip=192.168.1.11::192.168.1.254:255.255.255.0:template:ens192:none nameserver=192.168.1.254 inst.ks=http://{{ user `HTTP_IP` }}/{{ user `HTTP_PATH` }}<enter><wait><enter>"
 ],
 ```
 
-Alla fine del processo, la VM deve essere fermata. Si può usare l'utente root o un altro utente con diritti sudo, ma in ogni caso questo utente deve corrispondere all'utente definito nel file ks.cfg.
+Dopo il primo riavvio, Packer si connetterà al server tramite SSH. Si può usare l'utente root o un altro utente con diritti sudo, ma in ogni caso questo utente deve corrispondere all'utente definito nel file ks.cfg.
 
-```
+```json
 "ssh_password": "mysecurepassword",
 "ssh_username": "root",
 ```
 
-Successivamente, ci occupiamo della configurazione di vSphere. È un po' più complicato con un utente non root, ma è ben documentato:
+Al termine del processo, la macchina virtuale deve essere arrestata. È un po' più complicato con un utente non root, ma è ben documentato:
 
-```
+```json
 "shutdown_command": "/sbin/halt -h -p",
 ```
 
 Successivamente, ci occupiamo della configurazione di vSphere. Le uniche cose degne di nota sono l'uso delle variabili definite all'inizio del documento nella nostra home directory e l'opzione `insecure_connection`, perché vSphere utilizza un certificato autofirmato (si veda la nota in Assumptions all'inizio di questo documento):
 
-```
+```json
 "insecure_connection": "true",
 "username": "{{ user `vcenter_username` }}",
 "password": "{{ user `vcenter_password` }}",
@@ -363,20 +360,20 @@ Successivamente, ci occupiamo della configurazione di vSphere. Le uniche cose de
 
 E infine, chiederemo a vSphere di convertire la nostra VM arrestata in un template.
 
-A questo punto, si potrebbe anche scegliere di utilizzare la VM così com'è (senza convertirla in un modello). In questo caso, si può decidere di fare un'istantanea:
+In questa fase, si può anche decidere di utilizzare la macchina virtuale così com'è (senza convertirla in un modello). In questo caso, si può decidere di fare un'istantanea:
 
-```
+```json
 "convert_to_template": true,
 "create_snapshot": false,
 ```
 
 ## Il file ks.cfg
 
-Come già detto, è necessario fornire un file di risposta di Kicstart che verrà utilizzato da Anaconda.
+Come già detto, è necessario fornire un file di risposta di kickstart che verrà utilizzato da Anaconda.
 
 Ecco un esempio di questo file:
 
-```
+```bash
 # Use CD-ROM installation media
 repo --name="AppStream" --baseurl="http://download.rockylinux.org/pub/rocky/8.4/AppStream/x86_64/os/"
 cdrom
@@ -481,13 +478,13 @@ systemctl start vmtoolsd
 
 Poiché si è scelto di usare l'iso minimale, invece del Boot o del DVD, non tutti i pacchetti di installazione richiesti saranno disponibili.
 
-Poiché Packer si basa su VMware Tools per rilevare la fine dell'installazione, e il pacchetto `open-vm-tools` è disponibile solo nei repo di AppStream, dobbiamo specificare al processo di installazione che vogliamo usare come sorgente sia il cdrom che questo repo remoto:
+Poiché Packer si affida a VMware Tools per rilevare la fine dell'installazione e il pacchetto `open-vm-tools` è disponibile solo nei repo di AppStream, dobbiamo specificare al processo di installazione che vogliamo usare come sorgente sia il CD-ROM che questo repo remoto:
 
-!!! Note "Nota"
+!!! note "Nota"
 
     Se non si ha accesso ai repo esterni, si può usare un mirror del repo, un proxy squid o il DVD.
 
-```
+```bash
 # Use CD-ROM installation media
 repo --name="AppStream" --baseurl="http://download.rockylinux.org/pub/rocky/8.4/AppStream/x86_64/os/"
 cdrom
@@ -495,14 +492,14 @@ cdrom
 
 Passiamo alla configurazione di rete, poiché ancora una volta, in questo esempio, non stiamo usando un server DHCP:
 
-```
+```bash
 # Network information
 network --bootproto=static --device=ens192 --gateway=192.168.1.254 --ip=192.168.1.11 --nameserver=192.168.1.254,4.4.4.4 --netmask=255.255.255.0 --onboot=on --ipv6=auto --activate
 ```
 
-Remember we specified the user to connect via SSH with to Packer at the end of the installation. Dal momento che controlliamo l'ambiente in cui il nostro hardware funzionerà, possiamo rimuovere qualsiasi firmware che sarà inutile per noi:
+Ricordate che alla fine dell'installazione abbiamo specificato l'utente con cui connettersi a Packer tramite SSH. L'utente e la password devono corrispondere:
 
-```
+```bash
 # Root password
 rootpw mysecurepassword
 ```
@@ -511,9 +508,9 @@ rootpw mysecurepassword
 
     È possibile utilizzare una password non sicura, purché ci si assicuri che questa password venga cambiata immediatamente dopo la distribuzione della macchina virtuale, ad esempio con Ansible.
 
-Ecco lo schema di partizionamento selezionato. Si possono fare cose molto più complesse. Potete definire uno schema di partizione che si adatti alle vostre esigenze, adattandolo allo spazio su disco definito in Packer, e che rispetti le regole di sicurezza definite per il vostro ambiente (partizione dedicata a `/tmp`, ecc.):
+Ecco lo schema di partizionamento selezionato. Si possono fare cose molto più complesse. È possibile definire uno schema di partizione adatto alle proprie esigenze, adattandolo allo spazio su disco definito in Packer e rispettando le regole di sicurezza definite per il proprio ambiente (partizione dedicata per `/tmp`, ecc.):
 
-```
+```bash
 # System booloader configuration
 bootloader --location=mbr --boot-drive=sda
 # Partition clearing information
@@ -528,17 +525,17 @@ logvol / --fstype="xfs" --size=10240 --name=lv_root --vgname=vg_root
 logvol swap --fstype="swap" --size=4092 --name=lv_swap --vgname=vg_root
 ```
 
-La sezione successiva riguarda i pacchetti che verranno installati. Puoi usare l'utente root o un altro utente con diritti sudo, ma in ogni caso, questo utente deve corrispondere all'utente definito nel tuo file ks.cfg.
+La sezione successiva riguarda i pacchetti che verranno installati. Una "best practice" è quella di limitare la quantità di pacchetti installati solo a quelli necessari, limitando così la superficie di attacco, soprattutto in un ambiente server.
 
 !!! note "Nota"
 
     All'autore piace limitare le azioni da compiere nel processo di installazione e rimandare l'installazione di ciò che è necessario nello script di post-installazione di Packer. Quindi, in questo caso, installiamo solo i pacchetti minimi richiesti.
 
-Il pacchetto `openssh-clients` sembra essere richiesto da Packer per copiare i suoi script nella VM.
+Il pacchetto `openssh-clients` sembra essere necessario per consentire a Packer di copiare i suoi script nella macchina virtuale.
 
-Non solo si possono aggiungere pacchetti, ma anche rimuoverli. `perl` e `perl-File-Temp` saranno anche richiesti da VMware Tools durante la parte di distribuzione. Questo è un peccato perché richiede un sacco di altri pacchetti dipendenti. `python3` (3.6) sarà anche richiesto in futuro perché Ansible funzioni (se non vuoi usare Ansible o python, rimuovili!).
+`Open-vm-tools` è anche necessario a Packer per rilevare la fine dell'installazione; questo spiega l'aggiunta del repository AppStream. The packages `perl` and `perl-File-Temp` will also be required by VMware Tools during the deployment part. This is a shame because it requires a lot of other dependent packages. Anche `python3` (3.6) sarà richiesto in futuro per il funzionamento di Ansible (se non si usa Ansible o python, rimuoverli!).
 
-```
+```bash
 %packages --ignoremissing --excludedocs
 openssh-clients
 open-vm-tools
@@ -554,18 +551,18 @@ vim
 wget
 ```
 
-La parte successiva aggiunge alcuni utenti. Dal momento che controlliamo l'ambiente in cui funzionerà il nostro hardware, possiamo rimuovere qualsiasi firmware che sia inutile per noi:
+È possibile non solo aggiungere pacchetti, ma anche rimuoverli. Dal momento che controlliamo l'ambiente in cui funzionerà il nostro hardware, possiamo rimuovere qualsiasi firmware che sia inutile per noi:
 
-```
+```bash
 # unnecessary firmware
 -aic94xx-firmware
 -atmel-firmware
 ...
 ```
 
-Poiché vSphere ora usa cloud-init tramite i VMware Tools per configurare la rete di una macchina ospite centos8, deve essere installato. Nel nostro caso è interessante creare un utente `ansible`, senza password ma con una chiave pubblica. Questo permette a tutte le nostre nuove VM di essere accessibili dal nostro server Ansible per eseguire le azioni post-installazione:
+La parte successiva aggiunge alcuni utenti. Nel nostro caso è interessante creare un utente `ansible`, senza password ma con una chiave pubblica. In questo modo tutte le nuove macchine virtuali saranno accessibili dal nostro server Ansible per eseguire le azioni post-installazione:
 
-```
+```bash
 # Manage Ansible access
 groupadd -g 1001 ansible
 useradd -m -g 1001 -u 1001 ansible
@@ -578,24 +575,24 @@ echo "ansible ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/ansible
 chmod 440 /etc/sudoers.d/ansible
 ```
 
-Ora dobbiamo abilitare e avviare `vmtoolsd` (il processo che gestisce open-vm-tools). vSphere rileverà l'indirizzo IP dopo il riavvio della VM.
+Ora dobbiamo abilitare e avviare `vmtoolsd` (il processo che gestisce open-vm-tools). vSphere rileverà l'indirizzo IP dopo il riavvio della macchina virtuale.
 
-```
+```bash
 systemctl enable vmtoolsd
 systemctl start vmtoolsd
 ```
 
-Il processo di installazione è finito e la VM si riavvierà.
+Il processo di installazione è terminato e la macchina virtuale si riavvia.
 
 ## I provisioners
 
-Ricordate, abbiamo dichiarato in Packer un provisioner, che nel nostro caso corrisponde a uno script `.sh`, da memorizzare in una sottodirectory accanto al nostro file json.
+Ricordiamo che in Packer abbiamo dichiarato un provisioner, che nel nostro caso corrisponde a uno script `.sh`, da memorizzare in una sottodirectory accanto al nostro file json.
 
-Ci sono diversi tipi di provisioner, avremmo anche potuto usare Ansible. Siete liberi di esplorare queste possibilità.
+Esistono diversi tipi di provisioner, avremmo potuto usare anche Ansible. Siete liberi di esplorare queste possibilità.
 
-Questo file può essere completamente modificato, ma fornisce un esempio di ciò che si può fare con uno script, in questo caso `requirements.sh:`
+Questo file può essere interamente modificato, ma fornisce un esempio di ciò che si può fare con uno script, in questo caso `requirements.sh:` Notare sotto “URL dell'articolo della knowledge base” sostituisce un URL interrotto, ma non ne modifica il significato:
 
-```
+```bash
 #!/bin/sh -eux
 
 echo "Updating the system..."
@@ -605,7 +602,7 @@ echo "Installing cloud-init..."
 dnf -y install cloud-init
 
 # see https://bugs.launchpad.net/cloud-init/+bug/1712680
-# and https://kb.vmware.com/s/article/71264
+# and "URL to knowlege base article"
 # Virtual Machine customized with cloud-init is set to DHCP after reboot
 echo "manual_cache_clean: True " > /etc/cloud/cloud.cfg.d/99-manual.cfg
 
@@ -643,14 +640,12 @@ truncate -s 0 /etc/machine-id
 echo "Clear the history so our install commands aren't there"
 rm -f /root/.wget-hsts
 export HISTSIZE=0
-
 ```
 
-Alcune spiegazioni sono necessarie:
+Sono necessarie alcune spiegazioni:
 
-```
-echo "Installing cloud-init..."
-dnf -y install cloud-init
+```bash
+echo "Installing cloud-init..." dnf -y install cloud-init
 
 # see https://bugs.launchpad.net/cloud-init/+bug/1712680
 # and https://kb.vmware.com/s/article/71264
@@ -658,19 +653,19 @@ dnf -y install cloud-init
 echo "manual_cache_clean: True" > /etc/cloud/cloud.cfg.d/99-manual.cfg
 ```
 
-Poiché vSphere ora usa cloud-init tramite i VMware Tools per configurare la rete di una macchina ospite centos8, deve essere installato. Tuttavia, se non si fa nulla, la configurazione verrà applicata al primo riavvio e tutto andrà bene. Ma al prossimo riavvio, cloud-init non riceverà alcuna nuova informazione da vSphere. In questi casi, senza informazioni su cosa fare, cloud-init riconfigurerà l'interfaccia di rete della macchina virtuale in modo da utilizzare DHCP, perdendo così la configurazione statica.
+Poiché vSphere ora utilizza cloud-init tramite i VMware Tools per configurare la rete di una macchina guest centos8, è necessario installarlo. Tuttavia, se non si fa nulla, la configurazione verrà applicata al primo riavvio e tutto andrà bene. Ma al successivo riavvio, cloud-init non riceverà alcuna nuova informazione da vSphere. In questi casi, senza informazioni su cosa fare, cloud-init riconfigurerà l'interfaccia di rete della macchina virtuale in modo da utilizzare DHCP, perdendo così la configurazione statica.
 
-Si può andare rapidamente su vSphere e ammirare il lavoro.
+Poiché questo non è il comportamento che vogliamo, dobbiamo specificare a cloud-init di non cancellare automaticamente la sua cache e quindi di riutilizzare le informazioni di configurazione che ha ricevuto durante il suo primo riavvio e ogni riavvio successivo.
 
-Per questo, creiamo un file `/etc/cloud/cloud.cfg.d/99-manual.cfg` con la direttiva `manual_cache_clean: True`.
+Per questo, si crea un file `/etc/cloud/cloud.cfg.d/99-manual.cfg` con la direttiva `manual_cache_clean: True`.
 
 !!! note "Nota"
 
-    Questo implica che se avete bisogno di riapplicare una configurazione di rete tramite le personalizzazioni del guest vSphere (il che, nell'uso normale, dovrebbe essere abbastanza raro), dovrete cancellare voi stessi la cache di cloud-init.
+    Ciò implica che se è necessario riapplicare una configurazione di rete tramite le personalizzazioni del guest di vSphere (cosa che, nell'uso normale, dovrebbe essere piuttosto rara), è necessario cancellare la cache di cloud-init.
 
 Il resto dello script è commentato e non richiede ulteriori dettagli.
 
-Per questo, useremo un semplice playbook Ansible, che utilizza il modulo `vmware_guest`.
+È possibile consultare il [progetto Bento](https://github.com/chef/bento/tree/master/packer_templates) per avere maggiori idee su cosa si può fare in questa parte del processo di automazione.
 
 ## Creazione di Template
 
@@ -678,25 +673,25 @@ Ora è il momento di lanciare Packer e verificare che il processo di creazione, 
 
 È sufficiente inserire questo comando alla riga di comando:
 
-```
+```bash
 ./packer build -var-file=~/.vsphere-secrets.json rockylinux8/template.json
 ```
 
 È possibile passare rapidamente a vSphere e ammirare il lavoro svolto.
 
-Alla fine della creazione, troverete il vostro modello pronto all'uso in vSphere.
+Si vedrà la creazione e l'avvio della macchina e, se si lancia una console, si vedrà l'inserimento automatico dei comandi e il processo di installazione.
 
-Come abbiamo visto, ci sono ora soluzioni DevOps completamente automatizzate per creare e distribuire le VM.
+Al termine della creazione, il modello è pronto per essere utilizzato in vSphere.
 
 ## Parte della distribuzione
 
-Per questo, useremo un semplice playbook Ansible, che utilizza il modulo `vmware_guest`.
+Questa documentazione non sarebbe completa senza la parte di distribuzione automatica del modello.
 
-Per un progetto dettagliato che copre anche l'implementazione di Rocky Linux e altri sistemi operativi utilizzando le ultime novità di vSphere, Packer e il Packer Plugin per vSphere, visitate [questo progetto](https://github.com/vmware-samples/packer-examples-for-vsphere).
+A tale scopo, utilizzeremo un semplice playbook di Ansible, che utilizza il modulo `vmware_guest`.
 
-Questo playbook che vi forniamo, deve essere adattato alle vostre esigenze e al vostro modo di fare le cose.
+Il manuale che vi forniamo deve essere adattato alle vostre esigenze e al vostro modo di fare.
 
-```
+```ansible
 ---
 - name: Deploy VM from template
   hosts: localhost
@@ -741,22 +736,22 @@ Questo playbook che vi forniamo, deve essere adattato alle vostre esigenze e al 
     register: deploy_vm
 ```
 
-Potete memorizzare i dati sensibili nel file `./vars/credentials.yml`, che ovviamente avrete precedentemente criptato con `ansible-vault` (specialmente se usate git per il vostro lavoro). Poiché tutto utilizza una variabile, si può facilmente adattarlo alle proprie esigenze.
+È possibile memorizzare i dati sensibili nel file `./vars/credentials.yml`, che ovviamente sarà stato criptato in precedenza con `ansible-vault` (soprattutto se si usa git per il proprio lavoro). Poiché tutto utilizza una variabile, è possibile adattarla facilmente alle proprie esigenze.
 
 Se non utilizzate qualcosa come Rundeck o Awx, potete lanciare l'installazione client con una riga di comando simile a questa:
 
-```
+```bash
 ansible-playbook -i ./inventory/hosts  -e '{"comments":"my comments","cluster_name":"CS_NAME","esxi_hostname":"ESX_NAME","state":"started","storage_folder":"PROD","datacenter_name":"DC_NAME}","datastore_name":"DS_NAME","template_name":"template-rockylinux8-0.0.1","vm_name":"test_vm","network_name":"net_prod","network_ip":"192.168.1.20","network_gateway":"192.168.1.254","network_mask":"255.255.255.0","memory_mb":"4","num_cpu":"2","domain":"rockylinux.lan","dns_servers":"192.168.1.254","guest_id":"centos8_64Guest"}' ./vmware/create_vm.yml --vault-password-file /etc/ansible/vault_pass.py
 ```
 
-È a questo punto che potete lanciare la configurazione finale della vostra macchina virtuale utilizzando Ansible. Non dimenticate di cambiare la password di root, proteggere SSH, registrare la nuova VM nel vostro strumento di monitoraggio e nell'inventario IT, ecc.
+A questo punto è possibile avviare la configurazione finale della macchina virtuale utilizzando Ansible. Non dimenticate di cambiare la password di root, proteggere SSH, registrare la nuova VM nel vostro strumento di monitoraggio e nell'inventario IT, ecc.
 
 ## In sintesi
 
-Come abbiamo visto, ci sono ora soluzioni DevOps completamente automatizzate per creare e distribuire le VM.
+Come abbiamo visto, oggi esistono soluzioni DevOps completamente automatizzate per creare e distribuire le macchine virtuali.
 
-Allo stesso tempo, questo rappresenta un innegabile risparmio di tempo, soprattutto in ambienti cloud o data center. Facilita anche una conformità standard in tutti i computer dell'azienda (server e stazioni di lavoro), e una facile manutenzione / evoluzione dei modelli.
+Allo stesso tempo, questo rappresenta un innegabile risparmio di tempo, soprattutto in ambienti cloud o data center. Inoltre, facilita una conformità standard per tutti i computer dell'azienda (server e postazioni di lavoro) e una facile manutenzione / evoluzione dei modelli.
 
 ## Altri riferimenti
 
-Per un progetto dettagliato che copre anche l'implementazione di Rocky Linux e altri sistemi operativi utilizzando le ultime novità di vSphere, Packer e il Packer Plugin per vSphere, visitate [questo progetto](https://github.com/vmware-samples/packer-examples-for-vsphere). 
+Per un progetto dettagliato che copre anche la distribuzione di Rocky Linux e di altri sistemi operativi utilizzando le ultime novità di vSphere, Packer e il Packer Plugin per vSphere, visitate [questo progetto](https://github.com/vmware-samples/packer-examples-for-vsphere).
