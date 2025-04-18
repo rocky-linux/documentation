@@ -309,7 +309,7 @@ ID      Name
   TEXTDOMAIN: "messages"
   ```
 
-  In seguito, introdurremo il significato di queste variabili. Per rivederli ora, [saltare alle variabili](#VARIABILI).
+  In seguito, sarà introdotto il significato di queste variabili. Per rivederli ora, [saltare alle variabili](#VARIABILI).
 
 5. BEGIN{ } ed END{ }
 
