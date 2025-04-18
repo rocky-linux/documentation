@@ -27,17 +27,17 @@ The options are mainly divided into four parts:
 
 match control：
 
-| options                  | description |
-| :---                     | :---        |
-| -E<br/>--extended-regexp | Enable ERE  |
-| -P<br/>--perl-regexp     | Enable PCRE |
-| -G<br/>--basic-regexp    | Enable BRE by default |
-| -e<br/>--regexp=PATTERN  | Pattern matching, multiple -e options can be specified. |
-| -i                       | Ignore case |
-| -w                       | Accurately match the entire word |
-| -f FILE                  | Obtain patterns from FILE, one per line |
-| -x                       | Pattern matching entire line |
-| -v                       | Select content lines that do not match |
+| options                | description                                             |
+|------------------------|---------------------------------------------------------|
+| -E (--extended-regexp) | Enable ERE                                              |
+| -P (--perl-regexp)     | Enable PCRE                                             |
+| -G (--basic-regexp)    | Enable BRE by default                                   |
+| -e (--regexp=PATTERN)  | Pattern matching, multiple -e options can be specified. |
+| -i                     | Ignore case                                             |
+| -w                     | Accurately match the entire word                        |
+| -f FILE                | Obtain patterns from FILE, one per line                 |
+| -x                     | Pattern matching entire line                            |
+| -v                     | Select content lines that do not match                  |
 
 output control:
 

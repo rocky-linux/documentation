@@ -30,7 +30,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 | -i    | Modify the original file |
 | -r    | Regular expression |
 
-| Operation command<br/>(sometimes called operation instruction)| description |
+| Operation command  (sometimes called operation instruction)| description |
 | :---:                  | :--- |
 | s/regexp/replacement/  | Replacement string |
 |  p                     | Print the current "pattern space". Often used with the -n option, for example: `cat -n /etc/services \| sed -n '3,5p'` |
@@ -295,7 +295,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 
     | Syntax                               | Syntax description|
     | :---                                 | :---              |
-    | `sed 's/string/replace/g' FILENAME`  | **s**: All lines representing the content of the file. You can also specify the range of lines, for example: `sed '20,200s/netbios/TMP/g' /etc/services`<br/>**g** (Global): If there is no g, This means that when multiple matching strings appear on a single line, only the first matching string will be replaced.<br/> **/**: Delimiter style. You can also specify other styles, for example: `sed '20,200s?netbios?TMP?g' /etc/services` |
+    | `sed 's/string/replace/g' FILENAME`  | **s**: All lines representing the content of the file. You can also specify the range of lines, for example: `sed '20,200s/netbios/TMP/g' /etc/services.  **g** (Global): If there is no g, This means that when multiple matching strings appear on a single line, only the first matching string will be replaced.   **/**: Delimiter style. You can also specify other styles, for example:`sed '20,200s?netbios?TMP?g' /etc/services` |
 
     !!! tip
 
