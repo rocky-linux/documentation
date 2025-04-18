@@ -96,14 +96,14 @@ The usage of `awk` is - `awk option  'pattern {action}'  FileName`
 **action**: Action instruction
 **{ }**: Group some instructions according to specific patterns
 
-| option | description |
-| :---   | :---        |
-| -f program-file<br/>--file program-file | Reading `awk` program source files from files |
-| -F FS  | Specify the separator for separating fields. The 'FS' here is a built-in variable in `awk`, with default values of spaces or tabs |
-| -v var=value | variable assignment |
-| --posix | Turn on compatibility mode |
-| --dump-variables=[file] | Write global variables in `awk` to a file. If no file is specified, the default file is awkvars.out |
-| --profile=[file] | Write performance analysis data to a specific file. If no file is specified, the default file is awkprof.out |
+| option                               | description                                                                                                                       |
+|--------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| -f program-file  --file program-file | Reading `awk` program source files from files                                                                                     |
+| -F FS                                | Specify the separator for separating fields. The 'FS' here is a built-in variable in `awk`, with default values of spaces or tabs |
+| -v var=value                         | variable assignment                                                                                                               |
+| --posix                              | Turn on compatibility mode                                                                                                        |
+| --dump-variables=[file]              | Write global variables in `awk` to a file. If no file is specified, the default file is awkvars.out                               |
+| --profile=[file]                     | Write performance analysis data to a specific file. If no file is specified, the default file is awkprof.out                      |
 
 | pattern                | description |
 | :---                   | :---        |
@@ -805,15 +805,21 @@ ID      Name
 
 ## Operator
 
-| Operator  | Description |
-| :---:     | :---        |
-| (...)     | Grouping    |
-| $n        | Field reference |
-| ++<br/>--      | Incremental<br/>Decreasing |
-| +<br/>-<br/>!  | Mathematical plus sign<br/>Mathematical minus sign<br/>Negation|
-| *<br/>/<br/>%  | Mathematical multiplication sign<br/>Mathematical division sign<br/>Modulo operation |
-| in             | Elements in an array |
-| &&<br/>\|\|    | Logic and Operations<br/>Logical OR operation |
+| Operator | Description     |
+|----------|-----------------|
+| (...)    | Grouping        |
+| $n       | Field reference |
+| ++       | Increment       |
+| -- | Decrement             |
+| + | Mathematical plus sign |
+| - | Mathematical minus sign |
+| ! | Negation |
+| * | Mathematical multiplication sign |
+| / | Mathematical division sign |
+| % | Modulo operation |
+| in | Elements in an array |
+| && | Logic and operations |
+| \|\| | Logical OR operation |
 | ?:  |  Abbreviation of conditional expressions |
 | ~   | Another representation of regular expressions |
 | !~  | Reverse Regular Expression |
@@ -1793,7 +1799,7 @@ Like most programming languages, `awk` also supports arrays, which are divided i
 
 | Statement                 | Description |
 | :---                      | :---        |
-| getline                   | Read the next matching row record and assign it to "$0". <br/>The return value is 1: Indicates that relevant row records have been read. <br/>The return value is 0: Indicates that the last line has been read <br/>The return value is negative: Indicates encountering an error |
+| getline                   | Read the next matching row record and assign it to "$0". The return value is 1: Indicates that relevant row records have been read. The return value is 0: Indicates that the last line has been read. The return value is negative: Indicates encountering an error. |
 | getline var               | Read the next matching row record and assign it to the variable "var" |
 | command \| getline [var]  | Assign the result to "$0" or the variable "var" |
 | next                      | Stop the current input record and perform the following actions|
