@@ -27,17 +27,17 @@ Le opzioni sono principalmente suddivise in quattro parti:
 
 controllo delle corrispondenze：
 
-| opzioni                  | descrizione                                                                         |
-| :----------------------- | :---------------------------------------------------------------------------------- |
-| -E<br/>--extended-regexp | Abilita ERE                                                                         |
-| -P<br/>--perl-regexp     | Abilita PCRE                                                                        |
-| -G<br/>--basic-regexp    | Abilita BRE di default                                                              |
-| -e<br/>--regexp=PATTERN  | Abbinamento del modello, possono essere specificate più opzioni -e. |
-| -i                       | Ignora maiuscole e minuscole                                                        |
-| -w                       | Abbinare con precisione l'intera parola                                             |
-| -f FILE                  | Ottenere i modelli da FILE, uno per riga                                            |
-| -x                       | Corrispondenza del modello all'intera riga                                          |
-| -v                       | Seleziona le righe di contenuto non corrispondenti                                  |
+| opzioni                                   | descrizione                                                                         |
+| ----------------------------------------- | ----------------------------------------------------------------------------------- |
+| -E (--extended-regexp) | Abilita ERE                                                                         |
+| -P (--perl-regexp)     | Abilita PCRE                                                                        |
+| -G (--basic-regexp)    | Abilita BRE di default                                                              |
+| -e (--regexp=PATTERN)  | Abbinamento del modello, possono essere specificate più opzioni -e. |
+| -i                                        | Ignora maiuscole e minuscole                                                        |
+| -w                                        | Abbinare con precisione l'intera parola                                             |
+| -f FILE                                   | Ottenere i modelli da FILE, uno per riga                                            |
+| -x                                        | Corrispondenza del modello all'intera riga                                          |
+| -v                                        | Seleziona le righe di contenuto non corrispondenti                                  |
 
 controllo del risultato:
 
