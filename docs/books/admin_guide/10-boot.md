@@ -294,13 +294,13 @@ WantedBy=multi-user.target
 
 ### Using system targets
 
-`systemd` targets replace the concept of run levels on Rocky8/RHEL8.
+`systemd` targets replace the concept of run levels on SysV or Upstart.
 
 The representation of `systemd` targets is by target units. Target units end with the `.target` file extension, and their sole purpose is to group other `systemd` units into a chain of dependencies.
 
-For example, the `graphical.target` unit that starts a graphical session starts system services such as the **GNOME display manager** (`gdm.service`) or the **accounts service** (`accounts-daemon.service`) and also activates the `multi-user.target` unit.
+For example, the `graphical.target` unit that starts a graphical session starts system services such as the **GNOME display manager** (`gdm.service`) or the **accounts service** (`accounts-daemon.service`) and also activates the `multi-user.target` unit. If you need to view the dependencies of a certain "target", please execute the `systemctl list-dependencies` command (For example, `systemctl list-dependencies multi-user.target`).
 
-Similarly, the `multi-user.target` unit starts other essential system services, such as **NetworkManager** (`NetworkManager.service`) or **D-Bus** (`dbus.service`) and activates another target unit named `basic.target`.
+`sysinit.target` and `basic.target` are checkpoints during the startup process. Although one of the design goals of `systemd` is to start system services in parallel, it is necessary to start the "targets" of certain services and features before starting other services and "targets". Any error in `sysinit.target` or `basic target` will cause the initialization of `systemd` to fail. At this time, your terminal may have entered "emergency mode" (`emergency.target`).
 
 | Target Units      | Description                                               |
 |-------------------|-----------------------------------------------------------|
@@ -373,7 +373,7 @@ systemctl isolate name.target
 
 The **Rescue mode** provides a simple environment for repairing your system in cases where a normal boot process is impossible.
 
-In `rescue mode,` the system attempts to mount all local file systems and start several important system services but does not enable a network interface or allow other users to connect to the system simultaneously.
+In `rescue mode`, the system attempts to mount all local file systems and start several important system services but does not enable a network interface or allow other users to connect to the system simultaneously.
 
 On Rocky 8, the `rescue mode` is equivalent to the old `single user mode` and requires the root password.
 
@@ -383,7 +383,7 @@ To change the current target and enter `rescue mode` in the current session:
 systemctl rescue
 ```
 
-**Emergency mode** provides the most minimalist environment possible and allows the system to be repaired even in situations where it is unable to enter rescue mode. In emergency mode, the system mounts the root file system only for reading. It will not attempt to mount any other local file system, will not activate any network interface, and will start some essential services.
+**Emergency mode** provides the most minimalist environment possible and allows the system to be repaired even in situations where it is unable to enter rescue mode. In emergency mode, the operating system mounts the root file system with the read-only option. It will not attempt to mount any other local file system, will not activate any network interface, and will start some essential services.
 
 To change the current target and enter emergency mode in the current session:
 
@@ -408,13 +408,18 @@ The `systemctl` command replaces many power management commands used in previous
 
 You can manage log files with the `journald` daemon, a component of `systemd 'in addition to ' rsyslogd`.
 
-The `journald` daemon captures Syslog messages, kernel log messages, messages from the initial RAM disk and the start of boot, and messages written to the standard output and the standard error output of all services, then indexes them and makes them available to the user.
+The `journald` daemon is responsible for capturing the following types of log messages:
 
-The native log file's format, which is a structured and indexed binary file, improves searches and allows for faster operation. It also stores metadata information, such as timestamps or user IDs.
+* Syslog messages
+* Kernel log messages
+* Initramfs and system startup logs
+* Standard output (stdout) and standard error output (stderr) information of all services
+
+After capture, `journald` will index these logs and provide them to users through structured storage mechanism This mechanism stores logs in binary format, supports tracking events in chronological order, and provides flexible filtering, searching and output capabilities in multiple formats (such as text/JSON).
 
 ### `journalctl` command
 
-The `journalctl` command displays the log files.
+The `journalctl` command is used to process logs, such as viewing log files, filtering logs, and controlling output entries.
 
 ```bash
 journalctl
