@@ -2,7 +2,7 @@
 
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-117-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-118-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Introduction
@@ -350,6 +350,7 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/dvdgomez"><img src="https://avatars.githubusercontent.com/u/108831013?v=4?s=100" width="100px;" alt="David Gomez"/><br /><sub><b>David Gomez</b></sub></a><br /><a href="#content-dvdgomez" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/jay3d"><img src="https://avatars.githubusercontent.com/u/2527637?v=4?s=100" width="100px;" alt="Jamil Halabi"/><br /><sub><b>Jamil Halabi</b></sub></a><br /><a href="#content-jay3d" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/huangsen365"><img src="https://avatars.githubusercontent.com/u/1982355?v=4?s=100" width="100px;" alt="huangsen365"/><br /><sub><b>huangsen365</b></sub></a><br /><a href="#content-huangsen365" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/npezzotti"><img src="https://avatars.githubusercontent.com/u/54044423?v=4?s=100" width="100px;" alt="npezzotti"/><br /><sub><b>npezzotti</b></sub></a><br /><a href="#content-npezzotti" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>
