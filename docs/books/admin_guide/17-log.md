@@ -126,6 +126,21 @@ Fields are separated from each other by one or more spaces.
 | ....   | Reserved |
 | `local7` | Reserved |
 
+`*` represents all facilities. In a single line configuration, you can also use `,` and `;` Combine the facilities. `,` means logical or; `;` represents the rule delimiter.
+
+```
+auth,authpriv.*  /var/log/auth.log
+
+# Equivalent to
+
+auth.*   /var/log/auth.log
+authpriv.*  /var/log/auth.log
+```
+
+```
+kern.err;mail.alert  /var/log/critical.log
+```
+
 | Connector |  Describe |
 | :---- | :--- |
 | `.`   | Record logs with priority higher than keywords. For example, `cron.info` means that all records in cron whose log priority is greater than info will be recorded |
@@ -145,5 +160,14 @@ Priorities are sorted from low to high:
 | `alert`   | The alert status is more serious than "crit", and the system administrator needs to deal with it immediately |
 | `emerg`   | An emergency state in which the operating system cannot be used normally |
 
-The lower the log priority, the more detailed the content recorded, and the lower the severity. The higher the log priority is, the less content is recorded, and the more serious the problem is.
+`*` represents all log priorities.
 
+The lower the log priority, the more detailed the content recorded, and the lower the severity. The higher the log priority is, the less content is recorded, and the more serious the problem is. 
+
+"action" refers to where to save the log:
+
+* `/var/log/secure` - Save the log to a local file
+* `@192.168.100.20:22` - Remote machine
+* `:omusrmsg:root,frank,jack` - Specify the list of online users. `*` represents all users. "omusrmsg" refers to "output module for user messages".
+* `/dev/tty12` - Specific terminal devices
+* `-` - Disable buffering mechanism when writing to file
