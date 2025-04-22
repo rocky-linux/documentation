@@ -194,10 +194,10 @@ Once the first process runs, it then goes on to start other services, daemons, p
 
     Note some properties and their values configured in the `multi-user.target` unit. Properties like - Description, Documentation, Requires, After, and so on.
 
-5. The `basic.target` unit is listed as the value of the `Requires` property for `multi-user.target`. View the unit file for basic.target. Type:
+5. The `basic.target` unit is listed as the value of the `Requires` property for `multi-user.target`. View the unit file for `basic.target`. Type:
 
     ```bash
-    [root@localhost ~]# systemctl cat multi-user.target
+    [root@localhost ~]# systemctl cat basic.target
     # /usr/lib/systemd/system/basic.target
     [Unit]
     Description=Basic System
