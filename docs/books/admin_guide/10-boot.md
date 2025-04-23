@@ -298,7 +298,7 @@ WantedBy=multi-user.target
 
 The representation of `systemd` targets is by target units. Target units end with the `.target` file extension, and their sole purpose is to group other `systemd` units into a chain of dependencies.
 
-For example, the `graphical.target` unit that starts a graphical session starts system services such as the **GNOME display manager** (`gdm.service`) or the **accounts service** (`accounts-daemon.service`) and also activates the `multi-user.target` unit. If you need to view the dependencies of a certain "target", please execute the `systemctl list-dependencies` command (For example, `systemctl list-dependencies multi-user.target`).
+For example, the `graphical.target` unit that starts a graphical session starts system services such as the **GNOME display manager** (`gdm.service`) or the **accounts service** (`accounts-daemon.service`) and also activates the `multi-user.target` unit. If you need to view the dependencies of a certain "target", run the `systemctl list-dependencies` command. (For example, `systemctl list-dependencies multi-user.target`).
 
 `sysinit.target` and `basic.target` are checkpoints during the startup process. Although one of the design goals of `systemd` is to start system services in parallel, it is necessary to start the "targets" of certain services and features before starting other services and "targets". Any error in `sysinit.target` or `basic target` will cause the initialization of `systemd` to fail. At this time, your terminal may have entered "emergency mode" (`emergency.target`).
 
