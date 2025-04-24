@@ -435,25 +435,145 @@ The usage is `journalctl [OPTIONS...] [MATCHES...]`.
 
 Because there are many options, the unordered list is used to explain:
 
-* `-u` - Specify 'unit', which can be used multiple times in a single line command. Such as `journalctl -u crond.service -u sshd.service`
-* `--system`
-* `--user`
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
+* `-u` - Specify 'unit', which can be used multiple times in a single line command. For example `journalctl -u crond.service -u sshd.service`
+* `--system` - Show messages from system services and the kernel
+* `--user` - Show messages from service of current user 
+* `-k` - Show kernel message log from the current boot
+* `--since=DATA` or `-S` - Show entries not older than the specified date. The format of the date is "YYYY-MM-DD HH:MM:SS". For example `journalctl --since="2025-04-24 14:00:30`
+* `--until=DATA` or `-U` - Show entries not newer than the specified date. The format of the date is "YYYY-MM-DD HH:MM:SS". For example `journalctl --since="2025-04-01 05:00:10" --until="2025-04-05 18:00:30"`
+* `--list-boots` - Show terse information about recorded boots
+* `-n N` - Controls the number of entries output. If "N" is not specified, the default value is 10
+* `-p PRIORITY` - Specify priority or range of priorities. If you specify a single log priority keyword, this priority and entries higher than this priority will be displayed. For example `journalctl -p 3` or `journalctl -p err` Equivalent to `journalctl -p 0..3` or `journalctl -p emerg..err`
+* `-b` - Query the log since the current boot ID was started. Do not confuse the boot ID with the index number of the kernel boot.
+* `-f` - Dynamic query log, similar to the `tail -f` command
+* `-x` - Add message explanations where available
+* `-e` - Jump to the end page of the log, often used with the `-x` option
+* `-r` - Reverse Log.
+* `--disk-usage` - Display the disk space occupied by log files
+* `--rotate` - Request immediate rotation of the journal files
+* `--vacuum-size=BYTES` - Reduces the log file to the specified size. The old log content will be deleted gradually until the specified file size is met. The supported size suffixes are K, M, G, T 
+* `--vacuum-time=TIME` - You can delete old log records by specifying a time point, that is, log records earlier than that time point will be deleted. The supported time suffixes are s, m, h, days, months, weeks, years
+* `--vacuum-files=INT` - How many log files are reserved
+* `-N` - List all field names currently used. Users can use the "FIELD=VALUE" method to match related content. For example `journalctl _SYSTEMD_UNIT=sshd.service`.
+* `-g` or `-grep=PATTERN`- Match log content through pattern, and support regular expression. By default, if PATTERN is all lowercase, matching log content is not case sensitive. You can adjust case sensitivity through the `--case-sensitive` option
+* `--case-sensitive=[BOOLEAN]` - Adjust whether it is case sensitive.
+* `-o` or `--output=STRING` - Change the output mode of journalctl. A STRING can be short, short-precise, short-iso, short-iso-precise, short-full, short-monotonic, short-unix, verbose, export, json, json-pretty, json-sse, cat, and with-unit
+* `-q` or `--quiet` - Quiet output
+* `--sync` - Synchronize unwritten journal messages to disk
+
+###  /etc/systemd/journald.conf
+
+```bash
+Shell > cat /etc/systemd/journald.conf
+[Journal]
+#Storage=auto
+#Compress=yes
+#Seal=yes
+#SplitMode=uid
+#SyncIntervalSec=5m
+#RateLimitIntervalSec=30s
+#RateLimitBurst=10000
+#SystemMaxUse=
+#SystemKeepFree=
+#SystemMaxFileSize=
+#SystemMaxFiles=100
+#RuntimeMaxUse=
+#RuntimeKeepFree=
+#RuntimeMaxFileSize=
+#RuntimeMaxFiles=100
+#MaxRetentionSec=
+#MaxFileSec=1month
+#ForwardToSyslog=no
+#ForwardToKMsg=no
+#ForwardToConsole=no
+#ForwardToWall=yes
+#TTYPath=/dev/console
+#MaxLevelStore=debug
+#MaxLevelSyslog=debug
+#MaxLevelKMsg=notice
+#MaxLevelConsole=info
+#MaxLevelWall=emerg
+#LineMax=48K
+```
+
+Like the configuration files of other 'systemd' components, "[ ]" is used to contain the title, and below the title are specific key-value pairs. Please pay attention! There is no space on either side of the equal sign in the key-value pair. For the complete configuration manual page, refer to `man 5 journald.conf`
+
+* `Storage=` - Controls the location of journald's data store. The default value is auto.
+
+    * volatile - Store the log data in memory, that is, the temporary file located in the **/run/log/journal/** directory.
+    * persistent - Store the log data in the **/var/log/journal/** directory, which needs to be created manually by the user. If this directory is not writable, log data will be written to the **/run/log/journal/** directory
+    * auto - Similar to persistent
+    * none - Do not save any logs, but the logs forwarded to other "targets" will not be affected
+
+* `Compress=` - Whether to enable the compression function. The default value is yes.
+* `Seal=` - Whether to use FSS (Forward Secure Sealing) to protect log entries from malicious tampering. The default value is yes.
+* `SplitMode=` - Define the basis for splitting log files. The precondition (Storage=persistent) must be met before it takes effect. The default value is uid.
+* `SyncIntervalSec=` - Define the time interval for synchronizing the log data in memory to the disk. Please note! This only takes effect for err, warning, notice, info, and debug log priorities. Other log priorities are immediately synchronized to disk. The default value is 5m.
+* `RateLimitIntervalSec=` - Define the time interval for log generation frequency. The default value is 30s.
+* `RateLimitBurst=` - The maximum number of entries generated by the log in a given time interval. The default value is 10000. If the log entries are greater than 10000 within a given time interval, the redundant logs will be discarded and new log entries will not be generated until the next time interval is reached.
+* `SystemMaxUse=` - Controls the total size of all log files in the **/var/log/journal/** directory.
+* `SystemKeepFree=` - Controls how much disk space should be reserved in the **/var/log/journal/** directory. Based on 1024, suffixes include K, M, G, T, P, E
+* `SystemMaxFileSize=` - Limit the size of a single file in the **/var/log/journal/** directory. If the size exceeds the specified size, log rotation will occur
+* `SystemMaxFiles=` - Specify how many files to keep in the **/var/log/journal/** directory. When the defined number is exceeded, the oldest log file will be deleted.
+* `RuntimeMaxUse=` - Controls the total size of log data in the **/run/log/journal/** directory.
+* `RuntimeKeepFree=` - Controls how much space to reserve in the **/run/log/journal/** directory.
+* `RuntimeMaxFileSize=` - Controls the size of a single log file in the **/run/log/journal/** directory. When the specified size is reached, log rotation will occur.
+* `RuntimeMaxFiles=` - How many files of logs need to be kept in the **/run/log/journal/** directory.
+* `MaxRetentionSec=` - Define the retention time for log files, and if it exceeds the defined time, the old log files will be deleted. A value of 0 indicates that the function is turned off. The value suffix has year, month，week，day，h，m
+* `MaxFileSec=` - Time based log rotation. Since file size based polling (`SystemMaxFileSize` and `RuntimeMaxFileSize`) already exists, time based log polling is usually not required. Set it to 0 to disable this function.
+* `ForwardToSyslog=` -Whether to forward the collected log messages to the traditional syslog daemon. The default value is no.
+* `ForwardToKMsg=` - Whether to forward the received log message to kmsg. The default value is no.
+* `ForwardToConsole=` - Whether to forward the received log messages to the system console. The default value is no. If it is set to yes, you also need to configure `TTYPath`
+* `ForwardToWall=` - Whether to send the received log message as a warning message to all logged in users. The default value is yes.
+* `TTYPath=` - Specify the path of the console. `ForwardToConsole=yes` is required. The default value is /dev/console
+* `MaxLevelStore=` - Set the maximum log level recorded to the log file. The default value is debug
+* `MaxLevelSyslog=` - Set the maximum log level forwarded to the traditional syslog daemon. The default value is debug
+* `MaxLevelKMsg=` - Set the maximum log level forwarded to kmsg. The default value is notice
+* `MaxLevelConsole=` - Set the maximum log level forwarded to the system console. The default value is info
+* `MaxLevelWall=` - Set the maximum log level sent to all logged in users. The default value is emerg
+* `LineMax=` - The maximum allowable length (bytes) of each log record when converting the log stream to log records. With 1024 as the base, the suffix can be K, M, G, T. The default value is 48K
+
+## Other instructions
+
+If you do not change any configuration in **/etc/systemd/journald.conf**, `rsyslog` and `journald` can coexist without affecting each other.
+
+```bash
+Shell > cat /etc/rsyslog.conf
+...
+#### MODULES ####
+
+module(load="imuxsock"    # provides support for local system logging (e.g. via logger command)
+       SysSock.Use="off") # Turn off message reception via local log socket;
+                          # local messages are retrieved through imjournal now.
+module(load="imjournal"             # provides access to the systemd journal
+       UsePid="system" # PID nummber is retrieved as the ID of the process the journal entry originates from
+       StateFile="imjournal.state") # File to store the position in the journal
+#module(load="imklog") # reads kernel messages (the same are read from journald)
+#module(load="immark") # provides --MARK-- message capability
+...
+```
+
+`journald` will forward the obtained log data to the socket `/run/systemd/journal/syslog` to facilitate the use of traditional log services (rsyslog, syslog-ng). However, we can learn from the configuration file that `rsyslog` does not collect logs from `journald` using sockets, but integrates through the input module (imjournal).
+
+**Q: Can the operating system not use `journald` for logging?**
+
+Yes. By default, `rsyslog` and `journald` can coexist in the operating system without affecting each other. For some performance oriented usage scenarios (such as data throughput and memory consumption), coexistence is not the best choice. You can make rsyslog run only in socket mode, which helps improve performance and record all logs in plain text. However, if you need structured logs, this change is not suitable. The relevant steps are as follows:
+
+```bash
+Shell > vim /etc/rsyslog.config
+...
+module(load="imuxsock"
+      SysSock.Use="on")
+# module(load="imjournal" 
+# UsePid="system" 
+# StateFile="imjournal.state")
+module(load="imklog")
+...
+
+Shell > vim /etc/systemd/journald.conf
+[journal]
+Storage=none
+...
+ForwardToSyslog=yes
+...
+```
