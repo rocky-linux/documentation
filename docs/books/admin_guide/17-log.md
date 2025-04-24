@@ -7,17 +7,17 @@ tags:
   - journald
 ---
 
-# Basic overview
+## Basic overview
 
 In this chapter, you will learn how to manage logs in the operating system.
 
 **Q: What is a log?**
 
-**Log**：It is used to record all events and messages that have occurred since the start of the operating system, including boot logs, kernel initialization logs, systemd initialization logs, and application startup or running logs. Log is one of the most important functions of the operating system. Administrators can query logs to troubleshoot existing or upcoming problems.
+**Log**：Records all events and messages occurring since the start of the operating system, including boot logs, kernel initialization logs, `systemd` initialization logs, and application startup or running logs. Log is one of the most important functions of the operating system. Administrators can query logs to troubleshoot existing or upcoming problems.
 
 In RHEL 8.x and RHEL 9.x, log collection is mainly completed through the following two programs:
 
-* **rsyslog** - A program that quickly collects and processes logs. It is an upgraded version of syslog. [This is its official website](https://www.rsyslog.com/)
+* **rsyslog** - A program that quickly collects and processes logs. It is an upgraded version of `syslog`. [This is its official website](https://www.rsyslog.com/)
 * **journald** - One of the components of `systemd`
 
 ## rsyslog
@@ -25,14 +25,14 @@ In RHEL 8.x and RHEL 9.x, log collection is mainly completed through the followi
 In Rocky Linux 8.x or 9.x, there are various log files in the **/var/log/** directory. Let's learn about them:
 
 * `/var/log/boot.log` - Log events that occur during the boot of the operating system. The file content is plain text.
-* `/var/log/btmp` - Record the log of login errors. The content of its file is binary and needs to be viewed using the `lastb` command.
+* `/var/log/btmp` - Record the log of login errors. To view this binary file you need to use the `lastb` command.
 * `/var/log/cron` - Record the logs related to the system's scheduled tasks. The file content is plain text.
 * `/var/log/dmegs` -Record the log of the kernel self-check after startup. The file content is plain text. You can also use the `dmegs` command to view.
-* `/var/log/lastlog` - Record the last login time of all users in the operating system. The content of its file is binary and needs to be viewed using the `lastlog` command.
+* `/var/log/lastlog` - Record the last login time of all users in the operating system. To view this binary you need to use the `lastlog` command.
 * `/var/log/maillog` - Record email related logs.
 * `/var/log/messages` - The system level log file that records the core of the operating system. The file content is plain text. When some errors occur in your operating system, you should first view the log file.
-* `/var/log/secure` - Record logs related to user identity, such as user login, `su` switch, new user added, user password change, etc
-* `/var/log/wtmp` - Records user login and logout, as well as OS startup, shutdown and restart events. The content of its file is binary and needs to be viewed using the `last` command.
+* `/var/log/secure` - Record logs related to user identity, such as user login, `su` switch, new user added, user password change, and so on.
+* `/var/log/wtmp` - Records user login and logout, and operating system startup, shutdown and restart events. To view this binary file you need to use the `last` command.
 
 For plain text files, the format is usually:
 
@@ -41,11 +41,11 @@ For plain text files, the format is usually:
 3. The name of the service or program that generated the event
 4. Specific description and explanation of the event
 5. User and terminal information
-6. Some keywords prompt (such as error, fail, info, etc.)
+6. Some keywords prompt (such as error, fail, info, and so on.)
 
 The format of logs for different purposes varies greatly, so the above format description cannot represent all logs.
 
-If rsyslog is missing from your operating system, execute the following command:
+If `rsyslog` is missing from your operating system, run the following command:
 
 ```bash
 Shell > dnf install -y rsyslog
@@ -60,11 +60,11 @@ Shell > dnf install -y rsyslog
 
 1. Load module
 2. Global Directives
-3. Rules - This part of the content will be introduced in detail.
+3. Rules - The author will show this in detail.
 
-After decades of development, rsyslog currently supports three different configuration formats:
+After decades of development, `rsyslog` currently supports three different configuration formats:
 
-1. basic (sysklogd) - This format is suitable for representing the basic configuration in a single line. 
+1. basic (sysklogd) - This format is suitable for representing the basic configuration in a single line.
 
     ```
     mail.info /var/log/mail.log
@@ -106,29 +106,29 @@ Each rule line consists of two parts:
 
 Fields are separated from each other by one or more spaces.
 
-| Facility | Describe |
-| :--- | :--- |
-| `auth` | It is used to record events related to system security, user authentication and authority management |
-| `authpriv` | Record more sensitive security events (such as sudo operations). "priv" is equivalent to private |
-| `cron` | It is used to record events related to scheduled tasks |
-| `daemon` | It is used to record the running log of the system daemon, covering service startup, running status and error information | 
-| `ftp` | It is used to record operation logs related to FTP services (such as vsftpd and proftpd), including connection, file transfer and error information |
-| `kern` | It is used to record the log generated when the Linux kernel runs, covering core events such as hardware drivers, kernel modules, and system exceptions |
-| `lpr` | It is used to record the running log of the print service, covering print task submission, queue management and error information |
-| `mail` | It is specially used to record log information of mail services (such as Postfix and Sendmail), including mail sending, receiving, queue processing and error events |
-| `news` | Rarely used |
-| `security` | same as auth |
-| `syslog` | It is used to record logs generated by the syslog service |
-| `user` | It is used to record log information generated by user space applications or users |
-| `uucp` | It is used to record Unix to Unix Copy Protocol (UUCP) related operation logs, including file transfer, remote command execution and other scenarios |
-| `local0` | Reserved |
-| `local1` | Reserved |
-| ....   | Reserved |
-| `local7` | Reserved |
+| Facility   | Describe                                                                                                                                                             |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `auth`     | Records events related to system security, user authentication and authority management                                                                              |
+| `authpriv` | Records more sensitive security events (such as `sudo` operations). "priv" is equivalent to private                                                                  |
+| `cron`     | Records events related to scheduled tasks                                                                                                                            |
+| `daemon`   | Records the running log of the system daemon, covering service startup, running status and error information                                                         |
+| `ftp`      | Records operation logs related to FTP services (such as `vsftpd` and `proftpd`), including connection, file transfer and error information                           |
+| `kern`     | Records the log generated when the Linux kernel runs, covering core events such as hardware drivers, kernel modules, and system exceptions                           |
+| `lpr`      | Records the running log of the print service, covering print task submission, queue management and error information                                    |
+| `mail`     | Records log information of mail services (such as Postfix and Sendmail), including mail sending, receiving, queue processing and error events |
+| `news`     | Rarely used                                                                                                                                                          |
+| `security` | same as `auth`                                                                                                                                                         |
+| `syslog`   | Records logs generated by the `syslog` service                                                                                                            |
+| `user`     | Records log information generated by user space applications or users                                                                                   |
+| `uucp`     | Records Unix to Unix Copy Protocol (UUCP) related operation logs, including file transfer, remote command execution and other scenarios                 |
+| `local0`   | Reserved                                                                                                                                                             |
+| `local1`   | Reserved                                                                                                                                                             |
+| ....       | Reserved                                                                                                                                                             |
+| `local7`   | Reserved                                                                                                                                                             |
 
 `*` represents all facilities. In a single line configuration, you can also use `,` and `;` Combine the facilities. `,` means logical or; `;` represents the rule delimiter.
 
-```
+```bash
 auth,authpriv.*  /var/log/auth.log
 
 # Equivalent to
@@ -137,32 +137,32 @@ auth.*   /var/log/auth.log
 authpriv.*  /var/log/auth.log
 ```
 
-```
+```bash
 kern.err;mail.alert  /var/log/critical.log
 ```
 
-| Connector |  Describe |
-| :---- | :--- |
-| `.`   | Record logs with priority higher than keywords. For example, `cron.info` means that all records in cron whose log priority is greater than info will be recorded |
-| `.=`  | Only record the corresponding keyword priority. For example, `*.=emerg` indicates that logs with priority equal to emerg in all applications will be recorded | 
-| `.!`  | It means excluded or not equal to |
+| Connector | Describe                                                                                                                                                 |
+|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `.`       | Record logs with priority higher than keywords. For example, `cron.info` means it will record in `cron` whose log priority is greater than info          |
+| `.=`      | Only record the corresponding keyword priority. For example, `*.=emerg` indicates it will record logs with priority equal to `emerg` in all applications |
+| `.!`      | It means excluded or not equal to                                                                                                                        |
 
 Priorities are sorted from low to high:
 
-| Name    |  Describe |
-| :---    | :---      |
-| `debug`   | General debugging information |
-| `info`    | Basic notification information |
-| `notice`  | General information of certain importance | 
+| Name      | Describe                                                                                                        |
+|-----------|-----------------------------------------------------------------------------------------------------------------|
+| `debug`   | General debugging information                                                                                   |
+| `info`    | Basic notification information                                                                                  |
+| `notice`  | General information of certain importance                                                                       |
 | `warning` | Warning message, this type of information cannot affect the normal operation of the operating system or service |
-| `err`     | Error messages, which can affect the normal operation of the operating system and services |
-| `crit`    | A critical state more serious than "err" |
-| `alert`   | The alert status is more serious than "crit", and the system administrator needs to deal with it immediately |
-| `emerg`   | An emergency state in which the operating system cannot be used normally |
+| `err`     | Error messages, which can affect the normal operation of the operating system and services                      |
+| `crit`    | A critical state more serious than "err"                                                                        |
+| `alert`   | The alert status is more serious than "crit", and the system administrator needs to deal with it immediately    |
+| `emerg`   | An emergency state in which the operating system is normally unusable                                           |
 
 `*` represents all log priorities.
 
-The lower the log priority, the more detailed the content recorded, and the lower the severity. The higher the log priority is, the less content is recorded, and the more serious the problem is. 
+The lower the log priority, the more detailed the content recorded, and the lower the severity. The higher the log priority is, the less content recorded, and the more serious the problem is.
 
 "action" refers to where to save or send the log:
 
@@ -174,7 +174,7 @@ The lower the log priority, the more detailed the content recorded, and the lowe
 
 ### Log rotation
 
-**Log rotation** - In order to solve the problems of storage occupation and performance degradation caused by the continuous growth of log files, we need log rotation. The specific functions are:
+**Log rotation** - To solve the problems of storage occupation and performance degradation caused by the continuous growth of log files, you need log rotation. The specific functions are:
 
 * **Rotation** - Automatically archive the current log file according to specific rules (such as time or file size), and create a new empty log file for recording to prevent the log file from being too large.
 * **Compress** - Compress archived old logs to save disk space.
@@ -184,8 +184,8 @@ We often use the `logrotate` tool to rotate logs.
 
 Naming rules for log files during rotation:
 
-* `dateext` parameter - Use date as the file suffix for log rotation. For example, during the first log rotation, the old log file "secure" will be changed to "secure-20250424" and a new "secure" will be created
-* No `dateetx` parameter - The rotation numbers are used as the file suffix after the log rotation. For example, when the first log rotation occurs, the old log file "secure" will be changed to "secure.1" and a new "secure" will be created
+* `dateext` parameter - Use date as the file suffix for log rotation. For example, during the first log rotation, the old log file "secure" will change to "secure-20250424" and `logrotate` creates a new "secure"
+* No `dateetx` parameter - Uses the rotation numbers as the file suffix after the log rotation. For example, when the first log rotation occurs, the old log file "secure" will change to "secure.1" and `logrotate` will create a new "secure"
 
 #### /etc/logrotate.conf and /etc/logrotate.d/
 
@@ -215,28 +215,28 @@ Shell > ls -l /etc/logrotate.d/
 
 Common configuration items or parameters are:
 
-| items   | describe |
-| :---    | :---     |
-| `daily`   | Define the cycle of log rotation in days |
-| `weekly`  | Define the cycle of log rotation in weeks |
-| `monthly` | Define the cycle of log rotation in months |
-| `rotate <NUMBER>` | The number of files saved after log rotation |
-| `compress` | After log rotation, the old logs are compressed |
-| `create <MODE> <OWNER> <GROUP>` | After log rotation, define the owner, group and permission of the new log file |
-| `mail <E-MAIL ADDRESS>` | After log rotation, the output content is sent to the specified email address by email |
-| `missingok` | If the log file does not exist, the warning information of the log is ignored |
-| `notifempty` | If the content of the log file is empty, log rotation will not be performed  |
-| `minsize <SIZE>` | The file size condition of log rotation, that is, log rotation occurs only when the condition is met |
-| `dateext`  | Use date as the file suffix for log rotation |
+| items                           | describe                                                                                                       |
+|---------------------------------|----------------------------------------------------------------------------------------------------------------|
+| `daily`                         | Define the cycle of log rotation in days                                                                       |
+| `weekly`                        | Define the cycle of log rotation in weeks                                                                      |
+| `monthly`                       | Define the cycle of log rotation in months                                                                     |
+| `rotate <NUMBER>`               | The number of files saved after log rotation                                                                   |
+| `compress`                      | Compression of the old logs occurs after log rotation                                                          |
+| `create <MODE> <OWNER> <GROUP>` | After log rotation, define the owner, group and permission of the new log file                                 |
+| `mail <E-MAIL ADDRESS>`         | After log rotation, sends the output content by email to the specified email address                           |
+| `missingok`                     | If the log file does not exist, ignores the warning information of the log                                     |
+| `notifempty`                    | If the content of the log file is empty, no log rotation occurs                                                |
+| `minsize <SIZE>`                | The file size condition of log rotation, that is, log rotation occurs only when it meets this condition |
+| `dateext`                       | Use date as the file suffix for log rotation                                                                   |
 
-If you install the software package from the repository, the log rotation of the application has been defined by the software package maintainer, and users usually do not need to modify the log rotation rules. If you install the application by compiling the source code, you need to consider and manually configure log rotation.
+If you install the software package from the repository, the definition of the log rotation of the application is by the software package maintainer, and users usually do not need to modify the log rotation rules. If you install the application by compiling the source code, you need to consider and manually configure log rotation.
 
 #### `logrotate` command
 
 The usage is `logrotate [OPTION...] <configfile>`
 
 * `-v` - Display the process of log rotation
-* `-f` - Whether the conditions for log rotation are met or not, a log rotation is enforced
+* `-f` - The enforcement of log rotation occurs whether meeting the conditions for log rotation or not
 
 ```bash
 Shell > logrotate -v /etc/logrotate.conf
@@ -365,9 +365,9 @@ considering log /var/log/wtmp
 
 `systemd` is not only an application used for initialization, but also takes over many system components. Use `journald` in `systemd` to take over the contents of the log.
 
-`journald` is the daemon in `systemd` that takes over the logs. You need to use the `journalctl` command to read the logs. 
+`journald` is the daemon in `systemd` that takes over the logs. You need to use the `journalctl` command to read the logs.
 
-It should be noted that `journald` do not have persistence functionality, which means they only retain and record all logs since startup. After the operating system restarts, historical logs will be deleted. By default, all temporarily saved log files are stored in the **/run/log/journal/** directory.
+Note that `journald` does not have persistence functionality, which means they only retain and record all logs since startup. After the operating system restarts, the deletion of historical logs occurs. By default, all temporarily saved log files are in the **/run/log/journal/** directory.
 
 ```bash
 Shell > tree -hugp /run/log/journal/638c6d5d2b674f77be56174469099106/
@@ -387,7 +387,7 @@ This temporary file is a binary file. You must use the `journalctl` command to p
 
 `journald` marks logs according to **priority** and **facility**:
 
-* **priority** - The importance of marking logs. Like rsyslog, the higher the priority, the less information is recorded and the more serious the problem; The lower the priority, the more information recorded, and the lighter the problem. Sort by priority from low to high:
+* **priority** - The importance of marking logs. Like `rsyslog`, the higher the priority, the less information recorded and the more serious the problem. The lower the priority, the more information recorded, and the lighter the problem. Sort by priority from low to high:
 
     | Numerical code | priority      | keywords |
     | :---           | :---          | :---     |
@@ -400,7 +400,7 @@ This temporary file is a binary file. You must use the `journalctl` command to p
     | 1              | Alert         | `alert`  |
     | 0              | Emergency     | `emerg`  |
   
-* **facility** - The facility are shown in the following table:
+* **facility** - This tables shows the facility:
 
     | Numerical code | facility  |
     | :---           | :---      |
@@ -433,35 +433,35 @@ This temporary file is a binary file. You must use the `journalctl` command to p
 
 The usage is `journalctl [OPTIONS...] [MATCHES...]`.
 
-Because there are many options, the unordered list is used to explain:
+Here is a listing of the options in an unordered list:
 
-* `-u` - Specify 'unit', which can be used multiple times in a single line command. For example `journalctl -u crond.service -u sshd.service`
+* `-u` - Specify 'unit', you can use this multiple times in a single line command. For example `journalctl -u crond.service -u sshd.service`
 * `--system` - Show messages from system services and the kernel
-* `--user` - Show messages from service of current user 
+* `--user` - Show messages from service of current user
 * `-k` - Show kernel message log from the current boot
 * `--since=DATA` or `-S` - Show entries not older than the specified date. The format of the date is "YYYY-MM-DD HH:MM:SS". For example `journalctl --since="2025-04-24 14:00:30`
 * `--until=DATA` or `-U` - Show entries not newer than the specified date. The format of the date is "YYYY-MM-DD HH:MM:SS". For example `journalctl --since="2025-04-01 05:00:10" --until="2025-04-05 18:00:30"`
 * `--list-boots` - Show terse information about recorded boots
 * `-n N` - Controls the number of entries output. If "N" is not specified, the default value is 10
 * `-p PRIORITY` - Specify priority or range of priorities. If you specify a single log priority keyword, this priority and entries higher than this priority will be displayed. For example `journalctl -p 3` or `journalctl -p err` Equivalent to `journalctl -p 0..3` or `journalctl -p emerg..err`
-* `-b` - Query the log since the current boot ID was started. Do not confuse the boot ID with the index number of the kernel boot.
+* `-b` - Query the log since the starting of the current boot ID. Do not confuse the boot ID with the index number of the kernel boot.
 * `-f` - Dynamic query log, similar to the `tail -f` command
 * `-x` - Add message explanations where available
 * `-e` - Jump to the end page of the log, often used with the `-x` option
 * `-r` - Reverse Log.
 * `--disk-usage` - Display the disk space occupied by log files
 * `--rotate` - Request immediate rotation of the journal files
-* `--vacuum-size=BYTES` - Reduces the log file to the specified size. The old log content will be deleted gradually until the specified file size is met. The supported size suffixes are K, M, G, T 
-* `--vacuum-time=TIME` - You can delete old log records by specifying a time point, that is, log records earlier than that time point will be deleted. The supported time suffixes are s, m, h, days, months, weeks, years
-* `--vacuum-files=INT` - How many log files are reserved
+* `--vacuum-size=BYTES` - Reduces the log file to the specified size. Deletes the old log content gradually until meeting the specified file size. The supported size suffixes are K, M, G, T
+* `--vacuum-time=TIME` - You can delete old log records by specifying a time point, that is, it will delete log records earlier than that time point. The supported time suffixes are s, m, h, days, months, weeks, years
+* `--vacuum-files=INT` - Indicates how many log files to reserve
 * `-N` - List all field names currently used. Users can use the "FIELD=VALUE" method to match related content. For example `journalctl _SYSTEMD_UNIT=sshd.service`.
-* `-g` or `-grep=PATTERN`- Match log content through pattern, and support regular expression. By default, if PATTERN is all lowercase, matching log content is not case sensitive. You can adjust case sensitivity through the `--case-sensitive` option
-* `--case-sensitive=[BOOLEAN]` - Adjust whether it is case sensitive.
-* `-o` or `--output=STRING` - Change the output mode of journalctl. A STRING can be short, short-precise, short-iso, short-iso-precise, short-full, short-monotonic, short-unix, verbose, export, json, json-pretty, json-sse, cat, and with-unit
+* `-g` or `-grep=PATTERN`- Match log content through pattern, and support regular expression. By default, if PATTERN is all lowercase, matching log content is not case-sensitive. You can adjust case sensitivity through the `--case-sensitive` option
+* `--case-sensitive=[BOOLEAN]` - Adjust whether it is case-sensitive.
+* `-o` or `--output=STRING` - Change the output mode of `journalctl`. A STRING can be short, short-precise, short-iso, short-iso-precise, short-full, short-monotonic, short-unix, verbose, export, json, json-pretty, json-sse, cat, and with-unit
 * `-q` or `--quiet` - Quiet output
 * `--sync` - Synchronize unwritten journal messages to disk
 
-###  /etc/systemd/journald.conf
+### /etc/systemd/journald.conf
 
 ```bash
 Shell > cat /etc/systemd/journald.conf
@@ -496,38 +496,38 @@ Shell > cat /etc/systemd/journald.conf
 #LineMax=48K
 ```
 
-Like the configuration files of other 'systemd' components, "[ ]" is used to contain the title, and below the title are specific key-value pairs. Please pay attention! There is no space on either side of the equal sign in the key-value pair. For the complete configuration manual page, refer to `man 5 journald.conf`
+Uses "[ ]" to contain the title, like the configuration files of other `systemd` components, and below the title are specific key-value pairs. There is **no space on either side of the equal sign** in the key-value pair. For the complete configuration manual page, see `man 5 journald.conf`
 
-* `Storage=` - Controls the location of journald's data store. The default value is auto.
+* `Storage=` - Controls the location of the `journald` data store. The default value is auto.
 
     * volatile - Store the log data in memory, that is, the temporary file located in the **/run/log/journal/** directory.
-    * persistent - Store the log data in the **/var/log/journal/** directory, which needs to be created manually by the user. If this directory is not writable, log data will be written to the **/run/log/journal/** directory
+    * persistent - Store the log data in the **/var/log/journal/** directory. You need to create this manually. If this directory is not writable, log data will write to the **/run/log/journal/** directory
     * auto - Similar to persistent
-    * none - Do not save any logs, but the logs forwarded to other "targets" will not be affected
+    * none - Do not save any logs, but it will not affect the logs forwarded to other "targets"
 
 * `Compress=` - Whether to enable the compression function. The default value is yes.
 * `Seal=` - Whether to use FSS (Forward Secure Sealing) to protect log entries from malicious tampering. The default value is yes.
-* `SplitMode=` - Define the basis for splitting log files. The precondition (Storage=persistent) must be met before it takes effect. The default value is uid.
+* `SplitMode=` - Define the basis for splitting log files. Meeting the precondition (Storage=persistent) must occur before it takes effect. The default value is uid.
 * `SyncIntervalSec=` - Define the time interval for synchronizing the log data in memory to the disk. Please note! This only takes effect for err, warning, notice, info, and debug log priorities. Other log priorities are immediately synchronized to disk. The default value is 5m.
 * `RateLimitIntervalSec=` - Define the time interval for log generation frequency. The default value is 30s.
-* `RateLimitBurst=` - The maximum number of entries generated by the log in a given time interval. The default value is 10000. If the log entries are greater than 10000 within a given time interval, the redundant logs will be discarded and new log entries will not be generated until the next time interval is reached.
+* `RateLimitBurst=` - The maximum number of entries generated by the log in a given time interval. The default value is 10000. If the log entries are greater than 10000 within a given time interval, it will delete the redundant logs and no generation of new log entries will occur until reaching the next time interval.
 * `SystemMaxUse=` - Controls the total size of all log files in the **/var/log/journal/** directory.
-* `SystemKeepFree=` - Controls how much disk space should be reserved in the **/var/log/journal/** directory. Based on 1024, suffixes include K, M, G, T, P, E
+* `SystemKeepFree=` - Controls how much disk space to reserve in the **/var/log/journal/** directory. Based on 1024, suffixes include K, M, G, T, P, E
 * `SystemMaxFileSize=` - Limit the size of a single file in the **/var/log/journal/** directory. If the size exceeds the specified size, log rotation will occur
-* `SystemMaxFiles=` - Specify how many files to keep in the **/var/log/journal/** directory. When the defined number is exceeded, the oldest log file will be deleted.
+* `SystemMaxFiles=` - Specify how many files to keep in the **/var/log/journal/** directory. When it exceeds the defined number, it will delete the oldest log.
 * `RuntimeMaxUse=` - Controls the total size of log data in the **/run/log/journal/** directory.
 * `RuntimeKeepFree=` - Controls how much space to reserve in the **/run/log/journal/** directory.
-* `RuntimeMaxFileSize=` - Controls the size of a single log file in the **/run/log/journal/** directory. When the specified size is reached, log rotation will occur.
-* `RuntimeMaxFiles=` - How many files of logs need to be kept in the **/run/log/journal/** directory.
-* `MaxRetentionSec=` - Define the retention time for log files, and if it exceeds the defined time, the old log files will be deleted. A value of 0 indicates that the function is turned off. The value suffix has year, month，week，day，h，m
+* `RuntimeMaxFileSize=` - Controls the size of a single log file in the **/run/log/journal/** directory. When the log reaches the specified size, log rotation will occur.
+* `RuntimeMaxFiles=` - How many files of logs need to keep in the **/run/log/journal/** directory.
+* `MaxRetentionSec=` - Define the retention time for log files, and if it exceeds the defined time, deleting of old log files occurs. A value of 0 indicates that the function is off. The value suffix has year, month，week，day，h，m
 * `MaxFileSec=` - Time based log rotation. Since file size based polling (`SystemMaxFileSize` and `RuntimeMaxFileSize`) already exists, time based log polling is usually not required. Set it to 0 to disable this function.
-* `ForwardToSyslog=` -Whether to forward the collected log messages to the traditional syslog daemon. The default value is no.
+* `ForwardToSyslog=` -Whether to forward the collected log messages to the traditional `syslog` daemon. The default value is no.
 * `ForwardToKMsg=` - Whether to forward the received log message to kmsg. The default value is no.
 * `ForwardToConsole=` - Whether to forward the received log messages to the system console. The default value is no. If it is set to yes, you also need to configure `TTYPath`
 * `ForwardToWall=` - Whether to send the received log message as a warning message to all logged in users. The default value is yes.
-* `TTYPath=` - Specify the path of the console. `ForwardToConsole=yes` is required. The default value is /dev/console
+* `TTYPath=` - Specify the path of the console. Requires `ForwardToConsole=yes`. The default value is /dev/console
 * `MaxLevelStore=` - Set the maximum log level recorded to the log file. The default value is debug
-* `MaxLevelSyslog=` - Set the maximum log level forwarded to the traditional syslog daemon. The default value is debug
+* `MaxLevelSyslog=` - Set the maximum log level forwarded to the traditional `syslog` daemon. The default value is debug
 * `MaxLevelKMsg=` - Set the maximum log level forwarded to kmsg. The default value is notice
 * `MaxLevelConsole=` - Set the maximum log level forwarded to the system console. The default value is info
 * `MaxLevelWall=` - Set the maximum log level sent to all logged in users. The default value is emerg
@@ -557,7 +557,7 @@ module(load="imjournal"             # provides access to the systemd journal
 
 **Q: Can the operating system not use `journald` for logging?**
 
-Yes. By default, `rsyslog` and `journald` can coexist in the operating system without affecting each other. For some performance oriented usage scenarios (such as data throughput and memory consumption), coexistence is not the best choice. You can make rsyslog run only in socket mode, which helps improve performance and record all logs in plain text. However, if you need structured logs, this change is not suitable. The relevant steps are as follows:
+Yes. By default, `rsyslog` and `journald` can coexist in the operating system without affecting each other. For some performance oriented usage scenarios (such as data throughput and memory consumption), coexistence is not the best choice. You can make `rsyslog` run only in socket mode, which helps improve performance and record all logs in plain text. However, if you need structured logs, this change is not suitable. The relevant steps are as follows:
 
 ```bash
 Shell > vim /etc/rsyslog.config
