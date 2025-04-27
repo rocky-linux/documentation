@@ -367,7 +367,7 @@ considering log /var/log/wtmp
 
 `journald` is the daemon in `systemd` that takes over the logs. You need to use the `journalctl` command to read the logs.
 
-Note that `journald` does not have persistence functionality, which means they only retain and record all logs since startup. After the operating system restarts, the deletion of historical logs occurs. By default, all temporarily saved log files are in the **/run/log/journal/** directory.
+Note that `journald` does not enable log persistence by default, which means they only retain and record all logs since startup. After the operating system restarts, the deletion of historical logs occurs. By default, all temporarily saved log files are in the **/run/log/journal/** directory.
 
 ```bash
 Shell > tree -hugp /run/log/journal/638c6d5d2b674f77be56174469099106/
