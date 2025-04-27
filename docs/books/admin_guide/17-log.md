@@ -571,9 +571,11 @@ module(load="imklog")
 ...
 
 Shell > vim /etc/systemd/journald.conf
-[journal]
+[Journal]
 Storage=none
 ...
 ForwardToSyslog=yes
 ...
+
+Shell > reboot
 ```
