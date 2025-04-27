@@ -1,5 +1,5 @@
 ---
-title: Anzeige der Kernelkonfiguration
+title: Anzeige der laufenden Kernel-Konfiguration
 author: David Hensley
 contributors: Steven Spencer
 tested_with: 8.5
@@ -12,7 +12,7 @@ tags:
 
 # Aktuelle Kernelkonfiguration anzeigen
 
-Der Linux-Kernel speichert laufende Kernelinformationen an zwei Stellen durch spezielle Dateisysteme: ([Eine Zusammenfassung von ihnen](https://www.landoflinux.com/linux_procfs_sysfs.html))
+Der Linux-Kernel speichert Informationen zum laufenden Kernel über spezielle Dateisysteme an zwei Orten:
 
 - Der ältere [procfs](https://man7.org/linux/man-pages/man5/procfs.5.html), der `/proc` mountet (vergewissern Sie sich über `mount -l -t proc`)
 - Die neueren [sysfs](https://man7.org/linux/man-pages/man5/sysfs.5.html) die `/sys` mountet (überprüfen mit `mount -l -t sysfs`)
