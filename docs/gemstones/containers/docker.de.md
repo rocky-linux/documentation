@@ -1,5 +1,5 @@
 ---
-title: Docker - Engine Installieren
+title: Docker - Engine-Installation
 author: Wale Soyinka
 contributors: Neel Chauhan, Srinivas Nishant Viswanadha, Stein Arne Storslett, Ganna Zhyrnova, Steven Spencer
 date: 2021-08-04
@@ -24,7 +24,7 @@ sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker
 Installieren der neuesten Version von Docker Engine, `containerd` und Docker Compose:
 
 ```bash
-sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
 ## Starten und aktivieren vom Systemd-Docker-Dienst (`dockerd`)
@@ -56,8 +56,9 @@ Um der neuen Gruppe zugewiesen zu werden, müssen Sie sich ab- und erneut anmeld
 ### Anmerkungen
 
 ```docker
-docker-ce : Dieses Paket stellt die zugrunde liegende Technologie für den Bau und den Betrieb von Docker-Containern (dockerd) zur Verfügung
-docker-ce-cli: Stellt die Kommandozeilenschnittstelle (CLI) Client Docker (Docker) zur Verfügung
-containerd.io : Stellt die Container-Laufzeit (runc) zur Verfügung
-docker-compose-plugin: Ein Plugin, das den `docker compose' Sub-Kommando zur Verfügung stellt 
+docker-ce               : This package provides the underlying technology for building and running docker containers (dockerd) 
+docker-ce-cli           : Provides the command line interface (CLI) client docker tool (docker)
+containerd.io           : Provides the container runtime (runc)
+docker-buildx-plugin    : Docker Buildx plugin for the Docker CLI
+docker-compose-plugin   : A plugin that provides the 'docker compose' subcommand 
 ```
