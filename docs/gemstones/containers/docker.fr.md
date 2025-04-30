@@ -24,7 +24,7 @@ sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker
 Installez la dernière version de Docker Engine, `containerd` et Docker Compose en utilisant :
 
 ```bash
-sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
 ## Démarrez le service docker de systemd (`dockerd`) et activez-le pour le démarrage automatique
@@ -56,8 +56,9 @@ Pour être affecté au nouveau groupe, vous devez vous déconnecter et vous reco
 ### Remarques
 
 ```docker
-docker-ce : ce paquet fournit la technologie sous-jacente pour construire et exécuter des docker containers (dockerd) 
-docker-ce-cli : fournit l'interface de ligne de commande (CLI) client docker tool (docker)
-containerd.io : fournit le runtime conteneur (runc)
-docker-compose-plugin : un plugin qui fournit la sous-commande 'docker compose' 
+docker-ce               : This package provides the underlying technology for building and running docker containers (dockerd) 
+docker-ce-cli           : Provides the command line interface (CLI) client docker tool (docker)
+containerd.io           : Provides the container runtime (runc)
+docker-buildx-plugin    : Docker Buildx plugin for the Docker CLI
+docker-compose-plugin   : A plugin that provides the 'docker compose' subcommand 
 ```
