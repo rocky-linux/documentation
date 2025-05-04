@@ -1,5 +1,5 @@
 ---
-title: Installation de Terminator — terminal emulator
+title: Installation de Terminator — un émulateur de terminal
 author: Andrew Scott
 contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 9.4

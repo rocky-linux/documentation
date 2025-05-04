@@ -1,5 +1,5 @@
 ---
-title: Terminator ein Terminal Emulator
+title: Terminator – ein Terminal Emulator
 author: Andrew Scott
 contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 9.4
@@ -7,7 +7,7 @@ tested with: 9.4
 
 ## Einleitung
 
-Terminator ist ein auf GNOME Terminal basierender Terminal-Emulator, der erweiterte Funktionen wie viele Terminal-Felder, das Gruppieren von Terminals und das Speichern Ihrer bevorzugten Layouts unterstützt.
+Terminator ist ein auf GNOME Terminal basierender Terminal-Emulator, der erweiterte Funktionen wie Terminal-Felder, das Gruppieren von Terminals und das Speichern Ihrer bevorzugten Layouts unterstützt.
 
 ## Voraussetzungen
 
@@ -76,6 +76,6 @@ Obwohl ++ctrl+alt+"T"++ die traditionelle Wahl ist, können Sie jede beliebige K
 
 ![Add Custom Shortcut dialog completed for Terminator](images/terminator-07.png)
 
-## Zusammenfassung
+## Fazit
 
 Terminator ist ein leistungsstarker Terminal-Emulator sowohl für normale als auch für erfahrene Benutzer. Diese Beispiele stellen nur einen kleinen Teil der Fähigkeiten von `Terminator` dar. Während dieses Handbuch einen Überblick über die Installationsschritte für Rocky Linux bietet, möchten Sie vielleicht einen Blick auf die [Dokumentation](https://gnome-terminator.readthedocs.io/en/latest/) werfen, um eine vollständige Erklärung der Funktionen von Terminator zu erhalten.
