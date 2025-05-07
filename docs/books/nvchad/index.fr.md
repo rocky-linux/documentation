@@ -11,7 +11,7 @@ tags:
 
 # :material-book-open-page-variant-outline: Introduction
 
-Tout au long de ce livre, vous trouverez des moyens d'implémenter Neovim, avec NvChad, pour créer un environment IDE (**I**ntegrated **D**eveloppement **E**).
+Tout au long de ce livre, vous trouverez des moyens d'implémenter Neovim, avec NvChad, pour créer un environnement IDE (**I**ntegrated **D**evelopment **E**nvironment).
 
 Nous disons "moyens" car il y a de nombreuses possibilités. L'auteur se concentre ici sur l'utilisation de ces outils pour écrire en markdown, mais si markdown n'est pas votre focus, ne vous inquiétez pas et survolez simplement les détails de markdown. Si vous n'êtes pas familier avec l'un de ces outils (NvChad ou Neovim), alors ce livre vous donnera une introduction aux deux, et si vous parcourez ces documents, vous réaliserez bientôt que vous pouvez configurer cet environnement pour être une aide considérable pour n'importe quel besoin de programmation ou d'écriture de scripts.
 
