@@ -85,7 +85,7 @@ Wenn Sie die Möglichkeit haben, dass das System Skripte automatisch zu einem be
 
 ### Eigenen `cron` erstellen
 
-Natürlich, wenn die automatisierten zufälligen Zeiten in [für Workstations oberhalb](#for-workstations) nicht gut funktionieren, und die geplanten Zeiten in den [für Server oben](#for-servers), dann können Sie Ihre eigenen erstellen. In diesem Beispiel gehen wir davon aus, dass Sie dies als root tun. [Siehe Voraussetzungen](#assumptions) Um dies zu tun, geben Sie folgendes ein:
+Wenn die automatisierten, zufälligen Zeiten für Arbeitsstationen oder die geplanten Zeiten für Server nicht gut funktionieren, können Sie Ihre eigenen erstellen. In diesem Beispiel gehen wir davon aus, dass Sie dies als root tun. Geben Sie dazu Folgendes ein:
 
 `crontab -e`
 
