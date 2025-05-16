@@ -42,12 +42,12 @@ Saisissez **ip_address:8080** dans votre navigateur Web (en supposant que vous a
 
 Depuis la version 4.4, Podman est livré avec [Quadlet](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html), un générateur systemd qui peut générer des fichiers `unit` pour les services systemd rootless et rootful.
 
-Les fichiers Quadlet pour les services Rootful peuvent être placés dans
+Les fichiers Quadlet pour les services `rootful` peuvent être placés dans
 
 - `/etc/containers/systemd/`
 - `/usr/share/containers/systemd/`
 
-tandis que les fichiers rootless peuvent être placés dans l'un d'eux
+tandis que les fichiers `rootless` peuvent être placés dans l'un d'eux
 
 - `$XDG_CONFIG_HOME/containers/systemd/` ou bien `~/.config/containers/systemd/`
 - `/etc/containers/systemd/users/$(UID)`
@@ -63,7 +63,7 @@ PublishPort=8080:80
 
 De nombreuses autres [options](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html#container-units-container) sont disponibles.
 
-Um den Generator auszuführen und systemd mitzuteilen, dass ein neuer Dienst vorhanden ist, führen Sie Folgendes aus:
+Pour exécuter le générateur et informer systemd qu'il existe un nouveau service, exécutez la commande suivante :
 
 ```bash
 systemctl --user daemon-reload
@@ -81,7 +81,7 @@ systemctl --user start nextcloud.service
 Si vous avez créé un fichier dans l'un des répertoires des services root, omettez l'indicateur `--user`.
 ```
 
-Um den Container beim Systemstart oder bei der Benutzeranmeldung automatisch auszuführen, können Sie Ihrer Datei `nextcloud.container` einen weiteren Abschnitt hinzufügen:
+Pour exécuter automatiquement le conteneur au démarrage du système ou à la connexion de l'utilisateur, vous pouvez ajouter une autre section à votre fichier `nextcloud.container` :
 
 ```systemd
 [Install]
