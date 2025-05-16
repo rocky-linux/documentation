@@ -283,13 +283,13 @@ WantedBy=multi-user.target
 
 ### Utilizzo degli obiettivi di sistema
 
-Su Rocky8/RHEL8, il concetto di runlevel è stato sostituito dagli obiettivi `systemd`.
+I target `di systemd` sostituiscono il concetto di livelli di esecuzione su SysV o Upstart.
 
 La rappresentazione dei target di `systemd` è per unità di destinazione. Le unità di destinazione terminano con l'estenzione `.target` e il loro unico scopo è di raggruppare altre unità `systemd` in una catena di dipendenze.
 
-Ad esempio, l'unità `graphical.target`, che viene utilizzata per avviare una sessione grafica, inizializza i servizi di sistema come il **GNOME display manager** (`gdm.service`) o l'**accounts service** (`accounts-daemon.service`) e attiva anche l'unità `multi-user.target`.
+Ad esempio, l'unità `graphical.target` che avvia una sessione grafica avvia servizi di sistema come il **display manager di GNOME** (`gdm.service`) o il **servizio account** (`accounts-daemon.service`) e attiva anche l'unità `multi-user.target.`. Per visualizzare le dipendenze di un determinato "target", eseguire il comando `systemctl list-dependencies`. (Ad esempio, `systemctl list-dependencies multi-user.target`).
 
-Allo stesso modo, l'unità `multi-user.target` inizializza altri servizi di sistema essenziali, come **NetworkManager** (`NetworkManager.service`) o **D-Bus** (`dbus.service`) e attiva un'altra unità di destinazione denominata `basic.target`.
+`sysinit.target` e `basic.target` sono punti di controllo durante il processo di avvio. Sebbene uno degli obiettivi di `systemd` sia quello di avviare i servizi di sistema in parallelo, è necessario avviare i "target" di alcuni servizi e funzionalità prima di avviare altri servizi e "target". Qualsiasi errore in `sysinit.target` o in `basic target` farà fallire l'inizializzazione di `systemd`. In questo momento, il terminale potrebbe essere entrato in "modalità di emergenza"`(emergency.target`).
 
 | Unità di destinazione. | Descrizione                                             |
 | ---------------------- | ------------------------------------------------------- |
@@ -362,7 +362,7 @@ systemctl isolate name.target
 
 La **Modalità di ripristino** fornisce un ambiente semplice per riparare il sistema nei casi in cui è impossibile eseguire un normale processo di avvio.
 
-In `rescue mode`, il sistema tenta di montare tutti i file system locali e avviare diversi servizi di sistema importanti, ma non abilita un'interfaccia di rete o consente ad altri utenti di connettersi al sistema contemporaneamente.
+In `rescue mode`, il sistema tenta di montare tutti i file system locali e di avviare diversi servizi di sistema importanti, ma non abilita un'interfaccia di rete né consente ad altri utenti di connettersi al sistema contemporaneamente.
 
 Su Rocky 8, la `rescue mode` è equivalente al vecchio `single user mode` e richiede la password di root.
 
@@ -372,7 +372,7 @@ Per modificare la destinazione corrente immettere `rescue mode` nella sessione c
 systemctl rescue
 ```
 
-**Modalità di emergenza** fornisce l'ambiente più minimalista possibile e consente di riparare il sistema anche in situazioni in cui il sistema non è in grado di inserire la modalità di salvataggio. Nella modalità di emergenza, il sistema monta il file system root solo per la lettura. Non tenterà di montare qualsiasi altro file system locale, non attiverà alcuna interfaccia di rete e inizializzerà alcuni servizi essenziali.
+**Modalità di emergenza** fornisce l'ambiente più minimalista possibile e consente di riparare il sistema anche in situazioni in cui il sistema non è in grado di inserire la modalità di salvataggio. In modalità di emergenza, il sistema operativo monta il file system root con l'opzione di sola lettura. Non tenterà di montare qualsiasi altro file system locale, non attiverà alcuna interfaccia di rete e inizializzerà alcuni servizi essenziali.
 
 Per modificare il target corrente e immettere la modalità di emergenza nella sessione corrente:
 
@@ -397,13 +397,18 @@ Il comando `systemctl` sostituisce alcuni dei comandi di gestione dell'alimentaz
 
 I file di registro possono, oltre a `rsyslogd`, essere gestiti anche dal demone `journald` che è un componente di `systemd`.
 
-Il demone `journald` cattura i messaggi Syslog, i messaggi di registro del kernel, i messaggi dal disco RAM iniziale e dall'inizio dell'avvio, nonché i messaggi scritti nell'output standard e l'output di errore standard di tutti i servizi, quindi li indicizza e li rende disponibili all'utente.
+Il demone `journald` è responsabile dell'acquisizione dei seguenti tipi di messaggi di log:
 
-Il formato del file di log nativo, che è un file binario strutturato e indicizzato, migliora le ricerche e consente un funzionamento più rapido. Memorizza anche informazioni sui metadati, come i timestamp o gli ID utente.
+* Messaggi Syslog
+* Messaggi di log del kernel
+* Initramfs e i registri di avvio del sistema
+* Informazioni sull'uscita standard (stdout) e sull'uscita standard di errore (stderr) di tutti i servizi
+
+Dopo l'acquisizione, `journald` indicizzerà questi registri e li fornirà agli utenti attraverso un meccanismo di archiviazione strutturato Questo meccanismo archivia i registri in formato binario, supporta il tracciamento degli eventi in ordine cronologico e fornisce funzionalità flessibili di filtraggio, ricerca e output in diversi formati (come testo/JSON).
 
 ### comando `journalctl`
 
-Il comando `journalctl` visualizza i file di registro.
+Il comando `journalctl` viene utilizzato per elaborare i registri, ad esempio per visualizzare i file di registro, filtrare i registri e controllare le voci di output.
 
 ```bash
 journalctl
@@ -411,9 +416,9 @@ journalctl
 
 Il comando elenca tutti i file di registro generati sul sistema. La struttura di questo output è simile a quella utilizzata in `/var/log/messages/` ma offre alcuni miglioramenti:
 
-* la priorità delle voci è segnata visivamente;
-* i timestamp sono convertiti nella zona oraria locale del sistema;
-* vengono visualizzati tutti i dati registrati, inclusi i registri rotativi;
+* mostra che la priorità delle voci è segnalata visivamente
+* mostra la conversione dei timestamp nel fuso orario locale del sistema
+* vengono visualizzati tutti i dati registrati, compresi i registri a rotazione
 * l'inizio di un avvio è contrassegnato da una linea speciale.
 
 #### Uso del display continuo
