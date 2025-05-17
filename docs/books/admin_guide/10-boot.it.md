@@ -404,17 +404,17 @@ Il demone `journald` è responsabile dell'acquisizione dei seguenti tipi di mess
 * Initramfs e i registri di avvio del sistema
 * Informazioni sull'uscita standard (stdout) e sull'uscita standard di errore (stderr) di tutti i servizi
 
-Dopo l'acquisizione, `journald` indicizzerà questi registri e li fornirà agli utenti attraverso un meccanismo di archiviazione strutturato Questo meccanismo archivia i registri in formato binario, supporta il tracciamento degli eventi in ordine cronologico e fornisce funzionalità flessibili di filtraggio, ricerca e output in diversi formati (come testo/JSON).
+Dopo l'acquisizione, `journald` indicizzerà questi registri e li fornirà agli utenti attraverso un meccanismo di archiviazione strutturato Questo meccanismo archivia i registri in formato binario, supporta il tracciamento degli eventi in ordine cronologico e fornisce funzionalità flessibili di filtraggio, ricerca e output in diversi formati (come testo/JSON). Si noti che `journald` non abilita la persistenza dei registri per impostazione predefinita, il che significa che questo componente conserva e registra solo tutti i registri dall'avvio. Dopo il riavvio del sistema operativo, si verifica la cancellazione dei registri storici. Per impostazione predefinita, tutti i file di registro salvati temporaneamente si trovano nella directory **/run/log/journal/**.
 
 ### comando `journalctl`
 
-Il comando `journalctl` viene utilizzato per elaborare i registri, ad esempio per visualizzare i file di registro, filtrare i registri e controllare le voci di output.
+Il comando `journalctl` viene utilizzato per analizzare i file di log salvati in formato binario, ad esempio per visualizzare i file di log, filtrare i log e controllare le voci di output.
 
 ```bash
 journalctl
 ```
 
-Il comando elenca tutti i file di registro generati sul sistema. La struttura di questo output è simile a quella utilizzata in `/var/log/messages/` ma offre alcuni miglioramenti:
+Se non si inserisce il comando con altre opzioni, il contenuto del registro di uscita è simile al file `/var/log/messages`, ma `journalctl` offre i seguenti miglioramenti:
 
 * mostra che la priorità delle voci è segnalata visivamente
 * mostra la conversione dei timestamp nel fuso orario locale del sistema
@@ -449,3 +449,5 @@ journalctl -p priority
 * crit (2),
 * alert (1),
 * and emerg (0).
+
+Per saperne di più sul contenuto dei log, in questo [documento](./17-log.md) sono disponibili introduzioni e descrizioni più complete.
