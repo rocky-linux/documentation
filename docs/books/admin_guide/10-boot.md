@@ -415,17 +415,17 @@ The `journald` daemon is responsible for capturing the following types of log me
 * Initramfs and system startup logs
 * Standard output (stdout) and standard error output (stderr) information of all services
 
-After capture, `journald` will index these logs and provide them to users through structured storage mechanism This mechanism stores logs in binary format, supports tracking events in chronological order, and provides flexible filtering, searching and output capabilities in multiple formats (such as text/JSON).
+After capture, `journald` will index these logs and provide them to users through structured storage mechanism This mechanism stores logs in binary format, supports tracking events in chronological order, and provides flexible filtering, searching and output capabilities in multiple formats (such as text/JSON). Note that `journald` does not enable log persistence by default, which means this component only retain and record all logs since startup. After the operating system restarts, the deletion of historical logs occurs. By default, all temporarily saved log files are in the **/run/log/journal/** directory.
 
 ### `journalctl` command
 
-The `journalctl` command is used to process logs, such as viewing log files, filtering logs, and controlling output entries.
+The `journalctl` command is used to parse log files saved in binary, such as viewing log files, filtering logs, and controlling output entries.
 
 ```bash
 journalctl
 ```
 
-The command lists all log files generated on the system. The structure of this output is similar to that used in `/var/log/messages/` but it offers some improvements:
+If you do not enter the command with any other options, the output log content is similar to the `/var/log/messages` file, but `journalctl` provides the following improvements:
 
 * shows the priority of entries is visually marked
 * shows the conversion of timestamps to the local time zone of your system
@@ -459,4 +459,6 @@ You must replace priority with one of the following keywords (or a number):
 * err (3),
 * crit (2),
 * alert (1),
-* and emerg (0).
+* emerg (0).
+
+If you want to know more about the content of logs, there are more comprehensive introductions and descriptions in [this document](./17-log.md).
