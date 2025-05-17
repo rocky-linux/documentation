@@ -425,7 +425,7 @@ The `journalctl` command is used to parse log files saved in binary, such as vie
 journalctl
 ```
 
-If the command does not entry any other options, the output log content is similar to the `/var/log/messages` file, but `journalctl` provides the following improvements:
+If you do not enter the command with any other options, the output log content is similar to the `/var/log/messages` file, but `journalctl` provides the following improvements:
 
 * shows the priority of entries is visually marked
 * shows the conversion of timestamps to the local time zone of your system
@@ -461,4 +461,4 @@ You must replace priority with one of the following keywords (or a number):
 * alert (1),
 * emerg (0).
 
-If you are interested in the content of logs, there are more comprehensive introductions and descriptions in [this document](./17-log.md).
+If you want to know more about the content of logs, there are more comprehensive introductions and descriptions in [this document](./17-log.md).
