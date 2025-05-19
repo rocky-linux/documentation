@@ -190,10 +190,10 @@ author: Wale Soyinka contributors: Steven Spencer, Ganna Zhyrnova tested on: В�
 
     Зверніть увагу на деякі властивості та їхні значення, налаштовані в модулі `multi-user.target`. Такі властивості, як - Description, Documentation, Requires, After, та інші.
 
-5. Юніт `basic.target` указана як значення властивості `Requires` для `multi-user.target`. Перегляньте файл блоку для basic.target. Впишіть:
+5. Юніт `basic.target` указана як значення властивості `Requires` для `multi-user.target`. Перегляньте файл модуля для `basic.target`. Впишіть:
 
     ```bash
-    [root@localhost ~]# systemctl cat multi-user.target
+    [root@localhost ~]# systemctl cat basic.target
     # /usr/lib/systemd/system/basic.target
     [Unit]
     Description=Basic System

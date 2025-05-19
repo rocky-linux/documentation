@@ -103,7 +103,7 @@ Neovim є відгалуженням редактора ==Vim==. Він наро
     Спочатку ми встановлюємо пакети, необхідні для компіляції:
 
     ```bash
-    dnf install ninja-build libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip patch gettext curl git
+    dnf install --enablerepo=crb ninja-build libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip patch gettext curl git
     ```
 
 
