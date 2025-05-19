@@ -1,7 +1,7 @@
 ---
 title: Log management
 author: tianci li
-contributors: Ganna Zgyrnova
+contributors: Ganna Zgyrnova, Steven Spencer
 tags:
   - rsyslog
   - journald
@@ -367,7 +367,7 @@ considering log /var/log/wtmp
 
 `journald` is the daemon in `systemd` that takes over the logs. You need to use the `journalctl` command to read the logs.
 
-Note that `journald` does not enable log persistence by default, which means it only retains and records all logs since startup. After the operating system restarts, historical logs are deleted. By default, all temporarily saved log files are in the **/run/log/journal/** directory.
+Note that `journald` does not enable log persistence by default, which means it only retains and records all logs since startup. After the operating system restarts, deletion of historical logs occurs. By default, all temporarily saved log files are in the **/run/log/journal/** directory.
 
 ```bash
 Shell > tree -hugp /run/log/journal/638c6d5d2b674f77be56174469099106/
@@ -510,7 +510,7 @@ Uses "[ ]" to contain the title, like the configuration files of other `systemd`
 * `SplitMode=` - Define the basis for splitting log files. Meeting the precondition (Storage=persistent) must occur before it takes effect. The default value is uid.
 * `SyncIntervalSec=` - Define the time interval for synchronizing the log data in memory to the disk. Please note! This only occurs for err, warning, notice, info, and debug log priorities. Other log priorities are immediately synchronized to disk. The default value is 5m.
 * `RateLimitIntervalSec=` - Define the time interval for log generation frequency. The default value is 30s.
-* `RateLimitBurst=` - The maximum number of entries the log generates in a given time interval. The default value is 10000. If the log entries are greater than 10000 within a given time interval, it will delete the redundant logs, and no new log entries will be generated until the next time interval.
+* `RateLimitBurst=` - The maximum number of entries the log generates in a given time interval. The default value is 10000. If the log entries are greater than 10000 within a given time interval, it will delete the redundant logs, and it will create no new log entries until the next time interval.
 * `SystemMaxUse=` - Controls the total size of all log files in the **/var/log/journal/** directory.
 * `SystemKeepFree=` - Controls how much disk space to reserve in the **/var/log/journal/** directory. Based on 1024, suffixes include K, M, G, T, P, E
 * `SystemMaxFileSize=` - Limit the size of a single file in the **/var/log/journal/** directory. If the size exceeds the specified size, log rotation will occur
@@ -519,7 +519,7 @@ Uses "[ ]" to contain the title, like the configuration files of other `systemd`
 * `RuntimeKeepFree=` - Controls how much space to reserve in the **/run/log/journal/** directory.
 * `RuntimeMaxFileSize=` - Controls the size of a single log file in the **/run/log/journal/** directory. When the log reaches the specified size, log rotation will occur.
 * `RuntimeMaxFiles=` - How many files of logs need to be kept in the **/run/log/journal/** directory.
-* `MaxRetentionSec=` - Define the retention time for log files; if it exceeds the defined time, old log files are deleted. A value of 0 indicates that the function is off. The value suffix has year, month，week, day，h，m
+* `MaxRetentionSec=` - Define the retention time for log files; if it exceeds the defined time, it deletes old log files. A value of 0 indicates that the function is off. The value suffix has year, month，week, day，h，m
 * `MaxFileSec=` - Time-based log rotation. Since file size based polling (`SystemMaxFileSize` and `RuntimeMaxFileSize`) already exists, time based log polling is usually not required. Set it to 0 to disable this function.
 * `ForwardToSyslog=` -Whether to forward the collected log messages to the traditional `syslog` daemon. The default value is no.
 * `ForwardToKMsg=` - Whether to forward the received log message to kmsg. The default value is no.
@@ -530,7 +530,7 @@ Uses "[ ]" to contain the title, like the configuration files of other `systemd`
 * `MaxLevelSyslog=` - Set the maximum log level forwarded to the traditional `syslog` daemon. The default value is debug
 * `MaxLevelKMsg=` - Set the maximum log level forwarded to kmsg. The default value is notice
 * `MaxLevelConsole=` - Set the maximum log level forwarded to the system console. The default value is info
-* `MaxLevelWall=` - Set the maximum log level sent to all logged-in users. The default value is emergent
+* `MaxLevelWall=` - Set the maximum log level sent to all logged-in users. The default value is `emerg`
 * `LineMax=` - The maximum allowable length (bytes) of each log record when converting the log stream to log records. With 1024 as the base, the suffix can be K, M, G, or T. The default value is 48K
 
 ## Other instructions
