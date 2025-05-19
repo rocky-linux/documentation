@@ -8,7 +8,7 @@ tags:
   - proxies
 ---
 
-# Tor relay
+# Tor Relay
 
 ## Вступ
 
