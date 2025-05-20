@@ -1,7 +1,7 @@
 ---
 title: Log management
 author: tianci li
-contributors: Ganna Zgyrnova, Steven Spencer
+contributors: Ganna Zhyrnova, Steven Spencer
 tags:
   - rsyslog
   - journald
