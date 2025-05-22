@@ -4,7 +4,7 @@ author: Emre Camalan
 contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.9, 9.3
 tags:
-  - Vmware
+  - VMware
   - Tools
 ---
 
