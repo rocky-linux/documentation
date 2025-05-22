@@ -1,5 +1,5 @@
 ---
-title: bash – Ébauche de script
+title: bash – Ébauche de Script
 author: Steven Spencer
 contributors: Ezequiel Bruni
 ---
