@@ -99,7 +99,7 @@ Users in this file are not allowed to use `cron`.
 
 If it is empty, all users can use `cron`.
 
-By default, `/etc/cron.deny` exists and is empty and `/etc/cron.allow` does not exist.
+By default, `/etc/cron.deny` exists and is empty and `/etc/cron.allow` does not exist. When two files exist at the same time, the system only uses the `cron.allow` content as the judgment basis and completely ignores the existence of `cron.deny` files.
 
 ### Allowing a user
 
@@ -112,20 +112,20 @@ user1
 
 ### Prohibit a user
 
-Only **user2** will not be able to use `cron`.
+Only **user2** will not be able to use `cron`. Note that the `/etc/cron.allow` file cannot exist.
 
 ```bash
 [root]# vi /etc/cron.deny
 user2
 ```
 
-`cron.allow` must not be present.
+If the same user exists in `/etc/cron.deny` and `/etc/cron.allow` at the same time, the user can use cron normally.
 
 ## Scheduling tasks
 
-When a user schedules a task, a file with his name is created under `/var/spool/cron/`.
+When a user is assigned a scheduled task, a file with his name is created under `/var/spool/cron/`.
 
-This file contains all the information the `crond` needs to know regarding all tasks created by this user, the commands or programs to run, and when to run them (hour, minute, day ...).
+This file contains all the information the `crond` needs to know regarding all tasks created by this user, the commands or programs to run, and when to run them (hour, minute, day ...). Note that the minimum time unit that `crond` can recognize is 1 minute. There are similar scheduling tasks in RDBMS (such as MySQL), in which time-based scheduling tasks are called "Event Scheduler", the minimum time unit it can recognize is 1 second, and event based scheduling tasks are called "Triggers".
 
 ![Cron tree](images/tasks-001.png)
 
