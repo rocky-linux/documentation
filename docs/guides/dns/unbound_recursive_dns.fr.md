@@ -52,6 +52,7 @@ server:
     interface: ::
     access-control: 192.168.0.0/16 allow
     access-control: 2001:db8::/64 allow
+    chroot: ""
 
 forward-zone:
     name: "."
