@@ -4,13 +4,13 @@ title: Task Management
 
 # Task Management
 
-In this chapter you will learn how to manage scheduled tasks.
+In this chapter, you will learn how to manage scheduled tasks.
 
 ****
 
 **Objectives**: In this chapter, future Linux administrators will learn how to:
 
-:heavy_check_mark: Linux deals with the tasks scheduling;  
+:heavy_check_mark: Linux deals with the task scheduling;  
 :heavy_check_mark: restrict the use of **`cron`** to certain users;  
 :heavy_check_mark: schedule tasks.  
 
@@ -27,7 +27,7 @@ In this chapter you will learn how to manage scheduled tasks.
 
 The scheduling of tasks is managed with the `cron` utility. It allows the periodic execution of tasks.
 
-It is reserved to the administrator for system tasks but can be used by normal users for tasks or scripts that they have access to. To access the `cron` utility, we use: `crontab`.
+It is reserved for administrators to perform system tasks, but can also be used by normal users for tasks or scripts that they have access to. To access the `cron` utility, we use: `crontab`.
 
 The `cron` service is used for:
 
@@ -44,7 +44,7 @@ The `cron` service is used for:
 
 ## How the service works
 
-The `cron` service is run by a `crond` daemon present in memory.
+A `crond` daemon present runs the `cron` service in memory.
 
 To check its status:
 
@@ -56,7 +56,7 @@ To check its status:
 
     If the `crond` daemon is not running, you will have to initialize it manually and/or automatically at startup. Indeed, even if tasks are scheduled, they will not be launched.
 
-Initialization of the `crond` daemon in manual:
+Initialization of the `crond` daemon in the manual:
 
 ```bash
 [root]# systemctl {status|start|restart|stop} crond
@@ -70,7 +70,7 @@ Initialization of the `crond` daemon at startup:
 
 ## Security
 
-In order to implement a schedule, a user must have permission to use the `cron` service.
+To implement a schedule, a user must have permission to use the `cron` service.
 
 This permission varies according to the information contained in the files below:
 
@@ -123,9 +123,9 @@ If the same user exists in `/etc/cron.deny` and `/etc/cron.allow` at the same ti
 
 ## Scheduling tasks
 
-When a user schedules a task, there is a file created with his name under `/var/spool/cron/`.
+When a user schedules a task, there is a file created with their name under `/var/spool/cron/`.
 
-This file contains all the information the `crond` needs to know regarding all tasks created by this user, the commands or programs to run, and when to run them (hour, minute, day ...). Note that the minimum time unit that `crond` can recognize is 1 minute. There are similar scheduling tasks in RDBMS (such as MySQL), in which time-based scheduling tasks are called "Event Scheduler", the minimum time unit it can recognize is 1 second, and event based scheduling tasks are called "Triggers".
+This file contains all the information the `crond` needs to know regarding tasks created by this user, including the commands or programs to run, and the schedule for running them (hour, minute, day, etc.). Note that the minimum time unit that `crond` can recognize is 1 minute. There are similar scheduling tasks in RDBMS (such as MySQL), where time-based scheduling tasks are referred to as the "Event Scheduler." The minimum time unit it can recognize is 1 second, and event-based scheduling tasks are referred to as "Triggers."
 
 ![Cron tree](images/tasks-001.png)
 
@@ -152,11 +152,11 @@ Example:
 
 !!! Warning
 
-    `crontab` without option deletes the old schedule file and waits for the user to enter new lines. You have to press <kbd>ctrl</kbd> + <kbd>d</kbd> to exit this editing mode.
+    `crontab` without options deletes the old schedule file and waits for the user to enter new lines. You have to press <kbd>ctrl</kbd> + <kbd>d</kbd> to exit this editing mode.
 
-    Only `root` can use the `-u user` option to manage another user's schedule file.
+    Only the `root` can use the `-u user` option to manage another user's schedule file.
 
-    The example above allows root to schedule a task for user1.
+    The example above allows the root to schedule a task for user1.
 
 ### Uses of `crontab`
 
@@ -181,7 +181,7 @@ The `crontab` file is structured according to the following rules.
 
 * Each line of this file corresponds to a schedule;
 * Each line has six fields, 5 for the time and 1 for the order;
-* Each field is separated by a space or a tab;
+* A space or a tab separates each field;
 * Each line ends with a carriage return;
 * A `#` at the beginning of the line comments it.
 
@@ -202,9 +202,9 @@ The `crontab` file is structured according to the following rules.
 
 !!! Warning
 
-    The tasks to be executed must use absolute paths and if possible, use redirects.
+    The tasks to be executed must use absolute paths, and if possible, use redirects.
 
-In order to simplify the notation for the definition of time, it is advisable to use special symbols.
+To simplify the notation for the definition of time, it is advisable to use special symbols.
 
 | Wildcards | Description                      |
 |---------------|----------------------------------|
@@ -221,13 +221,13 @@ Script executed on April 15 at 10:25 am:
 25 10 15 04 * /root/scripts/script > /log/…
 ```
 
-Run at 11am and then at 4pm every day:
+Run at 11 am and then at 4 pm every day:
 
 ```bash
 00 11,16 * * * /root/scripts/script > /log/…
 ```
 
-Run every hour from 11am to 4pm every day:
+Run every hour from 11 am to 4 pm every day:
 
 ```bash
 00 11-16 * * * /root/scripts/script > /log/…
