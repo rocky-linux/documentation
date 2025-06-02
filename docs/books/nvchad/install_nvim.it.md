@@ -103,7 +103,7 @@ Come per Vim, Neovim richiede una conoscenza di base dei suoi comandi e delle su
     Per prima cosa installiamo i pacchetti necessari alla compilazione:
 
     ```bash
-    dnf install ninja-build libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip patch gettext curl git
+    dnf install --enablerepo=crb ninja-build libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip patch gettext curl git
     ```
 
 
