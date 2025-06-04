@@ -4,13 +4,13 @@ title: Gestione dei compiti
 
 # Gestione dei compiti
 
-In questo capitolo imparerai come gestire le attività programmate.
+In questo capitolo si spiega come gestire le attività pianificate.
 
 ****
 
 **Obiettivi** : In questo capitolo, futuri amministratori Linux impareranno come:
 
-:heavy_check_mark: Linux si occupa della pianificazione dei compiti;  
+:heavy_check_mark: Linux si occupa dello scheduling dei task;  
 :heavy_check_mark: limitare l'uso di **`cron`** a determinati utenti;  
 :heavy_check_mark: pianificare le attività.
 
@@ -27,7 +27,7 @@ In questo capitolo imparerai come gestire le attività programmate.
 
 La pianificazione delle attività è gestita con l'utilità `cron`. Essa permette l'esecuzione periodica dei compiti.
 
-È riservata all'amministratore per le attività di sistema ma può essere utilizzata da utenti normali per attività o script a cui hanno accesso. Per accedere all'utilità `cron`, usiamo: `crontab`.
+È riservato agli amministratori per eseguire le attività di sistema, ma può essere utilizzato anche dai normali utenti per le attività o gli script a cui hanno accesso. Per accedere all'utilità `cron`, usiamo: `crontab`.
 
 Il servizio `cron` è usato per:
 
@@ -44,7 +44,7 @@ Il servizio `cron` è usato per:
 
 ## Come funziona il servizio
 
-Il servizio di `cron` è gestito da un demone `crond` presente in memoria.
+Un demone `crond` presente esegue il servizio `cron` in memoria.
 
 Per verificare il suo stato:
 
@@ -70,7 +70,7 @@ Initializzazione del demone `crond` all'avvio del sistema:
 
 ## Sicurezza
 
-Per implementare una pianificazione, un utente deve disporre dell'autorizzazione all'utilizzo del servizio `cron`.
+Per implementare una pianificazione, un utente deve avere i permessi per utilizzare il servizio `cron`.
 
 Questa autorizzazione varia in base alle informazioni contenute nei file seguenti:
 
@@ -99,7 +99,7 @@ Gli utenti di questo file non sono autorizzati a utilizzare `cron`.
 
 Se è vuoto, tutti gli utenti possono usare `cron`.
 
-Per impostazione predefinita, `/etc/cron.deny` esiste ed è vuoto e `/etc/cron.allow` non esiste.
+Per impostazione predefinita, `/etc/cron.deny` esiste ed è vuoto e `/etc/cron.allow` non esiste. Quando esistono due file contemporaneamente, il sistema utilizza solo il contenuto di `cron.allow` come base di giudizio e ignora completamente l'esistenza del file `cron.deny.`.
 
 ### Consentire ad un utente
 
@@ -112,20 +112,20 @@ user1
 
 ### Proibire ad un utente
 
-Solo **user2** non sarà in grado di usare `cron`.
+Solo l'**utente2** non potrà usare `cron`. Si noti che il file `/etc/cron.allow` non deve esistere.
 
 ```bash
 [root]# vi /etc/cron.deny
 user2
 ```
 
-`cron.allow` non deve essere presente.
+Se lo stesso utente esiste contemporaneamente in `/etc/cron.deny` e `/etc/cron.allow`, l'utente può usare cron normalmente.
 
 ## Pianificazione delle attività
 
 Quando un utente pianifica un'attività, viene creato un file con il suo nome in `/var/spool/cron/`.
 
-Questo file contiene tutte le informazioni che il `crond` deve sapere riguardo a tutte le attività create da questo utente, i comandi o i programmi da eseguire e quando eseguirli (ora, minuto, giorno ...).
+Questo file contiene tutte le informazioni che il `crond` deve conoscere sui compiti creati da questo utente, compresi i comandi o i programmi da eseguire e la pianificazione dell'esecuzione (ora, minuto, giorno, ecc.). Si noti che l'unità di tempo minima che `crond` può riconoscere è 1 minuto. Esistono attività di pianificazione simili in RDBMS (come MySQL), dove le attività di pianificazione basate sul tempo sono denominate "Event Scheduler". L'unità di tempo minima che è in grado di riconoscere è 1 secondo e le attività di pianificazione basate su eventi sono denominate "Trigger".
 
 ![Cron tree](images/tasks-001.png)
 
@@ -152,11 +152,11 @@ Esempio:
 
 !!! Warning "Attenzione"
 
-    `crontab` senza opzione elimina il vecchio file di pianificazione e attende che l'utente inserisca nuove righe. Devi premere <kbd>ctrl</kbd> + <kbd>d</kbd> per uscire da questa modalità di modifica.
+    `crontab` senza opzioni cancella il vecchio file di pianificazione e attende che l'utente inserisca nuove righe. Per uscire da questa modalità di modifica è necessario premere <kbd>ctrl</kbd> + <kbd>d</kbd>.
     
-    Solo `root` può utilizzare l'opzione `-u utente` per gestire il file di pianificazione di un altro utente.
+    Solo `root' può usare l'opzione `-u user' per gestire il file di pianificazione di un altro utente.
     
-    L'esempio sopra consente a root di pianificare un'attività per l'utente1.
+    L'esempio precedente consente a root di pianificare un'attività per l'user1.
 
 ### Usi di `crontab`
 
@@ -181,7 +181,7 @@ Il file `crontab` è strutturato in base alle seguenti regole.
 
 * Ogni riga di questo file corrisponde a una pianificazione;
 * Ogni linea ha sei campi, 5 per il tempo e 1 per l'ordine;
-* Ogni campo è separato da uno spazio o da una tabulazione;
+* Uno spazio o una tabulazione separano ogni campo;
 * Ogni linea termina con un ritorno a capo;
 * Un `#` all'inizio della linea la commenta.
 
@@ -202,9 +202,9 @@ Il file `crontab` è strutturato in base alle seguenti regole.
 
 !!! Warning "Attenzione"
 
-    Le attività da eseguire devono utilizzare percorsi assoluti e, se possibile, usare reindirizzamenti.
+    I task da eseguire devono utilizzare percorsi assoluti e, se possibile, usare i reindirizzamenti.
 
-Al fine di semplificare la notazione per la definizione del tempo, è consigliabile utilizzare simboli speciali.
+Per semplificare la notazione della definizione di tempo, è consigliabile utilizzare simboli speciali.
 
 | Wildcards | Descrizione                               |
 | --------- | ----------------------------------------- |
@@ -221,13 +221,13 @@ Script eseguito il 15 Aprile alle 10:25am:
 25 10 15 04 * /root/scripts/script > /log/…
 ```
 
-Esegui alle 11am e quindi alle 4pm di ogni giorno:
+Ogni giorno alle 11.00 e alle 16.00:
 
 ```bash
 00 11,16 * * * /root/scripts/script > /log/…
 ```
 
-Esegui ogni ora dalle 11am alle 4pm di ogni giorno:
+Esegui ogni ora dalle 11.00 alle 16.00 tutti i giorni:
 
 ```bash
 00 11-16 * * * /root/scripts/script > /log/…
