@@ -26,7 +26,7 @@ dnf install -y epel-release
 Then install Transmission:
 
 ```bash
-dnf install -y transmission
+dnf install -y transmission-daemon
 ```
 
 ## First setup
