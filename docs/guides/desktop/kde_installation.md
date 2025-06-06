@@ -14,7 +14,7 @@ Thanks to the Rocky Linux development team, live images for several desktop inst
 
 !!! note
 
-    This procedure is specific to Rocky Linux 9.0. There is currently no procedure for installing KDE for earlier versions of Rocky Linux. 
+    This procedure is specific to Rocky Linux 9. There is currently no procedure for installing KDE for earlier versions of Rocky Linux. 
     Feel free to write one up!
 
 ## Prerequisites
@@ -25,7 +25,7 @@ Thanks to the Rocky Linux development team, live images for several desktop inst
 
 ## Get, verify, and write the KDE live image
 
-Prior to installation, the first step is to download the live image and write that to a DVD or a USB thumb drive. As stated earlier, the image will be bootable, just like any other installation media for Linux. You can find the latest KDE image in the download section for Rocky Linux 9 [live images](https://dl.rockylinux.org/pub/rocky/9.5/live/x86_64/).
+Prior to installation, the first step is to download the live image and write that to a DVD or a USB thumb drive. As stated earlier, the image will be bootable, just like any other installation media for Linux. You can find the latest KDE image in the download section for Rocky Linux 9 [live images](https://dl.rockylinux.org/pub/rocky/9.6/live/x86_64/).
 
 Note that this particular link assumes x86_64 as your processor architecture. If you have aarch64 architecture, you can use that image instead. Download the live image and checksum files.
 
@@ -49,7 +49,7 @@ This again is different by machine, BIOS, OS, and so on. You will need to ensure
 
 ![kde_boot](images/kde_boot.png)
 
-If so, you are on your way! If you want to test the media, you can enter that option first, or you can enter **S** to **Start Rocky Linux KDE 9.0**.
+If so, you are on your way! If you want to test the media, you can enter that option first, or you can enter **S** to **Start Rocky Linux KDE 9**.
 
 Remember, this is a live image. It will take some of time to boot to the first screen. Do not panic, just wait! When the live image is up, you will see this screen:
 
