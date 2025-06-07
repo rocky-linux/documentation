@@ -12,7 +12,7 @@ tags:
 
 # Introduction
 
-In part 1 of this series, we covered how to build our web server with the base RHEL8 DISA STIG applied, and in part 2, we learned how to test the STIG compliance with the OpenSCAP tool. Now we’re going to do something with the system, build a simple web application and apply the DISA web server STIG: <https://www.stigviewer.com/stig/web_server/>
+In part 1 of this series, we covered how to build our web server with the base RHEL8 DISA STIG applied, and in part 2, we learned how to test the STIG compliance with the OpenSCAP tool. Now we’re going to do something with the system, build a simple web application and apply the DISA web server STIG: <https://stigviewer.com/stigs/apache_server_2.4_unix_server>
 
 First lets compare what we’re getting into here, the RHEL 8 DISA STIG is targeted at a very specific platform so the controls are pretty easy to understand in that context, test, and apply.  Application STIGs have to be portable across multiple platforms, so the content here is generic to work on different Linux distributions (RHEL, Ubuntu, SuSE, etc)**. Tools like OpenSCAP won’t help us audit/remediate the configuration. We’re going to have to do this manually. Those STIGs are:
 
