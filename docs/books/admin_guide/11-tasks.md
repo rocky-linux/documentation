@@ -221,7 +221,7 @@ Script executed on April 15 at 10:25 am:
 25 10 15 04 * /root/scripts/script > /log/…
 ```
 
-Run the task once a day at 4 am and once a day at 4 pm:
+Run the task once a day at 11 am and once a day at 4 pm:
 
 ```bash
 00 11,16 * * * /root/scripts/script > /log/…
