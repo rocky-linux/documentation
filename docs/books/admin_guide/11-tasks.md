@@ -147,14 +147,14 @@ Example:
 |--------|-----------------------------------------------------------|
 | `-e`   | Edits the schedule file with vi                            |
 | `-l`   | Displays the contents of the schedule file                |
-| `-u`   | Sets the name of the user whose schedule file is to be manipulated |
+| `-u <user>`   | Specify a single user to operate                |
 | `-r`   | Deletes the schedule file                                  |
 
 !!! Warning
 
     `crontab` without options deletes the old schedule file and waits for the user to enter new lines. You have to press <kbd>ctrl</kbd> + <kbd>d</kbd> to exit this editing mode.
 
-    Only the `root` can use the `-u user` option to manage another user's schedule file.
+    Only the `root` can use the `-u <user>` option to manage another user's schedule file.
 
     The example above allows the root to schedule a task for user1.
 
