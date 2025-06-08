@@ -206,12 +206,12 @@ The `crontab` file is structured according to the following rules.
 
 To simplify the notation for the definition of time, it is advisable to use special symbols.
 
-| Wildcards | Description                      |
+| Special symbol | Description                      |
 |---------------|----------------------------------|
-| `*`           | Indicates all possible values of the field |
-| `-`           | Indicates a range of values      |
-| `,`           | Indicates a list of values       |
-| `/`           | Defines a step                   |
+| `*`           | Indicates all the time values of the field |
+| `-`           | Indicates a continuous time range     |
+| `,`           | Indicates the discontinuous time range      |
+| `/`           | Indicateds time interval                  |
 
 Examples:
 
@@ -221,19 +221,19 @@ Script executed on April 15 at 10:25 am:
 25 10 15 04 * /root/scripts/script > /log/…
 ```
 
-Run at 11 am and then at 4 pm every day:
+Run the task once a day at 4 am and once a day at 4 pm:
 
 ```bash
 00 11,16 * * * /root/scripts/script > /log/…
 ```
 
-Run every hour from 11 am to 4 pm every day:
+The task runs once an hour from 11 am to 4 pm every day:
 
 ```bash
 00 11-16 * * * /root/scripts/script > /log/…
 ```
 
-Run every 10 minutes during working hours:
+Run every 10 minutes during working hours on weekdays:
 
 ```bash
 */10 8-17 * * 1-5 /root/scripts/script > /log/…
