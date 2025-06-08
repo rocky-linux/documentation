@@ -125,7 +125,7 @@ If the same user exists in `/etc/cron.deny` and `/etc/cron.allow` at the same ti
 
 When a user schedules a task, there is a file created with their name under `/var/spool/cron/`.
 
-This file contains all the information the `crond` needs to know regarding tasks created by this user, including the commands or programs to run, and the schedule for running them (hour, minute, day, etc.). Note that the minimum time unit that `crond` can recognize is 1 minute. There are similar scheduling tasks in RDBMS (such as MySQL), where time-based scheduling tasks are referred to as the "Event Scheduler." The minimum time unit it can recognize is 1 second, and event-based scheduling tasks are referred to as "Triggers."
+This file contains all the information the `crond` needs to know regarding tasks created by this user, including the commands or programs to run, and the schedule for running them (hour, minute, day, etc.). Note that the minimum time unit that `crond` can recognize is 1 minute. There are similar scheduling tasks in RDBMS (such as MySQL), where time-based scheduling tasks are referred to as the "Event Scheduler" (whose recognizable time unit is 1 second), and event-based scheduling tasks are referred to as "Triggers".
 
 ![Cron tree](images/tasks-001.png)
 
