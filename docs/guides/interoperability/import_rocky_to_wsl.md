@@ -20,11 +20,11 @@ The Windows-Subsystem for Linux feature has to be enabled. This is possible with
   run `wsl --install` ([ref.](https://docs.microsoft.com/en-us/windows/wsl/install))
 - Go to the graphical Windows Settings and enable the optional feature `Windows-Subsystem for Linux`
 
-This feature should be available on every supported Windows 10 and 11 version right now.
+This feature should be available on every supported version of Windows 10 and 11 currently.
 
 !!! tip "WSL version"
 
-    Make sure that your WSL version is up to date, as some features only got introduced in a later version, if you are unsure run `wsl --update`.
+   Ensure that your WSL version is up to date, as some features were only introduced in later versions. If you are unsure, run `wsl --update`.
 
 ## Steps
 
@@ -35,10 +35,10 @@ This feature should be available on every supported Windows 10 and 11 version ri
     - 9: [x86_64](https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-WSL-Base.latest.x86_64.wsl) or [aarch64](https://dl.rockylinux.org/pub/rocky/9/images/aarch64/Rocky-9-WSL-Base.latest.aarch64.wsl)
     - 10: [x86_64](https://dl.rockylinux.org/pub/rocky/10/images/x86_64/Rocky-10-WSL-Base.latest.x86_64.wsl) or [aarch64](https://dl.rockylinux.org/pub/rocky/10/images/aarch64/Rocky-10-WSL-Base.latest.aarch64.wsl)
 
-2. There are multiple options how to install a `.wsl` image:
+2. There are multiple options for installing a `.wsl` image:
 
     - Double-click the image and it will be installed with the images default name
-    - Install the image via command-line:
+    - Install the image via command line:
 
         ```sh
         wsl --install --from-file <path-to/Rocky-10-WSL-Base.latest.x86_64.wsl> <machine-name>
@@ -58,8 +58,8 @@ This feature should be available on every supported Windows 10 and 11 version ri
         <podman/docker> export rockylinux:10 > rocky-10-image.tar
         ```
 
-2. (optional) You will have to extract the .tar file from the .tar.xz file if you are using not one of the latest WSL versions
-3. Create the directory where the WSL will store its files (mostly somewhere in the userprofile)
+2. (optional) You will have to extract the .tar file from the .tar.xz file if you are using one of the latest WSL versions
+3. Create the directory where the WSL will store its files (mostly somewhere in the user profile)
 4. Finally, import the image into WSL ([ref.](https://docs.microsoft.com/en-us/windows/wsl/use-custom-distro#import-the-tar-file-into-wsl)):
 
     - WSL:
@@ -76,12 +76,12 @@ This feature should be available on every supported Windows 10 and 11 version ri
 
 !!! tip "WSL vs. WSL 2"
 
-    Generally speaking WSL 2 should be faster than WSL, but that might differ from use-case to use-case.
+    Generally speaking, WSL 2 should be faster than WSL, although this may vary depending on the use case.
 
 !!! tip "Windows Terminal"
 
-    If you have Windows Terminal installed, the new WSL distro name will appear as an option on the pull-down menu, which is quite handy for launching in the future. You can then customize it with colors, fonts, etc.
+    If you have Windows Terminal installed, the new WSL distro name will appear as an option on the pull-down menu, which is quite handy for launching in the future. You can then customize it with colors, fonts, and other elements.
 
 !!! tip "systemd"
 
-    The WSL image is systemd enabled out of the box! In case you want to use the container images or build your own one, you will only need to add `systemd=true` to the `boot` ini section in the `/etc/wsl.conf` file! ([ref.](https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/#set-the-systemd-flag-set-in-your-wsl-distro-settings))
+    The WSL image is systemd-enabled by default. If you want to use the container images or build your own, you will only need to add `systemd=true` to the `boot` section in the `/etc/wsl.conf` file. ([ref.](https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/#set-the-systemd-flag-set-in-your-wsl-distro-settings))
