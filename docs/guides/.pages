@@ -1,6 +1,7 @@
 nav:
     - ... | index*.md
     - ... | installation*.md
+    - ... | 9_6_installation*.md
     - ... | 8_6_installation*.md
     - ... | migrate2rocky*.md
     - ... | update_versions*.md
