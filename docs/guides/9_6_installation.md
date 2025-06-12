@@ -6,9 +6,9 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 # Installing Rocky Linux 9
 
-This is a detailed guide for installing a 64-bit version of the Rocky Linux distribution on a standalone system. We will be performing a server class install. We will step through the installation and customization steps in the following sections.
+This is a detailed guide for installing a 64-bit version of the Rocky Linux distribution on a standalone system. We will be performing a server class install, and stepping through the installation and customization options.
 
-## OS Installation Prerequisites
+## Operating System Installation Prerequisites
 
 Download the ISO to use for this installation of Rocky Linux.  
 You can download the latest ISO image for the version of Rocky Linux for this installation here:
@@ -51,7 +51,7 @@ If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, y
     sha256sum -c CHECKSUM --ignore-missing
     ```
 
-    This checks the integrity of the ISO file downloaded previously, provided that it is in the same directory. The output should show:
+    This checks the integrity of the ISO file downloaded previously, provided that it is in the same directory. You should see this output:
 
     ```text
     Rocky-9.6-x86_64-minimal.iso: OK
@@ -59,11 +59,11 @@ If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, y
 
 ## The Installation
 
-!!! Tip
+!!! tip
 
     Before installing properly, the system’s Unified Extensible Firmware Interface (UEFI) or Basic Input/Output System (BIOS) should be preconfigured to boot from the correct medium.
 
-If the computer is set up to boot from the media with the ISO file, we can begin the installation.
+If you set the computer up to boot from the media with the ISO file, you can begin the installation.
 
 1. Insert and boot from the installation medium (optical disk, USB flash drive, and so on).
 
@@ -78,7 +78,7 @@ If the computer is set up to boot from the media with the ISO file, we can begin
     You can also press ++enter++ at any time to start the process immediately.
 
 4. A quick media verification step takes place.  
-This media verification step can save you the trouble of starting the installation only to find out halfway through that the installation program has to stop because of bad installation media.
+This media verification step can save you the trouble of starting the installation only to discover halfway through that the installation program has to stop because of bad installation media.
 
 5. After the media check runs to completion and the media is successfully verified to be usable, the installation program automatically continues to the next screen.
 
@@ -107,7 +107,7 @@ In this guide's demo system, we accept the default value (*English US*) and make
 
 However, if you need to make any changes here, from the *Installation Summary* screen, click the ++"keyboard"++ option to specify the system's keyboard layout. Using the ++plus++ button, you can add additional keyboard layouts if you need to in the ensuing screen and even specify your preferred order.
 
-Click ++"done"++ when you are finished with this screen.
+When you finish with this screen, click ++"done"++.
 
 #### Language Support
 
@@ -117,9 +117,9 @@ We will accept the default value - **English (United States)** and make no chang
 
 #### Time & Date
 
-Click the ++"Time & Date"++ option on the main *Installation Summary* screen to bring up another screen that will allow you to select the time zone in which the machine is located. Scroll through the list of regions and cities and select the area closest to you.
+Click the ++"Time & Date"++ option on the main *Installation Summary* screen to bring up another screen that allows for the selection of the timezone where the machine is. Scroll through the list of regions and cities and select the area closest to you.
 
-Depending on your installation source, the *Network Time* option could be set to *ON* or *OFF* by default. Accept the default *ON* setting; this allows the system to automatically set the correct time using the Network Time Protocol (NTP).
+Depending on your installation source, the *Network Time* option might be *ON* or *OFF* by default. Accept the default *ON* setting. This allows the system to automatically set the correct time by using the Network Time Protocol (NTP).
 
 Click ++"done"++ after making any changes.
 
@@ -133,11 +133,11 @@ Because the installation uses a Rocky Linux 9.6 ISO image, you will notice that 
 
 !!! Tip
 
-    The installation Source area allows you to perform a network-based installation (for example, if you use the Rocky Linux boot ISO - Rocky-9.6-x86_64-boot.iso). For a network-based installation, you need first to ensure that a network adapter on the target system is properly configured, and can reach the internet. To perform a network-based installation, click `Installation Source` and then select the `On the network` radio button. Once selected, choose the correct protocol and type in the URI for the installation source. Click `Done`.
+    The installation Source area allows you to perform a network-based installation (for example, if you use the Rocky Linux boot ISO - Rocky-9.6-x86_64-boot.iso). For a network-based installation, you need first to ensure that a network adapter on the target system is properly configured, and can reach the internet. To perform a network-based installation, click ++"Installation Source"++ and then select the ++"On the network"++ radio button. Once selected, choose the correct protocol and type in the URI for the installation source. Click ++"Done"++.
 
 #### Software Selection
 
-Clicking the ++"Software Selection"++ option on the main *Installation Summary* screen presents you with the installation section where you can pick the exact software packages installed on the system. The software selection area is divided into:
+Clicking the ++"Software Selection"++ option on the main *Installation Summary* screen presents you with the installation section where you can pick the exact software packages installed on the system. There are two software selection areas:
 
 - **Base Environment**: Minimal Installation and Custom operating system
 - **Additional software for Selected Environment**: Selecting a Base Environment on the left side presents a variety of related additional software to install for the given environment on the right side.
@@ -148,13 +148,13 @@ Click ++"done"++ at the top of the screen.
 
 ### System Section
 
-The System section of the *Installation Summary* screen is used for customizing and making changes to things related to the underlying hardware of the target system. This is where you create your hard disk drive partitions or volumes, specify the file system, specify the network configuration, enable or disable KDUMP or select a Security Profile.
+Use the System section of the *Installation Summary* screen for customizing and making changes to things related to the underlying hardware of the target system. This is where you create your hard disk drive partitions or volumes, specify the file system, specify the network configuration, enable or disable KDUMP or select a Security Profile.
 
 #### Installation Destination
 
 From the *Installation Summary* screen, click the ++"Installation Destination"++ option. This takes you to the corresponding task area.
 
-You will see a screen displaying all the candidate disk drives that you have available on the target system. If you have only one disk drive on the system, as on our sample system, you see the drive listed under *Local Standard Disks* with a check mark beside it. Clicking the disk icon will toggle on or off the disk selection check mark. Keep it checked to select the disk.
+You will see a screen displaying all the candidate disk drives that you have available on the target system. If you have only one disk drive on the system, as on our sample system, you see the drive listed under *Local Standard Disks* with a checkmark beside it. Clicking the disk icon will toggle on or off the disk selection checkmark. Keep it checked to select the disk.
 
 Under the *Storage Configuration* section:
 
@@ -190,18 +190,18 @@ The selected network adapter's configurable properties appear in the screen's ri
 
     On our sample system, we have two Ethernet devices (`ens3` and `ens4`), all of which are in a connected state. The type, name, quantity, and state of the network devices on your system may vary from the ones on our demo system.
 
-Verify the switch of the device you want to configure is flipped to the `ON` (blue) position in the right pane.
-We'll accept all the defaults in this section.
+Verify the switch of the device you want to configure is in the `ON` (blue) position in the right pane.
+We will accept all the defaults in this section.
 
 Click ++"done"++ to return to the main *Installation Summary* screen.
 
 !!! Warning
 
-    Pay attention to the IP address of the server in this section of this installer. If you don’t have physical or easy console access to the system, this information will come in handy later on when you need to connect to the server to continue working on it after the OS installation is completed.
+    Pay attention to the IP address of the server in this section of this installer. If you do not have physical or easy console access to the system, this information will come in handy later on when you need to connect to the server to continue working on it after the OS installation is completed.
 
 ### User Settings Section
 
-This section can be used for creating a password for the `root` user account and also for creating new administrative or non-administrative accounts.
+Use this section for creating a password for the `root` user account and also for creating new administrative or non-administrative accounts.
 
 #### Root Password
 
@@ -222,13 +222,13 @@ This section can be used for creating a password for the `root` user account and
 To create a user:
 
 1. Click the *User Creation* field under *User Settings* to start the *Create User* task screen.  
-This task area allows you to create a privileged or non-privileged (non-administrative) user account.
+This task area is for creating a privileged (administrative) or non-privileged (non-administrative) user account.
 
     !!! Info
 
         Creating and using a non-privileged account for day-to-day tasks on a system is a good system administration practice.
 
-    We’ll create a regular user that can invoke superuser (administrator) powers when needed.
+    We will create a regular user that can invoke superuser (administrator) powers when needed.
 
 2. Complete the fields in the *Create User* screen with the following information:
 
@@ -249,11 +249,11 @@ This task area allows you to create a privileged or non-privileged (non-administ
 
 ## Installer Phase
 
-Once you are satisfied with your choices for the various installation tasks, the next phase of the installation process will begin the installation proper.
+Once satisfied with your choices for the various installation tasks, the next phase of the installation process will begin the installation proper.
 
 ### Start the Installation
 
-Once you are satisfied with your choices for the various installation tasks, click the ++"Begin Installation"++ button on the main *Installation Summary* screen.
+Once satisfied with your choices for the various installation tasks, click the ++"Begin Installation"++ button on the main *Installation Summary* screen.
 
 The installation will begin, and the installation program will show the progress of the installation.
 After the installation begins, various tasks will begin running in the background, such as partitioning the disk, formatting the partitions or LVM volumes, checking for and resolving software dependencies, writing the operating system to the disk, and so on.

@@ -96,16 +96,19 @@ According to the Rocky Linux 10.0 Release Notes, Rocky Linux 10 officially sup
 ## 🎯 Recommended Specs by Use‑Case
 
 ### 🏗️ Minimal Server  
+
 - CPU: 1 core x86_64-v3 (or ARM/POWER/Z/RISC‑V)  
 - RAM: 1 GB  
 - Storage: 10–20 GB
 
 ### 🖥️ Desktop with GUI  
+
 - CPU: 2+ cores x86_64-v3 (or equivalent)  
 - RAM: 2–4 GB  
 - Storage: 20–40 GB
 
 ### 🛠️ Development/Production Server  
+
 - CPU: 4+ cores  
 - RAM: 4–8 GB+  
 - Storage: 40 GB+ (based on workload needs)
