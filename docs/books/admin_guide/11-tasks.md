@@ -254,12 +254,12 @@ For the root user, `crontab` also has some special time settings:
 
 A user, rockstar, wants to edit his `crontab` file:
 
-1. The `crond` daemon checks to see if he is allowed (`/etc/cron.allow` and `/etc/cron.deny`).
+1. The `crond` daemon checks to see if the user is allowed (`/etc/cron.allow` and `/etc/cron.deny`).
 
-2. If he is, he accesses his `crontab` file (`/var/spool/cron/rockstar`).
+2. If the user is allowed, they access their `crontab` file (`/var/spool/cron/rockstar`).
 
-    The `crond` daemon reads the scheduled task files of all users every minute.
+The `crond` daemon:
 
-3. The `crond` daemon executes tasks according to the schedule defined by the rockstar user.
-
-4. The `crond` daemon writes the corresponding events and messages to the file (`/var/log/cron`).
+* Reads - Reads the scheduled task files of all users every minute.
+* Runs - Runs tasks according to the schedule.
+* Writes - Writes the corresponding events and messages to the (`/var/log/cron`) file.
