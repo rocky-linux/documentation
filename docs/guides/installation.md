@@ -72,12 +72,12 @@ Once the system is set up to boot from the media with the ISO file, we can begin
 
     ![Rocky Linux installation splash screen](images/installation_10_0_F01.png)
 
-3. At the welcome screen, you can use the ++"up"++ or ++"down"++ arrow keys to select any of the options followed by pressing ++enter++ to execute the selected option. If you do not press any key, the installation program starts a countdown, after which the installation process automatically executes the default, highlighted, option:
+3. At the welcome screen, you can use the ++"up"++ or ++"down"++ arrow keys to select any of the options followed by pressing ++enter++ to run the selected option. If you do not press any key, the installation program starts a countdown, after which the installation process automatically executes the default, highlighted, option:
 
     `Test this media & install Rocky Linux 10.0`
 
 4. A quick media verification step takes place.  
-This media verification step can save you the trouble of starting the installation only to find out halfway through that the installation program has to stop because of bad installation media.
+This media verification step can save you the trouble of starting the installation only to discover halfway through that the installation program has to stop because of bad installation media.
 
 1. After the media check runs to completion and the media is successfully verified to be usable, the installation program automatically continues to the next screen.
 
@@ -85,7 +85,7 @@ This media verification step can save you the trouble of starting the installati
 
 ## Installation Summary
 
-The `Installation Summary` screen is an all-in-one area where you make important decisions about the system to be installed.
+The `Installation Summary` screen is an all-in-one area where you make important decisions about the system's installation.
 
 The screen is roughly divided into the following sections:
 
@@ -106,21 +106,21 @@ In this guide's demo system, we accept the default value (*English US*) and make
 
 However, if you need to make any changes here, from the *Installation Summary* screen, click the ++"keyboard"++ option to specify the system's keyboard layout. Using the ++plus++ button, you can add and order additional keyboard layouts as necessary.
 
-Click ++"done"++ when you are finished with this screen.
+When finished with this screen click ++"done"++.
 
 #### Language Support
 
-The `Language Support` option on the *Installation Summary* screen lets you specify support for additional languages.
+The `Language Support` option on the *Installation Summary* screen allows for the specification of support for additional languages.
 
 We will accept the default value - **English (United States)** and make no change, click ++"done"++.
 
 #### Time & Date
 
-Click the ++"Time & Date"++ option on the main *Installation Summary* screen to bring up another screen that will allow you to select the time zone in which the machine is located. Use the drop down arrows to select the region and city closest to you.
+Click the ++"Time & Date"++ option on the main *Installation Summary* screen to bring up another screen that will allow for the selection of the timezone where the machine is located. Use the drop down arrows to select the region and city closest to you.
 
-Accept the default and enabled ++"Automatic date & time"++ option which allows the system to automatically set the correct time abd date using the Network Time Protocol (NTP).
+Accept the default and enabled ++"Automatic date & time"++ option that allows the system to automatically set the correct time and date by using the Network Time Protocol (NTP).
 
-Click ++"done"++ once completed.
+Click ++"done"++ when completed.
 
 ### Software Section
 
@@ -136,10 +136,10 @@ Because we are using a Rocky Linux 10 ISO image for the installation, the Auto-d
 
 #### Software Selection
 
-Clicking the ++"Software Selection"++ option on the main *Installation Summary* screen presents you with a software selection area that is divided into:
+Clicking the ++"Software Selection"++ option on the main *Installation Summary* screen presents you with a software selection area that has two sections:
 
 - **Base Environment**: Minimal Installation
-- **Additional software for Selected Environment**: Selecting a Base Environment on the left side presents a selection of additional software to install for the given environment on the right side. 
+- **Additional software for Selected Environment**: Selecting a Base Environment on the left side presents a selection of additional software to install for the given environment on the right side.
 
 Select the *Minimal Install* (Basic functionality) option.
 
@@ -147,13 +147,13 @@ Click ++"done"++ at the top of the screen.
 
 ### System Section
 
-The System section of the *Installation Summary* screen is used for customizing and making changes to things related to the underlying hardware of the target system. This is where you create your hard disk drive partitions or volumes, specify the file system, specify the network configuration, enable or disable KDUMP.
+Use the System section of the *Installation Summary* screen for customizing and making changes to things related to the underlying hardware of the target system. This is where you create your hard disk drive partitions or volumes, specify the file system, specify the network configuration, enable or disable KDUMP.
 
 #### Installation Destination
 
 From the *Installation Summary* screen, click the ++"Installation Destination"++ option. This takes you to the corresponding task area.
 
-You will see a screen displaying all the candidate disk drives that you have available on the target system. If you have only one disk drive on the system, as on our sample system, you see the drive listed under *Local Standard Disks* with a check mark beside it. Clicking the disk icon will toggle on or off the disk selection check mark. Keep it checked to select the disk.
+You will see a screen displaying all the candidate disk drives that you have available on the target system. If you have only one disk drive on the system, as on our sample system, you see the drive listed under *Local Standard Disks* with a checkmark beside it. Clicking the disk icon will toggle on or off the disk selection checkmark. Keep it checked to select the disk.
 
 Under the *Storage Configuration* section:
 
@@ -189,18 +189,18 @@ The selected network adapter's configurable properties appear in the screen's ri
 
     On our sample system, we have two Ethernet devices (`ens3` and `ens4`), both of which are in a connected state. The type, name, quantity, and state of the network devices on your system may vary from the ones on our demo system.
 
-Verify the switch of the device you want to configure is flipped to the `ON` (blue) position in the right pane.
-We'll accept all the defaults in this section.
+Verify the switch of the device you want to configure is in the `ON` (blue) position in the right pane.
+We will accept all the defaults in this section.
 
 Click ++"done"++ to return to the main *Installation Summary* screen.
 
 !!! Warning
 
-    Pay attention to the IP address of the server in this section of this installer. If you don’t have physical or easy console access to the system, this information will come in handy later on when you need to connect to the server after the OS installation is completed.
+    Pay attention to the IP address of the server in this section of this installer. If you do not have physical or easy console access to the system, this information will come in handy later on when you need to connect to the server after the OS installation is completed.
 
 ### User Settings Section
 
-This section can be used for creating a password for the `root` user account and also for creating new administrative or non-administrative accounts.
+Use this section for creating a password for the `root` user account and also for creating new administrative or non-administrative accounts.
 
 #### Root Password
 
@@ -210,7 +210,7 @@ This section can be used for creating a password for the `root` user account and
 
         The root superuser is the most privileged account on the system. Therefore, if you choose to use or enable it, it is crucial that you protect this account with a strong password.
 
-2. You'll be presented with the option to either "Disable root account" OR "Enable root account".
+2. You will see two options to either "Disable root account" OR "Enable root account".
 Accept the default.
 
 3. Click ++"done"++.
@@ -219,46 +219,45 @@ Accept the default.
 
 To create a user:
 
-1. Click the *User Creation* field under *User Settings* to start the *Create User* task screen.  
-This task area allows you to create a privileged or non-privileged (non-administrative) user account.
+1. Click the *User Creation* field under *User Settings* to start the *Create User* task screen. Use this task area for the creation of a privileged (administrative) or non-privileged (non-administrative) user account.
 
     !!! Caution
 
         On a Rocky Linux 10 system, the Root account is disabled by default and so it is important to ensure that the user account created during the OS installation has administrative privileges. This user can be used in a non-privileged manner for day-to-day tasks on the system and will also have the ability to elevate their role to perform administrative (root) functions as necessary.
 
-    We’ll create a regular user that can invoke superuser (administrator) powers when needed.
+    We will create a regular user that can invoke superuser (administrator) powers when needed.
 
-1. Complete the fields in the *Create User* screen with the following information:
+2. Complete the fields in the *Create User* screen with the following information:
 
     - **Full name**:
     `rockstar`
     - **Username**:
     `rockstar`
-    - **Add administrative privileges to this user account (wheel group membership)**:
-    Checked
-    - **Require a password to use this account**:
-    Checked
-    - **Password**:
-    `04302021`
-    - **Confirm password**:
-    `04302021`
+        - **Add administrative privileges to this user account (wheel group membership)**:
+        Checked
+        - **Require a password to use this account**:
+        Checked
+        - **Password**:
+        `04302021`
+        - **Confirm password**:
+        `04302021`
 
-2. Click ++"done"++.
+3. Click ++"done"++.
 
 ## Installer Phase
 
-Once you are satisfied with your choices for the various installation tasks, the next phase of the installation process will begin the installation proper.
+Once satisfied with your choices for the various installation tasks, the next phase of the installation process will begin the installation proper.
 
 ### Start the Installation
 
-Once you are satisfied with your choices for the various installation tasks, click the ++"Begin Installation"++ button on the main *Installation Summary* screen.
+Once satisfied with your choices for the various installation tasks, click the ++"Begin Installation"++ button on the main *Installation Summary* screen.
 
 The installation will begin, and the installation program will show the progress of the installation.
 After the installation begins, various tasks will begin running in the background, such as partitioning the disk, formatting the partitions or LVM volumes, checking for and resolving software dependencies, writing the operating system to the disk, and so on.
 
 !!! Note
 
-    If you do not wish to continue after clicking the Begin Installation button, you can still safely exit the installation without losing data. To quit the installer, simply reset your system by clicking the ++Quit++ button, pressing ctrl-alt-del on the keyboard, or pushing the reset or power switch.
+    If you do not wish to continue after clicking the ++"Begin Installation"++ button, you can still safely exit the installation without losing data. To quit the installer, simply reset your system by clicking the ++"Quit"++ button, pressing ctrl-alt-del on the keyboard, or pushing the reset or power switch.
 
 ### Complete the Installation
 
