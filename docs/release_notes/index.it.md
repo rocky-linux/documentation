@@ -11,6 +11,14 @@ Benvenuti nel nostro elenco di note di rilascio per Rocky Linux. Le versioni pi√
 
 ## Rilasci di Rocky Linux
 
+## Rocky 10
+
+Rocky 10 (nome in codice "Red Quartz") ha un supporto generale fino al 31 maggio 2030 e un supporto di sicurezza fino al 31 maggio 2035. Le architetture supportate sono x86_64_v3, riscv64, aarch64, ppc64le e s390x.
+
+| Numero di Rilascio | Data di Disponibilit√† Generale | Versione del Kernel |
+| ------------------ | ------------------------------ | ------------------- |
+| 10.0               | 2025-06-11                     | 6.12.0-55.14.1      |
+
 ## Rocky 9
 
 ### Panoramica
@@ -27,6 +35,7 @@ Rocky 9 (nome in codice "Blue Onyx") ha un supporto generale fino al 31 maggio 2
 | 9.3                | 2023-11-20                     | 5.14.0-362.8.1      |
 | 9.4                | 2024-05-09                     | 5.14.0-427.13.1     |
 | 9.5                | 2024-11-19                     | 5.14.0-503.14.1     |
+| 9.6                | 2025-06-04                     | 5.14.0-570.18.1     |
 
 ## Rocky 8
 
