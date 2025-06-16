@@ -6,7 +6,7 @@ Rocky Linux 10 is designed for enterprise-grade stability with modern hardware 
 
 ## ✅ Supported CPU Architectures
 
-According to the Rocky Linux 10.0 Release Notes, Rocky Linux 10 officially supports the following architectures :
+According to the Rocky Linux 10.0 Release Notes, Rocky Linux 10 officially supports the following architectures:
 
 - **x86_64-v3** (Intel/AMD 64-bit CPUs with at least Haswell or equivalent AVX support)  
 - **aarch64** (ARMv8-A 64-bit)  
@@ -16,7 +16,7 @@ According to the Rocky Linux 10.0 Release Notes, Rocky Linux 10 officially sup
 
 ### ⚠️ CPU Feature Requirements
 
-- **x86_64‑v3** requires AVX, AVX2, BMI1/2, FMA, etc., corresponding to Intel Haswell or later, AMD Excavator or newer .
+- **x86_64-v3** requires AVX, AVX2, BMI1/2, and FMA, corresponding to Intel Haswell or later, or AMD Excavator or newer.
 - Older x86_64 revisions (v1/v2) are **not supported** unless rebuilt by community SIGs.
 
 ---
@@ -24,7 +24,7 @@ According to the Rocky Linux 10.0 Release Notes, Rocky Linux 10 officially sup
 ## 🧠 CPU (Processor)
 
 - **1 GHz 64-bit (x86_64‑v3)** or equivalent for other architectures  
-- Multi-core CPUs recommended for server, desktop, or virtualization use
+- Multi-core CPUs are recommended for server, desktop, or virtualization use
 
 ---
 
@@ -118,7 +118,7 @@ According to the Rocky Linux 10.0 Release Notes, Rocky Linux 10 officially sup
 ## 🧩 Additional Notes
 
 - Always allocate extra storage for logs, package updates, and backups.
-- For cloud or virtualization, choose instance types meeting or exceeding the above specs.
+- For cloud or virtualization, choose instance types that meet or exceed the above specifications.
 - Upgrades from earlier Rocky releases (e.g., 8 or 9) to Rocky 10 aren’t supported—**clean installation required**.
 
 ---
