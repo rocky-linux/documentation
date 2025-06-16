@@ -125,7 +125,7 @@ If the same user exists in `/etc/cron.deny` and `/etc/cron.allow` at the same ti
 
 When a user schedules a task, there is a file created with their name under `/var/spool/cron/`.
 
-This file contains all the information the `crond` needs to know regarding tasks created by this user, including the commands or programs to run, and the schedule for running them (hour, minute, day, etc.). Note that the minimum time unit that `crond` can recognize is 1 minute. There are similar scheduling tasks in RDBMS (such as MySQL), where time-based scheduling tasks are referred to as the "Event Scheduler." The minimum time unit it can recognize is 1 second, and event-based scheduling tasks are referred to as "Triggers."
+This file contains all the information the `crond` needs to know regarding tasks created by this user, including the commands or programs to run, and the schedule for running them (hour, minute, day, etc.). Note that the minimum time unit that `crond` can recognize is 1 minute. There are similar scheduling tasks in RDBMS (such as MySQL), where time-based scheduling tasks are referred to as the "Event Scheduler" (whose recognizable time unit is 1 second), and event-based scheduling tasks are referred to as "Triggers".
 
 ![Cron tree](images/tasks-001.png)
 
@@ -147,14 +147,14 @@ Example:
 |--------|-----------------------------------------------------------|
 | `-e`   | Edits the schedule file with vi                            |
 | `-l`   | Displays the contents of the schedule file                |
-| `-u`   | Sets the name of the user whose schedule file is to be manipulated |
+| `-u <user>`   | Specify a single user to operate                |
 | `-r`   | Deletes the schedule file                                  |
 
 !!! Warning
 
     `crontab` without options deletes the old schedule file and waits for the user to enter new lines. You have to press <kbd>ctrl</kbd> + <kbd>d</kbd> to exit this editing mode.
 
-    Only the `root` can use the `-u user` option to manage another user's schedule file.
+    Only the `root` can use the `-u <user>` option to manage another user's schedule file.
 
     The example above allows the root to schedule a task for user1.
 
@@ -206,12 +206,12 @@ The `crontab` file is structured according to the following rules.
 
 To simplify the notation for the definition of time, it is advisable to use special symbols.
 
-| Wildcards | Description                      |
+| Special symbol | Description                      |
 |---------------|----------------------------------|
-| `*`           | Indicates all possible values of the field |
-| `-`           | Indicates a range of values      |
-| `,`           | Indicates a list of values       |
-| `/`           | Defines a step                   |
+| `*`           | Indicates all the time values of the field |
+| `-`           | Indicates a continuous time range     |
+| `,`           | Indicates the discontinuous time range      |
+| `/`           | Indicateds time interval                  |
 
 Examples:
 
@@ -221,19 +221,19 @@ Script executed on April 15 at 10:25 am:
 25 10 15 04 * /root/scripts/script > /log/…
 ```
 
-Run at 11 am and then at 4 pm every day:
+Run the task once a day at 11 am and once a day at 4 pm:
 
 ```bash
 00 11,16 * * * /root/scripts/script > /log/…
 ```
 
-Run every hour from 11 am to 4 pm every day:
+The task runs once an hour from 11 am to 4 pm every day:
 
 ```bash
 00 11-16 * * * /root/scripts/script > /log/…
 ```
 
-Run every 10 minutes during working hours:
+Run every 10 minutes during working hours on weekdays:
 
 ```bash
 */10 8-17 * * 1-5 /root/scripts/script > /log/…
@@ -254,12 +254,12 @@ For the root user, `crontab` also has some special time settings:
 
 A user, rockstar, wants to edit his `crontab` file:
 
-1. `crond` checks to see if he is allowed (`/etc/cron.allow` and `/etc/cron.deny`).
+1. The `crond` daemon checks to see if the user is allowed (`/etc/cron.allow` and `/etc/cron.deny`).
 
-2. If he is, he accesses his `crontab` file (`/var/spool/cron/rockstar`).
+2. If the user is allowed, they access their `crontab` file (`/var/spool/cron/rockstar`).
 
-    Every minute `crond` reads the schedule files.
+The `crond` daemon:
 
-3. It executes the scheduled tasks.
-
-4. It reports systematically in a log file (`/var/log/cron`).
+* Reads - Reads the scheduled task files of all users every minute.
+* Runs - Runs tasks according to the schedule.
+* Writes - Writes the corresponding events and messages to the (`/var/log/cron`) file.
