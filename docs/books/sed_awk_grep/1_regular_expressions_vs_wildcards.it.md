@@ -1,7 +1,7 @@
 ---
 title: Espressioni regolari e wildcards
 author: Tianci Li
-contributors: null
+contributors:
 tags:
   - Regular expressions
   - Wildcards
