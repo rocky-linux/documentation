@@ -246,7 +246,7 @@ To create a user:
 
 ## Installer Phase
 
-Once you are satisfied with your choices for the various installation tasks, the next phase of the installation process will begin: the actual installation.
+Once you are satisfied with your choices for the various installation tasks, the next phase of the installation process will begin the actual installation.
 
 ### Start the Installation
 
