@@ -1,7 +1,7 @@
 ---
 title: Регулярні вирази та символи підстановки
 author: tianci li
-contributors: null
+contributors:
 tags:
   - Регулярні вирази
   - Символи підстановки
