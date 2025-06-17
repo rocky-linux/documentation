@@ -7,7 +7,6 @@ nav:
     - ... | update_versions*.md
     - ... | custom-linux-kernel*.md
     - Contribute: contribute
-    - RSOD: rsod
     - Automation: automation
     - Backup & Sync: backup
     - Content Management: cms
