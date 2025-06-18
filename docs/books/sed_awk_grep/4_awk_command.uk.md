@@ -1,7 +1,7 @@
 ---
 title: Команда Awk
 author: tianci li
-contributors: null
+contributors:
 tags:
   - awk
 ---
