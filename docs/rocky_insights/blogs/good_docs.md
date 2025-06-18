@@ -20,27 +20,33 @@ You have no idea who your user is. Whether this user is familiar with this spher
 
 Idioms, jargon, contractions, and acronyms can confuse readers who are unfamiliar with them, especially non-native speakers, new employees, or people outside your specific domain.
 
-**Idioms** are often culturally specific and can be difficult for international readers to understand.
-**Jargon** involves specialized terms that only experts in a field might recognize.
-**Contractions** replace words in the English language with short cuts, but these do not always exist in all languages, making translation difficult.
-**Acronyms** can be ambiguous, especially if not defined when first used.
+**Idioms** are often culturally specific and can be difficult for international readers to understand.  
+**Jargon** involves specialized terms that only experts in a field might recognize.  
+**Contractions** replace words in the English language with shortcuts, but these do not always exist in all languages, making translation difficult.  
+**Acronyms** can be ambiguous, especially if not defined when first used.  
 
 Example:
 
 ❌ "Once you’ve got the hang of the dashboard, the rest is a piece of cake." Here, the author uses both a contraction, slang, and an idiom.
+
  ✅ "Once you have learned how to use the dashboard, the rest is easy." By replacing the contraction, the slang, and the idiom with the words associated with each, the meaning is clear.
+
 Figurative language, such as idioms, often does not translate well. Technical writers or translators might struggle to convey the same meaning in other languages.
 
 Example:
 
 ❌ "Let’s touch base next week to circle back on the open tickets."
+
  ✅ "Let us meet next week to review the unresolved support requests."
+
 Jargon and acronyms can be confusing—even within the same organization—if their meanings are not universally known.
 
 Example:
 
 ❌ "Upload the CSV to the CMS and tag it according to SOPs."
+
  ✅ "Upload the CSV (Comma-Separated Values file) to the content management system and label it according to the standard operating procedures."
+
 Note: If you want to use acronyms, always define them the first time: “Customer Relationship Management (CRM) system”.
 
 By eliminating idioms and unnecessary jargon, the meaning of your document becomes more clear. Replacing contractions with the words they represent, means that translation efforts in all languages are easier. Your document is the most understandable to the reader when you replace or define acronyms.
