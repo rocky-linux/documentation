@@ -1,7 +1,7 @@
 ---
 title: Comando awk
 author: tianci li
-contributors: null
+contributors:
 tags:
   - awk
 ---
