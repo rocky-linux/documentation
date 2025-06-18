@@ -189,7 +189,7 @@ Rocky-<MAJOR#>.<MINOR#>-<ARCH>-<VARIANT>.iso
 
     У нашій системі-прикладі є два пристрої Ethernet (`ens3` та `ens4`), обидва з яких перебувають у підключеному стані. Тип, назва, кількість і стан мережевих пристроїв у вашій системі можуть відрізнятися від пристроїв у нашій демонстраційній системі.
 
-Verify the switch of the device you want to configure is in the `ON` (blue) position in the right pane. Ми приймемо всі значення за замовчуванням у цьому розділі.
+Verify that the switch of the device you want to configure is in the `ON` (blue) position in the right pane. Ми приймемо всі значення за замовчуванням у цьому розділі.
 
 Натисніть ++"done"++, щоб повернутися до головного екрана *Підсумок встановлення*.
 
