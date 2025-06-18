@@ -76,3 +76,7 @@ Use correct screenshots where needed. This means that you do not need to add scr
 ## Use examples
 
 If you need to fill out the form, then provide examples of how users can complete it. Mention limitations if they have them.
+
+## Conclusion
+
+Writing good documentation is not just making it technically accurate, it is also very important to make it instantly understandable to the reader. This is particularly important when a technical document needs translation into other languages. Within this document, it was the author's intent to highlight specific techniques for writing good, clear, documentation.
