@@ -543,7 +543,7 @@ keys:
     **wildcard (wildcard character)**: used to match file or directory names. 
     **regular expression**: used to match the content of a file.
 
-    You can see an introduction with extra detail in [this document](../sed_awk_grep/1_regular _expressions_vs_wildcards.md).
+    You can see an introduction with extra detail in [this document](../sed_awk_grep/1_regular_expressions_vs_wildcards.md). 
 
 ## *CoPy Input Output* - `cpio`
 
