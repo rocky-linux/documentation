@@ -71,7 +71,7 @@ For a more complete understanding of contributing, consult our related guides:
 
 !!! info "Other reading on voice and tone"
 
-    The creation of several additional documents on voice and tone since this style guide's creation include:
+    The creation of several additional documents on voice and tone since this style guide's creation include:  
     - [Good Docs-A translator's viewpoint](../../rocky_insights/blogs/good_docs.md)  
     - [Active voice-The way to simple, clear, communication](../../rocky_insights/blogs/active_voice.md)  
 
