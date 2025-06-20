@@ -9,7 +9,7 @@ tags:
 
 # Rocky Linux Documentation Style Guide
 
-*Rocky Linux is the fastest-growing enterprise Linux in the world, with its documentation also growing exponentially thanks to contributors like you. Your content is welcome in any format, and the RL document stylists will help you align it with the standards set forth here.*
+*Rocky Linux (RL) is the fastest-growing enterprise Linux in the world, with its documentation also growing exponentially thanks to contributors like you. Your content is welcome in any format, and the RL document stylists will help you align it with the standards set forth here.*
 
 ## Introduction
 
@@ -17,14 +17,14 @@ tags:
 
 *New contributions are welcome to grow this into the definitive spot on the web for information about using Rocky Linux. You can create docs in the format that makes sense to you, and the documentation team will work with you or otherwise help format it so it looks and feels like part of the Rocky family.*
 
-This guide outlines English-language style standards to **improve readability, highlight special cases,** and **enhance translation work** across Rocky Linux documentation. For style questions not addressed in this guide, please refer to the following:
+This guide outlines English-language style standards to **improve readability, highlight special cases,** and **enhance translation work** across Rocky Linux documentation. For style questions not addressed in this guide, see the following:
 
 - [Merriam Webster Dictionary](https://www.merriam-webster.com/)
 - [Chicago Manual of Style (CMOS), 17th ed.](https://www.chicagomanualofstyle.org/home.html)
 
 ### Contributing
 
-For a more complete understanding of contributing, please consult our related guides:
+For a more complete understanding of contributing, consult our related guides:
 
 - [Rocky Linux Contribution Guide](https://docs.rockylinux.org/guides/contribute/) for system and software requirements for getting started.
 - [Rocky Linux First Time Contributors Guide](beginners.md) for an orientation to GitHub, our documentation home base.
@@ -32,7 +32,7 @@ For a more complete understanding of contributing, please consult our related gu
 
 ## Style Guidelines
 
-*RL documentation aims to use clear and consistent language, for accessibility as well as to aid ongoing translation efforts.*
+*RL documentation aims to use clear and consistent language, for accessibility and to aid ongoing translation efforts.*
 
 ### Grammar and Punctuation
 
@@ -40,29 +40,40 @@ For a more complete understanding of contributing, please consult our related gu
 
 - Double quotation marks (“Chicago style”) rather than single quotation marks (‘Oxford style’).
 - Periods and commas go inside quotation marks “like this,” rather than “like this”.
-- The em dash {shift}+{option}+{-} has no spaces before or after—like this—and is preferred for parenthetical phrases.
+- The em dash {shift}+{option}+{-} has no spaces before or after—like this—and is our preference for parenthetical phrases.
 - Use a serial comma before the “and” in a list of three items: “Peas, mustard, and carrots.”
 - Headings should be generally made in headline-style capitalization: Capitalize the first and last words, as well as all nouns, pronouns, verbs, and adverbs. If your document works better with sentence-style capitalization, perhaps because you frequently reference acronyms, make it consistent within the entire document.
 - Headings do not need a period or semicolon at the end, even with sentence-style capitalization, unless ending in an abbreviation.
 - Bulleted and numbered lists: Avoid beginning capitalization or ending punctuation, unless the item is a complete sentence.
 
+!!! info "Sentence-style heading capitalization"
+
+    People using the `vale` and other language linters, will find that these suggest using sentence-style capitalization. Much of the documentation created within our documentation pool uses this style of heading capitalization. Just remember that whichever style you choose, keep it consistent within your document.
+
 ### Voice and Tone
 
-- **Plain language.** This can be described as a *less-conversational* style. Most of our documentation fits within this standard.
+- **Plain language.** Described as a *less-conversational* style. Most of our documentation fits within this standard.
     - Avoid metaphors and idioms.
     - Say what you mean in as few words as possible.
-    - Identify and avoid unnecessarily technical terms. Consider that your audience is mostly people who have some familiarity with the subject matter, but may not be subject-matter experts.
+    - Identify and avoid unnecessarily technical terms. Consider that your audience is mostly people who have some familiarity with the subject matter, but might not be subject-matter experts.
     - Exceptions to plain language:
-        - A more conversational style is appropriate for documentation addressed to newcomers or beginners or for writing content like blog posts.
+        - A more conversational style is appropriate for documentation addressed to newcomers or beginners or for writing content such as blog posts.
         - A more formal or terse wording style is appropriate for documentation addressed to advanced users or API (Application Programming Interface) documentation.
 - **Inclusive language.**
     - Language use evolves over time. Certain words have evolved to carry negative connotations so documentation should be rewritten to use new words.
         - *Master/slave* becomes *primary/secondary* or an agreed upon organizational standard.
         - *Blacklist/whitelist* becomes *blocklist/allowlist* or an agreed upon organizational standard.
-        - You may think of other relevant examples as you create documentation.
+        - You might think of other relevant examples as you create documentation.
     - When speaking of a person of *unknown* or *non-binary* gender, it is now considered acceptable to use “they” as a singular pronoun.
     - When speaking of one’s capabilities, frame answers as *abilities* rather than *limitations.* For example, if you are wondering whether we have documentation about running Steam on Rocky Linux, the answer is not just “no.” Rather, “Sounds like that’s a great place for you to create something to add to our tree!”
 - **Avoid contractions.** This assists with translation efforts. The exception to this is when writing something in a more conversational tone, such as blog posts or welcome instructions for new community members.
+- **Use active voice.** Active voice is more clear and direct and helps your reader to quickly understand your meaning.
+
+!!! info "Other reading on voice and tone"
+
+    The creation of several additional documents on voice and tone since this style guide's creation include:
+    - [Good Docs-A translator's viewpoint](../../rocky_insights/blogs/good_docs.md)  
+    - [Active voice-The way to simple, clear, communication](../../rocky_insights/blogs/active_voice.md)  
 
 ## Formatting
 
@@ -78,7 +89,7 @@ If you have a procedure with only one step, use a bullet rather than a number. F
 
 ### Graphical Interface Language
 
-- Text instructions regarding a UI: When describing a command to be entered into a user interface, use the word “enter” rather than “put” or “type.” Use a codeblock to write out the command (i.e., set it off with backticks):
+- Text instructions regarding a UI: When describing the entry of a command into a user interface, use the word “enter” rather than “put” or “type.” Use a codeblock to write out the command (set it off with backticks):
 
 *Example Markdown text*
 `In the **commit message** box, enter update_thisdoc.`
@@ -95,12 +106,12 @@ If you have a procedure with only one step, use a bullet rather than a number. F
 - **Abstract.** A brief statement of what to expect from this page
 - **Objectives.** A bulleted list of what this page will convey to the reader
 - **Skills** required/learned.
-- **Difficulty level.** 1 star for easy, 2 for intermediate, etc.
+- **Difficulty level.** 1 star for easy, 2 for intermediate, and so on.
 - **Reading time.** Divide the number of words in your document by a reading rate of 75 words per minute to determine this number.
 
 ### Admonitions
 
-Within Markdown, admonitions are a way to put information into a box to highlight it. They are not essential to documentation, but they are a tool you may find useful. Learn more about admonitions from our [Rocky Formatting doc](rockydocs_formatting.md).
+Within Markdown, admonitions are a way to put information into a box to highlight it. They are not essential to documentation, but they are a tool you might find useful. Learn more about admonitions from our [Rocky Formatting doc](rockydocs_formatting.md).
 
 ## Accessibility
 
@@ -114,7 +125,7 @@ Within Markdown, admonitions are a way to put information into a box to highligh
 
 ### Links
 
-- Make links descriptive, so it is obvious where they will lead from the text or context. Avoid hyperlinks with names like “click here.”
+- Make links descriptive, so it is obvious where they will lead from the text or context. Avoid hyperlinks with names such as “click here.”
 - Verify that all links work as described.
 
 ### Tables
@@ -133,7 +144,7 @@ Within Markdown, admonitions are a way to put information into a box to highligh
 
 - Use all levels of headings without skipping any levels.
 - Nest all material under headings to aid in readability.
-- Remember that in Markdown only one Level One heading may be used.
+- Remember to use only one Level One heading in Markdown.
 
 ## Summary
 
