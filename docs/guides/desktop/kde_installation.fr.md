@@ -14,7 +14,7 @@ Grâce à l'équipe de développement de Rocky Linux, il y a maintenant des imag
 
 !!! note
 
-    Cette procédure est spécifique à Rocky Linux 9.0. Il n'y a actuellement aucune procédure décrite pour installer KDE pour les autres versions de Rocky Linux. 
+    Cette procédure est spécifique à Rocky Linux 9. Il n'y a actuellement aucune procédure décrite pour installer KDE pour les autres versions de Rocky Linux. 
     N'hésitez pas à écrire une description !
 
 ## Prérequis
@@ -25,7 +25,7 @@ Grâce à l'équipe de développement de Rocky Linux, il y a maintenant des imag
 
 ## Obtenir, vérifier et créer une image Live de KDE
 
-Avant l'installation, la première étape consiste à télécharger l'image live et à l'enregistrer sur un DVD ou une clé USB. Comme indiqué précédemment, l'image live sera amorçable, tout comme tout autre support d'installation pour Linux. Vous trouverez la dernière image KDE dans la section de téléchargement pour Rocky Linux 9 [images live](https://dl.rockylinux.org/pub/rocky/9.5/live/x86_64/).
+Avant l'installation, la première étape consiste à télécharger l'image live et à l'enregistrer sur un DVD ou une clé USB. Comme indiqué précédemment, l'image live sera amorçable, tout comme tout autre support d'installation pour Linux. Vous trouverez la dernière image KDE dans la section de téléchargement pour Rocky Linux 9 [images live](https://dl.rockylinux.org/pub/rocky/9.6/live/x86_64/).
 
 Notez que ce lien particulier suppose que x86_64 est l'architecture de votre processeur. Si vous avez une architecture aarch64, vous pouvez utiliser l'image correspondante à la place. Téléchargez à la fois l'image live et les fichiers de somme de contrôle.
 
@@ -49,7 +49,7 @@ Là encore, cela diffère selon la machine, le BIOS, le système d'exploitation,
 
 ![kde_boot](images/kde_boot.png)
 
-Si c'est le cas, vous êtes sur la bonne voie ! Si vous voulez tester le média, vous pouvez d'abord sélectionner cette option ou bien vous pouvez simplement taper **S** pour **Start Rocky Linux KDE 9.x**.
+Si c'est le cas, vous êtes sur la bonne voie ! Si vous voulez tester le média, vous pouvez d'abord sélectionner cette option ou bien vous pouvez simplement taper **S** pour **Start Rocky Linux KDE 9**.
 
 N'oubliez pas qu'il s'agit d'une image live. Le lancement jusqu'au premier écran prend un certain temps. Pas de panique, il suffit d'attendre ! Lorsque l'image live est lancée, vous verrez cet écran :
 
