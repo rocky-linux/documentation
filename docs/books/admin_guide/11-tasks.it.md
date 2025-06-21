@@ -125,7 +125,7 @@ Se lo stesso utente esiste contemporaneamente in `/etc/cron.deny` e `/etc/cron.a
 
 Quando un utente pianifica un'attività, viene creato un file con il suo nome in `/var/spool/cron/`.
 
-Questo file contiene tutte le informazioni che il `crond` deve conoscere sui compiti creati da questo utente, compresi i comandi o i programmi da eseguire e la pianificazione dell'esecuzione (ora, minuto, giorno, ecc.). Si noti che l'unità di tempo minima che `crond` può riconoscere è 1 minuto. Esistono attività di pianificazione simili in RDBMS (come MySQL), dove le attività di pianificazione basate sul tempo sono denominate "Event Scheduler". L'unità di tempo minima che è in grado di riconoscere è 1 secondo e le attività di pianificazione basate su eventi sono denominate "Trigger".
+Questo file contiene tutte le informazioni che il `crond` deve conoscere sui compiti creati da questo utente, compresi i comandi o i programmi da eseguire e la pianificazione dell'esecuzione (ora, minuto, giorno, ecc.). Si noti che l'unità di tempo minima che `crond` può riconoscere è 1 minuto. Esistono attività di pianificazione simili nei RDBMS (come MySQL), dove le attività di pianificazione basate sul tempo sono denominate "Event Scheduler" (la cui unità di tempo riconoscibile è 1 secondo) e le attività di pianificazione basate sugli eventi denominate "Trigger".
 
 ![Cron tree](images/tasks-001.png)
 
@@ -143,18 +143,18 @@ Esempio:
 [root]# crontab -u user1 -e
 ```
 
-| Opzione | Descrizione                                                                              |
-| ------- | ---------------------------------------------------------------------------------------- |
-| `-e`    | Modifica il file di pianificazione con VI                                                |
-| `-l`    | Visualizza il contenuto del file di pianificazione                                       |
-| `-u`    | Imposta il nome dell'utente di cui si vuole manipolare il file di programma previsionale |
-| `-r`    | Cancella il file di pianificazione                                                       |
+| Opzione           | Descrizione                                        |
+| ----------------- | -------------------------------------------------- |
+| `-e`              | Modifica il file di pianificazione con VI          |
+| `-l`              | Visualizza il contenuto del file di pianificazione |
+| `-u <user>` | Specifica un singolo utente per operare            |
+| `-r`              | Cancella il file di pianificazione                 |
 
 !!! Warning "Attenzione"
 
     `crontab` senza opzioni cancella il vecchio file di pianificazione e attende che l'utente inserisca nuove righe. Per uscire da questa modalità di modifica è necessario premere <kbd>ctrl</kbd> + <kbd>d</kbd>.
     
-    Solo `root' può usare l'opzione `-u user' per gestire il file di pianificazione di un altro utente.
+    Solo `root` può usare l'opzione `-u <user>` per gestire il file di pianificazione di un altro utente.
     
     L'esempio precedente consente a root di pianificare un'attività per l'user1.
 
@@ -206,12 +206,12 @@ Il file `crontab` è strutturato in base alle seguenti regole.
 
 Per semplificare la notazione della definizione di tempo, è consigliabile utilizzare simboli speciali.
 
-| Wildcards | Descrizione                               |
-| --------- | ----------------------------------------- |
-| `*`       | Indica tutti i possibili valori del campo |
-| `-`       | Indica una gamma di valori                |
-| `,`       | Indica un elenco di valori                |
-| `/`       | Definisce un passo                        |
+| Simbolo speciale | Descrizione                               |
+| ---------------- | ----------------------------------------- |
+| `*`              | Indica tutti i valori temporali del campo |
+| `-`              | Indica un intervallo di tempo continuo    |
+| `,`              | Indica l'intervallo di tempo discontinuo  |
+| `/`              | Intervallo di tempo indicato              |
 
 Esempi:
 
@@ -221,19 +221,19 @@ Script eseguito il 15 Aprile alle 10:25am:
 25 10 15 04 * /root/scripts/script > /log/…
 ```
 
-Ogni giorno alle 11.00 e alle 16.00:
+Eseguire l'attività una volta al giorno alle 11.00 e una volta al giorno alle 16.00:
 
 ```bash
 00 11,16 * * * /root/scripts/script > /log/…
 ```
 
-Esegui ogni ora dalle 11.00 alle 16.00 tutti i giorni:
+L'attività si svolge una volta all'ora dalle 11.00 alle 16.00 di ogni giorno:
 
 ```bash
 00 11-16 * * * /root/scripts/script > /log/…
 ```
 
-Esegui ogni 10 minuti durante l'orario di lavoro:
+Eseguire ogni 10 minuti durante l'orario di lavoro nei giorni feriali:
 
 ```bash
 */10 8-17 * * 1-5 /root/scripts/script > /log/…
@@ -254,12 +254,12 @@ Per l'utente root, `crontab` ha anche alcune impostazioni speciali del tempo:
 
 Un utente, rockstar, vuole modificare il suo file `crontab`:
 
-1. `crond` controlla se è autorizzato (`/etc/cron.allow` e `/etc/cron.deny`).
+1. Il demone `crond` controlla se l'utente è autorizzato`(/etc/cron.allow` e `/etc/cron.deny`).
 
-2. Se lo è, accede al suo file `crontab` (`/var/spool/cron/rockstar`).
+2. Se l'utente è autorizzato, accede al suo file `crontab``(/var/spool/cron/rockstar`).
 
-    Ogni minuto `crond` legge i file di pianificazione.
+Il demone `crond`:
 
-3. Esegue le attività programmate.
-
-4. I rapporti sono riportati sistematicamente in un file di log (`/var/log/cron`).
+* Legge - Legge i file delle attività pianificate di tutti gli utenti ogni minuto.
+* Esegue - Esegue le attività secondo la pianificazione.
+* Scrive - Scrive gli eventi e i messaggi corrispondenti nel file`(/var/log/cron`).
