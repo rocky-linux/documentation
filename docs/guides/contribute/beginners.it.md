@@ -11,7 +11,7 @@ tags:
 
 # Guida Iniziale del Contributore
 
-*Tutti iniziano da qualche parte. Se questa è la prima volta che contribuite alla documentazione open source su GitHub, congratulazioni per aver fatto questo passo. Non vediamo l'ora di vedere cosa avete da dirci!*
+*Tutti iniziano da qualche parte. Se è la prima volta che contribuite alla documentazione open source su GitHub, congratulazioni per aver fatto questo passo. Non vediamo l'ora di vedere cosa avete da dire!* Per ottenere risultati ottimali, leggete la [nostra guida allo stile](style_guide.md), che include diversi altri link a documenti che vi aiuteranno ad apprendere le migliori pratiche per la documentazione.
 
 ## Git e GitHub
 
@@ -21,7 +21,7 @@ Non è detto che si inizi a creare e gestire repository per Rocky Linux, ma ques
 
 ## Markdown
 
-Markdown è un linguaggio semplice che consente di includere formattazione, codice e testo normale nello stesso file. La prima volta che si aggiorna un documento, si segue il codice esistente. Non passerà molto tempo prima che siate pronti a esplorare altre funzioni. Quando arriva il momento, ecco le regole di base.
+Markdown è un linguaggio semplice che consente di includere nello stesso file formattazione, codice e testo semplice. La prima volta che si aggiorna un documento, si segue il codice esistente. Non passerà molto tempo prima che siate pronti a esplorare altre funzioni. Quando arriva il momento, ecco le regole di base.
 
 - [Markdown di base](https://www.markdownguide.org/basic-syntax#code)
 - [Markdown Avanzato](https://www.markdownguide.org/extended-syntax/#fenced-code-blocks)
@@ -56,19 +56,19 @@ Una volta installato l'editor Markdown, seguire le istruzioni per collegarlo all
 
 1. Iniziare dalla pagina che si desidera aggiornare.
 
-    Fare clic sulla matita "Edit" nell'angolo superiore destro del documento che si desidera aggiornare. Si accede al documento originale su GitHub.
+    Fare clic sulla matita "Edit" nell'angolo superiore destro del documento che si desidera aggiornare. Si accede così al documento originale su GitHub.
 
-    La prima volta che si contribuisce al repository RL, comarirà un pulsante verde con la scritta "**Fork** this **repository** and propose changes" In questo modo si crea una copia duplicata del repository RL in cui si apportano le modifiche suggerite. È sufficiente fare clic sul pulsante verde e continuare.
+    La prima volta che contribuite al repository Rocky Linux (RL), vedrete un prompt con un pulsante verde che vi inviterà a fare il "**Fork** di questo **repository** e proporre modifiche". In questo modo si crea una copia duplicata del repository RL in cui si apportano le modifiche suggerite. Fare clic sul pulsante verde e continuare.
 
 2. Apportare le modifiche
 
-    Seguire la formattazione Markdown. Forse manca una parola, o il link alla riga 21 deve essere sistemato, ad esempio. Apportare le modifiche necessarie.
+    Seguire la formattazione Markdown. Forse manca una parola o è necessario correggere il collegamento alla riga 21, ad esempio. Apportare le modifiche necessarie.
 
 3. Proporre modifiche
 
     In fondo alla pagina, scrivere una descrizione di una riga nel titolo del blocco intitolato "**Propose changes"**. È utile, ma non necessario, fare riferimento al nome del file che si trova all'inizio del documento.
 
-    Quindi, se si aggiorna un collegamento nella riga 21 del testo markdown, si dovrebbe dire qualcosa come "Update README.md with correct links."
+    Se si è aggiornato un collegamento nella riga 21 del testo markdown, si potrebbe dire: "Aggiornare README.md con i collegamenti corretti".
 
     **Nota: scrivere l'azione al presente.**
 
@@ -76,13 +76,13 @@ Una volta installato l'editor Markdown, seguire le istruzioni per collegarlo all
 
 4. Modifiche alla revisione
 
-    Ora è possibile esaminare ciò che si è fatto, riga per riga. Ti sei perso qualcosa? Tornate alla pagina precedente e correggetela di nuovo (dovrete ricominciare da capo), quindi fate di nuovo clic su Propose Changes.
+    Ora è possibile rivedere le modifiche apportate, riga per riga. Ti sei perso qualcosa? Tornate alla pagina precedente e correggetela di nuovo (dovrete ricominciare da capo), quindi fate di nuovo clic su Proponi modifiche.
 
     Una volta che il documento è come lo si desidera, fare clic sul pulsante verde Create Pull Request. In questo modo si ha un'ulteriore possibilità di ricontrollare le modifiche e confermare che il documento sia pronto.
 
-5. Creare un Pull Request
+5. Creare una richiesta di Pull (PR)
 
-    Tutto il lavoro svolto finora è stato fatto nel proprio repository, senza la possibilità di danneggiare il repository principale di RL. Successivamente, la si sottopone al team di documentazione per unire la propria versione a quella principale del documento.
+    Avete completato tutto il lavoro finora nel vostro repository, senza la possibilità di rompere il repository principale di RL. Successivamente, la si sottopone al team di documentazione per unire la propria versione a quella principale del documento.
 
     Fare clic sul pulsante verde grande che dice Create Pull Request. Buone notizie, non avete ancora rotto nulla, perché ora il tutto passa al team di documentazione di RL per la revisione.
 
@@ -94,6 +94,6 @@ Una volta installato l'editor Markdown, seguire le istruzioni per collegarlo all
     - Commentare con un feedback e chiedere modifiche
     - Negare il PR con una spiegazione
 
-    L'ultima risposta è improbabile. Vogliamo davvero includere il vostro punto di vista! Se dovete apportare delle modifiche, capirete immediatamente perché avete bisogno di un repository locale. Il team potrà [spiegarvi](https://chat.rockylinux.org/rocky-linux/channels/documentation) cosa fare in seguito. La buona notizia è che il problema è ancora risolvibile. Seguite la sezione dei commenti di tale richiesta per vedere quali ulteriori informazioni sono richieste.
+    L'ultima risposta è improbabile. Vogliamo davvero includere il vostro punto di vista! Se dovete apportare delle modifiche, capirete immediatamente perché avete bisogno di un repository locale. Il team potrà [spiegarvi](https://chat.rockylinux.org/rocky-linux/channels/documentation) cosa fare in seguito. La buona notizia è che il problema è ancora risolvibile. Se è necessario aggiungere o modificare la richiesta di pull, un membro del team li aggiungerà alla sezione dei commenti.
 
     In caso contrario, la richiesta verrà accettata e unita. Benvenuto nel team, ora sei ufficialmente un collaboratore! Tra qualche giorno il vostro nome apparirà nell'elenco dei collaboratori in fondo alla Guida dei collaboratori.

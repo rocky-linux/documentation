@@ -425,7 +425,7 @@ $ sudo systemctl status mariadb
      Loaded: loaded (/usr/lib/systemd/system/mariadb.service; enabled; preset: disabled)
      Active: active (running) since Thu 2024-06-20 11:48:56 CEST; 1min 27s ago
        Docs: man:mariadbd(8)
-             https://mariadb.com/kb/en/library/systemd/
+             https://mariadb.com
     Process: 6538 ExecStartPre=/usr/libexec/mariadb-check-socket (code=exited, status=0/SUCCESS)
     Process: 6560 ExecStartPre=/usr/libexec/mariadb-prepare-db-dir mariadb.service (code=exited, status=0/SUCCESS)
     Process: 6658 ExecStartPost=/usr/libexec/mariadb-check-upgrade (code=exited, status=0/SUCCESS)

@@ -29,13 +29,13 @@ Questa procedura vi permetterà di utilizzare MATE su Rocky Linux.
     
     ### 9: Ottenere, verificare e scrivere l'immagine live di MATE
     
-    Prima dell'installazione, il primo passo è scaricare l'immagine live e scriverla su un DVD o una chiavetta USB. Come detto in precedenza, l'immagine sarà avviabile, proprio come qualsiasi altro supporto di installazione per Linux. È possibile trovare l'ultima immagine MATE nella sezione download di Rocky Linux 9 [immagini live](https://dl.rockylinux.org/pub/rocky/9.5/live/x86_64/). Si noti che questo particolare collegamento presuppone che l'architettura sia x86_64 e, al momento in cui scriviamo, questa è l'unica immagine live disponibile. Scaricare sia l'immagine live che i file di checksum. 
+    Prima dell'installazione, il primo passo è scaricare l'immagine live e scriverla su un DVD o una chiavetta USB. Come detto in precedenza, l'immagine sarà avviabile, proprio come qualsiasi altro supporto di installazione per Linux. È possibile trovare l'ultima immagine MATE nella sezione download di Rocky Linux 9 [immagini live](https://dl.rockylinux.org/pub/rocky/9.6/live/x86_64/). Si noti che questo particolare collegamento presuppone che l'architettura sia x86_64 e, al momento in cui scriviamo, questa è l'unica immagine live disponibile. Scaricare sia l'immagine live che i file di checksum. 
     
     Verificare l'immagine con il file CHECKSUM nel modo seguente 
     (si noti che questo è un esempio! Assicurarsi che il nome dell'immagine e i file CHECKSUM corrispondano):
 
     ```
-    sha256sum -c CHECKSUM --ignore-missing Rocky-9.5-MATE-x86_64-20221124.0.iso.CHECKSUM
+    sha256sum -c CHECKSUM --ignore-missing Rocky-9.6-MATE-x86_64-20250530.3.iso.CHECKSUM
     ```
 
 
