@@ -25,7 +25,7 @@ Grazie al team di sviluppo di Rocky Linux, sono disponibili immagini live per di
 
 ## Ottenere, verificare e scrivere l'immagine live di KDE
 
-Prima dell'installazione, il primo passo è scaricare l'immagine live e scriverla su un DVD o una chiavetta USB. Come detto in precedenza, l'immagine sarà avviabile, proprio come qualsiasi altro supporto di installazione per Linux. È possibile trovare l'ultima immagine di KDE nella sezione download di Rocky Linux 9 [immagini live](https://dl.rockylinux.org/pub/rocky/9.5/live/x86_64/).
+Prima dell'installazione, il primo passo è scaricare l'immagine live e scriverla su un DVD o una chiavetta USB. Come detto in precedenza, l'immagine sarà avviabile, proprio come qualsiasi altro supporto di installazione per Linux. Potete trovare l'ultima immagine di KDE nella sezione di download delle [immagini live](https://dl.rockylinux.org/pub/rocky/9.6/live/x86_64/) di Rocky Linux 9.
 
 Si noti che questo particolare collegamento presuppone x86_64 come architettura del processore. Se si dispone di un'architettura aarch64, è possibile utilizzare questa immagine. Scaricare l'immagine live e i file di checksum.
 
@@ -49,7 +49,7 @@ Anche in questo caso, la situazione varia a seconda della macchina, del BIOS, de
 
 ![kde_boot](images/kde_boot.png)
 
-Se è così, siete sulla buona strada! Se si desidera testare il supporto, si può inserire prima questa opzione, oppure si può inserire **S** per **Avviare Rocky Linux KDE 9.0**.
+Se è così, siete sulla buona strada! Se si vuole testare il supporto, si può inserire prima questa opzione, oppure si può inserire **S** per **avviare Rocky Linux KDE 9**.
 
 Ricordate che si tratta di un'immagine live. L'avvio della prima schermata richiederà un po' di tempo. Non fatevi prendere dal panico, aspettate! Quando l'immagine live è attiva, viene visualizzata questa schermata:
 
