@@ -543,7 +543,7 @@ chiavi :
     **wildcard (wildcard character)**: utilizzato per associare i nomi di file o directory. 
     **regular expression**: utilizzata per individuare il contenuto di un file.
     
-    È possibile vedere un'introduzione con maggiori dettagli in [questo documento](../sed_awk_grep/1_espressioni_regolari_vs_wildcards.md).
+    È possibile vedere un'introduzione con maggiori dettagli in [questo documento](../sed_awk_grep/1_regular_expressions_vs_wildcards.md).
 
 ## *CoPy Input Output* - `cpio`
 
