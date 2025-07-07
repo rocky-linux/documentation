@@ -1,7 +1,7 @@
 ---
 title: Групи по інтересам
 author: Steven Spencer
-contributors: null
+contributors:
 ---
 
 - Альтернативна архітектура [SIG/AltArch](https://sig-altarch.rocky.page)
