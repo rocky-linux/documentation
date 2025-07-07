@@ -1,7 +1,7 @@
 ---
 title: Comando Grep
 author: tianci li
-contributors: null
+contributors:
 tags:
   - grep
 ---
