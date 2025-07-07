@@ -40,9 +40,9 @@ Es wird ein Softwarefenster geöffnet, das versucht, Druckertreiber zu finden un
 
 ## Herunterladen und Installieren der Treiber
 
-Anleitung zur Installation des Brother-Treiberinstallationsskripts:{target="_blank"}
+[Anleitung zur Installation des Brother-Treiberinstallationsskripts:](https://support.brother.com/g/b/downloadlist.aspx?&c=us&lang=en&prod=mfcj480dw_us_eu_as&os=127){target="_blank"}
 
-1. Laden Sie das Bash-Skript für den Brother MFC-J480DW-Druckertreiber herunter{target="_blank"}
+1. [Laden Sie das Bash-Skript für den Brother MFC-J480DW-Druckertreiber herunter](https://support.brother.com/g/b/downloadtop.aspx?c=us&lang=en&prod=mfcj480dw_us_eu_as){target="_blank"}
 
 2. Öffnen Sie ein Terminalfenster.
 
