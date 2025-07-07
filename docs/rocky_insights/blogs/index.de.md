@@ -1,7 +1,7 @@
 ---
 title: Einleitung
 author: Steven Spencer
-contributors: null
+contributors:
 ---
 
 ## Warum dieser Abschnitt?
