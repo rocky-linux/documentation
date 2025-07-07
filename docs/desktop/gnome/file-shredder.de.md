@@ -22,19 +22,19 @@ Für diese Anleitung benötigen Sie Folgendes:
 
 1. Gehen Sie zu [Flathub.org] (https://flathub.org), geben Sie `File Shredder` in die Suchleiste ein und klicken Sie auf **Install**
 
- ![manual install script and run script](images/file-shredder_install.png)
+   ![manual install script and run script](images/file-shredder_install.png)
 
 2. Kopieren Sie das manuelle Skript in Ihr Terminal:
 
- ```bash
- flatpak install flathub io.github.ADBeveridge.Raider
- ```
+   ```bash
+   flatpak install flathub io.github.ADBeveridge.Raider
+   ```
 
 3. Führen Sie anschließend das manuelle Installationsskript in Ihrem Terminal aus:
 
- ```bash
- flatpak run flathub io.github.ADBeveridge.Raider
- ```
+   ```bash
+   flatpak run flathub io.github.ADBeveridge.Raider
+   ```
 
 ## Anwendungshinweise
 
@@ -42,7 +42,7 @@ Gehen Sie wie folgt vor, um `File Shredder` zu verwenden:
 
 1. Ziehen oder klicken Sie auf **Add file**, um die Datei(en) auszuwählen, die Sie entfernen möchten
 
- ![Screenshot of the File Shredder homepage, showing the add drop-down menu and drop here button being highlighted by red rectangles](images/02_file-shredder.png)
+   ![Screenshot of the File Shredder homepage, showing the add drop-down menu and drop here button being highlighted by red rectangles](images/02_file-shredder.png)
 
 2. Auf **Shred All** klicken
 
