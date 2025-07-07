@@ -2,7 +2,7 @@
 title: Команда tar
 author: tianci li
 contributors: Ganna Zhyrnova
-tested_with: 8.1
+tested_with: 8.10
 tags:
   - tar
   - резервне копіювання
