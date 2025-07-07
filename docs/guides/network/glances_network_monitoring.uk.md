@@ -2,7 +2,7 @@
 title: Моніторинг мережі та ресурсів з Glances
 author: Alex Zolotarov
 contributors: Steven Spencer
-tested_with: 9
+tested_with: 9.0
 tags:
   - моніторинг
   - мережа
