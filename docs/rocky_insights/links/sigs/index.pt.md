@@ -1,7 +1,7 @@
 ---
 title: Grupo de Interesse Especial (SIG)
 author: Steven Spencer
-contributors: null
+contributors:
 ---
 
 - Arquitetura Alternativa [SIG/AltArch](https://sig-altarch.rocky.page)
