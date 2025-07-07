@@ -40,9 +40,9 @@ Si apre una finestra Software che tenta di individuare ed installare i driver de
 
 ## Scaricare e installare i drivers
 
-Istruzioni per l'installazione di Brother Driver Installer Script:{target="_blank"}
+[Istruzioni per l'installazione di Brother Driver Installer Script:](https://support.brother.com/g/b/downloadlist.aspx?&c=us&lang=en&prod=mfcj480dw_us_eu_as&os=127){target="_blank"}
 
-1. Scaricare lo script di bash per il driver della Brother MFC-J480DW{target="_blank"}
+1. [Scaricare lo script di bash per il driver della Brother MFC-J480DW](https://support.brother.com/g/b/downloadtop.aspx?c=us&lang=en&prod=mfcj480dw_us_eu_as){target="_blank"}
 
 2. Aprire la finestra del terminale.
 
