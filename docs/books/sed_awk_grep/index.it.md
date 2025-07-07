@@ -1,7 +1,7 @@
 ---
 title: Sed, Awk e Grep - i tre spadaccini
 author: tianci li
-contributors: null
+contributors:
 tags:
   - grep
   - sed
