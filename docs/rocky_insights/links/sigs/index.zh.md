@@ -1,7 +1,7 @@
 ---
 title: 特别兴趣小组（SIG）
 author: Steven Spencer
-contributors: null
+contributors:
 ---
 
 - 新架构 [SIG/AltArch](https://sig-altarch.rocky.page)
