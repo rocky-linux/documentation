@@ -1,7 +1,7 @@
 ---
 title: Groupes d'Intérêts Spéciaux
 author: Steven Spencer
-contributors: null
+contributors:
 ---
 
 - Architecture Alternative [SIG/AltArch](https://sig-altarch.rocky.page)
