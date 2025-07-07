@@ -1,7 +1,7 @@
 ---
 title: Première contribution à la documentation de Rocky Linux via CLI
 author: Wale Soyinka
-contributors: null
+contributors:
 tags:
   - GitHub
   - Rocky Linux
