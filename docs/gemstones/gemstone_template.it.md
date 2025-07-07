@@ -1,8 +1,7 @@
 ---
 title: Modello di Gemstone semplificato
 author: Author's Name
-contributors:
-  - Elenco separato da virgole dei collaboratori
+contributors: [ Elenco separato da virgole dei collaboratori ]
 tags:
   - Lista
   - Dei
