@@ -22,19 +22,19 @@ Questa guida presuppone che si disponga di quanto segue:
 
 1. Andate su [Flathub.org](https://flathub.org), digitate "Valuta" nella barra di ricerca e cliccate su **Installa**
 
- ![manual install script and run script](images/valuta-install.png)
+    ![manual install script and run script](images/valuta-install.png)
 
 2. Copiare lo script manuale nel terminale:
 
- ```bash
- flatpak install flathub io.github.idevecore.Valuta
- ```
+    ```bash
+    flatpak install flathub io.github.idevecore.Valuta
+    ```
 
 3. Infine, lo script manuale nel terminale:
 
- ```bash
- flatpak run flathub io.github.idevecore.Valuta
- ```
+    ```bash
+    flatpak run flathub io.github.idevecore.Valuta
+    ```
 
 ## Guida all'uso
 
@@ -42,7 +42,7 @@ Per utilizzare Valuta, procedere come segue:
 
 1. Scegliete il vostro Paese dal menu a tendina e digitate il denaro che volete spendere.
 
- ![Screenshot of Valuta app showing 1000 USD in the input field, with a grey arrow pointing down to a grey box showing 1000 USD](images/02_valuta.png)
+    ![Screenshot of Valuta app showing 1000 USD in the input field, with a grey arrow pointing down to a grey box showing 1000 USD](images/02_valuta.png)
 
 2. Selezionare il Paese in cui si viaggia dal menu a discesa. L'importo convertito apparirà automaticamente.
 
