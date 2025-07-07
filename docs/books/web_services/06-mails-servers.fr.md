@@ -1,6 +1,6 @@
 ---
-author: null
-contributors: null
+author:
+contributors:
 title: Chapitre 6 Serveurs de messagerie
 ---
 

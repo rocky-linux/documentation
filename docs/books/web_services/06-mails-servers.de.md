@@ -1,6 +1,6 @@
 ---
-author: null
-contributors: null
+author:
+contributors:
 title: Kapitel 6 – Mail-Server
 ---
 
