@@ -1,7 +1,7 @@
 ---
 title: Робочий стіл
 author: Steven Spencer
-contributors: null
+contributors:
 ---
 
 ## Вступ
