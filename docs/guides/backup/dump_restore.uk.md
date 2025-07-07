@@ -2,7 +2,7 @@
 title: Команди dump та restore
 author: tianci li
 contributors: Steven Spencer
-tested_with: 8.1
+tested_with: 8.10
 tags:
   - dump
   - restore
