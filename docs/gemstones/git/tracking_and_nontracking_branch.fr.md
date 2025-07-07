@@ -1,7 +1,7 @@
 ---
 title: Tracking vs Non-Tracking Branch avec Git
 author: Wale Soyinka
-contributors: null
+contributors:
 tags:
   - git
   - git branch
