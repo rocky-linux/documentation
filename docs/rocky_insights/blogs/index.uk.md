@@ -1,7 +1,7 @@
 ---
 title: Вступ
 author: Steven Spencer
-contributors: null
+contributors:
 ---
 
 ## Чому цей розділ?
