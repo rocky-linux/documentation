@@ -1,7 +1,7 @@
 ---
 title: 介绍
 author: Steven Spencer
-contributors: null
+contributors:
 ---
 
 ## 为什么有这个部分？
