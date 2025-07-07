@@ -1,7 +1,7 @@
 ---
 title: Special Interest Groups
 author: Spencer Steven
-contributors: null
+contributors:
 ---
 
 - Architetture Alternative [SIG/AltArch](https://sig-altarch.rocky.page)
