@@ -1,7 +1,7 @@
 ---
 title: Environnement de Bureau
 author: Steven Spencer
-contributors: null
+contributors:
 ---
 
 ## Introduction
