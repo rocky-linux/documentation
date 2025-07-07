@@ -1,7 +1,7 @@
 ---
 title: Introduction
 author: Steven Spencer
-contributors: null
+contributors:
 ---
 
 ## Pourquoi cette rubrique ?
