@@ -543,7 +543,7 @@ tar xvf backup.tar --wildcards '*.conf'
     **通配符**：用于匹配文件名或目录名。 
     **正则表达式**：用于匹配文件的内容。
     
-    您可以在 [此文档](../sed_awk_grep/1_regular _expressions_vs_wildcards.md) 中看到更详细的介绍。
+    您可以在 [此文档](../sed_awk_grep/1_regular_expressions_vs_wildcards.md) 中看到更详细的介绍。
 
 ## *CoPy Input Output* - `cpio`
 
