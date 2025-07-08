@@ -37,13 +37,13 @@ La maggior parte dei comandi della guida può essere eseguita manualmente, ma la
 
 Ecco tutto ciò che vi serve, o che dovete sapere, per far funzionare questa guida:
 
-* Familiarità con la riga di comando, gli script bash e la modifica dei file di configurazione di Linux.
-* Accesso SSH se si lavora su un computer remoto.
-* Un editor di testo a riga di comando di vostra scelta. In questa guida utilizzeremo `vi`.
-* Una macchina Rocky Linux connessa a Internet (anche in questo caso, un Raspberry Pi può andare bene).
-* Molti di questi comandi devono essere eseguiti come root, quindi è necessario avere un utente root o con capacità sudo sulla macchina.
-* La familiarità con i server web e MariaDB sarebbe sicuramente utile.
-* La familiarità con i container e magari con Docker sarebbe *indubbiamente* un vantaggio ma non è strettamente essenziale.
+- Familiarità con la riga di comando, gli script bash e la modifica dei file di configurazione di Linux.
+- Accesso SSH se si lavora su un computer remoto.
+- Un editor di testo a riga di comando di vostra scelta. In questa guida utilizzeremo `vi`.
+- Una macchina Rocky Linux connessa a Internet (anche in questo caso, un Raspberry Pi può andare bene).
+- Molti di questi comandi devono essere eseguiti come root, quindi è necessario avere un utente root o con capacità sudo sulla macchina.
+- La familiarità con i server web e MariaDB sarebbe sicuramente utile.
+- La familiarità con i container e magari con Docker sarebbe *indubbiamente* un vantaggio ma non è strettamente essenziale.
 
 ## Passo 01: Installare `podman` e `buildah`
 
@@ -75,7 +75,7 @@ vi /etc/containers/registries.conf
 
 Trovate la sezione che assomiglia a quella che vedete qui sotto. Se è commentato, decommentarlo.
 
-```
+```bash
 [registries.insecure]
 registries = ['registry.access.redhat.com', 'registry.redhat.io', 'docker.io'] 
 insecure = true
@@ -109,7 +109,7 @@ vi Dockerfile
 
 Copiare e incollare il seguente testo nel nuovo file Docker.
 
-```
+```docker
 FROM rockylinux/rockylinux:latest
 ENV container docker
 RUN yum -y install epel-release ; yum -y update
@@ -137,7 +137,7 @@ vi build.sh
 
 Quindi incollare questo contenuto:
 
-```
+```bash
 #!/bin/bash
 clear
 buildah rmi `buildah images -q base` ;
@@ -163,10 +163,10 @@ Attendere che sia terminato e passare alla fase successiva.
 
 Per gli scopi di questa guida, manteniamo la configurazione del database il più semplice possibile. Si consiglia di tenere traccia dei seguenti elementi e di modificarli se necessario:
 
-* Nome del database: ncdb
-* Utente del database: nc-user
-* Pass per il database: nc-pass
-* L'indirizzo IP del vostro server (di seguito utilizzeremo un IP di esempio)
+- Nome del database: ncdb
+- Utente del database: nc-user
+- Pass per il database: nc-pass
+- L'indirizzo IP del vostro server (di seguito utilizzeremo un IP di esempio)
 
 Per prima cosa, spostarsi nella cartella in cui si costruirà l'immagine di db-tools:
 
@@ -182,7 +182,7 @@ vi db-create.sh
 
 Ora copiate e incollate il seguente codice nel file, utilizzando il vostro editor di testo preferito:
 
-```
+```bash
 #!/bin/bash
 mysql -h 10.1.1.160 -u root -p rockylinux << eof
 create database ncdb;
@@ -199,7 +199,7 @@ vi db-drop.sh
 
 Copiate e incollate questo codice nel nuovo file:
 
-```
+```bash
 #!/bin/bash
 mysql -h 10.1.1.160 -u root -p rockylinux << eof
 drop database ncdb;
@@ -215,7 +215,7 @@ vi Dockerfile
 
 Copia e incolla:
 
-```
+```docker
 FROM localhost/base
 RUN yum -y install mysql
 WORKDIR /root
@@ -231,7 +231,7 @@ vi build.sh
 
 Il codice che si desidera ottenere:
 
-```
+```bash
 #!/bin/bash
 clear
 buildah rmi `buildah images -q db-tools` ;
@@ -271,7 +271,7 @@ Ed ecco il codice necessario:
 
     Ai fini di questa guida, il seguente script cancellerà tutti i Volumi Podman. Se ci sono altre applicazioni in esecuzione con i propri volumi, modificare/commentare la riga "podman volume rm --all";
 
-```
+```bash
 #!/bin/bash
 clear
 echo " "
@@ -302,7 +302,7 @@ vi db-reset.sh
 
 Ed ecco il codice:
 
-```
+```bash
 #!/bin/bash
 clear
 echo " "
@@ -322,7 +322,7 @@ vi build.sh
 
 With its code:
 
-```
+```bash
 #!/bin/bash
 clear
 buildah rmi `buildah images -q mariadb` ;
@@ -332,7 +332,7 @@ buildah images -a
 
 Ora create il vostro DockferFile (`vi Dockerfile`) e incollate la seguente singola riga:
 
-```
+```docker
 FROM arm64v8/mariadb
 ```
 
@@ -364,7 +364,7 @@ vi Dockerfile
 
 E incollare questo pezzo:
 
-```
+```docker
 FROM arm64v8/nextcloud
 ```
 
@@ -376,7 +376,7 @@ vi build.sh
 
 E incollare questo codice:
 
-```
+```bash
 #!/bin/bash
 clear
 buildah rmi `buildah images -q nextcloud` ;
@@ -398,7 +398,7 @@ vi run.sh
 
 Ecco tutto il codice necessario per farlo. Assicurarsi di cambiare l'indirizzo IP di `MYSQL_HOST` con il container docker su cui è in esecuzione l'istanza di MariaDB.
 
-```
+```bash
 #!/bin/bash
 clear
 echo " "
@@ -430,7 +430,7 @@ chmod +x *.sh
 
 Per assicurarsi che tutte le immagini siano state costruite correttamente, eseguire `podman images`. Dovrebbe apparire un elenco simile a questo:
 
-```
+```bash
 REPOSITORY                      TAG    IMAGE ID     CREATED      SIZE
 localhost/db-tools              latest 8f7ccb04ecab 6 days ago   557 MB
 localhost/base                  latest 03ae68ad2271 6 days ago   465 MB
@@ -446,13 +446,13 @@ Se tutto sembra corretto, eseguite lo script finale per avviare Nextcloud:
 
 Quando si esegue `podman ps -a`, si dovrebbe vedere un elenco di container in esecuzione che assomiglia a questo:
 
-```
+```bash
 CONTAINER ID IMAGE                              COMMAND              CREATED        STATUS            PORTS    NAMES
 9518756a259a docker.io/arm64v8/mariadb:latest   mariadbd             3 minutes  ago Up 3 minutes ago           mariadb
 32534e5a5890 docker.io/arm64v8/nextcloud:latest apache2-foregroun... 12 seconds ago Up 12 seconds ago          nextcloud
 ```
 
-Da qui, si dovrebbe essere in grado di puntare il browser all'indirizzo IP del server. Se state seguendo e avete lo stesso IP del nostro esempio, potete sostituirlo qui (ad esempio, http://your-server-ip) e vedere Nextcloud in funzione.
+Da qui, si dovrebbe essere in grado di puntare il browser all'indirizzo IP del server. Se state seguendo e avete lo stesso IP del nostro esempio, potete sostituirlo qui (ad esempio, <http://your-server-ip>) e vedere Nextcloud in funzione.
 
 ## Conclusione
 
