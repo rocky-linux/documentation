@@ -207,7 +207,7 @@ Next, you need to define the `https` part of the configuration file:
         ServerAdmin username@rockylinux.org
         Redirect / https://your-server-hostname/
 </VirtualHost>
-<Virtual Host *:443>
+<VirtualHost *:443>
         ServerName your-server-hostname
         ServerAdmin username@rockylinux.org
         DocumentRoot /var/www/sub-domains/your-server-hostname/html
@@ -239,6 +239,10 @@ Next, you need to define the `https` part of the configuration file:
         </Directory>
 </VirtualHost>
 ```
+
+!!! warning "A note on cipher suites"
+
+    This document was originally written for Rocky Linux 8. A **great deal** has changed since then. For one thing, you might want to leave out the `SSLHonorCipherOrder on` and `SSLCipherSuite` lines completely and let the server's default configuration pick that up. If you maintain an updated server (in other words, you run `dnf upgrade` routinely), then this should handle the security and update of the cipher suites without separate configuration manipulation. In this way, you will avoid using deprecated or dangerous cipher suites in your configuration. If for some reason you **need** to manipulate these in your configuration, research your entries carefully.
 
 So, breaking down this configuration further, after the normal portions of the configuration and down to the SSL/TLS section:
 
