@@ -10,9 +10,9 @@ tags:
 
 # Cloud Server Using Nextcloud
 
-!!! note "Regarding Rocky Linux 9.x"
+!!! note "Regarding Rocky Linux 9.x or 10.x"
 
-    This procedure should work for Rocky Linux 9.x. The difference is that you may need to change version references for some of the repositories to update those to version 9.  If you are using Rocky Linux 9.x, just be aware that this was tested in both 8.6 and 9.0, but written originally for 8.6.
+    This procedure should work for Rocky Linux 9.x or 10.x. The difference is that you may need to change version references for some of the repositories to update those to version 9 or 10. If you are using Rocky Linux 9.x or 10.x, just be aware that this was tested in both 8.6 and 9.0, but written originally for 8.6.
 
 ## Prerequisites And Assumptions
 
@@ -49,7 +49,7 @@ To install the EPEL run:
 dnf install epel-release
 ```
 
-To install the Remi repository run (note: if you are using Rocky Linux 9.x, substitute in 9 next to `release-` below):
+To install the Remi repository run (note: if you are using Rocky Linux 9.x or 10.x, substitute in 9 or 10 next to `release-` below):
 
 ```bash
 dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
@@ -63,7 +63,7 @@ Run the following to see a list of php modules that can be enabled:
 dnf module list php
 ```
 
-which gives you this output for Rocky Linux 8.x (similar output will show for Rocky Linux 9.x):
+which gives you this output for Rocky Linux 8.x (similar output will show for Rocky Linux 9.x or 10.x):
 
 ```bash
 Rocky Linux 8 - AppStream
