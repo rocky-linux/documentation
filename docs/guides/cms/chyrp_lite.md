@@ -67,7 +67,7 @@ systemctl enable --now caddy
 
 !!! note
 
-    If you are running Rocky Linux 8.x, substitute "8" next to the release in the Remi package install line. 
+    If you are running Rocky Linux 8.x or 10.x, substitute "8" or "10" next to the release in the Remi package install line. 
 
 To install PHP, you will need the Remi repository. To install the Remi repository, run the following:
 
