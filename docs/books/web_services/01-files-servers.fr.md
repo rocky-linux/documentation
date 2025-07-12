@@ -1,6 +1,6 @@
 ---
-author: null
-contributors: null
+author:
+contributors:
 title: Chapitre 1. Serveurs de Fichiers
 tags:
   - ftp

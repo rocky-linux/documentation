@@ -22,19 +22,19 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 1. Перейдіть на [веб-сайт Flathub](https://flathub.org), введіть «File Shredder» у рядку пошуку та натисніть **Install**
 
- ![manual install script and run script](images/file-shredder_install.png)
+   ![manual install script and run script](images/file-shredder_install.png)
 
 2. Скопіюйте скрипт у свій термінал:
 
- ```bash
- flatpak install flathub io.github.ADBeveridge.Raider
- ```
+   ```bash
+   flatpak install flathub io.github.ADBeveridge.Raider
+   ```
 
 3. Нарешті, запустіть сценарій у вашому терміналі:
 
- ```bash
- flatpak run flathub io.github.ADBeveridge.Raider
- ```
+   ```bash
+   flatpak run flathub io.github.ADBeveridge.Raider
+   ```
 
 ## Як цим користуватися
 
@@ -42,7 +42,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 1. Перетягніть або клацніть **Add file**, щоб вибрати файли, які потрібно видалити
 
- ![Screenshot of the File Shredder homepage, showing the add drop-down menu and drop here button being highlighted by red rectangles](images/02_file-shredder.png)
+   ![Screenshot of the File Shredder homepage, showing the add drop-down menu and drop here button being highlighted by red rectangles](images/02_file-shredder.png)
 
 2. Натисніть **Shred All**
 

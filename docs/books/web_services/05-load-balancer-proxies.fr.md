@@ -1,6 +1,6 @@
 ---
 author: Antoine Le Morvan
-contributors: null
+contributors:
 title: Chapitre 5 Équilibrage de charge, mise en cache et proxy
 ---
 

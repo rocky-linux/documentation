@@ -1,7 +1,7 @@
 ---
 title: Tracciamento e non tracciamento dei rami in Git
 author: Wale Soyinka
-contributors: null
+contributors:
 tags:
   - git
   - git branch

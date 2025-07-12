@@ -166,51 +166,51 @@ A titolo di esempio, il processo di installazione di OBS Studio è il seguente:
 
 3. Cliccare sulla freccia rivolta verso il basso accanto al pulsante "Installa"
 
- ![flathub_install_1](images/01_flatpak.png)
+  ![flathub_install_1](images/01_flatpak.png)
 
- ![flathub_install_2](images/02_flatpak.png)
+  ![flathub_install_2](images/02_flatpak.png)
 
 4. Assicuratevi di aver completato tutti i prerequisiti per l'installazione di Rocky Linux (numero 1 nella seconda immagine, che è già stato completato sopra) e poi copiate il comando (numero 2 nella seconda immagine) e incollatelo in un terminale
 
- ```bash
- flatpak install flathub com.obsproject.Studio
- Looking for matches…
- Required runtime for com.obsproject.Studio/x86_64/stable (runtime/org.kde.Platform/x86_64/6.6) found in remote flathub
- Do you want to install it? [Y/n]: Y
- ```
+  ```bash
+  flatpak install flathub com.obsproject.Studio
+  Looking for matches…
+  Required runtime for com.obsproject.Studio/x86_64/stable (runtime/org.kde.Platform/x86_64/6.6) found in remote flathub
+  Do you want to install it? [Y/n]: Y
+  ```
 
 5. Quando si risponde "Y" e si preme ++enter++, viene visualizzato il seguente messaggio:
 
- ```bash
- com.obsproject.Studio permissions:
- ipc                             network         pulseaudio              wayland
- x11                             devices         file access [1]         dbus access [2]
- system dbus access [3]
+  ```bash
+  com.obsproject.Studio permissions:
+  ipc                             network         pulseaudio              wayland
+  x11                             devices         file access [1]         dbus access [2]
+  system dbus access [3]
 
- [1] host, xdg-config/kdeglobals:ro, xdg-run/pipewire-0
- [2] com.canonical.AppMenu.Registrar, org.a11y.Bus, org.freedesktop.Flatpak, org.freedesktop.Notifications,
-     org.kde.KGlobalSettings, org.kde.StatusNotifierWatcher, org.kde.kconfig.notify
- [3] org.freedesktop.Avahi
+  [1] host, xdg-config/kdeglobals:ro, xdg-run/pipewire-0
+  [2] com.canonical.AppMenu.Registrar, org.a11y.Bus, org.freedesktop.Flatpak, org.freedesktop.Notifications,
+      org.kde.KGlobalSettings, org.kde.StatusNotifierWatcher, org.kde.kconfig.notify
+  [3] org.freedesktop.Avahi
 
-     ID                                                    Branch         Op         Remote          Download
- 1.     com.obsproject.Studio.Locale                          stable         i          flathub          < 47.0 kB (partial)
- 2.     org.kde.KStyle.Adwaita                                6.6            i          flathub           < 8.0 MB
- 3.     org.kde.Platform.Locale                               6.6            i          flathub         < 380.6 MB (partial)
- 4.     org.kde.PlatformTheme.QGnomePlatform                  6.6            i          flathub           < 9.7 MB
- 5.     org.kde.WaylandDecoration.QAdwaitaDecorations         6.6            i          flathub           < 1.2 MB
- 6.     org.kde.Platform                                      6.6            i          flathub         < 325.0 MB
- 7.     com.obsproject.Studio                                 stable         i          flathub         < 207.7 MB
+      ID                                                    Branch         Op         Remote          Download
+  1.     com.obsproject.Studio.Locale                          stable         i          flathub          < 47.0 kB (partial)
+  2.     org.kde.KStyle.Adwaita                                6.6            i          flathub           < 8.0 MB
+  3.     org.kde.Platform.Locale                               6.6            i          flathub         < 380.6 MB (partial)
+  4.     org.kde.PlatformTheme.QGnomePlatform                  6.6            i          flathub           < 9.7 MB
+  5.     org.kde.WaylandDecoration.QAdwaitaDecorations         6.6            i          flathub           < 1.2 MB
+  6.     org.kde.Platform                                      6.6            i          flathub         < 325.0 MB
+  7.     com.obsproject.Studio                                 stable         i          flathub         < 207.7 MB
 
- Proceed with these changes to the system installation? [Y/n]:
- ```
+  Proceed with these changes to the system installation? [Y/n]:
+  ```
 
 6. Rispondendo "Y" e premendo ++enter++ si modificheranno i permessi di sistema come indicato e si installerà l'applicazione.
 
 7. Se tutto va bene, dovreste ricevere:
 
- ```text
- Installation complete.
- ```
+  ```text
+  Installation complete.
+  ```
 
 8. Dal menu "Attività" è ora possibile cercare ed eseguire OBS Studio.
 

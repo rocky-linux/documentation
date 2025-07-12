@@ -1,7 +1,7 @@
 ---
 title: Відстеження та не слідкування за гілками в Git
 author: Wale Soyinka
-contributors: null
+contributors:
 tags:
   - git
   - git branch

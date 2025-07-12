@@ -40,9 +40,9 @@ tags:
 
 ## Завантаження та встановлення драйверів
 
-Інструкції зі встановлення сценарію встановлення драйвера Brother:{target="_blank"}
+[Інструкції зі встановлення сценарію встановлення драйвера Brother:](https://support.brother.com/g/b/downloadlist.aspx?&c=us&lang=en&prod=mfcj480dw_us_eu_as&os=127){target="_blank"}
 
-1. Завантажте сценарій bash для драйвера принтера Brother MFC-J480DW{target="_blank"}
+1. [Завантажте сценарій bash для драйвера принтера Brother MFC-J480DW](https://support.brother.com/g/b/downloadtop.aspx?c=us&lang=en&prod=mfcj480dw_us_eu_as){target="_blank"}
 
 2. Відкрийте вікно терміналу.
 

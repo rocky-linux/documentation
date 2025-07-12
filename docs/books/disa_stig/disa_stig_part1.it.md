@@ -22,7 +22,7 @@ tags:
 
 ## Introduzione
 
-In questa guida verrà illustrato come applicare la [DISA STIG per RHEL8](https://www.stigviewer.com/stig/red_hat_enterprise_linux_8/) per una nuova installazione di Rocky Linux. Come serie in più parti, tratteremo anche come testare la conformità STIG, adattare le impostazioni STIG e applicare altri contenuti STIG in questo ambiente.
+In questa guida verrà illustrato come applicare il [DISA STIG per RHEL8](https://stigviewer.com/stigs/red_hat_enterprise_linux_8) per una nuova installazione di Rocky Linux 8. Come serie in più parti, tratteremo anche come testare la conformità STIG, adattare le impostazioni STIG e applicare altri contenuti STIG in questo ambiente.
 
 Rocky Linux è un derivato bug per bug di RHEL e come tale il contenuto pubblicato per il DISA RHEL8 STIG è in parità per entrambi i sistemi operativi.  Una notizia ancora migliore è che l'applicazione delle impostazioni STIG è integrata nel programma di installazione di Rocky Linux 8 anaconda, sotto la voce Profili di Sicurezza.  Il tutto è gestito da uno strumento chiamato [OpenSCAP](https://www.open-scap.org/), che consente sia di configurare il sistema in modo che sia conforme alla DISA STIG (velocemente!), sia di testare la conformità del sistema dopo l'installazione.
 

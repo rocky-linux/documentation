@@ -1,8 +1,7 @@
 ---
 title: Modèle de Gemstone
 author: Erika Mustermann
-contributors:
-  - Liste des contributeurs séparés par une virgule
+contributors: [ Liste des contributeurs séparés par une virgule ]
 tags:
   - List
   - Of

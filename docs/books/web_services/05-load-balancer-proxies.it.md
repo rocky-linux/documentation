@@ -1,6 +1,6 @@
 ---
 author: Antoine Le Morvan
-contributors: null
+contributors:
 title: Capitolo 5. Load balancing, caching e proxy
 ---
 

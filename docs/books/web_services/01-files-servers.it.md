@@ -1,6 +1,6 @@
 ---
-author: null
-contributors: null
+author:
+contributors:
 title: Capitolo 1. Files Servers
 tags:
   - ftp

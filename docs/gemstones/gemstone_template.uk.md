@@ -1,8 +1,7 @@
 ---
 title: Простий Gemstone шаблон
 author: Ім'я автора
-contributors:
-  - Список співавторів, розділених комами
+contributors: [ "Список співавторів, розділених комами" ]
 tags:
   - List
   - Of

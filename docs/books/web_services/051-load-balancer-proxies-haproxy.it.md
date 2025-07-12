@@ -1,6 +1,6 @@
 ---
 author: Antoine Le Morvan
-contributors: null
+contributors:
 title: Part 5.1 HAProxy
 ---
 

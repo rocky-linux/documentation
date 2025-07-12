@@ -1,7 +1,7 @@
 ---
 title: Sed, Awk & Grep - три мечники
 author: tianci li
-contributors: null
+contributors:
 tags:
   - grep
   - sed

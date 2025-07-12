@@ -40,9 +40,9 @@ Une fenêtre Logiciel s'ouvre pour tenter de localiser et d'installer les pilote
 
 ## Téléchargement et Installation de Pilotes
 
-Brother Driver Installer Script Installation Instructions:{target="_blank"}
+[Brother Driver Installer Script Installation Instructions:](https://support.brother.com/g/b/downloadlist.aspx?&c=us&lang=en&prod=mfcj480dw_us_eu_as&os=127){target="_blank"}
 
-1. Download the Brother MFC-J480DW Printer driver bash script{target="_blank"}
+1. [Download the Brother MFC-J480DW Printer driver bash script](https://support.brother.com/g/b/downloadtop.aspx?c=us&lang=en&prod=mfcj480dw_us_eu_as){target="_blank"}
 
 2. Ouvrez une fenêtre de terminal.
 

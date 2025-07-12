@@ -1,7 +1,7 @@
 ---
 title: accel-ppp – Serveur PPPoE
 author: Neel Chauhan
-contributors: null
+contributors:
 tested_with: 9.3
 tags:
   - réseau

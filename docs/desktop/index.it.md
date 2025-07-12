@@ -1,7 +1,7 @@
 ---
 title: Desktop
 author: Spencer Steven
-contributors: null
+contributors:
 ---
 
 ## Introduzione

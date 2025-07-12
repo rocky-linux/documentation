@@ -1,6 +1,6 @@
 ---
-author: null
-contributors: null
+author:
+contributors:
 title: Erster Teil File-Server
 tags:
   - ftp
