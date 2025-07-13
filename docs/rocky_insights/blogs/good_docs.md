@@ -10,7 +10,7 @@ Translator's provide valuable insight into writing clear, concise, documentation
 
 ### From the author
 
-Software documentation helps users understand how to use a particular software effectively. They need to understand what they will have at the end and what benefits they will have. At the same time, when you create documentation, it means that you create it not only for yourself but also for your network and for other people who might read it. Other people might not be from English-speaking countries. It means that for them, English is not their primary language. Because of this, follow these basic rules to make your documentation more readable for *all* users.
+Software documentation helps users understand how to use a particular software effectively. They need to understand what they will have at the end and what benefits they will have. At the same time, when you create a document, you should be aware that you are not only writing it for yourself, but also for the technical community and others who might read it. Readers of these documents may come from non-English speaking countries, English is not their primary language. Therefore, adhere to the following foundational guidelines to ensure universal readability for **every reader**.
 
 ## Use plain language
 
@@ -29,7 +29,7 @@ Example:
 
 ❌ "Once you’ve got the hang of the dashboard, the rest is a piece of cake." Here, the author uses both a contraction, slang, and an idiom.
 
- ✅ "Once you have learned how to use the dashboard, the rest is easy." By replacing the contraction, the slang, and the idiom with the words associated with each, the meaning is clear.
+✅ "Once you have learned how to use the dashboard, the rest is easy." By replacing the contraction, the slang, and the idiom with the words associated with each, the meaning is clear.
 
 Figurative language, such as idioms, often does not translate well. Technical writers or translators might struggle to convey the same meaning in other languages.
 
@@ -37,7 +37,7 @@ Example:
 
 ❌ "Let’s touch base next week to circle back on the open tickets."
 
- ✅ "Let us meet next week to review the unresolved support requests."
+✅ "Let us meet next week to review the unresolved support requests."
 
 Jargon and acronyms can be confusing—even within the same organization—if their meanings are not universally known.
 
@@ -45,7 +45,7 @@ Example:
 
 ❌ "Upload the CSV to the CMS and tag it according to SOPs."
 
- ✅ "Upload the CSV (Comma-Separated Values file) to the content management system and label it according to the standard operating procedures."
+✅ "Upload the CSV (Comma-Separated Values file) to the content management system and label it according to the standard operating procedures."
 
 Note: If you want to use acronyms, always define them the first time: “Customer Relationship Management (CRM) system”.
 
@@ -74,6 +74,83 @@ Step 2 - Click the button
 Step 3 - Complete the form  
 ...  
 Step N - save changes
+
+## Reduce unnecessary document lines
+
+❌You should first execute the following command:
+
+```bash
+mount -t ext4 /dev/vg01/lv01 /lv01/
+
+mount -t ext4 /dev/vg02/lv02 /lv02/
+```
+
+Then check the mount information:
+
+```bash
+df -hT
+Filesystem            Type      Size  Used Avail Use% Mounted on
+devtmpfs       devtmpfs  1.8G     0  1.8G   0% /dev
+tmpfs          tmpfs     1.8G     0  1.8G   0% /dev/shm
+tmpfs          tmpfs     1.8G  8.9M  1.8G   1% /run
+tmpfs          tmpfs     1.8G     0  1.8G   0% /sys/fs/cgroup
+/dev/sda2      ext4       46G  2.8G   41G   7% /
+/dev/sda1      xfs      1014M  218M  797M  22% /boot
+tmpfs          tmpfs     364M     0  364M   0% /run/user/0
+/dev/mapper/vg01-lv01 ext4      974M   24K  907M   1% /lv01
+/dev/mapper/vg01-lv02 ext4       19G   24K   18G   1% /lv02
+```
+
+This paragraph occupies a total of 24 lines.
+
+✅ Please execute the following command operation:
+
+```bash
+# Temporary mounting
+bash > mount -t ext4 /dev/vg01/lv01 /lv01/
+
+bash > mount -t ext4 /dev/vg02/lv02 /lv02/
+
+# Then check the mount information:
+bash > df -hT
+Filesystem            Type      Size  Used Avail Use% Mounted on
+...
+/dev/mapper/vg01-lv01 ext4      974M   24K  907M   1% /lv01
+/dev/mapper/vg01-lv02 ext4       19G   24K   18G   1% /lv02
+```
+
+This paragraph occupies a total of 16 lines.
+
+You may have noticed that I have identified the terminal interaction type in the fence code block and added comments above the command execution. Why do this? Because there are numerous types of terminal interactions in GNU/Linux, this is done to facilitate readers' reading.
+
+```
+bash > 
+
+bash (root)>
+
+bash (192.168.100.20/24, M1, root, /etc/) >
+
+zsh >
+
+Redis >
+
+MySQL >
+
+PG > 
+
+ftp >
+
+nmcli >
+
+smb >
+
+# PS stands for PowerShell
+PS > 
+```
+
+For a single machine, such specifications may not be necessary, but if operating on multiple machines and multiple terminal interaction types (such as configuring a cluster environment), such specifications are very necessary.
+
+For the output text, we suggest only displaying the content required by this document. For the unnecessary content, you can use `...` Ignore.
 
 ## Screenshots when necessary
 
