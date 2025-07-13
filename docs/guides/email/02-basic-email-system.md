@@ -584,7 +584,7 @@ The file description is as follows:
     - Load other configuration files via `!include conf.d/*.conf`.
     - The numeral prefix of the sub-configuration file facilitates human understanding of its parsing order.
     - Due to historical reasons, some config files are still separate, typically named `*.conf.ext`.
-    - In the configuration file, you can use variables divided into **Global variables** and **User variables**, starting with `%`. See [here](https://doc.dovecot.org/configuration_manual/config_file/config_variables/#config-variables).
+    - In the configuration file, you can use variables divided into **Global variables** and **User variables**, starting with `%`. See [the Dovecot site regarding this here](https://doc.dovecot.org/2.3/configuration_manual/config_file/config_variables/).
 
 - `10-auth.conf`: Authentication configuration.
 - `10-logging.conf`. Logging configuration.
