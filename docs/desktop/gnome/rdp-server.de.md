@@ -82,7 +82,7 @@ Für Anfänger: Diese Befehle öffnen den RDP-Port in Ihrer Firewall, sodass Sie
 
 Wenn Sie keinen Neustart durchführen möchten, sollten Sie sich abmelden. RDP verwendet aus Sicherheitsgründen die Anmeldeinformationen Ihres Benutzerkontos. Eine Remote-Anmeldung ist nicht möglich, wenn Sie bereits lokal bei Ihrem Desktop angemeldet sind. Zumindest nicht mit gleichen Benutzerkonto.
 
-!!! info
+!!! info "Info"
 
 ```
 Sie können auch die Firewall-App verwenden, um `firewalld` zu verwalten und alle gewünschten Ports zu öffnen. In diesem Bereich der Rocky Linux Doku finden Sie einen Link zu einer Anleitung des Autors zur Installation und Verwendung der Firewall-App.
