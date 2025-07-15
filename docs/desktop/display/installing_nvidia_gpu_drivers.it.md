@@ -91,7 +91,7 @@ Nouveau è un driver NVIDIA open-source che offre funzionalità limitate rispett
 sudo grubby --args="nouveau.modeset=0 rd.driver.blacklist=nouveau" --update-kernel=ALL
 ```
 
-!!! Note "Nota"
+!!! note "Nota"
 
 ````
 Per i sistemi con l'avvio sicuro abilitato è necessario eseguire questo passaggio:
