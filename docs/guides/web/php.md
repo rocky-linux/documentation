@@ -51,9 +51,9 @@ To obtain a list of available versions, enter the following command:
 	Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
 	```
 
-	The Remi repository offers more recent releases of PHP than the Appstream repository, including versions 8.2 and 8.3. 
+	The Remi repository offers more recent releases of PHP than the Appstream repository, including versions 8.3 and 8.4. 
 
-	To install the Remi repository, run the following command:
+	To install the Remi repository, run the following command (note: if you are running Rocky Linux 8.x or 10.x, substitute in 8 or 10 next to the "release-" below):
 
 	```bash
 	sudo dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
@@ -65,10 +65,10 @@ To obtain a list of available versions, enter the following command:
 	sudo dnf config-manager --set-enabled remi
 	```
 
-	You can now activate a newer module (PHP 8.3) by entering the following command:
+	You can now activate a newer module (PHP 8.4) by entering the following command:
 
 	```bash
-	sudo dnf module enable php:remi-8.3
+	sudo dnf module enable php:remi-8.4
 	```
 
 === "8.9 PHP module list"
