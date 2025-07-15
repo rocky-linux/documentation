@@ -807,7 +807,7 @@ sudo chage -m 60 -M 90 -W 80 -I 10 alain
 | `-m DAYS`        | Definisce la durata minima della password. Cambiamento permanente.                                                                                                         |
 | `-M DAYS`        | Definisce la durata massima della password. Cambiamento permanente.                                                                                                        |
 | `-d LAST_DAY`    | Definisce il numero di giorni dall'ultima modifica della password. È possibile utilizzare lo stile di data e ora dei giorni o lo stile YYYY-MM-DD. Cambiamento permanente. |
-| `-E EXPIRE_DATE` | Definisce la data di scadenza dell'account. È possibile utilizzare lo stile di data e ora dei giorni o lo stile YYYY-MM-DD. Modifica permanente.                           |
+| `-E EXPIRE_DATE` | Definisce la data di scadenza dell'account. È possibile utilizzare lo stile di data e ora dei giorni o lo stile YYYY-MM-DD. Cambiamento permanente.                        |
 | `-W WARN_DAYS`   | Definisce il numero di giorni di avviso prima della scadenza. Cambiamento permanente.                                                                                      |
 
 Esempio:
