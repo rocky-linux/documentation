@@ -62,7 +62,7 @@ sudo chmod 666 /var/run/docker.sock
 
     Ora avrete una cartella `$ROCKYDOCS/documentation`. Questa cartella è un repository git ed è sotto il controllo di git.
 
-4. Usare sempre `git` per clonare il repo ufficiale docs.rockylinux.org. Digitare:
+4. Usare sempre `git` per clonare il repo ufficiale docs.rockylinux.org. Digita:
 
     ```bash
     git clone https://github.com/rocky-linux/docs.rockylinux.org.git
