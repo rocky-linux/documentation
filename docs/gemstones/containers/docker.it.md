@@ -41,7 +41,7 @@ Aggiungere un utente non root al gruppo `docker`  per consentire all'utente di g
 
 Questo è un passo facoltativo, ma può essere comodo se si è l'utente principale del sistema o se si vuole permettere a più utenti di gestire docker, ma non si vuole concedere loro i permessi `sudo`.
 
-Digitare:
+Digita:
 
 ```bash
 # Add the current user
