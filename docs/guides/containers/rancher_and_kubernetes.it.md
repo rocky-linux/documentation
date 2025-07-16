@@ -57,7 +57,7 @@ docker pull rancher/rancher:latest
 docker run -d --name=rancher --privileged --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher:latest
 ```
 
-!!! NOTE "Nota"
+!!! NOTE
 
 ```
 Se siete curiosi, guardate i log del nuovo container. Si vedrà che è stato appena creato un cluster K3s (con un singolo nodo)! Questo è il modo in cui Rancher funziona nella sua versione standalone.
@@ -84,7 +84,7 @@ Si è pronti a connettersi alla webUI di Rancher.
 
 ![rancher](img/rancher_login.png)
 
-!!! NOTE "Nota"
+!!! NOTE
 
 ```
 Questa soluzione non è assolutamente pronta per la produzione. Dovrete assicurarvi che il sistema sia altamente disponibile, ma è un buon inizio. Considerate la possibilità di distribuire Rancher su un cluster K8s esistente per ottenere un HA ottimale.
