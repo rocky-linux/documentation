@@ -27,7 +27,7 @@ Questa Gemma spiega come impostare un repository locale per contribuire a un pro
 
 ## Procedura
 
-1. Se non esiste già, creare un fork del progetto usando l'utilità gh. Digita:
+1. Se non esiste già, creare un fork del progetto usando l'utilità gh. Digitare:
 
   ```bash
   gh repo fork rocky-linux/documentation --clone=true --remote=true
@@ -38,7 +38,7 @@ Questa Gemma spiega come impostare un repository locale per contribuire a un pro
   - `--clone=true`: Clona il forked repository sulla macchina locale.
   - `--remote=true`: Aggiunge il repository originale come remoto, consentendo di sincronizzare gli aggiornamenti futuri.
 
-2. Navigare nella directory del repository locale. Digita:
+2. Navigare nella directory del repository locale. Digitare:
 
   ```bash
   cd documentation
