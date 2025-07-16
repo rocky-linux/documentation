@@ -987,7 +987,7 @@ dnf needs-restarting [-u] [-r] [-s]
 
 | Opzioni | Descrizione                                                      |
 | ------- | ---------------------------------------------------------------- |
-| `-u`    | Considera solo i processi appartenenti all'utente in esecuzione. |
+| `- u`   | Considera solo i processi appartenenti all'utente in esecuzione. |
 | `-r`    | per verificare se è necessario un riavvio.                       |
 | `-s`    | per verificare se i servizi devono essere riavviati.             |
 | `-s -r` | per fare entrambe le cose in un unico ciclo.                     |
