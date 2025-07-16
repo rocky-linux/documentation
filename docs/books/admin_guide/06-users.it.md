@@ -310,7 +310,7 @@ Quando si richiama il comando `useradd` senza alcuna opzione, vengono impostate 
 * La shell predefinita è bash;
 * I valori UID e GID del gruppo primario dell'utente vengono automaticamente detratti. Questo è di solito un valore unico tra 1000 e 60.000.
 
-!!! note "Nota"
+!!! note
 
     Le impostazioni e i valori predefiniti si ottengono dai seguenti file di configurazione:
     
@@ -617,7 +617,7 @@ sudo chgrp group1 file
 chown [options] --reference=RRFILE FILE
 ```
 
-Per esempio:
+Ad esempio:
 
 ```bash
 chown --reference=/etc/groups /etc/passwd
@@ -655,7 +655,7 @@ New Password:
 Re-enter new password:
 ```
 
-!!! note "Nota"
+!!! note
 
     Oltre a usare `gpasswd -a` per aggiungere utenti a un gruppo, si può anche usare `usermod -G` o `usermod -aG` menzionati prima.
 
@@ -907,7 +907,7 @@ USERGROUPS_ENAB yes
 ENCRYPT_METHOD SHA512
 ```
 
-`UMASK 022`: Questo significa che il permesso di creare un file è 755 (rwxr-xr-x). Tuttavia, per motivi di sicurezza, GNU/Linux non prevede il permesso **x** per i file appena creati. Questa restrizione si applica a root (uid=0) e agli utenti ordinari (uid>=1000). Per esempio:
+`UMASK 022`: Questo significa che il permesso di creare un file è 755 (rwxr-xr-x). Tuttavia, per motivi di sicurezza, GNU/Linux non prevede il permesso **x** per i file appena creati. Questa restrizione si applica a root (uid=0) e agli utenti ordinari (uid>=1000). Ad esempio:
 
 ```bash
 Shell > touch a.txt
@@ -982,7 +982,7 @@ Gli utenti standard dovranno digitare la password per la nuova identità.
     0
     ```
 
-Attenzione prego! `su` e `su -` sono diversi, come mostrato nell'esempio seguente:
+Attention please! `su` e `su -` sono diversi, come mostrato nell'esempio seguente:
 
 ```bash
 $ whoami
