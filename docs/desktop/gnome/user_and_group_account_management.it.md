@@ -128,7 +128,7 @@ Per eliminare un account utente:
 
   ![img](images/user_group_acctmgt_images/16.png)
 
-Oppure
+O
 
 - Fare clic sul nome utente evidenziato in blu e selezionare la casella **Elimina**
 
