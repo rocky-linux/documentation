@@ -26,7 +26,7 @@ Vedere cosa hanno fatto gli altri senza unire le modifiche nel proprio ramo loca
   git branch
   ```
 
-2. Recupera le modifiche dal ramo principale di un repo remoto chiamato origin. Digita:
+2. Recupera le modifiche dal ramo principale di un repo remoto chiamato origin. Digitare:
 
   ```bash
   git fetch origin main
