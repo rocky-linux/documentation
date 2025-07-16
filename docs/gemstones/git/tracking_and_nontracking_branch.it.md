@@ -17,13 +17,13 @@ Questa Gemma approfondisce il tema del tracciamento e del non tracciamento dei r
 
 Un ramo di monitoraggio è un ramo collegato a un ramo remoto.
 
-1. Creare un nuovo ramo chiamato my-local-branch. Il nuovo ramo locale segue il ramo principale del repository remoto chiamato origin. Digita:
+1. Creare un nuovo ramo chiamato my-local-branch. Il nuovo ramo locale segue il ramo principale del repository remoto chiamato origin. Digitare:
 
   ```bash
   git checkout -b my-local-branch origin/main
   ```
 
-2. Usare il comando `git branch -vv` per verificare che il ramo sia un ramo di tracciamento. Digita:
+2. Usare il comando `git branch -vv` per verificare che il ramo sia un ramo di tracciamento. Digitare:
 
   ```bash
   git branch -vv
@@ -35,7 +35,7 @@ Un ramo di monitoraggio è un ramo collegato a un ramo remoto.
 
 Un ramo non tracciante è un ramo che opera indipendentemente dai rami remoti.
 
-1. Creare un nuovo ramo locale non tracciante chiamato my-feature-branch. Digita:
+1. Creare un nuovo ramo locale non tracciante chiamato my-feature-branch. Digitare:
 
   ```bash
   git checkout -b my-feature-branch
@@ -45,7 +45,7 @@ Un ramo non tracciante è un ramo che opera indipendentemente dai rami remoti.
 
 ## Converting Non-Tracking in Tracking
 
-1. Facoltativamente, assicurarsi prima che le ultime modifiche del ramo principale siano unite nel ramo di destinazione. Digita:
+1. Facoltativamente, assicurarsi prima che le ultime modifiche del ramo principale siano unite nel ramo di destinazione. Digitare:
 
   ```bash
   git checkout my-feature-branch
@@ -60,7 +60,7 @@ Un ramo non tracciante è un ramo che opera indipendentemente dai rami remoti.
 
   Output: `Branch 'my-feature-branch' set up to track remote branch 'main' from 'origin'.`
 
-3. Visualizzare le modifiche. Digita:
+3. Visualizzare le modifiche. Digitare:
 
   ```bash
   git branch -vv
