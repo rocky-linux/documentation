@@ -1,6 +1,6 @@
 ---
 title: Test di compatibilità della CPU
-author: Spencer Steven
+author: Steven Spencer
 contributors: Louis Abel, Ganna Zhyrnova
 tags:
   - cpu test
