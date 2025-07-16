@@ -29,7 +29,7 @@ Utilizzeremo il repository del progetto di documentazione Rocky Linux come esemp
   cd ~/path/to/your/rl-documentation-clone
   ```
 
-2. Prima di apportare qualsiasi modifica, elencare i remotes configurati. Digita:
+2. Prima di apportare qualsiasi modifica, elencare i remotes configurati. Digitare:
 
   ```bash
   git remote -vv
@@ -37,7 +37,7 @@ Utilizzeremo il repository del progetto di documentazione Rocky Linux come esemp
 
   Se si tratta di un repo appena clonato, è probabile che nell'output si veda un solo remote chiamato `origin`.
 
-3. Aggiungere il Rocky Linux Documentation Repository (`https://github.com/rocky-linux/documentation.git`) come nuovo remote al proprio repository locale. Qui assegneremo upstream come nome per questo particolare remote. Digita:
+3. Aggiungere il Rocky Linux Documentation Repository (`https://github.com/rocky-linux/documentation.git`) come nuovo remote al proprio repository locale. Qui assegneremo upstream come nome per questo particolare remote. Digitare:
 
   ```bash
   git remote add upstream https://github.com/rocky-linux/documentation.git
