@@ -1,7 +1,7 @@
 ---
 title: Comandi dump e restore
 author: tianci li
-contributors: Spencer Steven
+contributors: Steven Spencer
 tested_with: 8.10
 tags:
   - dump
@@ -19,7 +19,7 @@ Questa utilità si applica ai seguenti file system:
 - ext3
 - ext4
 
-!!! tip "Suggerimento"
+!!! tip
 
 ```
 Per il file system xfs, usare `xfsdump`.
