@@ -51,7 +51,7 @@ Ora avrete una cartella `$ROCKYDOCS/documentation`. Questa cartella è un reposi
     docker pull wsoyinka/rockydocs:latest
     ```
 
-3. Verificare che l'immagine sia stata scaricata correttamente. Digita:
+3. Verificare che l'immagine sia stata scaricata correttamente. Digitare:
 
     ```bash
     docker image  ls
@@ -59,7 +59,7 @@ Ora avrete una cartella `$ROCKYDOCS/documentation`. Questa cartella è un reposi
 
 ## Avviare il contenitore RockyDocs
 
-1. Avvia un contenitore dall'immagine di rockydocs. Digita:
+1. Avvia un contenitore dall'immagine di rockydocs. Digitare:
 
     ```bash
     docker run -it --name rockydoc --rm \
