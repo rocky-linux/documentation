@@ -26,9 +26,9 @@ Podman:
 
 Questo rende Podman non solo un runtime alternativo per container compatibile con docker, ma molto di più.
 
-## Installare `Podman`
+## Installare Podman
 
-Utilizzare l'utility `dnf` per installare Podman:
+Utilizzare l'utilità `dnf` per installare Podman:
 
 ```bash
 dnf install podman
@@ -110,7 +110,7 @@ Verrà richiesto di selezionare il registro del container da cui scaricare. In q
 
 Una volta scaricata l'immagine di Nextcloud, questa verrà eseguita.
 
-Inserite **indirizzo_ip:8080** nel vostro browser web (supponendo di aver aperto la porta in `firewalld`) e configurate Nextcloud:
+Inserite **indirizzo_ip:8080** nel browser web (supponendo di aver aperto la porta in `firewalld`) e configurate Nextcloud:
 
 ![Nextcloud in container](../../gemstones/images/podman_nextcloud.png)
 
@@ -120,9 +120,9 @@ Inserite **indirizzo_ip:8080** nel vostro browser web (supponendo di aver aperto
 Per seguire l'output dei log dell'ultimo container creato, usare `podman logs -lf`. `-l` specifica di usare l'ultimo container creato, mentre `-f` specifica di seguire i log, man mano che vengono creati. Premere Ctrl+C per interrompere l'output dei log.
 ```
 
-## Eseguire contenitori come servizi `systemd`
+## Esecuzione dei container come servizi `systemd`
 
-### Utilizzare `quadlet`
+### Utilizzo di `quadlet`
 
 Dalla versione Podman 4.4 con [Quadlet](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html) - viene fornito un generatore di systemd. Può essere usato per generare unit file per servizi systemd rootless e rootful.
 
@@ -133,7 +133,7 @@ Collocare i file Quadlet per i servizi rootful in:
 
 Posizionare i file rootless in uno qualsiasi dei seguenti percorsi:
 
-- `$XDG_CONFIG_HOME/containers/systemd/` or `~/.config/containers/systemd/`
+- `$XDG_CONFIG_HOME/containers/systemd/` o `~/.config/containers/systemd/`
 - `/etc/containers/systemd/users/$(UID)`
 - `/etc/containers/systemd/users/`
 
@@ -147,13 +147,13 @@ PublishPort=8080:80
 
 Sono disponibili [molte altre opzioni](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html#container-units-container).
 
-Per eseguire il generator e far sapere a systemd che c'è un nuovo servizio da eseguire:
+Per eseguire il generatore e far sapere a systemd che è stato eseguito un nuovo servizio:
 
 ```bash
 systemctl --user daemon-reload
 ```
 
-Per avviare il servizio, eseguire:
+Per avviare il servizio, eseguite:
 
 ```bash
 systemctl --user start nextcloud.service
@@ -162,7 +162,7 @@ systemctl --user start nextcloud.service
 !!! note "Nota"
 
 ```
-Se si è già creato un file in una delle directory per i servizi rootful, omettere il flag `--user`.
+Se si è creato un file in una delle directory per i servizi rootful, omettere il flag `--user`.
 ```
 
 Per eseguire automaticamente il container all'avvio del sistema o al login dell'utente, si può aggiungere un'altra sezione al file `nextcloud.container`:
@@ -172,18 +172,18 @@ Per eseguire automaticamente il container all'avvio del sistema o al login dell'
 WantedBy=default.target
 ```
 
-Poiché i file del servizio generati sono considerati temporanei, non possono essere abilitati da systemd. Per ovviare a questo problema, il generator applica manualmente le installazioni durante la generazione. In questo modo si abilitano effettivamente anche i file dei servizi.
+Poiché i file di servizio generati sono considerati transitori, non possono essere abilitati da systemd. Per ovviare a questo problema, il generatore applica manualmente le installazioni durante la generazione. In questo modo si abilitano effettivamente anche i file dei servizi.
 
-Sono supportati altri tipi di file: pod, volume, network, image, and kube. [Pods](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html#pod-units-pod), per esempio, può essere usato per raggruppare i container – i servizi systemd generati e le loro dipendenze (creare il pod prima dei container) sono gestiti automaticamente da systemd.
+Sono supportati altri tipi di file: pod, volume, network, image, and kube. [Pods](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html#pod-units-pod), per esempio, può essere usato per raggruppare i container - i servizi systemd generati e le loro dipendenze (creare il pod prima dei container) sono gestiti automaticamente da systemd.
 
-### Utilizzare `podman generate systemd`
+### Utilizzo di `podman generate systemd`
 
 Podman fornisce inoltre il sottocomando `generate systemd`. Usare questo sottocomando per generare i service file di `systemd`.
 
 !!! warning "Attenzione"
 
 ```
-`generate systemd` è ora deprecato e non riceverà ulteriori funzioni. Si raccomanda l'uso di Quadlet.
+`generate systemd` è ora obsoleto e non riceverà ulteriori funzioni. Si raccomanda l'uso di Quadlet.
 ```
 
 Ora lo si farà con Nextcloud. Eseguire:
@@ -198,7 +198,7 @@ Si otterrà un elenco di container in esecuzione:
 04f7553f431a  docker.io/library/nextcloud:latest  apache2-foregroun...  5 minutes ago  Up 5 minutes  0.0.0.0:8080->80/tcp  compassionate_meninsky
 ```
 
-Come visto sopra, il nome del nostro container è `compassionate_meninsky`.
+Come visto sopra, il nome di questo container è `compassionate_meninsky`.
 
 Per creare un servizio `systemd` per il container Nextcloud e abilitarlo al riavvio, eseguire quanto segue:
 
