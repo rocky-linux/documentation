@@ -1,7 +1,7 @@
 ---
 title: Chyrp Lite
 author: Neel Chauhan
-contributors: Steven Spencer, Franco Colussi
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.5
 tags:
   - cms
@@ -16,10 +16,10 @@ tags:
 
 I requisiti minimi per l'utilizzo di questa procedura sono i seguenti:
 
-- La possibilità di eseguire comandi come utente root o di usare `sudo` per elevare i privilegi.
-- Familiarità con un editor a riga di comando. L'autore utilizza `vi` o `vim`, ma potete sostituirlo con il vostro editor preferito.
+- La possibilità di eseguire comandi come utente root o di utilizzare `sudo` per elevare i privilegi
+- Familiarità con un editor a riga di comando. L'autore utilizza `vi` o `vim`, ma è possibile sostituirli con il proprio editor preferito
 
-## Installazione di Caddy
+## Installare Caddy
 
 Si utilizzerà Caddy come server web. Per installare Caddy, è necessario prima installare EPEL (Extra Packages for Enterprise Linux) ed eseguire gli aggiornamenti:
 
@@ -65,7 +65,7 @@ systemctl enable --now caddy
 
 ## Installazione di PHP
 
-!!! note "Nota"
+!!! note
 
 ```
 Se state utilizzando Rocky Linux 8.x o 10.x, sostituite “8” o “10” accanto alla release nella riga di installazione del pacchetto Remi.
