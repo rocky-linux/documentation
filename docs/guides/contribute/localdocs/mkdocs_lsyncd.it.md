@@ -11,7 +11,7 @@ tags:
 
 # Introduzione
 
-!!! info "Informazione"
+!!! info
 
     Le procedure qui descritte funzionano sia con Incus che con LXD.
 
