@@ -78,7 +78,7 @@ Se si accede alla macchina virtuale con un dominio specifico, è necessario aggi
 
 Dopo aver confermato che la nuova macchina virtuale funziona correttamente e aver spostato tutti i dati e le configurazioni necessarie, è possibile **deallocare ed eliminare** la vecchia macchina virtuale.
 
-## Passaggi Finali
+## Fasi finali
 
 - Verificare che tutti i servizi della nuova macchina virtuale funzionino come previsto.
 - Monitorare le prestazioni e lo stato di salute della nuova macchina virtuale per assicurarsi che soddisfi le proprie esigenze.
