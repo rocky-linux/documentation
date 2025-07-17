@@ -25,3 +25,5 @@ You can disable VLAN filtering with one command:
     nmcli con modify enp1s0 ethtool.feature-rx-vlan-filter off
 
 Replace `enp1s0` with the name of your AQC-based NIC.
+
+Finally, you will need to reboot your system.
