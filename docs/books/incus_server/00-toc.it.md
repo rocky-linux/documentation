@@ -1,6 +1,6 @@
 ---
 title: Introduzione
-author: Spencer Steven
+author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
 tags:
@@ -25,9 +25,7 @@ Questo documento è una conversione del [libro LXD](../lxd_server/00-toc.md) in 
 
 !!! warning "Incus server non è disponibile su Rocky Linux 8"
 
-```
-L'installazione del server Incus è disponibile solo per Rocky Linux 9.x e attualmente è testata su Rocky Linux 9.4. Se si ha bisogno di qualcosa che funzioni su Rocky Linux 8.x, usare la [procedura LXD già citata](../lxd_server/00-toc.md).
-```
+    L'installazione del server Incus è disponibile solo per Rocky Linux 9.x e attualmente è testata su Rocky Linux 9.4. Se si ha bisogno di qualcosa che funzioni su Rocky Linux 8.x, usare la [procedura LXD già citata](../lxd_server/00-toc.md).
 
 ## Introduzione
 
@@ -37,9 +35,7 @@ Una migliore descrizione di Incus è presente sul [sito ufficiale](https://linux
 
 !!! warning "Questo non è un backup"
 
-```
-Non si deve pensare a questo come a un backup tradizionale. È ancora necessario un sistema di backup tradizionale, come [rsnapshot](../../guides/backup/rsnapshot_backup.md).
-```
+    Non si deve pensare a questo come a un backup tradizionale. È ancora necessario un sistema di backup tradizionale, come [rsnapshot](../../guides/backup/rsnapshot_backup.md).
 
 La curva di apprendimento di Incus può essere impegantiva, ma questo libro cercherà di fornire le conoscenze necessarie a distribuire e utilizzare Incus su Rocky Linux.
 
@@ -47,18 +43,16 @@ Per coloro che desiderano utilizzare Incus come ambiente di prova su notebook o 
 
 ## Prerequisiti e presupposti
 
-- Un server Rocky Linux, ben configurato. Considerare un disco rigido separato per lo spazio disco ZFS (è necessario se si usa ZFS) in un ambiente di produzione. E sì, il presupposto è un server bare metal, non un VPS (Virtual Private Server).
+- Un server Rocky Linux, ben configurato. Considerare un disco rigido separato per lo spazio disco ZFS (è necessario se si usa ZFS) in un ambiente di produzione. And yes, the assumption here is a bare metal server, not a VPS (Virtual Private Server).
 - Si tratta di un argomento avanzato, ma non troppo difficile da comprendere. Se si seguono queste istruzioni fin dall'inizio, si dovrebbe avere successo. Detto questo, esserea a conoscenza di alcune nozioni di base sulla gestione dei container è molto utile.
 - Comfort con la riga di comando della macchina (o delle macchine) e dimestichezza con l'editor a riga di comando. (In questi esempi si utilizza _vi_, ma è possibile sostituirlo con il proprio editor preferito)
 - Per la maggior parte di questi processi è necessario essere un utente non privilegiato. Per le prime fasi di configurazione, è necessario essere l'utente root o poter fare `sudo` per diventarlo. In tutti questi capitoli si assume che l'utente non privilegiato sia “incusadmin”. L'account utente dovrà essere creato più avanti nel processo.
 - Per ZFS, assicurarsi che l'avvio sicuro UEFI NON sia abilitato. Altrimenti, si finirà per dover firmare il modulo ZFS per farlo caricare.
-- Utilizzo di container basati su Rocky Linux per la maggior parte del tempo
+- Using Rocky Linux-based containers for the most part
 
-!!! info "Informazione"
+!!! info
 
-```
-L'autore include una metodologia per l'utilizzo di un filesystem ZFS. Si noti che il progetto Incus raccomanda BTRFS come file system per un server Incus. (BTRFS, tuttavia, non è disponibile su Rocky Linux 9.4. Fino a quando non sarà approvato dall'upstream e rilasciato, il file system BTRFS non sarà disponibile. Finché non sarà approvato dall'upstream e rilasciato, l'unica opzione è utilizzare ZFS o un altro filesystem incluso. Per saperne di più sulle opzioni del filesystem di Incus, vedere [il documento ufficiale del progetto qui] (https://linuxcontainers.org/incus/docs/main/reference/storage_dir/)  
-```
+    L'autore include una metodologia per l'utilizzo di un filesystem ZFS. Si noti che il progetto Incus raccomanda BTRFS come file system per un server Incus. (BTRFS, tuttavia, non è disponibile su Rocky Linux 9.4. Fino a quando non sarà approvato dall'upstream e rilasciato, il file system BTRFS non sarà disponibile. Finché non sarà approvato dall'upstream e rilasciato, l'unica opzione è utilizzare ZFS o un altro filesystem incluso. Per saperne di più sulle opzioni del filesystem di Incus, vedere [il documento ufficiale del progetto qui] (https://linuxcontainers.org/incus/docs/main/reference/storage_dir/)
 
 ## Sinossi
 
@@ -74,8 +68,8 @@ L'autore include una metodologia per l'utilizzo di un filesystem ZFS. Si noti ch
 - Il **Capitolo 10: Automatizzazione delle shapshots** tratta l'automazione della creazione di snapshot e il popolamento del server snapshot con le snapshots.
 - **Appendice A: Impostazione della stazione di lavoro** non fa tecnicamente parte della documentazione del server di produzione. Offre una soluzione per chi vuole creare un ambiente di containers Incus sui propri notebook o workstation.
 
-## Conclusioni
+## Conclusions
 
-Questi capitoli consentono di configurare efficacemente una coppia di server Incus primario e snapshot enterprise-level. Nel corso del processo, imparerete molto su Incus. Siate consapevoli che c'è ancora molto da imparare e considerate questi documenti come un punto di partenza.
+Questi capitoli consentono di configurare efficacemente una coppia di server Incus primario e snapshot enterprise-level. Nel corso del processo, imparerete molto su Incus. Just be aware that there is much more to learn, and treat these documents as a starting point.
 
 Il vantaggio più importate di Incus è la sua economicità d'uso su un server, consente di avviare rapidamente le installazioni del sistema operativo e permette di eseguire molti server applicativi standalone su una singola macchina, sfruttando al massimo l'hardware disponibile.
