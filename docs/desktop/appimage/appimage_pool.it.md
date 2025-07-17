@@ -1,7 +1,7 @@
 ---
 title: Installare AppImages con AppImagePool
 author: Joseph Brinkman
-contributors: Spencer Steven
+contributors: Steven Spencer
 ---
 
 ## Introduzione

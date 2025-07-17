@@ -207,7 +207,7 @@ Successivamente, è necessario definire la parte `https` del file di configurazi
         ServerAdmin username@rockylinux.org
         Redirect / https://your-server-hostname/
 </VirtualHost>
-<Virtual Host *:443>
+<VirtualHost *:443>
         ServerName your-server-hostname
         ServerAdmin username@rockylinux.org
         DocumentRoot /var/www/sub-domains/your-server-hostname/html
@@ -240,6 +240,10 @@ Successivamente, è necessario definire la parte `https` del file di configurazi
 </VirtualHost>
 ```
 
+!!! warning “Una nota sulle suite di cifratura”
+
+    Questo documento è stato originariamente scritto per Rocky Linux 8. Da allora sono cambiate **molte cose**. Per prima cosa, si potrebbero tralasciare completamente le linee `SSLHonorCipherOrder on` e `SSLCipherSuite` e lasciare che sia la configurazione predefinita del server ad occuparsene. Se si mantiene un server aggiornato (in altre parole, si esegue `dnf upgrade` di routine), questo dovrebbe gestire la sicurezza e l'aggiornamento delle suite di cifratura senza una gestione separata della configurazione. In questo modo, si eviterà di utilizzare suite di cifratura critiche o pericolose nella propria configurazione. Se per qualche motivo si ha bisogno di modificare questi elementi nella vostra configurazione, cercate attentamente le voci da inserire.
+
 Perciò, dopo le normali porzioni di configurazione, si passa alla sezione SSL/TLS:
 
 * SSLEngine on - dice di utilizzare SSL/TLS
@@ -252,7 +256,7 @@ Se all'avvio del servizio web non si riscontrano errori e se il sito web risulta
 
 ## Portare tutto live
 
-Remember that our *httpd.conf* file is including */etc/httpd/sites-enabled* at the end of the file. Quando `httpd` si riavvia, caricherà i file di configurazione presenti nella cartella *sites-enabled*. Il fatto è che tutti i nostri file di configurazione sono in *sites-available*.
+Ricordate che il nostro file *httpd.conf* include */etc/httpd/sites-enabled* alla fine del file. Quando `httpd` si riavvia, caricherà i file di configurazione presenti nella cartella *sites-enabled*. Il fatto è che tutti i nostri file di configurazione sono in *sites-available*.
 
 Questo è stato progettato in modo da poter rimuovere le cose quando o se `httpd` non si riavvia. Per abilitare il nostro file di configurazione, è necessario creare un collegamento simbolico a tale file in *sites-enabled* e avviare o riavviare il servizio web. Per farlo, si utilizza questo comando:
 
@@ -262,4 +266,4 @@ ln -s /etc/httpd/sites-available/your-server-hostname /etc/httpd/sites-enabled/
 
 Questo creerà il collegamento al file di configurazione in *sites-enabled*.
 
-Ora basta avviare `httpd` con `systemctl start httpd`. Oppure riavviatelo se è già in funzione: `systemctl restart httpd`, e supponendo che il servizio web si riavvii, ora si può andare a fare qualche test sul proprio sito.
+Ora basta avviare `httpd` con `systemctl start httpd`. Oppure riavviatelo se è già in funzione: `systemctl restart httpd`, e supponendo che il servizio web si riavvii, potete ora andare a fare qualche test sul vostro sito.

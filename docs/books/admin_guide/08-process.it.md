@@ -414,7 +414,7 @@ Esempi:
   pkill tomcat
   ```
 
-!!! note "Nota"
+!!! note
 
     Prima di terminare un processo, è meglio sapere esattamente a cosa serve; in caso contrario, si possono verificare crash del sistema o altri problemi imprevedibili.
 

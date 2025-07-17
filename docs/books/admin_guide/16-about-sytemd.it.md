@@ -1,7 +1,7 @@
 ---
 title: Informazioni su systemd
 author: tianci li
-contributors: Spencer Steven
+contributors: Steven Spencer
 tags:
   - init software
   - systemd
@@ -563,7 +563,7 @@ Di solito esistono tre intitolazioni per le unit di tipo ".service":
 
   - `Alias=`. Un elenco di nomi aggiuntivi separati da spazi. Attenzione prego! Il nome aggiuntivo deve avere lo stesso tipo (suffisso) della unit corrente.
 
-  - `RequiredBy=` o `WantedBy=multi-user.target`. Definisce la unit dell'operazione corrente come dipendenza della unit nel valore. Una volta completata la definizione, i file pertinenti si trovano nella directory /etc/systemd/systemd/. Per esempio:
+  - `RequiredBy=` o `WantedBy=multi-user.target`. Definisce la unit dell'operazione corrente come dipendenza della unit nel valore. Una volta completata la definizione, i file pertinenti si trovano nella directory /etc/systemd/systemd/. Ad esempio:
 
     ```bash
     Shell > systemctl is-enabled chronyd.service

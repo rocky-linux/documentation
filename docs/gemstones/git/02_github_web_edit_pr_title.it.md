@@ -5,7 +5,7 @@ contributors: Ganna Zhyrnova
 tags:
   - GitHub
   - Pull Request
-  - Documentation
+  - Documentazione
 ---
 
 ## Introduzione

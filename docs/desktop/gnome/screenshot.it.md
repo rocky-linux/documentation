@@ -20,7 +20,7 @@ Questa guida presuppone che si disponga di quanto segue:
 Secondo [il sito web di GNOME](https://apps.gnome.org/), questa applicazione è preinstallata sul desktop.
 ```
 
-## Istruzioni
+## Come si usa
 
 Per utilizzare Screenshot, procedere come segue:
 

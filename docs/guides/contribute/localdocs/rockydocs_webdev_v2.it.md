@@ -44,7 +44,7 @@ sudo chmod 666 /var/run/docker.sock
 
 1. Assicuratevi che i prerequisiti siano soddisfatti.
 
-2. Passare dalla directory di lavoro corrente del sistema locale alla cartella in cui si intende effettuare le operazioni di scrittura. Nel resto di questa guida ci riferiremo a questa directory come `$ROCKYDOCS`. Per la nostra dimostrazione, `$ROCKYDOCS` punta a `$HOME/projects/rockydocs` sul nostro sistema demo.
+2. Cambiare la directory di lavoro corrente sul sistema locale in una cartella in cui si intende scrivere. Nel resto di questa guida ci riferiremo a questa directory come `$ROCKYDOCS`. Per la nostra dimostrazione, `$ROCKYDOCS` punta a `$HOME/projects/rockydocs` sul nostro sistema demo.
 
     Creare `$ROCKYDOCS` se non esiste già e cambiare la directory di lavoro in quella `$ROCKYDOCS`:
 

@@ -36,7 +36,7 @@ Questa guida presuppone che si disponga di quanto segue:
     flatpak run flathub io.github.idevecore.Valuta
     ```
 
-## Guida all'uso
+## Come si usa
 
 Per utilizzare Valuta, procedere come segue:
 

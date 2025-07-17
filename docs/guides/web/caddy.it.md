@@ -154,7 +154,7 @@ Dovrebbe avere un lucchetto SSL che dovrebbe funzionare in ogni browser moderno,
 
 Come accennato in precedenza, Caddy supporta il supporto FastCGI per PHP. La buona notizia è che, a differenza di Apache e Nginx, Caddy gestisce automaticamente le estensioni dei file PHP.
 
-Per installare PHP, aggiungere prima il repository Remi (nota: se si utilizza Rocky Linux 8.x, si deve sostituire 8 dopo "release-"):
+Per installare PHP, aggiungere prima il repository Remi (nota: se si utilizza Rocky Linux 8.x o 10.x, sostituire 8 o 10 con "release-"):
 
 ```bash
 dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm

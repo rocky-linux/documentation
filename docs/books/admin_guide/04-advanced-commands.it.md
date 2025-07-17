@@ -449,11 +449,11 @@ Espande i file o le cartelle della directory in una struttura ad albero.
 |:------- |:------------------------------------------------------------- |
 | `-a`    | Vengono elencati tutti i file                                 |
 | `-h`    | Stampa le dimensioni in un modo più leggibile per l'utente    |
-| `-u`    | Visualizza il proprietario del file o il numero UID           |
+| `- u`   | Visualizza il proprietario del file o il numero UID           |
 | `-g`    | Visualizza il proprietario del gruppo di file o il numero GID |
 | `-p`    | Stampa le protezioni per ciascun file                         |
 
-Per esempio:
+Ad esempio:
 
 ```bash
 $ tree -hugp /etc/yum.repos.d/

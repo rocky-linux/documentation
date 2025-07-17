@@ -577,7 +577,7 @@ Funzione secondaria:
 1. `-t` - Stampa un indice del contenuto dell'input.
 2. `-A` - Aggiunge a un archivio esistente. Funziona solo in modalità copy-in.
 
-!!! note "Nota"
+!!! note
 
     Alcune opzioni di `cpio` devono essere combinate con la modalità operativa corretta per funzionare correttamente. Vedere `man 1 cpio`
 

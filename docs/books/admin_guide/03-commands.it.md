@@ -785,7 +785,7 @@ cp -r /home/rockstar /tmp
 | Opzioni | Informazione                                                                 |
 | ------- | ---------------------------------------------------------------------------- |
 | `-i`    | Richiesta di conferma per la sovrascrittura (default).                       |
-| `-f`    | Non chiedere conferma per la sovrascrittura del file di destinazione.        |
+| `-t`    | Non chiedere conferma per la sovrascrittura del file di destinazione.        |
 | `-p`    | Mantiene il proprietario, le autorizzazioni e il timestamp del file copiato. |
 | `-r`    | Copia una directory con i suoi file e sottodirectory.                        |
 | `-s`    | Crea un collegamento simbolico invece di copiare.                            |
@@ -958,7 +958,7 @@ tail [-f] [-n x] file
 | Opzione | Descrizione                                    |
 | ------- | ---------------------------------------------- |
 | `-n x`  | Visualizza le ultime `x` righe del file        |
-| `-f`    | Visualizza le modifiche al file in tempo reale |
+| `-t`    | Visualizza le modifiche al file in tempo reale |
 
 Esempio:
 
@@ -998,7 +998,7 @@ adm:x:3:4:adm:/var/adm/:/sbin/nologin
 | `-o file` | Salva l'ordinamento nel file specificato.                                                                                                                                                   |
 | `-t`      | Specificare un delimitatore, che richiede che i contenuti del file corrispondente siano contenuti di colonne regolarmente delimitate, altrimenti non possono essere ordinati correttamente. |
 | `-r`      | Inverte l'ordine del risultato. Usato insieme all'opzione `-n` per ordinare dal più grande al più piccolo.                                                                                  |
-| `-u`      | Rimuovi i duplicati dopo l'ordinamento. Equivalente a `sort file uniq`.                                                                                                                     |
+| `- u`     | Rimuovi i duplicati dopo l'ordinamento. Equivalente a `sort file uniq`.                                                                                                                     |
 
 Il comando `sort` ordina il file solo sullo schermo. Il file non è modificato dall'ordinamento. Per salvare l'ordinamento, utilizzare l'opzione `-o` o un reindirizzamento dell'output `>`.
 

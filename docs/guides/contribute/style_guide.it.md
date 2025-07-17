@@ -9,7 +9,7 @@ tags:
 
 # Guida allo stile della documentazione Rocky Linux
 
-*Rocky Linux è il Linux aziendale che sta crescendo più rapidamente al mondo e la sua documentazione sta crescendo in modo esponenziale grazie a collaboratori come voi. I vostri contenuti sono ben accetti in qualsiasi formato e i document stylist di RL vi aiuteranno ad allinearli agli standard qui indicati.*
+*Rocky Linux (RL) è il Linux aziendale in più rapida crescita al mondo, e anche la sua documentazione sta crescendo esponenzialmente grazie a collaboratori come voi. I vostri contenuti sono ben accetti in qualsiasi formato e i document stylist di RL vi aiuteranno ad allinearli agli standard qui indicati.*
 
 ## Introduzione
 
@@ -17,7 +17,7 @@ tags:
 
 *Nuovi contributi sono benvenuti per far diventare questo sito il punto di riferimento definitivo sul web per le informazioni sull'uso di Rocky Linux. Potete creare documenti nel formato che ritenete più opportuno e il team di documentazione lavorerà con voi o vi aiuterà a formattarli in modo che sembrino parte della famiglia Rocky.*
 
-Questa guida delinea gli standard di stile in lingua inglese per **migliorare la leggibilità, evidenziare casi particolari** e **migliorare il lavoro di traduzione** della documentazione Rocky Linux. Per le domande sullo stile non trattate in questa guida, si prega di fare riferimento a quanto segue:
+Questa guida delinea gli standard di stile in lingua inglese per **migliorare la leggibilità, evidenziare casi particolari** e **migliorare il lavoro di traduzione** della documentazione Rocky Linux. Per le questioni di stile non trattate in questa guida, si veda quanto segue:
 
 - [Dizionario Merriam Webster](https://www.merriam-webster.com/)
 - [Chicago Manual of Style (CMOS), 17a ed.](https://www.chicagomanualofstyle.org/home.html)
@@ -32,7 +32,7 @@ Per una comprensione più completa della contribuzione, consultare le nostre gui
 
 ## Linee guida di stile
 
-*La documentazione di RL si propone di utilizzare un linguaggio chiaro e coerente, sia per garantire l'accessibilità che per aiutare gli sforzi di traduzione in corso.*
+*La documentazione di RL mira a utilizzare un linguaggio chiaro e coerente, per garantire l'accessibilità e per aiutare gli sforzi di traduzione in corso.*
 
 ### Grammatica e Punteggiatura
 
@@ -40,29 +40,40 @@ Le **caratteristiche della scrittura tecnica** descritte nel Chicago Manual of S
 
 - Virgolette doppie ("stile Chicago") anziché singole (‘Oxford style’).
 - I punti e le virgole vanno dentro le virgolette "così," anziché "così".
-- Il trattino {shift}+{option}+{-} non ha spazi prima o dopo—come questo—ed è preferito per le frasi parentetiche.
+- Il trattino em {shift}+{option}+{-} non ha spazi prima o dopo—come questo—ed è la nostra preferenza per le frasi parentetiche.
 - In un elenco di tre elementi, utilizzare una virgola prima di "e": "Piselli, senape, e carote"
 - I titoli devono essere generalmente realizzati in stile titolo maiuscolo: La prima e l'ultima parola, così come tutti i nomi, i pronomi, i verbi e gli avverbi devono essere scritti in maiuscolo. Se il vostro documento funziona meglio con la capitalizzazione in stile frase, magari perché fate spesso riferimento ad acronimi, rendetela coerente all'interno dell'intero documento.
 - I titoli non necessitano di un punto o di un punto e virgola alla fine, anche con una capitalizzazione di tipo frase, a meno che non terminino con un'abbreviazione.
 - Elenchi puntati e numerati: Evitare la maiuscola iniziale o la punteggiatura finale, a meno che non si tratti di una frase completa.
 
+!!! info “Stile maiuscolo del titolo”
+
+    Chi usa `vale' e altri linters linguistici, troverà che questi suggeriscono di usare la capitalizzazione in stile frase. Gran parte della documentazione creata all'interno del nostro pool di documentazione utilizza questo stile di capitalizzazione dei titoli. Ricordate che qualsiasi stile scegliate, mantenetelo coerente all'interno del documento.
+
 ### Voce e Tono
 
-- **Linguaggio semplice.** Questo può essere descritto come uno stile *meno colloquiale*. La maggior parte della nostra documentazione rientra in questo standard.
+- **Linguaggio semplice.** Si tratta di uno stile *meno colloquiale*. La maggior parte della nostra documentazione rientra in questo standard.
     - Evitare metafore e modi di dire.
     - Dite quello che volete dire con il minor numero di parole possibile.
     - Identificare ed evitare termini inutilmente tecnici. Considerate che il vostro pubblico è costituito per lo più da persone che hanno una certa familiarità con l'argomento, ma che potrebbero non essere esperti della materia.
     - Eccezioni al linguaggio semplice:
-        - Uno stile più colloquiale è appropriato per la documentazione rivolta ai neofiti o ai principianti o per la scrittura di contenuti come i post dei blog.
+        - Uno stile più colloquiale è appropriato per la documentazione rivolta ai neofiti o ai principianti o per la scrittura di contenuti come i post di un blog.
         - Uno stile di scrittura più formale o conciso è appropriato per la documentazione rivolta agli utenti avanzati o per la documentazione sulle API (Application Programming Interface).
 - **Linguaggio inclusivo.**
     - L'uso della lingua si evolve nel tempo. Alcune parole si sono evolute assumendo una connotazione negativa, per cui la documentazione dovrebbe essere riscritta utilizzando parole nuove.
         - *Master/slave* diventa *primario/secondario* o uno standard organizzativo concordato.
         - La *blacklist/whitelist* diventa *blocklist/allowlist* o uno standard organizzativo concordato.
-        - Si possono pensare altri esempi pertinenti durante la creazione della documentazione.
+        - Potreste pensare ad altri esempi pertinenti durante la creazione della documentazione.
     - Quando si parla di una persona di genere *sconosciuto* o *non binario*, è ora considerato accettabile usare "loro" come pronome singolare.
     - Quando si parla delle proprie capacità, inquadrare le risposte come *abilità* piuttosto che come *limitazioni.* Ad esempio, se vi chiedete se abbiamo documentazione sull'esecuzione di Steam su Rocky Linux, la risposta non è semplicemente "no" Piuttosto, "Sembra che sia un ottimo posto per creare qualcosa da aggiungere al nostro albero!"
 - **Evitare le contrazioni.** Questo facilita gli sforzi di traduzione. L'eccezione è rappresentata dalla scrittura di testi dal tono più colloquiale, come i post di un blog o le istruzioni di benvenuto per i nuovi membri della comunità.
+- **Usa la voce attiva.** La voce attiva è più chiara e diretta e aiuta il lettore a comprendere rapidamente il tuo significato.
+
+!!! info “Altre letture su voce e tono”
+
+    Dopo la creazione di questa guida di stile sono stati creati altri documenti sulla voce e sul tono, tra cui:
+    - [Good Docs-Il punto di vista del traduttore](../../rocky_insights/blogs/good_docs.md)
+    - [Voce attiva - La via per una comunicazione semplice e chiara](../../rocky_insights/blogs/active_voice.md)
 
 ## Formattazione
 
@@ -78,9 +89,9 @@ Se si tratta di una procedura con una sola fase, utilizzare un punto piuttosto c
 
 ### Linguaggio di interfaccia grafica
 
-- Istruzioni testuali relative a un'interfaccia utente: Quando si descrive un comando da inserire in un'interfaccia utente, utilizzare la parola "enter" piuttosto che "put" o "type" Utilizzate un blocco di codice per scrivere il comando (cioè, impostatelo con i backtick):
+- Istruzioni testuali relative a un'interfaccia utente: Quando si descrive l'inserimento di un comando in un'interfaccia utente, utilizzare la parola "enter" piuttosto che "put" o "type". Utilizzate un blocco di codice per scrivere il comando (con i backtick):
 
-*Esempio di testo Markdown* `Nella casella **messaggio di commit**, inserire update_thisdoc.`
+*Esempio di testo Markdown*`Nella casella **commit message**, inserire update_thisdoc.`
 
 - Nomi di elementi dell'interfaccia utente: Nomi **in grassetto** di elementi dell'interfaccia utente come pulsanti, voci di menu, nomi di finestre di dialogo e altro, anche se la parola non sarà cliccabile:
 
@@ -98,7 +109,7 @@ Se si tratta di una procedura con una sola fase, utilizzare un punto piuttosto c
 
 ### Ammonimenti
 
-In Markdown, gli ammonimenti sono un modo per inserire le informazioni in un riquadro per evidenziarle. Non sono essenziali per la documentazione, ma sono uno strumento che può essere utile. Per saperne di più sugli ammonimenti, consultate il nostro documento [Formattazione di Rocky Docs](rockydocs_formatting.md).
+In Markdown, gli ammonimenti sono un modo per inserire le informazioni in un riquadro per evidenziarle. Non sono essenziali per la documentazione, ma sono uno strumento che potrebbe essere utile. Per saperne di più sugli ammonimenti, consultate il nostro documento [Formattazione di Rocky Docs](rockydocs_formatting.md).
 
 ## Accessibilità
 
@@ -131,11 +142,11 @@ In Markdown, gli ammonimenti sono un modo per inserire le informazioni in un riq
 
 - Utilizzate tutti i livelli di intestazione senza saltare alcun livello.
 - Annidate tutto il materiale con titoli che ne favoriscano la leggibilità.
-- Ricordate che in Markdown è possibile utilizzare un solo titolo di primo livello.
+- Ricordate di usare solo un titolo di primo livello in Markdown.
 
 ## Sommario
 
-Questo documento definisce i nostri standard di contribuzione, comprese le **linee guida di stile** le modalità di **strutturazione** del documento e i modi per incorporare l'**'inclusività** e l'**accessibilità** nel testo. Questi sono gli standard a cui aspiriamo. Per quanto possibile, tenete a mente questi standard quando create e modificate la documentazione.
+Questo documento definisce i nostri standard di contribuzione, comprese le **linee guida di stile**, le modalità di **strutturazione** del documento e i modi per incorporare **l'inclusività** e l'**accessibilità** nel testo. Questi sono gli standard a cui aspiriamo. Per quanto possibile, tenete a mente questi standard quando create e modificate la documentazione.
 
 Tuttavia—e non perdetevi questa avvertenza—**trattate questi standard come uno strumento, non come un ostacolo.** Nello spirito dell'inclusività e dell'accessibilità, vogliamo assicurarci che il vostro contributo entri senza problemi nell'albero genealogico di Rocky. Siamo un team amichevole e disponibile di documentaristi e stilisti e vi aiuteremo a portare il vostro documento alla sua forma finale.
 
