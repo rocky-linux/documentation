@@ -1,6 +1,6 @@
 ---
 title: 10 Automazione delle Snapshot
-author: Spencer Steven
+author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
 tags:
@@ -9,7 +9,7 @@ tags:
   - incus automation
 ---
 
-Nel corso di questo capitolo, è necessario essere l'utente root o essere in grado di eseguire con i privilegi di root con sudo.
+Nel corso di questo capitolo, è necessario essere l'utente root o essere in grado di eseguire con i privilegi di root con `sudo`.
 
 L'automazione del processo di snapshot rende le cose molto più facili.
 
