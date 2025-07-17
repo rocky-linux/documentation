@@ -43,12 +43,12 @@ Per coloro che desiderano utilizzare Incus come ambiente di prova su notebook o 
 
 ## Prerequisiti e presupposti
 
-- Un server Rocky Linux, ben configurato. Considerare un disco rigido separato per lo spazio disco ZFS (è necessario se si usa ZFS) in un ambiente di produzione. And yes, the assumption here is a bare metal server, not a VPS (Virtual Private Server).
+- Un server Rocky Linux, ben configurato. Considerare un disco rigido separato per lo spazio disco ZFS (è necessario se si usa ZFS) in un ambiente di produzione. E sì, il presupposto è un server bare metal, non un VPS (Virtual Private Server).
 - Si tratta di un argomento avanzato, ma non troppo difficile da comprendere. Se si seguono queste istruzioni fin dall'inizio, si dovrebbe avere successo. Detto questo, esserea a conoscenza di alcune nozioni di base sulla gestione dei container è molto utile.
 - Comfort con la riga di comando della macchina (o delle macchine) e dimestichezza con l'editor a riga di comando. (In questi esempi si utilizza _vi_, ma è possibile sostituirlo con il proprio editor preferito)
 - Per la maggior parte di questi processi è necessario essere un utente non privilegiato. Per le prime fasi di configurazione, è necessario essere l'utente root o poter fare `sudo` per diventarlo. In tutti questi capitoli si assume che l'utente non privilegiato sia “incusadmin”. L'account utente dovrà essere creato più avanti nel processo.
 - Per ZFS, assicurarsi che l'avvio sicuro UEFI NON sia abilitato. Altrimenti, si finirà per dover firmare il modulo ZFS per farlo caricare.
-- Using Rocky Linux-based containers for the most part
+- Utilizzo di container basati su Rocky Linux per la maggior parte del tempo
 
 !!! info
 
@@ -68,8 +68,8 @@ Per coloro che desiderano utilizzare Incus come ambiente di prova su notebook o 
 - Il **Capitolo 10: Automatizzazione delle shapshots** tratta l'automazione della creazione di snapshot e il popolamento del server snapshot con le snapshots.
 - **Appendice A: Impostazione della stazione di lavoro** non fa tecnicamente parte della documentazione del server di produzione. Offre una soluzione per chi vuole creare un ambiente di containers Incus sui propri notebook o workstation.
 
-## Conclusions
+## Conclusioni
 
-Questi capitoli consentono di configurare efficacemente una coppia di server Incus primario e snapshot enterprise-level. Nel corso del processo, imparerete molto su Incus. Just be aware that there is much more to learn, and treat these documents as a starting point.
+Questi capitoli consentono di configurare efficacemente una coppia di server Incus primario e snapshot enterprise-level. Nel corso del processo, imparerete molto su Incus. Siate consapevoli che c'è ancora molto da imparare e considerate questi documenti come un punto di partenza.
 
 Il vantaggio più importate di Incus è la sua economicità d'uso su un server, consente di avviare rapidamente le installazioni del sistema operativo e permette di eseguire molti server applicativi standalone su una singola macchina, sfruttando al massimo l'hardware disponibile.
