@@ -29,7 +29,7 @@ https://www.nerdfonts.com/font-downloads
 
 L'installazione dei Nerd Fonts in Rocky Linux si effettua interamente dalla riga di comando grazie all'implementazione della procedura fornita dal repository del progetto [ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts). La procedura utilizza *git* per recuperare i font necessari e *fc-cache* per la loro configurazione.
 
-!!! Note "Nota"
+!!! Note
 
     Questo metodo può essere usato su tutte le distribuzioni *linux* che usano [fontconfig](https://www.freedesktop.org/wiki/Software/fontconfig/) per la gestione dei font di sistema.
 
