@@ -16,27 +16,27 @@ Questa pagina iniziale vi fornirà un'introduzione al sito web della documentazi
 
 ### Come Muoversi
 
-Ora siete nella pagina iniziale della documentazione. Se si dà un'occhiata al menu in alto (sempre disponibile, anche sui dispositivi mobili) si può vedere la struttura principale che mostra le sezioni di primo livello del sito di documentazione. Se si fa clic su ciascuna voce del menu superiore (ad esempio, " Guides "), sul lato sinistro viene visualizzato l'elenco delle *sottosezioni* per ciascuna sezione principale. Le guide comprendono molti argomenti di interesse.
+Ora siete nella pagina iniziale della documentazione. Se si dà un'occhiata al menu in alto (sempre disponibile, anche sui dispositivi mobili) si può vedere la struttura principale che mostra le sezioni di primo livello del sito di documentazione. Se si fa clic su ciascuna voce del menu superiore (ad esempio, "Guide"), a sinistra viene visualizzato l'elenco delle _sottosezioni_ per ciascuna sezione principale. Le guide comprendono molti argomenti di interesse.
 
 Quando si apre un documento, sul lato destro viene visualizzato una "Tabella dei Contenuti" con collegamenti di navigazione cliccabili per quel documento (per i dispositivi mobili provare l'orientamento orizzontale). Per i documenti lunghi, come le [Note di rilascio](release_notes/8_8.md), l'indice permette di muoversi agevolmente all'interno del documento. Se state leggendo un documento lungo e volete tornare all'inizio, premete ++page-up++ e vedrete apparire un pulsante `Back to top` nella parte superiore dello schermo.
 
 Le sezioni principali del sito di documentazione sono:
 
-* **Guide**: che illustrano modi specifici per configurare e utilizzare Rocky Linux.
-* **Libri**: sono informazioni più dettagliate basate su un'area specifica.
-* **Labs**: si torna a scuola, ma queste esercitazioni vi divertiranno!
-* **Gemstones**: condividete qui alcuni suggerimenti sull'uso di script o comandi comuni.
-* **Note di rilascio**: copre le note di rilascio di Rocky Linux e le informazioni sugli aggiornamenti di versione.
-* **Rocky Linux**: link home page Sito ufficiale.
+- **Guide**: che illustrano modi specifici per configurare e utilizzare Rocky Linux.
+- **Libri**: sono informazioni più dettagliate basate su un'area specifica.
+- **Labs**: si torna a scuola, ma queste esercitazioni vi divertiranno!
+- **Gemstones**: condividete qui alcuni suggerimenti sull'uso di script o comandi comuni.
+- **Note di rilascio**: copre le note di rilascio di Rocky Linux e le informazioni sugli aggiornamenti di versione.
+- **Rocky Linux**: link home page Sito ufficiale.
 
 ### Lingue Multiple
 
-Noi di Rocky Linux vogliamo rendere il sito della documentazione il più accessibile possibile a tutti; *la traduzione in diverse lingue è una parte importante di questo obiettivo*. Se si fa clic sul selettore di lingua (simbolo comune) nel menu in alto, si vedranno le lingue in cui il sito è disponibile. Questo è composto da due parti:
+Noi di Rocky Linux vogliamo rendere il sito della documentazione il più accessibile possibile a tutti — _la traduzione in diverse lingue è una parte importante di questo obiettivo_. Se si fa clic sul selettore di lingua (simbolo comune) nel menu in alto, si vedranno le lingue in cui il sito è disponibile. Questo è composto da due parti:
 
 1. Localizzazione dell'interfaccia del sito web: se si sceglie un'altra lingua, ad esempio il francese, si noterà che l'interfaccia, ad esempio i navigatori "Avanti" e "Precedente", saranno localizzati.
-1. Contenuti: la traduzione dei contenuti è un [compito](https://crowdin.com/project/rockydocs/activity-stream) (significativo) [continuo](https://crowdin.com/project/rockydocs). Non tutti i contenuti sono ancora tradotti in tutte le lingue. Tutte le pagine che sono state tradotte (nella lingua selezionata) saranno visualizzate nella lingua scelta, mentre quelle che non sono state tradotte torneranno alla lingua predefinita, l'inglese. Se desiderate contribuire alla comunità attraverso le traduzioni, il team della documentazione sarà di sentire il vostro parere — vedi sotto per i dettagli.
+2. Contenuti: la traduzione dei contenuti è un [compito](https://crowdin.com/project/rockydocs/activity-stream) (significativo) [continuo](https://crowdin.com/project/rockydocs). Non tutti i contenuti sono ancora tradotti in tutte le lingue. Tutte le pagine che sono state tradotte (nella lingua selezionata) saranno visualizzate nella lingua scelta, mentre quelle che non sono state tradotte torneranno alla lingua predefinita, l'inglese. Se desiderate contribuire alla comunità attraverso le traduzioni, il team della documentazione sarà di sentire il vostro parere — vedi sotto per i dettagli.
 
-!!! note "Nota"
+!!! note
 
     Non tutte le funzionalità possono essere disponibili in tutte le lingue, questo è un limite dei moduli MkDocs sottostanti disponibili.
 
@@ -54,4 +54,4 @@ Se siete in difficoltà e avete delle domande, la comunità Rocky Linux è a dis
 
 ## Contribuire
 
-Avete trovato qualcosa che manca? Avete trovato un errore? Vi state chiedendo come creare un vostro documento o come sistemare le cose in questo caso? Ricordate che abbiamo detto che *voi siete* la comunità Rocky? Ciò significa che *siete* importanti per noi e che vogliamo che vi uniate a noi, se vi va, per contribuire a migliorare questa documentazione. Se siete interessati, visitate la nostra [Guida al contributo](https://github.com/rocky-linux/documentation/blob/main/README.md) per scoprire come potete farlo!
+Avete trovato qualcosa che manca? Avete trovato un errore? Vi state chiedendo come creare un vostro documento o come sistemare le cose in questo caso? Ricordate che abbiamo detto che _voi siete_ la comunità Rocky? Ciò significa che _siete_ importanti per noi e che vogliamo che vi uniate a noi, se vi va, per contribuire a migliorare questa documentazione. Se siete interessati, visitate la nostra [Guida al contributo](https://github.com/rocky-linux/documentation/blob/main/README.md) per scoprire come potete farlo!
