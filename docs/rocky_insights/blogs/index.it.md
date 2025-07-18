@@ -1,6 +1,6 @@
 ---
 title: Introduzione
-author: Spencer Steven
+author: Steven Spencer
 contributors:
 ---
 
