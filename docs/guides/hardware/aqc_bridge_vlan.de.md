@@ -25,3 +25,5 @@ Sie können die VLAN-Filterung mit einem Befehl deaktivieren:
     nmcli con modify enp1s0 ethtool.feature-rx-vlan-filter off
 
 Ersetzen Sie `enp1s0` durch den Namen Ihrer AQC-basierten Netzwerkkarte.
+
+Abschließend müssen Sie Ihr System neu starten.
