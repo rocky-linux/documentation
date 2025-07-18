@@ -14,7 +14,7 @@ Questo capitolo illustra Squid, la cache proxy HTTP.
 
 ****
 
-**Obiettivi**: si imparerà come:
+**Obiettivi**: Imparerete a:
 
 :heavy_check_mark: installare squid\
 :heavy_check_mark: configurarlo come un proxy e memorizzare il contenuto HTTP.
@@ -41,7 +41,7 @@ Due firewall proteggono la workstation client ma non comunicano mai direttamente
 
 ![Proxy-based architecture](img/squid-architecture-proxy.png)
 
-!!! Note "Nota"
+!!! Note
 
 ```
 Questa architettura richiede la configurazione del browser sulla workstation client.
@@ -53,7 +53,7 @@ La configurazione avviene a livello del gateway, che riceve le richieste dei cli
 
 ![Captive proxy-based architecture](img/squid-architecture-proxy-captif.png)
 
-!!! Note "Nota"
+!!! Note
 
 ```
 Questa architettura richiede una configurazione specifica sul router.
@@ -82,7 +82,7 @@ Tra i vantaggi vi sono i seguenti:
 - Ottimizzazione della larghezza di banda
 - Controllo Sicurezza
 
-!!! Note "Nota"
+!!! Note
 
 ```
 L'implementazione dell'autenticazione blocca molti degli effetti dannosi dei virus sulla LAN.
@@ -130,7 +130,7 @@ I vantaggi dell'installazione di una soluzione basata sul server Squid:
 - Utilizzo di dispositivi di storage veloci per la cache
 - La RAM e la CPU devono essere dimensionate correttamente
 
-!!! Note "Nota"
+!!! Note
 
 ```
 Consentire 14 MB di RAM per ogni GB di cache del disco.
@@ -189,7 +189,7 @@ Configurare Squid su `/etc/squid/squid.conf`.
 http_port num_port
 ```
 
-!!! Note "Nota"
+!!! Note
 
 ```
 La porta è impostata di default su 3128, ma spesso viene modificato in 8080. Ricordarsi di aprire la porta corrispondente del firewall!
@@ -203,13 +203,13 @@ Al riavvio del servizio, il server Squid si metterà in ascolto sulla porta defi
 cache_mem taille KB|taille MB|taille GB
 ```
 
-Per esempio:
+Ad esempio:
 
 ```bash
 cache_mem 1 GB
 ```
 
-!!! Tip "Suggerimento"
+!!! Tip
 
 ```
 Best practice: allocare 1/3 della RAM totale
@@ -221,7 +221,7 @@ L' Internet Cache Protocol (ICP) consente ai server Squid vicini di scambiarsi l
 
 La direttiva `icp_port` definisce la porta che Squid utilizza per inviare e ricevere richieste ICP dai server Squid vicini.
 
-!!! Tip "Suggerimento"
+!!! Tip
 
 ```
 Impostare a 0 per disattivarlo.
@@ -283,7 +283,7 @@ Esempio:
 visible_hostname proxysquid
 ```
 
-!!! Note "Nota"
+!!! Note
 
 ```
 Il valore fornito può essere diverso dal nome dell'host.
@@ -450,7 +450,7 @@ Scomposizione di un record di log:
 | Peer Code            | Codice di risposta interproxy                                            |
 | File type            | Tipo di mime della richiesta di destinazione                             |
 
-### Sicurezza
+### Controllo Sicurezza
 
 Il firewall deve essere aperto per la porta di ascolto:
 

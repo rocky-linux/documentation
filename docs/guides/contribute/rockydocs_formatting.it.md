@@ -82,22 +82,22 @@ Un documento può contenere o meno uno di questi elementi. Tuttavia, se ritenete
 
 Gli ammonimenti sono speciali "scatole" visive che richiamano l'attenzione su fatti importanti e li evidenziano. I seguenti sono tipi di ammonimenti:
 
-| tipo               | Descrizione                                                                |
-| ------------------ | -------------------------------------------------------------------------- |
-| note               | visualizza il testo in un riquadro blu                                     |
-| abstract           | visualizza il testo in un riquadro azzurro                                 |
-| info               | visualizza il testo in un riquadro blu-verde                               |
-| tip                | visualizza il testo in un riquadro blu-verde (icona leggermente più verde) |
-| success            | visualizza il testo in un riquadro verde                                   |
-| question "Domanda" | visualizza il testo in un riquadro verde chiaro                            |
-| warning            | visualizza il testo in un riquadro arancione                               |
-| failure            | visualizza il testo in un riquadro rosso chiaro                            |
-| danger             | visualizza il testo in un riquadro rosso                                   |
-| bug                | visualizza il testo in un riquadro rosso                                   |
-| example            | visualizza il testo in un riquadro viola                                   |
-| quote              | visualizza il testo in una casella grigia                                  |
-| custom ^1^         | visualizza sempre il testo in un riquadro blu                              |
-| custom ^2^         | visualizza il testo nel colore del riquadro della tipologia prescelta      |
+| tipo       | Descrizione                                                                |
+| ---------- | -------------------------------------------------------------------------- |
+| note       | visualizza il testo in un riquadro blu                                     |
+| abstract   | visualizza il testo in un riquadro azzurro                                 |
+| info       | visualizza il testo in un riquadro blu-verde                               |
+| tip        | visualizza il testo in un riquadro blu-verde (icona leggermente più verde) |
+| success    | visualizza il testo in un riquadro verde                                   |
+| question   | visualizza il testo in un riquadro verde chiaro                            |
+| warning    | visualizza il testo in un riquadro arancione                               |
+| failure    | visualizza il testo in un riquadro rosso chiaro                            |
+| danger     | visualizza il testo in un riquadro rosso                                   |
+| bug        | visualizza il testo in un riquadro rosso                                   |
+| example    | visualizza il testo in un riquadro viola                                   |
+| quote      | visualizza il testo in una casella grigia                                  |
+| custom ^1^ | visualizza sempre il testo in un riquadro blu                              |
+| custom ^2^ | visualizza il testo nel colore del riquadro della tipologia prescelta      |
 
 Gli ammonimenti sono illimitati, come si può notare in custom <sub>1</sub> sopra. Per ottenere il colore del riquadro desiderato per un ammonimento specifica, aggiungete un titolo personalizzato a qualsiasi tipo di ammonimento, come indicato nella precedente sezione <sub>2</sub>.
 

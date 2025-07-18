@@ -52,7 +52,7 @@ x-vercel-id: cdg1::pdqbh-1718971524213-4892bf82d7b2
 content-length: 154696
 ```
 
-!!! NOTE "Nota"
+!!! NOTE
 
 ```
 Imparare a usare il comando `curl` sarà molto utile per la risoluzione dei problemi sui server in futuro.

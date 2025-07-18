@@ -170,7 +170,7 @@ sudo mariadb-secure-installation
 
 Lo script chiederà di fornire una password per l'utente root.
 
-!!! NOTE "Nota"
+!!! NOTE
 
 ````
 The `mysql_secure_installation` command is now a symlink to the `mariadb-secure-installation` command:
@@ -195,7 +195,7 @@ Assicurarsi che le autorizzazioni siano abbastanza restrittive da consentire l'a
 chmod 600 ~/.my.cnf
 ```
 
-!!! WARNING "Attenzione"
+!!! WARNING
 
 ```
 Questo non è il modo migliore. Esiste un'altra soluzione più sicura della memorizzazione di una password in testo normale. A partire da MySQL 5.6.6, è ora possibile memorizzare le credenziali di accesso in un `.mylogin.cnf` criptato, grazie al comando `mysql_config_editor`.
@@ -208,7 +208,7 @@ sudo firewall-cmd --zone=public --add-service=mysql
 sudo firewall-cmd --reload
 ```
 
-!!! NOTE "Nota"
+!!! NOTE
 
 ```
 La migliore sicurezza consiste nel non aprire il server del database al mondo esterno (se il server delle applicazioni è ospitato sullo stesso server) o nel limitare l'accesso solo agli IP autorizzati.
@@ -230,7 +230,7 @@ mysql -u user -p [base]
 | `-p`      | Richiede la password.                        |
 | `base`    | Il nome del database al quale collegarsi.    |
 
-!!! NOTE "Nota"
+!!! NOTE
 
 ````
 The `mysql` command is now a symlink to the `mariadb` command:
@@ -361,7 +361,7 @@ Durante il processo, l'accesso ai dati è bloccato.
 mariadb-dump -u root -p DATABASE_NAME > backup.sql
 ```
 
-!!! NOTE "Nota"
+!!! NOTE
 
 ```
 Non dimenticare che dopo il ripristino di un backup completo, il ripristino dei file binari (binlog) completa la ricostituzione dei dati.
@@ -408,7 +408,7 @@ mysql:x:27:27:MySQL Server:/var/lib/mysql:/sbin/nologin
 ...
 ```
 
-Attivare e avviare il servizio con il seguente comando:
+Abilitare ed avviare il servizio:
 
 ```bash
 $ sudo systemctl enable mariadb --now

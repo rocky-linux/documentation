@@ -62,7 +62,7 @@ Se i backend non sono più sufficienti a supportare il carico di lavoro:
 
 Una pagina web è spesso composta da HTML (spesso generato dinamicamente da PHP) e da risorse più statiche (JPG, gif, CSS, js e così via) durante la creazione. Diventa subito interessante mettere in cache le risorse memorizzabili (quelle statiche), scaricando molte richieste dai backend.
 
-!!! NOTE "Nota"
+!!! NOTE
 
 ```
 Il caching delle pagine web (HTML, PHP, ASP, JSP, ecc.) è possibile ma più complicata. È necessario conoscere l'applicazione e sapere se le pagine sono memorizzabili nella cache, cosa che dovrebbe essere vera con un'API REST.
@@ -167,7 +167,7 @@ Questo comporta la compilazione del file di configurazione VCL in C. Se la compi
 varnishd -C -f /etc/varnish/default.vcl
 ```
 
-!!! NOTE "Nota"
+!!! NOTE
 
 ```
 È consigliabile controllare la sintassi del VCL prima di riavviare il daemon `varnishd`.
@@ -183,7 +183,7 @@ systemctl reload varnishd
 
 Un `systemctl restart varnishd` svuota la cache di varnish e causa un picco di carico sui backend. Si dovrebbe quindi evitare di ricaricare `varnishd`.
 
-!!! NOTE "Nota"
+!!! NOTE
 
 ```
 Per configurare Varnish, seguire le raccomandazioni riportate in questa pagina: <https://www.getpagespeed.com/server-setup/varnish/varnish-virtual-hosts>.

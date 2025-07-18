@@ -1,6 +1,6 @@
 ---
 title: Marksman
-author: Franco Colussi
+author: Fanco Colussi
 contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 8.8, 9.2
 tags:

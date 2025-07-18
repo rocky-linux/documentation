@@ -10,7 +10,7 @@ In questo capitolo si apprenderà come configurare server primari e secondari su
 
 ****
 
-**Obiettivi**: si imparerà come:
+**Obiettivi**: si imparerà a:
 
 :heavy_check_mark: Attiva i binlogs nei server;
 :heavy_check_mark: Configura un server secondario per replicare i dati presenti sul server primario

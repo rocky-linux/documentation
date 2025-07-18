@@ -168,7 +168,7 @@ a       b       c       d
 1       2       3       4
 ```
 
-Nel sistema operativo RockyLinux non esiste il comando `print`. Si può usare `print` solo in `awk` e la sua differenza rispetto a `printf` è che aggiunge automaticamente una newline alla fine di ogni riga. Per esempio:
+Nel sistema operativo RockyLinux non esiste il comando `print`. Si può usare `print` solo in `awk` e la sua differenza rispetto a `printf` è che aggiunge automaticamente una newline alla fine di ogni riga. Ad esempio:
 
 ```bash
 Shell > awk '{printf $1 "\t" $2"\n"}' /tmp/printf.txt
@@ -858,7 +858,7 @@ False
   9
   ```
 
-  !!! question "Domanda"
+  !!! domanda
 
   ```
    **Perché?**
@@ -1824,7 +1824,7 @@ Come la maggior parte dei linguaggi di programmazione, `awk` supporta anche gli 
 | print                                                                          | Stampare il risultato                                                                                                                                                                                                                                                                                                                                                                                                |
 | printf                                                                         | Vedere la sezione relativa a questo comando in questo documento                                                                                                                                                                                                                                                                                                                                                      |
 | system(cmd-line)                                            | Esegue il comando e restituisce il codice di stato. 0 indica che il comando è stato eseguito con successo; non-0 indica che l'esecuzione non è riuscita                                                                                                                                                                                                                                              |
-| print ... >> file              | Redirezione Output                                                                                                                                                                                                                                                                                                                                                                                                   |
+| print ... >> file              | Redirezione output                                                                                                                                                                                                                                                                                                                                                                                                   |
 | print ... \\| command         | Stampare l'output e utilizzarlo come input per il comando                                                                                                                                                                                                                                                                                                                                                            |
 
 1. getline
