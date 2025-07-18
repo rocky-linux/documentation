@@ -685,7 +685,7 @@ Active Resources:
   * WebSite     (ocf:heartbeat:apache):  Started server1
 ```
 
-#### The `corosync-*cfgtool*` commands
+#### The `corosync-cfgtool` commands
 
 The `corosync-cfgtool` command checks that the configuration is correct and that communication with the cluster is working properly:
 
