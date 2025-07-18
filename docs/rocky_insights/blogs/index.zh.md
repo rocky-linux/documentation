@@ -1,7 +1,7 @@
 ---
 title: 介绍
 author: Steven Spencer
-contributors: null
+contributors:
 ---
 
 ## 为什么有这个部分？
@@ -12,13 +12,11 @@ contributors: null
 
 任何人只要有 GitHub 凭证都可以在此提交建议文章。 查看 [贡献部分](https://docs.rockylinux.org/guides/contribute/) 中的文档来开始吧。
 
-!!! note "注意"
+!!! note
 
-```
-如果您没有 GitHub 凭据，但仍想为此部分编写内容，请通过本页底部的 Mattermost 频道链接与我们联系。
-```
+    如果您没有 GitHub 凭据，但仍想为此部分编写内容，请通过本页底部的 Mattermost 频道链接与我们联系。
 
-您应该确保您的文档符合本章节的要求。 例如：
+您应该确保您的文档符合本章节的要求。 例如： 例如：
 
 - 它适合这里吗？ 它是值得共享的信息吗？ 它是博客风格的文档吗？
 - 它是否扩展了对文档作者很重要的主题？

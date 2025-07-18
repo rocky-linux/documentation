@@ -1,6 +1,6 @@
 ---
 title: Introduzione
-author: Spencer Steven
+author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
 tags:
@@ -25,9 +25,7 @@ Questo documento è una conversione del [libro LXD](../lxd_server/00-toc.md) in 
 
 !!! warning "Incus server non è disponibile su Rocky Linux 8"
 
-```
-L'installazione del server Incus è disponibile solo per Rocky Linux 9.x e attualmente è testata su Rocky Linux 9.4. Se si ha bisogno di qualcosa che funzioni su Rocky Linux 8.x, usare la [procedura LXD già citata](../lxd_server/00-toc.md).
-```
+    L'installazione del server Incus è disponibile solo per Rocky Linux 9.x e attualmente è testata su Rocky Linux 9.4. Se si ha bisogno di qualcosa che funzioni su Rocky Linux 8.x, usare la [procedura LXD già citata](../lxd_server/00-toc.md).
 
 ## Introduzione
 
@@ -37,9 +35,7 @@ Una migliore descrizione di Incus è presente sul [sito ufficiale](https://linux
 
 !!! warning "Questo non è un backup"
 
-```
-Non si deve pensare a questo come a un backup tradizionale. È ancora necessario un sistema di backup tradizionale, come [rsnapshot](../../guides/backup/rsnapshot_backup.md).
-```
+    Non si deve pensare a questo come a un backup tradizionale. È ancora necessario un sistema di backup tradizionale, come [rsnapshot](../../guides/backup/rsnapshot_backup.md).
 
 La curva di apprendimento di Incus può essere impegantiva, ma questo libro cercherà di fornire le conoscenze necessarie a distribuire e utilizzare Incus su Rocky Linux.
 
@@ -54,11 +50,9 @@ Per coloro che desiderano utilizzare Incus come ambiente di prova su notebook o 
 - Per ZFS, assicurarsi che l'avvio sicuro UEFI NON sia abilitato. Altrimenti, si finirà per dover firmare il modulo ZFS per farlo caricare.
 - Utilizzo di container basati su Rocky Linux per la maggior parte del tempo
 
-!!! info "Informazione"
+!!! info
 
-```
-L'autore include una metodologia per l'utilizzo di un filesystem ZFS. Si noti che il progetto Incus raccomanda BTRFS come file system per un server Incus. (BTRFS, tuttavia, non è disponibile su Rocky Linux 9.4. Fino a quando non sarà approvato dall'upstream e rilasciato, il file system BTRFS non sarà disponibile. Finché non sarà approvato dall'upstream e rilasciato, l'unica opzione è utilizzare ZFS o un altro filesystem incluso. Per saperne di più sulle opzioni del filesystem di Incus, vedere [il documento ufficiale del progetto qui] (https://linuxcontainers.org/incus/docs/main/reference/storage_dir/)  
-```
+    L'autore include una metodologia per l'utilizzo di un filesystem ZFS. Si noti che il progetto Incus raccomanda BTRFS come file system per un server Incus. (BTRFS, tuttavia, non è disponibile su Rocky Linux 9.4. Fino a quando non sarà approvato dall'upstream e rilasciato, il file system BTRFS non sarà disponibile. Finché non sarà approvato dall'upstream e rilasciato, l'unica opzione è utilizzare ZFS o un altro filesystem incluso. Per saperne di più sulle opzioni del filesystem di Incus, vedere [il documento ufficiale del progetto qui] (https://linuxcontainers.org/incus/docs/main/reference/storage_dir/)
 
 ## Sinossi
 

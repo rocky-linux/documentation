@@ -1,6 +1,6 @@
 ---
-author: null
-contributors: null
+author:
+contributors:
 title: Частина 6. Поштові сервери
 ---
 

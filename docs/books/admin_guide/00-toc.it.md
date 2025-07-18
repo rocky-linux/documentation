@@ -16,9 +16,9 @@ L'editor di testo VI merita un capitolo a sé. Anche se Linux è provvisto di mo
 
 A questo punto possiamo addentrarci nel funzionamento del sistema Linux per scoprire come si comporta il sistema:
 
-* Gestione Utenti
-* File Systems
-* Gestione dei Processi
+- Gestione Utenti
+- File Systems
+- Gestione dei Processi
 
 Il Backup e il Ripristino sono informazioni essenziali per l'Amministratore di Sistema. Linux dispone di molte soluzioni software per migliorare i backup (rsnapshot, lsyncd, ecc.). È importante conoscere i componenti principali per il backup che sono presenti nel sistema operativo. In questo capitolo esamineremo due strumenti: `tar` e il meno diffuso `cpio`.
 
