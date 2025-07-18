@@ -563,7 +563,7 @@ $ elinks http://127.0.0.1/manual
 
 È un comando molto utile con l'opzione `-t` o `configtest`, che esegue un test della sintassi del file di configurazione.
 
-!!! NOTE "Nota"
+!!! NOTE
 
 ```
 È molto utile se usato con i gestori di Ansible per testare la configurazione.
