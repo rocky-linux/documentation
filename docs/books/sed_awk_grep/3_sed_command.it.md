@@ -26,7 +26,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 | :-----: | :--------------------------------------------------------------------------- |
 |    -n   | Visualizza a video le righe di testo che saranno elaborate dal comando `sed` |
 |    -e   | Esegue più comandi `sed` ai dati della riga di testo di input                |
-|    -f   | Chiama ed esegue il file di script con i comandi per `sed`                   |
+|    -t   | Chiama ed esegue il file di script con i comandi per `sed`                   |
 |    -i   | Modifica il file di origine                                                  |
 |    -r   | Espressione regolare                                                         |
 
