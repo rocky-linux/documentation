@@ -49,7 +49,7 @@ PHP-FPM, **oltre a prestazioni migliori**, porta:
 - Gestione del registro,
 - Gestione dinamica dei processi e riavvio senza interruzione del servizio ('graceful').
 
-!!! Note "Nota"
+!!! Note
 
 ```
 Poiché Apache ha un modulo PHP, php-fpm è più comunemente usato su un server Nginx.
@@ -59,7 +59,7 @@ Poiché Apache ha un modulo PHP, php-fpm è più comunemente usato su un server 
 
 Rocky Linux, come il suo upstream, offre molte versioni del linguaggio. Alcuni di essi hanno raggiunto la fine del loro ciclo di vita, ma vengono mantenuti per continuare a ospitare applicazioni storiche che non sono ancora compatibili con le nuove versioni di PHP. Fare riferimento alla pagina [versioni supportate](https://www.php.net/supported-versions.php) del sito php.net per scegliere una versione supportata.
 
-Per ottenere un elenco delle versioni disponibili, basta inserire il seguente comando:
+Per ottenere un elenco delle versioni disponibili, digitate il seguente comando:
 
 \=== "Elenco dei moduli PHP 9.3"
 
@@ -262,7 +262,8 @@ sudo dnf install php-fpm
 Poiché php-fpm è un servizio dal punto di vista del sistema, è necessario attivarlo e avviarlo:
 
 ```bash
-sudo systemctl enable --now php-fpm
+sudo systemctl enable php-fpm
+sudo systemctl start php-fpm
 sudo systemctl status php-fpm
 ```
 
@@ -278,7 +279,7 @@ error_log = /var/log/php-fpm/error.log
 daemonize = yes
 ```
 
-!!! Note "Nota"
+!!! Note
 
 ```
 I file di configurazione di php-fpm sono ampiamente commentati. Andate a dare un'occhiata!
@@ -329,7 +330,7 @@ O con un socket UNIX:
 
 `listen = /run/php-fpm/www.sock`.
 
-!!! Note "Nota"
+!!! Note
 
 ```
 L'uso di un socket quando il server web e il server PHP si trovano sulla stessa macchina elimina il livello TCP/IP e ottimizza le prestazioni.
@@ -372,7 +373,7 @@ Per impostazione predefinita, il valore di `pm.max_requests` è 0, il che signif
 
 Una terza modalità di funzionamento è la modalità `ondemand`. Questa modalità avvia un processo solo quando riceve una richiesta. Non è una modalità ottimale per i siti con forti influenze ed è riservata a esigenze specifiche (siti con richieste deboli, backend gestionale, ecc.).
 
-!!! Note "Nota"
+!!! Note
 
 ```
 La configurazione della modalità operativa di PHP-FPM è essenziale per garantire il funzionamento ottimale del server web.
@@ -507,7 +508,7 @@ Questo vi darà un'idea abbastanza precisa dell'ingombro medio della memoria di 
 
 Il resto di questo documento comporta un ingombro di memoria di 120 MB per processo a pieno carico.
 
-Su un server con 8 Gb di RAM, mantenendo 1 Gb per il sistema e 1 Gb per la OPCache (si veda il resto di questo documento), rimangono 6 Gb per elaborare le richieste PHP dei client.
+Su un server con 8Gb di RAM, mantenendo 1Gb per il sistema e 1Gb per la OPCache (vedere il resto di questo documento), rimangono 6Gb per elaborare le richieste PHP dei client.
 
 Si può concludere che questo server può accettare al massimo **50 thread** `((6*1024) / 120)`.
 
@@ -562,13 +563,13 @@ Dove:
 
 Per configurare l'opcache, fare riferimento a una pagina `info.php` (compresa la `phpinfo();`) (si vedano, per esempio, i valori di `Cached scripts` e `Cached strings`).
 
-!!! Note "Nota"
+!!! Note
 
 ```
 A ogni nuova distribuzione di nuovo codice, sarà necessario svuotare la opcache (ad esempio riavviando il processo php-fpm).
 ```
 
-!!! Note "Nota"
+!!! Note
 
 ```
 Non sottovalutate l'aumento di velocità che si può ottenere impostando e configurando correttamente l'opcache.
