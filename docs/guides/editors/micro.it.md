@@ -1,7 +1,7 @@
 ---
 title: micro
 author: Ezequiel Bruni
-contributors: Steven Spencer, Franco Colussi
+contributors: Steven Spencer, Ganna Zhyrnova
 tested version: 8.5
 tags:
   - editor
@@ -15,12 +15,12 @@ tags:
 
 *[micro](https://micro-editor.github.io)* è un piccolo e fantastico editor di testo basato su terminale che si colloca tra *nano* e *vim* in termini di complessità. Ha un flusso di lavoro semplice e facilmente riconoscibile, con diverse caratteristiche straordinarie:
 
-* Tutti i consueti comandi "Control-C", "Control-V" e "Control-F" funzionano come in un editor di testo basato su desktop. Naturalmente, tutte le associazioni di tasti possono essere reimpostate.
-* Supporto del mouse — fare clic e trascinare per selezionare il testo, fare doppio clic per selezionare le parole, fare triplo clic per selezionare le righe.
-* Sono supportate oltre 75 lingue con evidenziazione della sintassi per impostazione predefinita.
-* Cursori multipli per modificare più righe alla volta.
-* Include un sistema di plugin.
-* Pannelli multipli.
+- Tutti i consueti comandi ++control+c++, ++control+v++ e ++control+f++ funzionano come in un editor di testo basato su desktop. Naturalmente, tutte le associazioni di tasti possono essere reimpostate.
+- Supporto del mouse — fare clic e trascinare per selezionare il testo, fare doppio clic per selezionare le parole, fare triplo clic per selezionare le righe.
+- Sono supportate oltre 75 lingue con evidenziazione della sintassi per impostazione predefinita.
+- Cursori multipli per modificare più righe alla volta.
+- Include un sistema di plugin.
+- Pannelli multipli.
 
 Ed ecco come appare nel mio terminale:
 
@@ -28,13 +28,13 @@ Ed ecco come appare nel mio terminale:
 
 !!! Note "Nota"
 
-    È possibile installare micro tramite un'applicazione snap. Se si utilizza già snap sulla macchina... Voglio dire... perché no? Ma io preferisco prenderlo direttamente dalla fonte.
+    È *possibile* installare micro tramite un'applicazione snap. Se si utilizza già snap sulla macchina... Voglio dire... perché no? Ma io preferisco prenderlo direttamente dalla fonte.
 
 ## Prerequisiti
 
-* Qualsiasi macchina o contenitore Rocky Linux connesso a Internet.
-* Conoscenza di base della riga di comando e desiderio di modificare il proprio testo.
-* Alcuni comandi dovranno essere eseguiti come root o con `sudo`.
+- Qualsiasi macchina o contenitore Rocky Linux connesso a Internet.
+- Conoscenza di base della riga di comando e desiderio di modificare il proprio testo.
+- Alcuni comandi dovranno essere eseguiti come root o con `sudo`.
 
 ### Come Installare micro
 
@@ -76,10 +76,10 @@ Inoltre, *micro* lascerà alcuni file di configurazione nella vostra home direct
 rm -rf /home/[nomeutente]/.config/micro
 ```
 
-## Conclusione
+## Conclusioni
 
 Se volete una guida completa all'uso di *micro*, consultate il [sito web principale](https://micro-editor.github.io) e la documentazione nella [repo di Github](https://github.com/zyedidia/micro/tree/master/runtime/help). È anche possibile premere "Control-G" per aprire il file di guida principale all'interno dell'applicazione stessa.
 
-probabilmente*micro* non soddisferà le esigenze di coloro che si sono dedicati all'esperienza di *vim* o *emacs*, ma è perfetto per le persone come me. Ho sempre desiderato l'esperienza del vecchio Sublime Text nel terminale e ora ho qualcosa di *veramente* vicino.
+probabilmente *micro* non soddisferà le esigenze di coloro che si sono dedicati all'esperienza di *vim* o *emacs*, ma è perfetto per le persone come me. Ho sempre desiderato l'esperienza del vecchio Sublime Text nel terminale e ora ho qualcosa di *molto* simile.
 
 Provate e vedete se funziona per voi.
