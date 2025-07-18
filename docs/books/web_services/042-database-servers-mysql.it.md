@@ -16,7 +16,7 @@ Sono incluse solo le differenze significative tra le versioni di MariaDB e MySQL
 
 ---
 
-**Obiettivi**: si imparerà come:
+**Obiettivi**: si imparerà a:
 
 :heavy_check_mark: installare, configurare e proteggere il server MariaDB e il server MySQL;
 
@@ -56,7 +56,7 @@ Per installare l'ultima versione del server MySQL, è necessario utilizzare un r
 
 Visitare questa pagina: https://dev.mysql.com/downloads/repo/yum/ e copiare l'URL del repository.
 
-Per esempio:
+Ad esempio:
 
 ```bash
 sudo dnf install -y https://dev.mysql.com/get/mysql84-community-release-el9-1.noarch.rpm
