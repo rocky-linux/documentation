@@ -14,9 +14,9 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
 
 ## Prerequisiti
 
-* Una certa comodità nell'operare dalla riga di comando
-* Privilegi elevati o amministrativi sul sistema (per esempio root, `sudo` e così via)
-* Opzionale: familiarità con i concetti di rete
+- Una certa comodità nell'operare dalla riga di comando
+- Privilegi elevati o amministrativi sul sistema (per esempio root, `sudo` e così via)
+- Opzionale: familiarità con i concetti di rete
 
 === "9"
 
@@ -26,9 +26,9 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
     
     ## Prerequisiti
 
-    * Una certa dimestichezza nell'operare dalla riga di comando
-    * Privilegi elevati o amministrativi sul sistema (per esempio root, `sudo` e così via)
-    * Opzionale: familiarità con i concetti di rete
+    - Una certa dimestichezza nell'operare dalla riga di comando
+    - Privilegi elevati o amministrativi sul sistema (per esempio root, `sudo` e così via)
+    - Opzionale: familiarità con i concetti di rete
 
 
     ## Usare il servizio NetworkManager
@@ -106,7 +106,7 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
 
         Lo schema di configurazione IP statico è molto diffuso nei sistemi o nelle reti di tipo server.
 
-        L'approccio IP dinamico è molto diffuso nelle reti domestiche e di ufficio o nei sistemi di classe workstation e desktop in ambiente aziendale.  Lo schema dinamico di solito necessita di _qualcosa_ in più che sia disponibile localmente e che possa fornire le informazioni di configurazione IP corrette alle workstation e ai desktop richiedenti. Questo _qualcosa_ si chiama Dynamic Host Configuration Protocol (DHCP). In una rete domestica, e anche nella maggior parte delle reti aziendali, questo servizio è fornito da un server DHCP configurato allo scopo. Può trattarsi di un server separato o di una parte della configurazione del router.
+        L'approccio IP dinamico è molto diffuso nelle reti domestiche e di ufficio o nei sistemi di classe workstation e desktop in ambiente aziendale.  Lo schema dinamico di solito richiede *qualcosa* di aggiuntivo che sia disponibile localmente e che possa fornire informazioni di configurazione IP adeguate alle workstation e ai desktop che ne fanno richiesta. Questo *qualcosa* si chiama Dynamic Host Configuration Protocol (DHCP). In una rete domestica, e anche nella maggior parte delle reti aziendali, questo servizio è fornito da un server DHCP configurato allo scopo. Può trattarsi di un server separato o di una parte della configurazione del router.
 
 
     ## Indirizzi IP
@@ -117,25 +117,25 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
 
         ![nmtui](images/nmtui_first.png)
 
-    2. È già presente la selezione "Edit a connection", quindi premere il tasto <kbd>TAB</kbd> in modo da evidenziare "OK" e premere <kbd>INVIO</kbd>
+    2. È già presente la selezione "Modifica una connessione", quindi premete il tasto ++tab++ in modo da evidenziare "OK" e premete ++enter++
 
-    3. Verrà visualizzata una schermata che mostra le connessioni Ethernet della macchina e consentirà di sceglierne una. Nel nostro caso, ce n'è *SOLO* uno, quindi è già evidenziato; dobbiamo semplicemente premere il tasto <kbd>TAB</kbd> finché non viene evidenziato "Edit" e poi premere <kbd>INVIO</kbd>
+    3. Verrà visualizzata una schermata che mostra le connessioni Ethernet della macchina e consentirà di sceglierne una. Nel nostro caso, ce n'è *solo uno*, quindi è già evidenziato, dobbiamo semplicemente premere il tasto ++tab++ finché non viene evidenziato "Modifica" e poi premere ++enter++
 
         ![nmtui_edit](images/nmtui_edit.png)
 
-    4. Una volta fatto questo, ci troveremo nella schermata che mostra la nostra configurazione attuale. Occorre passare da " Manual " a " Automatic ", quindi premere più volte il tasto <kbd>TAB</kbd> fino a evidenziare " Manual " e poi premere <kbd>INVIO</kbd>.
+    4. Una volta fatto questo, ci troveremo nella schermata che mostra la nostra configurazione attuale. È necessario passare da "Manuale" ad "Automatico", quindi premere più volte il tasto ++tab++ fino ad evidenziare "Manuale" e premere ++enter++.
 
         ![nmtui_manual](images/nmtui_manual.png)
 
-    5. La freccia verso l'alto fino a evidenziare " Automatic" e quindi premere <kbd>INVIO</kbd>
+    5. La freccia verso l'alto fino a evidenziare "Automatico", quindi premere ++enter++
 
         ![nmtui_automatic](images/nmtui_automatic.png)
 
-    6. Una volta che l'interfaccia è passata ad "Automatic", è necessario rimuovere l'IP assegnato staticamente, quindi premere il tasto <kbd>TAB</kbd> fino a evidenziare "Remove"accanto all'indirizzo IP e premere <kbd>INVIO</kbd>.
+    6. Una volta che l'interfaccia è passata ad "Automatico", è necessario rimuovere l'IP assegnato staticamente, quindi premere il tasto ++tab++ finché non viene evidenziato "Rimuovi" accanto all'indirizzo IP e premere ++enter++.
 
         ![nmtui_remove](images/nmtui_remove.png)
 
-    7. Infine, premete più volte il tasto <kbd>TAB</kbd> finché non arrivate in fondo alla schermata `nmtui` e non viene evidenziato "OK" e premete <kbd>INVIO</kbd>
+    7. Infine, premete più volte il tasto ++tab++ finché non arrivate in fondo alla schermata `nmtui` e non viene evidenziato "OK" e premete ++enter++
 
     È possibile disattivare e riattivare l'interfaccia anche con `nmtui`, ma facciamo questo con `nmcli`. In questo modo è possibile regolare la disattivazione dell'interfaccia e la sua riattivazione, in modo che l'interfaccia non sia mai inattiva per molto tempo:
 
@@ -148,7 +148,7 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
     Per verificare che abbia funzionato, controllate con il comando `ip addr` o con il comando `nmcli device show enp0s3` che abbiamo usato in precedenza.
 
     ```
-    ip addr
+    ip_addr
     ```
 
     In caso di successo, si dovrebbe vedere che l'IP statico è stato rimosso e che è stato aggiunto un indirizzo allocato dinamicamente, come in questo caso:
@@ -169,10 +169,10 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
 
     Prima di iniziare, è necessario sapere che per riconfigurare l'interfaccia in DHCP è necessario:
 
-    * Rimuovere il gateway IPv4
-    * Rimuovere l'indirizzo IPv4 assegnato staticamente
-    * Cambiare il metodo IPv4 in automatico
-    * Disattivare e riattivare l'interfaccia
+    - Rimuovere il gateway IPv4
+    - Rimuovere l'indirizzo IPv4 assegnato staticamente
+    - Cambiare il metodo IPv4 in automatico
+    - Disattivare e riattivare l'interfaccia
 
     Si noti anche che non stiamo usando esempi che dicono di usare -ipv4.address ecc. Questi non cambiano completamente l'interfaccia. Per farlo, è necessario impostare ipv4.address e ipv4.gateway su una stringa vuota. Anche in questo caso, per risparmiare il più possibile tempo con il nostro comando, li uniremo tutti in un'unica riga:
 
@@ -217,10 +217,10 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
 
     In questo esempio, assumeremo i seguenti parametri:
 
-    * nome dell'interfaccia: enp0s3
-    * indirizzo ip: 192.168.1.151
-    * maschera di sottorete: 24
-    * gateway: 192.168.1.1
+    - nome dell'interfaccia: enp0s3
+    - indirizzo ip: 192.168.1.151
+    - maschera di sottorete: 24
+    - gateway: 192.168.1.1
 
 
     ### Ottenere informazioni di carattere generale
@@ -332,7 +332,7 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
     64 bytes from 192.168.1.10: icmp_seq=3 ttl=255 time=0.676 ms
     ```
 
-    Eseguire un test per verificare che venga visualizzato un host raggiungibile esterno alla rete. Per il test che segue, utilizziamo il server DNS aperto di Google:
+    Eseguire un test per assicurarsi di poter vedere un host raggiungibile esterno alla rete. Per il test che segue, utilizziamo il server DNS aperto di Google:
 
     ```bash
     ping -c3 8.8.8.8
@@ -359,7 +359,7 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
     ```
 
 
-    ## Conclusioni
+    ## Conclusione
 
     In Rocky Linux 9 sono state apportate molte modifiche allo stack di rete. Tra queste c'è la priorità dei `keyfile` rispetto ai file `ifcfg` usati in precedenza e presenti in Network-Scripts. Poiché la direzione del cambiamento nelle future versioni di Rocky Linux prevede la deprecazione e la rimozione degli script di rete, è meglio concentrare l'attenzione su metodologie come `nmcli`, `nmtui` e, in alcuni casi, `ip`, per la configurazione della rete.
 
@@ -410,7 +410,7 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
     
         Lo schema di configurazione IP statico è molto diffuso nei sistemi o nelle reti di tipo server.
     
-        L'approccio IP dinamico è molto diffuso nelle reti domestiche e di ufficio o nei sistemi di classe workstation e desktop.  Lo schema dinamico di solito necessita di qualcosa di aggiuntivo, disponibile localmente, in grado di fornire le informazioni di configurazione IP corrette alle workstation e ai desktop che ne fanno richiesta. Questo _qualcosa_ si chiama Dynamic Host Configuration Protocol (DHCP).
+        L'approccio IP dinamico è molto diffuso nelle reti domestiche e di ufficio o nei sistemi di classe workstation e desktop.  Lo schema dinamico di solito richiede *qualcosa* di aggiuntivo disponibile localmente che possa fornire informazioni di configurazione IP adeguate alle workstation e ai desktop che ne fanno richiesta. Questo *qualcosa* si chiama Dynamic Host Configuration Protocol (DHCP).
     
        Gli utenti di casa o dell'ufficio spesso non devono preoccuparsi del DHCP. Questo perché qualcosa di diverso se ne occupa automaticamente in background. L'utente finale deve connettersi fisicamente o in modalità wireless alla rete giusta (e naturalmente assicurarsi che i suoi sistemi siano accesi)!
     
@@ -511,8 +511,8 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
 
     Ad esempio, possiamo vedere che il metodo `ipv4.method` qui è attualmente impostato su `auto`. Ci sono molti valori consentiti per l'impostazione `ipv4.method`, ma i due principali che molto probabilmente si vedranno sono:
 
-    * `auto`: per l'interfaccia viene utilizzato il metodo automatico appropriato (DHCP, PPP, ecc.) e la maggior parte delle altre proprietà possono essere lasciate non impostate.
-    * `manual`: viene utilizzato un indirizzamento IP statico e almeno un indirizzo IP deve essere indicato nella proprietà 'addresses'.
+    - `auto`: per l'interfaccia viene utilizzato il metodo automatico appropriato (DHCP, PPP, ecc.) e la maggior parte delle altre proprietà possono essere lasciate non impostate.
+    - `manual`: viene utilizzato un indirizzamento IP statico e almeno un indirizzo IP deve essere indicato nella proprietà 'addresses'.
 
     Se invece si desidera configurare il sistema in modo che utilizzi uno schema di indirizzi IP statici, è necessario modificare il valore di `ipv4.method` in `manual` e specificare anche `ipv4.gateway` e `ipv4.addresses`.
 
@@ -572,10 +572,10 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
 
     In questo esempio, assumeremo i seguenti parametri:
 
-    * nome dell'interfaccia: ens19
-    * indirizzo ip: 192.168.20.10
-    * maschera di sottorete: 24
-    * gateway: 192.168.20.254
+    - nome dell'interfaccia: ens19
+    - indirizzo ip: 192.168.20.10
+    - maschera di sottorete: 24
+    - gateway: 192.168.20.254
 
 
     ### Ottenere informazioni di carattere generale
@@ -588,8 +588,8 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
 
     !!! hint "**"Suggerimenti professionali:**"
 
-        * usare il flag `-c` per ottenere un output colorato più leggibile: `ip -c a`.
-        * `ip` accetta l'abbreviazione quindi `ip a`, `ip addr` e `ip address` sono equivalenti
+        - usare il flag `-c` per ottenere un output colorato più leggibile: `ip -c a`.
+        - `ip` accetta l'abbreviazione quindi `ip a`, `ip addr` e `ip address` sono equivalenti
 
 
     ### Portare l'interfaccia su o giù
@@ -719,6 +719,6 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
     ```
 
 
-    ## Conclusioni
+    ## Conclusione
 
     Rocky Linux 8 dispone degli strumenti per configurare la rete dalla riga di comando. Questo documento dovrebbe consentirvi di utilizzare rapidamente questi strumenti.
