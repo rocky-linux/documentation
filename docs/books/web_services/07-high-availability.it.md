@@ -76,7 +76,7 @@ In questo capitolo viene illustrato Pacemaker, una soluzione di clustering.
 
 ****
 
-**Obiettivi**: si imparerà come:
+**Obiettivi**: si imparerà a:
 
 :heavy_check_mark: installare e configurare un cluster Pacemaker;\
 :heavy_check_mark: amministrare un cluster Pacemaker.
@@ -150,7 +150,7 @@ Può gestire cluster con più di 16 modalità attive/passiva o attiva/attiva.
 
 La tecnologia Heartbeat è più limitata rispetto a Corosync. È impossibile creare un cluster di più di due nodi e le sue regole di gestione sono meno sofisticate di quelle del suo concorrente.
 
-!!! NOTE "Nota"
+!!! NOTE
 
 ```
 La scelta di pacemaker/corosync sembra oggi più appropriata, poiché è la scelta predefinita per le distribuzioni RedHat, Debian e Ubuntu.
@@ -248,7 +248,7 @@ sudo firewall-cmd --permanent --add-service=high-availability
 sudo firewall-cmd --reload
 ```
 
-!!! NOTE "Nota"
+!!! NOTE
 
 ```
 Non avviare ora i servizi, poiché non sono configurati e non funzioneranno.
@@ -260,7 +260,7 @@ Il package `pcs` fornisce gli strumenti di gestione del cluster. Il comando `pcs
 
 La configurazione del cluster può essere fatta a mano, ma il pacchetto pcs rende la gestione (creazione, configurazione e risoluzione dei problemi) di un cluster molto più semplice!
 
-!!! NOTE "Nota"
+!!! NOTE
 
 ```
 Ci sono altre alternative a pcs.
@@ -285,7 +285,7 @@ Su tutti i nodi, assegnare una password identica all'utente hacluster:
 echo “pwdhacluster” | sudo passwd --stdin hacluster
 ```
 
-!!! NOTE "Nota"
+!!! NOTE
 
 ```
 “pwdhacluster” è di esempio, sostituirla con una password più sicura.
@@ -324,7 +324,7 @@ server2: successful distribution of the file 'corosync.conf'
 Cluster has been successfully set up.
 ```
 
-!!! NOTE "Nota"
+!!! NOTE
 
 ```
 Il comando pcs cluster setup gestisce il problema del quorum per i cluster a due nodi. Un cluster di questo tipo funzionerà quindi correttamente in caso di guasto di uno dei due nodi. Se si configura Corosync manualmente o si usa un'altra shell di gestione del cluster, è necessario configurare Corosync correttamente.
@@ -395,7 +395,7 @@ Per prima cosa, si disabilita `stonith` finché non si imparerà a configurarlo:
 sudo pcs property set stonith-enabled=false
 ```
 
-!!! WARNING "Attenzione"
+!!! WARNING
 
 ```
 Fare attenzione a non lasciare `stonith` disabilitato in un ambiente di produzione!
@@ -528,7 +528,7 @@ sudo firewall-cmd --permanent --add-service=http
 sudo firewall-cmd --reload
 ```
 
-!!! WARNING "Attenzione"
+!!! WARNING
 
 ```
 Non avviare o attivare il servizio da soli. Se ne occuperà il Pacemaker.
