@@ -333,8 +333,7 @@ Mit der Option `-n` können Sie die Anzahl der Sekunden zwischen jeder Ausführu
 
 !!! note "Anmerkung"
 
-    Um den `watch` Befehl zu verlassen, müssen Sie Folgendes eingeben: 
-    ++control+c++, um den Prozess zu beenden.
+    Um den `watch` Befehl zu verlassen, müssen Sie ++control+c++ eingeben, und den Prozess beenden.
 
 Beispiele:
 

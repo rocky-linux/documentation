@@ -428,11 +428,11 @@ pkill -t pts/1
 
 Die Funktion dieses Befehls entspricht in etwa der des Befehls `pkill`. Die Syntax ist folgende — `killall [option] [ -s SIGNAL | -SIGNAL ] NAME`. Das Default-Signal ist *SIGTERM*.
 
-| Option | Beschreibung                                                                            |
-|:------ |:--------------------------------------------------------------------------------------- |
-| `-l`   | listet sämtliche bekannten Signalnamen auf                                              |
-| `-i`   | vor dem Schließen nach einer Bestätigung fragen                                         |
-| `-I`   | Groß- und Kleinschreibung wird bei der Prozessnamenübereinstimmung nicht berücksichtigt |
+| Optionen | Beschreibung                                                                            |
+|:-------- |:--------------------------------------------------------------------------------------- |
+| `-l`     | listet sämtliche bekannten Signalnamen auf                                              |
+| `-i`     | vor dem Schließen nach einer Bestätigung fragen                                         |
+| `-I`     | Groß- und Kleinschreibung wird bei der Prozessnamenübereinstimmung nicht berücksichtigt |
 
 Beispiel:
 

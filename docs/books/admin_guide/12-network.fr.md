@@ -164,7 +164,7 @@ La commande `hostname` affiche ou définit le nom d'hôte du système
 hostname [-f] [hostname]
 ```
 
-| Option | Observation                                          |
+| Option | Description                                          |
 | ------ | ---------------------------------------------------- |
 | `-f`   | Affiche le FQDN                                      |
 | `-i`   | Affiche des informations sur l'adresse IP du système |
@@ -583,14 +583,14 @@ BROADCAST=172.16.79.255
     [root]# ipcalc –b 172.16.66.203 255.255.240.0 >> /etc/sysconfig/network-scripts/ifcfg-eth0
     ```
 
-| Option | Observation                               |
+| Option | Description                               |
 | ------ | ----------------------------------------- |
 | `-b`   | Affiche l'adresse de diffusion.           |
 | `-R`   | Affiche l'adresse et le masque du réseau. |
 
 `ipcalc` est un moyen simple de déterminer les informations IP d'un hôte. Les différentes options indiquent quelles informations `ipcalc` doit afficher sur la sortie standard. Plusieurs options peuvent être spécifiées. Une adresse IP sur laquelle opérer doit être spécifiée. La plupart des opérations nécessitent également un masque réseau ou un préfixe CIDR.
 
-| Option courte | Option longue | Observation                                                                                                                                                                                                                                               |
+| Option courte | Option longue | Description                                                                                                                                                                                                                                               |
 | ------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `-b`          | `--broadcast` | Affiche l'adresse de diffusion de l'adresse IP donnée et le masque réseau.                                                                                                                                                                                |
 | `-h`          | `--hostname`  | Affiche le nom d'hôte de l'adresse IP fournie via DNS.                                                                                                                                                                                                    |
