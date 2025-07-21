@@ -42,7 +42,7 @@ Tutte le operazioni vengono eseguite con il tasto ++ctrl++ seguito da una letter
 
 La tabella seguente mostra tutte le operazioni disponibili
 
-| Opzione       | Operazione                                                |
+| Tasto         | Operazione                                                |
 | ------------- | --------------------------------------------------------- |
 | `<CR>`  | Apre il progetto sotto il cursore                         |
 | `<C-a>` | Aggiunge un progetto attraverso una procedura interattiva |
