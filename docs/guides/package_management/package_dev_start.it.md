@@ -89,11 +89,11 @@ Per il nostro attuale esempio di sed, i suoi sorgenti saranno memorizzati nella 
         └── sed.spec
 ```
 
-!!! Tip "Suggerimento"
+!!! Tip
 
     Una volta ottenuti i sorgenti originali, potrebbe essere un buon momento per esaminare il file SPECs (`~rocky/rpms/sed/SPECS/specs.spec`) per cercare potenziali opportunità di debranding in un dato pacchetto. Il debranding può comprendere la sostituzione di grafica/loghi a monte e così via.
 
-!!! Tip "Suggerimento"
+!!! Tip
 
     Se state cercando altri pacchetti Rocky da compilare e sperimentare, potete consultare l'elenco dei pacchetti che attualmente non funzionano nell'ambiente di compilazione automatica di Rocky [qui](https://kojidev.rockylinux.org/koji/builds?state=3&order=-build_id)
 
