@@ -1,5 +1,5 @@
 ---
-title: Logiciels supplémentaires
+title: Logiciels Complémentaires
 author: Franco Colussi
 contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.7, 9.1
@@ -65,7 +65,7 @@ RipGrep est nécessaire pour des recherches récursives avec `:Telescope`.
 
 [LazyGit](https://github.com/jesseduffield/lazygit) est une interface de style `ncurses` qui vous permet d'effectuer toutes les opérations `git` de manière plus conviviale. C'est requis par le plugin ==lazygit.nvim==. Ce plugiciel permet d'utiliser `LazyGit` directement depuis `NvChad`, il ouvre une fenêtre flottante d'où vous pouvez effectuer toutes les opérations sur vos dépôts, vous permettant ainsi d'effectuer toutes les modifications sur le *dépôt git* sans quitter l'éditeur.
 
-Pour l'installer, nous pouvons utiliser le référentiel de Fedora. Sous Rocky Linux 9, il fonctionne à merveille.
+Pour l'installer, vous pouvez utiliser le référentiel de Fedora. Sous Rocky Linux 9, il fonctionne à merveille.
 
 ```bash
 sudo dnf copr enable atim/lazygit -y
