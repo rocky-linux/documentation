@@ -64,7 +64,7 @@ To download and initialize the configuration, use the following command:
 git clone https://github.com/NvChad/starter ~/.config/nvim && nvim
 ```
 
-The command consists of two parts. The first downloads the contents of the *starter* repository to `~/.config/nvim/` (default folder for Neovim settings), while the second invokes the ==nvim== executable which initializes the editor with the configuration you just downloaded. Once you have finished installing the plugins and parsers, you will be faced with the following screen. To close the plugins manager, type ++"q "++ :
+The command consists of two parts. The first downloads the contents of the *starter* repository to `~/.config/nvim/` (default folder for Neovim settings), while the second invokes the ==nvim== executable which initializes the editor with the configuration you just downloaded. Once you have finished installing the plugins and parsers, you will be faced with the following screen. To close the plugins manager, type ++"q"++ :
 
 ![NvChad Install](images/install_nvchad_25.png)
 
