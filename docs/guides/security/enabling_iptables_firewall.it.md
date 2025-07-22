@@ -2,7 +2,7 @@
 title: Abilitazione del Firewall `iptables`
 author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
-tested_with: 8.5, 8.6, 9.0
+tested*with: 8.5, 8.6, 9.0
 tags:
   - security
   - iptables
@@ -13,7 +13,7 @@ tags:
 
 ## Prerequisiti
 
-* Un ardente, inestinguibile desiderio di disabilitare l'applicazione di default _firewalld_ e abilitare _iptables_.
+- Un desiderio ardente e inestinguibile di disabilitare l'applicazione predefinita *firewalld* e abilitare *iptables*.
 
 !!! warning "Questo Processo È Deprecato"
 
@@ -21,17 +21,17 @@ tags:
 
 ## Introduzione
 
-_firewalld_ è ora il firewall predefinito su Rocky Linux. _firewalld_ **era** nient'altro che un'applicazione dinamica di _iptables_ che utilizzando i file xml caricava le modifiche senza il flushing delle regole in CentOS 7/RHEL 7.  Con CentOS 8/RHEL 8/Rocky 8, _firewalld_ è ora un wrapper intorno a _nftables_. È ancora possibile, tuttavia, installare e utilizzare direttamente _iptables_ se questa è la tua preferenza. Per installare ed eseguire direttamente _iptables_ senza _firewalld_ puoi farlo seguendo questa guida. Ciò che questa guida **non** ti dirà è come scrivere le regole per _iptables_. Si presume che se vuoi sbarazzarti di _firewalld_, devi già sapere come scrivere regole per _iptables_.
+*firewalld* è ora il firewall predefinito su Rocky Linux. *firewalld* non **era** altro che un'applicazione dinamica di *iptables* che utilizzava file xml e che caricava le modifiche senza eseguire il flussaggio delle regole in CentOS 7/RHEL 7.  Con CentOS 8/RHEL 8/Rocky 8, *firewalld* è ora un wrapper attorno a *nftables*. È comunque possibile installare e utilizzare direttamente <em x-id=“3”>iptables</em>, se lo si preferisce. Per installare ed eseguire *iptables* senza *firewalld* è possibile seguire questa guida. Questa guida **non** spiega come scrivere le regole per *iptables*. Si presume che se ci si vuole sbarazzare di *firewalld*, si deve già sapere come scrivere le regole per *iptables*.
 
 ## Disabilitare firewalld
 
-Non è possibile eseguire la vecchia utility _iptables_ accanto a _firewalld_. Semplicemente non sono compatibili. Il modo migliore per ovviare a questo problema è quello di disabilitare completamente _firewalld_ (non è necessario disinstallarlo a meno che non lo si voglia fare) e reinstallare le utility _iptables_. Disabilitare _firewalld_ può essere fatto utilizzando questi comandi:
+Non è possibile eseguire la vecchia utility *iptables* insieme a *firewalld*. Semplicemente non sono compatibili. Il modo migliore per ovviare a questo problema è disabilitare completamente *firewalld* (non è necessario disinstallarlo, a meno che non lo si voglia fare) e reinstallare le utility *iptables*. La disabilitazione di *firewalld* può essere eseguita con questi comandi:
 
-Arrestare _firewalld_:
+Arrestare *firewalld*:
 
 `systemctl stop firewalld`
 
-Disabilitare _firewalld_ in modo che non parta all'avvio:
+Disabilitare *firewalld* in modo che non si avvii all'avvio:
 
 `systemctl disable firewalld`
 
@@ -41,16 +41,16 @@ Mascherare il servizio in modo che non possa essere trovato:
 
 ## Installazione e Abilitazione dei Servizi iptables
 
-Successivamente, è necessario installare i vecchi servizi e utilità _iptables_. Ciò è fatto con quanto segue:
+Successivamente, è necessario installare i vecchi servizi e utilità di *iptables*. Ciò è fatto con quanto segue:
 
 `dnf install iptables-services iptables-utils`
 
-Questo installerà tutto ciò che è necessario per eseguire una regola _iptables_ impostata.
+Questo installerà tutto ciò che è necessario per eseguire un set di regole *iptables*.
 
-Ora abbiamo bisogno di abilitare il servizio _iptables_ per assicurarsi che parta all'avvio:
+Ora dobbiamo abilitare il servizio *iptables* per assicurarci che si avvii all'avvio:
 
 `systemctl enable iptables`
 
 ## Conclusione
 
-È possibile ritornare a utilizzare _iptables_ se lo si preferisce al posto di _firewalld_. Puoi tornare a usare il _firewalld_ predefinito semplicemente invertendo queste modifiche.
+Se preferisci, puoi tornare a utilizzare direttamente <em x-id=“3”>iptables</em> invece di <em x-id=“3”>firewalld</em>. È possibile tornare a utilizzare il *firewalld* predefinito semplicemente invertendo queste modifiche.
