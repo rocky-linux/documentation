@@ -1,9 +1,9 @@
 ---
+title: Autenticazione Active Directory
 author: Hayden Young
-contributors: Steven Spencer, Sambhav Saggi, Antoine Le Morvan, Krista Burdine, Ganna Zhyrnova
+contributors: Steven Spencer, Sambhav Saggi, Antoine Le Morvan, Krista Burdine, Ganna Zhyrnova, Neel Chauhan
+tested_with: 9.4
 ---
-
-# Autenticazione Active Directory
 
 ## Prerequisiti
 
@@ -14,7 +14,7 @@ contributors: Steven Spencer, Sambhav Saggi, Antoine Le Morvan, Krista Burdine, 
 
 Nella maggior parte delle aziende, Active Directory (AD) di Microsoft è il sistema di autenticazione predefinito per i sistemi Windows e per i servizi esterni collegati a LDAP. Consente di configurare utenti e gruppi, controllo degli accessi, autorizzazioni, montaggio automatico e altro ancora.
 
-Ora, mentre la connessione di Linux a un cluster AD non può supportare _tutte_ le funzionalità menzionate, può gestire utenti, gruppi e controllo degli accessi. È possibile (attraverso alcune modifiche di configurazione sul lato Linux e alcune opzioni avanzate sul lato AD) distribuire chiavi SSH utilizzando AD.
+Sebbene la connessione di Linux a un cluster AD non possa supportare _tutte_ le funzionalità menzionate, può gestire utenti, gruppi e controllo degli accessi. È possibile (attraverso alcune modifiche di configurazione sul lato Linux e alcune opzioni avanzate sul lato AD) distribuire chiavi SSH utilizzando AD.
 
 Questa guida, tuttavia, tratterà solo la configurazione dell'autenticazione rispetto ad Active Directory e non includerà alcuna configurazione aggiuntiva sul lato Windows.
 
@@ -65,7 +65,7 @@ Il primo passo per unire un sistema Linux ad AD è quello di rilevare il cluster
 
 ### Scoprire
 
-Ora dovreste essere in grado di rilevare i vostri server AD dall'host Linux.
+A questo punto si dovrebbe essere in grado di rilevare i server AD dall'host Linux.
 
 ```sh
 [user@host ~]$ realm discover ad.company.local
@@ -83,7 +83,7 @@ ad.company.local
   required-package: samba-common
 ```
 
-Questo viene rilevato utilizzando i record SRV pertinenti memorizzati nel servizio DNS di Active Directory.
+I record SRV pertinenti memorizzati nel servizio DNS di Active Directory consentiranno la scoperta.
 
 ### Unirsi
 
@@ -106,7 +106,7 @@ Se questo processo ha successo, dovreste essere in grado di estrarre le informaz
 administrator@ad.company.local:*:1450400500:1450400513:Amministrator:/home/administrator@ad.company.local:/bin/bash
 ```
 
-!!! Note "Nota" 
+!!! Note "Nota"
 
     `getent` ottiene voci dalle librerie Name Service Switch (NSS). Significa che, al contrario di `passwd` o `dig` per esempio, interrogherà diversi database, tra cui `/etc/hosts` per `getent hosts` o da `sssd` nel caso di `getent passwd`.
 
@@ -119,13 +119,13 @@ administrator@ad.company.local:*:1450400500:1450400513:Amministrator:/home/admin
 | --os-version='8'                                           | Specificare la versione del sistema operativo memorizzata nell'AD |
 | -U admin_username                                          | Specificare un account di amministratore                          |
 
-### Tentativo di Autenticazione
+### Tentativo di autenticazione
 
 Ora gli utenti dovrebbero essere in grado di autenticarsi all'host Linux tramite Active Directory.
 
 **Su Windows 10:** (che fornisce la propria copia di OpenSSH)
 
-```
+```dos
 C:\Users\John.Doe> ssh -l john.doe@ad.company.local linux.host
 Password for john.doe@ad.company.local:
 
@@ -139,7 +139,7 @@ Se l'operazione ha successo, si è configurato Linux per utilizzare Active Direc
 
 ### Impostazione del dominio predefinito
 
-In una configurazione completamente predefinita, è necessario accedere con il proprio account AD specificando il dominio nel nome utente (ad esempio, `john.doe@ad.company.local`). Se questo non è il comportamento desiderato e si vuole invece poter omettere il nome del dominio al momento dell'autenticazione, è possibile configurare SSSD in modo che abbia come default un dominio specifico.
+In una configurazione completamente predefinita, è necessario accedere con il proprio account AD specificando il dominio nel nome utente (ad esempio, `john.doe@ad.company.local`). Se questo non è il comportamento desiderato e si vuole invece poter omettere il nome del dominio al momento dell'autenticazione, si può configurare SSSD in modo che sia predefinito un dominio specifico.
 
 Si tratta di un processo relativamente semplice, che richiede una modifica al file di configurazione di SSSD.
 
@@ -166,7 +166,7 @@ use_fully_qualified_names = False
 override_homedir = /home/%u
 ```
 
-Non dimenticare di riavviare il servizio `ssd`.
+Non dimenticate di riavviare il servizio `sssd.`.
 
 ### Limita a determinati utenti
 
