@@ -338,7 +338,7 @@ Complete!
 
 La commande `dnf repolist` liste les dépôts configurés sur le système. Par défaut, il liste uniquement les dépôts activés, mais peut être utilisé avec ces paramètres :
 
-| Paramètre    | Observation                             |
+| Paramètre    | Description                             |
 | ------------ | --------------------------------------- |
 | `--all`      | Liste tous les dépôts.                  |
 | `--enabled`  | Par défaut                              |
@@ -484,7 +484,7 @@ La commande correspondante pour supprimer un groupe est `dnf groupremove "name g
 
 La commande `dnf clean` nettoie tous les caches et fichiers temporaires créés par `dnf`. Il peut être utilisé avec les paramètres suivants :
 
-| Paramètres     | Observation                                                           |
+| Paramètres     | Description                                                           |
 | -------------- | --------------------------------------------------------------------- |
 | `all`          | Supprime tous les fichiers temporaires créés pour les dépôts activés. |
 | `dbcache`      | Supprime les fichiers de cache des métadonnées du dépôt.              |
@@ -986,7 +986,7 @@ Le plugiciel `needs-restarting` vous permettra de détecter les processus qui so
 dnf needs-restarting [-u] [-r] [-s]
 ```
 
-| Options | Observation                                                             |
+| Options | Description                                                             |
 | ------- | ----------------------------------------------------------------------- |
 | `-u`    | considérer uniquement les processus appartenant à l'utilisateur actuel. |
 | `-r`    | pour vérifier si un redémarrage peut être nécessaire.                   |
