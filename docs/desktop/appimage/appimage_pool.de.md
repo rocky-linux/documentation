@@ -8,7 +8,7 @@ contributors: Steven Spencer
 
 [AppImagePool](https://github.com/prateekmedia/appimagepool) bietet einen Hub zum Installieren und Verwalten von AppImages. Es ähnelt optisch der Softwareanwendung.
 
-## Voraussetzungen
+## Vorbedingungen
 
 Für diese Anleitung benötigen Sie Folgendes:
 
