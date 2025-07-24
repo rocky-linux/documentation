@@ -1,6 +1,6 @@
 ---
 title: 6 Profili
-author: Spencer Steven
+author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
 tags:
@@ -39,7 +39,7 @@ Si vuole cambiare l'interfaccia `macvlan`, ma prima di farlo, è necessario sape
 ip addr
 ```
 
-Cercare l'interfaccia con l'assegnazione IP LAN nella rete 192.168.1.0/24:
+Cercare l'interfaccia con l'assegnazione LAN IP nella rete 192.168.1.0/24:
 
 ```bash
 2: enp3s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
@@ -270,7 +270,7 @@ Infine, uscire dal container e riavviarlo:
 incus restart rockylinux-test-9
 ```
 
-Aspettate qualche secondo e elencate di nuovo i contenitori:
+Aspettate qualche secondo e elencate di nuovo i container:
 
 ```bash
 incus list
@@ -328,7 +328,7 @@ La configurazione dell'IP statico è un po' diversa, ma non difficile. È necess
 vi /etc/netplan/10-incus.yaml
 ```
 
-Cambiare ciò che c'è con quanto segue:
+Modifica quanto presente con quanto segue:
 
 ```bash
 network:
@@ -350,7 +350,7 @@ Riavviare il container:
 incus restart ubuntu-test
 ```
 
-Quando si elencano nuovamente i containeri, si vedrà il proprio IP statico:
+Quando si elencano nuovamente i container, si dovrebbe vedere il nuovo IP statico:
 
 ```bash
 +-------------------+---------+----------------------+------+-----------+-----------+
