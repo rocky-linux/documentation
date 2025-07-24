@@ -22,7 +22,7 @@ Dans ce chapitre, vous apprendrez des commandes Linux et comment les utiliser.
 **Connaissances** : :star:  
 **Complexité** : :star:
 
-**Temps de lecture** : 40 minutes
+**Temps de lecture** : 41 minutes
 
 ****
 
@@ -120,7 +120,7 @@ Il est impossible pour un administrateur, quel que soit son niveau, de connaîtr
 
 La commande `apropos` permet de faire une recherche par mot clef au sein de ces pages de manuel :
 
-| Options                                     | Observation                                                             |
+| Options                                     | Description                                                             |
 | ------------------------------------------- | ----------------------------------------------------------------------- |
 | `-s`, `--sections list` ou `--section list` | Se limite aux sections de manuel.                                       |
 | `-a` ou `--and`                             | Affiche seulement l’élément correspondant à tous les mots-clés fournis. |
@@ -514,7 +514,7 @@ $ ls -lia /home
 | `25 oct. 08:10` | Date de dernière modification.                                                                                                                                                                                               |
 | `rockstar`      | Nom du fichier (ou du répertoire).                                                                                                                                                                                           |
 
-!!! note "Remarque"
+!!! note "Remarque "
 
     Des **alias** sont fréquemment positionnés au sein des distributions courantes.
     
@@ -688,7 +688,7 @@ rm [-f] [-r] file [file] [...]
 | `-i`    | Demande de confirmation de la suppression.                    |
 | `-r`    | Supprime récursivement un répertoire et ses sous-répertoires. |
 
-!!! note "Remarque"
+!!! note "Remarque "
 
     La commande `rm` en elle-même ne demande pas de confirmation lors de la suppression de fichiers. Cependant avec une distribution RedHat/CentOS, `rm` demande une confirmation de suppression car la commande `rm` y est un alias de la commande `rm -i`. Ne soyez pas surpris sur une autre distribution, type Debian par exemple, de ne pas obtenir de demande de confirmation.
 
@@ -939,7 +939,7 @@ La commande `head` affiche le début d’un fichier.
 head [-n x] file
 ```
 
-| Option | Observation                                 |
+| Option | Description                                 |
 | ------ | ------------------------------------------- |
 | `-n x` | Affiche les `x` premières lignes du fichier |
 
@@ -953,7 +953,7 @@ La commande `tail` affiche la fin d’un fichier.
 tail [-f] [-n x] file
 ```
 
-| Option | Observation                                        |
+| Option | Description                                        |
 | ------ | -------------------------------------------------- |
 | `-n x` | Affiche les `x` dernières lignes du fichier        |
 | `-f`   | Affiche les modifications du fichier en temps réel |
@@ -989,10 +989,10 @@ root:x:0:0:root:/root:/bin/bash
 adm:x:3:4:adm:/var/adm/:/sbin/nologin
 ```
 
-| Option    | Observation                                                                                                                                                                          |
+| Option    | Description                                                                                                                                                                          |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `-k`      | Spécifier les colonnes à séparer. Vous pouvez spécifier plusieurs colonnes                                                                                                           |
-| `-R`      | Demande un tri numérique.                                                                                                                                                            |
+| `-n`      | Demande un tri numérique.                                                                                                                                                            |
 | `-o file` | Enregistre le tri dans le fichier spécifié.                                                                                                                                          |
 | `-t`      | Spécifiez un délimiteur, qui exige que le contenu du fichier correspondant soit régulièrement délimité par le contenu des colonnes, sinon ils ne peuvent pas être triés correctement |
 | `-r`      | Inverser l'ordre du résultat. Utilisé en conjonction avec l'option `-n` pour trier dans l'ordre de la plus grande à la plus petite                                                   |
@@ -1109,7 +1109,7 @@ La commande `wc` compte le nombre de lignes, mots et/ou octets d’un fichier.
 wc [-l] [-m] [-w] file [files]
 ```
 
-| Option | Observation                     |
+| Option | Description                     |
 | ------ | ------------------------------- |
 | `-c`   | Compte le nombre d’octets.      |
 | `-m`   | Compte le nombre de caractères. |
@@ -1130,7 +1130,7 @@ Les options de la commande `find` étant très nombreuses, il est préférable d
 
 Si le répertoire de recherche n’est pas précisé, la commande `find` cherchera à partir du répertoire courant.
 
-| Option              | Observation                                     |
+| Option              | Description                                     |
 | ------------------- | ----------------------------------------------- |
 | `-perm permissions` | Recherche des fichiers selon leurs permissions. |
 | `-size size`        | Recherche des fichiers selon leur taille.       |
@@ -1179,7 +1179,7 @@ $ whereis -b ls
 ls: /bin/ls
 ```
 
-| Option | Observation                            |
+| Option | Description                            |
 | ------ | -------------------------------------- |
 | `-b`   | Ne recherche que le fichier binaire.   |
 | `-m`   | Ne recherche que les pages de manuel.  |
@@ -1200,7 +1200,7 @@ $ grep -w "root:" /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 ```
 
-| Option | Observation                                            |
+| Option | Description                                            |
 | ------ | ------------------------------------------------------ |
 | `-i`   | Ignore la casse de la chaîne de caractères recherchée. |
 | `-v`   | Exclut les lignes contenant la chaîne de caractère.    |
@@ -1215,7 +1215,7 @@ La commande `grep` retourne la ligne complète comprenant la chaîne de caractè
     grep -w "^root" /etc/passwd
     ```
 
-!!! note "Remarque"
+!!! note "Remarque "
 
     Cette commande est très puissante et il est fortement conseillé de consulter son manuel. Elle a de nombreux dérivés.
 
@@ -1261,7 +1261,7 @@ $ find /home -name "test[123]*"
 /home/rockstar/test362
 ```
 
-!!! note "Remarque"
+!!! note "Remarque "
 
     Prendre soin de toujours encadrer les mots contenant des métacaractères par des `"` pour éviter qu’ils soient remplacés par le nom des fichiers qui répondraient aux critères.
 
@@ -1296,7 +1296,7 @@ Il est possible de rediriger le flux d’entrée depuis un autre fichier avec le
 ftp -in serverftp << ftp-commands.txt
 ```
 
-!!! note "Remarque"
+!!! note "Remarque "
 
     Seules les commandes demandant une saisie au clavier pourront gérer la redirection d’entrée.
 
