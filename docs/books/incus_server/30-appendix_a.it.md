@@ -1,6 +1,6 @@
 ---
 title: Appendice A - Configurazione Workstation
-author: Spencer Steven
+author: Steven Spencer
 contributors: Ganna Zhyrnova
 tested_with: 9.4
 tags:
@@ -65,7 +65,7 @@ sudo incus admin init
 
 Si aprirà una finestra di dialogo a domande e risposte.
 
-Ecco le domande e le nostre risposte per lo script, con una piccola spiegazione dove necessario:
+Ecco le domande e le nostre risposte per il copione, con una piccola spiegazione dove necessario:
 
 ```text
 Would you like to use clustering? (yes/no) [default=no]: no
@@ -85,7 +85,7 @@ Si noti che `dir` è un po' più lento di `zfs`. Se si può lasciare un disco vu
 Would you like to connect to a MAAS server? (yes/no) [default=no]:
 ```
 
-Il Metal As A Service (MAAS) non rientra nell'ambito di questo documento.
+Metal As A Service (MAAS) non rientra nel campo di applicazione del presente documento.
 
 ```text
 Would you like to create a new local network bridge? (yes/no) [default=yes]:
@@ -100,7 +100,7 @@ What IPv6 address should be used? (CIDR subnet notation, “auto” or “none�
 Would you like the Incus server to be available over the network? (yes/no) [default=no]: yes
 ```
 
-Questa operazione è necessaria per eseguire lo snapshot della workstation. Rispondere "sì" in questo caso.
+Questa operazione è necessaria per eseguire lo snapshot della workstation. Rispondere "yes" in questo caso.
 
 ```text
 Address to bind Incus to (not including port) [default=all]:
@@ -165,7 +165,7 @@ Si noti che qui non è stato usato `sudo`. L'utente può inserire questi comandi
 +------------+---------+----------------------+------+-----------+-----------+
 ```
 
-Se lo fate, avete un bell'aspetto!
+Se lo fate, state andando alla grande!
 
 ## Il resto
 
