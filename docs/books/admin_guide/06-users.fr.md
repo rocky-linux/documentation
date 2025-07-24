@@ -353,7 +353,7 @@ Exemple :
 sudo useradd -u 1000 -g GroupA -G GroupP,GroupC albert
 ```
 
-!!! note "Remarque"
+!!! Note
 
     Sous **Debian**, il faudra spécifier l’option `-m` pour forcer la création du répertoire de connexion ou renseigner la variable `CREATE_HOME` du fichier `/etc/login.defs`. Dans tous les cas, l’administrateur devrait privilégier, sauf dans des scripts ayant la vocation d’être portables sur toutes les distributions Linux, les commandes `adduser` et `deluser` comme précisé dans le manuel `man` :
 
@@ -609,7 +609,7 @@ sudo chgrp group1 file
 | `-R`   | Modifie les groupes propriétaires du répertoire et de son contenu (récursivité). |
 | `-v`   | Affiche les modifications.                                                       |
 
-!!! note "Remarque"
+!!! Note
 
     Il est possible d'appliquer à un fichier un propriétaire et un groupe propriétaire en prenant comme référence ceux d'un autre fichier :
 
@@ -766,7 +766,7 @@ Exemple :
 sudo passwd alain
 ```
 
-!!! note "Remarque"
+!!! Note
 
     Les utilisateurs connectés au système peuvent utiliser la commande `passwd` pour modifier leurs mots de passe (ce processus nécessite la saisie de l'ancien mot de passe de l'utilisateur). L'utilisateur `root`(uid=0) peut modifier le mot de passe de n'importe quel utilisateur.
 
@@ -830,7 +830,7 @@ Fichiers de configuration :
 * `/etc/login.defs`
 * `/etc/skel`
 
-!!! note "Remarque"
+!!! Note
 
     L’édition du fichier `/etc/default/useradd` se fait grâce à la commande `useradd`.
     
