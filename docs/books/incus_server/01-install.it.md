@@ -1,6 +1,6 @@
 ---
-title: 1 Installazione e configurazione
-author: Spencer Steven
+title: 1 Installazione e Configurazione
+author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
 tags:
