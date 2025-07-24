@@ -12,7 +12,7 @@ tags:
 
 Das Drucken und Scannen mit einem All-in-One-Brother-Drucker ist unter Linux dank der Brother All-in-One-Drucker- und Scannertreiber von Drittanbietern möglich.
 
-!!! info
+!!! info "Info"
 
 ```
 Das Verfahren wurde mit einem Brother MFC-J480DW getestet.
