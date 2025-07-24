@@ -1,6 +1,6 @@
 ---
 title: 5 Impostazione e gestione delle immagini
-author: Spencer Steven
+author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
 tags:
@@ -71,7 +71,7 @@ Usare il comando `move` per cambiare il nome del container:
 incus move rockylinux-test-8 rockylinux-8
 ```
 
-Se avete seguito comunque questa istruzione, fermate il contenitore e riportatelo al nome originale per continuare a seguirlo.
+Se avete comunque seguito queste istruzioni, fermate il contenitore e riportatelo al nome originale per continuare a seguire la procedura.
 
 Per questa guida, per ora installare altre due immagini:
 
