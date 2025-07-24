@@ -59,7 +59,7 @@ Last login: Tue Nov 2 21:42:44 2021 from 192.168.100.5
 [testrsync@Rocky ~]$
 ```
 
-!!! tip "Astuce"
+!!! tip "Tip"
 
     Le fichier de configuration du serveur **/etc/ssh/sshd_config** doit être ouvert <font color=red>PubkeyAuthentication yes</font>
 
