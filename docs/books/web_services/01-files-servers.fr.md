@@ -7,7 +7,7 @@ tags:
   - sftp
 ---
 
-!!! info
+!!! info "Info"
 
 ```
 Cet article est en cours de construction.
