@@ -5,13 +5,13 @@ contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
 tags:
   - Incus
-  - enterprise
+  - Enterprise
   - incus-Installation
 ---
 
 In diesem Abschnitt müssen Sie der root-Benutzer sein oder Sie müssen in der Lage sein, zu root-Rechte durch _sudo_ zu erlangen.
 
-## Installation von EPEL und OpenZFS
+## Installation der Repos EPEL und OpenZFS
 
 Incus benötigt die EPEL (Extra Packages for Enterprise Linux) repository, die sehr einfach wie folgt zu installieren ist:
 
@@ -61,7 +61,7 @@ systemctl enable incus --now
 
 Starten Sie den Server neu, bevor Sie hier fortfahren.
 
-## OpenZFS Installation
+## OpenZFS-Installation
 
 ```bash
 dnf install zfs
@@ -69,13 +69,13 @@ dnf install zfs
 
 ## Einrichtung der Umgebung
 
-Zum Ausführen vieler Container sind mehr als die meisten Server-Kernel-Einstellungen erforderlich. Wenn wir von Anfang an annehmen, dass wir unseren Server in der Produktion verwenden, dann müssen wir diese Änderungen vornehmen, um Fehler wie "Zu viele offene Dateien" zu vermeiden.
+Zum Ausführen vieler Container sind mehr als die meisten Server-Kernel-Einstellungen erforderlich. Wenn Sie von Anfang an annehmen, dass Sie den Server in der Produktion verwenden, dann müssen Sie diese Änderungen vornehmen, um Fehler wie "Zu viele offene Dateien" zu vermeiden.
 
 Glücklicherweise ist das Optimieren der Einstellungen für `Incus` mit geeigneten Dateiänderungen und einem Neustart nicht schwierig.
 
 ### Anpassung von `limits.conf`
 
-Die erste Datei, die Sie ändern müssen, ist die Datei `limits.conf`. Diese Datei ist selbst dokumentiert. Untersuchen Sie die Erklärungen als Kommentare in der Datei, um zu verstehen, was diese Datei macht. Um Ihre Änderungen vorzunehmen, geben Sie Folgendes ein:
+Die erste Datei, die Sie ändern müssen, ist die Datei `limits.conf`. Diese Datei ist selbst-dokumentiert. Untersuchen Sie die Erklärungen als Kommentare in der Datei, um zu verstehen, was diese Datei macht. Um Ihre Änderungen vorzunehmen, geben Sie Folgendes ein:
 
 ```bash
 vi /etc/security/limits.conf
