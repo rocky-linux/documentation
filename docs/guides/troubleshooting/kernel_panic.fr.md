@@ -32,7 +32,7 @@ Si le système ne démarre pas, essayez le **mode de secours** (`rescue mode`, v
 
 Le moyen le plus simple de procéder consiste à désinstaller la version du noyau qui ne fonctionne pas, puis à la réinstaller.
 
-!!! note "Remarque"
+!!! note "Remarque "
 
 ````
 Vous ne pouvez pas supprimer un noyau en cours d'exécution.
