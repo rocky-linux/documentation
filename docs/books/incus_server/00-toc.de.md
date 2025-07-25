@@ -6,7 +6,7 @@ tested_with: 9.4
 tags:
   - lxd
   - incus
-  - enterprise
+  - Enterprise
 ---
 
 # Incus-Server erstellen
@@ -52,7 +52,7 @@ Für diejenigen, die Incus als Laborumgebung auf ihren Notebooks oder Workstatio
 - Sicherer Umgang mit der Befehlszeile auf Ihren Computern und mit einem Befehlszeileneditor. (Wir verwenden _vi_ in diesem Beispiel, aber Sie können Ihren Lieblingseditor einsetzen.)
 - Für die meisten dieser Prozesse müssen Sie ein Benutzer ohne besondere Privilegien sein. Für die ersten Einrichtungsschritte müssen Sie Root-Benutzer sein oder in der Lage sein, sich mithilfe von `sudo` als Root-Benutzer anzumelden. Während dieser Kapitel gehen wir davon aus, dass Ihr Benutzer ohne besondere Privilegien `incusadmin` ist. Sie müssen dieses Benutzerkonto später im Vorgangsablauf erstellen.
 - Stellen Sie für `ZFS` sicher, dass `UEFI` sicheres Booten NICHT aktiviert ist. Andernfalls müssen Sie das ZFS-Modul signieren, um es zum Laden zu bringen.
-- Wir verwenden zum größten Teil Rocky Linux-basierte Container.
+- Zum größten Teil, Verwendung von Rocky Linux-basierte Container
 
 !!! info
 
