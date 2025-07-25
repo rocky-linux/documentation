@@ -1,7 +1,7 @@
 ---
 title: Markdown Demo
-author: Einstein
-contributors: Dr. Ben Dover
+author: Steven Spencer
+contributors: Wale Soyinka, Tony Guntharp
 tested_with: 8.5
 tags:
   - sample
@@ -11,13 +11,12 @@ tags:
 
 # Sommario
 
-!!! WARNING "Attenzione"
+## Background
 
-    Non prendete sul serio ciò che leggete in questo documento.
+- Utilizzare [Markdown](https://daringfireball.net/projects/markdown).
+- Conoscenza di markdown.
 
-Come si può capire leggendo, si tratta di un esempio piuttosto sciocco, pensato per testare alcuni problemi di traduzione che stiamo riscontrando. Ma poiché i problemi non sono ancora stati risolti, modificheremo il file un po' qua e un po' là per vedere l'effetto che fa. È divertente scrivere però!
-
-Questa guida illustra i tag Markdown più diffusi utilizzati su [https://docs.rockylinux.org](https://docs.rockylinux.org) e include anche il tag admonitions, che non fa parte dei tag Markdown standard.
+Questa guida illustra i tag Markdown più diffusi utilizzati su [https://docs.rockylinux.org](https://docs.rockylinux.org) e include il tag admonitions, che non fa parte dei tag Markdown standard.
 
 ## La Demo
 
@@ -27,13 +26,13 @@ A volte si vedono cose come _questo_.
 
 Che ne dite di una piccola **faccina in grassetto**
 
-Nella maggior parte dei casi, si tratta di un testo diretto come questo.
+Il più delle volte si tratta di un testo diretto come questo.
 
-A volte è necessario mostrare un <codice>comando</codice>
+A volte, è necessario mostrare un <codice>comando</codice>
 
 O comandi multipli:
 
-```
+```bash
 dnf install my_stapler
 dnf update my_pencil
 dnf remove my_notepad
@@ -53,9 +52,33 @@ Altre volte sono necessari elenchi puntati o numerati:
 
 E potrebbe essere necessario un ammonimento:
 
-!!! SUGGERIMENTO
+### Avvertenze
 
-    Matite e cucitrici sono davvero vecchia scuola.
+Le avvertenze, anch'esse richiamate, sono un'ottima scelta per inserire contenuti collaterali senza interrompere significativamente il flusso del documento. Materiale per MkDocs fornisce diversi tipi di ammonimenti e consente l'inclusione e l'annidamento di contenuti arbitrari.
+
+!!! TIP
+
+    Le matite e le spillatrici sono di vecchia concezione.
+
+#### Utilizzo
+
+Le ammonizioni seguono una sintassi semplice: un blocco inizia con `!!!`, seguito da una parola chiave usata come qualificatore di tipo. Il contenuto del blocco segue sulla riga successiva, rientrando di quattro spazi:
+
+!!! note
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+    nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+    massa, nec semper lorem quam in massa.
+
+#### Modifica del titolo
+
+Per impostazione predefinita, il titolo sarà uguale al qualificatore di tipo nel caso del titolo. Tuttavia, è possibile modificarlo aggiungendo una stringa quotata contenente Markdown valido (inclusi collegamenti, formattazione, ...) dopo il qualificatore di tipo:
+
+!!! note "Phasellus posuere in sem ut cursus"
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+    nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+    massa, nec semper lorem quam in massa.
 
 Spesso, quando un comando ha più opzioni o è necessario elencarne di specifiche, si può usare una tabella per identificare le cose:
 
