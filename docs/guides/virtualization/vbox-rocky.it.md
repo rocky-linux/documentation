@@ -35,12 +35,12 @@ Una volta che avete VirtualBox&reg; installato, il passo successivo è quello di
 
  Per prima cosa, è necessario indicare a VirtualBox&reg; quale sarà il vostro sistema operativo:
 
- * Clicca su "New" (icona a forma di dente di sega).
- * Digita un nome. Esempio: "Rocky Linux 8.5".
- * Lasciare la cartella della macchina come riempita automaticamente.
- * Cambia il tipo in "Linux".
- * E scegli "Red Hat (64-bit)".
- * Clicca "Next".
+* Clicca su "New" (icona a forma di dente di sega).
+* Digita un nome. Esempio: "Rocky Linux 8.5".
+* Lasciare la cartella della macchina come riempita automaticamente.
+* Cambia il tipo in "Linux".
+* E scegli "Red Hat (64-bit)".
+* Clicca "Next".
 
  ![Nome e Sistema Operativo](../images/vbox-02.png)
 
@@ -52,13 +52,13 @@ Non c'è una schermata per questo, basta modificare il valore in base alla memor
 
 ![Disco Rigido](../images/vbox-03.png)
 
-* Cliccare su "Create"
+* Cliccare su ++"Create"++
 
 Si aprirà una finestra di dialogo per la creazione di vari tipi di disco rigido virtuale. Sono presenti diversi tipi di disco rigido. Per [ulteriori informazioni](https://docs.oracle.com/en/virtualization/virtualbox/6.0/user/vdidetails.html) sulla selezione dei tipi di disco rigido virtuale, consultare la documentazione di Oracle VirtualBox. Per questo documento, mantenere il valore predefinito (VDI):
 
 ![Tipo di File del Disco Rigido](../images/vbox-04.png)
 
-* Clicca Su "Next"
+* Cliccare ++"Next"++
 
 La prossima schermata riguarda la memorizzazione sul disco rigido fisico. Esistono due opzioni. La " Fixed Size" sarà più lenta da creare, più veloce da usare, ma meno flessibile in termini di spazio (se si ha bisogno di più spazio, non si può crescere oltre quello creato).
 
@@ -66,13 +66,13 @@ L'opzione predefinita, " Dynamically Allocated", è più veloce da creare e più
 
 ![Memorizzazione su Disco Rigido Fisico](../images/vbox-05.png)
 
-* Clicca Su "Next"
+* Cliccare ++"Next"++
 
 VirtualBox&reg; offre ora la possibilità di specificare dove si desidera che si trovi il file del disco rigido virtuale. È presente anche un'opzione per espandere lo spazio predefinito di 8 GB del disco rigido virtuale. Questa opzione è utile, perché 8 GB di spazio sul disco rigido non sono sufficienti per installare le opzioni di installazione dell'interfaccia grafica, tanto meno per utilizzarle. Impostate questo valore a 20 GB (o più), a seconda dell'uso che volete fare della macchina virtuale e dello spazio disponibile su disco:
 
 ![Posizione e Dimensione del File](../images/vbox-06.png)
 
-* Cliccare su "Create"
+* Cliccare su ++"Create"++
 
 La configurazione di base è terminata. Si otterrà una schermata che assomiglia a questa:
 
@@ -101,7 +101,7 @@ L'immagine ISO di Rocky Linux appare ora selezionata sotto "Controller:IDE" nell
 
 ![Immagine ISO Selezionata](../images/vbox-10.png)
 
-* Clicca "OK"
+* Cliccare ++"OK"++
 
 ### Memoria video per installazioni grafiche
 
@@ -127,7 +127,7 @@ Lo schermo dovrebbe avere un aspetto simile a questo:
 
 ![Impostazioni Video](../images/vbox-12.png)
 
-* Clicca "OK"
+* Cliccare ++"OK"++
 
 ## Avvio dell'installazione
 
