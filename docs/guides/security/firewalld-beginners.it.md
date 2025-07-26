@@ -147,7 +147,23 @@ Se il computer dispone di più modi per connettersi a reti diverse (ad esempio, 
 
 Le zone predefinite includono le seguenti (ho preso questa spiegazione da [Guida di DigitalOcean a `firewalld`](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-using-firewalld-on-centos-8), che dovreste leggere):
 
-> **drop:** Il livello più basso di fiducia. Tutte le connessioni in entrata sono abbandonate senza risposta e solo le connessioni in uscita sono possibili. **block:** Simile al precedente, ma invece di interrompere semplicemente le connessioni, le richieste in arrivo vengono rifiutate con un messaggio icmp-host-prohibited o icmp6-adm-prohibited. **public:** Rappresenta le reti pubbliche e non affidabili. Non ci si fida degli altri computer, ma si possono consentire connessioni in entrata selezionate caso per caso. **external:** Reti esterne nel caso in cui si utilizzi il firewall come gateway. È configurato per il NAT masquerading, in modo che la rete interna rimanga privata ma raggiungibile. **internal:** L'altro lato della zona esterna, utilizzato per la parte interna di un gateway. I computer sono abbastanza affidabili e sono disponibili alcuni servizi aggiuntivi. **dmz:** Utilizzato per i computer situati in una DMZ (computer isolati che non hanno accesso al resto della rete). Sono consentite solo determinate connessioni in entrata. **work:** Utilizzato per le macchine da lavoro. Trust nella maggior parte dei computer della rete. Potrebbero essere consentiti alcuni servizi in più. **home:** Un home environment. In genere implica che ci si fida della maggior parte degli altri computer e che qualche altro servizio sarà accettato. **trusted:** Trust in tutti i computer della rete. È la più aperta tra le opzioni disponibili e deve essere usata con parsimonia.
+> **drop:** Il livello più basso di fiducia. Tutte le connessioni in entrata sono abbandonate senza risposta e solo le connessioni in uscita sono possibili.
+
+> **block:** Simile al precedente, ma invece di interrompere semplicemente le connessioni, le richieste in arrivo vengono rifiutate con un messaggio icmp-host-prohibited o icmp6-adm-prohibited.
+
+> **public:** Rappresenta le reti pubbliche e non affidabili. Non ci si fida degli altri computer, ma si possono consentire connessioni in entrata selezionate caso per caso.
+
+> **external:** Reti esterne nel caso in cui si utilizzi il firewall come gateway. È configurato per il NAT masquerading, in modo che la rete interna rimanga privata ma raggiungibile.
+
+> **internal:** L'altro lato della zona esterna, utilizzato per la parte interna di un gateway. I computer sono abbastanza affidabili e sono disponibili alcuni servizi aggiuntivi.
+
+> **dmz:** Utilizzato per i computer situati in una DMZ (computer isolati che non hanno accesso al resto della rete). Sono consentite solo determinate connessioni in entrata.
+
+> **work:** Utilizzato per le macchine da lavoro. Trust nella maggior parte dei computer della rete. Potrebbero essere consentiti alcuni servizi in più.
+
+> **home:** Un home environment. In genere implica che ci si fida della maggior parte degli altri computer e che qualche altro servizio sarà accettato.
+
+> **trusted:** Trust in tutti i computer della rete. È la più aperta tra le opzioni disponibili e deve essere usata con parsimonia.
 
 Ok, alcune di queste spiegazioni sono complicate, ma onestamente? Il principiante medio può cavarsela con la comprensione di "trusted", "home" e "public" e quando usarli.
 
