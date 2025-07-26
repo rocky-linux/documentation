@@ -1,6 +1,6 @@
 ---
-title: 7 Opzioni di Configurazione del Container
-author: Spencer Steven
+title: 7 Opzioni di configurazione del Container
+author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
 tags:
@@ -82,7 +82,7 @@ Qui esaminiamo alcune delle opzioni di configurazione più utilizzate. Ad esempi
 incus config set ubuntu-test limits.memory 2GB
 ```
 
-Ciò significa che se la memoria disponibile da utilizzare, ad esempio, 2 GB, il container può effettivamente utilizzare più di 2 GB. Si tratta di un limite morbido, ad esempio.
+Ciò significa che se la memoria disponibile da utilizzare, ad esempio, 2 GB, il container può effettivamente utilizzare più di 2 GB. Si tratta di un limite soft, ad esempio.
 
 ```bash
 incus config set ubuntu-test limits.memory.enforce 2GB
@@ -126,7 +126,7 @@ locations:
 - none
 ```
 
-Questo mostra che tutti i container utilizzano il pool di archiviazione dir. Quando si usa ZFS, si può anche impostare una quota disco su un container. Ecco come appare il comando, che imposta una quota disco di 2 GB sul container ubuntu-test:
+Questo mostra che tutti i container utilizzano il pool di archiviazione dir. Quando si usa ZFS, si può anche impostare una quota disco su un container. Ecco come appare il comando, che imposta una quota disco di 2 Gb sul container ubuntu-test:
 
 ```bash
 incus config device override ubuntu-test root size=2GB

@@ -8,7 +8,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 Wenn Sie häufig reisen oder ins Ausland ziehen, vereinfachen Sie Ihre Finanzplanung mit Valuta. Diese Anwendung rechnet schnell zwei Währungen um.
 
-## Voraussetzungen
+## Vorbedingungen
 
 Für diese Anleitung benötigen Sie Folgendes:
 

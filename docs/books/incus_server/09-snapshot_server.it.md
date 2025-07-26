@@ -1,6 +1,6 @@
 ---
 title: 9 Server Snapshot
-author: Spencer Steven
+author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
 tags:

@@ -1,6 +1,6 @@
 ---
 title: 8 Container Snapshots
-author: Spencer Steven
+author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
 tags:
@@ -15,7 +15,7 @@ I container snapshot e un server snapshot (di cui si parlerà più avanti) sono 
 
 L'autore ha utilizzato i container Incus per i server PowerDNS rivolti al pubblico e l'aggiornamento di queste applicazioni è diventato meno problematico, grazie alla creazione di snapshots prima di ogni aggiornamento.
 
-È possibile eseguire lo snapshot di un contenitore anche quando è in esecuzione.
+È possibile eseguire lo snapshot di un container anche quando è in esecuzione.
 
 ## Il processo di snapshot
 

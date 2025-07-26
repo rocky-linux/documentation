@@ -9,11 +9,11 @@ update: 11-23-2021
 
 ## Prerequisiti e presupposti
 
-* CentOS Stream, CentOS, AlmaLinux, RHEL o Oracle Linux in esecuzione su un server hardware o un VPS. CentOS non-Stream è fermo alla versione 8.5. La versione supportata al momento degli altri sistemi è la 8.9 o la 9.3.
-* Conoscenza della riga di comando
-* Conoscenza operativa di SSH per macchine remote.
-* Un atteggiamento di leggera propensione al rischio
-* Eseguire i comandi come root. Accedere come root o avere la possibilità di elevare i privilegi con `sudo`
+- CentOS Stream, CentOS, AlmaLinux, RHEL o Oracle Linux versione 8 o 9 su un server hardware o VPS. CentOS non-Stream è fermo alla versione 8.5. La versione attualmente supportata degli altri sistemi è la 8.10 o la 9.6. La versione 10 non è attualmente supportata.
+- Conoscenza della riga di comando
+- Conoscenza operativa di SSH per macchine remote.
+- Un atteggiamento di leggera propensione al rischio
+- Eseguire i comandi come root. Accedere come root o avere la possibilità di elevare i privilegi con `sudo`
 
 ## Introduzione
 
@@ -40,13 +40,16 @@ Sei pronto?
 
 ### Il modo manuale
 
-Scaricate i file compressi da GitHub ed estraete quello che vi serve (sarà *migrate2rocky.sh*). È possibile trovare i file zip per qualsiasi repository GitHub sul lato destro della pagina principale del repository:
+Scaricate i file compressi da GitHub ed estraete quello che vi serve (sarà *migrate2rocky.sh* o *migrate2rocky9.sh*). È possibile trovare i file zip per qualsiasi repository GitHub sul lato destro della pagina principale del repository:
 
-![Il pulsante "Download Zip"](images/migrate2rocky-github-zip.png)
+![The "Download Zip" button](images/migrate2rocky-github-zip.png)
 
-Quindi, caricare l'eseguibile sul server tramite SSH eseguendo questo comando sul computer locale:
+Quindi, caricare l'eseguibile sul server con SSH eseguendo questo comando sul computer locale:
 
-```
+!!! Note "Nota"
+    Se si utilizza un sistema 9.x, aggiungere un 9 prima del file `.sh`.
+
+```bash
 scp PATH/TO/FILE/migrate2rocky.sh root@yourdomain.com:/home/
 ```
 
@@ -54,58 +57,64 @@ Regolare tutti i percorsi dei file e i domini dei server o gli indirizzi IP seco
 
 ### Il modo `git`
 
-Installare `git` sul proprio server con:
+Installare `git` sul server con:
 
-```
+```bash
 dnf install git
 ```
 
 Quindi clona il repository rocky-tools con:
 
-```
+```git
 git clone https://github.com/rocky-linux/rocky-tools.git
 ```
 
-Nota: questo metodo scaricherà tutti gli script e i file nel repository rocky-tools.
+Nota: questo metodo scarica tutti gli script e i file dal repository rocky-tools.
 
 ### Il modo più semplice
 
-Questo è probabilmente il modo più semplice per ottenere lo script. È sufficiente che sul server sia installato un client HTTP adeguato (curl, wget, lynx e così via).
+Questo è probabilmente il modo più semplice per ottenere lo script. È sufficiente che sul server sia installato un client HTTP adeguato (`curl`, `wget`, `lynx` e così via).
 
-Supponendo che abbiate installato l'utilità `curl`, eseguite questo comando per scaricare lo script nella directory che state utilizzando:
+Supponendo che sia installata l'utilità `curl`, eseguire il seguente comando per scaricare lo script nella directory in uso:
 
-```
+!!! Note "Nota"
+    Se si utilizza un sistema 9.x, aggiungere un 9 prima del file `.sh`.
+
+```bash
 curl https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh -o migrate2rocky.sh
 ```
 
-Questo comando scaricherà il file direttamente sul server e *solo* il file che vuoi. Ma anche in questo caso, i problemi di sicurezza suggeriscono che questa non è necessariamente la pratica migliore, quindi tenetene conto.
+Questo comando scaricherà il file sul server e *solo* quello desiderato. Ma anche in questo caso, i problemi di sicurezza suggeriscono che questa non è necessariamente la pratica migliore, quindi tenetene conto.
 
 ## Esecuzione dello script e installazione
 
-Usate il comando `cd` per passare alla directory in cui si trova lo script, assicuratevi che il file sia eseguibile e date i permessi x al proprietario del file dello script.
+Usate il comando `cd` per passare alla directory in cui si trova lo script, assicuratevi che il file sia eseguibile e date al proprietario del file di script i permessi di esecuzione 'x'.
 
-```
+!!! Note "Nota"
+    Nei comandi seguenti, se si utilizza un sistema 9.x, aggiungere un 9 prima di `.sh`.
+
+```bash
 chmod u+x migrate2rocky.sh
 ```
 
 E ora, finalmente, eseguite lo script:
 
-```
+```bash
 ./migrate2rocky.sh -r
 ```
 
-Questa opzione "-r" dice allo script di andare avanti e installare tutto.
+L'opzione "-r" indica allo script di procedere all'installazione di tutto.
 
 Se avete fatto tutto correttamente, la vostra finestra di terminale avrà un aspetto simile a questo:
 
-![avvio dello script riuscito](images/migrate2rocky-convert-01.png)
+![a successful script startup](images/migrate2rocky-convert-01.png)
 
-Ora, lo script impiegherà un po' di tempo per convertire tutto, a seconda della macchina in uso e della connessione a Internet.
+Ora, lo script impiegherà un po' di tempo per convertire tutto, a seconda della macchina in uso e della sua connessione a Internet.
 
-Se vedi un messaggio **Complete!** alla fine, allora tutto va bene e puoi riavviare il server.
+Se alla fine viene visualizzato il messaggio **Complete!**, tutto è a posto e si può riavviare il server.
 
-![messaggio di migrazione OS riuscito](images/migrate2rocky-convert-02.png)
+![a successful OS migration message](images/migrate2rocky-convert-02.png)
 
 Lasciate passare un po' di tempo, riaccedete e dovreste avere un nuovo server Rocky Linux. Eseguite il comando `hostnamectl` per verificare che il sistema operativo sia stato migrato correttamente e siete a posto.
 
-![Il risultato del comando hostnamectl](images/migrate2rocky-convert-03.png)
+![The results of the hostnamectl command](images/migrate2rocky-convert-03.png)

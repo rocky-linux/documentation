@@ -8,7 +8,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 ## Introduzione
 
-Molto tempo fa, ero un piccolo utente di computer alle prime armi che aveva sentito dire che avere un firewall *doveva* essere super buono. Mi permetterebbe di decidere cosa entra e cosa esce dal mio computer, giusto? Ma sembrava soprattutto che impedisse ai miei videogiochi di accedere a Internet; non ne ero *felice*.
+Molto tempo fa, ero un piccolo utente di computer alle prime armi che aveva sentito dire che avere un firewall *doveva* essere super buono. Mi permetterebbe di decidere cosa entra e cosa esce dal mio computer, giusto? Ma soprattutto sembrava che impedisse ai miei videogiochi di accedere a Internet; *non* ero contento.
 
 Naturalmente, se siete qui, probabilmente avete un'idea migliore di me su cosa sia un firewall e cosa faccia. Ma se la vostra esperienza con il firewall consiste nel dire a Windows Defender che la vostra nuova applicazione è autorizzata a utilizzare Internet, non preoccupatevi. Come indicato nel titolo del documento, questa guida è destinata a voi (e ad altri principianti)!
 
@@ -16,10 +16,10 @@ Parliamo quindi del motivo per cui siamo qui. `firewalld` è l'applicazione fire
 
 Qui imparerete:
 
-* Le basi del funzionamento di `firewalld`
-* Come usare `firewalld` per limitare o permettere le connessioni in entrata e in uscita
-* Come permettere solo alle persone di certi indirizzi IP o luoghi di accedere alla tua macchina da remoto
-* Come gestire alcune caratteristiche `specifiche di firewalld` come le Zone.
+- Le basi del funzionamento di `firewalld`
+- Come usare `firewalld` per limitare o permettere le connessioni in entrata e in uscita
+- Come permettere solo alle persone di certi indirizzi IP o luoghi di accedere alla tua macchina da remoto
+- Come gestire alcune caratteristiche `specifiche di firewalld` come le Zone.
 
 Si noti che questa *non* vuole essere una guida completa o esaustiva sul firewall; di conseguenza, copre solo le basi.
 
@@ -31,12 +31,13 @@ Beh... ci *sono* le opzioni di configurazione grafica del firewall. Sul desktop,
 2. Capire come funzionano i comandi `firewalld` potrebbe aiutarvi a capire meglio come funziona il software del firewall.  Se in futuro deciderete di utilizzare un'interfaccia grafica, potrete applicare gli stessi principi appresi qui e comprendere meglio ciò che state facendo.
 
 ## Prerequisiti e presupposti
+
 Avrete bisogno di:
 
-* Una macchina Rocky Linux di qualsiasi tipo, locale o remota, fisica o virtuale
-* Accesso al terminale e volontà di usarlo
-* Avete bisogno dell'accesso root, o almeno della capacità di usare `sudo` sul vostro account utente. Per semplicità, assumo che tutti i comandi siano eseguiti come root
-* Una comprensione di base di SSH non sarebbe male per la gestione di macchine remote.
+- Una macchina Rocky Linux di qualsiasi tipo, locale o remota, fisica o virtuale
+- Accesso al terminale e volontà di usarlo
+- Avete bisogno dell'accesso root, o almeno della capacità di usare `sudo` sul vostro account utente. Per semplicità, assumo che tutti i comandi siano eseguiti come root
+- Una comprensione di base di SSH non sarebbe male per la gestione di macchine remote.
 
 ## Uso di Base
 
@@ -48,7 +49,7 @@ Avrete bisogno di:
 systemctl enable --now firewalld
 ```
 
-L'opzione `--now` avvia il servizio non appena viene abilitato e consente di saltare il passaggio `systemctl start firewalld`.
+Il flag `--now` avvia il servizio non appena viene abilitato e consente di saltare il passaggio `systemctl start firewalld`.
 
 Come per tutti i servizi su Rocky Linux, è possibile verificare se il firewall è in esecuzione con:
 
@@ -148,21 +149,21 @@ Le zone predefinite includono le seguenti (ho preso questa spiegazione da [Guida
 
 > **drop:** Il livello più basso di fiducia. Tutte le connessioni in entrata sono abbandonate senza risposta e solo le connessioni in uscita sono possibili.
 
-> **block:** Simile al precedente, ma invece di abbandonare semplicemente le connessioni, le richieste in entrata sono rifiutate con un messaggio icmp-host-prohibited o icmp6-adm-prohibited.
+> **block:** Simile al precedente, ma invece di interrompere semplicemente le connessioni, le richieste in arrivo vengono rifiutate con un messaggio icmp-host-prohibited o icmp6-adm-prohibited.
 
-> **public:** Rappresenta le reti pubbliche, non fidate. Non ti fidi degli altri computer, ma puoi permettere connessioni in entrata selezionate caso per caso.
+> **public:** Rappresenta le reti pubbliche e non affidabili. Non ci si fida degli altri computer, ma si possono consentire connessioni in entrata selezionate caso per caso.
 
-> **internal:** L'altro lato della zona esterna, usata per la parte interna di un gateway. I computer sono abbastanza affidabili e sono disponibili alcuni servizi aggiuntivi.
+> **external:** Reti esterne nel caso in cui si utilizzi il firewall come gateway. È configurato per il NAT masquerading, in modo che la rete interna rimanga privata ma raggiungibile.
 
-> **dmz:** utilizzato per i computer situati in una DMZ (computer isolati che non avranno accesso al resto della vostra rete). I computer sono abbastanza affidabili e sono disponibili alcuni servizi aggiuntivi.
+> **internal:** L'altro lato della zona esterna, utilizzato per la parte interna di un gateway. I computer sono abbastanza affidabili e sono disponibili alcuni servizi aggiuntivi.
 
-> **work:** Usato per le macchine da lavoro. Fidatevi della maggior parte dei computer della rete.
+> **dmz:** Utilizzato per i computer situati in una DMZ (computer isolati che non hanno accesso al resto della rete). Sono consentite solo determinate connessioni in entrata.
 
-> **home:** Un ambiente domestico. Generalmente implica che vi fidate della maggior parte degli altri computer e che qualche servizio in più sarà accettato. Qualche altro servizio potrebbe essere permesso.
+> **work:** Utilizzato per le macchine da lavoro. Trust nella maggior parte dei computer della rete. Potrebbero essere consentiti alcuni servizi in più.
 
-> **trusted:** Fidati di tutte le macchine della rete. La più aperta delle opzioni disponibili e dovrebbe essere usata con parsimonia.
+> **home:** Un home environment. In genere implica che ci si fida della maggior parte degli altri computer e che qualche altro servizio sarà accettato.
 
-> **trusted:** Fidati di tutte le macchine della rete. La più aperta delle opzioni disponibili e dovrebbe essere usata con parsimonia.
+> **trusted:** Trust in tutti i computer della rete. È la più aperta tra le opzioni disponibili e deve essere usata con parsimonia.
 
 Ok, alcune di queste spiegazioni sono complicate, ma onestamente? Il principiante medio può cavarsela con la comprensione di "trusted", "home" e "public" e quando usarli.
 
@@ -271,10 +272,10 @@ Come si può immaginare, i servizi sono programmi piuttosto standardizzati che v
 
 Questo è il modo preferito per aprire le porte di questi servizi comuni e di molti altri:
 
-* HTTP e HTTPS: per i server web
-* FTP: per spostare i file avanti e indietro (alla vecchia maniera)
-* SSH: per controllare macchine remote e spostare file avanti e indietro nel nuovo modo
-* Samba: Per la condivisione di file con macchine Windows.
+- HTTP e HTTPS: per i server web
+- FTP: per spostare i file avanti e indietro (alla vecchia maniera)
+- SSH: per controllare macchine remote e spostare file avanti e indietro nel nuovo modo
+- Samba: Per la condivisione di file con macchine Windows.
 
 !!! Warning "Attenzione"
 
@@ -363,7 +364,6 @@ public (active)
         rule family="ipv4" source address="192.168.1.0/24" service name="ssh" accept
 ```
 
-
 In secondo luogo, è possibile utilizzare due zone diverse alla volta. Se l'interfaccia è vincolata alla zona pubblica, è possibile attivare una seconda zona (la zona "trusted", ad esempio) aggiungendo un IP sorgente o un intervallo di IP, come mostrato sopra. Quindi, aggiungere il servizio SSH alla zona trusted e rimuoverlo dalla zona public.
 
 Al termine, l'output dovrebbe essere simile a questo:
@@ -421,7 +421,7 @@ Se si viene bloccati, riavviare il server (la maggior parte dei pannelli di cont
 
 Questa è una guida tutt'altro che esaustiva e si può imparare molto di più con la documentazione [ufficiale di `firewalld`](https://firewalld.org/documentation/). Su Internet sono disponibili anche guide specifiche per le applicazioni che vi mostreranno come impostare il firewall per quelle specifiche applicazioni.
 
-Per i fan di `iptables` (se siete arrivati fin qui...), [abbiamo una guida](firewalld.md) che illustra in dettaglio alcune differenze nel funzionamento di `firewalld` e `iptables`. Questa guida potrebbe aiutarvi a capire se volete rimanere con `firewalld` o tornare alle Vecchie Abitudini<sup> (TM)</sup>. In questo caso, c'è qualcosa da dire riguardo ai Vecchie Abitudini<sup> (TM)</sup>.
+Per i fan di `iptables` (se siete arrivati fin qui...), [abbiamo una guida](firewalld.md) che illustra in dettaglio alcune differenze nel funzionamento di `firewalld` e `iptables`. Questa guida potrebbe aiutarvi a capire se volete rimanere con `firewalld` o tornare alle Vecchie Abitudini^(TM)^. In questo caso, c'è qualcosa da dire riguardo alle Vecchie Abitudini^(TM)^.
 
 ## Conclusione
 

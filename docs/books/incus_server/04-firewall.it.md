@@ -1,6 +1,6 @@
 ---
-title: 4 Configurazione Del Firewall
-author: Spencer Steven
+title: 4 Configurazione del Firewall
+author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
 tags:
@@ -9,7 +9,7 @@ tags:
   - incus security
 ---
 
-Nel corso di questo capitolo, è necessario essere l'utente root o essere in grado di eseguire con i privilegi di root con sudo.
+In questo capitolo è necessario essere root o poter utilizzare il comando `sudo` per diventare root.
 
 Come per qualsiasi server, è necessario assicurarsi che sia sicuro dal mondo esterno e dalla LAN.
 Il server di esempio ha solo un'interfaccia LAN, ma è possibile avere due interfacce, ciascuna rivolta verso le reti LAN e WAN.

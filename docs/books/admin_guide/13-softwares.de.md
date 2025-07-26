@@ -986,12 +986,12 @@ Das `needs-restarting` Plugin ermöglicht Ihnen Prozesse, die neu zu starten sin
 dnf needs-restarting [-u] [-r] [-s]
 ```
 
-| Option  | Beschreibung                                                          |
-| ------- | --------------------------------------------------------------------- |
-| `-u`    | nur die Prozesse berücksichtigen, die zum laufenden Benutzer gehören. |
-| `-r`    | um zu überprüfen, ob ein Neustart erforderlich sein könnte.           |
-| `-s`    | um zu überprüfen, ob Dienste neu gestartet werden müssen.             |
-| `-s -r` | um beides in einem Lauf zu tun.                                       |
+| Optionen | Beschreibung                                                          |
+| -------- | --------------------------------------------------------------------- |
+| `-u`     | nur die Prozesse berücksichtigen, die zum laufenden Benutzer gehören. |
+| `-r`     | um zu überprüfen, ob ein Neustart erforderlich sein könnte.           |
+| `-s`     | um zu überprüfen, ob Dienste neu gestartet werden müssen.             |
+| `-s -r`  | um beides in einem Lauf zu tun.                                       |
 
 ### `versionlock` Plugin
 

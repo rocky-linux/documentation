@@ -9,7 +9,7 @@ tags:
   - incus automation
 ---
 
-Tout au long de ce chapitre, vous devez être l'utilisateur root ou pouvoir utiliser `sudo` pour obtenir les privilèges nécessaires.
+Tout au long de ce chapitre, vous devez être l'utilisateur `root` ou pouvoir utiliser `sudo` pour obtenir les privilèges nécessaires.
 
 Automatiser le processus de capture instantanée rend les choses beaucoup plus faciles.
 

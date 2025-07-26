@@ -1,6 +1,6 @@
 ---
 title: 3 Inizializzazione Incus e configurazione dell'utente
-author: Spencer Steven
+author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
 tags:
@@ -20,7 +20,7 @@ L'ambiente del server è pronto. È ora possibile inizializzare Incus. Si tratta
 incus admin init
 ```
 
-Ecco le domande e le nostre risposte per lo script, con una piccola spiegazione dove necessario:
+Ecco le domande e le nostre risposte per il copione, con una piccola spiegazione dove necessario:
 
 ```text
 Would you like to use clustering? (yes/no) [default=no]:
@@ -44,7 +44,7 @@ Lasciare questo nome “default” è un'opzione, ma usare lo stesso nome dato a
 Name of the storage backend to use (btrfs, dir, lvm, zfs, ceph) [default=zfs]:
 ```
 
-You want to accept the default.
+Si desidera accettare l'impostazione predefinita.
 
 ```text
 Create a new ZFS pool? (yes/no) [default=yes]: no

@@ -41,7 +41,7 @@ Utilisation favorisée par l'auteur : `rsync -avz original location target locat
 
 ## Description de l'environnement
 
-| Élément                 | Observation      |
+| Élément                 | Description      |
 | ----------------------- | ---------------- |
 | Rocky Linux 8 (Serveur) | 192.168.100.4/24 |
 | Fedora 34 (client)      | 192.168.100.5/24 |
