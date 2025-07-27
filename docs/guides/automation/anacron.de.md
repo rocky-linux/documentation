@@ -106,10 +106,10 @@ Lasst uns cron.daily anschauen, um den Ausführungsprozess von /etc/anacrontab z
 
 Verwenden Sie den Befehl `anacron`, <br/> häufig verwendete Optionen sind:
 
-| Option | Beschreibung                                                                          |
-| ------ | ------------------------------------------------------------------------------------- |
-| -f     | Alle Jobs ausführen und Zeitstempel ignorieren                                        |
-| -u     | Den Zeitstempel auf die aktuelle Uhrzeit aktualisieren ohne eine Aktion durchzuführen |
-| -T     | Die Gültigkeit der Konfigurationsdatei /etc/anacrontab überprüfen                     |
+| Optionen | Beschreibung                                                                          |
+| -------- | ------------------------------------------------------------------------------------- |
+| -f       | Alle Jobs ausführen und Zeitstempel ignorieren                                        |
+| -u       | Den Zeitstempel auf die aktuelle Uhrzeit aktualisieren ohne eine Aktion durchzuführen |
+| -T       | Die Gültigkeit der Konfigurationsdatei /etc/anacrontab überprüfen                     |
 
 Weitere Informationen erhalten Sie [auf der Handbuch-Seite](https://man7.org/linux/man-pages/man8/anacron.8.html)
