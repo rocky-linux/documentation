@@ -17,7 +17,7 @@ Dans ce laboratoire, vous passerez en revue les exigences machine nécessaires p
 
 ## Machines virtuelles ou physiques
 
-Ce tutoriel nécessite quatre (4) machines x86_64 virtuelles ou physiques exécutant Debian 12 (bookworm). Le tableau suivant répertorie les quatre machines et leurs exigences en matière de CPU, de mémoire et de stockage.
+Ce tutoriel nécessite quatre (4) machines x86_64 virtuelles ou physiques exécutant Rocky Linux 9.5 (les conteneurs Incus ou LXD devraient également fonctionner). Le tableau suivant répertorie les quatre machines et leurs exigences en matière de CPU, de mémoire et de stockage.
 
 | Nom     | Description               | CPU | RAM    | Stockage |
 | ------- | ------------------------- | --- | ------ | -------- |
