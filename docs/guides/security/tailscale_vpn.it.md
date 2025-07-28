@@ -25,7 +25,7 @@ I requisiti minimi per l'utilizzo di questa procedura sono i seguenti:
 
 ## Installare Tailscale
 
-Per installare Tailscale, è necessario aggiungere il repository `dnf` (nota: se si utilizza Rocky Linux 8.x, sostituire con 8):
+Per installare Tailscale, dobbiamo prima aggiungere il suo repository `dnf` (nota: se si utilizza Rocky Linux 8.x o 10.x, sostituire rispettivamente con 8 o 10):
 
 ```bash
 dnf config-manager --add-repo https://pkgs.tailscale.com/stable/rhel/9/tailscale.repo
