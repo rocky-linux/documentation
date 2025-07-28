@@ -1,7 +1,7 @@
 ---
 title: Introduzione
 author: Wale Soyinka
-contributors: Andrew Thiesen, Franco Colussi
+contributors: Andrew Thiesen
 tags:
   - introduction
 ---
