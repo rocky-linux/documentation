@@ -3,7 +3,7 @@ Title: Lab 8 - iptables author: Wale Soyinka contributors:
 - - -
 
 
-# Lab 8: `iptables`
+# Laboratorio 8: `iptables`
 
 ## Obiettivi
 
@@ -30,26 +30,25 @@ Di seguito vengono descritte alcune terminologie comuni utilizzate nelle discuss
 
 Nella maggior parte dei kernel Linux sono definite tre tabelle indipendenti. Le tabelle presenti in qualsiasi momento dipendono dalle opzioni di configurazione del kernel e dai moduli presenti. Le tabelle sono:
 
-* filter: Questa è la tabella principale e predefinita (se non viene passata l'opzione -t). Contiene le concatenazioni incorporate:
+- filter: Questa è la tabella principale e predefinita (se non viene passata l'opzione -t). Contiene le concatenazioni incorporate:
 
-    * **INPUT** (per i pacchetti che entrano nella sistema)
-    * **FORWARD** (per i pacchetti che vengono instradati attraverso il sistema)
-    * **OUTPUT** (per i pacchetti generati localmente).
+    - **INPUT** (per i pacchetti che entrano nella sistema)
+    - **FORWARD** (per i pacchetti che vengono instradati attraverso il sistema)
+    - **OUTPUT** (per i pacchetti generati localmente).
 
-* nat: Questa tabella viene consultata quando si incontra un pacchetto che crea una nuova connessione. Si compone delle seguenti tre concatenazioni integrate:
+- nat: Questa tabella viene consultata quando si incontra un pacchetto che crea una nuova connessione. Si compone delle seguenti tre concatenazioni integrate:
 
-    * **PREROUTING** (per modificare i pacchetti non appena arrivano)
-    * **OUTPUT** (per alterare i pacchetti generati localmente prima dell'instradamento)
-    * **POSTROUTING** (per modificare i pacchetti quando stanno per essere spediti)
+    - **PREROUTING** (per modificare i pacchetti non appena arrivano)
+    - **OUTPUT** (per alterare i pacchetti generati localmente prima dell'instradamento)
+    - **POSTROUTING** (per modificare i pacchetti quando stanno per essere spediti)
 
-* mangle: Questa tabella viene utilizzata per l'alterazione specializzata dei pacchetti. Dispone delle seguenti 5 concatenazioni integrate:
+- mangle: Questa tabella viene utilizzata per l'alterazione specializzata dei pacchetti. Dispone delle seguenti 5 concatenazioni integrate:
 
-    * **PREROUTING** (per alterare i pacchetti in arrivo prima dell'instradamento)
-    * **OUTPUT** (per alterare i pacchetti generati localmente prima dell'instradamento)
-    * **INPUT** (per i pacchetti che entrano nel sistema)
-    * **FORWARD** (per alterare i pacchetti che vengono instradati attraverso il sistema)
-    * **POSTROUTING**  (per modificare i pacchetti quando stanno per essere spediti)
-
+    - **PREROUTING** (per alterare i pacchetti in arrivo prima dell'instradamento)
+    - **OUTPUT** (per alterare i pacchetti generati localmente prima dell'instradamento)
+    - **INPUT** (per i pacchetti che entrano nel sistema)
+    - **FORWARD** (per alterare i pacchetti che vengono instradati attraverso il sistema)
+    - **POSTROUTING**  (per modificare i pacchetti quando stanno per essere spediti)
 
 ### CONCATENAZIONI
 
@@ -57,9 +56,9 @@ Una concatenazione è un elenco di regole che possono corrispondere a un insieme
 
 ### OBIETTIVI
 
-Una regola del firewall specifica i criteri per un pacchetto e un obiettivo.  Se il pacchetto non corrisponde, viene esaminata la regola successiva della concatenazione; se invece corrisponde, la regola successiva è specificata dal valore dell'obiettivo, che può essere il nome di una concatenazione definita dall'utente o uno dei valori speciali ACCEPT, DROP, QUEUE o RETURN.
+Una regola del firewall specifica i criteri per un pacchetto e una destinazione. Se il pacchetto non corrisponde, viene esaminata la regola successiva della concatenazione; se invece corrisponde, la regola successiva è specificata dal valore dell'obiettivo, che può essere il nome di una concatenazione definita dall'utente o uno dei valori speciali ACCEPT, DROP, QUEUE o RETURN.
 
-```
+```bash
 
 Usage: iptables -[ACD] chain rule-specification [options]
        iptables -I chain [rulenum] rule-specification [options]
@@ -74,59 +73,59 @@ Usage: iptables -[ACD] chain rule-specification [options]
 
 Commands:
 Either long or short options are allowed.
-  --append  -A chain        Append to chain
-  --check   -C chain        Check for the existence of a rule
-  --delete  -D chain        Delete matching rule from chain
+  --append  -A chain Append to chain
+  --check   -C chain Check for the existence of a rule
+  --delete  -D chain Delete matching rule from chain
   --delete  -D chain rulenum
-                Delete rule rulenum (1 = first) from chain
+    Delete rule rulenum (1 = first) from chain
   --insert  -I chain [rulenum]
-                Insert in chain as rulenum (default 1=first)
+    Insert in chain as rulenum (default 1=first)
   --replace -R chain rulenum
-                Replace rule rulenum (1 = first) in chain
+    Replace rule rulenum (1 = first) in chain
   --list    -L [chain [rulenum]]
-                List the rules in a chain or all chains
+    List the rules in a chain or all chains
   --list-rules -S [chain [rulenum]]
-                Print the rules in a chain or all chains
-  --flush   -F [chain]      Delete all rules in  chain or all chains
+    Print the rules in a chain or all chains
+  --flush   -F [chain] Delete all rules in  chain or all chains
   --zero    -Z [chain [rulenum]]
-                Zero counters in chain or all chains
-  --new     -N chain        Create a new user-defined chain
+    Zero counters in chain or all chains
+  --new     -N chain Create a new user-defined chain
   --delete-chain
-            -X [chain]      Delete a user-defined chain
+    -X [chain] Delete a user-defined chain
   --policy  -P chain target
-                Change policy on chain to target
+    Change policy on chain to target
   --rename-chain
             -E old-chain new-chain
                 Change chain name, (moving any references)
 
 Options:
-    --ipv4  -4      Nothing (line is ignored by ip6tables-restore)
-    --ipv6  -6      Error (line is ignored by iptables-restore)
-[!] --protocol  -p proto    protocol: by number or name, eg. `tcp'
-[!] --source    -s address[/mask][...]
-                source specification
+    --ipv4 -4 Nothing (line is ignored by ip6tables-restore)
+    --ipv6 -6 Error (line is ignored by iptables-restore)
+[!] --protocol -p proto protocol: by number or name, eg. `tcp'
+[!] --source -s address[/mask][...]
+        source specification
 [!] --destination -d address[/mask][...]
-                destination specification
+        destination specification
 [!] --in-interface -i input name[+]
-                network interface name ([+] for wildcard)
+        network interface name ([+] for wildcard)
  --jump -j target
-                target for rule (may load target extension)
+    target for rule (may load target extension)
   --goto      -g chain
-                   jump to chain with no return
-  --match   -m match
-                extended match (may load extension)
-  --numeric -n      numeric output of addresses and ports
+    jump to chain with no return
+  --match -m match
+    extended match (may load extension)
+  --numeric -n numeric output of addresses and ports
 [!] --out-interface -o output name[+]
-                network interface name ([+] for wildcard)
-  --table   -t table    table to manipulate (default: `filter')
-  --verbose -v      verbose mode
-  --wait    -w [seconds]    maximum wait to acquire xtables lock before give up
-  --line-numbers        print line numbers when listing
-  --exact   -x      expand numbers (display exact values)
-[!] --fragment  -f      match second or further fragments only
-  --modprobe=<command>      try to insert modules using this command
-  --set-counters -c PKTS BYTES  set the counter during insert/append
-[!] --version   -V      print package version.
+    network interface name ([+] for wildcard)
+  --table -t table table to manipulate (default: `filter')
+  --verbose -v verbose mode
+  --wait -w [seconds] maximum wait to acquire xtables lock before give up
+  --line-numbers print line numbers when listing
+  --exact -x expand numbers (display exact values)
+[!] --fragment -f match second or further fragments only
+  --modprobe=<command> try to insert modules using this command
+  --set-counters -c PKTS BYTES set the counter during insert/append
+[!] --version -V print package version.
 
 ```
 
@@ -142,31 +141,31 @@ Senza ulteriori indugi, passiamo subito all'uso di `iptables`.
 
 1. Mentre si è connessi come superutente, elencare tutte le regole nella tabella dei filtri. Digitare:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -L
     ```
 
-2.  Per visualizzare un output più dettagliato, digitare:
+2. Per visualizzare un output più dettagliato, digitare:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -L -v
     ```
 
-3.  Visualizzare solo le regole della concatenazione INPUT. Digitare:
+3. Visualizzare solo le regole della concatenazione INPUT. Digitare:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -v  -L INPUT
     ```
 
-4.  Visualizzare tutte le regole della tabella mangle. Digitare:
+4. Visualizzare tutte le regole della tabella mangle. Digitare:
 
-    ```
+    ```bash
     [root@serverXY root]#  iptables  -L  -t   mangle
     ```
 
-5.  Visualizzare tutte le regole della tabella nat. Digitare:
+5. Visualizzare tutte le regole della tabella nat. Digitare:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -L -t nat
     ```
 
@@ -174,21 +173,21 @@ Senza ulteriori indugi, passiamo subito all'uso di `iptables`.
 
 1. Pulisce (o elimina) tutte le regole che "potrebbero" essere attualmente caricate. Digitare:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables --flush
     ```
 
 #### Per creare la propria concatenazione
 
-1.  Create la vostra concatenazione personalizzata e chiamatela "mychain". Digitare:
+1. Create la vostra concatenazione personalizzata e chiamatela "mychain". Digitare:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables  -N  mychain
     ```
 
 2. Elencare le regole della concatenazione creata in precedenza. Digitare:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables  -L mychain
 
     Chain mychain (0 references)
@@ -200,21 +199,23 @@ Senza ulteriori indugi, passiamo subito all'uso di `iptables`.
 
 1. Per prima cosa, provare a eliminare la concatenazione INPUT incorporata. Digitare:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -X INPUT
     ```
 
-    Qual è stato il risultato?
+    !!! question "Domanda"
+
+     Qual è stato il suo risultato?
 
 2. Successivamente, provare a eliminare la concatenazione creata in precedenza. Digitare:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -X mychain
     ```
 
-3.  Riprovate a elencare le regole della concatenazione che avete appena eliminato.  Digitare:
+3. Riprovate a elencare le regole della concatenazione che avete appena eliminato. Digitare:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -L  mychain
     ```
 
@@ -228,7 +229,7 @@ Questo esercizio vi insegnerà a creare regole di filtraggio dei pacchetti legge
 
 1. Prima di iniziare, accertatevi di poter eseguire il ping del vostro sistema partner e che anche quest'ultimo possa eseguire il ping con successo. Digitare:
 
-    ```
+    ```bash
     [root@serverXY root]# ping -c 2 serverPR
 
     <SNIP>
@@ -240,15 +241,15 @@ Questo esercizio vi insegnerà a creare regole di filtraggio dei pacchetti legge
     ...............................................
     ```
 
-2.  Eliminare tutte le regole esistenti. Digitare:
+2. Eliminare tutte le regole esistenti. Digitare:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -F
     ```
 
 3. Creare una regola per bloccare tutti i pacchetti di tipo icmp in uscita verso qualsiasi destinazione. Digitare:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables  -A  OUTPUT  -o  eth0 -p  icmp  -j  DROP
     ```
 
@@ -256,7 +257,7 @@ Questo esercizio vi insegnerà a creare regole di filtraggio dei pacchetti legge
 
 4. Verificate l'effetto della regola precedente provando a eseguire il ping del serverPR. Digitare:
 
-    ```
+    ```bash
     [root@serverXY root]# ping -c 2 serverPR
 
     PING serverPR (10.0.5.8) 56(84) byte di dati.
@@ -266,9 +267,9 @@ Questo esercizio vi insegnerà a creare regole di filtraggio dei pacchetti legge
     ping: sendmsg: Operation not permitted
     ```
 
-5.  Visualizzare la regola appena creata. Digitare:
+5. Visualizzare la regola appena creata. Digitare:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables  -vL OUTPUT
 
     Chain OUTPUT (policy ACCEPT 21221 packets, 2742K byte)
@@ -278,11 +279,15 @@ Questo esercizio vi insegnerà a creare regole di filtraggio dei pacchetti legge
     93  7812 DROP     icmp    --  any         eth0    anywhere          anywhere
     ```
 
-6. Cancellare tutte le regole e riprovare il comando ping da entrambi i sistemi. Successo o fallimento?
+6. Svuotare tutte le regole e riprovare il comando ping da entrambi i sistemi.
+
+    !!! question "Domanda"
+   
+        Successo o fallimento?
 
 7. Ora create un'altra regola che elimini i pacchetti icmp provenienti da uno specifico indirizzo IP indesiderato (ad esempio 172.16.0.44). Digitare:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -A INPUT -i eth0 -p icmp --source 172.16.0.44 -j DROP
     ```
 
@@ -292,7 +297,7 @@ Questo esercizio vi insegnerà a creare regole di filtraggio dei pacchetti legge
 
 9. Invece di eliminare tutte le regole nella tua tabella. Eliminare solo la regola creata in precedenza. A tal fine è necessario conoscere il numero della regola. Per conoscere il numero della regola, digitare:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -vL  INPUT --line-numbers
 
     Chain INPUT (policy ACCEPT 31287 packets, 9103K bytes)
@@ -307,7 +312,7 @@ Questo esercizio vi insegnerà a creare regole di filtraggio dei pacchetti legge
 
 10. Utilizzando il numero di riga che corrisponde alla regola che si desidera eliminare, è possibile eliminare la regola specifica (riga numero 1) nella catena INPUT eseguendo:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -D INPUT 1
     ```
 
@@ -321,7 +326,7 @@ Nei passi successivi esamineremo l'individuazione e il filtraggio del traffico d
 
 1. Avviare il server ftp configurato e abilitato in uno dei laboratori precedenti. Digitare:
 
-    ```
+    ```bash
     [root@serverXY root]# *service vsftpd restart*
 
     Shutting down vsftpd: [  OK  ]
@@ -331,9 +336,9 @@ Nei passi successivi esamineremo l'individuazione e il filtraggio del traffico d
 
 2. Chiedete al vostro partner di provare ad accedere come utente anonimo al vostro server ftp. Assicuratevi che il vostro partner sia in grado di accedere con successo dal serverPR: fatelo *prima* di passare alla fase successiva.
 
-3.  Mentre il partner è ancora connesso, creare una regola per disabilitare tutto il traffico di tipo ftp proveniente dal serverPR. Digitare:
+3. Mentre il partner è ancora connesso, creare una regola per disabilitare tutto il traffico di tipo ftp proveniente dal serverPR. Digitare:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -A INPUT -i  eth0 -s 172.16.0.z  -p tcp  --dport 21 -j DROP*
     ```
 
@@ -341,15 +346,23 @@ Nei passi successivi esamineremo l'individuazione e il filtraggio del traffico d
 
 4. Non appena si esegue il comando precedente, lo stack netfilter lo mette in atto immediatamente. Per verificarlo, chiedete al vostro interlocutore di provare qualsiasi comando ftp mentre è ancora connesso al vostro server ftp, ad esempio `ls`. Successo o fallimento?
 
-    Se non riesce, chiedete al vostro interlocutore di provare a disconnettersi e di provare ad accedere di nuovo da zero. Successo o fallimento?
+    !!! question "Attività di laboratorio:"
+   
+        Successo o fallimento?
+       
+        Se non riesce, chiedete al vostro interlocutore di provare a disconnettersi e di provare ad accedere di nuovo da zero, per poi verificare di nuovo il successo.
 
-5. Chiedete a un'altra persona che NON sia il vostro partner di provare ad accedere al vostro server ftp in modo anonimo. Si può anche chiedere a qualcuno di hq.example.org di provare a connettersi al sito ftp. Successo o fallimento?
+5. Chiedete a un'altra persona che NON sia il vostro partner di provare ad accedere al vostro server ftp in modo anonimo. Si può anche chiedere a qualcuno di hq.example.org di provare a connettersi al sito ftp.
 
-6.  Abilitare e avviare il server web sul serverXY.
+    !!! question "Domanda"
+   
+        Successo o fallimento?
 
-7.  Assicuratevi che altre persone possano visitare il vostro sito web utilizzando un browser. Creare una regola per bloccare il traffico http da hq.example.org al computer locale.
+6. Abilitare e avviare il server web sul serverXY.
 
-### Esercizio 3
+7. Assicuratevi che altre persone possano visitare il vostro sito web utilizzando un browser. Creare una regola per bloccare il traffico http da hq.example.org al computer locale.
+
+### Exercise 3
 
 Basi sull'Inoltro del Pacchetto
 
@@ -377,7 +390,6 @@ v. L'interfaccia eth1 ha un indirizzo IP di 10.0.0.z con una maschera di rete di
 
 vi. Di aver completato con successo il "Laboratorio 2" e di aver compreso i concetti di base in esso contenuti.
 
-
 ServerPR
 
 Si fanno le seguenti ipotesi sul sistema del partner.
@@ -396,35 +408,39 @@ Le consuete icone per serverXY e serverPR sono state sostituite con le icone di 
 
 #### Per creare la regola di inoltro
 
-1.  Assicurarsi che la rete sia cablata fisicamente come illustrato sopra.
+1. Assicurarsi che la rete sia cablata fisicamente come illustrato sopra.
 
 2. Assegnare a tutte le interfacce l'indirizzo IP, la netmask e il gateway appropriati.
 
-3.  Pulire tutte le regole di iptables attualmente caricate.
+3. Pulire tutte le regole di iptables attualmente caricate.
 
     !!! note "Nota"
    
         Eliminare le tabelle non è sempre essenziale od obbligatorio. Avrete notato che all'inizio di alcuni degli esercizi svolti finora, abbiamo specificato che è necessario pulire le tabelle esistenti. Questo per garantire che si parta da zero e che non ci siano regole errate nascoste da qualche parte nelle tabelle che potrebbero non funzionare correttamente. Normalmente si possono caricare centinaia di regole contemporaneamente, con funzioni diverse.
 
-4.  Chiedete al vostro partner del serverPR di provare a pingare 172.16.0.100 (hq.example.org); l'operazione dovrebbe fallire perché ora siete il gateway predefinito del serverPR e *non avete* ancora abilitato il routing sul vostro sistema.
+4. Chiedete al vostro partner del serverPR di provare a pingare 172.16.0.100 (hq.example.org); l'operazione dovrebbe fallire perché ora siete il gateway predefinito del serverPR e *non avete* ancora abilitato il routing sul vostro sistema.
 
-5.  Come root sul serverXY digitare:
+5. Come root sul serverXY digitare:
 
-    ```
+    ```bash
     [root@serverXY root]# *iptables --table  nat  -A  POSTROUTING -o eth0  -j  MASQUERADE*
     ```
 
-6.  Ripetere ora il passaggio 4. Successo o fallimento?
+6. Ripetere ora il passaggio 4.
 
-7.  Quanto sopra dovrebbe essere fallito. Occorre anche abilitare l'inoltro dei pacchetti nel kernel in esecuzione. Digitare:
+    !!! question "Domanda"
+   
+        Successo o fallimento?
 
-    ```
+7. Quanto sopra dovrebbe essere fallito. Occorre anche abilitare l'inoltro dei pacchetti nel kernel in esecuzione. Digitare:
+
+    ```bash
     [root@serverXY root]#  *echo 1   >   /proc/sys/net/ipv4/ip_forward*
     ```
 
-8.  Per rendere permanente la modifica al kernel tra un riavvio e l'altro, creare la voce seguente nel file "/etc/sysctl.conf":
+8. Per rendere permanente la modifica al kernel tra un riavvio e l'altro, creare la voce seguente nel file "/etc/sysctl.conf":
 
-    ```
+    ```bash
     net.ipv4.ip_forward = 0
     ```
 
@@ -436,31 +452,28 @@ Per evitare ciò, è necessario un meccanismo per scrivere o salvare le regole t
 
 1. Usate il comando `iptables-save` per salvare tutte le modifiche al file /etc/sysconfig/iptables. Digitare:
 
-    ```
+    ```bash
     [root@serverXY root]# *iptables-save   >   /etc/sysconfig/iptables*
     ```
-
 
     !!! tip "Suggerimento"
 
      Le cose che si possono fare con `iptables` sono limitate solo dalla propria immaginazione. In questo laboratorio abbiamo appena scalfito la superficie. Speriamo di aver scalfito abbastanza la superficie per permettervi di dare sfogo alla vostra immaginazione.
 
-# Punti Aggiuntivi
+## Punti extra
 
-1. Quale opzione è necessaria per ottenere una versione più dettagliata di questo comando? *iptables -L  -t   nat* ?
+Ecco alcuni modi aggiuntivi per esplorare `iptables`:
 
-2. Qual è il comando per visualizzare le regole della concatenazione OUTPUT?
+!!! question "Domande e compiti:"
 
-3. Su quale porta è in "normalmente" in ascolto il servizio ftp?
+    1. Quale opzione è necessaria per ottenere una versione più dettagliata di questo comando? *iptables -L  -t   nat* ?
 
-4. Qual è il comando per creare una concatenazione chiamata "mynat-chain" nella tabella nat?
+    2. Qual è il comando per visualizzare le regole della concatenazione OUTPUT?
 
-5. Fate una ricerca online ed elencate i nomi di alcuni strumenti o applicazioni di facile utilizzo che possono essere usati per gestire il sottosistema firewall sui sistemi basati su Linux.
+    3. Su quale porta è in ascolto "normalmente" il servizio ftp?
 
-6a. Creare una regola `iptables` per bloccare il traffico http da hq.example.org alla macchina locale.
+    4. Qual è il comando per creare una concatenazione chiamata "mynat-chain" nella tabella nat?
 
-6b. Qual è la nota porta di ascolto dei server web?
+    5. Fate una ricerca online ed elencate i nomi di alcuni strumenti o applicazioni di facile utilizzo che possono essere usati per gestire il sottosistema firewall sui sistemi basati su Linux.
 
-6c. Scrivete il comando completo per raggiungere questo obiettivo?
-
-6d. Convertire o tradurre il comando che hai scritto qui sopra nel suo equivalente in parole povere?
+    6. Creare una regola `iptables` per bloccare il traffico http da hq.example.org alla macchina locale. Qual è la porta più conosciuta su cui ascoltano i server web? Scrivete il comando completo per raggiungere questo obiettivo? Convertite o traducete il comando che scritto sopra nel suo equivalente in linguaggio semplice.
