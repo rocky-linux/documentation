@@ -905,12 +905,16 @@ usage: scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file]
     !!! Question
 
         What is the difference between the variations of these 2 commands and under what circumstances will they have the same result?
-        
-        - scp me@serverPR:/home/me/myexport.
+    
+        ```bash
+        scp me@serverPR:/home/me/myexport .
+        ```
 
         and
 
-        - scp serverPR:/home/me/myexport.
+        ```bash
+        scp serverPR:/home/me/myexport .
+        ```
 
 5. What is the command to copy over all the files under “/home/me/.gnugp/” on serverPR?
 
@@ -930,11 +934,15 @@ usage: scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file]
 
         What is the slight but significant difference between the variations of the 2 previous commands? And what is the result of each command?
         
-        - `scp -r  ying@localhost:/home/ying/  ying_home_directory_on_serverPR`
-        
+        ```bash
+        scp -r  ying@localhost:/home/ying/  ying_home_directory_on_serverPR
+        ```
+
         and
         
-        -  `scp -r  ying@localhost:/home/ying  ying_home_directory_on_serverPR`
+        ```bash
+        scp -r  ying@localhost:/home/ying  ying_home_directory_on_serverPR
+        ```
 
 8. Use `ls -alR` command to view a listing of the contents of the 2 previous steps. Type:
 
