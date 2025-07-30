@@ -977,7 +977,7 @@ The public is stored in a file with the same file name as the private key but wi
     Created directory '/home/ying/.ssh'.
     ```
 
-    You'll be prompted twice to enter a passphrase. Input a good and reasonably difficult to guess passphrase. Press <kbd>ENTER</kbd> after each prompt.
+    You'll be prompted twice to enter a passphrase. Input a good and reasonably difficult to guess passphrase. Press ++enter++ after each prompt.
 
     ```bash
     Enter passphrase (empty for no passphrase):     *****
