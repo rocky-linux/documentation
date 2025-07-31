@@ -1,5 +1,5 @@
 - - -
-author: Wale Soyinka contributors: Steven Spencer, Ganna Zhyrnova tested on: Tutte le versioni tags:
+author: Wale Soyinka contributors: Steven Spencer, Ganna Zhyrnova tested on: All Versions tags:
   - lab exercise
   - Linux Kernel
   - compile
@@ -67,7 +67,7 @@ La scelta di quando rendere disponibile una particolare funzionalità come modul
 
 In genere esistono tre metodi per gestire il kernel nelle distribuzioni Linux. Questi sono:
 
-1. Utilizzando la versione preconfezionata del kernel fornita dal produttore della distribuzione.  Ad esempio utilizzando kernel-<version>.*.rpm. È la soluzione più sicura, più semplice e preferibile
+1. Utilizzando la versione preconfezionata del kernel fornita dal produttore della distribuzione.  ad esempio, utilizzando ` kernel-<versione>`.*.rpm. È la soluzione più sicura, più semplice e preferibile
 
 2. Tramite il patching. Utilizzando file di patch come - patch-kernel.version.gz.
 
@@ -88,13 +88,13 @@ In questo esercizio si aggiornerà direttamente il kernel utilizzando l'applicaz
 2. Eseguire l'utilità `rpm` per elencare tutti i pacchetti del kernel attualmente installati sul sistema. Digitare:
 
     ``` { .sh data-copy="rpm -q kernel" }
-    $ rpm -q kernel
+    rpm -q kernel
     ```
 
 3. Eseguire l'utilità `uname` per visualizzare alcune informazioni sul kernel in esecuzione. Digitare:
 
     ``` { .bash data-copy="uname --kernel-release" }
-    $ uname --kernel-release
+    uname --kernel-release
 
     5.*.el9_8.x86_64 
     ```
@@ -104,8 +104,9 @@ In questo esercizio si aggiornerà direttamente il kernel utilizzando l'applicaz
 4. Usare `dnf` per scaricare l'ultimo pacchetto del kernel disponibile dal repository ufficiale dei pacchetti Rocky Linux. Digitare:
 
     ```bash
-    $ dnf download kernel
+    dnf download kernel
     ```
+
     Ora si dovrebbe avere un pacchetto RPM con un nome simile a kernel-*.x86_64.rpm salvato nella propria PWD.
 
 5. Usare di nuovo `rpm` per interrogare il pacchetto scaricato e ottenere ulteriori informazioni su di esso. Digitare:
@@ -129,10 +130,10 @@ In questo esercizio si aggiornerà direttamente il kernel utilizzando l'applicaz
 7. Utilizzare `dnf` per scaricare le dipendenze necessarie segnalate nel precedente messaggio di errore. Digitare:
 
     ```bash
-    $ dnf download kernel-core-uname-r kernel-modules-uname-r
+    dnf download kernel-core-uname-r kernel-modules-uname-r
     ```
 
-8.  Eseguite di nuovo `rpm` con l'opzione test per vedere se il pacchetto del kernel può essere aggiornato. Digitare:
+8. Eseguite di nuovo `rpm` con l'opzione test per vedere se il pacchetto del kernel può essere aggiornato. Digitare:
 
     ```bash
     $ rpm --test  -Uvh kernel-*.rpm
@@ -143,10 +144,10 @@ In questo esercizio si aggiornerà direttamente il kernel utilizzando l'applicaz
 
     Questa volta tutto sembra a posto!
 
-9.  Infine, utilizzare `rpm` per installare il pacchetto kernel con tutte le sue dipendenze. Digitare:
+9. Infine, utilizzare `rpm` per installare il pacchetto kernel con tutte le sue dipendenze. Digitare:
 
     ```bash
-    $ sudo rpm  -ivh kernel-*.rpm
+    sudo rpm  -ivh kernel-*.rpm
     ```
 
 10. Usare `rpm` per elencare tutti i pacchetti kernel installati sul sistema.
@@ -155,7 +156,7 @@ In questo esercizio si aggiornerà direttamente il kernel utilizzando l'applicaz
     
          Cosa c'è di diverso tra l'output del comando rpm -q kernel, prima e dopo l'installazione del nuovo kernel?
 
-12. Abbiamo finito di usare RPM per gestire direttamente i pacchetti del kernel sul sistema. Disinstallare l'ultimo pacchetto kernel scaricato e installato. A tale scopo, è necessario specificare le informazioni esatte e corrette su nome-epoca-versione-rilascio-architettura (NEVRA) del kernel e delle sue dipendenze associate che si desidera disinstallare. Digitare:
+11. Abbiamo finito di usare RPM per gestire direttamente i pacchetti del kernel sul sistema. Disinstallare l'ultimo pacchetto kernel scaricato e installato. A tale scopo, è necessario specificare le informazioni esatte e corrette su nome-epoca-versione-rilascio-architettura (NEVRA) del kernel e delle sue dipendenze associate che si desidera disinstallare. Digitare:
 
     ```bash
     [root@localhost ~]# rpm -e \
@@ -220,16 +221,16 @@ In questo esercizio si costruirà un nuovo kernel dai sorgenti, configurandolo, 
 
 1. Accedere al sistema come utente con privilegi di amministrazione.
 
-2.  Installare gli strumenti di sviluppo necessari. Digitare:
+2. Installare gli strumenti di sviluppo necessari. Digitare:
 
     ```bash
-    $ sudo dnf -y groupinstall 'Development Tools'
+    sudo dnf -y groupinstall 'Development Tools'
     ```
 
 3. Installare le librerie e gli strumenti necessari. Digitare:
 
     ```bash
-    $ sudo dnf -y install ncurses-devel bc openssl-devel elfutils-libelf-devel python3 dwarves
+    sudo dnf -y install ncurses-devel bc openssl-devel elfutils-libelf-devel python3 dwarves
     ```
 
 4. Scaricare l'ultimo sorgente del kernel digitando:
@@ -241,7 +242,7 @@ In questo esercizio si costruirà un nuovo kernel dai sorgenti, configurandolo, 
 
     Si noti che linux-6.5.7.tar.xz è l'ultimo kernel disponibile al momento in cui scriviamo. Sostituite linux-6.5.7.tar.xz o linux-6.*.tar.xz con la versione del kernel che avete scelto per seguire questo esercizio.
 
-6. Scompattate il tarball del kernel nella vostra pwd. Digitare:
+5. Scompattate il tarball del kernel nella vostra pwd. Digitare:
 
     ```bash
     [root@localhost ~]# tar xvJf linux-6.*.tar.xz
@@ -249,34 +250,35 @@ In questo esercizio si costruirà un nuovo kernel dai sorgenti, configurandolo, 
 
     Il comando tar creerà una nuova directory chiamata: "linux-6.*" sotto la propria PWD.
 
-7. Elencare il contenuto della nuova directory dei sorgenti del kernel
+6. Elencare il contenuto della nuova directory dei sorgenti del kernel
 
-8. Passare (cd) alla directory dei sorgenti del kernel. Digitare:
-
-    ```bash
-    $ cd linux-6.5.7
-    ```
-
-9. Pulire (preparare) l'ambiente di compilazione del kernel usando il comando `make mrproper`. Digitare:
+7. Passare (cd) alla directory dei sorgenti del kernel. Digitare:
 
     ```bash
-    $ make  O=~/build/kernel mrproper
+    cd linux-6.5.7
     ```
 
-10. Copiare e rinominare il file di configurazione preesistente della directory /boot nel nostro ambiente di creazione del kernel:
+8. Pulire (preparare) l'ambiente di compilazione del kernel usando il comando `make mrproper`. Digitare:
 
     ```bash
-    $ cp /boot/config-`uname -r` ~/build/kernel/.config
+    make  O=~/build/kernel mrproper
     ```
 
-11. Avviare l'utilità di configurazione grafica del kernel. Digitare:
+9. Copiare e rinominare il file di configurazione preesistente della directory /boot nel nostro ambiente di creazione del kernel:
 
     ```bash
-    $ make O=~/build/kernel menuconfig
+    cp /boot/config-`uname -r` ~/build/kernel/.config
     ```
+
+10. Avviare l'utilità di configurazione grafica del kernel. Digitare:
+
+    ```bash
+    make O=~/build/kernel menuconfig
+    ```
+
     Verrà visualizzata una schermata simile a questa:
 
-    ![Schermata Configurazione del Kernel File Systems](images/lab2-il01-kernel.png)
+    ![Kernel Configuration File Systems screen](images/lab2-il01-kernel.png)
 
     !!! Note "Nota"
 
@@ -288,20 +290,20 @@ In questo esercizio si costruirà un nuovo kernel dai sorgenti, configurandolo, 
     
      3. Infine, nella parte inferiore della schermata vengono visualizzate le azioni/opzioni che l'utente può scegliere.
 
-12. A scopo dimostrativo, si aggiungerà il supporto per il filesystem Btrfs al nuovo kernel. Nella schermata di configurazione principale, utilizzare i tasti freccia per spostarsi ed evidenziare la voce File system. Con File system selezionato, premere <kbd>INVIO</kbd> per visualizzare il sottomenu o le voci secondarie di File system.
+11. A scopo dimostrativo, si aggiungerà il supporto per il filesystem Btrfs al nuovo kernel. Nella schermata di configurazione principale, utilizzare i tasti freccia per spostarsi ed evidenziare la voce File system. Con File system selezionato, premere ++enter++ per visualizzare il menu secondario o le voci secondarie di File system.
 
     Nella sezione File System, utilizzare i tasti freccia per spostarsi su *Btrfs filesystem support*.
 
-13. Con *Btrfs filesystem support* evidenziato, premere `y` per includere il supporto per `btrfs` nel kernel personalizzato. Al termine, accanto all'opzione evidenziata dovrebbe comparire il simbolo dell'asterisco (*). La schermata finale dovrebbe assomigliare a quella mostrata qui:
+12. Con *Btrfs filesystem support* evidenziato, premere `y` per includere il supporto per `btrfs` nel kernel personalizzato. Al termine, accanto all'opzione evidenziata dovrebbe comparire il simbolo dell'asterisco (*). La schermata finale dovrebbe assomigliare a quella mostrata qui:
 
-    ![Schermata Configurazione del Kernel File Systems](images/lab2-il02-kernel.png)
+    ![Kernel Configuration File Systems screen](images/lab2-il02-kernel.png)
 
-14. Tornare alla schermata principale di configurazione del kernel premendo due volte <kbd>ESC</kbd> sulla tastiera.
+13. Tornare alla schermata principale di configurazione del kernel premendo due volte ++escape++ sulla tastiera.
 
-15. Uscire dall'applicazione di configurazione del kernel premendo nuovamente due volte <kbd>ESC</kbd> sulla tastiera. L'uscita dal configuratore del kernel comporta il salvataggio delle modifiche nel file .config nella radice dell'albero dei sorgenti del kernel.
+14. Uscire dall'applicazione di configurazione del kernel premendo nuovamente due volte ++escape++ sulla tastiera. L'uscita dal configuratore del kernel comporta il salvataggio delle modifiche nel file .config nella radice dell'albero dei sorgenti del kernel.
 
-16. Viene visualizzata una finestra di dialogo che richiede di salvare la nuova configurazione. Assicurarsi che sia selezionato Yes e premere <kbd>ENTER</kbd>.
-17. Dopo l'uscita dell'utilità di configurazione del kernel, si tornerà alla propria shell, all'interno dell'albero dei sorgenti del kernel.
+15. Viene visualizzata una finestra di dialogo che richiede di salvare la nuova configurazione. Assicurarsi che sia selezionato Yes e premere ++enter++.
+16. Dopo l'uscita dall'utilità di configurazione del kernel, si tornerà alla propria shell, all'interno dell'albero dei sorgenti del kernel.
 
     !!! Tip "Suggerimento"
     
@@ -314,47 +316,49 @@ In questo esercizio si costruirà un nuovo kernel dai sorgenti, configurandolo, 
         CONFIG_BTRFS_FS=y
         ```
 
-18. È possibile ottimizzare il tempo di compilazione del kernel e ridurre la quantità di spazio su disco utilizzato durante la fase di compilazione del kernel. Impostando `CONFIG_DEBUG_INFO=no`, l'immagine del kernel risultante NON includerà le informazioni di debug, risultando così più piccola. Questo rimuove i simboli di debug dal kernel e dai moduli creati. Digitare:
+17. È possibile ottimizzare il tempo di compilazione del kernel e ridurre la quantità di spazio su disco utilizzato durante la fase di compilazione del kernel. Impostando `CONFIG_DEBUG_INFO=no`, l'immagine del kernel risultante NON includerà le informazioni di debug, risultando così più piccola. Questo rimuove i simboli di debug dal kernel e dai moduli creati. Digitare:
 
-    ```bash 
+    ```bash
     $ ./scripts/config --file ~/build/kernel/.config  -d DEBUG_INFO \
       -d DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT -d DEBUG_INFO_DWARF4  \
       -d DEBUG_INFO_DWARF5 -e CONFIG_DEBUG_INFO_NONE
     ```
 
-19. Completare un altro passo importante per i kernel personalizzati sulla distribuzione Rocky Linux. Digitare:
+18. Completare un altro passo importante per i kernel personalizzati sulla distribuzione Rocky Linux. Digitare:
 
     ```bash
-    $ sed -ri '/CONFIG_SYSTEM_TRUSTED_KEYS/s/=.+/=""/g' ~/build/kernel/.config 
+    sed -ri '/CONFIG_SYSTEM_TRUSTED_KEYS/s/=.+/=""/g' ~/build/kernel/.config 
     ```
 
-20. Aggiungere una semplice personalizzazione al nuovo kernel, per distinguerlo più facilmente dagli altri kernel stock. Per questo, si può usare l'utilità `sed` per modificare il Makefile sul posto. Digitare:
+19. Aggiungere una semplice personalizzazione al nuovo kernel, per distinguerlo più facilmente dagli altri kernel stock. Per questo, si può usare l'utilità `sed` per modificare il Makefile sul posto. Digitare:
 
     ```bash
-    $ sed  -i 's/^EXTRAVERSION.*/EXTRAVERSION = -custom/'  Makefile
+    sed  -i 's/^EXTRAVERSION.*/EXTRAVERSION = -custom/'  Makefile
     ```
 
-21. Verificare la versione completa del kernel appena personalizzato passando il target `kernelversion` al comando `make`. Digitare:
+20. Verificare la versione completa del kernel appena personalizzato passando il target `kernelversion` al comando `make`. Digitare:
 
     ```bash
-    $ make O=~/build/kernel kernelversion
+    make O=~/build/kernel kernelversion
     ```
 
     OUTPUT:
-    ```
+
+    ```bash
     make[1]: Entering directory '/home/rocky/build/kernel'
     6.5.7-custom
     make[1]: Leaving directory '/home/rocky/build/kernel'
     ```
 
-22. Siete pronti per compilare il kernel. Digitare:
+21. Siete pronti per compilare il kernel. Digitare:
 
     ```bash
-    $ sudo make  O=~/build/kernel -j $(nproc)
+    sudo make  O=~/build/kernel -j $(nproc)
     ```
 
     OUTPUT:
-    ```
+
+    ```bash
     make[1]: Entering directory '/root/build/kernel'
     SYNC    include/config/auto.conf.cmd
     GEN     Makefile
@@ -362,53 +366,53 @@ In questo esercizio si costruirà un nuovo kernel dai sorgenti, configurandolo, 
     ...
     ```
 
-23. Dopo che la compilazione è stata completata con successo, si otterrà il kernel finito, memorizzato qui:
+22. Dopo che la compilazione è stata completata con successo, si otterrà il kernel finito, memorizzato qui:
 
     ```bash
     ~/build/kernel/arch/x86/boot/bzImage
     ```
 
-24. Installare le parti del kernel configurate come moduli. Digitare:
+23. Installare le parti del kernel configurate come moduli. Digitare:
 
     ```bash
-    $ sudo make O=~/build/kernel modules_install
+    sudo make O=~/build/kernel modules_install
     ```
 
-25. Dopo aver compilato il kernel, è il momento di installarlo. Digitare:
+24. Dopo aver compilato il kernel, è il momento di installarlo. Digitare:
 
     ```bash
-    $ sudo cp ~/build/kernel/arch/x86/boot/bzImage  \
+    sudo cp ~/build/kernel/arch/x86/boot/bzImage  \
     /boot/vmlinuz-<kernel-version>
     ```
 
-    Sostituire <kernel-version> con il numero di versione del kernel personalizzato. Per il kernel di esempio utilizzato in questa guida, il nome del file sarà vmlinuz-6.*-custom. Ecco il comando esatto per questo esempio:
+    Sostituire `<kernel-version>` con il numero di versione del kernel personalizzato. Per il kernel di esempio utilizzato in questa guida, il nome del file sarà vmlinuz-6.*-custom. Ecco il comando esatto per questo esempio:
 
     ```bash
     sudo cp ~/build/kernel/arch/x86/boot/bzImage  /boot/vmlinuz-6.5.7-custom
     ```
 
-26. Copiare e rinominare il file System.map corrispondente nella directory /boot utilizzando la stessa convenzione di denominazione:
+25. Copiare e rinominare il file System.map corrispondente nella directory /boot utilizzando la stessa convenzione di denominazione:
 
     ```bash
-    $ sudo cp -v ~/build/kernel/System.map /boot/System.map-6.5.7-custom
+    sudo cp -v ~/build/kernel/System.map /boot/System.map-6.5.7-custom
     ```
 
-27. Utilizzare l'utilità `kernel-install` per completare il passaggio del file. Digitare:
+26. Utilizzare l'utilità `kernel-install` per completare il passaggio del file. Digitare:
 
     ```bash
-    $ sudo kernel-install add  6.5.7-custom /boot/vmlinuz-6.5.7-custom
+    sudo kernel-install add  6.5.7-custom /boot/vmlinuz-6.5.7-custom
     ```
 
-28. L'utilità `kernel-install` crea una nuova voce di avvio nel file di configurazione del boot loader. Per i sistemi basati su EFI è possibile cercare in /boot/loader/entries/ le voci corrispondenti.
+27. L'utilità `kernel-install` crea una nuova voce di avvio nel file di configurazione del boot loader. Per i sistemi basati su EFI è possibile cercare in /boot/loader/entries/ le voci corrispondenti.
 
-29. Eseguire il programma grubby per visualizzare il kernel predefinito del server. Digitare:
-
-    ```
-    $ sudo grubby --default-kernel
-    ```
-
-30. Tutto fatto. È il momento della verità. Il kernel più recente sarà probabilmente configurato come nuovo kernel predefinito per l'avvio. Se si ha accesso alla console del sistema, è possibile riavviare il sistema e selezionare il nuovo kernel personalizzato nel menu di avvio di GRUB. Se tutto va bene dopo il riavvio, si può verificare che il sistema stia eseguendo il kernel personalizzato eseguendo il comando `uname` in questo modo:
+28. Eseguire il programma grubby per visualizzare il kernel predefinito del server. Digitare:
 
     ```bash
-    $ uname -r
+    sudo grubby --default-kernel
+    ```
+
+29. Tutto fatto. È il momento della verità. Il kernel più recente sarà probabilmente configurato come nuovo kernel predefinito per l'avvio. Se si ha accesso alla console del sistema, è possibile riavviare il sistema e selezionare il nuovo kernel personalizzato nel menu di avvio di GRUB. Se tutto va bene dopo il riavvio, si può verificare che il sistema stia eseguendo il kernel personalizzato eseguendo il comando `uname` in questo modo:
+
+    ```bash
+    uname -r
     ```

@@ -304,9 +304,9 @@ Il partizionamento di un disco consente di considerarlo come un gruppo di aree d
 
 Le partizioni facilitano inoltre i backup e aiutano a limitare e circoscrivere le aree potenzialmente problematiche.
 
-Lo spazio sul disco rigido non è infinito e uno dei compiti dell'amministratore è gestire lo spazio limitato disponibile. Ad esempio, un modo semplice per limitare l'area di archiviazione totale su un disco in cui gli utenti possono memorizzare i propri file personali è quello di creare una partizione separata per la home directory degli utenti (naturalmente si possono usare anche le quote).
+Lo spazio sul disco rigido non è infinito e uno dei compiti dell'amministratore è gestire lo spazio limitato disponibile. Ad esempio, un modo semplice per limitare l'area di archiviazione totale su un disco in cui gli utenti possono memorizzare i propri file personali è quello di creare una partizione separata per la home directory degli utenti (si possono usare anche le quote).
 
-#### Per esplorare i dispositivi di archiviazione a blocchi
+### Per esplorare i dispositivi di archiviazione a blocchi
 
 Si utilizzerà l'utilità `fdisk`
 
@@ -339,7 +339,7 @@ Si utilizzerà l'utilità `fdisk`
 
     Dall'output di esempio qui sopra, sotto la colonna Used, si può vedere che la partizione primaria ( /dev/vda1) su cui è montata la nostra directory root (/) è completamente occupata (100%).
 
-    Naturalmente il risultato potrebbe essere diverso se si dispone di un disco di dimensioni diverse o se non si è seguito lo schema di partizionamento utilizzato durante l'installazione del sistema operativo.
+    Il risultato potrebbe essere diverso se si dispone di un disco di dimensioni diverse o se non si è seguito lo schema di partizionamento utilizzato durante l'installazione del sistema operativo.
 
 #### Per creare un dispositivo di blocco [fake]
 
@@ -402,7 +402,7 @@ Non vogliamo che il disco rigido locale del sistema venga accidentalmente altera
     I/O size (minimum/optimal): 512 bytes / 512 bytes
     ```
 
-#### Per creare le partizioni
+#### Creare le partizioni
 
 1. Si creerà una nuova partizione utilizzando il programma `fdisk`. `fdisk` viene eseguito in modo interattivo, quindi vi verranno proposte molte domande e risposte per completare alcune operazioni specifiche.
 
@@ -469,13 +469,13 @@ Non vogliamo che il disco rigido locale del sistema venga accidentalmente altera
     Partition number (1-4, default 1): 1
     ```
 
-6. Accettare il valore predefinito per il primo settore del dispositivo a blocchi premendo <kbd>INVIO</kbd>:
+6. Accettare il valore predefinito per il primo settore del dispositivo a blocchi premendo ++enter++:
 
     ```bash
     First sector (2048-20971519, default 2048):
     ```
 
-7. Accettare il valore predefinito per l'ultimo settore del dispositivo a blocchi premendo <kbd>INVIO</kbd>:
+7. Accettare il valore predefinito per l'ultimo settore del dispositivo a blocchi premendo ++enter++:
 
     ```bash
     Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-20971519, default 20971519):
@@ -569,8 +569,10 @@ Nei passi successivi creeremo un nuovo dispositivo di loop appoggiato a un altro
     ```bash
     [root@localhost ~]# losetup
     ```
-    **RISULTATO**
-    ```
+
+    **OUTPUT**
+
+    ```bash
     NAME       SIZELIMIT OFFSET AUTOCLEAR RO BACK-FILE                  DIO LOG-SEC
     /dev/loop1         0      0         0  0 /tmp/10G-fake-lvm-disk.img   0     512
     /dev/loop0         0      0         0  0 /tmp/10G-fake-disk.img       0     512
@@ -589,14 +591,14 @@ Nei passi successivi creeremo un nuovo dispositivo di loop appoggiato a un altro
     ...<SNIP>...
     ```
 
-2. Inizializzare il nuovo dispositivo a blocchi /dev/loop1 (10G-fake-lvm-disk.img) come volume fisico. Utilizzare l'utilità `pvcreate`. Digitare:
+6. Inizializzare il nuovo dispositivo a blocchi /dev/loop1 (10G-fake-lvm-disk.img) come volume fisico. Utilizzare l'utilità `pvcreate`. Digitare:
 
     ```bash
     [root@localhost ~]# pvcreate /dev/loop1
     Physical volume "/dev/loop1" successfully created.
     ```
 
-3. Eseguire il comando `pvdisplay` per visualizzare le modifiche.
+7. Eseguire il comando `pvdisplay` per visualizzare le modifiche.
 
 #### Per assegnare un volume fisico a un gruppo di volumi
 
@@ -609,8 +611,10 @@ Aggiungerete il volume fisico (PV) `/dev/loop1` che è stato preparato e creato 
     ```bash
     [root@localhost ~]# vgdisplay
     ```
-    **RISULTATO**
-    ```
+
+    **OUTPUT**
+
+    ```bash
     --- Volume group ---
     VG Name               rl
     System ID
@@ -637,18 +641,22 @@ Aggiungerete il volume fisico (PV) `/dev/loop1` che è stato preparato e creato 
     ```bash
     [root@localhost ~]# vgextend rl /dev/loop1
     ```
-    **RISULTATO**
-    ```
+
+    **OUTPUT**
+
+    ```bash
     Volume group "rl" successfully extended
     ```
 
-4. Eseguire nuovamente il comando `vgdisplay` per visualizzare le modifiche. Digitare:
+3. Eseguire nuovamente il comando `vgdisplay` per visualizzare le modifiche. Digitare:
 
     ```bash
     [root@localhost ~]# vgdisplay
     ```
-    **RISULTATO**
-    ```
+
+    **OUTPUT**
+
+    ```bash
     --- Volume group ---
     VG Name               rl
     System ID
@@ -668,39 +676,22 @@ Aggiungerete il volume fisico (PV) `/dev/loop1` che è stato preparato e creato 
 
      Utilizzando l'output di `vgdisplay`, annotare le modifiche apportate al sistema. Quali sono i nuovi valori di "Free PE / Size"?
 
-#### Per rimuovere un LV, un VG e un PV
-
-Questa sezione spiega come eliminare il PV `/dev/loop1` assegnato al VG `rl` presente nella sezione precedente.
-
-1. Rimuovere il volume logico denominato scratch2. Digitare:
+4. Per rimuovere il nuovo PV (/dev/loop1) dal gruppo di volumi `rl` esistente. Utilizzare il comando `vgreduce`, digitando:
 
     ```bash
-    [root@localhost ~]# lvremove -f  /dev/rl/scratch2
-    Logical volume "scratch2" successfully removed.
+    [root@localhost ~]# vgreduce rl /dev/loop1
     ```
 
-2. Rimuovere il volume logico scratch3, eseguendo:
+    **OUTPUT**
 
     ```bash
-    [root@localhost ~]# lvremove -f  /dev/rl/scratch3
+    Removed "/dev/loop0" from volume group "rl"
     ```
 
-3. Dopo aver rimosso i volumi interessati, è possibile ridurre le dimensioni del VG `rl` per renderlo coerente. Digitate:
-
-    ```bash
-    [root@localhost ~]# vgreduce --removemissing  rl
-    ```
-
-4. Rimuovere le etichette LVM dal PV `/dev/loop1`. Digitare:
-
-    ```bash
-    [root@localhost ~]# pvremove /dev/loop1
-    Labels on physical volume "/dev/loop1" successfully wiped.
-    ```
 
 #### Per creare un nuovo gruppo di volumi
 
-In questa sezione verrà creato un nuovo gruppo di volumi autonomo denominato "scratch".  Lo scratch VG otterrà il suo spazio interamente dal dispositivo pseudo-blocco `/dev/loop1`.
+In questa sezione verrà creato un nuovo gruppo di volumi autonomo denominato "scratch".  Il VG scratch otterrà il suo spazio interamente dal dispositivo pseudo-blocco `/dev/loop1`.
 
 1. Creare il nuovo spazio `scratch`. Digitare:
 
@@ -730,9 +721,10 @@ In questa sezione verrà creato un nuovo gruppo di volumi autonomo denominato "s
     ...<SNIP>...
     ```
 
-    !!! question "Domanda" 
+    !!! question "Domande"
 
-     Esaminate l'output di `vgdisplay`. Quali sono i valori di "Free PE / Size"? E come sono diversi questi valori rispetto alla sezione precedente, quando si è aggiunto il PV `/dev/loop1` al gruppo di volumi `rl` esistente?
+     Esaminare l'output di `vgdisplay`. Quali sono i valori di "Free PE / Size"? E come sono diversi questi valori rispetto alla sezione precedente, quando si è aggiunto il PV <code>/dev/loop1 al gruppo di volumi rl esistente?
+    </code>
 
 #### Per creare un volume logico
 
@@ -744,7 +736,7 @@ Con lo spazio libero aggiuntivo che è stato possibile aggiungere al gruppo di v
     [root@localhost ~]# lvdisplay
     ```
 
-    !!! question "Domanda"
+    !!! question "Domande"
 
      In base al risultato ottenuto, rispondete alle seguenti domande: 
     
@@ -753,7 +745,6 @@ Con lo spazio libero aggiuntivo che è stato possibile aggiungere al gruppo di v
      2. Quali sono i nomi dei LV?
     
      3. A cosa servono i vari LV nel vostro sistema?
-
 
 2. Utilizzare il comando `lvs` per visualizzare in modo simile i volumi logici, ma questa volta filtrando l'output per mostrare campi specifici. Filtrare per visualizzare i campi lv_name (nome del volume logico), lv_size (dimensione del volume logico), lv_path, vg_name (nome del gruppo di volumi). Digitare:
 
@@ -776,7 +767,7 @@ Con lo spazio libero aggiuntivo che è stato possibile aggiungere al gruppo di v
     Logical volume "scratch2" created.
     ```
 
-4. Creare un secondo volume logico chiamato "scratch3". Questa volta verrà utilizzato tutto lo spazio rimanente disponibile nel gruppo di volumi `scratch`. Digitare:
+4. Creare un secondo volume logico chiamato "scratch3". Questa volta si utilizza tutto lo spazio rimanente disponibile sul gruppo di volumi `scratch`. Digitare:
 
     ```bash
     [root@localhost ~]# lvcreate -l 100%FREE --wipesignatures y --yes --zero y --name scratch3 scratch
@@ -785,13 +776,43 @@ Con lo spazio libero aggiuntivo che è stato possibile aggiungere al gruppo di v
 
 5. Utilizzare nuovamente il comando `lvdisplay` per visualizzare il nuovo LV.
 
+#### Per rimuovere un LV, VG e PV
+
+Questa sezione spiega come eliminare il PV `/dev/loop1` assegnato al VG `rl` esistente nella sezione precedente.
+
+1. Rimuovere il volume logico denominato scratch2. Digitare:
+
+    ```bash
+    [root@localhost ~]# lvremove -f  /dev/rl/scratch2
+    Logical volume "scratch2" successfully removed.
+    ```
+
+2. Rimuovere il volume logico scratch3, eseguendo:
+
+    ```bash
+    [root@localhost ~]# lvremove -f  /dev/rl/scratch3
+    ```
+
+3. Dopo aver rimosso i volumi interessati, è possibile ridurre le dimensioni del VG `rl` per renderlo coerente. Digitare:
+
+    ```bash
+    [root@localhost ~]# vgreduce --removemissing  rl
+    ```
+
+4. Rimuovere le etichette LVM dal PV `/dev/loop1`. Digitare:
+
+    ```bash
+    [root@localhost ~]# pvremove /dev/loop1
+    Labels on physical volume "/dev/loop1" successfully wiped.
+    ```
+
 ## Esercizio 2
 
 Per rendere la partizione tradizionale e i volumi in stile LVM creati in precedenza utilizzabili dal sistema operativo, è necessario che su di essi vengano creati dei file system. La scrittura di un file system su un dispositivo è nota anche come formattazione del disco.
 
 Questo esercizio riguarda la creazione del file system e l'uso di alcuni strumenti comuni per la manutenzione del file system.
 
-#### Per creare un file system VFAT
+### Creare un file system VFAT
 
 Qui si utilizzerà il programma `mke2fs` per creare un file system vFAT sulla nuova partizione /dev/loop0p1.
 
@@ -800,8 +821,10 @@ Qui si utilizzerà il programma `mke2fs` per creare un file system vFAT sulla nu
     ```bash
     [root@localhost ~]# mkfs.vfat /dev/loop0p1
     ```
-    **RISULTATO**
-    ```
+
+    **OUTPUT**
+
+    ```bash
     mkfs.fat 4.*
     ```
 
@@ -810,8 +833,10 @@ Qui si utilizzerà il programma `mke2fs` per creare un file system vFAT sulla nu
     ```bash
     [root@localhost ~]# lsblk -f /dev/loop0
     ```
-    **RISULTATO**
-    ```
+
+    **OUTPUT**
+
+    ```bash
     NAME      FSTYPE LABEL UUID                 MOUNTPOINT
     loop0
     └─loop0p1 vfat         658D-4A90
@@ -839,7 +864,7 @@ Qui si utilizzerà il programma `mke2fs` per creare un file system EXT4 sul nuov
     scratch-scratch2 ext4         6689b6aa****
     ```
 
-#### Per creare un file system XFS
+#### Creare un file system XFS
 
 Qui si utilizzerà il programma `mke2fs` per creare un file system XFS sul nuovo volume scratch3.
 
@@ -857,8 +882,10 @@ Qui si utilizzerà il programma `mke2fs` per creare un file system XFS sul nuovo
     ```bash
     [root@localhost ~]# lsblk -f /dev/scratch/scratch3
     ```
-    **RISULTATO**
-    ```
+
+    **OUTPUT**
+
+    ```bash
     NAME        FSTYPE LABEL UUID         MOUNTPOINT
     scratch-scratch3 xfs          1d1ac306***
     ```
@@ -875,7 +902,7 @@ In questa sede illustreremo l'uso di alcune utilità comuni del filesystem che p
     Maximum mount count:      -1
     ```
 
-    !!! question "Domanda"
+    !!! question "Domande"
 
      1. A cosa serve il "numero massimo di montaggi"?
      2. Qual è il valore del numero massimo di montaggi del volume `root` (/dev/rl/root)?
@@ -924,11 +951,11 @@ Le esercitazioni precedenti hanno illustrato la preparazione di un dispositivo d
 
 Questo esercizio spiegherà come `montare` e `smontare` i file system creati nell'esercizio precedente.
 
-### `mount`
+### comando `mount`
 
 Il comando `mount` è usato per collegare il filesystem creato su un dispositivo alla gerarchia dei file.
 
-#### Per montare un file system VFAT
+#### Montare un file system VFAT
 
 1. Accedere al sistema come utente con privilegi amministrativi.
 
@@ -1102,9 +1129,9 @@ Come amministratore, potete trovare ed eliminare il file incriminato e continuar
 Nel frattempo -
 > L'utente unreasonable colpisce ancora!
 
-#### Per creare il file di grandi dimensioni
+### Per creare il file di grandi dimensioni
 
-**Eseguire questo esercizio dal sistema partner**
+**(Eseguire questo esercizio dal sistema del partner**)
 
 L'utente unreasonable si accorge accidentalmente che sul server sono stati resi disponibili nuovi file system ***scratch*** durante la notte. "È fantastico!", dice a se stesso.
 
@@ -1124,8 +1151,10 @@ Quindi procede a riempire il volume con un file di dimensioni arbitrarie.
     [unreasonable@localhost ~]$ dd if=/dev/zero \
        of=/mnt/2gb-scratch2-volume/LARGE-USELESS-FILE.tar bs=10240
     ```
+
     **OUTPUT**
-    ```
+
+    ```bash
     dd: error writing '/mnt/2gb-scratch2-volume/LARGE-USELESS-FILE.tar': No space left on device
     187129+0 records in
     187128+0 records out
@@ -1138,34 +1167,34 @@ Quindi procede a riempire il volume con un file di dimensioni arbitrarie.
 
 ## Esercizio 5
 
-### Quotas
+### Quote
 
 L'implementazione e l'applicazione delle quote del disco consentono di garantire che il sistema disponga di spazio su disco sufficiente e che gli utenti rimangano nei limiti dello spazio su disco loro assegnato. Prima di implementare le quote è necessario:
 
-* Scegliere le partizioni o i volumi su cui implementare le quote disco.
-* Decidere a quale livello applicare le quote, cioè per utente, per gruppo o per entrambi.
-* Determinare quali saranno i vostri limiti soft e hard.
-* Decidere quali saranno i periodi di tolleranza (cioè se ci saranno).
+- Scegliere le partizioni o i volumi su cui implementare le quote disco.
+- Decidere a quale livello applicare le quote, cioè per utente, per gruppo o per entrambi.
+- Determinare quali saranno i vostri limiti soft e hard.
+- Decidere quali saranno i periodi di tolleranza (cioè se ci saranno).
 
-*Limite Hard*
+#### *Limite Hard*
 
 Il limite hard definisce la quantità massima assoluta di spazio su disco che un utente o un gruppo può utilizzare. Una volta raggiunto questo limite, non è possibile utilizzare altro spazio su disco.
 
-*Limite Soft*
+#### *Limite Soft*
 
-Il limite soft definisce la quantità massima di spazio su disco che può essere utilizzata. Tuttavia, a differenza del limite hard, il limite soft può essere superato per un certo periodo di tempo. Questo periodo è noto come periodo di tolleranza.
+Il limite morbido definisce la quantità massima di spazio su disco che può essere utilizzata. Tuttavia, a differenza del limite hard, il limite soft può essere superato per un certo periodo di tempo. Questo periodo è noto come periodo di tolleranza.
 
-*Periodo di tolleranza*
+#### *Periodo di tolleranza*
 
 Il periodo di tolleranza è il periodo di tempo durante il quale è possibile superare il limite soft. Il periodo di tolleranza può essere espresso in secondi, minuti, ore, giorni, settimane o mesi, dando così all'amministratore del sistema una grande libertà nel determinare quanto tempo concedere agli utenti per far rientrare l'utilizzo del disco al di sotto del proprio soft limit.
 
 Queste sono le fasi di alto livello dell'implementazione delle quote.
 
-* Installazione del software per le quote
-* Modificare il file "/etc/fstab"
-* Rimontare i file system
-* Eseguire quotacheck
-* Assegnare le quote
+- Installazione del software per le quote
+- Modificare il file "/etc/fstab"
+- Rimontare i file system
+- Eseguire quotacheck
+- Assegnare le quote
 
 I comandi da utilizzare sono:
 
@@ -1195,7 +1224,7 @@ quotacheck [-gucbfinvdmMR] [-F <quota-format>] filesystem|-a
 
 `edquota`:
 
-Strumento per modificare le quote utente
+Strumento per la modifica delle quote utente
 
 ```bash
   SYNOPSIS
@@ -1245,7 +1274,7 @@ Strumenti utilizzati per attivare e disattivare le quote del filesystem
 
 #### Per installare il software delle quote
 
-1.  Dopo aver effettuato il login come root, verificare innanzitutto se il pacchetto `quota-*.rpm` è installato sul sistema. Digitare:
+1. Dopo aver effettuato il login come root, verificare innanzitutto se il pacchetto `quota-*.rpm` è installato sul sistema. Digitare:
 
     ```bash
     [root@localhost ~]# rpm -q quota
@@ -1267,8 +1296,10 @@ Strumenti utilizzati per attivare e disattivare le quote del filesystem
     ```bash
     [root@localhost ~]# grep scratch2 /etc/fstab
     ```
+
     **OUTPUT**
-    ```
+
+    ```bash
     /dev/scratch/scratch2  /mnt/2gb-scratch2-volume    ext4     defaults  0  0
     ```
 
@@ -1309,8 +1340,10 @@ Strumenti utilizzati per attivare e disattivare le quote del filesystem
     ```bash
     [root@localhost ~]# cat /proc/mounts  | grep scratch2
     ```
+
     **OUTPUT**
-    ```
+
+    ```bash
     /dev/mapper/rl-scratch2 /mnt/2gb-scratch2-volume ext4 rw,relatime,quota,usrquota,grpquota 0 0
     ```
 
@@ -1332,13 +1365,15 @@ Strumenti utilizzati per attivare e disattivare le quote del filesystem
 
      Scrivete i comandi per `smontare` separatamente un dato filesystem e poi `montarlo` nuovamente?
 
-11. Ora è necessario preparare il file system per supportare le quote. Creare i file delle quote e generare anche la tabella dell'utilizzo attuale del disco per file system. Digitare:
+10. Ora è necessario preparare il file system per supportare le quote. Creare i file delle quote e generare anche la tabella dell'utilizzo attuale del disco per file system. Digitare:
 
     ```bash
     [root@localhost ~]# quotacheck -avcug
     ```
+
     **OUTPUT**
-    ```
+
+    ```bash
     ....
     quotacheck: Scanning /dev/mapper/scratch-scratch2 [/mnt/2gb-scratch2-volume] done
     ...<SNIP>...
@@ -1350,12 +1385,11 @@ Strumenti utilizzati per attivare e disattivare le quote del filesystem
 
      Dopo l'esecuzione del comando precedente si noteranno due nuovi file creati nella directory "/mnt/2gb-scratch2-volume". Elencare qui i file?
 
-
     !!! tip "Suggerimento"
 
      Per ottenere lo stato aggiornato delle quote del file system è necessario eseguire periodicamente il comando `quotacheck -avcug` con le quote disattivate sul file system.
 
-12. Per abilitare le quote utente e di gruppo su tutti i file system specificati nel file "/etc/fstab" digitare:
+11. Per abilitare le quote utente e di gruppo su tutti i file system specificati nel file "/etc/fstab" digitare:
 
     ```bash
     [root@localhost ~]# quotaon -av
@@ -1372,6 +1406,7 @@ Ciò significa che tutti gli utenti per i quali applichiamo la quota non possono
     ```bash
     [root@serverXY  root]# edquota -u me
     ```
+
     Il comando sopra riportato richiama l'editor predefinito con i contenuti sottostanti:
 
     ```bash
@@ -1427,8 +1462,10 @@ Ciò significa che tutti gli utenti per i quali applichiamo la quota non possono
     ```bash
     [root@localhost ~]# repquota /mnt/2gb-scratch2-volume
     ```
+
     **OUTPUT**
-    ```
+
+    ```bash
     *** Report for user quotas on device /dev/mapper/scratch-scratch2
     Block grace time: 00:05; Inode grace time: 7days
                           Block limits                File limits
@@ -1459,8 +1496,10 @@ Ciò significa che tutti gli utenti per i quali applichiamo la quota non possono
     ```bash
     [unreasonable@localhost ~]$ dd if=/dev/zero  of=/mnt/2gb-scratch2-volume/LARGE-USELESS-FILE.tar bs=10240
     ```
+
     **OUTPUT**
-    ```
+
+    ```bash
     ...<SNIP>...
     dd: error writing '/mnt/2gb-scratch2-volume/LARGE-USELESS-FILE.tar': Disk quota exceeded
     10001+0 records in
