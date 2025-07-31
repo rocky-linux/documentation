@@ -1,7 +1,9 @@
 - - -
 author: Wale Soyinka contributors: Steven Spencer, Ganna Zhyrnova tested on: Tutte le versioni tags:
   - lab exercises
-  - bootup, target and service management
+  - bootup management
+  - target management
+  - service management
   - systemd
   - systemctl
 - - -
@@ -9,24 +11,20 @@ author: Wale Soyinka contributors: Steven Spencer, Ganna Zhyrnova tested on: Tut
 
 # Laboratorio 3: Processi di avvio e di messa in servizio
 
-
 ## Obiettivi
-
 
 Dopo aver completato questo laboratorio, sarete in grado di
 
 - controllare manualmente alcuni processi e servizi di avvio
 - controllare automaticamente i servizi
 
-
 Tempo stimato per completare questo laboratorio: 50 minuti
-
 
 ## Panoramica del processo di avvio
 
 Le esercitazioni di questo laboratorio inizieranno dal processo di avvio fino al login dell'utente. Questi passaggi esaminano e cercano di personalizzare alcune parti dei processi di avvio. Le fasi principali del processo di avvio sono:
 
-*Riepilogo dei passaggi*
+### Riepilogo delle fasi
 
 1. l'hardware carica, legge ed esegue il settore di boot
 2. viene eseguito il bootloader (GRUB sulla maggior parte delle distribuzioni Linux)
@@ -34,46 +32,45 @@ Le esercitazioni di questo laboratorio inizieranno dal processo di avvio fino al
 4. il kernel inizializza l'hardware
 5. il kernel monta il file system di root
 6. il kernel esegue /usr/lib/systemd/systemd come PID 1
-7. systemd avvia le unità necessarie e configurate per eseguire il target di avvio predefinito
-8. i programmi getty vengono generati su ciascun terminale definito
-9. getty richiede il login
-10. getty esegue /bin/login come utente effettivo
+7. `systemd` avvia le unità necessarie e configurate per eseguire il target di avvio predefinito
+8. I programmi `getty` vengono generati su ciascun terminale definito
+9. `getty` richiede l'accesso
+10. `getty` esegue /bin/login per autenticare l'utente
 11. login avvia la shell
-
 
 ### `systemd`
 
-systemd è un gestore di sistema e di servizi per i sistemi operativi Linux.
+`systemd` è un gestore di sistemi e servizi per i sistemi operativi Linux.
 
 ### units `systemd`
 
-`systemd` fornisce un sistema di dipendenza tra varie entità chiamate "units". Le units incapsulano vari oggetti necessari per l'avvio e la manutenzione del sistema. La maggior parte delle units viene configurata nei cosiddetti file di configurazione delle units, file di testo semplice in stile ini.
+`systemd` fornisce un sistema di dipendenze tra varie entità chiamate "unit". Le unità incapsulano vari oggetti necessari per l'avvio e la manutenzione del sistema. La maggior parte delle unità viene configurata nei cosiddetti file di configurazione delle unità, file di testo semplice in stile ini.
 
-### Tipi di units di `systemd`
+### Tipi di unità `systemd`
 
-`systemd` dispone dei seguenti 11 tipi di units definite:
+`systemd` definisce i seguenti 11 tipi di unità:
 
-*Service units* avviare e controllare i demoni e i processi che li compongono.
+Le *Service units* avviano e controllano i demoni e i processi che li compongono.
 
-*Socket units* incapsulano nel sistema i socket IPC o di rete locali, utili per l'attivazione basata sui socket.
+Le *Socket units* incapsulano nel sistema i socket IPC o di rete locali, utili per l'attivazione basata su socket.
 
-*Target units* sono utilizzati per raggruppare altre units. Forniscono punti di sincronizzazione riconosciuti durante l'avvio
+Le *Target units* vengono utilizzate per raggruppare altre unità. Forniscono punti di sincronizzazione ben noti durante l'avvio
 
-*Device units* espongono i dispositivi del kernel in systemd e possono essere utilizzati per implementare l'attivazione basata sui dispositivi.
+Le *Device units* espongono i dispositivi del kernel in `systemd` e possono essere utilizzate per implementare l'attivazione basata sul dispositivo.
 
-*Mount units* controllare i punti di mount nel file system
+Le *Mount units* controllano i punti di montaggio nel file system
 
-*Automount units* forniscono funzionalità di automount, per il montaggio on-demand dei file system e per l'avvio in parallelo.
+Le *Automount units* forniscono funzionalità di automount, per il montaggio on-demand dei file system e per l'avvio in parallelo.
 
-*Timer units* sono utili per attivare altre units in base ai timer.
+Le *Timer units* sono utili per attivare altre unità sulla base di timer.
 
-*Swap units* sono molto simili alle units di montaggio e incapsulano partizioni di memoria o file di swap del sistema operativo.
+Le *Swap units* sono molto simili alle unità di montaggio e incapsulano le partizioni o i file di swap della memoria del sistema operativo.
 
-*Path units* può essere usato per attivare altri servizi quando gli oggetti del file system cambiano o vengono modificati.
+Le *Path units* possono attivare altri servizi quando gli oggetti del file system cambiano o vengono modificati.
 
-*Slice units* può essere usato per raggruppare le units che gestiscono i processi del sistema (come le units di servizio e di ambito) in un albero gerarchico per la gestione delle risorse.
+Le *Slice units* possono essere utilizzate per raggruppare le unità che gestiscono i processi di sistema (come le unità di servizio e di ambito) in un albero gerarchico per la gestione delle risorse.
 
-*Scope units* sono simili alle units di servizio, ma gestiscono processi estranei invece di avviarli.
+Le *Scope units* sono simili alle unità di servizio, ma gestiscono processi estranei invece di avviarli.
 
 ## Esercizio 1
 
@@ -81,7 +78,7 @@ systemd è un gestore di sistema e di servizi per i sistemi operativi Linux.
 
 Storicamente l'init è stato chiamato con molti nomi e ha assunto diverse forme.
 
-Indipendentemente dal nome o dall'implementazione, init (o il suo equivalente) è spesso indicato come la *madre di tutti i processi*.
+Indipendentemente dal nome o dall'implementazione, init (o il suo equivalente) viene spesso definito come la *madre di tutti i processi*.
 
 La pagina man di "init" lo indica come il genitore di tutti i processi. Per convenzione, il primo programma o processo del kernel ad essere eseguito ha sempre un ID di processo pari a 1. Una volta che il primo processo viene eseguito, esso prosegue con l'avvio di altri servizi, demoni, processi, programmi e così via.
 
@@ -141,7 +138,7 @@ La pagina man di "init" lo indica come il genitore di tutti i processi. Per conv
 
 ### `systemd` Targets (RUNLEVELS)
 
-`systemd` definisce e si affida a molti obiettivi diversi per la gestione del sistema. In questo esercizio ci concentreremo solo su 5 dei principali target. I 5 target principali esplorati in questa sezione sono elencati qui di seguito:
+`systemd` defines and relies on many different targets for managing the system. In questo esercizio ci concentreremo solo su 5 dei principali obiettivi. I 5 obiettivi principali esplorati in questa sezione sono elencati qui:
 
 1. poweroff.target
 2. rescue.target
@@ -149,7 +146,7 @@ La pagina man di "init" lo indica come il genitore di tutti i processi. Per conv
 4. graphical.target - avvia il sistema con la rete, il supporto multiutente e un gestore di display
 5. reboot.target
 
-!!! Tip "Suggerimento"
+!!! tip "Suggerimento"
 
     Le unità target sostituiscono i livelli di esecuzione SysV nel sistema di init SysV classico.
 
@@ -193,10 +190,10 @@ La pagina man di "init" lo indica come il genitore di tutti i processi. Per conv
 
     Si notino alcune proprietà e i loro valori configurati nella unit `multi-user.target`. Proprietà come - Descrizione, Documentazione, Richiede, Dopo e così via.
 
-5. La unit `basic.target` è elencata come valore della proprietà `Requires` per `multi-user.target`. Visualizzare il file unit per basic.target. Digitare:
+5. La unit `basic.target` è elencata come valore della proprietà `Requires` per `multi-user.target`. Visualizzare il file unit per `basic.target`. Digitare:
 
     ```bash
-    [root@localhost ~]# systemctl cat multi-user.target
+    [root@localhost ~]# systemctl cat basic.target
     # /usr/lib/systemd/system/basic.target
     [Unit]
     Description=Basic System
@@ -224,7 +221,7 @@ La pagina man di "init" lo indica come il genitore di tutti i processi. Per conv
     Description=Multi-User System
     ```
 
-8. Visualizzare i servizi e le risorse che il multi-user.target richiama all'avvio. In altre parole, visualizzare ciò che multi-user.target "Wants". Digitare:
+8. Visualizzare i servizi e le risorse che il multi-user.target richiama all'avvio. In altre parole, visualizzare ciò che multi-user.target "vuole". Digitare:
 
     ```bash
     [root@localhost ~]# systemctl show --no-pager -p "Wants"  multi-user.target
@@ -233,7 +230,7 @@ La pagina man di "init" lo indica come il genitore di tutti i processi. Per conv
     ...<SNIP>...
     ```
 
-9.  Utilizzare i comandi `ls` e `file` per saperne di più sulla relazione tra il programma di `init` tradizionale e il programma `systemd`. Digitare:
+9. Utilizzare i comandi `ls` e `file` per saperne di più sulla relazione tra il programma di `init` tradizionale e il programma `systemd`. Digitare:
 
     ```bash
     [root@localhost ~]# ls -l /usr/sbin/init && file /usr/sbin/init
@@ -243,7 +240,6 @@ La pagina man di "init" lo indica come il genitore di tutti i processi. Per conv
     ```
 
 #### Per cambiare il target di avvio predefinito
-
 
 1. Impostare/modificare il target predefinito in cui il sistema si avvia. Utilizzare il comando `systemctl set-default` per cambiare il target predefinito in `graphical.target`. Digitare:
 
@@ -268,7 +264,7 @@ La pagina man di "init" lo indica come il genitore di tutti i processi. Per conv
     [root@localhost ~]# systemctl isolate graphical.target
     ```
 
-    !!! Warning "Attenzione"
+    !!! warning "Attenzione"
 
      Il comando systemctl isolate può essere pericoloso se usato in modo errato. Questo perché interromperà immediatamente i processi non abilitati nel nuovo target, incluso l'ambiente grafico o il terminale attualmente in uso!
 
@@ -287,9 +283,9 @@ La pagina man di "init" lo indica come il genitore di tutti i processi. Per conv
 
     ```
 
-7.  Impostare/modificare la destinazione predefinita per l'avvio del sistema in multi-user.target.
+7. Impostare/modificare la destinazione predefinita per l'avvio del sistema in multi-user.target.
 
-8.  Eseguire un rapido [e aggiuntivo] controllo manuale per vedere a quale target punta il link simbolico default.target, eseguendo:
+8. Eseguire un rapido [e aggiuntivo] controllo manuale per vedere a quale target punta il link simbolico default.target, eseguendo:
 
     ```bash
     [root@localhost ~]# ls -l /etc/systemd/system/default.target
@@ -299,7 +295,7 @@ La pagina man di "init" lo indica come il genitore di tutti i processi. Per conv
 
 Gli esercizi di questa sezione mostrano come configurare i processi di sistema/utente e i demoni (alias servizi) che possono essere avviati automaticamente con il sistema.
 
-### Per visualizzare lo stato dei servizi
+### Per visualizzare lo stato del servizio
 
 1. Mentre si è connessi come root, elencare tutte le unit systemd il cui tipo è un servizio. Digitare:
 
@@ -309,7 +305,7 @@ Gli esercizi di questa sezione mostrano come configurare i processi di sistema/u
 
     Questo mostrerà l'elenco completo delle unità attive e di quelle caricate ma inattive.
 
-2. Visualizzare l'elenco delle unit systemd attive che hanno come tipo un servizio.
+2. Visualizza l'elenco delle unità `systemd` attive con un tipo di servizio.
 
     ```bash
     [root@localhost ~]# systemctl list-units --state=active --type service
@@ -357,7 +353,7 @@ Gli esercizi di questa sezione mostrano come configurare i processi di sistema/u
    
         Visualizza lo stato di `firewalld.service'. Cos'è la unit `firewalld.service`?
 
-### Per arrestare i servizi
+### Arrestare i servizi
 
 1. Mentre siete ancora connessi come utente con privilegi amministrativi, usate il comando `pgrep` per vedere se il processo `crond` appare nell'elenco dei processi in esecuzione sul sistema.
 
@@ -379,7 +375,7 @@ Gli esercizi di questa sezione mostrano come configurare i processi di sistema/u
 
 3. Utilizzando `systemctl`, visualizzare lo stato di `crond.service` per vedere l'effetto della modifica.
 
-4. Utilizzare nuovamente `pgrep` per verificare se il processo crond compare ancora nell'elenco dei processi.
+4. Utilizzare nuovamente `pgrep` per verificare se il processo `crond` compare ancora nell'elenco dei processi.
 
 ### Per avviare i servizi
 
@@ -428,7 +424,7 @@ Gli esercizi di questa sezione mostrano come configurare i processi di sistema/u
 
 ### Per riavviare i servizi
 
-Per molti servizi/daemon, spesso è necessario riavviare o ricaricare il servizio/daemon in esecuzione ogni volta che vengono apportate modifiche ai file di configurazione corrispondenti. In questo modo il processo/servizio/daemon in questione può applicare le ultime modifiche della configurazione.
+Per molti servizi/daemon, spesso è necessario riavviare o ricaricare il servizio/daemon in esecuzione ogni volta che vengono apportate modifiche ai file di configurazione sottostanti. Questo permette al processo/servizio/demone specificato di applicare le ultime modifiche alla configurazione.
 
 1. Visualizzare lo stato di crond.service. Digitare:
 
@@ -436,7 +432,7 @@ Per molti servizi/daemon, spesso è necessario riavviare o ricaricare il servizi
     [root@localhost ~]# systemctl -n 0 status crond.service
     ```
 
-    Annotare il PID di crond nell'output.
+    Nell'output, prendere nota del PID per `crond`.
 
 2. Eseguire `systemctl restart` per riavviare `crond.service`. Digitare:
 
@@ -459,8 +455,7 @@ Per molti servizi/daemon, spesso è necessario riavviare o ricaricare il servizi
 
      Perché si pensa che i PID siano diversi ogni volta che si riavvia un servizio?
 
-
-    !!! Tip "Suggerimento"
+    !!! tip "Suggerimento"
 
      La funzionalità del classico comando del servizio è stata adattata per funzionare senza problemi sui sistemi gestiti da systemd. È possibile utilizzare comandi di servizio come i seguenti per arrestare, avviare, riavviare e visualizzare lo stato del servizio `smartd`.
 
@@ -499,11 +494,11 @@ Per molti servizi/daemon, spesso è necessario riavviare o ricaricare il servizi
    
         Su un server da gestire in remoto, perché NON si vuole disabilitare un servizio come `sshd.service` dall'avvio automatico all'avvio del sistema?
 
-### Per garantire la disabilitazione (es. mask) di un servizio
+### Per garantire la disabilitazione (mascheramento) di un servizio
 
-Anche se il comando `systemctl disable` può essere usato per disabilitare i servizi, come si è visto negli esercizi precedenti, altre unit di systemd (processi, servizi, demoni e così via) possono riattivare silenziosamente un servizio disabilitato, se necessario. Questo può accadere quando un servizio dipende da un altro servizio [disabilitato].
+Anche se il comando `systemctl disable` può essere usato per disabilitare i servizi, come si è visto negli esercizi precedenti, altre unità di `systemd` (processi, servizi, demoni e così via) possono riattivare silenziosamente un servizio disabilitato, se necessario. Questo può accadere quando un servizio dipende da un altro servizio [disabilitato].
 
-Per garantire la disattivazione di una unit di servizio systemd ed evitare la riattivazione accidentale, è necessario mascherare il servizio.
+È necessario mascherare il servizio per garantire la disattivazione di un'unità di servizio `systemd` e prevenire la riattivazione accidentale.
 
 1. Utilizzare `systemctl` per mascherare il servizio `crond.service` e prevenire qualsiasi riattivazione indesiderata, digitare:
 
