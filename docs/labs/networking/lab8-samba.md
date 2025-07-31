@@ -187,7 +187,7 @@ In this exercise, we'll try accessing the new Samba share from the same system. 
 
 #### To adjust share permissions 
 
-1. Make the "Shared" samba share definition read-only. This can be done by changing the value of the writable parameter from yes to no in the smb.con configuration file. Let's use a `sed` onliner to accomplish this by running: 
+1. Make the "Shared" samba share definition read-only. This can be done by changing the value of the writable parameter from yes to no in the smb.conf configuration file. Let's use a `sed` onliner to accomplish this by running: 
 
     ```bash
     sudo  sed -i'' -E \
