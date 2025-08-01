@@ -1,5 +1,5 @@
 ---
-author: Wale Soyinka 
+author: Wale Soyinka
 contributors: Steven Spencer, Ganna Zhrynova
 tested on: All Versions
 tags:
@@ -16,7 +16,6 @@ tags:
   - taskset
   - cgroups
 ---
-
 
 # Lab 4: Advanced System and process monitoring
 
@@ -52,7 +51,7 @@ The `fuser` command in Linux is used to identify processes using files or socket
     touch ~/testfile.txt
     ```
 
-2. Create the script that we will use to simulate access to testfile.txt. Type:
+2. Create the script that we will use to simulate access to `testfile.txt`. Type:
 
     ```bash
     cat > ~/simulate_file_usage.sh << EOF
@@ -87,7 +86,7 @@ The `fuser` command in Linux is used to identify processes using files or socket
     fuser -v ~/testfile.txt
     ```
 
-3. All done with testfile.txt and simulate_file_usage.sh. You can now remove the files. Type:
+3. All done with `testfile.txt` and `simulate_file_usage.sh`. You can now remove the files. Type:
 
     ```bash
     kill %1
@@ -145,11 +144,11 @@ The `fuser` command in Linux is used to identify processes using files or socket
 
     !!! tip
 
-        The generate_cpu_load.sh script is a simple tool for generating CPU load by calculating Pi (π) to high precision. The same calculation is done 10 times. The script accepts an integer as the parameter for specifying the number of decimal places for calculating Pi.
+        The `generate_cpu_load.sh` script is a simple tool for generating CPU load by calculating Pi (π) to high precision. The same calculation is done 10 times. The script accepts an integer as the parameter for specifying the number of decimal places for calculating Pi.
 
 #### To simulate extra CPU load
 
-1. Let's run a simple test and calculate Pi to 50 decimal places. Run the Script by typing:
+1. Run a simple test and calculate Pi to 50 decimal places. Run the Script by typing:
 
     ```bash
     ~/generate_cpu_load.sh 50 & 
@@ -197,7 +196,7 @@ The `fuser` command in Linux is used to identify processes using files or socket
     sudo perf stat -e cycles find /proc
     ```
 
-3. Do the same thing but with the ./generate_cpu_load.sh script. Count specific events like CPU cycles to evaluate the performance of the ./generate_cpu_load.sh script. Type:
+3. Do the same thing but with the `generate_cpu_load.sh` script. Count specific events like CPU cycles to evaluate the performance of the `generate_cpu_load.sh` script. Type:
 
     ```bash
     sudo perf stat -e cycles ./generate_cpu_load.sh 500
@@ -222,7 +221,7 @@ The `fuser` command in Linux is used to identify processes using files or socket
 
     !!! note
 
-        Here's the breakdown of the final sample output of the `perf stat` command:
+        Here is the breakdown of the final sample output of the `perf stat` command:
         
         *1,670,638,886 cycles*: This indicates the total number of CPU cycles consumed during the execution of the script. Each cycle represents a single step in the CPU's instruction execution.
 
@@ -267,7 +266,7 @@ The `fuser` command in Linux is used to identify processes using files or socket
     ~/strace_script.sh &
     ```
 
-2. Find the PID for the `strace_script.sh` process in a separate terminal. Store the PID in a variable named MYPID. We'll use the `pgrep` command for this by running:
+2. Find the PID for the `strace_script.sh` process in a separate terminal. Store the PID in a variable named MYPID. Use the `pgrep` command for this by running:
 
     ```bash
     export MYPID=$(pgrep strace_script) ; echo $MYPID
@@ -309,7 +308,7 @@ The `fuser` command in Linux is used to identify processes using files or socket
     sudo timeout 10 strace -c -p $MYPID
     ```
 
-    Our sample system shows a summary report output like this:
+    Your sample system shows a summary report output like this:
 
     OUTPUT:
 
@@ -538,7 +537,7 @@ This exercise demonstrates direct interaction with the `cgroup` v2 filesystem.
 
 #### To set a new memory resource limit
 
-1. Let's set a memory resource limit to limit memory usage to 4096 bytes (4kB). To restrict processes in the `cgroup` to use a maximum of 4kB of memory type:
+1. Set a memory resource limit to limit memory usage to 4096 bytes (4kB). To restrict processes in the `cgroup` to use a maximum of 4kB of memory type:
 
     ```bash
     echo 4096 | sudo tee /sys/fs/cgroup/exercise_group/memory.max
@@ -564,14 +563,14 @@ This exercise demonstrates direct interaction with the `cgroup` v2 filesystem.
 
 #### To run and add process/script to the memory `cgroup`
 
-1. Launch the memory_stress.sh, capture its PID and add the PID to cgroup.procs. Type:
+1. Launch the `memory_stress.sh` script, capture its PID, and add the PID to `cgroup.procs`. Type:
 
     ```bash
     ~/memory_stress.sh &
     echo $! | sudo tee /sys/fs/cgroup/exercise_group/cgroup.procs
     ```
 
-    The /sys/fs/cgroup/exercise_group/cgroup.procs file can be used for adding or viewing the PIDs (Process IDs) of processes that are members of a given `cgroup`. Writing a PID to this file assigns the ~/memory_stress.sh script process to the exercise_group `cgroup`.
+    Use /sys/fs/cgroup/exercise_group/cgroup.procs file for adding or viewing the PIDs (Process IDs) of processes that are members of a given `cgroup`. Writing a PID to this file assigns the `memory_stress.sh` script process to the `exercise_group` `cgroup`.
 
 2. The previous command will end very quickly before completion because it has exceeded the memory limits of the `cgroup`. You can run the following `journalctl` command in another terminal to view the error as it happens. Type:
 
@@ -597,7 +596,7 @@ This exercise demonstrates direct interaction with the `cgroup` v2 filesystem.
     echo 10000 | sudo tee /sys/fs/cgroup/exercise_group/cpu.max
     ```
 
-    10000 represents the CPU bandwidth limit. It's set to 10% of a single CPU core's total capacity.
+    10000 represents the CPU bandwidth limit. It is set to 10% of a single CPU core's total capacity.
 
 2. Confirm CPU Limit has been set. Type:
 
@@ -646,14 +645,14 @@ This exercise demonstrates direct interaction with the `cgroup` v2 filesystem.
 
 The primary storage device can be a target for setting I/O resource limits. Storage devices on Linux systems have major and minor device numbers that can be used to identify them uniquely.
 
-1. First, let's create a set of helper variables to detect and store the device number for the primary storage device on the server. Type:
+1. First, create a set of helper variables to detect and store the device number for the primary storage device on the server. Type:
 
     ```bash
     primary_device=$(lsblk | grep disk | awk '{print $1}' | head -n 1)
     primary_device_num=$(ls -l /dev/$primary_device | awk '{print $5, $6}' | sed 's/,/:/')
     ```
 
-2. Display the value of the $primary_device_num variable. Type:
+2. Display the value of the `$primary_device_num` variable. Type:
 
     ```bash
     echo "Primary Storage Device Number: $primary_device_num"
@@ -682,7 +681,7 @@ The primary storage device can be a target for setting I/O resource limits. Stor
 
 #### To create the I/O stress test process
 
-1. Start a `dd` process to create a large file named /tmp/io_stress. Also, capture and store the PID of the `dd` process in a variable named `MYPID`. Type:
+1. Start a `dd` process to create a large file named `/tmp/io_stress`. Also, capture and store the PID of the `dd` process in a variable named `MYPID`. Type:
 
     ```bash
     dd if=/dev/zero of=/tmp/io_stress bs=10M count=500 oflag=dsync \
@@ -705,7 +704,7 @@ The primary storage device can be a target for setting I/O resource limits. Stor
     iotop -p $MYPID
     ```
 
-  The output will display I/O read/write speeds for the io_stress.sh process, which should not exceed 1 MB/s as per the limit.
+    The output will display I/O read/write speeds for the io_stress.sh process, which should not exceed 1 MB/s as per the limit.
 
 #### To remove `cgroups`
 
@@ -731,7 +730,7 @@ CPU affinity binds specific processes or threads to particular CPU cores in a mu
     lscpu | grep "On-line"
     ```
 
-2. Let's create a sample process using the dd utility and store its PID in a MYPID variable. Type:
+2. Create a sample process using the `dd` utility and store its PID in a `MYPID` variable. Type:
 
     ```bash
     dd if=/dev/zero of=/dev/null & export MYPID="$!"
@@ -750,7 +749,7 @@ CPU affinity binds specific processes or threads to particular CPU cores in a mu
     pid 1211483's current affinity mask: f
     ```
 
-    The output shows the CPU affinity mask of the process with a PID of 1211483 ($MYPID), represented in hexadecimal format. On our sample system, the affinity mask displayed is "f", which typically means that the process can run on any CPU core.
+    The output shows the CPU affinity mask of the process with a PID of 1211483 (`$MYPID`), represented in hexadecimal format. On our sample system, the affinity mask displayed is "f", which typically means that the process can run on any CPU core.
 
     !!! note
 
@@ -765,7 +764,7 @@ CPU affinity binds specific processes or threads to particular CPU cores in a mu
 
 ### To set/change CPU affinity
 
-1. Set the CPU affinity of the dd process to a single CPU (CPU 0). Type:
+1. Set the CPU affinity of the `dd` process to a single CPU (CPU 0). Type:
 
     ```bash
     taskset -p 0x1 $MYPID
@@ -784,9 +783,9 @@ CPU affinity binds specific processes or threads to particular CPU cores in a mu
     taskset -p $MYPID
     ```
 
-    The output indicates the CPU affinity mask of the process with PID $MYPID. The affinity mask is "1" in decimal, which translates to "1" in binary. This means that the process is currently bound to CPU core 0.
+    The output indicates the CPU affinity mask of the process with PID `$MYPID`. The affinity mask is "1" in decimal, which translates to "1" in binary. This means that the process is currently bound to CPU core 0.
 
-3. Now, set the CPU affinity of the dd process to multiple CPUs (CPUs 0 and 1). Type:
+3. Now, set the CPU affinity of the `dd` process to multiple CPUs (CPUs 0 and 1). Type:
 
     ```bash
     taskset -p 0x3 $MYPID
@@ -809,7 +808,7 @@ CPU affinity binds specific processes or threads to particular CPU cores in a mu
 
 5. Launch either the `top` or `htop` utility in a separate terminal and observe if you see anything of interest as you experiment with different `taskset` configurations for a process.
 
-6. All done. Use its PID ($MYPID) to kill the `dd` process.  
+6. All done. Use its PID (`$MYPID`) to kill the `dd` process.  
 
 ## Exercise 9
 
@@ -849,18 +848,18 @@ This exercise shows how to use `systemd-run` for creating transient service unit
 
     !!! tip
 
-        `systemd.resource-control` is a configuration or management entity (concept) within the `systemd` framework designed for controlling and allocating system resources to processes and services. And `systemd.exec` is a `systemd` component responsible for defining the execution environment in which commands are executed. To view the various settings (properties) you can tweak when using systemd-run consult the `systemd.resource-control` and `systemd.exec` manual pages. This is where you will find documentation for properties like MemoryMax, CPUAccounting, IOWeight, etc. 
+        `systemd.resource-control` is a configuration or management entity (concept) within the `systemd` framework designed for controlling and allocating system resources to processes and services. And `systemd.exec` is a `systemd` component responsible for defining the execution environment in which commands are run. To view the various settings (properties) you can tweak when using `systemd-run` consult the `systemd.resource-control` and `systemd.exec` manual pages. This is where you will find documentation for properties like MemoryMax, CPUAccounting, IOWeight, etc. 
 
 #### To set CPU resource limit for a transient service
 
-1. Let's create a transient `systemd` unit called "myrealtime.service". Run myrealtime.service with a specific round robin (rr) scheduling policy and priority. Type:
+1. Create a transient `systemd` unit called "myrealtime.service". Run `myrealtime.service` with a specific round robin (rr) scheduling policy and priority. Type:
 
     ```bash
     systemd-run --unit=myrealtime.service \
     --property=CPUSchedulingPolicy=rr --property=CPUSchedulingPriority=50 sleep 300
     ```
 
-2. View the status for myrealtime.service. Also, capture/store the main [sleep] PID in a MYPID variable. Type:
+2. View the status for `myrealtime.service`. Also, capture/store the main [sleep] PID in a MYPID variable. Type:
 
     ```bash
     MYPID=$(systemctl status myrealtime.service   |  awk '/Main PID/ {print $3}')
@@ -906,7 +905,7 @@ This exercise shows how to use `systemd-run` for creating transient service unit
 
 ### `schedtool`
 
-This exercise demonstrates the use of `schedtool` to understand and manipulate process scheduling in Rocky Linux. We will also create a script to simulate a process for this purpose.
+This exercise demonstrates the use of `schedtool` to understand and manipulate process scheduling in Rocky Linux. You will also create a script to simulate a process for this purpose.
 
 #### To install `schedtool`
 
@@ -938,7 +937,7 @@ This exercise demonstrates the use of `schedtool` to understand and manipulate p
     ~/cpu_load_generator.sh & echo $!
     ```
 
-3. Capture the PID for the main `openssl` process launched within the cpu_load_generator.sh script. Store the PID in a variable named MYPID. Type:
+3. Capture the PID for the main `openssl` process launched within the `cpu_load_generator.sh` script. Store the PID in a variable named `$MYPID`. Type:
 
     ```bash
     export  MYPID=$(pidof openssl) ; echo $MYPID
@@ -946,7 +945,7 @@ This exercise demonstrates the use of `schedtool` to understand and manipulate p
 
 #### To use `schedtool` to check the current scheduling policy
 
-1. Use the `schedtool` command to display the scheduling information of the process with PID $MYPID. Type:
+1. Use the `schedtool` command to display the scheduling information of the process with PID `$MYPID`. Type:
 
     ```bash
     schedtool $MYPID
