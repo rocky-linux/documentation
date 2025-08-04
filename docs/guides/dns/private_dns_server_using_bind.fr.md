@@ -510,7 +510,7 @@ public
 
 Ces règles vous permettront d'obtenir une résolution DNS sur votre serveur DNS privé à partir des hôtes du réseau 192.168.1.0/24. De plus, vous pourrez vous connecter en SSH depuis n'importe lequel de ces hôtes à votre serveur DNS privé.
 
-## Conclusion
+## Conclusions
 
 La modification de */etc/hosts* sur un poste de travail individuel vous donnera accès à une machine sur votre réseau interne, mais vous ne pourrez l'utiliser que sur cette seule machine. Un serveur DNS privé qui utilise *bind* vous permettra d'ajouter des hôtes au DNS et, à condition que les postes de travail aient accès à ce serveur DNS privé, ils pourront accéder à ces serveurs locaux.
 
