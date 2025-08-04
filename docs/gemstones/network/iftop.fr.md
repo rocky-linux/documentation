@@ -18,9 +18,9 @@ dnf -y install iftop
 
 Les options de la commande `iftop` sont les suivantes.
 
-| Options        | Observation                                                                                                                     |
+| Options        | Description                                                                                                                     |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| -R             | Évite les recherches de nom d'hôte                                                                                              |
+| -n             | Évite les recherches de nom d'hôte                                                                                              |
 | -N             | Évite de résoudre les numéros de port en noms de service                                                                        |
 | -p             | Fonctionne en mode promiscuité, de sorte que tout le trafic est compté                                                          |
 | -P             | Affiche les numéros de port pour les connexions                                                                                 |
@@ -52,7 +52,7 @@ Les unités pour l'indicateur **-u** sont les suivantes :
 | octets  | octets par seconde  |
 | paquets | paquets par seconde |
 
-Un exemple de sortie du serveur home de l'auteur exécutant un [relais](https://community.torproject.org/relay/types-of-relays/) [Tor](https://www.torproject.org/) :
+Un exemple de résultat du serveur home de l'auteur exécutant un [relais](https://community.torproject.org/relay/types-of-relays/) [Tor](https://www.torproject.org/) :
 
 ```bash
  Listening on bridge b          25.0Kb          37.5Kb          50.0Kb    62.5Kb
