@@ -20,7 +20,7 @@ Il suffit d'écrire les paramètres et valeurs correspondants dans le fichier de
 
 Certains paramètres de ce fichier et leurs valeurs sont présentés ci-dessous, [ici](04_rsync_configure.md) vous trouverez des descriptions de paramètres supplémentaires :
 
-| Élément                                   | Observation                                                                                                                                                                                        |
+| Élément                                   | Description                                                                                                                                                                                        |
 | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | address = 192.168.100.4                   | L'adresse IP sur laquelle rsync écoute par défaut                                                                                                                                                  |
 | port = 873                                | port d'écoute par défaut de rsync                                                                                                                                                                  |
