@@ -78,7 +78,7 @@ L'outil inotify-tools a deux commandes, à savoir :
 
 Les types d'événements sont les suivants :
 
-| Type d'événement | Observation                                                                                     |
+| Type d'événement | Description                                                                                     |
 | ---------------- | ----------------------------------------------------------------------------------------------- |
 | access           | Accès au contenu d'un fichier ou d'un répertoire                                                |
 | modifier         | Le contenu du fichier ou du répertoire est enregistré                                           |
