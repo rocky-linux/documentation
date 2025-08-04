@@ -29,7 +29,7 @@ tags:
 **Знання**: :star: :star:  
 **Складність**: :star: :star:
 
-**Час читання**: 20 хвилин
+**Час для читання**: 20 хвилин
 
 ---
 
@@ -128,7 +128,7 @@ parted [-l] [device]
 cfdisk device
 ```
 
-Приклад:
+Наприклад:
 
 ```bash
 $ sudo cfdisk /dev/sda
@@ -233,7 +233,7 @@ $ sudo cfdisk /dev/sda
 pvcreate [-options] partition
 ```
 
-Приклад:
+Наприклад:
 
 ```bash
 [root]# pvcreate /dev/hdb1
@@ -263,7 +263,7 @@ pvcreate -- physical volume « /dev/hdb » successfully created
 vgcreate  <VG_name>  <PV_name...>  [option]
 ```
 
-Приклад:
+Наприклад:
 
 ```bash
 [root]# vgcreate volume1 /dev/hdb1
@@ -282,7 +282,7 @@ vgcreate – volume group « volume1 » successfully created and activated
 lvcreate -L size [-n name] VG_name
 ```
 
-Приклад:
+Наприклад:
 
 ```bash
 [root]# lvcreate –L 600M –n VolLog1 volume1
@@ -337,7 +337,7 @@ vgdisplay VG_name
 lvdisplay /dev/VG_name/LV_name
 ```
 
-Приклад:
+Наприклад:
 
 ```bash
 [root]# lvdisplay /dev/volume1/VolLog1
@@ -375,7 +375,7 @@ lvdisplay /dev/VG_name/LV_name
 mkfs [-t fstype] filesys
 ```
 
-Приклад:
+Наприклад:
 
 ```bash
 [root]# mkfs -t ext4 /dev/sda1
@@ -608,7 +608,7 @@ proc                           /proc     proc    defaults        0   0
 mount [-option] [device] [directory]
 ```
 
-Приклад:
+Наприклад:
 
 ```bash
 [root]# mount /dev/sda7 /home
@@ -635,7 +635,7 @@ mount [-option] [device] [directory]
 umount [-option] [device] [directory]
 ```
 
-Приклад:
+Наприклад:
 
 ```bash
 [root]# umount /home
@@ -988,7 +988,7 @@ chmod [option] mode file
 umask [option] [mode]
 ```
 
-Приклад:
+Наприклад:
 
 ```bash
 $ umask 033
