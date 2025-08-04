@@ -106,7 +106,7 @@ Utilisons cron.daily pour illustrer le processus d'exécution de /etc/anacrontab
 
 Utilisation de la commande `anacron`, les options couramment utilisées sont :
 
-| Options | Observation                                                                |
+| Options | Description                                                                |
 | ------- | -------------------------------------------------------------------------- |
 | -t      | Exécuter toutes les tâches, ignorer les horodatages                        |
 | -u      | Mettre à jour l'horodatage à l'heure actuelle sans effectuer aucune action |
