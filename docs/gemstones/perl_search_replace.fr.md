@@ -3,7 +3,7 @@ title: perl - Rechercher et Remplacer
 author: Steven Spencer
 tags:
   - perl
-  - search
+  - recherche
 ---
 
 # `perl` - Rechercher et Remplacer
