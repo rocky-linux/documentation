@@ -20,19 +20,19 @@ Geben Sie einfach die entsprechenden Parameter und Werte in die Konfigurationsda
 
 Einige Parameter und Werte dieser Datei lauten wie folgt, [hier](04_rsync_configure.md) finden Sie weitere Parameterinfos:
 
-| Item                                      | Beschreibung                                                                                                                                                                             |
-| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| address = 192.168.100.4                   | Die IP-Adresse, auf die rsync default-mäßig lauscht                                                                                                                                      |
-| port = 873                                | Standardmäßig lauscht der `rsync`-Daemon auf diesem Port                                                                                                                               |
-| pid file = /var/run/rsyncd.pid            | Datei-Speicherort der Prozess-PID                                                                                                                                                        |
-| log file = /var/log/rsyncd.log            | Datei-Speicherort des Log-Protokolls                                                                                                                                                     |
-| [share]                                   | Freigabename                                                                                                                                                                             |
-| comment = rsync                           | Hinweise oder Beschreibungsinformationen                                                                                                                                                 |
-| path = /rsync/                            | Der Systempfad dort, wo er sich befindet                                                                                                                                                 |
-| read only = yes                           | yes bedeutet nur lesen, kein schreiben                                                                                                                                                   |
-| dont compress = \*.gz \*.gz2 \*.zip | Welche Dateitypen werden nicht komprimiert                                                                                                                                               |
-| auth users = li                           | Virtuelle Benutzer aktivieren und definieren, wie ein virtueller Benutzer genannt wird. Sie sollten es selbst erstellen                                                                  |
-| secrets file = /etc/rsyncd_users.db       | Wird verwendet, um den Speicherort der Passwortdatei des virtuellen Benutzers anzugeben, die mit .db enden muss. Das Inhaltsformat der Datei ist "Benutzername: Passwort" für jede Zeile |
+| Item                                      | Beschreibung                                                                                                                                                                                 |
+| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| address = 192.168.100.4                   | Die IP-Adresse, auf die rsync default-mäßig lauscht                                                                                                                                          |
+| port = 873                                | Standardmäßig lauscht der `rsync`-Daemon auf diesem Port                                                                                                                                   |
+| pid file = /var/run/rsyncd.pid            | Datei-Speicherort der Prozess-PID                                                                                                                                                            |
+| log file = /var/log/rsyncd.log            | Speicherort des Log-Protokolls                                                                                                                                                               |
+| [share]                                   | Freigabename                                                                                                                                                                                 |
+| comment = rsync                           | Hinweise oder Beschreibungsinformationen                                                                                                                                                     |
+| path = /rsync/                            | Der Systempfad dort, wo er sich befindet                                                                                                                                                     |
+| read only = yes                           | yes bedeutet nur lesen, kein schreiben                                                                                                                                                       |
+| dont compress = \*.gz \*.gz2 \*.zip | Welche Dateitypen werden nicht komprimiert                                                                                                                                                   |
+| auth users = li                           | Virtuelle Benutzer aktivieren und definieren, wie ein virtueller Benutzer genannt wird. Sie sollten es selbst erstellen                                                                      |
+| secrets file = /etc/rsyncd_users.db       | Wird verwendet, um den Speicherort der Passwortdatei des virtuellen Benutzers anzugeben, die mit `.db` enden muss. Das Inhaltsformat der Datei ist "Benutzername: Passwort" für jede Zeile |
 
 !!! tip "Tip"
 
