@@ -747,7 +747,7 @@ ansible-playbook -i ./inventory/hosts  -e '{"comments":"my comments","cluster_na
 
 C'est à ce stade que vous pouvez lancer la configuration finale de votre machine virtuelle en utilisant 'Ansible'. N'oubliez pas de changer le mot de passe root, de sécuriser SSH, d'enregistrer la nouvelle machine virtuelle dans votre outil de surveillance et dans votre inventaire informatique, etc.
 
-## En résumé
+## En Résumé
 
 Comme nous l'avons vu, il y a maintenant des solutions DevOps entièrement automatisées pour créer et déployer des machines virtuelles.
 

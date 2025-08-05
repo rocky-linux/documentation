@@ -36,7 +36,7 @@ Pour IPv4, s'il s'agit d'obtenir des informations réseau avec DHCP, sélectionn
 
 Si vous voulez corriger manuellement toutes les informations du réseau IPv4, vous devez sélectionner **&lt;Manual&gt;** après *CONFIGURATION IPv4* et les jouter ligne par ligne. Par exemple, l'auteur utilise ceci :
 
-| Élément      | Valeur           |
+| Item         | Valeur           |
 | ------------ | ---------------- |
 | Adresses     | 192.168.100.4/24 |
 | Passerelle   | 192.168.100.1    |

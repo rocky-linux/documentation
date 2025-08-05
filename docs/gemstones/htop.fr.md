@@ -43,7 +43,7 @@ PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Command(mer
 * Les 0 et 1 indiquent le numéro des cœurs de la CPU et le pourcentage indique le taux d'occupation d'un seul cœur (le taux d'occupation total de la CPU peut également être affiché)
     * Les différentes couleurs de la barre de progression indiquent le pourcentage de différents types de processus :
 
-        | Couleur | Observation                                                               | Noms affichés avec d'autres styles |
+        | Couleur | Description                                                               | Noms affichés avec d'autres styles |
         | ------- | ------------------------------------------------------------------------- | ---------------------------------- |
         | Bleu    | Pourcentage de CPU utilisé par les processus de faible priorité           | low                                |
         | Vert    | Pourcentage de CPU du processus appartenant à des utilisateurs ordinaires |                                    |
@@ -53,7 +53,7 @@ PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Command(mer
 * Tasks: 22, 46thr, 174 kthr 1 running. Dans notre exemple, cela signifie que notre machine actuelle a 24 tâches, qui sont divisés en 14 threads, dont un seul processus est en cours d'exécution, "kthr" indique le nombre de kernel-threads.
 * Mem décrit la charge de mémoire. Les couleurs permettent de distinguer le type d'occupation de la mémoire :
 
-   | Couleur      | Observation                                                    | Noms affichés |
+   | Couleur      | Description                                                    | Noms affichés |
    | ------------ | -------------------------------------------------------------- | ------------- |
    | Bleu         | Pourcentage de mémoire consommée par le tampon                 | buffers       |
    | Vert         | Pourcentage de mémoire consommée par la zone mémoire           | used          |
@@ -62,7 +62,7 @@ PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Command(mer
 
 * Swap information.
 
-   | Couleur      | Observation                                | Noms affichés |
+   | Couleur      | Description                                | Noms affichés |
    | ------------ | ------------------------------------------ | ------------- |
    | Vert         | Pourcentage de cache utilisé sur le disque | used          |
    | Jaune/Orange | Pourcentage de cache - swap - utilisé      | cache         |
@@ -96,7 +96,7 @@ Dans l'interface interactive, appuyez sur le bouton ++f1++ pour voir la descript
 
 Pour gérer le processus, utilisez le bouton ++f9++ et lui envoyer différents signaux. La liste des signaux peut être affichée avec la commande `kill -l`. Les plus couramment utilisées sont :
 
-| Signal | Observation                                                                                                                                                                                              |
+| Signal | Description                                                                                                                                                                                              |
 | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1      | Arrête immédiatement le processus qui redémarre après avoir relu le fichier de configuration                                                                                                             |
 | 9      | Utilisé pour mettre fin immédiatement à l'exécution du programme, pour terminer le processus de force, similaire à la fin forcée dans la barre des tâches de la fenêtre                                  |

@@ -85,7 +85,7 @@ Donc pourvu que vous ayez tout à fait raison de laisser le système exécuter a
 
 ### Créer votre propre `cron`
 
-Si les horaires automatisés et aléatoires ne fonctionnent pas bien dans [Pour les postes de travail ci-dessus](#for-workstations) et les horaires planifiés dans [Pour les serveurs ci-dessus](#for-servers), vous pouvez créer les vôtres. Dans cet exemple, nous supposons que vous faites cela en tant que root. [voir les hypothèses](#assumptions) Pour cela, tapez ce qui suit :
+Si les horaires automatisés et aléatoires ne fonctionnent pas bien pour les postes de travail, ou les horaires prévus pour les serveurs, vous pouvez créer vos propres horaires. Dans cet exemple, nous supposons que vous faites cela en tant que root. Pour ce faire, tapez ce qui suit :
 
 `crontab -e`
 

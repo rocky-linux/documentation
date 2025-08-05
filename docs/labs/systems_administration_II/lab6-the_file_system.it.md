@@ -341,7 +341,7 @@ Si utilizzerà l'utilità `fdisk`
 
     Il risultato potrebbe essere diverso se si dispone di un disco di dimensioni diverse o se non si è seguito lo schema di partizionamento utilizzato durante l'installazione del sistema operativo.
 
-#### Per creare un dispositivo di blocco [fake]
+#### Creazione di un dispositivo di blocco [fake]
 
 Non vogliamo che il disco rigido locale del sistema venga accidentalmente alterato e reso inutilizzabile, quindi completeremo i seguenti esercizi su uno pseudo-dispositivo che si comporta come un vero e proprio dispositivo a blocchi. Per farlo, si crea un file [sparse] di dimensioni adeguate e lo si associa a uno pseudo-dispositivo. Nei sistemi Linux, questi pseudo-dispositivi sono chiamati dispositivi di loop. Un dispositivo di loop è uno pseudo-dispositivo che consente di trattare [e accedere] a un normale file di dati come se fosse un dispositivo a blocchi.
 
