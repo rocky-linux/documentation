@@ -81,7 +81,7 @@ Les types d'événements sont les suivants :
 | Type d'événement | Description                                                                                     |
 | ---------------- | ----------------------------------------------------------------------------------------------- |
 | access           | Accès au contenu d'un fichier ou d'un répertoire                                                |
-| modifier         | Le contenu du fichier ou du répertoire est enregistré                                           |
+| modify           | Le contenu du fichier ou du répertoire est enregistré                                           |
 | attrib           | Les attributs du fichier ou du répertoire sont modifiés                                         |
 | close_write      | Le fichier ou le répertoire est ouvert en mode écriture puis fermé                              |
 | close_nowrite    | Le fichier ou le répertoire est fermé après avoir été ouvert en mode lecture seule              |
