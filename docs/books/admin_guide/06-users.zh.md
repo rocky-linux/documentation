@@ -21,7 +21,7 @@ title: 用户管理
 **知识性**: :star: :star:  
 **复杂度**: :star: :star:
 
-**阅读时间**：30 分钟
+**阅读时间**: 30 分钟
 ****
 
 ## 常规信息
@@ -353,7 +353,7 @@ test1:!::
 sudo useradd -u 1000 -g GroupA -G GroupP,GroupC albert
 ```
 
-!!! note "说明"
+!!! Note "说明"
 
     在 **Debian** 下，您需要指定 `-m` 选项强制创建登录目录，或者在 `/etc/login.defs` 文件中设置 `CREATE_HOME` 变量。 在所有情况下，管理员都应该使用 `man` 中指定的 `adduser` 和 `deluser` 命令，但在可移植到所有 Linux 发行版的脚本中除外：
 
@@ -609,7 +609,7 @@ sudo chgrp group1 file
 | `-R` | 递归地更改目录和目录下所有文件的所属组。 |
 | `-v` | 显示变更。                |
 
-!!! note "说明"
+!!! Note "说明"
 
     通过参考另一个文件的所有者和所属组，可以向另一个文件应用所有者和所属组：
 
@@ -766,7 +766,7 @@ sudo passwd -n 60 -x 90 -w 80 -i 10 patrick
 sudo passwd alain
 ```
 
-!!! note "说明"
+!!! Note "说明"
 
     可登录的用户可以使用 `passwd` 命令更改自己的密码（此过程需要请求用户的旧密码）。 root（uid=0）用户可以更改任何用户的密码。
 
@@ -830,7 +830,7 @@ $ sudo chage -d 0 philippe
 * `/etc/login.defs`
 * `/etc/skel`
 
-!!! note "说明"
+!!! Note "说明"
 
     使用 `useradd` 命令编辑 `/etc/default/useradd` 文件。
     
@@ -982,7 +982,7 @@ $ sudo su - alain
     0
     ```
 
-请注意！ `su` 和 `su -` 是不同的，如以下示例所示：
+Attention please! `su` 和 `su -` 是不同的，如以下示例所示：
 
 ```bash
 $ whoami
