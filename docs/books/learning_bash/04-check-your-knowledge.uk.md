@@ -4,7 +4,7 @@ author: Antoine Le Morvan
 contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.5
 tags:
-  - освіта
+  - education
   - сценарій bash
   - bash
 ---

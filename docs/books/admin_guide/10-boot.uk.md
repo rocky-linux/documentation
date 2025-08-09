@@ -357,7 +357,7 @@ timers.target          loaded active active Timers
 systemctl set-default name.target
 ```
 
-Приклад:
+Приклади:
 
 ```bash
 # systemctl set-default multi-user.target

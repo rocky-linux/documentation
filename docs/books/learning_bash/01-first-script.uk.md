@@ -4,7 +4,7 @@ author: Antoine Le Morvan
 contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.5
 tags:
-  - освіта
+  - education
   - сценарій bash
   - bash
 ---
@@ -15,7 +15,7 @@ tags:
 
 ****
 
-**Цілі**: В цьому розділі ви дізнаєтеся як:
+**Цілі**: В цьому розділі ви дізнаєтеся про:
 
 :heavy_check_mark: Написати свій перший сценарій у bash;  
 :heavy_check_mark: Виконати свій перший сценарій;  

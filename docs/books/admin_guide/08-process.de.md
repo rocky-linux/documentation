@@ -200,13 +200,13 @@ Beispiel:
 kill -9 1664
 ```
 
-| Code | Signal    | Beschreibung                                                                                                 |
-| ---- | --------- | ------------------------------------------------------------------------------------------------------------ |
-| `2`  | *SIGINT*  | Sofortige Beendigung des Prozesses                                                                           |
-| `9`  | *SIGKILL* | Den Prozess unterbrechen (++control+"d"++)                                                                   |
-| `15` | *SIGTERM* | Bereinigung und Beenden des Prozesses                                                                        |
-| `18` | *SIGCONT* | Prozess fortsetzen. Prozesse, die durch das Signal SIGSTOP gestoppt wurden, können dank SIGCONT weiterlaufen |
-| `19` | *SIGSTOP* | Prozess unterbrechen (Stop process). Die Wirkung dieses Signals entspricht ++ctrl+"z"++                      |
+| Code | Signal    | Beschreibung                                                                                                     |
+| ---- | --------- | ---------------------------------------------------------------------------------------------------------------- |
+| `2`  | *SIGINT*  | Sofortige Beendigung des Prozesses                                                                               |
+| `9`  | *SIGKILL* | Den Prozess unterbrechen (++control+"d"++)                                                                       |
+| `15` | *SIGTERM* | Bereinigung und Beenden des Prozesses                                                                            |
+| `18` | *SIGCONT* | Setzt den Prozess fort. Prozesse, die durch das Signal SIGSTOP gestoppt wurden, können dank SIGCONT weiterlaufen |
+| `19` | *SIGSTOP* | Prozess unterbrechen (Stop process). Die Wirkung dieses Signals entspricht ++ctrl+"z"++                          |
 
 Signale sind das Mittel der Kommunikation zwischen den Prozessen. Der `kill` Befehl sendet ein Signal an einen Prozess.
 
@@ -296,7 +296,7 @@ Die Spalten repräsentieren:
 1. Jobnummer
 2. die Reihenfolge in der die Prozesse ausgeführt werden:
 
-   * ein `+` : Dieser Prozess ist der nächste Prozess, der standardmäßig mit `fg` oder `bg` ausgeführt wird;
+   * a `+` : Der Prozess, der standardmäßig für die Befehle `fg` und `bg` ausgewählt wird, wenn keine Job-Nummer angegeben ist
    * ein `-` : Dieser Prozess ist der nächste Prozess, der die `+` übernimmt `+`
 
 3. *Running* (laufender Prozess) oder *Stopped* (abgebrochener Prozess)

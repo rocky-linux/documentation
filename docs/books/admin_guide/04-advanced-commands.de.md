@@ -41,7 +41,7 @@ steven
 
 !!! note "Hinweis"
 
-    `uniq` erfordert, dass die Eingabedatei sortiert wird, da sie nur aufeinander folgende Zeilen vergleicht.
+    `uniq` erfordert, dass die Eingabedatei sortiert ist, da sie nur aufeinander folgende Zeilen vergleicht.
 
 Ohne Argument wird der `uniq` Befehl die gleichen Zeilen nicht anzeigen, die einander in der `firstnames.txt` Datei folgen:
 

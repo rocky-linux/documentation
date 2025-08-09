@@ -11,13 +11,13 @@ contributors: Steven Spencer, Aditya Putta, tianci li, Grammaresque, Ganna Zhyrn
 
 ****
 
-**目标**： 在本章中，未来的 Linux 管理员们将学习如何：
+**目标**: 在本章中，未来的 Linux 管理员们将学习如何：
 
 :heavy_check_mark: 在系统树中 **移动**。  
 :heavy_check_mark: **创建** 一个文本文件, **显示** 其内容并对其 **修改**。   
 :heavy_check_mark: **使用** 最实用的Linux命令。
 
-:checkered_flag: **用户命令**，**linux**
+:checkered_flag: **用户命令**，**linux****
 
 **知识性**: :star:  
 **复杂度**: :star:

@@ -104,7 +104,7 @@ incus profile assign rockylinux-test-9 default,macvlan
 
 Якщо ви хочете запустити контейнери Rocky Linux і використовувати `macvlan` для призначення IP-адреси з вашої мережі LAN або WAN, процес буде відрізнятися залежно від версії контейнера операційної системи (8.x або 9.x).
 
-### Rocky Linux 9.0 macvlan – виправлення DHCP
+### Rocky Linux 9.x macvlan - the DHCP fix
 
 Спочатку давайте проілюструємо, що відбувається під час зупинки та перезапуску двох контейнерів після призначення профілю `macvlan`.
 
@@ -169,7 +169,7 @@ incus shell rockylinux-test-9
 dnf install which
 ```
 
-А потім запустіть:
+Потім запустіть:
 
 ```bash
 which dhclient

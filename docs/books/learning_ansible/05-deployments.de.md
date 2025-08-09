@@ -12,9 +12,9 @@ In diesem Kapitel erfahren Sie, wie Sie Anwendungen mit der Ansible-Rolle [Ansis
 
 :heavy_check_mark: Ansistrano implementieren;  
 :heavy_check_mark: Ansistrano konfigurieren;  
-:heavy_check_mark: freigegebene Ordner und Dateien zwischen bereitgestellten Versionen verwenden;  
-:heavy_check_mark: verschiedene Versionen einer Website über git bereitstellen;  
-bereit :heavy_check_mark: zwischen Bereitstellungsschritten reagieren.
+:heavy_check_mark: Gemeinsame Ordner und Dateien zwischen bereitgestellten Versionen verwenden;  
+:heavy_check_mark: Verschiedene Versionen einer Site aus Git bereitstellen;  
+:heavy_check_mark: Zwischen den Bereitstellungsschritten handeln.
 
 :checkered_flag: **ansible**, **ansistrano**, **Rollen**, **Bereitstellung**
 

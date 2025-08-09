@@ -391,7 +391,7 @@ mkfs [-t fstype] filesys
 
 每个文件系统的结构在每个分区上都是相同的。 **Boot Sector** 和 **Super block** 由系统初始化完成，**Inode table** 和 **Data block** 由管理员初始化完成。
 
-!!! note "说明"
+!!! Note "说明"
 
     唯一例外的是 **swap** 分区。
 
@@ -433,7 +433,7 @@ Boot sector 是可引导存储介质的第一个扇区，即 0 柱面、0 磁道
 
 **inode table** 的大小在创建时定义，并存储在分区中。 它由称为 inode 的记录组成，这些记录与创建的文件相对应。 每条记录都包含组成文件的 data block 的地址。
 
-!!! note "说明"
+!!! Note "说明"
 
     inode 编号在文件系统中是唯一的。
 
@@ -443,7 +443,7 @@ Boot sector 是可引导存储介质的第一个扇区，即 0 柱面、0 磁道
 
 文件由其 inode 编号管理。
 
-!!! note "说明"
+!!! Note "说明"
 
     inode table 的大小决定了 FS 可以包含的最大文件数量。
 
@@ -511,7 +511,7 @@ or
 
 ![文件系统的组织](images/07-file-systems-008.png)
 
-!!! note "说明"
+!!! Note "说明"
 
     在 Linux 中，一切都是一个文件。
 
@@ -552,7 +552,7 @@ Linux 符合 **FHS**（_Filesystems Hierarchy Standard_）(参阅 `man hier`)，
 
 `/etc/fstab` 文件是在随系统启动时被读取的，其中包含要执行的挂载。 每个要挂载的文件系统都在一行上说明，字段由空格或制表符分隔。
 
-!!! note "说明"
+!!! Note "说明"
 
     相关的命令按照顺序读取行（如 `fsck`、`mount`、`umount`）。
 
@@ -623,7 +623,7 @@ mount [-option] [device] [directory]
 | `-w`      | 默认情况下以读/写方式挂载文件系统（等同于 `-o rw`）       |
 | `-o opts` | opts 参数是逗号分隔的列表（如 `remount`、`ro` 等）。 |
 
-!!! note "说明"
+!!! Note "说明"
 
     仅使用 `mount` 命令即可显示所有已挂载的文件系统。 如果挂载参数为 `-o defaults` ，则表示等同于 ` -o rw,suid,dev,exec,auto,nouser,async`，且这些参数与文件系统无关。 如果您需要浏览与文件系统相关的特殊挂载选项，请阅读 `man 8 mount` 中的 "Mount options FS-TYPE" 部分（将 FS-TYPE 类型替换为相应的文件系统，如ntfs、vfat、ufs 等）。
 
@@ -649,7 +649,7 @@ umount [-option] [device] [directory]
 | `-f` | 强制卸载。                            |
 | `-a` | 删除 `/etc/fstab` 文件中提到的所有文件系统的挂载。 |
 
-!!! note "说明"
+!!! Note "说明"
 
     卸载时，您必须不能停留在挂载点中。 否则将显示以下错误消息：`device is busy`。
 
@@ -668,11 +668,11 @@ umount [-option] [device] [directory]
 [root]# mkdir "working dir"
 ```
 
-!!! note "说明"
+!!! Note "说明"
 
     虽然在技术上创建包含空格的文件或目录并无不妥，但通常应该避免这种情况并用下划线替换任何空格是一种「最佳做法」。
 
-!!! note "说明"
+!!! Note "说明"
 
     以 **.** 开头的文件表示这是隐藏文件，它不能被简单的 `ls` 看到。
 
@@ -913,7 +913,7 @@ Mode 指示可以用八进制表示（例如 `744`）或符号表示（[`ugoa`] 
 | 1  | x  |
 | 0  | -  |
 
-将这三个数字加在一起即可获得一个用户类型的权限。 例如： **755=rwxr-xr-x**。
+将这三个数字加在一起即可获得一个用户类型的权限。 例如 **755=rwxr-xr-x**。
 
 ![八进制表示](images/07-file-systems-011.png)
 
@@ -1015,7 +1015,7 @@ $ ls -la  umask_025
 
     `umask` 并不会影响现有文件。 `umask -S` 显示将要创建文件的文件权限（没有执行权限）。 所以，它不是用减去最大值的掩码来显示的。
 
-!!! note "说明"
+!!! Note "说明"
 
     在上面的示例中，使用命令修改掩码仅适用于当前连接的会话。
 
