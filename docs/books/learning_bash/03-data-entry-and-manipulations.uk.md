@@ -4,7 +4,7 @@ author: Antoine Le Morvan
 contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.5
 tags:
-  - освіта
+  - education
   - сценарій bash
   - bash
 ---
@@ -15,14 +15,14 @@ tags:
 
 ****
 
-**Цілі**: В цьому розділі ви дізнаєтеся як:
+**Цілі**: В цьому розділі ви дізнаєтеся про:
 
 :heavy_check_mark: прочитати введені дані від користувача;  
 :heavy_check_mark: маніпулювати записами даних;  
 :heavy_check_mark: використовувати аргументи в сценарії;  
 :heavy_check_mark: керувати позиційними змінними;
 
-:checkered_flag: **linux**, **сценарій**, **bash**, **змінна**
+:checkered_flag: **linux**, **script**, **bash**, **variable**
 
 **Знання**: :star: :star:  
 **Складність**: :star: :star:
@@ -113,7 +113,7 @@ cut -d: -f1 /etc/passwd
 * Команда `grep` працює "по вертикалі" (ізоляція одного рядка від усіх рядків у файлі).
 * Комбінація двох команд дозволяє **ізолювати конкретне поле у файлі**.
 
-Приклад:
+Приклади:
 
 ```bash
 grep "^root:" /etc/passwd | cut -d: -f3
@@ -218,7 +218,7 @@ dirname $FILE
 | `$#`          | містить кількість переданих аргументів.         |
 | `$*` або `$@` | містить в одній змінній усі передані аргументи. |
 
-Приклад:
+Приклади:
 
 ```bash
 #!/usr/bin/env bash
@@ -340,7 +340,7 @@ All without separation  ($@) = tree four
 set [value] [$variable]
 ```
 
-Приклад:
+Приклади:
 
 ```bash
 $ set one two three
