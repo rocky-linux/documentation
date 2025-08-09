@@ -15,4 +15,4 @@ jobs:
         with:
           token: ${{ secrets.CROSS_REPO_PAT }}
           repository: rocky-linux/docs.rockylinux.org
-          event-type: deploy
+          event-type: deploy-staging
