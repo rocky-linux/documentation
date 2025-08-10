@@ -4,7 +4,7 @@ author: Antoine Le Morvan
 contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.5
 tags:
-  - освіта
+  - education
   - сценарій bash
   - bash
 ---
@@ -13,14 +13,14 @@ tags:
 
 ****
 
-**Цілі**: В цьому розділі ви дізнаєтеся як:
+**Цілі**: В цьому розділі ви дізнаєтеся про:
 
 :heavy_check_mark: працювати з кодом повернення;  
 :heavy_check_mark: перевірити та порівняти файли;  
 :heavy_check_mark: перевірити змінні, рядки та цілі числа;  
 :heavy_check_mark: виконати операцію з цілими числами;
 
-:checkered_flag: **linux**, **сценарій**, **bash**, **змінна**
+:checkered_flag: **linux**, **script**, **bash**, **variable**
 
 **Знання**: :star: :star:  
 **Складність**: :star: :star: :star:

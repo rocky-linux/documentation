@@ -8,7 +8,7 @@ In diesem Kapitel lernen Sie weitere Themen über die Arbeit mit Ansible.
 
 ****
 
-**Ziele**: In diesem Kapitel wird Folgendes behandelt:
+**Ziele**: In diesem Kapitel lernen Sie Folgendes:
 
 :heavy_check_mark: arbeiten mit Variablen;  
 :heavy_check_mark: Verwendung von Schleifen;  

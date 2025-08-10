@@ -206,7 +206,7 @@ In der Welt **GNU/Linux**-Welt bietet die Bewegung der Freien Software überwieg
 
 **Frei** ist gemeint im Sinne von Freiheit nicht von Freibier!
 
-**Open Source**: die Quellen sind verfügbar, es ist möglich, sie einzusehen und verändern, aber nur unter bestimmte Bedingungen.
+**Open Source**: die Quellen sind verfügbar, es ist möglich, sie einzusehen und zu verändern, aber nur unter bestimmte Bedingungen.
 
 Eine freie Software – im Sinne von Freiheit – ist notwendigerweise Open Source, aber das Gegenteil ist nicht der Fall, da sich Open-Source-Software von der Freiheit unterscheidet, die die GPL-Lizenz bietet.
 

@@ -24,7 +24,7 @@ Die Hauptbereiche der Dokumentationseite sind:
 
 * **Anleitungen**: die bestimmte Themen zum Einrichten und Benutzen von Rocky Linux abdecken.
 * **Bücher**: enthalten detailliertere Informationen rund um einen bestimmten Bereich.
-* **Labs**: Sie werden Spaß an diese Tutorials haben!
+* **Labors**: Sie werden Spaß an diese Tutorials haben!
 * **Gems**: Hier werden nützliche Skripte und Tipps zur Verwendung von Befehlen vorgestellt.
 * **Release Notes**: enthalten Rocky Linux Release Notes und Versionsupdate Informationen.
 * **Rocky Linux**: Link zur Offiziellen Homepage.

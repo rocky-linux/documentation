@@ -8,7 +8,7 @@ title: 任务管理
 
 ****
 
-**目标**： 在本章中，未来的 Linux 管理员们将学习如何：
+**目标**: 在本章中，未来的 Linux 管理员们将学习如何：
 
 :heavy_check_mark: 使用 Linux 处理计划任务；  
 :heavy_check_mark: 将 **`cron`** 的使用限制为某些用户；  
@@ -52,7 +52,7 @@ title: 任务管理
 [root] # systemctl status crond
 ```
 
-!!! Tip "提示"
+!!! Tip "小提示"
 
     如果 `crond` 守护程序未运行，则必须在启动时手动 和/或 自动对其进行初始化。 即使任务被安排了，它们也不会被启动。
 
