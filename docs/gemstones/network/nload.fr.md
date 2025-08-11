@@ -18,7 +18,7 @@ dnf -y install nload
 
 Voici les options courantes de la commande `nload` qui, dans des circonstances normales, ne nécessitent rien de plus. Les options précèdent l'interface à surveiller :
 
-| Options     | Observation                                                                                                     |
+| Option      | Description                                                                                                     |
 | ----------- | --------------------------------------------------------------------------------------------------------------- |
 | -a PERIOD   | Durée de la fenêtre de calcul en secondes (par défaut : 300)                 |
 | -m          | Affiche plusieurs périphériques et ne présente pas de graphique de trafic                                       |
