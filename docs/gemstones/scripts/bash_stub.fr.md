@@ -102,4 +102,4 @@ rm -f $LOCKF
 
 ## Conclusion
 
-Scripting is a System Administrator's friend. Être capable de faire rapidement certaines tâches dans un script rationalise la réalisation du processus. Bien qu'il ne s'agisse pas d'un ensemble exhaustif de routines de scripts, ce conteneur offre quelques exemples d'utilisation courante.
+Scripting is a System Administrator's friend. Être capable de faire rapidement certaines tâches dans un script rationalise la réalisation du processus. Bien qu'il ne s'agisse pas d'un ensemble exhaustif de routines de scripts, ce `stub` offre quelques exemples d'utilisation courante.
