@@ -17,9 +17,9 @@ dnf -y install tor torsocks
 systemctl enable --now tor
 ```
 
-Les options courantes de la commande `torsocks` suivent et, dans des circonstances normales, ne nécessitent rien de plus. Les options apparaissent avant que l'application ne soit lancée (par exemple, `curl`) :
+Les options courantes de la commande `torsocks` suivent et, dans des circonstances normales, ne nécessitent rien de plus. Les options précèdent l'application à exécuter (par exemple, `curl`) :
 
-| Options    | Observation                                                  |
+| Option     | Description                                                  |
 | ---------- | ------------------------------------------------------------ |
 | --shell    | Crée un nouveau shell avec LD\_PRELOAD |
 | -u USER    | Indique l'utilisateur de SOCKS5                              |
