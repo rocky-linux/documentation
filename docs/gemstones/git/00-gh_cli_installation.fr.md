@@ -27,7 +27,7 @@ Les utilisateurs ont besoin d’un moyen pratique pour interagir avec GitHub san
 ## Procédure
 
 1. **Installer le référentiel CLI GitHub à l'aide de curl** :
-  utilisez la commande curl pour télécharger le fichier du référentiel officiel pour `gh`. Le fichier téléchargé sera enregistré dans le répertoire `/etc/yum.repos.d/`. Après le téléchargement, utilisez la commande `dnf` pour installer `gh` à partir du référentiel. Entrer la commande suivante :
+  utilisez la commande curl pour télécharger le fichier du référentiel officiel pour `gh`. Le fichier téléchargé sera enregistré dans le répertoire `/etc/yum.repos.d/`. Après le téléchargement, utilisez la commande `dnf` pour installer `gh` à partir du référentiel. Tapez la commande suivante :
 
   ```bash
   curl -fsSL https://cli.github.com/packages/rpm/gh-cli.repo | sudo tee /etc/yum.repos.d/github-cli.repo
@@ -35,14 +35,14 @@ Les utilisateurs ont besoin d’un moyen pratique pour interagir avec GitHub san
   ```
 
 2. **Vérifier l'installation** :
-  Assurez-vous que `gh` est correctement installé. Entrer la commande suivante :
+  Assurez-vous que `gh` est correctement installé. Tapez la commande suivante :
 
   ```bash
   gh --version
   ```
 
 3. **Authentification avec GitHub** :
-  Connectez-vous à votre compte GitHub. Entrer la commande suivante :
+  Connectez-vous à votre compte GitHub. Tapez la commande suivante :
 
   ```bash
   gh auth login
