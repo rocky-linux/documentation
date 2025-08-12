@@ -47,7 +47,7 @@ Les contributeurs peuvent préférer ou avoir besoin d'effectuer toutes les acti
   ```
 
 4. **Création d'une branche** :
-  Créez une nouvelle branche pour votre contribution. Entrer la commande suivante :
+  Créez une nouvelle branche pour votre contribution. Tapez la commande suivante :
 
   ```bash
   git checkout -b new-gemstone
@@ -58,7 +58,7 @@ Les contributeurs peuvent préférer ou avoir besoin d'effectuer toutes les acti
   Pour cet exemple, nous allons créer `gemstome_new_pr.md` et enregistrer ce fichier sous le répertoire `docs/gemstones/`.
 
 6. **Commit des modifications** :
-  Préparez et validez votre nouveau fichier. Entrer la commande suivante :
+  Préparez et validez votre nouveau fichier. Tapez la commande suivante :
 
   ```bash
   git add docs/gemstones/gemstome_new_pr.md
@@ -66,7 +66,7 @@ Les contributeurs peuvent préférer ou avoir besoin d'effectuer toutes les acti
   ```
 
 7. **Push vers le fork** :
-  Envoyez les modifications vers votre fork/copie du dépôt de documentation Rocky Linux. Entrer la commande suivante :
+  Envoyez les modifications vers votre fork/copie du dépôt de documentation Rocky Linux. Tapez la commande suivante :
 
   ```bash
   git push origin new-gemstone

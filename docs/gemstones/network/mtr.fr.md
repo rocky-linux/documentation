@@ -23,7 +23,7 @@ Les options les plus courantes de la commande `mtr` sont les suivantes. En temps
 | -4       | # IPv4 seulement                                |
 | -6       | # IPv6 seulement                                |
 | -c COUNT | # Nombre de pings                               |
-| -n       | # pas de résolution du nom de l'hôte            |
+| -n       | # pas de résolution du nom d'hôte               |
 | -z       | # Affichage du nombre AS                        |
 | -b       | # Affichage de l'adresse IP et du nom de l'hôte |
 | -w       | # Output a wide range of reports                |

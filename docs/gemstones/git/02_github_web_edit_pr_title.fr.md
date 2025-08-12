@@ -19,7 +19,7 @@ Parfois, il peut être nécessaire de modifier le titre d'une requête PR après
 ## Prérequis
 
 - Une pull request GitHub en cours de traitement.
-- Accès à l'interface Web GitHub ou CLI avec les autorisations nécessaires.
+- Accès à l'interface Web de GitHub ou CLI avec les autorisations nécessaires.
 
 ## Procédure
 

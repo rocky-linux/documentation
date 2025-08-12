@@ -30,7 +30,7 @@ Lorsque nous téléchargeons des scripts bash qui ont été écrits par d'autres
 | **Code couleur d'arrière-plan** | **description** |
 |:-------------------------------:|:---------------:|
 |               40                |      noir       |
-|               41                |     crimson     |
+|               41                |    cramoisi     |
 |               42                |      vert       |
 |               43                |      jaune      |
 |               44                |      bleu       |

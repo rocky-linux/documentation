@@ -22,7 +22,7 @@ shell > dnf -y install NetworkManager NetworkManager-tui
 shell > nmtui
 ```
 
-| NetworkManager TUI (nmtui)       |    |
+| NetworkManager TUI               |    |
 | -------------------------------- | -- |
 | Modifier une connexion           |    |
 | Activer une connexion            |    |
@@ -121,7 +121,7 @@ Shell > nmcli connection  edit  CONNECTION_NAME
 nmcli > help
 ```
 
-Vous pouvez également modifier une ou plusieurs propriétés de la connexion directement à partir de la ligne de commande avec le mot-clé `modify`. Par exemple :
+Vous pouvez également modifier une ou plusieurs propriétés de la connexion directement à partir de la ligne de commande avec le mot-clé `modify`. Par exemple :
 
 ```bash
 Shell > nmcli connection modify CONNECTION_NAME autoconnect yes ipv6.method dhcp
@@ -151,7 +151,7 @@ Shell > nmcli  connection  add  type  bond-slave   ifname NIC_DEVICE_NAME2   mas
 
 Vous pouvez afficher des informations plus détaillées via `man 5 NetworkManager.conf` et `man 5 nm-settings-nmcli`.
 
-Le contenu du fichier de configuration de la carte réseau NetworkManager est un fichier clé de style init. Par exemple :
+Le contenu du fichier de configuration de la carte réseau NetworkManager est un fichier clé de style init. Par exemple :
 
 ```bash
 Shell > cat /etc/NetworkManager/system-connections/ens160.nmconnection
@@ -183,7 +183,7 @@ method=disabled
 
 Les titres comme nom de **connection** peuvent contenir ces paires de clé-valeur commune :
 
-| nom de la clé  | description                                                                                                                                                                        |
+| nom de la clé  | Description                                                                                                                                                                        |
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | id             | L'alias de `con-name`, dont la valeur est une chaîne.                                                                                                                            |
 | uuid           | Identifiant universel unique, dont la valeur est une chaîne de caractères.                                                                                                         |
@@ -194,7 +194,7 @@ Les titres comme nom de **connection** peuvent contenir ces paires de clé-valeu
 
 **les noms de titres** éthernet peuvent contenir ces paires de clés communes :
 
-| nom de la clé  | description                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| nom de la clé  | Description                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | mac-address    | Adresse MAC physique.                                                                                                                                                                                                                                                                                                                                                                                                       |
 | mtu            | Unité de Transmission Maximale.                                                                                                                                                                                                                                                                                                                                                                                             |
@@ -204,7 +204,7 @@ Les titres comme nom de **connection** peuvent contenir ces paires de clé-valeu
 
 Les titres des noms **ipv4** peuvent contenir ces paires de valeurs clés communes:
 
-| Mot-clé   | description                                                                                                                                         |
+| Mot-clé   | Description                                                                                                                                         |
 | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | addresses | Adresses IP assignées                                                                                                                               |
 | gateway   | Passerelle (accès réseau) pour l'interface                                                                                                          |
