@@ -123,7 +123,7 @@ fs.inotify.max_user_watches = 1048576
 
 ## Поєднання `inotifywait` і `rsync`
 
-!!! підказка
+!!! tip "Підсказка"
 
     Ми працюємо на сервері Rocky Linux 8, використовуючи для демонстрації протокол SSH.
 
@@ -144,12 +144,12 @@ $a | while read directory event file
 [root@Rocky ~]# bash /root/rsync_inotify.sh &
 ```
 
-!!! підказка
+!!! tip "Підсказка"
 
     Під час використання протоколу SSH для передачі даних синхронізації, якщо порт служби SSH цільової машини не 22, ви можете використовувати метод, подібний до цього——
     `b="/usr/bin/rsync -avz -e 'ssh -p [port-number]' /rsync/* testfedora@192.168.100.5:/home/testfedora/"`
 
-!!! підказка
+!!! tip "Підсказка"
 
     Якщо ви хочете запустити цей сценарій під час завантаження
     `[root@Rocky ~]# echo "bash /root/rsync_inotify.sh &" >> /etc/rc.local`
