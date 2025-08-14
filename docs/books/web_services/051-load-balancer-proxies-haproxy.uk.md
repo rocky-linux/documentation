@@ -4,7 +4,7 @@ contributors:
 title: Частина 5.1 HAProxy
 ---
 
-!!! info
+!!! info "інформація"
 
 ```
 Цей вміст ще не написано.
