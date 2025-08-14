@@ -8,7 +8,7 @@ tags:
 
 # Introduction
 
-Depuis la sortie de Rocky Linux 9, certaines installations sur les plateformes x86-64 échouent au démarrage en indiquant le message `kernel panic`. Dans la plupart des cas ==cela est dû à une incompatibilité CPU== avec Rocky Linux 9. Cette procédure permettra de vérifier la compatibilité du processeur avant l’installation.
+Depuis la sortie de Rocky Linux 9, certaines installations sur les plateformes x86-64 échouent au démarrage en indiquant le message `kernel panic`. Dans la plupart des cas ==cela est dû à une incompatibilité CPU== avec Rocky Linux 9. Cette procédure permettra de vérifier la compatibilité du processeur avant l’installation. **Mise à jour :** Cette procédure reflète désormais également la compatibilité minimale du processeur pour Rocky Linux 10.
 
 ## Test
 
@@ -32,4 +32,4 @@ Depuis la sortie de Rocky Linux 9, certaines installations sur les plateformes x
   x86-64-v2 (supported, searched)
   ```
 
-  Cette sortie indique la version minimale x86-64 (v2) requise. Dans ce cas, l'installation peut continuer. S'il n'y a pas d'indication "(supported, searched)" à côté de l'entrée "x86-64-v2", cela signifie que votre processeur n'est **pas** compatible avec Rocky Linux 9.x. Si le test montre que l'installation peut continuer et qu'il répertorie également x86-64-v3 et x86-64-v4 comme "(supported, searched)", votre processeur est bien pris en charge pour les versions 9.x et futures.
+  Cette sortie indique la version minimale x86-64 (v2) requise. Dans ce cas, l'installation peut continuer. S'il n'y a pas d'indication "(supported, searched)" à côté de l'entrée "x86-64-v2", cela signifie que votre processeur n'est **pas** compatible avec Rocky Linux 9.x. Si le test indique que votre installation peut continuer et qu'il répertorie également x86-64-v3 (requis pour Rocky Linux 10) et x86-64-v4 comme (`supported, searched`), votre CPU sera bien pris en charge pour 9.x et les versions suivantes.
