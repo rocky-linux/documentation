@@ -59,7 +59,7 @@ Last login: Tue Nov 2 21:42:44 2021 from 192.168.100.5
 [testrsync@Rocky ~]$
 ```
 
-!!! підказка
+!!! tip "Підсказка"
 
     Файл конфігурації сервера **/etc/ssh/sshd_config** має бути відкритий <font color=red>PubkeyAuthentication yes</font>
 
@@ -95,6 +95,6 @@ sent 30 bytes received 193 bytes 148.67 bytes/sec
 total size is 883 speedup is 3.96
 ```
 
-!!! підказка
+!!! tip "Підсказка"
 
     Ви можете записати цю змінну в **/etc/profile**, щоб вона стала чинною. Вміст: `export RSYNC_PASSWORD=13579`
