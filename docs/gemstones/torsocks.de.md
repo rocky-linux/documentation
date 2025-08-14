@@ -1,5 +1,5 @@
 ---
-title: torsocks - Route Traffic Via Tor/SOCKS5
+title: torsocks - Routen-Traffic Via Tor/SOCKS5
 author: Neel Chauhan
 contributors: Steven Spencer, Ganna Zhyrnova
 date: 2024-02-25
