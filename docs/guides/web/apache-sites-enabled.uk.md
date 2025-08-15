@@ -197,7 +197,7 @@ cp /root/com.wiki.www.crt /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/
 
 Далі вам потрібно визначити частину `https` файлу конфігурації:
 
-!!! info
+!!! info "Інформація"
 
     Починаючи з Apache 2.4.8, директива `SSLCertificateChainFile` застаріла. Розширення директиви `SSLCertificateFile` включає сертифікат CA постачальника.
 
@@ -207,7 +207,7 @@ cp /root/com.wiki.www.crt /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/
         ServerAdmin username@rockylinux.org
         Redirect / https://your-server-hostname/
 </VirtualHost>
-<Virtual Host *:443>
+<VirtualHost *:443>
         ServerName your-server-hostname
         ServerAdmin username@rockylinux.org
         DocumentRoot /var/www/sub-domains/your-server-hostname/html
@@ -239,6 +239,10 @@ cp /root/com.wiki.www.crt /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/
         </Directory>
 </VirtualHost>
 ```
+
+!!! warning "Примітка щодо наборів шифрів"
+
+    Цей документ був спочатку написаний для Rocky Linux 8. З того часу **багато що** змінилося. По-перше, ви можете повністю виключити рядки `SSLHonorCipherOrder on` і `SSLCipherSuite` і дозволити серверу вибрати їх за замовчуванням. Якщо ви підтримуєте оновлений сервер (іншими словами, ви регулярно виконуєте команду `dnf upgrade`), то це повинно забезпечити безпеку та оновлення наборів шифрів без окремого втручання в конфігурацію. Таким чином, ви уникнете використання застарілих або небезпечних наборів шифрів у вашій конфігурації. Якщо з якихось причин вам **необхідно** змінити ці параметри у вашій конфігурації, ретельно вивчіть свої записи.
 
 Отже, розбиваючи цю конфігурацію далі, після звичайних частин конфігурації та вниз до розділу SSL/TLS:
 
