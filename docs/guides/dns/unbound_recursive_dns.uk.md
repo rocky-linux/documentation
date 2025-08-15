@@ -9,7 +9,7 @@ tags:
 
 Альтернативою BIND, [Unbound](https://www.nlnetlabs.nl/projects/unbound/about/) є сучасний перевіряючий, рекурсивний і кешуючий DNS-сервер, який підтримується [NLnet Labs](https://www. nlnetlabs.nl/).
 
-## Передумови та припущення
+## Передумови і Припущення
 
 - Сервер під керуванням Rocky Linux
 - Можливість використання `firewalld` для створення правил брандмауера
