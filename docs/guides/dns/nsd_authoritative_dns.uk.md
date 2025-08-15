@@ -9,7 +9,7 @@ tags:
 
 Альтернативою BIND, [NSD](https://www.nlnetlabs.nl/projects/nsd/about/) (Name Server Daemon) є сучасний авторитетний сервер DNS, який підтримується [NLnet Labs](https:// www.nlnetlabs.nl/).
 
-## Передумови та припущення
+## Передумови і Припущення
 
 - Сервер під керуванням Rocky Linux
 - Можливість використання `firewalld` для створення правил брандмауера
