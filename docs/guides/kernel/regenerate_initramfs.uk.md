@@ -4,7 +4,7 @@ author: Neel Chauhan
 contributors: Steven Spencer
 tested_with: 9.4
 tags:
-  - обладнання
+  - hardware
 ---
 
 ## Вступ
