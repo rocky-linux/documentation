@@ -154,7 +154,7 @@ systemctl enable --now caddy
 
 Як згадувалося раніше, Caddy підтримує підтримку FastCGI для PHP. Хороша новина полягає в тому, що, на відміну від Apache і Nginx, Caddy автоматично обробляє розширення файлів PHP.
 
-Щоб установити PHP, спочатку додайте репозиторій Remi (примітка: якщо ви використовуєте Rocky Linux 8.x, замініть 8 поруч із «release-» нижче):
+Щоб установити PHP, спочатку додайте репозиторій Remi (примітка: якщо ви використовуєте Rocky Linux 8.x або 10.х, замініть 8 або 10 поруч із «release-» нижче):
 
 ```bash
 dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm

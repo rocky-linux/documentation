@@ -5,7 +5,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 9.5
 tags:
   - create
-  - custom "Власний заголовок"
+  - custom
   - ISO
 ---
 
