@@ -1,5 +1,5 @@
 ---
-title: sed - Suchen und Ersetzen
+title: sed — Suchen und Ersetzen
 author: Steven Spencer
 ---
 
