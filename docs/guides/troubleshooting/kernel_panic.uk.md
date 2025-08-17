@@ -1,5 +1,5 @@
 ---
-title: Як впоратися з панікою ядра (kernel panic)
+title: Як впоратися з kernel panic
 author: Antoine Le Morvan
 contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.4
