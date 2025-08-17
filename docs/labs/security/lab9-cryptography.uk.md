@@ -900,15 +900,20 @@ usage: scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file]
     foobar
     ```
 
-    !!! Question "Питання"
+    !!! question "Питання"
 
      Яка різниця між варіаціями цих двох команд і за яких обставин вони матимуть однаковий результат?
-    
-     - scp me@serverPR:/home/me/myexport.
-    
+
+        ```bash
+        scp me@serverPR:/home/me/myexport .
+        ```
+
+
      та
-    
-     - scp serverPR:/home/me/myexport.
+
+        ```bash
+        scp serverPR:/home/me/myexport .
+        ```
 
 5. Яка команда скопіює всі файли в “/home/me/.gnugp/” на serverPR?
 
@@ -927,12 +932,17 @@ usage: scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file]
     !!! Question "Питання"
 
      Яка невелика, але суттєва різниця між варіаціями двох попередніх команд? І який результат кожної команди?
-    
-     - `scp -r  ying@localhost:/home/ying/  ying_home_directory_on_serverPR`
-    
+
+        ```bash
+        scp -r  ying@localhost:/home/ying/  ying_home_directory_on_serverPR
+        ```
+
+
      та
-    
-     -  `scp -r  ying@localhost:/home/ying  ying_home_directory_on_serverPR`
+
+        ```bash
+        scp -r  ying@localhost:/home/ying  ying_home_directory_on_serverPR
+        ```
 
 8. Використовуйте команду `ls -alR`, щоб переглянути перелік вмісту двох попередніх кроків. Впишіть:
 
@@ -940,7 +950,7 @@ usage: scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file]
     [me@localhost ~myimport]# ls -al ying_home_directory_on_serverPR/
     ```
 
-    !!! Question "Питання"
+    !!! question "Питання"
 
      Надайте коротке пояснення виводу команди `ls -alR`? Поясніть, наприклад, чому у вас є дублікати цих файлів .bash_history, .bashrc ...
 
@@ -975,7 +985,7 @@ usage: scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file]
     Created directory '/home/ying/.ssh'.
     ```
 
-    Вам двічі буде запропоновано ввести парольну фразу. Введіть хорошу парольну фразу, яку досить складно вгадати. Натисніть <kbd>ENTER</kbd> після кожного запиту.
+    Вам двічі буде запропоновано ввести парольну фразу. Введіть хорошу парольну фразу, яку досить складно вгадати. Натисніть ++enter++ після кожного запиту.
 
     ```bash
     Enter passphrase (empty for no passphrase):     *****
@@ -1033,7 +1043,7 @@ usage: scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file]
 
      Мета попередньої складної на вигляд команди полягає в тому, щоб скопіювати та додати вміст вашого файлу відкритого ключа до “/home/ying/.ssh/authorized_keys” на serverPR і надати йому правильні дозволи.
 
-    !!! tip "Порада"
+    !!! Tip "Порада"
 
      Ви можете використовувати утиліту `ssh-copy-id`, щоб легко та більш витончено налаштувати автентифікацію відкритих/приватних ключів між системами. `ssh-copy-id` — це сценарій, який використовує `ssh` для входу на віддалену машину (імовірно, спочатку використовуючи пароль для входу. 
      Він складає список з одного або кількох відбитків пальців (як описано нижче) і намагається ввійти за допомогою кожної клавіші, щоб побачити, чи якийсь із них уже встановлено. Потім він збирає список тих, кому не вдалося ввійти, і за допомогою `ssh` дозволяє ввійти за допомогою цих ключів у віддалену систему. За замовчуванням він додає ключі, додаючи їх до ~/.ssh/authorized_keys віддаленого користувача (створюючи файл і каталог, якщо необхідно).
