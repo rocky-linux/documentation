@@ -80,7 +80,7 @@ sudo firewall-cmd --reload
 
 Für Anfänger: Diese Befehle öffnen den RDP-Port in Ihrer Firewall, sodass Sie eingehende RDP-Verbindungen akzeptieren können. Starten Sie dann die Firewall neu, um die Änderungen zu übernehmen. Wenn Sie möchten, können Sie Ihren PC sicherheitshalber neu starten.
 
-Wenn Sie keinen Neustart durchführen möchten, sollten Sie sich abmelden. RDP verwendet aus Sicherheitsgründen die Anmeldeinformationen Ihres Benutzerkontos. Eine Remote-Anmeldung ist nicht möglich, wenn Sie bereits lokal bei Ihrem Desktop angemeldet sind. Zumindest nicht mit gleichen Benutzerkonto.
+Sie sollten sich abmelden, wenn Sie keinen Neustart durchführen möchten. RDP verwendet aus Sicherheitsgründen die Anmeldeinformationen Ihres Benutzerkontos. Eine Remote-Anmeldung ist nicht möglich, wenn Sie bereits lokal bei Ihrem Desktop angemeldet sind. Zumindest nicht mit gleichen Benutzerkonto.
 
 !!! info "Info"
 
