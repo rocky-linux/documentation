@@ -1,9 +1,9 @@
 ---
-title: perl - Suchen und Ersetzen
+title: perl – Suchen und Ersetzen
 author: Steven Spencer
 tags:
   - perl
-  - search
+  - suche
 ---
 
 # `perl` – Suchen und Ersetzen
