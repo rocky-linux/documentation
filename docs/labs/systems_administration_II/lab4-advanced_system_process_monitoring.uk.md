@@ -1,10 +1,10 @@
 ---
 author: Wale Soyinka
 contributors: Steven Spencer, Ganna Zhrynova
-tested on: All Versions
+tested on: Всі версії
 tags:
-  - system monitoring
-  - process monitoring
+  - моніторинг системи
+  - моніторинг процесу
   - fuser
   - numactl
   - perf
@@ -19,9 +19,9 @@ tags:
 
 # Лабораторна робота 4: Розширений моніторинг системи та процесів
 
-## Objectives
+## Цілі
 
-After completing this lab, you will be able to
+Виконавши цю лабораторну роботу, ви зможете
 
 - переглядати та керувати процесами за допомогою передових інструментів
 - діагностувати та налагоджувати системні виклики
@@ -29,15 +29,15 @@ After completing this lab, you will be able to
 - переглядати та встановлювати власні політики планування для процесів
 - аналізувати продуктивність системи та додатків
 
-Estimated time to complete this lab: 90 minutes
+Приблизний час виконання цієї лабораторної роботи: 90 хвилин
 
-## Introduction
+## Вступ
 
 Команди в цій лабораторній роботі охоплюють ширший спектр керування процесами, моніторингу системи та керування ресурсами в Linux. Вони додають більшої глибини та різноманітності вашому репертуару системного адміністратора.
 
 Ці вправи охоплюють додаткові команди та поняття Linux, надаючи практичний досвід керування процесами, моніторингу ресурсів і розширеного контролю.
 
-## Exercise 1
+## Завдання 1
 
 ### fuser
 
@@ -45,13 +45,13 @@ Estimated time to complete this lab: 90 minutes
 
 #### Щоб створити сценарій для імітації використання файлу
 
-1. Спочатку створіть порожній тестовий файл, до якого ми хочемо отримати доступ. Type:
+1. Спочатку створіть порожній тестовий файл, до якого ми хочемо отримати доступ. Впишіть:
 
     ```bash
     touch ~/testfile.txt
     ```
 
-2. Створіть сценарій, який ми будемо використовувати для імітації доступу до testfile.txt. Type:
+2. Створіть сценарій, який ми будемо використовувати для імітації доступу до testfile.txt. Впишіть:
 
     ```bash
     cat > ~/simulate_file_usage.sh << EOF
@@ -60,13 +60,13 @@ Estimated time to complete this lab: 90 minutes
     EOF   
     ```
 
-3. Make the script executable. Type:
+3. Зробіть сценарій виконуваним. Впишіть:
 
     ```bash
     chmod +x ~/simulate_file_usage.sh
     ```
 
-4. Запустіть скрипт. Type:
+4. Запустіть скрипт. Впишіть:
 
     ```bash
     ~/simulate_file_usage.sh &
@@ -80,13 +80,13 @@ Estimated time to complete this lab: 90 minutes
     fuser ~/testfile.txt
     ```
 
-2. Перегляньте додаткові параметри `fuser` за допомогою параметра `-v`. Type:
+2. Перегляньте додаткові параметри `fuser` за допомогою параметра `-v`. Впишіть:
 
     ```bash
     fuser -v ~/testfile.txt
     ```
 
-3. Перегляньте додаткові параметри `fuser` за допомогою параметра `-v`. Тепер ви можете видалити файли. Type:
+3. Перегляньте додаткові параметри `fuser` за допомогою параметра `-v`. Тепер ви можете видалити файли. Впишіть:
 
     ```bash
     kill %1
@@ -95,13 +95,13 @@ Estimated time to complete this lab: 90 minutes
 
 #### Щоб ідентифікувати процес, який отримує доступ до порту TCP/UDP
 
-1. Використовуйте команду `fuser`, щоб визначити процес доступу до TCP-порту 22 на вашому сервері. Type:
+1. Використовуйте команду `fuser`, щоб визначити процес доступу до TCP-порту 22 на вашому сервері. Впишіть:
 
     ```bash
     sudo fuser 22/tcp
     ```
 
-## Exercise 2
+## Завдання 2
 
 ### `perf`
 
@@ -109,7 +109,7 @@ Estimated time to complete this lab: 90 minutes
 
 #### Щоб встановити `perf`
 
-1. Встановіть програму `perf`, якщо вона не встановлена на вашому сервері. Type:
+1. Встановіть програму `perf`, якщо вона не встановлена на вашому сервері. Впишіть:
 
     ```bash
     sudo dnf -y install perf
@@ -154,7 +154,7 @@ Estimated time to complete this lab: 90 minutes
     ~/generate_cpu_load.sh 50 & 
     ```
 
-2. Повторно запустіть сценарій, але використовуйте `perf`, щоб записати продуктивність сценарію для аналізу використання ЦП та інших показників. Type:
+2. Повторно запустіть сценарій, але використовуйте `perf`, щоб записати продуктивність сценарію для аналізу використання ЦП та інших показників. Впишіть:
 
     ```bash
     
@@ -167,7 +167,7 @@ Estimated time to complete this lab: 90 minutes
 
 #### Для аналізу даних про ефективність і моніторингу подій у реальному часі
 
-1. Використовуйте команду `perf report`, щоб переглянути звіт про продуктивність, щоб зрозуміти шаблони використання процесора та пам’яті. Type:
+1. Використовуйте команду `perf report`, щоб переглянути звіт про продуктивність, щоб зрозуміти шаблони використання процесора та пам’яті. Впишіть:
 
     ```bash
     sudo perf report
@@ -176,7 +176,7 @@ Estimated time to complete this lab: 90 minutes
   Ви можете використовувати різні клавіші клавіатури для подальшого вивчення звіту.
   Введіть ++"q"++, щоб вийти з інтерфейсу перегляду звітів `perf`.
 
-2. Спостерігайте/фіксуйте події кешу процесора в режимі реального часу протягом 40 секунд, щоб виявити потенційні вузькі місця продуктивності. Type:
+2. Спостерігайте/фіксуйте події кешу процесора в режимі реального часу протягом 40 секунд, щоб виявити потенційні вузькі місця продуктивності. Впишіть:
 
     ```bash
     sudo perf stat -e cache-references,cache-misses sleep 40
@@ -184,7 +184,7 @@ Estimated time to complete this lab: 90 minutes
 
 #### Щоб записати повну продуктивність системи
 
-1. Збирайте дані про продуктивність усієї системи, які можна використовувати для додаткового аналізу. Type:
+1. Збирайте дані про продуктивність усієї системи, які можна використовувати для додаткового аналізу. Впишіть:
 
     ```bash
     sudo perf record -a sleep 10
@@ -196,13 +196,13 @@ Estimated time to complete this lab: 90 minutes
     sudo perf stat -e cycles find /proc
     ```
 
-3. Зробіть те саме, але зі сценарієм ./generate_cpu_load.sh. Підраховуйте певні події, як-от цикли ЦП, щоб оцінити продуктивність сценарію ./generate_cpu_load.sh. Type:
+3. Зробіть те саме, але зі сценарієм ./generate_cpu_load.sh. Підраховуйте певні події, як-от цикли ЦП, щоб оцінити продуктивність сценарію ./generate_cpu_load.sh. Впишіть:
 
     ```bash
     sudo perf stat -e cycles ./generate_cpu_load.sh 500
     ```
 
-  OUTPUT:
+  Вихід:
 
     ```bash
     ...<SNIP>...
@@ -237,7 +237,7 @@ Estimated time to complete this lab: 90 minutes
     kill %1
     ```
 
-## Exercise 3
+## Завдання 3
 
 ### `strace`
 
@@ -245,7 +245,7 @@ Estimated time to complete this lab: 90 minutes
 
 #### Щоб створити сценарій для дослідження `strace`
 
-1. Створіть простий сценарій під назвою `strace_script.sh` і зробіть його виконуваним. Type:
+1. Створіть простий сценарій під назвою `strace_script.sh` і зробіть його виконуваним. Впишіть:
 
     ```bash
     cat > ~/strace_script.sh << EOF
@@ -260,7 +260,7 @@ Estimated time to complete this lab: 90 minutes
 
 #### Щоб використовувати `strace` для запущених процесів
 
-1. Запустіть сценарій і прикріпіть `strace`. Type:
+1. Запустіть сценарій і прикріпіть `strace`. Впишіть:
 
     ```bash
     ~/strace_script.sh &
@@ -272,7 +272,7 @@ Estimated time to complete this lab: 90 minutes
     export MYPID=$(pgrep strace_script) ; echo $MYPID
     ```
 
-  OUTPUT:
+  Вихід:
 
     ```bash
     4006301
@@ -286,7 +286,7 @@ Estimated time to complete this lab: 90 minutes
 
 4. Від’єднайте або зупиніть процес `strace`, ввівши ++ctrl+c++
 
-5. Вихід `strace` можна відфільтрувати, зосередившись на певних системних викликах, таких як `open` і `read`, щоб проаналізувати їх поведінку. Спробуйте зробити це для системних викликів `open` і `read`. Type:
+5. Вихід `strace` можна відфільтрувати, зосередившись на певних системних викликах, таких як `open` і `read`, щоб проаналізувати їх поведінку. Спробуйте зробити це для системних викликів `open` і `read`. Впишіть:
 
     ```bash
     sudo strace -e trace=open,read -p $MYPID
@@ -302,7 +302,7 @@ Estimated time to complete this lab: 90 minutes
 
 #### Для аналізу частоти системних викликів
 
-1. Узагальніть кількість системних викликів, щоб визначити системні виклики, які найчастіше використовуються процесом. Зробіть це лише на 10 секунд, додавши команду `timeout`. Type:
+1. Узагальніть кількість системних викликів, щоб визначити системні виклики, які найчастіше використовуються процесом. Зробіть це лише на 10 секунд, додавши команду `timeout`. Впишіть:
 
     ```bash
     sudo timeout 10 strace -c -p $MYPID
@@ -310,7 +310,7 @@ Estimated time to complete this lab: 90 minutes
 
   Наша зразкова система показує підсумковий звіт таким чином:
 
-  OUTPUT:
+  Вихід:
 
     ```bash
     strace: Process 4006301 attached
@@ -334,7 +334,7 @@ Estimated time to complete this lab: 90 minutes
     rm ~/strace_script.sh ~/strace_output.txt
     ```
 
-## Exercise 4
+## Завдання 4
 
 ### `atop`
 
@@ -342,7 +342,7 @@ Estimated time to complete this lab: 90 minutes
 
 #### Щоб запустити та дослідити `atop`
 
-1. Встановіть програму `atop`, якщо вона не встановлена на вашому сервері. Type:
+1. Встановіть програму `atop`, якщо вона не встановлена на вашому сервері. Впишіть:
 
     ```bash
     sudo dnf -y install atop
@@ -358,7 +358,7 @@ Estimated time to complete this lab: 90 minutes
 
   Використовуйте 'm', 'd' або 'n' для перемикання між переглядами пам'яті, диска або мережі. Спостерігайте, як використовуються ресурси в реальному часі.
 
-4. Відстежуйте продуктивність системи з користувацьким інтервалом у 2 секунди, що дозволяє більш детально переглядати діяльність системи. Type:
+4. Відстежуйте продуктивність системи з користувацьким інтервалом у 2 секунди, що дозволяє більш детально переглядати діяльність системи. Впишіть:
 
     ```bash
     sudo atop 2
@@ -366,7 +366,7 @@ Estimated time to complete this lab: 90 minutes
 
 5. Перемикайтеся між різними видами ресурсів, щоб зосередитися на конкретних аспектах продуктивності системи.
 
-6. Створіть звіт із файлу журналу про діяльність системи, збираючи дані кожні 60 секунд, тричі. Type:
+6. Створіть звіт із файлу журналу про діяльність системи, збираючи дані кожні 60 секунд, тричі. Впишіть:
 
     ```bash
     sudo atop -w /tmp/atop_log 60 3
@@ -384,7 +384,7 @@ Estimated time to complete this lab: 90 minutes
     sudo rm /tmp/atop_log
     ```
 
-## Exercise 5
+## Завдання 5
 
 ### `numactl`
 
@@ -395,7 +395,7 @@ NUMA означає "нерівномірний доступ до пам'яті"
 
 #### Щоб встановити `numactl`
 
-1. Встановіть програму `numactl`, якщо вона не встановлена на вашому сервері. Type:
+1. Встановіть програму `numactl`, якщо вона не встановлена на вашому сервері. Впишіть:
 
     ```bash
     sudo dnf -y install numactl
@@ -403,7 +403,7 @@ NUMA означає "нерівномірний доступ до пам'яті"
 
 #### Для створення сценарію, що потребує великої кількості пам’яті
 
-1. Створіть простий сценарій, який допоможе імітувати робоче навантаження з інтенсивним використанням пам’яті на вашому сервері. Type:
+1. Створіть простий сценарій, який допоможе імітувати робоче навантаження з інтенсивним використанням пам’яті на вашому сервері. Впишіть:
 
     ```bash
     cat > ~/memory_intensive.sh << EOF
@@ -446,7 +446,7 @@ NUMA означає "нерівномірний доступ до пам'яті"
     rm ~/memory_intensive.sh
     ```
 
-## Exercise 6
+## Завдання 6
 
 ### `iotop`
 
@@ -454,7 +454,7 @@ NUMA означає "нерівномірний доступ до пам'яті"
 
 #### Щоб встановити `iotop`
 
-1. Встановіть утиліту `iotop`, якщо вона не встановлена. Type:
+1. Встановіть утиліту `iotop`, якщо вона не встановлена. Впишіть:
 
     ```bash
     sudo dnf -y install iotop
@@ -462,7 +462,7 @@ NUMA означає "нерівномірний доступ до пам'яті"
 
 #### Щоб використовувати `iotop` для моніторингу дискового введення-виведення
 
-1. Запустіть команду `iotop` без будь-яких параметрів, щоб використовувати її в інтерактивному режимі за замовчуванням. Type:
+1. Запустіть команду `iotop` без будь-яких параметрів, щоб використовувати її в інтерактивному режимі за замовчуванням. Впишіть:
 
     ```bash
     sudo iotop
@@ -498,7 +498,7 @@ NUMA означає "нерівномірний доступ до пам'яті"
          Обговоріть вплив дискового вводу-виводу на загальну продуктивність системи та як такі інструменти, як `iotop`, можуть допомогти в оптимізації системи.
         ```
 
-## Exercise 7
+## Завдання 7
 
 ### `cgroups`
 
@@ -508,13 +508,13 @@ NUMA означає "нерівномірний доступ до пам'яті"
 
 ### Для вивчення файлової системи `cgroup`
 
-1. Використовуйте команду `ls`, щоб дослідити вміст і структуру файлової системи `cgroup`. Type:
+1. Використовуйте команду `ls`, щоб дослідити вміст і структуру файлової системи `cgroup`. Впишіть:
 
     ```bash
     ls /sys/fs/cgroup/
     ```
 
-2. Знову скористайтеся командою `ls`, щоб отримати список папок \*.slice у файловій системі `cgroup`. Type:
+2. Знову скористайтеся командою `ls`, щоб отримати список папок \*.slice у файловій системі `cgroup`. Впишіть:
 
     ```bash
     ls -d /sys/fs/cgroup/*.slice
@@ -530,7 +530,7 @@ NUMA означає "нерівномірний доступ до пам'яті"
     sudo mkdir -p /sys/fs/cgroup/exercise_group
     ```
 
-2. Тепер перелічіть файли та каталоги в структурі /sys/fs/cgroup/exercise_group. Type:
+2. Тепер перелічіть файли та каталоги в структурі /sys/fs/cgroup/exercise_group. Впишіть:
 
     ```bash
     sudo ls /sys/fs/cgroup/exercise_group/
@@ -546,7 +546,7 @@ NUMA означає "нерівномірний доступ до пам'яті"
     echo 4096 | sudo tee /sys/fs/cgroup/exercise_group/memory.max
     ```
 
-2. Підтвердьте, що ліміт пам’яті встановлено. Type:
+2. Підтвердьте, що ліміт пам’яті встановлено. Впишіть:
 
     ```bash
     cat /sys/fs/cgroup/exercise_group/memory.max
@@ -554,7 +554,7 @@ NUMA означає "нерівномірний доступ до пам'яті"
 
 #### Щоб створити тестовий сценарій memory_stress
 
-1. Створіть простий виконуваний сценарій за допомогою команди `dd`, щоб перевірити обмеження ресурсу пам’яті. Type:
+1. Створіть простий виконуваний сценарій за допомогою команди `dd`, щоб перевірити обмеження ресурсу пам’яті. Впишіть:
 
     ```bash
     cat > ~/memory_stress.sh << EOF
@@ -566,7 +566,7 @@ NUMA означає "нерівномірний доступ до пам'яті"
 
 #### Щоб запустити та додати процес/сценарій до `cgroup` пам'яті
 
-1. Запустіть memory_stress.sh, запишіть його PID і додайте PID до group.procs. Type:
+1. Запустіть memory_stress.sh, запишіть його PID і додайте PID до group.procs. Впишіть:
 
     ```bash
     ~/memory_stress.sh &
@@ -575,13 +575,13 @@ NUMA означає "нерівномірний доступ до пам'яті"
 
   Файл /sys/fs/cgroup/exercise_group/cgroup.procs можна використовувати для додавання або перегляду PID (ідентифікаторів процесів) процесів, які є членами даної `cgroup`. Запис PID до цього файлу призначає процес сценарію ~/memory_stress.sh групі `cgroup`.
 
-2. Попередня команда завершиться дуже швидко, тому що вона перевищила обмеження пам’яті `cgroup`. Ви можете запустити таку команду `journalctl` в іншому терміналі, щоб переглянути помилку, як вона відбувається. Type:
+2. Попередня команда завершиться дуже швидко, тому що вона перевищила обмеження пам’яті `cgroup`. Ви можете запустити таку команду `journalctl` в іншому терміналі, щоб переглянути помилку, як вона відбувається. Впишіть:
 
     ```bash
     journalctl -xe -f  | grep -i memory
     ```
 
-  !!! Tip
+  !!! Tip "Порада"
 
         ```
          Ви можете швидко скористатися командою ps, щоб перевірити приблизне використання пам'яті процесом, якщо вам відомий PID процесу, запустивши:
@@ -595,7 +595,7 @@ NUMA означає "нерівномірний доступ до пам'яті"
 
 #### Щоб установити новий ліміт ресурсу ЦП
 
-1. Обмежте використання сценарієм лише 10% ядра ЦП. Type:
+1. Обмежте використання сценарієм лише 10% ядра ЦП. Впишіть:
 
     ```bash
     echo 10000 | sudo tee /sys/fs/cgroup/exercise_group/cpu.max
@@ -603,7 +603,7 @@ NUMA означає "нерівномірний доступ до пам'яті"
 
   10000 означає обмеження пропускної здатності ЦП. Його встановлено на 10% від загальної потужності одного ядра ЦП.
 
-2. Переконайтеся, що встановлено обмеження ЦП. Type:
+2. Переконайтеся, що встановлено обмеження ЦП. Впишіть:
 
     ```bash
     cat /sys/fs/cgroup/exercise_group/cpu.max
@@ -611,7 +611,7 @@ NUMA означає "нерівномірний доступ до пам'яті"
 
 #### Щоб створити сценарій стрес-тесту ЦП
 
-1. Створюйте та встановлюйте дозволи на виконання для сценарію, щоб генерувати високе використання ЦП. Type:
+1. Створюйте та встановлюйте дозволи на виконання для сценарію, щоб генерувати високе використання ЦП. Впишіть:
 
     ```bash
     cat > ~/cpu_stress.sh << EOF
@@ -650,14 +650,14 @@ NUMA означає "нерівномірний доступ до пам'яті"
 
 Основний запам'ятовуючий пристрій може бути ціллю для встановлення обмежень на ресурси введення-виведення. Пристрої зберігання даних у системах Linux мають основні та другорядні номери пристроїв, які можна використовувати для їх унікальної ідентифікації.
 
-1. По-перше, давайте створимо набір допоміжних змінних для визначення та збереження номера пристрою для основного пристрою зберігання на сервері. Type:
+1. По-перше, давайте створимо набір допоміжних змінних для визначення та збереження номера пристрою для основного пристрою зберігання на сервері. Впишіть:
 
     ```bash
     primary_device=$(lsblk | grep disk | awk '{print $1}' | head -n 1)
     primary_device_num=$(ls -l /dev/$primary_device | awk '{print $5, $6}' | sed 's/,/:/')
     ```
 
-2. Далі, відобразимо значення змінної $primary_device_num. Type:
+2. Далі, відобразимо значення змінної $primary_device_num. Впишіть:
 
     ```bash
     echo "Primary Storage Device Number: $primary_device_num"
@@ -671,14 +671,14 @@ NUMA означає "нерівномірний доступ до пам'яті"
 
 #### Щоб установити нове обмеження ресурсів введення-виведення
 
-1. Встановіть операції вводу/виводу на 1 МБ/с для процесів читання та запису в `cgroup` групи виконання. Type:
+1. Встановіть операції вводу/виводу на 1 МБ/с для процесів читання та запису в `cgroup` групи виконання. Впишіть:
 
     ```bash
     echo "$primary_device_num rbps=1048576 wbps=1048576" | \
     sudo tee /sys/fs/cgroup/exercise_group/io.max
     ```
 
-2. Підтвердьте встановлені обмеження введення/виведення. Type:
+2. Підтвердьте встановлені обмеження введення/виведення. Впишіть:
 
     ```bash
     cat /sys/fs/cgroup/exercise_group/io.max
@@ -686,7 +686,7 @@ NUMA означає "нерівномірний доступ до пам'яті"
 
 #### Щоб створити процес стрес-тесту вводу-виводу
 
-1. Запустіть процес `dd`, щоб створити великий файл з назвою /tmp/io_stress. Також запишіть і збережіть PID процесу dd у змінній під назвою `MYPID`. Type:
+1. Запустіть процес `dd`, щоб створити великий файл з назвою /tmp/io_stress. Також запишіть і збережіть PID процесу dd у змінній під назвою `MYPID`. Впишіть:
 
     ```bash
     dd if=/dev/zero of=/tmp/io_stress bs=10M count=500 oflag=dsync \
@@ -695,7 +695,7 @@ NUMA означає "нерівномірний доступ до пам'яті"
 
 #### Щоб додати процес/сценарій до `cgroup` вводу/виводу
 
-1. Додайте PID попереднього процесу dd до елемента керування exercise_group `cgroup`. Type:
+1. Додайте PID попереднього процесу dd до елемента керування exercise_group `cgroup`. Впишіть:
 
     ```bash
     echo $MYPID | sudo tee /sys/fs/cgroup/exercise_group/cgroup.procs
@@ -709,11 +709,11 @@ NUMA означає "нерівномірний доступ до пам'яті"
     iotop -p $MYPID
     ```
 
-The output will display I/O read/write speeds for the io_stress.sh process, which should not exceed 1 MB/s as per the limit.
+На виході буде відображено швидкість читання/запису вводу-виводу для процесу io_stress.sh, яка не повинна перевищувати 1 МБ/с відповідно до обмеження.
 
-#### To remove `cgroups`
+#### Щоб видалити `cgroups`
 
-1. Type the following commands to end any background process, delete the no-longer-needed `cgroup` and remove the /tmp/io_stress file.
+1. Введіть наступні команди, щоб завершити будь-який фоновий процес, видалити непотрібну `cgroup` і видалити файл /tmp/io_stress.
 
     ```bash
     kill %1
@@ -721,131 +721,131 @@ The output will display I/O read/write speeds for the io_stress.sh process, whic
     sudo rm -rf /tmp/io_stress
     ```
 
-## Exercise 8
+## Завдання 8
 
 ### `taskset`
 
-CPU affinity binds specific processes or threads to particular CPU cores in a multi-core system. This exercise demonstrates the use of `taskset` to set or retrieve the CPU affinity of a process in Linux.
+CPU affinity прив’язує конкретні процеси або потоки до певних ядер ЦП у багатоядерній системі. Ця вправа демонструє використання `taskset` для встановлення або отримання спорідненості ЦП процесу в Linux.
 
-### To explore CPU Affinity with `taskset`
+### Щоб дослідити CPU Affinity з `taskset`
 
-1. Use the `lscpu` to list available CPUs on your system. Type:
+1. Використовуйте `lscpu`, щоб отримати список доступних ЦП у вашій системі. Впишіть:
 
     ```bash
     lscpu | grep "On-line"
     ```
 
-2. Давайте створимо зразок процесу за допомогою утиліти dd і збережемо його PID у змінній MYPID. Type:
+2. Давайте створимо зразок процесу за допомогою утиліти dd і збережемо його PID у змінній MYPID. Впишіть:
 
     ```bash
     dd if=/dev/zero of=/dev/null & export MYPID="$!"
     echo $MYPID
     ```
 
-3. Retrieve current affinity for the `dd` process. Type:
+3. Отримайте поточну спорідненість для процесу `dd`. Впишіть:
 
     ```bash
     taskset -p $MYPID
     ```
 
-  OUTPUT:
+  Вихід:
 
     ```bash
     pid 1211483's current affinity mask: f
     ```
 
-  Вихідні дані показують маску спорідненості ЦП процесу з PID 1211483 ($MYPID), представленим у шістнадцятковому форматі. On our sample system, the affinity mask displayed is "f", which typically means that the process can run on any CPU core.
+  Вихідні дані показують маску спорідненості ЦП процесу з PID 1211483 ($MYPID), представленим у шістнадцятковому форматі. У нашому прикладі системи відображається маска спорідненості «f», що зазвичай означає, що процес може виконуватися на будь-якому ядрі ЦП.
 
   !!! note
 
-           The CPU affinity mask "f" represents a configuration where all CPU cores are enabled. In hexadecimal notation, "f" corresponds to the binary value "1111". Each bit in the binary representation corresponds to a CPU core, with "1" indicating that the core is enabled and available for the process to run on.
+           Маска спорідненості ЦП "f" представляє конфігурацію, у якій увімкнено всі ядра ЦП. У шістнадцятковій системі числення «f» відповідає двійковому значенню «1111». Кожен біт у двійковому представленні відповідає ядру ЦП, причому «1» означає, що ядро ввімкнено та доступне для виконання процесу.
           
-           Therefore, on four core CPU, with the mask "f":
+           Тому на чотириядерному процесорі з маскою "f":
           
            Core 0: Enabled
            Core 1: Enabled
            Core 2: Enabled
            Core 3: Enabled
 
-### To set/change CPU affinity
+### Щоб встановити/змінити схожість ЦП
 
-1. Встановіть приналежність ЦП процесу dd до одного ЦП (ЦП 0). Type:
+1. Встановіть приналежність ЦП процесу dd до одного ЦП (ЦП 0). Впишіть:
 
     ```bash
     taskset -p 0x1 $MYPID
     ```
 
-  OUTPUT
+  ВИХІД
 
     ```bash
     pid 1211483's current affinity mask: f
     pid 1211483's new affinity mask: 1
     ```
 
-2. Verify the change by running the following:
+2. Перевірте зміни, виконавши:
 
     ```bash
     taskset -p $MYPID
     ```
 
-  Вихідні дані вказують на маску спорідненості ЦП процесу з PID $MYPID. The affinity mask is "1" in decimal, which translates to "1" in binary. This means that the process is currently bound to CPU core 0.
+  Вихідні дані вказують на маску спорідненості ЦП процесу з PID $MYPID. Маска спорідненості дорівнює «1» у десятковій системі, що перекладається як «1» у двійковій системі. Це означає, що процес наразі прив’язаний до ядра ЦП 0.
 
-3. Тепер встановіть приналежність ЦП процесу dd до кількох ЦП (ЦП 0 і 1). Type:
+3. Тепер встановіть приналежність ЦП процесу dd до кількох ЦП (ЦП 0 і 1). Впишіть:
 
     ```bash
     taskset -p 0x3 $MYPID
     ```
 
-4. Issue the correct `tasksel` command to verify the latest change.
+4. Видайте правильну команду `tasksel`, щоб перевірити останню зміну.
 
     ```bash
     taskset -p $MYPID
     ```
 
-  On our demo 4-core CPU server, the output shows that the CPU affinity mask of the process is "3" (in decimal). This translates to "11" in binary.
+  На нашому демонстраційному 4-ядерному сервері ЦП результат показує, що маска спорідненості ЦП процесу дорівнює «3» (у десятковому вигляді). Це означає «11» у двійковій системі.
 
   !!! tip
 
-           Decimal "3" is "11" (or 0011) in binary.
-           Each binary digit corresponds to a CPU core: core 0, core 1, core 2, core 3 (from right to left).
-           The digit "1" in the fourth and third positions (from the right) indicates that the process can run on cores 0 and 1.
-           Therefore, "3" signifies that the process is bound to CPU cores 0 and 1.
+           Десятковий "3" дорівнює "11" (або 0011) у двійковій системі.
+           Кожна двійкова цифра відповідає ядру ЦП: ядро 0, ядро 1, ядро 2, ядро 3 (справа наліво).
+           Цифра «1» на четвертій і третій позиціях (справа) означає, що процес може працювати на ядрах 0 і 1.
+           Тому «3» означає, що процес прив’язаний до ядер ЦП 0 і 1.
 
-5. Launch either the `top` or `htop` utility in a separate terminal and observe if you see anything of interest as you experiment with different `taskset` configurations for a process.
+5. Запустіть утиліту `top` або `htop` в окремому терміналі та спостерігайте, якщо ви бачите щось цікаве, експериментуючи з різними конфігураціями `taskset` для процесу.
 
-6. All done. Використовуйте його PID ($MYPID), щоб припинити процес dd.
+6. Все готово. Використовуйте його PID ($MYPID), щоб припинити процес dd.
 
-## Exercise 9
+## Завдання 9
 
 ### `systemd-run`
 
-The `systemd-run` command creates and starts transient service units for running commands or processes. It can also run programs in transient scope units, path-, socket-, or timer-triggered service units.
+Команда `systemd-run` створює та запускає тимчасові службові блоки для виконання команд або процесів. Він також може запускати програми в одиницях тимчасового обсягу, одиницях обслуговування, що запускаються за допомогою шляху, сокета або таймера.
 
-This exercise shows how to use `systemd-run` for creating transient service units in `systemd`.
+У цій вправі показано, як використовувати `systemd-run` для створення тимчасових службових одиниць у `systemd`.
 
-#### To run a command as a transient service
+#### Щоб запустити команду як тимчасову службу
 
-1. Run the simple sleep 300 command as a transient `systemd` service using `systemd-run`. Type:
+1. Запустіть просту команду sleep 300 як тимчасову службу `systemd` за допомогою `systemd-run`. Впишіть:
 
     ```bash
     systemd-run --unit=mytransient.service --description="Example Service" sleep 300
     ```
 
-2. Check the status of the transient service using `systemctl status`. Type:
+2. Перевірте статус тимчасової служби за допомогою `systemctl status`. Впишіть:
 
     ```bash
     systemctl status mytransient.service
     ```
 
-#### To set a memory resource limit for a transient service
+#### Щоб установити обмеження ресурсу пам’яті для тимчасової служби
 
-1. Use the `--property` parameter with `systemd-run` to limit the maximum memory usage for the transient process to 200M. Type:
+1. Використовуйте параметр `--property` разом із `systemd-run`, щоб обмежити максимальне використання пам’яті для тимчасового процесу до 200 Мб. Впишіть:
 
     ```bash
     systemd-run --unit=mylimited.service --property=MemoryMax=200M sleep 300
     ```
 
-2. Look under the corresponding `cgroup` file system for the process to verify the setting. Type:
+2. Подивіться у відповідній файловій системі `cgroup` процес перевірки налаштування. Впишіть:
 
     ```bash
     sudo cat /sys/fs/cgroup/system.slice/mytransient.service/memory.max
@@ -855,22 +855,22 @@ This exercise shows how to use `systemd-run` for creating transient service unit
 
            `systemd.resource-control` — це конфігурація або керуюча сутність (концепція) у рамках `systemd`, призначена для керування та розподілу системних ресурсів для процесів і служб. А `systemd.exec` — це компонент `systemd`, який відповідає за визначення середовища виконання, у якому виконуються команди. Щоб переглянути різні параметри (властивості), які ви можете налаштувати під час використання systemd-run, зверніться до сторінок посібника `systemd.resource-control` і `systemd.exec`. Тут ви знайдете документацію для таких властивостей, як MemoryMax, CPUAccounting, IOWeight тощо.
 
-#### To set CPU resource limit for a transient service
+#### Щоб установити обмеження на ресурс ЦП для тимчасової служби
 
-1. Давайте створимо тимчасовий блок `systemd` під назвою "myrealtime.service". Запустіть myrealtime.service із спеціальною політикою планування циклічного (rr) і пріоритетом. Type:
+1. Давайте створимо тимчасовий блок `systemd` під назвою "myrealtime.service". Запустіть myrealtime.service із спеціальною політикою планування циклічного (rr) і пріоритетом. Впишіть:
 
     ```bash
     systemd-run --unit=myrealtime.service \
     --property=CPUSchedulingPolicy=rr --property=CPUSchedulingPriority=50 sleep 300
     ```
 
-2. Перегляньте статус myrealtime.service. Also, capture/store the main [sleep] PID in a MYPID variable. Type:
+2. Перегляньте статус myrealtime.service. Крім того, захопіть/збережіть основний [sleep] PID у змінній під назвою MYPID. Впишіть:
 
     ```bash
     MYPID=$(systemctl status myrealtime.service   |  awk '/Main PID/ {print $3}')
     ```
 
-3. Verify its CPU scheduling policy While the service is still running. Type:
+3. Поки служба все ще працює, перевірте її політику планування ЦП. Впишіть:
 
     ```bash
     chrt  -p $MYPID
@@ -878,26 +878,26 @@ This exercise shows how to use `systemd-run` for creating transient service unit
     pid 2553792's current scheduling priority: 50
     ```
 
-### To create a transient timer unit
+### Щоб створити блок перехідного часу
 
-1. Create a simple timer unit that runs a simple echo command. The `--on-active=2m` option sets the timer to trigger 2 minutes after the timer unit becomes active. Type:
+1. Створіть простий таймер, який виконує просту команду echo. Параметр `--on-active=2m` встановлює таймер на спрацьовування через 2 хвилини після того, як блок таймера стане активним. Впишіть:
 
     ```bash
     systemd-run --on-active=2m --unit=mytimer.timer \
     --description="Example Timer" echo "Timer triggered"
     ```
 
-  The timer will start counting down from the time the unit is activated, and after 2 minutes, it will trigger the specified action.
+  Таймер почне відлік часу з моменту активації пристрою і через 2 хвилини запустить вказану дію.
 
-2. View details/status for the timer unit that was just created. Type:
+2. Переглянути деталі/статус щойно створеного таймера. Впишіть:
 
     ```bash
     systemctl status mytimer.timer
     ```
 
-#### To stop and clean up transient `systemd` units
+#### Щоб зупинити та очистити тимчасові блоки `systemd`
 
-1. Type the following commands to ensure that the various transient services/processes started for this exercise are properly stopped and removed from your system. Type:
+1. Введіть наступні команди, щоб переконатися, що різні тимчасові служби/процеси, запущені для цієї вправи, належним чином зупинені та видалені з вашої системи. Впишіть:
 
     ```bash
     systemctl stop mytransient.service
@@ -906,23 +906,23 @@ This exercise shows how to use `systemd-run` for creating transient service unit
     systemctl stop mytimer.timer
     ```
 
-## Exercise 10
+## Вправа 10
 
 ### `schedtool`
 
-This exercise demonstrates the use of `schedtool` to understand and manipulate process scheduling in Rocky Linux. Ми також створимо сценарій для моделювання процесу для цієї мети.
+Ця вправа демонструє використання `schedtool` для розуміння та керування плануванням процесів у Rocky Linux. Ми також створимо сценарій для моделювання процесу для цієї мети.
 
-#### To install `schedtool`
+#### Щоб встановити `schedtool`
 
-1. Install the `schedtool` application if it is not installed on your server. Type:
+1. Встановіть програму `schedtool`, якщо вона не встановлена на вашому сервері. Впишіть:
 
     ```bash
     sudo dnf -y install schedtool
     ```
 
-#### To create a simulated process script
+#### Щоб створити імітований сценарій процесу
 
-1. Create a script that generates CPU load for testing purposes. Type:
+1. Створіть сценарій, який генерує навантаження на процесор для цілей тестування. Впишіть:
 
     ```bash
     cat > ~/cpu_load_generator.sh << EOF
@@ -936,75 +936,75 @@ This exercise demonstrates the use of `schedtool` to understand and manipulate p
     chmod +x ~/cpu_load_generator.sh
     ```
 
-2. Start the script in the background. Type:
+2. Запустіть сценарій у фоновому режимі. Впишіть:
 
     ```bash
     ~/cpu_load_generator.sh & echo $!
     ```
 
-3. Зберіть PID для основного процесу `openssl`, запущеного в сценарії cpu_load_generator.sh. Зберігайте PID у змінній з іменем MYPID. Type:
+3. Зберіть PID для основного процесу `openssl`, запущеного в сценарії cpu_load_generator.sh. Зберігайте PID у змінній з іменем MYPID. Впишіть:
 
     ```bash
     export  MYPID=$(pidof openssl) ; echo $MYPID
     ```
 
-#### To use `schedtool` to check the current scheduling policy
+#### Щоб використовувати `schedtool` для перевірки поточної політики планування
 
-1. Використовуйте команду `schedtool`, щоб відобразити інформацію про планування процесу з PID $MYPID. Type:
+1. Використовуйте команду `schedtool`, щоб відобразити інформацію про планування процесу з PID $MYPID. Впишіть:
 
     ```bash
     schedtool $MYPID
     ```
 
-  OUTPUT:
+  Вихід:
 
     ```bash
     PID 2565081: PRIO   0, POLICY N: SCHED_NORMAL  , NICE   0, AFFINITY 0xf
     ```
 
-#### To use `schedtool` to modify the scheduling policy
+#### Щоб використовувати `schedtool` для зміни політики планування
 
-1. Change the scheduling policy and priority of the process FIFO and 10, respectively. Type:
+1. Змініть політику планування та пріоритет процесу FIFO та 10 відповідно. Впишіть:
 
     ```bash
     sudo schedtool -F -p 10 $!
     ```
 
-2. View the effect of the changes. Type:
+2. Перегляньте ефект від змін. Впишіть:
 
     ```bash
     schedtool $MYPID
     ```
 
-3. Change the scheduling policy and priority of the process to round robin or SCHED_RR (RR) and 50, respectively. Type:
+3. Змініть політику планування та пріоритет процесу на циклічний або SCHED_RR (RR) і 50 відповідно. Впишіть:
 
     ```bash
       sudo schedtool -R -p 50 $MYPID
     ```
 
-4. View the effect of the changes. Type:
+4. Перегляньте ефект від змін. Впишіть:
 
     ```bash
     schedtool $MYPID
     ```
 
-5. Change the scheduling policy of the process to Idle or SCHED_IDLEPRIO (D). Type:
+5. Змініть політику планування процесу на Idle або SCHED_IDLEPRIO (D). Впишіть:
 
     ```bash
     sudo schedtool -D $MYPID
     ```
 
-6. View the effect of the changes.
+6. Перегляньте ефект від змін.
 
-7. Finally, reset the scheduling policy of the process back to the original default SCHED_NORMAL (N or other). Type:
+7. Нарешті, скиньте політику планування процесу назад до початкового стандартного SCHED_NORMAL (N або інше). Впишіть:
 
     ```bash
     sudo schedtool -N $MYPID
     ```
 
-#### To terminate and clean up the `cpu_load_generator.sh` process
+#### Щоб завершити та очистити процес `cpu_load_generator.sh`
 
-1. All done. Terminate the script and delete the `cpu_load_generator.sh` script.
+1. Все готово. Завершіть сценарій і видаліть сценарій `cpu_load_generator.sh`.
 
     ```bash
     kill $MYPID
