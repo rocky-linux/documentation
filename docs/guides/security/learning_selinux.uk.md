@@ -88,7 +88,7 @@ SELinux використовує для цього набір правил (по
 semanage [object_type] [options]
 ```
 
-Приклад:
+Наприклад:
 
 ```bash
 semanage boolean -l
@@ -143,7 +143,7 @@ httpd_can_sendmail (off , off)  Allow httpd to send mail
 setsebool [-PV] boolean on|off
 ```
 
-Приклад:
+Наприклад:
 
 ```bash
 sudo setsebool -P httpd_can_sendmail on
@@ -196,7 +196,7 @@ SELinux має три режими роботи:
 getenforce
 ```
 
-Приклад:
+Наприклад:
 
 ```bash
 $ getenforce
@@ -209,7 +209,7 @@ Enforcing
 sestatus
 ```
 
-Приклад:
+Наприклад:
 
 ```bash
 $ sestatus
@@ -301,7 +301,7 @@ lsof -Z # for open files
 matchpathcon directory
 ```
 
-Приклад:
+Наприклад:
 
 ```bash
 sudo matchpathcon /root
@@ -317,7 +317,7 @@ sudo matchpathcon /
 chcon [-vR] [-u USER] [–r ROLE] [-t TYPE] file
 ```
 
-Приклад:
+Наприклад:
 
 ```bash
 sudo chcon -vR -t httpd_sys_content_t /data/websites/
@@ -335,7 +335,7 @@ sudo chcon -vR -t httpd_sys_content_t /data/websites/
 restorecon [-vR] directory
 ```
 
-Приклад:
+Наприклад:
 
 ```bash
 sudo restorecon -vR /home/
@@ -356,7 +356,7 @@ semanage fcontext -a options file
 
     Якщо ви виконуєте перемикання контексту для папки, яка не є стандартною для системи, гарною практикою є створення правила, а потім застосування контексту, як у прикладі нижче!
 
-Приклад:
+Наприклад:
 
 ```bash
 sudo semanage fcontext -a -t httpd_sys_content_t "/data/websites(/.*)?"
@@ -390,7 +390,7 @@ sudo cat /var/log/audit/audit.log | grep AVC | grep denied | tail -1 | audit2why
 audit2allow [-mM]
 ```
 
-Приклад:
+Наприклад:
 
 ```bash
 sudo cat /var/log/audit/audit.log | grep AVC | grep denied | tail -1 | audit2allow -M mylocalmodule

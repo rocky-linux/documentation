@@ -13,7 +13,7 @@ tags:
 
 # Лабораторна робота 6: Файлова система
 
-## Завдання
+## Цілі
 
 Виконавши цю лабораторну роботу, ви зможете
 
@@ -570,7 +570,7 @@ ext2/ext3/ext4 налагоджувач файлової системи
     [root@localhost ~]# losetup
     ```
 
-    **Вихід**
+    **ВИХІД**
 
     ```bash
     NAME       SIZELIMIT OFFSET AUTOCLEAR RO BACK-FILE                  DIO LOG-SEC
@@ -612,7 +612,7 @@ ext2/ext3/ext4 налагоджувач файлової системи
     [root@localhost ~]# vgdisplay
     ```
 
-    **Вихід**
+    **ВИХІД**
 
     ```bash
     --- Volume group ---
@@ -642,7 +642,7 @@ ext2/ext3/ext4 налагоджувач файлової системи
     [root@localhost ~]# vgextend rl /dev/loop1
     ```
 
-    **Вихід**
+    **ВИХІД**
 
     ```bash
     Volume group "rl" successfully extended
@@ -654,7 +654,7 @@ ext2/ext3/ext4 налагоджувач файлової системи
     [root@localhost ~]# vgdisplay
     ```
 
-    **Вихід**
+    **ВИХІД**
 
     ```bash
     --- Volume group ---
@@ -682,7 +682,7 @@ ext2/ext3/ext4 налагоджувач файлової системи
     [root@localhost ~]# vgreduce rl /dev/loop1
     ```
 
-    **Вихід**
+    **ВИХІД**
 
     ```bash
     Removed "/dev/loop0" from volume group "rl"
@@ -821,7 +821,7 @@ ext2/ext3/ext4 налагоджувач файлової системи
     [root@localhost ~]# mkfs.vfat /dev/loop0p1
     ```
 
-    **Вихід**
+    **ВИХІД**
 
     ```bash
     mkfs.fat 4.*
@@ -833,7 +833,7 @@ ext2/ext3/ext4 налагоджувач файлової системи
     [root@localhost ~]# lsblk -f /dev/loop0
     ```
 
-    **Вихід**
+    **ВИХІД**
 
     ```bash
     NAME      FSTYPE LABEL UUID                 MOUNTPOINT
@@ -882,7 +882,7 @@ ext2/ext3/ext4 налагоджувач файлової системи
     [root@localhost ~]# lsblk -f /dev/scratch/scratch3
     ```
 
-    **Вихід**
+    **ВИХІД**
 
     ```bash
     NAME        FSTYPE LABEL UUID         MOUNTPOINT
@@ -1151,7 +1151,7 @@ ext2/ext3/ext4 налагоджувач файлової системи
        of=/mnt/2gb-scratch2-volume/LARGE-USELESS-FILE.tar bs=10240
     ```
 
-    **Вихід**
+    **ВИХІД**
 
     ```bash
     dd: error writing '/mnt/2gb-scratch2-volume/LARGE-USELESS-FILE.tar': No space left on device
@@ -1296,7 +1296,7 @@ quotacheck [-gucbfinvdmMR] [-F <quota-format>] filesystem|-a
     [root@localhost ~]# grep scratch2 /etc/fstab
     ```
 
-    **Вихід**
+    **ВИХІД**
 
     ```bash
     /dev/scratch/scratch2  /mnt/2gb-scratch2-volume    ext4     defaults  0  0
@@ -1340,7 +1340,7 @@ quotacheck [-gucbfinvdmMR] [-F <quota-format>] filesystem|-a
     [root@localhost ~]# cat /proc/mounts  | grep scratch2
     ```
 
-    **Вихід**
+    **ВИХІД**
 
     ```bash
     /dev/mapper/rl-scratch2 /mnt/2gb-scratch2-volume ext4 rw,relatime,quota,usrquota,grpquota 0 0
@@ -1370,7 +1370,7 @@ quotacheck [-gucbfinvdmMR] [-F <quota-format>] filesystem|-a
     [root@localhost ~]# quotacheck -avcug
     ```
 
-    **Вихід**
+    **ВИХІД**
 
     ```bash
     ....
@@ -1462,7 +1462,7 @@ quotacheck [-gucbfinvdmMR] [-F <quota-format>] filesystem|-a
     [root@localhost ~]# repquota /mnt/2gb-scratch2-volume
     ```
 
-    **Вихід**
+    **ВИХІД**
 
     ```bash
     *** Report for user quotas on device /dev/mapper/scratch-scratch2
@@ -1496,7 +1496,7 @@ quotacheck [-gucbfinvdmMR] [-F <quota-format>] filesystem|-a
     [unreasonable@localhost ~]$ dd if=/dev/zero  of=/mnt/2gb-scratch2-volume/LARGE-USELESS-FILE.tar bs=10240
     ```
 
-    **Вихід**
+    **ВИХІД**
 
     ```bash
     ...<SNIP>...

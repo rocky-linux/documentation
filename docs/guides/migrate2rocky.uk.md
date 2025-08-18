@@ -9,7 +9,7 @@ update: 23.11.2021
 
 ## Передумови і Припущення
 
-- CentOS Stream, CentOS, AlmaLinux, RHEL або Oracle Linux, які працюють на апаратному сервері або VPS. Non-Stream CentOS завис на версії 8.5. Поточна підтримувана версія інших систем – 8.10 або 9.4.
+- CentOS Stream, CentOS, AlmaLinux, RHEL або Oracle Linux з версією 8 або 9 на апаратному сервері або VPS. Non-Stream CentOS завис на версії 8.5. Поточна підтримувана версія інших систем – 8.10 або 9.6. Version 10 is not supported at the moment.
 - Практичні знання командного рядка.
 - Практичні знання SSH для віддалених машин.
 - Помірно ризиковане ставлення.
