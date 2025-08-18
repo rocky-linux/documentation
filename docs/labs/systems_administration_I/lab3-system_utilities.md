@@ -585,14 +585,14 @@ Use the guidelines below:
 
 | Redirector   | Function                                                  |
 | ------------ | --------------------------------------------------------- |
-| > file       | Direct standard output to file                            |
-| < file       | Take standard input from file                             |
-| Cmd1 \| cmd2 | Pipe; take standard out of cmd1 as standard input to cmd2 |
-| n> file      | Direct file descriptor n to file                          |
-| N< file      | Set file as file descriptor n                             |
-| >&n          | Duplicate standard output to file descriptor n            |
-| <&n          | Duplicate standard input from file descriptor n           |
-| &>file       | Direct standard output and standard error to file         |
+| > file       | Directs standard output to file                            |
+| < file       | Takes standard input from file                             |
+| Cmd1 \| cmd2 | Pipe; takes standard out of cmd1 as standard input to cmd2 |
+| n> file      | Directs file descriptor n to file                          |
+| N< file      | Sets file as file descriptor n                             |
+| >&n          | Duplicates standard output to file descriptor n            |
+| <&n          | Duplicates standard input from file descriptor n           |
+| &>file       | Directs standard output and standard error to file         |
 
 1. Ensure you are still in the `folder1` directory. Use the long listing option of the `ls` command on *temp_file11*:
 
@@ -748,28 +748,28 @@ If you do not specify any directory or path, `find` will search the current dire
 
 | OPTIONS | DESCRIPTION |
 | -- | -- |
-| -xdev | do not search on directories located on other filesystems |
-| -mindepth `<n>` | descend at least `<n>` levels below the specified directory before searching for files |
-| -maxdepth `<n>` | search for files located at most `<n>` levels below the specified directory |
-| -follow | follow symbolic links if they link to directories |
-| -daystart | when using tests related to time (see below), take the beginning of current day as a timestamp instead of the default (24 hours before current time) |
+| -xdev | does not search on directories located on other filesystems |
+| -mindepth `<n>` | descends at least `<n>` levels below the specified directory before searching for files |
+| -maxdepth `<n>` | searches for files located at most `<n>` levels below the specified directory |
+| -follow | follows symbolic links if they link to directories |
+| -daystart | when using tests related to time (see below), it takes the beginning of the current day as a timestamp instead of the default (24 hours before the current time) |
 
 | CRITERION | DESCRIPTION |
 | -- | -- |
-|-type `<type>` | search for a given type of file; `<type>` can be one of: **f** (*regular file*), **d** (*directory*) **l** (*symbolic link*), **s** (*socket*), **b** (*block mode file*), **c** (*character mode file*) or **p** (*named pipe*) |
-| -name `<pattern>` | find files whose names match the given `<pattern>` |
-| -iname `<pattern>` | like *-name*, but ignore case |
-| -atime `<n>`, -amin `<n>` | find files which have last been accessed `<n>` days ago (*-atime*) or `<n>` minutes ago (*-amin*). You can also specify `+<n>` or `-<n>`, in which case the search will be done for files accessed respectively at *most* or at *least* `<n>` days/minutes ago |
-| -anewer `<file>` | find files which have been accessed more recently than file `<file>` |
+|-type `<type>` | searches for a given type of file; `<type>` can be one of: **f** (*regular file*), **d** (*directory*) **l** (*symbolic link*), **s** (*socket*), **b** (*block mode file*), **c** (*character mode file*) or **p** (*named pipe*) |
+| -name `<pattern>` | finds files whose names match the given `<pattern>` |
+| -iname `<pattern>` | like *-name*, but ignores case |
+| -atime `<n>`, -amin `<n>` | finds files which have last been accessed `<n>` days ago (*-atime*) or `<n>` minutes ago (*-amin*). You can also specify `+<n>` or `-<n>`, in which case the search will be done for files accessed respectively at *most* or at *least* `<n>` days/minutes ago |
+| -anewer `<file>` | finds files which have been accessed more recently than file `<file>` |
 | -ctime `<n>`, -cmin `<n>`, -cnewer `<file>` | same as for *-atime*, *-amin* and *-anewer*, but applies to the last time when the contents of the file have been modified |
 | -regex `<pattern>` | same as *-name*, but pattern is treated as a regular expression |
-| -iregex `<pattern>` | same as *-regex*, but ignore case |
+| -iregex `<pattern>` | same as *-regex*, but ignores case |
 
 | ACTION | DESCRIPTION |
 | -- | -- |
 | -print | just prints the name of each file on standard output. This is the default action |
 | -ls | prints on the standard output the equivalent of `ls -ilds` for each file found |
-| -exec `<command>` | execute command `<command>` on each file found. The command line `<command>` must end with a `;`, which you must escape so that the shell does not interpret it; the file position is marked with `{}` |
+| -exec `<command>` | executes command `<command>` on each file found. The command line `<command>` must end with a `;`, which you must escape so that the shell does not interpret it; the file position is marked with `{}` |
 | -ok `<command>` | same as *-exec* but asks confirmation for each command |
 
 #### How to use `find`
