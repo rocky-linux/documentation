@@ -19,7 +19,7 @@ tags:
 
 # Лабораторна робота 8: Моніторинг системи та процесів
 
-## Завдання
+## Цілі
 
 Після виконання цієї лабораторної роботи ви зможете:
 
@@ -155,7 +155,7 @@ tags:
   (sleep 3600 & MYPROC1=$! && echo PID is: $MYPROC1) 2>/dev/null
   ```
 
-  Вихід
+  Вихід:
 
   ```bash
   PID is: 1331933
@@ -185,7 +185,7 @@ tags:
   (sleep 3600 & MYPROC2=$! && echo PID is: $MYPROC2) 2>/dev/null
   ```
 
-  Вихід
+  Вихід:
 
   ```bash
   PID is: 1333258
@@ -367,7 +367,7 @@ tags:
   bash -c  'while true; do echo "Default priority: The PID is $$"; done'
   ```
 
-  Вихід
+  Вихід:
 
   ```bash
   Default priority: The PID is 2185209
@@ -422,7 +422,7 @@ tags:
    nice -n 19 bash -c  'while true; do echo "Low priority: The PID is $$"; done'
   ```
 
-  Вихід
+  Вихід:
 
   ```bash
   Low priority: The PID is 2180254
@@ -454,7 +454,7 @@ tags:
   ps -C find -o pid=
   ```
 
-  Вихід
+  Вихід:
 
   ```bash
   2577072
@@ -472,10 +472,10 @@ tags:
   renice  -n -10 -p $(ps -C find -o pid=)
   ```
 
-  Вихід
+  Вихід:
 
   ```bash
-  <PID> (process ID) old priority 0, new priority -10
+        <PID> (process ID) old priority 0, new priority -10
   ```
 
   Замініть "<PID>" (вище) фактичним PID запущеного процесу.
@@ -498,7 +498,7 @@ tags:
   renice  -n 10 -p <PID>
   ```
 
-  Вихід
+  Вихід:
 
   ```bash
   2338530 (process ID) old priority -10, new priority 10
@@ -688,7 +688,7 @@ tags:
   jobs -l
   ```
 
-  Вихід
+  Вихід:
 
   ```bash
   [1]- 2977364 Stopped       vi foobar1.txt
@@ -717,7 +717,7 @@ tags:
    kill -SIGKILL  %1 %2 && jobs
   ```
 
-  Вихід
+  Вихід:
 
   ```bash
   [1]-  Killed                  vi foobar1.txt
