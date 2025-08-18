@@ -384,7 +384,7 @@ Optionen:
 | `-b` oder `--backup[=suffix]` | ein Backup der Ziel-Datei erstellen.                                  |
 | `-d`                          | Argumente als Directory-Namen behandeln                               |
 | `-D`                          | Erstellen aller Hauptkomponenten, bevor QUELLE nach ZIEL kopiert wird |
-| `-g` und `-o`                 | Eigentümer-Eigenschaft setzen.                                        |
+| `-g` und `-o`                 | setzt Eigentümer-Eigenschaft                                          |
 | `-m`                          | Berechtigungen setzen                                                 |
 | `-p`                          | Datum und Uhrzeit der ursprünglichen Dateien behalten                 |
 | `-t`                          | kopiert alle Quellargumente in den Ordner                             |
