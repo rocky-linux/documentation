@@ -205,7 +205,7 @@ You will edit the *passwd file* using the format displayed above.
     Add the text below to the bottom or end of the file:
 
     ```bash
-    me:x:500:500:me mao:/home/me:/bin/bash    
+    me:x:1000:1000:me mao:/home/me:/bin/bash    
     ```
 
 2. Save your changes and close the `etc/passwd` file.
