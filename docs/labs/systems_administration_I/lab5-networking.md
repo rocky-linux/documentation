@@ -1,6 +1,7 @@
 ---
-author: Wale Soyinka 
-contributors: Steven Spencer, Ganna Zhyrnova
+author: Wale Soyinka
+title: Lab 5 - Networking Essentials
+contributors: Steven Spencer, Ganna Zhyrnova, Franco Colussi
 tested on: All Versions
 tags:
   - lab exercise
@@ -11,16 +12,13 @@ tags:
   - macvtap
 ---
 
-
-# Lab 5: Networking Essentials
-
 ## Objectives
 
 After completing this lab, you will be able to:
 
 - Create virtual network devices
 - Manage network devices and settings on a Linux system using the `iproute2` (`ip`) toolkit
-- Manage network devices and settings on a Linux system using NetworkManager (`nmcli`) toolkit
+- Manage network devices and settings on a Linux system using *NetworkManager* (`nmcli`) toolkit
 - Troubleshoot common network issues
 
 Estimated time to complete this lab: 60 minutes
@@ -29,15 +27,27 @@ Estimated time to complete this lab: 60 minutes
 
 This Networking Essentials lab covers various network configuration and troubleshooting exercises on a Linux server. You will be better equipped to manage and troubleshoot network settings using common networking utilities readily available on Linux based systems.
 
-## Exercise 1
+### Introduction to the commands used
 
-### Change Hostname
+The `iproute2` command is a suite of advanced utilities for configuring and managing networks on Linux systems, developed to replace the traditional *net-tools* suite (such as *ifconfig*, *route*, and *arp*).  
+`iproute2` is designed to manage modern Linux kernel features, including namespaces, policy routing, and advanced QoS. It is now the recommended tool for network administration on modern Linux distributions.
 
-There are many methods for identifying or referring to computers. Some of these methods guarantee uniqueness [ especially on a network], and others don't. A computer hostname can be regarded as a human-friendly name. Computer hostnames should ideally be unique depending on how they are managed and assigned. But because anyone with the Administrative privileges on a system can unilaterally assign whatever hostname they want to the system - uniqueness is not always guaranteed.
+The `ip` command is an essential tool for network management and configuration. It is part of the `iproute2` package and offers advanced control over network interfaces, IP addresses, routing tables, tunnels, and much more.  
+Thanks to its flexible syntax and options, it allows system administrators to monitor, modify, and resolve connectivity issues efficiently.  
+Its modular structure allows you to manage different aspects of network configuration in a consistent manner, thus simplifying administration.
+
+The `nmcli` command is a powerful and versatile tool included in *NetworkManager*, designed for managing network connections on Linux systems directly from the terminal. Unlike graphical tools, `nmcli` allows you to efficiently configure, monitor, and control network interfaces on both local and remote machines, making it particularly useful for system administrators and advanced users.  
+It supports a wide range of features, including the configuration of wired, wireless, and VPN connections, mobile network management, and network status debugging.
+
+## Exercises
+
+### 1. Change Hostname
+
+There are many methods for identifying or referring to computers. Some of these methods guarantee uniqueness (especially on a network), and others don't. A computer hostname can be regarded as a human-friendly name. Computer hostnames should ideally be unique depending on how they are managed and assigned. But because anyone with the administrative privileges on a system can unilaterally assign whatever hostname they want to the system - **uniqueness is not always guaranteed**.
 
 This first exercise walks through some common tools for managing the computer hostname.
 
-#### To change the system's hostname
+#### Changing the system's hostname
 
 1. While logged into your system, view the current *hostname*, using the popular `hostname` utility. Type:
 
@@ -95,27 +105,27 @@ This first exercise walks through some common tools for managing the computer ho
 
     !!! Question
 
-        Consult the man page for `hostnamectl`. What are the differences between pretty, transient and static hostnames?
+        Consult the man page for `hostnamectl`. What are the differences between *pretty*, *transient* and *static* hostnames?
 
-## Exercise 2
+### 2. Creation of a virtual device
 
-The first critical step you need to complete before going on to the other exercises in this network lab will be creating a special virtual network interface known as a MACVTAP device.
+The first critical step you need to complete before going on to the other exercises in this network lab will be creating a special virtual network interface known as a *MACVTAP device*.
 
-MACVTAP devices are virtual devices that combine the properties of a software-only interface known as a TAP device as well as the properties of the MACVLAN driver.
+MACVTAP devices are virtual devices that combine the properties of a software-only interface known as a *TAP device* as well as the properties of the *MACVLAN driver*.
 
 Creating and working with these MACVTAP devices will allow you to safely test, change, and configure various network configuration-related tasks. These virtual network interfaces will be used in various exercises without disrupting the existing network configuration.
 
 !!! tip
 
-    TAP devices provide a software-only interface that user-space applications can easily access. TAP devices send and receive raw Ethernet frames. 
-    MACVLAN is used for creating virtual network interfaces that attach to physical network interfaces. 
+    TAP devices provide a software-only interface that user-space applications can easily access. TAP devices send and receive raw Ethernet frames.  
+    MACVLAN is used for creating virtual network interfaces that attach to physical network interfaces.  
     The MACVTAP devices have their own unique MAC address distinct from the MAC address of the underlying physical network card they are associated with.
 
-### Create MACVTAP Interfaces
+#### Creation of a MACVTAP Interfaces
 
 This exercise starts with creating needed MACVTAP virtual network interfaces. This will allow you to safely test, change, and configure various network configuration related tasks. These virtual network interfaces will be used in various exercises without disrupting the existing network configuration.
 
-#### To list all network interfaces on the system
+#### Listing all network interfaces on the system
 
 1. Ensure you are logged into the server.
 
@@ -131,13 +141,13 @@ This exercise starts with creating needed MACVTAP virtual network interfaces. Th
      nmcli -f DEVICE device
     ```
 
-4. Query the low-level /sys virtual file-system to enumerate ALL network interfaces available on your server manually. Type:
+4. Query the low-level `/sys` virtual file-system to enumerate *ALL* network interfaces available on your server manually. Type:
 
     ```bash
      ls -l /sys/class/net/ | grep -v 'total' | awk '{print $9}'
     ```
 
-#### To create `macvtap` interfaces
+#### Creating `macvtap` interfaces
 
 1. Ensure you are logged into the system as a user with Administrative privileges.
 
@@ -145,22 +155,19 @@ This exercise starts with creating needed MACVTAP virtual network interfaces. Th
 
     ```bash
      ls -l /sys/class/net/ | grep -v 'virtual\|total' | tail -n 1 | awk '{print $9}'
-
      eno2
     ```
 
-    The output on the sample demo system shows one suitable interface named eno2.
+    The output on the sample demo system shows one suitable interface named `eno2`.
 
-3. Run the command to identify the device again but this time store the returned value in a variable named $DEVICE1. Double check the value of $DEVICE1 using echo. Type the following 2 separate commands to accomplish this:
+3. Run the command to identify the device again but this time store the returned value in a variable named `$DEVICE1`. Double check the value of `$DEVICE1` using *echo*. Type the following 2 separate commands to accomplish this:
 
     ```bash
-    # DEVICE1=$(ls -l /sys/class/net/ | grep -v 'virtual\|total' | tail -n 1 | awk '{print $9}')
-    
-    # echo $DEVICE1
+    DEVICE1=$(ls -l /sys/class/net/ | grep -v 'virtual\|total' | tail -n 1 | awk '{print $9}')
+    echo $DEVICE1
     ```
 
-4. Now, create a MACVTAP interface named - `macvtap1`. The new interface will be associated with
-    $DEVICE1. Type:
+4. Now, create a MACVTAP interface named - `macvtap1`. The new interface will be associated with `$DEVICE1`. Type:
 
     ```bash
     ip link add link $DEVICE1 name macvtap1 type macvtap mode bridge
@@ -172,19 +179,17 @@ This exercise starts with creating needed MACVTAP virtual network interfaces. Th
     ip --brief link show macvtap1
     ```
 
-    Note the DOWN state of the `macvtap` interface in the output.
+    Note the **DOWN** state of the `macvtap` interface in the output.
 
-6. View detailed information about all the MACVTAP-type network devices on the system. Type:
+6. View detailed information about all the *MACVTAP-type* network devices on the system. Type:
 
     ```bash
     ip --detail link show type macvtap
     ```
 
-7. Run a command to view all the network interfaces on the server and compare the output to the output of the similar command in the earlier section "To list all network interfaces on the system".
+7. Run a command to view all the network interfaces on the server and compare the output to the output of the similar command in the earlier section "Listing all network interfaces on the system".
 
-### Enable/Disable Network Interface
-
-#### To enable or disable a network interface
+#### Enabling/Disabling Network Interfaces
 
 1. Check the status of the `macvtap1` network interface. Type:
 
@@ -201,12 +206,13 @@ This exercise starts with creating needed MACVTAP virtual network interfaces. Th
 3. Verify the status changes by running:
 
     ```bash
-    ip -br  link show macvtap1
+    ip -br link show macvtap1
     ```
 
     !!! TIP
 
-        If you ever need to disable a network interface, the syntax for `ip` command to do this is `ip link set <IFNAME> down`. For example to disable a network interface named `macvtap7`, you would run: 
+        If you ever need to disable a network interface, the syntax for `ip` command to do this is `ip link set <IFNAME> down`.  
+        For example to disable a network interface named `macvtap7`, you would run: 
         
         ```bash
         ip link set macvtap7 down
@@ -214,25 +220,25 @@ This exercise starts with creating needed MACVTAP virtual network interfaces. Th
 
 Now that you have set up the `macvtap` interfaces, you safely perform the various network configuration and troubleshooting tasks in the remaining exercises.
 
-## Exercise 3
+### 3. Assign IP Addresses
 
-### Assign IP Addresses
+An **IP** (*Internet Protocol*) address is a unique numerical identifier assigned to each device connected to a network that uses the IP protocol for communication. It functions as a digital “*address*” that allows devices to send and receive data across a network, whether local (*LAN*) or global (*Internet*).
 
-#### To set an IP addresses on a network interface
+#### Setting an IPv4 address to `macvtap` interfaces
 
 1. View the IP addresses for all network interfaces on your server. Type:
 
     ```bash
-    ip address show   
+    ip address show
     ```
 
-2. Assign the IP address - 172.16.99.100 - to `macvtap1`. Type
+2. Assign the IPv4 address - **172.16.99.100** - to `macvtap1`. Type
 
     ```bash
-    ip address add 172.16.99.100/24 dev macvtap1    
+    ip address add 172.16.99.100/24 dev macvtap1
     ```
 
-3. Verify the IP address assignment for `macvtap1`
+3. Verify the IPv4 address assignment for `macvtap1`
 
     ```bash
     ip address show macvtap1
@@ -241,16 +247,12 @@ Now that you have set up the `macvtap` interfaces, you safely perform the variou
 4. Use the `nmcli` command to view the IPv4 addresses for all interfaces on your system. Type:
 
     ```bash
-    nmcli --get-values IP4.ADDRESS,GENERAL.DEVICE  device show  
+    nmcli --get-values IP4.ADDRESS,GENERAL.DEVICE device show
     ```
 
-## Exercise 4
+#### Setting an IPv6 address to `macvtap` interfaces
 
-### Configure IPv6 Addresses
-
-#### To assign IPv6 addresses to `macvtap` interfaces
-
-1. Starting with `macvtap1`, assign the 2001:db8::1/64 IPv6 address to `macvtap1` by running:
+1. Starting with `macvtap1`, assign the **2001:db8::1/64** IPv6 address to `macvtap1` by running:
 
     ```bash
      ip -6 address add 2001:db8::1/64 dev macvtap1
@@ -265,14 +267,15 @@ Now that you have set up the `macvtap` interfaces, you safely perform the variou
 4. Use `nmcli` to view the IPv6 addresses for all interfaces on your system. Type:
 
     ```bash
-    nmcli --get-values  IP6.ADDRESS,GENERAL.DEVICE  device show  
+    nmcli --get-values IP6.ADDRESS,GENERAL.DEVICE device show
     ```
 
-## Exercise 5
+### 5. Routing management
 
-### Routing management
+Routing in Linux is a mechanism that allows the operating system to manage network traffic by directing data packets to the correct destinations. The Linux kernel uses a routing table to determine the optimal path that packets should follow, based on *IP addresses*, *subnet masks*, and *gateways*.  
+This functionality is essential in both *home environments* and complex *corporate networks*, where multiple network interfaces and devices need to communicate with each other.
 
-#### To view the system's routing table
+#### Viewing the system routing table
 
 1. Display the current routing table for the system. Type:
 
@@ -283,44 +286,43 @@ Now that you have set up the `macvtap` interfaces, you safely perform the variou
     192.168.2.0/24 dev enp1s0 proto kernel scope link src 192.168.2.121 metric 100
     ```
 
-2. Using one of the networks displayed in the leftmost column of the previous command's output as the argument, display the route table entry for that network. For example to show the kernel route table entry for the 10.99.99.0/24 network, type:
+2. Using one of the networks displayed in the leftmost column of the previous command's output as the argument, display the route table entry for that network. For example to show the kernel route table entry for the **10.99.99.0/24** network, type:
 
     ```bash
     ip route show 10.99.99.0/24
     ```
 
 3. Query the system to see the route that will be used to get to an example arbitrary
-   destination. For example to view the routing details for getting to the destination IP address
-   8.8.8.8, type:
+   destination. For example to view the routing details for getting to the destination IP address **8.8.8.8**, type:
 
     ```bash
     ip route get 8.8.8.8
-    
     8.8.8.8 via 192.168.2.1 dev enp1s0 src 192.168.2.121 uid 0
     cache
     ```
 
     Here is a breakdown of the output in plain-speak:
 
-    - Destination IP Address: 8.8.8.8 is the IP address that we are trying to reach
-    - Via: 192.168.2.1 is the next hop IP address that the packet will be sent to reach the destination
-    - Device: `enp1s0` is the network interface that will be used to send the packet
-    - Source IP Address: 192.168.2.121 is the IP address of the network interface that will be used as the source address for the packet
-    - UID: 0 is the user ID of the process that initiated this command
-    - Cache: This field indicates whether this route is cached in the kernel’s routing table
+    - *Destination IP Address*: **8.8.8.8** is the IP address that we are trying to reach
+    - *Via*: **192.168.2.1** is the next hop IP address that the packet will be sent to reach the destination
+    - *Device*: **enp1s0** is the network interface that will be used to send the packet
+    - *Source IP Address*: **192.168.2.121** is the IP address of the network interface that will be used as the source address for the packet
+    - *UID*: **0** is the user ID of the process that initiated this command
+    - *Cache*: This field indicates whether this route is cached in the kernel’s routing table
 
 4. Now view how the system will route a packet from one IP to another destination IP address. Type:
 
     ```bash
     ip route get from 192.168.1.1 to 192.168.1.2
-    
+
     local 192.168.1.2 from 192.168.1.1 dev lo uid 0
     cache <local>
     ```
 
-### Set Default Gateway
+#### Configuring the default gateway for the system
 
-#### To configure a default gateway for the system
+In a Linux system, the default gateway represents the default access point through which network traffic is routed to external networks not directly connected to the local interface.  
+Its correct configuration is essential to ensure a system's connectivity to remote networks and external services.
 
 1. Use `ip` to query for and list the current default gateway on your system. Type:
 
@@ -340,11 +342,9 @@ Now that you have set up the `macvtap` interfaces, you safely perform the variou
     ip route show default
     ```
 
-### Add Static Route
+#### Adding a static route to the routing table
 
-#### To add a static route to the routing table
-
-1. Add a demo static route for a bogus 172.16.0.0/16 network via 192.168.1.2. Type:
+1. Add a demo static route for a bogus **172.16.0.0/16** network via **192.168.1.2**. Type:
 
     ```bash
     ip route add 172.16.0.0/16 via 192.168.1.2
@@ -356,11 +356,9 @@ Now that you have set up the `macvtap` interfaces, you safely perform the variou
     ip route show 172.16.0.0/16
     ```
 
-### Delete Static Route
+#### Removing a static route from the routing table
 
-#### To Remove a static route from the routing table
-
-1. Delete the static route for 10.0.0.0/24
+1. Delete the static route for **10.0.0.0/24**
 
     ```bash
     ip route del 10.0.0.0/24 via 192.168.1.2
@@ -372,15 +370,12 @@ Now that you have set up the `macvtap` interfaces, you safely perform the variou
     ip route show
     ```
 
-## Exercise 6
+### 6. Delete IP addresses
 
-### Deleting IP addresses
+Removing IP addresses from the server is a fundamental operation for managing network security and resources. This procedure may be necessary for several reasons: mitigating DDoS attacks, revoking access to malicious users, freeing up IP addresses that are no longer in use, or complying with corporate security policies.  
+This exercise walks through how to delete configured IP (*IPv4* and *IPv6*) addresses on network interfaces.
 
-This exercise walks through how to delete configured IP (IPv4 and IPv6) addresses on network interfaces.
-
-### Delete IPv4 Address
-
-#### To remove an assigned IP address from a network interface
+#### Removing an assigned IPv4 address from a network interface
 
 1. Delete the IP address on `macvtap1`. Type:
 
@@ -394,9 +389,7 @@ This exercise walks through how to delete configured IP (IPv4 and IPv6) addresse
     ip address show macvtap1
     ```
 
-### Delete IPv6 Address
-
-#### To remove an assigned IPv6 address from a network interface
+#### Removing an assigned IPv6 address from a network interface
 
 1. Delete the IPv6 address on `macvtap1` with this command:
 
@@ -410,18 +403,17 @@ This exercise walks through how to delete configured IP (IPv4 and IPv6) addresse
     ip -6 address show macvtap1
     ```
 
-## Exercise 7
+### 7. Configure Network Interfaces via `nmcli`
 
-### Configure Network Interfaces via `nmcli`
-
+The `nmcli` (*NetworkManager Command Line Interface*) command is a tool for managing network connections. Designed to interact with *NetworkManager*, it allows you to efficiently control, configure, and monitor networks directly from the terminal, without the need for graphical interfaces.  
 This exercise shows how to configure network interfaces using the NetworkManager tooling.
 
 !!! Note
 
-    By default, any network configuration changes done using `nmcli` (NetworkManager) will persist between system reboots.
+    By default, any network configuration changes done using `nmcli` will persist between system reboots.
     This is in contrast to the configuration changes that are done with the `ip` utility.
 
-#### To create a `macvtap` interface using `nmcli`
+#### Creating a `macvtap` interface using `nmcli`
 
 1. Start by listing all available network devices by running:
 
@@ -429,13 +421,13 @@ This exercise shows how to configure network interfaces using the NetworkManager
     nmcli device
     ```
 
-2. Next, identify an underlying network device with which to associate the new MACVTAP interface. Save the value of the identified device in the variable $DEVICE2. Type:
+2. Next, identify an underlying network device with which to associate the new *MACVTAP interface*. Save the value of the identified device in the variable `$DEVICE2`. Type:
 
     ```bash
     DEVICE2=$(ls -l /sys/class/net/ | grep -v 'virtual\|total' | tail -n 1 | awk '{print $9}')
     ```
 
-3. Now, create a new NetworkManager connection called `macvtap2` and an associated MACVTAP interface named - `macvtap2`. The new interface will be associated with $DEVICE2. Type:
+3. Now, create a new *NetworkManager* connection called `macvtap2` and an associated MACVTAP interface named - `macvtap2`. The new interface will be associated with `$DEVICE2`. Type:
 
     ```bash
     nmcli con add con-name macvtap2 type macvlan mode bridge tap yes dev $DEVICE2 ifname macvtap2
@@ -459,29 +451,29 @@ This exercise shows how to configure network interfaces using the NetworkManager
     ip --brief link show macvtap2
     ```
 
-    Note the output's UP state of the `macvtap` interface.
+    Note the output's **UP** state of the `macvtap` interface.
 
     !!! Question
 
-        What is the difference between the concept of a connection and that of a device in NetworkManager?
+        What is the difference between the concept of a *connection* and that of a *device* in NetworkManager?
 
-#### To modify interface network configuration with `nmcli`
+#### Modifying the network configuration of the interface with `nmcli`
 
-1. Start by querying for the IPv4 address for the new `macvtap2` interface by running:
+1. Start by querying for the *IPv4* address for the new `macvtap2` interface by running:
 
     ```bash
     nmcli -f ipv4.addresses con show macvtap2
     ```
 
-    The value of the ipv4.addresses property should be empty.
+    The value of the **ipv4.addresses** property should be empty.
 
 2. Configure the `macvtap2` connection with these settings:
 
-    - IPv4 Method =  manual
-    - IPv4 Addresses =  172.16.99.200/24
-    - Gateway = 172.16.99.1
-    - DNS Servers  = 8.8.8.8 and 8.8.4.4
-    - DNS Search domain = example.com
+    - *IPv4 Method* =  **manual**
+    - *IPv4 Addresses* =  **172.16.99.200/24**
+    - *Gateway* = **172.16.99.1**
+    - *DNS Servers*  = **8.8.8.8 and 8.8.4.4**
+    - *DNS Search domain* = **example.com**
 
     Type:
 
@@ -505,15 +497,15 @@ This exercise shows how to configure network interfaces using the NetworkManager
 
     !!! Question
 
-        What is the difference between these NetworkManager properties - ipv4.addresses and IP4.ADDRESS? 
+        What is the difference between these NetworkManager properties - *ipv4.addresses* and *IP4.ADDRESS*? 
 
 5. Check the changes to the network connection using the `ip` command. Type:
 
     ```bash
-    ip -br address show  dev macvtap2
+    ip -br address show dev macvtap2
     ```
 
-6. To properly apply the new settings and make them the new runtime values, use `nmcli` to first toggle the connection down (i.e. deactivate it). Type:
+6. To properly apply the new settings and make them the new runtime values, use `nmcli` to first toggle the connection **down** (i.e. deactivate it). Type:
 
     ```bash
     nmcli connection down macvtap2
@@ -529,17 +521,17 @@ This exercise shows how to configure network interfaces using the NetworkManager
     Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/6)
     ```
 
-8. View the final setting using the ip utility. Type:
+8. View the final setting using the `ip` utility. Type:
 
     ```bash
     ip -br address show  dev macvtap2
     ```
 
-## Exercise 8
+### 8. Configure DNS Servers
 
-### Configure DNS Servers
+The **DNS** (*Domain Name System*) service is a fundamental component of computer networks, responsible for resolving *domain names* into *IP addresses* and vice versa. This enables communication within local networks and on the Internet.
 
-#### To set DNS server addresses for the system
+#### Setting a DNS server addresses for the system
 
 1. Configure DNS servers for `macvtap1`
 
@@ -553,11 +545,13 @@ This exercise shows how to configure network interfaces using the NetworkManager
     nmcli con show macvtap1 | grep DNS
     ```
 
-## Exercise 9
+### 9. Troubleshoot network issues
 
-### Troubleshoot network issues
+Computer networks are essential for communication and data exchange, but they often encounter problems that hinder their proper functioning. These malfunctions can be caused by a variety of factors, such as configuration errors, hardware failures, or connection interference.
 
-#### To Identify and troubleshoot common network issues
+#### Identify and resolve common network issues
+
+Monitoring and verifying the status of network interfaces is essential to ensuring the proper functioning of a connected system.
 
 1. Check the status of network interfaces
 
@@ -565,13 +559,17 @@ This exercise shows how to configure network interfaces using the NetworkManager
     ip link show
     ```
 
-2. Test network connectivity to a remote host (e.g., google.com)
+This step allows you to verify whether a device can reach another node on the network, be it a server, router, or another client.
+
+2. Test network connectivity to a remote host (e.g., *google.com*)
 
     ```bash
     ping google.com
     ```
 
-3. Try pinging the local gateway. Type:
+Pinging the local gateway is an essential test to ensure that the connection between a device and its default router is working properly. The gateway is the access point to external networks, and a malfunction at this stage can prevent access to the Internet or other subnets.
+
+3. Try pinging the local *gateway*. Type:
 
     ```bash
     ping _gateway
@@ -579,11 +577,13 @@ This exercise shows how to configure network interfaces using the NetworkManager
 
     !!! Question
 
-        Through what mechanism is your system able to correctly resolve the name `_gateway` to the proper IP address for your locally configured default gateway?
+        Through what mechanism is your system able to correctly resolve the name `_gateway` to the proper *IP address* for your locally configured *default gateway*?
 
-### View Active Connections
+#### View Active Connections
 
-#### To List all active network connections
+Active network connections represent open communication channels between your computer and other devices or services on the network. These connections can be local (within the same machine) or remote (to external servers or clients).
+
+#### Listing all active network connections
 
 1. List all active network connections
 
@@ -591,9 +591,12 @@ This exercise shows how to configure network interfaces using the NetworkManager
     ss -tuln
     ```
 
-### Monitor Network Traffic
+#### Monitor Network Traffic
 
-#### To monitor network traffic in real-time
+Network traffic in Linux represents the set of data exchanged between a system and the network, both incoming and outgoing. This flow of information is essential for the functioning of services such as the web, email, file transfer, and communication between devices.  
+Monitoring and managing these informations is critical to ensuring security, debugging, and optimizing network performance.
+
+#### Monitoring network traffic in real-time
 
 1. Capture network traffic on a specific interface (e.g., `macvtap1`)
 
@@ -603,9 +606,11 @@ This exercise shows how to configure network interfaces using the NetworkManager
 
     Analyze captured packets and observe network activity. You can stop the packet capture when done by pressing ++ctrl+c++
 
-### View Network Logs
+#### View Network Logs
 
-#### To view NetworkManager daemon related logs for troubleshooting
+Network logs are essential for monitoring, troubleshooting, and system security. Every time a data packet is sent or received over the network, the operating system records detailed information about these activities. These logs help system administrators identify suspicious connections, configuration errors, and potential security threats.
+
+#### Viewing NetworkManager daemon logs for troubleshooting
 
 1. View network-related logs
 
