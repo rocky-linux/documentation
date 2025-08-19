@@ -53,17 +53,17 @@ The notation called CIDR is more and more frequent: 192.168.1.10/24
 
 IP addresses are used for the proper routing of messages (packets). They are divided into two parts:
 
-* Network Bits - The part associated with consecutive "1" s in the binary subnet mask
-* Host Bits - The part associated with consecutive "0" s in the binary subnet mask
+* network bits - The part associated with consecutive "1s" in the binary subnet mask
+* host bits - The part associated with consecutive "0s" in the binary subnet mask
 
 ```
-                                            |<- Host Bits ->|
-                  |<--    Network Bits  -->|
+                                            |<- host bits ->|
+                  |<--    network bits  -->|
 192.168.1.10  ==> 11000000.10101000.00000001.00001010
 255.255.255.0 ==> 11111111.11111111.11111111.00000000
 ```
 
-The subnet mask is used to define the Network Bits and Host Bits of an IP address. By using subnet mask, we can determine the current IP address:
+The subnet mask is used to define the network bits and host bits of an IP address. By using subnet mask, we can determine the current IP address:
 
 * the network address (**NetID** or **SubnetID**) by performing a bitwise logical AND between the IP address and the mask;
 * the host address (**HostID**) by performing a bitwise logical AND between the IP address and the complement of the mask.
@@ -105,7 +105,7 @@ There are also specific addresses within a network, which must be identified. Th
 
     **Logic and Operations** - When both are true (1), the result is true (1); otherwise, it is false (0)
 
-* The last address of a range is the **broadcast address**. It is used to broadcast information to all the machines on the network. Keep the Network Bits unchanged and replace all Host Bits with 1 to obtain the this address.
+* The last address of a range is the **broadcast address**. It is used to broadcast information to all the machines on the network. Keep the network bits unchanged and replace all host bits with 1 to obtain the this address.
 
     ```
     192.168.1.10  ==> 11000000.10101000.00000001.00001010
