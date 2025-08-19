@@ -6,7 +6,7 @@ contributors: Steven Spencer
 
 ## Introduction
 
-Translator's provide valuable insight into writing clear, concise, documentation. They know what does not translate well and what confuses a reader better than most. This document examines some of those issues and highlights best-practices for document creation.
+Translators provide valuable insight into writing clear, concise documentation. They know what does not translate well and what confuses a reader better than most. This document examines some of those issues and highlights best practices for document creation.
 
 ### From the author
 
@@ -49,7 +49,7 @@ Example:
 
 Note: If you want to use acronyms, always define them the first time: “Customer Relationship Management (CRM) system”.
 
-By eliminating idioms and unnecessary jargon, the meaning of your document becomes more clear. Replacing contractions with the words they represent, means that translation efforts in all languages are easier. Your document is the most understandable to the reader when you replace or define acronyms.
+By eliminating idioms and unnecessary jargon, the meaning of your document becomes clearer. Replacing contractions with the words they represent, means that translation efforts in all languages are easier. Your document is the most understandable to the reader when you replace or define acronyms.
 
 ## Use active voice
 
