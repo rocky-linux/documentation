@@ -53,19 +53,71 @@ The notation called CIDR is more and more frequent: 192.168.1.10/24
 
 IP addresses are used for the proper routing of messages (packets). They are divided into two parts:
 
-* the fixed part, identifying the network;
-* the identifier of the host in the network.
+* network bits - The part associated with consecutive "1s" in the binary subnet mask
+* host bits - The part associated with consecutive "0s" in the binary subnet mask
 
-The subnet mask is a set of **4 bytes** intended to isolate:
+```
+                                            |<- host bits ->|
+                  |<--    network bits  -->|
+192.168.1.10  ==> 11000000.10101000.00000001.00001010
+255.255.255.0 ==> 11111111.11111111.11111111.00000000
+```
+
+The subnet mask is used to define the network bits and host bits of an IP address. By using subnet mask, we can determine the current IP address:
 
 * the network address (**NetID** or **SubnetID**) by performing a bitwise logical AND between the IP address and the mask;
 * the host address (**HostID**) by performing a bitwise logical AND between the IP address and the complement of the mask.
 
+```
+192.168.1.10  ==> 11000000.10101000.00000001.00001010
+255.255.255.0 ==> 11111111.11111111.11111111.00000000
+
+NetID             11000000.10101000.00000001.00001010
+                    192   . 168    . 100    . 0
+
+HostID            00000000.00000000.00000000.00001010
+                     0    .   0    .    0   . 10
+```
+
+**Legitimate subnet mask** - In order from left to right, consecutive 1s can be defined as valid subnet masks.
+
+```
+legitimate       11111111.11111111.11111111.00000000
+
+illegitimate     11001001.11111111.11111111.00000000
+```
+
+!!! tip
+
+    The IP address and subnet mask must appear in pairs, which is determined by the basic principles of network communication.
+
 There are also specific addresses within a network, which must be identified. The first address of a range as well as the last one have a particular role:
 
-* The first address of a range is the **network address**. It is used to identify networks and to route information from one network to another.
+* The first address of a range is the **network address**. It is used to identify networks and to route information from one network to another. This address can be obtained through Logic and Operations.
 
-* The last address of a range is the **broadcast address**. It is used to broadcast information to all the machines on the network.
+    ```
+    192.168.1.10  ==> 11000000.10101000.00000001.00001010
+    255.255.255.0 ==> 11111111.11111111.11111111.00000000
+                      
+    network address   11000000.10101000.00000001.00000000
+                        192   . 168    . 100    . 0
+    ```
+
+    **Logic and Operations** - When both are true (1), the result is true (1); otherwise, it is false (0)
+
+* The last address of a range is the **broadcast address**. It is used to broadcast information to all the machines on the network. Keep the network bits unchanged and replace all host bits with 1 to obtain the this address.
+
+    ```
+    192.168.1.10  ==> 11000000.10101000.00000001.00001010
+    255.255.255.0 ==> 11111111.11111111.11111111.00000000
+                      
+    broadcast address 11000000.10101000.00000001.11111111
+                        192   . 168    . 100    . 255
+    ```
+
+!!! tip
+
+    These two addresses that play special roles **cannot** be assigned to the terminal machine for use.
 
 ### MAC address / IP address
 
