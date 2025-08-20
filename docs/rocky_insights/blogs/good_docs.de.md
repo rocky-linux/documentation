@@ -27,7 +27,7 @@ Redewendungen, Fachjargon, Abkürzungen und Akronyme können für Leser, die dam
 
 Beispiel:
 
-❌ „Sobald Sie sich an das Dashboard gewöhnt haben, ist der Rest ein Kinderspiel.“ In diesem Fall verwendet der Autor sowohl eine Kontraktion, Slang als auch eine Redewendung.
+❌ "Once you’ve got the hang of the dashboard, the rest is a piece of cake." In diesem Fall verwendet der Autor sowohl eine Kontraktion, Slang als auch eine Redewendung.
 
 ✅ "Once you have learned how to use the dashboard, the rest is easy." Durch Ersetzen der Kontraktion, des Slangs und der Redewendung durch die jeweils zugehörigen Wörter wird die Bedeutung klar.
 
@@ -73,7 +73,7 @@ Step 1 - Go to the section\
 Step 2 - Click the button\
 Step 3 - Complete the form\
 ...\
-Schritt N - Änderungen speichern
+Step N - save changes
 
 ## Screenshots wenn nötig
 
