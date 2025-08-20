@@ -52,6 +52,6 @@ Si c'est la première fois que vous visitez le site de documentation de Rocky Li
 
 Si vous êtes coincé et que vous avez une question, la communauté Rocky Linux est là pour vous aider. Visitez le [forum de la communauté](https://forums.rockylinux.org) et vous pourrez rechercher des solutions et poster vos propres questions à la communauté.
 
-## Contribuer
+## Votre Contribution
 
 Avez-vous trouvé quelque chose de manquant ? Avez-vous trouvé une erreur ? Vous vous demandez comment créer votre propre document ou comment en corriger un ? Rappelez-vous lorsque nous avons dit que *vous* étiez la communauté Rocky Linux ? Eh bien, cela signifie que *vous* êtes important pour nous et nous voulons que vous nous rejoigniez, si vous le souhaitez, et aider à améliorer cette documentation. Si cela vous intéresse, rendez-vous sur notre [Guide de Contribution](https://github.com/rocky-linux/documentation/blob/main/README.md) pour savoir comment faire !

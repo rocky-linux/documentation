@@ -1,5 +1,5 @@
 ---
-title: Grupo de Interesse Especial (SIG)
+title: Grupos de Interesse Especial (SIG)
 author: Steven Spencer
 contributors:
 ---
