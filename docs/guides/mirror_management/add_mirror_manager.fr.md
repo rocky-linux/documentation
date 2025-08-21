@@ -15,7 +15,7 @@ Veuillez noter que nous ne sommes pas autorisés à accepter les miroirs publics
 
 À partir de fin 2022 (date de cet article), l'espace de stockage requis pour accueillir toutes les versions actuelles et anciennes de Rocky Linux est d'environ 2 Téraoctets.
 
-Notre miroir principal est `rsync://msync.rockylinux.org/rocky/mirror/pub/rocky/`. Pour votre première synchronisation, utilisez un miroir près de chez vous. Vous trouverez tous les sites miroirs [ici](https://mirrors.rockylinux.org).
+Notre miroir principal est `rsync://msync.rockylinux.org/rocky-linux`. Pour votre première synchronisation, utilisez un miroir près de chez vous. Vous trouverez tous les sites miroirs [ici](https://mirrors.rockylinux.org).
 
 Veuillez noter que nous pourrions restreindre l'accès au miroir principal officiel aux miroirs publics officiels à l'avenir. Alors s'il vous plaît envisagez `de resynchroniser` depuis un miroir public près de chez vous si vous utilisez un miroir privé. La synchronisation à partir de miroirs locaux devrait également être plus efficace.
 
