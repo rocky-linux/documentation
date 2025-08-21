@@ -65,7 +65,7 @@ Accédez au gestionnaire de miroir de Rocky Linux ici : <https://mirrors.rockyli
 
 Après une connexion réussie, votre profil apparaîtra en haut à droite. Sélectionnez la liste déroulante puis cliquez sur `My sites`.
 
-Une nouvelle page affichera la liste de tous les sites sous les données du compte. La première fois, elle sera vide. Cliqez sur `Register a new site`.
+Une nouvelle page affichera la liste de tous les sites sous les données du compte. La première fois, elle sera vide. Cliquez sur `Register a new site`.
 
 Une nouvelle page chargera avec une importante déclaration de conformité d'exportation. Remplissez ensuite les informations suivantes :
 
