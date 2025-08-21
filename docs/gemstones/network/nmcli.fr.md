@@ -1,11 +1,11 @@
 ---
-title: nmcli - définir la connexion automatique
-author: wale soyinka
+title: nmcli — Définition de la Connexion Automatique
+author: Wale Soyinka
 tags:
   - nmcli
 ---
 
-# Modifier la propriété 'autoconnect' du profil de connexion de NetworkManager
+# Modifier la propriété `autoconnect` du profil de connexion de NetworkManager
 
 Utilisez d'abord `nmcli` pour lire et afficher la valeur actuelle de la propriété de connexion automatique pour toutes les connexions réseau sur un système Rocky Linux. Entrer la commande suivante :
 
