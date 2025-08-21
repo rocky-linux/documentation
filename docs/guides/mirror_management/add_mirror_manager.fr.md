@@ -1,5 +1,5 @@
 ---
-title: Ajout d'un Rocky Mirror
+title: Ajout d'un Miroir Rocky Linux
 contributors: Amin Vakil, Steven Spencer, Ganna Zhyrnova
 ---
 
@@ -11,17 +11,17 @@ Nous accueillons volontiers de nouveaux miroirs publics. Mais ils devraient êtr
 
 Veuillez ne pas soumettre de miroirs qui sont hébergés dans un Anycast-CDN comme Cloudflare, etc., car cela peut conduire à des performances sous-optimales avec la sélection du miroir le plus rapide dans `dnf`.
 
-Veuillez noter que nous ne sommes pas autorisés à accepter les miroirs publics dans les pays soumis à la réglementation des États-Unis en matière d'exportation. Vous pouvez trouver une liste de ces pays ici : [https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations](https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations)
+Veuillez noter que nous ne sommes pas autorisés à accepter les miroirs publics dans les pays soumis à la réglementation des États-Unis en matière d'exportation. Vous trouverez une liste de ces pays ici : <https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations>
 
 À partir de fin 2022 (date de cet article), l'espace de stockage requis pour accueillir toutes les versions actuelles et anciennes de Rocky Linux est d'environ 2 Téraoctets.
 
-Notre miroir principal est `rsync://msync.rockylinux.org/rocky/mirror/pub/rocky/`. Pour votre première synchronisation, utilisez un miroir près de chez vous. Vous trouverez tous les sites miroirs [ici](https://mirrors.rockylinux.org).
+Notre miroir principal est `rsync://msync.rockylinux.org/rocky-linux`. Pour votre première synchronisation, utilisez un miroir près de chez vous. Vous trouverez tous les sites miroirs [ici](https://mirrors.rockylinux.org).
 
 Veuillez noter que nous pourrions restreindre l'accès au miroir principal officiel aux miroirs publics officiels à l'avenir. Alors s'il vous plaît envisagez `de resynchroniser` depuis un miroir public près de chez vous si vous utilisez un miroir privé. La synchronisation à partir de miroirs locaux devrait également être plus efficace.
 
 ## Configuration de votre Miroir
 
-Veuillez configurer une tâche cron pour synchroniser votre miroir périodiquement et le laisser tourner environ 6 fois par jour. Mais assurez-vous de synchroniser l'heure avec un délai aléatoire pour aider à répartir la charge au fil du temps. Si vous ne vérifiez que les modifications de `fullfiletimelist-rocky` et faites une synchronisation complète que si ce fichier a changé, vous pouvez synchroniser toutes les heures.
+Veuillez configurer une tâche cron pour synchroniser votre miroir périodiquement et le laisser tourner environ 6 fois par jour. Mais assurez-vous de synchroniser l'heure avec un délai aléatoire pour aider à répartir la charge au fil du temps. Si vous surveillez seulement les modifications apportées à `fullfiletimelist-rocky` et que vous effectuez une synchronisation complète uniquement si ce fichier a changé, vous pouvez effectuer une synchronisation toutes les heures.
 
 Voici quelques exemples de crontab pour vous :
 
@@ -63,9 +63,9 @@ Rocky utilise 'Fedora's Mirror Manager' pour organiser des miroirs communautaire
 
 Accédez au gestionnaire de miroir de Rocky Linux ici : <https://mirrors.rockylinux.org/mirrormanager/>
 
-Après une connexion réussie, votre profil apparaîtra en haut à droite. Sélectionnez le menu déroulant puis cliquez sur "My sites".
+Après une connexion réussie, votre profil apparaîtra en haut à droite. Sélectionnez la liste déroulante puis cliquez sur `My sites`.
 
-Une nouvelle page affichera la liste de tous les sites sous les données du compte. La première fois, elle sera vide. Cliquez sur "Enregistrer un nouveau site".
+Une nouvelle page affichera la liste de tous les sites sous les données du compte. La première fois, elle sera vide. Cliqez sur `Register a new site`.
 
 Une nouvelle page chargera avec une importante déclaration de conformité d'exportation. Remplissez ensuite les informations suivantes :
 
@@ -77,15 +77,15 @@ Une nouvelle page chargera avec une importante déclaration de conformité d'exp
 - "All sites can pull from me?" - Permet à tous les sites miroirs de faire un pull du site sans les ajouter explicitement à ma liste.
 - "Comments for downstream siteadmins. Please include your synchronization source here to avoid dependency loops."
 
-En cliquant sur "Submit", vous serez renvoyé à la page principale du miroir.
+En cliquant sur `Submit`, vous serez renvoyé à la page principale du miroir.
 
 ## Configuration du Site
 
-À partir de la page principale du miroir, sélectionnez la liste déroulante, puis cliquez sur "Mes sites".
+Sélectionnez le menu déroulant de la page miroir principale, puis cliquez sur `My sites`.
 
 La page du site du compte se chargera et le site devrait être listé. Cliquez dessus pour accéder au site d'information.
 
-Toutes les options de la dernière section sont listées à nouveau. Au bas de la page se trouvent trois nouvelles options : Admins, Hôtes et Supprimer le site. Cliquez sur "Hosts [add]".
+Toutes les options de la dernière section sont listées à nouveau. Au bas de la page se trouvent trois nouvelles options : Admins, Hôtes et Supprimer le site. Cliquez sur `Hosts [add]`.
 
 ## Création d'un nouvel Hôte
 
