@@ -7,7 +7,7 @@ tags:
 
 # Modifier la propriété `autoconnect` du profil de connexion de NetworkManager
 
-Utilisez d'abord `nmcli` pour lire et afficher la valeur actuelle de la propriété de connexion automatique pour toutes les connexions réseau sur un système Rocky Linux. Entrer la commande suivante :
+Utilisez d'abord `nmcli` pour lire et afficher la valeur actuelle de la propriété de connexion automatique pour toutes les connexions réseau sur un système Rocky Linux. Entrez la commande suivante :
 
 ```bash
 nmcli -f name,autoconnect connection 
