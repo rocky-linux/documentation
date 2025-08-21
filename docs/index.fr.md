@@ -16,9 +16,9 @@ Cette page d'accueil vous donnera une introduction au site de cette documentatio
 
 ### Tour d'horizon
 
-En ce moment, vous êtes sur la page d'accueil de la documentation. Si vous jetez un coup d'œil au menu supérieur (qui devrait être toujours disponible, y compris sur les appareils mobiles) vous pouvez voir la structure principale montrant les sections du niveau principal du site de documentation. Si vous cliquez sur chaque lien de menu en haut (essayez 'Guides' par exemple) puis sur le côté gauche vous verrez la liste des *sous-sections* pour chaque section principale. Les guides traitent de nombreux thèmes.
+En ce moment, vous êtes sur la page d'accueil de la documentation. Si vous jetez un coup d'œil au menu supérieur (qui devrait être toujours disponible, y compris sur les appareils mobiles) vous pouvez voir la structure principale montrant les sections du niveau principal du site de documentation. Si vous cliquez sur chaque lien de menu en haut (essayez `Guides` par exemple) puis sur le côté gauche vous verrez la liste des *sous-sections* pour chaque section principale. Les guides traitent de nombreux thèmes.
 
-Lorsque vous ouvrez un document, sur le côté droit vous verrez une 'Table des matières' avec des liens de navigation cliquables pour ce document (pour les appareils mobiles essayez de basculer l'affichage horizontalement). Pour les documents longs, comme les [Notes de publication](release_notes/8_8.md), la table des matières facilite la navigation dans le document. Si vous lisez un document long et que vous voulez revenir en haut de la page, appuyez sur ++page-up++ et vous verrez apparaître un bouton `Retour vers le haut` en haut de l'écran.
+Lorsque vous ouvrez un document, sur le côté droit vous verrez une `Table des matières` avec des liens de navigation cliquables pour ce document (pour les appareils mobiles essayez de basculer l'affichage horizontalement). Pour les documents longs, comme les [Notes de publication](release_notes/8_8.md), la table des matières facilite la navigation dans le document. Si vous lisez un document long et que vous voulez revenir en haut de la page, appuyez sur ++page-up++ et vous verrez apparaître un bouton `Retour vers le haut` en haut de l'écran.
 
 Les sections principales du site de documentation sont :
 
@@ -31,9 +31,9 @@ Les sections principales du site de documentation sont :
 
 ### Multilingue
 
-Dans l'équipe Rocky Linux, nous voulons rendre le site de documentation accessible à autant de monde que possible —  *la traduction dans différentes langues est importante pour cela*. Si vous cliquez sur le sélecteur de langue (symbole 文A, wén-A) dans le menu supérieur, vous verrez les langues dans lesquelles le site est disponible. Il y a deux parties à cela :
+Dans l'équipe Rocky Linux, nous voulons rendre le site de documentation accessible à autant de monde que possible —  *la traduction dans différentes langues est importante pour cela*. Si vous cliquez sur le sélecteur de langue (symbole `文A`, wén-A) dans le menu supérieur, vous verrez les langues dans lesquelles le site est disponible. Il y a deux parties à cela :
 
-1. Traduction de l'interface du site web : si vous choisissez une autre langue, par exemple le Français, vous noterez que l'interface, par exemple les boutons de navigation 'Suivant' et 'Précédent' seront traduits.
+1. Traduction de l'interface du site web : si vous choisissez une autre langue, par exemple le Français, vous noterez que l'interface, par exemple les boutons de navigation `Suivant` et `Précédent` seront traduits.
 1. Contenu : [la traduction du contenu est une tâche](https://crowdin.com/project/rockydocs/activity-stream) (importante) [en cours](https://crowdin.com/project/rockydocs). Tout le contenu n'est pas encore traduit dans toutes les langues. Toutes les pages qui ont été traduites (dans la langue sélectionnée) seront vues dans la langue choisie, celles qui ne le sont pas encore se retrouveront dans la langue anglaise par défaut. Si vous voulez contribuer à la communauté par le biais des traductions, l'équipe de documentation sera ravie de faire votre connaissance, voir ci-dessous pour plus de détails.
 
 !!! note "Remarque"
@@ -42,7 +42,7 @@ Dans l'équipe Rocky Linux, nous voulons rendre le site de documentation accessi
 
 ### Utiliser la recherche
 
-Si vous voulez rapidement trouver des informations/documents spécifiques, le site de documentation a une capacité de recherche de texte complet. Il vous suffit de saisir votre recherche dans le champ "Rechercher" de la barre de menu du haut et le site retournera les résultats de la recherche.
+Si vous voulez rapidement trouver des informations/documents spécifiques, le site de documentation a une capacité de recherche de texte complet. Il vous suffit de saisir votre recherche dans le champ `Rechercher` de la barre de menu du haut et le site retournera les résultats de la recherche.
 
 Pour ouvrir une page parmi les résultats de recherche, cliquez simplement (ou appuyez sur mobile) sur la page désirée dans la liste affichée.
 
