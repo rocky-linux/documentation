@@ -1,5 +1,5 @@
 ---
-title: Ajout d'un Rocky Mirror
+title: Ajout d'un Miroir Rocky Linux
 contributors: Amin Vakil, Steven Spencer, Ganna Zhyrnova
 ---
 
@@ -11,7 +11,7 @@ Nous accueillons volontiers de nouveaux miroirs publics. Mais ils devraient êtr
 
 Veuillez ne pas soumettre de miroirs qui sont hébergés dans un Anycast-CDN comme Cloudflare, etc., car cela peut conduire à des performances sous-optimales avec la sélection du miroir le plus rapide dans `dnf`.
 
-Veuillez noter que nous ne sommes pas autorisés à accepter les miroirs publics dans les pays soumis à la réglementation des États-Unis en matière d'exportation. Vous pouvez trouver une liste de ces pays ici : [https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations](https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations)
+Veuillez noter que nous ne sommes pas autorisés à accepter les miroirs publics dans les pays soumis à la réglementation des États-Unis en matière d'exportation. Vous trouverez une liste de ces pays ici : <https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations>
 
 À partir de fin 2022 (date de cet article), l'espace de stockage requis pour accueillir toutes les versions actuelles et anciennes de Rocky Linux est d'environ 2 Téraoctets.
 
@@ -63,7 +63,7 @@ Rocky utilise 'Fedora's Mirror Manager' pour organiser des miroirs communautaire
 
 Accédez au gestionnaire de miroir de Rocky Linux ici : <https://mirrors.rockylinux.org/mirrormanager/>
 
-Après une connexion réussie, votre profil apparaîtra en haut à droite. Sélectionnez le menu déroulant puis cliquez sur "My sites".
+Après une connexion réussie, votre profil apparaîtra en haut à droite. Sélectionnez le menu déroulant puis cliquez sur `My sites`.
 
 Une nouvelle page affichera la liste de tous les sites sous les données du compte. La première fois, elle sera vide. Cliquez sur "Enregistrer un nouveau site".
 
@@ -81,7 +81,7 @@ En cliquant sur "Submit", vous serez renvoyé à la page principale du miroir.
 
 ## Configuration du Site
 
-À partir de la page principale du miroir, sélectionnez la liste déroulante, puis cliquez sur "Mes sites".
+Sélectionnez le menu déroulant de la page miroir principale, puis cliquez sur `My sites`.
 
 La page du site du compte se chargera et le site devrait être listé. Cliquez dessus pour accéder au site d'information.
 
