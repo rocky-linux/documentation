@@ -14,9 +14,9 @@ Auf Flathub gibt es davon viele. In diesem Leitfaden erfahren Sie, wie Sie die g
 
 Für diese Anleitung benötigen Sie Folgendes:
 
-- Eine Rocky Linux-Installation mit einer grafischen Desktopumgebung
-- Berechtigung, Software auf Ihrem System zu installieren
-- `Flatpak` und `Flathub` sind betriebsbereit
+ - Eine Rocky Linux-Installation mit einer grafischen Desktopumgebung
+ - Berechtigung, Software auf Ihrem System zu installieren
+ - `Flatpak` und `Flathub` sind betriebsbereit
 
 ## So installieren Sie gängige Business-Software unter Rocky Linux
 
