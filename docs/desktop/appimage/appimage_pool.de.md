@@ -24,7 +24,7 @@ Installieren Sie das Flatpak-Paket für AppImagePool:
 flatpak install flathub io.github.prateekmedia.appimagepool
 ```
 
-## Erkunden von AppImage Launcher
+## Erkundung von `AppImage Launcher`
 
 Sobald AppImagePool auf Ihrem System installiert ist, starten Sie es und erkunden Sie die verfügbaren AppImages.
 
