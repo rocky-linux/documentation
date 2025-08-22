@@ -30,7 +30,7 @@ Ce guide suppose que votre imprimante est accessible depuis votre poste de trava
 
 1. Ouvrez la fenêtre ++"Settings"++
 2. Dans le menu de gauche cliquez sur ++"Printers"++
-3. Notez la bannière en haut de la fenêtre indiquant "Unlock to Change Settings"
+3. Notez la bannière en haut de la fenêtre indiquant `Unlock to Change Settings`
 4. Cliquez sur ++"Unlock"++ et saisissez les informations d'identification `sudo`.
 5. Cliquez sur ++"Add"++
 
@@ -50,17 +50,17 @@ Une fenêtre Logiciel s'ouvre pour tenter de localiser et d'installer les pilote
 
 4. Entrez cette commande pour extraire le fichier téléchargé :
 
-  ```bash
-  gunzip linux-brprinter-installer-*.*.*-*.gz
-  ```
+   ```bash
+   gunzip linux-brprinter-installer-*.*.*-*.gz
+   ```
 
 5. Obtenez les privilèges administratifs avec la commande `su` ou la commande `sudo su`.
 
 6. Exécuter la commande suivante :
 
-  ```bash
-  bash linux-brprinter-installer-*.*.*-* Brother machine name
-  ```
+   ```bash
+   bash linux-brprinter-installer-*.*.*-* Brother machine name
+   ```
 
 7. L'installation du pilote va démarrer. Suivez les instructions de l'écran d'installation.
 
