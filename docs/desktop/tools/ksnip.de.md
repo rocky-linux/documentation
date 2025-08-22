@@ -17,7 +17,7 @@ tags:
 
 `Ksnip` ist ein Dienstprogramm mit zahlreichen Funktionen und Tools zum Kommentieren von Screenshots. Der Schwerpunkt dieser Anleitung liegt auf der Installation von Ksnip und seinen Beschriftung-Tools.
 
-## Ksnip-Installation
+## `Ksnip`-Installation
 
 Ksnip erfordert das EPEL-Repository. Wenn Sie EPEL nicht aktiviert haben, können Sie dies folgendermaßen erreichen:
 
@@ -54,7 +54,7 @@ sudo dnf install ksnip -y
 | Option | Tool               | Beschreibung                                                                                                                                                                                                                                                                           |
 | ------ | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1      | `Select`           | das Werkzeug wird verwendet, um eine Auswahl zu treffen. Klicken Sie auf ein Element, um es auszuwählen, oder klicken Sie und ziehen Sie, um eine Auswahl zu treffen.                                                                                  |
-| 2      | `Duplicate`        | das Werkzeug wird zum Duplizieren einer Auswahl verwendet. Klicken und ziehen Sie, um eine Auswahl zu treffen. Dann klicken und ziehen Sie dann die Auswahl, um sie zu verschieben oder weiter zu transformieren.                      |
+| 2      | `Duplicate`        | das Tool wird zum Duplizieren einer Auswahl verwendet. Klicken und ziehen Sie, um eine Auswahl zu treffen. Dann klicken und ziehen Sie dann die Auswahl, um sie zu verschieben oder weiter zu transformieren.                          |
 | 3a     | `Arrow`            | das Standard Arrow-Tool, mit dem Sie durch Klicken und Ziehen einen Pfeil erstellen und von einer Position zu einer neuen Position bewegen können                                                                                                                                      |
 | 3b     | `Double Arrow`     | die zweite Arrow-Option erreichen Sie, indem Sie auf den Abwärtspfeil neben dem Arrow-Tool klicken. Wie der Werkzeug-Name vermuten lässt, verfügt das Tool an beiden Endpunkten über einen Pfeil.                                                      |
 | 3c     | `Line`             | die dritte Option erreichen Sie, indem Sie auf den Abwärtspfeil neben dem Arrow-Tool klicken. Es ersetzt Pfeile durch eine einfache Linie.                                                                                                             |
