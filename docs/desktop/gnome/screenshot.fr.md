@@ -1,5 +1,5 @@
 ---
-title: Screenshot
+title: Screenshot – Captures d'Écran
 author: Christine Belzie
 contributors: Steven Spencer, Ganna Zhyrnova
 ---
@@ -12,7 +12,7 @@ Fatigué d'utiliser votre clavier pour prendre des images sur l'écran de votre 
 
 Ce guide suppose que vous disposez de la configuration suivante :
 
-- Rocky Linux
+ - Rocky Linux
 
 !!! note "Remarque"
 
@@ -30,7 +30,7 @@ Pour utiliser le programme `Screenshot`, procédez comme suit :
 
 2. Cliquez sur **Take a Screenshot**
 
-    ![Screenshot of taken picture of being saved with black arrows pointing at a text box that contains the file name, "Linux.png" as well as Save and Copy buttons](images/screenshot-02.png)
+   ![Screenshot of taken picture of being saved with black arrows pointing at a text box that contains the file name, "Linux.png" as well as Save and Copy buttons](images/screenshot-02.png)
 
 3. Une fois que vous êtes satisfait de la capture d'écran, renommez le fichier et cliquez sur **Save**.
 
