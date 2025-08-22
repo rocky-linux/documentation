@@ -50,21 +50,21 @@ Es wird ein Softwarefenster geöffnet, das versucht, Druckertreiber zu finden un
 
 4. Geben Sie diesen Befehl ein, um die heruntergeladene Datei zu entpacken:
 
-  ```bash
-  gunzip linux-brprinter-installer-*.*.*-*.gz
-  ```
+   ```bash
+   gunzip linux-brprinter-installer-*.*.*-*.gz
+   ```
 
 5. Holen Sie sich die Superuser-Autorisierung mit dem Befehl `su` oder `sudo su`.
 
 6. Starten Sie das Tool:
 
-  ```bash
-  bash linux-brprinter-installer-*.*.*-* Brother machine name
-  ```
+   ```bash
+   bash linux-brprinter-installer-*.*.*-* Brother machine name
+   ```
 
 7. Die Treiberinstallation wird gestartet. Befolgen Sie die Anweisungen auf dem Installationsbildschirm.
 
-Der Installationsvorgang kann einige Zeit dauern. Warten Sie, bis es abgeschlossen ist. Wenn Sie fertig sind, können Sie optional einen Testdruck senden.
+Der Installationsvorgang kann einige Zeit dauern. Warten Sie, bis er abgeschlossen ist. Wenn Sie fertig sind, können Sie optional einen Testdruck senden.
 
 ## Scanner-Support
 

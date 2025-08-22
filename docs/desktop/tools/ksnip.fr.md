@@ -45,7 +45,7 @@ sudo dnf install ksnip -y
 
 ![ksnip](images/ksnip.png)
 
-## Annoter une image avec `Ksnip`
+## Annotation d'une image avec `Ksnip`
 
 `Ksnip` dispose d'outils pratiques et intuitifs pour annoter des captures d'écran.  Dans l'image, en bas à gauche se trouvent les options décrites ci-dessous.
 
@@ -53,8 +53,8 @@ sudo dnf install ksnip -y
 
 | Option | Outil              | Description                                                                                                                                                                                                                                                                                                              |
 | ------ | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 1      | `Select`           | l'outil permet de faire une sélection. Cliquez sur un élément pour le sélectionner ou cliquez et faites glisser pour effectuer une sélection.                                                                                                                                            |
-| 2      | `Duplicate`        | l’outil permet de dupliquer une sélection. Cliquez et faites glisser pour effectuer une sélection. Cliquez ensuite sur la sélection et faites-la glisser pour la déplacer ou la transformer davantage.                                                                   |
+| 1      | `Select`           | permet de faire une sélection. Cliquez sur un élément pour le sélectionner ou cliquez et faites glisser pour effectuer une sélection.                                                                                                                                                    |
+| 2      | `Duplicate`        | permet de dupliquer une sélection. Cliquez et faites glisser pour effectuer une sélection. Cliquez ensuite sur la sélection et faites-la glisser pour la déplacer ou la transformer davantage.                                                                           |
 | 3a     | `Arrow`            | l'outil de flèche par défaut, qui vous permet de cliquer pour créer une flèche et de faire glisser d'un endroit à un autre                                                                                                                                                                                               |
 | 3b     | `Double Arrow`     | la deuxième option de flèche est accessible en cliquant sur la flèche vers le bas à côté de l'outil Arrow. Comme le suggère le nom de l'outil, il comporte une flèche aux deux extrémités.                                                                                               |
 | 3c     | `Line`             | la troisième option est accessible en cliquant sur la flèche vers le bas à côté de l'outil Arrow. Il remplace les flèches par une simple ligne.                                                                                                                                          |

@@ -1,5 +1,5 @@
 ---
-title: dconf Config Editor
+title: dconf – Config Editor
 author: Ezequiel Bruni
 contributors: Steven Spencer, Ganna Zhyrnova
 ---
@@ -28,8 +28,8 @@ Wenn Sie nicht sicher sind, was eine bestimmte Einstellung bewirkt, recherchiere
 
 Für diese Anleitung benötigen Sie Folgendes:
 
-- Rocky Linux inklusiv GNOME.
-- Berechtigung, Software auf Ihrem System zu installieren (`sudo`-Rechte).
+ - Rocky Linux inklusiv GNOME.
+ - Berechtigung, Software auf Ihrem System zu installieren (`sudo`-Rechte).
 
 ## `dconf Editor` — Installation
 
