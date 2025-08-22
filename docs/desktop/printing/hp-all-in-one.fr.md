@@ -26,7 +26,7 @@ sudo dnf install hplip-common.x86_64 hplip-libs.x86_64 hplip-gui
 
 ## Paramétrage de l'Imprimante
 
-Une fois l'installation du pilote d'imprimante terminée, vous devriez pouvoir ajouter votre imprimante HP All-in-One à votre station de travail Rocky. Assurez-vous que l'imprimante est physiquement connectée au même réseau, soit via Wi-Fi, soit par une connexion directe. Accédez aux paramètres Settings
+Une fois l'installation du pilote d'imprimante terminée, vous devriez pouvoir ajouter votre imprimante HP All-in-One à votre station de travail Rocky. Assurez-vous que l'imprimante est physiquement connectée au même réseau, soit via Wi-Fi, soit par une connexion directe. Accédez aux paramètres `Settings`
 
 1. Dans le menu de gauche cliquez sur ++"Printers"++
 
