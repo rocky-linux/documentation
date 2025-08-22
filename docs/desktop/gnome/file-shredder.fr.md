@@ -12,9 +12,9 @@ Besoin de supprimer une carte postale ou un fichier PDF contenant des informatio
 
 Ce guide suppose que vous disposez de la configuration suivante :
 
-- Rocky Linux
-- Flatpak
-- FlatHub
+ - Rocky Linux
+ - Flatpak
+ - FlatHub
 
 ## Processus d'Installation
 
@@ -50,4 +50,4 @@ Pour utiliser le programme `File Shredder`, procédez comme suit :
 
 ## Conclusion
 
-Qu’il s’agisse d’un dossier de sécurité sociale ou d’un relevé bancaire, File Shredder est l’outil qui permet de supprimer définitivement des fichiers sans avoir à acheter un shredder. Vous souhaitez en savoir plus ou avoir plus d'idées pour cette application ? [Soumettez un issue dans le dépôt de File Shredder sur GitHub](https://github.com/ADBeveridge/raider/issues).
+Qu’il s’agisse d’un dossier de sécurité sociale ou d’un relevé bancaire, File Shredder est l’outil qui permet de supprimer définitivement des fichiers sans avoir à acheter un shredder. Vous souhaitez en savoir plus ou proposer des idées pour cette application ? [Soumettez un issue dans le dépôt de File Shredder sur GitHub](https://github.com/ADBeveridge/raider/issues).
