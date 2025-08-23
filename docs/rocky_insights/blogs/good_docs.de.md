@@ -1,5 +1,5 @@
 ---
-title: Gute Dokumentation – Die Sicht eines Übersetzers
+title: Gute Dokumentation — die Sicht eines Übersetzers
 author: Ganna Zhyrnova
 contributors: Steven Spencer
 ---
