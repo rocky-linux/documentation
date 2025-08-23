@@ -1,10 +1,10 @@
 ---
-title: Gute Dokumentation – Die Sicht eines Übersetzers
+title: Gute Dokumentation — die Sicht eines Übersetzers
 author: Ganna Zhyrnova
 contributors: Steven Spencer
 ---
 
-## Einleitung
+## Introduktion
 
 Übersetzer bieten wertvolle Einblicke in das Verfassen klarer und prägnanter Dokumentationen. Sie wissen besser als die meisten anderen, was sich nicht gut übersetzen lässt und was einen Leser verwirrt. In diesem Dokument werden einige dieser Probleme untersucht und bewährte Vorgehensweisen für die Dokumentations-Erstellung hervorgehoben.
 
@@ -25,7 +25,7 @@ Redewendungen, Fachjargon, Abkürzungen und Akronyme können für Leser, die dam
 **Kontraktionen** ersetzen englische Wörter durch Abkürzungen, aber diese gibt es nicht immer in allen Sprachen, was die Übersetzung erschwert.\
 **Akronyme** können mehrdeutig sein, insbesondere wenn sie bei ihrer Verwendung nicht definiert sind.
 
-Beispiel:
+Ein Beispiel:
 
 ❌ "Once you’ve got the hang of the dashboard, the rest is a piece of cake." In diesem Fall verwendet der Autor sowohl eine Kontraktion, Slang als auch eine Redewendung.
 

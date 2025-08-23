@@ -1,5 +1,5 @@
 - - -
-title: DNF - La commande `swap` author: wale soyinka tags:
+title: dnf — la commande swap author: wale soyinka contributors: date: 2023-01-24 tags:
   - cloud images
   - conteneurs
   - dnf
@@ -21,7 +21,7 @@ Dans les cas où le package simplifié n'est pas suffisant, vous pouvez utiliser
 
 ## Objectif
 
-Ce GEMstone de Rocky Linux montre comment utiliser **dnf** pour échanger – _swap_ – le package `curl-minimal` fourni avec le package `curl` normal.
+Cette pépite de Rocky Linux montre comment utiliser **dnf** pour échanger – _swap_ – le package `curl-minimal` fourni avec le paquet `curl` normal.
 
 ## Vérifier la variante de `curl` existante
 
@@ -56,7 +56,7 @@ Et c'est un Gemme !
 
 ## Remarques
 
-Commande DNF swap
+La commande `dnf swap`
 
 **Syntaxe** :
 
