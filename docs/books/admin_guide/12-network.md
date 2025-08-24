@@ -72,8 +72,8 @@ The subnet mask is used to define the network bits and host bits of an IP addres
 192.168.1.10  ==> 11000000.10101000.00000001.00001010
 255.255.255.0 ==> 11111111.11111111.11111111.00000000
 
-NetID             11000000.10101000.00000001.00001010
-                    192   . 168    . 100    . 0
+NetID             11000000.10101000.00000001.00000000
+                    192   . 168    . 1      . 0
 
 HostID            00000000.00000000.00000000.00001010
                      0    .   0    .    0   . 10
@@ -100,7 +100,7 @@ There are also specific addresses within a network, which must be identified. Th
     255.255.255.0 ==> 11111111.11111111.11111111.00000000
                       
     network address   11000000.10101000.00000001.00000000
-                        192   . 168    . 100    . 0
+                        192   . 168    . 1      . 0
     ```
 
     **Logic and Operations** - When both are true (1), the result is true (1); otherwise, it is false (0)
@@ -112,7 +112,7 @@ There are also specific addresses within a network, which must be identified. Th
     255.255.255.0 ==> 11111111.11111111.11111111.00000000
                       
     broadcast address 11000000.10101000.00000001.11111111
-                        192   . 168    . 100    . 255
+                        192   . 168    . 1      . 255
     ```
 
 !!! tip
