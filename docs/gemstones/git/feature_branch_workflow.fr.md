@@ -31,53 +31,53 @@ L'utilisateur "rockstar" a créé un fork de ce référentiel et nous utiliseron
 
 1. Si besoin est, clonez votre fork :
 
-  ```bash
-  git clone https://github.com/rockstar/documentation.git
-  cd documentation
-  ```
+   ```bash
+   git clone https://github.com/rockstar/documentation.git
+   cd documentation
+   ```
 
 2. Ajoutez `upstream remote` :
 
-  ```bash
-  git remote add upstream https://github.com/rocky-linux/documentation.git
-  ```
+   ```bash
+   git remote add upstream https://github.com/rocky-linux/documentation.git
+   ```
 
 3. Récupérer les modifications en amont :
 
-  ```bash
-  git fetch upstream
-  ```
+   ```bash
+   git fetch upstream
+   ```
 
 4. Créer une nouvelle branche, Feature Branch :
 
-  ```bash
-  git checkout -b feature-branch-name
-  ```
+   ```bash
+   git checkout -b feature-branch-name
+   ```
 
 5. Apportez des modifications, ajoutez de nouveaux fichiers et validez-les avec `commit` :
 
-  ```bash
-  git add .
-  git commit -m "Implementing feature X"
-  ```
+   ```bash
+   git add .
+   git commit -m "Implementing feature X"
+   ```
 
 6. Maintenir votre Branche à Jour. Fusionnez régulièrement les modifications en amont avec `pull` pour éviter les conflits :
 
-  ```bash
-  git pull upstream main --rebase
-  ```
+   ```bash
+   git pull upstream main --rebase
+   ```
 
 7. Transmettez vers votre fork en tapant :
 
-  ```bash
-  git push origin feature-branch-name
-  ```
+   ```bash
+   git push origin feature-branch-name
+   ```
 
 8. Créer un Pull Request :
 
-  ```bash
-  gh pr create --base main --head rockstar:feature-branch-name --title "New Feature X" --body "Long Description of the feature"
-  ```
+   ```bash
+   gh pr create --base main --head rockstar:feature-branch-name --title "New Feature X" --body "Long Description of the feature"
+   ```
 
 ## Conclusion
 
