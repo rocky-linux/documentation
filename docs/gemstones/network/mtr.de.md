@@ -5,7 +5,7 @@ contributors: Steven Spencer, Neel Chauhan
 date: 2021-10-20
 ---
 
-# `mtr` Einleitung
+# Einleitung
 
 `mtr` ist ein Netzwerkdiagnosetool, das Netzwerkprobleme untersuchen kann. Es wird verwendet, um die Befehle `ping` und `traceroute` zu ersetzen. In Bezug auf die Leistung ist der Befehl `mtr` performanter.
 
