@@ -1,5 +1,5 @@
 ---
-title: nmcli – `Autoconnect` setzen
+title: nmcli — Autoconnect
 author: Wale Soyinka
 tags:
   - nmcli
