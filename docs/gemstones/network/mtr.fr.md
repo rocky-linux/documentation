@@ -1,11 +1,11 @@
 ---
-title: mtr - Logiciel d'Analyse de Réseau
+title: mtr — Analyse de Réseau
 author: tianci li
 contributors: Steven Spencer, Neel Chauhan
 date: 2021-10-20
 ---
 
-# Présentation de `mtr`
+# `mtr` — Introduction
 
 `mtr` est un outil d'analyse de réseau qui permet de diagnostiquer certains problèmes. Il peut remplacer les commandes `ping` et `traceroute`. `mtr` est plus performant.
 
