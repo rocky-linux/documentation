@@ -1,5 +1,5 @@
 ---
-title: RL9 - Gestionnaire de Réseau
+title: RL9 — Gestionnaire de Réseau
 author: tianci li
 contributors: Steven Spencer
 tags:
