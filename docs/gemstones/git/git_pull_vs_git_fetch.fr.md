@@ -22,21 +22,21 @@ Il est bénéfique de voir ce que les autres ont apporté avec commit sans fusio
 
 1. Lister la branche actuellement extraite
 
-  ```bash
-  git branch
-  ```
+   ```bash
+   git branch
+   ```
 
-2. Récupérer les modifications avec `fetch` depuis la branche principale d'un référentiel distant nommé origin. Entrer la commande suivante :
+2. Récupérer les modifications avec `fetch` depuis la branche principale d'un référentiel distant nommé origin. Tapez la commande suivante :
 
-  ```bash
-  git fetch origin main
-  ```
+   ```bash
+   git fetch origin main
+   ```
 
 3. Comparez les modifications entre le HEAD de votre dépôt local et le dépôt `origin/main` distant.
 
-  ```bash
-  git log HEAD..origin/main
-  ```
+   ```bash
+   git log HEAD..origin/main
+   ```
 
 ### Git Pull
 
@@ -45,15 +45,15 @@ Il est utile pour mettre à jour rapidement votre branche locale avec les modifi
 
 1. **Extraire et fusionner les modifications** :
 
-  ```bash
-  git pull origin main
-  ```
+   ```bash
+   git pull origin main
+   ```
 
 2. **Vérifiez les modifications fusionnées** :
 
-  ```bash
-  git log
-  ```
+   ```bash
+   git log
+   ```
 
 ## Remarques Complémentaires
 
