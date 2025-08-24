@@ -24,9 +24,9 @@ Les options les plus courantes de la commande `mtr` sont les suivantes. En temps
 | -6       | # IPv6 seulement                                |
 | -c COUNT | # Nombre de pings                               |
 | -n       | # pas de résolution du nom d'hôte               |
-| -z       | # Affichage du nombre AS                        |
+| -z       | # Affichage du nombre AS (Autonomous System)    |
 | -b       | # Affichage de l'adresse IP et du nom de l'hôte |
-| -w       | # Output a wide range of reports                |
+| -w       | # Production d'une vaste gamme de rapports      |
 
 Les informations échangées avec le terminal sont les suivantes :
 
