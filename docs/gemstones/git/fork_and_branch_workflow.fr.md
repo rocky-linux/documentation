@@ -27,72 +27,72 @@ Ce Gemstone explique comment configurer un référentiel local pour contribuer �
 
 ## Procédure
 
-1. S'il n'existe pas déjà, créez un fork du projet en utilisant l'utilitaire `gh`. Entrer la commande suivante :
+1. S'il n'existe pas déjà, créez un fork du projet en utilisant l'utilitaire `gh`. Tapez la commande suivante :
 
-  ```bash
-  gh repo fork rocky-linux/documentation --clone=true --remote=true
-  ```
+   ```bash
+   gh repo fork rocky-linux/documentation --clone=true --remote=true
+   ```
 
-  Les options utilisées dans cette commande _gh repo fork_ sont les suivantes :
+   Les options utilisées dans cette commande _gh repo fork_ sont les suivantes :
 
-  - `--clone=true` : Clone le référentiel forké sur votre machine locale.
-  - `--remote=true` : ajoute le référentiel d'origine en tant que référentiel distant, vous permettant de synchroniser les futures mises à jour.
+   - `--clone=true` : Clone le référentiel forké sur votre machine locale.
+   - `--remote=true` : ajoute le référentiel d'origine en tant que référentiel distant, vous permettant de synchroniser les futures mises à jour.
 
-2. Accédez au répertoire du dépôt local. Entrer la commande suivante :
+2. Accédez au répertoire du dépôt local. Tapez la commande suivante :
 
-  ```bash
-  cd documentation
-  ```
+   ```bash
+   cd documentation
+   ```
 
 3. Vérifiez que tous les dépôts distants pertinents ont été correctement configurés dans votre dépôt local, tapez :
 
-  ```bash
-  git remote -vv
-  ```
+   ```bash
+   git remote -vv
+   ```
 
 4. Récupérez les dernières modifications avec `fetch` depuis le dépôt distant en amont :
 
-  ```bash
-  git fetch upstream
-  ```
+   ```bash
+   git fetch upstream
+   ```
 
 5. Créez et extrayez avec `checkout` une nouvelle branche de fonctionnalités nommée your-feature-branch :
 
-  ```bash
-  git checkout -b your-feature-branch
-  ```
+   ```bash
+   git checkout -b your-feature-branch
+   ```
 
 6. Apportez des modifications, ajoutez de nouveaux fichiers et validez vos modifications dans votre dépôt local avec `commit` :
 
-  ```bash
-  git add .
-  git commit -m "Your commit message"
-  ```
+   ```bash
+   git add .
+   git commit -m "Your commit message"
+   ```
 
 7. Synchronisez avec la branche principale du dépôt distant nommée « upstream » :
 
-  ```bash
-  git pull upstream main
-  ```
+   ```bash
+   git pull upstream main
+   ```
 
 8. Transmission des modifications au Fork :
 
-  ```bash
-  git push origin your-feature-branch
-  ```
+   ```bash
+   git push origin your-feature-branch
+   ```
 
 9. Enfin, créez une Pull Request (PR) à l'aide de l'application CLI `gh` :
 
-  ```bash
-  gh pr create --base main --head your-feature-branch --title "Your PR Title" --body "Description of your changes"
-  ```
+   ```bash
+   gh pr create --base main --head your-feature-branch --title "Your PR Title" --body "Description of your changes"
+   ```
 
-  Les options utilisées dans cette commande _gh pr create_ sont les suivantes :
+   Les options utilisées dans cette commande _gh pr create_ sont les suivantes :
 
-  `--base` main : spécifie la branche de base dans le référentiel upstream où les modifications seront fusionnées avec `merge`.
-  `--head` your-feature-branch : indique la branche principale de votre fork qui contient les modifications.
-  `--title` "Votre titre PR" : définit le titre de la demande de Pull Request.
-  `--body` "Description de vos modifications" : Fournit une description détaillée des modifications dans la pull request.
+   `--base` main : spécifie la branche de base dans le référentiel upstream où les modifications seront fusionnées avec `merge`.
+   `--head` your-feature-branch : indique la branche principale de votre fork qui contient les modifications.
+   `--title` "Votre titre PR" : définit le titre de la demande de Pull Request.
+   `--body` "Description de vos modifications" : Fournit une description détaillée des modifications dans la pull request.
 
 ## Conclusion
 
