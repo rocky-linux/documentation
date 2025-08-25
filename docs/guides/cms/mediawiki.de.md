@@ -58,7 +58,7 @@ Installieren Sie anschließend PHP und die benötigten Module:
 dnf install -y dnf install php84-php-fpm php84-php-intl php84-php-mbstring php84-php-apcu php84-php-curl php84-php-mysql php84-php-xml
 ```
 
-Enable PHP with:
+Aktivieren Sie PHP mit:
 
 ```bash
 systemctl enable --now php84-php-fpm.service
