@@ -1,5 +1,5 @@
 ---
-title: Solution Miroir - lsyncd
+title: Solution Miroir — lsyncd
 author: Steven Spencer
 contributors: Ezequiel Bruni, tianci li, Ganna Zhyrnova
 tested_with: 8.5, 8.6, 9.0
@@ -12,8 +12,8 @@ tags:
 ## Prérequis
 
 - Une machine tournant sous Rocky Linux
-- Pourvoir modifier des fichiers de configuration depuis la ligne de commande
-- Connaissance de l'utilisation d'un éditeur de ligne de commande (nous utilisons `vi` ici, mais n'hésitez pas à le remplacer par votre éditeur favori.)
+- Une certaine expérience avec la modification des fichiers de configuration à partir de la ligne de commande
+- Connaissance de l'utilisation d'un éditeur de ligne de commande (nous utilisons `vi` ici, mais n'hésitez pas à le remplacer par votre éditeur favori)
 - Vous aurez besoin d'un accès `root` ou de privilèges supplémentaires grâce à `sudo` (utiliser `sudo -s` dès le début est une bonne idée)
 - Paire de clés SSH publiques et privées
 - Les dépôts EPEL (Extra Packages for Enterprise Linux) de Fedora
@@ -62,7 +62,7 @@ systemctl enable lsyncd
 
 L'installation à partir des sources n'est pas difficile.
 
-### Installation les dépendances
+### Installation des Dépendances
 
 Vous aurez besoin de certaines dépendances pour `lsyncd` et pour créer des packages à partir des sources. Utilisez cette commande sur votre machine Rocky Linux pour vous assurer que vous avez les dépendances nécessaires. Si vous allez construire à partir des sources, c'est une bonne idée d'installer tous les outils de développement :
 
@@ -96,8 +96,10 @@ wget https://github.com/axkibe/lsyncd/archive/master.zip
 
 Décompressez le fichier `master.zip` :
 
-`` 
-`unzip master.zip` ``
+` 
+```
+    unzip master.zip
+``` `
 
 Cela créera un répertoire appelé `lsyncd-master`. Vous devez accéder à ce répertoire et créer un répertoire appelé `build` :
 
