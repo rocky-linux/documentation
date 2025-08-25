@@ -96,7 +96,8 @@ wget https://github.com/axkibe/lsyncd/archive/master.zip
 
 Décompressez le fichier `master.zip` :
 
-`unzip master.zip`
+`` 
+`unzip master.zip` ``
 
 Cela créera un répertoire appelé `lsyncd-master`. Vous devez accéder à ce répertoire et créer un répertoire appelé `build` :
 
