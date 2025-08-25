@@ -29,7 +29,7 @@ Pour cette procédure, vous aurez besoin de l'utilisateur `root`. Connectez-vous
 
 ### Installation de `rsync`
 
-Bien que `rsync` soit probablement déjà installé. Pour vous assurer que `rsync` est installé et à jour, faites ce qui suit sur les deux ordinateurs :
+Il est probable que `rsync` soit déjà installé. Pour vous assurer que `rsync` est à jour, procédez comme suit sur les deux ordinateurs :
 
 ```bash
 dnf install rsync
@@ -196,6 +196,6 @@ Cela indique d'exécuter cette commande à minuit et à 23 h tous les jours, to
 -z: to enable compression during the transfer
 ```
 
-## Conclusions
+## Conclusion
 
 Bien que `rsync` ne sois pas aussi sophistiqué que d'autres outils, il propose une solution simple de synchronisation de fichiers très utile.
