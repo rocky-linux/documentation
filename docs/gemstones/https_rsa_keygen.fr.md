@@ -37,7 +37,7 @@ fi
 ## Brève Description
 
 * Ce script bash nécessite la saisie d'un paramètre ($1) qui est le nom du site sans aucun www, etc. Par exemple, "mywidget".
-* Le script crée la clé par défaut avec un mot de passe et une longueur de 2048 bits (cela peut être modifié, comme indiqué ci-dessus pour une longueur de 4096 bits plus longue)
+* Le script crée la clé par défaut avec un mot de passe et une longueur de 2048 bits (qui peut être modifiée, comme indiqué ci-dessus, en une longueur de 4096 bits)
 * Le mot de passe est alors immédiatement supprimé de la clé, la raison est que le redémarrage du serveur web nécessiterait que le mot de passe de la clé soit entré à chaque fois ainsi qu'au redémarrage, ce qui peut être problématique dans la pratique.
 * Ensuite, le script crée la CSR (Certificate Signing Request), qui peut ensuite être utilisée pour acheter un certificat SSL auprès d'un fournisseur.
 * Enfin, l'étape de nettoyage supprime la clé précédemment créée avec le mot de passe correspondant.

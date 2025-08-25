@@ -23,46 +23,46 @@ Nous utiliserons le référentiel du projet de documentation Rocky Linux comme e
 ## Procédure
 
 1. Ouvrez un terminal et changez votre répertoire de travail vers le dossier contenant votre clone local du projet.
-  Par exemple, si vous avez cloné le dépôt github dans ~/path/to/your/rl-documentation-clone, tapez
+   Par exemple, si vous avez cloné le dépôt github dans ~/path/to/your/rl-documentation-clone, tapez
 
-  ```bash
-  cd ~/path/to/your/rl-documentation-clone
-  ```
+   ```bash
+   cd ~/path/to/your/rl-documentation-clone
+   ```
 
-2. Avant d’effectuer des modifications, répertoriez les `remote`s que vous avez configurées. Entrer la commande suivante :
+2. Avant d’effectuer des modifications, répertoriez les `remote`s que vous avez configurées. Tapez la commande suivante :
 
-  ```bash
-  git remote -vv
-  ```
+   ```bash
+   git remote -vv
+   ```
 
-  S'il s'agit d'un dépôt fraîchement cloné, vous verrez probablement une seule branche remote nommée `origin` dans votre affichage de sortie.
+   S'il s'agit d'un dépôt fraîchement cloné, vous verrez probablement une seule branche remote nommée `origin` dans votre affichage de sortie.
 
-3. Ajoutez le référentiel de documentation Rocky Linux (`https://github.com/rocky-linux/documentation.git`) en tant que nouveau référentiel distant – `remote` – à votre référentiel local. Ici, nous allons attribuer `upstream` comme nom à cette `remote` particulière. Entrer la commande suivante :
+3. Ajoutez le référentiel de documentation Rocky Linux (`https://github.com/rocky-linux/documentation.git`) en tant que nouveau référentiel distant – `remote` – à votre référentiel local. Ici, nous allons attribuer `upstream` comme nom à cette `remote` particulière. Tapez la commande suivante :
 
-  ```bash
-  git remote add upstream https://github.com/rocky-linux/documentation.git
-  ```
+   ```bash
+   git remote add upstream https://github.com/rocky-linux/documentation.git
+   ```
 
 4. Pour souligner davantage que les noms attribués aux référentiels distants sont arbitraires, créez un autre référentiel distant nommé rocky-docs qui pointe vers le même référentiel en exécutant la commande suivante :
 
-  ```bash
-  git remote add rocky-docs https://github.com/rocky-linux/documentation.git
-  ```
+   ```bash
+   git remote add rocky-docs https://github.com/rocky-linux/documentation.git
+   ```
 
 5. Vérifiez que le nouveau dépôt distant a été ajouté avec succès :
 
-  ```bash
-  git remote -v
-  ```
+   ```bash
+   git remote -v
+   ```
 
-  Vous devriez voir `upstream` répertorié avec son URL.
+   Vous devriez voir `upstream` répertorié avec son URL.
 
 6. Facultativement, avant de commencer à apporter des modifications à votre dépôt local, vous pouvez récupérer des données à partir de la branche nouvellement ajoutée.
-  Récupérez les branches et les commits de la `remote` nouvellement ajoutée en exécutant :
+   Récupérez les branches et les commits de la `remote` nouvellement ajoutée en exécutant :
 
-  ```bash
-  git fetch upstream
-  ```
+   ```bash
+   git fetch upstream
+   ```
 
 ## Remarques Complémentaires
 

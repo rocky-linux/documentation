@@ -1,5 +1,5 @@
 ---
-title: nmtui - Outil de gestion du réseau
+title: nmtui — Gestion du réseau
 author: tianci li
 contributors: Steven Spencer, Neil Hanlon
 update: 2021-10-23

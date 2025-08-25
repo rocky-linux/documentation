@@ -1,5 +1,5 @@
 ---
-title: nmtui – Netzwerk-Management-Tool
+title: nmtui — Netzwerk-Management-Tool
 author: tianci li
 contributors: Steven Spencer, Neil Hanlon
 update: 2021-10-23
