@@ -22,7 +22,9 @@ tags:
 
 Ви можете вимкнути фільтрування VLAN за допомогою однієї команди:
 
+    ```
     nmcli con modify enp1s0 ethtool.feature-rx-vlan-filter off
+    ```
 
 Замініть `enp1s0` на назву вашої мережевої карти на базі AQC.
 
