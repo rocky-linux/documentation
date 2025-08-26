@@ -12,7 +12,7 @@ tags:
 
 Die Verwendung einer lokalen Kopie der Rocky Linux-Dokumentation ist hilfreich für diejenigen, die häufig Beiträge leisten und genau sehen möchten, wie ein Dokument nach dem Zusammenführen in der Weboberfläche aussieht. Die hier vorgestellten Methoden spiegeln die bisherigen Präferenzen der Teilnehmer wider.
 
-Die Verwendung einer lokalen Kopie der Dokumentation ist ein Schritt im Entwicklungsprozess für diejenigen, die sich der Philosophie von „Dokumenten als Code“ anschließen, einem Workflow für die Dokumentation, der der Codeentwicklung ähnelt.
+Die Verwendung einer lokalen Kopie der Dokumentation ist ein Schritt im Entwicklungsprozess für diejenigen, die sich der Philosophie von „Dokumentation als Code“ anschließen, einem Workflow für die Dokumentation, der der Codeentwicklung ähnelt.
 
 ## Markdown-Linter
 
