@@ -15,7 +15,7 @@ Si ricorda che non è possibile accettare mirror pubblici in paesi soggetti alle
 
 Al momento in cui scriviamo (fine 2022), lo spazio di archiviazione richiesto per il mirroring di tutte le versioni attuali e passate di Rocky Linux è di circa 2 TB.
 
-Il nostro mirror master è `rsync://msync.rockylinux.org/rocky/mirror/pub/rocky/`. Per la prima sincronizzazione utilizzate un mirror vicino a voi. Potete trovare tutti i mirror ufficiali [qui](https://mirrors.rockylinux.org).
+Il nostro mirror principale è `rsync://msync.rockylinux.org/rocky-linux`. Per la prima sincronizzazione utilizzate un mirror vicino a voi. Potete trovare tutti i mirror ufficiali [qui](https://mirrors.rockylinux.org).
 
 Si noti che in futuro potremmo limitare l'accesso al master mirror ufficiale ai mirror pubblici ufficiali. Per questo motivo, se gestite un mirror privato, prendete in considerazione l'opzione `rsyncing` da un mirror pubblico vicino a voi. Inoltre i mirror locali potrebbero essere più veloci da sincronizzare.
 
