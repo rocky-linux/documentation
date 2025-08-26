@@ -108,20 +108,20 @@ Le module Ansible `template` vous permet d'utiliser des modèles Jinja pour gén
 ### Principales caractéristiques
 
 1. **Rendu de modèle :**
-  - Le module restitue des modèles Jinja pour créer des fichiers de configuration avec un contenu dynamique.
-  - Les variables définies dans le playbook ou l'inventaire peuvent être injectées dans des modèles, permettant des configurations dynamiques.
+   - Le module restitue des modèles Jinja pour créer des fichiers de configuration avec un contenu dynamique.
+   - Les variables définies dans le playbook ou l'inventaire peuvent être injectées dans des modèles, permettant des configurations dynamiques.
 
 2. **Utilisation de Jinja2 :**
-  - Le module `template` exploite le moteur de création de modèles Jinja2, fournissant des fonctionnalités puissantes telles que des conditions, des boucles et des filtres pour une manipulation avancée des modèles.
+   - Le module `template` exploite le moteur de création de modèles Jinja2, fournissant des fonctionnalités puissantes telles que des conditions, des boucles et des filtres pour une manipulation avancée des modèles.
 
 3. **Chemins Source et de Destination :**
-  - Spécifie le fichier modèle Jinja source et le chemin de destination pour le fichier de configuration généré.
+   - Spécifie le fichier modèle Jinja source et le chemin de destination pour le fichier de configuration généré.
 
 4. \*\* Passage de variable : \*\*
-  - Les variables peuvent être transmises directement dans la tâche playbook ou chargées à partir de fichiers externes, permettant une génération de configuration flexible et dynamique.
+   - Les variables peuvent être transmises directement dans la tâche playbook ou chargées à partir de fichiers externes, permettant une génération de configuration flexible et dynamique.
 
 5. **Exécution Idempotente :**
-  - Le module `template` d'Ansible prend en charge l'exécution idempotente des modèles, garantissant que le modèle n'est appliqué que si des modifications sont détectées.
+   - Le module `template` d'Ansible prend en charge l'exécution idempotente des modèles, garantissant que le modèle n'est appliqué que si des modifications sont détectées.
 
 ### Exemple de playbook snippet
 
@@ -142,24 +142,24 @@ Le module Ansible `template` vous permet d'utiliser des modèles Jinja pour gén
 ### Exemples d'utilisation
 
 1. **Gestion de Configuration :**
-  - Idéal pour gérer les configurations de système en générant dynamiquement des fichiers en fonction de paramètres spécifiques.
+   - Idéal pour gérer les configurations de système en générant dynamiquement des fichiers en fonction de paramètres spécifiques.
 
 2. **Mise en Place d'Application :**
-  - Utile pour créer des fichiers de configuration spécifiques à une application avec différents paramètres.
+   - Utile pour créer des fichiers de configuration spécifiques à une application avec différents paramètres.
 
 3. **Infrastructure sous Forme de Code :**
-  - Facilite les pratiques d'infrastructure en tant que code en permettant des ajustements dynamiques des configurations en fonction de variables.
+   - Facilite les pratiques d'infrastructure en tant que code en permettant des ajustements dynamiques des configurations en fonction de variables.
 
 ### Les bonnes pratiques
 
 1. **Séparation des Thèmes :**
-  - Confine la logique de configuration réelle dans les modèles Jinja, en la séparant de la structure principale du playbook.
+   - Confine la logique de configuration réelle dans les modèles Jinja, en la séparant de la structure principale du playbook.
 
 2. **Contrôle de Version :**
-  - Stocke les modèles Jinja dans des référentiels contrôlés en version pour un meilleur suivi et une meilleure collaboration.
+   - Stocke les modèles Jinja dans des référentiels contrôlés en version pour un meilleur suivi et une meilleure collaboration.
 
 3. **Testabilité :**
-  - Permet de tester les modèles de manière indépendante pour vous assurer qu’ils produisent le résultat de configuration attendu.
+   - Permet de tester les modèles de manière indépendante pour vous assurer qu’ils produisent le résultat de configuration attendu.
 
 En tirant parti du module `template`, les utilisateurs d'Ansible peuvent améliorer la gérabilité et la flexibilité des tâches de configuration, favorisant ainsi une approche plus rationalisée et efficace de la configuration du système et des applications.
 
