@@ -11,7 +11,7 @@ tags:
 
 Un `initramfs` est le système de fichiers `root` à l'intérieur d'un noyau Linux pour aider à démarrer le système. Il contient les modules de base nécessaires au démarrage de Linux.
 
-Parfois, un administrateur Linux peut vouloir régénérer les `initramfs`, par exemple s'il souhaite mettre un pilote sur liste noire ou inclure un module hors bande. L'auteur a fait tout cela pour [activer Intel vPro sur un Minisforum MS-01](https://spaceterran.com/posts/step-by-step-guide-enabling-intel-vpro-on-your-minisforum-ms-01-bios/).
+Parfois, un administrateur Linux peut vouloir régénérer `initramfs`, par exemple s'il souhaite mettre un pilote sur liste noire ou inclure un module hors bande —out-of-band—. L'auteur a utilisé cette procédure pour [activer Intel vPro sur un Minisforum MS-01](https://spaceterran.com/posts/step-by-step-guide-enabling-intel-vpro-on-your-minisforum-ms-01-bios/).
 
 ## Prérequis
 
@@ -42,4 +42,4 @@ reboot
 
 ## Conclusion
 
-Le noyau Linux est extrêmement puissant et modulaire. Il est logique que certains utilisateurs souhaitent autoriser ou interdire certains modules, et la régénération de `initramfs` permet que cela se produise.
+Le noyau Linux est extrêmement puissant et modulaire. Il est logique que certains utilisateurs souhaitent autoriser ou interdire certains modules, et la reconstruction de `initramfs` leur permet de le faire.
