@@ -12,9 +12,9 @@ Decibel è un'applicazione che riproduce file audio. L'interfaccia intuitiva con
 
 Questa guida presuppone che si disponga di quanto segue:
 
-- Rocky Linux
-- Flatpak
-- FlatHub
+ - Rocky Linux
+ - Flatpak
+ - FlatHub
 
 ## Processo di installazione
 
@@ -26,15 +26,15 @@ Andate su [Flathub.org](https://flathub.org), digitate "Decibel" nella barra di 
 
 2. Copiare lo script di installazione manuale ed eseguirlo in un terminale:
 
-    ```bash
-    flatpak install flathub org.gnome.Decibels
-    ```
+   ```bash
+   flatpak install flathub org.gnome.Decibels
+   ```
 
 3. Infine, copiate il comando run ed eseguitelo nel vostro terminale:
 
-    ```bash
-    flatpak run org.gnome.Decibels
-    ```
+   ```bash
+   flatpak run org.gnome.Decibels
+   ```
 
 ## Guida all'uso
 
@@ -42,11 +42,11 @@ Per utilizzare Decibel, procedere come segue:
 
 1. Cliccare su **Open**
 
-    ![Screenshot of Decibels' landing page with a red rectangle surrounding the blue open button](images/02_decibels.png)
+   ![Screenshot of Decibels' landing page with a red rectangle surrounding the blue open button](images/02_decibels.png)
 
 2. Scegliere il file desiderato e fare clic su **Apri** che appare nell'angolo in alto a destra dello schermo
 
-    ![Screenshot of Decibels file selection interface with numbered arrows indicating audio file and Open button](images/03_decibels.png)
+   ![Screenshot of Decibels file selection interface with numbered arrows indicating audio file and Open button](images/03_decibels.png)
 
 !!! note "Nota"
 
