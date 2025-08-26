@@ -12,9 +12,9 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 Für diese Anleitung benötigen Sie Folgendes:
 
-- Rocky Linux
-- Flatpak
-- FlatHub
+ - Rocky Linux
+ - Flatpak
+ - FlatHub
 
 ## Installations-Ablauf
 
@@ -26,15 +26,15 @@ Gehen Sie zu [Flathub.org] (https://flathub.org), geben Sie `Decibels` in die Su
 
 2. Kopieren Sie das manuelle Installationsskript und führen Sie es in einem Terminal aus:
 
-    ```bash
-    flatpak install flathub org.gnome.Decibels
-    ```
+   ```bash
+   flatpak install flathub org.gnome.Decibels
+   ```
 
 3. Kopieren Sie abschließend den Ausführungsbefehl und rufen Sie ihn in Ihrem Terminal auf:
 
-    ```bash
-    flatpak run org.gnome.Decibels
-    ```
+   ```bash
+   flatpak run org.gnome.Decibels
+   ```
 
 ## Anwendungshinweise
 
@@ -42,11 +42,11 @@ Gehen Sie wie folgt vor, um `Decibels` zu verwenden:
 
 1. Auf **Open** klicken
 
-    ![Screenshot of Decibels' landing page with a red rectangle surrounding the blue open button](images/02_decibels.png)
+   ![Screenshot of Decibels' landing page with a red rectangle surrounding the blue open button](images/02_decibels.png)
 
 2. Wählen Sie Ihre gewünschte Datei aus und klicken Sie auf **Open**, das in der oberen rechten Ecke des Bildschirms erscheint
 
-    ![Screenshot of Decibels file selection interface with numbered arrows indicating audio file and Open button](images/03_decibels.png)
+   ![Screenshot of Decibels file selection interface with numbered arrows indicating audio file and Open button](images/03_decibels.png)
 
 !!! note "Anmerkung"
 
