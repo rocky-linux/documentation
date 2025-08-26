@@ -44,7 +44,7 @@ Gli esercizi di questo laboratorio si concentrano sulla configurazione di Samba 
 #### Per installare l'applicazione server Samba
 
 0. Utilizzare l'utilità dnf per installare il pacchetto server e client Samba sul server.
-  Digitare:
+   Digitare:
     ```bash
     sudo dnf install -y samba
     ```
@@ -58,7 +58,7 @@ Gli esercizi di questo laboratorio si concentrano sulla configurazione di Samba 
     ```
 
 2. Creiamo una configurazione Samba di base per condividere la cartella /tmp/samba-share.
-  A questo scopo, creare una nuova definizione di condivisione nel file di configurazione di Samba:
+   A questo scopo, creare una nuova definizione di condivisione nel file di configurazione di Samba:
 
     ```bash
     sudo tee -a /etc/samba/smb.conf << 'EOF'
@@ -111,7 +111,7 @@ Questo esercizio mostra come creare utenti Samba e impostare le credenziali di a
     sudo smbpasswd -a sambarockstar
     ```
 
-  Quando viene richiesto, inserire la password selezionata e premere INVIO dopo ogni inserimento.
+   Quando viene richiesto, inserire la password selezionata e premere INVIO dopo ogni inserimento.
 
 4. Riavviare i servizi Samba:
     ```bash
@@ -151,7 +151,7 @@ In questo esercizio, proveremo ad accedere alla nuova condivisione Samba dallo s
    ```bash
    mount -t cifs
    ```
-  OUTPUT
+   OUTPUT
    ```bash
    //localhost/Shared on ~/samba-client type cifs (rw,relatime,vers=3.1.1,cache=strict,username=sambarockstar....
    ...<SNIP>...
@@ -163,7 +163,7 @@ In questo esercizio, proveremo ad accedere alla nuova condivisione Samba dallo s
     df -t cifs
     ```
 
-  OUTPUT:
+   OUTPUT:
 
     ```
     Filesystem         1K-blocks     Used Available Use% Mounted on
@@ -249,7 +249,7 @@ Presupposti:
 Configurate la vostra macchina (serverXY) come client Samba per accedere a una directory condivisa su un host separato (serverHQ).
 
 1. Assicurarsi che le necessarie utilità del client Samba siano installate sul sistema locale.
-  Se necessario, installarli eseguendo:
+   Se necessario, installarli eseguendo:
 
     ```bash
     sudo dnf install samba-client cifs-utils -y
@@ -267,9 +267,11 @@ Sono necessari l'indirizzo IP o l'hostname di serverHQ, il nome della condivisio
 
 Sostituire serverHQ, sharedFolder e yourUsername con i valori reali.
 
+    ````
     ```bash
     sudo mount -t cifs //serverHQ/sharedFolder ~/serverHQ-share -o user=yourUsername
     ```
+    ````
 
 #### Per verificare e accedere alla condivisione montata
 
@@ -289,6 +291,8 @@ Sostituire serverHQ, sharedFolder e yourUsername con i valori reali.
 
 Una volta fatto, smontare la condivisione:
 
+    ````
     ```bash
     sudo umount ~/serverHQ-share
     ```
+    ````
