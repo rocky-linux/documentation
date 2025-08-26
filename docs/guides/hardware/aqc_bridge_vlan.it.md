@@ -22,7 +22,9 @@ A seguire i requisiti minimi per seguire questa procedura:
 
 È possibile disattivare il filtraggio VLAN con un solo comando:
 
+    ```
     nmcli con modify enp1s0 ethtool.feature-rx-vlan-filter off
+    ```
 
 Sostituire `enp1s0` con il nome della NIC basata su AQC.
 
