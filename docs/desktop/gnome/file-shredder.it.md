@@ -12,9 +12,9 @@ Dovete rimuovere una cartolina o un file PDF contenente informazioni come il vos
 
 Questa guida presuppone che si disponga di quanto segue:
 
-- Rocky Linux
-- Flatpak
-- FlatHub
+ - Rocky Linux
+ - Flatpak
+ - FlatHub
 
 ## Processo di installazione
 
