@@ -74,7 +74,7 @@ PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Command(mer
 
 * **PID - Numéro d'identification du processus**
 * USER - Le propriétaire du processus
-* PRI - la priorité du processus du point de vue du noyau Linux
+* PRI – la priorité du processus du point de vue du noyau Linux
 * NI - la priorité du processus de réinitialisation par l'utilisateur normal ou bien root
 * VIRT - Mémoire virtuelle consommée par un processus
 * **RES - Mémoire physique consommée par un processus**
@@ -98,7 +98,7 @@ Pour gérer le processus, utilisez le bouton ++f9++ et lui envoyer différents s
 
 | Signal | Description                                                                                                                                                                                              |
 | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1      | Arrête immédiatement le processus qui redémarre après avoir relu le fichier de configuration                                                                                                             |
+| 1      | Permet de terminer le processus immédiatement puis de le redémarrer après avoir relu le fichier de configuration                                                                                         |
 | 9      | Utilisé pour mettre fin immédiatement à l'exécution du programme, pour terminer le processus de force, similaire à la fin forcée dans la barre des tâches de la fenêtre                                  |
 | 15     | Le signal par défaut pour la commande kill. Parfois, si un problème s'est produit dans le processus et que le processus ne peut pas être terminé normalement avec ce signal, on peut essayer le signal 9 |
 

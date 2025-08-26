@@ -62,7 +62,7 @@ HOST: li Loss% Snt Last Avg Best Wrst StDev
 
 ## Racourcis de clavier
 
-* ++p++ - Pause
+* ++p++ – Pause
 * ++d++ - display - mode d'affichage
 * ++n++ - Activer/désactiver le DNS
 * ++r++ - Remettre tous les compteurs à zéro

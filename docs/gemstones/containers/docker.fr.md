@@ -13,7 +13,7 @@ Docker Engine peut être utilisé en exécutant des charges de travail de type D
 
 ## Ajouter le dépôt Docker
 
-Utilisez l'utilitaire `dnf` pour ajouter le référentiel docker à votre serveur Rocky Linux. Pour ce faire tapez la commande :
+Utilisez l’utilitaire `dnf` pour ajouter le référentiel `Docker` à votre serveur Rocky Linux. Pour ce faire tapez la commande :
 
 ```bash
 sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo

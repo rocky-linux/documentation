@@ -43,13 +43,13 @@ Voyez ce que vous utilisez actuellement avec la version "kernel release" :
 
 `uname -r` et remplacer sa valeur retournée dans les commandes en utilisant `$(uname -r)`
 
-RHEL et distributions dérivées (Fedora, CentOS Stream, Scientific Linux, RockyLinux, Almalinux, et autres) stocke également la configuration utilisée pour amorcer les noyaux installés dans le répertoire `/boot` utilisé par Grub2 comme fichiers ASCII :
+RHEL et distributions dérivées (Fedora, CentOS Stream, Scientific Linux, Rocky Linux, AlmaLinux et autres) enregistrez également la configuration utilisée pour démarrer les noyaux installés dans le répertoire `/boot` utilisé par `Grub2` sous forme de fichiers ASCII :
 
 ```bash
 /boot/config-<kernel-release>
 ```
 
-Pour vérifier la configuration du noyau en cours d'exécution pour une valeur particulière:
+Vérification de la configuration actuelle du noyau en cours d'exécution pour une valeur spécifique :
 
 ```bash
 cat /boot/config-$(uname -r) | grep -i <keyword>
