@@ -12,34 +12,34 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 У цьому посібнику передбачається, що ви маєте наступне:
 
-- Rocky Linux
-- Flatpak
-- FlatHub
+ - Rocky Linux
+ - Flatpak
+ - FlatHub
 
 ## Процес встановлення
 
 1. Перейдіть на [веб-сайт Flathub](https://flathub.org/), введіть «Декодер» у рядку пошуку та натисніть **Встановити**. ![Screenshot of the install button highlighted by a red rectangle](images/01_decoder.png)
 
-    ![manual install script and run script](images/decoder_install.png)
+   ![manual install script and run script](images/decoder_install.png)
 
 2. Скопіюйте сценарій встановлення вручну та запустіть його в терміналі:
 
-    ```bash
-    flatpak install flathub com.belmoussaoui.Decoder
-    ```
+   ```bash
+   flatpak install flathub com.belmoussaoui.Decoder
+   ```
 
 3. Нарешті, скопіюйте команду запуску та запустіть її у своєму терміналі:
 
-    ```bash
-    flatpak run com.belmoussaoui.Decoder
-    ```
+   ```bash
+   flatpak run com.belmoussaoui.Decoder
+   ```
 
 ## Як створити QR-код
 
 Доступні два типи QR-кодів. Виберіть варіант, який найкраще відповідає вашим потребам:
 
-- [Text](#text)
-- [Wifi](#wifi)
+ - [Text](#text)
+ - [Wifi](#wifi)
 
 ### Text
 
@@ -51,7 +51,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 3. Натисніть **Create**
 
-    ![Screenshot of the Save and Export screen with arrows](images/03_decoder-text.png)
+   ![Screenshot of the Save and Export screen with arrows](images/03_decoder-text.png)
 
 4. Натисніть **Save**
 
@@ -77,15 +77,15 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 1. Натисніть **Scan**
 
-    ![Screenshot of the rectangular button with the words "From a Screenshot" written in white.](images/02_decoder-scan.png)
+   ![Screenshot of the rectangular button with the words "From a Screenshot" written in white.](images/02_decoder-scan.png)
 
 2. Натисніть  **From a Screenshot**
 
-    ![Screenshot of grey square surrounding options menu, and red square surrounding the "Take a Screenshot button"](images/03_decoder-scan.png)
+   ![Screenshot of grey square surrounding options menu, and red square surrounding the "Take a Screenshot button"](images/03_decoder-scan.png)
 
 3. Виберіть потрібні ефекти та натисніть **Take a Screenshot**
 
-    ![Screenshot of a red arrow pointing at a blue button that has the word "Share" written in white](images/04_decoder-scan.png)
+   ![Screenshot of a red arrow pointing at a blue button that has the word "Share" written in white](images/04_decoder-scan.png)
 
 4. Натисніть **Share**
 
