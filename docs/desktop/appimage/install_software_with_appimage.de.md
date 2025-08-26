@@ -20,8 +20,8 @@ Das in diesem Handbuch verwendete Beispielprogramm heißt `Krita`. Sie werden es
 
 Für diese Anleitung benötigen Sie Folgendes:
 
-- Eine Rocky Linux-Installation mit einer grafischen Desktopumgebung
-- `sudo`-Berechtigungen
+ - Eine Rocky Linux-Installation mit einer grafischen Desktopumgebung
+ - `sudo`-Berechtigungen
 
 ## Herunterladen des AppImage eines Programms
 

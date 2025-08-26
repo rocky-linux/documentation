@@ -70,17 +70,17 @@ Outgoing:
 
 Aufschlüsselung der obigen Zeilen:
 
-- Curr - aktuell gemessene Bandbreitennutzung
-- Avg – durchschnittliche Bandbreitennutzung im Zeitraum
-- Min - minimale gemessene Bandbreitennutzung
-- Max – maximal gemessene Bandbreitennutzung
-- Ttl – in der `nload`-Sitzung übertragene Daten
+ - Curr - aktuell gemessene Bandbreitennutzung
+ - Avg – durchschnittliche Bandbreitennutzung im Zeitraum
+ - Min - minimale gemessene Bandbreitennutzung
+ - Max – maximal gemessene Bandbreitennutzung
+ - Ttl – in der `nload`-Sitzung übertragene Daten
 
 ## Tastaturkürzel
 
-- \++page-down++, ++down++ – Eine Schnittstelle nach unten gehen
-- \++page-up++, ++up++ – Eine Schnittstelle nach oben gehen
-- \++f2++ – Zeigt das Optionsfenster an
-- \++f5++ - Optionen speichern
-- \++f6++ – Einstellungen aus der Konfigurationsdatei neu laden
-- \++q++, ++Strg+C++ – `nload` beenden
+ - \++page-down++, ++down++ – Eine Schnittstelle nach unten gehen
+ - \++page-up++, ++up++ – Eine Schnittstelle nach oben gehen
+ - \++f2++ – Zeigt das Optionsfenster an
+ - \++f5++ - Optionen speichern
+ - \++f6++ – Einstellungen aus der Konfigurationsdatei neu laden
+ - \++q++, ++Strg+C++ – `nload` beenden

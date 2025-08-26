@@ -49,7 +49,7 @@ Shell > cd /etc/NetworkManager/system-connections/  && ls
 ens160.nmconnection
 ```
 
-`Ens160` si riferisce al nome della scheda di rete del sistema. Vi chiederete perché il nome sembra così strano? Questo è dovuto al gestore di dispositivi `udev`. Supporta diversi schemi di denominazione. Per impostazione predefinita, i nomi fissi vengono assegnati in base al firmware, alla topologia e alle informazioni sulla posizione. I suoi vantaggi includono:
+`ens160` si riferisce al nome della scheda di rete del sistema. Vi chiederete perché il nome sembra così strano? Questo è dovuto al gestore di dispositivi `udev`. Supporta diversi schemi di denominazione. Per impostazione predefinita, i nomi fissi vengono assegnati in base al firmware, alla topologia e alle informazioni sulla posizione. I suoi vantaggi includono:
 
 - I nomi dei dispositivi sono completamente prevedibili.
 - I nomi dei dispositivi rimangono fissi anche se si aggiunge o si rimuove hardware, perché non avviene una nuova enumerazione.

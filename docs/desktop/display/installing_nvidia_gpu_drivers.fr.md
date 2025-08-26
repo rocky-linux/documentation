@@ -16,9 +16,9 @@ Le lien vers les étapes de pré-installation dans le manuel officiel de NVIDIA 
 
 Voici d'autres méthodes de substitution pour installer les pilotes NVIDIA :
 
-- NVIDIA's `.run` installer
-- Dépôt tiers RPMFusion
-- Pilote Third-party ELRepo
+ - NVIDIA's `.run` installer
+ - Dépôt tiers RPMFusion
+ - Pilote Third-party ELRepo
 
 Dans la plupart des cas, il est préférable d'installer les pilotes NVIDIA à partir d'une source officielle. RPMFusion et ELRepo sont disponibles pour ceux qui préfèrent un dépôt communautaire. Pour les matériels plus anciens, RPMFusion fonctionne mieux. Il est recommandé d'éviter d'utiliser le programme d'installation `.run`. Bien que pratique, l'utilisation du programme d'installation `.run` est connue pour écraser les fichiers système et présente des problèmes d'incompatibilité.
 
@@ -26,8 +26,8 @@ Dans la plupart des cas, il est préférable d'installer les pilotes NVIDIA à p
 
 Pour ce guide, vous aurez besoin des conditions suivantes :
 
-- Poste de travail Rocky Linux
-- Droits d'accès `sudo`
+ - Poste de travail Rocky Linux
+ - Droits d'accès `sudo`
 
 ## Installer les utilitaires et dépendances nécessaires
 

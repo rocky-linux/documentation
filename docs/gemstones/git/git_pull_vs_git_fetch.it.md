@@ -22,21 +22,21 @@ Vedere cosa hanno fatto gli altri senza unire le modifiche nel proprio ramo loca
 
 1. Elencare il ramo attualmente controllato
 
-  ```bash
-  git branch
-  ```
+   ```bash
+   git branch
+   ```
 
 2. Recupera le modifiche dal ramo principale di un repo remoto chiamato origin. Digitare:
 
-  ```bash
-  git fetch origin main
-  ```
+   ```bash
+   git fetch origin main
+   ```
 
 3. Confrontare le modifiche tra l'HEAD del repo locale e il repo remoto origin/main.
 
-  ```bash
-  git log HEAD..origin/main
-  ```
+   ```bash
+   git log HEAD..origin/main
+   ```
 
 ### Git Pull
 
@@ -45,15 +45,15 @@ Git Pull scarica le modifiche e le unisce al ramo corrente.
 
 1. **Modifiche di Pull e Merge**:
 
-  ```bash
-  git pull origin main
-  ```
+   ```bash
+   git pull origin main
+   ```
 
 2. **Rivedere le modifiche unite**:
 
-  ```bash
-  git log
-  ```
+   ```bash
+   git log
+   ```
 
 ## Note Aggiuntive
 

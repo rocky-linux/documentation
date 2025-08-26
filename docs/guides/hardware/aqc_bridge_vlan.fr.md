@@ -22,7 +22,9 @@ Les conditions suivantes sont indispensables pour utiliser cette procédure :
 
 Vous pouvez désactiver le filtrage VLAN avec une seule commande :
 
+    ```
     nmcli con modify enp1s0 ethtool.feature-rx-vlan-filter off
+    ```
 
 Remplacez `enp1s0` par le nom de votre adaptateur réseau basé sur AQC.
 

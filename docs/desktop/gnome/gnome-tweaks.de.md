@@ -10,7 +10,7 @@ GNOME Tweaks ist ein Tool zum Anpassen von Desktop-Eigenschaften, einschließlic
 
 ## Voraussetzungen
 
-- Eine Rocky Linux-Workstation oder ein Server mit GUI-Installation, die GNOME verwendet.
+ - Eine Rocky Linux-Workstation oder ein Server mit GUI-Installation, die GNOME verwendet.
 
 ## GNOME tweaks Installation
 

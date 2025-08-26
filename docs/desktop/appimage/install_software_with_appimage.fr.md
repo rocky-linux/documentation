@@ -20,8 +20,8 @@ L'exemple d'application utilisé dans ce didacticiel est Krita. Vous le téléch
 
 Pour ce guide, vous aurez besoin des conditions suivantes :
 
-- Une installation Rocky Linux avec un environnement de bureau
-- Droits d'accès `sudo`
+ - Une installation Rocky Linux avec un environnement de bureau
+ - Droits d'accès `sudo`
 
 ## Téléchargement de l'AppImage d'une application
 

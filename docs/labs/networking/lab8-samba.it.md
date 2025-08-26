@@ -44,45 +44,45 @@ Gli esercizi di questo laboratorio si concentrano sulla configurazione di Samba 
 #### Per installare l'applicazione server Samba
 
 0. Utilizzare l'utilità dnf per installare il pacchetto server e client Samba sul server.
-  Digitare:
-  ```bash
-  sudo dnf install -y samba
-  ```
+   Digitare:
+   ```bash
+   sudo dnf install -y samba
+   ```
 
 #### Configurazione di Samba
 
 1. Creare una directory denominata samba-share sotto la cartella /tmp da condividere. Digitare:
 
-  ```bash
-  mkdir /tmp/samba-share
-  ```
+   ```bash
+   mkdir /tmp/samba-share
+   ```
 
 2. Creiamo una configurazione Samba di base per condividere la cartella /tmp/samba-share.
-  A questo scopo, creare una nuova definizione di condivisione nel file di configurazione di Samba:
+   A questo scopo, creare una nuova definizione di condivisione nel file di configurazione di Samba:
 
-  ```bash
-  sudo tee -a /etc/samba/smb.conf << 'EOF'
-  [Shared]
-  path = /tmp/samba-share
-  browsable = yes
-  writable = yes
-  EOF
-  ```
+   ```bash
+   sudo tee -a /etc/samba/smb.conf << 'EOF'
+   [Shared]
+   path = /tmp/samba-share
+   browsable = yes
+   writable = yes
+   EOF
+   ```
 
 #### Per avviare e abilitare il servizio Samba
 
 1. Avviare e abilitare i servizi Samba:
 
-  ```bash
-  sudo systemctl start smb nmb
-  sudo systemctl enable smb nmb
-  ```
+   ```bash
+   sudo systemctl start smb nmb
+   sudo systemctl enable smb nmb
+   ```
 
 2. Verificare che i demoni utilizzati dal servizio Samba siano in esecuzione:
 
-  ```bash
-  sudo systemctl status smb nmb
-  ```
+   ```bash
+   sudo systemctl status smb nmb
+   ```
 
 ## Esercizio 2
 
@@ -96,27 +96,27 @@ Questo esercizio mostra come creare utenti Samba e impostare le credenziali di a
 
 1. Per prima cosa, creare un normale utente di sistema chiamato sambarockstar. Digitare:
 
-  ```bash
-  sudo useradd sambarockstar
-  ```
+   ```bash
+   sudo useradd sambarockstar
+   ```
 
 2. Verificare che l'utente sia stato creato correttamente. Digitare:
-  ```bash
-  id sambarockstar
-  ```
+   ```bash
+   id sambarockstar
+   ```
 
 3. Aggiungere il nuovo utente di sistema sambarockstar al database degli utenti Samba e contemporaneamente impostare una password per l'utente Samba:
 
-  ```bash
-  sudo smbpasswd -a sambarockstar
-  ```
+   ```bash
+   sudo smbpasswd -a sambarockstar
+   ```
 
-  Quando viene richiesto, inserire la password selezionata e premere INVIO dopo ogni inserimento.
+   Quando viene richiesto, inserire la password selezionata e premere INVIO dopo ogni inserimento.
 
 4. Riavviare i servizi Samba:
-  ```bash
-  sudo systemctl restart smb nmb
-  ```
+   ```bash
+   sudo systemctl restart smb nmb
+   ```
 
 ## Esercizio 3
 
@@ -128,59 +128,59 @@ In questo esercizio, proveremo ad accedere alla nuova condivisione Samba dallo s
 
 0. Installare Client Utilities eseguendo:
 
-  ```bash
-  sudo dnf -y install cifs-utils
-  ```
+   ```bash
+   sudo dnf -y install cifs-utils
+   ```
 
 #### Per creare un punto di montaggio Samba
 
 0. Creare il punto di montaggio:
-  ```bash
-  mkdir ~/samba-client
-  ```
+   ```bash
+   mkdir ~/samba-client
+   ```
 
 #### Per montare un file system SMB localmente
 
 1. Montare la condivisione Samba in locale:
 
-  ```bash
-  sudo mount -t cifs //localhost/Shared ~/samba-client -o user=sambarockstar
-  ```
+   ```bash
+   sudo mount -t cifs //localhost/Shared ~/samba-client -o user=sambarockstar
+   ```
 
 2. Usare il comando `mount` per elencare tutti i file system di tipo CIFS montati. Digitare:
-  ```bash
-  mount -t cifs
-  ```
-  OUTPUT
-  ```bash
-  //localhost/Shared on ~/samba-client type cifs (rw,relatime,vers=3.1.1,cache=strict,username=sambarockstar....
-  ...<SNIP>...
-  ```
+   ```bash
+   mount -t cifs
+   ```
+   OUTPUT
+   ```bash
+   //localhost/Shared on ~/samba-client type cifs (rw,relatime,vers=3.1.1,cache=strict,username=sambarockstar....
+   ...<SNIP>...
+   ```
 
 3. Allo stesso modo, utilizzare il comando `df` per verificare che la condivisione montata sia disponibile. Digitare:
 
-  ```bash
-  df -t cifs
-  ```
+   ```bash
+   df -t cifs
+   ```
 
-  OUTPUT:
+   OUTPUT:
 
-  ```
-  Filesystem         1K-blocks     Used Available Use% Mounted on
-  //localhost/Shared  73364480 17524224  55840256  24% ~/samba-client
-  ```
+   ```
+   Filesystem         1K-blocks     Used Available Use% Mounted on
+   //localhost/Shared  73364480 17524224  55840256  24% ~/samba-client
+   ```
 
 4. Quindi, elencare il contenuto della condivisione montata. Digitare:
 
-  ```bash
-  ls ~/samba-client
-  ```
+   ```bash
+   ls ~/samba-client
+   ```
 
 5. Creare un file di prova in Share:
 
-  ```bash
-  touch ~/samba-client/testfile.txt
-  ```
+   ```bash
+   touch ~/samba-client/testfile.txt
+   ```
 
 ## Esercizio 4
 
@@ -190,21 +190,21 @@ In questo esercizio, proveremo ad accedere alla nuova condivisione Samba dallo s
 
 1. Rendere la definizione della condivisione samba "Shared" di sola lettura. Questo può essere fatto cambiando il valore del parametro writable da yes a no nel file di configurazione smb.conf. Usiamo un comando `sed` onliner per ottenere questo risultato eseguendo:
 
-  ```bash
-  sudo  sed -i'' -E \
-   '/\[Shared\]/,+3 s/writable =.*$/writable = no/'  /etc/samba/smb.conf
-  ```
+   ```bash
+   sudo  sed -i'' -E \
+    '/\[Shared\]/,+3 s/writable =.*$/writable = no/'  /etc/samba/smb.conf
+   ```
 
 2. Riavviare i servizi Samba:
-  ```bash
-  sudo systemctl restart smb nmb
-  ```
+   ```bash
+   sudo systemctl restart smb nmb
+   ```
 
 3. A questo punto, si può testare la scrittura sulla condivisione provando a creare un file sulla condivisione montata:
 
-  ```bash
-  touch ~/samba-client/testfile2.txt
-  ```
+   ```bash
+   touch ~/samba-client/testfile2.txt
+   ```
 
 ## Esercizio 5
 
@@ -215,24 +215,24 @@ Questo esercizio illustra come limitare l'accesso alle condivisioni Samba tramit
 #### Per creare un nuovo gruppo per l'utente Samba
 
 1. Usare l'utilità groupadd per creare un nuovo gruppo di sistema chiamato rockstars. Nel nostro esempio utilizzeremo questo gruppo per ospitare gli utenti del sistema che possono accedere a una determinata risorsa. Digitare:
-  ```bash
-  sudo groupadd rockstars
-  ```
+   ```bash
+   sudo groupadd rockstars
+   ```
 2. Aggiungere al gruppo un utente di sistema/Samba esistente. Digitare:
-  ```bash
-  sudo usermod -aG rockstars sambarockstar
-  ```
+   ```bash
+   sudo usermod -aG rockstars sambarockstar
+   ```
 
 #### Per configurare gli utenti autorizzati nella configurazione di Samba
 
 1. Utilizzare l'utilità sed per aggiungere nuovi parametri utente validi alla definizione di condivisione nel file di configurazione di Samba. Digitare:
-  ```bash
-  sudo sed -i '/\[Shared\]/a valid users = @sambagroup' /etc/samba/smb.conf
-  ```
+   ```bash
+   sudo sed -i '/\[Shared\]/a valid users = @sambagroup' /etc/samba/smb.conf
+   ```
 2. Riavviare i servizi Samba:
-  ```bash
-  sudo systemctl restart smb nmb
-  ```
+   ```bash
+   sudo systemctl restart smb nmb
+   ```
 3. Ora testate l'accesso alla condivisione con sambarockstar e verificate l'accesso.
 
 ## Esercizio 6
@@ -249,17 +249,17 @@ Presupposti:
 Configurate la vostra macchina (serverXY) come client Samba per accedere a una directory condivisa su un host separato (serverHQ).
 
 1. Assicurarsi che le necessarie utilità del client Samba siano installate sul sistema locale.
-  Se necessario, installarli eseguendo:
+   Se necessario, installarli eseguendo:
 
-  ```bash
-  sudo dnf install samba-client cifs-utils -y
-  ```
+   ```bash
+   sudo dnf install samba-client cifs-utils -y
+   ```
 
 2. Creare un punto di montaggio sul serverXY:
 
-  ```bash
-  mkdir ~/serverHQ-share
-  ```
+   ```bash
+   mkdir ~/serverHQ-share
+   ```
 
 #### Per montare la condivisione Samba dal serverHQ
 
@@ -277,15 +277,15 @@ sudo mount -t cifs //serverHQ/sharedFolder ~/serverHQ-share -o user=yourUsername
 
 1. Verificare se la directory condivisa dal serverHQ è stata montata con successo sul computer:
 
-  ```bash
-  ls ~/serverHQ-share
-  ```
+   ```bash
+   ls ~/serverHQ-share
+   ```
 
 2. Provare ad accedere e modificare i file all'interno della condivisione montata. Ad esempio, per creare un nuovo file:
 
-  ```bash
-  touch ~/serverHQ-share/newfile.txt
-  ```
+   ```bash
+   touch ~/serverHQ-share/newfile.txt
+   ```
 
 #### Per smontare la condivisione remota
 

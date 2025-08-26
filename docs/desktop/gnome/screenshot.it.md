@@ -12,7 +12,7 @@ Siete stanchi di usare la tastiera per scattare immagini dello schermo del compu
 
 Questa guida presuppone che si disponga di quanto segue:
 
-- Rocky Linux
+ - Rocky Linux
 
 !!! note "Nota"
 
@@ -30,7 +30,7 @@ Per utilizzare Screenshot, procedere come segue:
 
 2. Fare clic su **Fai uno screenshot**
 
-    ![Screenshot of taken picture of being saved with black arrows pointing at a text box that contains the file name, "Linux.png" as well as Save and Copy buttons](images/screenshot-02.png)
+   ![Screenshot of taken picture of being saved with black arrows pointing at a text box that contains the file name, "Linux.png" as well as Save and Copy buttons](images/screenshot-02.png)
 
 3. Una volta soddisfatti della schermata, rinominare il file e fare clic su **Salva**.
 

@@ -20,9 +20,9 @@ Si vous n'avez pas d'identifiants GitHub et que vous souhaitez quand même écri
 
 Vous devez vous assurer que votre document répond aux exigences de cette section. Par exemple :
 
-- Est-ce que ça convient ici ? Est-ce que cette information mérite d’être partagée ? S'agit-il d'un document de type blog ?
-- Est-ce que cela traite d'un sujet important pour les documentaristes ?
-- La publication améliorera-t-elle la qualité globale de toute la documentation de Rocky Linux ?
+ - Est-ce que ça convient ici ? Est-ce que cette information mérite d’être partagée ? S'agit-il d'un document de type blog ?
+ - Est-ce que cela traite d'un sujet important pour les documentaristes ?
+ - La publication améliorera-t-elle la qualité globale de toute la documentation de Rocky Linux ?
 
 ## Quel genre d'informations ?
 

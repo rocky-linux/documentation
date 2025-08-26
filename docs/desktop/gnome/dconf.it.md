@@ -28,8 +28,8 @@ Se non si è sicuri di cosa faccia una particolare impostazione, è bene fare pr
 
 Per questa guida sono necessari i seguenti elementi:
 
-- Rocky Linux con GNOME installato.
-- L'autorità di installare il software sul sistema (privilegi `sudo`).
+ - Rocky Linux con GNOME installato.
+ - L'autorità di installare il software sul sistema (privilegi `sudo`).
 
 ## Installazione di `dconf Editor`
 

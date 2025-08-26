@@ -25,8 +25,8 @@ Questa guida fornisce i passaggi dettagliati per la migrazione delle macchine vi
 
 ## Prima di iniziare
 
-- Assicurarsi di avere un backup aggiornato della macchina virtuale. Anche se il processo di migrazione non dovrebbe avere ripercussioni sui dati, un backup è la prassi migliore per qualsiasi modifica del sistema.
-- Verificare di disporre delle autorizzazioni necessarie per creare nuove macchine virtuali e gestire quelle esistenti nel proprio account Azure.
+ - Assicurarsi di avere un backup aggiornato della macchina virtuale. Anche se il processo di migrazione non dovrebbe avere ripercussioni sui dati, un backup è la prassi migliore per qualsiasi modifica del sistema.
+ - Verificare di disporre delle autorizzazioni necessarie per creare nuove macchine virtuali e gestire quelle esistenti nel proprio account Azure.
 
 ## Passo 1: Individuare le macchine virtuali esistenti
 
@@ -80,8 +80,8 @@ Dopo aver confermato che la nuova macchina virtuale funziona correttamente e ave
 
 ## Fasi finali
 
-- Verificare che tutti i servizi della nuova macchina virtuale funzionino come previsto.
-- Monitorare le prestazioni e lo stato di salute della nuova macchina virtuale per assicurarsi che soddisfi le proprie esigenze.
+ - Verificare che tutti i servizi della nuova macchina virtuale funzionino come previsto.
+ - Monitorare le prestazioni e lo stato di salute della nuova macchina virtuale per assicurarsi che soddisfi le proprie esigenze.
 
 ## Supporto
 

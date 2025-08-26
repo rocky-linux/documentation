@@ -20,9 +20,9 @@ Se non si ha le credenziali GitHub e si vuole comunque scrivere qualcosa per que
 
 Dovete assicurarvi che il vostro documento soddisfi i requisiti di questa sezione. Per esempio:
 
-- E' adatta qui? Sono informazioni che vale la pena condividere? È un documento in stile blog?
-- Approfondisce un tema importante per i documentaristi?
-- La comunicazione migliorerà la qualità complessiva di tutta la documentazione di Rocky Linux?
+ - E' adatta qui? Sono informazioni che vale la pena condividere? È un documento in stile blog?
+ - Approfondisce un tema importante per i documentaristi?
+ - La comunicazione migliorerà la qualità complessiva di tutta la documentazione di Rocky Linux?
 
 ## Che tipo di informazione?
 

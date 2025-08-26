@@ -26,13 +26,13 @@ Manchmal kann es erforderlich sein, den Titel eines PR nach seiner Erstellung zu
 ### Verwendung der GitHub-Weboberfläche
 
 1. **Navigieren Sie zum Pull Request**:
-  - Gehen Sie zum Repository, in dem sich der PR befindet.
-  - Klicken Sie auf `Pull Requests` und wählen Sie den PR aus, den Sie bearbeiten möchten.
+   - Gehen Sie zum Repository, in dem sich der PR befindet.
+   - Klicken Sie auf `Pull Requests` und wählen Sie den PR aus, den Sie bearbeiten möchten.
 
 2. **PR-Titel Editieren**:
-  - Klicken Sie auf den Titel der PR.
-  - Ein editierbares Textfeld wird angezeigt.
-  - Passen Sie den Titel an, drücken Sie ++enter++ oder klicken Sie außerhalb des Textfelds, um die Änderungen zu speichern.
+   - Klicken Sie auf den Titel der PR.
+   - Ein editierbares Textfeld wird angezeigt.
+   - Passen Sie den Titel an, drücken Sie ++enter++ oder klicken Sie außerhalb des Textfelds, um die Änderungen zu speichern.
 
 ## Zusätzliche Informationen (optional)
 

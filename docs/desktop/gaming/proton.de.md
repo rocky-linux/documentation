@@ -14,9 +14,9 @@ Im Gegensatz zu `Wine` erfordert `Proton` normalerweise keine Konfiguration und 
 
 ## Voraussetzungen
 
-- Eine Rocky Linux-Installation mit einer grafischen Desktopumgebung
-- Flatpak
-- Steam-Konto
+ - Eine Rocky Linux-Installation mit einer grafischen Desktopumgebung
+ - Flatpak
+ - Steam-Konto
 
 ## `Steam`-Installaton
 

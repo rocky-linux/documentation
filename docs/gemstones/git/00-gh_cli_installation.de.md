@@ -27,28 +27,28 @@ Benutzer benötigen eine bequeme Möglichkeit zur Interaktion mit GitHub, ohne d
 ## Prozedur
 
 1. **GitHub CLI-Repository mit curl installieren**:
-  Verwenden Sie den Befehl curl, um die offizielle Repository-Datei für `gh` herunterzuladen. Die heruntergeladene Datei wird im Verzeichnis `/etc/yum.repos.d/` gespeichert. Verwenden Sie nach dem Herunterladen den Befehl dnf, um `gh` aus dem Repository zu installieren. Geben Sie bitte Folgendes ein:
+   Verwenden Sie den Befehl curl, um die offizielle Repository-Datei für `gh` herunterzuladen. Die heruntergeladene Datei wird im Verzeichnis `/etc/yum.repos.d/` gespeichert. Verwenden Sie nach dem Herunterladen den Befehl dnf, um `gh` aus dem Repository zu installieren. Geben Sie bitte Folgendes ein:
 
-  ```bash
-  curl -fsSL https://cli.github.com/packages/rpm/gh-cli.repo | sudo tee /etc/yum.repos.d/github-cli.repo
-  sudo dnf -y install gh
-  ```
+   ```bash
+   curl -fsSL https://cli.github.com/packages/rpm/gh-cli.repo | sudo tee /etc/yum.repos.d/github-cli.repo
+   sudo dnf -y install gh
+   ```
 
 2. **Verifizierung der Installation**:
-  Stellen Sie sicher, dass `gh` korrekt installiert ist. Geben Sie bitte Folgendes ein:
+   Stellen Sie sicher, dass `gh` korrekt installiert ist. Geben Sie bitte Folgendes ein:
 
-  ```bash
-  gh --version
-  ```
+   ```bash
+   gh --version
+   ```
 
 3. **Authentifizierung mit GitHub**:
-  Loggen Sie sich in Ihr GitHub-Konto ein. Geben Sie bitte Folgendes ein:
+   Loggen Sie sich in Ihr GitHub-Konto ein. Geben Sie bitte Folgendes ein:
 
-  ```bash
-  gh auth login
-  ```
+   ```bash
+   gh auth login
+   ```
 
-  Folgen Sie den Anweisungen zur Authentifizierung.
+   Folgen Sie den Anweisungen zur Authentifizierung.
 
 ## Zusammenfassung
 

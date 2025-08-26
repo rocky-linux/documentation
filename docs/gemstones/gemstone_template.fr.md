@@ -30,15 +30,15 @@ Décrivez la procédure ou la solution avec des étapes numérotées :
 
 1. **Première Étape** :
 
-  Instructions et exemples de commandes.
+   Instructions et exemples de commandes.
 
-  ```bash
-  Commande ou extrait de code
-  ```
+   ```bash
+   Commande ou extrait de code
+   ```
 
 2. **Étape Suivante** :
 
-  Continuez avec des instructions détaillées.
+   Continuez avec des instructions détaillées.
 
 ## Informations Supplémentaires (facultatif)
 

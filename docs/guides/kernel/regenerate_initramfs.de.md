@@ -34,7 +34,7 @@ Führen Sie als Nächstes `dracut` aus, um `initramfs` neu zu generieren:
 dracut -f /boot/initramfs-$(uname -r).img $(uname -r)
 ```
 
-Dann neu starten:
+Starten Sie dann das System neu:
 
 ```bash
 reboot
@@ -42,4 +42,4 @@ reboot
 
 ## Zusammenfassung
 
-Der Linux-Kernel ist äußerst leistungsstark und modular. Es ist sinnvoll, dass einige Benutzer bestimmte Module zulassen oder verbieten möchten, und die erneute Generierung des `initramfs` ermöglicht dies.
+Der Linux-Kernel ist äußerst leistungsstark und modular. Es ist sinnvoll, dass einige Benutzer bestimmte Module zulassen oder verbieten möchten. Die erneute Generierung des `initramfs` macht dies möglich.
