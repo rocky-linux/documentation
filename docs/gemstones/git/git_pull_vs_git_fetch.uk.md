@@ -22,21 +22,21 @@ git fetch завантажує зміни з віддаленого сховищ
 
 1. Перелічіть поточну перевірену гілку
 
-  ```bash
-  git branch
-  ```
+   ```bash
+   git branch
+   ```
 
 2. Отримайте зміни з головної гілки віддаленого репо з іменем origin. Впишіть:
 
-  ```bash
-  git fetch origin main
-  ```
+   ```bash
+   git fetch origin main
+   ```
 
 3. Порівняйте зміни між HEAD вашого локального репо та віддаленим вихідним/основним репо.
 
-  ```bash
-  git log HEAD..origin/main
-  ```
+   ```bash
+   git log HEAD..origin/main
+   ```
 
 ### Git Pull
 
@@ -45,15 +45,15 @@ Git Pull завантажує зміни та об’єднує їх у вашу
 
 1. **Витягнути та об’єднати зміни**:
 
-  ```bash
-  git pull origin main
-  ```
+   ```bash
+   git pull origin main
+   ```
 
 2. **Перегляньте об’єднані зміни**:
 
-  ```bash
-  git log
-  ```
+   ```bash
+   git log
+   ```
 
 ## Додаткові примітки
 

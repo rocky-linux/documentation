@@ -31,53 +31,53 @@ L'utente "rockstar" ha effettuato il fork di questo repository e useremo `https:
 
 1. Se non è stato ancora fatto, clonare il vostro fork:
 
-  ```bash
-  git clone https://github.com/rockstar/documentation.git
-  cd documentation
-  ```
+   ```bash
+   git clone https://github.com/rockstar/documentation.git
+   cd documentation
+   ```
 
 2. Aggiungere l'upstream remoto:
 
-  ```bash
-  git remote add upstream https://github.com/rocky-linux/documentation.git
-  ```
+   ```bash
+   git remote add upstream https://github.com/rocky-linux/documentation.git
+   ```
 
 3. Recuperare le modifiche a monte:
 
-  ```bash
-  git fetch upstream
-  ```
+   ```bash
+   git fetch upstream
+   ```
 
 4. Creare una nuova Feature Branch:
 
-  ```bash
-  git checkout -b feature-branch-name
-  ```
+   ```bash
+   git checkout -b feature-branch-name
+   ```
 
 5. Apportare modifiche, aggiungere nuovi file e fare il commit:
 
-  ```bash
-  git add .
-  git commit -m "Implementing feature X"
-  ```
+   ```bash
+   git add .
+   git commit -m "Implementing feature X"
+   ```
 
 6. Tenete aggiornata il vostro Ramo. Unire regolarmente le modifiche provenienti dall'upstream per evitare conflitti:
 
-  ```bash
-  git pull upstream main --rebase
-  ```
+   ```bash
+   git pull upstream main --rebase
+   ```
 
 7. Spingere verso il vostro fork, digitare:
 
-  ```bash
-  git push origin feature-branch-name
-  ```
+   ```bash
+   git push origin feature-branch-name
+   ```
 
 8. Creare una Pull Request:
 
-  ```bash
-  gh pr create --base main --head rockstar:feature-branch-name --title "New Feature X" --body "Long Description of the feature"
-  ```
+   ```bash
+   gh pr create --base main --head rockstar:feature-branch-name --title "New Feature X" --body "Long Description of the feature"
+   ```
 
 ## Conclusione
 

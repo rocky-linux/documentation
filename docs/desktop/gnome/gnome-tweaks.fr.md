@@ -10,7 +10,7 @@ GNOME Tweaks est un outil permettant de personnaliser l'environnement de bureau,
 
 ## Prérequis
 
-- Un poste de travail ou un serveur Rocky Linux avec une interface graphique qui utilise GNOME.
+ - Un poste de travail ou un serveur Rocky Linux avec une interface graphique qui utilise GNOME.
 
 ## Installation de GNOME tweaks
 

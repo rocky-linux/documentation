@@ -17,8 +17,8 @@ Gli sviluppatori che utilizzano Rocky Linux hanno spesso bisogno di diversi repo
 
 ## Requisiti
 
-- Un sistema Rocky Linux
-- In grado di eseguire container
+ - Un sistema Rocky Linux
+ - In grado di eseguire container
 
 ## Configurazione - Singolo Container
 

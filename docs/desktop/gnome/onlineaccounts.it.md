@@ -14,7 +14,7 @@ In questa breve guida vedremo come iniziare.
 
 Questa guida presuppone che si disponga di quanto segue:
 
-- Rocky Linux con l'ambiente desktop GNOME installato.
+ - Rocky Linux con l'ambiente desktop GNOME installato.
 
 ## Come aggiungere i vostri account online
 

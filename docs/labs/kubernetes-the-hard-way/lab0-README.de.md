@@ -30,25 +30,25 @@ Die Zielgruppe dieses Tutorials sind alle, die die Grundlagen von Kubernetes und
 
 Komponenten-Versionen:
 
-- [kubernetes](https://github.com/kubernetes/kubernetes) v1.32.x
-- [containerd](https://github.com/containerd/containerd) v2.0.x
-- [cni](https://github.com/containernetworking/cni) v1.6.x
-- [etcd](https://github.com/etcd-io/etcd) v3.4.x
+ - [kubernetes](https://github.com/kubernetes/kubernetes) v1.32.x
+ - [containerd](https://github.com/containerd/containerd) v2.0.x
+ - [cni](https://github.com/containernetworking/cni) v1.6.x
+ - [etcd](https://github.com/etcd-io/etcd) v3.4.x
 
 ## Labs
 
 Für dieses Tutorial sind vier (4) x86_64-basierte virtuelle oder physische Maschinen erforderlich, die mit demselben Netzwerk verbunden sind. Während im Tutorial x86_64-basierte Maschinen verwendet werden, können Sie die gewonnenen Erkenntnisse auf andere Plattformen anwenden.
 
-- [Voraussetzungen](lab1-prerequisites.md)
-- [Setup der Jumpbox](lab2-jumpbox.md)
-- [Provisionierung der Rechner Ressourcen](lab3-compute-resources.md)
-- [Provisionierung der CA und Generierung von TLS-Zertifikate](lab4-certificate-authority.md)
-- [Generierung der Kubernetes Konfigurationsdateien für die Authentifizierung](lab5-kubernetes-configuration-files.md)
-- [Generierung der Data Encryption Konfiguration und Schlüssel](lab6-data-encryption-keys.md)
-- [Bootstrapping vom etcd-Cluster](lab7-bootstrapping-etcd.md)
-- [Bootstrapping the Kubernetes Control Plane](lab8-bootstrapping-kubernetes-controllers.md)
-- [Bootstrapping the Kubernetes Worker Nodes](lab9-bootstrapping-kubernetes-workers.md)
-- [Configuring kubectl for Remote Access](lab10-configuring-kubectl.md)
-- [Provisioning Pod Network Routes](lab11-pod-network-routes.md)
-- [Smoke Test](lab12-smoke-test.md)
-- [Cleaning Up](lab13-cleanup.md)
+ - [Voraussetzungen](lab1-prerequisites.md)
+ - [Setup der Jumpbox](lab2-jumpbox.md)
+ - [Provisionierung der Rechner Ressourcen](lab3-compute-resources.md)
+ - [Provisionierung der CA und Generierung von TLS-Zertifikate](lab4-certificate-authority.md)
+ - [Generierung der Kubernetes Konfigurationsdateien für die Authentifizierung](lab5-kubernetes-configuration-files.md)
+ - [Generierung der Data Encryption Konfiguration und Schlüssel](lab6-data-encryption-keys.md)
+ - [Bootstrapping vom etcd-Cluster](lab7-bootstrapping-etcd.md)
+ - [Bootstrapping the Kubernetes Control Plane](lab8-bootstrapping-kubernetes-controllers.md)
+ - [Bootstrapping the Kubernetes Worker Nodes](lab9-bootstrapping-kubernetes-workers.md)
+ - [Configuring kubectl for Remote Access](lab10-configuring-kubectl.md)
+ - [Provisioning Pod Network Routes](lab11-pod-network-routes.md)
+ - [Smoke Test](lab12-smoke-test.md)
+ - [Cleaning Up](lab13-cleanup.md)

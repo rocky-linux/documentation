@@ -11,11 +11,11 @@ tags:
 
 ## Prérequis
 
-- Savoir utiliser les outils de ligne de commande
-- Gestion de contenus à partir de la ligne de commande
-- Une certaine expérience des clés SSH est souhaitée mais pas indispensable
-- Une connaissance de base de SSH et de l'infrastructure de clés publiques est utile mais bien facultative
-- Un serveur qui exécute le daemon `sshd`.
+ - Savoir utiliser les outils de ligne de commande
+ - Gestion de contenus à partir de la ligne de commande
+ - Une certaine expérience des clés SSH est souhaitée mais pas indispensable
+ - Une connaissance de base de SSH et de l'infrastructure de clés publiques est utile mais bien facultative
+ - Un serveur qui exécute le daemon `sshd`.
 
 ## Introduction
 
@@ -25,13 +25,13 @@ Les autorités de certification peuvent également être utilisées pour signer 
 
 ## Objectifs
 
-- Amélioration de la sécurité des connexions SSH.
-- Consolider le processus d'intégration et la gestion des clés.
+ - Amélioration de la sécurité des connexions SSH.
+ - Consolider le processus d'intégration et la gestion des clés.
 
 ## Notes
 
-- L'auteur de l'article favorise l'éditeur de texte `vim`. L'utilisation d'éditeurs de texte comme `nano` ou autres est tout à fait acceptable.
-- L'utilisation de `sudo` ou `root` implique des privilèges supplémentaires.
+ - L'auteur de l'article favorise l'éditeur de texte `vim`. L'utilisation d'éditeurs de texte comme `nano` ou autres est tout à fait acceptable.
+ - L'utilisation de `sudo` ou `root` implique des privilèges supplémentaires.
 
 ## Connexion initiale
 
@@ -65,9 +65,9 @@ Créer une autorité de certification (clés privées et publiques) et placer la
 
 Où :
 
-- **-b** : bytes, longueur de clé en octets
-- **-t** : type de clé ; rsa, ed25519, ecdsa...
-- **-f** : fichier d'enregistrement de la clé
+ - **-b** : bytes, longueur de clé en octets
+ - **-t** : type de clé ; rsa, ed25519, ecdsa...
+ - **-f** : fichier d'enregistrement de la clé
 
 Vous pouvez aussi spécifier la variable `known_hosts` pour tout le système en éditant le fichier de configuration SSH `/etc/ssh/ssh_config` :
 
@@ -94,11 +94,11 @@ Acquisition de la clé publique du serveur via `scp` et signature :
 
 Où :
 
-- **-s** : signature de clé
-- **-I** : nom identifiant le certificat à des fins de journalisation
-- **-n** : identifie le nom (hôte ou utilisateur, un ou plusieurs) associé au certificat (s'il n'est pas spécifié, les certificats sont valables pour tous les utilisateurs ou hôtes)
-- **-h** : définit le certificat comme clé hôte, par opposition à une clé cliente
-- **-V** : durée de validité du certificat
+ - **-s** : signature de clé
+ - **-I** : nom identifiant le certificat à des fins de journalisation
+ - **-n** : identifie le nom (hôte ou utilisateur, un ou plusieurs) associé au certificat (s'il n'est pas spécifié, les certificats sont valables pour tous les utilisateurs ou hôtes)
+ - **-h** : définit le certificat comme clé hôte, par opposition à une clé cliente
+ - **-V** : durée de validité du certificat
 
 ## Établir la confiance
 

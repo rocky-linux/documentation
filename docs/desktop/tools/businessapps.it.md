@@ -14,9 +14,9 @@ Molte di loro sono su Flathub. Questa guida spiega come installare le applicazio
 
 Questa guida presuppone quanto segue:
 
-- Rocky Linux con un ambiente desktop grafico
-- I permessi per installare software nel sistema
-- Flatpak e Flathub installati e funzionanti
+ - Rocky Linux con un ambiente desktop grafico
+ - I permessi per installare software nel sistema
+ - Flatpak e Flathub installati e funzionanti
 
 ## Come installare i più comuni software aziendali su Rocky Linux
 

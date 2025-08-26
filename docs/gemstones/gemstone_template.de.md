@@ -30,15 +30,15 @@ Skizzieren Sie die Prozedur bzw. die Lösung mit nummerierten Schritten:
 
 1. **Erste Etappe**:
 
-  Anleitungen und Kommandobeispiele.
+   Anleitungen und Kommandobeispiele.
 
-  ```bash
-  Befehl oder Codeausschnitt
-  ```
+   ```bash
+   Befehl oder Codeausschnitt
+   ```
 
 2. **Zweite Etappe**:
 
-  Fahren Sie mit den detaillierten Anweisungen fort.
+   Fahren Sie mit den detaillierten Anweisungen fort.
 
 ## Zusätzliche Informationen (optional)
 

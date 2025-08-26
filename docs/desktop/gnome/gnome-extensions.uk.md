@@ -56,7 +56,7 @@ gnome-shell --version
 
 1. Перейдіть на [веб-сторінку розширення dash to dock](https://extensions.gnome.org/extension/307/dash-to-dock/){target="_blank"}
 2. Перемкніть розширення з "вимкнено" на "увімкнено"
-  ![Увімкнути розширення](images/gnome_extensions_images/gnome-shell-extensions-toggle-btn.webp)
+   ![Увімкнути розширення](images/gnome_extensions_images/gnome-shell-extensions-toggle-btn.webp)
 3. Коли буде запропоновано встановити розширення, натисніть "yes".
 
 ## Керування встановленими розширеннями

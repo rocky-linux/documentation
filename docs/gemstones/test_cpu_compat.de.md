@@ -18,18 +18,18 @@ Seit der Veröffentlichung von Rocky Linux 9 sind einige Installationen auf x86-
 
 3. Nachdem der Startvorgang abgeschlossen ist, öffnen Sie ein Terminalfenster und führen Sie dieses Kommando aus:
 
-  ```bash
-  /lib64/ld-linux-x86-64.so.2 --help | grep x86-64
-  ```
+   ```bash
+   /lib64/ld-linux-x86-64.so.2 --help | grep x86-64
+   ```
 
-  Sie sollten eine Ausgabe erhalten, die etwa dieser ähnelt:
+   Sie sollten eine Ausgabe erhalten, die etwa dieser ähnelt:
 
-  ```bash
-  Usage: /lib64/ld-linux-x86-64.so.2 [OPTION]... EXECUTABLE-FILE [ARGS-FOR-PROGRAM...]
-  This program interpreter self-identifies as: /lib64/ld-linux-x86-64.so.2
-  x86-64-v4
-  x86-64-v3
-  x86-64-v2 (supported, searched)
-  ```
+   ```bash
+   Usage: /lib64/ld-linux-x86-64.so.2 [OPTION]... EXECUTABLE-FILE [ARGS-FOR-PROGRAM...]
+   This program interpreter self-identifies as: /lib64/ld-linux-x86-64.so.2
+   x86-64-v4
+   x86-64-v3
+   x86-64-v2 (supported, searched)
+   ```
 
-  Diese Ausgabe gibt die minimal erforderliche x86-64-Version (v2) an. In diesem Fall kann die Installation fortgesetzt werden. Wenn Sie neben `x86-64-v2` kein Eintrag (`supported, searched`) sehen, ist Ihre CPU nicht mit Rocky Linux 9.x kompatibel. Wenn der Test anzeigt, dass Ihre Installation fortgesetzt werden kann und x86-64-v3 (erforderlich für Rocky Linux 10) und x86-64-v4 auch als `(supported, searched)` aufgeführt werden, wird Ihre CPU für 9.x und zukünftige Versionen gut unterstützt.
+   Diese Ausgabe gibt die minimal erforderliche x86-64-Version (v2) an. In diesem Fall kann die Installation fortgesetzt werden. Wenn Sie neben `x86-64-v2` kein Eintrag (`supported, searched`) sehen, ist Ihre CPU nicht mit Rocky Linux 9.x kompatibel. Wenn der Test anzeigt, dass Ihre Installation fortgesetzt werden kann und x86-64-v3 (erforderlich für Rocky Linux 10) und x86-64-v4 auch als `(supported, searched)` aufgeführt werden, wird Ihre CPU für 9.x und zukünftige Versionen gut unterstützt.

@@ -50,17 +50,17 @@ Si apre una finestra Software che tenta di individuare ed installare i driver de
 
 4. Eseguire il comando per estrarre il file scaricato:
 
-  ```bash
-  gunzip linux-brprinter-installer-*.*.*-*.gz
-  ```
+   ```bash
+   gunzip linux-brprinter-installer-*.*.*-*.gz
+   ```
 
 5. Ottenere l'autorizzazione di superuser con il comando `su` o `sudo su`.
 
 6. Eseguire il comando:
 
-  ```bash
-  bash linux-brprinter-installer-*.*.*-* Brother machine name
-  ```
+   ```bash
+   bash linux-brprinter-installer-*.*.*-* Brother machine name
+   ```
 
 7. L'installazione del driver viene avviata. Seguire le istruzioni di installazione.
 

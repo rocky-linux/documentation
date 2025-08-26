@@ -23,46 +23,46 @@ Utilizzeremo il repository del progetto di documentazione Rocky Linux come esemp
 ## Procedura
 
 1. Aprite un terminale e cambiate la vostra directory di lavoro nella cartella contenente il clone locale del progetto.
-  Per esempio, se si è clonato il repo github in ~/path/to/your/rl-documentation-clone, digitare
+   Per esempio, se si è clonato il repo github in ~/path/to/your/rl-documentation-clone, digitare
 
-  ```bash
-  cd ~/path/to/your/rl-documentation-clone
-  ```
+   ```bash
+   cd ~/path/to/your/rl-documentation-clone
+   ```
 
 2. Prima di apportare qualsiasi modifica, elencare i remotes configurati. Digitare:
 
-  ```bash
-  git remote -vv
-  ```
+   ```bash
+   git remote -vv
+   ```
 
-  Se si tratta di un repo appena clonato, è probabile che nell'output si veda un solo remote chiamato `origin`.
+   Se si tratta di un repo appena clonato, è probabile che nell'output si veda un solo remote chiamato `origin`.
 
 3. Aggiungere il Rocky Linux Documentation Repository (`https://github.com/rocky-linux/documentation.git`) come nuovo remote al proprio repository locale. Qui assegneremo upstream come nome per questo particolare remote. Digitare:
 
-  ```bash
-  git remote add upstream https://github.com/rocky-linux/documentation.git
-  ```
+   ```bash
+   git remote add upstream https://github.com/rocky-linux/documentation.git
+   ```
 
 4. Per sottolineare ulteriormente che i nomi assegnati ai repository remoti sono arbitrari, creare un altro remoto chiamato rocky-docs che punta allo stesso repo eseguendo:
 
-  ```bash
-  git remote add rocky-docs https://github.com/rocky-linux/documentation.git
-  ```
+   ```bash
+   git remote add rocky-docs https://github.com/rocky-linux/documentation.git
+   ```
 
 5. Confermare che il nuovo repository remoto è stato aggiunto con successo:
 
-  ```bash
-  git remote -v
-  ```
+   ```bash
+   git remote -v
+   ```
 
-  Si dovrebbe vedere `upstream` elencato insieme al suo URL.
+   Si dovrebbe vedere `upstream` elencato insieme al suo URL.
 
 6. Opzionalmente, prima di iniziare ad apportare modifiche al repo locale, è possibile recuperare i dati dal nuovo remote aggiunto.
-  Recuperare i rami e i commit del nuovo remoto eseguendo:
+   Recuperare i rami e i commit del nuovo remoto eseguendo:
 
-  ```bash
-  git fetch upstream
-  ```
+   ```bash
+   git fetch upstream
+   ```
 
 ## Note Aggiuntive
 

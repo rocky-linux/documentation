@@ -29,70 +29,70 @@ Questa Gemma spiega come impostare un repository locale per contribuire a un pro
 
 1. Se non esiste già, creare un fork del progetto usando l'utilità gh. Digitare:
 
-  ```bash
-  gh repo fork rocky-linux/documentation --clone=true --remote=true
-  ```
+   ```bash
+   gh repo fork rocky-linux/documentation --clone=true --remote=true
+   ```
 
-  Le opzioni utilizzate in questo comando _gh repo fork_ sono:
+   Le opzioni utilizzate in questo comando _gh repo fork_ sono:
 
-  - `--clone=true`: Clona il forked repository sulla macchina locale.
-  - `--remote=true`: Aggiunge il repository originale come remoto, consentendo di sincronizzare gli aggiornamenti futuri.
+   - `--clone=true`: Clona il forked repository sulla macchina locale.
+   - `--remote=true`: Aggiunge il repository originale come remoto, consentendo di sincronizzare gli aggiornamenti futuri.
 
 2. Navigare nella directory del repository locale. Digitare:
 
-  ```bash
-  cd documentation
-  ```
+   ```bash
+   cd documentation
+   ```
 
 3. Verificare che tutti i repo remoti siano stati configurati correttamente nel repo locale, digitare:
 
-  ```bash
-  git remote -vv
-  ```
+   ```bash
+   git remote -vv
+   ```
 
 4. Recuperare le ultime modifiche dal telecomando upstream:
 
-  ```bash
-  git fetch upstream
-  ```
+   ```bash
+   git fetch upstream
+   ```
 
 5. Creare e fare il checkout di un nuovo ramo di funzionalità chiamato your-feature-branch:
 
-  ```bash
-  git checkout -b your-feature-branch
-  ```
+   ```bash
+   git checkout -b your-feature-branch
+   ```
 
 6. Apportare le modifiche, aggiungere nuovi file e fare il commit delle modifiche al repo locale:
 
-  ```bash
-  git add .
-  git commit -m "Your commit message"
-  ```
+   ```bash
+   git add .
+   git commit -m "Your commit message"
+   ```
 
 7. Sincronizzare con il ramo principale del repo remoto chiamato `upstream`:
 
-  ```bash
-  git pull upstream main
-  ```
+   ```bash
+   git pull upstream main
+   ```
 
 8. Spingere le modifiche al vostro Fork\*\*:
 
-  ```bash
-  git push origin your-feature-branch
-  ```
+   ```bash
+   git push origin your-feature-branch
+   ```
 
 9. Infine, si può creare una richiesta di pull (PR) usando l'applicazione CLI `gh`:
 
-  ```bash
-  gh pr create --base main --head your-feature-branch --title "Your PR Title" --body "Description of your changes"
-  ```
+   ```bash
+   gh pr create --base main --head your-feature-branch --title "Your PR Title" --body "Description of your changes"
+   ```
 
-  Le opzioni utilizzate in questo comando _gh pr create_ sono:
+   Le opzioni utilizzate in questo comando _gh pr create_ sono:
 
-  `--base` main: Specifica il ramo di base del repository upstream in cui verranno unite le modifiche.
-  `--head` your-feature-branch: Indica il ramo principale del fork che contiene le modifiche.
-  `--title` "Your PR Title": Imposta il titolo della richiesta di pull.
-  `--body` "Description of your changes": Fornisce una descrizione dettagliata delle modifiche apportate alla richiesta di pull.
+   `--base` main: Specifica il ramo di base del repository upstream in cui verranno unite le modifiche.
+   `--head` your-feature-branch: Indica il ramo principale del fork che contiene le modifiche.
+   `--title` "Your PR Title": Imposta il titolo della richiesta di pull.
+   `--body` "Description of your changes": Fornisce una descrizione dettagliata delle modifiche apportate alla richiesta di pull.
 
 ## Conclusione
 

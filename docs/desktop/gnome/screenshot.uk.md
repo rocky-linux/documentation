@@ -12,7 +12,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 У цьому посібнику передбачається, що ви маєте наступне:
 
-- Rocky Linux
+ - Rocky Linux
 
 !!! note "Примітка"
 
@@ -30,7 +30,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 2. Натисніть **Take a Screenshot**
 
-    ![Screenshot of taken picture of being saved with black arrows pointing at a text box that contains the file name, "Linux.png" as well as Save and Copy buttons](images/screenshot-02.png)
+   ![Screenshot of taken picture of being saved with black arrows pointing at a text box that contains the file name, "Linux.png" as well as Save and Copy buttons](images/screenshot-02.png)
 
 3. Коли ви будете задоволені знімком екрана, перейменуйте файл і натисніть **Зберегти**.
 

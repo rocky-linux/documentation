@@ -27,20 +27,20 @@ Manchmal muss der Titel eines PR nach seiner Erstellung angepasst werden, um die
 ### GitHub CLI – Verwendung
 
 1. **Checken Sie den entsprechenden Zweig aus**:
-  - Stellen Sie sicher, dass Sie sich auf dem mit dem PR verknüpften Branch befinden.
+   - Stellen Sie sicher, dass Sie sich auf dem mit dem PR verknüpften Branch befinden.
 
-    ```bash
-    git checkout branch-name
-    ```
+     ```bash
+     git checkout branch-name
+     ```
 
 2. **Bearbeiten Sie den PR mithilfe der CLI**:
-  - Verwenden Sie den folgenden Befehl, um den PR zu bearbeiten:
+   - Verwenden Sie den folgenden Befehl, um den PR zu bearbeiten:
 
-    ```bash
-    gh pr edit PR_NUMBER --title "New PR Title"
-    ```
+     ```bash
+     gh pr edit PR_NUMBER --title "New PR Title"
+     ```
 
-  - Ersetzen Sie `PR_NUMBER` durch die Nummer Ihres Pull Requests und `"New PR Title"` durch den gewünschten Titel.
+   - Ersetzen Sie `PR_NUMBER` durch die Nummer Ihres Pull Requests und `"New PR Title"` durch den gewünschten Titel.
 
 ## Zusätzliche Informationen (optional)
 

@@ -12,34 +12,34 @@ Avete bisogno di un codice QR per il vostro sito web, la vostra applicazione o i
 
 Questa guida presuppone che si disponga di quanto segue:
 
-- Rocky Linux
-- Flatpak
-- FlatHub
+ - Rocky Linux
+ - Flatpak
+ - FlatHub
 
 ## Processo dell'installazione
 
 1. Andate sul [sito web di Flathub](https://flathub.org/), digitate "Decoder" nella barra di ricerca e fate clic su **Install**. ![Screenshot of the install button highlighted by a red rectangle](images/01_decoder.png)
 
-    ![manual install script and run script](images/decoder_install.png)
+   ![manual install script and run script](images/decoder_install.png)
 
 2. Copiare lo script di installazione manuale ed eseguirlo in un terminale:
 
-    ```bash
-    flatpak install flathub com.belmoussaoui.Decoder
-    ```
+   ```bash
+   flatpak install flathub com.belmoussaoui.Decoder
+   ```
 
 3. Infine, copiate il comando run ed eseguitelo nel vostro terminale:
 
-    ```bash
-    flatpak run com.belmoussaoui.Decoder
-    ```
+   ```bash
+   flatpak run com.belmoussaoui.Decoder
+   ```
 
 ## Come creare un codice QR
 
 Sono disponibili due tipi di codici QR. Scegliete l'opzione più adatta alle vostre esigenze:
 
-- [Text](#text)
-- [Wifi](#wifi)
+ - [Text](#text)
+ - [Wifi](#wifi)
 
 ### Text
 
@@ -51,7 +51,7 @@ Sono disponibili due tipi di codici QR. Scegliete l'opzione più adatta alle vos
 
 3. Cliccare su **Create**
 
-    ![Screenshot of the Save and Export screen with arrows](images/03_decoder-text.png)
+   ![Screenshot of the Save and Export screen with arrows](images/03_decoder-text.png)
 
 4. Cliccare su **Save**
 
@@ -77,15 +77,15 @@ Oltre a creare e generare codici QR, è possibile utilizzare Decoder per scansio
 
 1. Cliccare su **Scan**
 
-    ![Screenshot of the rectangular button with the words "From a Screenshot" written in white.](images/02_decoder-scan.png)
+   ![Screenshot of the rectangular button with the words "From a Screenshot" written in white.](images/02_decoder-scan.png)
 
 2. Fare clic su **From a Screenshot**
 
-    ![Screenshot of grey square surrounding options menu, and red square surrounding the "Take a Screenshot button"](images/03_decoder-scan.png)
+   ![Screenshot of grey square surrounding options menu, and red square surrounding the "Take a Screenshot button"](images/03_decoder-scan.png)
 
 3. Scegliete gli effetti desiderati e cliccate su **Take a Screenshot**
 
-    ![Screenshot of a red arrow pointing at a blue button that has the word "Share" written in white](images/04_decoder-scan.png)
+   ![Screenshot of a red arrow pointing at a blue button that has the word "Share" written in white](images/04_decoder-scan.png)
 
 4. Cliccare su **Share**
 

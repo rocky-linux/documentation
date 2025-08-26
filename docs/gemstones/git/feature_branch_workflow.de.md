@@ -31,53 +31,53 @@ Der Benutzer `Rockstar` hat dieses Repository geforkt und wir werden `https://gi
 
 1. Falls noch nicht geschehen, klonen Sie Ihren Fork:
 
-  ```bash
-  git clone https://github.com/rockstar/documentation.git
-  cd documentation
-  ```
+   ```bash
+   git clone https://github.com/rockstar/documentation.git
+   cd documentation
+   ```
 
 2. Fügen Sie das Upstream-Remote hinzu:
 
-  ```bash
-  git remote add upstream https://github.com/rocky-linux/documentation.git
-  ```
+   ```bash
+   git remote add upstream https://github.com/rocky-linux/documentation.git
+   ```
 
 3. Upstream-Änderungen abrufen:
 
-  ```bash
-  git fetch upstream
-  ```
+   ```bash
+   git fetch upstream
+   ```
 
 4. Erstellen Sie einen neuen Feature-Zweig:
 
-  ```bash
-  git checkout -b feature-branch-name
-  ```
+   ```bash
+   git checkout -b feature-branch-name
+   ```
 
 5. Nehmen Sie Änderungen vor, fügen Sie neue Dateien hinzu und committen Sie sie:
 
-  ```bash
-  git add .
-  git commit -m "Implementing feature X"
-  ```
+   ```bash
+   git add .
+   git commit -m "Implementing feature X"
+   ```
 
 6. Halten Sie Ihr Branch auf dem neuesten Stand. Führen Sie regelmäßig Änderungen aus dem Upstream zusammen, um Konflikte zu vermeiden:
 
-  ```bash
-  git pull upstream main --rebase
-  ```
+   ```bash
+   git pull upstream main --rebase
+   ```
 
 7. Pushen Sie zu Ihrem Fork indem Sie Folgendes eingeben:
 
-  ```bash
-  git push origin feature-branch-name
-  ```
+   ```bash
+   git push origin feature-branch-name
+   ```
 
 8. Pull Request anlegen:
 
-  ```bash
-  gh pr create --base main --head rockstar:feature-branch-name --title "New Feature X" --body "Long Description of the feature"
-  ```
+   ```bash
+   gh pr create --base main --head rockstar:feature-branch-name --title "New Feature X" --body "Long Description of the feature"
+   ```
 
 ## Zusammenfassung
 
