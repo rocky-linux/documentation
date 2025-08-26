@@ -28,56 +28,56 @@ Mitwirkende möchten oder müssen möglicherweise alle Aktionen über die CLI au
 ## Lösung-Etappen
 
 1. **Repository mit GitHub CLI forken**:
-  Forken Sie das Upstream-Repository zu Ihrem Konto.
+   Forken Sie das Upstream-Repository zu Ihrem Konto.
 
-  ```bash
-  gh repo fork https://github.com/rocky-linux/documentation --clone
-  ```
+   ```bash
+   gh repo fork https://github.com/rocky-linux/documentation --clone
+   ```
 
 2. **Navigieren zum Repository-Verzeichnis**:
 
-  ```bash
-  cd documentation
-  ```
+   ```bash
+   cd documentation
+   ```
 
 3. **Upstream-Repository hinzufügen**:
 
-  ```bash
-  git remote add upstream https://github.com/rocky-linux/documentation.git
-  ```
+   ```bash
+   git remote add upstream https://github.com/rocky-linux/documentation.git
+   ```
 
 4. **Neuen Zweig erstellen**:
-  Erstellen Sie einen neuen Zweig für Ihren Beitrag. Geben Sie bitte Folgendes ein:
+   Erstellen Sie einen neuen Zweig für Ihren Beitrag. Geben Sie bitte Folgendes ein:
 
-  ```bash
-  git checkout -b new-gemstone
-  ```
+   ```bash
+   git checkout -b new-gemstone
+   ```
 
 5. **Neuen Zweig erstellen**:
-  Erstellen Sie einen neuen Zweig für Ihren Beitrag.
-  Für dieses Beispiel erstellen Sie eine neue Datei namens `gemstome_new_pr.md` im Verzeichnis „docs/gemstones/“.
+   Erstellen Sie einen neuen Zweig für Ihren Beitrag.
+   Für dieses Beispiel erstellen Sie eine neue Datei namens `gemstome_new_pr.md` im Verzeichnis „docs/gemstones/“.
 
 6. **Übernahme der Änderungen mit Commit**:
-  Stellen Sie Ihre neue Datei bereit mit `commit`. Geben Sie bitte Folgendes ein:
+   Stellen Sie Ihre neue Datei bereit mit `commit`. Geben Sie bitte Folgendes ein:
 
-  ```bash
-  git add docs/gemstones/gemstome_new_pr.md
-  git commit -m "Add new Gemstone document"
-  ```
+   ```bash
+   git add docs/gemstones/gemstome_new_pr.md
+   git commit -m "Add new Gemstone document"
+   ```
 
 7. **Auf Ihren Fork mit Push übertragen**:
-  Übertragen Sie die Änderungen mit `push` auf Ihren Fork/Kopie des Rocky Linux-Dokumentationsrepos. Geben Sie bitte Folgendes ein:
+   Übertragen Sie die Änderungen mit `push` auf Ihren Fork/Kopie des Rocky Linux-Dokumentationsrepos. Geben Sie bitte Folgendes ein:
 
-  ```bash
-  git push origin new-gemstone
-  ```
+   ```bash
+   git push origin new-gemstone
+   ```
 
 8. **Pull Request erstellen**:
-  Erstellen Sie einen Pull Request an das Upstream-Repository.
+   Erstellen Sie einen Pull Request an das Upstream-Repository.
 
-  ```bash
-  gh pr create --base main --head wsoyinka:new-gemstone --title "New Gemstone: Creating PRs via CLI" --body "Guide on how to contribute to documentation using CLI"
-  ```
+   ```bash
+   gh pr create --base main --head wsoyinka:new-gemstone --title "New Gemstone: Creating PRs via CLI" --body "Guide on how to contribute to documentation using CLI"
+   ```
 
 ## Zusätzliche Informationen (optional)
 
