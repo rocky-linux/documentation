@@ -12,9 +12,9 @@ Möchten Sie eine Postkarte oder eine PDF-Datei mit Informationen wie Ihrem Gebu
 
 Für diese Anleitung benötigen Sie Folgendes:
 
-- Rocky Linux
-- Flatpak
-- FlatHub
+ - Rocky Linux
+ - Flatpak
+ - FlatHub
 
 ## Installations-Ablauf
 
