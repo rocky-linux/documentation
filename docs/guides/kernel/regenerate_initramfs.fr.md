@@ -15,7 +15,7 @@ Parfois, un administrateur Linux peut vouloir régénérer les `initramfs`, par 
 
 ## Prérequis
 
-Les conditions suivantes sont indispensables pour utiliser cette procédure :
+Les conditions suivantes sont indispensables pour utiliser cette procédure :
 
 - Un système Rocky Linux ou une machine virtuelle (mais pas un conteneur)
 - Modifications apportées à la configuration du noyau, telles que mise sur liste noire ou l'ajout d'un module
