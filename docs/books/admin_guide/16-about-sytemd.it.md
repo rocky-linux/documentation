@@ -484,113 +484,113 @@ Di solito esistono tre intitolazioni per le unit di tipo ".service":
 
 1. Intitolazione della unit
 
-  Sono utilizzabili le seguenti coppie chiave-valore:
+   Sono utilizzabili le seguenti coppie chiave-valore:
 
-  - `Description=OpenSSH server daemon`. La stringa viene utilizzata per descrivere la "unit".
-  - `Documentation=man:sshd(8) man:sshd_config(5)`.  Un elenco separato da spazi di URI che fanno riferimento alla documentazione di questa "unit" o della sua configurazione. Sono accettati solo URI del tipo "http://", "https://", "file:", "info:", "man:".
-  - `After=network.target sshd-keygen.target`. Definisce la relazione della sequenza di avvio con altre "unit". In questo esempio, "network.target" e "sshd-keygen.target" si avviano per primi e "sshd.service" per ultimo.
-  - `Before=`. Definisce la relazione della sequenza di avvio con le altre "unit".
-  - `Requires=`. Configura le dipendenze da altre "unit" I valori possono essere più unit separate da spazi. Se la '"unit" corrente è attivata, si attiveranno anche i valori qui elencati. Se almeno uno dei valori elencati di "unit" non si attiva correttamente, `systemd` non avvia la "unit" corrente.
-  - `Wants=sshd-keygen.target`. Simile alla chiave `Requires`. La differenza consiste nel fatto che se la unit dipendente non si avvia, ciò non influisce sul normale funzionamento della "unit" corrente.
-  - `BindsTo=`. Simile alla chiave `Requires`. La differenza è data dal fatto che se una qualsiasi "unit" dipendente non si avvia, l'unità corrente viene arrestata in aggiunta alla "unit" che arresta la dipendenza.
-  - `PartOf=`. Simile alla chiave `Requires`. La differenza consiste nel fatto che se una qualsiasi "unit" dipendente non si avvia, oltre all'arresto e al riavvio delle unit dipendenti, viene arrestata e riavviata anche la "unit" corrente.
-  - `Conflicts=`. Il suo valore è un elenco di "unit" separate da spazi. Se la "unit" elencata dal valore è in funzione, la "unit" corrente non può essere eseguita.
-  - `OnFailure=`. Quando la "unit" corrente viene interrotta, la "unit" o le "unit" (separate da spazi) presenti nel valore si attivano.
+   - `Description=OpenSSH server daemon`. La stringa viene utilizzata per descrivere la "unit".
+   - `Documentation=man:sshd(8) man:sshd_config(5)`.  Un elenco separato da spazi di URI che fanno riferimento alla documentazione di questa "unit" o della sua configurazione. Sono accettati solo URI del tipo "http://", "https://", "file:", "info:", "man:".
+   - `After=network.target sshd-keygen.target`. Definisce la relazione della sequenza di avvio con altre "unit". In questo esempio, "network.target" e "sshd-keygen.target" si avviano per primi e "sshd.service" per ultimo.
+   - `Before=`. Definisce la relazione della sequenza di avvio con le altre "unit".
+   - `Requires=`. Configura le dipendenze da altre "unit" I valori possono essere più unit separate da spazi. Se la '"unit" corrente è attivata, si attiveranno anche i valori qui elencati. Se almeno uno dei valori elencati di "unit" non si attiva correttamente, `systemd` non avvia la "unit" corrente.
+   - `Wants=sshd-keygen.target`. Simile alla chiave `Requires`. La differenza consiste nel fatto che se la unit dipendente non si avvia, ciò non influisce sul normale funzionamento della "unit" corrente.
+   - `BindsTo=`. Simile alla chiave `Requires`. La differenza è data dal fatto che se una qualsiasi "unit" dipendente non si avvia, l'unità corrente viene arrestata in aggiunta alla "unit" che arresta la dipendenza.
+   - `PartOf=`. Simile alla chiave `Requires`. La differenza consiste nel fatto che se una qualsiasi "unit" dipendente non si avvia, oltre all'arresto e al riavvio delle unit dipendenti, viene arrestata e riavviata anche la "unit" corrente.
+   - `Conflicts=`. Il suo valore è un elenco di "unit" separate da spazi. Se la "unit" elencata dal valore è in funzione, la "unit" corrente non può essere eseguita.
+   - `OnFailure=`. Quando la "unit" corrente viene interrotta, la "unit" o le "unit" (separate da spazi) presenti nel valore si attivano.
 
-  Per ulteriori informazioni, vedere `man 5 systemd.unit`.
+   Per ulteriori informazioni, vedere `man 5 systemd.unit`.
 
 2. Intitolazione del Servizio
 
-  Sono utilizzabili le seguenti coppie chiave-valore:
+   Sono utilizzabili le seguenti coppie chiave-valore:
 
-  - `Type=notify`. Configurare il tipo di unit ".service", che può essere uno dei seguenti:
-    - `simple` - Il servizio si avvia come processo principale. Questa è l'impostazione predefinita.
-    - `forking` - Il servizio richiama processi biforcati e viene eseguito come parte del daemon principale.
-    - `exec` - Simile a `semplice`. Il gestore del servizio avvierà questa unit subito dopo aver eseguito il binario del servizio principale. Le altre unit successive devono rimanere bloccate fino a questo punto prima di poter proseguire l'avvio.
-    - `oneshot` - Simile a `simple`, ma il processo deve uscire prima che `systemd` avvii i servizi di follow-up.
-    - `dbus` - Simile a `simple`, tranne per il fatto che il daemon acquisisce il nome del bus D-Bus.
-    - `notify` - Simile a `simple`, tranne per il fatto che il daemon invia un messaggio di notifica usando `sd_notify` o una chiamata equivalente dopo l'avvio.
-    - `idle` - Simile a `simple`, tranne per il fatto che l'esecuzione del servizio viene ritardata fino a quando tutti i lavori attivi non vengono distribuiti.
-  - `RemainAfterExit=`. Se il servizio corrente deve essere considerato attivo quando tutti i processi del servizio terminano. L'impostazione predefinita è no.
-  - `GuessMainPID=`. Il valore è di tipo booleano ed è predefinito a yes. In assenza di una posizione definita per il processo principale del servizio, `systemd` deve indovinare il PID del processo principale (che potrebbe non essere corretto). Se si imposta `Type=forking` e non si imposta `PIDFile`, questa coppia di valori chiave diventerà effettiva. Altrimenti, verrà ignorata la coppia chiave-valore.
-  - `PIDFile=`. Specificare il percorso del file (percorso assoluto) del PID del servizio. Per i servizi `Type=forking`, si raccomanda di usare questa coppia chiave-valore. `systemd` legge il PID del processo principale del daemon dopo l'avvio del servizio.
-  - `BusName=`. Un nome del bus D-Bus per raggiungere questo servizio. Questa opzione è obbligatoria per i servizi dove viene utilizzato `Type=dbus`.
-  - `ExecStart=/usr/sbin/sshd -D $OPTIONS $CRYPTO_POLICY`. I comandi e gli argomenti eseguiti all'avvio del servizio.
-  - `ExecStartPre=`. Altri comandi che vengono eseguiti prima dei comandi in `ExecStart`.
-  - `ExecStartPost=`. Gli altri comandi che verranno eseguiti dopo i comandi in `ExecStart`.
-  - `ExecReload=/bin/kill -HUP $MAINPID`. I comandi e gli argomenti vengono eseguiti quando il servizio viene ricaricato.
-  - `ExecStop=`. I comandi e gli argomenti che verranno eseguiti all'arresto del servizio.
-  - `ExecStopPost=`. Comandi aggiuntivi da eseguire dopo l'arresto del servizio.
-  - `RestartSec=42s`. Il tempo in secondi di sospensione prima di riavviare un servizio.
-  - `TimeoutStartSec=`. Il tempo in secondi di attesa per l'avvio del servizio.
-  - `TimeoutStopSec=`. Il tempo in secondi di attesa per l'arresto del servizio.
-  - `TimeoutSec=`. Un'abbreviazione per configurare contemporaneamente `TimeoutStartSec` e `TimeoutStopSec`.
-  - `RuntimeMaxSec=`. Tempo massimo in secondi per l'esecuzione del servizio. Passando \`infinity' (il valore predefinito) non si configura alcun limite di tempo di esecuzione.
-  - `Restart=on-failure`. Configura se riavviare il servizio quando il processo del servizio esce, viene terminato o raggiunge un timeout:
-    - `no` - Il servizio non verrà riavviato. Questa è l'impostazione predefinita.
-    - `on-success` - Si riavvia solo quando il processo di servizio esce in modo pulito (codice di uscita 0).
-    - `on-failure` - Si riavvia solo quando il processo di servizio non esce in modo pulito (codice di uscita non-zero).
-    - `on-abnormal` - Si riavvia se il processo termina con un segnale o quando si verifica un timeout.
-    - `on-abort` - Si riavvia se il processo esce a causa di un segnale imprevisto non specificato come condizione di uscita pulita.
-    - `on-watchdog` -  Se impostato su `on-watchdog`, il servizio si riavvia solo se il timeout del watchdog scade.
-    - `always` - Si riavvia sempre.
+   - `Type=notify`. Configurare il tipo di unit ".service", che può essere uno dei seguenti:
+     - `simple` - Il servizio si avvia come processo principale. Questa è l'impostazione predefinita.
+     - `forking` - Il servizio richiama processi biforcati e viene eseguito come parte del daemon principale.
+     - `exec` - Simile a `semplice`. Il gestore del servizio avvierà questa unit subito dopo aver eseguito il binario del servizio principale. Le altre unit successive devono rimanere bloccate fino a questo punto prima di poter proseguire l'avvio.
+     - `oneshot` - Simile a `simple`, ma il processo deve uscire prima che `systemd` avvii i servizi di follow-up.
+     - `dbus` - Simile a `simple`, tranne per il fatto che il daemon acquisisce il nome del bus D-Bus.
+     - `notify` - Simile a `simple`, tranne per il fatto che il daemon invia un messaggio di notifica usando `sd_notify` o una chiamata equivalente dopo l'avvio.
+     - `idle` - Simile a `simple`, tranne per il fatto che l'esecuzione del servizio viene ritardata fino a quando tutti i lavori attivi non vengono distribuiti.
+   - `RemainAfterExit=`. Se il servizio corrente deve essere considerato attivo quando tutti i processi del servizio terminano. L'impostazione predefinita è no.
+   - `GuessMainPID=`. Il valore è di tipo booleano ed è predefinito a yes. In assenza di una posizione definita per il processo principale del servizio, `systemd` deve indovinare il PID del processo principale (che potrebbe non essere corretto). Se si imposta `Type=forking` e non si imposta `PIDFile`, questa coppia di valori chiave diventerà effettiva. Altrimenti, verrà ignorata la coppia chiave-valore.
+   - `PIDFile=`. Specificare il percorso del file (percorso assoluto) del PID del servizio. Per i servizi `Type=forking`, si raccomanda di usare questa coppia chiave-valore. `systemd` legge il PID del processo principale del daemon dopo l'avvio del servizio.
+   - `BusName=`. Un nome del bus D-Bus per raggiungere questo servizio. Questa opzione è obbligatoria per i servizi dove viene utilizzato `Type=dbus`.
+   - `ExecStart=/usr/sbin/sshd -D $OPTIONS $CRYPTO_POLICY`. I comandi e gli argomenti eseguiti all'avvio del servizio.
+   - `ExecStartPre=`. Altri comandi che vengono eseguiti prima dei comandi in `ExecStart`.
+   - `ExecStartPost=`. Gli altri comandi che verranno eseguiti dopo i comandi in `ExecStart`.
+   - `ExecReload=/bin/kill -HUP $MAINPID`. I comandi e gli argomenti vengono eseguiti quando il servizio viene ricaricato.
+   - `ExecStop=`. I comandi e gli argomenti che verranno eseguiti all'arresto del servizio.
+   - `ExecStopPost=`. Comandi aggiuntivi da eseguire dopo l'arresto del servizio.
+   - `RestartSec=42s`. Il tempo in secondi di sospensione prima di riavviare un servizio.
+   - `TimeoutStartSec=`. Il tempo in secondi di attesa per l'avvio del servizio.
+   - `TimeoutStopSec=`. Il tempo in secondi di attesa per l'arresto del servizio.
+   - `TimeoutSec=`. Un'abbreviazione per configurare contemporaneamente `TimeoutStartSec` e `TimeoutStopSec`.
+   - `RuntimeMaxSec=`. Tempo massimo in secondi per l'esecuzione del servizio. Passando \`infinity' (il valore predefinito) non si configura alcun limite di tempo di esecuzione.
+   - `Restart=on-failure`. Configura se riavviare il servizio quando il processo del servizio esce, viene terminato o raggiunge un timeout:
+     - `no` - Il servizio non verrà riavviato. Questa è l'impostazione predefinita.
+     - `on-success` - Si riavvia solo quando il processo di servizio esce in modo pulito (codice di uscita 0).
+     - `on-failure` - Si riavvia solo quando il processo di servizio non esce in modo pulito (codice di uscita non-zero).
+     - `on-abnormal` - Si riavvia se il processo termina con un segnale o quando si verifica un timeout.
+     - `on-abort` - Si riavvia se il processo esce a causa di un segnale imprevisto non specificato come condizione di uscita pulita.
+     - `on-watchdog` -  Se impostato su `on-watchdog`, il servizio si riavvia solo se il timeout del watchdog scade.
+     - `always` - Si riavvia sempre.
 
-  Le condizioni di uscita e l'effetto delle impostazioni di `Restart=` su di esse:
+   Le condizioni di uscita e l'effetto delle impostazioni di `Restart=` su di esse:
 
-  ![effect](./images/16-effect.png)
+   ![effect](./images/16-effect.png)
 
-  - `KillMode=process`. Specifica il modo in cui i processi di questa unit devono essere arrestati. Il suo valore può essere uno dei seguenti:
-    - `control-group` - Valore predefinito. Se impostato su `control-group`, tutti i processi rimanenti nel gruppo di controllo di questa unit vengono arrestati all'arresto della stessa.
-    - `process` - Viene arrestato solo il processo principale.
-    - `mixed` - Il segnale SIGTERM viene inviato al processo principale, mentre il successivo segnale SIGKILL viene inviato a tutti i processi rimanenti del gruppo di controllo della unit.
-    - `none` - Non arresta alcun processo.
-  - `PrivateTmp=`. Utilizzare o meno una directory tmp privata. In base a determinate condizioni di sicurezza, si consiglia di impostare il valore su yes.
-  - `ProtectHome=`. Proteggere o meno la home directory. Il suo valore può essere uno dei seguenti:
-    - `yes` - Le tre directory (/root/, /home/, /run/user/) non sono visibili alla unit.
-    - `no` - Le tre directory sono visibili alla unit.
-    - `read-only` - Le tre directory sono di sola lettura per la unit.
-    - `tmpfs` - Il file system temporaneo verrà montato in modalità di sola lettura su queste tre directory.
-  - `ProtectSystem=`. La directory utilizzata per proteggere il sistema dalla modifica da parte del servizio. Il valore può essere:
-    - `yes` - Indica che il processo chiamato dalla unit sarà montato in sola lettura sulle directory /usr/ e /boot/.
-    - `no` - Valore predefinito
-    - `full` - Indica che le directory /usr/, /boot/, /etc/ sono montate in sola lettura.
-    - `strict` - Tutti i file system sono montati in sola lettura (escluse le directory dei file system virtuali come /dev/, /proc/ e /sys/).
-  - `EnvironmentFile=-/etc/crypto-policies/back-ends/opensshserver.config`. Legge le variabili d'ambiente da un file di testo. "-" significa che se il file non esiste, non verrà letto e non verranno registrati errori o avvisi.
+   - `KillMode=process`. Specifica il modo in cui i processi di questa unit devono essere arrestati. Il suo valore può essere uno dei seguenti:
+     - `control-group` - Valore predefinito. Se impostato su `control-group`, tutti i processi rimanenti nel gruppo di controllo di questa unit vengono arrestati all'arresto della stessa.
+     - `process` - Viene arrestato solo il processo principale.
+     - `mixed` - Il segnale SIGTERM viene inviato al processo principale, mentre il successivo segnale SIGKILL viene inviato a tutti i processi rimanenti del gruppo di controllo della unit.
+     - `none` - Non arresta alcun processo.
+   - `PrivateTmp=`. Utilizzare o meno una directory tmp privata. In base a determinate condizioni di sicurezza, si consiglia di impostare il valore su yes.
+   - `ProtectHome=`. Proteggere o meno la home directory. Il suo valore può essere uno dei seguenti:
+     - `yes` - Le tre directory (/root/, /home/, /run/user/) non sono visibili alla unit.
+     - `no` - Le tre directory sono visibili alla unit.
+     - `read-only` - Le tre directory sono di sola lettura per la unit.
+     - `tmpfs` - Il file system temporaneo verrà montato in modalità di sola lettura su queste tre directory.
+   - `ProtectSystem=`. La directory utilizzata per proteggere il sistema dalla modifica da parte del servizio. Il valore può essere:
+     - `yes` - Indica che il processo chiamato dalla unit sarà montato in sola lettura sulle directory /usr/ e /boot/.
+     - `no` - Valore predefinito
+     - `full` - Indica che le directory /usr/, /boot/, /etc/ sono montate in sola lettura.
+     - `strict` - Tutti i file system sono montati in sola lettura (escluse le directory dei file system virtuali come /dev/, /proc/ e /sys/).
+   - `EnvironmentFile=-/etc/crypto-policies/back-ends/opensshserver.config`. Legge le variabili d'ambiente da un file di testo. "-" significa che se il file non esiste, non verrà letto e non verranno registrati errori o avvisi.
 
-  Per ulteriori informazioni, vedere `man 5 systemd.service`.
+   Per ulteriori informazioni, vedere `man 5 systemd.service`.
 
 3. Intitolazione Install
 
-  - `Alias=`. Un elenco di nomi aggiuntivi separati da spazi. Attenzione prego! Il nome aggiuntivo deve avere lo stesso tipo (suffisso) della unit corrente.
+   - `Alias=`. Un elenco di nomi aggiuntivi separati da spazi. Attenzione prego! Il nome aggiuntivo deve avere lo stesso tipo (suffisso) della unit corrente.
 
-  - `RequiredBy=` o `WantedBy=multi-user.target`. Definisce la unit dell'operazione corrente come dipendenza della unit nel valore. Una volta completata la definizione, i file pertinenti si trovano nella directory /etc/systemd/systemd/. Ad esempio:
+   - `RequiredBy=` o `WantedBy=multi-user.target`. Definisce la unit dell'operazione corrente come dipendenza della unit nel valore. Una volta completata la definizione, i file pertinenti si trovano nella directory /etc/systemd/systemd/. Ad esempio:
 
-    ```bash
-    Shell > systemctl is-enabled chronyd.service
-    enabled
+     ```bash
+     Shell > systemctl is-enabled chronyd.service
+     enabled
 
-    Shell > systemctl cat chronyd.service
-    ...
-    [Install]
-    WantedBy=multi-user.target
+     Shell > systemctl cat chronyd.service
+     ...
+     [Install]
+     WantedBy=multi-user.target
 
-    Shell > ls -l /etc/systemd/system/multi-user.target.wants/
-    total 0
-    lrwxrwxrwx. 1 root root 38 Sep 25 14:03 auditd.service -> /usr/lib/systemd/system/auditd.service
-    lrwxrwxrwx. 1 root root 39 Sep 25 14:03 chronyd.service -> /usr/lib/systemd/system/chronyd.service  ←←
-    lrwxrwxrwx. 1 root root 37 Sep 25 14:03 crond.service -> /usr/lib/systemd/system/crond.service
-    lrwxrwxrwx. 1 root root 42 Sep 25 14:03 irqbalance.service -> /usr/lib/systemd/system/irqbalance.service
-    lrwxrwxrwx. 1 root root 37 Sep 25 14:03 kdump.service -> /usr/lib/systemd/system/kdump.service
-    lrwxrwxrwx. 1 root root 46 Sep 25 14:03 NetworkManager.service -> /usr/lib/systemd/system/NetworkManager.service
-    lrwxrwxrwx. 1 root root 40 Sep 25 14:03 remote-fs.target -> /usr/lib/systemd/system/remote-fs.target
-    lrwxrwxrwx. 1 root root 36 Sep 25 14:03 sshd.service -> /usr/lib/systemd/system/sshd.service
-    lrwxrwxrwx. 1 root root 36 Sep 25 14:03 sssd.service -> /usr/lib/systemd/system/sssd.service
-    lrwxrwxrwx. 1 root root 37 Sep 25 14:03 tuned.service -> /usr/lib/systemd/system/tuned.service
-    ```
+     Shell > ls -l /etc/systemd/system/multi-user.target.wants/
+     total 0
+     lrwxrwxrwx. 1 root root 38 Sep 25 14:03 auditd.service -> /usr/lib/systemd/system/auditd.service
+     lrwxrwxrwx. 1 root root 39 Sep 25 14:03 chronyd.service -> /usr/lib/systemd/system/chronyd.service  ←←
+     lrwxrwxrwx. 1 root root 37 Sep 25 14:03 crond.service -> /usr/lib/systemd/system/crond.service
+     lrwxrwxrwx. 1 root root 42 Sep 25 14:03 irqbalance.service -> /usr/lib/systemd/system/irqbalance.service
+     lrwxrwxrwx. 1 root root 37 Sep 25 14:03 kdump.service -> /usr/lib/systemd/system/kdump.service
+     lrwxrwxrwx. 1 root root 46 Sep 25 14:03 NetworkManager.service -> /usr/lib/systemd/system/NetworkManager.service
+     lrwxrwxrwx. 1 root root 40 Sep 25 14:03 remote-fs.target -> /usr/lib/systemd/system/remote-fs.target
+     lrwxrwxrwx. 1 root root 36 Sep 25 14:03 sshd.service -> /usr/lib/systemd/system/sshd.service
+     lrwxrwxrwx. 1 root root 36 Sep 25 14:03 sssd.service -> /usr/lib/systemd/system/sssd.service
+     lrwxrwxrwx. 1 root root 37 Sep 25 14:03 tuned.service -> /usr/lib/systemd/system/tuned.service
+     ```
 
-  - `Also=`. Altre unit da installare o disinstallare durante l'installazione o la disinstallazione di questa unit.
+   - `Also=`. Altre unit da installare o disinstallare durante l'installazione o la disinstallazione di questa unit.
 
-    Oltre alle pagine di manuale sopra menzionate, è possibile digitare `man 5 systemd.exec` o `man 5 systemd.kill` per accedere ad altre informazioni.
+     Oltre alle pagine di manuale sopra menzionate, è possibile digitare `man 5 systemd.exec` o `man 5 systemd.kill` per accedere ad altre informazioni.
 
 ## Comando relativo ad altri componenti
 
