@@ -27,28 +27,28 @@ Gli utenti hanno bisogno di un modo comodo per interagire con GitHub senza lasci
 ## Procedura
 
 1. **Installare il repo GitHub CLI usando curl**:
-  Utilizzare il comando curl per scaricare il file del repository ufficiale di `gh`. Il file scaricato deve essere salvato nella directory /etc/yum.repos.d/. Una volta scaricato, usare il comando dnf per installare `gh` dal repository. Digitare:
+   Utilizzare il comando curl per scaricare il file del repository ufficiale di `gh`. Il file scaricato deve essere salvato nella directory /etc/yum.repos.d/. Una volta scaricato, usare il comando dnf per installare `gh` dal repository. Digitare:
 
-  ```bash
-  curl -fsSL https://cli.github.com/packages/rpm/gh-cli.repo | sudo tee /etc/yum.repos.d/github-cli.repo
-  sudo dnf -y install gh
-  ```
+   ```bash
+   curl -fsSL https://cli.github.com/packages/rpm/gh-cli.repo | sudo tee /etc/yum.repos.d/github-cli.repo
+   sudo dnf -y install gh
+   ```
 
 2. **Verificare l'installazione**:
-  Assicurarsi che `gh` sia installato correttamente. Digitare:
+   Assicurarsi che `gh` sia installato correttamente. Digitare:
 
-  ```bash
-  gh --version
-  ```
+   ```bash
+   gh --version
+   ```
 
 3. **Autenticazione con GitHub**:
-  Accedere al proprio account GitHub. Digitare:
+   Accedere al proprio account GitHub. Digitare:
 
-  ```bash
-  gh auth login
-  ```
+   ```bash
+   gh auth login
+   ```
 
-  Seguire le istruzioni per l'autenticazione.
+   Seguire le istruzioni per l'autenticazione.
 
 ## Conclusione
 
