@@ -7,8 +7,8 @@ tested_with: 9.2
 
 ## Prerequisiti
 
-- Un sistema Rocky Linux 9.x
-- privilegi sudo
+ - Un sistema Rocky Linux 9.x
+ - privilegi sudo
 
 ## Introduzione
 
