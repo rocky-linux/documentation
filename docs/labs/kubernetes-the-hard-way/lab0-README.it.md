@@ -32,25 +32,25 @@ Kubernetes The Hard Way vi guiderà nel processo di avvio di un cluster Kubernet
 
 Versioni dei componenti:
 
-- [kubernetes](https://github.com/kubernetes/kubernetes) v1.32.x
-- [containerd](https://github.com/containerd/containerd) v2.0.x
-- [cni](https://github.com/containernetworking/cni) v1.6.x
-- [etcd](https://github.com/etcd-io/etcd) v3.4.x
+ - [kubernetes](https://github.com/kubernetes/kubernetes) v1.32.x
+ - [containerd](https://github.com/containerd/containerd) v2.0.x
+ - [cni](https://github.com/containernetworking/cni) v1.6.x
+ - [etcd](https://github.com/etcd-io/etcd) v3.4.x
 
 ## Labs
 
 Questo tutorial richiede quattro (4) macchine virtuali o fisiche basate su x86_64 collegate alla stessa rete. Sebbene il tutorial utilizzi macchine basate su x86_64, è possibile applicare le nozioni apprese ad altre piattaforme.
 
-- [Prerequisiti](lab1-prerequisites.md)
-- [Configurazione della Jumpbox](lab2-jumpbox.md)
-- [Provisioning delle risorse di calcolo](lab3-compute-resources.md)
-- [Provisioning della CA e generazione dei certificati TLS](lab4-certificate-authority.md)
-- [Generazione dei file di configurazione Kubernetes per l'autenticazione](lab5-kubernetes-configuration-files.md)
-- [Generazione della configurazione e della chiave di crittografia dei dati](lab6-data-encryption-keys.md)
-- [Avvio del cluster etcd](lab7-bootstrapping-etcd.md)
-- [Avvio del Control Plane di Kubernetes](lab8-bootstrapping-kubernetes-controllers.md)
-- [Avvio dei nodi Worker di Kubernetes](lab9-bootstrapping-kubernetes-workers.md)
-- [Configurazione di kubectl per l'accesso remoto](lab10-configuring-kubectl.md)
-- [Provisioning delle rotte di rete dei pod](lab11-pod-network-routes.md)
-- [Smoke Test](lab12-smoke-test.md)
-- [Cleaning Up](lab13-cleanup.md)
+ - [Prerequisiti](lab1-prerequisites.md)
+ - [Configurazione della Jumpbox](lab2-jumpbox.md)
+ - [Provisioning delle risorse di calcolo](lab3-compute-resources.md)
+ - [Provisioning della CA e generazione dei certificati TLS](lab4-certificate-authority.md)
+ - [Generazione dei file di configurazione Kubernetes per l'autenticazione](lab5-kubernetes-configuration-files.md)
+ - [Generazione della configurazione e della chiave di crittografia dei dati](lab6-data-encryption-keys.md)
+ - [Avvio del cluster etcd](lab7-bootstrapping-etcd.md)
+ - [Avvio del Control Plane di Kubernetes](lab8-bootstrapping-kubernetes-controllers.md)
+ - [Avvio dei nodi Worker di Kubernetes](lab9-bootstrapping-kubernetes-workers.md)
+ - [Configurazione di kubectl per l'accesso remoto](lab10-configuring-kubectl.md)
+ - [Provisioning delle rotte di rete dei pod](lab11-pod-network-routes.md)
+ - [Smoke Test](lab12-smoke-test.md)
+ - [Cleaning Up](lab13-cleanup.md)
