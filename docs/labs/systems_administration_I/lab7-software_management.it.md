@@ -116,130 +116,130 @@ https://download.rockylinux.org/pub/rocky/8.8/
 
 1. Per visualizzare un elenco di tutti i pacchetti attualmente installati sul sistema locale, digitare:
 
-  ```bash
-  $ rpm -qa
-  python3-gobject-base-*
-  NetworkManager-*
-  rocky-repos-*
-  ...<OUTPUT TRUNCATED>...
-  ```
+   ```bash
+   $ rpm -qa
+   python3-gobject-base-*
+   NetworkManager-*
+   rocky-repos-*
+   ...<OUTPUT TRUNCATED>...
+   ```
 
-  Dovresti vedere un lungo elenco.
+   Dovresti vedere un lungo elenco.
 
 2. Approfondiamo un po' e scopriamo qualcosa in più su uno dei pacchetti installati sul sistema. Esamineremo NetworkManager. Utilizzeremo le opzioni --query (-q) e --info (-i) con il comando `rpm`. Digitare:
 
-  ```bash
-  $ rpm -qi NetworkManager
-  Name        : NetworkManager
-  Epoch       : 1
-  ...<OUTPUT TRUNCATED>...
-  ```
+   ```bash
+   $ rpm -qi NetworkManager
+   Name        : NetworkManager
+   Epoch       : 1
+   ...<OUTPUT TRUNCATED>...
+   ```
 
-  Si tratta di una grande quantità di informazioni (metadati)!
+   Si tratta di una grande quantità di informazioni (metadati)!
 
 3. Supponiamo di essere interessati solo al campo Summary del comando precedente. Possiamo utilizzare l'opzione --queryformat di rpm per filtrare le informazioni che otteniamo dall'opzione query.
 
-  Ad esempio, per visualizzare solo il campo Summary, digitare:
+   Ad esempio, per visualizzare solo il campo Summary, digitare:
 
-  ```bash
-  rpm -q --queryformat '%{summary}\n' NetworkManager
-  ```
+   ```bash
+   rpm -q --queryformat '%{summary}\n' NetworkManager
+   ```
 
-  Il nome del campo non fa distinzione tra maiuscole e minuscole.
+   Il nome del campo non fa distinzione tra maiuscole e minuscole.
 
 4. Per visualizzare sia il campo Version che il campo Summary del pacchetto NetworkManager installato, digitare:
 
-  ```bash
-  rpm -q --queryformat '%{version}  %{summary}\n' NetworkManager
-  ```
+   ```bash
+   rpm -q --queryformat '%{version}  %{summary}\n' NetworkManager
+   ```
 
 5. Digitare il comando per visualizzare le informazioni relative al pacchetto bash installato sul sistema.
 
-  ```bash
-  rpm -qi bash
-  ```
+   ```bash
+   rpm -qi bash
+   ```
 
-  !!! note "Nota"
+   !!! note "Nota"
 
-  ```
-   Gli esercizi precedenti riguardavano la ricerca e l'utilizzo di pacchetti già installati sul sistema. Nei seguenti esercizi inizieremo a lavorare con pacchetti che non sono ancora stati installati. Utilizzeremo l'applicazione DNF per scaricare i pacchetti che useremo nei passaggi successivi.
-  ```
+   ```
+    Gli esercizi precedenti riguardavano la ricerca e l'utilizzo di pacchetti già installati sul sistema. Nei seguenti esercizi inizieremo a lavorare con pacchetti che non sono ancora stati installati. Utilizzeremo l'applicazione DNF per scaricare i pacchetti che useremo nei passaggi successivi.
+   ```
 
 6. Innanzitutto, assicurarsi che l'applicazione `wget` non sia già installata sul sistema. Digitare:
 
-  ```bash
-  rpm -q wget
-  package wget is not installed
-  ```
+   ```bash
+   rpm -q wget
+   package wget is not installed
+   ```
 
-  Sembra che `wget` non sia installato sul nostro sistema demo.
+   Sembra che `wget` non sia installato sul nostro sistema demo.
 
 7. A partire da Rocky Linux 8.x, il comando `dnf download` ti consentirà di ottenere l'ultimo pacchetto `rpm` per `wget`. Digitare:
 
-  ```bash
-  dnf download wget
-  ```
+   ```bash
+   dnf download wget
+   ```
 
 8. Utilizzare il comando `ls` per assicurarsi che il pacchetto sia stato scaricato nella directory corrente. Digitare:
 
-  ```bash
-  ls -lh wg*
-  ```
+   ```bash
+   ls -lh wg*
+   ```
 
 9. Utilizzare il comando `rpm` per richiedere informazioni sul file wget-\*.rpm scaricato. Digitare:
 
-  ```bash
-  rpm -qip wget-*.rpm
-  Name        : wget
-  Architecture: x86_64
-  Install Date: (not installed)
-  Group       : Applications/Internet
-  ...<TRUNCATED>...
-  ```
+   ```bash
+   rpm -qip wget-*.rpm
+   Name        : wget
+   Architecture: x86_64
+   Install Date: (not installed)
+   Group       : Applications/Internet
+   ...<TRUNCATED>...
+   ```
 
-  !!! question "Domanda"
+   !!! question "Domanda"
 
-  ```
-   Dal risultato ottenuto nel passaggio precedente, che cos'è esattamente il pacchetto `wget`? Suggerimento: è possibile utilizzare l'opzione di formato query `rpm` per visualizzare il campo di descrizione del pacchetto scaricato.
-  ```
+   ```
+    Dal risultato ottenuto nel passaggio precedente, che cos'è esattamente il pacchetto `wget`? Suggerimento: è possibile utilizzare l'opzione di formato query `rpm` per visualizzare il campo di descrizione del pacchetto scaricato.
+   ```
 
 10. Se siete interessati al pacchetto `wget files-.rpm`, è possibile elencare tutti i file inclusi nel pacchetto digitando:
 
-  ```bash
-  rpm -qlp wget-*.rpm | head
-  /etc/wgetrc
-  /usr/bin/wget
-  ...<TRUNCATED>...
-  /usr/share/doc/wget/AUTHORS
-  /usr/share/doc/wget/COPYING
-  /usr/share/doc/wget/MAILING-LIST
-  /usr/share/doc/wget/NEWS
-  ```
+    ```bash
+    rpm -qlp wget-*.rpm | head
+    /etc/wgetrc
+    /usr/bin/wget
+    ...<TRUNCATED>...
+    /usr/share/doc/wget/AUTHORS
+    /usr/share/doc/wget/COPYING
+    /usr/share/doc/wget/MAILING-LIST
+    /usr/share/doc/wget/NEWS
+    ```
 
 11. Visualizziamo il contenuto del file `/usr/share/doc/wget/AUTHORS` elencato come parte del pacchetto `wget`. Useremo il comando `cat`. Digitare:
 
-  ```bash
-  cat /usr/share/doc/wget/AUTHORS
-  cat: /usr/share/doc/wget/AUTHORS: No such file or directory
-  ```
+    ```bash
+    cat /usr/share/doc/wget/AUTHORS
+    cat: /usr/share/doc/wget/AUTHORS: No such file or directory
+    ```
 
-  `wget` non è stato [ancora] installato sul nostro sistema demo! E quindi, non possiamo visualizzare il file AUTHORS che è incluso nel pacchetto!
+    `wget` non è stato [ancora] installato sul nostro sistema demo! E quindi, non possiamo visualizzare il file AUTHORS che è incluso nel pacchetto!
 
 12. Visualizzare l'elenco dei file inclusi in un altro pacchetto (curl) che è _già_ installato sul sistema. Digitare:
 
-  ```bash
-  $ rpm -ql curl
-  /usr/bin/curl
-  /usr/lib/.build-id
-  /usr/lib/.build-id/fc
-  ...<>...
-  ```
+    ```bash
+    $ rpm -ql curl
+    /usr/bin/curl
+    /usr/lib/.build-id
+    /usr/lib/.build-id/fc
+    ...<>...
+    ```
 
-  !!! note "Nota"
+    !!! note "Nota"
 
-  ```
-  Si noterà che nel comando precedente non è stato necessario fare riferimento al nome completo del pacchetto `curl`. Questo perché `curl` è già installato.
-  ```
+    ```
+    Si noterà che nel comando precedente non è stato necessario fare riferimento al nome completo del pacchetto `curl`. Questo perché `curl` è già installato.
+    ```
 
 #### Maggiori informazioni sul nome del pacchetto
 
@@ -283,35 +283,35 @@ https://download.rockylinux.org/pub/rocky/8.8/
 
 1. È possibile scaricare o ritrovarsi con un file danneggiato o contaminato. Per verificare l'integrità del pacchetto `wget` che avete scaricato. Digitare:
 
-  ```bash
-  rpm -K  wget-*.rpm
-  wget-1.19.5-10.el8.x86_64.rpm: digests signatures OK
-  ```
+   ```bash
+   rpm -K  wget-*.rpm
+   wget-1.19.5-10.el8.x86_64.rpm: digests signatures OK
+   ```
 
-  Il messaggio "digests signatures OK" nell'output indica che il pacchetto è corretto.
+   Il messaggio "digests signatures OK" nell'output indica che il pacchetto è corretto.
 
 2. Siamo maliziosi e modifichiamo deliberatamente il pacchetto scaricato. Questo può essere fatto aggiungendo o rimuovendo qualcosa dal pacchetto originale. Qualsiasi modifica al pacchetto che non sia stata prevista dai creatori originali danneggerà il pacchetto. Modificheremo il file utilizzando il comando `echo` per aggiungere la stringa "haha" al pacchetto. Digitare:
 
-  ```bash
-  echo haha >> wget-1.19.5-10.el8.x86_64.rpm 
-  ```
+   ```bash
+   echo haha >> wget-1.19.5-10.el8.x86_64.rpm 
+   ```
 
 3. Provate ora a verificare nuovamente l'integrità del pacchetto utilizzando l'opzione -K di rpm.
 
-  ```bash
-  $ rpm -K  wget-*.rpm
-  wget-1.19.5-10.el8.x86_64.rpm: DIGESTS SIGNATURES NOT OK
-  ```
+   ```bash
+   $ rpm -K  wget-*.rpm
+   wget-1.19.5-10.el8.x86_64.rpm: DIGESTS SIGNATURES NOT OK
+   ```
 
-  Ora il messaggio è molto diverso. Il messaggio "DIGESTS SIGNATURES NOT OK" avverte chiaramente che non si dovrebbe provare a utilizzare o installare il pacchetto. Non ci si dovrebbe più fidare.
+   Ora il messaggio è molto diverso. Il messaggio "DIGESTS SIGNATURES NOT OK" avverte chiaramente che non si dovrebbe provare a utilizzare o installare il pacchetto. Non ci si dovrebbe più fidare.
 
 4. Utilizzare il comando `rm` per eliminare il file del pacchetto `wget` danneggiato e scaricare una nuova copia utilizzando `dnf`. Digitare:
 
-  ```bash
-  rm wget-*.rpm  && dnf download wget
-  ```
+   ```bash
+   rm wget-*.rpm  && dnf download wget
+   ```
 
-  Verificare nuovamente che il pacchetto appena scaricato superi i controlli di integrità RPM.
+   Verificare nuovamente che il pacchetto appena scaricato superi i controlli di integrità RPM.
 
 ## Esercizio 3
 
@@ -329,74 +329,74 @@ In questo esercizio si proverà ad installare il pacchetto `wget` (wget-\*.rpm).
 
 1. Provare ad installare l'applicazione `wget`. Utilizzare le opzioni della riga di comando -ivh di RPM. Digitare:
 
-  ```bash
-  rpm -ivh wget-*.rpm
-  error: Failed dependencies:
-      libmetalink.so.3()(64bit) is needed by wget-*
-  ```
+   ```bash
+   rpm -ivh wget-*.rpm
+   error: Failed dependencies:
+       libmetalink.so.3()(64bit) is needed by wget-*
+   ```
 
-  Subito - un problema di dipendenza! L'output di esempio mostra che `wget` necessita di un file di libreria denominato "libmetalink.so.3"
+   Subito - un problema di dipendenza! L'output di esempio mostra che `wget` necessita di un file di libreria denominato "libmetalink.so.3"
 
-  !!! note "Nota"
+   !!! note "Nota"
 
-  ```
-   In base al risultato del test sopra riportato, il pacchetto wget-*.rpm richiede l'installazione del pacchetto libmetalink-*.rpm. In altre parole, libmetalink è un prerequisito per l'installazione di wget-*.rpm. È possibile installare forzatamente il pacchetto wget-*.rpm utilizzando l'opzione "nodeps" se si è assolutamente certi di ciò che si sta facendo, ma in genere questa è una pratica SCONSIGLIATA.
-  ```
+   ```
+    In base al risultato del test sopra riportato, il pacchetto wget-*.rpm richiede l'installazione del pacchetto libmetalink-*.rpm. In altre parole, libmetalink è un prerequisito per l'installazione di wget-*.rpm. È possibile installare forzatamente il pacchetto wget-*.rpm utilizzando l'opzione "nodeps" se si è assolutamente certi di ciò che si sta facendo, ma in genere questa è una pratica SCONSIGLIATA.
+   ```
 
 2. RPM ci ha gentilmente fornito un indizio su ciò che manca. Ricorderete che `rpm` conosce il cosa e il come, ma non necessariamente il dove. Utilizziamo l'utilità `dnf` per cercare di capire il nome del pacchetto che fornisce la libreria mancante. Digitare:
 
-  ```bash
-  $ dnf whatprovides libmetalink.so.3
-  ...<TRUNCATED>...
-  libmetalink-* : Metalink library written in C
-  Repo        : baseos
-  Matched from:
-  Provide    : libmetalink.so.3
-  ```
+   ```bash
+   $ dnf whatprovides libmetalink.so.3
+   ...<TRUNCATED>...
+   libmetalink-* : Metalink library written in C
+   Repo        : baseos
+   Matched from:
+   Provide    : libmetalink.so.3
+   ```
 
 3. Dal risultato ottenuto, è necessario scaricare il pacchetto `libmetalink` che fornisce la libreria mancante. In particolare, desideriamo la versione a 64 bit della libreria. Richiediamo l'aiuto di un'utilità separata (`dnf`) per trovare e scaricare il pacchetto per la nostra architettura demo a 64 bit (x86_64). Digitare:
 
-  ```bash
-  dnf download --arch x86_64  libmetalink
-  ```
+   ```bash
+   dnf download --arch x86_64  libmetalink
+   ```
 
 4. Ora si dovrebbero avere almeno 2 pacchetti rpm nella directory di lavoro. Utilizzare il comando `ls` per verificarlo.
 
 5. Installare la dipendenza mancante `libmetalink`. Digitare:
 
-  ```bash
-  sudo rpm -ivh libmetalink-*.rpm
-  ```
+   ```bash
+   sudo rpm -ivh libmetalink-*.rpm
+   ```
 
 6. Ora che la dipendenza è stata installata, possiamo tornare al nostro obiettivo iniziale, ovvero installare il pacchetto `wget`. Digitare:
 
-  ```bash
-  sudo rpm -ivh wget-*.rpm
-  ```
+   ```bash
+   sudo rpm -ivh wget-*.rpm
+   ```
 
-  !!! note "Nota"
+   !!! note "Nota"
 
-  ````
-   RPM supporta le transazioni. Negli esercizi precedenti, avremmo potuto eseguire una singola transazione rpm che includesse il pacchetto originale che volevamo installare e tutti i pacchetti e le librerie da cui dipendeva. Sarebbe stato sufficiente un singolo comando come quello riportato di seguito:
+   ````
+    RPM supporta le transazioni. Negli esercizi precedenti, avremmo potuto eseguire una singola transazione rpm che includesse il pacchetto originale che volevamo installare e tutti i pacchetti e le librerie da cui dipendeva. Sarebbe stato sufficiente un singolo comando come quello riportato di seguito:
 
-       ```bash
-       rpm -Uvh  wget-*.rpm  libmetalink-*.rpm
-       ```
-  ````
+        ```bash
+        rpm -Uvh  wget-*.rpm  libmetalink-*.rpm
+        ```
+   ````
 
 7. È arrivato il momento della verità. Provare ad eseguire il programma `wget` senza alcuna opzione per verificare se è installato. Digitare:
 
-  ```bash
-  wget
-  ```
+   ```bash
+   wget
+   ```
 
 8. Vediamo `wget` in azione. Utilizzare `wget` per scaricare un file da Internet dalla riga di comando. Digitare:
 
-  ```bash
-  wget  https://kernel.org
-  ```
+   ```bash
+   wget  https://kernel.org
+   ```
 
-  Questo scaricherà il file index.html predefinito dal sito web kernel.org!
+   Questo scaricherà il file index.html predefinito dal sito web kernel.org!
 
 9. Utilizzare `rpm` per visualizzare un elenco di tutti i file inclusi nell'applicazione `wget`.
 
@@ -406,16 +406,16 @@ In questo esercizio si proverà ad installare il pacchetto `wget` (wget-\*.rpm).
 
 12. È necessario installare il pacchetto `libmetalink` per installare `wget`. Prova a eseguire o lanciare `libmetalink` dalla riga di comando. Digitare:
 
-  ```bash
-  libmetalink
-  -bash: libmetalink: command not found
-  ```
+    ```bash
+    libmetalink
+    -bash: libmetalink: command not found
+    ```
 
-  !!! attention "Attenzione"
+    !!! attention "Attenzione"
 
-  ```
-  Che succede? Perché non si riescs ad eseguire `libmetalink`?
-  ```
+    ```
+    Che succede? Perché non si riescs ad eseguire `libmetalink`?
+    ```
 
 #### Importazione di una chiave pubblica tramite `rpm`
 
@@ -443,31 +443,31 @@ In questo esercizio si proverà ad utilizzare `rpm` per disinstallare alcuni pac
 
 1. Disinstallare il pacchetto `libmetalink` dal sistema. Digitare:
 
-  ```bash
-  sudo rpm -e libmetalink
-  ```
+   ```bash
+   sudo rpm -e libmetalink
+   ```
 
-  !!! question "Domanda"
+   !!! question "Domanda"
 
-  ```
-   Spiegate perché non è stato possibile rimuovere il pacchetto?
-  ```
+   ```
+    Spiegate perché non è stato possibile rimuovere il pacchetto?
+   ```
 
 2. Il modo corretto e pulito per rimuovere i pacchetti utilizzando RPM è quello di rimuovere i pacchetti insieme alle loro dipendenze. Per rimuovere il pacchetto `libmetalink` dovremo rimuovere anche il pacchetto `wget` che dipende da esso. Digitare:
 
-  ```bash
-  sudo rpm -e libmetalink wget
-  ```
+   ```bash
+   sudo rpm -e libmetalink wget
+   ```
 
-  !!! note "Nota"
+   !!! note "Nota"
 
-  ```
-   Se si desidera disinstallare il pacchetto che dipende da libmetalink e rimuovere *forzatamente* il pacchetto dal sistema, è possibile utilizzare l'opzione `--nodeps` di rpm come segue: `$ sudo rpm  -e  --nodeps  libmetalink`.
+   ```
+    Se si desidera disinstallare il pacchetto che dipende da libmetalink e rimuovere *forzatamente* il pacchetto dal sistema, è possibile utilizzare l'opzione `--nodeps` di rpm come segue: `$ sudo rpm  -e  --nodeps  libmetalink`.
 
-   **i.** L'opzione "nodeps" significa Nessuna dipendenza. Ovvero, ignora tutte le dipendenze.
-   **ii.** Quanto sopra illustra come rimuovere forzatamente un pacchetto dal sistema. A volte è necessario farlo, ma in genere *non è una buona pratica*.
-   **iii.** La rimozione forzata di un pacchetto "xyz" da cui dipende un altro pacchetto installato "abc" rende di fatto il pacchetto "abc" inutilizzabile o in qualche modo danneggiato.
-  ```
+    **i.** L'opzione "nodeps" significa Nessuna dipendenza. Ovvero, ignora tutte le dipendenze.
+    **ii.** Quanto sopra illustra come rimuovere forzatamente un pacchetto dal sistema. A volte è necessario farlo, ma in genere *non è una buona pratica*.
+    **iii.** La rimozione forzata di un pacchetto "xyz" da cui dipende un altro pacchetto installato "abc" rende di fatto il pacchetto "abc" inutilizzabile o in qualche modo danneggiato.
+   ```
 
 ## Esercizio 5
 
@@ -524,66 +524,66 @@ Assumendo che sia già stata disinstallata l'utilità `wget` da un esercizio, ut
 
 1. Per prima cosa, assicurarsi che `wget` e `libmetalink` siano stati disinstallati dal sistema. Digitare:
 
-  ```bash
-  sudo rpm -e wget libmetalink
-  ```
+   ```bash
+   sudo rpm -e wget libmetalink
+   ```
 
-  Dopo la rimozione, se si prova a eseguire `wget` dalla CLI, viene visualizzato un messaggio simile a _wget: command not found_
+   Dopo la rimozione, se si prova a eseguire `wget` dalla CLI, viene visualizzato un messaggio simile a _wget: command not found_
 
 2. Ora usare `dnf` per installare `wget`. Digitare:
 
-  ```bash
-  sudo dnf -y install wget
-  Dependencies resolved.
-  ...<TRUNCATED>...
-  Installed:
-  libmetalink-*           wget-*
-  Complete!
-  ```
+   ```bash
+   sudo dnf -y install wget
+   Dependencies resolved.
+   ...<TRUNCATED>...
+   Installed:
+   libmetalink-*           wget-*
+   Complete!
+   ```
 
-  !!! tip "Suggerimento"
+   !!! tip "Suggerimento"
 
-  ```
-   L'opzione "-y" utilizzata nel comando precedente sopprime il prompt "[y/N]" che richiede di confermare l'azione che `dnf` sta per eseguire. Ciò significa che tutte le azioni di conferma (o risposte interattive) saranno "sì" (y).
-  ```
+   ```
+    L'opzione "-y" utilizzata nel comando precedente sopprime il prompt "[y/N]" che richiede di confermare l'azione che `dnf` sta per eseguire. Ciò significa che tutte le azioni di conferma (o risposte interattive) saranno "sì" (y).
+   ```
 
 3. DNF offre un'opzione "Environment Group" che semplifica l'aggiunta di un nuovo set di funzionalità a un sistema. Per aggiungere la funzionalità, in genere è necessario installare alcuni pacchetti singolarmente, ma utilizzando `dnf`, è sufficiente conoscere il nome o la descrizione della funzionalità desiderata. Utilizzare `dnf` per visualizzare un elenco dei gruppi disponibili. Digitare:
 
-  ```bash
-  dnf group list
-  ```
+   ```bash
+   dnf group list
+   ```
 
 4. Il nostro interesse è rivolto al gruppo/funzionalità “ Development Tools”. Cerchiamo di ottenere maggiori informazioni su quel gruppo. Digitare:
 
-  ```bash
-  dnf group info "Development Tools"
-  ```
+   ```bash
+   dnf group info "Development Tools"
+   ```
 
 5. Successivamente, avremo bisogno di alcuni programmi del gruppo "Development Tools". Installare il gruppo “Development Tools” utilizzando `dnf` eseguendo:
 
-  ```bash
-  sudo dnf -y group install "Development Tools"
-  ```
+   ```bash
+   sudo dnf -y group install "Development Tools"
+   ```
 
 #### Uso di `dnf` per disinstallare i pacchetti
 
 1. Per utilizzare `dnf` per disinstallare il pacchetto `wget`, digitare:
 
-  ```bash
-  sudo dnf -y remove wget
-  ```
+   ```bash
+   sudo dnf -y remove wget
+   ```
 
 2. Utilizzare `dnf` per assicurarsi che il pacchetto sia stato effettivamente rimosso dal sistema. Digitare:
 
-  ```bash
-  sudo dnf -y remove wget
-  ```
+   ```bash
+   sudo dnf -y remove wget
+   ```
 
 3. Provare ad utilizzare/eseguire `wget`. Digitare:
 
-  ```bash
-  wget
-  ```
+   ```bash
+   wget
+   ```
 
 #### Uso di `dnf` per l'aggiornamento dei pacchetti
 
@@ -591,33 +591,33 @@ DNF può verificare e installare l'ultima versione dei singoli pacchetti disponi
 
 1. Utilizzare l'opzione list con `dnf` per visualizzare le versioni disponibili del programma `wget` sul sistema. Digitare:
 
-  ```bash
-  dnf list wget
-  ```
+   ```bash
+   dnf list wget
+   ```
 
 2. Se si vuole solo verificare se siano disponibili versioni aggiornate per un pacchetto, utilizzare l'opzione check-update con `dnf`. Ad esempio, per il pacchetto `wget`, digitare:
 
-  ```bash
-  dnf check-update wget
-  ```
+   ```bash
+   dnf check-update wget
+   ```
 
 3. Ora, elencare tutte le versioni disponibili per il pacchetto kernel del sistema. Digitare:
 
-  ```bash
-  sudo dnf list kernel
-  ```
+   ```bash
+   sudo dnf list kernel
+   ```
 
 4. Successivamente, verificare se sono disponibili pacchetti aggiornati per il pacchetto kernel installato. Digitare:
 
-  ```bash
-  dnf check-update kernel
-  ```
+   ```bash
+   dnf check-update kernel
+   ```
 
 5. Gli aggiornamenti dei pacchetti possono essere dovuti a correzioni di bug, nuove funzionalità o patch di sicurezza. Per verificare se sono disponibili aggiornamenti relativi alla sicurezza per il pacchetto kernel, digitare:
 
-  ```bash
-  dnf  --security check-update kernel
-  ```
+   ```bash
+   dnf  --security check-update kernel
+   ```
 
 #### Uso di `dnf` per gli aggiornamenti del sistema
 
@@ -625,21 +625,21 @@ DNF può essere utilizzato per verificare e installare le versioni più recenti 
 
 1. Per verificare se sono disponibili aggiornamenti per i pacchetti attualmente installati sul sistema, digitare:
 
-  ```bash
-  dnf check-update
-  ```
+   ```bash
+   dnf check-update
+   ```
 
 2. Per verificare se sono disponibili aggiornamenti relativi alla sicurezza per tutti i pacchetti installati sul sistema, digitare:
 
-  ```bash
-  dnf --security check-update
-  ```
+   ```bash
+   dnf --security check-update
+   ```
 
 3. Per aggiornare tutti i pacchetti installati sul sistema alle versioni più recenti disponibili per la tua distribuzione, eseguire:
 
-  ```bash
-  dnf -y check-update
-  ```
+   ```bash
+   dnf -y check-update
+   ```
 
 ## Esercizio 6
 
@@ -655,7 +655,7 @@ I seguenti esercizi saranno basati sul venerabile codice sorgente del progetto H
 
 1. Utilizzare `curl` per scaricare il codice sorgente più recente dell'applicazione `hello`. Scaricare e salvare il file nella cartella Download.
 
-  https://ftp.gnu.org/gnu/hello/hello-2.12.tar.gz
+   https://ftp.gnu.org/gnu/hello/hello-2.12.tar.gz
 
 #### Decomprimere il file
 
@@ -663,41 +663,41 @@ I seguenti esercizi saranno basati sul venerabile codice sorgente del progetto H
 
 2. Decomprimere (un-tar) il tarball utilizzando il programma `tar`. Digitare:
 
-  ```bash
-  tar -xvzf hello-2.12.tar.gz
-  ```
+   ```bash
+   tar -xvzf hello-2.12.tar.gz
+   ```
 
-  OUTPUT:
+   OUTPUT:
 
-  ```bash
-  $ tar -xvzf hello-2.12.tar.gz
-  hello-2.12/
-  hello-2.12/NEWS
-  hello-2.12/AUTHORS
-  hello-2.12/hello.1
-  hello-2.12/THANKS
-  ...<TRUNCATED>...
-  ```
+   ```bash
+   $ tar -xvzf hello-2.12.tar.gz
+   hello-2.12/
+   hello-2.12/NEWS
+   hello-2.12/AUTHORS
+   hello-2.12/hello.1
+   hello-2.12/THANKS
+   ...<TRUNCATED>...
+   ```
 
 3. Utilizzare il comando `ls` per visualizzare il contenuto della directory corrente.
 
-  Durante la decompressione dovrebbe essere stata creata una nuova directory denominata  hello-2.12.
+   Durante la decompressione dovrebbe essere stata creata una nuova directory denominata  hello-2.12.
 
 4. Passare a quella directory ed elencarne il suo contenuto. Digitare:
 
-  ```bash
-  cd hello-2.12 ; ls
-  ```
+   ```bash
+   cd hello-2.12 ; ls
+   ```
 
 5. È sempre buona norma consultare eventuali istruzioni di installazione speciali fornite insieme al codice sorgente. Questi file hanno solitamente nomi come: INSTALL, README e così via.
 
-  Utilizzare un pager per aprire il file INSTALL e leggerlo. Digitare:
+   Utilizzare un pager per aprire il file INSTALL e leggerlo. Digitare:
 
-  ```bash
-  less INSTALL
-  ```
+   ```bash
+   less INSTALL
+   ```
 
-  Uscire dal pager quando si è finito di esaminare il file.
+   Uscire dal pager quando si è finito di esaminare il file.
 
 #### Configurazione del pacchetto
 
@@ -719,33 +719,33 @@ sudo dnf -y group install "Development Tools"
 
 2. Per visualizzare tutte le opzioni che si possono attivare o disattivare nel programma `hello`, digitare:
 
-  ```bash
-  ./configure --help
-  ```
+   ```bash
+   ./configure --help
+   ```
 
-  !!! question "Domanda"
+   !!! question "Domanda"
 
-  ```
-  Dall'output del comando, cosa fa l'opzione "--prefix"?
-  ```
+   ```
+   Dall'output del comando, cosa fa l'opzione "--prefix"?
+   ```
 
 3. Se si è soddisfatti delle opzioni predefinite offerte dallo script di configurazione. Digitare:
 
-  ```bash
-  ./configure
-  ```
+   ```bash
+   ./configure
+   ```
 
-  !!! note "Nota"
+   !!! note "Nota"
 
-  ```
-   Si spera che la fase di configurazione sia andata liscia e che si possa passare alla fase di compilazione.
+   ```
+    Si spera che la fase di configurazione sia andata liscia e che si possa passare alla fase di compilazione.
 
-   Se durante la fase di configurazione vengono visualizzati degli errori, è necessario esaminare attentamente la parte finale dell'output per individuare la causa dell'errore. Gli errori sono *talvolta* intuitivi e facili da correggere. Ad esempio, potrebbe essere visualizzato un errore simile al seguente:
+    Se durante la fase di configurazione vengono visualizzati degli errori, è necessario esaminare attentamente la parte finale dell'output per individuare la causa dell'errore. Gli errori sono *talvolta* intuitivi e facili da correggere. Ad esempio, potrebbe essere visualizzato un errore simile al seguente:
 
-   configure: error: no acceptable C compiler found in $PATH
+    configure: error: no acceptable C compiler found in $PATH
 
-   L'errore sopra riportato significa semplicemente che non hai un compilatore C (ad esempio, `gcc`) installato sul sistema o che il compilatore è installato in una posizione che non è inclusa nella variabile PATH.
-  ```
+    L'errore sopra riportato significa semplicemente che non hai un compilatore C (ad esempio, `gcc`) installato sul sistema o che il compilatore è installato in una posizione che non è inclusa nella variabile PATH.
+   ```
 
 #### Compilazione del pacchetto
 
@@ -753,21 +753,21 @@ Nei passaggi seguenti si costruirà l'applicazione hello. È qui che tornano uti
 
 1. Utilizzare il comando make per compilare il pacchetto dopo aver eseguito lo script "configure". Digitare:
 
-  ```bash
-  make
-  ```
+   ```bash
+   make
+   ```
 
-  OUTPUT:
+   OUTPUT:
 
-  ```bash
-  $ make
-  ...<OUTPUT TRUNCATED>...
-  gcc  -g -O2   -o hello src/hello.o  ./lib/libhello.a
-  make[2]: Leaving directory '/home/rocky/hello-2.12'
-  make[1]: Leaving directory '/home/rocky/hello-2.12'
-  ```
+   ```bash
+   $ make
+   ...<OUTPUT TRUNCATED>...
+   gcc  -g -O2   -o hello src/hello.o  ./lib/libhello.a
+   make[2]: Leaving directory '/home/rocky/hello-2.12'
+   make[1]: Leaving directory '/home/rocky/hello-2.12'
+   ```
 
-  Se tutto è andato bene, questo importante passaggio “make” è il passo che contribuirà a generare il binario finale dell’applicazione “hello”.
+   Se tutto è andato bene, questo importante passaggio “make” è il passo che contribuirà a generare il binario finale dell’applicazione “hello”.
 
 2. Elencare nuovamente i file nella directory di lavoro corrente. Si dovrebbero visualizzare alcuni file appena creati, incluso il programma `hello`.
 
@@ -777,51 +777,51 @@ Oltre ad altre attività di manutenzione, la fase finale dell'installazione prev
 
 1. Per installare l'applicazione hello, eseguire il comando make install. Digitare:
 
-  ```bash
-  sudo make install
-  ```
+   ```bash
+   sudo make install
+   ```
 
-  Questo installerà il pacchetto nella posizione specificata dall'argomento predefinito prefisso (--prefix) che è stato utilizzato in precedenza con lo script “configure”. Se non è stato impostato alcun --prefix, verrà utilizzato il prefisso predefinito `/usr/local/`.
+   Questo installerà il pacchetto nella posizione specificata dall'argomento predefinito prefisso (--prefix) che è stato utilizzato in precedenza con lo script “configure”. Se non è stato impostato alcun --prefix, verrà utilizzato il prefisso predefinito `/usr/local/`.
 
 #### Esecuzione del programma hello
 
 1. Utilizzare il comando `whereis` per vedere dove si trova il programma `hello` nel sistema. Digitare:
 
-  ```bash
-  whereis hello
-  ```
+   ```bash
+   whereis hello
+   ```
 
 2. Provare a eseguire l'applicazione `hello` per verificarne il funzionamento. Digitare:
 
-  ```bash
-  hello
-  ```
+   ```bash
+   hello
+   ```
 
 3. Eseguire nuovamente `hello` con l'opzione `--help` per vedere le altre funzioni disponibili.
 
 4. Ora, utilizzando `sudo`, eseguire nuovamente `hello` come superutente. Digitare:
 
-  ```bash
-  sudo hello
-  ```
+   ```bash
+   sudo hello
+   ```
 
-  OUTPUT:
+   OUTPUT:
 
-  ```bash
-  sudo: hello: comando non trovato
-  ```
+   ```bash
+   sudo: hello: comando non trovato
+   ```
 
-  !!! question "Domanda"
+   !!! question "Domanda"
 
-  ```
-   Individua la causa dell'errore che si verifica quando provi a eseguire `hello` con `sudo`. Risolvi il problema e assicurati che il programma `hello` possa essere utilizzato con `sudo`.
-  ```
+   ```
+    Individua la causa dell'errore che si verifica quando provi a eseguire `hello` con `sudo`. Risolvi il problema e assicurati che il programma `hello` possa essere utilizzato con `sudo`.
+   ```
 
-  !!! tip "Suggerimento"
+   !!! tip "Suggerimento"
 
-  ```
-   È buona norma testare un programma come utente normale per assicurarsi che gli utenti normali possano effettivamente utilizzarlo. È possibile che i permessi sul file binario siano impostati in modo errato, consentendo solo al superutente di utilizzare i programmi. Questo ovviamente presuppone che si desideri effettivamente che gli utenti normali possano utilizzare il programma.
-  ```
+   ```
+    È buona norma testare un programma come utente normale per assicurarsi che gli utenti normali possano effettivamente utilizzarlo. È possibile che i permessi sul file binario siano impostati in modo errato, consentendo solo al superutente di utilizzare i programmi. Questo ovviamente presuppone che si desideri effettivamente che gli utenti normali possano utilizzare il programma.
+   ```
 
 5. Ecco fatto. Questo esercizio è terminato!
 
@@ -839,48 +839,48 @@ Prendiamo come esempio il programma di sincronizzazione dell'ora `chrony` per il
 
 1. Per dimostrare come funziona la verifica del pacchetto `rpm`, apportare una modifica al file di configurazione di chrony - `/etc/chrony.conf`. (It is assumed that you have installed chrony). Aggiungiamo 2 innocui simboli di commento `##` alla fine del file. Digitare:
 
-  ```bash
-  echo -e "##"  | sudo tee -a /etc/chrony.conf
-  ```
+   ```bash
+   echo -e "##"  | sudo tee -a /etc/chrony.conf
+   ```
 
 2. Ora eseguire il comando `rpm` con l'opzione `--verify`. Digitare:
 
-  ```bash
-  rpm -V chrony
-  ```
+   ```bash
+   rpm -V chrony
+   ```
 
-  OUTPUT:
+   OUTPUT:
 
-  ```bash
-  S.5....T.  c  /etc/chrony.conf
-  ```
+   ```bash
+   S.5....T.  c  /etc/chrony.conf
+   ```
 
-  Il risultato è suddiviso in 3 colonne separate.
+   Il risultato è suddiviso in 3 colonne separate.
 
-  - **Prima colonna (S.5.... T.)**
+   - **Prima colonna (S.5.... T.)**
 
-    L'output di esempio - `S.5....T.` indica i 9 campi utilizzati per indicare informazioni utili   sulla validità dei file in un pacchetto RPM. Qualsiasi campo o caratteristica che ha superato un determinato controllo/test è indicato da un “.”.
+     L'output di esempio - `S.5....T.` indica i 9 campi utilizzati per indicare informazioni utili   sulla validità dei file in un pacchetto RPM. Qualsiasi campo o caratteristica che ha superato un determinato controllo/test è indicato da un “.”.
 
-    Di seguito sono descritti questi 9 differenti campi o controlli:
+     Di seguito sono descritti questi 9 differenti campi o controlli:
 
-    - S: Se è stata modificata la dimensione del file.
-    - M: Se il tipo di file o i permessi del file (rwx) sono stati modificati.
-    - 5: Se il checksum MD5 del file è stato modificato.
-    - D: Se il numero del dispositivo è stato modificato.
-    - L: Se il percorso del file è stato modificato.
-    - U: Se il proprietario del file è stato modificato.
-    - G: Se il gruppo a cui appartiene il file è stato modificato.
-    - T: Se l'ora di modifica (mTime) del file è stata modificata.
-    - P: Se la funzione del programma è stata modificata.
+     - S: Se è stata modificata la dimensione del file.
+     - M: Se il tipo di file o i permessi del file (rwx) sono stati modificati.
+     - 5: Se il checksum MD5 del file è stato modificato.
+     - D: Se il numero del dispositivo è stato modificato.
+     - L: Se il percorso del file è stato modificato.
+     - U: Se il proprietario del file è stato modificato.
+     - G: Se il gruppo a cui appartiene il file è stato modificato.
+     - T: Se l'ora di modifica (mTime) del file è stata modificata.
+     - P: Se la funzione del programma è stata modificata.
 
-  - **Seconda Colonna (c)**
+   - **Seconda Colonna (c)**
 
-    - **c**: Indica le modifiche apportate al file di configurazione. Può anche assumere i seguenti valori:
-    - d: file di documentazione.
-    - g: file ghost. Se ne vedono pochissimi.
-    - l: file di licenza.
-    - r: file readme.
+     - **c**: Indica le modifiche apportate al file di configurazione. Può anche assumere i seguenti valori:
+     - d: file di documentazione.
+     - g: file ghost. Se ne vedono pochissimi.
+     - l: file di licenza.
+     - r: file readme.
 
-  - **Terza colonna (/etc/chrony.conf)**
+   - **Terza colonna (/etc/chrony.conf)**
 
-    - **/etc/chrony.conf**: Rappresenta il percorso del file modificato.
+     - **/etc/chrony.conf**: Rappresenta il percorso del file modificato.
