@@ -78,7 +78,7 @@ sudo nmcli connection delete <CONNECTION_NAME>
 Assurez-vous d'avoir un accès direct à la machine. Si vous configurez la machine via SSH, la connexion sera interrompue après la suppression de la connexion à l'interface principale.
 ```
 
-- Créer la nouvelle connexion de pont :
+- Créez la nouvelle connexion de pont :
 
 ```bash
 sudo nmcli connection add type bridge autoconnect yes con-name <VIRTUAL_BRIDGE_CON-NAME> ifname <VIRTUAL_BRIDGE_IFNAME>
@@ -102,13 +102,13 @@ sudo nmcli connection modify <VIRTUAL_BRIDGE_CON-NAME> ipv4.gateway <GATEWAY_IP>
 sudo nmcli connection modify <VIRTUAL_BRIDGE_CON-NAME> ipv4.dns <DNS_IP>
 ```
 
-- Ajoutez la connexion esclave du pont :
+- Ajoutez la connexion de pont esclave :
 
 ```bash
 sudo nmcli connection add type bridge-slave autoconnect yes con-name <MAIN_INTERFACE_WITH_INTERNET_ACCESS_CON-NAME> ifname <MAIN_INTERFACE_WITH_INTERNET_ACCESS_IFNAME> master <VIRTUAL_BRIDGE_CON-NAME>
 ```
 
-- Démarrer la connexion du pont :
+- Démarrez la connexion de pont :
 
 ```bash
 sudo nmcli connection up <VIRTUAL_BRIDGE_CON-NAME>
