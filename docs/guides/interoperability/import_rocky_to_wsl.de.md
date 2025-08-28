@@ -23,7 +23,7 @@ Diese Funktion sollte derzeit in jeder unterstützten Version von Windows 10 und
 
 !!! tip "WSL-Version"
 
-   Stellen Sie sicher, dass Ihre WSL-Version auf dem neuesten Stand ist, da einige Funktionen erst in späteren Versionen eingeführt wurden. Wenn Sie sich nicht sicher sind, führen Sie `wsl --update` aus.
+    Stellen Sie sicher, dass Ihre `WSL`-Version auf dem neuesten Stand ist, da einige Funktionen erst in neueren Versionen eingeführt wurden. Wenn Sie sich nicht sicher sind, führen Sie `wsl --update` aus.
 
 ## Einzelne Schritte
 
@@ -79,7 +79,7 @@ Diese Funktion sollte derzeit in jeder unterstützten Version von Windows 10 und
 
 !!! tip "Windows Terminal"
 
-    Wenn Sie Windows Terminal installiert haben, wird der neue WSL-Distributionsname als Option im Pulldown-Menü angezeigt, was für zukünftige Starts sehr praktisch ist. Sie können alles dann mit Farben, Schriftarten etc. verschlimmbessern.
+    Wenn Sie `Windows Terminal` installiert haben, wird der neue WSL-Distributionsname als Option im Pull-down-Menü angezeigt, was für zukünftige Starts sehr praktisch ist. Sie können alles dann mit Farben, Schriftarten etc. verschlimmbessern.
 
 !!! tip "systemd"
 
