@@ -23,7 +23,7 @@ Cette fonctionnalité devrait être disponible sur toutes les versions actuellem
 
 !!! tip "Version WSL"
 
-   Assurez-vous que votre version WSL est à jour, car certaines fonctionnalités ont seulement été introduites dans les versions récentes. Si vous n'êtes pas certain, exécutez `wsl --update`.
+    Assurez-vous que votre version WSL est à jour, car certaines fonctionnalités ont seulement été introduites dans les versions récentes. If you are unsure, run `wsl --update`.
 
 ## Marche à suivre
 
@@ -77,7 +77,7 @@ Cette fonctionnalité devrait être disponible sur toutes les versions actuellem
 
     En général, WSL 2 devrait être plus rapide que WSL, bien que cela puisse varier selon le cas d'utilisation.
 
-!!! tip "Terminal Windows"
+!!! tip "Windows Terminal"
 
     Si vous avez installé Windows Terminal, le nom de votre nouvelle distribution WSL apparaîtra comme une option dans le menu déroulant, ce qui est très utile pour la lancer par la suite. Vous pouvez ensuite le personnaliser avec des couleurs, des polices et d'autres éléments.
 
