@@ -24,7 +24,7 @@ This feature should be available on every supported version of Windows 10 and 11
 
 !!! tip "WSL version"
 
-   Ensure that your WSL version is up to date, as some features were only introduced in later versions. If you are unsure, run `wsl --update`.
+    Ensure that your WSL version is up to date, as some features were only introduced in later versions. If you are unsure, run `wsl --update`.
 
 ## Steps
 
@@ -41,7 +41,7 @@ This feature should be available on every supported version of Windows 10 and 11
     - Install the image via command line:
 
         ```sh
-        wsl --install --from-file <path-to/Rocky-10-WSL-Base.latest.x86_64.wsl> <machine-name>
+        wsl --install --from-file <path-to/Rocky-10-WSL-Base.latest.x86_64.wsl> --name <machine-name>
         ```
 
 ### Conventional Container images
