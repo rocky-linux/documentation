@@ -154,7 +154,7 @@ sudo su
 !!! warning "Avertissement"
 
 ```
-Be careful changing the default init script directory which should be `/etc/init.d/`.
+Faites attention lorsque vous modifiez le répertoire de script d'initialisation par défaut qui devrait être `/etc/init.d/`.
 
 >What is the directory that contains the init directories (rc0.d/ to rc6.d/)? 
 >[/etc] /etc/init.d
