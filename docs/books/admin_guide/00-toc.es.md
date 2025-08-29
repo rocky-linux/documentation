@@ -20,7 +20,7 @@ A continuación, podemos adentrarnos en el funcionamiento profundo de Linux para
 * Sistemas de archivos
 * Gestión de procesos
 
-A continuación, cubriremos un tema esencial para el administrador de sistemas Linux: El proceso de copia de seguridad. Muchas soluciones de software vienen con Linux para mejorar las copias de seguridad (rsnapshot, lsyncd, etcétera).Es interesante conocer los componentes esenciales de la copia de seguridad que se encuntran dentro del sistema operativo. Para ello, en este capítulo, conoceremos dos nuevas herramientas: `tar` y el menos difundido `cpio`. Para ello, en este capítulo, conoceremos dos nuevas herramientas: `tar` y el menos difundido `cpio`.
+A continuación, cubriremos un tema esencial para el administrador de sistemas Linux: El proceso de copia de seguridad. Muchas soluciones de software vienen con Linux para mejorar las copias de seguridad (rsnapshot, lsyncd, etcétera). Es interesante conocer los componentes esenciales de la copia de seguridad que se encuentran dentro del sistema operativo. Para ello, en este capítulo, conoceremos dos nuevas herramientas: `tar` y el menos difundido `cpio`. Para ello, en este capítulo, conoceremos dos nuevas herramientas: `tar` y el menos difundido `cpio`.
 
 La gestión del sistema durante el proceso de arranque ha evolucionado significativamente en los últimos años desde la llegada de systemd.
 

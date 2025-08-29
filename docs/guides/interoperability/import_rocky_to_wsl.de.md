@@ -1,7 +1,7 @@
 ---
 title: Rocky Linux nach WSL oder WSL2 Import
 author: Lukas Magauer
-tested_with: 8.6, 9.0
+tested_with: 8.10, 9.6, 10.0
 tags:
   - wsl
   - wsl2
@@ -13,55 +13,74 @@ tags:
 
 ## Voraussetzungen
 
-Das Windows-Subsystem für Linux muss aktiviert werden. Dies ist mit einer dieser Optionen möglich:
+Das Windows-Subsystem für Linux muss aktiviert werden. Das ist mit einer dieser Optionen möglich:
 
-- Seit Kurzem gibt eine neue [ WSL Version im Microsoft Store](https://apps.microsoft.com/store/detail/windows-subsystem-for-linux/9P9TQF7MRM4R), die vorzugsweise verwendet werden sollte.
+- [Eine neuere WSL-Version mit zusätzlichen Funktionen ist im Microsoft Store verfügbar](https://apps.microsoft.com/store/detail/windows-subsystem-for-linux/9P9TQF7MRM4R). Verwenden Sie nach Möglichkeit diese neuere Version.
 - Öffnen Sie ein administratives Terminal (entweder PowerShell oder Eingabeaufforderung) und führen Sie `wsl --install` aus ([siehe Link](https://docs.microsoft.com/en-us/windows/wsl/install))
 - Gehen Sie zu den Windows-Einstellungen und aktivieren Sie die Option `Windows-Subsystem für Linux`
 
-Diese Funktion sollte auf jeder neuen Windows 10 und 11 Version verfügbar sein.
+Diese Funktion sollte derzeit in jeder unterstützten Version von Windows 10 und 11 verfügbar sein.
+
+!!! tip "WSL-Version"
+
+    Stellen Sie sicher, dass Ihre `WSL`-Version auf dem neuesten Stand ist, da einige Funktionen erst in neueren Versionen eingeführt wurden. Wenn Sie sich nicht sicher sind, führen Sie `wsl --update` aus.
 
 ## Einzelne Schritte
 
-1. Sie benötigen das Container `rootfs`. Das ist auf mehrere Arten verfügbar:
+### Installierbare WSL-Images (vorzugsweise)
 
-    - **Vorzugsweise:** Laden Sie das ISO-Bild vom CDN herunter:
+1. Laden Sie das WSL-Image vom CDN oder einem anderen Mirror in Ihrer Nähe herunter:
+
+    - 9: [x86_64](https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-WSL-Base.latest.x86_64.wsl) oder [aarch64](https://dl.rockylinux.org/pub/rocky/9/images/aarch64/Rocky-9-WSL-Base.latest.aarch64.wsl)
+    - 10: [x86_64](https://dl.rockylinux.org/pub/rocky/10/images/x86_64/Rocky-10-WSL-Base.latest.x86_64.wsl) or [aarch64](https://dl.rockylinux.org/pub/rocky/10/images/aarch64/Rocky-10-WSL-Base.latest.aarch64.wsl)
+
+2. Es gibt mehrere Optionen zum Installieren eines `.wsl`-Images:
+
+    - Doppelklicken Sie auf das Image und es wird mit dem Standardnamen des Bildes installiert
+    - Installieren Sie das Image über die Befehlszeile:
+
+        ```sh
+        wsl --install --from-file <path-to/Rocky-10-WSL-Base.latest.x86_64.wsl> --name <machine-name>
+        ```
+
+### Herkömmliche Container-Images
+
+1. Sie benötigen den Container `rootfs`. Das ist auf mehrere Arten möglich:
+
+    - Laden Sie das Image vom CDN herunter:
         - 8: [Base x86_64](https://dl.rockylinux.org/pub/rocky/8/images/x86_64/Rocky-8-Container-Base.latest.x86_64.tar.xz), [Minimal x86_64](https://dl.rockylinux.org/pub/rocky/8/images/x86_64/Rocky-8-Container-Minimal.latest.x86_64.tar.xz), [UBI x86_64](https://dl.rockylinux.org/pub/rocky/8/images/x86_64/Rocky-8-Container-UBI.latest.x86_64.tar.xz), [Base aarch64](https://dl.rockylinux.org/pub/rocky/8/images/aarch64/Rocky-8-Container-Base.latest.aarch64.tar.xz), [Minimal aarch64](https://dl.rockylinux.org/pub/rocky/8/images/aarch64/Rocky-8-Container-Minimal.latest.aarch64.tar.xz), [UBI aarch64](https://dl.rockylinux.org/pub/rocky/8/images/aarch64/Rocky-8-Container-UBI.latest.aarch64.tar.xz)
         - 9: [Base x86_64](https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-Container-Base.latest.x86_64.tar.xz), [Minimal x86_64](https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-Container-Minimal.latest.x86_64.tar.xz), [UBI x86_64](https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-Container-UBI.latest.x86_64.tar.xz), [Base aarch64](https://dl.rockylinux.org/pub/rocky/9/images/aarch64/Rocky-9-Container-Base.latest.aarch64.tar.xz), [Minimal aarch64](https://dl.rockylinux.org/pub/rocky/9/images/aarch64/Rocky-9-Container-Minimal.latest.aarch64.tar.xz), [UBI aarch64](https://dl.rockylinux.org/pub/rocky/9/images/aarch64/Rocky-9-Container-UBI.latest.aarch64.tar.xz)
+        - 10: [Base x86_64](https://dl.rockylinux.org/pub/rocky/10/images/x86_64/Rocky-10-Container-Base.latest.x86_64.tar.xz), [Minimal x86_64](https://dl.rockylinux.org/pub/rocky/10/images/x86_64/Rocky-10-Container-Minimal.latest.x86_64.tar.xz), [UBI x86_64](https://dl.rockylinux.org/pub/rocky/10/images/x86_64/Rocky-10-Container-UBI.latest.x86_64.tar.xz), [Base aarch64](https://dl.rockylinux.org/pub/rocky/10/images/aarch64/Rocky-10-Container-Base.latest.aarch64.tar.xz), [Minimal aarch64](https://dl.rockylinux.org/pub/rocky/10/images/aarch64/Rocky-10-Container-Minimal.latest.aarch64.tar.xz), [UBI aarch64](https://dl.rockylinux.org/pub/rocky/10/images/aarch64/Rocky-10-Container-UBI.latest.aarch64.tar.xz)
     - Entpacken Sie das Image aus `Docker Hub` oder `Quay.io` ([siehe Link](https://docs.microsoft.com/en-us/windows/wsl/use-custom-distro#export-the-tar-from-a-container))
 
         ```sh
-        <podman/docker> export rockylinux:9 > rocky-9-image.tar
+        <podman/docker> export rockylinux:10 > rocky-10-image.tar
         ```
 
-2. (optional) Möglicherweise müssen Sie die .tar aus der .tar.xz Datei extrahieren, falls Sie nicht eine der neuesten WSL Versionen verwenden
-3. Erstellen Sie das Verzeichnis, in dem das WSL seine Dateien speichert (zum Beispiel irgendwo im Benutzerprofil)
-4. Schließlich importieren Sie das Image in WSL ([siehe Link](https://docs.microsoft.com/en-us/windows/wsl/use-custom-distro#import-the-tar-file-into-wsl)):
+2. (optional) Sie müssen die `.tar`-Datei aus der `.tar.xz`-Datei extrahieren, wenn Sie eine der neuesten WSL-Versionen verwenden
+3. Erstellen Sie das Verzeichnis, in dem das WSL seine Dateien speichert (normalerweise irgendwo im Benutzerprofil)
+4. Importieren Sie abschließend das Image in WSL ([Ref.](https://docs.microsoft.com/en-us/windows/wsl/use-custom-distro#import-the-tar-file-into-wsl)):
 
     - WSL:
 
         ```sh
-        wsl --import <machine-name> <path-to-vm-dir> <path-to/rocky-9-image.tar.xz>
+        wsl --import <machine-name> <path-to-vm-dir> <path-to/rocky-10-image.tar.xz> --version 1
         ```
 
     - WSL 2:
 
         ```sh
-        wsl --import <machine-name> <path-to-vm-dir> <path-to/rocky-9-image.tar.xz> --version 2
+        wsl --import <machine-name> <path-to-vm-dir> <path-to/rocky-10-image.tar.xz> --version 2
         ```
 
 !!! tip "WSL vs. WSL 2"
 
-    Eigentlich sollte (!) WSL 2 schneller sein als WSL, aber das kann sich von Anwendungsfall zu Anwendungsfall unterscheiden.
+    Generell sollte WSL 2 schneller sein als WSL, dies kann jedoch je nach Anwendungsfall variieren.
 
 !!! tip "Windows Terminal"
 
-    Wenn Sie `Windows Terminal` installiert haben, wird der neue WSL Distributionsname als Option im Pull-down-Menü angezeigt, das ist ziemlich praktisch, um Linux in der WSL zu starten. Sie können alles dann mit Farben, Schriftarten etc. verschlimmbessern.
+    Wenn Sie `Windows Terminal` installiert haben, wird der neue WSL-Distributionsname als Option im Pull-down-Menü angezeigt, was für zukünftige Starts sehr praktisch ist. Sie können alles dann mit Farben, Schriftarten etc. verschlimmbessern.
 
 !!! tip "systemd"
 
-    Microsoft hat sich auch entschieden, `systemd` in die WSL zu integrieren. Diese Option existiert bereits in der neuesten WSL Version aus dem Microsoft Store. Sie sollten nur die Zeile `systemd=true` im ini-Abschnitt `boot` der Datei `/etc/wsl.conf` hinzufügen! ([ref.](https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/#set-the-systemd-flag-set-in-your-wsl-distro-settings))
-
-!!! tip "Microsoft Store"
-
-    Derzeit gibt es kein Bild im Microsoft Store, wenn Sie helfen wollen, es dorthin zu bringen, besuchen Sie uns im Mattermost SIG/Containers Channel! Es gab vor langer Zeit [einige Anstrengungen](https://github.com/rocky-linux/WSL-DistroLauncher), die wieder aufgegriffen werden können.
+    Das WSL-Image ist standardmäßig systemd-fähig. Wenn Sie Container-Images verwenden oder eigene erstellen möchten, fügen Sie einfach `systemd=true` zum Abschnitt `boot` in der Datei `/etc/wsl.conf` hinzu. ([ref.](https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/#set-the-systemd-flag-set-in-your-wsl-distro-settings))
