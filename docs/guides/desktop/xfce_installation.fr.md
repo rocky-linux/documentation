@@ -24,9 +24,9 @@ C'est aussi l'un des environnements de bureau les plus faciles à combiner avec 
     
     ## 9: Obtenir, vérifier et écrire l'image live XFCE
     
-    Avant l'installation, la première étape consiste à télécharger l'image live et à l'écrire sur un DVD ou une clé USB. Comme indiqué précédemment, l'image sera amorçable, tout comme avec tout autre support d'installation pour Linux. Vous pouvez trouver l'image XFCE la plus récente dans la section téléchargement pour Rocky Linux 9 [images live](https://dl.rockylinux.org/pub/rocky/9.5/live/x86_64/). Notez que ce lien particulier suppose que x86_64 est l'architecture de votre processeur. 
+    Avant l'installation, la première étape consiste à télécharger l'image live et à l'écrire sur un DVD ou une clé USB. Comme indiqué précédemment, l'image sera amorçable, tout comme avec tout autre support d'installation pour Linux. Vous pouvez trouver l'image XFCE la plus récente dans la section téléchargement pour Rocky Linux 9 [images live](https://dl.rockylinux.org/pub/rocky/9.6/live/x86_64/). Notez que ce lien particulier suppose que x86_64 est l'architecture de votre processeur. 
     
-    Au Moment de l'écriture de cet article, vous pouvez utiliser l'architecture x86_64 ou aarch64 pour cette image live. Téléchargez à la fois l'image live et les fichiers de vérification correspondants. 
+    Au Moment de l'écriture de cet article, vous pouvez utiliser l'architecture x86_64 ou aarch64 pour cette image live. Téléchargez l'image live et les fichiers de vérification correspondants. 
     
     Vérifiez l'image ISO avec le fichier CHECKSUM en utilisant la commande suivante
     (n'oubliez pas qu'il sagit d'un exemple ! Assurez-vous que le nom de votre image et les fichiers CHECKSUM correspondent) :
@@ -43,7 +43,7 @@ C'est aussi l'un des environnements de bureau les plus faciles à combiner avec 
     ```
 
 
-    Si la somme de contrôle du fichier retourne OK, vous êtes maintenant prêt à enregistrer votre image ISO sur votre support de stockage. Cette procédure est différente selon le système que vous utilisez, le support d'enregistrement et les outils. Nous supposons ici que vous savez enregistrer l'image sur un support adéquat.
+    Si la somme de contrôle du fichier retourne OK, vous êtes prêt à sauvegarder l'image ISO sur votre support de stockage. Cette procédure est différente selon le système que vous utilisez, le support d'enregistrement et les outils. Nous supposons ici que vous savez enregistrer l'image sur un support adéquat.
     
     ## 9: Démarrage
     
@@ -70,12 +70,12 @@ C'est aussi l'un des environnements de bureau les plus faciles à combiner avec 
     
     ![xfce_install2](images/xfce_install_2.png)
 
-    1. **Clavier** - Jetez un coup d'œil à cette option et assurez-vous qu'elle correspond bien à la disposition du clavier que vous utilisez.
+    1. **Keyboard** - Jetez un coup d'œil à cette option et assurez-vous qu'elle correspond bien à la disposition du clavier que vous utilisez.
     2. **Heure & Date** - Assurez-vous que cela correspond à votre fuseau horaire.
-    3. **Destination d'installation** - Vous devrez cliquer sur cette option, même si c'est juste pour accepter ce qui est déjà indiqué.
-    4. **Réseau & Nom d'Hôte** - Vérifiez que vous avez ce dont vous avez besoin ici. Tant que le réseau est activé, vous pouvez toujours modifier plus tard si vous le souhaitez.
-    5. **Mot de passe root** - Allez-y et choisissez un mot de passe root. N'oubliez pas de sauvegarder ce mot de passe dans un endroit sûr (gestionnaire de mots de passe par ex.).
-    6. **Création d'utilisateur** - Créez au moins un utilisateur. Si vous voulez qu'il dispose de droits d'administration, n'oubliez pas de définir cette option lors de la création de l'utilisateur.
+    3. **Installation Destination** - Vous devrez cliquer sur cette option, même si c'est juste pour accepter ce qui est déjà indiqué.
+    4. **Network & Host Name** - Vérifiez que vous avez ce dont vous avez besoin ici. À condition que le réseau soit activé ; vous pouvez toujours modifier plus tard si vous le souhaitez.
+    5. **Root Password** - Choisissez un mot de passe `root`. N'oubliez pas de sauvegarder ce mot de passe dans un endroit sûr (gestionnaire de mots de passe par ex.).
+    6. **User Creation** - Créez au moins un utilisateur. Si vous voulez qu'il dispose de droits d'administration, définissez cette option lors de la création de l'utilisateur.
     7. **Begin Installation** - Après vérification, cochez cette option.
 
     Une fois que vous avez effectué l'étape 7, le processus d'installation devrait commencer à installer des paquets, comme indiqué dans la capture d'écran ci-dessous :
@@ -86,7 +86,7 @@ C'est aussi l'un des environnements de bureau les plus faciles à combiner avec 
 
     ![xfce_install_final](images/xfce_install_final.png)
 
-    Allez-y et cliquez sur **Terminer l'installation**.
+    Cliquez sur **Finish Installation**.
 
     Lorsque vous avez fait cela, il vous ramène à l'écran de l'image live. Redémarrez votre machine et retirez le support de démarrage que vous avez utilisé pour l'installation XFCE.
 
@@ -167,7 +167,7 @@ C'est aussi l'un des environnements de bureau les plus faciles à combiner avec 
     
         Dans cette section, vous devrez soit être l'utilisateur `root`, soit être en mesure d'exécuter `sudo` pour élever vos privilèges.
     
-    Lors de l'installation de Rocky Linux, nous avons utilisé les paquets suivants :
+    Lors de l'installation de Rocky Linux, nous avons utilisé les ensembles de paquets suivants :
 
     * Minimal
     * Standard
@@ -194,7 +194,7 @@ C'est aussi l'un des environnements de bureau les plus faciles à combiner avec 
 
     Répondez 'Y' pour l'installer.
 
-    Vous avez également besoin des Powertools et des dépôts lightdm. Activez-les ainsi :
+    Vous avez également besoin des Powertools et des dépôts lightdm. Continuez en les activant :
 
     ```
     dnf config-manager --set-enabled powertools
