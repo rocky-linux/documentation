@@ -165,9 +165,9 @@ IP addresses are classified based on the version field in the packet as follows:
 
     Due to space limitations, we will not provide a detailed explanation of the content of IPv6 packets here.
 
-Description of Writing Format for 128 bit IPv6:
+Description of writing format for 128 bit IPv6:
 
-* Preferred Writing Format - **X:X:X:X:X:X:X:X**. In this writing format, 128 bit IPv6 addresses are divided into 8 groups, each represented by 4 hexadecimal values (0-9, A-F), separated by colons (`:`) between groups. Each "X" represents a set of hexadecimal values. For example **2001:0db8:130F:0000:0000:09C0:876A:130B**.
+* Preferred writing format - **X:X:X:X:X:X:X:X**. In this writing format, 128 bit IPv6 addresses are divided into 8 groups, each represented by 4 hexadecimal values (0-9, A-F), separated by colons (`:`) between groups. Each "X" represents a set of hexadecimal values. For example **2001:0db8:130F:0000:0000:09C0:876A:130B**.
 
     * Omitting the leading 0 - For the convenience of writing, the leading "0" in each group can be omitted, so the above address can be abbreviated as **2001:db8:130F:0:0:9C0:876A:130B**.
     * Use double colon - If the address contains two or more consecutive groups that are both 0, a double colon can be used instead. So the above address can be further abbreviated as **2001:db8:130F::9C0:876A:130B**. Attention! A double colons can only appear once in an IPv6 address.
