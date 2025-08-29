@@ -12,7 +12,7 @@ He utilizado este script muchas veces. No importa la frecuencia con la que utili
 
 Renombre este script como quiera, por ejemplo: `keygen.sh` y hágalo sea ejecutable (`chmod +x scriptname`) y colóquelo en un directorio que esté incluido dentro de su variable de entorno $PATH, por ejemplo: /usr/local/sbin
 
-```
+```bash
 #!/bin/bash
 if [ $1 ]
 then
@@ -30,7 +30,7 @@ else
 fi
 ```
 
-!!! Note
+!!! note "Nota"
 
     Tendrá que introducir tres veces seguidas la contraseña para la clave.
 
