@@ -1,5 +1,5 @@
 - - -
-title: DNF — swap-Befehl author: wale soyinka contributors: date: 2023-01-24 tags:
+title: dnf - swap command author: wale soyinka contributors: date: 2023-01-24 tags:
   - cloud images
   - container
   - dnf
