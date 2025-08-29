@@ -17,7 +17,7 @@ Une alternative à BIND, [Knot DNS](https://www.knot-dns.cz/) est un serveur DNS
 
 ## Introduction
 
-Les serveurs DNS externes ou publics sont utilisés sur Internet pour associer les noms d'hôtes aux adresses IP et, dans le cas des enregistrements PTR (appelés "pointer" ou "reverse") pour faire correspondre l'adresse IP au nom de l'hôte. Il s'agit d'une composante essentielle d'internet. Il fait fonctionner votre serveur de messagerie, serveur web, serveur FTP ou beaucoup d'autres serveurs et services, où que vous soyez.
+Les serveurs DNS externes ou publics sont utilisés sur Internet pour associer les noms d'hôtes aux adresses IP et, dans le cas des enregistrements PTR (appelés `pointer` ou `reverse`) pour faire correspondre l'adresse IP au nom de l'hôte. Il s'agit d'une composante essentielle d'internet. Il fait fonctionner votre serveur de messagerie, serveur web, serveur FTP ou beaucoup d'autres serveurs et services, où que vous soyez.
 
 ## Installation et Activation de Knot
 
