@@ -119,27 +119,80 @@ There are also specific addresses within a network, which must be identified. Th
 
     These two addresses that play special roles **cannot** be assigned to the terminal machine for use.
 
-### MAC address / IP address
+### MAC address and IP address
 
 A **MAC address** is a physical identifier written in the factory onto the device. This is sometimes referred to as the hardware address. It consists of 6 bytes often given in hexadecimal form (for example 5E:FF:56:A2:AF:15).
-It is composed of: 3 bytes of the manufacturer identifier and 3 bytes of the serial number.
+
+These 6 bytes respectively represent:
+
+* The first three bytes represent manufacturer identifier . This identifier is called OUI (Organizationally Unique Identifier).
+* The last three bytes represent the serial number allocated by the manufacturer.
 
 !!! Warning
 
-    This last statement is nowadays a little less true with virtualization. There are also software solutions for changing the MAC address.
+    The MAC address is hardcoded when the hardware leaves the factory. There are two main methods to modify it:
+    
+    * Firmware-level modification (permanent): Requires advanced tools that can directly rewrite the MAC address in the network card's ROM. Such tools are typically only available to hardware manufacturers.
+    * Software-level spoofing (temporary): Modifies how the MAC address appears to the operating system. These changes are usually reset after a system reboot. The MAC address of the virtual network card in the virtual host is also implemented through spoofing.
 
-An Internet Protocol (**IP**) address is an identification number permanently or temporarily assigned to each device connected to a computer network using the Internet Protocol.
-One part defines the network address (NetID or SubnetID as the case may be), the other part defines the address of the host in the network (HostID). The relative size of each part varies according to the network (sub)mask.
+An Internet Protocol (**IP**) address is an identification number permanently or temporarily assigned to each device connected to a computer network using the Internet Protocol. The IP address and subnet mask must appear in pairs, which is determined by the basic principles of network communication. Through the subnet mask, we can know the current IP address:
 
-An IPv4 address defines an address on 4 bytes. The number of available addresses being close to saturation a new standard was created, the IPv6 defined on 16 bytes.
+* network bits and host bits
+* NetID or SubnetID
+* HostID
+* network address
+* broadcast address
 
-IPv6 is often represented by 8 groups of 2 bytes separated by a colon. Insignificant zeros can be omitted, one or more groups of 4 consecutive zeros can be replaced by a double colon.
+IP addresses are classified based on the version field in the packet as follows:
 
-Subnet masks have from 0 to 128 bits. (for example 21ac:0000:0000:0611:21e0:00ba:321b:54da/64 or 21ac::611:21e0:ba:321b:54da/64)
+* **IPv4‌** - (4 bit, 0100). The available quantity of IPv4 is 2<sup>32</sup> (known from the source and destination address fields in IPv4 packets). Specifically divided into:
 
-In a web address or URL (Uniform Resource Locator), an ip address can be followed by a colon and the port address (which indicates the application to which the data is destined). Also to avoid confusion in a URL, the IPv6 address is written in square brackets [ ], colon, port address.
+    * Class A address. Its range is from **0.0.0.0** to **127.255.255.255**
+    * Class B address. Its range is from **128.0.0.0** to **191.255.255.255**
+    * Class C address. Its range is from **192.0.0.0** to **223.255.255.255**
+    * Class D address. Its range is from **224.0.0.0** to **239.255.255.255**
+    * Class E address. Its range is from **240.0.0.0** to **255.255.255.255**
 
-IP and MAC addresses must be unique on a network!
+    Among them, Class A addresses, Class B addresses, and Class C addresses all have their own private address ranges. 0.0.0.0 is a reserved address and is not assigned to the host. Class D addresses are used for multicast communication and are not assigned to hosts. Class E addresses are reserved and not used for regular networks.
+
+    Due to space limitations, we will not provide a detailed explanation of the content of IPv4 packets here.
+
+* **IPv6** - (4 bit, 0110). The available quantity of IPv6 is 2<sup>128</sup> (known from the source and destination address fields in IPv6 packets). Specifically divided into:
+
+    * Unicast address. Include Link-local unicast address (LLA), Unique local address (ULA), Global unicast address (GUA), Loopback address, Unspecified address
+    * Anycast address
+    * Multicast address
+
+    Due to space limitations, we will not provide a detailed explanation of the content of IPv6 packets here.
+
+Description of Writing Format for 128 bit IPv6:
+
+* Preferred Writing Format - **X:X:X:X:X:X:X:X**. In this writing format, 128 bit IPv6 addresses are divided into 8 groups, each represented by 4 hexadecimal values (0-9, A-F), separated by colons (`:`) between groups. Each "X" represents a set of hexadecimal values. For example **2001:0db8:130F:0000:0000:09C0:876A:130B**.
+
+    * Omitting the leading 0 - For the convenience of writing, the leading "0" in each group can be omitted, so the above address can be abbreviated as **2001:db8:130F:0:0:9C0:876A:130B**.
+    * Use double colon - If the address contains two or more consecutive groups that are both 0, a double colon can be used instead. So the above address can be further abbreviated as **2001:db8:130F::9C0:876A:130B**. Attention! A double colons can only appear once in an IPv6 address.
+
+* Compatible with writing formats - **X:X:X:X:X:X:d.d.d.d**. In a mixed network environment, this format ensures compatibility between IPv6 nodes and IPv4 nodes. For example **0:0:0:0:0:ffff:192.1.56.10** and **::ffff:192.1.56.10/96**.
+
+In a web address or URL (Uniform Resource Locator), an IP address can be followed by a colon and the port address (which indicates the application to which the data is destined). Also to avoid confusion in a URL, the IPv6 address is written in square brackets (For example `[2001:db8:130F::9C0:876A:130B]:443`).
+
+As mentioned earlier, subnet masks divide IPv4 addresses into two parts: network bits and host bits. In IPv6, subnet masks also have the same function, but the name has changed ("n" represents the number of bits occupied by the subnet mask):
+
+* Network prefix - It is equivalent to the network bits in an IPv4 address. According to the subnet mask, occupy "n" bits.
+* Interface ID - It is equivalent to the host bits in an IPv4 address. According to the subnet mask, occupy "128-n" bits.
+
+For example **2001:0db8:130F:0000:0000:09C0:876A:130B/64**：
+
+```
+    Network prefix
+|<-    64 bits   ->|
+
+                        Interface ID
+                     |<-    64 bits    ->|
+2001:0db8:130F:0000 : 0000:09C0:876A:130B
+```
+
+In the same network, IP addresses must be unique, which is a fundamental rule of network communication.
 
 ### DNS Domain
 
