@@ -1,5 +1,5 @@
 ---
-title: bind - Serveur DNS privé
+title: bind — Serveur DNS Privé
 author: Steven Spencer
 contributors: Ezequiel Bruni, k3ym0, Ganna Zhyrnova
 tested_with: 8.5, 8.6, 9.0
