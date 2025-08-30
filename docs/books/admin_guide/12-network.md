@@ -254,7 +254,7 @@ The fixed length of the Basic Header is 40 bytes and it is fixed to 8 fields:
 
 **Version**: Help routers identify protocol versions. For IPv6, the value here is 0110 (Binary 0110 is equivalent to decimal 6).
 
-**Traffic Class**: Equivalent to the TOS (Type Of Service) field in IPv4 datagrams. This field is used to define the QoS (Quality Of Service) and priority of data packets.
+**Traffic Class**: Equivalent to the TOS (Type Of Service) field in IPv4 datagrams. This field is used to define the QOS (Quality Of Service) and priority of data packets.
 
 **Flow Label**: This IPv6 new field is used to control packet flow. A non-zero value in this field means that the packet should be treated specially; i.e., the packet should not be sent through different routes to reach the destination but rather use the same path. An advantage to this is that the receiving end doesn’t have to reorder the package, thus speeding the process. This field helps avoid reordering data packets and is specifically designed for streaming media/live media.
 
@@ -286,9 +286,9 @@ Unlike the IPv4 Options field (which can be extended up to 40 bytes and requires
 
 Currently, RFC defines the following types of Extension Headers:
 
-* Hop-by-Hop Options header (Next Header Field Value is 0) - Must be handled by all routers in the path
-* Destination Options header (Next Header Field Value is 60) - Only processed by the destination node
-* Routing header (Next Header Field Value is 43) - This Extension Header is similar to the Loose Source and Record Route options in IPv4
+* Hop-by-Hop Options header (Next Header Field Value is 0) - Must be handled by all routers in the path.
+* Destination Options header (Next Header Field Value is 60) - Only processed by the destination node.
+* Routing header (Next Header Field Value is 43) - This Extension Header is similar to the Loose Source and Record Route options in IPv4.
 * Fragment header (Next Header Field Value is 44) - Like IPv4 packets, the length of IPv6 packets to be forwarded cannot exceed the maximum transmission unit (MTU). When the packet length exceeds the MTU, the packet needs to be fragmented. In IPv6, the Fragment header is used by an IPv6 source node to send a packet larger than the MTU.
 * Authentication header (Next Header Field Value is 51) - IPSec uses this header to provide data origin authentication, data integrity check, and packet anti-replay functions. It also protects some fields in the IPv6 basic header.
 * Encapsulating Security Payload header (Next Header Field Value is 50) - This header provides the same functions as the Authentication header plus IPv6 packet encryption.
