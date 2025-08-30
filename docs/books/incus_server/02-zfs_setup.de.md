@@ -61,4 +61,4 @@ zpool create storage /dev/sdb
 
 Dies bedeutet, dass ein Pool mit dem Namen `storage` (ZFS) auf dem Gerät _/dev/sdb_ erstellt werden soll.
 
-Sobald der Pool erstellt wurde, ist es eine gute Idee, den Server an dieser Stelle neu zu starten.
+Starten Sie den Server nach dem Erstellen des Pools erneut.

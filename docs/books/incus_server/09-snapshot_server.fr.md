@@ -54,7 +54,7 @@ Ensuite, en tant qu’utilisateur non privilégié (incusadmin), vous devez éta
 incus remote add incus-snapshot
 ```
 
-Le certificat à accepter s'affiche. Acceptez-le et le système vous demandera votre mot de passe. Il s’agit du « mot de passe de confiance » que vous avez défini lors de l’étape d’initialisation d’Incus. N'oubliez pas de garder une trace sécurisée de tous ces mots de passe. Lorsque vous entrez le mot de passe, vous verrez ceci :
+Le certificat à accepter s'affiche. Confirmez-le et le système vous demandera votre mot de passe. Il s’agit du « mot de passe de confiance » que vous avez défini lors de l’étape d’initialisation d’Incus. N'oubliez pas de garder une trace sécurisée de tous ces mots de passe. Lorsque vous entrez le mot de passe, vous verrez ceci :
 
 ```bash
 Client certificate stored at server:  incus-snapshot
@@ -62,7 +62,7 @@ Client certificate stored at server:  incus-snapshot
 
 Il est recommandé de mettre en place aussi l'inverse. Par exemple, la relation de confiance peut également être définie sur le serveur `incus-snapshot`. Si nécessaire, le serveur `incus-snapshot` peut renvoyer des snapshots au serveur `incus-primary`. Répétez les étapes et remplacez `incus-primary` par `incus-snapshot`.
 
-### Migrer votre premier instantané
+### Migration du `snapshot`
 
 Avant de migrer votre premier snapshot, vous devez créer tous les profils sur le serveur `incus-snapshot` que vous avez créés sur le serveur
 `incus-primary`. Dans ce cas, il s'agit du profil `macvlan`.
@@ -73,7 +73,7 @@ Vous devrez créer ceci pour le serveur `incus-snapshot`. Revenez au [Chapitre 6
 incus profile copy macvlan incus-snapshot
 ```
 
-Une fois toutes les relations et tous les profils configurés, l’étape suivante consiste à envoyer un snapshot d’`incus-primary` à `incus-snapshot`. Si vous avez suivi exactement, vous avez probablement supprimé tous vos snapshots. Créer un autre instantané :
+Une fois toutes les relations et tous les profils configurés, l’étape suivante consiste à envoyer un snapshot d’`incus-primary` à `incus-snapshot`. Si vous avez suivi exactement, vous avez probablement supprimé tous vos snapshots. Créer un autre `snapshot` :
 
 ```bash
 incus snapshot rockylinux-test-9 rockylinux-test-9-snap1
@@ -137,7 +137,7 @@ Faites cela pour chaque snapshot sur le serveur `incus-snapshot`. The "0" in the
 
 ## Automatisation du processus de copie des snapshots
 
-C'est excellent de pouvoir créer des instantanés lorsque cela est nécessaire, et parfois vous avez justement besoin de créer un snapshot manuellement. Vous souhaiterez peut-être même le copier manuellement vers le serveur `incus-snapshot`. Mais pour toutes les autres fois, en particulier pour de nombreux conteneurs exécutés sur votre serveur incus-primary, la **dernière** chose que vous voulez faire est de passer un après-midi à supprimer des instantanés sur le serveur d'instantanés, à créer de nouveaux instantanés et à les envoyer au serveur d'instantanés. Pour l'essentiel de vos opérations, vous souhaiterez automatiser le processus.
+C'est excellent de pouvoir créer des instantanés lorsque cela est nécessaire, et parfois vous avez justement besoin de créer un snapshot manuellement. Vous souhaiterez peut-être même le copier manuellement vers le serveur `incus-snapshot`. Mais pour toutes les autres fois, en particulier pour de nombreux conteneurs exécutés sur votre serveur incus-primary, la **dernière** chose que vous voulez faire est de passer un après-midi à supprimer des instantanés sur le serveur d'instantanés, à créer de nouveaux instantanés et à les envoyer au serveur d'instantanés. Pour l'essentiel de vos opérations, vous aurez besoin d'automatiser le processus.
 
 Vous devrez planifier un processus pour automatiser la création d'instantanés sur `incus-primary`. Vous ferez cela pour chaque conteneur sur le serveur `incus-primary`. Une fois en place, cette tâche s’occupera de cela à l'avenir. Pour ce faire, la syntaxe suivante est utilisée. Notez les similitudes avec une entrée `crontab` pour l'horodatage :
 

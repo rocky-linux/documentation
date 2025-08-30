@@ -5,7 +5,7 @@ contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
 tags:
   - lxd
-  - Incus
+  - incus
   - entreprise
 ---
 

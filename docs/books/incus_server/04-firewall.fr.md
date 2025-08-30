@@ -71,14 +71,15 @@ bridge (active)
   rich rules:
 ```
 
-Notez que vous devez également autoriser votre interface locale. Là encore, les zones incluses ne sont pas nommées de manière appropriée. Créez une zone et utilisez la plage d'adresses IP source pour l'interface locale afin de vous assurer que vous y avez accès :
+Notez que vous devez également autoriser l'accès
+à votre interface locale. Là encore, les zones incluses ne sont pas nommées de manière appropriée. Créez une zone et utilisez la plage d'adresses IP source pour l'interface locale afin de vous assurer que vous y avez accès :
 
 ```bash
 firewall-cmd --new-zone=local --permanent
 firewall-cmd --reload
 ```
 
-Ajoutez les IP source pour l'interface locale, et changez la cible en « ACCEPT » :
+Ajoutez les adresses IP source pour l'interface locale, et changez la cible en `ACCEPT` :
 
 ```bash
 firewall-cmd --zone=local --add-source=127.0.0.1/8 --permanent
@@ -105,7 +106,7 @@ local (active)
   rich rules:
 ```
 
-Vous souhaitez autoriser SSH à partir de notre réseau de confiance. Pour ce faire, autorisez les adresses IP sources à utiliser la zone `trusted` intégrée. Par défaut, la cible de cette zone est `ACCEPT`.
+Vous pouvez autoriser SSH à partir de notre réseau de confiance. Pour ce faire, autorisez les adresses IP sources à utiliser la zone `trusted` intégrée. Par défaut, la cible de cette zone est `ACCEPT`.
 
 ```bash
 firewall-cmd --zone=trusted --add-source=192.168.1.0/24
@@ -143,7 +144,7 @@ trusted (active)
   rich rules:
 ```
 
-La zone `public` est activée par défaut et SSH est autorisé. Pour des raisons de sécurité, vous ne souhaitez pas que SSH soit autorisé pour la zone `public`. Assurez-vous que vos zones sont correctes et que l'accès au serveur se fait par l'une des IP du réseau local (dans le cas de notre exemple). Vous risquez de vous bloquer sur le serveur si vous ne vérifiez pas cela avant de continuer. Lorsque vous êtes sûr d'avoir accès à l'interface correcte, supprimez SSH de la zone « public » :
+La zone `public` est activée par défaut et SSH est autorisé. Pour des raisons de sécurité, vous ne souhaitez pas que SSH soit autorisé pour la zone `public`. Assurez-vous que vos zones sont correctes et que l'accès au serveur se fait par l'une des adresses IP du réseau local (dans le cas de cet exemple). Vous risquez de vous bloquer sur le serveur si vous ne vérifiez pas cela avant de continuer. Lorsque vous êtes sûr d'avoir accès à l'interface correcte, supprimez SSH de la zone « public » :
 
 ```bash
 firewall-cmd --zone=public --remove-service=ssh
