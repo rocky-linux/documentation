@@ -192,7 +192,7 @@ For example **2001:0db8:130F:0000:0000:09C0:876A:130B/64**：
 2001:0db8:130F:0000 : 0000:09C0:876A:130B
 ```
 
-In the same network, IP addresses must be unique, which is a fundamental rule of network communication.
+In the same network, IP addresses must be unique, which is a fundamental rule of network communication. In the same LAN (Local Area Network), the MAC address must be unique.
 
 ### DNS Domain
 
