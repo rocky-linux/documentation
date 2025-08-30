@@ -305,7 +305,7 @@ RFC specifies that when multiple extension headers are used in the same datagram
 8. Destination Options header
 9. Upper-layer protocol header
 
-Except for the "Destination Option Extension Header' which may appear once or twice (once before the Routing Extension header and once before the Upper-layer protocol header), all other extension headers can only appear once.
+Except for the Destination Option Header which may appear once or twice (once before the Routing Extension header and once before the Upper-layer protocol header), all other extension headers can only appear once.
 
 ### DNS Domain
 
