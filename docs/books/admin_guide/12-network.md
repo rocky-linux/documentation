@@ -204,7 +204,7 @@ IPv4 packets contain both header and data parts:
 The actual length of IPv4 header = The value of the IHL field * 4
 ```
 
-**Tyoe of Service**: This field is used to define the QoS (Quality Of Service) and priority of data packets. This field is now mainly used for DSCP (Differentiated Services Code Point) and ECN (Explicit Congestion Notification).
+**Type of Service**: This field is used to define the QoS (Quality Of Service) and priority of data packets. This field is now mainly used for DSCP (Differentiated Services Code Point) and ECN (Explicit Congestion Notification).
 
 **Total Length**: Represents the total length of the entire IPv4 datagram (IPv4 packet) in bytes.
 
@@ -233,6 +233,10 @@ The actual length of IPv4 header = The value of the IHL field * 4
 **Destination address**: IPv4 address of the datagram receiver
 
 **Options**: Optional field, with a length range of 0-40 bytes. It is only used when the IHL is greater than 5. The length of this field must be an integer multiple of 4 bytes (if the length is less than 4 bytes, use the **padding** field for padding).
+
+!!! tip
+
+    Bit has two meanings. In information theory, it refers to the fundamental unit of information, representing one binary choice (0 or 1). In computer science, it is the smallest unit of data storage, where 8 bits typically equal 1 byte unless specified otherwise.
 
 ### IPv6 packet structure
 
