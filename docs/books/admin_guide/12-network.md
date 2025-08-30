@@ -145,7 +145,7 @@ An Internet Protocol (**IP**) address is an identification number permanently or
 
 IP addresses are classified based on the version field in the packet as follows:
 
-* **IPv4‌** - (4 bit, 0100). The available quantity of IPv4 is 2<sup>32</sup> (known from the source and destination address fields in IPv4 packets). Specifically divided into:
+* **IPv4‌** - (4 bits, 0100). The available quantity of IPv4 is 2<sup>32</sup> (known from the source and destination address fields in IPv4 packets). Specifically divided into:
 
     * Class A address. Its range is from **0.0.0.0** to **127.255.255.255**
     * Class B address. Its range is from **128.0.0.0** to **191.255.255.255**
@@ -155,17 +155,13 @@ IP addresses are classified based on the version field in the packet as follows:
 
     Among them, Class A addresses, Class B addresses, and Class C addresses all have their own private address ranges. 0.0.0.0 is a reserved address and is not assigned to the host. Class D addresses are used for multicast communication and are not assigned to hosts. Class E addresses are reserved and not used for regular networks.
 
-    Due to space limitations, we will not provide a detailed explanation of the content of IPv4 packets here.
-
-* **IPv6** - (4 bit, 0110). The available quantity of IPv6 is 2<sup>128</sup> (known from the source and destination address fields in IPv6 packets). Specifically divided into:
+* **IPv6** - (4 bits, 0110). The available quantity of IPv6 is 2<sup>128</sup> (known from the source and destination address fields in IPv6 packets). Specifically divided into:
 
     * Unicast address. Include Link-local unicast address (LLA), Unique local address (ULA), Global unicast address (GUA), Loopback address, Unspecified address
     * Anycast address
     * Multicast address
 
-    Due to space limitations, we will not provide a detailed explanation of the content of IPv6 packets here.
-
-Description of writing format for 128 bit IPv6:
+Description of writing format for 128 bits IPv6:
 
 * Preferred writing format - **X:X:X:X:X:X:X:X**. In this writing format, 128 bit IPv6 addresses are divided into 8 groups, each represented by 4 hexadecimal values (0-9, A-F), separated by colons (`:`) between groups. Each "X" represents a set of hexadecimal values. For example **2001:0db8:130F:0000:0000:09C0:876A:130B**.
 
@@ -193,6 +189,52 @@ For example **2001:0db8:130F:0000:0000:09C0:876A:130B/64**：
 ```
 
 In the same network, IP addresses must be unique, which is a fundamental rule of network communication. In the same LAN (Local Area Network), the MAC address must be unique.
+
+### IPv4 packet structure
+
+IPv4 packets contain both header and data parts:
+
+![](./images/IPv4-packet.png)
+
+**Version**: Help routers identify protocol versions. For IPv4, the value here is 0100 (Binary 0100 is equivalent to decimal 4)
+
+**IHL**: A field used to control the length of the header. When the "Options" field is not included, the minimum value is 5 (Namely binary 0101), at this time, the head occupies 20 bytes. The maximum value is 15 (Namely binary 1111), and the length of the header is 60 bytes.
+
+```
+The actual length of IPv4 header = The value of the IHL field * 4
+```
+
+**Tyoe of Service**: This field is used to define the QoS (Quality Of Service) and priority of data packets. This field is now mainly used for DSCP (Differentiated Services Code Point) and ECN (Explicit Congestion Notification).
+
+**Total Length**: Represents the total length of the entire IPv4 datagram (IPv4 packet) in bytes.
+
+!!! note 
+
+    IP packet and IP datagram are technically different expressions of the same concept, both referring to data units transmitted at the network layer.
+
+**Identification**: Identifies all fragments of an IPv4 datagram. All fragments from the same original datagram share the same Identification value to enable correct reassembly.
+
+**Flags**: It is used to control the behavior of IPv4 datagram fragmentation. In order from left to right:
+
+* The first bit - Not used, value 0
+* The second bit - DF (Don’t Fragment). If DF=1, it means that the IPv4 datagram must be transmitted in its entirety. If it exceeds MTU, it is discarded and an ICMP error is returned (such as "Fragmentation Needed"). If DF=0, the router splits the IPv4 datagram into multiple fragments, each of which carries the same ‌Identification‌ field value
+* The third bit - MF (More Fragment). If MF=1, it means that the current fragment is not the last one and there are other fragments; If MF=0, it means this is the last fragment
+
+**Fragment Offset**: Indicate the relative position of the fragment in the original IPv4 datagram, in units of 8 bytes. This field is mainly used for fragment reassembly.
+
+**TTL (Time To Live)**: This field is used to limit the maximum survival time or maximum hop count of datagrams in the network. The initial value is determined by the sender, and the TTL decreases by 1 every time it passes through the router. When TTL=0, the datagram is discarded.
+
+**Protocol**: Indicates the protocol type used by the data carried in this datagram. Its value range is 0-255.For example, the protocol number of TCP is 6, that of UDP is 17, that of ICMP is 1.
+
+**Header Checksum**: This field will be recalculated every time the datagram passes through the router, mainly due to the decreasing TTL field causing changes in the header. This field only verifies the header (excluding the data part). If other fields remain unchanged and only the TTL changes, the checksum will be updated to a new value (non-zero) to ensure that the header has not been tampered with or damaged during transmission.
+
+**Source address**: IPv4 address of the datagram sender
+
+**Destination address**: IPv4 address of the datagram receiver
+
+**Options**: Optional field, with a length range of 0-40 bytes. It is only used when the IHL is greater than 5. The length of this field must be an integer multiple of 4 bytes (if the length is less than 4 bytes, use the **padding** field for padding).
+
+### IPv6 packet structure
 
 ### DNS Domain
 
