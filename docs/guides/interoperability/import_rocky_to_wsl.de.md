@@ -9,11 +9,13 @@ tags:
   - Interoperabilität
 ---
 
-# Rocky Linux nach WSL importieren
+!!! note "Images für andere Versionen"
+
+    Wenn Sie nach WSL-Anweisungen für eine andere Version von Rocky Linux suchen, wählen Sie die gewünschte Version aus dem oberen Menü aus und lesen Sie dann die WSL-Anweisungen unter „Interoperabilität“.
 
 ## Voraussetzungen
 
-Das Windows-Subsystem für Linux muss aktiviert werden. Das ist mit einer dieser Optionen möglich:
+Sie müssen die Funktion `Windows-Subsystem für Linux` aktivieren. Das ist mit einer dieser Optionen möglich:
 
 - [Eine neuere WSL-Version mit zusätzlichen Funktionen ist im Microsoft Store verfügbar](https://apps.microsoft.com/store/detail/windows-subsystem-for-linux/9P9TQF7MRM4R). Verwenden Sie nach Möglichkeit diese neuere Version.
 - Öffnen Sie ein administratives Terminal (entweder PowerShell oder Eingabeaufforderung) und führen Sie `wsl --install` aus ([siehe Link](https://docs.microsoft.com/en-us/windows/wsl/install))
@@ -31,8 +33,7 @@ Diese Funktion sollte derzeit in jeder unterstützten Version von Windows 10 und
 
 1. Laden Sie das WSL-Image vom CDN oder einem anderen Mirror in Ihrer Nähe herunter:
 
-    - 9: [x86_64](https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-WSL-Base.latest.x86_64.wsl) oder [aarch64](https://dl.rockylinux.org/pub/rocky/9/images/aarch64/Rocky-9-WSL-Base.latest.aarch64.wsl)
-    - 10: [x86_64](https://dl.rockylinux.org/pub/rocky/10/images/x86_64/Rocky-10-WSL-Base.latest.x86_64.wsl) or [aarch64](https://dl.rockylinux.org/pub/rocky/10/images/aarch64/Rocky-10-WSL-Base.latest.aarch64.wsl)
+    - 10: [x86_64](https://dl.rockylinux.org/pub/rocky/10/images/x86_64/Rocky-10-WSL-Base.latest.x86_64.wsl) oder [aarch64](https://dl.rockylinux.org/pub/rocky/10/images/aarch64/Rocky-10-WSL-Base.latest.aarch64.wsl)
 
 2. Es gibt mehrere Optionen zum Installieren eines `.wsl`-Images:
 
@@ -48,8 +49,6 @@ Diese Funktion sollte derzeit in jeder unterstützten Version von Windows 10 und
 1. Sie benötigen den Container `rootfs`. Das ist auf mehrere Arten möglich:
 
     - Laden Sie das Image vom CDN herunter:
-        - 8: [Base x86_64](https://dl.rockylinux.org/pub/rocky/8/images/x86_64/Rocky-8-Container-Base.latest.x86_64.tar.xz), [Minimal x86_64](https://dl.rockylinux.org/pub/rocky/8/images/x86_64/Rocky-8-Container-Minimal.latest.x86_64.tar.xz), [UBI x86_64](https://dl.rockylinux.org/pub/rocky/8/images/x86_64/Rocky-8-Container-UBI.latest.x86_64.tar.xz), [Base aarch64](https://dl.rockylinux.org/pub/rocky/8/images/aarch64/Rocky-8-Container-Base.latest.aarch64.tar.xz), [Minimal aarch64](https://dl.rockylinux.org/pub/rocky/8/images/aarch64/Rocky-8-Container-Minimal.latest.aarch64.tar.xz), [UBI aarch64](https://dl.rockylinux.org/pub/rocky/8/images/aarch64/Rocky-8-Container-UBI.latest.aarch64.tar.xz)
-        - 9: [Base x86_64](https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-Container-Base.latest.x86_64.tar.xz), [Minimal x86_64](https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-Container-Minimal.latest.x86_64.tar.xz), [UBI x86_64](https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-Container-UBI.latest.x86_64.tar.xz), [Base aarch64](https://dl.rockylinux.org/pub/rocky/9/images/aarch64/Rocky-9-Container-Base.latest.aarch64.tar.xz), [Minimal aarch64](https://dl.rockylinux.org/pub/rocky/9/images/aarch64/Rocky-9-Container-Minimal.latest.aarch64.tar.xz), [UBI aarch64](https://dl.rockylinux.org/pub/rocky/9/images/aarch64/Rocky-9-Container-UBI.latest.aarch64.tar.xz)
         - 10: [Base x86_64](https://dl.rockylinux.org/pub/rocky/10/images/x86_64/Rocky-10-Container-Base.latest.x86_64.tar.xz), [Minimal x86_64](https://dl.rockylinux.org/pub/rocky/10/images/x86_64/Rocky-10-Container-Minimal.latest.x86_64.tar.xz), [UBI x86_64](https://dl.rockylinux.org/pub/rocky/10/images/x86_64/Rocky-10-Container-UBI.latest.x86_64.tar.xz), [Base aarch64](https://dl.rockylinux.org/pub/rocky/10/images/aarch64/Rocky-10-Container-Base.latest.aarch64.tar.xz), [Minimal aarch64](https://dl.rockylinux.org/pub/rocky/10/images/aarch64/Rocky-10-Container-Minimal.latest.aarch64.tar.xz), [UBI aarch64](https://dl.rockylinux.org/pub/rocky/10/images/aarch64/Rocky-10-Container-UBI.latest.aarch64.tar.xz)
     - Entpacken Sie das Image aus `Docker Hub` oder `Quay.io` ([siehe Link](https://docs.microsoft.com/en-us/windows/wsl/use-custom-distro#export-the-tar-from-a-container))
 
@@ -83,4 +82,4 @@ Diese Funktion sollte derzeit in jeder unterstützten Version von Windows 10 und
 
 !!! tip "systemd"
 
-    Das WSL-Image ist standardmäßig systemd-fähig. Wenn Sie Container-Images verwenden oder eigene erstellen möchten, fügen Sie einfach `systemd=true` zum Abschnitt `boot` in der Datei `/etc/wsl.conf` hinzu. ([ref.](https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/#set-the-systemd-flag-set-in-your-wsl-distro-settings))
+    Das WSL-Image ist standardmäßig `systemd`-fähig. Wenn Sie Container-Images verwenden oder eigene erstellen möchten, fügen Sie einfach `systemd=true` zum Abschnitt `boot` in der Datei `/etc/wsl.conf` hinzu. ([ref.](https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/#set-the-systemd-flag-set-in-your-wsl-distro-settings))
