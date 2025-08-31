@@ -26,7 +26,7 @@ This feature should be available on every supported version of Windows 10 and 11
 
 !!! tip "WSL version"
 
-   Ensure that your WSL version is up to date, as some features were only introduced in later versions. If you are unsure, run `wsl --update`.
+    Ensure that your WSL version is up to date, as some features were only introduced in later versions. If you are unsure, run `wsl --update`.
 
 ## Steps
 
