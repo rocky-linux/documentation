@@ -34,11 +34,16 @@ Les sections principales du site de documentation sont :
 Dans l'équipe Rocky Linux, nous voulons rendre le site de documentation accessible à autant de monde que possible —  *la traduction dans différentes langues est importante pour cela*. Si vous cliquez sur le sélecteur de langue (symbole `文A`, wén-A) dans le menu supérieur, vous verrez les langues dans lesquelles le site est disponible. Il y a deux parties à cela :
 
 1. Traduction de l'interface du site web : si vous choisissez une autre langue, par exemple le Français, vous noterez que l'interface, par exemple les boutons de navigation `Suivant` et `Précédent` seront traduits.
-1. Contenu : [la traduction du contenu est une tâche](https://crowdin.com/project/rockydocs/activity-stream) (importante) [en cours](https://crowdin.com/project/rockydocs). Tout le contenu n'est pas encore traduit dans toutes les langues. Toutes les pages qui ont été traduites (dans la langue sélectionnée) seront vues dans la langue choisie, celles qui ne le sont pas encore se retrouveront dans la langue anglaise par défaut. Si vous voulez contribuer à la communauté par le biais des traductions, l'équipe de documentation sera ravie de faire votre connaissance, voir ci-dessous pour plus de détails.
+1. Contenu : [la traduction du contenu est une tâche](https://crowdin.com/project/rockydocs/activity-stream) (https://crowdin.com/project/rockydocs/activity-stream) [en cours](https://crowdin.com/project/rockydocs).
 
-!!! note "Remarque"
-
-    Toutes les fonctionnalités peuvent ne pas être disponibles dans toutes les langues, c'est une limitation des modules MkDocs sous-jacents.
+. Tout le contenu n'est pas encore traduit dans toutes les langues. Toutes les pages qui ont été traduites (dans la langue sélectionnée) seront vues dans la langue choisie, celles qui ne le sont pas encore se retrouveront dans la langue anglaise par défaut. Si vous voulez contribuer à la communauté par le biais des traductions, l'équipe de documentation sera ravie de faire votre connaissance, voir ci-dessous pour plus de détails.</li> </ol> 
+   
+   !!! note "Remarque"
+   
+       Toutes les fonctionnalités peuvent ne pas être disponibles dans toutes les langues, c'est une limitation des modules MkDocs sous-jacents.
+       
+   
+   
 
 ### Utiliser la recherche
 
@@ -46,11 +51,15 @@ Si vous voulez rapidement trouver des informations/documents spécifiques, le si
 
 Pour ouvrir une page parmi les résultats de recherche, cliquez simplement (ou appuyez sur mobile) sur la page désirée dans la liste affichée.
 
+
+
 ## Première fois
 
 Si c'est la première fois que vous visitez le site de documentation de Rocky Linux alors probablement vous êtes nouveau sur Rocky Linux et vous avez envie de l'installer ! Pas de problème, passez à la page [Installation de Rocky Linux](guides/installation.md) pour obtenir des instructions détaillées.
 
 Si vous êtes coincé et que vous avez une question, la communauté Rocky Linux est là pour vous aider. Visitez le [forum de la communauté](https://forums.rockylinux.org) et vous pourrez rechercher des solutions et poster vos propres questions à la communauté.
+
+
 
 ## Votre Contribution
 
