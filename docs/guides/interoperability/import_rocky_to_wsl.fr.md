@@ -1,5 +1,5 @@
 ---
-title: Importer Rocky Linux vers WSL ou WSL2
+title: Importer Rocky Linux 10 vers WSL ou bien WSL2
 author: Lukas Magauer
 tested_with: 8.10, 9.6, 10.0
 tags:
