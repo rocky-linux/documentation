@@ -1,5 +1,5 @@
 - - -
-title: dnf - swap command author: wale soyinka contributors: date: 2023-01-24 tags:
+--- title: dnf - swap command author: wale soyinka contributors: https://crowdin.com/project/rockydocs/activity-stream date: 2025-08-30 13h12 tags: dnf ---
   - cloud images
   - conteneurs
   - dnf

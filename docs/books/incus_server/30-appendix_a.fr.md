@@ -1,14 +1,14 @@
 ---
-title: Annexe A - Configuration du poste de travail
+title: Annexe A - Mise en place du poste de travail
 author: Steven Spencer
 contributors: Ganna Zhyrnova
 tested_with: 9.4
 tags:
   - incus
-  - poste de travail
+  - workstation
 ---
 
-# Annexe A - Configuration du poste de travail
+# Annexe A - Mise en place du poste de travail
 
 Bien que ne faisant pas partie des chapitres relatifs à un serveur `Incus`, cette procédure aidera ceux qui souhaitent disposer d'un environnement de laboratoire ou d'un système d'exploitation et d'une application semi-permanents exécutés sur un poste de travail ou un ordinateur portable Rocky Linux.
 
@@ -100,7 +100,7 @@ Vous pouvez activer cette option si vous souhaitez utiliser IPv6 sur vos contene
 Would you like the Incus server to be available over the network? (yes/no) [default=no]: yes
 ```
 
-Cette opération est nécessaire pour effectuer un instantané de la station de travail. Répondez « oui » ici.
+Cette opération est nécessaire pour effectuer un instantané de la station de travail. Répondez `yes` ici.
 
 ```text
 Address to bind Incus to (not including port) [default=all]:
@@ -157,7 +157,7 @@ Pour vous assurer que `incus` a démarré et que votre utilisateur dispose des p
 incus list
 ```
 
-Notez que nous n'avons pas utilisé `sudo` ici. Votre utilisateur peut tout à fait exécuter ces commandes. Vous verrez quelque chose comme ceci :
+Notez que nous n'avons pas utilisé `sudo` ici. Votre utilisateur peut tout à fait exécuter ces commandes. Vous devriez obtenir quelque chose de similaire à ce qui suit :
 
 ```bash
 +------------+---------+----------------------+------+-----------+-----------+

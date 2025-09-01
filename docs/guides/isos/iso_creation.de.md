@@ -1,7 +1,7 @@
 ---
 title: Erstellen einer benutzerdefinierten Rocky Linux ISO
 author: Howard Van Der Wal
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 9.5
 tags:
   - create
@@ -17,8 +17,8 @@ Diese Anleitung erklärt Ihnen von Anfang bis Ende, wie Sie Ihr eigenes Rocky Li
 
 ## Voraussetzungen
 
-- Eine 64-Bit-Maschine mit Rocky Linux 9 zum Erstellen des neuen ISO-Image.
-- Ein Rocky Linux 9 DVD-ISO-Image.
+- Eine 64-Bit-Maschine mit Rocky Linux 9
+- Ein Rocky Linux 9 DVD-ISO-Image
 - Eine `kickstart`-Datei, die auf die ISO angewendet werden soll.
 - Lesen Sie die Lorax-Dokumentation [Quickstart](https://weldr.io/lorax/lorax.html#quickstart) und [mkksiso](https://weldr.io/lorax/mkksiso.html), um sich mit der Erstellung der `Anaconda`-Datei `boot.iso` vertraut zu machen.
 
@@ -118,4 +118,4 @@ mkksiso --add ~/baseos --ks example-ks.cfg ~/Rocky-9.5-x86_64-dvd.iso ~/Rocky-9.
 
 ## Zusammenfassung
 
-Was hier besprochen wurde, sind nur einige der verfügbaren Optionen zum Optimieren und Erstellen Ihres eigenen Rocky Linux ISO. Für weitere Möglichkeiten, einschließlich der Änderung der Kernel-Befehlszeilenargumente, empfiehlt der Autor dringend, die [mkksiso](https://weldr.io/lorax/mkksiso.html)-Dokumentation genauer durchzugehen.
+Der Autor teilt hier ein paar Optionen zum Optimieren und Erstellen Ihres Rocky Linux ISO. Für weitere Möglichkeiten, einschließlich der Änderung der Kernel-Befehlszeilenargumente, empfiehlt der Autor dringend, die [mkksiso](https://weldr.io/lorax/mkksiso.html)-Dokumentation genauer durchzugehen.

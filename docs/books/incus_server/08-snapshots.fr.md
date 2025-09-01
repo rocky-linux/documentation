@@ -96,6 +96,6 @@ Supprimez donc toujours les instantanés pendant que le conteneur est en cours d
 
 Dans les chapitres qui suivent, vous allez :
 
-- mettre en place un processus de création automatique d'instantanés
+- mettre en place un processus de création automatique de snapshots
 - set up the expiration of a snapshot so that it goes away after a certain length of time
 - configurer l'actualisation automatique des instantanés – `auto-refreshing` — sur le serveur de Snapshots

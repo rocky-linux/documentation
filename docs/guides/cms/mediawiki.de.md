@@ -207,7 +207,7 @@ Klicken Sie auf **Continue**:
 
 Geben Sie auf der Seite **MediaWiki _Version_-Installation** Folgendes ein:
 
-- **URL host name**: The URL you want
+- **URL host name**: Die gewünschte URL
 
 - **Name of Wiki**: Der gewünschte Wiki-Name
 
