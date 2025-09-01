@@ -34,7 +34,7 @@ The `iproute2` command is a suite of advanced utilities for configuring and mana
 
 The `ip` command is an essential tool for network management and configuration. It is part of the `iproute2` package and offers advanced control over network interfaces, IP addresses, routing tables, tunnels, and much more.  
 Thanks to its flexible syntax and options, it allows system administrators to monitor, modify, and resolve connectivity issues efficiently.  
-Its modular structure allows you to manage different aspects of network configuration in a consistent manner, thus simplifying administration.
+Its modular structure allows you to manage different aspects of network configuration consistently, thus simplifying administration.
 
 The `nmcli` command is a powerful and versatile tool included in *NetworkManager*, designed for managing network connections on Linux systems directly from the terminal. Unlike graphical tools, `nmcli` allows you to efficiently configure, monitor, and control network interfaces on both local and remote machines, making it particularly useful for system administrators and advanced users.  
 It supports a wide range of features, including the configuration of wired, wireless, and VPN connections, mobile network management, and network status debugging.
@@ -43,9 +43,9 @@ It supports a wide range of features, including the configuration of wired, wire
 
 ### 1. Change Hostname
 
-There are many methods for identifying or referring to computers. Some of these methods guarantee uniqueness (especially on a network), and others don't. A computer hostname can be regarded as a human-friendly name. Computer hostnames should ideally be unique depending on how they are managed and assigned. But because anyone with the administrative privileges on a system can unilaterally assign whatever hostname they want to the system - **uniqueness is not always guaranteed**.
+There are many methods for identifying or referring to computers. Some of these methods guarantee uniqueness (especially on a network), and others don't. A computer hostname can be regarded as a human-friendly name. Computer hostnames should be unique, depending on how they are managed and assigned. However, because anyone with administrative privileges on a system can unilaterally assign any hostname they want to the system, **uniqueness is not always guaranteed**.
 
-This first exercise walks through some common tools for managing the computer hostname.
+This first exercise walks through some standard tools for managing the computer hostname.
 
 #### Changing the system's hostname
 
@@ -109,17 +109,17 @@ This first exercise walks through some common tools for managing the computer ho
 
 ### 2. Creation of a virtual device
 
-The first critical step you need to complete before going on to the other exercises in this network lab will be creating a special virtual network interface known as a *MACVTAP device*.
+The first critical step you need to complete before proceeding to the other exercises in this network lab is creating a special virtual network interface known as a *MACVTAP device*.
 
-MACVTAP devices are virtual devices that combine the properties of a software-only interface known as a *TAP device* as well as the properties of the *MACVLAN driver*.
+MACVTAP devices are virtual devices that combine the properties of a software-only interface, known as a *TAP device*, with those of the *MACVLAN driver*.
 
 Creating and working with these MACVTAP devices will allow you to safely test, change, and configure various network configuration-related tasks. These virtual network interfaces will be used in various exercises without disrupting the existing network configuration.
 
 !!! tip
 
-    TAP devices provide a software-only interface that user-space applications can easily access. TAP devices send and receive raw Ethernet frames.  
+    TAP devices provide a software-only interface that allows user-space applications to access easily. TAP devices send and receive raw Ethernet frames.  
     MACVLAN is used for creating virtual network interfaces that attach to physical network interfaces.  
-    The MACVTAP devices have their own unique MAC address distinct from the MAC address of the underlying physical network card they are associated with.
+    The MACVTAP devices have their own unique MAC addresses, distinct from the MAC addresses of the underlying physical network cards they are associated with.
 
 #### Creation of a MACVTAP Interfaces
 
@@ -272,7 +272,7 @@ An **IP** (*Internet Protocol*) address is a unique numerical identifier assigne
 
 ### 5. Routing management
 
-Routing in Linux is a mechanism that allows the operating system to manage network traffic by directing data packets to the correct destinations. The Linux kernel uses a routing table to determine the optimal path that packets should follow, based on *IP addresses*, *subnet masks*, and *gateways*.  
+Routing in Linux is a mechanism that enables the operating system to manage network traffic by directing data packets to their intended destinations. The Linux kernel uses a routing table to determine the optimal path that packets should follow, based on *IP addresses*, *subnet masks*, and *gateways*.  
 This functionality is essential in both *home environments* and complex *corporate networks*, where multiple network interfaces and devices need to communicate with each other.
 
 #### Viewing the system routing table
@@ -547,7 +547,7 @@ The **DNS** (*Domain Name System*) service is a fundamental component of compute
 
 ### 9. Troubleshoot network issues
 
-Computer networks are essential for communication and data exchange, but they often encounter problems that hinder their proper functioning. These malfunctions can be caused by a variety of factors, such as configuration errors, hardware failures, or connection interference.
+Computer networks are essential for communication and data exchange, but they often encounter problems that hinder their proper functioning. Various factors, including configuration errors, hardware failures, or interference with connections, can cause these malfunctions.
 
 #### Identify and resolve common network issues
 
