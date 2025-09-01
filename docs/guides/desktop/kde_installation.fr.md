@@ -14,7 +14,7 @@ Grâce à l'équipe de développement de Rocky Linux, il y a maintenant des imag
 
 !!! note
 
-    Cette procédure est spécifique à Rocky Linux 9. Il n'y a actuellement aucune procédure décrite pour installer KDE pour les autres versions de Rocky Linux. 
+    Cette procédure est spécifique à Rocky Linux 9. Il n'y a actuellement aucune procédure décrite pour installer KDE pour les autres versions de Rocky Linux.
     N'hésitez pas à écrire une description !
 
 ## Prérequis
@@ -63,7 +63,7 @@ Cela lancera un processus d'installation assez familier pour ceux qui ont déjà
 
 ![kde_language](images/kde_language.png)
 
-Une fois que vous avez sélectionné votre langue et cliqué sur **Continue**, l'installation passera à l'écran suivant. Nous avons mis en évidence les choses que vous *pouvez* vouloir modifier et vérifier :
+Une fois que vous avez sélectionné votre langue et cliqué sur **Continue**, l'installation passera à l'écran suivant. Nous avons mis en évidence les choses que vous _pouvez_ vouloir modifier et vérifier :
 
 ![kde_install](images/kde_install.png)
 
@@ -71,7 +71,7 @@ Une fois que vous avez sélectionné votre langue et cliqué sur **Continue**, l
 2. **Heure & Date** - Assurez-vous que l'affichage correspond à votre fuseau horaire.
 3. **Installation Destination** - Vous devrez cliquer sur cette option, même si c'est juste pour accepter ce qui est déjà indiqué.
 4. **Network & Hostname** - Vérifiez que vous avez ce dont vous avez besoin ici. À condition que le réseau soit activé, vous pouvez toujours modifier plus tard si vous le souhaitez.
-5. **Root Password** Allez-y et définissez un mot de passe root. Pensez à le sauvegarder dans un endroit sûr (gestionnaire de mots de passe), surtout si vous ne l'utilisez pas souvent.
+5. **Root Password** Allez-y et définissez un mot de passe `root`. Pensez à le sauvegarder dans un endroit sûr (gestionnaire de mots de passe), surtout si vous ne l'utilisez pas souvent.
 6. **User Creation** Créer au moins un utilisateur. Si vous voulez qu'il dispose de droits d'administration, n'oubliez pas de définir cette option lors de la création de l'utilisateur.
 7. **Begin Installation** - une fois que vous avez choisi et vérifié tous les paramètres, cliquez sur cette option.
 
@@ -83,7 +83,7 @@ Une fois l'installation sur le disque dur terminée, vous devriez voir l'écran 
 
 ![kde_install_final](images/kde_install_final.png)
 
-Allez-y et cliquez sur **Finish Installation**.
+Cliquez sur **Finish Installation**.
 
 À ce stade, vous devrez redémarrer le système et retirer votre support d'amorçage. Quand l'OS est relancé pour la première fois, l'écran de configuration suivant apparaît :
 
