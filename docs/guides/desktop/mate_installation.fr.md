@@ -1,11 +1,11 @@
 ---
 title: MATE Desktop
 author: lillolollo, Steven Spencer
-contributors: Steven Spencer, Ganna Zhyrnova
+contributors: Steven Spencer, Serge, Ganna Zhyrnova
 tested_with: 8.5, 8.6, 9.0
 tags:
   - mate
-  - bureau
+  - desktop
 ---
 
 # Environnement de bureau MATE
@@ -17,7 +17,7 @@ Cette procédure vous permettra d'utiliser MATE sur Rocky Linux.
 ## Prérequis
 
 - Un ordinateur (ordinateur portable ou station de travail) avec écran et tout.
-- Un désir d'exécuter l'environnement de bureau MATE au lieu de GNOME, celui par défaut.
+- Un besoin d'exécuter l'environnement de bureau MATE au lieu de GNOME, celui par défaut.
 
 \=== "9"
 
