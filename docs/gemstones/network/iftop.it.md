@@ -83,21 +83,21 @@ TOTAL:                 60.5MB            242Mb            242Mb   242Mb   242Mb
 
 Sezionando le righe finali del pannello:
 
- - TX - Utilizzo dei dati di trasmissione/caricamento
- - RX - Utilizzo dei dati di ricezione/download
- - TOTAL - Utilizzo combinato di upload/download
+- TX - Utilizzo dei dati di trasmissione/caricamento
+- RX - Utilizzo dei dati di ricezione/download
+- TOTAL - Utilizzo combinato di upload/download
 
 ## Tasti di scelta rapida per l'interazione
 
- - \++s++ - aggrega tutto il traffico per ogni origine
- - \++d++ - aggrega tutto il traffico per ogni destinazione
- - \++shift+s++ - attiva/disattiva la visualizzazione della porta di origine
- - \++shift+d++ - attiva/disattiva la visualizzazione della porta di destinazione
- - \++t++ - passa da una modalità di visualizzazione all'altra: visualizzazione predefinita a due righe con traffico in invio e in ricezione e visualizzazione a tre righe con traffico in invio, in ricezione e totale
- - \++1++, ++2++, ++3++ - ordina per prima, seconda o terza colonna
- - \++l++ - inserisce un'espressione regolare POSIX per filtrare i nomi di host
- - \++shift+p++ - mette in pausa la visualizzazione corrente
- - \++o++ - blocca il conteggio della larghezza di banda totale
- - \++j++ - scorre verso il basso
- - \++k++ - scorre verso l'alto
- - \++f++ - modifica il codice del filtro
+- \++s++ - aggrega tutto il traffico per ogni origine
+- \++d++ - aggrega tutto il traffico per ogni destinazione
+- \++shift+s++ - attiva/disattiva la visualizzazione della porta di origine
+- \++shift+d++ - attiva/disattiva la visualizzazione della porta di destinazione
+- \++t++ - passa da una modalità di visualizzazione all'altra: visualizzazione predefinita a due righe con traffico in invio e in ricezione e visualizzazione a tre righe con traffico in invio, in ricezione e totale
+- \++1++, ++2++, ++3++ - ordina per prima, seconda o terza colonna
+- \++l++ - inserisce un'espressione regolare POSIX per filtrare i nomi di host
+- \++shift+p++ - mette in pausa la visualizzazione corrente
+- \++o++ - blocca il conteggio della larghezza di banda totale
+- \++j++ - scorre verso il basso
+- \++k++ - scorre verso l'alto
+- \++f++ - modifica il codice del filtro
