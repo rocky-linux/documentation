@@ -12,9 +12,9 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 Für diese Anleitung benötigen Sie Folgendes:
 
- - Rocky Linux
- - Flatpak
- - FlatHub
+- Rocky Linux
+- Flatpak
+- FlatHub
 
 ## Installations-Ablauf
 
