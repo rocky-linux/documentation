@@ -25,8 +25,8 @@ Questa guida fornisce i passaggi dettagliati per la migrazione delle macchine vi
 
 ## Prima di iniziare
 
- - Assicurarsi di avere un backup aggiornato della macchina virtuale. Anche se il processo di migrazione non dovrebbe avere ripercussioni sui dati, un backup è la prassi migliore per qualsiasi modifica del sistema.
- - Verificare di disporre delle autorizzazioni necessarie per creare nuove macchine virtuali e gestire quelle esistenti nel proprio account Azure.
+- Assicurarsi di avere un backup aggiornato della macchina virtuale. Anche se il processo di migrazione non dovrebbe avere ripercussioni sui dati, un backup è la prassi migliore per qualsiasi modifica del sistema.
+- Verificare di disporre delle autorizzazioni necessarie per creare nuove macchine virtuali e gestire quelle esistenti nel proprio account Azure.
 
 ## Passo 1: Individuare le macchine virtuali esistenti
 
@@ -40,10 +40,10 @@ erockyenterprisesoftwarefoundationinc1653071250513`
 
 1. **Navigare** nel Azure Marketplace.
 2. **Cercate** le nuove immagini di Rocky Linux con l'account dell'editore `resf` o accedete alle Community Galleries.
-    - Attuali Link Marketplace:
-        - [Rocky Linux x86_64](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/resf.rockylinux-x86_64)
-    - [Rocky Linux aarch64](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/resf.rockylinux-aarch64)
-    - Le istruzioni complete per accedere alle immagini della Community Gallery si trovano in questo [post di notizie](https://rockylinux.org/news/rocky-on-azure-community-gallery/).
+   - Attuali Link Marketplace:
+     - [Rocky Linux x86_64](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/resf.rockylinux-x86_64)
+   - [Rocky Linux aarch64](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/resf.rockylinux-aarch64)
+   - Le istruzioni complete per accedere alle immagini della Community Gallery si trovano in questo [post di notizie](https://rockylinux.org/news/rocky-on-azure-community-gallery/).
 3. **Selezionare** la versione di Rocky Linux desiderata e **creare una nuova VM**. Durante la configurazione, è possibile scegliere la stessa dimensione della macchina virtuale e altre configurazioni della macchina virtuale esistente per garantire la compatibilità.
 
 ## Fase 3: Trasferimento dei dati
@@ -80,8 +80,8 @@ Dopo aver confermato che la nuova macchina virtuale funziona correttamente e ave
 
 ## Fasi finali
 
- - Verificare che tutti i servizi della nuova macchina virtuale funzionino come previsto.
- - Monitorare le prestazioni e lo stato di salute della nuova macchina virtuale per assicurarsi che soddisfi le proprie esigenze.
+- Verificare che tutti i servizi della nuova macchina virtuale funzionino come previsto.
+- Monitorare le prestazioni e lo stato di salute della nuova macchina virtuale per assicurarsi che soddisfi le proprie esigenze.
 
 ## Supporto
 
