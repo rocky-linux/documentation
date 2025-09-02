@@ -22,12 +22,12 @@ Quando si apre un documento, sul lato destro viene visualizzato una "Tabella dei
 
 Le sezioni principali del sito di documentazione sono:
 
- - **Guide**: che illustrano modi specifici per configurare e utilizzare Rocky Linux.
- - **Libri**: sono informazioni più dettagliate basate su un'area specifica.
- - **Labs**: si torna a scuola, ma queste esercitazioni vi divertiranno!
- - **Gemstones**: condividete qui alcuni suggerimenti sull'uso di script o comandi comuni.
- - **Note di rilascio**: copre le note di rilascio di Rocky Linux e le informazioni sugli aggiornamenti di versione.
- - **Rocky Linux**: link home page Sito ufficiale.
+- **Guide**: che illustrano modi specifici per configurare e utilizzare Rocky Linux.
+- **Libri**: sono informazioni più dettagliate basate su un'area specifica.
+- **Labs**: si torna a scuola, ma queste esercitazioni vi divertiranno!
+- **Gemstones**: condividete qui alcuni suggerimenti sull'uso di script o comandi comuni.
+- **Note di rilascio**: copre le note di rilascio di Rocky Linux e le informazioni sugli aggiornamenti di versione.
+- **Rocky Linux**: link home page Sito ufficiale.
 
 ### Lingue Multiple
 
