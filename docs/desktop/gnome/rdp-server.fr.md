@@ -20,11 +20,11 @@ Par défaut, Rocky Linux vous permet de partager votre bureau via un autre proto
 
 Pour ce guide, nous partons du principe que vous disposez déjà de la configuration suivante :
 
- - Rocky Linux et GNOME
- - Flatpak et Flathub installés et opérationnels
- - Un compte utilisateur non root
- - Accès administrateur ou sudo et pouvoir coller des commandes dans le terminal
- - Le serveur X (pour partager votre bureau)
+- Rocky Linux et GNOME
+- Flatpak et Flathub installés et opérationnels
+- Un compte utilisateur non root
+- Accès administrateur ou sudo et pouvoir coller des commandes dans le terminal
+- Le serveur X (pour partager votre bureau)
 
 !!! info "Info"
 
