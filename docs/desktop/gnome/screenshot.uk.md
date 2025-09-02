@@ -12,7 +12,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 У цьому посібнику передбачається, що ви маєте наступне:
 
- - Rocky Linux
+- Rocky Linux
 
 !!! note "Примітка"
 
