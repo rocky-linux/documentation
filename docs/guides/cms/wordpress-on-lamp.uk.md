@@ -7,8 +7,8 @@ tested_with: 9.2
 
 ## Передумови
 
- - Система Rocky Linux 9.x
- - привілеї sudo
+- Система Rocky Linux 9.x
+- привілеї sudo
 
 ## Вступ
 
