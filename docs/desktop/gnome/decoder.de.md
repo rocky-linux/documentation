@@ -12,9 +12,9 @@ Benötigen Sie einen QR-Code für Ihre Website, Anwendung oder Social-Media-Prof
 
 Für diese Anleitung benötigen Sie Folgendes:
 
- - Rocky Linux
- - Flatpak
- - FlatHub
+- Rocky Linux
+- Flatpak
+- FlatHub
 
 ## Installations-Ablauf
 
@@ -38,8 +38,8 @@ Für diese Anleitung benötigen Sie Folgendes:
 
 Es stehen zwei Arten von QR-Codes zur Verfügung. Wählen Sie die Option, die Ihren Anforderungen am besten entspricht:
 
- - [Text](#text)
- - [Wifi](#wifi)
+- [Text](#text)
+- [Wifi](#wifi)
 
 ### Text
 
