@@ -2,7 +2,7 @@
 title: Installation de KDE
 author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
-tested_with: 9.0
+tested_with: 10
 tags:
   - desktop
   - kde
@@ -19,7 +19,7 @@ Grâce à l'équipe de développement de Rocky Linux, il y a maintenant des imag
 
 ## Prérequis
 
-- Une machine, compatible avec Rocky Linux 9.0, (bureau, ordinateur portable ou serveur) sur laquelle vous voulez utiliser le bureau KDE.
+- Une machine, compatible avec Rocky Linux 9 ou 10 (bureau, ordinateur portable ou serveur), sur laquelle vous voulez utiliser le bureau KDE.
 - Maîtriser la ligne de commande de manière à pouvoir réaliser certaines tâches, par exemple tester les sommes de contrôle de l'image.
 - La connaissance de la façon d'écrire une image amorçable sur DVD ou une clé USB.
 
