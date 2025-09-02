@@ -20,11 +20,11 @@ Per impostazione predefinita, Rocky Linux consente di condividere il desktop tra
 
 In questa guida si presuppone che siano già state configurate le seguenti operazioni:
 
- - Rocky Linux con Gnome
- - Flatpak e Flathub installati e funzionanti
- - Un account utente non root
- - Accesso come amministratore o sudo e disponibilità a incollare comandi nel terminale
- - Il server X (per condividere il desktop)
+- Rocky Linux con Gnome
+- Flatpak e Flathub installati e funzionanti
+- Un account utente non root
+- Accesso come amministratore o sudo e disponibilità a incollare comandi nel terminale
+- Il server X (per condividere il desktop)
 
 !!! info "Informazione"
 
