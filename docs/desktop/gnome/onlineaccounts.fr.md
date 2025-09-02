@@ -14,7 +14,7 @@ Ce guide rapide vous montrera par où commencer.
 
 Ce guide suppose que vous disposez de la configuration suivante :
 
- - Une installation Rocky Linux avec un environnement de bureau GNOME.
+- Une installation Rocky Linux avec un environnement de bureau GNOME.
 
 ## Comment ajouter vos comptes en ligne
 
