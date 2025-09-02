@@ -14,9 +14,9 @@ Wir werden nicht alles abdecken, was `firewalld` oder die GUI leisten können, a
 
 Für diese Anleitung gehen wir davon aus, dass Sie über Folgendes verfügen:
 
- - Eine Rocky Linux-Installation mit einer beliebigen grafischen Desktopumgebung
- - `sudo` oder Administratorzugriff
- - Ein grundlegendes Verständnis der Arbeitsweise von `firewalld`
+- Eine Rocky Linux-Installation mit einer beliebigen grafischen Desktopumgebung
+- `sudo` oder Administratorzugriff
+- Ein grundlegendes Verständnis der Arbeitsweise von `firewalld`
 
 !!! note "Anmerkung"
 
