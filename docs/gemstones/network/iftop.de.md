@@ -83,21 +83,21 @@ TOTAL:                 60.5MB            242Mb            242Mb   242Mb   242Mb
 
 Aufschlüsselung der Zeilen im unteren Bereich:
 
- - TX – Datennutzung beim Senden/Hochladen
- - RX - Datennutzung empfangen/herunterladen
- - TOTAL – Kombinierte Upload-/Download-Nutzung
+- TX – Datennutzung beim Senden/Hochladen
+- RX - Datennutzung empfangen/herunterladen
+- TOTAL – Kombinierte Upload-/Download-Nutzung
 
 ## Tastaturkürzel
 
- - \++s++ - aggregiert den gesamten Datenverkehr für jede Quelle
- - \++d++ - aggregiert den gesamten Datenverkehr für jedes Ziel
- - \++shift+s++ - schaltet die Anzeige des Quellports um
- - \++shift+d++ - schaltet die Anzeige des Zielports um
- - \++t++ - schaltet zwischen den Anzeigemodi um: Standardmäßige zweizeilige Anzeige mit Sende- und Empfangsverkehr und dreizeilige Anzeige von Sende-, Empfangs- und Gesamt-Traffic
- - \++1++, ++2++, ++3++ – Sortieren nach 1., 2. oder 3. Spalte
- - \++l++ - geben Sie einen POSIX-regulären Ausdruck ein, um Hostnamen zu filtern
- - \++shift+p++ - Pausiert die aktuelle Anzeige
- - \++o++ - friert die Gesamtbandbreiten-Auswertung ein
- - \++j++ - nach unten scrollen
- - \++k++ - nach oben scrollen
- - \++f++ – bearbeitet den Filtercode
+- \++s++ - aggregiert den gesamten Datenverkehr für jede Quelle
+- \++d++ - aggregiert den gesamten Datenverkehr für jedes Ziel
+- \++shift+s++ - schaltet die Anzeige des Quellports um
+- \++shift+d++ - schaltet die Anzeige des Zielports um
+- \++t++ - schaltet zwischen den Anzeigemodi um: Standardmäßige zweizeilige Anzeige mit Sende- und Empfangsverkehr und dreizeilige Anzeige von Sende-, Empfangs- und Gesamt-Traffic
+- \++1++, ++2++, ++3++ – Sortieren nach 1., 2. oder 3. Spalte
+- \++l++ - geben Sie einen POSIX-regulären Ausdruck ein, um Hostnamen zu filtern
+- \++shift+p++ - Pausiert die aktuelle Anzeige
+- \++o++ - friert die Gesamtbandbreiten-Auswertung ein
+- \++j++ - nach unten scrollen
+- \++k++ - nach oben scrollen
+- \++f++ – bearbeitet den Filtercode
