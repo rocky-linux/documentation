@@ -28,8 +28,8 @@ Wenn Sie nicht sicher sind, was eine bestimmte Einstellung bewirkt, recherchiere
 
 Für diese Anleitung benötigen Sie Folgendes:
 
- - Rocky Linux inklusiv GNOME.
- - Berechtigung, Software auf Ihrem System zu installieren (`sudo`-Rechte).
+- Rocky Linux inklusiv GNOME.
+- Berechtigung, Software auf Ihrem System zu installieren (`sudo`-Rechte).
 
 ## `dconf Editor` — Installation
 
