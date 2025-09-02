@@ -20,8 +20,8 @@ Il programma di esempio utilizzato in questa guida è Krita. Lo si scarica e ins
 
 Per questa guida sono necessari i seguenti elementi:
 
- - Rocky Linux con un ambiente desktop installato
- - Privilegi `sudo`
+- Rocky Linux con un ambiente desktop installato
+- Privilegi `sudo`
 
 ## Scaricare la AppImage di un programma
 
