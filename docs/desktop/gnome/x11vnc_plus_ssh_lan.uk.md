@@ -20,8 +20,8 @@ x11vnc — потужна програма VNC. Те, що відрізняє x1
 
 Для цього посібника передбачається, що у вас є:
 
- - Робоча станція Rocky Linux
- - привілеї `sudo`
+- Робоча станція Rocky Linux
+- привілеї `sudo`
 
 ## Налаштування сервера VNC
 
@@ -161,8 +161,8 @@ vncviewer
 
 Поки що ця стаття показала вам, як налаштувати сервер x11vnc і підключитися до нього за допомогою VNC, що пересилається через тунель SSH. Здавалося б, очевидна, але все ж важлива деталь, про яку слід знати, полягає в тому, що цей метод працюватиме лише для комп’ютерів, підключених до мережі. Припустимо, ви хочете підключитися до комп’ютера в іншій локальній мережі. Спосіб досягти цього — налаштувати VPN. Нижче наведено кілька посібників щодо налаштування VPN:
 
- - [OpenVPN](https://docs.rockylinux.org/guides/security/openvpn/)
- - [Wireguard VPN](https://docs.rockylinux.org/guides/security/wireguard_vpn/)
+- [OpenVPN](https://docs.rockylinux.org/guides/security/openvpn/)
+- [Wireguard VPN](https://docs.rockylinux.org/guides/security/wireguard_vpn/)
 
 ## Висновок
 
