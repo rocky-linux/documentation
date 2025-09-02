@@ -43,24 +43,24 @@ Nginx ha una quota di mercato significativa del 28% sui siti più trafficati, su
 
 Nginx offre le seguenti funzioni di base:
 
- - Hosting per pagine web statiche
- - Index page generation automatico
- - Reverse proxy accelerato con cache
- - Bilanciamento del carico
- - Tolleranza agli errori
- - Supporto cache per FastCGI, uWSGI, SCGI e server cache Memcached
- - Vari filtri per gzip, xslt, ssi, trasformazione delle immagini e altro ancora
- - Supporto per SSL/TLS e SNI
- - Supporto per HPPT/2
+- Hosting per pagine web statiche
+- Index page generation automatico
+- Reverse proxy accelerato con cache
+- Bilanciamento del carico
+- Tolleranza agli errori
+- Supporto cache per FastCGI, uWSGI, SCGI e server cache Memcached
+- Vari filtri per gzip, xslt, ssi, trasformazione delle immagini e altro ancora
+- Supporto per SSL/TLS e SNI
+- Supporto per HPPT/2
 
 Altre funzionalità:
 
- - Hosting per nome o indirizzo IP
- - Supporto del Keepalive delle connessioni client
- - Gestione dei log: syslog, rotazione, buffer
- - Riscrittura degli URI
- - Controllo di accesso: via IP, password, ed altro
- - Streaming FLV e MP4
+- Hosting per nome o indirizzo IP
+- Supporto del Keepalive delle connessioni client
+- Gestione dei log: syslog, rotazione, buffer
+- Riscrittura degli URI
+- Controllo di accesso: via IP, password, ed altro
+- Streaming FLV e MP4
 
 ### Installazione
 
@@ -277,5 +277,5 @@ Esempio di configurazione di base, che distribuisce il carico per 2/3 al primo s
 
 La direttiva server accetta molti argomenti:
 
- - `max_fails=numberofattempts`: imposta il numero di tentativi di connessione che devono fallire durante il periodo di tempo definito dal parametro `fail_timeout` affinché il server sia considerato non disponibile. Il valore predefinito è 1; 0 disattiva la funzionalità.
- - `fail_timeout=time`: imposta il tempo durante il quale un numero definito di connessioni causerà l'indisponibilità del server e imposta il periodo di tempo durante il quale il server sarà considerato non disponibile. Il valore predefinito è 10 secondi.
+- `max_fails=numberofattempts`: imposta il numero di tentativi di connessione che devono fallire durante il periodo di tempo definito dal parametro `fail_timeout` affinché il server sia considerato non disponibile. Il valore predefinito è 1; 0 disattiva la funzionalità.
+- `fail_timeout=time`: imposta il tempo durante il quale un numero definito di connessioni causerà l'indisponibilità del server e imposta il periodo di tempo durante il quale il server sarà considerato non disponibile. Il valore predefinito è 10 secondi.
