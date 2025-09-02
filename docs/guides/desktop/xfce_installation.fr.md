@@ -5,12 +5,12 @@ contributors: Steven Spencer, Antoine Le Morvan, K.Prasad, Ganna Zhyrnova
 tested_with: 8.9, 9.5
 tags:
   - xfce
-  - bureau
+  - desktop
 ---
 
 # Environnement de bureau XFCE
 
-L'environnement de bureau XFCE, créé en tant que fork du Common Desktop Environment (CDE), incarne la philosophie Unix traditionnelle de Modularité et de Réutilisabilité. Vous pouvez installer XFCE sur la plupart des distributions GNU/Linux, y compris Rocky Linux.
+L'environnement de bureau XFCE, créé en tant que fork du Common Desktop Environment (CDE), incarne la philosophie Unix traditionnelle de modularité et de réutilisabilité. Vous pouvez installer XFCE sur la plupart des distributions GNU/Linux, y compris Rocky Linux.
 
 C'est aussi l'un des environnements de bureau les plus faciles à combiner avec des gestionnaires de fenêtres alternatifs, tels que Awesome ou i3. Cette procédure est cependant conçue pour vous permettre de démarrer avec Rocky Linux en utilisant une installation typique de XFCE.
 
