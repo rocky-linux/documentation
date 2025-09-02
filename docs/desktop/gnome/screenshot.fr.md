@@ -12,7 +12,7 @@ Fatigué d'utiliser votre clavier pour prendre des images sur l'écran de votre 
 
 Ce guide suppose que vous disposez de la configuration suivante :
 
- - Rocky Linux
+- Rocky Linux
 
 !!! note "Remarque"
 
