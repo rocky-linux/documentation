@@ -12,7 +12,7 @@ Siete stanchi di usare la tastiera per scattare immagini dello schermo del compu
 
 Questa guida presuppone che si disponga di quanto segue:
 
- - Rocky Linux
+- Rocky Linux
 
 !!! note "Nota"
 
