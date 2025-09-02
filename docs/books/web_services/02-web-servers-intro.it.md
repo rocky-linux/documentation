@@ -23,14 +23,14 @@ Gli attuali protocolli HTTP sono la versione 1.1, ampiamente utilizzata, e le ve
 
 Una responce HTTP è un insieme di righe inviate al browser dal server. Che include:
 
- - Una **status line**: specifica la versione del protocollo e lo stato di elaborazione della richiesta utilizzando un codice e un testo esplicativo. La riga comprende tre elementi separati da uno spazio:
-     - La versione del protocollo utilizzata
-     - Lo status code
-     - Il significato del codice
+- Una **status line**: specifica la versione del protocollo e lo stato di elaborazione della richiesta utilizzando un codice e un testo esplicativo. La riga comprende tre elementi separati da uno spazio:
+  - La versione del protocollo utilizzata
+  - Lo status code
+  - Il significato del codice
 
- - **Response header fields**: queste righe opzionali forniscono informazioni aggiuntive sulla risposta e/o sul server. Ogni riga è composta da un nome che qualifica il header type, seguito da due punti (:) e dal header value.
+- **Response header fields**: queste righe opzionali forniscono informazioni aggiuntive sulla risposta e/o sul server. Ogni riga è composta da un nome che qualifica il header type, seguito da due punti (:) e dal header value.
 
- - **The response body**: contiene il documento richiesto.
+- **The response body**: contiene il documento richiesto.
 
 Ecco un esempio di risposta HTTP:
 
@@ -70,15 +70,15 @@ Un URL ha tre parti:
 <protocol>://<host>:<port>/<path>
 ```
 
- - **Protocol name**: si tratta del linguaggio utilizzato per comunicare in rete, come HTTP, HTTPS, FTP, ecc. I protocolli più utilizzati sono l'HTTP (HyperText Transfer Protocol) e la sua versione sicura, l'HTTPS, utilizzata per lo scambio di pagine Web in formato HTML.
+- **Protocol name**: si tratta del linguaggio utilizzato per comunicare in rete, come HTTP, HTTPS, FTP, ecc. I protocolli più utilizzati sono l'HTTP (HyperText Transfer Protocol) e la sua versione sicura, l'HTTPS, utilizzata per lo scambio di pagine Web in formato HTML.
 
- - **Login** e **password**: Questa opzione consente di specificare i parametri di accesso a un server sicuro. Non è consigliabile, poiché la password è visibile nell'URL (per motivi di sicurezza).
+- **Login** e **password**: Questa opzione consente di specificare i parametri di accesso a un server sicuro. Non è consigliabile, poiché la password è visibile nell'URL (per motivi di sicurezza).
 
- - **Host**: È il nome del computer che ospita la risorsa richiesta. È possibile utilizzare anche l'indirizzo IP del server, ma ciò rende l'URL meno leggibile.
+- **Host**: È il nome del computer che ospita la risorsa richiesta. È possibile utilizzare anche l'indirizzo IP del server, ma ciò rende l'URL meno leggibile.
 
- - **Port number**: È associato a un servizio che consente al server di conoscere il tipo di risorsa richiesta. La porta predefinita del protocollo HTTP è la 80 e la 443 per HTTPS. Pertanto, il numero di porta è facoltativo quando il protocollo è HTTP o HTTPS.
+- **Port number**: È associato a un servizio che consente al server di conoscere il tipo di risorsa richiesta. La porta predefinita del protocollo HTTP è la 80 e la 443 per HTTPS. Pertanto, il numero di porta è facoltativo quando il protocollo è HTTP o HTTPS.
 
- - **Resource path**: Questa parte consente al server di conoscere la posizione della risorsa. In genere, si tratta della posizione (directory) e del nome del file richiesto. Se l'indirizzo non specifica una posizione, indica la prima pagina dell'host. Altrimenti, indica il percorso della pagina da visualizzare.
+- **Resource path**: Questa parte consente al server di conoscere la posizione della risorsa. In genere, si tratta della posizione (directory) e del nome del file richiesto. Se l'indirizzo non specifica una posizione, indica la prima pagina dell'host. Altrimenti, indica il percorso della pagina da visualizzare.
 
 ### Porte
 
