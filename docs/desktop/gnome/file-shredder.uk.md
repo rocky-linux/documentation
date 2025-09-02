@@ -12,9 +12,9 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 У цьому посібнику передбачається, що ви маєте наступне:
 
- - Rocky Linux
- - Flatpak
- - FlatHub
+- Rocky Linux
+- Flatpak
+- FlatHub
 
 ## Процес встановлення
 
