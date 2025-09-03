@@ -14,11 +14,9 @@ Flatpak est installé par défaut lors de l'installation de Rocky Linux avec des
 
 ## Installation Manuelle
 
-!!! note "Remarque"
+!!! note
 
-```
-Vous pouvez ignorer cette étape si vous exécutez déjà l'environnement de bureau GNOME complet décrit dans l'introduction.
-```
+    Vous pouvez ignorer cette étape si vous exécutez déjà l'environnement de bureau GNOME complet décrit dans l'introduction.
 
 Installez Flatpak comme suit :
 
@@ -129,26 +127,15 @@ Mémoriser la liste des commandes n'est pas nécessaire, mais savoir comment y a
 
 !!! warning "Rocky Linux 8.x et `flatpak search`"
 
-````
-If you are on a Rocky Linux 8.x version, you will experience this bug. When running the command:
-
-```bash
-flatpak search [packagename]
-```
-
-Where [packagename] is the package you are looking for, you will get:
-
-```text
-F: Failed to parse /var/lib/flatpak/appstream/flathub/x86_64/active/appstream.xml.gz file: Error on line 4065 char 29: <p> already set '
-  Organic Maps is a free Android & iOS offline maps app for travelers,
-  tourists, hikers, drivers, and cyclists.
-  It uses crowd-sourced OpenStreetMap data and is developed with love by
-  ' and tried to replace with ' ('
-No matches found
-```
-
-There is no workaround for this. To avoid the error, use the Flathub resource in this document to obtain and install the desired package.
-````
+    If you are on a Rocky Linux 8.x version, you will experience this bug. When running the command:
+    
+    `bash     flatpak search [packagename]     `
+    
+    Where [packagename] is the package you are looking for, you will get:
+    
+    `text     F: Failed to parse /var/lib/flatpak/appstream/flathub/x86_64/active/appstream.xml.gz file: Error on line 4065 char 29: <p> already set '       Organic Maps is a free Android & iOS offline maps app for travelers,       tourists, hikers, drivers, and cyclists.       It uses crowd-sourced OpenStreetMap data and is developed with love by       ' and tried to replace with ' ('     No matches found     `
+    
+    There is no workaround for this. To avoid the error, use the Flathub resource in this document to obtain and install the desired package.
 
 ## Flathub
 
@@ -166,51 +153,51 @@ Pour parcourir `Flathub`, veuillez consulter <https://flathub.org/>. Une énorme
 
 3. Cliquez sur la flèche vers le bas à côté du bouton « Install »
 
- ![flathub_install_1](images/01_flatpak.png)
+   ![flathub_install_1](images/01_flatpak.png)
 
- ![flathub_install_2](images/02_flatpak.png)
+   ![flathub_install_2](images/02_flatpak.png)
 
 4. Assurez-vous d'avoir rempli toutes les conditions préalables à l'installation de Rocky Linux (numéro 1 dans la deuxième image, qui est déjà complété ci-dessus), puis copiez la commande (numéro 2 dans la deuxième image) et collez-la dans un terminal
 
- ```bash
- flatpak install flathub com.obsproject.Studio
- Looking for matches…
- Required runtime for com.obsproject.Studio/x86_64/stable (runtime/org.kde.Platform/x86_64/6.6) found in remote flathub
- Do you want to install it? [Y/n]: Y
- ```
+    ```bash
+    flatpak install flathub com.obsproject.Studio
+    Looking for matches…
+    Required runtime for com.obsproject.Studio/x86_64/stable (runtime/org.kde.Platform/x86_64/6.6) found in remote flathub
+    Do you want to install it? [Y/n]: Y
+    ```
 
 5. Lorsque vous répondez « Y » et appuyez sur ++enter++, vous verrez ce qui suit :
 
- ```bash
- com.obsproject.Studio permissions:
- ipc                             network         pulseaudio              wayland
- x11                             devices         file access [1]         dbus access [2]
- system dbus access [3]
-
- [1] host, xdg-config/kdeglobals:ro, xdg-run/pipewire-0
- [2] com.canonical.AppMenu.Registrar, org.a11y.Bus, org.freedesktop.Flatpak, org.freedesktop.Notifications,
-     org.kde.KGlobalSettings, org.kde.StatusNotifierWatcher, org.kde.kconfig.notify
- [3] org.freedesktop.Avahi
-
-     ID                                                    Branch         Op         Remote          Download
- 1.     com.obsproject.Studio.Locale                          stable         i          flathub          < 47.0 kB (partial)
- 2.     org.kde.KStyle.Adwaita                                6.6            i          flathub           < 8.0 MB
- 3.     org.kde.Platform.Locale                               6.6            i          flathub         < 380.6 MB (partial)
- 4.     org.kde.PlatformTheme.QGnomePlatform                  6.6            i          flathub           < 9.7 MB
- 5.     org.kde.WaylandDecoration.QAdwaitaDecorations         6.6            i          flathub           < 1.2 MB
- 6.     org.kde.Platform                                      6.6            i          flathub         < 325.0 MB
- 7.     com.obsproject.Studio                                 stable         i          flathub         < 207.7 MB
-
- Proceed with these changes to the system installation? [Y/n]:
- ```
+    ```bash
+    com.obsproject.Studio permissions:
+    ipc                             network         pulseaudio              wayland
+    x11                             devices         file access [1]         dbus access [2]
+    system dbus access [3]
+    
+    [1] host, xdg-config/kdeglobals:ro, xdg-run/pipewire-0
+    [2] com.canonical.AppMenu.Registrar, org.a11y.Bus, org.freedesktop.Flatpak, org.freedesktop.Notifications,
+        org.kde.KGlobalSettings, org.kde.StatusNotifierWatcher, org.kde.kconfig.notify
+    [3] org.freedesktop.Avahi
+    
+        ID                                                    Branch         Op         Remote          Download
+    1.     com.obsproject.Studio.Locale                          stable         i          flathub          < 47.0 kB (partial)
+    2.     org.kde.KStyle.Adwaita                                6.6            i          flathub           < 8.0 MB
+    3.     org.kde.Platform.Locale                               6.6            i          flathub         < 380.6 MB (partial)
+    4.     org.kde.PlatformTheme.QGnomePlatform                  6.6            i          flathub           < 9.7 MB
+    5.     org.kde.WaylandDecoration.QAdwaitaDecorations         6.6            i          flathub           < 1.2 MB
+    6.     org.kde.Platform                                      6.6            i          flathub         < 325.0 MB
+    7.     com.obsproject.Studio                                 stable         i          flathub         < 207.7 MB
+    
+    Proceed with these changes to the system installation? [Y/n]:
+    ```
 
 6. Répondre « Y » et appuyer sur ++enter++ modifiera les autorisations du système comme indiqué et installera l'application.
 
 7. Si tout se passe bien, vous devriez obtenir le message suivant :
 
- ```text
- Installation complete.
- ```
+    ```text
+    Installation complete.
+    ```
 
 8. Depuis le menu « Activities », vous pouvez désormais rechercher et exécuter OBS Studio.
 

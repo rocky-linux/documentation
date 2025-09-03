@@ -20,7 +20,7 @@ In linea di principio, non si ha idea di chi siano i fruitori della documentazio
 
 Idiomi, gergo, contrazioni e acronimi possono confondere i lettori che non li conoscono, in particolare coloro che non sono madrelingua, i nuovi dipendenti o tutti coloro che estranei al vostro settore specifico.
 
-I **diomi** sono spesso culturalmente specifici e possono essere difficili da capire per i lettori internazionali.\
+Gli **idiomi** sono spesso specifici di una determinata cultura e possono essere difficili da comprendere per i lettori internazionali.\
 Il **gergo** comprende termini specialistici che solo gli esperti di un settore possono riconoscere.\
 Le **contrazioni** sostituiscono le parole della lingua inglese con scorciatoie, che però non sempre esistono in tutte le lingue, rendendo difficile la traduzione.\
 Gli **acronimi** possono essere ambigui, soprattutto se non vengono definiti al momento del loro utilizzo.
