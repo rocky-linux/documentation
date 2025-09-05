@@ -12,9 +12,9 @@ Decibel è un'applicazione che riproduce file audio. L'interfaccia intuitiva con
 
 Questa guida presuppone che si disponga di quanto segue:
 
- - Rocky Linux
- - Flatpak
- - FlatHub
+- Rocky Linux
+- Flatpak
+- FlatHub
 
 ## Processo di installazione
 

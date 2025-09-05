@@ -12,9 +12,9 @@ Besoin de supprimer une carte postale ou un fichier PDF contenant des informatio
 
 Ce guide suppose que vous disposez de la configuration suivante :
 
- - Rocky Linux
- - Flatpak
- - FlatHub
+- Rocky Linux
+- Flatpak
+- FlatHub
 
 ## Processus d'Installation
 

@@ -11,11 +11,11 @@ tags:
 
 ## Prerequisiti
 
- - Capacità di utilizzare strumenti a riga di comando
- - Gestione dei contenuti dalla riga di comando
- - L'esperienza precedente con la generazione di chiavi SSH è utile ma non necessaria
- - Una conoscenza di base di SSH e dell'infrastruttura a chiave pubblica è utile ma non necessaria
- - Un server che esegue il demone sshd.
+- Capacità di utilizzare strumenti a riga di comando
+- Gestione dei contenuti dalla riga di comando
+- L'esperienza precedente con la generazione di chiavi SSH è utile ma non necessaria
+- Una conoscenza di base di SSH e dell'infrastruttura a chiave pubblica è utile ma non necessaria
+- Un server che esegue il demone sshd.
 
 ## Introduzione
 
@@ -25,13 +25,13 @@ Le CA possono essere utilizzate anche per firmare le chiavi SSH degli utenti. In
 
 ## Obiettivi
 
- - Migliorare la sicurezza delle connessioni SSH.
- - Migliorare il processo di inserimento e della gestione delle chiavi.
+- Migliorare la sicurezza delle connessioni SSH.
+- Migliorare il processo di inserimento e della gestione delle chiavi.
 
 ## Note
 
- - Vim è l'editor di testo scelto dall'autore. L'uso di altri editor di testo, come nano o altri, è perfettamente accettabile.
- - L'uso di `sudo` o `root` implica privilegi elevati.
+- Vim è l'editor di testo scelto dall'autore. L'uso di altri editor di testo, come nano o altri, è perfettamente accettabile.
+- L'uso di `sudo` o `root` implica privilegi elevati.
 
 ## Connessione iniziale
 
@@ -65,9 +65,9 @@ Creare una CA (chiave privata e pubblica) e inserire la chiave pubblica nel file
 
 Dove:
 
- - **-b**: lunghezza della chiave in byte
- - **-t**: tipo di chiave: rsa, ed25519, ecdsa...
- - **-f**: file chiave di output
+- **-b**: lunghezza della chiave in byte
+- **-t**: tipo di chiave: rsa, ed25519, ecdsa...
+- **-f**: file chiave di output
 
 In alternativa, è possibile specificare il file `known_hosts` a livello di sistema modificando il file di configurazione SSH `/etc/ssh/ssh_config`:
 
@@ -94,11 +94,11 @@ Acquisire la chiave pubblica del server tramite `scp` e firmarla:
 
 Dove:
 
- - **-s**: chiave di firma
- - **-I**: nome che identifica il certificato a scopo di registrazione
- - **-n**: identifica il nome (host o utente, uno o più) associato al certificato (se non viene specificato, i certificati sono validi per tutti gli utenti o host)
- - **-h**: definisce il certificato come chiave host, anziché come chiave client
- - **-V**: periodo di validità del certificato
+- **-s**: chiave di firma
+- **-I**: nome che identifica il certificato a scopo di registrazione
+- **-n**: identifica il nome (host o utente, uno o più) associato al certificato (se non viene specificato, i certificati sono validi per tutti gli utenti o host)
+- **-h**: definisce il certificato come chiave host, anziché come chiave client
+- **-V**: periodo di validità del certificato
 
 ## Stabilire la fiducia
 

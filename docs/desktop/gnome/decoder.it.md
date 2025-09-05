@@ -12,9 +12,9 @@ Avete bisogno di un codice QR per il vostro sito web, la vostra applicazione o i
 
 Questa guida presuppone che si disponga di quanto segue:
 
- - Rocky Linux
- - Flatpak
- - FlatHub
+- Rocky Linux
+- Flatpak
+- FlatHub
 
 ## Processo dell'installazione
 
@@ -38,8 +38,8 @@ Questa guida presuppone che si disponga di quanto segue:
 
 Sono disponibili due tipi di codici QR. Scegliete l'opzione più adatta alle vostre esigenze:
 
- - [Text](#text)
- - [Wifi](#wifi)
+- [Text](#text)
+- [Wifi](#wifi)
 
 ### Text
 

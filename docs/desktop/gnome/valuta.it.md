@@ -12,9 +12,9 @@ Se viaggiate o vi trasferite spesso all'estero, semplificate la vostra pianifica
 
 Questa guida presuppone che si disponga di quanto segue:
 
- - Rocky Linux
- - Flatpak
- - FlatHub
+- Rocky Linux
+- Flatpak
+- FlatHub
 
 ## Processo di installazione
 

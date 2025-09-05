@@ -12,7 +12,7 @@ Sind Sie es leid, mit der Tastatur Bilder auf Ihrem Computerbildschirm aufzunehm
 
 Für diese Anleitung benötigen Sie Folgendes:
 
- - Rocky Linux
+- Rocky Linux
 
 !!! note "Anmerkung"
 

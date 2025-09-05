@@ -70,17 +70,17 @@ Outgoing:
 
 Décorticage des lignes ci-dessus :
 
- - Curr – utilisation actuelle de la bande passante
- - Avg - utilisation moyenne de la bande passante au cours d'une période donnée
- - Min - utilisation minimale de la bande passante mesurée
- - Max - utilisation maximale de la bande passante mesurée
- - Ttl - données transférées lors de la session `nload`
+- Curr – utilisation actuelle de la bande passante
+- Avg - utilisation moyenne de la bande passante au cours d'une période donnée
+- Min - utilisation minimale de la bande passante mesurée
+- Max - utilisation maximale de la bande passante mesurée
+- Ttl - données transférées lors de la session `nload`
 
 ## Racourcis de clavier
 
- - \++page-down++, ++down++ – Descendre d'une interface
- - \++page-up++, ++up++ – Remonter d'une interface
- - \++f2++ - Affiche la fenêtre des options
- - \++f5++ - Enregistrer les options
- - \++f6++ – Recharger les paramètres à partir du fichier de configuration
- - \++q++, ++ctrl+c++ - Quitter `nload`
+- \++page-down++, ++down++ – Descendre d'une interface
+- \++page-up++, ++up++ – Remonter d'une interface
+- \++f2++ - Affiche la fenêtre des options
+- \++f5++ - Enregistrer les options
+- \++f6++ – Recharger les paramètres à partir du fichier de configuration
+- \++q++, ++ctrl+c++ - Quitter `nload`

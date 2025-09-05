@@ -475,7 +475,7 @@ tags:
    Вихід:
 
    ```bash
-        <PID> (process ID) old priority 0, new priority -10
+   <PID> (process ID) old priority 0, new priority -10
    ```
 
    Замініть "<PID>" (вище) фактичним PID запущеного процесу.

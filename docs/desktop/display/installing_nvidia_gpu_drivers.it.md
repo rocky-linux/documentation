@@ -16,9 +16,9 @@ Il link per le attività di pre-installazione nella guida ufficiale di NVIDIA è
 
 Alcuni altri modi alternativi per installare i driver NVIDIA includono:
 
- - L'installer `.run` di NVIDIA
- - Repo RPMFusion di terze parti
- - Driver ELRepo di terze parti
+- L'installer `.run` di NVIDIA
+- Repo RPMFusion di terze parti
+- Driver ELRepo di terze parti
 
 Nella maggior parte dei casi, è meglio installare i driver NVIDIA dalla fonte ufficiale. RPMFusion e ELRepo sono disponibili per chi preferisce un repository più comunity-based. Per l'hardware più vecchio, la soluzione migliore è RPMFusion. È consigliabile evitare di usare il programma di installazione `.run`. Sebbene sia comodo, l'uso del programma di installazione `.run` è noto per la sovrascrittura dei file di sistema e per i problemi di incompatibilità.
 
@@ -26,8 +26,8 @@ Nella maggior parte dei casi, è meglio installare i driver NVIDIA dalla fonte u
 
 Per questa guida sono necessari i seguenti elementi:
 
- - Rocky Linux Workstation
- - Privilegi `sudo`
+- Rocky Linux Workstation
+- Privilegi `sudo`
 
 ## Installare le utility e le dependencies necessarie
 

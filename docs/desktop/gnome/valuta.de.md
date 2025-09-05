@@ -12,9 +12,9 @@ Wenn Sie häufig reisen oder ins Ausland ziehen, vereinfachen Sie Ihre Finanzpla
 
 Für diese Anleitung benötigen Sie Folgendes:
 
- - Rocky Linux
- - Flatpak
- - FlatHub
+- Rocky Linux
+- Flatpak
+- FlatHub
 
 ## Installationsanweisungen
 

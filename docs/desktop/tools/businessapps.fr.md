@@ -14,9 +14,9 @@ La plupart d’entre elles sont sur Flathub. Dans ce guide, vous apprendrez à i
 
 Cet article suppose les éléments suivants :
 
- - Une installation Rocky Linux avec un environnement de bureau graphique
- - Les droits nécessaires pour l'installation de logiciels sur votre système
- - Flatpak et Flathub installés et opérationnels
+- Une installation Rocky Linux avec un environnement de bureau graphique
+- Les droits nécessaires pour l'installation de logiciels sur votre système
+- Flatpak et Flathub installés et opérationnels
 
 ## Installation des logiciels professionnels courants sur Rocky Linux
 

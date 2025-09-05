@@ -14,9 +14,9 @@ Nous n'aborderons pas tout ce que `firewalld` ou l'interface graphique peuvent a
 
 Pour ce guide, nous partons du principe que vous disposez déjà de la configuration suivante :
 
- - Une installation Rocky Linux avec n'importe quel environnement de bureau graphique
- - `sudo` ou privilèges administratifs
- - Vous possédez aussi une compréhension des bases du fonctionnement de `firewalld`
+- Une installation Rocky Linux avec n'importe quel environnement de bureau graphique
+- `sudo` ou privilèges administratifs
+- Vous possédez aussi une compréhension des bases du fonctionnement de `firewalld`
 
 !!! note "Remarque"
 

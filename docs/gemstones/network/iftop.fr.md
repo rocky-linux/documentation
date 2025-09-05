@@ -83,21 +83,21 @@ TOTAL:                 60.5MB            242Mb            242Mb   242Mb   242Mb
 
 Analyse des lignes du volet inférieur :
 
- - TX - Utilisation des données de transmission/téléchargement
- - RX - Utilisation des données de réception/téléchargement
- - TOTAL - Quantité totale de téléchargement/téléchargement
+- TX - Utilisation des données de transmission/téléchargement
+- RX - Utilisation des données de réception/téléchargement
+- TOTAL - Quantité totale de téléchargement/téléchargement
 
 ## Racourcis de clavier
 
- - \++s++ - regroupe tout le trafic pour chaque source
- - \++d++ - regroupe tout le trafic pour chaque destination
- - \++shift+s++ - bascule vers l'affichage du port source
- - \++shift+d++ - bascule vers l'affichage du port de destination
- - \++t++ - bascule entre les modes d'affichage : affichage par défaut sur deux lignes avec le trafic d'envoi et de réception et affichage sur trois lignes du trafic d'envoi, de réception et total
- - \++1++, ++2++, ++3++ - trier par 1ère, 2ème ou 3ème colonne
- - \++l++ - entre une expression régulière POSIX pour filtrer les noms d'hôtes
- - \++shift+p++ - met en pause l'affichage actuel
- - \++o++ - gèle le comptage total de bande passante
- - \++j++ - déroulement vers le bas
- - \++k++ - déroulement vers le haut
- - \++f++ - édite le code du filtre
+- \++s++ - regroupe tout le trafic pour chaque source
+- \++d++ - regroupe tout le trafic pour chaque destination
+- \++shift+s++ - bascule vers l'affichage du port source
+- \++shift+d++ - bascule vers l'affichage du port de destination
+- \++t++ - bascule entre les modes d'affichage : affichage par défaut sur deux lignes avec le trafic d'envoi et de réception et affichage sur trois lignes du trafic d'envoi, de réception et total
+- \++1++, ++2++, ++3++ - trier par 1ère, 2ème ou 3ème colonne
+- \++l++ - entre une expression régulière POSIX pour filtrer les noms d'hôtes
+- \++shift+p++ - met en pause l'affichage actuel
+- \++o++ - gèle le comptage total de bande passante
+- \++j++ - déroulement vers le bas
+- \++k++ - déroulement vers le haut
+- \++f++ - édite le code du filtre

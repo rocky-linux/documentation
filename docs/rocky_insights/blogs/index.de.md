@@ -20,9 +20,9 @@ Wenn Sie über keine GitHub-Zugangsdaten verfügen und trotzdem etwas für diese
 
 Sie sollten sicherstellen, dass Ihr Dokument die Anforderungen für diesen Abschnitt erfüllt. Zum Beispiel:
 
- - Passt das hierher? Sind es Informationen, die es wert sind, geteilt zu werden? Ist es ein Dokument im Blog-Stil?
- - Geht es auf ein für technische Autoren wichtiges Thema ein?
- - Wird die Einreichung die Qualität der Rocky Linux-Dokumentation im ganzen verbessern?
+- Passt das hierher? Sind es Informationen, die es wert sind, geteilt zu werden? Ist es ein Dokument im Blog-Stil?
+- Geht es auf ein für technische Autoren wichtiges Thema ein?
+- Wird die Einreichung die Qualität der Rocky Linux-Dokumentation im ganzen verbessern?
 
 ## Welche Art von Information?
 

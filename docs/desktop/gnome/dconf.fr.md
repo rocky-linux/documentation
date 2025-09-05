@@ -28,8 +28,8 @@ Si vous n'êtes pas sûr de la fonction d'un paramètre particulier, faites d'ab
 
 Pour ce guide, vous aurez besoin des conditions suivantes :
 
- - Installation de Rocky Linux, GNOME inclus.
- - Les droits nécessaires pour l'installation de logiciels sur votre système (privilèges `sudo`).
+- Installation de Rocky Linux, GNOME inclus.
+- Les droits nécessaires pour l'installation de logiciels sur votre système (privilèges `sudo`).
 
 ## `dconf Editor` — Installation
 

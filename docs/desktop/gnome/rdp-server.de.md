@@ -20,11 +20,11 @@ Standardmäßig ermöglicht Rocky Linux Ihnen, Ihren Desktop über ein anderes V
 
 Für diese Anleitung wird davon ausgegangen, dass Sie Folgendes bereits eingerichtet haben:
 
- - Rocky Linux inklusiv GNOME
- - `Flatpak` und `Flathub` sind betriebsbereit
- - Ein User-Account ohne root-Rechte
- - Administrator- oder `sudo`-Rechte und die Möglichkeit, Befehle in das Terminal einzufügen
- - Der X-Server (zum Teilen Ihres Desktops)
+- Rocky Linux inklusiv GNOME
+- `Flatpak` und `Flathub` sind betriebsbereit
+- Ein User-Account ohne root-Rechte
+- Administrator- oder `sudo`-Rechte und die Möglichkeit, Befehle in das Terminal einzufügen
+- Der X-Server (zum Teilen Ihres Desktops)
 
 !!! info "Info"
 

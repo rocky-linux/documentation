@@ -12,9 +12,9 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 Ce guide suppose que vous disposez de la configuration suivante :
 
- - Rocky Linux
- - Flatpak
- - FlatHub
+- Rocky Linux
+- Flatpak
+- FlatHub
 
 ## Processus d'Installation
 

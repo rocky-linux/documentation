@@ -16,9 +16,9 @@ Der Link für Vorinstallationsaktionen im offiziellen NVIDIA-Handbuch ist defekt
 
 Zu den weiteren Möglichkeiten zum Installieren von NVIDIA-Treibern zählen:
 
- - NVIDIA's `.run` installer
- - RPMFusion-Repository eines Drittanbieters
- - Third-party ELRepo-Treiber
+- NVIDIA's `.run` installer
+- RPMFusion-Repository eines Drittanbieters
+- Third-party ELRepo-Treiber
 
 In den meisten Fällen ist es am besten, NVIDIA-Treiber von der offiziellen Quelle zu installieren. RPMFusion und ELRepo stehen für diejenigen zur Verfügung, die ein Community-basiertes Repository bevorzugen. Für ältere Hardware funktioniert RPMFusion am besten. Es wird empfohlen, die Verwendung des `.run`-Installationsprogramms zu vermeiden. Die Verwendung des „.run“-Installationsprogramms ist zwar praktisch, ist aber dafür berüchtigt, Systemdateien zu überschreiben und Inkompatibilitätsprobleme zu verursachen.
 
@@ -26,8 +26,8 @@ In den meisten Fällen ist es am besten, NVIDIA-Treiber von der offiziellen Quel
 
 Für diese Anleitung benötigen Sie Folgendes:
 
- - Rocky Linux Workstation
- - `sudo`-Berechtigungen
+- Rocky Linux Workstation
+- `sudo`-Berechtigungen
 
 ## Installieren Sie die erforderlichen Dienstprogramme und Abhängigkeiten
 

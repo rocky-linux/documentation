@@ -14,7 +14,7 @@ In dieser Kurzanleitung erfahren Sie, wie Sie loslegen können.
 
 Für diese Anleitung benötigen Sie Folgendes:
 
- - Eine Rocky Linux-Installation mit der grafischen Desktopumgebung GNOME.
+- Eine Rocky Linux-Installation mit der grafischen Desktopumgebung GNOME.
 
 ## So fügen Sie Ihre Online-Konten hinzu
 

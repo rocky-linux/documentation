@@ -475,7 +475,7 @@ I seguenti passaggi mostrano come utilizzare `ps` per visualizzare le informazio
    OUTPUT:
 
    ```bash
-        <PID> (process ID) old priority 0, new priority -10
+   <PID> (process ID) old priority 0, new priority -10
    ```
 
    Sostituire `<PID>` (sopra) con il PID effettivo del processo in esecuzione.

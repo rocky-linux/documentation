@@ -70,17 +70,17 @@ Outgoing:
 
 Scomponendo le righe precedenti:
 
- - Curr - utilizzo attuale della larghezza di banda misurata
- - Avg - utilizzo medio della larghezza di banda nel periodo
- - Min - utilizzo minimo della larghezza di banda misurata
- - Max - utilizzo massimo della larghezza di banda misurata
- - Ttl - dati trasferiti nella sessione \`nload
+- Curr - utilizzo attuale della larghezza di banda misurata
+- Avg - utilizzo medio della larghezza di banda nel periodo
+- Min - utilizzo minimo della larghezza di banda misurata
+- Max - utilizzo massimo della larghezza di banda misurata
+- Ttl - dati trasferiti nella sessione \`nload
 
 ## Tasti di scelta rapida per l'interazione
 
- - \++page-down++, ++down++ - Scendere di un'interfaccia
- - \++page-up++, ++up++ - Salire di un'interfaccia
- - \++f2++ - Mostra la finestra delle opzioni
- - \++f5++ - Salva le opzioni
- - \++f6++ - Ricaricare le impostazioni dal file di configurazione
- - \++q++, ++ctrl+c++ - Chiude `nload`
+- \++page-down++, ++down++ - Scendere di un'interfaccia
+- \++page-up++, ++up++ - Salire di un'interfaccia
+- \++f2++ - Mostra la finestra delle opzioni
+- \++f5++ - Salva le opzioni
+- \++f6++ - Ricaricare le impostazioni dal file di configurazione
+- \++q++, ++ctrl+c++ - Chiude `nload`

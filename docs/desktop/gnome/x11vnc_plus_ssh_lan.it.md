@@ -20,8 +20,8 @@ Uno dei principali vantaggi dell'utilizzo di x11vnc rispetto a SSH è che elimin
 
 Per questa guida, si presuppone che si disponga di quanto segue:
 
- - Rocky Linux Workstation
- - Privilegi `sudo`
+- Rocky Linux Workstation
+- Privilegi `sudo`
 
 ## Impostazione del server VNC
 
@@ -161,8 +161,8 @@ Congratulazioni! Ora è possibile controllare il desktop da remoto!
 
 Finora questo articolo ha mostrato come impostare un server x11vnc e come connettersi ad esso utilizzando VNC inoltrato attraverso un tunnel SSH. È importante notare che questo metodo funziona solo per i computer della stessa rete locale (LAN). Supponendo di volersi collegare a un computer su un'altra LAN. Un modo per farlo è impostare una VPN. Di seguito sono riportate alcune guide su come impostare una VPN:
 
- - [OpenVPN](https://docs.rockylinux.org/guides/security/openvpn/)
- - [Wireguard VPN](https://docs.rockylinux.org/guides/security/wireguard_vpn/)
+- [OpenVPN](https://docs.rockylinux.org/guides/security/openvpn/)
+- [Wireguard VPN](https://docs.rockylinux.org/guides/security/wireguard_vpn/)
 
 ## Conclusione
 
