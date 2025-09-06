@@ -119,27 +119,193 @@ There are also specific addresses within a network, which must be identified. Th
 
     These two addresses that play special roles **cannot** be assigned to the terminal machine for use.
 
-### MAC address / IP address
+### MAC address and IP address
 
 A **MAC address** is a physical identifier written in the factory onto the device. This is sometimes referred to as the hardware address. It consists of 6 bytes often given in hexadecimal form (for example 5E:FF:56:A2:AF:15).
-It is composed of: 3 bytes of the manufacturer identifier and 3 bytes of the serial number.
+
+These 6 bytes respectively represent:
+
+* The first three bytes represent manufacturer identifier . This identifier is called OUI (Organizationally Unique Identifier).
+* The last three bytes represent the serial number allocated by the manufacturer.
 
 !!! Warning
 
-    This last statement is nowadays a little less true with virtualization. There are also software solutions for changing the MAC address.
+    The MAC address is hardcoded when the hardware leaves the factory. There are two main methods to modify it:
+    
+    * Firmware-level modification (permanent): Requires advanced tools that can directly rewrite the MAC address in the network card's ROM. Such tools are typically only available to hardware manufacturers.
+    * Software-level spoofing (temporary): Modifies how the MAC address appears to the operating system. These changes are usually reset after a system reboot. The MAC address of the virtual network card in the virtual host is also implemented through spoofing.
 
-An Internet Protocol (**IP**) address is an identification number permanently or temporarily assigned to each device connected to a computer network using the Internet Protocol.
-One part defines the network address (NetID or SubnetID as the case may be), the other part defines the address of the host in the network (HostID). The relative size of each part varies according to the network (sub)mask.
+An Internet Protocol (**IP**) address is an identification number permanently or temporarily assigned to each device connected to a computer network using the Internet Protocol. The IP address and subnet mask must appear in pairs, which is determined by the basic principles of network communication. Through the subnet mask, we can know the current IP address:
 
-An IPv4 address defines an address on 4 bytes. The number of available addresses being close to saturation a new standard was created, the IPv6 defined on 16 bytes.
+* network bits and host bits
+* NetID or SubnetID
+* HostID
+* network address
+* broadcast address
 
-IPv6 is often represented by 8 groups of 2 bytes separated by a colon. Insignificant zeros can be omitted, one or more groups of 4 consecutive zeros can be replaced by a double colon.
+IP addresses are classified based on the version field in the packet as follows:
 
-Subnet masks have from 0 to 128 bits. (for example 21ac:0000:0000:0611:21e0:00ba:321b:54da/64 or 21ac::611:21e0:ba:321b:54da/64)
+* **IPv4‌** - (4 bits, 0100). The available quantity of IPv4 is 2<sup>32</sup> (known from the source and destination address fields in IPv4 packets). Specifically divided into:
 
-In a web address or URL (Uniform Resource Locator), an ip address can be followed by a colon and the port address (which indicates the application to which the data is destined). Also to avoid confusion in a URL, the IPv6 address is written in square brackets [ ], colon, port address.
+    * Class A address. Its range is from **0.0.0.0** to **127.255.255.255**
+    * Class B address. Its range is from **128.0.0.0** to **191.255.255.255**
+    * Class C address. Its range is from **192.0.0.0** to **223.255.255.255**
+    * Class D address. Its range is from **224.0.0.0** to **239.255.255.255**
+    * Class E address. Its range is from **240.0.0.0** to **255.255.255.255**
 
-IP and MAC addresses must be unique on a network!
+    Among them, Class A addresses, Class B addresses, and Class C addresses all have their own private address ranges. 0.0.0.0 is a reserved address and is not assigned to the host. Class D addresses are used for multicast communication and are not assigned to hosts. Class E addresses are reserved and not used for regular networks.
+
+* **IPv6** - (4 bits, 0110). The available quantity of IPv6 is 2<sup>128</sup> (known from the source and destination address fields in IPv6 packets). Specifically divided into:
+
+    * Unicast address. Include Link-local unicast address (LLA), Unique local address (ULA), Global unicast address (GUA), Loopback address, Unspecified address
+    * Anycast address
+    * Multicast address
+
+Description of writing format for 128 bits IPv6:
+
+* Preferred writing format - **X:X:X:X:X:X:X:X**. In this writing format, 128 bit IPv6 addresses are divided into 8 groups, each represented by 4 hexadecimal values (0-9, A-F), separated by colons (`:`) between groups. Each "X" represents a set of hexadecimal values. For example **2001:0db8:130F:0000:0000:09C0:876A:130B**.
+
+    * Omitting the leading 0 - For the convenience of writing, the leading "0" in each group can be omitted, so the above address can be abbreviated as **2001:db8:130F:0:0:9C0:876A:130B**.
+    * Use double colon - If the address contains two or more consecutive groups that are both 0, a double colon can be used instead. So the above address can be further abbreviated as **2001:db8:130F::9C0:876A:130B**. Attention! A double colons can only appear once in an IPv6 address.
+
+* Compatible with writing formats - **X:X:X:X:X:X:d.d.d.d**. In a mixed network environment, this format ensures compatibility between IPv6 nodes and IPv4 nodes. For example **0:0:0:0:0:ffff:192.1.56.10** and **::ffff:192.1.56.10/96**.
+
+In a web address or URL (Uniform Resource Locator), an IP address can be followed by a colon and the port address (which indicates the application to which the data is destined). Also to avoid confusion in a URL, the IPv6 address is written in square brackets (For example `[2001:db8:130F::9C0:876A:130B]:443`).
+
+As mentioned earlier, subnet masks divide IPv4 addresses into two parts: network bits and host bits. In IPv6, subnet masks also have the same function, but the name has changed ("n" represents the number of bits occupied by the subnet mask):
+
+* Network prefix - It is equivalent to the network bits in an IPv4 address. According to the subnet mask, occupy "n" bits.
+* Interface ID - It is equivalent to the host bits in an IPv4 address. According to the subnet mask, occupy "128-n" bits.
+
+For example **2001:0db8:130F:0000:0000:09C0:876A:130B/64**：
+
+```
+    Network prefix
+|<-    64 bits   ->|
+
+                        Interface ID
+                     |<-    64 bits    ->|
+2001:0db8:130F:0000 : 0000:09C0:876A:130B
+```
+
+In the same network, IP addresses must be unique, which is a fundamental rule of network communication. In the same LAN (Local Area Network), the MAC address must be unique.
+
+### IPv4 packet structure
+
+IPv4 packets contain both header and data parts:
+
+![](./images/IPv4-packet.png)
+
+**Version**: Help routers identify protocol versions. For IPv4, the value here is 0100 (Binary 0100 is equivalent to decimal 4)
+
+**IHL**: A field used to control the length of the header. When the "Options" field is not included, the minimum value is 5 (Namely binary 0101), at this time, the head occupies 20 bytes. The maximum value is 15 (Namely binary 1111), and the length of the header is 60 bytes.
+
+```
+The actual length of IPv4 header = The value of the IHL field * 4
+```
+
+**Type of Service**: This field is used to define the QoS (Quality Of Service) and priority of data packets. This field is now mainly used for DSCP (Differentiated Services Code Point) and ECN (Explicit Congestion Notification).
+
+**Total Length**: Represents the total length of the entire IPv4 datagram (IPv4 packet) in bytes.
+
+!!! note 
+
+    IP packet and IP datagram are technically different expressions of the same concept, both referring to data units transmitted at the network layer.
+
+**Identification**: Identifies all fragments of an IPv4 datagram. All fragments from the same original datagram share the same Identification value to enable correct reassembly.
+
+**Flags**: It is used to control the behavior of IPv4 datagram fragmentation. In order from left to right:
+
+* The first bit - Not used, value 0
+* The second bit - DF (Don’t Fragment). If DF=1, it means that the IPv4 datagram must be transmitted in its entirety. If it exceeds MTU, it is discarded and an ICMP error is returned (such as "Fragmentation Needed"). If DF=0, the router splits the IPv4 datagram into multiple fragments, each of which carries the same ‌Identification‌ field value
+* The third bit - MF (More Fragment). If MF=1, it means that the current fragment is not the last one and there are other fragments; If MF=0, it means this is the last fragment
+
+**Fragment Offset**: Indicate the relative position of the fragment in the original IPv4 datagram, in units of 8 bytes. This field is mainly used for fragment reassembly.
+
+**TTL (Time To Live)**: This field is used to limit the maximum survival time or maximum hop count of datagrams in the network. The initial value is determined by the sender, and the TTL decreases by 1 every time it passes through the router. When TTL=0, the datagram is discarded.
+
+**Protocol**: Indicates the protocol type used by the data carried in this datagram. Its value range is 0-255.For example, the protocol number of TCP is 6, that of UDP is 17, that of ICMP is 1.
+
+**Header Checksum**: This field will be recalculated every time the datagram passes through the router, mainly due to the decreasing TTL field causing changes in the header. This field only verifies the header (excluding the data part). If other fields remain unchanged and only the TTL changes, the checksum will be updated to a new value (non-zero) to ensure that the header has not been tampered with or damaged during transmission.
+
+**Source address**: IPv4 address of the datagram sender
+
+**Destination address**: IPv4 address of the datagram receiver
+
+**Options**: Optional field, with a length range of 0-40 bytes. It is only used when the IHL is greater than 5. The length of this field must be an integer multiple of 4 bytes (if the length is less than 4 bytes, use the **padding** field for padding).
+
+!!! tip
+
+    Bit has two meanings. In information theory, it refers to the fundamental unit of information, representing one binary choice (0 or 1). In computer science, it is the smallest unit of data storage, where 8 bits typically equal 1 byte unless specified otherwise.
+
+### IPv6 packet structure
+
+IPv6 datagrams consist of three parts:
+
+* Basic Header
+* Extension Header
+* Upper Layer Protocol Data Unit
+
+In some books, the Extended Header and Upper Layer Protocol Data Unit are collectively referred to as the **Payload**.
+
+![](./images/IPv6-basic-header.png)
+
+The fixed length of the Basic Header is 40 bytes and it is fixed to 8 fields:
+
+**Version**: Help routers identify protocol versions. For IPv6, the value here is 0110 (Binary 0110 is equivalent to decimal 6).
+
+**Traffic Class**: Equivalent to the TOS (Type Of Service) field in IPv4 datagrams. This field is used to define the QOS (Quality Of Service) and priority of data packets.
+
+**Flow Label**: This IPv6 new field is used to control packet flow. A non-zero value in this field means that the packet should be treated specially; i.e., the packet should not be sent through different routes to reach the destination but rather use the same path. An advantage to this is that the receiving end doesn’t have to reorder the package, thus speeding the process. This field helps avoid reordering data packets and is specifically designed for streaming media/live media.
+
+**Payload Length**: Indicate the size of the payload. This field can only represent a Payload with a maximum length of 65535 bytes. In case the length of the payload is greater than 65535 bytes, then the payload length field will be set to 0 and the jumbo payload option is used in the Hop-by-Hop Options Extension Header. 
+
+**Next Header**: Used to indicate the type of packet header after the basic header. If there is a first extension header, it represents the type of the first extension header. Otherwise, it represents the protocol type used by the upper layer, such as 6 (TCP) and 17 (UDP).
+
+**Hop Limit**: This field is equivalent to Time To Live (TTL) in IPv4 datagrams.
+
+**Source Address**: This field represents the address of the IPv6 datagram sender.
+
+**Destination Address**: This field represents the address of the IPv6 datagram receiver.
+
+![](.//images/IPv6-extension-header.png)
+
+In IPv4 datagrams, the IPv4 header contains optional fields such as Options, which include Security, Timestamp, Record Route, etc. These Options can expand the length of the IPv4 header from 20 bytes to 60 bytes. During the forwarding process, handling IPv4 datagrams carrying these Options can consume a significant amount of device resources, so it is rarely used in practice.
+
+IPv6 removes these Options from the IPv6 basic header and places them in the extension header, which is placed between the IPv6 Basic Header and the Upper Layer Protocol Data Unit. 
+
+An IPv6 packet can contain 0, 1, or multiple extension headers, which are only added by the sender when special processing is required by the device or destination node. 
+
+Unlike the IPv4 Options field (which can be extended up to 40 bytes and requires continuous storage), the IPv6 Extension Header adopts a chain structure and has no fixed length limit, making it more scalable in the future. Its 8 byte alignment mechanism is implemented through the Next Header field, which ensures processing efficiency and avoids fragmentation overhead.
+
+**Next Header**: This field has the same function as the Next Header field in the Basic Header.
+
+**Extension Header Len**: Indicate the length of the extension header (excluding the length of the Next Header).
+
+**Extension Head Data**: The content of the Extension Header is a combination of a series of option fields and padding fields.
+
+Currently, RFC defines the following types of Extension Headers:
+
+* Hop-by-Hop Options header (Next Header Field Value is 0) - Must be handled by all routers in the path.
+* Destination Options header (Next Header Field Value is 60) - Only processed by the destination node.
+* Routing header (Next Header Field Value is 43) - This Extension Header is similar to the Loose Source and Record Route options in IPv4.
+* Fragment header (Next Header Field Value is 44) - Like IPv4 packets, the length of IPv6 packets to be forwarded cannot exceed the maximum transmission unit (MTU). When the packet length exceeds the MTU, the packet needs to be fragmented. In IPv6, the Fragment header is used by an IPv6 source node to send a packet larger than the MTU.
+* Authentication header (Next Header Field Value is 51) - IPSec uses this header to provide data origin authentication, data integrity check, and packet anti-replay functions. It also protects some fields in the IPv6 basic header.
+* Encapsulating Security Payload header (Next Header Field Value is 50) - This header provides the same functions as the Authentication header plus IPv6 packet encryption.
+
+RFC specifies that when multiple extension headers are used in the same datagram, it is recommended that these headers appear in the following order:
+
+1. IPv6 Basic Header
+2. Hop-by-Hop Options header
+3. Destination Options header
+4. Routing header
+5. Fragment header
+6. Authentication header
+7. Encapsulating Security Payload header
+8. Destination Options header
+9. Upper-layer protocol header
+
+Except for the Destination Option Header which may appear once or twice (once before the Routing Extension header and once before the Upper-layer protocol header), all other extension headers can only appear once.
 
 ### DNS Domain
 
