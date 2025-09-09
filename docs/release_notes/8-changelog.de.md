@@ -1,5 +1,5 @@
 ---
-title: Changelog 8
+title: Neuerungen 8
 author: Louis Abel
 contributors: Steven Spencer, tianci li
 tags:

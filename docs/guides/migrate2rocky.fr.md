@@ -9,7 +9,7 @@ update: 2023-05-19
 
 ## Prérequis
 
-- CentOS Stream, CentOS, Alma Linux, RHEL ou Oracle Linux fonctionnant correctement sur un serveur physique ou virtuel (VPS). Par opposition à CentOS-Stream, CentOS-Linux ne sera sera disponible que jusqu'à la version 8.5. La version actuellement prise en charge pour les autres systèmes est la **8.10** respectivement **9.4**.
+- CentOS Stream, CentOS, Alma Linux, RHEL ou Oracle Linux fonctionnant correctement sur un serveur physique ou virtuel (VPS) ; Par opposition à CentOS-Stream, CentOS-Linux ne sera sera disponible que jusqu'à la version 8.5. La version actuellement prise en charge pour les autres systèmes est la **8.10** respectivement **9.6**. La version 10 n'est pas encore prise en charge.
 - Une bonne connaissance de la ligne de commande
 - Être à l'aise avec l'usage de SSH dans le cas de machines distantes 
 - Une capacité à accepter les risques.
