@@ -6,7 +6,7 @@ title: Einführung in GNU/Linux
 
 # Einführung in GNU/Linux
 
-In diesem Kapitel werden GNU/Linux Distributionen behandelt.
+In diesem Kapitel erfahren Sie mehr über GNU/Linux-Distributionen.
 
 ****
 
@@ -63,11 +63,11 @@ Als Teil dieser Ressourcenverwaltung muss das Betriebssystem Folgendes tun:
 
 * **1969 – 1971**: Nach dem Rückzug von Bell (1969) und dann von General Electric aus dem Projekt wurden zwei Entwickler, Ken Thompson und Dennis Ritchie (zu denen später Brian Kernighan hinzukam), die MULTICS für zu komplex hielten, mit der Entwicklung von UNIX (UNiplexed Information and Computing Service) betraut. Ursprünglich im Assembler implementiert, entwickelten die Designer von UNIX die B-Sprache und dann die C-Sprache (1971) und schrieben UNIX. Seit 1970 ist das Referenzdatum (epoch) der UNIX/Linux-Systeme noch am 01. Januar 1970 festgelegt.
 
-Die Programmiersprache C ist noch heute eine der beliebtesten Programmiersprachen. Eine Hardware-nahe Sprache, sie ermöglicht die Anpassung des Betriebssystems an jede Maschinenarchitektur.
+C ist auch heute noch eine der beliebtesten Programmiersprachen. Eine Hardware-nahe Sprache, sie ermöglicht die Anpassung des Betriebssystems an jede Maschinenarchitektur.
 
-UNIX ist ein offenes und sich entwickelndes Betriebssystem, das eine wichtige Rolle in der Geschichte der Informatik gespielt hat. Es war die Basis für viele andere Systeme: GNU/Linux, BSD, macOS, etc.
+UNIX ist ein offenes und sich entwickelndes Betriebssystem, das eine wichtige Rolle in der Geschichte der Informatik gespielt hat. Es bildet die Grundlage für viele andere Systeme wie GNU/Linux, BSD, macOS usw.
 
-UNIX ist noch heute relevant (HP-UX, AIX, Solaris, etc.)
+UNIX ist auch heute noch relevant (HP-UX, AIX, Solaris usw.).
 
 #### GNU Projekt
 
