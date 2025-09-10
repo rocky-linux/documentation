@@ -78,7 +78,7 @@ Ensure that "write_enable" is yes also:
 write_enable=YES
 ```
 
-Find the line to "chroot_local_users" and remove the remark. Add two lines after that shown here:
+Find the line to "chroot_local_user" and remove the remark. Add two lines after that shown here:
 
 ```bash
 chroot_local_user=YES
