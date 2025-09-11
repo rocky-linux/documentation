@@ -1,5 +1,5 @@
 - - -
-title: DNF — swap-Befehl <br /> author: wale soyinka <br /> contributors: https://crowdin.com/project/rockydocs/activity-stream <br /> date: 2025-09-05 19h22 <br /> tags:
+title: dnf — swap-Befehl <br/> author: wale soyinka <br/> Translations: [https://crowdin.com/project/rockydocs](https://crowdin.com/project/rockydocs) <br/> Translators: [https://crowdin.com/project/rockydocs/activity-stream](https://crowdin.com/project/rockydocs/activity-stream) <br/> date: 2025-09-11 20h19 <br/> tags: <br/>
   - cloud images
   - container
   - dnf
