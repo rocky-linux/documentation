@@ -24,14 +24,14 @@ Die Hauptbereiche der Dokumentationseite sind:
 
 * **Anleitungen**: die bestimmte Themen zum Einrichten und Benutzen von Rocky Linux abdecken.
 * **Bücher**: enthalten detailliertere Informationen rund um einen bestimmten Bereich.
-* **Labors**: Sie werden Spaß an diese Tutorials haben!
+* **Labs**: „Zurück zur Schule“, diese Tutorials werden Ihnen Spaß machen!
 * **Gems**: Hier werden nützliche Skripte und Tipps zur Verwendung von Befehlen vorgestellt.
 * **Release Notes**: enthalten Rocky Linux Release Notes und Versionsupdate Informationen.
 * **Rocky Linux**: Link zur Offiziellen Homepage.
 
 ### Multilingual
 
-Bei Rocky Linux wollen wir die Dokumentationsseite für jeden in seiner Lieblingssprache zugänglich  machen —  *deshalb sind Übersetzungen in verschiedenen Sprachen wesentlich*. Wenn Sie auf die Sprachauswahl (文A bzw. wén-A Icon) im oberen Menü klicken, sehen Sie die Sprachen, die zurzeit verfügbar sind: Dazu gibt es zwei Teile:
+Bei Rocky Linux wollen wir die Dokumentationsseite für jeden in seiner Lieblingssprache zugänglich  machen —  *deshalb sind Übersetzungen in verschiedenen Sprachen wesentlich*. Wenn Sie auf die Sprachauswahl (文A bzw. `wén-A` Icon) im oberen Menü klicken, sehen Sie die Sprachen, die zurzeit verfügbar sind: Dazu gibt es zwei Teile:
 
 1. Lokalisierung der Webseiten-Schnittstelle: Wenn Sie eine andere Sprache wählen, zum Beispiel Français, werden Sie feststellen, dass die Schnittstelle, zum Beispiel die Navigatoren 'Weiter' und 'Vorheriger' übersetzt werden.
 1. Inhalt: Das Übersetzen von Inhalten ist eine [laufende](https://crowdin.com/project/rockydocs/activity-stream) (https://crowdin.com/project/rockydocs/activity-stream) [Aufgabe](https://crowdin.com/project/rockydocs). Noch nicht alle Inhalte sind in allen Sprachen übersetzt. Alle Seiten, die übersetzt wurden (in der ausgewählten Sprache) werden entsprechend dargestellt, diejenigen, die es noch nicht vollständig sind, werden in Englisch angezeigt. Wenn Sie der Community durch Übersetzungen helfen möchten, sind Sie sehr willkommen — siehe unten für weitere Details zur Vorgehensweise.
