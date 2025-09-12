@@ -175,26 +175,28 @@ Which looks like this in your editor:
 
 ## Tabbed content within a document
 
-Formatting tabbed content is similar to admonitions. Instead of three exclamation marks or question marks, it begins with three equal signs. All the admonition formatting (4 spaces and so on) applies to this content. For example, a document might need a different procedure for a different Rocky Linux version. When using tabbed content for versions, the most recent release of Rocky Linux should come first. At the time of this writing, it was 9.0:
+Formatting tabbed content is similar to admonitions. Instead of three exclamation marks or question marks, it begins with three equal signs. All the admonition formatting (4 spaces and so on) applies to this content. For example, a document might need a different procedure based on how the operating system was installed. With the implementation of documentation versioning, tabbed content formatting should not be necessary to separate out full version content (for instance, 9.6 and 8.10).
 
-=== "9.0"
+=== "9"
 
-    The procedure for doing this in 9.0
+    Use this procedure if your installation was by way of the full operating system, or from a Live image.
 
-=== "8.6"
+=== "9-minimal"
 
-    The procedure for doing this in 8.6
+    Use this procedure if your operating system installation was with the minimal ISO.
 
 Which would look like this in your editor:
 
 ```text
-=== "9.0"
+=== "9"
 
-    The procedure for doing this in 9.0
 
-=== "8.6"
+    Use this procedure if your installation was by way of the full operating system, or from a Live image.
 
-    The procedure for doing this in 8.6
+=== "9-minimal"
+
+    Use this procedure if your operating system installation was with the minimal ISO.
+ 
 ```
 
 Remember that everything that falls inside of the section must continue to use the 4-space indentation until completion of the section. This is a very handy feature!
