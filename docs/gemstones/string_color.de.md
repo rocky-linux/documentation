@@ -57,7 +57,7 @@ Wenn wir Bash-Skripte herunterladen, die von anderen geschrieben wurden, werden 
 
 ## Skript-Beispiel
 
-Wir können ein Skript schreiben, um die Farbänderung zu testen, z.B.:
+Sie können ein Skript schreiben, um die Farbänderung zu testen, z.B.:
 
 ```bash
 #!/bin/bash
