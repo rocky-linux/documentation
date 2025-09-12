@@ -31,7 +31,7 @@ Les sections principales du site de documentation sont :
 
 ### Multilingue
 
-Dans l'équipe Rocky Linux, nous voulons rendre le site de documentation accessible à autant de monde que possible —  *la traduction dans différentes langues est importante pour cela*. Si vous cliquez sur le sélecteur de langue (symbole `文A`, wén-A) dans le menu supérieur, vous verrez les langues dans lesquelles le site est disponible. Il y a deux parties à cela :
+Dans l'équipe Rocky Linux, nous voulons rendre le site de documentation accessible à autant de monde que possible —  *la traduction dans différentes langues est importante pour cela*. Si vous cliquez sur le sélecteur de langue (symbole `文A`, `wén-A`) dans le menu supérieur, vous verrez les langues dans lesquelles le site est disponible. Il y a deux parties à cela :
 
 1. Traduction de l'interface du site web : si vous choisissez une autre langue, par exemple le Français, vous noterez que l'interface, par exemple les boutons de navigation `Suivant` et `Précédent` seront traduits.
 1. Contenu : [la traduction du contenu est une tâche](https://crowdin.com/project/rockydocs/activity-stream) (https://crowdin.com/project/rockydocs/activity-stream) [en cours](https://crowdin.com/project/rockydocs).
@@ -63,4 +63,4 @@ Si vous êtes coincé et que vous avez une question, la communauté Rocky Linux 
 
 ## Votre Contribution
 
-Avez-vous trouvé quelque chose de manquant ? Avez-vous trouvé une erreur ? Vous vous demandez comment créer votre propre document ou comment en corriger un ? Rappelez-vous lorsque nous avons dit que *vous* étiez la communauté Rocky Linux ? Eh bien, cela signifie que *vous* êtes important pour nous et nous voulons que vous nous rejoigniez, si vous le souhaitez, et aider à améliorer cette documentation. Si cela vous intéresse, rendez-vous sur notre [Guide de Contribution](https://github.com/rocky-linux/documentation/blob/main/README.md) pour savoir comment faire !
+Avez-vous trouvé quelque chose de manquant ? Avez-vous trouvé une erreur ? Vous vous demandez comment créer votre propre document ou comment en corriger un ? Rappelez-vous lorsque nous avons dit que *vous* étiez la communauté Rocky Linux ? Cela signifie que *vous* êtes important pour nous et nous voulons que vous nous rejoigniez, si vous le voulez, et que vous nous aidiez à améliorer cette documentation. Si cela vous intéresse, rendez-vous sur notre [Guide de Contribution](https://github.com/rocky-linux/documentation/blob/main/README.md) pour savoir comment faire ! <br/><br/> <small> Traductions: <a href="https://crowdin.com/project/rockydocs">https://crowdin.com/project/rockydocs</a> <br/><br/> Traducteurs: <a href="https://crowdin.com/project/rockydocs/activity-stream">https://crowdin.com/project/rockydocs/activity-stream</a> </small>

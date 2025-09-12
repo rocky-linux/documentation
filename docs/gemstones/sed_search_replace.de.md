@@ -45,7 +45,7 @@ Sie können auch vollständige Anführungszeichen anstelle von einfachen Anführ
 
 ## Mehrere Dateien
 
-Leider hat `sed` keine Inline-Looping-Option wie `perl`. Um mehrere Dateien zu durchlaufen, müssen Sie Ihren `sed`-Befehl in einem Skript kombinieren. Hier ist ein Beispiel dafür.
+Leider verfügt `sed` nicht über eine Inline-Schleifenoption wie `perl`. Um mehrere Dateien zu durchlaufen, müssen Sie Ihren `sed`-Befehl in einem Skript kombinieren. Hier ist ein Beispiel dafür.
 
 Erstellen Sie zunächst eine Liste der Dateien, die das Skript verwenden soll. Tun Sie dies von der Befehlszeile aus mit Folgendem:
 

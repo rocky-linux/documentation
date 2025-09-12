@@ -1,5 +1,5 @@
 ---
-title: mtr — Netzwerk–Diagnose
+title: mtr — Netzwerk-Diagnose
 author: tianci li
 contributors: Steven Spencer, Neel Chauhan
 date: 2021-10-20

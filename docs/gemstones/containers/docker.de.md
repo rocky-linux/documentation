@@ -1,5 +1,5 @@
 ---
-title: Docker - Engine-Installation
+title: Docker — Engine-Installation
 author: Wale Soyinka
 contributors: Neel Chauhan, Srinivas Nishant Viswanadha, Stein Arne Storslett, Ganna Zhyrnova, Steven Spencer
 date: 2021-08-04
@@ -9,9 +9,9 @@ tags:
 
 # Einleitung
 
-Die Docker-Engine kann zum Ausführen nativer Container-Workloads im Docker-Stil auf Rocky Linux-Servern verwendet werden. Dies wird manchmal dem Ausführen der kompletten Docker Desktop-Umgebung vorgezogen.
+Die Docker-Engine kann zum Ausführen nativer Container-Workloads im Docker-Stil auf Rocky Linux-Servern verwendet werden. Dies wird manchmal bevorzugt, wenn die vollständige Docker-Desktopumgebung ausgeführt wird.
 
-## Docker Repository hinzufügen
+## Docker-Repository hinzufügen
 
 Benutzen Sie das `dnf`-Tool, um das Docker Repository zu Ihrem Rocky Linux Server hinzuzufügen. Geben Sie bitte Folgendes ein:
 

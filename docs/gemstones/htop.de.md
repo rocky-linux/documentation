@@ -94,7 +94,7 @@ Drücken Sie ++f1++ in der interaktiven Schnittstelle, um die entsprechende Tast
 
 ### Andere häufige Anwendungsfälle
 
-Um den Prozess zu verwalten, verwenden Sie die <kbd>F9</kbd> Taste, um verschiedene Signale an den Prozess zu senden. Die Liste der Signale finden Sie mit dem Kommando `kill -l`. Die am häufigsten verwendeten sind:
+Um den Prozess zu verwalten, verwenden Sie die Taste ++f9++ und so verschiedene Signale an den Prozess zu senden. Die Liste der Signale finden Sie mit dem Kommando `kill -l`. Die am häufigsten verwendeten sind:
 
 | Signal | Beschreibung                                                                                                                                                                                           |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

@@ -49,7 +49,7 @@ RHEL und Derivate (Fedora, CentOS Stream, Scientific Linux, RockyLinux, Almalinu
 /boot/config-<kernel-release>
 ```
 
-Um die aktuell laufende Kernelkonfiguration auf einen bestimmten Wert zu überprüfen:
+So überprüfen Sie die aktuell ausgeführte Kernelkonfiguration auf einen bestimmten Wert:
 
 ```bash
 cat /boot/config-$(uname -r) | grep -i <keyword>
@@ -100,7 +100,7 @@ Diese Datei wird häufiger durch einen symlinked Pfad aufgerufen, der von den `k
 /lib/modules/<kernel-release>/build/ -> /usr/src/kernels/<kernel-release>/
 ```
 
-Wenn Sie `kernel-debug-devel` Pakete installiert haben, haben Sie auch dieses Verzeichnis:
+Wenn Sie `kernel-debug-devel`-Pakete installiert haben, verfügen Sie auch über dieses Verzeichnis:
 
 ```bash
  /usr/src/kernels/<kernel-release>+debug/

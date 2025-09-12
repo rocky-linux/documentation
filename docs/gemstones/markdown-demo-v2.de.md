@@ -16,7 +16,7 @@ tags:
 - Verwendung von [Markdown](https://daringfireball.net/projects/markdown).
 - 'markdown'-Kenntnisse.
 
-Diese Anleitung demonstriert gängige Markdown-Auszeichnungselemente, die wir auf den Seiten [https://docs.rockylinux.org](https://docs.rockylinux.org) verwenden, sowie das Admonitions-Element, das nicht im Standard-Markdown enthalten ist.
+Diese Anleitung demonstriert gängige Markdown-Auszeichnung-Elemente, die wir auf den Seiten [https://docs.rockylinux.org](https://docs.rockylinux.org) verwenden, sowie das `Admonition`-Element, das nicht im Standard-Markdown enthalten ist.
 
 ## Die Demo
 
