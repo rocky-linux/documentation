@@ -233,7 +233,7 @@ Here is an example of a multi-line numbered list with a code block thrown in for
     dnf update
     ```
 
-2. Here is our second listed item. Because you used the four (4) space indentation (above), it renders with the next sequence of numbering (2), but if you had entered item 1 without the indentation (in the subsequent paragraph and code), then this would show up as item 1 again, which is not what you want.
+2. Here is our second listed item. Because you used the four (4) space indentation (above), it renders with the next sequence of numbering (2). If you had entered item 1 without the indentation (in the subsequent paragraph and code), then this would show up as item 1 again, which is not what you want.
 
 And here is how that looks as raw text:
 
