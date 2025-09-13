@@ -1,0 +1,74 @@
+# Rocky Linux Documentation - Development Requirements
+# Additional development tools beyond production requirements
+
+# Core MkDocs and Material theme (production requirements)
+mkdocs>=1.5.0
+mkdocs-material>=9.0.0
+mike>=2.0.0
+
+# Language and internationalization support
+mkdocs-static-i18n>=1.2.0
+
+# Content and navigation plugins
+mkdocs-awesome-pages-plugin>=2.9.0
+mkdocs-redirects>=1.2.0
+
+# Git integration and timestamps
+mkdocs-git-revision-date-localized-plugin>=1.2.0
+
+# Search and content features
+mkdocs-minify-plugin>=0.8.0
+mkdocs-macros-plugin>=1.0.0
+
+# Privacy and social features
+mkdocs-material[recommended]>=9.0.0
+
+# Development and testing tools
+pytest>=7.0.0
+pytest-cov>=4.0.0
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.0.0
+
+# Container development support
+docker>=6.0.0
+docker-compose>=2.0.0
+
+# Git and repository tools
+GitPython>=3.1.0
+pre-commit>=3.0.0
+
+# JSON and YAML processing
+pyyaml>=6.0
+jsonschema>=4.0.0
+
+# HTTP and web development
+requests>=2.28.0
+httpx>=0.24.0
+
+# Build and deployment tools
+wheel>=0.40.0
+build>=0.10.0
+twine>=4.0.0
+
+# Documentation generation
+sphinx>=6.0.0
+sphinx-rtd-theme>=1.2.0
+
+# Performance and monitoring
+psutil>=5.9.0
+watchdog>=3.0.0
+
+# Quality assurance
+bandit>=1.7.0
+safety>=2.3.0
+pipreqs>=0.4.0
+
+# Development utilities
+ipython>=8.0.0
+jupyter>=1.0.0
+notebook>=6.5.0
+
+# File and path utilities
+pathspec>=0.11.0
+platformdirs>=3.0.0
