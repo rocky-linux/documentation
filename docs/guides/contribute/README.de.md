@@ -1,1 +1,1 @@
-../../../README.md
+../../../README.md <small> <br/> <br/> Übersetzungen: <a href="https://crowdin.com/project/rockydocs/de">crowdin.com/project/rockydocs</a> <br/> Übersetzer: <a href="https://crowdin.com/project/rockydocs/activity-stream">crowdin.com/project/rockydocs/activity-stream</a> </small>
