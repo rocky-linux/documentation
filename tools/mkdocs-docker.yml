@@ -1,0 +1,110 @@
+---
+site_name: "Documentation"
+site_url: "https://docs.rockylinux.org/"
+docs_dir: "content"
+repo_url: https://github.com/rocky-linux/documentation
+repo_name: rocky-linux/documentation
+edit_uri: "edit/main/docs/"
+
+theme:
+  name: material
+  custom_dir: theme
+  icon:
+    edit: material/pencil
+  features:
+    - content.action.edit
+    - content.code.copy
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - search.share
+  logo: assets/logo.png
+  favicon: assets/logo.png
+  palette:
+    - scheme: default
+      media: "(prefers-color-scheme: light)"
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+      primary: black
+    - scheme: slate
+      media: "(prefers-color-scheme: dark)"
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+      primary: black
+
+markdown_extensions:
+  - abbr
+  - attr_list
+  - admonition
+  - toc:
+      permalink: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.superfences:
+      custom_fences:
+      - name: mermaid
+        class: mermaid
+        format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.keys
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - pymdownx.tasklist
+  - footnotes
+  - def_list
+  - meta
+
+plugins:
+  - mike:
+      version_selector: true
+  - search
+  - awesome-pages
+  - i18n:
+      docs_structure: suffix
+      fallback_to_default: true
+      reconfigure_material: true
+      reconfigure_search: true
+      languages:
+        - build: true
+          default: true
+          locale: en
+          name: English
+        - build: true
+          default: false
+          locale: uk
+          name: Ukrainian
+  - git-revision-date-localized:
+      fallback_to_build_date: true
+      type: date
+  - redirects:
+      redirect_maps:
+        "guides/add_mirror_manager.md": "guides/mirror_management/add_mirror_manager.md"
+  - tags
+  - privacy:
+      enabled: false
+
+extra:
+  version:
+    provider: mike
+    default: latest
+    alias: true
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/rocky_linux
+    - icon: fontawesome/brands/github
+      link: https://github.com/rocky-linux
+    - icon: fontawesome/brands/gitlab
+      link: https://git.rockylinux.org
+    - icon: material/home
+      link: https://rockylinux.org
+
+copyright: Copyright &copy; 2026 The Rocky Enterprise Software Foundation

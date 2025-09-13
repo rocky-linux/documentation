@@ -1,0 +1,127 @@
+version: '3.8'
+
+services:
+  # Rocky Linux Documentation Development Server
+  rockydocs-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: rockydocs-dev-serve
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount app directory for live editing
+      - ./:/app:rw
+      # Mount content directory for live content editing
+      - ../content/docs:/app/content:rw
+      # Persist git data for proper timestamps
+      - ../.git:/app/.git:ro
+    working_dir: /app
+    command: mkdocs serve -a 0.0.0.0:8000
+    environment:
+      - PYTHONPATH=/app
+      - MKDOCS_CONFIG_FILE=mkdocs.docker.yml
+      - GIT_AUTHOR_NAME=Rocky Linux Documentation
+      - GIT_AUTHOR_EMAIL=docs@rockylinux.org
+      - GIT_COMMITTER_NAME=Rocky Linux Documentation  
+      - GIT_COMMITTER_EMAIL=docs@rockylinux.org
+    networks:
+      - rockydocs-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Static file server for production-like testing
+  rockydocs-static:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: rockydocs-static-serve
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./site-static:/app/static:ro
+    working_dir: /app
+    command: python3 -m http.server 8000 -d /app/static
+    networks:
+      - rockydocs-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    profiles:
+      - static
+
+  # Build service for deployment testing
+  rockydocs-build:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: rockydocs-build
+    volumes:
+      - ./:/app:rw
+      - ../content/docs:/app/content:rw
+      - ../.git:/app/.git:ro
+    working_dir: /app
+    environment:
+      - PYTHONPATH=/app
+      - MKDOCS_CONFIG_FILE=mkdocs.docker.yml
+      - GIT_AUTHOR_NAME=Rocky Linux Documentation
+      - GIT_AUTHOR_EMAIL=docs@rockylinux.org
+      - GIT_COMMITTER_NAME=Rocky Linux Documentation
+      - GIT_COMMITTER_EMAIL=docs@rockylinux.org
+    command: /bin/bash -c "echo 'Build service ready. Run: docker-compose exec rockydocs-build mike deploy --push --update-aliases 10 latest'"
+    networks:
+      - rockydocs-network
+    profiles:
+      - build
+
+  # Database for development analytics (optional)
+  rockydocs-analytics:
+    image: postgres:15-alpine
+    container_name: rockydocs-analytics
+    environment:
+      - POSTGRES_DB=rockydocs
+      - POSTGRES_USER=rockydocs
+      - POSTGRES_PASSWORD=development
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - rockydocs-network
+    restart: unless-stopped
+    profiles:
+      - analytics
+
+  # Redis for caching (optional)  
+  rockydocs-cache:
+    image: redis:7-alpine
+    container_name: rockydocs-cache
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - rockydocs-network
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    profiles:
+      - cache
+
+networks:
+  rockydocs-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
