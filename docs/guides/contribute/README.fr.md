@@ -1,1 +1,1 @@
-../../../README.md
+../../../README.md <small> <br/><br/> 🌐 Traductions: <a href="https://crowdin.com/project/rockydocs/fr">crowdin.com/project/rockydocs</a> <br/> 🌍 Traducteurs: <a href="https://crowdin.com/project/rockydocs/activity-stream">crowdin.com/project/rockydocs/activity-stream</a> <br/> &#128395; Contributeurs: <a href="https://github.com/rocky-linux/documentation?tab=readme-ov-file#mattermost">github.com/rocky-linux/documentation</a> </small>
