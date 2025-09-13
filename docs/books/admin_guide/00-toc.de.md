@@ -24,4 +24,4 @@ Die Beschreibung der Sicherung und Wiederherstellung enthält wichtige Informati
 
 Die Verwaltung des Systems während des Startvorgangs hat sich in den letzten Jahren seit der Einführung von systemd erheblich verändert.
 
-Die letzten Kapitel behandeln Prozessmanagement, Netzwerkimplementierung und Softwaremanagement, einschließlich Installation.
+Die letzten Kapitel behandeln Prozessmanagement, Netzwerkimplementierung und Softwaremanagement, einschließlich Installation. <small> <br/> <br/> &#127760;  Übersetzungen: <a href="https://crowdin.com/project/rockydocs/de">crowdin.com/project/rockydocs</a> <br/> &#x1F30D; Übersetzer: <a href="https://crowdin.com/project/rockydocs/activity-stream">crowdin.com/project/rockydocs/activity-stream</a> </small>
