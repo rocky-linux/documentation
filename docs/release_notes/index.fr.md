@@ -55,4 +55,4 @@ Rocky 8 (Code Name "Green Obsidian") a un support général jusqu'au 1er mai 202
 | 8.9     | 2023-11-22            | 4.18.0-513.5.1   |
 | 8.10    | 2024-05-31            | 4.18.0-553       |
 
-Si vous avez des questions ou des commentaires, veuillez nous joindre dans le forum de discussion [ici](https://chat.rockylinux.org/rocky-linux/channels/documentation).
+Si vous avez des questions ou des commentaires, veuillez nous joindre dans le forum de discussion [ici](https://chat.rockylinux.org/rocky-linux/channels/documentation). <small> <br/><br/> 🌐 Traductions: <a href="https://crowdin.com/project/rockydocs/fr">https://crowdin.com/project/rockydocs</a> <br/> 🌍 Traducteurs: <a href="https://crowdin.com/project/rockydocs/activity-stream">https://crowdin.com/project/rockydocs/activity-stream</a> </small>
