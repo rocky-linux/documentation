@@ -9,7 +9,7 @@ set -e
 # Changelog: tools/CHANGELOG.md
 #
 
-VERSION="1.1.0"
+VERSION="1.2.0"
 RELEASE="1.el10"
 AUTHOR="Wale Soyinka"
 FULL_VERSION="rockydocs-${VERSION}-${RELEASE}"
@@ -68,7 +68,21 @@ update_repositories() {
     if [ -d "$worktree_base/main/.git" ]; then
         print_info "Updating cached content repositories..."
         cd "$worktree_base/main"
-        run_cmd "git fetch origin rocky-8:rocky-8 rocky-9:rocky-9 main:main" || print_warning "Failed to update cached repositories"
+        
+        # Fetch all branches safely without forcing updates to checked out branches
+        run_cmd "git fetch origin" || print_warning "Failed to fetch from origin"
+        
+        # Update each worktree individually if they exist
+        for worktree_dir in "$worktree_base/rocky-8" "$worktree_base/rocky-9" "$worktree_base/main"; do
+            if [ -d "$worktree_dir/.git" ]; then
+                local branch_name=$(basename "$worktree_dir")
+                if [ "$branch_name" = "main" ]; then
+                    cd "$worktree_dir" && run_cmd "git pull origin main" || print_warning "Failed to update main worktree"
+                else
+                    cd "$worktree_dir" && run_cmd "git pull origin $branch_name" || print_warning "Failed to update $branch_name worktree"
+                fi
+            fi
+        done
     fi
     
     cd "$CONTENT_DIR"
@@ -291,6 +305,93 @@ serve_docker() {
     fi
 }
 
+# Podman serving function
+serve_podman() {
+    local static_mode="$1"
+    
+    print_info "📦 PODMAN SERVING MODE: Container-based documentation serving"
+    
+    # Validate Podman setup
+    if [ ! -d "$APP_DIR" ]; then
+        print_error "App directory not found: $APP_DIR"
+        print_info "Run setup first: $0 --setup --podman"
+        return 1
+    fi
+    
+    # Check if Podman image exists
+    if ! podman image inspect rockydocs-dev >/dev/null 2>&1; then
+        print_error "Podman image 'rockydocs-dev' not found"
+        print_info "Run setup first: $0 --setup --podman"
+        return 1
+    fi
+    
+    cd "$APP_DIR"
+    
+    # Get container name and manage lifecycle
+    local container_name=$(get_podman_container_name "serve")
+    stop_podman_container "$container_name"
+    
+    # Find available port
+    local port=$(find_available_port 8000 8001 8002)
+    if [ -z "$port" ]; then
+        print_error "No available ports (8000, 8001, 8002). Kill existing processes."
+        return 1
+    fi
+    
+    print_success "🚀 Starting Podman container: $container_name"
+    print_info "   • Port: $port"
+    print_info "   • Access: http://localhost:$port"
+    print_info "   • Static mode: $static_mode"
+    
+    # Start container based on mode
+    if [ "$static_mode" = "true" ]; then
+        # Static mode: serve pre-built content
+        print_info "   • Mode: Static (production-like)"
+        podman run -d --name "$container_name" \
+            -p "$port:8000" \
+            -v "$APP_DIR:/app" \
+            -v "$CONTENT_DIR/docs:/app/content" \
+            --workdir /app \
+            rockydocs-dev \
+            python3 -m http.server 8000 --bind 0.0.0.0 -d /app/site-static
+    else
+        # Live mode: MkDocs development server with proper environment
+        print_info "   • Mode: Live (development with auto-reload)"
+        podman run -d --name "$container_name" \
+            -p "$port:8000" \
+            -v "$APP_DIR:/app" \
+            -v "$CONTENT_DIR/docs:/app/content" \
+            --workdir /app \
+            rockydocs-dev \
+            bash -c "source venv/bin/activate && mkdocs serve -a 0.0.0.0:8000"
+    fi
+    
+    # Add container to cleanup
+    add_cleanup_resource "container:$container_name"
+    
+    # Health check with longer timeout for mkdocs build
+    print_info "Waiting for container to be ready (mkdocs build can take 1-2 minutes)..."
+    if check_podman_health "$container_name" "$port" 120; then
+        print_success "✅ Podman container ready!"
+        print_info "Access your documentation at: http://localhost:$port"
+        
+        # Show container logs briefly
+        print_info ""
+        print_info "Container logs (last 10 lines):"
+        podman logs --tail 10 "$container_name" 2>/dev/null || true
+        print_info ""
+        print_warning "Press Ctrl+C to stop the container"
+        
+        # Follow container logs
+        podman logs -f "$container_name"
+    else
+        print_error "Container failed to start properly"
+        podman logs "$container_name" 2>/dev/null || true
+        stop_podman_container "$container_name"
+        return 1
+    fi
+}
+
 # Parse arguments
 COMMAND=""
 ENVIRONMENT="venv"
@@ -331,6 +432,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         --version)
             COMMAND="version"
+            shift
+            ;;
+        --stop)
+            COMMAND="stop"
             shift
             ;;
         --venv|--docker|--podman)
@@ -379,6 +484,7 @@ while [[ $# -gt 0 ]]; do
                     serve) show_serve_help ;;
                     serve-dual) show_serve_dual_help ;;
                     deploy) show_deploy_help ;;
+                    stop) show_stop_help ;;
                     *) show_help ;;
                 esac
             else
@@ -401,6 +507,7 @@ if [[ "$2" == "-h" ]]; then
         --serve) show_serve_help ;;
         --serve-dual) show_serve_dual_help ;;
         --deploy) show_deploy_help ;;
+        --stop) show_stop_help ;;
         *) show_help ;;
     esac
     exit 0
@@ -416,9 +523,10 @@ case "$COMMAND" in
         setup_environment "$ENVIRONMENT" "$BUILD_TYPE"
         ;;
     serve)
-        container_engine=$(get_container_engine "$ENVIRONMENT")
-        if [ -n "$container_engine" ]; then
-            serve_container "$container_engine" "$STATIC_MODE"
+        if [ "$ENVIRONMENT" = "docker" ]; then
+            serve_docker "$STATIC_MODE"
+        elif [ "$ENVIRONMENT" = "podman" ]; then
+            serve_podman "$STATIC_MODE"
         elif [ "$STATIC_MODE" = "true" ]; then
             serve_static
         else
@@ -426,20 +534,26 @@ case "$COMMAND" in
         fi
         ;;
     serve-dual)
-        serve_dual
+        if [ "$ENVIRONMENT" = "podman" ]; then
+            serve_dual_podman
+        elif [ "$ENVIRONMENT" = "docker" ]; then
+            serve_dual_docker
+        else
+            serve_dual
+        fi
         ;;
     deploy)
         if [ "$LIST_MODE" = "true" ]; then
             list_versions
+        elif [ "$ENVIRONMENT" = "docker" ]; then
+            update_repositories
+            deploy_docker
+        elif [ "$ENVIRONMENT" = "podman" ]; then
+            update_repositories
+            deploy_podman
         else
-            container_engine=$(get_container_engine "$ENVIRONMENT")
-            if [ -n "$container_engine" ]; then
-                update_repositories
-                deploy_container "$container_engine"
-            else
-                update_repositories
-                deploy_site
-            fi
+            update_repositories
+            deploy_site
         fi
         ;;
     clean)
@@ -455,6 +569,9 @@ case "$COMMAND" in
         echo "$FULL_VERSION"
         echo "Author: $AUTHOR"
         echo "Rocky Linux Documentation Script"
+        ;;
+    stop)
+        stop_all_services
         ;;
     *)
         print_error "No command specified"
