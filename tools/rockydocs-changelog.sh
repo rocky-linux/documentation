@@ -224,12 +224,12 @@ update_changelog() {
     echo "### Added" >> "$temp_file"
     
     # Parse and add recent commits
-    echo "$recent_commits" | while read -r hash date message; do
+    while read -r hash date message; do
         if parse_commit_message "$message" "$hash" "$date" >/dev/null; then
             local description=$(parse_commit_message "$message" "$hash" "$date" | cut -d'|' -f3)
             echo "- $description" >> "$temp_file"
         fi
-    done
+    done <<< "$recent_commits"
     
     # Prepend to existing changelog (after header)
     local header_lines=$(grep -n "^# Rocky Linux" "$CHANGELOG_FILE" | head -1 | cut -d':' -f1)
@@ -275,16 +275,36 @@ enhanced_commit() {
         echo "  Update script version first or fix commit message"
     fi
     
-    # Stage rockydocs-related files
-    git add rockydocs.sh tools/ 2>/dev/null || true
+    # Check if we're on rockydocs-tool branch (optional enforcement)
+    local current_branch=$(git branch --show-current 2>/dev/null || echo "unknown")
+    if [ "$current_branch" != "rockydocs-tool" ]; then
+        print_warning "Not on rockydocs-tool branch (current: $current_branch)"
+        echo "Consider using 'git checkout -b rockydocs-tool' for rockydocs commits"
+        echo ""
+        read -p "Continue anyway? [y/N]: " confirm
+        if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
+            print_info "Commit cancelled"
+            return 1
+        fi
+    fi
     
-    # Commit with message
-    git commit -m "$message"
+    # Stage only specific rockydocs-related files (not all of tools/)
+    git add rockydocs.sh 2>/dev/null || true
+    git add tools/rockydocs-*.sh 2>/dev/null || true
+    git add tools/CHANGELOG.md 2>/dev/null || true
     
-    # Update changelog if it exists
+    # Update changelog BEFORE committing to avoid chicken-and-egg problem
     if [ -f "$CHANGELOG_FILE" ]; then
-        print_info "Updating changelog..."
-        update_changelog "1 hour ago"
+        print_info "Pre-updating changelog..."
+        # Create temporary commit to establish commit for changelog parsing
+        git commit -m "temp: $message" --allow-empty 2>/dev/null || true
+        update_changelog "1 minute ago"
+        git add tools/CHANGELOG.md 2>/dev/null || true
+        # Amend with the real commit message and updated changelog
+        git commit --amend -m "$message"
+    else
+        # Just commit without changelog update
+        git commit -m "$message"
     fi
     
     print_success "Commit completed with changelog update"

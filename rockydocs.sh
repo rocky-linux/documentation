@@ -9,8 +9,8 @@ set -e
 # Changelog: tools/CHANGELOG.md
 #
 
-VERSION="1.0.0"
-RELEASE="13.el10"
+VERSION="1.1.0"
+RELEASE="1.el10"
 AUTHOR="Wale Soyinka"
 FULL_VERSION="rockydocs-${VERSION}-${RELEASE}"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -416,8 +416,9 @@ case "$COMMAND" in
         setup_environment "$ENVIRONMENT" "$BUILD_TYPE"
         ;;
     serve)
-        if [ "$ENVIRONMENT" = "docker" ]; then
-            serve_docker "$STATIC_MODE"
+        container_engine=$(get_container_engine "$ENVIRONMENT")
+        if [ -n "$container_engine" ]; then
+            serve_container "$container_engine" "$STATIC_MODE"
         elif [ "$STATIC_MODE" = "true" ]; then
             serve_static
         else
@@ -430,12 +431,15 @@ case "$COMMAND" in
     deploy)
         if [ "$LIST_MODE" = "true" ]; then
             list_versions
-        elif [ "$ENVIRONMENT" = "docker" ]; then
-            update_repositories
-            deploy_docker
         else
-            update_repositories
-            deploy_site
+            container_engine=$(get_container_engine "$ENVIRONMENT")
+            if [ -n "$container_engine" ]; then
+                update_repositories
+                deploy_container "$container_engine"
+            else
+                update_repositories
+                deploy_site
+            fi
         fi
         ;;
     clean)
