@@ -1,7 +1,7 @@
 ---
 author:
 contributors:
-title: Erster Teil File-Server
+title: Kapitel 1 — File-Server
 tags:
   - ftp
   - sftp
@@ -10,7 +10,20 @@ tags:
 !!! info "Info"
 
 ```
-The content for this page has yet to be written.
+The content has to be written.  
+
+<small>
+<br/><br/>
+🌐 Translations: 
+<a href="https://crowdin.com/project/rockydocs/de">crowdin.com/project/rockydocs</a>
+<br/>
+🌍 Translators:
+<a href="https://crowdin.com/project/rockydocs/activity-stream">rockydocs</a>
+, <a href="https://crowdin.com/project/rockylinuxorg/activity-stream">rockylinux.org</a>
+<br/>
+🖋 Contribute:
+<a href="https://github.com/rocky-linux/documentation?tab=readme-ov-file#mattermost">github.com/rocky-linux/documentation</a>
+</small>
 ```
 
 <!---
