@@ -34,4 +34,15 @@ Die Ansammlung von Dokumenten dieser Art wird wahrscheinlich langsamer wachsen a
 
 ## Rückmeldungen und Feedback
 
-Wie beim gesamten Dokumentationsprojekt können Sie in unserem [Documentation Mattermost-Kanal](https://chat.rockylinux.org/rocky-linux/channels/documentation) Feedback geben.
+Wie beim gesamten Dokumentationsprojekt können Sie in unserem [Documentation Mattermost-Kanal](https://chat.rockylinux.org/rocky-linux/channels/documentation) Feedback geben.<small>
+<br/><br/>
+🌐 Translations: 
+<a href="https://crowdin.com/project/rockydocs/de">crowdin.com/project/rockydocs</a>
+<br/>
+🌍 Translators:
+<a href="https://crowdin.com/project/rockydocs/activity-stream">rockydocs/activity-stream</a>
+, <a href="https://crowdin.com/project/rockylinuxorg/activity-stream">rockylinux.org</a>
+<br/>
+🖋 Contributors:
+<a href="https://github.com/rocky-linux/documentation?tab=readme-ov-file#mattermost">github.com/rocky-linux/documentation</a>
+</small>
