@@ -394,6 +394,608 @@ cleanup_docker_containers() {
     fi
 }
 
+# === CONTAINER ENGINE ABSTRACTION ===
+
+# Container-agnostic wrapper functions
+get_container_engine() {
+    # Determine which container engine to use based on ENVIRONMENT variable
+    case "${ENVIRONMENT:-venv}" in
+        docker) echo "docker" ;;
+        podman) echo "podman" ;;
+        *) echo "" ;;  # No container engine for venv
+    esac
+}
+
+start_container() {
+    local container_engine=$(get_container_engine)
+    case "$container_engine" in
+        docker) start_docker_container "$@" ;;
+        podman) start_podman_container "$@" ;;
+        *) print_error "Unknown container engine: $container_engine" ;;
+    esac
+}
+
+stop_container() {
+    local container_engine=$(get_container_engine)
+    local container_name="$1"
+    case "$container_engine" in
+        docker) stop_docker_container "$container_name" ;;
+        podman) stop_podman_container "$container_name" ;;
+        *) print_error "Unknown container engine: $container_engine" ;;
+    esac
+}
+
+get_container_status() {
+    local container_engine=$(get_container_engine)
+    local container_name="$1"
+    case "$container_engine" in
+        docker) get_docker_container_status "$container_name" ;;
+        podman) get_podman_container_status "$container_name" ;;
+        *) echo "not_applicable" ;;
+    esac
+}
+
+check_container_health() {
+    local container_engine=$(get_container_engine)
+    case "$container_engine" in
+        docker) check_docker_health "$@" ;;
+        podman) check_podman_health "$@" ;;
+        *) return 1 ;;
+    esac
+}
+
+build_container_image() {
+    local container_engine=$(get_container_engine)
+    case "$container_engine" in
+        docker) docker build "$@" ;;
+        podman) podman build "$@" ;;
+        *) print_error "Unknown container engine: $container_engine" ;;
+    esac
+}
+
+create_container_volumes() {
+    local container_engine=$(get_container_engine)
+    case "$container_engine" in
+        docker) create_docker_volumes ;;
+        podman) create_podman_volumes ;;
+        *) echo "" ;;
+    esac
+}
+
+cleanup_container_volumes() {
+    local container_engine=$(get_container_engine)
+    case "$container_engine" in
+        docker) cleanup_docker_volumes ;;
+        podman) cleanup_podman_volumes ;;
+        *) ;;
+    esac
+}
+
+show_container_volume_status() {
+    local container_engine=$(get_container_engine)
+    case "$container_engine" in
+        docker) show_docker_volume_status ;;
+        podman) show_podman_volume_status ;;
+        *) ;;
+    esac
+}
+
+cleanup_user_containers() {
+    local container_engine=$(get_container_engine)
+    case "$container_engine" in
+        docker) cleanup_user_docker_containers ;;
+        podman) cleanup_user_podman_containers ;;
+        *) ;;
+    esac
+}
+
+get_container_name() {
+    local container_engine=$(get_container_engine)
+    local service_type="$1"
+    case "$container_engine" in
+        docker) get_docker_container_name "$service_type" ;;
+        podman) get_podman_container_name "$service_type" ;;
+        *) echo "" ;;
+    esac
+}
+
+check_container_engine_availability() {
+    local container_engine=$(get_container_engine)
+    case "$container_engine" in
+        docker) 
+            if ! command -v docker >/dev/null 2>&1; then
+                print_error "Docker is not installed or not in PATH"
+                return 1
+            fi
+            ;;
+        podman) 
+            check_podman_availability
+            return $?
+            ;;
+        "") return 0 ;;  # venv mode, no container engine needed
+        *) 
+            print_error "Unknown container engine: $container_engine"
+            return 1
+            ;;
+    esac
+}
+
+# Container-agnostic high-level operations
+serve_container() {
+    local container_engine="$1"
+    local static_mode="$2"
+    
+    case "$container_engine" in
+        docker)
+            serve_docker "$static_mode"
+            ;;
+        podman)
+            serve_podman "$static_mode"
+            ;;
+        *)
+            print_error "Unknown container engine: $container_engine"
+            return 1
+            ;;
+    esac
+}
+
+deploy_container() {
+    local container_engine="$1"
+    
+    case "$container_engine" in
+        docker)
+            deploy_docker
+            ;;
+        podman)
+            deploy_podman
+            ;;
+        *)
+            print_error "Unknown container engine: $container_engine"
+            return 1
+            ;;
+    esac
+}
+
+# === PODMAN FUNCTIONS ===
+
+# Podman availability and version checking
+check_podman_availability() {
+    if ! command -v podman >/dev/null 2>&1; then
+        print_error "Podman is not installed or not in PATH"
+        print_info "Install Podman: https://podman.io/getting-started/installation"
+        return 1
+    fi
+    
+    if ! podman --version >/dev/null 2>&1; then
+        print_error "Podman is not properly configured"
+        print_info "Check Podman installation with: podman info"
+        return 1
+    fi
+    
+    return 0
+}
+
+get_podman_version() {
+    podman --version | head -1
+}
+
+detect_podman_mode() {
+    # Detect if running in rootless or rootful mode
+    if podman info --format json 2>/dev/null | grep -q '"rootless": true'; then
+        echo "rootless"
+    else
+        echo "rootful"
+    fi
+}
+
+# Podman container utility functions (parallel to Docker functions)
+get_podman_container_name() {
+    local service_type="$1"  # serve, deploy, etc.
+    echo "rockydocs-${service_type}-${USER}"
+}
+
+stop_podman_container() {
+    local container_name="$1"
+    if podman ps -q -f name="$container_name" >/dev/null 2>&1; then
+        print_info "Stopping existing container: $container_name"
+        podman stop "$container_name" >/dev/null 2>&1 || true
+    fi
+    if podman ps -a -q -f name="$container_name" >/dev/null 2>&1; then
+        podman rm "$container_name" >/dev/null 2>&1 || true
+    fi
+}
+
+get_podman_container_status() {
+    local container_name="$1"
+    if podman ps -q -f name="$container_name" >/dev/null 2>&1; then
+        echo "running"
+    elif podman ps -a -q -f name="$container_name" >/dev/null 2>&1; then
+        echo "stopped"
+    else
+        echo "not_found"
+    fi
+}
+
+check_podman_health() {
+    local container_name="$1"
+    local port="$2"
+    local max_attempts="${3:-30}"
+    local attempt=0
+    
+    while [ $attempt -lt $max_attempts ]; do
+        # First check if container is still running
+        if ! podman ps --format "table {{.Names}}" | grep -q "^$container_name$"; then
+            print_error "Container $container_name stopped running"
+            return 1
+        fi
+        
+        # Then check if service is responding
+        if curl -s "http://localhost:$port" >/dev/null 2>&1; then
+            return 0
+        fi
+        sleep 1
+        attempt=$((attempt + 1))
+    done
+    return 1
+}
+
+# Podman volume management functions
+create_podman_volumes() {
+    local workspace_volume="rockydocs-workspace-${USER}"
+    local content_volume="rockydocs-content-${USER}"
+    
+    # Create workspace volume if it doesn't exist
+    if ! podman volume inspect "$workspace_volume" >/dev/null 2>&1; then
+        print_info "Creating Podman volume for workspace: $workspace_volume"
+        podman volume create "$workspace_volume" >/dev/null 2>&1
+    fi
+    
+    # Create content volume if it doesn't exist
+    if ! podman volume inspect "$content_volume" >/dev/null 2>&1; then
+        print_info "Creating Podman volume for content: $content_volume"
+        podman volume create "$content_volume" >/dev/null 2>&1
+    fi
+    
+    echo "$workspace_volume $content_volume"
+}
+
+cleanup_podman_volumes() {
+    local workspace_volume="rockydocs-workspace-${USER}"
+    local content_volume="rockydocs-content-${USER}"
+    
+    print_info "Cleaning up Podman volumes..."
+    if [ "$FORCE_CLEANUP" = "true" ]; then
+        podman volume rm "$workspace_volume" >/dev/null 2>&1 || true
+        podman volume rm "$content_volume" >/dev/null 2>&1 || true
+    fi
+}
+
+show_podman_volume_status() {
+    local workspace_volume="rockydocs-workspace-${USER}"
+    local content_volume="rockydocs-content-${USER}"
+    
+    print_info "=== Podman Volume Status ==="
+    
+    if podman volume inspect "$workspace_volume" >/dev/null 2>&1; then
+        local volume_size=$(podman system df -v 2>/dev/null | grep "$workspace_volume" | awk '{print $3}' || echo "unknown")
+        echo "  • Workspace volume: $workspace_volume (${volume_size})"
+    else
+        echo "  • Workspace volume: not created"
+    fi
+    
+    if podman volume inspect "$content_volume" >/dev/null 2>&1; then
+        local volume_size=$(podman system df -v 2>/dev/null | grep "$content_volume" | awk '{print $3}' || echo "unknown")
+        echo "  • Content volume: $content_volume (${volume_size})"
+    else
+        echo "  • Content volume: not created"
+    fi
+}
+
+cleanup_user_podman_containers() {
+    # Clean up any leftover user-specific containers
+    local user_containers=$(podman ps -a -q -f name="rockydocs-.*-${USER}" 2>/dev/null || true)
+    if [ -n "$user_containers" ]; then
+        print_info "Cleaning up Podman containers..."
+        echo "$user_containers" | xargs podman rm -f >/dev/null 2>&1 || true
+    fi
+}
+
+# Podman-specific container management with rootless and SELinux considerations
+start_podman_container() {
+    local image_name="$1"
+    local container_name="$2"
+    local port="${3:-8000}"
+    local volume_args="$4"
+    local additional_args="$5"
+    
+    # Handle rootless port mapping - if port < 1024, find alternative
+    if [ "$port" -lt 1024 ] && [ "$(detect_podman_mode)" = "rootless" ]; then
+        print_warning "Port $port requires root privileges in rootless Podman"
+        port=$(find_available_port $((port + 8000)))
+        print_info "Using alternative port: $port"
+    fi
+    
+    # Add SELinux context for volume mounts if SELinux is enabled
+    if command -v getenforce >/dev/null 2>&1 && [ "$(getenforce 2>/dev/null)" = "Enforcing" ]; then
+        # Add :Z for exclusive SELinux label (safe for dedicated volumes)
+        volume_args=$(echo "$volume_args" | sed 's/:[^:]*$/:Z&/g')
+        print_info "SELinux detected: using :Z context for volumes"
+    fi
+    
+    # Build Podman command with rootless considerations
+    local podman_cmd="podman run -d --name $container_name"
+    podman_cmd="$podman_cmd -p ${port}:8000"
+    
+    if [ -n "$volume_args" ]; then
+        podman_cmd="$podman_cmd $volume_args"
+    fi
+    
+    if [ -n "$additional_args" ]; then
+        podman_cmd="$podman_cmd $additional_args"
+    fi
+    
+    podman_cmd="$podman_cmd $image_name"
+    
+    print_info "Starting Podman container: $container_name"
+    print_command "$podman_cmd"
+    eval "$podman_cmd"
+    
+    return $?
+}
+
+setup_podman_environment() {
+    print_info "Setting up Podman environment..."
+    
+    # Check Podman availability first
+    if ! check_podman_availability; then
+        return 1
+    fi
+    
+    # Show Podman mode information
+    local podman_mode=$(detect_podman_mode)
+    print_info "Podman mode: $podman_mode"
+    
+    if [ "$podman_mode" = "rootless" ]; then
+        print_info "Running in rootless mode - enhanced security, some port limitations"
+        # Check for port limitations
+        local port_info=$(podman info --format json 2>/dev/null | grep -o '"rootless":true' || echo "")
+        if [ -n "$port_info" ]; then
+            print_warning "Rootless mode: ports < 1024 will be automatically remapped"
+        fi
+    else
+        print_info "Running in rootful mode - full privileges available"
+    fi
+    
+    # Create Podman volumes
+    local volumes=$(create_podman_volumes)
+    if [ -n "$volumes" ]; then
+        print_success "Podman volumes created: $volumes"
+    fi
+    
+    return 0
+}
+
+# Podman serving function (equivalent to serve_docker)
+serve_podman() {
+    local static_mode="$1"
+    
+    print_info "🐳 PODMAN SERVING MODE: Container-based documentation serving"
+    
+    # Validate Podman setup
+    if [ ! -d "$APP_DIR" ]; then
+        print_error "App directory not found: $APP_DIR"
+        print_info "Run setup first: $0 --setup --podman"
+        return 1
+    fi
+    
+    # Check if Podman image exists
+    if ! podman image inspect rockydocs-dev >/dev/null 2>&1; then
+        print_error "Podman image 'rockydocs-dev' not found"
+        print_info "Run setup first: $0 --setup --podman"
+        return 1
+    fi
+    
+    cd "$APP_DIR"
+    
+    # Handle symlink conflict: temporarily move content symlink if it exists
+    local content_symlink_backup=""
+    if [ -L "content" ]; then
+        content_symlink_backup=$(readlink "content")
+        print_info "Temporarily moving content symlink to avoid mount conflict"
+        mv "content" "content.backup" || true
+    fi
+    
+    # Get container name and manage lifecycle
+    local container_name=$(get_podman_container_name "serve")
+    stop_podman_container "$container_name"
+    
+    # Find available port (Podman rootless uses ports >= 1024)
+    local port=$(find_available_port 8000 8001 8002)
+    if [ -z "$port" ]; then
+        print_error "No available ports (8000, 8001, 8002). Kill existing processes."
+        # Restore symlink before returning
+        if [ -n "$content_symlink_backup" ] && [ -f "content.backup" -o -L "content.backup" ]; then
+            mv "content.backup" "content" || ln -sf "$content_symlink_backup" "content"
+        fi
+        return 1
+    fi
+    
+    print_success "🚀 Starting Podman container: $container_name"
+    print_info "   • Port: $port"
+    print_info "   • Access: http://localhost:$port"
+    print_info "   • Static mode: $static_mode"
+    
+    # Start container based on mode
+    if [ "$static_mode" = "true" ]; then
+        # Static mode: serve pre-built content
+        print_info "   • Mode: Static (production-like)"
+        podman run -d --name "$container_name" \
+            -p "$port:8000" \
+            -v "$APP_DIR:/app:Z" \
+            -v "$CONTENT_DIR/docs:/app/content:Z" \
+            --workdir /app \
+            rockydocs-dev \
+            python3 -m http.server 8000 --bind 0.0.0.0 -d /app/site-static
+    else
+        # Live mode: MkDocs development server with proper environment
+        print_info "   • Mode: Live (development with auto-reload)"
+        podman run -d --name "$container_name" \
+            -p "$port:8000" \
+            -v "$APP_DIR:/app:Z" \
+            -v "$CONTENT_DIR/docs:/app/content:Z" \
+            --workdir /app \
+            rockydocs-dev \
+            bash -c "source venv/bin/activate && mkdocs serve -a 0.0.0.0:8000"
+    fi
+    
+    # Restore content symlink after starting container
+    if [ -n "$content_symlink_backup" ] && [ -f "content.backup" -o -L "content.backup" ]; then
+        print_info "Restoring content symlink"
+        rm -f "content" || true
+        mv "content.backup" "content" || ln -sf "$content_symlink_backup" "content"
+    fi
+    
+    # Add container to cleanup
+    add_cleanup_resource "podman_container:$container_name"
+    
+    # Health check with longer timeout for mkdocs build
+    print_info "Waiting for container to be ready (mkdocs build can take 1-2 minutes)..."
+    if check_podman_health "$container_name" "$port" 120; then
+        print_success "✅ Podman container ready!"
+        print_info "Access your documentation at: http://localhost:$port"
+        
+        # Show container logs briefly
+        print_info ""
+        print_info "Container logs (last 10 lines):"
+        podman logs --tail 10 "$container_name" 2>/dev/null || true
+        print_info ""
+        print_warning "Press Ctrl+C to stop the container"
+        
+        # Follow container logs
+        podman logs -f "$container_name"
+    else
+        print_error "Container failed to start properly"
+        podman logs "$container_name" 2>/dev/null || true
+        stop_podman_container "$container_name"
+        return 1
+    fi
+}
+
+# Basic setup validation function
+validate_setup() {
+    local env_type="$1"
+    
+    case "$env_type" in
+        podman)
+            # Check if Podman is available
+            if ! check_podman_availability; then
+                return 1
+            fi
+            # Check if app directory exists
+            if [ ! -d "$APP_DIR" ]; then
+                print_error "App directory not found: $APP_DIR"
+                print_info "Run setup first: $0 --setup --podman"
+                return 1
+            fi
+            # Check if Podman image exists
+            if ! podman image inspect rockydocs-dev >/dev/null 2>&1; then
+                print_error "Podman image 'rockydocs-dev' not found"
+                print_info "Run setup first: $0 --setup --podman"
+                return 1
+            fi
+            ;;
+        docker)
+            # Similar checks for Docker
+            if ! command -v docker >/dev/null 2>&1; then
+                print_error "Docker not available"
+                return 1
+            fi
+            ;;
+        *)
+            return 0  # No validation needed for other types
+            ;;
+    esac
+    return 0
+}
+
+# Podman deployment function (equivalent to deploy_docker)
+deploy_podman() {
+    print_info "🐳 PODMAN DEPLOYMENT MODE: Building documentation with Podman"
+    
+    # Validate setup first
+    if ! validate_setup "podman"; then
+        print_error "Podman environment validation failed"
+        return 1
+    fi
+    
+    cd "$APP_DIR"
+    
+    # Stop any existing serve containers
+    local serve_container=$(get_podman_container_name "serve")
+    if [ -n "$serve_container" ]; then
+        stop_podman_container "$serve_container"
+    fi
+    
+    # Use deployment container
+    local container_name=$(get_podman_container_name "deploy")
+    stop_podman_container "$container_name"
+    
+    print_success "🚀 Starting Podman deployment container: $container_name"
+    
+    # Handle symlink conflict: temporarily move content symlink if it exists
+    local content_symlink_backup=""
+    if [ -L "content" ]; then
+        content_symlink_backup=$(readlink "content")
+        print_info "Temporarily moving content symlink to avoid mount conflict"
+        mv "content" "content.backup" || true
+    fi
+    
+    # Run deployment in container
+    podman run --rm --name "$container_name" \
+        -v "$APP_DIR:/app:Z" \
+        -v "$CONTENT_DIR/docs:/app/content:Z" \
+        --workdir /app \
+        rockydocs-dev \
+        bash -c "source venv/bin/activate && ./scripts/vercel-build.sh"
+    
+    local deploy_status=$?
+    
+    # Restore content symlink after container finishes
+    if [ -n "$content_symlink_backup" ] && [ -f "content.backup" -o -L "content.backup" ]; then
+        print_info "Restoring content symlink"
+        rm -f "content" || true
+        mv "content.backup" "content" || ln -sf "$content_symlink_backup" "content"
+    fi
+    
+    if [ $deploy_status -eq 0 ]; then
+        print_success "✅ Podman deployment completed successfully!"
+        
+        # Extract static site from gh-pages branch for serving
+        print_info "Extracting static site for serving..."
+        if extract_static_site; then
+            print_success "✅ Static site extraction completed"
+            print_info "Built documentation available in $APP_DIR/site-static/"
+            
+            # Show summary
+            if [ -f "$APP_DIR/site-static/index.html" ]; then
+                print_success "✅ Root access: Available at site-static/index.html"
+            fi
+            
+            local version_count=$(find "$APP_DIR/site-static" -maxdepth 1 -type d -name '[0-9]*' | wc -l)
+            if [ "$version_count" -gt 0 ]; then
+                print_success "✅ Versioned access: $version_count version(s) available"
+            fi
+        else
+            print_warning "⚠️  Static site extraction failed - static serving may not work"
+        fi
+        
+        return 0
+    else
+        print_error "❌ Podman deployment failed"
+        return 1
+    fi
+}
+
 # === HELP FUNCTIONS ===
 
 # Main help
@@ -424,25 +1026,25 @@ GLOBAL OPTIONS:
   --help, -h  Show this help
 
 EXAMPLES:
-  ./rockydocs-dev-12.sh --setup --venv              # Setup Python venv environment
-  ./rockydocs-dev-12.sh --deploy                    # Build and deploy versions locally
-  ./rockydocs-dev-12.sh --serve                     # Fast serve (after deploy)
-  ./rockydocs-dev-12.sh --serve --static            # Static production-like serve
-  ./rockydocs-dev-12.sh --serve-dual                # Dual server with live reload
-  ./rockydocs-dev-12.sh --setup --full              # Setup with all languages (config set once)
-  ./rockydocs-dev-12.sh --deploy                    # Build using setup's language config
+  ./rockydocs.sh --setup --venv              # Setup Python venv environment
+  ./rockydocs.sh --deploy                    # Build and deploy versions locally
+  ./rockydocs.sh --serve                     # Fast serve (after deploy)
+  ./rockydocs.sh --serve --static            # Static production-like serve
+  ./rockydocs.sh --serve-dual                # Dual server with live reload
+  ./rockydocs.sh --setup --full              # Setup with all languages (config set once)
+  ./rockydocs.sh --deploy                    # Build using setup's language config
 
 SUBCOMMAND HELP:
-  ./rockydocs-dev-12.sh --setup -h                  # Detailed setup help
-  ./rockydocs-dev-12.sh --serve -h                  # Detailed serve help
-  ./rockydocs-dev-12.sh --serve-dual -h             # Dual server help
-  ./rockydocs-dev-12.sh --deploy -h                 # Detailed deploy help
+  ./rockydocs.sh --setup -h                  # Detailed setup help
+  ./rockydocs.sh --serve -h                  # Detailed serve help
+  ./rockydocs.sh --serve-dual -h             # Dual server help
+  ./rockydocs.sh --deploy -h                 # Detailed deploy help
 
 WORKFLOW:
   1. git checkout rocky-9                            # Choose your target version
-  2. ./rockydocs-dev-12.sh --setup --venv           # Setup environment (once)
-  3. ./rockydocs-dev-12.sh --deploy                 # Build/deploy versions to local repo
-  4. ./rockydocs-dev-12.sh --serve                  # Fast serve for editing
+  2. ./rockydocs.sh --setup --venv           # Setup environment (once)
+  3. ./rockydocs.sh --deploy                 # Build/deploy versions to local repo
+  4. ./rockydocs.sh --serve                  # Fast serve for editing
   5. git add . && git commit && git push             # Push your source changes to origin
 
 Current Rocky Linux version: $(detect_version) (branch: $(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "unknown"))
@@ -464,7 +1066,7 @@ USAGE:
 ENVIRONMENTS:
   --venv      Use Python virtual environment (recommended)
   --docker    Use Docker container (containerized environment)
-  --podman    Use Podman container
+  --podman    Use Podman container (rootless by default)
 
 OPTIONS:
   --minimal   Setup for English + Ukrainian only (default, faster)
@@ -541,6 +1143,7 @@ USAGE:
 ENVIRONMENTS:
   (default)   Use Python virtual environment setup
   --docker    Use Docker container for serving
+  --podman    Use Podman container for serving
 
 OPTIONS:
   --static    Serve static files (exact production behavior)
@@ -643,6 +1246,7 @@ USAGE:
 ENVIRONMENTS:
   (default)   Use Python virtual environment setup
   --docker    Use Docker container for deployment
+  --podman    Use Podman container for deployment
 
 OPTIONS:
   (none)      Uses language configuration set during --setup
@@ -829,7 +1433,7 @@ EOF
     
     print_info "Docker image built: rockydocs-dev"
     print_info "To run: docker run -p 8000:8000 -v $CONTENT_DIR/docs:/app/content rockydocs-dev"
-    print_info "Or use: ./rockydocs-dev-12.sh --serve --docker (when implemented)"
+    print_info "Or use: ./rockydocs.sh --serve --docker (when implemented)"
 }
 
 # Setup Podman environment
@@ -838,14 +1442,25 @@ setup_podman() {
     
     print_info "Setting up Podman environment..."
     
-    # Similar to Docker but using podman commands
-    setup_docker "$build_type"  # Reuse Docker setup logic
+    # Check Podman availability first
+    if ! check_podman_availability; then
+        return 1
+    fi
     
     run_cmd "cd $APP_DIR"
+    run_cmd "rm -rf content && ln -sf $CONTENT_DIR/docs content"
+    
+    # Copy the appropriate config file
+    if [ "$build_type" = "full" ]; then
+        run_cmd "cp -f configs/mkdocs.full.yml mkdocs.yml"
+    else
+        run_cmd "cp -f configs/mkdocs.minimal.yml mkdocs.yml"
+    fi
+    
+    # Build Podman image
     run_cmd "podman build -f Dockerfile.dev -t rockydocs-dev ."
     
     print_info "Podman image built: rockydocs-dev"
-    print_info "To run: podman run -p 8000:8000 -v $CONTENT_DIR/docs:/app/docs rockydocs-dev"
 }
 
 # === SERVING FUNCTIONS ===
