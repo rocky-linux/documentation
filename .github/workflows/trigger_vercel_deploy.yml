@@ -22,8 +22,7 @@ jobs:
             "name": "docs.rockylinux.org",
             "gitSource": {
               "type": "github",
-              "repo": "docs.rockylinux.org",
-              "owner": "rocky-linux",
+              "repoId": "${{ secrets.VERCEL_APP_REPO_ID }}",
               "ref": "main"
             },
             "target": "production",
