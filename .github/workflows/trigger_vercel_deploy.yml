@@ -4,10 +4,32 @@ on:
   push:
     branches:
       - main
+      - rocky-8
+      - rocky-9
 
 jobs:
   trigger-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Vercel Deploy Hook
-        run: curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}"
+      - name: Trigger Vercel Deploy with Metadata
+        run: |
+          # Safely escape the commit message for JSON. This handles newlines, quotes, and backslashes.
+          MESSAGE=$(echo "${{ github.event.head_commit.message }}" | awk 'NR==1{printf "%s", $0; next} {printf "\\n%s", $0}' | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g')
+
+          # Trigger the deployment by calling the Vercel API
+          curl -X POST "https://api.vercel.com/v13/deployments?teamId=${{ secrets.VERCEL_TEAM_ID }}&projectId=${{ secrets.VERCEL_PROJECT_ID }}" \
+          -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          -d @- <<EOF
+          {
+            "name": "docs.rockylinux.org",
+            "target": "production",
+            "meta": {
+              "contentRepo": "${{ github.repository }}",
+              "contentCommitRef": "${{ github.ref_name }}",
+              "contentCommitSha": "${{ github.sha }}",
+              "contentCommitMessage": "$MESSAGE",
+              "contentCommitLink": "${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}"
+            }
+          }
+          EOF
