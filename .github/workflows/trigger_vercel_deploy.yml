@@ -14,12 +14,18 @@ jobs:
       - name: Trigger Vercel Deploy with Metadata
         run: |
           # Safely escape the commit message for JSON.
-          MESSAGE=$(echo "${{ github.event.head_commit.message }}" | awk 'NR==1{printf "%s", $0; next} {printf "\\n%s", $0}' | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g')
+          MESSAGE=$(echo "${{ github.event.head_commit.message }}" | awk 'NR==1{printf "%s", $0; next} {printf "\\n%s", $0}' | sed -e 's/\\/\\\\/g' -e 's/"/\"/g')
 
-          # Prepare the JSON payload using a Heredoc into a variable
+          # Prepare the JSON payload, including the gitSource to specify what to build.
           JSON_PAYLOAD=$(cat <<EOF
           {
             "name": "docs.rockylinux.org",
+            "gitSource": {
+              "type": "github",
+              "repo": "docs.rockylinux.org",
+              "owner": "rocky-linux",
+              "ref": "main"
+            },
             "target": "production",
             "meta": {
               "contentRepo": "${{ github.repository }}",
