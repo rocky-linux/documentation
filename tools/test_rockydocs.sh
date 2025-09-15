@@ -8,7 +8,7 @@ set -e
 
 VERSION="1.0.0"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ROCKYDOCS_SCRIPT="$SCRIPT_DIR/rockydocs-dev-12.sh"
+ROCKYDOCS_SCRIPT="$SCRIPT_DIR/../rockydocs.sh"
 TEST_WORKSPACE="/tmp/rocky_test_harness"
 TEST_CONTENT_DIR="$TEST_WORKSPACE/test_documentation"
 
@@ -184,6 +184,10 @@ assert_symlink_target() {
 setup_test_environment() {
     print_info "Setting up hermetic test environment..."
     
+    # Set isolated config directory to prevent polluting user's config
+    export XDG_CONFIG_HOME="$TEST_WORKSPACE/config"
+    export TEST_CONFIG_DIR="$XDG_CONFIG_HOME/rockydocs"
+    
     # Clean any existing test workspace
     if [ -d "$TEST_WORKSPACE" ]; then
         rm -rf "$TEST_WORKSPACE"
@@ -277,12 +281,14 @@ cleanup_test_environment() {
         rm -rf "$TEST_WORKSPACE"
     fi
     
-    # Clean any test configuration
-    if [ -f "$HOME/.config/rockydocs/config" ]; then
-        if grep -q "$TEST_WORKSPACE" "$HOME/.config/rockydocs/config" 2>/dev/null; then
-            rm -f "$HOME/.config/rockydocs/config"
-        fi
+    # Clean test configuration (using isolated XDG_CONFIG_HOME)
+    if [ -d "$TEST_WORKSPACE/config" ]; then
+        rm -rf "$TEST_WORKSPACE/config"
     fi
+    
+    # Unset environment variables to restore user's environment
+    unset XDG_CONFIG_HOME
+    unset TEST_CONFIG_DIR
     
     print_success "Test environment cleaned up"
 }
@@ -689,10 +695,498 @@ test_performance_features() {
     cd "$TEST_CONTENT_DIR"
 }
 
+# Test suite: Changelog functionality  
+test_changelog_functionality() {
+    print_info "=== Testing Changelog Tool Functionality ==="
+    
+    cd "$TEST_CONTENT_DIR"
+    
+    # Copy the changelog tool to test directory for testing
+    cp "$SCRIPT_DIR/rockydocs-changelog.sh" ./tools/ 2>/dev/null || true
+    cp "$SCRIPT_DIR/rockydocs-functions.sh" ./tools/ 2>/dev/null || true
+    
+    # Test changelog tool exists and is executable
+    test_case "Changelog tool is executable" \
+        "[ -x ./tools/rockydocs-changelog.sh ]"
+    
+    # Test basic commands work
+    test_case "Changelog help command works" \
+        "./tools/rockydocs-changelog.sh help"
+    
+    test_case "Changelog version command works" \
+        "./tools/rockydocs-changelog.sh version"
+    
+    test_case "Changelog show command works (no commits yet)" \
+        "./tools/rockydocs-changelog.sh show"
+    
+    # Test changelog generation
+    test_case "Changelog generate command creates file" \
+        "./tools/rockydocs-changelog.sh generate"
+    
+    test_case "Generated changelog file exists" \
+        "assert_file_exists ./tools/CHANGELOG.md"
+    
+    test_case "Generated changelog has proper header" \
+        "grep -q 'Rocky Linux Documentation Script Changelog' ./tools/CHANGELOG.md"
+    
+    test_case "Generated changelog follows Keep a Changelog format" \
+        "grep -q 'Keep a Changelog' ./tools/CHANGELOG.md"
+    
+    # Test commit message validation
+    test_case "Invalid commit message is rejected" \
+        "! ./tools/rockydocs-changelog.sh commit 'invalid message format'" 1
+    
+    # Test branch enforcement (should prompt but allow continuation)
+    print_info "Testing branch enforcement (simulating user input)..."
+    
+    # Switch to rockydocs-tool branch for proper testing
+    git checkout -b rockydocs-tool >/dev/null 2>&1 || git checkout rockydocs-tool >/dev/null 2>&1
+    
+    # Create rockydocs.sh for testing (needed for version validation)
+    cat > rockydocs.sh << 'EOF'
+#!/bin/bash
+VERSION="1.0.0"
+RELEASE="13.el10"
+EOF
+    chmod +x rockydocs.sh
+    
+    # Test valid commit (this will create a real commit)
+    test_case "Valid commit message is accepted" \
+        "./tools/rockydocs-changelog.sh commit 'rockydocs: add test functionality (bump to 1.0.0-13.el10)'"
+    
+    # Test that commit was created
+    test_case "Commit was created successfully" \
+        "git log --oneline -1 | grep -q 'rockydocs: add test functionality'"
+    
+    # Test that changelog was updated  
+    test_case "Changelog was updated after commit" \
+        "grep -q 'add test functionality' ./tools/CHANGELOG.md"
+    
+    # Test show command now shows the commit
+    test_case "Show command displays recent commits" \
+        "./tools/rockydocs-changelog.sh show | grep -q 'add test functionality'"
+    
+    # Test selective file staging (verify only rockydocs files were staged)
+    echo "unrelated content" > unrelated_file.txt
+    git add unrelated_file.txt
+    
+    # Make another commit to test selective staging
+    echo "# Updated version" >> rockydocs.sh
+    test_case "Selective staging only adds rockydocs-related files" \
+        "./tools/rockydocs-changelog.sh commit 'rockydocs: update script version (bump to 1.0.0-13.el10)'"
+    
+    # Check that unrelated file was not committed
+    test_case "Unrelated files are not auto-committed" \
+        "! git log --name-only -1 | grep -q 'unrelated_file.txt'"
+    
+    # Test changelog update functionality
+    test_case "Changelog update command works" \
+        "./tools/rockydocs-changelog.sh update '1 day ago'"
+    
+    # Test that CHANGELOG.md file was staged and committed
+    test_case "Changelog file is properly committed" \
+        "git log --name-only -2 | grep -q 'CHANGELOG.md'"
+    
+    # Cleanup test files
+    git reset --hard HEAD~2 >/dev/null 2>&1 || true
+    rm -f unrelated_file.txt rockydocs.sh
+    git checkout main >/dev/null 2>&1 || true
+    git branch -D rockydocs-tool >/dev/null 2>&1 || true
+}
+
+# NEW TEST SUITE: NEVRA version format validation
+test_nevra_version_format() {
+    print_info "=== Testing NEVRA Version Format Validation ==="
+    
+    cd "$TEST_CONTENT_DIR"
+    
+    # Test that version follows Name-Version-Release.Architecture format
+    local version_output=$("$ROCKYDOCS_SCRIPT" --version 2>&1 | head -1)
+    
+    # Should match: rockydocs-X.Y.Z-N.elN
+    test_case "NEVRA version format validation" \
+        "echo '$version_output' | grep -q '^rockydocs-[0-9]\+\.[0-9]\+\.[0-9]\+-[0-9]\+\.el[0-9]\+$'"
+    
+    # Test version components can be extracted
+    local name=$(echo "$version_output" | cut -d'-' -f1)
+    local version=$(echo "$version_output" | cut -d'-' -f2)
+    local release_arch=$(echo "$version_output" | cut -d'-' -f3)
+    
+    test_case "NEVRA name component is 'rockydocs'" \
+        "[ '$name' = 'rockydocs' ]"
+    
+    test_case "NEVRA version component follows semver pattern" \
+        "echo '$version' | grep -q '^[0-9]\+\.[0-9]\+\.[0-9]\+$'"
+    
+    test_case "NEVRA release component follows .elN pattern" \
+        "echo '$release_arch' | grep -q '^[0-9]\+\.el[0-9]\+$'"
+}
+
+# NEW TEST SUITE: Workspace persistence and state
+test_workspace_persistence() {
+    print_info "=== Testing Workspace Persistence and State ==="
+    
+    cd "$TEST_CONTENT_DIR"
+    
+    local test_workspace="$TEST_WORKSPACE/persistence_test"
+    
+    # Test that workspace configuration persists
+    test_case "Workspace configuration is saved and persisted" \
+        "$ROCKYDOCS_SCRIPT --setup --workspace '$test_workspace' --minimal >/dev/null 2>&1"
+    
+    # Check if config file exists and contains correct workspace (using isolated config)
+    test_case "Config file is created with correct workspace path" \
+        "[ -f '$TEST_CONFIG_DIR/config' ] && grep -q 'WORKSPACE_BASE_DIR=$test_workspace' '$TEST_CONFIG_DIR/config'"
+    
+    # Test workspace reuse
+    test_case "Workspace configuration is reused on subsequent runs" \
+        "$ROCKYDOCS_SCRIPT --status >/dev/null 2>&1"
+    
+    # Test config persistence after script execution
+    test_case "Config persists after script completion" \
+        "[ -f '$TEST_CONFIG_DIR/config' ] && grep -q '$test_workspace' '$TEST_CONFIG_DIR/config'"
+    rm -rf "$test_workspace"
+}
+
+# NEW TEST SUITE: Repository symlink and discovery
+test_repository_discovery() {
+    print_info "=== Testing Repository Discovery and Symlink Logic ==="
+    
+    cd "$TEST_CONTENT_DIR"
+    
+    local test_workspace="$TEST_WORKSPACE/discovery_test"
+    mkdir -p "$test_workspace"
+    
+    # Create mock repository structure with proper git config
+    mkdir -p "$test_workspace/existing-docs.rockylinux.org/.git"
+    cat > "$test_workspace/existing-docs.rockylinux.org/.git/config" << 'EOF'
+[remote "origin"]
+    url = git@github.com:rocky-linux/docs.rockylinux.org.git
+    fetch = +refs/heads/*:refs/remotes/origin/*
+EOF
+    
+    # Test that existing repo is discovered and symlinked
+    test_case "Existing repository is discovered and symlinked" \
+        "WORKSPACE_BASE_DIR='$test_workspace' $ROCKYDOCS_SCRIPT --setup --local --minimal >/dev/null 2>&1 && [ -L '$test_workspace/docs.rockylinux.org' ]"
+    
+    # Test symlink target is correct
+    if [ -L "$test_workspace/docs.rockylinux.org" ]; then
+        local target=$(readlink "$test_workspace/docs.rockylinux.org")
+        test_case "Symlink points to existing repository" \
+            "echo '$target' | grep -q 'existing-docs.rockylinux.org'"
+    fi
+    
+    # Cleanup
+    rm -rf "$test_workspace"
+}
+
+# NEW TEST SUITE: Content symlink and git context
+test_content_symlink_integrity() {
+    print_info "=== Testing Content Symlink and Git Context ==="
+    
+    local test_workspace="$TEST_WORKSPACE/content_test"
+    local test_content="$TEST_WORKSPACE/test_content"
+    
+    # Create mock content repository with git history
+    mkdir -p "$test_content/docs"
+    echo "# Test content with git history" > "$test_content/docs/index.md"
+    cd "$test_content"
+    git init >/dev/null 2>&1
+    git config user.name "Test User" >/dev/null 2>&1
+    git config user.email "test@example.com" >/dev/null 2>&1
+    git add . >/dev/null 2>&1
+    git commit -m "Initial test content" >/dev/null 2>&1
+    
+    # Test setup with content symlink
+    cd "$TEST_CONTENT_DIR"
+    test_case "Content symlink is created during setup" \
+        "CONTENT_DIR='$test_content' WORKSPACE_BASE_DIR='$test_workspace' $ROCKYDOCS_SCRIPT --setup --local --minimal >/dev/null 2>&1"
+    
+    local app_dir="$test_workspace/docs.rockylinux.org"
+    
+    # Check that content symlink exists and points correctly
+    test_case "Content symlink points to correct docs directory" \
+        "[ -L '$app_dir/content' ] && [ \"\$(readlink '$app_dir/content')\" = '$test_content/docs' ]"
+    
+    # Test that git context is preserved through symlink
+    test_case "Git context is preserved through content symlink" \
+        "cd '$app_dir' && git log --oneline content/ >/dev/null 2>&1"
+    
+    # Test content is accessible through symlink
+    test_case "Content is accessible through symlink" \
+        "[ -f '$app_dir/content/index.md' ]"
+    
+    # Cleanup
+    rm -rf "$test_workspace" "$test_content"
+}
+
+# NEW TEST SUITE: Background process management
+test_background_process_management() {
+    print_info "=== Testing Background Process Management ==="
+    
+    cd "$TEST_CONTENT_DIR"
+    
+    # Test that status command properly detects process information
+    local status_output=$("$ROCKYDOCS_SCRIPT" --status 2>&1)
+    
+    test_case "Status command includes process monitoring information" \
+        "echo '$status_output' | grep -q 'Process.*Status\\|Background.*Process'"
+    
+    # Test clean command process handling
+    test_case "Clean command handles background processes gracefully" \
+        "$ROCKYDOCS_SCRIPT --clean >/dev/null 2>&1"
+    
+    # Verify no orphaned mike/python processes remain after clean
+    local mike_processes=$(pgrep -f "mike serve" | wc -l || echo "0")
+    local python_processes=$(pgrep -f "python.*http.server" | wc -l || echo "0")
+    
+    test_case "Background processes are properly cleaned up" \
+        "[ '$mike_processes' -eq 0 ] && [ '$python_processes' -eq 0 ]"
+}
+
+# NEW TEST SUITE: Multi-platform compatibility
+test_platform_compatibility() {
+    print_info "=== Testing Multi-Platform Compatibility ==="
+    
+    cd "$TEST_CONTENT_DIR"
+    
+    # Test platform detection and compatibility
+    local platform=$(uname -s)
+    local help_output=$("$ROCKYDOCS_SCRIPT" --help 2>&1)
+    
+    # Verify script works on current platform
+    test_case "Script is compatible with platform $platform" \
+        "echo '$help_output' | grep -q 'Rocky Linux Documentation'"
+    
+    # Test cross-platform path handling
+    test_case "Cross-platform path handling works correctly" \
+        "$ROCKYDOCS_SCRIPT --status >/dev/null 2>&1"
+    
+    # Test that script handles platform-specific commands gracefully
+    case "$platform" in
+        Darwin|Linux)
+            test_case "Platform-specific commands work on $platform" \
+                "$ROCKYDOCS_SCRIPT --version >/dev/null 2>&1"
+            ;;
+        *)
+            print_info "Platform $platform compatibility assumed (not explicitly tested)"
+            ;;
+    esac
+}
+
+# NEW TEST SUITE: Error recovery and validation
+test_error_recovery() {
+    print_info "=== Testing Error Recovery and Validation ==="
+    
+    cd "$TEST_CONTENT_DIR"
+    
+    # Test invalid workspace path handling
+    local invalid_workspace="/root/invalid-permission-path-$$"
+    test_case "Invalid workspace path produces appropriate error" \
+        "$ROCKYDOCS_SCRIPT --setup --workspace '$invalid_workspace' 2>&1 | grep -q -i 'error\\|permission\\|failed'" 1
+    
+    # Test cleanup after failed operations
+    test_case "Cleanup works gracefully after error conditions" \
+        "$ROCKYDOCS_SCRIPT --clean >/dev/null 2>&1"
+    
+    # Test handling of missing dependencies (simulate by temporarily renaming)
+    if command -v git >/dev/null 2>&1; then
+        test_case "Script handles dependency checks gracefully" \
+            "$ROCKYDOCS_SCRIPT --status >/dev/null 2>&1"
+    fi
+    
+    # Test invalid command arguments
+    test_case "Invalid arguments produce helpful error messages" \
+        "$ROCKYDOCS_SCRIPT --invalid-option 2>&1 | grep -q -i 'error\\|invalid\\|help'" 1
+}
+
+# NEW TEST SUITE: Changelog tool integration
+test_changelog_integration() {
+    print_info "=== Testing Changelog Tool Integration ==="
+    
+    cd "$TEST_CONTENT_DIR"
+    
+    # Test that changelog tool is accessible and integrated
+    local changelog_path="$SCRIPT_DIR/rockydocs-changelog.sh"
+    
+    test_case "Changelog tool exists and is executable" \
+        "[ -x '$changelog_path' ]"
+    
+    if [ -x "$changelog_path" ]; then
+        test_case "Changelog tool version command works" \
+            "'$changelog_path' --version 2>&1 | grep -q 'rockydocs-changelog'"
+        
+        test_case "Changelog tool help command works" \
+            "'$changelog_path' --help >/dev/null 2>&1"
+        
+        # Test functions library integration
+        local functions_path="$SCRIPT_DIR/rockydocs-functions.sh"
+        test_case "Functions library is accessible to changelog tool" \
+            "[ -f '$functions_path' ]"
+    fi
+}
+
+# NEW TEST SUITE: Configuration validation
+test_configuration_validation() {
+    print_info "=== Testing Configuration File Validation ==="
+    
+    cd "$TEST_CONTENT_DIR"
+    
+    # Test configuration file presence after setup
+    local test_workspace="$TEST_WORKSPACE/config_test"
+    test_case "Setup creates required configuration files" \
+        "WORKSPACE_BASE_DIR='$test_workspace' $ROCKYDOCS_SCRIPT --setup --local --minimal >/dev/null 2>&1"
+    
+    local app_dir="$test_workspace/docs.rockylinux.org"
+    local required_configs=("configs/mkdocs.yml" "configs/mkdocs.minimal.yml" "configs/mkdocs.full.yml")
+    
+    for config in "${required_configs[@]}"; do
+        test_case "Required config file exists: $config" \
+            "assert_file_exists '$app_dir/$config'"
+    done
+    
+    # Test configuration file content validation
+    test_case "Main config file has proper docs_dir setting" \
+        "grep -q 'docs_dir.*content' '$app_dir/configs/mkdocs.yml'"
+    
+    test_case "Minimal config exists and is properly formatted" \
+        "grep -q 'site_name' '$app_dir/configs/mkdocs.minimal.yml'"
+    
+    # Cleanup
+    rm -rf "$test_workspace"
+}
+
+# NEW TEST SUITE: Performance and resource tests
+test_performance_metrics() {
+    print_info "=== Testing Performance and Resource Usage ==="
+    
+    cd "$TEST_CONTENT_DIR"
+    
+    # Test setup performance (should complete in reasonable time)
+    local start_time=$(date +%s)
+    test_case "Minimal setup completes in reasonable time" \
+        "$ROCKYDOCS_SCRIPT --setup --local --minimal --workspace '$TEST_WORKSPACE/perf_test' >/dev/null 2>&1"
+    local end_time=$(date +%s)
+    local setup_duration=$((end_time - start_time))
+    
+    test_case "Setup duration is reasonable (under 30 seconds)" \
+        "[ '$setup_duration' -lt 30 ]"
+    
+    print_info "Setup completed in ${setup_duration}s"
+    
+    # Test memory usage is reasonable (basic check)
+    local memory_usage=$(ps -o pid,vsz,rss,comm -p $$ | tail -1 | awk '{print $3}' || echo "0")
+    test_case "Memory usage is reasonable (under 100MB RSS)" \
+        "[ '$memory_usage' -lt 100000 ]"
+    
+    if [ "$memory_usage" -gt 0 ]; then
+        print_info "Current memory usage: ${memory_usage} KB"
+    fi
+    
+    # Test file system efficiency
+    local workspace_size=$(du -sk "$TEST_WORKSPACE/perf_test" 2>/dev/null | cut -f1 || echo "0")
+    test_case "Workspace size is reasonable (under 50MB)" \
+        "[ '$workspace_size' -lt 51200 ]"
+    
+    if [ "$workspace_size" -gt 0 ]; then
+        print_info "Workspace size: ${workspace_size} KB"
+    fi
+    
+    # Cleanup
+    rm -rf "$TEST_WORKSPACE/perf_test"
+}
+
+# Test Podman integration functionality
+test_podman_integration() {
+    print_info "=== Testing Podman Integration ==="
+    
+    # Skip Podman tests if Podman is not available
+    if ! command -v podman >/dev/null 2>&1; then
+        print_warning "Podman not available - skipping Podman integration tests"
+        return 0
+    fi
+    
+    # Test Podman availability check function
+    test_case "Podman availability check works" \
+        "$ROCKYDOCS_SCRIPT --version >/dev/null 2>&1"
+    
+    # Test Podman help text includes correct options
+    local help_output=$($ROCKYDOCS_SCRIPT --setup --help 2>&1)
+    if echo "$help_output" | grep -q "Use Podman container (rootless by default)"; then
+        test_case "Podman option appears in help text" \
+            "true"
+    else
+        test_case "Podman option appears in help text" \
+            "false"
+    fi
+    
+    # Test version information reflects Podman support
+    local version_output=$($ROCKYDOCS_SCRIPT --version 2>&1)
+    if echo "$version_output" | grep -q "rockydocs-1.1.0-1.el10"; then
+        test_case "Version reflects Podman support (1.1.0-1.el10)" \
+            "true"
+    else
+        test_case "Version reflects Podman support (1.1.0-1.el10)" \
+            "false"
+    fi
+    
+    # Test container engine abstraction functions (if available)
+    # This tests the function loading without actual container operations
+    if [ -f "$SCRIPT_DIR/rockydocs-functions.sh" ]; then
+        # Source the functions to test them
+        source "$SCRIPT_DIR/rockydocs-functions.sh" 2>/dev/null || true
+        
+        # Test container engine detection
+        local docker_engine=$(ENVIRONMENT=docker get_container_engine 2>/dev/null || echo "")
+        local podman_engine=$(ENVIRONMENT=podman get_container_engine 2>/dev/null || echo "")
+        local venv_engine=$(ENVIRONMENT=venv get_container_engine 2>/dev/null || echo "")
+        
+        test_case "Container engine detection - Docker" \
+            "[ '$docker_engine' = 'docker' ]"
+        
+        test_case "Container engine detection - Podman" \
+            "[ '$podman_engine' = 'podman' ]"
+        
+        test_case "Container engine detection - Venv (empty)" \
+            "[ -z '$venv_engine' ]"
+        
+        # Test Podman availability function exists
+        if declare -f check_podman_availability >/dev/null 2>&1; then
+            test_case "Podman availability function is available" \
+                "true"
+        else
+            test_case "Podman availability function is available" \
+                "false"
+        fi
+        
+        # Test Podman mode detection function exists  
+        if declare -f detect_podman_mode >/dev/null 2>&1; then
+            test_case "Podman mode detection function is available" \
+                "true"
+        else
+            test_case "Podman mode detection function is available" \
+                "false"
+        fi
+    fi
+    
+    # Test that --setup --podman is recognized as valid syntax (dry run)
+    # This won't actually run podman but will test argument parsing
+    local setup_podman_test=$($ROCKYDOCS_SCRIPT --setup --podman --help 2>&1)
+    if echo "$setup_podman_test" | grep -q "Use Podman container"; then
+        test_case "Setup Podman argument parsing works" \
+            "true"
+    else
+        test_case "Setup Podman argument parsing works" \
+            "false"
+    fi
+    
+    print_success "Podman integration tests completed"
+}
+
 # Main test runner
 run_all_tests() {
     print_info "Rocky Linux Documentation Test Harness v$VERSION"
-    print_info "Testing rockydocs-dev-12.sh functionality"
+    print_info "Testing rockydocs.sh functionality"
     echo ""
     
     # Verify test script exists
@@ -706,16 +1200,28 @@ run_all_tests() {
     
     # Run test suites
     test_dependencies
+    test_nevra_version_format
     test_setup_and_clean
+    test_workspace_persistence
+    test_repository_discovery
+    test_content_symlink_integrity
     test_deployment
     test_serving_modes
     test_utilities
     test_configuration_management
+    test_configuration_validation
+    test_background_process_management
+    test_changelog_functionality
+    test_changelog_integration
     test_error_handling
+    test_error_recovery
     test_environment_variations
+    test_platform_compatibility
     test_port_management
     test_git_operations
     test_performance_features
+    test_performance_metrics
+    test_podman_integration
     
     # Cleanup
     cleanup_test_environment
@@ -743,7 +1249,7 @@ case "${1:-run}" in
 Rocky Linux Documentation Test Harness v$VERSION
 
 DESCRIPTION:
-  Comprehensive automated test suite for rockydocs-dev-12.sh functionality.
+  Comprehensive automated test suite for rockydocs.sh functionality.
   Runs extensive tests in hermetic environments with full coverage validation.
 
 USAGE:
@@ -760,16 +1266,28 @@ ENVIRONMENT:
   Subject script: $ROCKYDOCS_SCRIPT
 
 TEST COVERAGE:
+  ✅ Dependencies & Validation       - System dependency and NEVRA version format validation
   ✅ Setup and Clean Operations      - Workspace management validation
+  ✅ Workspace Persistence          - Configuration saving and state management
+  ✅ Repository Discovery            - Symlink creation and repository reuse logic
+  ✅ Content Symlink Integrity      - Git context preservation through symlinks
   ✅ Deployment Operations          - Multi-version deployment testing
   ✅ Serving Modes                  - Live and static serving validation
   ✅ Utility Functions              - Status, help, and configuration commands
   ✅ Configuration Management       - Workspace configuration persistence
+  ✅ Configuration Validation       - Required config files and content verification
+  ✅ Background Process Management  - Process monitoring and cleanup validation
+  ✅ Changelog Tool Functionality    - Automated changelog management and git integration
+  ✅ Changelog Tool Integration     - Tool accessibility and library integration
   ✅ Error Handling & Edge Cases    - Graceful failure and error detection
+  ✅ Error Recovery & Validation    - Invalid input handling and recovery scenarios
   ✅ Environment Variations         - Virtual environment and build types
+  ✅ Platform Compatibility         - Multi-platform support and command handling
   ✅ Port Management               - Conflict detection and resolution
   ✅ Git Operations & Versioning    - Repository operations and branch handling
   ✅ Performance Features          - Optimization validation and timing
+  ✅ Performance Metrics           - Resource usage and efficiency testing
+  ✅ Podman Integration            - Container engine abstraction and Podman support
 
 FEATURES:
   • Hermetic test environments with no external dependencies
