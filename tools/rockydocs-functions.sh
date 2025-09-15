@@ -51,7 +51,12 @@ cleanup_on_exit() {
                 print_info "Cleaned file $file"
             elif [[ "$resource" =~ ^container: ]]; then
                 local container="${resource#container:}"
-                stop_docker_container "$container"
+                # Try Docker first, then Podman
+                if command -v docker >/dev/null 2>&1 && docker ps -a -q -f name="$container" >/dev/null 2>&1; then
+                    stop_docker_container "$container"
+                elif command -v podman >/dev/null 2>&1 && podman ps -a -q -f name="$container" >/dev/null 2>&1; then
+                    stop_podman_container "$container"
+                fi
                 print_info "Stopped container $container"
             fi
         done
@@ -394,210 +399,18 @@ cleanup_docker_containers() {
     fi
 }
 
-# === CONTAINER ENGINE ABSTRACTION ===
+# === PODMAN UTILITY FUNCTIONS ===
 
-# Container-agnostic wrapper functions
-get_container_engine() {
-    # Determine which container engine to use based on ENVIRONMENT variable
-    case "${ENVIRONMENT:-venv}" in
-        docker) echo "docker" ;;
-        podman) echo "podman" ;;
-        *) echo "" ;;  # No container engine for venv
-    esac
-}
-
-start_container() {
-    local container_engine=$(get_container_engine)
-    case "$container_engine" in
-        docker) start_docker_container "$@" ;;
-        podman) start_podman_container "$@" ;;
-        *) print_error "Unknown container engine: $container_engine" ;;
-    esac
-}
-
-stop_container() {
-    local container_engine=$(get_container_engine)
-    local container_name="$1"
-    case "$container_engine" in
-        docker) stop_docker_container "$container_name" ;;
-        podman) stop_podman_container "$container_name" ;;
-        *) print_error "Unknown container engine: $container_engine" ;;
-    esac
-}
-
-get_container_status() {
-    local container_engine=$(get_container_engine)
-    local container_name="$1"
-    case "$container_engine" in
-        docker) get_docker_container_status "$container_name" ;;
-        podman) get_podman_container_status "$container_name" ;;
-        *) echo "not_applicable" ;;
-    esac
-}
-
-check_container_health() {
-    local container_engine=$(get_container_engine)
-    case "$container_engine" in
-        docker) check_docker_health "$@" ;;
-        podman) check_podman_health "$@" ;;
-        *) return 1 ;;
-    esac
-}
-
-build_container_image() {
-    local container_engine=$(get_container_engine)
-    case "$container_engine" in
-        docker) docker build "$@" ;;
-        podman) podman build "$@" ;;
-        *) print_error "Unknown container engine: $container_engine" ;;
-    esac
-}
-
-create_container_volumes() {
-    local container_engine=$(get_container_engine)
-    case "$container_engine" in
-        docker) create_docker_volumes ;;
-        podman) create_podman_volumes ;;
-        *) echo "" ;;
-    esac
-}
-
-cleanup_container_volumes() {
-    local container_engine=$(get_container_engine)
-    case "$container_engine" in
-        docker) cleanup_docker_volumes ;;
-        podman) cleanup_podman_volumes ;;
-        *) ;;
-    esac
-}
-
-show_container_volume_status() {
-    local container_engine=$(get_container_engine)
-    case "$container_engine" in
-        docker) show_docker_volume_status ;;
-        podman) show_podman_volume_status ;;
-        *) ;;
-    esac
-}
-
-cleanup_user_containers() {
-    local container_engine=$(get_container_engine)
-    case "$container_engine" in
-        docker) cleanup_user_docker_containers ;;
-        podman) cleanup_user_podman_containers ;;
-        *) ;;
-    esac
-}
-
-get_container_name() {
-    local container_engine=$(get_container_engine)
-    local service_type="$1"
-    case "$container_engine" in
-        docker) get_docker_container_name "$service_type" ;;
-        podman) get_podman_container_name "$service_type" ;;
-        *) echo "" ;;
-    esac
-}
-
-check_container_engine_availability() {
-    local container_engine=$(get_container_engine)
-    case "$container_engine" in
-        docker) 
-            if ! command -v docker >/dev/null 2>&1; then
-                print_error "Docker is not installed or not in PATH"
-                return 1
-            fi
-            ;;
-        podman) 
-            check_podman_availability
-            return $?
-            ;;
-        "") return 0 ;;  # venv mode, no container engine needed
-        *) 
-            print_error "Unknown container engine: $container_engine"
-            return 1
-            ;;
-    esac
-}
-
-# Container-agnostic high-level operations
-serve_container() {
-    local container_engine="$1"
-    local static_mode="$2"
-    
-    case "$container_engine" in
-        docker)
-            serve_docker "$static_mode"
-            ;;
-        podman)
-            serve_podman "$static_mode"
-            ;;
-        *)
-            print_error "Unknown container engine: $container_engine"
-            return 1
-            ;;
-    esac
-}
-
-deploy_container() {
-    local container_engine="$1"
-    
-    case "$container_engine" in
-        docker)
-            deploy_docker
-            ;;
-        podman)
-            deploy_podman
-            ;;
-        *)
-            print_error "Unknown container engine: $container_engine"
-            return 1
-            ;;
-    esac
-}
-
-# === PODMAN FUNCTIONS ===
-
-# Podman availability and version checking
-check_podman_availability() {
-    if ! command -v podman >/dev/null 2>&1; then
-        print_error "Podman is not installed or not in PATH"
-        print_info "Install Podman: https://podman.io/getting-started/installation"
-        return 1
-    fi
-    
-    if ! podman --version >/dev/null 2>&1; then
-        print_error "Podman is not properly configured"
-        print_info "Check Podman installation with: podman info"
-        return 1
-    fi
-    
-    return 0
-}
-
-get_podman_version() {
-    podman --version | head -1
-}
-
-detect_podman_mode() {
-    # Detect if running in rootless or rootful mode
-    if podman info --format json 2>/dev/null | grep -q '"rootless": true'; then
-        echo "rootless"
-    else
-        echo "rootful"
-    fi
-}
-
-# Podman container utility functions (parallel to Docker functions)
+# Podman container utility functions
 get_podman_container_name() {
-    local service_type="$1"  # serve, deploy, etc.
-    echo "rockydocs-${service_type}-${USER}"
+    local suffix="$1"  # serve, deploy, etc.
+    echo "rockydocs-${suffix}-${USER}"
 }
 
 stop_podman_container() {
     local container_name="$1"
     if podman ps -q -f name="$container_name" >/dev/null 2>&1; then
-        print_info "Stopping existing container: $container_name"
+        print_info "Stopping existing Podman container: $container_name"
         podman stop "$container_name" >/dev/null 2>&1 || true
     fi
     if podman ps -a -q -f name="$container_name" >/dev/null 2>&1; then
@@ -619,21 +432,25 @@ get_podman_container_status() {
 check_podman_health() {
     local container_name="$1"
     local port="$2"
-    local max_attempts="${3:-30}"
-    local attempt=0
+    local timeout="${3:-60}"
+    local attempt=1
+    local max_attempts=$((timeout / 5))
     
-    while [ $attempt -lt $max_attempts ]; do
-        # First check if container is still running
+    while [ $attempt -le $max_attempts ]; do
+        print_info "Health check attempt $attempt/$max_attempts..."
+        
+        # Check if container is still running
         if ! podman ps --format "table {{.Names}}" | grep -q "^$container_name$"; then
-            print_error "Container $container_name stopped running"
+            print_error "Container $container_name is not running"
             return 1
         fi
         
-        # Then check if service is responding
-        if curl -s "http://localhost:$port" >/dev/null 2>&1; then
+        # Check if port is responding
+        if curl -sf "http://localhost:$port" >/dev/null 2>&1; then
             return 0
         fi
-        sleep 1
+        
+        sleep 5
         attempt=$((attempt + 1))
     done
     return 1
@@ -659,40 +476,46 @@ create_podman_volumes() {
     echo "$workspace_volume $content_volume"
 }
 
+# Podman volume cleanup function
 cleanup_podman_volumes() {
     local workspace_volume="rockydocs-workspace-${USER}"
     local content_volume="rockydocs-content-${USER}"
     
-    print_info "Cleaning up Podman volumes..."
-    if [ "$FORCE_CLEANUP" = "true" ]; then
+    print_warning "This will remove Podman volumes containing your workspace data"
+    read -p "Remove Podman volumes? (y/N): " confirm
+    if [[ "$confirm" =~ ^[yY]$ ]]; then
+        print_info "Removing Podman volumes..."
         podman volume rm "$workspace_volume" >/dev/null 2>&1 || true
         podman volume rm "$content_volume" >/dev/null 2>&1 || true
+        print_success "Podman volumes removed"
+    else
+        print_info "Podman volume cleanup cancelled"
     fi
 }
 
+# Podman volume status check
 show_podman_volume_status() {
     local workspace_volume="rockydocs-workspace-${USER}"
     local content_volume="rockydocs-content-${USER}"
     
-    print_info "=== Podman Volume Status ==="
+    echo "  • Podman volumes:"
     
     if podman volume inspect "$workspace_volume" >/dev/null 2>&1; then
         local volume_size=$(podman system df -v 2>/dev/null | grep "$workspace_volume" | awk '{print $3}' || echo "unknown")
-        echo "  • Workspace volume: $workspace_volume (${volume_size})"
+        echo "    - $workspace_volume: exists (size: $volume_size)"
     else
-        echo "  • Workspace volume: not created"
+        echo "    - $workspace_volume: not found"
     fi
     
     if podman volume inspect "$content_volume" >/dev/null 2>&1; then
         local volume_size=$(podman system df -v 2>/dev/null | grep "$content_volume" | awk '{print $3}' || echo "unknown")
-        echo "  • Content volume: $content_volume (${volume_size})"
+        echo "    - $content_volume: exists (size: $volume_size)"
     else
-        echo "  • Content volume: not created"
+        echo "    - $content_volume: not found"
     fi
 }
 
-cleanup_user_podman_containers() {
-    # Clean up any leftover user-specific containers
+cleanup_podman_containers() {
     local user_containers=$(podman ps -a -q -f name="rockydocs-.*-${USER}" 2>/dev/null || true)
     if [ -n "$user_containers" ]; then
         print_info "Cleaning up Podman containers..."
@@ -700,299 +523,76 @@ cleanup_user_podman_containers() {
     fi
 }
 
-# Podman-specific container management with rootless and SELinux considerations
-start_podman_container() {
-    local image_name="$1"
-    local container_name="$2"
-    local port="${3:-8000}"
-    local volume_args="$4"
-    local additional_args="$5"
+# Stop all Rocky Linux documentation services across all environments
+stop_all_services() {
+    print_info "🛑 Stopping all Rocky Linux documentation services..."
     
-    # Handle rootless port mapping - if port < 1024, find alternative
-    if [ "$port" -lt 1024 ] && [ "$(detect_podman_mode)" = "rootless" ]; then
-        print_warning "Port $port requires root privileges in rootless Podman"
-        port=$(find_available_port $((port + 8000)))
-        print_info "Using alternative port: $port"
+    local stopped_count=0
+    
+    # Stop Python HTTP servers (venv static mode)
+    local python_pids=$(pgrep -f "python.*http.server.*8000" 2>/dev/null || true)
+    if [ -n "$python_pids" ]; then
+        print_info "Stopping Python HTTP servers (venv static mode)..."
+        echo "$python_pids" | xargs kill -TERM 2>/dev/null || true
+        sleep 2
+        # Force kill if still running
+        echo "$python_pids" | xargs kill -KILL 2>/dev/null || true
+        stopped_count=$((stopped_count + 1))
     fi
     
-    # Add SELinux context for volume mounts if SELinux is enabled
-    if command -v getenforce >/dev/null 2>&1 && [ "$(getenforce 2>/dev/null)" = "Enforcing" ]; then
-        # Add :Z for exclusive SELinux label (safe for dedicated volumes)
-        volume_args=$(echo "$volume_args" | sed 's/:[^:]*$/:Z&/g')
-        print_info "SELinux detected: using :Z context for volumes"
+    # Stop MkDocs servers (venv live mode)
+    local mkdocs_pids=$(pgrep -f "mkdocs.*serve" 2>/dev/null || true)
+    if [ -n "$mkdocs_pids" ]; then
+        print_info "Stopping MkDocs development servers (venv live mode)..."
+        echo "$mkdocs_pids" | xargs kill -TERM 2>/dev/null || true
+        sleep 2
+        echo "$mkdocs_pids" | xargs kill -KILL 2>/dev/null || true
+        stopped_count=$((stopped_count + 1))
     fi
     
-    # Build Podman command with rootless considerations
-    local podman_cmd="podman run -d --name $container_name"
-    podman_cmd="$podman_cmd -p ${port}:8000"
-    
-    if [ -n "$volume_args" ]; then
-        podman_cmd="$podman_cmd $volume_args"
-    fi
-    
-    if [ -n "$additional_args" ]; then
-        podman_cmd="$podman_cmd $additional_args"
-    fi
-    
-    podman_cmd="$podman_cmd $image_name"
-    
-    print_info "Starting Podman container: $container_name"
-    print_command "$podman_cmd"
-    eval "$podman_cmd"
-    
-    return $?
-}
-
-setup_podman_environment() {
-    print_info "Setting up Podman environment..."
-    
-    # Check Podman availability first
-    if ! check_podman_availability; then
-        return 1
-    fi
-    
-    # Show Podman mode information
-    local podman_mode=$(detect_podman_mode)
-    print_info "Podman mode: $podman_mode"
-    
-    if [ "$podman_mode" = "rootless" ]; then
-        print_info "Running in rootless mode - enhanced security, some port limitations"
-        # Check for port limitations
-        local port_info=$(podman info --format json 2>/dev/null | grep -o '"rootless":true' || echo "")
-        if [ -n "$port_info" ]; then
-            print_warning "Rootless mode: ports < 1024 will be automatically remapped"
+    # Stop Docker containers
+    if command -v docker >/dev/null 2>&1 && docker info >/dev/null 2>&1; then
+        local docker_containers=$(docker ps -q -f name="rockydocs-.*-${USER}" 2>/dev/null || true)
+        if [ -n "$docker_containers" ]; then
+            print_info "Stopping Docker containers..."
+            echo "$docker_containers" | xargs docker stop >/dev/null 2>&1 || true
+            echo "$docker_containers" | xargs docker rm >/dev/null 2>&1 || true
+            stopped_count=$((stopped_count + 1))
         fi
-    else
-        print_info "Running in rootful mode - full privileges available"
     fi
     
-    # Create Podman volumes
-    local volumes=$(create_podman_volumes)
-    if [ -n "$volumes" ]; then
-        print_success "Podman volumes created: $volumes"
-    fi
-    
-    return 0
-}
-
-# Podman serving function (equivalent to serve_docker)
-serve_podman() {
-    local static_mode="$1"
-    
-    print_info "🐳 PODMAN SERVING MODE: Container-based documentation serving"
-    
-    # Validate Podman setup
-    if [ ! -d "$APP_DIR" ]; then
-        print_error "App directory not found: $APP_DIR"
-        print_info "Run setup first: $0 --setup --podman"
-        return 1
-    fi
-    
-    # Check if Podman image exists
-    if ! podman image inspect rockydocs-dev >/dev/null 2>&1; then
-        print_error "Podman image 'rockydocs-dev' not found"
-        print_info "Run setup first: $0 --setup --podman"
-        return 1
-    fi
-    
-    cd "$APP_DIR"
-    
-    # Handle symlink conflict: temporarily move content symlink if it exists
-    local content_symlink_backup=""
-    if [ -L "content" ]; then
-        content_symlink_backup=$(readlink "content")
-        print_info "Temporarily moving content symlink to avoid mount conflict"
-        mv "content" "content.backup" || true
-    fi
-    
-    # Get container name and manage lifecycle
-    local container_name=$(get_podman_container_name "serve")
-    stop_podman_container "$container_name"
-    
-    # Find available port (Podman rootless uses ports >= 1024)
-    local port=$(find_available_port 8000 8001 8002)
-    if [ -z "$port" ]; then
-        print_error "No available ports (8000, 8001, 8002). Kill existing processes."
-        # Restore symlink before returning
-        if [ -n "$content_symlink_backup" ] && [ -f "content.backup" -o -L "content.backup" ]; then
-            mv "content.backup" "content" || ln -sf "$content_symlink_backup" "content"
+    # Stop Podman containers
+    if command -v podman >/dev/null 2>&1 && podman info >/dev/null 2>&1; then
+        local podman_containers=$(podman ps -q -f name="rockydocs-.*-${USER}" 2>/dev/null || true)
+        if [ -n "$podman_containers" ]; then
+            print_info "Stopping Podman containers..."
+            echo "$podman_containers" | xargs podman stop >/dev/null 2>&1 || true
+            echo "$podman_containers" | xargs podman rm >/dev/null 2>&1 || true
+            stopped_count=$((stopped_count + 1))
         fi
-        return 1
     fi
     
-    print_success "🚀 Starting Podman container: $container_name"
-    print_info "   • Port: $port"
-    print_info "   • Access: http://localhost:$port"
-    print_info "   • Static mode: $static_mode"
-    
-    # Start container based on mode
-    if [ "$static_mode" = "true" ]; then
-        # Static mode: serve pre-built content
-        print_info "   • Mode: Static (production-like)"
-        podman run -d --name "$container_name" \
-            -p "$port:8000" \
-            -v "$APP_DIR:/app:Z" \
-            -v "$CONTENT_DIR/docs:/app/content:Z" \
-            --workdir /app \
-            rockydocs-dev \
-            python3 -m http.server 8000 --bind 0.0.0.0 -d /app/site-static
-    else
-        # Live mode: MkDocs development server with proper environment
-        print_info "   • Mode: Live (development with auto-reload)"
-        podman run -d --name "$container_name" \
-            -p "$port:8000" \
-            -v "$APP_DIR:/app:Z" \
-            -v "$CONTENT_DIR/docs:/app/content:Z" \
-            --workdir /app \
-            rockydocs-dev \
-            bash -c "source venv/bin/activate && mkdocs serve -a 0.0.0.0:8000"
-    fi
-    
-    # Restore content symlink after starting container
-    if [ -n "$content_symlink_backup" ] && [ -f "content.backup" -o -L "content.backup" ]; then
-        print_info "Restoring content symlink"
-        rm -f "content" || true
-        mv "content.backup" "content" || ln -sf "$content_symlink_backup" "content"
-    fi
-    
-    # Add container to cleanup
-    add_cleanup_resource "podman_container:$container_name"
-    
-    # Health check with longer timeout for mkdocs build
-    print_info "Waiting for container to be ready (mkdocs build can take 1-2 minutes)..."
-    if check_podman_health "$container_name" "$port" 120; then
-        print_success "✅ Podman container ready!"
-        print_info "Access your documentation at: http://localhost:$port"
-        
-        # Show container logs briefly
-        print_info ""
-        print_info "Container logs (last 10 lines):"
-        podman logs --tail 10 "$container_name" 2>/dev/null || true
-        print_info ""
-        print_warning "Press Ctrl+C to stop the container"
-        
-        # Follow container logs
-        podman logs -f "$container_name"
-    else
-        print_error "Container failed to start properly"
-        podman logs "$container_name" 2>/dev/null || true
-        stop_podman_container "$container_name"
-        return 1
-    fi
-}
-
-# Basic setup validation function
-validate_setup() {
-    local env_type="$1"
-    
-    case "$env_type" in
-        podman)
-            # Check if Podman is available
-            if ! check_podman_availability; then
-                return 1
-            fi
-            # Check if app directory exists
-            if [ ! -d "$APP_DIR" ]; then
-                print_error "App directory not found: $APP_DIR"
-                print_info "Run setup first: $0 --setup --podman"
-                return 1
-            fi
-            # Check if Podman image exists
-            if ! podman image inspect rockydocs-dev >/dev/null 2>&1; then
-                print_error "Podman image 'rockydocs-dev' not found"
-                print_info "Run setup first: $0 --setup --podman"
-                return 1
-            fi
-            ;;
-        docker)
-            # Similar checks for Docker
-            if ! command -v docker >/dev/null 2>&1; then
-                print_error "Docker not available"
-                return 1
-            fi
-            ;;
-        *)
-            return 0  # No validation needed for other types
-            ;;
-    esac
-    return 0
-}
-
-# Podman deployment function (equivalent to deploy_docker)
-deploy_podman() {
-    print_info "🐳 PODMAN DEPLOYMENT MODE: Building documentation with Podman"
-    
-    # Validate setup first
-    if ! validate_setup "podman"; then
-        print_error "Podman environment validation failed"
-        return 1
-    fi
-    
-    cd "$APP_DIR"
-    
-    # Stop any existing serve containers
-    local serve_container=$(get_podman_container_name "serve")
-    if [ -n "$serve_container" ]; then
-        stop_podman_container "$serve_container"
-    fi
-    
-    # Use deployment container
-    local container_name=$(get_podman_container_name "deploy")
-    stop_podman_container "$container_name"
-    
-    print_success "🚀 Starting Podman deployment container: $container_name"
-    
-    # Handle symlink conflict: temporarily move content symlink if it exists
-    local content_symlink_backup=""
-    if [ -L "content" ]; then
-        content_symlink_backup=$(readlink "content")
-        print_info "Temporarily moving content symlink to avoid mount conflict"
-        mv "content" "content.backup" || true
-    fi
-    
-    # Run deployment in container
-    podman run --rm --name "$container_name" \
-        -v "$APP_DIR:/app:Z" \
-        -v "$CONTENT_DIR/docs:/app/content:Z" \
-        --workdir /app \
-        rockydocs-dev \
-        bash -c "source venv/bin/activate && ./scripts/vercel-build.sh"
-    
-    local deploy_status=$?
-    
-    # Restore content symlink after container finishes
-    if [ -n "$content_symlink_backup" ] && [ -f "content.backup" -o -L "content.backup" ]; then
-        print_info "Restoring content symlink"
-        rm -f "content" || true
-        mv "content.backup" "content" || ln -sf "$content_symlink_backup" "content"
-    fi
-    
-    if [ $deploy_status -eq 0 ]; then
-        print_success "✅ Podman deployment completed successfully!"
-        
-        # Extract static site from gh-pages branch for serving
-        print_info "Extracting static site for serving..."
-        if extract_static_site; then
-            print_success "✅ Static site extraction completed"
-            print_info "Built documentation available in $APP_DIR/site-static/"
-            
-            # Show summary
-            if [ -f "$APP_DIR/site-static/index.html" ]; then
-                print_success "✅ Root access: Available at site-static/index.html"
-            fi
-            
-            local version_count=$(find "$APP_DIR/site-static" -maxdepth 1 -type d -name '[0-9]*' | wc -l)
-            if [ "$version_count" -gt 0 ]; then
-                print_success "✅ Versioned access: $version_count version(s) available"
-            fi
-        else
-            print_warning "⚠️  Static site extraction failed - static serving may not work"
+    # Stop LXD containers (if requested)
+    if command -v lxc >/dev/null 2>&1; then
+        local lxd_containers=$(lxc list -c n --format csv | grep "^rockydocs-.*-${USER}$" 2>/dev/null || true)
+        if [ -n "$lxd_containers" ]; then
+            print_info "Stopping LXD containers..."
+            echo "$lxd_containers" | xargs -I {} lxc stop {} 2>/dev/null || true
+            stopped_count=$((stopped_count + 1))
         fi
-        
-        return 0
+    fi
+    
+    if [ $stopped_count -eq 0 ]; then
+        print_info "No active Rocky Linux documentation services found"
     else
-        print_error "❌ Podman deployment failed"
-        return 1
+        print_success "✅ Stopped $stopped_count service type(s)"
+    fi
+    
+    # Show remaining processes (for debugging)
+    local remaining_processes=$(pgrep -f "rockydocs\|mkdocs.*serve" 2>/dev/null || true)
+    if [ -n "$remaining_processes" ]; then
+        print_warning "Some processes may still be running:"
+        ps -p $remaining_processes -o pid,ppid,cmd 2>/dev/null || true
     fi
 }
 
@@ -1015,6 +615,7 @@ COMMANDS:
   --serve     Serve existing deployed versions (fast)
   --serve-dual  Dual server mode: mike serve + mkdocs live reload
   --deploy    Build and deploy all versions locally (slow)
+  --stop      Stop all running servers and containers
   --clean     Clean workspace and build artifacts
   --reset     Reset saved configuration
   --status    Show system status
@@ -1026,25 +627,28 @@ GLOBAL OPTIONS:
   --help, -h  Show this help
 
 EXAMPLES:
-  ./rockydocs.sh --setup --venv              # Setup Python venv environment
-  ./rockydocs.sh --deploy                    # Build and deploy versions locally
-  ./rockydocs.sh --serve                     # Fast serve (after deploy)
-  ./rockydocs.sh --serve --static            # Static production-like serve
-  ./rockydocs.sh --serve-dual                # Dual server with live reload
-  ./rockydocs.sh --setup --full              # Setup with all languages (config set once)
-  ./rockydocs.sh --deploy                    # Build using setup's language config
+  $0 --setup --venv              # Setup Python venv environment
+  $0 --setup --podman            # Setup Podman container environment
+  $0 --deploy                    # Build and deploy versions locally
+  $0 --serve                     # Fast serve (after deploy)
+  $0 --serve --static            # Static production-like serve
+  $0 --serve-dual                # Dual server with live reload (venv)
+  $0 --serve-dual --podman       # Dual server with Podman containers
+  $0 --stop                      # Stop all running servers and containers
+  $0 --setup --full              # Setup with all languages (config set once)
+  $0 --deploy                    # Build using setup's language config
 
 SUBCOMMAND HELP:
-  ./rockydocs.sh --setup -h                  # Detailed setup help
-  ./rockydocs.sh --serve -h                  # Detailed serve help
-  ./rockydocs.sh --serve-dual -h             # Dual server help
-  ./rockydocs.sh --deploy -h                 # Detailed deploy help
+  $0 --setup -h                  # Detailed setup help
+  $0 --serve -h                  # Detailed serve help
+  $0 --serve-dual -h             # Dual server help
+  $0 --deploy -h                 # Detailed deploy help
 
 WORKFLOW:
   1. git checkout rocky-9                            # Choose your target version
-  2. ./rockydocs.sh --setup --venv           # Setup environment (once)
-  3. ./rockydocs.sh --deploy                 # Build/deploy versions to local repo
-  4. ./rockydocs.sh --serve                  # Fast serve for editing
+  2. $0 --setup --venv           # Setup environment (once)
+  3. $0 --deploy                 # Build/deploy versions to local repo
+  4. $0 --serve                  # Fast serve for editing
   5. git add . && git commit && git push             # Push your source changes to origin
 
 Current Rocky Linux version: $(detect_version) (branch: $(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "unknown"))
@@ -1066,7 +670,7 @@ USAGE:
 ENVIRONMENTS:
   --venv      Use Python virtual environment (recommended)
   --docker    Use Docker container (containerized environment)
-  --podman    Use Podman container (rootless by default)
+  --podman    Use Podman container
 
 OPTIONS:
   --minimal   Setup for English + Ukrainian only (default, faster)
@@ -1143,7 +747,6 @@ USAGE:
 ENVIRONMENTS:
   (default)   Use Python virtual environment setup
   --docker    Use Docker container for serving
-  --podman    Use Podman container for serving
 
 OPTIONS:
   --static    Serve static files (exact production behavior)
@@ -1191,23 +794,32 @@ Rocky Linux Documentation - Dual Server Mode (Live Reload)
 
 DESCRIPTION:
   Starts DUAL servers for optimal development experience:
-  - Port 8000: Mike serve (multi-version with version selector)
-  - Port 8001: MkDocs serve (live reload for current content)
+  - Port 8000+: Multi-version server (production-like)
+  - Port 8001+: Live development server (with reload)
 
 FEATURES:
-  - Mike serve (8000): Multi-version support, root + versioned access
-  - MkDocs serve (8001): Live reload, --watch-theme support
+  - Multi-version server: Complete version selector, root + versioned access
+  - Live development server: File changes auto-refresh, --watch-theme support
   - Simultaneous operation for different use cases
-  - Smart port conflict resolution
+  - Smart port conflict resolution (8000→8010→8020, 8001→8011→8021)
   - Proper cleanup on exit
 
 USAGE:
-  $0 --serve-dual [OPTIONS]
+  $0 --serve-dual [ENVIRONMENT] [OPTIONS]
+
+ENVIRONMENTS:
+  --venv      Use Python virtual environment (default)
+  --docker    Use Docker containers for both servers
+  --podman    Use Podman containers for both servers
 
 OPTIONS:
   --minimal   Use minimal config (English + Ukrainian)
-  --venv      Use Python virtual environment
   --workspace DIR  Set workspace directory
+
+EXAMPLES:
+  $0 --serve-dual                # Native venv: mike serve + mkdocs serve
+  $0 --serve-dual --podman       # Dual Podman containers
+  $0 --serve-dual --docker       # Dual Docker containers
 
 ACCESS PATTERNS:
   Multi-version (Port 8000):
@@ -1230,6 +842,53 @@ NOTES:
 EOF
 }
 
+# Stop command help
+show_stop_help() {
+    cat << EOF
+Rocky Linux Documentation - Stop All Services
+
+DESCRIPTION:
+  Stops all running documentation servers and containers across all environments.
+  Provides comprehensive cleanup for development workflows.
+
+USAGE:
+  $0 --stop
+
+WHAT THIS COMMAND STOPS:
+  • Python HTTP servers (port 8000, 8001, 8002)
+  • MkDocs development servers (all ports)
+  • Docker containers (rockydocs-*)
+  • Podman containers (rockydocs-*)
+  • LXD containers (rockydocs-*)
+  • Background processes started by this script
+
+ENVIRONMENTS SUPPORTED:
+  • Virtual environment (venv) servers
+  • Docker containerized services
+  • Podman containerized services  
+  • LXD containerized services
+  • Mixed environments (stops all)
+
+PROCESS:
+  1. Identify all related processes and containers
+  2. Gracefully stop services with proper signals
+  3. Remove stopped containers
+  4. Clean up temporary files and logs
+  5. Report cleanup results
+
+EXAMPLES:
+  $0 --stop                      # Stop everything
+  $0 --stop && $0 --serve        # Restart clean
+
+NOTES:
+  - Safe to run multiple times
+  - Does not affect source code or configurations
+  - Preserves deployed versions for quick restart
+  - Automatic cleanup on script interruption (Ctrl+C)
+
+EOF
+}
+
 # Deploy command help
 show_deploy_help() {
     cat << EOF
@@ -1246,7 +905,6 @@ USAGE:
 ENVIRONMENTS:
   (default)   Use Python virtual environment setup
   --docker    Use Docker container for deployment
-  --podman    Use Podman container for deployment
 
 OPTIONS:
   (none)      Uses language configuration set during --setup
@@ -1433,7 +1091,7 @@ EOF
     
     print_info "Docker image built: rockydocs-dev"
     print_info "To run: docker run -p 8000:8000 -v $CONTENT_DIR/docs:/app/content rockydocs-dev"
-    print_info "Or use: ./rockydocs.sh --serve --docker (when implemented)"
+    print_info "Or use: ./rockydocs-dev-12.sh --serve --docker (when implemented)"
 }
 
 # Setup Podman environment
@@ -1442,25 +1100,57 @@ setup_podman() {
     
     print_info "Setting up Podman environment..."
     
-    # Check Podman availability first
-    if ! check_podman_availability; then
-        return 1
+    # Validate Podman availability
+    if ! command -v podman >/dev/null 2>&1; then
+        print_error "Podman is not installed or not in PATH"
+        print_info "Please install Podman and try again"
+        print_info "See: https://podman.io/getting-started/installation"
+        exit 1
+    fi
+    
+    # Check if Podman service is available (for rootless mode)
+    if ! podman info >/dev/null 2>&1; then
+        print_error "Podman service is not available or not configured properly"
+        print_info "For rootless Podman, you may need to:"
+        print_info "  1. Start user service: systemctl --user start podman"
+        print_info "  2. Enable at boot: systemctl --user enable podman"
+        print_info "  3. Configure subuids/subgids if needed"
+        exit 1
+    fi
+    
+    # Create Dockerfile if not exists (same as Docker setup but standalone)
+    if [ ! -f "$APP_DIR/Dockerfile.dev" ]; then
+        cat > "$APP_DIR/Dockerfile.dev" << 'EOF'
+FROM python:3.9-slim
+
+# Install git (required for mkdocs-git-revision-date-localized-plugin)
+RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+COPY . .
+EXPOSE 8000
+
+CMD ["mkdocs", "serve", "-a", "0.0.0.0:8000"]
+EOF
     fi
     
     run_cmd "cd $APP_DIR"
     run_cmd "rm -rf content && ln -sf $CONTENT_DIR/docs content"
     
-    # Copy the appropriate config file
-    if [ "$build_type" = "full" ]; then
-        run_cmd "cp -f configs/mkdocs.full.yml mkdocs.yml"
-    else
+    if [ "$build_type" = "minimal" ]; then
         run_cmd "cp -f configs/mkdocs.minimal.yml mkdocs.yml"
+    else
+        run_cmd "cp -f configs/mkdocs.full.yml mkdocs.yml"
     fi
     
-    # Build Podman image
     run_cmd "podman build -f Dockerfile.dev -t rockydocs-dev ."
     
     print_info "Podman image built: rockydocs-dev"
+    print_info "To run: podman run -p 8000:8000 -v $CONTENT_DIR/docs:/app/content rockydocs-dev"
+    print_info "Or use: $0 --serve --podman"
 }
 
 # === SERVING FUNCTIONS ===
@@ -1904,6 +1594,200 @@ serve_dual() {
     mkdocs serve -a localhost:$mkdocs_port --watch-theme --config-file mkdocs.yml
 }
 
+# Podman dual server mode - runs two containers for development
+serve_dual_podman() {
+    
+    print_info "🐳 PODMAN DUAL SERVER MODE: Multi-version + live development containers"
+    print_info "Setting up dual Podman container environment..."
+    
+    # Validate Podman setup
+    if [ ! -d "$APP_DIR" ]; then
+        print_error "App directory not found: $APP_DIR"
+        print_info "Run setup first: $0 --setup --podman"
+        return 1
+    fi
+    
+    # Check if Podman image exists
+    if ! podman image inspect rockydocs-dev >/dev/null 2>&1; then
+        print_error "Podman image 'rockydocs-dev' not found"
+        print_info "Run setup first: $0 --setup --podman"
+        return 1
+    fi
+    
+    cd "$APP_DIR"
+    
+    # Check if deployment exists for multi-version container
+    if ! extract_static_site; then
+        print_error "No deployment found for multi-version serving"
+        print_info "Run deployment first: $0 --deploy --podman"
+        return 1
+    fi
+    
+    # Stop any existing dual containers
+    local mike_container_name=$(get_docker_container_name "dual-mike")
+    local mkdocs_container_name=$(get_docker_container_name "dual-mkdocs")
+    
+    stop_docker_container "$mike_container_name"
+    stop_docker_container "$mkdocs_container_name"
+    
+    # Find available ports for both containers
+    local mike_port=$(find_available_port 8000 8010 8020)
+    local mkdocs_port=$(find_available_port 8001 8011 8021)
+    
+    if [ -z "$mike_port" ] || [ -z "$mkdocs_port" ]; then
+        print_error "Could not find available ports for dual server mode"
+        return 1
+    fi
+    
+    print_success "🔧 PODMAN DUAL CONTAINER CONFIGURATION:"
+    print_info "  • Multi-version (static): http://localhost:$mike_port"
+    print_info "  • Live development: http://localhost:$mkdocs_port"
+    print_info ""
+    print_info "🎯 USE CASES:"
+    print_info "  • Port $mike_port: Test multi-version functionality, version selector, production-like"
+    print_info "  • Port $mkdocs_port: Active content editing with live reload"
+    print_info ""
+    
+    # Start multi-version static server container (like production)
+    print_info "Starting multi-version static server container (port $mike_port)..."
+    podman run -d --name "$mike_container_name" \
+        -p "$mike_port:8000" \
+        -v "$APP_DIR:/app" \
+        --workdir /app \
+        rockydocs-dev \
+        python3 -m http.server 8000 --bind 0.0.0.0 -d /app/site-static
+    
+    # Add container to cleanup
+    add_cleanup_resource "container:$mike_container_name"
+    
+    # Give static server time to start
+    sleep 2
+    
+    # Check if static server started successfully
+    if ! podman container exists "$mike_container_name" || [ "$(podman container inspect "$mike_container_name" --format '{{.State.Status}}')" != "running" ]; then
+        print_error "Failed to start multi-version static server container"
+        return 1
+    fi
+    
+    print_success "✅ Multi-version static server started successfully"
+    
+    # Start live development container
+    print_info "Starting live development server container (port $mkdocs_port)..."
+    print_info "📝 LIVE RELOAD FEATURES:"
+    print_info "  • File changes auto-refresh browser"
+    print_info "  • Theme changes supported"
+    print_info "  • Current content only (not versioned)"
+    print_info ""
+    print_warning "Press Ctrl+C to stop both containers cleanly"
+    print_info ""
+    
+    # Start mkdocs live development server container in foreground
+    podman run --name "$mkdocs_container_name" \
+        -p "$mkdocs_port:8000" \
+        -v "$APP_DIR:/app" \
+        -v "$CONTENT_DIR/docs:/app/content" \
+        --workdir /app \
+        rockydocs-dev \
+        bash -c "source venv/bin/activate && mkdocs serve -a 0.0.0.0:8000 --watch-theme"
+}
+
+# Docker dual server mode - similar to Podman but using Docker
+serve_dual_docker() {
+    
+    print_info "🐳 DOCKER DUAL SERVER MODE: Multi-version + live development containers"
+    print_info "Setting up dual Docker container environment..."
+    
+    # Validate Docker setup
+    if [ ! -d "$APP_DIR" ]; then
+        print_error "App directory not found: $APP_DIR"
+        print_info "Run setup first: $0 --setup --docker"
+        return 1
+    fi
+    
+    # Check if Docker image exists
+    if ! docker image inspect rockydocs-dev >/dev/null 2>&1; then
+        print_error "Docker image 'rockydocs-dev' not found"
+        print_info "Run setup first: $0 --setup --docker"
+        return 1
+    fi
+    
+    cd "$APP_DIR"
+    
+    # Check if deployment exists for multi-version container
+    if ! extract_static_site; then
+        print_error "No deployment found for multi-version serving"
+        print_info "Run deployment first: $0 --deploy --docker"
+        return 1
+    fi
+    
+    # Stop any existing dual containers
+    local mike_container_name=$(get_docker_container_name "dual-mike")
+    local mkdocs_container_name=$(get_docker_container_name "dual-mkdocs")
+    
+    stop_docker_container "$mike_container_name"
+    stop_docker_container "$mkdocs_container_name"
+    
+    # Find available ports for both containers
+    local mike_port=$(find_available_port 8000 8010 8020)
+    local mkdocs_port=$(find_available_port 8001 8011 8021)
+    
+    if [ -z "$mike_port" ] || [ -z "$mkdocs_port" ]; then
+        print_error "Could not find available ports for dual server mode"
+        return 1
+    fi
+    
+    print_success "🔧 DOCKER DUAL CONTAINER CONFIGURATION:"
+    print_info "  • Multi-version (static): http://localhost:$mike_port"
+    print_info "  • Live development: http://localhost:$mkdocs_port"
+    print_info ""
+    print_info "🎯 USE CASES:"
+    print_info "  • Port $mike_port: Test multi-version functionality, version selector, production-like"
+    print_info "  • Port $mkdocs_port: Active content editing with live reload"
+    print_info ""
+    
+    # Start multi-version static server container (like production)
+    print_info "Starting multi-version static server container (port $mike_port)..."
+    docker run -d --name "$mike_container_name" \
+        -p "$mike_port:8000" \
+        -v "$APP_DIR:/app" \
+        --workdir /app \
+        rockydocs-dev \
+        python3 -m http.server 8000 --bind 0.0.0.0 -d /app/site-static
+    
+    # Add container to cleanup
+    add_cleanup_resource "container:$mike_container_name"
+    
+    # Give static server time to start
+    sleep 2
+    
+    # Check if static server started successfully
+    if ! docker container inspect "$mike_container_name" >/dev/null 2>&1 || [ "$(docker container inspect "$mike_container_name" --format '{{.State.Status}}')" != "running" ]; then
+        print_error "Failed to start multi-version static server container"
+        return 1
+    fi
+    
+    print_success "✅ Multi-version static server started successfully"
+    
+    # Start live development container
+    print_info "Starting live development server container (port $mkdocs_port)..."
+    print_info "📝 LIVE RELOAD FEATURES:"
+    print_info "  • File changes auto-refresh browser"
+    print_info "  • Theme changes supported"
+    print_info "  • Current content only (not versioned)"
+    print_info ""
+    print_warning "Press Ctrl+C to stop both containers cleanly"
+    print_info ""
+    
+    # Start mkdocs live development server container in foreground
+    docker run --name "$mkdocs_container_name" \
+        -p "$mkdocs_port:8000" \
+        -v "$APP_DIR:/app" \
+        -v "$CONTENT_DIR/docs:/app/content" \
+        --workdir /app \
+        rockydocs-dev \
+        bash -c "source venv/bin/activate && mkdocs serve -a 0.0.0.0:8000 --watch-theme"
+}
+
 # Deploy site function
 deploy_site() {
     local current_version=$(detect_version)
@@ -2053,6 +1937,365 @@ EOF
     print_info "  • Use: $0 --serve --docker --static # Static production-like serve"
     print_info ""
     print_info "Deployed versions ready for Docker serving!"
+}
+
+# Podman deployment function
+deploy_podman() {
+    local current_version=$(detect_version)
+    
+    print_info "📦 PODMAN DEPLOY MODE: Container-based multi-version deployment"
+    print_info "Building and deploying ALL Rocky Linux versions using Podman containers"
+    print_info "Current branch: Rocky Linux $current_version (your edits will be in this version)"
+    
+    # Validate Podman setup
+    if [ ! -d "$APP_DIR" ]; then
+        print_error "App directory not found: $APP_DIR"
+        print_info "Run setup first: $0 --setup --podman"
+        return 1
+    fi
+    
+    # Check if Podman image exists
+    if ! podman image inspect rockydocs-dev >/dev/null 2>&1; then
+        print_error "Podman image 'rockydocs-dev' not found"
+        print_info "Run setup first: $0 --setup --podman"
+        return 1
+    fi
+    
+    cd "$APP_DIR"
+    
+    # Use existing mkdocs.yml config set during setup - no need to reconfigure
+    print_info "Using existing mkdocs configuration from setup..."
+    
+    # Get container name for deployment
+    local container_name=$(get_podman_container_name "deploy")
+    stop_podman_container "$container_name"
+    
+    print_info "Setting up cached repositories..."
+    setup_cached_repos
+    
+    print_success "🚀 Starting Podman deployment container..."
+    
+    # Create deployment script inside container
+    local deploy_script="/tmp/deploy_all_versions.sh"
+    cat > "$deploy_script" << 'EOF'
+#!/bin/bash
+set -e
+
+current_version="$1"
+echo "📦 Container deployment starting..."
+echo "Current version: $current_version"
+
+# Configure git user for timestamp preservation
+git config --global user.name "Rocky Linux Documentation Bot"
+git config --global user.email "noreply@rockylinux.org"
+
+# No virtual environment needed in Podman - packages installed globally
+
+# Deploy Rocky Linux 8
+if [ -d "worktrees/rocky-8" ]; then
+    echo "📦 Deploying Rocky Linux 8..."
+    rm -rf content && ln -sf worktrees/rocky-8/docs content
+    mike deploy 8 --config-file mkdocs.yml || echo "Warning: Rocky 8 deployment had issues"
+fi
+
+# Deploy Rocky Linux 9
+if [ -d "worktrees/rocky-9" ]; then
+    echo "📦 Deploying Rocky Linux 9..."
+    rm -rf content && ln -sf worktrees/rocky-9/docs content
+    mike deploy 9 --config-file mkdocs.yml || echo "Warning: Rocky 9 deployment had issues"
+fi
+
+# Deploy Rocky Linux 10 (current content with git history)
+echo "📦 Deploying Rocky Linux 10 (current)..."
+if [ -d "worktrees/main" ]; then
+    echo "Using worktree main for Rocky Linux 10 (with git history)..."
+    rm -rf content && ln -sf worktrees/main/docs content
+else
+    echo "Fallback: Using current content directory..."
+    rm -rf content && ln -sf /app/content-current content
+fi
+mike deploy 10 latest --config-file mkdocs.yml
+mike set-default latest --config-file mkdocs.yml
+
+echo "✅ Container deployment completed successfully!"
+mike list --config-file mkdocs.yml || true
+EOF
+    chmod +x "$deploy_script"
+    
+    # Run deployment in container with proper user mapping and permissions
+    print_info "Running deployment inside Podman container..."
+    
+    # Use user namespace mapping to fix permission issues
+    local container_uid=$(id -u)
+    local container_gid=$(id -g)
+    
+    podman run --rm --name "$container_name" \
+        --userns=keep-id \
+        --security-opt label=disable \
+        -v "$APP_DIR:/app:Z" \
+        -v "$CONTENT_DIR/docs:/app/content-current:Z" \
+        --workdir /app \
+        rockydocs-dev \
+        bash -c "
+current_version='$current_version'
+echo '📦 Container deployment starting...'
+echo \"Current version: \$current_version\"
+
+# Configure git user for timestamp preservation
+git config --global user.name 'Rocky Linux Documentation Bot'
+git config --global user.email 'noreply@rockylinux.org'
+
+# Initialize git repository if needed
+if [ ! -d '.git' ]; then
+    echo 'Initializing git repository for mike versioning...'
+    git init
+    git add mkdocs.yml
+    git commit -m 'Initial commit for local development'
+fi
+
+# No virtual environment needed in Podman - packages installed globally
+
+# Deploy Rocky Linux 8
+if [ -d 'worktrees/rocky-8' ]; then
+    echo '📦 Deploying Rocky Linux 8...'
+    rm -rf content 2>/dev/null || true
+    ln -sf worktrees/rocky-8/docs content
+    mike deploy 8 --config-file mkdocs.yml || echo 'Warning: Rocky 8 deployment had issues'
+fi
+
+# Deploy Rocky Linux 9
+if [ -d 'worktrees/rocky-9' ]; then
+    echo '📦 Deploying Rocky Linux 9...'
+    rm -rf content 2>/dev/null || true
+    ln -sf worktrees/rocky-9/docs content
+    mike deploy 9 --config-file mkdocs.yml || echo 'Warning: Rocky 9 deployment had issues'
+fi
+
+# Deploy Rocky Linux 10 (current content with git history)
+echo '📦 Deploying Rocky Linux 10 (current)...'
+if [ -d 'worktrees/main' ]; then
+    echo 'Using worktree main for Rocky Linux 10 (with git history)...'
+    rm -rf content 2>/dev/null || true
+    ln -sf worktrees/main/docs content
+else
+    echo 'Fallback: Using current content directory...'
+    rm -rf content 2>/dev/null || true
+    ln -sf /app/content-current content
+fi
+mike deploy 10 latest --config-file mkdocs.yml
+mike set-default latest --config-file mkdocs.yml
+
+echo '✅ Container deployment completed successfully!'
+mike list --config-file mkdocs.yml || true
+"
+    
+    # Clean up temporary script
+    rm -f "$deploy_script"
+    
+    # Apply web root override (same as venv version)
+    print_info "Applying web root override for production-like behavior..."
+    apply_web_root_override_local
+    
+    print_success "🎉 Podman deployment complete! All versions are ready for '--serve'."
+    print_info "Available versions: Rocky Linux 8, 9, 10 (latest)"
+    print_info ""
+    print_info "Next steps:"
+    print_info "  • Use: $0 --serve --podman         # Podman-based serving"
+    print_info "  • Use: $0 --serve --podman --static # Static production-like serve"
+    print_info ""
+    print_info "Deployed versions ready for Podman serving!"
+}
+
+# Podman serving function
+serve_podman() {
+    local static_mode="$1"
+    
+    print_info "📦 PODMAN SERVING MODE: Container-based documentation serving"
+    
+    # Validate Podman setup
+    if [ ! -d "$APP_DIR" ]; then
+        print_error "App directory not found: $APP_DIR"
+        print_info "Run setup first: $0 --setup --podman"
+        return 1
+    fi
+    
+    # Check if Podman image exists
+    if ! podman image inspect rockydocs-dev >/dev/null 2>&1; then
+        print_error "Podman image 'rockydocs-dev' not found"
+        print_info "Run setup first: $0 --setup --podman"
+        return 1
+    fi
+    
+    cd "$APP_DIR"
+    
+    # Get container name and manage lifecycle
+    local container_name=$(get_podman_container_name "serve")
+    stop_podman_container "$container_name"
+    
+    # Find available port
+    local port=$(find_available_port 8000 8001 8002)
+    if [ -z "$port" ]; then
+        print_error "No available ports (8000, 8001, 8002). Kill existing processes."
+        return 1
+    fi
+    
+    print_success "🚀 Starting Podman container: $container_name"
+    print_info "   • Port: $port"
+    print_info "   • Access: http://localhost:$port"
+    print_info "   • Static mode: $static_mode"
+    
+    # Start container based on mode
+    if [ "$static_mode" = "true" ]; then
+        # Static mode: serve pre-built content (if available)
+        print_info "   • Mode: Static (production-like)"
+        if [ -d "$APP_DIR/site-static" ]; then
+            podman run -d --name "$container_name" \
+                --userns=keep-id \
+                --security-opt label=disable \
+                -p "$port:8000" \
+                -v "$APP_DIR:/app:Z" \
+                --workdir /app \
+                rockydocs-dev \
+                python3 -m http.server 8000 --bind 0.0.0.0 -d /app/site-static
+        else
+            print_warning "No static site found. Run deployment first: $0 --deploy --podman"
+            print_info "Falling back to live mode with current content..."
+            static_mode="false"
+        fi
+    fi
+    
+    if [ "$static_mode" = "false" ]; then
+        # Live mode: MkDocs development server
+        print_info "   • Mode: Live (development with auto-reload)"
+        podman run -d --name "$container_name" \
+            --userns=keep-id \
+            --security-opt label=disable \
+            -p "$port:8000" \
+            -v "$APP_DIR:/app:Z" \
+            -v "$CONTENT_DIR:/content:Z" \
+            --workdir /app \
+            rockydocs-dev \
+            bash -c "sed -i 's/git-revision-date-localized:/git-revision-date-localized:\\n      fallback_to_build_date: true/' mkdocs.yml && mkdocs serve -a 0.0.0.0:8000"
+    fi
+    
+    # Add container to cleanup
+    add_cleanup_resource "container:$container_name"
+    
+    # Health check
+    print_info "Waiting for container to be ready..."
+    if check_podman_health "$container_name" "$port" 30; then
+        print_success "✅ Podman container ready!"
+        print_info "Access your documentation at: http://localhost:$port"
+        
+        # Show container logs briefly
+        print_info ""
+        print_info "Container logs (last 10 lines):"
+        podman logs --tail 10 "$container_name" 2>/dev/null || true
+        print_info ""
+        print_warning "Press Ctrl+C to stop the container"
+        
+        # Follow container logs
+        podman logs -f "$container_name"
+    else
+        print_error "Container failed to start properly"
+        podman logs "$container_name" 2>/dev/null || true
+        stop_podman_container "$container_name"
+        return 1
+    fi
+}
+
+# Docker serving function  
+serve_docker() {
+    local static_mode="$1"
+    
+    print_info "🐳 DOCKER SERVING MODE: Container-based documentation serving"
+    
+    # Validate Docker setup
+    if [ ! -d "$APP_DIR" ]; then
+        print_error "App directory not found: $APP_DIR"
+        print_info "Run setup first: $0 --setup --docker"
+        return 1
+    fi
+    
+    # Check if Docker image exists
+    if ! docker image inspect rockydocs-dev >/dev/null 2>&1; then
+        print_error "Docker image 'rockydocs-dev' not found"
+        print_info "Run setup first: $0 --setup --docker"
+        return 1
+    fi
+    
+    cd "$APP_DIR"
+    
+    # Get container name and manage lifecycle
+    local container_name=$(get_docker_container_name "serve")
+    stop_docker_container "$container_name"
+    
+    # Find available port
+    local port=$(find_available_port 8000 8001 8002)
+    if [ -z "$port" ]; then
+        print_error "No available ports (8000, 8001, 8002). Kill existing processes."
+        return 1
+    fi
+    
+    print_success "🚀 Starting Docker container: $container_name"
+    print_info "   • Port: $port"
+    print_info "   • Access: http://localhost:$port"
+    print_info "   • Static mode: $static_mode"
+    
+    # Start container based on mode
+    if [ "$static_mode" = "true" ]; then
+        # Static mode: serve pre-built content (if available)
+        print_info "   • Mode: Static (production-like)"
+        if [ -d "$APP_DIR/site-static" ]; then
+            docker run -d --name "$container_name" \
+                -p "$port:8000" \
+                -v "$APP_DIR:/app" \
+                --workdir /app \
+                rockydocs-dev \
+                python3 -m http.server 8000 --bind 0.0.0.0 -d /app/site-static
+        else
+            print_warning "No static site found. Run deployment first: $0 --deploy --docker"
+            print_info "Falling back to live mode with current content..."
+            static_mode="false"
+        fi
+    fi
+    
+    if [ "$static_mode" = "false" ]; then
+        # Live mode: MkDocs development server
+        print_info "   • Mode: Live (development with auto-reload)"
+        docker run -d --name "$container_name" \
+            -p "$port:8000" \
+            -v "$APP_DIR:/app" \
+            -v "$CONTENT_DIR:/content" \
+            --workdir /app \
+            rockydocs-dev \
+            bash -c "sed -i 's/git-revision-date-localized:/git-revision-date-localized:\\n      fallback_to_build_date: true/' mkdocs.yml && mkdocs serve -a 0.0.0.0:8000"
+    fi
+    
+    # Add container to cleanup
+    add_cleanup_resource "container:$container_name"
+    
+    # Health check
+    print_info "Waiting for container to be ready..."
+    if check_docker_health "$container_name" "$port" 30; then
+        print_success "✅ Docker container ready!"
+        print_info "Access your documentation at: http://localhost:$port"
+        
+        # Show container logs briefly
+        print_info ""
+        print_info "Container logs (last 10 lines):"
+        docker logs --tail 10 "$container_name" 2>/dev/null || true
+        print_info ""
+        print_warning "Press Ctrl+C to stop the container"
+        
+        # Follow container logs
+        docker logs -f "$container_name"
+    else
+        print_error "Container failed to start properly"
+        docker logs "$container_name" 2>/dev/null || true
+        stop_docker_container "$container_name"
+        return 1
+    fi
 }
 
 # === STATUS FUNCTIONS ===
@@ -2276,6 +2519,51 @@ show_docker_status() {
     fi
 }
 
+# Podman status display function
+show_podman_status() {
+    print_success "Podman Environment:"
+    
+    # Check if Podman is available
+    if ! command -v podman >/dev/null 2>&1; then
+        echo "  • Podman: Not available"
+        return
+    fi
+    
+    # Check Podman daemon status
+    if ! podman info >/dev/null 2>&1; then
+        echo "  • Podman: Available but service not running"
+        return
+    fi
+    
+    echo "  • Podman: Available and running"
+    
+    # Check for rockydocs-dev image (faster check)
+    if podman images -q rockydocs-dev 2>/dev/null | grep -q .; then
+        echo "  • Podman image: rockydocs-dev (available)"
+    else
+        echo "  • Podman image: rockydocs-dev (not found)"
+    fi
+    
+    # Check for active containers (faster)
+    local serve_container=$(get_podman_container_name "serve")
+    local deploy_container=$(get_podman_container_name "deploy")
+    
+    local serve_running=$(podman ps -q -f name="$serve_container" 2>/dev/null)
+    local deploy_running=$(podman ps -q -f name="$deploy_container" 2>/dev/null)
+    
+    if [ -n "$serve_running" ] || [ -n "$deploy_running" ]; then
+        echo "  • Active containers:"
+        if [ -n "$serve_running" ]; then
+            local port=$(podman port "$serve_container" 8000 2>/dev/null | cut -d: -f2)
+            echo "    - Serve container running (port: ${port:-unknown})"
+        fi
+        if [ -n "$deploy_running" ]; then
+            echo "    - Deploy container running"
+        fi
+    else
+        echo "  • Active containers: None"
+    fi
+}
 
 # Main status function - optimized and streamlined
 show_status() {
@@ -2307,6 +2595,9 @@ show_status() {
     echo ""
     
     show_docker_status
+    echo ""
+    
+    show_podman_status
     echo ""
     
     show_build_artifacts
@@ -2415,6 +2706,18 @@ clean_workspace() {
             print_info ""
             print_warning "Docker volumes found for Rocky Linux Documentation"
             cleanup_docker_volumes
+        fi
+    fi
+    
+    # Option to clean Podman volumes
+    if command -v podman >/dev/null 2>&1 && podman info >/dev/null 2>&1; then
+        local workspace_volume="rockydocs-workspace-${USER}"
+        local content_volume="rockydocs-content-${USER}"
+        
+        if podman volume inspect "$workspace_volume" >/dev/null 2>&1 || podman volume inspect "$content_volume" >/dev/null 2>&1; then
+            print_info ""
+            print_warning "Podman volumes found for Rocky Linux Documentation"
+            cleanup_podman_volumes
         fi
     fi
     
