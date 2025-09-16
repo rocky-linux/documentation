@@ -112,6 +112,6 @@ Si vous voyez un message **Complete!** à la fin, tout va bien et vous pouvez re
 
 ![un message de migration du système d'exploitation réussie](images/migrate2rocky-convert-02.png)
 
-Donnez-lui un peu de temps, reconnectez-vous et vous devriez avoir un serveur Rocky Linux tout beau, tout neuf pour jouer avec... Exécutez la commande `hostnamectl` pour vérifier que votre système d'exploitation a été migré correctement et vous voilà prêt à l'utiliser !
+Donnez-lui un peu de temps, reconnectez-vous et vous devriez avoir un serveur Rocky Linux tout beau, tout neuf pour jouer avec... Exécutez la commande `hostnamectl` pour vérifier que votre système d'exploitation a été migré correctement et vous voilà prêt à l'utiliser ! <small> <br/><br/> 🌐 Traductions: <a href="https://crowdin.com/project/rockydocs/de">crowdin.com/project/rockydocs</a> <br/> 🌍 Traducteurs: <a href="https://crowdin.com/project/rockydocs/activity-stream">rockydocs/activity-stream</a> , <a href="https://crowdin.com/project/rockylinuxorg/activity-stream">rockylinux.org</a> <br/> 🖋 Contribution: <a href="https://github.com/rocky-linux/documentation?tab=readme-ov-file#mattermost">github.com/rocky-linux</a> </small>
 
 ![Les résultats de la commande hostnamectl](images/migrate2rocky-convert-03.png)
