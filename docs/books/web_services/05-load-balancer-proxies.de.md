@@ -15,6 +15,6 @@ In diesem Abschnitt besprechen wir bestehende Lösungen zur Verbesserung der Tra
 <a href="https://crowdin.com/project/rockydocs/activity-stream">rockydocs/activity-stream</a>
 , <a href="https://crowdin.com/project/rockylinuxorg/activity-stream">rockylinux.org</a>
 <br/>
-🖋 Contributors:
-<a href="https://github.com/rocky-linux/documentation?tab=readme-ov-file#mattermost">github.com/rocky-linux/documentation</a>
+🖋 Contributions:
+<a href="https://github.com/rocky-linux/documentation?tab=readme-ov-file#mattermost">github.com/rocky-linux</a>
 </small>
