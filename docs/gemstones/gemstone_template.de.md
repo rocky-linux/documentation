@@ -46,4 +46,15 @@ Fügen Sie Tipps, alternative Methoden oder Erkenntnisse hinzu.
 
 ## Zusammenfassung
 
-Fassen Sie das Ergebnis zusammen und betonen Sie den Wert des Gemstone.
+Fassen Sie das Ergebnis zusammen und betonen Sie den Wert des Gemstone.<small>
+<br/><br/>
+🌐 Translations: 
+<a href="https://crowdin.com/project/rockydocs/de">crowdin.com/project/rockydocs</a>
+<br/>
+🌍 Translators:
+<a href="https://crowdin.com/project/rockydocs/activity-stream">rockydocs/activity-stream</a>
+, <a href="https://crowdin.com/project/rockylinuxorg/activity-stream">rockylinux.org</a>
+<br/>
+🖋 Contribute:
+<a href="https://github.com/rocky-linux/documentation?tab=readme-ov-file#mattermost">github.com/rocky-linux/documentation</a>
+</small>

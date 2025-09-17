@@ -1,5 +1,5 @@
 ---
-title: Installation de VMware Tools™
+title: VMware Tools™ — Installation
 author: Emre Çamalan
 contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.9, 9.3

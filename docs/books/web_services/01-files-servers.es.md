@@ -1,25 +1,23 @@
 ---
 author:
 contributors:
-title: Kapitel 1 — Dateisystem-Server
+title: Capítulo 1 — Servidor de Archivos
 tags:
   - ftp
   - sftp
 ---
 
-!!! info "Info"
+!!! info "Información"
 
-`````
-The content has to be written.  
-````
+```
+El contenido debe estar escrito.
+
 <small>
-🌐 Translations: <a href="https://crowdin.com/project/rockydocs/de">crowdin.com/project/rockydocs</a>
-🌍 Translators: <a href="https://crowdin.com/project/rockydocs/activity-stream">rockydocs</a>, <a href="https://crowdin.com/project/rockylinuxorg/activity-stream">rockylinux.org</a>
-🖋 Contribute: <a href="https://github.com/rocky-linux/documentation?tab=readme-ov-file#mattermost">github.com/rocky-linux/documentation</a>
+🌐 Traducciones: <a href="https://crowdin.com/project/rockydocs/es">crowdin.com/project/rockydocs</a>
+🌍 Traductores: <a href="https://crowdin.com/project/rockydocs/activity-stream">rockydocs</a>, <a href="https://crowdin.com/project/rockylinuxorg/activity-stream">rockylinux.org</a>
+🖋 Contribución: <a href="https://github.com/rocky-linux/documentation?tab=readme-ov-file#mattermost">github.com/rocky-linux/documentation</a>
 </small>
-````
-.
-`````
+```
 
 <!---
 
