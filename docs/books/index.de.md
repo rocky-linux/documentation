@@ -8,7 +8,7 @@ contributors: '@fromoz, Ganna Zhyrnova'
 
 Sie haben den Abschnitt **Bücher** der Rocky Linux Dokumentation gefunden. Hier werden ausführliche Dokumente untergebracht. Diese Dokumente werden in Kapiteln aufgeteilt, um sie leichter abarbeiten zu können und Ihren Fortschritt verfolgen zu können. Diese Dokumente werden von Leute wie Sie verfasst, die sich für besondere Themen interessieren.
 
-Sie möchten es auch versuchen und selber Bücher verfassen? Großartig! Machen Sie einfach mit, Sie sind im [Mattermost Documentation Channel](https://chat.rockylinux.org/rocky-linux/channels/documentation) willkommen.
+Sie möchten es auch versuchen und selber Bücher verfassen? Großartig! Machen Sie einfach mit, Sie sind im [Mattermost Documentation Channel](https://chat.rockylinux.org/rocky-linux/channels/documentation) willkommen. <br/> <small> <br/> 🌐 Übersetzungen: <a href="https://crowdin.com/project/rockydocs/de">crowdin.com/project/rockydocs</a> <br/> 🌍 Übersetzer: <a href="https://crowdin.com/project/rockydocs/activity-stream">rockydocs/activity-stream</a> , <a href="https://crowdin.com/project/rockylinuxorg/activity-stream">rockylinux.org</a> <br/> 🖋 Mitmachen: <a href="https://github.com/rocky-linux/documentation?tab=readme-ov-file#mattermost">github.com/rocky-linux#mattermost</a> </small>
 
 ## PDFs zum Offline Lesen Herunterladen
 
