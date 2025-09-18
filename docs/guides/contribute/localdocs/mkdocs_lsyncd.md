@@ -107,7 +107,7 @@ You should be able to SSH into the container with the root user or your user fro
 
 ## SSH for root and your user
 
-In this procedure, the root user (at minimum) needs to be able to SSH into the container without entering a password. This is because of the `lsyncd` process you will be implementing. The assumption here is that you can sudo to the root user on your local workstation:
+In this procedure, the root user (at minimum) needs to be able to SSH into the container without entering a password. This is because of the `lsyncd` process you will be implementing. The assumption here is that you can `sudo` to the root user on your local workstation:
 
 ```bash
 sudo -s
@@ -124,7 +124,7 @@ drwx------ 14 root root 4096 Feb 25 08:10 ..
 -rw-r--r--  1 root root  222 Feb 25 08:06 known_hosts
 ```
 
-To get SSH access on our container without having to enter a password, provided the `id_rsa.pub` key exists, as it does above, just run:
+To get SSH access on our container without having to enter a password, provided the `id_rsa.pub` key exists, just run:
 
 ```bash
 ssh-copy-id root@10.56.233.189
@@ -132,7 +132,7 @@ ssh-copy-id root@10.56.233.189
 
 For your user, however, you need the entire `.ssh/` directory copied to your container. You will keep everything the same for this user so that your access to GitHub over SSH is the same.
 
-To copy everything over to your container, you just need to do this as your user, **not** sudo:
+To copy everything over to your container, you just need to do this as your user, **not** `sudo`:
 
 ```bash
 scp -r .ssh/ youruser@10.56.233.189:/home/youruser/
@@ -169,7 +169,7 @@ Next, clone docs.rockylinux.org:
 git clone git@github.com:rocky-linux/docs.rockylinux.org.git
 ```
 
-If you get errors, return to the steps above and ensure that those are all correct before continuing.
+If you get errors, return to the earlier steps and ensure that those are all correct before continuing.
 
 ## Setting up `mkdocs`
 
@@ -189,7 +189,7 @@ Then run:
 sudo pip3 install -r requirements.txt
 ```
 
-Next you must set up `mkdocs` with an additional directory.  `mkdocs` requires the creation of a docs directory and then the documentation/docs directory linked beneath it. Do this with:
+Next you must set up `mkdocs` with an additional directory.  `mkdocs` requires the creation of a docs directory and then the `documentation/docs` directory linked beneath it. Do this with:
 
 ```bash
 mkdir docs
@@ -232,7 +232,7 @@ INFO     -  Building pt documentation
 INFO     -  [14:12:56] Reloading browsers
 ```
 
-Now for the moment of truth! If you have done everything correctly, you should be able to open a web browser and go to the IP of your container on port :8000, and see the documentation site.
+If you have done everything correctly, you should be able to open a web browser and go to the IP of your container on port :8000, and see the documentation site.
 
 In our example, enter the following in the browser address (**NOTE** To avoid broken URLs, the IP here is "your-server-ip". You just need to substitute in the IP):
 
@@ -262,7 +262,7 @@ For now, we are assuming that you are using a Rocky Linux workstation and are us
 
     The root user must run the daemon, so you must be root to create the configuration files and logs. For this we are assuming `sudo -s`.
 
-You need to have some log files available for `lsyncd` to write to:
+You need to have some logs available for `lsyncd` to write to:
 
 ```bash
 touch /var/log/lsyncd-status.log
@@ -325,7 +325,7 @@ Fri Feb 25 08:15:14 2022 Normal: Calling rsync with filter-list of new/modified 
 
 ## Versioning notes
 
-You need a clone of the documentation repository from [Rocky Linux documentation repository](https://github.com/rocky-linux/documentation). That part is important, because if you have instead cloned your own fork of the repository, then your ability to checkout the `rocky-8` and `rocky-9` branches will not be there. Only the `main` branch will be available.
+You need a clone of the documentation repository from [Rocky Linux documentation repository](https://github.com/rocky-linux/documentation). That part is important, because if you have instead cloned your own fork of the repository, then your ability to `git checkout` the `rocky-8` and `rocky-9` branches will not be there. Only the `main` branch will be available.
 
 ### GitHub workstation setup
 
@@ -333,59 +333,86 @@ These steps are not for your container, but for your workstation's copy of the d
 
 1. Clone the Rocky Linux documentation repository:
 
-    ```
+    ```bash
     git clone git@github.com:rocky-linux/documentation.git
     ```
 
 2. The `git remote` name will be "upstream", rather than "origin." Check the remote name with:
 
-    ```
+    ```bash
     git remote -v
     ```
 
     Immediately after cloning, this shows:
 
-    ```
+    ```bash
     origin git@github.com:rocky-linux/documentation.git (fetch)
     origin git@github.com:rocky-linux/documentation.git (push)
     ```
 
     Rename the remote with:
 
-    ```
+    ```bash
     git remote rename origin upstream
     ```
 
     Run `git remote -v` again and you will see:
 
-    ```
+    ```bash
     upstream git@github.com:rocky-linux/documentation.git (fetch)
     upstream git@github.com:rocky-linux/documentation.git (push)
     ```
 
 3. Add your fork as a remote with the "origin" name. Substitute your actual GitHub username:
 
-    ```
+    ```bash
     git remote add origin git@github.com:[your-github-user-name]/documentation.git
     ```
 
     Run `git remote -v` again and you will see:
 
-    ```
+    ```bash
     origin git@github.com:[your-github-user-name]/documentation.git (fetch)
     origin git@github.com:[your-github-user-name]/documentation.git (push)
     upstream git@github.com:rocky-linux/documentation.git (fetch)
     upstream git@github.com:rocky-linux/documentation.git (push)
     ```
 
-4. Your fork now needs to be populated with the version branches (other than `main`). The `main` branch currently holds version 10 information. You want to populate your fork with the `rocky-8` and `rocky-9` branches so that you are ready to edit documents in those older versions. The first step is to checkout these branch names. Here `rocky-8` is the example, but do this step for `rocky-9` as well:
+4. You need to populate your fork with the version branches (other than `main`). The `main` branch currently holds version 10 information. You want to populate your fork with the `rocky-8` and `rocky-9` branches so that you are ready to edit documents in those older versions. The first step is to `git checkout` these branch names:
 
-    ```
+    ```bash
     git checkout rocky-8
     ```
 
+    The first time you do this, your will see:
+
+    ```bash
+    branch 'rocky-8' set up to track 'upstream/rocky-8'.
+    Switched to a new branch 'rocky-8'
+    ```
+
+    Next, push the branch to your fork:
+
+    ```bash
+    git push origin rocky-8
+    ```
+
+    This acts like it is creating a new pull request, but when you check your fork branch contents, you will see `rocky-8` is now one of the branches.
+
+    Repeat these steps with the `rocky-9` branch.
+
+### How this applies to this procedure
+
+With the branches created, if you want to edit the `README.md` for only `rocky-9`, you need to create a new branch based on the `rocky-9` version branch:
+
+```bash
+git checkout -b fixes_for_rocky9_readme rocky-9
+```
+
+Then edit the document normally. As you save your work, your container documents will update, and running `mkdocs serve` as described in this document, will show that content.
+
+Once finished and changes pushed to your fork to create a pull request, you can checkout the `main` branch again. Since all of your work was within the checked out rocky-9 branch, your synced documentation in your container reverts to what it was before starting the process. In this way, you can always track your work regardless of what version you are working with. Your container will remain in sync with your local workstation content.
+
 ## Conclusion
 
-As you work on your workstation documentation now, whether it is a `git pull` or a branch you create to make a document (such as this one), you will see the changes appear in your documentation on the container, and `mkdocs serve` will show you the content in your web browser.
-
-The recommended practice is that all Python must run separately from any other Python code you might be developing. Using `incus` containers makes that easier.
+You can work on your workstation documentation while seeing changes appear in your synced copy in your container. The recommended practice is that all Python must run separately from any other Python code you might be developing. Using `incus` containers makes that easier.
