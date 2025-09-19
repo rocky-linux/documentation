@@ -17,8 +17,8 @@ tags:
 - You will need root access or `sudo` privileges (using `sudo -s` from the start is a good idea)
 - Public and Private SSH key pairs
 - The EPEL (Extra Packages for Enterprise Linux) repositories from Fedora
-- You will need to be familiar with *inotify*, an event monitor interface
-- Optional: familiarity with *tail*
+- You will need to be familiar with `inotify`, an event monitor interface
+- Optional: familiarity with `tail`
 
 ## Introduction
 
@@ -26,21 +26,25 @@ If you want to synchronize files and folders between computers automatically, `l
 
 It is a program worth learning for any system administrator.
 
-The best description of `lsyncd` comes from its man page. Slightly paraphrased, `lsyncd` is a lightweight live mirror solution that is not hard to install. It does not require new file systems or block devices and does not hamper local file system performance. In short, it mirrors files.
+The best description of `lsyncd` comes from its man page. Slightly paraphrased, `lsyncd` is a lightweight live mirror solution that is not hard to install. It does not require new file system or block devices and does not hamper local file system performance. In short, it mirrors files.
 
-`lsyncd` watches a local directory tree's event monitor interface (inotify). It aggregates and combines events for a few seconds and spawns one (or more) process(es) to synchronize the changes. By default, this is `rsync`.
+`lsyncd` watches a local directory tree's event monitor interface (`inotify`). It aggregates and combines events for a few seconds and spawns one (or more) process(es) to synchronize the changes. By default, this is `rsync`.
 
-For this guide, you will call the system with the original files the "source"; the one you synchronize with will be the "target." Using `lsyncd`, you can completely mirror a server by carefully specifying the directories and files that you want to synchronize.
+For this guide, you will call the system with the original files the "source", and the one you synchronize with the "target." Using `lsyncd`, you can completely mirror a server by carefully specifying the directories and files that you want to synchronize.
 
 You will also want to set up [Rocky Linux SSH Public Private Key Pairs](../security/ssh_public_private_keys.md) for remote syncing. The examples here use SSH (port 22).
 
 ## Installing `lsyncd`
 
-Installing `lsyncd` happens in two ways. Included are descriptions of each method. The RPM tends to lag behind the source packages by a little, but only by a little. The version installed by the RPM method at the time of this writing is 2.2.3-5, whereas the source code version is now 2.3.1. Choose the method you feel the most comfortable with.
+!!! info
+
+    As of this date (Septemer 2025), Rocky Linux 10 with the EPEL (Extra Packages for Enterprise Linux) enabled, does not include the `lsyncd` package. To use `lsyncd` on Rocky Linux 10, you will need to use the **Installing `lsyncd` - source method**. The RPM method is retained here, as it is likely that the EPEL will build this package for version 10 in the future. It never hurts to check to see if the package is available prior to building from source. 
+
+You can install `lsyncd` in two ways. Included are descriptions of each method. The RPM tends to lag behind the source packages by a little, but only by a little. The version installed by the RPM method at the time of this writing is 2.2.3-5, whereas the source code version is now 2.3.1. Choose the method you feel the most comfortable with.
 
 ## Installing `lsyncd` - RPM method
 
-Installing the RPM version is easy. The only thing you will need to install first is the EPEL software repository from Fedora. Do this with:
+The only thing you will need to install first is the EPEL software repository from Fedora. Do this with:
 
 ```bash
 dnf install -y epel-release
@@ -64,23 +68,19 @@ Installing from the source is not difficult.
 
 ### Install dependencies
 
-You will need some dependencies for `lsyncd` and for building packages from the source. Use this command on your Rocky Linux computer to ensure you have the necessary dependencies. If you are going to be building from source, it is a good idea to have all of the development tools installed:
+You will need some dependencies for `lsyncd` and for building packages from the source. Install the "Development Tools" group:
 
 ```bash
 dnf groupinstall 'Development Tools'
 ```
 
-!!! warning "For Rocky Linux 9.0"
+Enable the code ready builder repository:
 
-    `lsyncd` has been fully tested in Rocky Linux 9.0, and will work as expected. To get all of the needed dependencies installed, however, you will need to enable an additional repository:
+```bash
+dnf config-manager --enable crb
+```
 
-    ```
-    dnf config-manager --enable crb
-    ```
-
-   Doing these nine steps before the following steps will allow you to finish the build without backtracking.
-
-Here are the dependencies needed for `lsyncd`:
+Install the needed dependencies:
 
 ```bash
 dnf install lua lua-libs lua-devel cmake unzip wget rsync
@@ -98,7 +98,7 @@ Decompress the `master.zip` file:
 
 `unzip master.zip`
 
-This will create a directory called "lsyncd-master". You need to change to this directory and create a directory called build:
+This creates a directory called "lsyncd-master". You need to change to this directory and create a directory called "build":
 
 ```bash
 cd lsyncd-master
@@ -124,13 +124,13 @@ make
 make install
 ```
 
-When completed, you will have the `lsyncd` binary installed and ready for use in */usr/local/bin*
+When completed, you will have the `lsyncd` binary installed and ready for use in `/usr/local/bin`
 
-### `lsyncd` systemd service
+### `lsyncd` `systemd` service
 
-With the RPM install method, the systemd service will install for you, but if you install from the source, you will need to create the systemd service. While you can start the binary without the systemd service, you want to ensure that it *does* start on boot. If not, a server reboot will stop your synchronization effort. If you forgot to start it again manually, it would be a problem!
+With the RPM install method, the `systemd` service will install for you, but if you install from the source, you need to create the `systemd` service. While you can start the binary without the `systemd` service, you want to ensure that it *does* start on boot. If not, a server reboot will stop your synchronization effort.
 
-Creating the systemd service is relatively easy and will save you time in the long run.
+Creating the `systemd` service is not difficult and will save you time in the long run.
 
 #### Create the `lsyncd` service file
 
@@ -159,13 +159,13 @@ PIDFile=/run/lsyncd.pid
 WantedBy=multi-user.target
 ```
 
-Install the file you just made to the correct location:
+Install this file to the correct location:
 
 ```bash
 install -Dm0644 /root/lsyncd.service /usr/lib/systemd/system/lsyncd.service
 ```
 
-Finally, reload the `systemctl` daemon so that systemd will "see" the new service file:
+Finally, reload the `systemctl` daemon so that `systemd` will "see" the new service file:
 
 ```bash
 systemctl daemon-reload
@@ -173,11 +173,11 @@ systemctl daemon-reload
 
 ## `lsyncd` configuration
 
-With either `lsyncd` install method, you need a configuration file: */etc/lsyncd.conf*. The following section will tell you how to build and test a configuration file.
+With either `lsyncd` install method, you need a configuration file: `/etc/lsyncd.conf`. The following section will tell you how to build and test a configuration file.
 
 ### Sample configuration for testing
 
-Here is an example of a simplistic configuration file synchronizing */home* to another computer. Our target computer is going to be a local IP address: *192.168.1.40*
+Here is an example of a configuration file synchronizing `/home` to another computer. The target computer is going to be on local IP address: *192.168.1.40*
 
 ```bash
   settings {
@@ -211,7 +211,7 @@ Breaking down this file a bit:
 - `maxProcesses` is the number of `lsyncd` processes allowed to spawn. Unless you are running this on a busy computer, 1 process is enough.
 - In the sync section `default.rsyncssh` says to use `rsync` over SSH
 - The `source=` is the directory path you are syncing from
-- The `host=` is our target computer that you are syncing to
+- The `host=` is your target computer that you are syncing to
 - The `excludeFrom=` tells `lsyncd` where the exclusions file is. It must exist but can be empty.
 - The `targetdir=` is the directory to which you send files. This will usually be equal to the source, but only sometimes.
 - The `rsync =` section, and the options that you are running `rsync` with
@@ -236,9 +236,9 @@ For example, if you were syncing the `/etc` folder on your computer, there would
 /etc/fstab
 ```
 
-## Test And Turn Up
+## Test and turn up
 
-With everything set up, you can test it all. Ensure our systemd `lsyncd.service` will start:
+With everything set up, you can test it all. Ensure your `systemd` `lsyncd.service` will start:
 
 ```bash
 systemctl start lsyncd
@@ -250,14 +250,14 @@ If no errors appear after executing this command, check the status of the servic
 systemctl status lsyncd
 ```
 
-If it shows the service running, use tail to see the ends of the two log files and ensure everything shows up OK:
+If it shows the service running, use tail to see the ends of the two log files and ensure everything shows up:
 
 ```bash
 tail /var/log/lsyncd.log
 tail /var/log/lsyncd-status.log
 ```
 
-Assuming that this all looks correct, navigate to the `/home/[user]` directory, where `[user]` is a computer user, and create a file there with *touch*.
+Assuming that this all looks correct, go to the `/home/[user]` directory, where `[user]` is a computer user, and create a file there with *touch*.
 
 ```bash
 touch /home/[user]/testfile
@@ -271,12 +271,12 @@ systemctl enable lsyncd
 
 ## Remember to be careful
 
-Anytime you synchronize a set of files or directories to another computer, think carefully about its effect on the target computer. Suppose you go back to **The lsyncd.exclude File** in our example above, can you imagine what might happen if you failed to exclude */etc/fstab*?
+Anytime you synchronize a set of files or directories to another computer, think carefully about its effect on the target computer. Suppose you go back to **The lsyncd.exclude File** example earlier. Can you imagine what might happen if you did not exclude `/etc/fstab`?
 
 `fstab` is the file configuring storage drives on any Linux computer. The disks and labels are almost certainly different on different machines. The next reboot of the target computer would likely fail.
 
 ## Conclusions and references
 
-`lsyncd` is a powerful tool for directory synchronization between computers. As you have seen, it is not hard to install and will not be complex to maintain.
+`lsyncd` is a powerful tool for directory synchronization between computers. It is not hard to install or complex to maintain.
 
-You can find out more about `lsyncd` by going to [The Official Site](https://github.com/axkibe/lsyncd)
+You can discover more about `lsyncd` by going to [The Official Site](https://github.com/axkibe/lsyncd)
