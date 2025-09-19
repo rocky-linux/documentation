@@ -2,7 +2,7 @@
 title: Backup Solution - rsnapshot
 author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
-tested_with: 8.5, 8.6, 9.0
+tested_with: 8.5, 8.6, 9.0, 10.0
 tags:
   - backup
   - rsnapshot
@@ -13,15 +13,15 @@ tags:
 - Know how to install additional repositories and snapshots from the command-line
 - Know about mounting file systems external to your machine (external drive, remote file system, and so on.)
 - Know how to use an editor (using `vi` here, but you can use your favorite editor)
-- Know a little BASH scripting
+- Know a little Bash scripting
 - Know how to change the `crontab` for the root user
 - Knowledge of SSH public and private keys (only if you plan to run remote backups from another server)
 
 ## Introduction
 
-`rsnapshot` is a powerful backup utility with installation options on any Linux-based machine. It can either back up a machine locally, or you can back up multiple machines, say servers for instance, from a single machine.
+`rsnapshot` is a powerful backup utility with installation options on any Linux-based machine. It can either back up a machine locally, or you can back up multiple machines, such as servers, from a single machine.
 
-`rsnapshot` uses `rsync` and is written entirely in Perl with no library dependencies. No unusual requirements exist for installation. In the case of Rocky Linux, you can install `rnapshot` by using the EPEL repository. After the initial release of Rocky Linux 9.0, there was a time when the EPEL did not contain the `rsnapshot` package. That is no longer the case, but these instructions include a method of installing from source just in case this happens again.
+Written entirely in Perl `rsnapshot` uses `rsync` and has no library dependencies. No unusual requirements exist for installation. In the case of Rocky Linux, you can install `rnapshot` by using the EPEL (Extra Packages for Enterprise Linux) repository. If you prefer, the source method of installation is here as an option.
 
 This documentation covers the installation of `rsnapshot` on Rocky Linux only.
 
@@ -52,24 +52,24 @@ This documentation covers the installation of `rsnapshot` on Rocky Linux only.
     If there are any missing dependencies, those will show up and you simply need to answer the prompt to continue. For example:
 
     ```
-    dnf install rsnapshot
-    Last metadata expiration check: 0:00:16 ago on Mon Feb 22 00:12:45 2021.
+    dnf install rsnapshot rsync
+    Last metadata expiration check: 2:03:40 ago on Fri 19 Sep 2025 03:54:16 PM UTC.
+    Package rsync-3.4.1-2.el10.x86_64 is already installed.
     Dependencies resolved.
-    ========================================================================================================================================
-    Package                           Architecture                 Version                              Repository                    Size
-    ========================================================================================================================================
+    ==============================================================================================================================
+    Package                         Architecture            Version                             Repository                  Size
+    ==============================================================================================================================
     Installing:
-    rsnapshot                         noarch                       1.4.3-1.el8                          epel                         121 k
+    rsnapshot                       noarch                  1.5.1-1.el10_0                      epel                       112 k
     Installing dependencies:
-    perl-Lchown                       x86_64                       1.01-14.el8                          epel                          18 k
-    rsync                             x86_64                       3.1.3-9.el8                          baseos                       404 k
+    perl-DirHandle                  noarch                  1.05-512.2.el10_0                   appstream                   12 k
 
     Transaction Summary
-    ========================================================================================================================================
-    Install  3 Packages
-
-    Total download size: 543 k
-    Installed size: 1.2 M
+    ==============================================================================================================================
+    Install  2 Packages
+    
+    Total download size: 124 k
+    Installed size: 388 k
     Is this ok [y/N]: y
     ```
 
@@ -81,7 +81,7 @@ This documentation covers the installation of `rsnapshot` on Rocky Linux only.
 
     ### Installing Development Tools and downloading the source
 
-    As stated, the first step here is to install the 'Development Tools' group:
+    The first step here is to install the 'Development Tools' group:
 
     ```
     dnf groupinstall 'Development Tools'
@@ -93,7 +93,7 @@ This documentation covers the installation of `rsnapshot` on Rocky Linux only.
     dnf install wget unzip rsync openssh-server
     ```
 
-    Next you will need to download the source files from the GitHub repository. You can do this multiple ways, but the easiest in this case is probably just to download the ZIP file from the repository.
+    Next, download the source files from the GitHub repository. You can do this multiple ways, but the easiest in this case is probably just to download the ZIP file from the repository.
 
     1. Go to https://github.com/rsnapshot/rsnapshot
     2. Click on the Green "Code" button on the right
@@ -111,13 +111,13 @@ This documentation covers the installation of `rsnapshot` on Rocky Linux only.
 
     ### Building the source
 
-    Now that you have got everything on our machine, the next step is to build. When you unzipped the `master.zip` file, you ended up with an `rsnapshot-master` directory. You will need to change into this for our build procedure. Note that your build is using all of the package defaults, so if you want something else, you will need to do a little investigation. Also, these steps are directly taken from the [GitHub Installation](https://github.com/rsnapshot/rsnapshot/blob/master/INSTALL.md) page:
+    The next step is to build. When you unzipped the `master.zip` file, you ended up with an `rsnapshot-master` directory. Change into that directory for your build procedure. Note that your build is using all of the package defaults, so if you want something else, you will need to do a little investigation. Also, these steps are directly taken from the [GitHub Installation](https://github.com/rsnapshot/rsnapshot/blob/master/INSTALL.md) page:
 
     ```bash
     cd rsnapshot-master
     ```
 
-    Run the `authogen.sh` script to generate the configure script:
+    Run the `autogen.sh` script to generate the configure script:
 
     ```bash
     ./autogen.sh
@@ -145,7 +145,7 @@ This documentation covers the installation of `rsnapshot` on Rocky Linux only.
     sudo make install
     ```
 
-    During all of this, the `rsnapshot.conf` file will be created as `rsnapshot.conf.default`. You need to copy this over to `rsnapshot.conf` and then edit it to fit what you need on our system.
+    During all of this, the `rsnapshot.conf` file will be created as `rsnapshot.conf.default`. Copy this file over to `rsnapshot.conf` and then edit it to fit what you need on our system.
 
     ```bash
     sudo cp /etc/rsnapshot.conf.default /etc/rsnapshot.conf
@@ -157,7 +157,7 @@ This documentation covers the installation of `rsnapshot` on Rocky Linux only.
 
 In this step, we show how to mount a drive, such as an external USB drive, used to back up your system. This particular step is only necessary if you are backing up a single machine or server, as seen in our first example.
 
-1. Plugin the USB drive.
+1. Attach the USB drive.
 2. Type `dmesg | grep sd` which will show you the drive you want to use. In this case, it is _sda1_.  
 Example: `EXT4-fs (sda1): mounting ext2 file system using the ext4 subsystem`.
 3. Unfortunately (or fortunately depending on your opinion) most modern Linux desktop operating systems automount the drive if they can. This means that, depending on various factors, `rsnapshot` might lose track of the drive. You want the drive to "mount" or make its files available in the same place every time.  
@@ -168,15 +168,15 @@ To do that, take the drive information revealed in the `dmesg` command and enter
 7. Type `mount | grep sda1` again, and you will see this: `/dev/sda1 on /mnt/backup type ext2 (rw,relatime)`
 8. Next create a directory that must exist for the backup to continue on the mounted drive. You use a folder called "storage" for this example: `sudo mkdir /mnt/backup/storage`
 
-Note that for a single machine, you will have to either repeat the `umount` and `mount` steps each time the drive is attached, or each time the system reboots, or automate these commands with a script.
+For a single machine, you will have to either repeat the `umount` and `mount` steps each time you attach the drive, or each time the system reboots, or automate these commands with a script.
 
-Automation is recommended.
+The recommendation is to use automation.
 
 ## Configuring `rsnapshot`
 
 This is the most important step. It is possible to make a mistake when making changes to the configuration file. The `rsnapshot` configuration requires tabs for any separation of elements, and a warning to that effect is at the top of the configuration file.
 
-A space character will cause the entire configuration—and your backup—to fail. For instance, near the top of the configuration file is a section for the `# SNAPSHOT ROOT DIRECTORY #`. If you were adding this from scratch, you would type `snapshot_root` then TAB and then type `/whatever_the_path_to_the_snapshot_root_will_be/`
+A space character will cause the entire configuration—and your backup—to fail. As an example, near the top of the configuration file is a section for the `# SNAPSHOT ROOT DIRECTORY #`. If you were adding this from scratch, you would type `snapshot_root` then ++tab++ and then type `/whatever_the_path_to_the_snapshot_root_will_be/`
 
 The best thing is that the default configuration included with `rsnapshot` only needs minor changes to make it work for a backup of a local machine. It is always a good idea, though, to make a backup copy of the configuration file before you start editing:
 
@@ -200,13 +200,13 @@ You need to change this to your mount point that you created and add in "storage
 snapshot_root   /mnt/backup/storage/`
 ```
 
-You also want to tell the backup not to run if the drive is not mounted. To do this, remove the "#" sign (also called a remark, number sign, hash symbol, and so on.) next to `no_create_root` which looks this way:
+You also want to tell the backup not to run if the drive is not mounted. To do this, remove the remark ("#" sign) next to `no_create_root` that looks this way:
 
 ```text
 no_create_root 1
 ```
 
-Next go down to the section titled `# EXTERNAL PROGRAM DEPENDENCIES #` and remove the comment (again, the "#" sign) from this line:
+Next go down to the section titled `# EXTERNAL PROGRAM DEPENDENCIES #` and remove the remark (again, the "#" sign) from this line:
 
 ```text
 #cmd_cp         /usr/bin/cp
@@ -255,7 +255,7 @@ Remove the remark:
 logfile        /var/log/rsnapshot
 ```
 
-Finally, skip down to the `### BACKUP POINTS / SCRIPTS ###` section and add any directories that you want to add in the `# LOCALHOST` section, remember to use ++tab++ rather than ++space++ between elements!
+Finally, skip down to the `### BACKUP POINTS / SCRIPTS ###` section and add any directories that you want to add in the `# LOCALHOST` section, remember to use ++tab++ rather than ++space++ between elements.
 
 For now write your changes (++shift+colon+"wq!"++ for `vi`) and exit the configuration file.
 
@@ -283,7 +283,7 @@ Again, to do this you do not necessarily have to specify the configuration in th
 rsnapshot -c /etc/rsnapshot.conf -t beta
 ```
 
-Which will return something similar to this, showing you what will happen when the backup is actually run:
+This will return something similar to this, showing you what will happen when the backup is actually run:
 
 ```bash
 echo 1441 > /var/run/rsnapshot.pid
@@ -305,17 +305,17 @@ When the test meets your expectations, run it manually the first time without th
 rsnapshot -c /etc/rsnapshot.conf beta
 ```
 
-When the backup finishes, browse to `/mnt/backup` and examine the directory structure that it creates there. There will be a `storage/beta.0/localhost` directory, followed by the directories that you specified to backup.
+When the backup finishes, browse to `/mnt/backup` and examine the directory structure that it creates there. There will be a `storage/beta.0/localhost` directory, followed by the backup directories you specified.
 
 ### Further explanation
 
 Each time the backup runs, it will create another beta increment, 0-6, or 7 days worth of backups. The newest backup will always be beta.0 whereas yesterday's backup will always be beta.1.
 
-The size of each of these backups will appear to take up the same amount (or more) of disk space, but this is because of  the hard links used by `rsnapshot`. To restore files from yesterday's backup, you just copy them back from beta.1's directory structure.
+The size of each of these backups will appear to take up the same amount (or more) of disk space, but this is because of the hard links used by `rsnapshot`. To restore files from yesterday's backup, you just copy them back from beta.1's directory structure.
 
 Each backup is only an incremental backup from the previous run, BUT, because of the use of hard links, each backup directory, contains either the file or the hard-link to the file in whichever directory it was actually backed up in.
 
-To restore files, you do not have to decide the directory or increment to restore them from, just what time stamp of the backup that you are restoring. It is a great system and uses far less disk space than many other backup solutions.
+To restore files, you do not have to decide the directory or increment to restore them from, just what timestamp of the backup that you are restoring. It is a great system and uses far less disk space than many other backup solutions.
 
 ## Setting the backup to run automatically
 
@@ -325,9 +325,9 @@ With testing completed and secure in the knowledge that things will work without
 sudo crontab -e
 ```
 
-If you have not run this before, choose "vim.basic" as your editor or your own editor preference when the `Select an editor` line comes up.
+If you have not run this before, select "vim.basic" as your editor or your own editor preference when the `Select an editor` line comes up.
 
-You are going to set your backup to automatically run at 11 PM, so you will add this to the `crontab`:
+To set your backup to automatically run at 11 PM, add this to the `crontab`:
 
 ```bash
 ## Running the backup at 11 PM
@@ -336,15 +336,15 @@ You are going to set your backup to automatically run at 11 PM, so you will add 
 
 ## Multiple machine or multiple server backups
 
-Doing backups of multiple machines from a machine with a RAID array or large storage capacity, on-premise or from on an Internet connection elsewhere works well.
+Doing backups of multiple machines from a machine with an RAID array or large storage capacity drive, on-site or from on an Internet connection elsewhere, works well.
 
 If running these backups over the Internet, you need to ensure that each location has adequate bandwidth for the backups to occur. You can use `rsnapshot` to synchronize an on-site server with an off-site backup array or backup server to improve data redundancy.
 
 ## Assumptions
 
-Running `rsnapshot` from a machine remotely, on-premise. Running this exact configuration is possible remotely off-premise also.
+Running `rsnapshot` from a machine remotely, on-site. Running this exact configuration is possible remotely off-site also.
 
-In this case, you will want to install `rsnapshot` on the machine that is doing all of the backups. Other assumptions are:
+In this case, you will want to install `rsnapshot` on the machine that is doing the backups. Other assumptions are:
 
 - That the servers you will be backing up to, have a firewall rule that allows the remote machine to SSH into it
 - That each server that you will be backing up has a recent version of `rsync` installed. For Rocky Linux servers, run `dnf install rsync` to update your system's version of `rsync`.
@@ -352,9 +352,9 @@ In this case, you will want to install `rsnapshot` on the machine that is doing 
 
 ## SSH public or private keys
 
-For the server that will be running the backups, you need to generate an SSH key-pair for use during the backups. For our example, you will be creating RSA keys.
+For the server that will be running the backups, you need to generate an SSH key-pair for use during the backups. For our example, you will create RSA keys.
 
-If you already have a set of keys generated, you can skip this step. You can find out by doing an `ls -al .ssh` and looking for an `id_rsa` and `id_rsa.pub` key pair. If none exists, use the following link to set up keys for your machine and the server(s) that you want to access:
+If you already have a set of keys generated, you can skip this step. You can see this by doing an `ls -al .ssh` and looking for an `id_rsa` and `id_rsa.pub` key pair. If none exists, use the following link to set up keys for your machine and the server(s) that you want to access:
 
 [SSH public private key pairs](../security/ssh_public_private_keys.md)
 
@@ -375,22 +375,22 @@ no_create_root 1
 #no_create_root 1
 ```
 
-The other difference here is that each machine will have its own configuration. When you get used to this, you will just copy one of your existing configuration files over to a different name and change it to fit any additional machines that you want to backup.
+The other difference here is that each machine will have its own configuration. When you get used to this, you will just copy one of your existing configuration files over to a different name and change it to fit any additional machines that you want backups for.
 
-For now, you want to change the configuration file just (as shown above), and save it. Copy that file as a template for our first server:
+For now, you want to change the configuration file and save it. Copy that file as a template for our first server:
 
 ```bash
 cp /etc/rsnapshot.conf /etc/rsnapshot_web.conf
 ```
 
-You want to change the configuration file and create the log and `lockfile` with the machine's name:
+Change the configuration file and create the log and `lockfile` with the machine's name:
 
 ```text
 logfile /var/log/rsnapshot_web.log
 lockfile        /var/run/rsnapshot_web.pid
 ```
 
-Next, you want to change `rsnapshot_web.conf` to include the directories you want to back up. The only thing that is different here is the target.
+Next change `rsnapshot_web.conf` to include the directories you want to back up. The only thing that is different here is the target.
 
 Here is an example of the "web.ourdomain.com" configuration:
 
@@ -462,7 +462,7 @@ To ensure that everything is backing up according to plan, you might want to sen
 
 ## Restoring a backup
 
-Restoring a few files or an entire backup involves copying the files you want from the directory with the date that you want to restore from back to your machine.
+Restoring a few files or an entire backup involves copying the files you want from the directory with the date (timestamp) that you want to restore from, back to the machine.
 
 ## Conclusions and other resources
 
