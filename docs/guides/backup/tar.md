@@ -1,7 +1,7 @@
 ---
 title: tar command
 author: tianci li
-contributors: Ganna Zhyrnova
+contributors: Ganna Zhyrnova, Steven Spencer
 tested_with: 8.10
 tags:
   - tar
@@ -32,7 +32,7 @@ The `tar` currently used on modern GNU/Linux initially came from the [GNU Projec
 When using `tar`, note that it has two saving modes:
 
 * **Relative mode** (default): Remove the leading character '/' from the file. Even if you have added the file with an absolute path, `tar` will remove the leading character "/" in this mode.
-* **Absolute mode**: Keep the leading character '/' and include it in the file name. You need to use the `-P` option to enable this save mode. In this mode, you must represent all files as absolute paths. For security reasons, you should not use this save mode in most cases unless there are special scenario requirements.
+* **Absolute mode**: Keep the leading character '/' and include it in the filename. You need to use the `-P` option to enable this save mode. In this mode, you must represent all files as absolute paths. For security reasons, you should not use this save mode in most cases unless there are special scenario requirements.
 
 When you use `tar,` you will encounter suffixes such as `.tar.gz`, `.tar.xz`, and `.tar.bz2`, which indicate that you create an archive first (categorizing related files as a single file) and then compress the file with the relevant compression type or algorithm.
 
@@ -42,16 +42,15 @@ The compression type or algorithm can be gzip, bzip2, xz, zstd, or another.
 
 The usage of creating an archive and using compression is:
 
-* `tar [option] [PATH] [DIR1] ... [FILE1] ...`. For example `tar -czvf /tmp/Fullbackup-20241201.tar.gz /etc/ /var/log/`
+* `tar [option] [PATH] [DIR1] ... [FILE1] ...`. For example, `tar -czvf /tmp/Fullbackup-20241201.tar.gz /etc/ /var/log/`
 
 The usage to extract a file from an archive is:
 
 * `tar [option] [PATH] -C [dir]`. For example `tar -xzvf /tmp/Fullbackup-20241201.tar.gz -C /tmp/D1`
 
-!!! tip "antic"
+!!! tip
 
-   When you extract files from archived files, `tar` automatically selects the compression type based on the manually added suffix. For example, for `.tar.gz` files, you can directly use `tar -vxf` without using `tar -zvxf`. 
-You **must** select the compression type for creating archive compressed files.
+     When you extract files from archived files, `tar` automatically selects the compression type based on the manually added suffix. For example, for `.tar.gz` files, you can directly use `tar -vxf` without using `tar -zvxf`. You **must** select the compression type for creating archive compressed files.
 
 !!! Note
 
@@ -72,23 +71,23 @@ You **must** select the compression type for creating archive compressed files.
 
 !!! Tip
 
-    The author recommends keeping the prefix "-" to preserve user habits regarding operation types. Of course, it won't be required. The operational parameters here indicate your primary function with `tar`. In other words, you need to choose one of the above types.
+    The author recommends keeping the prefix "-" to preserve user habits regarding operation types. It is not required. The operational parameters here indicate your primary function with `tar`. In other words, you need to choose one of the above types.
 
 ### Common auxiliary options
 
-| option | description |
-| :---: | :--- |
-| `-z`  | Use `gzip` as its compression type. Both creating archives and extracting from archives are applicable |
-| `-v`  | Displays detailed processing details |
-| `-f`  | Specifies the file name for archiving (including file suffix) |
-| `-j`  | Use `bzip2` as its compression type. Both creating archives and extracting from archives are applicable |
-| `-J`  | Use `xz` as its compression type. Both creating archives and extracting from archives are applicable |
-| `-C`  | Saves location after extracting files from the archive |
-| `-P`  | Saves using the absolute mode |
+| option | description                                                                                             |
+|--------|---------------------------------------------------------------------------------------------------------|
+| `-z`   | Use `gzip` as its compression type. Both creating archives and extracting from archives are applicable  |
+| `-v`   | Displays detailed processing details                                                                    |
+| `-f`   | Specifies the filename for archiving (including file suffix)                                            |
+| `-j`   | Use `bzip2` as its compression type. Both creating archives and extracting from archives are applicable |
+| `-J`   | Use `xz` as its compression type. Both creating archives and extracting from archives are applicable    |
+| `-C`   | Saves location after extracting files from the archive                                                  |
+| `-P`   | Saves using the absolute mode                                                                           |
 
 For other auxiliary options not mentioned, see `man 1 tar`
 
-!!! warning "Version difference"
+!!! warning "Version differences"
 
     In some older versions of tar, option(s) are referred to as "key(s)", which means that using options with a "-" prefix may cause the `tar` not to work as expected. At this point, you need to remove the "-" prefix to make it work properly.
 
@@ -123,11 +122,11 @@ For other auxiliary options not mentioned, see `man 1 tar`
     * `tar --update [-f ARCHIVE] [OPTIONS] [FILE...]`
     * `tar {--extract|--get} [-f ARCHIVE] [OPTIONS] [MEMBER...]`
 
-The second method is more commonly used and is in line with the habits of most GNU/Linux users.
+The second method is more commonly used by most GNU/Linux users.
 
 ### Compression efficiency and frequency of use
 
-`tar` does not have compression capabilities, so it must be used with other compression tools. Compression and decompression will impact resource consumption.
+`tar` does not have compression capabilities, so you must use it with other compression tools. Compression and decompression will impact resource consumption.
 
 Here is a ranking of the compression of a set of text files from least to most efficient:
 
@@ -150,7 +149,7 @@ Here are examples of naming conventions for `tar` archives:
 | `-cvfPz` | `/home` | `home.A.tar.gz`  | `/home` in absolute mode, *gzip* compression  |
 | `-cvfPj` | `/home` | `home.A.tar.bz2` | `/home` in absolute mode, *bzip2* compression |
 
-You may also add the date to the filename.
+You might also add the date to the filename.
 
 ### Example of use
 
@@ -238,7 +237,7 @@ You may also add the date to the filename.
     Shell > tar -Avf /tmp/etc.tar /tmp/log.tar
     ```
 
-    This means that all files in "log.tar" will be appended to the end of "etc.tar".
+    This means that all files in "log.tar" will append to the end of "etc.tar".
 
 2. Append files or directories to a `.tar` file:
 
