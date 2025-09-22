@@ -9,7 +9,9 @@ tags:
   - rkhunter
 ---
 
-# Rootkit Hunter
+!!! Warning "`rkhunter` appears to be dead"
+
+    This issue requires a little more testing, but it appears that `rkhunter` ceased to exist as a project in 2024. The probability of the package being built for 10 is unlikely. This procedure does not work, and will likely be removed allong with all of its references, soon.
 
 ## Introduction
 

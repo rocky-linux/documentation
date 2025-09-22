@@ -8,7 +8,11 @@ tags:
   - network
 ---
 
-# Introduction
+!!! Warning "Temporary Hold"
+
+    `glances` is currently missing from the EPEL. It will probably be built. The Docs Team will continue test availability in the EPEL as time allows. For now, your only option is to build `glances` from source, and the instructions for doing that are missing here.
+
+## Introduction
 
 This guide will show you how to setup decent **network or resource monitoring**, with minimum effort.
 From the author's perspective, Glances is similar to `vim` in the world of monitoring tools.
@@ -154,6 +158,6 @@ In the Glances client browser (accessible through the `--browser` command line a
 
 ## Conclusion
 
-While Glances cannot exactly replace tools such as Grafana, it is still a great alternative if you do not have time to set up complicated monitoring dashboards. 
+While Glances cannot exactly replace tools such as Grafana, it is still a great alternative if you do not have time to set up complicated monitoring dashboards.
 You can deploy it in seconds and get the same metrics you get in Grafana with Prometheus.
-The web interface is not very versatile, like it is in Grafana. If you have the option to use the terminal, you should definitely do so. 
+The web interface is not very versatile, like it is in Grafana. If you have the option to use the terminal, you should definitely do so.
