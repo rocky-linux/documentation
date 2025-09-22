@@ -7,7 +7,9 @@ tags:
   - web
 ---
 
-# How to install the latest Caddy web server on Rocky Linux
+!!! Warning "Temporary Hold"
+
+    `caddy` is currently missing from the EPEL. It will probably be built. The Docs Team will continue to test availability in the EPEL as time allows. For now, your only option is to build `caddy` from source, and the instructions for doing that are currently missing here.
 
 ## Introduction
 

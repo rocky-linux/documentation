@@ -10,7 +10,9 @@ tags:
   - nginx
 ---
   
-# Web-based application firewall (WAF)
+!!! Note "Not yet tested"
+
+    This procedure may work as is. Testing on 10 is incomplete as of September 22, 2025. If you use it and find problems, please let us know.
 
 ## Prerequisites
 
@@ -26,11 +28,21 @@ tags:
 
 If you want to use this and other hardening tools, refer back to the [Apache Hardened Web Server guide](index.md). This document also uses all of the assumptions and conventions outlined in that original document. It is a good idea to review it before continuing.
 
-One thing missing with `mod_security` when installed from the generic Rocky Linux repositories, is that the rules installed are minimal. To get a more extensive package of no cost `mod_security` rules, this procedure uses [OWASP `mod_security` rules found here](https://coreruleset.org/). OWASP stands for the Open Web Application Security Project. You can [find out more about OWASP here](https://owasp.org/).
+One thing missing with `mod_security` when installed from the Atomicorp repository, is that the rules installed are minimal. To get a more extensive package of no cost `mod_security` rules, this procedure uses [OWASP `mod_security` rules found here](https://coreruleset.org/). OWASP stands for the Open Web Application Security Project. You can [find out more about OWASP here](https://owasp.org/).
 
 !!! tip
 
     As stated, this procedure uses the OWASP `mod_security` rules. What is not used is the configuration provided by that site. That site also provides great tutorials on using `mod_security` and other security-related tools. The document you are working through mow does nothing but help you install the tools and rules needed for hardening with `mod_security` on a Rocky Linux web server. Netnea is a team of technical professionals that provides security courses on their website. Much of this content is available at no cost, but they *do* have options for in-house or group training.
+
+## Additional repository
+
+To install `mod_security` you will need the Atomicorp repository (atomic.repo). Do that with this line and answer yes to all the defaults:
+
+```bash
+wget -q -O - https://www.atomicorp.com/installers/atomic | sh
+```
+
+Run `dnf upgrade` to read in all the changes.
 
 ## Installing `mod_security`
 

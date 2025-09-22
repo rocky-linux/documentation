@@ -9,7 +9,9 @@ tags:
   - proxies
 ---
 
-# Tor Onion service
+!!! warning "Temporary Hold"
+
+    `tor` is currently missing from the EPEL. It will probably be built. The Docs Team will continue to test availability in the EPEL as time allows. For now, your only option is to build `tor` from source, and the instructions for doing that are currently missing here.
 
 ## Introduction
 
