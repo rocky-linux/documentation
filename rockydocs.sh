@@ -9,7 +9,7 @@ set -e
 # Changelog: tools/CHANGELOG.md
 #
 
-VERSION="1.2.0"
+VERSION="1.3.0"
 RELEASE="1.el10"
 AUTHOR="Wale Soyinka"
 FULL_VERSION="rockydocs-${VERSION}-${RELEASE}"
@@ -438,7 +438,15 @@ while [[ $# -gt 0 ]]; do
             COMMAND="stop"
             shift
             ;;
-        --venv|--docker|--podman)
+        --install)
+            COMMAND="install"
+            shift
+            ;;
+        --uninstall)
+            COMMAND="uninstall"
+            shift
+            ;;
+        --venv|--docker|--podman|--lxd)
             ENVIRONMENT="${1#--}"
             shift
             ;;
@@ -485,6 +493,8 @@ while [[ $# -gt 0 ]]; do
                     serve-dual) show_serve_dual_help ;;
                     deploy) show_deploy_help ;;
                     stop) show_stop_help ;;
+                    install) show_install_help "$ENVIRONMENT" ;;
+                    uninstall) show_uninstall_help "$ENVIRONMENT" ;;
                     *) show_help ;;
                 esac
             else
@@ -519,14 +529,22 @@ check_dependencies
 # Execute command
 case "$COMMAND" in
     setup)
-        update_repositories
-        setup_environment "$ENVIRONMENT" "$BUILD_TYPE"
+        if [ "$ENVIRONMENT" = "lxd" ]; then
+            setup_lxd "$BUILD_TYPE"
+        elif [ "$ENVIRONMENT" = "docker" ]; then
+            setup_docker "$BUILD_TYPE"
+        else
+            update_repositories
+            setup_environment "$ENVIRONMENT" "$BUILD_TYPE"
+        fi
         ;;
     serve)
         if [ "$ENVIRONMENT" = "docker" ]; then
             serve_docker "$STATIC_MODE"
         elif [ "$ENVIRONMENT" = "podman" ]; then
             serve_podman "$STATIC_MODE"
+        elif [ "$ENVIRONMENT" = "lxd" ]; then
+            serve_lxd "$STATIC_MODE"
         elif [ "$STATIC_MODE" = "true" ]; then
             serve_static
         else
@@ -547,10 +565,12 @@ case "$COMMAND" in
             list_versions
         elif [ "$ENVIRONMENT" = "docker" ]; then
             update_repositories
-            deploy_docker
+            deploy_docker "$BUILD_TYPE"
         elif [ "$ENVIRONMENT" = "podman" ]; then
             update_repositories
             deploy_podman
+        elif [ "$ENVIRONMENT" = "lxd" ]; then
+            deploy_lxd "$BUILD_TYPE"
         else
             update_repositories
             deploy_site
@@ -572,6 +592,30 @@ case "$COMMAND" in
         ;;
     stop)
         stop_all_services
+        ;;
+    install)
+        if [ "$ENVIRONMENT" = "lxd" ]; then
+            install_lxd
+        elif [ "$ENVIRONMENT" = "docker" ]; then
+            install_docker
+        else
+            print_error "Install command only supports --lxd or --docker environment"
+            print_info "Usage: $0 --install --lxd"
+            print_info "Usage: $0 --install --docker"
+            exit 1
+        fi
+        ;;
+    uninstall)
+        if [ "$ENVIRONMENT" = "lxd" ]; then
+            uninstall_lxd
+        elif [ "$ENVIRONMENT" = "docker" ]; then
+            uninstall_docker
+        else
+            print_error "Uninstall command only supports --lxd or --docker environment"
+            print_info "Usage: $0 --uninstall --lxd"
+            print_info "Usage: $0 --uninstall --docker"
+            exit 1
+        fi
         ;;
     *)
         print_error "No command specified"

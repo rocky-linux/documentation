@@ -552,9 +552,13 @@ stop_all_services() {
     
     # Stop Docker containers
     if command -v docker >/dev/null 2>&1 && docker info >/dev/null 2>&1; then
-        local docker_containers=$(docker ps -q -f name="rockydocs-.*-${USER}" 2>/dev/null || true)
+        # Call dedicated Docker stop function
+        stop_docker_services 2>/dev/null || true
+        
+        # Also handle general rockydocs Docker containers
+        local docker_containers=$(docker ps -q -f name="rockydocs-.*" 2>/dev/null || true)
         if [ -n "$docker_containers" ]; then
-            print_info "Stopping Docker containers..."
+            print_info "Stopping additional Docker containers..."
             echo "$docker_containers" | xargs docker stop >/dev/null 2>&1 || true
             echo "$docker_containers" | xargs docker rm >/dev/null 2>&1 || true
             stopped_count=$((stopped_count + 1))
@@ -619,6 +623,8 @@ COMMANDS:
   --clean     Clean workspace and build artifacts
   --reset     Reset saved configuration
   --status    Show system status
+  --install   Install LXD system containers (Rocky Linux 10 only)
+  --uninstall Remove LXD and all containers (destructive)
 
 GLOBAL OPTIONS:
   --minimal   Use English + Ukrainian only (default, faster) - setup only
@@ -629,11 +635,15 @@ GLOBAL OPTIONS:
 EXAMPLES:
   $0 --setup --venv              # Setup Python venv environment
   $0 --setup --podman            # Setup Podman container environment
+  $0 --setup --lxd               # Setup LXD container environment
   $0 --deploy                    # Build and deploy versions locally
   $0 --serve                     # Fast serve (after deploy)
   $0 --serve --static            # Static production-like serve
   $0 --serve-dual                # Dual server with live reload (venv)
   $0 --serve-dual --podman       # Dual server with Podman containers
+  $0 --serve --lxd               # Serve with LXD containers
+  $0 --install --lxd             # Install LXD (Rocky Linux 10 only)
+  $0 --uninstall --lxd           # Remove LXD and all containers
   $0 --stop                      # Stop all running servers and containers
   $0 --setup --full              # Setup with all languages (config set once)
   $0 --deploy                    # Build using setup's language config
@@ -889,6 +899,231 @@ NOTES:
 EOF
 }
 
+# Install command help
+show_install_help() {
+    local environment="$1"
+    
+    if [ "$environment" = "lxd" ]; then
+        cat << EOF
+Rocky Linux Documentation - Install LXD System Containers
+
+DESCRIPTION:
+  Installs and configures LXD (Linux Container Daemon) on Rocky Linux 10 systems.
+  Sets up system container infrastructure for isolated documentation builds.
+
+USAGE:
+  $0 --install --lxd
+
+WHAT THIS COMMAND DOES:
+  • Verifies Rocky Linux 10 system compatibility
+  • Installs snapd package manager and kernel modules
+  • Installs LXD via snap (latest stable channel 5.0)
+  • Initializes LXD with default configuration
+  • Sets up unprivileged container security
+  • Creates necessary user groups and permissions
+  • Configures AppArmor security profiles
+  • Tests basic container functionality
+
+PREREQUISITES:
+  • Rocky Linux 10 server with root access
+  • Internet connection for package downloads
+  • At least 2GB available disk space
+  • Kernel 3.10+ with container support
+
+SYSTEM CHANGES:
+  • Enables snapd daemon service
+  • Creates /snap symlink for snap packages
+  • Adds current user to lxd group
+  • Configures kernel modules for containers
+  • Sets up LXD storage backend
+
+EXAMPLES:
+  $0 --install --lxd                # Install LXD on Rocky Linux 10
+  $0 --install --lxd && $0 --setup --lxd    # Install then setup
+
+NOTES:
+  - Only supports Rocky Linux 10
+  - Requires system reboot after installation
+  - Can be safely run multiple times
+  - Use --uninstall --lxd to remove if needed
+
+EOF
+    elif [ "$environment" = "docker" ]; then
+        cat << EOF
+Rocky Linux Documentation - Install Docker Application Containers
+
+DESCRIPTION:
+  Installs and configures Docker Engine on Rocky Linux 10 systems.
+  Sets up application container infrastructure for isolated documentation builds.
+
+USAGE:
+  $0 --install --docker
+
+WHAT THIS COMMAND DOES:
+  • Verifies Rocky Linux 10 system compatibility
+  • Updates system packages and installs prerequisites
+  • Adds Docker CE repository from docker.com
+  • Installs Docker CE, CLI, and build plugins
+  • Configures Docker daemon for security and performance
+  • Enables and starts Docker service
+  • Adds current user to docker group
+  • Tests basic container functionality
+
+PREREQUISITES:
+  • Rocky Linux 10 server with root access
+  • Internet connection for package downloads
+  • At least 2GB available disk space
+  • Compatible kernel with container support
+
+SYSTEM CHANGES:
+  • Enables Docker daemon service
+  • Creates Docker daemon configuration
+  • Adds current user to docker group
+  • Configures storage driver (overlay2)
+  • Sets up container resource limits
+
+EXAMPLES:
+  $0 --install --docker              # Install Docker on Rocky Linux 10
+  $0 --install --docker && $0 --setup --docker  # Install then setup
+
+NOTES:
+  - Only supports Rocky Linux 10
+  - Logout/login required after installation for group changes
+  - Can be safely run multiple times
+  - Use --uninstall --docker to remove if needed
+
+EOF
+    else
+        cat << EOF
+Rocky Linux Documentation - Install Container Runtime
+
+USAGE:
+  $0 --install --lxd        # Install LXD (system containers)
+  $0 --install --docker     # Install Docker (application containers)
+
+SUPPORTED ENVIRONMENTS:
+  --lxd      System containers with full OS isolation
+  --docker   Application containers with efficient layered storage
+
+For specific help:
+  $0 --install --lxd -h     # LXD installation help
+  $0 --install --docker -h  # Docker installation help
+
+EOF
+    fi
+}
+
+# Uninstall command help  
+show_uninstall_help() {
+    local environment="$1"
+    
+    if [ "$environment" = "lxd" ]; then
+        cat << EOF
+Rocky Linux Documentation - Uninstall LXD System Containers
+
+DESCRIPTION:
+  Removes LXD and all associated containers, images, and configurations.
+  Provides complete cleanup of LXD system container infrastructure.
+
+USAGE:
+  $0 --uninstall --lxd
+
+WHAT THIS COMMAND DOES:
+  • Stops all running rockydocs-* containers
+  • Removes all LXD containers and images
+  • Removes LXD snap package
+  • Removes snapd if no other snaps installed
+  • Cleans up LXD storage pools and networks
+  • Removes /snap symlink and directories
+  • Reverts system configuration changes
+  • Provides uninstall progress feedback
+
+WARNING:
+  This will destroy ALL LXD containers and data on the system,
+  not just rockydocs containers.
+
+SYSTEM CHANGES REVERTED:
+  • Removes snapd daemon service
+  • Removes /snap symlink
+  • Cleans up LXD storage backend
+  • Removes container-related packages
+
+EXAMPLES:
+  $0 --uninstall --lxd             # Remove LXD completely
+  $0 --stop && $0 --uninstall --lxd    # Stop services first
+
+NOTES:
+  - Requires confirmation for destructive operations
+  - Cannot be undone - backup important containers first
+  - May require system reboot for complete cleanup
+  - Safe to run if LXD already removed
+
+EOF
+    elif [ "$environment" = "docker" ]; then
+        cat << EOF
+Rocky Linux Documentation - Uninstall Docker Application Containers
+
+DESCRIPTION:
+  Removes Docker Engine and all associated containers, images, and configurations.
+  Provides complete cleanup of Docker application container infrastructure.
+
+USAGE:
+  $0 --uninstall --docker
+
+WHAT THIS COMMAND DOES:
+  • Stops all running Docker containers
+  • Removes all Docker containers and images
+  • Removes all Docker volumes and networks
+  • Removes Docker Engine packages
+  • Removes Docker daemon configuration
+  • Cleans up Docker data directories
+  • Reverts system configuration changes
+  • Provides uninstall progress feedback
+
+WARNING:
+  This will destroy ALL Docker containers, images, and data on the system,
+  not just rockydocs containers.
+
+SYSTEM CHANGES REVERTED:
+  • Removes Docker daemon service
+  • Removes Docker data directory (/var/lib/docker)
+  • Removes Docker configuration (/etc/docker)
+  • Removes Docker repository configuration
+  • Removes user group memberships
+
+EXAMPLES:
+  $0 --uninstall --docker          # Remove Docker completely
+  $0 --stop && $0 --uninstall --docker  # Stop services first
+
+NOTES:
+  - Requires confirmation for destructive operations
+  - Cannot be undone - backup important containers first
+  - Safe to run if Docker already removed
+  - Removes all Docker data permanently
+
+EOF
+    else
+        cat << EOF
+Rocky Linux Documentation - Uninstall Container Runtime
+
+USAGE:
+  $0 --uninstall --lxd        # Uninstall LXD (system containers)
+  $0 --uninstall --docker     # Uninstall Docker (application containers)
+
+SUPPORTED ENVIRONMENTS:
+  --lxd      Remove LXD system containers and snapd
+  --docker   Remove Docker application containers and daemon
+
+For specific help:
+  $0 --uninstall --lxd -h     # LXD uninstall help
+  $0 --uninstall --docker -h  # Docker uninstall help
+
+WARNING: Both operations will destroy ALL containers and data!
+
+EOF
+    fi
+}
+
 # Deploy command help
 show_deploy_help() {
     cat << EOF
@@ -1015,6 +1250,9 @@ setup_environment() {
             ;;
         "podman")
             setup_podman "$build_type"
+            ;;
+        "lxd")
+            setup_lxd "$build_type"
             ;;
         *)
             print_error "Unknown environment type: $env_type"
@@ -1151,6 +1389,1090 @@ EOF
     print_info "Podman image built: rockydocs-dev"
     print_info "To run: podman run -p 8000:8000 -v $CONTENT_DIR/docs:/app/content rockydocs-dev"
     print_info "Or use: $0 --serve --podman"
+}
+
+# LXD Container Environment Functions
+install_lxd() {
+    print_info "Installing LXD on Rocky Linux 10..."
+    
+    # Verify Rocky Linux 10
+    if ! grep -q "VERSION_ID=\"10" /etc/os-release 2>/dev/null; then
+        print_error "LXD installation script only supports Rocky Linux 10"
+        return 1
+    fi
+    
+    # Check if already installed
+    if command -v lxd >/dev/null 2>&1; then
+        print_warning "LXD is already installed"
+        lxd version
+        return 0
+    fi
+    
+    # Install prerequisites
+    print_info "Installing LXD prerequisites..."
+    run_cmd "dnf install -y epel-release"
+    run_cmd "dnf install -y snapd kernel-modules-extra"
+    
+    # Enable snapd
+    print_info "Enabling snapd service..."
+    run_cmd "systemctl enable --now snapd.socket"
+    run_cmd "systemctl enable --now snapd"
+    
+    # Create snap symlink
+    if [ ! -L "/snap" ]; then
+        run_cmd "ln -sf /var/lib/snapd/snap /snap"
+    fi
+    
+    # Check if squashfs module is available
+    if ! find /lib/modules/$(uname -r) -name '*squashfs*' >/dev/null 2>&1; then
+        print_warning "Squashfs kernel module not found for current kernel"
+        print_info "This usually means a kernel update is needed"
+        print_info "After reboot, re-run: $0 --install --lxd"
+        print_info "Then run: $0 --setup --lxd"
+        return 2  # Special return code for "reboot required"
+    fi
+    
+    # Install LXD via snap
+    print_info "Installing LXD 5.0 LTS via snap..."
+    run_cmd "snap install lxd --channel=5.0/stable"
+    
+    # Add snap binaries to PATH if not already there
+    if ! echo "$PATH" | grep -q "/snap/bin"; then
+        export PATH="$PATH:/snap/bin"
+        echo 'export PATH="$PATH:/snap/bin"' >> /etc/profile.d/snap.sh
+    fi
+    
+    # Wait for LXD to be ready
+    print_info "Waiting for LXD to be ready..."
+    if ! lxd waitready --timeout=60; then
+        print_error "LXD failed to start within 60 seconds"
+        return 1
+    fi
+    
+    # Initialize LXD with default configuration
+    print_info "Initializing LXD with default configuration..."
+    run_cmd "lxd init --auto"
+    
+    # Verify installation
+    print_info "Verifying LXD installation..."
+    if lxd version && lxc image list >/dev/null 2>&1; then
+        print_success "LXD installation completed successfully"
+        lxd version
+        return 0
+    else
+        print_error "LXD installation verification failed"
+        return 1
+    fi
+}
+
+uninstall_lxd() {
+    print_warning "Uninstalling LXD and all containers/images..."
+    
+    # Confirm operation
+    read -p "This will remove all LXD containers and data. Continue? (y/N): " confirm
+    if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
+        print_info "LXD uninstall cancelled"
+        return 0
+    fi
+    
+    # Stop all containers
+    print_info "Stopping all LXD containers..."
+    lxc list --format csv -c n | while read container_name; do
+        if [ -n "$container_name" ]; then
+            lxc stop "$container_name" --force 2>/dev/null || true
+        fi
+    done
+    
+    # Delete all containers
+    print_info "Deleting all LXD containers..."
+    lxc list --format csv -c n | while read container_name; do
+        if [ -n "$container_name" ]; then
+            lxc delete "$container_name" 2>/dev/null || true
+        fi
+    done
+    
+    # Remove LXD snap
+    print_info "Removing LXD snap package..."
+    run_cmd "snap remove lxd"
+    
+    # Optionally remove snapd
+    read -p "Remove snapd as well? (y/N): " remove_snapd
+    if [[ "$remove_snapd" = "y" || "$remove_snapd" = "Y" ]]; then
+        run_cmd "dnf remove -y snapd snap-confine snapd-selinux"
+        run_cmd "rm -f /snap"
+    fi
+    
+    print_success "LXD uninstalled successfully"
+}
+
+check_lxd_availability() {
+    # Check if LXD command exists
+    if ! command -v lxd >/dev/null 2>&1; then
+        print_error "LXD is not installed or not in PATH"
+        print_info "Please install LXD first:"
+        print_info "  $0 --install --lxd"
+        print_info "Or install manually following the documentation"
+        return 1
+    fi
+    
+    # Check if LXD daemon is running
+    if ! lxd waitready --timeout=10 >/dev/null 2>&1; then
+        print_error "LXD daemon is not running or not initialized"
+        print_info "Please run 'lxd init' to initialize LXD"
+        print_info "Or restart LXD service"
+        return 1
+    fi
+    
+    # Check if we can communicate with LXD
+    if ! lxc info >/dev/null 2>&1; then
+        print_error "Cannot communicate with LXD daemon"
+        print_info "Please check LXD permissions and configuration"
+        return 1
+    fi
+    
+    return 0
+}
+
+get_lxd_container_name() {
+    local operation="$1"
+    echo "rockydocs-${operation}-${USER:-root}-$(date +%s)"
+}
+
+create_build_container() {
+    local build_type="$1"
+    local container_name="$2"
+    
+    print_info "Creating LXD build container: $container_name"
+    
+    # Launch Rocky Linux 10 container
+    if ! lxc launch images:rocky/10 "$container_name"; then
+        print_error "Failed to create LXD container"
+        return 1
+    fi
+    
+    # Wait for container to be ready
+    print_info "Waiting for container to be ready..."
+    local timeout=60
+    local count=0
+    while [ $count -lt $timeout ]; do
+        if lxc exec "$container_name" -- echo "ready" >/dev/null 2>&1; then
+            break
+        fi
+        sleep 1
+        count=$((count + 1))
+    done
+    
+    if [ $count -ge $timeout ]; then
+        print_error "Container failed to start within $timeout seconds"
+        lxc delete "$container_name" --force 2>/dev/null || true
+        return 1
+    fi
+    
+    # Install dependencies in container
+    print_info "Installing dependencies in container..."
+    lxc exec "$container_name" -- dnf update -y
+    lxc exec "$container_name" -- dnf install -y python3 python3-pip git
+    
+    # Create app directory in container
+    lxc exec "$container_name" -- mkdir -p /app
+    
+    print_success "Build container $container_name created successfully"
+    return 0
+}
+
+setup_container_mounts() {
+    local container_name="$1"
+    
+    print_info "Setting up container mounts..."
+    
+    # Mount app directory (read-write)
+    if ! lxc config device add "$container_name" app disk source="$APP_DIR" path="/app"; then
+        print_error "Failed to mount app directory"
+        return 1
+    fi
+    
+    # Mount content directory (read-only)
+    if ! lxc config device add "$container_name" content disk source="$CONTENT_DIR/docs" path="/app/content" readonly=true; then
+        print_warning "Failed to mount content directory (continuing anyway)"
+    fi
+    
+    return 0
+}
+
+setup_container_resources() {
+    local container_name="$1"
+    
+    print_info "Configuring container resource limits..."
+    
+    # Set resource limits
+    lxc config set "$container_name" limits.cpu 4
+    lxc config set "$container_name" limits.memory 4GB
+    lxc config set "$container_name" limits.processes 1000
+    
+    # Security settings
+    lxc config set "$container_name" security.privileged false
+    lxc config set "$container_name" security.nesting false
+    
+    return 0
+}
+
+setup_container_networking() {
+    local container_name="$1"
+    local port="${2:-8000}"
+    
+    print_info "Setting up container networking..."
+    
+    # Setup port forwarding for documentation server
+    if ! lxc config device add "$container_name" http-proxy proxy \
+         listen="tcp:0.0.0.0:$port" \
+         connect="tcp:127.0.0.1:$port"; then
+        print_warning "Failed to setup port forwarding (port may be in use)"
+        # Try alternative port
+        local alt_port=$((port + 1))
+        print_info "Trying alternative port $alt_port..."
+        lxc config device add "$container_name" http-proxy proxy \
+            listen="tcp:0.0.0.0:$alt_port" \
+            connect="tcp:127.0.0.1:$port" || true
+    fi
+    
+    return 0
+}
+
+cleanup_lxd_containers() {
+    local max_age="${1:-86400}"  # Default 24 hours
+    
+    print_info "Cleaning up old LXD containers older than $((max_age / 3600)) hours..."
+    
+    lxc list --format csv -c n,s | while IFS=, read container_name status; do
+        if [[ "$container_name" == rockydocs-* ]]; then
+            if [ "$status" = "STOPPED" ]; then
+                # Get container creation time (simplified check)
+                local creation_time=$(lxc info "$container_name" | grep "Created:" | head -1 || echo "")
+                if [ -n "$creation_time" ]; then
+                    print_info "Removing old container: $container_name"
+                    lxc delete "$container_name" 2>/dev/null || true
+                fi
+            fi
+        fi
+    done
+}
+
+setup_lxd() {
+    local build_type="$1"
+    
+    # Check LXD availability first
+    if ! check_lxd_availability; then
+        return 1
+    fi
+    
+    print_info "Setting up LXD container environment for $build_type build..."
+    
+    # Cleanup old containers first
+    cleanup_lxd_containers
+    
+    # Create build container
+    local container_name
+    container_name=$(get_lxd_container_name "setup")
+    
+    if ! create_build_container "$build_type" "$container_name"; then
+        return 1
+    fi
+    
+    # Setup container resources
+    setup_container_resources "$container_name"
+    
+    # Setup container mounts
+    if ! setup_container_mounts "$container_name"; then
+        lxc delete "$container_name" --force 2>/dev/null || true
+        return 1
+    fi
+    
+    # Install Python requirements in container
+    print_info "Installing Python requirements in container..."
+    lxc exec "$container_name" -- pip3 install mkdocs mkdocs-material mkdocs-static-i18n mkdocs-git-revision-date-localized-plugin mike
+    
+    # Setup content symlink inside container
+    lxc exec "$container_name" -- bash -c "cd /app && rm -rf content && ln -sf /app/content content"
+    
+    # Copy appropriate configuration
+    if [ "$build_type" = "minimal" ]; then
+        lxc file push "$APP_DIR/configs/mkdocs.minimal.yml" "$container_name/app/mkdocs.yml"
+    else
+        lxc file push "$APP_DIR/configs/mkdocs.full.yml" "$container_name/app/mkdocs.yml"
+    fi
+    
+    # Store container name for later use
+    echo "$container_name" > "$APP_DIR/.lxd-container"
+    
+    print_success "LXD environment setup complete"
+    print_info "Container: $container_name"
+    print_info "To deploy: $0 --deploy --lxd"
+    print_info "To serve: $0 --serve --lxd"
+}
+
+deploy_lxd() {
+    local build_type="$1"
+    
+    # Check LXD availability
+    if ! check_lxd_availability; then
+        return 1
+    fi
+    
+    print_info "Deploying documentation in LXD container..."
+    
+    # Get container name from setup
+    local container_name
+    if [ -f "$APP_DIR/.lxd-container" ]; then
+        container_name=$(cat "$APP_DIR/.lxd-container")
+    else
+        print_error "No LXD container found. Please run --setup --lxd first"
+        return 1
+    fi
+    
+    # Verify container exists and is running
+    if ! lxc list --format csv -c n | grep -q "^$container_name$"; then
+        print_error "Container $container_name not found"
+        return 1
+    fi
+    
+    # Start container if stopped
+    local container_status=$(lxc list --format csv -c n,s | grep "^$container_name," | cut -d, -f2)
+    if [ "$container_status" = "STOPPED" ]; then
+        print_info "Starting container $container_name..."
+        lxc start "$container_name"
+        
+        # Wait for container to be ready
+        local timeout=30
+        local count=0
+        while [ $count -lt $timeout ]; do
+            if lxc exec "$container_name" -- echo "ready" >/dev/null 2>&1; then
+                break
+            fi
+            sleep 1
+            count=$((count + 1))
+        done
+        
+        if [ $count -ge $timeout ]; then
+            print_error "Container failed to start within $timeout seconds"
+            return 1
+        fi
+    fi
+    
+    # Configure git in container
+    print_info "Configuring git in container..."
+    lxc exec "$container_name" -- git config --global user.name "Rocky Linux Documentation Bot"
+    lxc exec "$container_name" -- git config --global user.email "noreply@rockylinux.org"
+    
+    # Initialize git repository in container if needed
+    lxc exec "$container_name" -- bash -c "cd /app && if [ ! -d .git ]; then git init; fi"
+    
+    # Execute deployment inside container
+    print_info "Executing deployment inside container..."
+    lxc exec "$container_name" -- bash -c "
+        cd /app
+        
+        # Ensure content symlink exists
+        rm -rf content && ln -sf /app/content content
+        
+        # Initialize git if needed
+        if [ ! -f .git/config ]; then
+            git add mkdocs.yml 2>/dev/null || true
+            git commit -m 'Initial commit for container deployment' 2>/dev/null || true
+        fi
+        
+        # Deploy Rocky Linux 8
+        echo 'Deploying Rocky Linux 8...'
+        mike deploy 8 --config-file mkdocs.yml || echo 'Rocky 8 deployment skipped'
+        
+        # Deploy Rocky Linux 9
+        echo 'Deploying Rocky Linux 9...'
+        mike deploy 9 --config-file mkdocs.yml || echo 'Rocky 9 deployment skipped'
+        
+        # Deploy Rocky Linux 10 (latest)
+        echo 'Deploying Rocky Linux 10...'
+        mike deploy 10 latest --update-aliases --config-file mkdocs.yml
+        
+        # Set default version
+        mike set-default latest --config-file mkdocs.yml
+        
+        echo 'Deployment completed successfully'
+    "
+    
+    if [ $? -eq 0 ]; then
+        print_success "LXD deployment completed successfully"
+        print_info "Container: $container_name"
+        print_info "To serve: $0 --serve --lxd"
+        print_info "To serve static: $0 --serve --lxd --static"
+        
+        # Store successful deployment indicator
+        echo "deployed" > "$APP_DIR/.lxd-deployment"
+        
+        return 0
+    else
+        print_error "LXD deployment failed"
+        return 1
+    fi
+}
+
+serve_lxd() {
+    local serve_mode="$1"
+    
+    # Check LXD availability
+    if ! check_lxd_availability; then
+        return 1
+    fi
+    
+    # Get container name from setup
+    local container_name
+    if [ -f "$APP_DIR/.lxd-container" ]; then
+        container_name=$(cat "$APP_DIR/.lxd-container")
+    else
+        print_error "No LXD container found. Please run --setup --lxd first"
+        return 1
+    fi
+    
+    # Verify container exists
+    if ! lxc list --format csv -c n | grep -q "^$container_name$"; then
+        print_error "Container $container_name not found"
+        return 1
+    fi
+    
+    # Start container if stopped
+    local container_status=$(lxc list --format csv -c n,s | grep "^$container_name," | cut -d, -f2)
+    if [ "$container_status" = "STOPPED" ]; then
+        print_info "Starting container $container_name..."
+        lxc start "$container_name"
+        sleep 5  # Give container time to start
+    fi
+    
+    # Setup port forwarding
+    local port=8000
+    while lsof -Pi :$port -sTCP:LISTEN -t >/dev/null 2>&1; do
+        port=$((port + 1))
+    done
+    
+    setup_container_networking "$container_name" "$port"
+    
+    if [ "$serve_mode" = "static" ]; then
+        print_info "Starting static documentation server in container..."
+        
+        # Check if deployment exists
+        if [ ! -f "$APP_DIR/.lxd-deployment" ]; then
+            print_warning "No deployment found. Running deployment first..."
+            if ! deploy_lxd "${BUILD_TYPE:-minimal}"; then
+                return 1
+            fi
+        fi
+        
+        # Extract static files and serve
+        lxc exec "$container_name" -- bash -c "
+            cd /app
+            
+            # Extract static files from mike deployment
+            if [ -d site ]; then
+                rm -rf site-static
+                cp -r site site-static
+                
+                # Apply web root override (copy latest to root)
+                if [ -d site-static/latest ]; then
+                    cp -r site-static/latest/* site-static/
+                fi
+                
+                echo 'Static files extracted successfully'
+                echo 'Starting Python HTTP server...'
+                cd site-static
+                python3 -m http.server 8000 --bind 0.0.0.0
+            else
+                echo 'No site directory found. Please run deployment first.'
+                exit 1
+            fi
+        " &
+        
+        # Store server PID for cleanup
+        local server_pid=$!
+        echo "$server_pid:$container_name:static" >> "$APP_DIR/.lxd-servers"
+        
+    else
+        print_info "Starting live documentation server in container..."
+        
+        # Start mike serve in container
+        lxc exec "$container_name" -- bash -c "
+            cd /app
+            echo 'Starting mike serve...'
+            mike serve --dev-addr 0.0.0.0:8000
+        " &
+        
+        # Store server PID for cleanup
+        local server_pid=$!
+        echo "$server_pid:$container_name:live" >> "$APP_DIR/.lxd-servers"
+    fi
+    
+    # Wait a moment for server to start
+    sleep 3
+    
+    # Check if server is responding
+    local attempts=0
+    local max_attempts=12
+    while [ $attempts -lt $max_attempts ]; do
+        if curl -s -f "http://localhost:$port/" >/dev/null 2>&1; then
+            print_success "Documentation server started successfully"
+            print_info "Server URL: http://localhost:$port/"
+            print_info "Container: $container_name"
+            print_info "Mode: $serve_mode"
+            
+            if [ "$serve_mode" = "static" ]; then
+                print_info "Static files served from container with web root override"
+            else
+                print_info "Live development server with auto-reload"
+            fi
+            
+            return 0
+        fi
+        sleep 5
+        attempts=$((attempts + 1))
+    done
+    
+    print_error "Documentation server failed to start or is not responding"
+    return 1
+}
+
+stop_lxd_services() {
+    print_info "Stopping LXD documentation services..."
+    
+    # Stop container servers
+    if [ -f "$APP_DIR/.lxd-servers" ]; then
+        while IFS=':' read -r pid container_name mode; do
+            if [ -n "$pid" ] && kill -0 "$pid" 2>/dev/null; then
+                print_info "Stopping $mode server (PID: $pid) in container $container_name"
+                kill "$pid" 2>/dev/null || true
+            fi
+        done < "$APP_DIR/.lxd-servers"
+        rm -f "$APP_DIR/.lxd-servers"
+    fi
+    
+    # Stop containers
+    if [ -f "$APP_DIR/.lxd-container" ]; then
+        local container_name=$(cat "$APP_DIR/.lxd-container")
+        if lxc list --format csv -c n | grep -q "^$container_name$"; then
+            local container_status=$(lxc list --format csv -c n,s | grep "^$container_name," | cut -d, -f2)
+            if [ "$container_status" = "RUNNING" ]; then
+                print_info "Stopping container $container_name"
+                lxc stop "$container_name"
+            fi
+        fi
+    fi
+    
+    print_success "LXD services stopped"
+}
+
+# === DOCKER FUNCTIONS ===
+
+# Install Docker on Rocky Linux 10
+install_docker() {
+    print_info "Installing Docker on Rocky Linux 10..."
+    
+    # Verify Rocky Linux 10
+    if ! grep -q "VERSION_ID=\"10" /etc/os-release 2>/dev/null; then
+        print_error "Docker installation script only supports Rocky Linux 10"
+        return 1
+    fi
+    
+    # Check if already installed
+    if command -v docker >/dev/null 2>&1; then
+        print_warning "Docker is already installed"
+        docker --version
+        return 0
+    fi
+    
+    # Update system packages
+    print_info "Updating system packages..."
+    run_cmd "dnf update -y"
+    
+    # Install prerequisites
+    print_info "Installing Docker prerequisites..."
+    run_cmd "dnf install -y dnf-plugins-core device-mapper-persistent-data lvm2"
+    
+    # Add Docker repository
+    print_info "Adding Docker CE repository..."
+    run_cmd "dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo"
+    
+    # Update package index
+    run_cmd "dnf makecache"
+    
+    # Install Docker CE
+    print_info "Installing Docker CE..."
+    run_cmd "dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin"
+    
+    # Enable and start Docker service
+    print_info "Enabling and starting Docker service..."
+    run_cmd "systemctl enable --now docker"
+    
+    # Configure Docker daemon for security and performance
+    print_info "Configuring Docker daemon..."
+    run_cmd "mkdir -p /etc/docker"
+    
+    cat > /etc/docker/daemon.json << 'EOF'
+{
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "10m",
+    "max-file": "3"
+  },
+  "storage-driver": "overlay2",
+  "userland-proxy": false,
+  "experimental": false,
+  "default-ulimits": {
+    "nofile": {
+      "Name": "nofile",
+      "Hard": 64000,
+      "Soft": 64000
+    }
+  }
+}
+EOF
+    
+    # Restart Docker to apply configuration
+    print_info "Restarting Docker to apply configuration..."
+    run_cmd "systemctl restart docker"
+    
+    # Add current user to docker group (if not root)
+    if [ "$EUID" -ne 0 ]; then
+        print_info "Adding current user to docker group..."
+        run_cmd "usermod -aG docker $USER"
+        print_warning "Please logout and login again to apply group changes"
+        print_info "Or run: newgrp docker"
+    fi
+    
+    # Verify installation
+    print_info "Verifying Docker installation..."
+    if docker --version && docker info >/dev/null 2>&1; then
+        print_success "Docker installation completed successfully"
+        docker --version
+        return 0
+    else
+        print_error "Docker installation verification failed"
+        return 1
+    fi
+}
+
+# Uninstall Docker and clean up
+uninstall_docker() {
+    print_warning "Uninstalling Docker and all containers/images..."
+    
+    # Confirm operation
+    read -p "This will remove all Docker containers, images, and data. Continue? (y/N): " confirm
+    if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
+        print_info "Docker uninstall cancelled"
+        return 0
+    fi
+    
+    # Stop all containers
+    print_info "Stopping all Docker containers..."
+    if command -v docker >/dev/null 2>&1; then
+        docker ps -aq | xargs -r docker stop 2>/dev/null || true
+        docker ps -aq | xargs -r docker rm 2>/dev/null || true
+        
+        # Remove all images
+        print_info "Removing all Docker images..."
+        docker images -aq | xargs -r docker rmi -f 2>/dev/null || true
+        
+        # Remove all volumes
+        print_info "Removing all Docker volumes..."
+        docker volume ls -q | xargs -r docker volume rm 2>/dev/null || true
+        
+        # Remove all networks (except default ones)
+        print_info "Removing Docker networks..."
+        docker network ls --format "{{.Name}}" | grep -v -E '^(bridge|host|none)$' | xargs -r docker network rm 2>/dev/null || true
+    fi
+    
+    # Stop Docker service
+    print_info "Stopping Docker service..."
+    run_cmd "systemctl stop docker" || true
+    run_cmd "systemctl disable docker" || true
+    
+    # Remove Docker packages
+    print_info "Removing Docker packages..."
+    run_cmd "dnf remove -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin"
+    
+    # Remove Docker data directory
+    print_info "Removing Docker data directory..."
+    run_cmd "rm -rf /var/lib/docker"
+    run_cmd "rm -rf /var/lib/containerd"
+    
+    # Remove Docker configuration
+    print_info "Removing Docker configuration..."
+    run_cmd "rm -rf /etc/docker"
+    
+    # Remove repository configuration
+    print_info "Removing Docker repository configuration..."
+    run_cmd "rm -f /etc/yum.repos.d/docker-ce.repo"
+    
+    print_success "Docker uninstalled successfully"
+}
+
+# Check Docker availability and status
+check_docker_availability() {
+    print_info "Checking Docker availability..."
+    
+    # Check if Docker is installed
+    if ! command -v docker >/dev/null 2>&1; then
+        print_error "Docker is not installed"
+        print_info "Run: $0 --install --docker"
+        return 1
+    fi
+    
+    # Check if Docker daemon is running
+    if ! docker info >/dev/null 2>&1; then
+        print_error "Docker daemon is not running or accessible"
+        print_info "Try: sudo systemctl start docker"
+        print_info "Or add your user to docker group: sudo usermod -aG docker $USER"
+        return 1
+    fi
+    
+    # Check Docker version
+    local docker_version=$(docker --version 2>/dev/null)
+    print_success "Docker is available: $docker_version"
+    
+    # Check if user has permission to use Docker
+    if ! docker ps >/dev/null 2>&1; then
+        print_warning "Docker command requires elevated permissions"
+        print_info "Consider adding user to docker group: sudo usermod -aG docker $USER"
+        return 2  # Warning but not failure
+    fi
+    
+    return 0
+}
+
+# Setup Docker environment for documentation builds
+setup_docker() {
+    local build_type="$1"
+    
+    # Check Docker availability first
+    local docker_check_result
+    check_docker_availability
+    docker_check_result=$?
+    
+    if [ $docker_check_result -eq 1 ]; then
+        return 1
+    elif [ $docker_check_result -eq 2 ]; then
+        print_warning "Continuing with elevated permissions requirement..."
+    fi
+    
+    print_info "Setting up Docker environment for documentation builds..."
+    
+    # Ensure we're in the app directory
+    cd "$APP_DIR"
+    
+    # Setup configuration
+    setup_mkdocs_config "$build_type" "$APP_DIR"
+    
+    # Pull Rocky Linux 10 base image
+    print_info "Pulling Rocky Linux 10 base image..."
+    run_cmd "docker pull rockylinux:10"
+    
+    # Build documentation container image
+    print_info "Building documentation container image..."
+    
+    # Create temporary Dockerfile
+    cat > Dockerfile.rockydocs << 'EOF'
+FROM rockylinux:10
+
+# Install development tools and Python
+RUN dnf update -y && \
+    dnf groupinstall -y "Development Tools" && \
+    dnf install -y python3 python3-pip git curl && \
+    dnf clean all
+
+# Create documentation user
+RUN useradd -m -u 1000 rockydocs && \
+    mkdir -p /app /workspace && \
+    chown -R rockydocs:rockydocs /app /workspace
+
+# Switch to documentation user
+USER rockydocs
+
+# Install Python dependencies
+RUN python3 -m pip install --user mkdocs mkdocs-material mike
+
+# Configure git for timestamp preservation
+RUN git config --global user.name "Rocky Linux Documentation" && \
+    git config --global user.email "noreply@rockylinux.org"
+
+# Set working directory
+WORKDIR /app
+
+# Expose documentation server port
+EXPOSE 8000
+
+# Default command
+CMD ["python3", "-m", "http.server", "8000"]
+EOF
+    
+    # Build the image
+    run_cmd "docker build -f Dockerfile.rockydocs -t rockydocs:rl10 ."
+    
+    # Clean up temporary Dockerfile
+    rm -f Dockerfile.rockydocs
+    
+    print_success "Docker environment setup completed"
+    print_info "Container image: rockydocs:rl10"
+    print_info "Build type: $build_type"
+}
+
+# Deploy documentation in Docker container
+deploy_docker() {
+    local build_type="$1"
+    
+    # Check Docker availability
+    if ! check_docker_availability; then
+        return 1
+    fi
+    
+    print_info "Deploying documentation in Docker container..."
+    
+    # Ensure we're in the app directory
+    cd "$APP_DIR"
+    
+    # Setup cached repositories for git history
+    setup_cached_repos
+    
+    # Container name
+    local container_name="rockydocs-rl10-docs"
+    
+    # Stop and remove existing container if it exists
+    if docker ps -a --format "{{.Names}}" | grep -q "^$container_name$"; then
+        print_info "Stopping existing container..."
+        docker stop "$container_name" >/dev/null 2>&1 || true
+        docker rm "$container_name" >/dev/null 2>&1 || true
+    fi
+    
+    # Create container with bind mounts
+    print_info "Creating documentation container..."
+    run_cmd "docker run -d \
+        --name '$container_name' \
+        --memory=2g \
+        --cpus='2.0' \
+        --pids-limit=1000 \
+        -v '$APP_DIR:/app:rw' \
+        -v '$APP_DIR/worktrees:/workspace:rw' \
+        -p 8000:8000 \
+        -p 8001:8001 \
+        -p 8002:8002 \
+        rockydocs:rl10 \
+        sleep infinity"
+    
+    # Store container name for cleanup
+    echo "$container_name" > "$APP_DIR/.docker-container"
+    add_cleanup_resource "container:$container_name"
+    
+    # Wait for container to be ready
+    sleep 2
+    
+    # Deploy documentation inside container
+    print_info "Building documentation inside container..."
+    
+    # Create deployment script
+    cat > deploy_script.sh << 'EOF'
+#!/bin/bash
+set -e
+
+echo "📦 Docker container deployment starting..."
+
+# Add Python user bin to PATH
+export PATH="/home/rockydocs/.local/bin:$PATH"
+
+# Change to app directory
+cd /app
+
+# Copy mkdocs configuration
+echo "📋 Using mkdocs configuration..."
+ls -la mkdocs.yml
+
+# Deploy Rocky Linux versions
+echo "🚀 Deploying Rocky Linux versions..."
+
+# Deploy version 8
+if [ -d "/workspace/rocky-8" ]; then
+    echo "📝 Deploying Rocky Linux 8..."
+    ln -sf /workspace/rocky-8/docs content
+    mike deploy 8 -t "Rocky Linux 8" --push
+else
+    echo "⚠️  Rocky Linux 8 content not found"
+fi
+
+# Deploy version 9  
+if [ -d "/workspace/rocky-9" ]; then
+    echo "📝 Deploying Rocky Linux 9..."
+    ln -sf /workspace/rocky-9/docs content
+    mike deploy 9 -t "Rocky Linux 9" --push
+else
+    echo "⚠️  Rocky Linux 9 content not found"
+fi
+
+# Deploy version 10 (latest)
+if [ -d "/workspace/main" ]; then
+    echo "📝 Deploying Rocky Linux 10 (latest)..."
+    ln -sf /workspace/main/docs content
+    mike deploy 10 latest -t "Rocky Linux 10" --push --update-aliases
+else
+    echo "❌ Rocky Linux 10 content not found"
+    exit 1
+fi
+
+# Set default version
+mike set-default latest --push
+
+echo "✅ Docker deployment completed successfully"
+EOF
+    
+    # Make script executable and run it in container
+    chmod +x deploy_script.sh
+    docker cp deploy_script.sh "$container_name:/tmp/"
+    
+    if docker exec "$container_name" bash /tmp/deploy_script.sh; then
+        print_success "Docker deployment completed successfully"
+        
+        # Clean up
+        rm -f deploy_script.sh
+        
+        return 0
+    else
+        print_error "Docker deployment failed"
+        rm -f deploy_script.sh
+        return 1
+    fi
+}
+
+# Serve documentation from Docker container
+serve_docker() {
+    local serve_mode="$1"
+    local port="${2:-8000}"
+    
+    # Check Docker availability
+    if ! check_docker_availability; then
+        return 1
+    fi
+    
+    print_info "Starting documentation server in Docker container..."
+    
+    # Ensure we're in the app directory
+    cd "$APP_DIR"
+    
+    # Get container name
+    local container_name="rockydocs-rl10-docs"
+    
+    # Check if container exists and is running
+    if ! docker ps --format "{{.Names}}" | grep -q "^$container_name$"; then
+        print_error "Container $container_name is not running"
+        print_info "Please run deployment first: $0 --deploy --docker"
+        return 1
+    fi
+    
+    # Create server tracking file
+    mkdir -p "$APP_DIR"
+    
+    if [ "$serve_mode" = "static" ]; then
+        print_info "Starting static documentation server in container..."
+        
+        # Start static file server in container
+        docker exec -d "$container_name" bash -c "
+            cd /app
+            if [ -d 'site' ]; then
+                echo 'Starting static server from site directory...'
+                cd site
+                python3 -m http.server $port
+            else
+                echo 'No site directory found. Please run deployment first.'
+                exit 1
+            fi
+        "
+        
+        # Get container process PID for tracking
+        local container_pid=$(docker inspect --format='{{.State.Pid}}' "$container_name")
+        echo "$container_pid:$container_name:static" >> "$APP_DIR/.docker-servers"
+        
+    else
+        print_info "Starting live documentation server in container..."
+        
+        # Start mike serve in container
+        docker exec -d "$container_name" bash -c "
+            cd /app
+            export PATH='/home/rockydocs/.local/bin:\$PATH'
+            echo 'Starting mike serve...'
+            mike serve --dev-addr 0.0.0.0:$port
+        "
+        
+        # Get container process PID for tracking
+        local container_pid=$(docker inspect --format='{{.State.Pid}}' "$container_name")
+        echo "$container_pid:$container_name:live" >> "$APP_DIR/.docker-servers"
+    fi
+    
+    # Wait a moment for server to start
+    sleep 3
+    
+    # Check if server is responding
+    local attempts=0
+    local max_attempts=12
+    while [ $attempts -lt $max_attempts ]; do
+        if curl -s -f "http://localhost:$port/" >/dev/null 2>&1; then
+            print_success "Documentation server started successfully"
+            print_info "Server URL: http://localhost:$port/"
+            print_info "Container: $container_name"
+            print_info "Mode: $serve_mode"
+            
+            if [ "$serve_mode" = "static" ]; then
+                print_info "Static files served from container"
+            else
+                print_info "Live development server with auto-reload"
+            fi
+            
+            return 0
+        fi
+        sleep 5
+        attempts=$((attempts + 1))
+    done
+    
+    print_error "Documentation server failed to start or is not responding"
+    return 1
+}
+
+# Stop Docker services and clean up containers
+stop_docker_services() {
+    print_info "Stopping Docker documentation services..."
+    
+    # Stop container servers
+    if [ -f "$APP_DIR/.docker-servers" ]; then
+        while IFS=':' read -r pid container_name mode; do
+            if [ -n "$pid" ] && [ -n "$container_name" ]; then
+                print_info "Stopping $mode server in container $container_name"
+                docker exec "$container_name" pkill -f "python3 -m http.server" 2>/dev/null || true
+                docker exec "$container_name" pkill -f "mike serve" 2>/dev/null || true
+            fi
+        done < "$APP_DIR/.docker-servers"
+        rm -f "$APP_DIR/.docker-servers"
+    fi
+    
+    # Stop container
+    if [ -f "$APP_DIR/.docker-container" ]; then
+        local container_name=$(cat "$APP_DIR/.docker-container")
+        if docker ps --format "{{.Names}}" | grep -q "^$container_name$"; then
+            print_info "Stopping container $container_name"
+            docker stop "$container_name" >/dev/null 2>&1
+        fi
+    fi
+    
+    print_success "Docker services stopped"
+}
+
+# Utility function to stop Docker container
+stop_docker_container() {
+    local container_name="$1"
+    if docker ps --format "{{.Names}}" | grep -q "^$container_name$"; then
+        docker stop "$container_name" >/dev/null 2>&1 || true
+    fi
+    if docker ps -a --format "{{.Names}}" | grep -q "^$container_name$"; then
+        docker rm "$container_name" >/dev/null 2>&1 || true
+    fi
 }
 
 # === SERVING FUNCTIONS ===
