@@ -11,9 +11,9 @@ tags:
 ## Prerequisites and assumptions
 
 - A Rocky Linux instance installed on a server, container, or virtual machine
-- Comfort with modifying configuration files from the command line with an editor (our examples here will use _vi_, but you can substitute your favorite editor)
+- Comfort with modifying configuration files from the command line with an editor (the examples here use `vi`, but you can substitute your favorite editor)
 - Some knowledge about web applications and setup
-- Our example will use the [Apache Sites Enabled](../web/apache-sites-enabled.md) for setup. Review that if necessary.
+- Uses the [Apache Sites Enabled](../web/apache-sites-enabled.md) for setup. Review that if necessary.
 - This document will use "example.com" as the domain name throughout
 - You must be root or able to `sudo` to elevate privileges
 - Assuming a fresh install of the operating system, however, that is not a requirement
@@ -28,7 +28,7 @@ DokuWiki is one of many wikis available, though it is a good one. One big pro is
 
 ## Installing dependencies
 
-The minimum PHP version for DokuWiki is now 7.2, which Rocky Linux 8 has by default. Because of the modules, Rocky Linux 8 can install up to version 8.2. Rocky Linux 9.0 has PHP version 8.0 by default and modules that allow up to 8.2. Note that some of the packages listed here might already exist:
+The minimum PHP version for DokuWiki is now 8. Rocky Linux 10 has PHP 8.3 by default. Note that some of the packages listed here might already exist:
 
 ```bash
 dnf install tar wget httpd php php-gd php-xml php-json php-mbstring
@@ -40,7 +40,7 @@ Accept and install any additional listed dependencies that come with these packa
 
 ### Apache configuration
 
-If you have read through the [Apache Sites Enabled](../web/apache-sites-enabled.md) procedure, you know that you need to create a few directories. Start with the _httpd_ configuration directory additions:
+If you have read through the [Apache Sites Enabled](../web/apache-sites-enabled.md) procedure, you know that you need to create a few directories. Start with the `httpd` configuration directory additions:
 
 ```bash
 mkdir -p /etc/httpd/{sites-available,sites-enabled}
@@ -87,7 +87,7 @@ That configuration file will be similar to this:
 </VirtualHost>
 ```
 
-Note that the "AllowOverride All" above allows the `.htaccess` (directory-specific security) file to work.
+Note that the "AllowOverride All" here allows the `.htaccess` (directory-specific security) file to work.
 
 Go ahead and link the configuration file into sites-enabled, but do not start web services as yet:
 
@@ -95,7 +95,7 @@ Go ahead and link the configuration file into sites-enabled, but do not start we
 ln -s /etc/httpd/sites-available/com.example /etc/httpd/sites-enabled/
 ```
 
-### Apache DocumentRoot
+### Apache _DocumentRoot_
 
 You need to create your _DocumentRoot_. Do this with:
 
@@ -111,15 +111,15 @@ In your server, change to the root directory.
 cd /root
 ```
 
-Since your environment is ready to go, get the latest stable version of DokuWiki. You can find this by going to [the download page](https://download.dokuwiki.org/), and on the left side of the page, under "Version," you will see "Stable (Recommended) (direct link)."
+Get the latest stable version of DokuWiki. You can find this by going to [the download page](https://download.dokuwiki.org/), and on the left side of the page, under "Version," you will see "Stable (Recommended) (direct link)."
 
-Right-click on the "(direct link)" portion of this and copy the link. In the console of your DokuWiki server, type `wget` and a space and then paste your copied link into the terminal. You should get something similar to this:
+Right-click the "(direct link)" and copy the link. In the console of your DokuWiki server, type `wget` and a space and then paste your copied link into the terminal. You should get something similar to this:
 
 ```bash
 wget https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz
 ```
 
-Before we decompress the archive, examine the contents with `tar ztf`:
+Before you decompress the archive, examine the contents with `tar ztf`:
 
 ```bash
 tar ztvf dokuwiki-stable.tgz
@@ -135,23 +135,23 @@ dokuwiki-2020-07-29/inc/lang/fr/recent.txt
 ... (more below)
 ```
 
-You do not want that leading named directory when decompressing the archive, so you will use some options with `tar` to exclude it. The first option is the "--strip-components=1" that removes the leading directory. The second option is the "-C" option, which tells `tar` where you want the archive decompressed. The decompression will be similar to this:
+You do not want that leading named directory when decompressing the archive, so use some options with `tar` to exclude it. The first option is the `--strip-components=1` that removes the leading directory. The second option is the `-C` option, which tells `tar` where you want the archive decompressed. The decompression will be similar to this:
 
 ```bash
 tar xzf dokuwiki-stable.tgz  --strip-components=1 -C /var/www/sub-domains/com.example/html/
 ```
 
-Once you have run this command, all of DokuWiki should be in your _DocumentRoot_.
+Once you run this command, all of DokuWiki should be in your _DocumentRoot_.
 
-You need to make a copy of the _.htaccess.dist_ file that came with DokuWiki and keep the old one there, in case you need to revert to the original.
+You need to make a copy of the `.htaccess.dist` file that came with DokuWiki, and keep the old one in case you need to revert to the original.
 
-In the process, you will change this file's name to _.htaccess_. This is what _apache_ will be looking for. To do this:
+In the process, you will change the name to `.htaccess`. This is what _apache_ will be looking for. To do this:
 
 ```bash
 cp /var/www/sub-domains/com.example/html/.htaccess{.dist,}
 ```
 
-You need to change ownership of the new directory and its files to the _apache_ user and group:
+Change ownership of the new directory and its files to the _apache_ user and group:
 
 ```bash
 chown -Rf apache.apache /var/www/sub-domains/com.example/html
@@ -159,15 +159,15 @@ chown -Rf apache.apache /var/www/sub-domains/com.example/html
 
 ## Setting up DNS or `/etc/hosts`
 
-Before you can access the DokuWiki interface, you must set the name resolution for this site. You can use your _/etc/hosts_ file for testing purposes.
+Before you can access the DokuWiki interface, you must set the name resolution for this site. You can use your `/etc/hosts` file for testing purposes.
 
-In this example, assume that DokuWiki will run on a private IPv4 address of 10.56.233.179. Assume you are also modifying the _/etc/hosts_ file on a Linux workstation. To do this, run:
+In this example, assume that DokuWiki will run on a private IPv4 address of 10.56.233.179. Assume you are also modifying the `/etc/hosts` file on a Linux workstation. To do this, run:
 
 ```bash
 sudo vi /etc/hosts
 ```
 
-Then change your host file to look similar to this (note the IP address above in the example):
+Then change your host file to look similar to this (note the IP address earlier in the example):
 
 ```bash
 127.0.0.1 localhost
@@ -186,7 +186,7 @@ Once you have finished testing and are ready to take things live for everyone, y
 
 ## Starting `httpd`
 
-Before you start _httpd_, test to make sure that your configuration is OK:
+Before you start `httpd`, test to make sure that your configuration is OK:
 
 ```bash
 httpd -t
@@ -198,7 +198,7 @@ You should get:
 Syntax OK
 ```
 
-If so, you should be ready to start _httpd_ and then finish the setup. Start by enabling _httpd_ to start on boot:
+If so, you should be ready to start `httpd` and then finish the setup. Start by enabling `httpd` to start on boot:
 
 ```bash
 systemctl enable httpd
@@ -218,7 +218,7 @@ The next step is to open up a web browser and type this in the address bar:
 
 This will bring you to the setup screen:
 
-- In the "Wiki Name" field, type the name for our wiki. Example "Technical Documentation"
+- In the "Wiki Name" field, type the name for your wiki. Example "Technical Documentation"
 - In the "Superuser" field, type the administrative username. Example "admin"
 - In the "Real name" field, type the real name of the administrative user
 - In the "E-Mail" field, type the email address of the administrative user
@@ -253,7 +253,7 @@ firewall-cmd --zone=trusted --add-service=http --add-service=https --permanent
 firewall-cmd --reload
 ```
 
-Once you have the above rules added and the `firewalld` service reloaded, list out your zone to make sure that everything is there that you need:
+Once you have these rules added and the `firewalld` service reloaded, list out your zone to make sure that everything is there that you need:
 
 ```bash
 firewall-cmd --zone=trusted --list-all
@@ -278,10 +278,10 @@ trusted (active)
   rich rules:
 ```
 
-### SSL
+### SSL/TLS
 
-You should consider using an SSL for encrypted web traffic for the best security. You can purchase an SSL from an SSL provider or use [Let's Encrypt](../security/generating_ssl_keys_lets_encrypt.md).
+You should consider using an SSL/TLS for encrypted web traffic for the best security. You can purchase an SSL/TLS certificate from an SSL/TLS provider or use [Let's Encrypt](../security/generating_ssl_keys_lets_encrypt.md).
 
 ## Conclusion
 
-Whether you need to document processes, company policies, program code, or something else, a wiki is a great way to do it. DokuWiki is a secure, flexible, easy-to-use product that is also relatively easy to install and deploy. It is also a stable project that has been around for many years.
+Whether you need to document processes, company policies, program code, or something else, a wiki is a great way to do it. DokuWiki is a secure, flexible, easy-to-use product that is also straightforward to install and deploy. It is also a stable project that has been around for many years.
