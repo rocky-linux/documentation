@@ -92,10 +92,9 @@ Ecco un elenco selezionato dei sottocomandi più comunemente utilizzati:
 Podman può eseguire quasi tutti i comandi Docker grazie alla sua interfaccia CLI simile.
 ```
 
-Se si deve usare un compose file, ricordarsi di installare il pacchetto `podman-compose` da EPEL:
+Se si deve usare un compose file, ricordarsi di installare il pacchetto `podman-compose`:
 
 ```bash
-dnf install epel-release
 dnf install podman-compose
 ```
 
