@@ -36,10 +36,6 @@ sudo firewall-cmd --reload
 
 ## Installing PHP
 
-!!! note
-
-    If you are running Rocky Linux 8.x or 9.x, substitute "8" or "9" next to the release in the Remi package install line. 
-
 To install PHP, you need first to install the EPEL (Extra Packages for Enterprise Linux):
 
 ```bash
