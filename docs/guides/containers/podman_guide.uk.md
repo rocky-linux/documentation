@@ -91,10 +91,9 @@ Available Commands:
 Podman може запускати майже будь-яку команду Docker завдяки подібному інтерфейсу CLI.
 ```
 
-Якщо вам потрібно використовувати файл створення, не забудьте встановити пакет `podman-compose` з EPEL:
+Якщо вам потрібно використовувати файл створення, не забудьте встановити пакет `podman-compose`:
 
 ```bash
-dnf install epel-release
 dnf install podman-compose
 ```
 
