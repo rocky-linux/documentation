@@ -2,13 +2,11 @@
 title: MariaDB Database Server
 author: Steven Spencer
 contributors: Ezequiel Bruni, William Perron, Ganna Zhyrnova, Joseph Brinkman
-tested_with: 8.5, 8.6, 9.0, 9.2
+tested_with: 8.5, 8.6, 9.0, 9.2, 10.0
 tags:
   - database
   - mariadb
 ---
-
-# MariaDB database server
 
 ## Prerequisites
 
@@ -46,26 +44,15 @@ Next, run this command:
 mysql_secure_installation
 ```
 
-!!! tip
-
-    The version of mariadb-server that comes enabled by default in Rocky Linux 8.5 is 10.3.32. You can install 10.5.13 by enabling the module:
-
-    ```bash
-    dnf module enable mariadb:10.5
-    ```
-
-    And then installing `mariadb`. As of version 10.4.6 of MariaDB, MariaDB specific commands are available that you can use instead of the old `mysql` prefixed commands. These include the previously mentioned `mysql_secure_installation` which can now be called with the MariaDB version `mariadb-secure-installation`.
-
 This brings up a dialog:
 
 ```text
 NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
       SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
 
-In order to log into MariaDB to secure it, you will need the current
-password for the root user.  If you have just installed MariaDB, and
-you have not set the root password yet, the password will be blank,
-so you should just press enter here.
+In order to log into MariaDB to secure it, we'll need the current
+password for the root user. If you've just installed MariaDB, and
+haven't set the root password yet, you should just press enter here.
 
 Enter current password for root (enter for none):
 ```
@@ -75,15 +62,25 @@ Since this is a brand-new installation, no root password is set. Just hit ++ente
 The next part of the dialog continues:
 
 ```text
-OK, successfully used password, moving on...
+Setting the root password or using the unix_socket ensures that nobody
+can log into the MariaDB root user without the proper authorisation.
 
-Setting the root password ensures that nobody can log into the MariaDB
-root user without the proper authorization.
+You already have your root account protected, so you can safely answer 'n'.
 
-Set root password? [Y/n]
+Switch to unix_socket authentication [Y/n]
 ```
 
-You absolutely *do* want to have a root password set. You'll want to figure out what this should be and document it in a password manager somewhere so that you can pull it up if necessary. Start by hitting ++enter++ to accept the default "Y". This will bring up the password dialog:
+Answer ++"n"++ and hit ++enter++
+
+```text
+You already have your root account protected, so you can safely answer 'n'.
+
+Change the root password? [Y/n]
+```
+
+Actually, you have not set a password for the root user **OR** used `unix_socket` authentication, so answer ++"Y"++ here and hit ++enter++.
+
+This will bring up the password dialog:
 
 ```text
 New password:
@@ -97,6 +94,8 @@ Password updated successfully!
 Reloading privilege tables..
  ... Success!
 ```
+
+Save this password in a password manager or safe storage location.
 
 Next the dialog deals with the anonymous user:
 
@@ -168,33 +167,6 @@ Thanks for using MariaDB!
 ```
 
 MariaDB will now be ready to use.
-
-### Rocky 9.x changes
-
-Rocky Linux 9.2 uses `mariadb-server-10.5.22` as the default mariadb-server version. As of version 10.4.3, a new plugin is automatically enabled in the server which changes the `mariadb-secure-installation` dialog. That plugin is `unix-socket` authentication. [This article](https://mariadb.com/kb/en/authentication-plugin-unix-socket/) explains the new feature well. Essentially, using unix-socket authentication uses the logged-in user's credentials to access the database. It makes it so that if the root user, for example, logs in and then uses `mysqladmin` to create or delete a database (or any other function) that no password is needed for access. Same works with `mysql`. It also means there is no password to compromise remotely. This depends on the security of the users set up on the server for all of the database protection.
-
-The second dialog during the `mariadb-secure-installation` after the password is set for the administrative user is:
-
-```text
-Switch to unix_socket authentication Y/n
-```
-
-The default here is "Y", but even if you answer "n", with the plugin enabled, a password is not requested for the user, at least not from the command line interface. You can specify either password or no password and they both work:
-
-```bash
-mysql
-
-MariaDB [(none)]>
-```
-
-```bash
-mysql -p
-Enter password:
-
-MariaDB [(none)]>
-```
-
-For more information on this feature, refer to the link above. There is a way to switch off this plugin and go back to having the password as a required field, which is also detailed within that link.
 
 ## Conclusion
 
