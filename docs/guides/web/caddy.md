@@ -2,14 +2,10 @@
 title: Caddy Web Server
 author: Neel Chauhan
 contributors: Steven Spencer, Ganna Zhyrnova
-tested_with: 9.3
+tested_with: 9.3, 10.0
 tags:
   - web
 ---
-
-!!! Warning "Temporary Hold"
-
-    `caddy` is currently missing from the EPEL. It will probably be built. The Docs Team will continue to test availability in the EPEL as time allows. For now, your only option is to build `caddy` from source, and the instructions for doing that are currently missing here.
 
 ## Introduction
 
@@ -48,6 +44,12 @@ Then, install the `epel-release` software repository:
 
 ```bash
 sudo dnf install -y epel-release
+```
+
+If you're running Rocky Linux 10, enable the Copr repository:
+
+```bash
+dnf copr enable @caddy/caddy
 ```
 
 Next, install the `caddy` web server:
