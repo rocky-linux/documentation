@@ -50,7 +50,9 @@ Ceci fait apparaître une boîte de dialogue :
 NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
       SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
 
-Pour se connecter à MariaDB et la sécuriser, nous aurons besoin du mot de passe actuel de l'utilisateur root. Si vous venez d'installer MariaDB et que vous n'avez pas encore défini le mot de passe root, appuyez simplement sur ++enter++.
+In order to log into MariaDB to secure it, we'll need the current
+password for the root user. If you've just installed MariaDB, and
+haven't set the root password yet, you should just press enter here.
 
 Enter current password for root (enter for none):
 ```
@@ -60,9 +62,10 @@ Comme il s'agit d'une toute nouvelle installation, aucun mot de passe root n'est
 La partie suivante du dialogue se poursuit :
 
 ```text
-La définition du mot de passe `root` ou l'utilisation d'`unix_socket` garantissent que personne ne peut se connecter à l'utilisateur root MariaDB sans l'autorisation appropriée.
+Setting the root password or using the unix_socket ensures that nobody
+can log into the MariaDB root user without the proper authorisation.
 
-Votre compte `root` est déjà protégé, vous pouvez donc répondre `n` en toute sécurité.
+You already have your root account protected, so you can safely answer 'n'.
 
 Switch to unix_socket authentication [Y/n]
 ```
@@ -70,7 +73,7 @@ Switch to unix_socket authentication [Y/n]
 Répondez ++"n"++ et appuyez sur ++enter++
 
 ```text
-Votre compte `root` est déjà protégé, vous pouvez donc répondre `n` en toute sécurité.
+You already have your root account protected, so you can safely answer 'n'.
 
 Change the root password? [Y/n]
 ```
@@ -97,7 +100,9 @@ Enregistrez ce mot de passe dans un gestionnaire de mots de passe ou dans un emp
 Ensuite, la boîte de dialogue traite de l’utilisateur anonyme :
 
 ```text
-Par défaut, une installation MariaDB possède un utilisateur anonyme, permettant à quiconque de se connecter à MariaDB sans avoir à créer de compte utilisateur. Ceci est uniquement destiné aux essais et à faciliter l'installation.  Vous devez les supprimer avant de passer à un environnement de production.
+By default, a MariaDB installation has an anonymous user, allowing anyone
+to log into MariaDB without having to have a user account created for
+them. Ceci est uniquement destiné aux essais et à faciliter l'installation.  Vous devez les supprimer avant de passer à un environnement de production.
 
 Remove anonymous users? [Y/n]
 ```
@@ -109,7 +114,7 @@ La boîte de dialogue passe à la section traitant de l'autorisation de connexio
 ```text
 ... Success!
 
-Normalement, `root` ne devrait être autorisé à se connecter qu'à partir de `localhost`.  Cela garantit que personne ne peut deviner le mot de passe `root` à partir du réseau.
+Normally, root should only be allowed to connect from 'localhost'.  Cela garantit que personne ne peut deviner le mot de passe `root` à partir du réseau.
 
 Disallow root login remotely? [Y/n]
 ```
@@ -122,7 +127,9 @@ La boîte de dialogue passe ensuite à la base de données `test` qui est automa
 ... Success!
 
 
-Par défaut, MariaDB est fournie avec une base de données nommée `test` à laquelle tout le monde peut accéder.  Ceci est également destiné uniquement aux tests et doit être supprimé avant de passer à un environnement de production.
+By default, MariaDB comes with a database named 'test' that anyone can
+access.  This is also intended only for testing, and should be removed
+before moving into a production environment.
 
 Remove test database and access to it? [Y/n]
 ```
@@ -149,7 +156,8 @@ Appuyez de nouveau sur ++enter++ pour ce faire. Si tout va bien, vous recevrez c
 
 Cleaning up...
 
-C'est terminé !  Si vous avez suivi toutes les étapes ci-dessus, votre installation MariaDB devrait maintenant être sécurisée.
+C'est terminé !  If you've completed all of the above steps, your MariaDB
+installation should now be secure.
 
 Thanks for using MariaDB!
 ```
