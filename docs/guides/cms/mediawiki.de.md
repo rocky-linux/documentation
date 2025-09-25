@@ -9,7 +9,7 @@ tags:
 
 ## Einleitung
 
-[MediaWiki](https://www.mediawiki.org/wiki/MediaWiki) ist eine beliebte Open-Source-Wiki-Software-Engine, die unter anderem Websites wie `Wikipedia`, `Fandom` und `wikiHow` unterstützt.
+[MediaWiki](https://www.mediawiki.org/wiki/MediaWiki) ist eine beliebte Open Source Wiki-Software-Engine, die unter anderem Websites wie `Wikipedia`, `Fandom` und `wikiHow` unterstützt.
 
 ## Voraussetzungen
 
