@@ -47,8 +47,8 @@ mysql_secure_installation
 Ceci fait apparaître une boîte de dialogue :
 
 ```text
-REMARQUE : L’EXÉCUTION DE TOUTES LES PARTIES DE CE SCRIPT EST RECOMMANDÉE POUR TOUS 
-      LES SERVEURS MariaDB EN PRODUCTION !  VEUILLEZ LIRE ATTENTIVEMENT CHAQUE ÉTAPE !
+NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
+      SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
 
 Pour se connecter à MariaDB et la sécuriser, nous aurons besoin du mot de passe actuel de l'utilisateur root. Si vous venez d'installer MariaDB et que vous n'avez pas encore défini le mot de passe root, appuyez simplement sur ++enter++.
 
