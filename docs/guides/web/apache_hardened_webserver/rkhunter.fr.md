@@ -2,10 +2,10 @@
 title: Rootkit Hunter
 author: Steven Spencer
 contributors: Ezequiel Bruni, Andrew Thiesen, Ganna Zhyrnova
-tested_with: 8.8, 9.2
+tested_with: "9.2"
 tags:
-  - server
-  - security
+  - serveur
+  - sécurité
   - rkhunter
 ---
 
@@ -15,80 +15,80 @@ tags:
 
 ## Introduction
 
-Rootkit Hunter (`rkhunter`) is a well known tool for checking vulnerabilities, rootkits, back doors, and possible local exploits on a server. It is possible to use it on _any_ server used for _any_ purpose. When tuned and automated, it can report any suspicious activity to the system administrator. This procedure outlines the installation, tuning, and use of Rootkit Hunter.
+Rootkit Hunter (`rkhunter`) est un outil bien connu pour vérifier les vulnérabilités, les rootkits, les portes dérobées et les éventuels exploits locaux sur un serveur. Il est possible de l'utiliser sur _n'importe quel_ serveur destiné à _n’importe_ quel usage. Une fois réglé et automatisé, il peut signaler toute activité suspecte à l'administrateur du système. Ce guide décrit l'installation, le réglage et l'utilisation de Rootkit Hunter.
 
-`rkhunter` is just one possible part of a hardened server setup. Use it alone or with other tools to maximize security.
+`rkhunter` n'est qu'un élément parmi d'autres d'une configuration de serveur web Apache renforcé. Utilisez-le seul ou avec d'autres outils pour maximiser la sécurité.
 
-## Prerequisites
+## Prérequis
 
-- Proficiency with a command-line editor (using `vi` in this example)
-- A comfort level with issuing commands from the command-line, viewing logs, and other general systems administrator duties
-- An understanding of what can trigger a response to changed files on the file system (such as package updates) is helpful
-- Running all commands as root or as a regular user with `sudo`
+- Maîtrise d'un éditeur de ligne de commande (nous utilisons `vi` dans nos exemples)
+- Être à l'aise avec la saisie de commandes à partir de la ligne de commande, la consultation de journaux et d'autres tâches générales d'administrateur de systèmes
+- Il est utile de comprendre ce qui peut déclencher une réponse à des fichiers modifiés sur le système de fichiers (comme les mises à jour de paquets)
+- Exécuter toutes les commandes en tant que root ou en tant qu'utilisateur normal avec `sudo`
 
-This document was originally written in conjunction with the apache hardened web server routines, but works equally well on a server running any software.
+Ce document a été écrit à l'origine en conjonction avec les routines du serveur web Apache renforcé, mais il fonctionne également sur un serveur utilisant n'importe quel logiciel.
 
-## General steps
+## Étapes Générales
 
-1. install `rkhunter`
-2. configure `rkhunter`
-3. configure email and ensure it will work correctly
-4. run `rkhunter` manually to generate a list of warnings to test your email settings (`rkhunter --check`)
-5. run `rkhunter --propupd` to generate a clean `rkhunter.dat` file that `rkhunter` will use from this point forward as a baseline for further checks.
+1. installer `rkhunter`
+2. configurer `rkhunter`
+3. configurer le courrier électronique et s'assurer qu'il fonctionne correctement
+4. exécuter `rkhunter` manuellement pour générer une liste d'avertissements afin de tester vos paramètres de messagerie`(rkhunter --check`)
+5. exécuter `rkhunter --propupd` pour générer un fichier `rkhunter.dat` que `rkhunter` utilisera à partir de maintenant comme base de référence pour les vérifications ultérieures.
 
-## Installing `rkhunter`
+## Installation de `rkhunter`
 
-`rkhunter` requires the EPEL (Extra Packages for Enterprise Linux) repository. Install that repository if you do not have it installed already:
+`rkhunter` nécessite le dépôt EPEL (Extra Packages for Enterprise Linux). Installez ce référentiel si ce n'est pas déjà fait :
 
 ```bash
 dnf install epel-release
 ```
 
-Install `rkhunter`:
+Installez `rkhunter` :
 
 ```bash
 dnf install rkhunter
 ```
 
-## Configuring `rkhunter`
+## Configuration de `rkhunter`
 
-The only configuration options that you _need_ to set are those dealing with mailing reports to the Administrator.
+Les seules options de configuration que vous _devez_ définir sont celles qui concernent l'envoi des rapports à l'administrateur.
 
 !!! warning
 
-    Modification of _any_ configuration file in Linux carries risk. Before altering **any** configuration file in Linux, creating a backup of the _original_ file is recommended.
+    La modification de _tout_ fichier de configuration sous Linux comporte certains risques. Avant de modifier **n'importe quel** fichier de configuration sous Linux, il est recommandé de créer une sauvegarde du fichier de configuration _original_, au cas où vous devriez revenir à la configuration originale.
 
-To change the configuration file, run:
+Pour modifier le fichier de configuration, exécutez la commande suivante :
 
 ```bash
 vi /etc/rkhunter.conf
 ```
 
-Search for:
+Recherche de :
 
 ```bash
-#MAIL-ON-WARNING=me@mydomain   root@mydomain
+#MAIL-ON-WARNING=me@mydomain root@mydomain
 ```
 
-Remove the remark here and change the `me@mydomain.com` to reflect your email address.
+Supprimez la marque de commentaire et modifiez l'`adresse me@mydomain.com` pour qu'elle corresponde à votre adresse électronique.
 
-Change the `root@mydomain` to `root@whatever_the_server_name_is`.
+Remplacez `root@mydomain` par `root@whatever_the_server_name_is`.
 
-You will probably also want to remove the remark (and edit the line to fit your needs) from the `MAIL-CMD` line:
+Vous voudrez probablement décommenter (et modifier en fonction de vos besoins) la ligne `MAIL-CMD` :
 
 ```bash
-MAIL_CMD=mail -s "[rkhunter] Warnings found for ${HOST_NAME}"
+MAIL_CMD=mail -s "[rkhunter] Avertissements trouvés pour ${HOST_NAME}"
 ```
 
-You might also need to setup [Postfix Email for Reporting](../../email/postfix_reporting.md) to get the email section to work correctly.
+Il se peut que vous deviez également configurer [les courriels de rapport Postfix](../../email/postfix_reporting.md) pour que la section e-mail fonctionne correctement.
 
-## Running `rkhunter`
+## Exécution de `rkhunter`
 
-Run `rkhunter` manually by typing it at the command-line. A cron job takes care of running `rkhunter` for you automatically in `/etc/cron.daily`. If you want to automate the procedure on a different schedule, examine [Automating cron jobs guide](../../automation/cron_jobs_howto.md).
+Exécutez `rkhunter` manuellement en saisissant la ligne de commande. Un job cron se charge de lancer `rkhunter` pour vous automatiquement dans `/etc/cron.daily`. Si vous souhaitez automatiser la procédure selon un calendrier différent, consultez le guide [Automatisation des tâches cron](../../automation/cron_jobs_howto.md).
 
-You will also need to move the script somewhere other than `/etc/cron.daily/`, such as `/usr/local/sbin/` and call it from your custom cron job. The easiest method is to leave the default `cron.daily` setup intact.
+Vous devrez également déplacer le script ailleurs que dans `/etc/cron.daily/`, par exemple dans `/usr/local/sbin/` et l'appeler à partir de votre tâche cron personnalisée. La méthode la plus simple consiste à laisser intacte la configuration par défaut de `cron.daily`.
 
-If you want to test `rkhunter` before you start, including all email functionality, run `rkhunter --check` from the command line. If installed and functioning correctly, you should receive an output similar to the following:
+Si vous souhaitez tester `rkhunter` avant de commencer, y compris toutes les fonctionnalités de messagerie, exécutez `rkhunter --check` à partir de la ligne de commande. S'il est installé et fonctionne correctement, vous devriez recevoir un message similaire à celui qui suit :
 
 ```bash
 [root@sol admin]# rkhunter --check
@@ -244,7 +244,7 @@ Performing file properties checks
 [Press <ENTER> to continue]
 ```
 
-Hold off completing the remaining steps if problems exist with the email setup. When confirming email works, but before allowing `rkhunter` to run automatically, run the command manually again with the "--propupd" flag to create the `rkhunter.dat` file. This ensures recognition of your environment and configuration:
+Si la configuration du courrier électronique pose des problèmes, ne passez pas à l'étape suivante. Lorsque la confirmation du courrier électronique fonctionne, mais avant d'autoriser l'exécution automatique de `rkhunter`, exécutez à nouveau la commande manuellement avec l'option "--propupd" pour créer le fichier `rkhunter.dat`. Cela permet de reconnaître votre environnement et votre configuration :
 
 ```bash
 rkhunter --propupd
@@ -252,4 +252,4 @@ rkhunter --propupd
 
 ## Conclusion
 
-`rkhunter` is one part of a hardened server strategy that can help monitor the file system and report any issues to the administrator. It is perhaps one of the easiest hardening tools to install, configure, and run.
+`rkhunter` fait partie d'une stratégie de serveur renforcé qui peut aider à surveiller le système de fichiers et à signaler tout problème à l'administrateur. C'est peut-être l'un des outils de renforcement les plus faciles à installer, à configurer et à utiliser.
