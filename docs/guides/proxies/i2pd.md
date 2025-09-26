@@ -87,4 +87,4 @@ Now, you are able to browse I2P eepsites. As an example, navigate to `http://pla
 
 ## Conclusion
 
-With so many internet users concerned about online privacy, I2P is ony way to access hidden websites securely. `i2pd` is lightweight software which makes browsing I2P websites possible, alongside sharing your connection as an relay.
+With so many internet users concerned about online privacy, I2P is one way to access hidden websites securely. `i2pd` is lightweight software which makes browsing I2P websites possible, alongside sharing your connection as an relay.
