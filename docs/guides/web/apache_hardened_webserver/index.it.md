@@ -35,7 +35,6 @@ Potreste utilizzare un paio di questi strumenti e non gli altri. Per chiarezza e
 * Un buon firewall con filtro dei pacchetti basato sulle porte (iptables, firewalld o firewall hardware - per gli esempi utilizzeremo `firewalld`).  Vedere la procedura di `firewalld` più avanti in questo documento.
 * Un sistema di rilevamento delle intrusioni basato su host (HIDS), in questo caso _ossec-hids_ [Apache Hardened Web Server - ossec-hids](ossec-hids.md)
 * Un firewall per applicazioni basate sul Web (WAF), con regole `mod_security` [Apache Hardened Web Server - mod_security](modsecurity.md)
-* Rootkit Hunter`(rkhunter`): Uno strumento di scansione che controlla il malware Linux [Apache Hardened Web Server - rkhunter](rkhunter.md)
 * Sicurezza del database (utilizzeremo qui `mariadb-server` ) [Server di database MariaDB](../../database/database_mariadb-server.md)
 * Un server FTP o SFTP sicuro (utilizzeremo `vsftpd` qui) [Server FTP sicuro - vsftpd](../../file_sharing/secure_ftp_server_vsftpd.md) Potete anche utilizzare le [procedure di blocco_sftp_ e SSH qui](../../file_sharing/sftp.md)
 
