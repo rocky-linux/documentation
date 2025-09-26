@@ -35,7 +35,6 @@ You might use a couple of these tools and not the others. For clarity and readab
 * A good packet filter firewall based on ports (iptables, firewalld, or hardware firewall - using `firewalld` for our examples)  See the `firewalld` procedure later in this document.
 * A Host-based Intrusion Detection System (HIDS), in this case _ossec-hids_ [Apache Hardened Web Server - ossec-hids](ossec-hids.md)
 * A Web-based Application Firewall (WAF), with `mod_security` rules [Apache Hardened Web Server - mod_security](modsecurity.md)
-* Rootkit Hunter (`rkhunter`): A scan tool that checks against Linux malware [Apache Hardened Web Server - rkhunter](rkhunter.md)
 * Database security (using `mariadb-server` here) [MariaDB Database Server](../../database/database_mariadb-server.md)
 * A secure FTP or SFTP server (using `vsftpd` here) [Secure FTP Server - vsftpd](../../file_sharing/secure_ftp_server_vsftpd.md) You can also use [_sftp_ and SSH lock down procedures here](../../file_sharing/sftp.md)
 
