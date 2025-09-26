@@ -19,10 +19,10 @@ Rootkit Hunter (`rkhunter`) est un outil bien connu pour vérifier les vulnérab
 
 ## Prérequis
 
-* Maîtrise d'un éditeur de ligne de commande (nous utilisons `vi` dans nos exemples)
-* Être à l'aise avec la saisie de commandes à partir de la ligne de commande, la consultation de journaux et d'autres tâches générales d'administrateur de systèmes
-* Il est utile de comprendre ce qui peut déclencher une réponse à des fichiers modifiés sur le système de fichiers (comme les mises à jour de paquets)
-* Exécuter toutes les commandes en tant que root ou en tant qu'utilisateur normal avec `sudo`
+- Maîtrise d'un éditeur de ligne de commande (nous utilisons `vi` dans nos exemples)
+- Être à l'aise avec la saisie de commandes à partir de la ligne de commande, la consultation de journaux et d'autres tâches générales d'administrateur de systèmes
+- Il est utile de comprendre ce qui peut déclencher une réponse à des fichiers modifiés sur le système de fichiers (comme les mises à jour de paquets)
+- Exécuter toutes les commandes en tant que root ou en tant qu'utilisateur normal avec `sudo`
 
 Ce document a été écrit à l'origine en conjonction avec les routines du serveur web Apache renforcé, mais il fonctionne également sur un serveur utilisant n'importe quel logiciel.
 
@@ -42,7 +42,7 @@ Ce document a été écrit à l'origine en conjonction avec les routines du serv
 dnf install epel-release
 ```
 
-Installer `rkhunter` :
+Installez `rkhunter` :
 
 ```bash
 dnf install rkhunter
@@ -52,7 +52,7 @@ dnf install rkhunter
 
 Les seules options de configuration que vous _devez_ définir sont celles qui concernent l'envoi des rapports à l'administrateur.
 
-!!! warning "Avertissement"
+!!! warning
 
     La modification de _tout_ fichier de configuration sous Linux comporte certains risques. Avant de modifier **n'importe quel** fichier de configuration sous Linux, il est recommandé de créer une sauvegarde du fichier de configuration _original_, au cas où vous devriez revenir à la configuration originale.
 
