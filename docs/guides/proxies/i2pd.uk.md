@@ -1,7 +1,7 @@
 ---
 title: Анонімна мережа i2pd
 author: Neel Chauhan
-contributors: null
+contributors:
 tested_with: 9.3
 tags:
   - proxy
