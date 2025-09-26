@@ -2,14 +2,16 @@
 title: Rootkit Hunter
 author: Steven Spencer
 contributors: Ezequiel Bruni, Andrew Thiesen, Ganna Zhyrnova
-tested_with: 8.8, 9.2
+tested_with: "8.8"
 tags:
   - serveur
   - sécurité
   - rkhunter
 ---
 
-# Rootkit Hunter
+!!! warning "le projet `rkhunter` est arrêté depuis 2018"
+
+    Bien qu'il soit toujours possible d'installer `rkhunter` dans Rocky Linux 8, le projet est fonctionnellement obsolète, tout développement ayant été arrêté en 2018. Votre meilleur pari pour la sécurité du serveur est de maintenir un bon pare-feu et une bonne philosophie de sécurité, en utilisant d'autres outils de renforcement disponibles.
 
 ## Introduction
 
