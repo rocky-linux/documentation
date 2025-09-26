@@ -9,7 +9,9 @@ tags:
   - rkhunter
 ---
 
-# Rootkit Hunter
+!!! Warning "`rkhunter` is a dead project as of 2018"
+
+    While it is still possible to install `rkhunter` in Rocky Linux 8, the project is functionally dead, with all development halting in 2018. Your best bet for server security is to maintain a good firewall and security philosophy, using other available hardening tools.
 
 ## Introduction
 
