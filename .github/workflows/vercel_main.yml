@@ -1,13 +1,14 @@
 # V1: Simple Deploy Hook
-# Triggers vercel builds for changes to rocky-8 branch content.
+# Triggers vercel builds 
 
-name: Trigger Vercel Deploy (v1 - Simple Hook)
+name: Trigger Vercel Deploy - main branch
 
 on:
   push:
     branches:
+      - main
       - rocky-8
-
+      - rocky-9
 
 jobs:
   trigger-deploy:
