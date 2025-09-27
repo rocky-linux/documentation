@@ -35,7 +35,6 @@ tags:
 * Хороший брандмауер фільтрації пакетів на основі портів (iptables, firewalld або апаратний брандмауер - використання `firewalld` для наших прикладів) Дивіться процедуру `firewalld` далі в цьому документі.
 * Система виявлення вторгнень на основі хосту (HIDS), у цьому випадку _ossec-hids_ [Apache Hardened Web Server - ossec- ховається](ossec-hids.md)
 * Брандмауер веб-додатків (WAF) із правилами `mod_security` [Apache Hardened Web Server - mod_security](modsecurity.md)
-* Rootkit Hunter (`rkhunter`): інструмент сканування, який перевіряє Linux на зловмисне програмне забезпечення [Apache Hardened Web Server - rkhunter](rkhunter.md)
 * Безпека бази даних (тут використовується `mariadb-server`) [Сервер бази даних MariaDB](../../database/database_mariadb-server.md)
 * Захищений сервер FTP або SFTP (тут використовуючи `vsftpd`) [Захищений сервер FTP - vsftpd](../../file_sharing/secure_ftp_server_vsftpd.md) Ви також можете використовувати [_sftp_ і процедури блокування SSH тут](../../file_sharing/sftp.md)
 

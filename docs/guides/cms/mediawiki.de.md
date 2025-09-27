@@ -9,7 +9,7 @@ tags:
 
 ## Einleitung
 
-[MediaWiki](https://www.mediawiki.org/wiki/MediaWiki) ist eine beliebte Open-Source-Wiki-Software-Engine, die unter anderem Websites wie `Wikipedia`, `Fandom` und `wikiHow` unterstützt.
+[MediaWiki](https://www.mediawiki.org/wiki/MediaWiki) ist eine beliebte Open Source Wiki-Software-Engine, die unter anderem Websites wie `Wikipedia`, `Fandom` und `wikiHow` unterstützt.
 
 ## Voraussetzungen
 
@@ -35,10 +35,6 @@ sudo firewall-cmd --reload
 ```
 
 ## PHP-Installation
-
-!!! note
-
-    Wenn Sie Rocky Linux 8.x oder 9.x ausführen, ersetzen Sie in der Installationszeile des Remi-Pakets neben der Version „8“ oder „9“.
 
 Um `PHP` zu installieren, müssen Sie zuerst EPEL (Extra Packages for Enterprise Linux) installieren:
 
