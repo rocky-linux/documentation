@@ -307,15 +307,51 @@ RFC specifies that when multiple Extension Headers are used in the same datagram
 
 Except for the Destination Option Header which may appear once or twice (once before the Routing Extension Header and once before the Upper-layer Protocol Header), all other Extension Headers can only appear once.
 
-### DNS Domain
+### DNS
 
-Client machines can be part of a DNS (**Domain Name System**, e.g., `mydomain.lan`) domain.
+**DNS (Domain Name System)**: The TCP/IP protocol family provides the ability to connect to devices through IP addresses, but it is quite difficult for users to remember the IP address of a device. Therefore, a string based host naming mechanism has been specifically designed, where these hostnames correspond to the IP address. There needs to be a conversion and query mechanism between IP addresses and hostnames, and the system that provides this mechanism is the Domain Name System (DNS). The process of "translating" a domain name into an IP address is called **Domain Name Resolution**.
 
-The fully qualified machine name (**FQDN**) becomes `pc-rocky.mydomain.lan`.
+Please note the difference between hostname and domain name:
 
-A set of computers can be grouped into a logical, name-resolving, set called a DNS domain. A DNS domain is not, of course, limited to a single physical network.
+* Hostname - It is used to uniquely identify devices within a LAN (Local Area Network) or as part of a domain name (for example `docs`)
+* Domain name - Used to uniquely identify devices on the WAN (Wide Area Network). For example `docs.rockylinux.org`, where `rockylinux.org` is the Domain name of the Domain
 
-In order for a computer to be part of a DNS domain, it must be given a DNS suffix (here `mydomain.lan`) as well as servers that it can query.
+!!! tip
+
+    Domain does not represent a specific host
+
+**Q: Why is DNS needed?**
+
+In the early days of the Internet, to remember the correspondence between hostnames and IP addresses, all the correspondence had to be written into a file, and users had to manually maintain the file content. With the vigorous development of the Internet, the main problems that need to be solved are:
+
+* A single file only takes effect on the computer currently in use
+* Manually maintaining file content is becoming increasingly difficult
+
+To solve the problems that emerged, people developed DNS, whose advantages are:
+
+* Distributed - DNS servers available for users all over the world
+* Hierarchical management - Divide the hierarchy for easier management. As shown in the following figure:
+
+    ![](./images/domain.png)
+
+For the root domain, it is commonly referred to as having thirteen root domain servers worldwide. A more standardized expression:
+
+> "The global DNS root server system is logically architected around 13 canonical endpoints (a.root-servers.net through m.root-servers.net), a design rooted in historical protocol constraints. Physically, these endpoints are implemented through over 1,500 anycast-instanced servers distributed worldwide, operated by 13 independent organizations under ICANN/IANA coordination."
+
+For `docs.rockylinux.org.`:
+
+* **Root Domain** - It refers to a point (`.`).
+* **First-level domain** - It refers to the string `org`. There is a lot of controversy about the division of first-level domains, for example, some document materials classify `.org` or `org.` as first-level domains.
+* **Second-level domain** - It refers to the string `rockylinux`. There is a lot of controversy about the division of second-level domains, for example, some document materials `rockylinux.org.` or `.rockylinux.org.` as second-level domains.
+* **hostname** -  It refers to the string `docs`.
+
+**FQDN (Fully Qualified Domain Name)**: A complete domain name consisting of a hostname and various levels of domains. According to the RPC standard (RFC 1034, RFC 2181, RFC 8499), the root domain at the end is industry standard (for example `docs.rockylinux.org.`). In the configuration files of some DNS software, a standard FQDN must be entered, but the root domain can be ignored when accessing certain network resources (for example, when a user visits `https://docs.rockylinux.org`, the browser will automatically add a dot to the end).
+**Domain name**: A structure that connects domains at all levels and starts with a hostname.
+**Zone**: Represents a contiguous portion of the DNS namespace managed by a specific authoritative server, which stores all the FQDN resolution records (such as A, MX, etc.) within that scope.
+
+!!! tip
+
+    Generally speaking, "FQDN" is more effective in expressing the meaning of an author's document than "domain name", as readers from different industries have different understandings of the term "domain name". For example, for `rockylinux.org`, some readers may interpret it as a domain name, but this is actually incorrect. Strictly speaking, this should be referred to as a domain (rather than a domain name). Therefore, in order to enhance rigor, readers are requested to strictly distinguish the meanings of domains and domain names.
 
 ### Reminder of the OSI model
 
