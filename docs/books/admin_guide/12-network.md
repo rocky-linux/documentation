@@ -345,7 +345,7 @@ For `docs.rockylinux.org.`:
 * **Second-level domain** - It refers to the string `rockylinux`. There is a lot of controversy about the division of second-level domains, for example, some document materials `rockylinux.org.` or `.rockylinux.org.` as second-level domains.
 * **hostname** -  It refers to the string `docs`.
 
-**FQDN (Fully Qualified Domain Name)**: A complete domain name consisting of a hostname and various levels of domains. According to the RPC standard (RFC 1034, RFC 2181, RFC 8499), the root domain at the end is industry standard (for example `docs.rockylinux.org.`). In the configuration files of some DNS software, a standard FQDN must be entered, but the root domain can be ignored when accessing certain network resources (for example, when a user visits `https://docs.rockylinux.org`, the browser will automatically add a dot to the end).
+**FQDN (Fully Qualified Domain Name)**: A complete domain name consisting of a hostname and various levels of domains. According to the RFC standard (RFC 1034, RFC 2181, RFC 8499), the root domain at the end is industry standard (for example `docs.rockylinux.org.`). In the configuration files of some DNS software, a standard FQDN must be entered, but the root domain can be ignored when accessing certain network resources (for example, when a user visits `https://docs.rockylinux.org`, the browser will automatically add a dot to the end).
 **Domain name**: A structure that connects domains at all levels and starts with a hostname.
 **Zone**: Represents a contiguous portion of the DNS namespace managed by a specific authoritative server, which stores all the FQDN resolution records (such as A, MX, etc.) within that scope.
 
