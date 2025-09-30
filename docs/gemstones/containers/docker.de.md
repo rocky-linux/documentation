@@ -13,15 +13,19 @@ Die Docker-Engine kann zum Ausführen nativer Container-Workloads im Docker-Stil
 
 ## Docker-Repository hinzufügen
 
-Benutzen Sie das `dnf`-Tool, um das Docker Repository zu Ihrem Rocky Linux Server hinzuzufügen. Geben Sie bitte Folgendes ein:
+!!! note "Anmerkung"
+
+    Docker v28 verfügt derzeit nicht über ein RHEL 10-Repository, daher verwenden wir das CentOS-Repository.
+
+Verwenden Sie das Dienstprogramm `dnf`, um das Docker-Repository zu Ihrem Rocky Linux-Server hinzuzufügen. Geben Sie bitte Folgendes ein:
 
 ```bash
-sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 ```
 
 ## Benötigte Pakete installieren
 
-Installieren der neuesten Version von Docker Engine, `containerd` und Docker Compose:
+Installation der neuesten Version von Docker Engine, `containerd` und Docker Compose:
 
 ```bash
 sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
@@ -29,7 +33,7 @@ sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin d
 
 ## Starten und aktivieren vom Systemd-Docker-Dienst (`dockerd`)
 
-Benutzen Sie das Tool `systemctl` um den Dockerd-Daemon so zu konfigurieren, dass er automatisch mit dem nächsten System-Neustart ausgeführt wird und gleichzeitig für die aktuelle Sitzung gestartet wird. Geben Sie bitte Folgendes ein:
+Verwenden Sie `systemctl`, um Docker so zu konfigurieren, dass es beim Neustart automatisch gestartet wird, und starten Sie es gleichzeitig jetzt. Geben Sie bitte Folgendes ein:
 
 ```bash
 sudo systemctl --now enable docker
@@ -39,7 +43,7 @@ sudo systemctl --now enable docker
 
 Fügen Sie der Gruppe `docker` einen Nicht-Root-Benutzer hinzu, um dem Benutzer die Verwaltung von `docker` ohne `sudo` zu ermöglichen.
 
-Dies ist ein optionaler Schritt, er kann jedoch praktisch sein, wenn Sie der Hauptbenutzer des Systems sind oder wenn Sie mehreren Benutzern die Verwaltung von Docker gestatten möchten, ihnen jedoch keine `sudo`-Berechtigungen erteilen möchten.
+Dies ist ein optionaler Schritt, der jedoch praktisch sein kann, wenn Sie der Hauptbenutzer des Systems sind oder wenn Sie mehreren Benutzern die Verwaltung von Docker gestatten möchten, ihnen jedoch keine `sudo`-Berechtigungen erteilen möchten.
 
 Geben Sie bitte Folgendes ein:
 
