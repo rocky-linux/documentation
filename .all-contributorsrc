@@ -1097,6 +1097,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "james-smith-za",
+      "name": "James Smith",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10864691?v=4",
+      "profile": "https://github.com/james-smith-za",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
