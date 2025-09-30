@@ -102,6 +102,10 @@ Run a [Nextcloud](https://nextcloud.com/) self-hosted cloud platform as an examp
 podman run -d -p 8080:80 nextcloud
 ```
 
+!!! note
+
+    Out of the box, Rocky Linux has `firewalld` enabled, and may block port 8080. Follow [the guide](../../security/firewalld-beginners/) to open up the port in order to be able to access the service.
+
 You will receive a prompt to select the container registry to download from. In our example, you will use `docker.io/library/nextcloud:latest`.
 
 Once you have downloaded the Nextcloud image, it will run.
