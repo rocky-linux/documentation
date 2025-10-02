@@ -78,7 +78,7 @@ mysql_secure_installation
 Lorsqu'on vous demande le mot de passe `root`, appuyez sur ++enter++ :
 
 ```bash
-Entrez le mot de passe actuel pour root (++enter++ pour aucun) :
+Enter current password for root (++enter++ for none):
 ```
 
 Répondez ++"n"++ à l'authentification `unix_socket` :
