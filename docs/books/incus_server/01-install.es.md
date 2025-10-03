@@ -1,5 +1,5 @@
 ---
-title: 1 Installazione e Configurazione
+title: 1 Install and Configuration
 author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
@@ -9,43 +9,43 @@ tags:
   - incus install
 ---
 
-Nel corso di questo capitolo, è necessario essere l'utente root o essere in grado di eseguire con i privilegi di root con _sudo_.
+Throughout this chapter, you must be the root user or be able to _sudo_ to root.
 
-## Installare i repository EPEL e OpenZFS
+## Instalar EPEL y OpenZFS Repositorios
 
-Incus richiede il repository EPEL (Extra Packages for Enterprise Linux), il quale è facile da installare:
+Incus requiere el repositorio de EPEL (Extra Packages for Enterprise Linux) el cual se instala con el siguiente comando:
 
 ```bash
 dnf install epel-release -y
 ```
 
-Una volta installato, verificare che non vi siano aggiornamenti:
+Cuando se termine de instalar se tiene que verificar si hay actualizaciones:
 
 ```bash
 dnf upgrade
 ```
 
-Se durante il processo di aggiornamento sono stati effettuati aggiornamenti del kernel, riavviare il server.
+Si es que hubo, se tiene que reiniciar el servidor.
 
 ### OpenZFS repository
 
-Installare il repository OpenZFS con:
+Install the OpenZFS repository with:
 
 ```bash
 dnf install https://zfsonlinux.org/epel/zfs-release-2-2$(rpm --eval "%{dist}").noarch.rpm
 ```
 
-## Installazione di `dkms`, `vim` e `kernel-devel`
+## Install `dkms`, `vim`, and `kernel-devel`
 
-Installare alcuni pacchetti necessari:
+Install some needed packages:
 
 ```bash
 dnf install dkms vim kernel-devel bash-completion
 ```
 
-## Installazione di `Incus`
+## Instalar Incus
 
-È necessario il repository CRB, disponibile per alcuni pacchetti speciali, e il COPR (Cool Other Package Repo) di Neil Hanlon:
+You will need the CRB repository available for some special packages and Neil Hanlon's COPR (Cool Other Package Repo):
 
 ```bash
 dnf config-manager --enable crb
@@ -53,35 +53,35 @@ dnf copr enable neil/incus
 dnf install incus incus-tools
 ```
 
-Abilitare ed attivare il serivzio:
+Enable and start the service:
 
 ```bash
 systemctl enable incus --now
 ```
 
-Riavviare il server prima di continuare.
+Reboot the server before continuing here.
 
-## Installare OpenZFS
+## Instalar OpenZFS
 
 ```bash
 dnf install zfs
 ```
 
-## Impostazione dell'ambiente
+## Environment set up
 
-Per eseguire molti container sono necessarie diverse impostazioni del kernel del server. Se si presume fin dall'inizio che si utilizzerà il server in produzione, è necessario apportare queste modifiche in anticipo per evitare errori come "Too many open files".
+More than most server kernel settings is required to run many containers. If you assume from the beginning that you will use your server in production, you need to make these changes up front to avoid errors such as "Too many open files" from occurring.
 
-Fortunatamente, modificare le impostazioni di Incus non è difficile, basta modificare alcuni file e riavviare il sistema.
+Luckily, tweaking the settings for Incus is not hard with a few file modifications and a reboot.
 
-### Modifica di `limits.conf`
+### Modifying `limits.conf`
 
-Il primo file da modificare è il file `limits.conf`. Questo file è autodocumentato. Esaminate le spiegazioni nei commenti del file per capire cosa fa questo file. Per effettuare le modifiche, digitare:
+The first file you must change is the `limits.conf` file. This file is self-documented. Examine the explanations in the comment in the file to understand what this file does. To make your modifications, enter:
 
 ```bash
 vi /etc/security/limits.conf
 ```
 
-L'intero file è costituito da commenti e, in fondo, mostra le impostazioni predefinite correnti. È necessario aggiungere le impostazioni personalizzate nello spazio vuoto sopra il marcatore di fine file (#End of file). Una volta completato, il file avrà il seguente aspetto:
+This entire file consists of comments and, at the bottom, shows the current default settings. You need to add our custom settings in the blank space above the end of the file marker (#End of file). The end of the file will look like this when completed:
 
 ```text
 # Modifications made for LXD
@@ -94,19 +94,19 @@ root            hard    nofile           1048576
 *               hard    memlock          unlimited
 ```
 
-Salvare le modifiche e uscire (++shift+colon+"w ‘+’q ”+exclam++ per _vi_).
+Save your changes and exit (++shift+colon+"w"+"q"+exclam++ for _vi_).
 
-### Modifica di `sysctl.conf` con `90-incus-override.conf`
+### Modifying `sysctl.conf` with `90-incus-override.conf`
 
-Con _systemd_, è possibile modificare la configurazione di sistema e le opzioni del kernel _senza_ modificare il file di configurazione principale. Le impostazioni vanno invece inserite in un file separato che sovrascrive le impostazioni specifiche necessarie.
+With _systemd_, you can change your system's overall configuration and kernel options _without_ modifying the main configuration file. Instead, put your settings in a separate file that will override the particular settings you need.
 
-Per apportare queste modifiche al kernel, si deve creare un file chiamato `90-incus-override.conf` in `/etc/sysctl.d`. Per fare ciò, digitare il seguente comando:
+To make these kernel changes, you will create a file called `90-incus-override.conf` in `/etc/sysctl.d`. To do this, type the following:
 
 ```bash
 vi /etc/sysctl.d/90-incus-override.conf
 ```
 
-Inserite il seguente contenuto nel file. Se vi state chiedendo cosa state facendo, il contenuto del file è autodocumentante:
+Place the following content in that file. Note that if you are wondering what you are doing here, the file content is self-documenting:
 
 ```bash
 ## The following changes have been made for LXD ##
@@ -162,24 +162,24 @@ at use the AIO subsystem (e.g. MySQL)
 fs.aio-max-nr = 524288
 ```
 
-Salvare le modifiche e uscire.
+Save your changes and exit.
 
-A questo punto, riavviare il server.
+At this point, reboot the server.
 
-### Controllare i parametri di `sysctl.conf`
+### Checking `sysctl.conf` values
 
-Dopo il riavvio, accedere nuovamente al server come utente root. È necessario verificare che il nostro file di override abbia effettivamente completato il lavoro.
+After the reboot, log back in as the root user to the server. You need to check that our override file has actually completed the job.
 
-Non è difficile da fare. Non è necessario verificare tutte le impostazioni, a meno che non lo si voglia fare, ma controllarne alcune consente di verificare che le impostazioni siano state modificate. Per farlo, utilizzare il comando `sysctl`:
+This is not hard to do. There's no need to verify every setting unless you want to, but checking a few will verify that the settings have changed. Do this with the `sysctl` command:
 
 ```bash
 sysctl net.core.bpf_jit_limit
 ```
 
-Che vi mostrerà:
+Which will show you:
 
 ```bash
 net.core.bpf_jit_limit = 1000000000 
 ```
 
-Eseguire la stessa operazione con alcune altre impostazioni del file di sovrascrittura per verificare le modifiche.
+Do the same with a few other settings in the override file to verify the changes.
