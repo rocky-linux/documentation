@@ -32,7 +32,7 @@ If there were kernel updates during the upgrade process, reboot the server.
 Install the OpenZFS repository with:
 
 ```bash
-dnf install https://zfsonlinux.org/epel/zfs-release-2-2$(rpm --eval "%{dist}").noarch.rpm
+dnf install https://zfsonlinux.org/epel/zfs-release-2-8$(rpm --eval "%{dist}").noarch.rpm
 ```
 
 ## Install `dkms`, `vim`, and `kernel-devel`

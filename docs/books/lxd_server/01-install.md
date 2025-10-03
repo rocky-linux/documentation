@@ -29,12 +29,12 @@ dnf upgrade
 
 If there were any kernel updates during the upgrade process, reboot the server.
 
-### OpenZFS repository for 8 and 9
+### OpenZFS repository
 
 Install the OpenZFS repository with:
 
 ```bash
-dnf install https://zfsonlinux.org/epel/zfs-release-2-2$(rpm --eval "%{dist}").noarch.rpm
+dnf install https://zfsonlinux.org/epel/zfs-release-2-8$(rpm --eval "%{dist}").noarch.rpm
 ```
 
 ## Install `snapd`, `dkms`, `vim`, and `kernel-devel`
