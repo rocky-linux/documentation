@@ -49,7 +49,7 @@ sudo dnf install -y epel-release
 If you're running Rocky Linux 10, enable the Copr repository:
 
 ```bash
-dnf copr enable @caddy/caddy
+sudo dnf copr enable @caddy/caddy
 ```
 
 Next, install the `caddy` web server:
@@ -119,7 +119,7 @@ Unlike traditional web servers like Apache and Nginx, Caddy's configuration form
 To edit the Caddy configuration file:
 
 ```bash
-vim /etc/caddy/Caddyfile
+sudo vim /etc/caddy/Caddyfile
 ```
 
 A minimum static web server configuration can be similar to this:
@@ -143,7 +143,7 @@ echo "<h1>Hi!</h1>" >> /usr/share/caddy/example.com/index.html
 After that, enable Caddy's systemd service:
 
 ```bash
-systemctl enable --now caddy
+sudo systemctl enable --now caddy
 ```
 
 Within a minute, Caddy will obtain SSL certificates from Let's Encrypt. Then, you can view the website you just set up in a browser:
@@ -159,13 +159,13 @@ As mentioned earlier, Caddy supports FastCGI support for PHP. The good news is t
 To install PHP, first add the Remi repository (note: if you are running Rocky Linux 8.x or 10.x, substitute in 8 or 10 next to the "release-" below):
 
 ```bash
-dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
+sudo dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
 ```
 
 Next, we need to install PHP (note: if you are using another version of PHP, substitute your desired version for php83):
 
 ```bash
-dnf install -y php83-php-fpm
+sudo dnf install -y php83-php-fpm
 ```
 
 If you require additional PHP modules (e.g., GD), add them to the above command.
@@ -173,7 +173,7 @@ If you require additional PHP modules (e.g., GD), add them to the above command.
 Then, we need to configure PHP to listen on a TCP socket:
 
 ```bash
-vim /etc/opt/remi/php83/php-fpm.d/www.conf
+sudo vim /etc/opt/remi/php83/php-fpm.d/www.conf
 ```
 
 Next, find the line:
@@ -188,10 +188,16 @@ Replace it with this:
 listen = 127.0.0.1:9000
 ```
 
+We can now enable and start php-fpm:
+
+```bash
+sudo systemctl enable --now php83-php-fpm
+```
+
 Then save and exit the `www.conf` file, and open the Caddyfile:
 
 ```bash
-vim /etc/caddy/Caddyfile
+sudo vim /etc/caddy/Caddyfile
 ```
 
 Navigate to the server block we created earlier:
@@ -222,7 +228,7 @@ example.com {
 Then save and exit the Caddyfile, and restart Caddy:
 
 ```bash
-systemctl restart caddy
+sudo systemctl restart caddy
 ```
 
 To test if PHP works, let's add a simple PHP file:
