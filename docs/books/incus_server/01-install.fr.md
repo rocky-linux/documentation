@@ -32,7 +32,7 @@ Si des mises à jour du noyau ont été effectuées pendant le processus de mise
 Installez le dépôt OpenZFS en utilisant la commande suivante :
 
 ```bash
-dnf install https://zfsonlinux.org/epel/zfs-release-2-2$(rpm --eval "%{dist}").noarch.rpm
+dnf install https://zfsonlinux.org/epel/zfs-release-2-8$(rpm --eval "%{dist}").noarch.rpm
 ```
 
 ## Installation de `dkms`, `vim` et `kernel-devel`
