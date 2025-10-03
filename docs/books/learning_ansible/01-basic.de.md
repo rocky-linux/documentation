@@ -63,7 +63,7 @@ Um eine grafische Oberfläche für Ihre tägliche Arbeit mit Ansible bereitzuste
 
 !!! abstract "Abstrakt"
 
-    Um diesem Training zu folgen, benötigst du mindestens 2 Server unter Rocky 8:
+    Um an dieser Schulung teilnehmen zu können, benötigen Sie mindestens 2 Server unter Rocky8:
 
     * die erste wird die **Management Maschine** sein, auf der Ansible installiert wird.
     * die zweite wird der Server, der zu konfigurieren und zu verwalten ist (ein weiteres Linux als Rocky Linux wird es genauso tun).
@@ -73,7 +73,7 @@ Um eine grafische Oberfläche für Ihre tägliche Arbeit mit Ansible bereitzuste
 ## Das Ansible Vokabular
 
 * Die **Verwaltungsmaschine**: die Maschine, auf der Ansible installiert ist. Da Ansible **agentenlos** ist, wird auf den verwalteten Servern keine Software verteilt.
-* **verwaltete Knoten**: Die Zielgeräte, die Ansible verwaltet, werden auch „hosts“ genannt. Dabei kann es sich um Server, Netzwerkgeräte oder beliebige andere Computer handeln.
+* **verwaltete Knoten**: Die Zielgeräte, die Ansible verwaltet, werden auch `hosts` genannt. Dabei kann es sich um Server, Netzwerkgeräte oder beliebige andere Computer handeln.
 * Das **Inventar**: eine Datei mit Informationen zu verwalteten Servern.
 * **Aufgaben**: Eine Aufgabe ist ein Block, der eine auszuführende Prozedur definiert (z. B. einen Benutzer oder eine Gruppe erstellen, ein Softwarepaket installieren usw.).
 * Ein **Modul**: ein Modul abstrahiert eine Aufgabe. Viele Module werden zusammen mit Ansible zur Verfügung gestellt.
