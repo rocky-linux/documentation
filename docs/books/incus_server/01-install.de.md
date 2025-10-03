@@ -32,7 +32,7 @@ Wenn während des Upgrade-Vorgangs Kernel-Updates durchgeführt wurden, starten 
 Installieren Sie das OpenZFS Repository wie folgt mit:
 
 ```bash
-dnf install https://zfsonlinux.org/epel/zfs-release-2-2$(rpm --eval "%{dist}").noarch.rpm
+dnf install https://zfsonlinux.org/epel/zfs-release-2-8$(rpm --eval "%{dist}").noarch.rpm
 ```
 
 ## Installation von `dkms`, `vim` und `kernel-devel`
