@@ -10,7 +10,7 @@ tested_with: 9.4
 - Connaissances de base de Active Directory
 - Connaissances de base de LDAP
 
-## Présentation de Active Directory
+## Introduction
 
 Active Directory (AD) de Microsoft est, dans la plupart des entreprises, le système d'authentification standard pour les systèmes Windows et pour les applications externes connectées à LDAP. Il permet de configurer les utilisateurs et les groupes, le contrôle d'accès, les permissions, le montage automatique, etc.
 
@@ -100,7 +100,7 @@ Si ce processus affiche un problème de chiffrement comme `KDC has no support fo
 [user@host ~]$ sudo update-crypto-policies --set DEFAULT:AD-SUPPORT
 ```
 
-Si ce processus réussit, vous devriez maintenant pouvoir extraire les informations `passwd` d'un utilisateur d'Active Directory.
+Si la procédure est couronnée de succès, vous devriez maintenant pouvoir extraire les informations `passwd` d'un utilisateur d'Active Directory.
 
 ```sh
 [user@host ~]$ sudo getent passwd administrator@ad.company.local
@@ -124,7 +124,7 @@ administrator@ad.company.local:*:1450400500:1450400513:Administrator:/home/admin
 
 Now your users should be able to authenticate to your Linux host against Active Directory.
 
-**Sous Windows 10 :** (qui possède sa propre copie de OpenSSH)
+**Sous Windows 10** (qui possède sa propre implémentation de OpenSSH) :
 
 ```dos
 C:\Users\John.Doe> ssh -l john.doe@ad.company.local linux.host
