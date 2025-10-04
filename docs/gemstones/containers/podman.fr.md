@@ -99,7 +99,7 @@ Podman fournit également la sous-commande `generate systemd`. Il peut être uti
 !!! warning "Avertissement"
 
 ```
-`generate systemd` est désormais obsolète et ne recevra plus de fonctionnalités supplémentaires. L'utilisation de Quadlet est recommandée.
+`generate systemd` est maintenant désuet et ne recevra plus de fonctionnalités. L'utilisation de `Quadlet` est recommandée.
 ```
 
 Faisons-le désormais avec Nextcloud. Exécuter :
