@@ -42,7 +42,7 @@ Pour RockyLinux 8.x, nous avons expliqué comment configurer son réseau [ici](.
 
 ## Règles de nommage pour udev device manager
 
-Pour RockyLinux 9.x, si vous allez dans le répertoire **/etc/sysconfig/network-scripts/** , il y aura un **readme-ifcfg-rh.txt** texte de description qui vous invite à vous rendre dans le répertoire **/etc/NetworkManager/system-connections/**.
+Pour RockyLinux 9.x, si vous allez dans le répertoire **/etc/sysconfig/network-scripts/** , il y aura un texte descriptif **readme-ifcfg-rh.txt** qui vous invite à vous rendre dans le répertoire **/etc/NetworkManager/system-connections/**.
 
 ```bash
 Shell > cd /etc/NetworkManager/system-connections/  && ls
