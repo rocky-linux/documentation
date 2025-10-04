@@ -1,40 +1,65 @@
 ---
-title: Screenshot 
-author: Christine Belzie
-contributors: Steven Spencer, Ganna Zhyrnova  
+title: Taking Screenshots and Recording Screencasts in GNOME
+author: Wale Soyinka
+contributors:
+tags:
+  - gnome
+  - desktop
+  - screenshot
+  - screencast
+  - guide
 ---
-## Introduction
 
-Are you tired of using your keyboard to take images on your computer screen? Meet Screenshot, an application that helps you quickly take onscreen images.
+# **Taking Screenshots and Recording Screencasts in GNOME**
 
-## Assumptions
+The modern GNOME desktop, featured in Rocky Linux, includes a powerful and seamlessly integrated tool for capturing your screen. This is not a separate application you need to install; it is a core part of the desktop shell, providing a fluid and efficient way to take screenshots and record short videos (screencasts).
 
-This guide assumes you have the following:
+This guide covers how to use both the interactive user interface and the powerful keyboard shortcuts to capture your screen content.
 
-- Rocky Linux
+## **Using the Interactive Screenshot UI**
 
-!!! note
+The easiest way to start is with the interactive overlay, which gives you full control over what and how you capture.
 
-    According [to GNOME's website](https://apps.gnome.org/), this application is pre-installed on your desktop.
+1.  **Launch the Tool:** Press the `Print Screen` (often labeled `PrtSc`) key on your keyboard. The screen will dim, and the screenshot UI will appear.
 
-## How to Use
+2.  **Understand the Interface:** The control panel in the middle of the screen has three main sections:
+    *   **Capture Mode:** On the left, you can choose to capture a rectangular `Region`, the entire `Screen`, or a specific `Window`.
+    *   **Action Toggle:** In the center, you can switch between taking a **Screenshot** (camera icon) or recording a **Screencast** (video camera icon).
+    *   **Capture Button:** The large, round button on the right initiates the capture.
 
-To use Screenshot, do the following:
+### **Taking a Screenshot**
 
-![Screenshot of image being taken by the application with the options present](images/screenshot-01.png)
+1.  Ensure the action toggle is set to **Screenshot** (the camera icon).
+2.  Select your capture mode: `Region`, `Screen`, or `Window`.
+3.  Click the round **Capture** button.
 
-1. Pick the onscreen image you want to screenshot, go to the application, and choose the method you wish to use to take your picture.
+By default, the screenshot image is automatically saved to the `Pictures/Screenshots` directory in your home folder.
 
-2. Click **Take a Screenshot**
+### **Recording a Screencast**
 
-    ![Screenshot of taken picture of being saved with black arrows pointing at a text box that contains the file name, "Linux.png" as well as Save and Copy buttons](images/screenshot-02.png)
+1.  Set the action toggle to **Screencast** (the video camera icon).
+2.  Select the area you wish to record (`Region` or `Screen`).
+3.  Click the round **Capture** button to begin recording.
 
-3. Once you're satisfied with the screenshot, rename the file and click on **Save**.
+A red dot (â) will appear in the top-right corner of your screen, along with a timer, indicating that recording is active. To stop, simply click this red dot. The video will be automatically saved as a `.webm` file in the `Videos/Screencasts` directory in your home folder.
 
-!!! tip
+## **Keyboard Shortcuts for Power Users**
 
-    Want to save your computer's storage? Click on **Copy** to quickly add your screenshot to your work.
+For even faster captures, GNOME provides a set of direct keyboard shortcuts that bypass the interactive UI.
 
-## Conclusion
+| Shortcut | Action |
+| :--- | :--- |
+| `Print Screen` | Open the interactive screenshot UI. |
+| `Alt + Print Screen` | Take a screenshot of the currently active window immediately. |
+| `Shift + Print Screen` | Immediately start selecting a rectangular area for a screenshot. |
+| `Ctrl + Alt + Shift + R` | Start and stop a recording of the entire screen. |
 
-Whether it is a picture for your online collage, your computer's background, or a tutorial that you are creating for your favorite product, GNOME's Screenshot is the tool to help you get the screenshots you want. Are you eager to learn more about this application or have more ideas for it? [Submit an issue to Screenshot’s repository at GitLab](https://gitlab.gnome.org/gnumdk/screenshot/-/issues).
+### **The "Copy to Clipboard" Modifier**
+
+This is a powerful productivity feature. By adding the `Ctrl` key to any of the screenshot shortcuts, the captured image will be copied directly to your clipboard instead of being saved to a file. This is perfect for quickly pasting a screenshot into another application like a document or chat window.
+
+*   **`Ctrl + Print Screen`**: Open the interactive UI, but the capture will go to the clipboard.
+*   **`Ctrl + Alt + Print Screen`**: Copy a screenshot of the active window to the clipboard.
+*   **`Ctrl + Shift + Print Screen`**: Copy a screenshot of a selected area to the clipboard.
+
+The built-in GNOME screenshot and screencast tool is a perfect example of elegant and efficient design, providing both a simple, discoverable interface for new users and a fast, shortcut-driven workflow for power users.
