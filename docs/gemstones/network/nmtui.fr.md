@@ -50,7 +50,7 @@ Toutes les distributions RHEL <font color="red">7.x</font> ou <font color="red">
 
 !!! warning "Avertissement"
 
-    Dans les distributions RHEL 9.x, l'emplacement du répertoire où le fichier de configuration du réseau est stocké a été modifié, c'est-à-dire **/etc/NetworkManager/system-connections/**. Veuillez consulter [ce site](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/configuring_and_managing_networking/index) pour plus d'informations.
+    Dans les distributions RHEL 9.x, l'emplacement du répertoire où le fichier de configuration de la carte réseau est stocké a été modifié, soit **/etc/NetworkManager/system-connections/**. Veuillez consulter [ce site](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/configuring_and_managing_networking/index) pour plus d'informations.
 
 ```bash
 shell > ls /etc/sysconfig/network-scripts/
