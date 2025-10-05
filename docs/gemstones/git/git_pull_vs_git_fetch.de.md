@@ -49,7 +49,7 @@ Es ist nützlich, um Ihren lokalen Zweig schnell mit Änderungen aus dem Remote-
    git pull origin main
    ```
 
-2. **Zusammengeführte – merged – Änderungen überprüfen**:
+2. **Mit `merge` zusammengeführte Änderungen Revue passieren**:
 
    ```bash
    git log
