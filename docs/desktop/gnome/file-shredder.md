@@ -1,53 +1,67 @@
 ---
-title: File Shredder 
-author: Christine Belzie
-contributors: Steven Spencer, Ganna Zhyrnova 
+title: File Shredder - Secure Deletion
+author: Wale Soyinka
+contributors:
+tags:
+  - gnome
+  - desktop
+  - security
+  - privacy
+  - flatpak
 ---
- 
-## Introduction
 
-Do you need to remove a postcard or a PDF file containing information like your birthday? Check out File Shredder, an application that permanently removes sensitive information online.
+## Permanently and Securely Delete Files
 
-## Assumptions
+When you delete a file using your file manager, the data is not actually erased. The operating system simply marks the space on your hard drive as "available," leaving the original data intact until it is eventually overwritten by new files. This means that "deleted" files can often be recovered using specialized software.
 
-This guide assumes you have the following:
+**File Shredder** is a simple, modern utility for the GNOME desktop that solves this problem by allowing you to permanently and securely delete files. It does this by overwriting the file's data with random noise multiple times before deleting it, making recovery practically impossible.
 
-- Rocky Linux
-- Flatpak
-- FlatHub
+## Installation
 
-## Installation Process
+The recommended way to install File Shredder on Rocky Linux is as a Flatpak from the Flathub repository.
 
-![Screenshot of the File Shredder app page on FlatHub, showing the blue install button being highlighted by a red rectangle](images/01_file-shredder.png)
+### 1. Enable Flathub
 
-1. Go to [Flathub's website](https://flathub.org), type "File Shredder" in the search bar, and click on **Install**
+If you have not already done so, ensure you have Flatpak installed and the Flathub remote configured on your system.
 
-    ![manual install script and run script](images/file-shredder_install.png)
+```bash
+# Install the Flatpak package
+sudo dnf install flatpak
 
-2. Copy the manual script in your terminal:
+# Add the Flathub remote repository
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+```
 
-    ```bash
-    flatpak install flathub io.github.ADBeveridge.Raider
-    ```
+### 2. Install File Shredder
 
-3. Finally, run the manual script in your terminal:
+Once Flathub is enabled, you can install File Shredder with a single command.
 
-    ```bash
-    flatpak run flathub io.github.ADBeveridge.Raider
-    ```
+!!! note "Application ID"
+    The application is named "File Shredder," but its technical ID on Flathub is `io.github.ADBeveridge.Raider`.
 
-## How to Use
+```bash
+flatpak install flathub io.github.ADBeveridge.Raider
+```
 
-To use File Shredder, do the following:
+## How to Use File Shredder
 
-1. Drag or click on **Add file** to pick the file(s) you want to remove
+After installation, launch the application from the GNOME Activities Overview by searching for "File Shredder".
 
-   ![Screenshot of the File Shredder homepage, showing the add drop-down menu and drop here button being highlighted by red rectangles](images/02_file-shredder.png)
+The process is straightforward:
 
-2. Click on **Shred All**
+1.  Drag and drop the files or folders you wish to permanently erase directly onto the File Shredder window. Alternatively, click the **"Add Files..."** or **"Add Folder..."** buttons.
+2.  The files will appear in a list. Review this list carefully.
+3.  When you are absolutely certain you want to destroy the files forever, click the **Shred** button.
 
- ![Screenshot of a file named Social Security appearing on top. At the bottom, there is a red button with the phrase Shred All written in white font and surrounded by a red rectangle](images/03_file-shredder.png)
+!!! warning "This Action Is Irreversible"
+    There is no "undo" button. Once a file is shredded, it is gone permanently. Double-check the files you have added before clicking the Shred button.
 
-## Conclusion
+## An Important Consideration for SSDs
 
-Whether it’s a Social Security file or a banking statement, File Shredder is the tool that makes it easy to shred files without needing to buy a shredder. Are you eager to learn more about this application or have more ideas for it? [Submit an issue in File Shredder's repository at GitHub](https://github.com/ADBeveridge/raider/issues).
+While File Shredder is highly effective on traditional magnetic hard disk drives (HDDs), its effectiveness on modern Solid-State Drives (SSDs) has limitations.
+
+SSDs use complex internal mechanisms like wear-leveling and garbage collection to manage data and prolong the drive's life. These mechanisms mean that the drive itself, not the operating system, decides where data is physically written. A software tool like File Shredder cannot force an SSD to overwrite a specific physical block of data.
+
+Therefore, while using File Shredder on an SSD makes data recovery significantly more difficult than a standard deletion, it **cannot guarantee** that all traces of the data have been physically erased from the drive's memory cells. For the highest level of data security on an SSD, the recommended approach is to use full-disk encryption (such as LUKS, which can be set up during the installation of Rocky Linux).
+
+File Shredder remains a valuable tool for enhancing your data privacy, especially on HDDs, and provides a strong layer of security for most use cases.
