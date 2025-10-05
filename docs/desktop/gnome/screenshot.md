@@ -10,13 +10,13 @@ tags:
   - guide
 ---
 
-# **Taking Screenshots and Recording Screencasts in GNOME**
+## Taking Screenshots and Recording Screencasts in GNOME
 
 The modern GNOME desktop, featured in Rocky Linux, includes a powerful and seamlessly integrated tool for capturing your screen. This is not a separate application you need to install; it is a core part of the desktop shell, providing a fluid and efficient way to take screenshots and record short videos (screencasts).
 
 This guide covers how to use both the interactive user interface and the powerful keyboard shortcuts to capture your screen content.
 
-## **Using the Interactive Screenshot UI**
+## Using the Interactive Screenshot UI
 
 The easiest way to start is with the interactive overlay, which gives you full control over what and how you capture.
 
@@ -27,7 +27,7 @@ The easiest way to start is with the interactive overlay, which gives you full c
     *   **Action Toggle:** In the center, you can switch between taking a **Screenshot** (camera icon) or recording a **Screencast** (video camera icon).
     *   **Capture Button:** The large, round button on the right initiates the capture.
 
-### **Taking a Screenshot**
+### Taking a Screenshot
 
 1.  Ensure the action toggle is set to **Screenshot** (the camera icon).
 2.  Select your capture mode: `Region`, `Screen`, or `Window`.
@@ -35,7 +35,7 @@ The easiest way to start is with the interactive overlay, which gives you full c
 
 By default, the screenshot image is automatically saved to the `Pictures/Screenshots` directory in your home folder.
 
-### **Recording a Screencast**
+### Recording a Screencast
 
 1.  Set the action toggle to **Screencast** (the video camera icon).
 2.  Select the area you wish to record (`Region` or `Screen`).
@@ -43,7 +43,7 @@ By default, the screenshot image is automatically saved to the `Pictures/Screens
 
 A red dot (â) will appear in the top-right corner of your screen, along with a timer, indicating that recording is active. To stop, simply click this red dot. The video will be automatically saved as a `.webm` file in the `Videos/Screencasts` directory in your home folder.
 
-## **Keyboard Shortcuts for Power Users**
+## Keyboard Shortcuts for Power Users
 
 For even faster captures, GNOME provides a set of direct keyboard shortcuts that bypass the interactive UI.
 
@@ -54,7 +54,7 @@ For even faster captures, GNOME provides a set of direct keyboard shortcuts that
 | `Shift + Print Screen` | Immediately start selecting a rectangular area for a screenshot. |
 | `Ctrl + Alt + Shift + R` | Start and stop a recording of the entire screen. |
 
-### **The "Copy to Clipboard" Modifier**
+### The "Copy to Clipboard" Modifier
 
 This is a powerful productivity feature. By adding the `Ctrl` key to any of the screenshot shortcuts, the captured image will be copied directly to your clipboard instead of being saved to a file. This is perfect for quickly pasting a screenshot into another application like a document or chat window.
 

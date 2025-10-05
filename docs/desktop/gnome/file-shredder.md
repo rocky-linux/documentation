@@ -10,17 +10,17 @@ tags:
   - flatpak
 ---
 
-# **File Shredder: Permanently and Securely Delete Files**
+## Permanently and Securely Delete Files
 
 When you delete a file using your file manager, the data is not actually erased. The operating system simply marks the space on your hard drive as "available," leaving the original data intact until it is eventually overwritten by new files. This means that "deleted" files can often be recovered using specialized software.
 
 **File Shredder** is a simple, modern utility for the GNOME desktop that solves this problem by allowing you to permanently and securely delete files. It does this by overwriting the file's data with random noise multiple times before deleting it, making recovery practically impossible.
 
-## **Installation**
+## Installation
 
 The recommended way to install File Shredder on Rocky Linux is as a Flatpak from the Flathub repository.
 
-### **1. Enable Flathub**
+### 1. Enable Flathub
 
 If you have not already done so, ensure you have Flatpak installed and the Flathub remote configured on your system.
 
@@ -32,7 +32,7 @@ sudo dnf install flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 ```
 
-### **2. Install File Shredder**
+### 2. Install File Shredder
 
 Once Flathub is enabled, you can install File Shredder with a single command.
 
@@ -43,7 +43,7 @@ Once Flathub is enabled, you can install File Shredder with a single command.
 flatpak install flathub io.github.ADBeveridge.Raider
 ```
 
-## **How to Use File Shredder**
+## How to Use File Shredder
 
 After installation, launch the application from the GNOME Activities Overview by searching for "File Shredder".
 
@@ -56,7 +56,7 @@ The process is straightforward:
 !!! warning "This Action Is Irreversible"
     There is no "undo" button. Once a file is shredded, it is gone permanently. Double-check the files you have added before clicking the Shred button.
 
-## **An Important Consideration for SSDs**
+## An Important Consideration for SSDs
 
 While File Shredder is highly effective on traditional magnetic hard disk drives (HDDs), its effectiveness on modern Solid-State Drives (SSDs) has limitations.
 

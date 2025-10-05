@@ -9,7 +9,7 @@ tags:
   - flatpak
 ---
 
-# **Decoder: Scan and Generate QR Codes**
+## Scan and Generate QR Codes
 
 **Decoder** is a simple and elegant utility for the GNOME desktop designed for a single purpose: working with QR codes. In a world where QR codes are used for everything from sharing Wi-Fi passwords to accessing restaurant menus, having a dedicated tool to handle them is essential.
 
@@ -19,11 +19,11 @@ Decoder provides two primary functions in a clean, focused interface:
 
 Its tight integration with the GNOME desktop makes it feel like a natural part of the operating system.
 
-## **Installation**
+## Installation
 
 The recommended way to install Decoder on Rocky Linux is as a Flatpak from the Flathub repository. This method ensures you have the latest version of the application in a secure, sandboxed environment.
 
-### **1. Enable Flathub**
+### 1. Enable Flathub
 
 If you have not already done so, ensure you have Flatpak installed and the Flathub remote configured on your system.
 
@@ -35,7 +35,7 @@ sudo dnf install flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 ```
 
-### **2. Install Decoder**
+### 2. Install Decoder
 
 Once Flathub is enabled, you can install Decoder with a single command:
 
@@ -43,11 +43,11 @@ Once Flathub is enabled, you can install Decoder with a single command:
 flatpak install flathub com.belmoussaoui.Decoder
 ```
 
-## **How to Use Decoder**
+## How to Use Decoder
 
 After installation, you can launch Decoder from the GNOME Activities Overview.
 
-### **Scanning a QR Code**
+### Scanning a QR Code
 
 When you first open Decoder, it is ready to scan. You have two options:
 
@@ -56,7 +56,7 @@ When you first open Decoder, it is ready to scan. You have two options:
 
 Once a code is scanned, Decoder intelligently parses its content. If the code contains a website URL, it will display the link with a button to open it in your default web browser. If it contains plain text, it will display the text with a convenient button to copy it to your clipboard.
 
-### **Generating a QR Code**
+### Generating a QR Code
 
 To create your own QR code, click the "Generate" button at the top of the Decoder window.
 

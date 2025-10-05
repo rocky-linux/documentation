@@ -9,7 +9,7 @@ tags:
   - flatpak
 ---
 
-# **Decibels: A Simple, Modern Audio Player**
+## A Simple, Modern Audio Player
 
 **Decibels** is a modern and elegant audio player for the GNOME desktop. It is built on a philosophy of simplicity, designed to do one thing exceptionally well: play audio files.
 
@@ -17,11 +17,11 @@ Unlike full-featured music library applications like Rhythmbox, Decibels does no
 
 This makes it the perfect tool for quickly listening to a downloaded podcast, a voice memo, or a new song without the overhead of importing files into a library.
 
-## **Installation**
+## Installation
 
 The recommended way to install Decibels on Rocky Linux is as a Flatpak from the Flathub repository. This method ensures you have the latest version of the application, sandboxed from the rest of your system.
 
-### **1. Enable Flathub**
+### 1. Enable Flathub
 
 First, ensure you have Flatpak installed and the Flathub remote configured on your system.
 
@@ -36,7 +36,7 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 !!! note
     You may need to log out and log back in for Flatpak applications to appear in the GNOME Activities Overview.
 
-### **2. Install Decibels**
+### 2. Install Decibels
 
 Once Flathub is enabled, you can install Decibels with a single command:
 
@@ -44,7 +44,7 @@ Once Flathub is enabled, you can install Decibels with a single command:
 flatpak install flathub org.gnome.Decibels
 ```
 
-## **Basic Usage**
+## Basic Usage
 
 After installation, you can launch Decibels from the GNOME Activities Overview by searching for "Decibels".
 
@@ -55,7 +55,7 @@ To play a file:
 3.  Use the file chooser to navigate to and select an audio file on your system (e.g., an `.mp3`, `.flac`, `.ogg`, or `.wav` file).
 4.  The file will open, and its waveform will be displayed. Playback will begin automatically.
 
-## **Key Features**
+## Key Features
 
 While simple, Decibels has several useful features:
 
