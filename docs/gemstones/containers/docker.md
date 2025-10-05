@@ -13,14 +13,10 @@ The Docker Engine can run native Docker-style container workloads on Rocky Linux
 
 ## Add the Docker repository
 
-!!! Note
-
-    Docker v28 does not currently have a RHEL 10 repository, therefore we will use the CentOS repository.
-
 Use the `dnf` utility to add the Docker repository to your Rocky Linux server. Type:
 
 ```bash
-sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
 ```
 
 ## Install the needed packages
