@@ -10,7 +10,7 @@ tags:
   - networking
 ---
 
-# **IV. Advanced Provisioning: Networking and Multi-Part Payloads**
+## Networking and Multi-Part Payloads
 
 In the previous chapter, you mastered the core `cloud-init` modules for managing users, packages, and files. You can now build a well-configured server declaratively. Now, it's time to explore more advanced techniques that give you even greater control over your instance's configuration.
 
@@ -19,7 +19,7 @@ This chapter covers two powerful, advanced topics:
 1.  **Declarative Network Configuration:** How to move beyond DHCP and define static network configurations for your instances.
 2.  **Multi-Part MIME Payloads:** How to combine different types of user-data, like shell scripts and `#cloud-config` files, into a single, powerful payload.
 
-## **1. Declarative Network Configuration**
+## 1. Declarative Network Configuration
 
 By default, most cloud images are configured to acquire an IP address via DHCP. While convenient, many production environments require servers to have predictable, static IP addresses. The `cloud-init` network configuration system provides a platform-agnostic, declarative way to manage this.
 

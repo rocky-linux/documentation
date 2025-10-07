@@ -5,19 +5,19 @@ contributors:
 tags:
   - cloud-init
   - rocky linux
-  - cloud
+  - cloud-init modules
   - automation
 ---
 
-# **III. The Configuration Engine: Deep Dive into cloud-init Modules**
+## Deep Dive into cloud-init Modules
 
 In the last chapter, you successfully booted a cloud image and performed a simple customization. While effective, the true power, portability, and idempotency of `cloud-init` are unlocked through its module system. These modules are the specialized tools in the `cloud-init` toolkit, designed to handle specific configuration tasks in a declarative and predictable way.
 
 This chapter dives deep into the module system, explaining what modules are, how they work, and how to use the most essential ones to build a well-configured server.
 
-## **1. The Anatomy of Configuration**
+## 1. The Anatomy of Configuration
 
-### **What are cloud-init Modules?**
+### What are cloud-init Modules?
 
 A `cloud-init` module is a specialized Python script designed to handle a single, discrete provisioning task. Think of them as plugins for tasks like managing users, installing packages, or writing files.
 
@@ -50,6 +50,7 @@ System Boot
 The order is critical. For example, the `users-groups` module runs before `runcmd`, ensuring a script can be run by a user who was just created in the same configuration.
 
 !!! tip "Customizing `cloud-init` Behavior"
+
     While `/etc/cloud/cloud.cfg` defines the default behavior, you should never edit it directly. For persistent, system-wide customizations, place your own `.cfg` files in the `/etc/cloud/cloud.cfg.d/` directory. This is the standard practice for building custom images, which we will explore in a later chapter.
 
 ## **2. High-Utility Modules: The Daily Drivers**
@@ -132,6 +133,7 @@ In this example, we will ensure two useful tools, `nginx` (a high-performance we
 3.  **Boot and Verify:** After booting, SSH in and check that `nginx` is installed with `rpm -q nginx`.
 
 !!! note "Idempotency in Action"
+
     If you were to reboot this VM with the same `user-data`, the `packages` module would see that `nginx` and `htop` are already installed and do nothing further. It ensures the desired state (packages are present) without taking unnecessary action. That is idempotency.
 
 ### **Module Deep Dive: `write_files`**
@@ -164,6 +166,7 @@ To demonstrate its power, we will use `write_files` to create a custom homepage 
 3.  **Boot and Verify:** After booting, SSH in and use `curl localhost` to see the new homepage.
 
 !!! tip "Writing Binary Files"
+
     The `write_files` module is not limited to text. By specifying an `encoding`, you can deploy binary files. For example, you can use `encoding: b64` to write base64-encoded data. For advanced use cases, refer to the [official `write_files` documentation](https://cloudinit.readthedocs.io/en/latest/topics/modules.html#write-files).
 
 ## **What's Next?**

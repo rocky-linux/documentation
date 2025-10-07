@@ -10,7 +10,7 @@ tags:
   - image-building
 ---
 
-# **V. The Image Builder's Perspective: Defaults and Generalization**
+## Defaults and Generalization
 
 So far, our journey has focused on configuring individual instances at boot time using `user-data`. In this chapter, we will shift our perspective to that of an **image builder**—someone who creates and maintains the "golden images" that serve as templates for other virtual machines.
 
@@ -19,7 +19,7 @@ Our goal is to create a new, custom image with our own baked-in policies and def
 1.  **Customizing System-Wide Defaults:** Modifying the `cloud-init` configuration *within the image itself*.
 2.  **Generalizing the Image:** Using tools like `cloud-init clean` and `virt-sysprep` to strip all machine-specific data, preparing the image for cloning.
 
-## **1. The Customization Lab Setup**
+## 1. The Customization Lab Setup
 
 To begin, we need a running instance of the base cloud image that we can modify. We will boot this VM *without* providing any `user-data` to get a clean system.
 

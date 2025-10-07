@@ -10,15 +10,15 @@ tags:
   - troubleshooting
 ---
 
-# **VI. Troubleshooting cloud-init**
+## Troubleshooting cloud-init
 
 In any complex, automated system, things will eventually go wrong. When a `cloud-init` configuration fails, knowing how to systematically diagnose the problem is an essential skill. This chapter is your guide to `cloud-init` forensics, covering both in-guest and on-host troubleshooting techniques.
 
-## **1. In-Guest Troubleshooting Toolkit**
+## 1. In-Guest Troubleshooting Toolkit
 
 When you can access a running instance, `cloud-init` provides several commands and logs to show you what happened.
 
-### **Pillar 1: The Status Command (`cloud-init status`)**
+### Pillar 1: The Status Command (`cloud-init status`)
 
 This is your first port of call. It provides a high-level summary of `cloud-init`'s state.
 

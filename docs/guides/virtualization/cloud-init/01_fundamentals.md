@@ -9,13 +9,13 @@ tags:
 ---
 
 
-# **I. cloud-init Fundamentals: The Architecture of First Boot**
+## Introduction
 
 This guide explores `cloud-init`, the essential tool for automating the initial setup of your Rocky Linux 10 cloud instances. When we talk about deploying servers in the cloud—or even in your local virtualization lab—we often take for granted the almost instantaneous transition from a blank image to a fully functional, network-ready machine. This feat of digital alchemy is performed by a single, tireless utility: cloud-init.
 
-## **1. The Bootstrapping Conundrum**
+## 1. The Bootstrapping Conundrum
 
-### **The Problem: When a Server Wakes Up Blind**
+### The Problem: When a Server Wakes Up Blind
 
 Imagine a generic Rocky Linux 10 QCOW2 image. It’s a perfect, pristine copy, unaware of its final destination. It doesn’t know its hostname, which user account should have SSH access, what timezone it’s in, or if it needs Apache or NGINX.
 
@@ -23,13 +23,13 @@ If you were deploying physical hardware, a system administrator would manually c
 
 This is the problem **cloud-init** solves.
 
-### **What is cloud-init?**
+### What is cloud-init?
 
 Simply put, cloud-init is the industry-standard multi-distribution package that handles early initialization of cloud instances. It is the core service responsible for taking a generic image (like the one we’re using) and performing the required configuration tasks to transform it into a unique, production-ready server.
 
 It literally sits at the heart of the provisioning process, interpreting **metadata** and **user-defined instructions** to set up the system. Without it, your cloud instance is just a beautifully compiled Linux kernel with an identity crisis.
 
-### **The cloud-init Ecosystem**
+### The cloud-init Ecosystem
 
 cloud-init is a consumer, not a creator. It relies on the underlying cloud platform (AWS, Azure, GCP, OpenStack, or local tools like libvirt) to provide it with configuration information.
 

@@ -9,17 +9,17 @@ tags:
   - python
 ---
 
-# **VII. Beyond Consumption: Contributing to cloud-init**
+## Contributing to cloud-init project
 
 Congratulations! You have journeyed from the fundamental concepts of `cloud-init` to advanced provisioning and troubleshooting techniques. You are now a `cloud-init` power user. This final chapter opens the door to the next step in your journey: moving from a consumer of `cloud-init` to a potential contributor.
 
 `cloud-init` is a critical open-source project that thrives on community contributions. Whether it's fixing a typo in the documentation, reporting a bug, or writing a brand-new module, every contribution helps. This chapter provides a high-level map for understanding the source code, building a custom module, and engaging with the upstream community. It is not an exhaustive developer guide, but rather a friendly introduction to getting involved.
 
-## **1. The `cloud-init` Source Code Landscape**
+## 1. The `cloud-init` Source Code Landscape
 
 Before you can contribute, you need to know your way around the project. Let's explore the source code and set up a basic development environment.
 
-### **The Language and Repository**
+### The Language and Repository
 
 `cloud-init` is written almost entirely in **Python**. Its canonical source code repository is hosted on **Launchpad**, but for easier collaboration and a more familiar interface, most contributors interact with its official mirror on **GitHub**.
 

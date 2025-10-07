@@ -9,15 +9,15 @@ tags:
 ---
 
 
-# **II. First Contact: Simple Bootstrapping with the Rocky Linux 10 QCOW2 Image**
+## Simple Bootstrapping with the Rocky Linux 10 QCOW2 Image
 
 In the previous chapter, we covered the fundamental concepts of `cloud-init`. Now, it’s time to move from theory to practice. This chapter is your first hands-on mission: you will take the official Rocky Linux 10 Generic Cloud image, provide it with a simple set of instructions, and watch it configure itself on first boot.
 
-## **1. Prepping the Lab Environment**
+## 1. Prepping the Lab Environment
 
 Before we can boot our first instance, we need to prepare our local lab environment. For these exercises, we will simulate a cloud environment using standard Linux virtualization tools.
 
-### **Prerequisites: Host Tools**
+### Prerequisites: Host Tools
 
 Ensure you have the following tools installed on your host machine. On a Rocky Linux host, you can install them with `dnf`:
 
@@ -45,6 +45,7 @@ cp Rocky-10-GenericCloud.qcow2 first-boot-vm.qcow2
 ```
 
 !!! tip "Save Disk Space with Backing Files"
+
     A full copy of the image can be large. To save disk space, you can create a *linked clone* that uses the original image as a backing file. This creates a much smaller `qcow2` file that only stores the differences from the original.
 
     ```bash
