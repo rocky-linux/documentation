@@ -14,8 +14,9 @@ tags:
 **Decoder** is a simple and elegant utility for the GNOME desktop designed for a single purpose: working with QR codes. In a world where QR codes are used for everything from sharing Wi-Fi passwords to accessing restaurant menus, having a dedicated tool to handle them is essential.
 
 Decoder provides two primary functions in a clean, focused interface:
-1.  **Scanning:** Decode QR codes, either by using your computer's webcam or by selecting an image file.
-2.  **Generating:** Create your own QR codes from any text you provide.
+
+1. **Scanning:** Decode QR codes, either by using your computer's webcam or by selecting an image file.
+2. **Generating:** Create your own QR codes from any text you provide.
 
 Its tight integration with the GNOME desktop makes it feel like a natural part of the operating system.
 
@@ -51,8 +52,8 @@ After installation, you can launch Decoder from the GNOME Activities Overview.
 
 When you first open Decoder, it is ready to scan. You have two options:
 
-*   **Scan with Camera:** Click the camera icon in the top-left. A window will appear showing your webcam's feed. Simply point the webcam at a QR code to scan it in real-time.
-*   **Scan from Image:** Click the image icon in the top-right. This will open a file chooser, allowing you to select a saved image or screenshot that contains a QR code.
+* **Scan with Camera:** Click the camera icon in the top-left. A window will appear showing your webcam's feed. Simply point the webcam at a QR code to scan it in real-time.
+* **Scan from Image:** Click the image icon in the top-right. This will open a file chooser, allowing you to select a saved image or screenshot that contains a QR code.
 
 Once a code is scanned, Decoder intelligently parses its content. If the code contains a website URL, it will display the link with a button to open it in your default web browser. If it contains plain text, it will display the text with a convenient button to copy it to your clipboard.
 
@@ -60,8 +61,8 @@ Once a code is scanned, Decoder intelligently parses its content. If the code co
 
 To create your own QR code, click the "Generate" button at the top of the Decoder window.
 
-1.  A text box will appear. Simply type or paste the text you wish to encode into this box.
-2.  As you type, a QR code representing your text is instantly generated on the right.
-3.  You can then click the **"Save as Image..."** button to save the QR code as a `.png` file, or click the **"Copy to Clipboard"** button to paste it into other applications.
+1. A text box will appear. Simply type or paste the text you wish to encode into this box.
+2. As you type, a QR code representing your text is instantly generated on the right.
+3. You can then click the **"Save as Image..."** button to save the QR code as a `.png` file, or click the **"Copy to Clipboard"** button to paste it into other applications.
 
 Decoder is a perfect example of the GNOME design philosophy: a simple, beautiful, and highly effective tool that does one job exceptionally well.
