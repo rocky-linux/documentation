@@ -13,14 +13,10 @@ Die Docker-Engine kann zum Ausführen nativer Container-Workloads im Docker-Stil
 
 ## Docker-Repository hinzufügen
 
-!!! note "Anmerkung"
-
-    Docker v28 verfügt derzeit nicht über ein RHEL 10-Repository, daher sollten Sie das CentOS-Repository benutzen.
-
 Verwenden Sie das Dienstprogramm `dnf`, um das Docker-Repository zu Ihrem Rocky Linux-Server hinzuzufügen. Geben Sie bitte Folgendes ein:
 
 ```bash
-sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
 ```
 
 ## Benötigte Pakete installieren
