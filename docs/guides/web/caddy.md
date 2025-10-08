@@ -156,7 +156,7 @@ It should have an SSL padlock that should work in every modern browser, and not 
 
 As mentioned earlier, Caddy supports FastCGI support for PHP. The good news is that unlike Apache and Nginx, Caddy handles PHP file extensions automatically.
 
-To install PHP, first add the Remi repository (note: if you are running Rocky Linux 8.x or 10.x, substitute in 8 or 10 next to the "release-" below):
+To install PHP, first add the Remi repository (note: if you are running Rocky Linux 8.x or 9.x, substitute in 8 or 9 next to the "release-" below):
 
 ```bash
 sudo dnf install https://rpms.remirepo.net/enterprise/remi-release-10.rpm
