@@ -156,16 +156,16 @@ It should have an SSL padlock that should work in every modern browser, and not 
 
 As mentioned earlier, Caddy supports FastCGI support for PHP. The good news is that unlike Apache and Nginx, Caddy handles PHP file extensions automatically.
 
-To install PHP, first add the Remi repository (note: if you are running Rocky Linux 8.x or 10.x, substitute in 8 or 10 next to the "release-" below):
+To install PHP, first add the Remi repository (note: if you are running Rocky Linux 8.x or 9.x, substitute in 8 or 9 next to the "release-" below):
 
 ```bash
-sudo dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
+sudo dnf install https://rpms.remirepo.net/enterprise/remi-release-10.rpm
 ```
 
 Next, we need to install PHP (note: if you are using another version of PHP, substitute your desired version for php83):
 
 ```bash
-sudo dnf install -y php83-php-fpm
+sudo dnf install -y php85-php-fpm
 ```
 
 If you require additional PHP modules (e.g., GD), add them to the above command.
@@ -173,13 +173,13 @@ If you require additional PHP modules (e.g., GD), add them to the above command.
 Then, we need to configure PHP to listen on a TCP socket:
 
 ```bash
-sudo vim /etc/opt/remi/php83/php-fpm.d/www.conf
+sudo vim /etc/opt/remi/php85/php-fpm.d/www.conf
 ```
 
 Next, find the line:
 
 ```bash
-listen = /var/opt/remi/php83/run/php-fpm/www.sock
+listen = /var/opt/remi/php85/run/php-fpm/www.sock
 ```
 
 Replace it with this:
@@ -191,7 +191,7 @@ listen = 127.0.0.1:9000
 We can now enable and start php-fpm:
 
 ```bash
-sudo systemctl enable --now php83-php-fpm
+sudo systemctl enable --now php85-php-fpm
 ```
 
 Then save and exit the `www.conf` file, and open the Caddyfile:
