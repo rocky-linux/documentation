@@ -49,10 +49,6 @@ After installing the necessary prerequisites, it is time to install the NVIDIA d
 
 Add the official NVIDIA repository with the following command:
 
-!!! Note
-
-    If you use Rocky 9, replace `rhel10` in the file path with `rhel9`.
-
 ```bash
 sudo dnf config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/rhel10/$(uname -i)/cuda-rhel10.repo
 ```
