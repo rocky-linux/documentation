@@ -1,5 +1,5 @@
 ---
-title: VII. Contributing to cloud-init
+title: 7. Contributing
 author: Wale Soyinka
 contributors:
 tags:
@@ -34,7 +34,7 @@ git clone https://github.com/canonical/cloud-init.git
 cd cloud-init
 ```
 
-### **Setting up a Development Environment**
+### Setting up a Development Environment
 
 To work on the code without affecting your system's Python packages, you should always use a virtual environment.
 
@@ -49,7 +49,7 @@ source .venv/bin/activate
 pip install -r requirements-dev.txt
 ```
 
-### **A High-Level Tour of the Source Code**
+### A High-Level Tour of the Source Code
 
 Navigating a new codebase can be daunting. Here are the most important directories:
 
@@ -59,7 +59,7 @@ Navigating a new codebase can be daunting. Here are the most important directori
 *   `doc/`: The project's official documentation. Documentation improvements are one of the best ways to make your first contribution.
 *   `tests/`: The comprehensive test suite for the project.
 
-## **2. Writing a Basic Custom Module**
+## 2. Writing a Basic Custom Module
 
 While `runcmd` is useful, writing a proper module is the best way to create reusable, portable, and idempotent configurations.
 
@@ -101,7 +101,7 @@ Let's create the simplest possible module: one that reads a configuration key fr
 
 After booting a VM with this configuration, you can check `/var/log/cloud-init.log` and you will find your custom message, proving your module worked.
 
-## **3. The Contribution Workflow**
+## 3. The Contribution Workflow
 
 Contributing to an open-source project follows a standard workflow. Here is a simplified overview:
 
@@ -123,10 +123,10 @@ Contributing to an open-source project follows a standard workflow. Here is a si
 
 6.  **Engage in Code Review:** Project maintainers will review your PR. They may ask questions or request changes. This is a collaborative process. Engaging with feedback is a key part of contributing to open source.
 
-### **Community Engagement**
+### Community Engagement
 
 To learn more, ask questions, and interact with the community, you can join the `#cloud-init` channel on the OFTC IRC network or the official mailing list.
 
-## **A Final Word**
+## A Final Word
 
 Congratulations on completing this guide. You have progressed from a novice user to a `cloud-init` power user, and now you have a map to guide you into the world of open-source contribution. The `cloud-init` community is welcoming, and your contributions, no matter how small, are valued. Happy building!

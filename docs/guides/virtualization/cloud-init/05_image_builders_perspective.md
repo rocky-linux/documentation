@@ -1,5 +1,5 @@
 ---
-title: V. The Image Builder's Perspective
+title: 5. The Image Builder's Perspective
 author: Wale Soyinka
 contributors:
 tags:
@@ -37,11 +37,11 @@ virt-install --name golden-image-builder \
 virsh console golden-image-builder
 ```
 
-## **2. System-Wide Configuration with `cloud.cfg.d`**
+## 2. System-Wide Configuration with `cloud.cfg.d`
 
 Inside our running VM, we can now customize the system-wide `cloud-init` configuration. The master file, `/etc/cloud/cloud.cfg`, should never be edited directly. The correct, upgrade-safe location for customizations is the `/etc/cloud/cloud.cfg.d/` directory. `cloud-init` reads all `.cfg` files here in alphabetical order after the main `cloud.cfg`, allowing you to override defaults.
 
-### **Hands-On: Setting Golden Image Defaults**
+### Hands-On: Setting Golden Image Defaults
 
 Let's enforce a policy on our golden image: we will disable password authentication, set a new default user, and ensure a baseline set of packages is always installed.
 
@@ -74,11 +74,11 @@ A powerful security technique is to completely disable certain `cloud-init` modu
     cloud_final_modules: []
     ```
 
-## **3. Generalizing the Image**
+## 3. Generalizing the Image
 
-Our VM now contains our custom configuration, but it also holds unique machine identifiers (like `/etc/machine-id`) and SSH host keys. Before we can clone it, we **must** remove this data in a process called **generalization**.
+Our VM now contains our custom configuration, but it also holds unique machine identifiers (like `/etc/machine-id`) and SSH host keys. Before we can clone it, we must remove this data in a process called **generalization**.
 
-### **Method 1: `cloud-init clean` (Inside the VM)**
+### Method 1: `cloud-init clean` (Inside the VM)
 
 `cloud-init` provides a built-in command for this purpose.
 
@@ -94,7 +94,7 @@ Our VM now contains our custom configuration, but it also holds unique machine i
     sudo poweroff
     ```
 
-### **Method 2: `virt-sysprep` (From the Host)**
+### Method 2: `virt-sysprep` (From the Host)
 
 An even more thorough, industry-standard tool is `virt-sysprep`. It can be run from your host machine on the shutdown VM disk. It performs all the actions of `cloud-init clean` and much more, such as clearing command history, removing temporary files, and resetting log files.
 
@@ -109,7 +109,7 @@ Once the generalization process is complete, the disk file (`golden-image-templa
 !!! note "Golden Image Naming Conventions"
     It is a good practice to give your golden images descriptive names that include the OS and a version number, such as `rocky10-base-v1.0.qcow2`. This helps with version control and infrastructure management.
 
-## **4. Verifying the Golden Image**
+## 4. Verifying the Golden Image
 
 Let's test our new image by booting a new instance *from* it without any `user-data`.
 
@@ -125,6 +125,6 @@ Let's test our new image by booting a new instance *from* it without any `user-d
 
 3.  **Verify:** Connect to the console (`virsh console golden-image-test`). The login prompt should be for the user `admin`, not `rocky`. Once logged in, you can also verify that `htop` is installed (`rpm -q htop`). This confirms your baked-in defaults are working.
 
-## **What's Next?**
+## What's Next?
 
 You have now learned how to create standardized templates by baking in defaults with `cloud-init`'s system-wide configuration and properly generalizing them for cloning. In the next chapter, we will cover the essential skill of troubleshooting when `cloud-init` doesn't behave as expected.

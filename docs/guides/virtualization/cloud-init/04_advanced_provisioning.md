@@ -1,5 +1,5 @@
 ---
-title: IV. Advanced Provisioning - Networking and Multi-Part Payloads
+title: 4. Advanced Provisioning
 author: Wale Soyinka
 contributors:
 tags:
@@ -16,8 +16,8 @@ In the previous chapter, you mastered the core `cloud-init` modules for managing
 
 This chapter covers two powerful, advanced topics:
 
-1.  **Declarative Network Configuration:** How to move beyond DHCP and define static network configurations for your instances.
-2.  **Multi-Part MIME Payloads:** How to combine different types of user-data, like shell scripts and `#cloud-config` files, into a single, powerful payload.
+1.  Declarative Network Configuration: How to move beyond DHCP and define static network configurations for your instances.
+2.  Multi-Part MIME Payloads: How to combine different types of user-data, like shell scripts and `#cloud-config` files, into a single, powerful payload.
 
 ## 1. Declarative Network Configuration
 
@@ -28,7 +28,7 @@ Network configurations are specified in a separate YAML document from your main 
 !!! note "How `cloud-init` Applies Network State"
     On Rocky Linux, `cloud-init` does not directly configure the network interfaces. Instead, it acts as a translator, converting its network configuration into files that **NetworkManager** (the default network service) can understand. It then hands off control to NetworkManager to apply the configuration. You can inspect the resulting connection profiles in `/etc/NetworkManager/system-connections/`.
 
-### **Example 1: Configuring a Single Static IP**
+### Example 1: Configuring a Single Static IP
 
 In this exercise, we will configure our virtual machine with a static IP address, a default gateway, and custom DNS servers.
 
@@ -92,7 +92,7 @@ In this exercise, we will configure our virtual machine with a static IP address
     ```
     The output should show that `eth0` has the static IP address `192.168.122.100/24`.
 
-### **Example 2: Multi-Interface Configuration**
+### Example 2: Multi-Interface Configuration
 
 A common real-world scenario is a server with multiple network interfaces. Here, we'll create a VM with two interfaces: `eth0` will use DHCP, and `eth1` will have a static IP.
 
@@ -128,7 +128,7 @@ A common real-world scenario is a server with multiple network interfaces. Here,
 
 3.  **Verify:** SSH to the DHCP-assigned address on `eth0` and then check the static IP on `eth1` with `ip a show eth1`.
 
-## **2. Unifying Payloads with Multi-Part MIME**
+## 2. Unifying Payloads with Multi-Part MIME
 
 Sometimes, you need to run a setup script *before* the main `#cloud-config` modules execute. MIME multi-part files are the solution, allowing you to bundle different content types into one ordered payload.
 
@@ -157,7 +157,7 @@ The structure of a MIME file can be visualized as follows:
 +-----------------------------------------+
 ```
 
-### **Hands-On: A Pre-flight Check Script**
+### Hands-On: A Pre-flight Check Script
 
 We will create a multi-part file that first runs a shell script and then proceeds to the main `#cloud-config`.
 
@@ -168,33 +168,35 @@ We will create a multi-part file that first runs a shell script and then proceed
     ```bash
     cat <<EOF > user-data.mime
     Content-Type: multipart/mixed; boundary="//"
-MIME-Version: 1.0
+    MIME-Version: 1.0
 
---//
-Content-Type: text/x-shellscript; charset="us-ascii"
+    --//
+    Content-Type: text/x-shellscript; charset="us-ascii"
 
-#!/bin/sh
-echo "Running pre-flight checks..."
-# In a real script, you might check disk space or memory.
-# If checks failed, you could 'exit 1' to halt cloud-init.
-echo "Pre-flight checks passed." > /tmp/pre-flight-status.txt
+    #!/bin/sh
+    echo "Running pre-flight checks..."
+    # In a real script, you might check disk space or memory.
+    # If checks failed, you could 'exit 1' to halt cloud-init.
+    echo "Pre-flight checks passed." > /tmp/pre-flight-status.txt
 
---//
-Content-Type: text/cloud-config; charset="us-ascii"
+    --//
+    Content-Type: text/cloud-config; charset="us-ascii"
 
-#cloud-config
-packages:
-  - htop
-runcmd:
-  - [ sh, -c, "echo 'Main cloud-config ran successfully' > /tmp/main-config-status.txt" ]
+    #cloud-config
+    packages:
+        - htop
+        runcmd:
+          - [ sh, -c, "echo 'Main cloud-config ran successfully' > /tmp/main-config-status.txt" ]
 
---//--
+    --//--
     EOF
     ```
+
     !!! note "About the MIME Boundary"
+
         The boundary string (`//` in this case) is an arbitrary string that must not appear in the content of any part. It is used to separate the different sections of the file.
 
-2.  **Boot and Verify:**
+2.  Boot and Verify:
 
     You pass this file to `virt-install` in the same way as a standard `user-data.yml` file.
 
@@ -218,9 +220,10 @@ runcmd:
     ```
 
 !!! tip "Other Multi-Part Content Types"
+
     `cloud-init` supports other content types for advanced use cases, such as `text/cloud-boothook` for very early boot scripts or `text/part-handler` for running custom Python code. Refer to the official documentation for more details.
 
-## **What's Next?**
+## What's Next?
 
 You have now learned two powerful, advanced `cloud-init` techniques. You can now define static networks and orchestrate complex provisioning workflows with multi-part user-data.
 

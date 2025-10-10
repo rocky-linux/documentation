@@ -1,5 +1,5 @@
 ---
-title: III. The Configuration Engine: Deep Dive into cloud-init Modules
+title: 3. The Configuration Engine
 author: Wale Soyinka
 contributors:
 tags:
@@ -23,11 +23,11 @@ A `cloud-init` module is a specialized Python script designed to handle a single
 
 The key advantage of using modules over simple scripts (like `runcmd`) is **idempotency**. An idempotent operation produces the same result whether you run it once or ten times. When you declare that a user should exist, the module ensures that state is met—it will create the user if it doesn't exist, but do nothing if it already does. This makes your configurations reliable and repeatable.
 
-### **The `#cloud-config` Format Revisited**
+### The `#cloud-config` Format Revisited
 
 When `cloud-init` sees the `#cloud-config` header, it interprets the file as a YAML-formatted instruction set. The top-level keys in this YAML file map directly to `cloud-init` modules.
 
-### **Module Execution and Order**
+### Module Execution and Order
 
 Modules run at specific stages of the boot process in a sequence defined in `/etc/cloud/cloud.cfg`. A simplified view of this flow looks like this:
 
@@ -53,11 +53,11 @@ The order is critical. For example, the `users-groups` module runs before `runcm
 
     While `/etc/cloud/cloud.cfg` defines the default behavior, you should never edit it directly. For persistent, system-wide customizations, place your own `.cfg` files in the `/etc/cloud/cloud.cfg.d/` directory. This is the standard practice for building custom images, which we will explore in a later chapter.
 
-## **2. High-Utility Modules: The Daily Drivers**
+## 2. High-Utility Modules: The Daily Drivers
 
 Let's get hands-on with the most common modules using the direct injection method with `virt-install`.
 
-### **Module Deep Dive: `users` and `groups`**
+### Module Deep Dive: `users` and `groups`
 
 Properly managing user accounts is the cornerstone of securing a new server instance. The `users` module is your primary tool for this, allowing you to create new users, modify existing ones, manage group memberships, and, most importantly, inject SSH keys to facilitate secure, passwordless logins from the very first boot.
 
@@ -109,7 +109,7 @@ A more common task is to simply secure the default user provided with the cloud 
 
 3.  **Boot and Verify:** Boot the VM. You can now SSH as the `rocky` user without a password.
 
-### **Module Deep Dive: `packages`**
+### Module Deep Dive: `packages`
 
 The `packages` module provides a declarative way to manage the software on your instance, ensuring that specific applications are installed at boot time.
 
@@ -136,7 +136,7 @@ In this example, we will ensure two useful tools, `nginx` (a high-performance we
 
     If you were to reboot this VM with the same `user-data`, the `packages` module would see that `nginx` and `htop` are already installed and do nothing further. It ensures the desired state (packages are present) without taking unnecessary action. That is idempotency.
 
-### **Module Deep Dive: `write_files`**
+### Module Deep Dive: `write_files`
 
 This module is incredibly versatile, allowing you to write any text content to any file on the system. It is the perfect tool for deploying application configuration files, populating web content, or creating helper scripts.
 
@@ -169,6 +169,6 @@ To demonstrate its power, we will use `write_files` to create a custom homepage 
 
     The `write_files` module is not limited to text. By specifying an `encoding`, you can deploy binary files. For example, you can use `encoding: b64` to write base64-encoded data. For advanced use cases, refer to the [official `write_files` documentation](https://cloudinit.readthedocs.io/en/latest/topics/modules.html#write-files).
 
-## **What's Next?**
+## What's Next?
 
 You have now mastered the three most fundamental `cloud-init` modules. By combining them, you can perform a significant amount of automated server configuration. In the next chapter, we will tackle more advanced scenarios, including network configuration and combining different `user-data` formats in a single run.

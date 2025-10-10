@@ -1,5 +1,5 @@
 ---
-title: VI. Troubleshooting cloud-init
+title: 6. Troubleshooting cloud-init
 author: Wale Soyinka
 contributors:
 tags:
@@ -27,11 +27,11 @@ This is your first port of call. It provides a high-level summary of `cloud-init
 *   **Wait for `cloud-init` to finish:** `cloud-init status --wait`
     (This is useful in scripts to pause execution until `cloud-init` completes)
 
-### **Pillar 2: The Main Log (`/var/log/cloud-init.log`)**
+### Pillar 2: The Main Log (`/var/log/cloud-init.log`)
 
 This file is the golden source of truth: a detailed, chronological record of every stage and module. When you need to know *exactly* what happened, look here. Searching this file for `ERROR` or `WARNING` will often lead you directly to the problem.
 
-### **Pillar 3: The Output Log (`/var/log/cloud-init-output.log`)**
+### Pillar 3: The Output Log (`/var/log/cloud-init-output.log`)
 
 This log captures the full `stdout` and `stderr` of all scripts executed by `cloud-init` (e.g., from `runcmd`). If a module ran but your script within it failed, the error message will be in this file.
 
@@ -51,11 +51,11 @@ This log captures the full `stdout` and `stderr` of all scripts executed by `clo
     ls: cannot access '/non-existent-dir': No such file or directory
     ```
 
-## **2. Host-Side Troubleshooting with `libguestfs-tools`**
+## 2. Host-Side Troubleshooting with `libguestfs-tools`
 
 Sometimes, a VM will fail to boot entirely, making in-guest tools useless. In these cases, you can diagnose problems by inspecting the VM's disk image directly from the host using the powerful `libguestfs-tools` suite (install with `sudo dnf install libguestfs-tools`).
 
-### **`virt-cat`: Reading Files from a Guest Disk**
+### `virt-cat`: Reading Files from a Guest Disk
 
 `virt-cat` lets you read files from inside a VM's disk image without mounting it. This is perfect for grabbing log files from a non-booting instance.
 
@@ -64,7 +64,7 @@ Sometimes, a VM will fail to boot entirely, making in-guest tools useless. In th
 sudo virt-cat -a /path/to/your-vm-disk.qcow2 /var/log/cloud-init.log
 ```
 
-### **`virt-inspector`: Deep System Inspection**
+### `virt-inspector`: Deep System Inspection
 
 `virt-inspector` generates a detailed XML report of a VM's OS, applications, and configuration. This is incredibly powerful for automated analysis.
 
@@ -77,9 +77,9 @@ sudo virt-cat -a /path/to/your-vm-disk.qcow2 /var/log/cloud-init.log
     sudo virt-inspector -a your-vm-disk.qcow2 | xmllint --xpath "//application[name='cloud-init']/version/text()" -
     ```
 
-## **3. Common Pitfalls and How to Avoid Them**
+## 3. Common Pitfalls and How to Avoid Them
 
-### **Pitfall 1: YAML and Schema Errors**
+### Pitfall 1: YAML and Schema Errors
 
 Invalid YAML is the most common source of failures. A more advanced problem is a syntactically valid YAML file that violates `cloud-init`'s expected structure (e.g., a typo in a module name).
 
@@ -90,16 +90,16 @@ Invalid YAML is the most common source of failures. A more advanced problem is a
     ```
     If the file is valid, it will print `Valid cloud-config: user-data.yml`. If not, it will provide detailed errors.
 
-### **Pitfall 2: Network-Dependent Modules Failing**
+### Pitfall 2: Network-Dependent Modules Failing
 
 If networking fails to come up, modules like `packages` will fail. Check your network configuration and the `Network` stage in `/var/log/cloud-init.log`.
 
-## **4. Controlling `cloud-init`'s Execution**
+## 4. Controlling `cloud-init`'s Execution
 
 *   **Forcing a Re-run:** To test changes on a running VM, run `sudo cloud-init clean --logs` followed by `sudo reboot`.
 *   **Disabling `cloud-init`:** To prevent `cloud-init` from running on subsequent boots, create a sentinel file: `sudo touch /etc/cloud/cloud-init.disabled`.
 *   **Running on Every Boot (`bootcmd`):** Use the `bootcmd` module for scripts that must run on every single boot. This is rare but useful for certain diagnostics.
 
-## **What's Next?**
+## What's Next?
 
 You are now equipped with a powerful set of tools for both in-guest and on-host troubleshooting. In the final chapter, we will look at the `cloud-init` project itself, preparing you to explore its source code and contribute back to the community.
