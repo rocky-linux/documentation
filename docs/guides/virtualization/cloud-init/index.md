@@ -1,8 +1,12 @@
 ---
-title: Guide to cloud-init on Rocky Linux
+title: 0. cloud-init
+author: Wale Soyinka
+contributors:
+tags:
+  - cloud-init
 ---
 
-# Mastering cloud-init on Rocky Linux
+## Guide to cloud-init on Rocky Linux
 
 Welcome to the comprehensive guide to `cloud-init` on Rocky Linux. This series is designed to take you from the fundamental concepts of cloud instance initialization to advanced, real-world provisioning and troubleshooting techniques. Whether you are a new user setting up your first cloud server or an experienced administrator building custom images, this guide has something for you.
 

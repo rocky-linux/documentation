@@ -1,5 +1,5 @@
 ---
-Title: I. cloud-init Fundamentals: The Architecture of First Boot
+title: 1. cloud-init Fundamentals
 author: Wale Soyinka
 contributors:
 tags:
@@ -9,7 +9,7 @@ tags:
 ---
 
 
-## Introduction
+## The Architecture of First Boot
 
 This guide explores `cloud-init`, the essential tool for automating the initial setup of your Rocky Linux 10 cloud instances. When we talk about deploying servers in the cloud—or even in your local virtualization lab—we often take for granted the almost instantaneous transition from a blank image to a fully functional, network-ready machine. This feat of digital alchemy is performed by a single, tireless utility: cloud-init.
 
@@ -38,18 +38,18 @@ cloud-init is a consumer, not a creator. It relies on the underlying cloud platf
 
 This decoupling—where the image is generic and the configuration is provided externally—is the fundamental genius of the entire cloud deployment model.
 
-## **2. Rocky Linux 10 and the Generic Cloud Image**
+## 2. Rocky Linux 10 and the Generic Cloud Image
 
 For this guide, we'll be using the official [Rocky-10-GenericCloud-Base.latest.x86_64.qcow2](https://dl.rockylinux.org/pub/rocky/10/images/x86_64/Rocky-10-GenericCloud-Base.latest.x86_64.qcow2).
 
-### **The Target Image: A Pre-Wired Workhorse**
+### The Target Image: A Pre-Wired Workhorse
 
 This image is special because it comes with the cloud-init package pre-installed and enabled. It has been *generalized*, meaning all machine-specific identifiers, SSH host keys, and log files have been stripped out. It’s ready to receive its new identity on first boot.
 
 !!! warning "Use the Recommended Image"
     If you attempt to use cloud-init on a standard Rocky Linux installation (like a minimal ISO install), you’ll find it’s not present by default. Stick to the **Generic Cloud image** to avoid needless complexity and ensure everything works exactly as the doctor prescribed. Attempting the exercises in this guide with other images will likely fail and is not supported.
 
-### **Core Concepts: User-Data vs. Meta-Data**
+### Core Concepts: User-Data vs. Meta-Data
 
 The configuration information that cloud-init processes is categorized into two key types. Understanding this distinction is critical to knowing what you can control and what the cloud provider controls.
 
@@ -68,7 +68,7 @@ We will focus primarily on crafting effective **User-Data** files, which typical
 #cloud-config
 ```
 
-## **3. The Lifecycle: cloud-init's Four Stages of Initialization**
+## 3. The Lifecycle: cloud-init's Four Stages of Initialization
 
 cloud-init doesn't just run a script and exit; it executes a series of highly structured stages that align with the server's boot process. This methodical approach ensures that dependencies are met (e.g., networking is configured before packages are downloaded).
 

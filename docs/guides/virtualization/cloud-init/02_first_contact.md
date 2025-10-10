@@ -1,5 +1,5 @@
 ---
-Title: II. First Contact: Simple Bootstrapping
+title: 2. First Contact
 author: Wale Soyinka
 contributors:
 tags:
@@ -29,7 +29,7 @@ sudo dnf install -y libvirt qemu-kvm virt-install genisoimage
 *   `virt-install`: A command-line utility for provisioning new virtual machines.
 *   `genisoimage` (or `mkisofs`): A tool to create an ISO9660 filesystem.
 
-### **The QCOW2 Image**
+### The QCOW2 Image
 
 If you haven't already, download the official Rocky Linux 10 Generic Cloud image.
 
@@ -53,11 +53,11 @@ cp Rocky-10-GenericCloud.qcow2 first-boot-vm.qcow2
     -b Rocky-10-GenericCloud.qcow2 first-boot-vm.qcow2
     ```
 
-## **2. Method 1: The `NoCloud` Datasource (ISO)**
+## 2. Method 1: The `NoCloud` Datasource (ISO)
 
 One of the most common ways to provide data to `cloud-init` in a local environment is the `NoCloud` datasource. This method requires packaging our configuration files into a virtual CD-ROM (an ISO file) that `cloud-init` will automatically detect and read on boot.
 
-### **Creating the Configuration Files**
+### Creating the Configuration Files
 
 1.  **Create a directory for your configuration files:**
     ```bash
@@ -89,7 +89,7 @@ One of the most common ways to provide data to `cloud-init` in a local environme
     genisoimage -o config.iso -V cidata -r -J cloud-init-data
     ```
 
-### **Booting and Verification**
+### Booting and Verification
 
 1.  **Launch the VM** with `virt-install`, attaching both the VM image and the `config.iso`.
     ```bash
@@ -119,7 +119,7 @@ One of the most common ways to provide data to `cloud-init` in a local environme
 
 Creating an ISO is a reliable method, but for users of `libvirt` and `virt-install`, there is a much simpler way. The `--cloud-init` flag allows you to pass `user-data` directly, letting `virt-install` handle the creation of the datasource automatically.
 
-### **Simplified `user-data`**
+### Simplified `user-data`
 
 Create a simple `user-data.yml` file. You can even add the SSH key pre-emptively.
 
@@ -133,7 +133,7 @@ users:
 EOF
 ```
 
-### **Booting and Verification**
+### Booting and Verification
 
 1.  **Launch the VM** using the `--cloud-init` flag. Notice we can set the hostname here directly.
     ```bash
