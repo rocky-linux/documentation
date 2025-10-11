@@ -12,7 +12,18 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 Dieses Tutorial führt Sie durch die anspruchsvolle Einrichtung von Kubernetes. Es ist nicht für jemanden geeignet, der nach einem vollständig automatisierten Tool zum Einrichten eines Kubernetes-Clusters sucht. `Kubernetes The Hard Way` ist zum Lernen konzipiert. Sie müssen also den langen Weg gehen, um sicherzustellen, dass Sie jede Aufgabe verstehen, die zum Bootstrapping eines Kubernetes-Clusters erforderlich ist.
 
-Betrachten Sie die Ergebnisse dieses Tutorials nicht als produktionsreif und es wird möglicherweise keine Unterstützung von der Community erhalten, aber lassen Sie sich dadurch nicht vom Lernen abhalten!
+Betrachten Sie die Ergebnisse dieses Tutorials nicht als produktionsreif und es wird möglicherweise keine Unterstützung von der Community erhalten, aber lassen Sie sich dadurch nicht vom Lernen abhalten!<small>
+<br/><br/>
+🌐 Übersetzungen: 
+<a href="https://crowdin.com/project/rockydocs/de">crowdin.com/project/rockydocs</a>
+<br/>
+🌍 Übersetzer:
+<a href="https://crowdin.com/project/rockydocs/activity-stream">rockydocs/activity-stream</a>
+, <a href="https://crowdin.com/project/rockylinuxorg/activity-stream">rockylinux.org</a>
+<br/>
+🖋 Mitmachen:
+<a href="https://github.com/rocky-linux/documentation?tab=readme-ov-file#mattermost">github.com/rocky-linux</a>
+</small>
 
 ## Copyright
 
@@ -45,10 +56,10 @@ Für dieses Tutorial sind vier (4) x86_64-basierte virtuelle oder physische Masc
 - [Provisionierung der CA und Generierung von TLS-Zertifikate](lab4-certificate-authority.md)
 - [Generierung der Kubernetes Konfigurationsdateien für die Authentifizierung](lab5-kubernetes-configuration-files.md)
 - [Generierung der Data Encryption Konfiguration und Schlüssel](lab6-data-encryption-keys.md)
-- [Bootstrapping vom etcd-Cluster](lab7-bootstrapping-etcd.md)
-- [Bootstrapping the Kubernetes Control Plane](lab8-bootstrapping-kubernetes-controllers.md)
-- [Bootstrapping the Kubernetes Worker Nodes](lab9-bootstrapping-kubernetes-workers.md)
-- [Configuring kubectl for Remote Access](lab10-configuring-kubectl.md)
-- [Provisioning Pod Network Routes](lab11-pod-network-routes.md)
-- [Smoke Test](lab12-smoke-test.md)
+- [Bootstrapping vom `etcd`-Cluster](lab7-bootstrapping-etcd.md)
+- [Bootstrapping der Kubernetes Kontrollebene](lab8-bootstrapping-kubernetes-controllers.md)
+- [Bootstrapping der Kubernetes Worker-Knoten](lab9-bootstrapping-kubernetes-workers.md)
+- [Konfiguration von `kubectl` für Remote-Zugriff](lab10-configuring-kubectl.md)
+- [Bereitstellung von Pod-Netzwerkrouten](lab11-pod-network-routes.md)
+- [Smoke-Test](lab12-smoke-test.md)
 - [Cleaning Up](lab13-cleanup.md)

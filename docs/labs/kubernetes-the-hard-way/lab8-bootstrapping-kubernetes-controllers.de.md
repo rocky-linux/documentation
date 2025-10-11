@@ -10,7 +10,7 @@ tags:
   - runc
 ---
 
-# Übung 8: Bootstrapping der Kubernetes-Steuerebene
+# Labor 8: Bootstrapping der Kubernetes-Steuerebene
 
 !!! info
 

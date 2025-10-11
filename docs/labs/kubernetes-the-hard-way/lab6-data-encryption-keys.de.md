@@ -7,7 +7,7 @@ tags:
   - Laborübung
 ---
 
-# Übung 6: Generieren der Datenverschlüsselungskonfiguration und des Schlüssels
+# Labor 6: Generierung der Datenverschlüsselungskonfiguration und Schlüssel
 
 !!! info
 

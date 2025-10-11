@@ -7,7 +7,7 @@ tags:
   - exercice d'atelier
 ---
 
-# Labo n°1 : Prérequis
+# Atelier n°1 : Prérequis
 
 !!! info
 
