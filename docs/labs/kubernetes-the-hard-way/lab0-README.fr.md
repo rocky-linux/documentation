@@ -10,9 +10,19 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
     Il s'agit d'un fork de l'original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) écrit à l'origine par Kelsey Hightower (GitHub : kelseyhightower). Contrairement à l'original, qui se base sur des distributions de type Debian pour l'architecture ARM64, ce fork cible les distributions Enterprise Linux telles que Rocky Linux, qui fonctionne sur l'architecture x86_64.
 
-Ce tutoriel vous guide dans la configuration de Kubernetes à la dure. Ce n’est pas pour quelqu’un qui recherche un outil entièrement automatisé pour configurer une grappe Cluster Kubernetes. `Kubernetes The Hard Way` est conçu pour l'apprentissage, cela signifie donc prendre le long chemin pour vous assurer de comprendre chaque tâche requise pour démarrer un cluster Kubernetes.
+Ce tutoriel vous guide dans la configuration de Kubernetes pas à pas. Ce n’est pas pour quelqu’un qui recherche un outil entièrement automatisé pour configurer une grappe Cluster Kubernetes. `Kubernetes The Hard Way` est conçu pour l'apprentissage, cela signifie donc prendre le long chemin pour vous assurer de comprendre chaque tâche requise pour démarrer un cluster Kubernetes.
 
-Ne considérez pas les résultats de ce tutoriel comme prêts pour la production, et il se peut qu'il ne reçoive pas le soutien de la communauté, mais ne laissez pas cela vous empêcher d'apprendre !
+Ne considérez pas les résultats de ce tutoriel comme prêts pour la production, et il se peut qu'il ne reçoive pas le soutien de la communauté, mais ne laissez pas cela vous empêcher d'apprendre !<small>
+<br/><br/>
+🌐 Traductions: 
+<a href="https://crowdin.com/project/rockydocs/fr">crowdin.com/project/rockydocs</a>
+<br/>
+🌍 Traducteurs:
+<a href="https://crowdin.com/project/rockydocs/activity-stream">rockydocs/activity-stream</a>
+<br/>
+🖋 Contributeurs:
+<a href="https://github.com/rocky-linux/documentation?tab=readme-ov-file#mattermost">github.com/rocky-linux</a>
+</small>
 
 ## Droits d'auteur
 
@@ -41,14 +51,14 @@ Ce tutoriel nécessite quatre (4) machines virtuelles ou physiques basées sur x
 
 - [Prérequis](lab1-prerequisites.md)
 - [Mise en Place de Jumpbox](lab2-jumpbox.md)
-- [Provisioning Compute Resources](lab3-compute-resources.md)
-- [Provisioning the CA and Generating TLS Certificates](lab4-certificate-authority.md)
-- [Generating Kubernetes Configuration Files for Authentication](lab5-kubernetes-configuration-files.md)
-- [Generating the Data Encryption Config and Key](lab6-data-encryption-keys.md)
-- [Bootstrapping the etcd Cluster](lab7-bootstrapping-etcd.md)
-- [Bootstrapping the Kubernetes Control Plane](lab8-bootstrapping-kubernetes-controllers.md)
-- [Bootstrapping the Kubernetes Worker Nodes](lab9-bootstrapping-kubernetes-workers.md)
-- [Configuring kubectl for Remote Access](lab10-configuring-kubectl.md)
-- [Provisioning Pod Network Routes](lab11-pod-network-routes.md)
+- [Provisionnement des Resources de Calcul](lab3-compute-resources.md)
+- [Provisionnement de CA et Génération de Certificats TLS](lab4-certificate-authority.md)
+- [Génération des Fichiers de Configuration Kubernetes pour l'Authentification](lab5-kubernetes-configuration-files.md)
+- [Génération de la Configuration et de Clé de Chiffrement des Données](lab6-data-encryption-keys.md)
+- [Amorçage du Cluster `etcd`](lab7-bootstrapping-etcd.md)
+- [Amorçage du Plan de Contrôle Kubernetes](lab8-bootstrapping-kubernetes-controllers.md)
+- [Amorçage des nœuds de travail Kubernetes](lab9-bootstrapping-kubernetes-workers.md)
+- [Configuration de `kubectl` pour l'Accès à Distance](lab10-configuring-kubectl.md)
+- [Provisionnement de Routes Réseau des `pod`s](lab11-pod-network-routes.md)
 - [Smoke Test](lab12-smoke-test.md)
 - [Cleaning Up](lab13-cleanup.md)
