@@ -7,7 +7,7 @@ tags:
   - Laborübung
 ---
 
-# Übung 2: Einrichten der Jumpbox
+# Labor 2: Einrichten der Jumpbox
 
 !!! info
 
