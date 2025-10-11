@@ -7,7 +7,7 @@ tags:
   - Laborübung
 ---
 
-# Übung 4: Bereitstellung einer Zertifizierungsstelle und Generieren von TLS-Zertifikaten
+# Labor 4: Bereitstellung einer Zertifizierungsstelle und Generieren von TLS-Zertifikaten
 
 !!! info
 
@@ -56,7 +56,7 @@ ca.crt ca.key
 !!! tip "Hinweis"
 
     Um die in der generierten Zertifikatsdatei (`ca.crt`) codierten Details anzuzeigen, können Sie diesen OpenSSL-Befehl verwenden:
-    `openssl x509 -in ca.crt -text -noout | less`.\
+    `openssl x509 -in ca.crt -text -noout | less`.  
     
 
 ## Erstellen von Client- und Serverzertifikaten
