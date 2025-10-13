@@ -42,13 +42,13 @@ For a more complete understanding of contributing, consult our related guides:
 - Periods and commas go inside quotation marks “like this,” rather than “like this”.
 - The em dash {shift}+{option}+{-} has no spaces before or after—like this—and is our preference for parenthetical phrases.
 - Use a serial comma before the “and” in a list of three items: “Peas, mustard, and carrots.”
-- Headings should be generally made in headline-style capitalization: Capitalize the first and last words, as well as all nouns, pronouns, verbs, and adverbs. If your document works better with sentence-style capitalization, perhaps because you frequently reference acronyms, make it consistent within the entire document.
+- Headings should be generally made using sentence-style capitalization: Capitalize the first word and proper nouns only. Make heading formatting consistent within the entire document.
 - Headings do not need a period or semicolon at the end, even with sentence-style capitalization, unless ending in an abbreviation.
 - Bulleted and numbered lists: Avoid beginning capitalization or ending punctuation, unless the item is a complete sentence.
 
 !!! info "Sentence-style heading capitalization"
 
-    People using the `vale` and other language linters, will find that these suggest using sentence-style capitalization. Much of the documentation created within our documentation pool uses this style of heading capitalization. Just remember that whichever style you choose, keep it consistent within your document.
+    The current standard in documentation is to use sentence-style capitalization. People using `vale` and other language linters, will find that these suggest using sentence-style capitalization. Much of the documentation created within our documentation pool uses this style of heading capitalization. This defers from the Chicago Manual of Style, but because the industry has gravitated towards this style in documentation headings, this document is ammended to include this recomendation.
 
 ### Voice and Tone
 
