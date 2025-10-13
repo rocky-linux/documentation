@@ -1,7 +1,7 @@
 ---
-title: 4. Advanced Provisioning
+title: 4. Advanced provisioning
 author: Wale Soyinka
-contributors:
+contributors: Steven Spencer
 tags:
   - cloud-init
   - rocky linux
@@ -10,29 +10,30 @@ tags:
   - networking
 ---
 
-## Networking and Multi-Part Payloads
+## Networking and multi-part payloads
 
-In the previous chapter, you mastered the core `cloud-init` modules for managing users, packages, and files. You can now build a well-configured server declaratively. Now, it's time to explore more advanced techniques that give you even greater control over your instance's configuration.
+In the previous chapter, you mastered the core `cloud-init` modules for managing users, packages, and files. You can now build a well-configured server declaratively. Now, it is time to explore more advanced techniques that give you even greater control over your instance's configuration.
 
 This chapter covers two powerful, advanced topics:
 
-1.  Declarative Network Configuration: How to move beyond DHCP and define static network configurations for your instances.
-2.  Multi-Part MIME Payloads: How to combine different types of user-data, like shell scripts and `#cloud-config` files, into a single, powerful payload.
+1. Declarative Network Configuration: How to move beyond DHCP and define static network configurations for your instances.
+2. Multi-Part MIME Payloads: How to combine different types of user-data, such as shell scripts and `#cloud-config` files, into a single, powerful payload.
 
-## 1. Declarative Network Configuration
+## 1. Declarative network configuration
 
-By default, most cloud images are configured to acquire an IP address via DHCP. While convenient, many production environments require servers to have predictable, static IP addresses. The `cloud-init` network configuration system provides a platform-agnostic, declarative way to manage this.
+By default, the configuration of most cloud images is to acquire an IP address by DHCP. While convenient, many production environments require servers to have predictable, static IP addresses. The `cloud-init` network configuration system provides a platform-agnostic, declarative way to manage this.
 
-Network configurations are specified in a separate YAML document from your main `#cloud-config`. `cloud-init` processes both from the same file, using the standard YAML document separator (`---`) to distinguish between them.
+The specification of the network configurations is in a separate YAML document from your main `#cloud-config`. `cloud-init` processes both from the same file, using the standard YAML document separator (`---`) to distinguish between them.
 
-!!! note "How `cloud-init` Applies Network State"
+!!! note "How `cloud-init` applies network state"
+
     On Rocky Linux, `cloud-init` does not directly configure the network interfaces. Instead, it acts as a translator, converting its network configuration into files that **NetworkManager** (the default network service) can understand. It then hands off control to NetworkManager to apply the configuration. You can inspect the resulting connection profiles in `/etc/NetworkManager/system-connections/`.
 
-### Example 1: Configuring a Single Static IP
+### Example 1: Configuring a single static IP
 
 In this exercise, we will configure our virtual machine with a static IP address, a default gateway, and custom DNS servers.
 
-1.  **Create `user-data.yml`:**
+1. **Create `user-data.yml`:**
 
     This file contains two distinct YAML documents, separated by `---`. The first is our standard `#cloud-config`. The second defines the network state.
 
@@ -60,16 +61,17 @@ In this exercise, we will configure our virtual machine with a static IP address
     EOF
     ```
 
-2.  **Key Directives Explained:**
-    *   `network:`: The top-level key for network configuration.
-    *   `version: 2`: Specifies that we are using the modern, Netplan-like syntax.
-    *   `ethernets:`: A dictionary of physical network interfaces to configure, keyed by the interface name (e.g., `eth0`).
-    *   `dhcp4: no`: Disables DHCP for IPv4 on this interface.
-    *   `addresses`: A list of static IP addresses to assign, specified in CIDR notation.
-    *   `gateway4`: The default gateway for IPv4 traffic.
-    *   `nameservers`: A dictionary containing a list of IP addresses for DNS resolution.
+2. **Key directives explained:**
 
-3.  **Boot and Verify:**
+    * `network:`: The top-level key for network configuration.
+    * `version: 2`: Specifies that we are using the modern, Netplan-like syntax.
+    * `ethernets:`: A dictionary of physical network interfaces to configure, keyed by the interface name (e.g., `eth0`).
+    * `dhcp4: no`: Disables DHCP for IPv4 on this interface.
+    * `addresses`: A list of static IP addresses to assign, specified in CIDR notation.
+    * `gateway4`: The default gateway for IPv4 traffic.
+    * `nameservers`: A dictionary containing a list of IP addresses for DNS resolution.
+
+3. **Boot and verify:**
 
     Verification is different this time, as the VM will not get a dynamic IP address. You must connect to the VM's console directly.
 
@@ -90,13 +92,15 @@ In this exercise, we will configure our virtual machine with a static IP address
     # Once logged in, check the IP address
     [rocky@network-server ~]$ ip a show eth0
     ```
+
     The output should show that `eth0` has the static IP address `192.168.122.100/24`.
 
-### Example 2: Multi-Interface Configuration
+### Example 2: Multi-interface configuration
 
-A common real-world scenario is a server with multiple network interfaces. Here, we'll create a VM with two interfaces: `eth0` will use DHCP, and `eth1` will have a static IP.
+A common real-world scenario is a server with multiple network interfaces. Here, we will create a VM with two interfaces: `eth0` will use DHCP, and `eth1` will have a static IP.
 
-1.  **Create `user-data.yml` for two interfaces:**
+1. **Create `user-data.yml` for two interfaces:**
+
     ```bash
     cat <<EOF > user-data.yml
     #cloud-config
@@ -115,7 +119,8 @@ A common real-world scenario is a server with multiple network interfaces. Here,
     EOF
     ```
 
-2.  **Boot a VM with two NICs:** We add a second `--network` flag to the `virt-install` command.
+2. **Boot a VM with two NICs:** We add a second `--network` flag to the `virt-install` command.
+
     ```bash
     virt-install --name rocky10-multi-nic \
     --memory 2048 --vcpus 2 \
@@ -126,13 +131,13 @@ A common real-world scenario is a server with multiple network interfaces. Here,
     --os-variant rockylinux10 --import --noautoconsole
     ```
 
-3.  **Verify:** SSH to the DHCP-assigned address on `eth0` and then check the static IP on `eth1` with `ip a show eth1`.
+3. **Verify:** SSH to the DHCP-assigned address on `eth0` and then check the static IP on `eth1` with `ip a show eth1`.
 
-## 2. Unifying Payloads with Multi-Part MIME
+## 2. Unifying payloads with multi-part MIME
 
 Sometimes, you need to run a setup script *before* the main `#cloud-config` modules execute. MIME multi-part files are the solution, allowing you to bundle different content types into one ordered payload.
 
-The structure of a MIME file can be visualized as follows:
+You can visualize the structure of a MIME file as follows:
 
 ```
 +-----------------------------------------+
@@ -157,11 +162,11 @@ The structure of a MIME file can be visualized as follows:
 +-----------------------------------------+
 ```
 
-### Hands-On: A Pre-flight Check Script
+### Hands-on: A pre-flight check script
 
 We will create a multi-part file that first runs a shell script and then proceeds to the main `#cloud-config`.
 
-1.  **Create the Multi-Part `user-data.mime` file:**
+1. **Create the multi-part `user-data.mime` file:**
 
     This is a specially formatted text file that uses a "boundary" string to separate the parts.
 
@@ -192,11 +197,11 @@ We will create a multi-part file that first runs a shell script and then proceed
     EOF
     ```
 
-    !!! note "About the MIME Boundary"
+    !!! note "About the MIME boundary"
 
         The boundary string (`//` in this case) is an arbitrary string that must not appear in the content of any part. It is used to separate the different sections of the file.
 
-2.  Boot and Verify:
+2. **Boot and verify:**
 
     You pass this file to `virt-install` in the same way as a standard `user-data.yml` file.
 
@@ -223,7 +228,7 @@ We will create a multi-part file that first runs a shell script and then proceed
 
     `cloud-init` supports other content types for advanced use cases, such as `text/cloud-boothook` for very early boot scripts or `text/part-handler` for running custom Python code. Refer to the official documentation for more details.
 
-## What's Next?
+## What's next
 
 You have now learned two powerful, advanced `cloud-init` techniques. You can now define static networks and orchestrate complex provisioning workflows with multi-part user-data.
 
