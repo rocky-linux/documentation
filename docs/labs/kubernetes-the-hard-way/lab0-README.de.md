@@ -12,7 +12,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 Dieses Tutorial führt Sie durch die anspruchsvolle Einrichtung von Kubernetes. Es ist nicht für jemanden geeignet, der nach einem vollständig automatisierten Tool zum Einrichten eines Kubernetes-Clusters sucht. `Kubernetes The Hard Way` ist zum Lernen konzipiert. Sie müssen also den langen Weg gehen, um sicherzustellen, dass Sie jede Aufgabe verstehen, die zum Bootstrapping eines Kubernetes-Clusters erforderlich ist.
 
-Betrachten Sie die Ergebnisse dieses Tutorials nicht als produktionsreif und es wird möglicherweise keine Unterstützung von der Community erhalten, aber lassen Sie sich dadurch nicht vom Lernen abhalten!<small>
+Betrachten Sie die Ergebnisse dieses Tutorials nicht als produktionsreif und es wird möglicherweise keine Unterstützung von der Community geben, aber lassen Sie sich dadurch nicht vom Lernen abhalten!<small>
 <br/><br/>
 🌐 Übersetzungen: 
 <a href="https://crowdin.com/project/rockydocs/de">crowdin.com/project/rockydocs</a>
