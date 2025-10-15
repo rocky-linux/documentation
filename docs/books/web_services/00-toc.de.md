@@ -27,4 +27,15 @@ Die Zielgruppe dieses Buches sind Systemadministratoren, die bereits in der Verw
 
 Dieses Buch ist als Trainingshandbuch konzipiert, so dass es auf verschiedene Arten eingesetzt werden kann. Es kann als Schulungsmittel für Trainer oder als Selbstlernhilfe für Administratoren verwendet werden, die neue Fähigkeiten erwerben oder ihr vorhandenes Wissen vertiefen möchten.
 
-Zur Implementierung einiger der in diesem Buch vorgestellten Dienste benötigen Sie möglicherweise zwei (oder mehr) Server, um die Theorie in die Praxis umsetzen zu können.
+Zur Implementierung einiger der in diesem Buch vorgestellten Dienste benötigen Sie möglicherweise zwei (oder mehr) Server, um die Theorie in die Praxis umsetzen zu können.<small>
+<br/><br/>
+🌐 Übersetzungen: 
+<a href="https://crowdin.com/project/rockydocs/de">crowdin.com/project/rockydocs</a>
+<br/>
+🌍 Übersetzer:
+<a href="https://crowdin.com/project/rockydocs/activity-stream">rockydocs/activity-stream</a>
+, <a href="https://crowdin.com/project/rockylinuxorg/activity-stream">rockylinux.org</a>
+<br/>
+🖋 Mitmachen:
+<a href="https://github.com/rocky-linux/documentation?tab=readme-ov-file#mattermost">github.com/rocky-linux</a>
+</small>

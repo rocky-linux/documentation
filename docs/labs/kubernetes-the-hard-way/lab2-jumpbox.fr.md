@@ -7,7 +7,7 @@ tags:
   - exercice d'atelier
 ---
 
-# Atelier n°2 : Mise en Place de The Jumpbox
+# Atelier n°2 : Mise en Place du Serveur `The Jumpbox`
 
 !!! info
 
