@@ -33,9 +33,9 @@ Affichez l'adresse IP interne et la plage CIDR du pod pour chaque instance de tr
 {
   SERVER_IP=$(grep server machines.txt | cut -d " " -f 1)
   NODE_0_IP=$(grep node-0 machines.txt | cut -d " " -f 1)
-  NODE_0_SUBNET=$(grep node-0 machines.txt | cut -d " " -f 5)
+  NODE_0_SUBNET=$(grep node-0 machines.txt | cut -d " " -f 4)
   NODE_1_IP=$(grep node-1 machines.txt | cut -d " " -f 1)
-  NODE_1_SUBNET=$(grep node-1 machines.txt | cut -d " " -f 5)
+  NODE_1_SUBNET=$(grep node-1 machines.txt | cut -d " " -f 4)
 }
 ```
 
