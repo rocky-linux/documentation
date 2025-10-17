@@ -25,7 +25,7 @@ Dal `jumpbox`, copiare i file binari di Kubernetes e i file unit di `systemd` su
 
 ```bash
 for host in node-0 node-1; do
-  SUBNET=$(grep $host machines.txt | cut -d " " -f 4)
+  SUBNET=$(grep $host machines.txt | cut -d " " -f 5)
   sed "s|SUBNET|$SUBNET|g" \
     configs/10-bridge.conf > 10-bridge.conf 
     
