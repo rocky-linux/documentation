@@ -388,6 +388,15 @@ For `docs.rockylinux.org.`:
 | 2 - Internet  | IP, ICMP, ARP, RARP, IGMP | Router |
 | 1 - Network Interface | Ethernet protocol (IEEE 802.3), PPP (Point to Point Protocol), PPPoE (Point-to-Point Protocol over Ethernet), Wi-Fi (IEEE 802.11), ADSL (Asymmetric Digital Subscriber Line) ... | NIC, switch, hub, repeater, twisted pair, modem |
 
+* **Application layer** - Unify the application layer, presentation layer, and session layer in the theoretical model into one application layer.
+* **Transport layer** - The transport layer in the theoretical model.
+* **Internet layer** - The network layer in the theoretical model.
+* **Network Interface layer** - Integrating the data link layer and physical layer from the theoretical model into a single layer.
+
+!!! tip "Terminology expression"
+
+    The TCP/IP 4-layer model, the TCP/IP protocol suite, and the TCP/IP protocol stack are different expressions of the same concept.
+
 ## The naming of interfaces
 
 *lo* is the "**loopback**" interface which allows TCP/IP programs to communicate with each other without leaving the local machine. This enables testing if the **network module of the system is working properly** and also allows pinging the localhost. All packets that enter through localhost leave through localhost. The packets received are the packets sent.
