@@ -353,43 +353,40 @@ For `docs.rockylinux.org.`:
 
     Generally speaking, "FQDN" is more effective in expressing the meaning of an author's document than "domain name", as readers from different industries have different understandings of the term "domain name". For example, for `rockylinux.org`, some readers may interpret it as a domain name, but this is actually incorrect. Strictly speaking, this should be referred to as a domain (rather than a domain name). Therefore, in order to enhance rigor, readers are requested to strictly distinguish the meanings of domains and domain names.
 
-### Reminder of the OSI model
+### ISO/OSI 7-layer theoretical model
+
+**ISO (International Organization for Standardization)** - An international organization established in 1974, its main role is to set international standards in various fields. For the field of the Internet, ISO has proposed the OSI 7-layer theoretical reference model.
+
+**OSI (Open System Interconnection Reference Model)** - This model proposes a standard framework that attempts to interconnect various computers into a network worldwide.
+
+|  Layer            |  Description                                  |
+|-------------------|----------------------------------------------|
+|  7 - Application  |  Provide various request services for applications or user requests |
+|  6 - Presentation |  Data encoding, format conversion, data encryption                  |
+|  5 - Session      |  Create, manage, and maintain sessions.                     |
+|  4 - Transport    |  Data communication, establishing end-to-end connections, etc.         |
+|  3 - Network      |  Network connection management (establishment, maintenance, and termination), routing path selection, packet grouping, traffic control, etc.                       |
+|  2 - Data Link    |  Frame encapsulation and transmission, traffic control and error checking, etc.         |
+|  1 - Physical     |  Management of transmission media, physical interface specifications, conversion and transmission of signals, etc.   |
 
 !!! Note "Memory aid"
 
-    To remember the order of the layers of the OSI model, remember the following sentence: **Please Do Not Touch Steven's Pet Alligator**.
+    To remember the order of the layers of the ISO/OSI model, remember the following sentence: **All People Seem To Need Data Processing**.
 
-|  Layer            |  Protocols                                  |
-|-------------------|----------------------------------------------|
-|  7 - Application  |  POP, IMAP, SMTP, SSH, SNMP, HTTP, FTP, ...  |
-|  6 - Presentation |  ASCII, MIME, ...                            |
-|  5 - Session      |  TLS, SSL, NetBIOS, ...                      |
-|  4 - Transport    |  TLS, SSL, TCP, UDP, ...                     |
-|  3 - Network      |  IPv4, IPv6, ARP, ...                        |
-|  2 - Data Link    |  Ethernet, WiFi, Token Ring, ...             |
-|  1 - Physical     |  Cables, optical fibers, radio waves, ...    |
+**Hierarchical design of the model**: It embodies a modular design principle, that is, by decomposing complex network communication functions into independent levels, it achieves functional decoupling and standardized collaboration.
 
-**Layer 1** (Physical) supports transmission over a communication channel (Wifi, Optical fiber, RJ cable, etc.).
-Unit: the bit.
+!!! note
 
-**Layer 2** (Data Link) supports network topology
-(token-ring, star, bus, etc.), data splitting and transmission errors.
-Unit: the frame.
+    It should be noted that the ISO/OSI 7-layer model does not exist in real network communication. It merely provides a design framework and approach for Internet communication.
 
-**Layer 3** (Network) supports end-to-end data transmission (IP routing = Gateway).
-Unit: the packet.
+**TCP/IP 4-layer model** - The hierarchical model used in actual network communication (simplifies the ISO/OSI 7-layer model to a 4-layer model). TCP/IP is a synonym for a group of protocols, which includes many protocols and forms the TCP/IP protocol suite. In protocol analysis or teaching environment, it is sometimes unofficiously referred to as **TCP/IP 5-layer model**.
 
-**Layer 4** (Transport) supports service type (connected or unconnected)
-encryption and flow control.
-Unit: the segment or the datagram.
-
-**Layer 5** (Session) supports the communication between two computers.
-
-**Layer 6** (Presentation) represents the area that is independent of data at the application layer. Essentially this layer translates from network format to the application format, or from the application format to the network format.
-
-**Layer 7** (Application) represents the contact with the user.
-It provides the services offered by the network: http, dns, ftp, imap,
-pop, smtp, etc.
+| Layer | Protocols | Hardware devices working on this layer |
+| :---  | :--- | :--- |
+| 4 - Application | HTTP, FTP, SMTP, DNS, DHCP ... | - |
+| 3 - Transport |  TCP, UDP | Firewall and load balancer |
+| 2 - Internet  | IP, ICMP, ARP, RARP, IGMP | Router |
+| 1 - Network Interface | Ethernet protocol (IEEE 802.3), PPP (Point to Point Protocol), PPPoE (Point-to-Point Protocol over Ethernet), Wi-Fi (IEEE 802.11), ADSL (Asymmetric Digital Subscriber Line) ... | NIC, switch, hub, repeater, twisted pair, modem |
 
 ## The naming of interfaces
 
