@@ -11,7 +11,7 @@ tags:
   - kubectl
 ---
 
-# Labor 7: Bootstrapping des `etcd`-Clusters
+# Labor 10: Konfigurieren von kubectl für den Remotezugriff
 
 !!! info
 

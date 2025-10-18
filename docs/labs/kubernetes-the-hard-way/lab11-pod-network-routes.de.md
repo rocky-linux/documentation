@@ -11,11 +11,11 @@ tags:
   - kubectl
 ---
 
-# Übung 11: Bereitstellung von Pod-Netzwerkrouten
+# Labor 11: Bereitstellung von Pod-Netzwerkrouten
 
 !!! info
 
-    Dies ist ein Fork des ursprünglichen ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way), das ursprünglich von Kelsey Hightower geschrieben wurde (GitHub: kelseyhightower). Im Gegensatz zum Original, das auf Debian-ähnlichen Distributionen für die ARM64-Architektur basiert, zielt dieser Fork auf Enterprise-Linux-Distributionen wie Rocky Linux ab, das auf der x86_64-Architektur läuft.
+    Dies ist ein Fork des ursprünglichen ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way), das ursprünglich von Kelsey Hightower geschrieben wurde [(GitHub: kelseyhightower)](https://github.com/kelseyhightower). Im Gegensatz zum Original, das auf Debian-ähnlichen Distributionen für die ARM64-Architektur basiert, zielt dieser Fork auf Enterprise-Linux-Distributionen wie Rocky Linux ab, das auf der x86_64-Architektur läuft.
 
 Für einen Knoten geplante Pods erhalten eine IP-Adresse aus dem Pod-CIDR-Bereich des Knotens. Derzeit können Pods aufgrund fehlender [Netzwerkrouten] (https://cloud.google.com/compute/docs/vpc/routes) nicht mit anderen Pods kommunizieren, die auf anderen Knoten ausgeführt werden.
 
@@ -91,4 +91,4 @@ default via XXX.XXX.XXX.XXX dev ens160
 XXX.XXX.XXX.0/24 dev ens160 proto kernel scope link src XXX.XXX.XXX.XXX 
 ```
 
-Next: [Smoke Test](lab12-smoke-test.md)
+Weiter: [Smoke Test](lab12-smoke-test.md)

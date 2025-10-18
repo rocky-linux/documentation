@@ -12,13 +12,14 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 Ce tutoriel vous guide dans la configuration de Kubernetes pas à pas. Ce n’est pas pour quelqu’un qui recherche un outil entièrement automatisé pour configurer une grappe Cluster Kubernetes. `Kubernetes The Hard Way` est conçu pour l'apprentissage, cela signifie donc prendre le long chemin pour vous assurer de comprendre chaque tâche requise pour démarrer un cluster Kubernetes.
 
-Ne considérez pas les résultats de ce tutoriel comme prêts pour la production, et il se peut qu'il ne reçoive pas le soutien de la communauté, mais ne laissez pas cela vous empêcher d'apprendre !<small>
+Ne considérez pas les résultats de ce tutoriel comme prêts pour la production, et il se peut qu'il ne reçoive pas le soutien de la communauté, mais ne laissez pas tout cela vous empêcher d'apprendre !<small>
 <br/><br/>
 🌐 Traductions: 
 <a href="https://crowdin.com/project/rockydocs/fr">crowdin.com/project/rockydocs</a>
 <br/>
 🌍 Traducteurs:
 <a href="https://crowdin.com/project/rockydocs/activity-stream">rockydocs/activity-stream</a>
+, <a href="https://crowdin.com/project/rockylinuxorg/activity-stream">rockylinux.org</a>
 <br/>
 🖋 Contributeurs:
 <a href="https://github.com/rocky-linux/documentation?tab=readme-ov-file#mattermost">github.com/rocky-linux</a>

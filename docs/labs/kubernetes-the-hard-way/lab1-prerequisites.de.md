@@ -40,4 +40,4 @@ Nachdem Sie den Befehl `uname` ausgeführt haben, sollten Sie die folgende Ausga
 
 Das „x86_64“ in der Ausgabe bestätigt, dass das System eine x86_64-Architektur hat. Dies sollte bei verschiedenen AMD- und Intel-basierten Systemen der Fall sein.
 
-Fortsetzung folgt: [setting-up-the-jumpbox](lab2-jumpbox.md)
+Weiter: [setting-up-the-jumpbox](lab2-jumpbox.md)
