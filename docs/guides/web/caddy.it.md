@@ -2,25 +2,23 @@
 title: Server Web Caddy
 author: Neel Chauhan
 contributors: Steven Spencer
-tested_with: 9.3
+tested_with: 9.3, 10.0
 tags:
   - web
 ---
 
-# Come installare il server web Caddy più recente su Rocky Linux
-
 ## Introduzione
 
-_Caddy_ è un server web progettato per le applicazioni web moderne. Caddy è semplice da configurare e dispone della funzione Let's Encrypt automatica, in modo che i vostri siti web siano sempre sicuri per impostazione predefinita. È il server web preferito dall'autore.
+_Caddy_ è un server web progettato per le moderne applicazioni web. Caddy è semplice da configurare e dispone della funzione automatica Let's Encrypt, quindi i tuoi siti web sono sempre protetti per impostazione predefinita. È il server web preferito dall'autore.
 
 Ecco una breve panoramica delle caratteristiche di Caddy:
 
 - Un server web di base
-- Un reverse proxy per dirigere il traffico verso più siti
-- Moduli per molti carichi di lavoro, tra cui TCP, SSH e altro ancora
-- Un bilanciatore di carico integrato per gestire il traffico verso più siti web
-- Supporto a Let's Encrypt integrato e automatizzato
-- Un'API per riconfigurare il server in modo programmatico
+- Un proxy inverso per indirizzare il traffico verso più siti
+- Moduli per molti carichi di lavoro, inclusi TCP, SSH e altro ancora
+- Un bilanciatore di carico integrato per la gestione del traffico verso più siti web
+- Supporto integrato e automatizzato per Let's Encrypt
+- Un'API per riconfigurare il server a livello di programmazione
 - Supporto a PHP FastCGI
 - E IPv6
 
@@ -31,8 +29,8 @@ Sono necessari:
 - Una macchina o un server Rocky Linux connesso a internet.
 - Una familiarità di base con la riga di comando.
 - La possibilità di eseguire comandi come utente root o con `sudo`.
-- Un editor di testo a tua scelta, sia grafico che a riga di comando. Per questo tutorial, l'autore utilizza `vim`.
-- Un nome di dominio o un altro hostname che punta all'indirizzo IP pubblico del server.
+- Un editor di testo a scelta, sia grafico che basato su riga di comando. Per questo tutorial, l'autore utilizza `vim`.
+- Un nome di dominio o altro nome host che punta all'indirizzo IP pubblico del tuo server.
 
 ## Installazione di Caddy
 
@@ -46,6 +44,12 @@ Quindi, installare il repository software `epel-release`:
 
 ```bash
 sudo dnf install -y epel-release
+```
+
+Se si utilizza Rocky Linux 10, abilitare il repository Copr:
+
+```bash
+dnf copr enable @caddy/caddy
 ```
 
 Quindi, installare il server web `caddy`:
@@ -117,7 +121,7 @@ A differenza dei server web tradizionali come Apache e Nginx, il formato di conf
 Per modificare il file di configurazione di Caddy:
 
 ```bash
-vim /etc/caddy/Caddyfile
+sudo vim /etc/caddy/Caddyfile
 ```
 
 Una configurazione statica minima del server web può essere simile a questa:
@@ -141,7 +145,7 @@ echo "<h1>Hi!</h1>" >> /usr/share/caddy/example.com/index.html
 Successivamente, attivare il servizio systemd di Caddy:
 
 ```bash
-systemctl enable --now caddy
+sudo systemctl enable --now caddy
 ```
 
 Entro un minuto, Caddy otterrà i certificati SSL da Let's Encrypt. A questo punto, è possibile visualizzare il sito web appena impostato in un browser:
@@ -154,16 +158,16 @@ Dovrebbe avere un lucchetto SSL che dovrebbe funzionare in ogni browser moderno,
 
 Come accennato in precedenza, Caddy supporta il supporto FastCGI per PHP. La buona notizia è che, a differenza di Apache e Nginx, Caddy gestisce automaticamente le estensioni dei file PHP.
 
-Per installare PHP, aggiungere prima il repository Remi (nota: se si utilizza Rocky Linux 8.x o 10.x, sostituire 8 o 10 con "release-"):
+Per installare PHP, aggiungi prima il repository Remi (nota: se utilizzi Rocky Linux 8.x o 9.x, sostituisci 8 o 9 accanto a "release-" qui sotto):
 
 ```bash
-dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
+sudo dnf install https://rpms.remirepo.net/enterprise/remi-release-10.rpm
 ```
 
 Successivamente, occorre installare PHP (nota: se si utilizza un'altra versione di PHP, sostituire la versione desiderata con php83):
 
 ```bash
-dnf install -y php83-php-fpm
+sudo dnf install -y php85-php-fpm
 ```
 
 Se sono necessari altri moduli PHP (ad esempio, GD), aggiungerli al comando precedente.
@@ -171,13 +175,13 @@ Se sono necessari altri moduli PHP (ad esempio, GD), aggiungerli al comando prec
 Quindi, occorre configurare PHP per l'ascolto su un socket TCP:
 
 ```bash
-vim /etc/opt/remi/php83/php-fpm.d/www.conf
+sudo vim /etc/opt/remi/php85/php-fpm.d/www.conf
 ```
 
 Quindi, trovare la riga:
 
 ```bash
-listen = /var/opt/remi/php83/run/php-fpm/www.sock
+listen = /var/opt/remi/php85/run/php-fpm/www.sock
 ```
 
 Sostituirla con questa:
@@ -186,13 +190,19 @@ Sostituirla con questa:
 listen = 127.0.0.1:9000
 ```
 
-Quindi salvare e uscire dal file www\.conf e aprire il file Caddy:
+Ora possiamo abilitare e avviare php-fpm:
 
 ```bash
-vim /etc/caddy/Caddyfile
+sudo systemctl enable --now php85-php-fpm
 ```
 
-Passare al blocco server creato in precedenza:
+Quindi salva ed esci dal file `www.conf` e apri il file Caddyfile:
+
+```bash
+sudo vim /etc/caddy/Caddyfile
+```
+
+Passa al blocco server creato in precedenza:
 
 ```bash
 example.com {
@@ -207,7 +217,7 @@ Aggiungere la seguente riga dopo la riga "file_server":
     php_fastcgi 127.0.0.1:9000
 ```
 
-Il blocco del server abilitato a PHP avrà questo aspetto:
+Il blocco server abilitato per PHP avrà questo aspetto:
 
 ```bash
 example.com {
@@ -217,10 +227,10 @@ example.com {
 }
 ```
 
-Quindi salvare e uscire dal Caddyfile e riavviare Caddy:
+Quindi salva ed esci dal file Caddyfile e riavvia Caddy:
 
 ```bash
-systemctl restart caddy
+sudo systemctl restart caddy
 ```
 
 Per verificare se PHP funziona, aggiungiamo un semplice file PHP:
@@ -229,12 +239,12 @@ Per verificare se PHP funziona, aggiungiamo un semplice file PHP:
 echo "<?php phpinfo(); ?>" >> /usr/share/caddy/rockyexample.duckdns.org/phpinfo.php
 ```
 
-Aprite il vostro browser sul file creato e vi verranno presentate le informazioni su PHP:
+Apri il browser sul file che hai creato e dovresti visualizzare le informazioni PHP:
 
-![Caddy serve il nostro file PHP](../images/caddy_php.png)
+![Caddy serving our PHP file](../images/caddy_php.png)
 
-## Conclusione
+## Conclusioni
 
-L'installazione e configurazione di base di Caddy è incredibilmente facile. Sono finiti i tempi in cui si passavano ore a configurare Apache. Sì, Nginx è certamente un miglioramento, ma manca ancora di funzionalità moderne ma essenziali come Let's Encrypt e il supporto per Kubernetes ingress che Caddy integra, mentre su Nginx (e Apache) è necessario aggiungerle separatamente.
+L'installazione e la configurazione di base di Caddy sono incredibilmente semplici. Sono finiti i tempi in cui si passavano ore a configurare Apache. Sì, Nginx è sicuramente un miglioramento, ma manca ancora di funzionalità moderne ma essenziali come Let's Encrypt e il supporto Kubernetes ingress che Caddy integra, mentre su Nginx (e Apache) è necessario aggiungerle separatamente.
 
-Uso Caddy dal 2019 come server web di riferimento ed è davvero ottimo. In effetti, ogni volta che ho a che fare con Apache, Nginx o IIS, è quasi come prendere una macchina del tempo e tornare al 2010 o prima.
+Utilizzo Caddy dal 2019 come server web di riferimento ed è semplicemente fantastico. In effetti, ogni volta che ho a che fare con Apache, Nginx o IIS, è quasi come prendere una macchina del tempo e tornare al 2010 o prima.
