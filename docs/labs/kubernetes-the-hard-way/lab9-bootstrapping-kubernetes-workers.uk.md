@@ -158,11 +158,13 @@ mv 10-bridge.conf 99-loopback.conf /etc/cni/net.d/
   mv kube-proxy.service /etc/systemd/system/
 ```
 
-!!! Note "Примітка"
+!!! Примітка
 
+    ```
     Хоча це вважається поганою формою безпеки, вам, можливо, доведеться тимчасово або назавжди вимкнути SELinux, якщо у вас виникнуть проблеми із запуском необхідних служб systemd. Правильним рішенням є дослідження та створення необхідних файлів політики за допомогою таких інструментів, як ausearch, audit2allow тощо.  
     
     Щоб виправити SELinux із шляху та вимкнути його, запустіть наступне:
+    ```
 
   ```bash
   sudo sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
