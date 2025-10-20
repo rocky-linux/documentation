@@ -8,7 +8,11 @@ tags:
   - proxies
 ---
 
-# Tor relay
+!!! warning “Temporaneamente in Sospeso”
+
+```
+`tor` è attualmente assente dall'EPEL. Probabilmente verrà compilato. Il team Docs continuerà a testarne la disponibilità nell'EPEL non appena possibile. Per ora, l'unica opzione è compilare `tor` dal sorgente, ma le istruzioni per farlo non sono attualmente disponibili qui.
+```
 
 ## Introduzione
 

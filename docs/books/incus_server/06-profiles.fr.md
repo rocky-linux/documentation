@@ -216,9 +216,9 @@ Une nouvelle liste révélera que le conteneur a été assigné à l'adresse DHC
 
 ```
 
-### Rocky Linux 9.x `macvlan` – Le correctif IP statique
+### Rocky Linux 9 et 10 `macvlan` — Le correctif IP statique
 
-Lors de l’attribution statique d’une adresse IP, les choses deviennent encore plus compliquées. Étant donné que `network-scripts` est désormais obsolète dans Rocky Linux 9.x, la seule façon de procéder est par attribution statique, et en raison de la manière dont les conteneurs utilisent le réseau, vous ne pourrez pas définir la route avec une instruction `ip route` normale. Le problème est que l'interface attribuée lors de l'application du profil `macvlan` (eth0 dans ce cas), n'est pas gérable avec Network Manager. La solution consiste à renommer l'interface réseau du conteneur après le redémarrage et à attribuer l'IP statique. Vous pouvez le faire avec un script et l'exécuter (à nouveau) dans le crontab de root. Tout cela se fait avec la commande `ip`.
+Lors de l’attribution statique d’une adresse IP, les choses deviennent encore plus compliquées. Étant donné que `network-scripts` est désormais obsolète dans Rocky Linux 9.x, la seule façon de procéder est par attribution statique, et en raison de la manière dont les conteneurs utilisent le réseau, vous ne pourrez pas définir la route avec une instruction `ip route` normale. Le problème est que l'interface attribuée lors de l'application du profil `macvlan` (eth0 dans ce cas), n'est pas gérable avec Network Manager. La solution consiste à renommer l'interface réseau du conteneur après le redémarrage et à attribuer l'IP statique. Vous pouvez le faire avec un script et l'exécuter (à nouveau) dans le crontab de root. Tout cela se fait avec la commande `ip`. En plus de définir l'adresse IP, vous devrez également définir le DNS pour la résolution des noms. Encore une fois, ce n’est pas aussi simple que d’exécuter `nmtui` pour modifier la connexion, car la connexion n’existe pas dans le Network Manager. La solution est de créer un fichier texte et de le remplir avec les serveurs DNS que vous voulez utiliser.
 
 Pour ce faire, vous devez à nouveau obtenir un accès shell au conteneur:
 
@@ -226,13 +226,28 @@ Pour ce faire, vous devez à nouveau obtenir un accès shell au conteneur:
 incus shell rockylinux-test-9
 ```
 
+Créez un fichier texte dans `/usr/local/sbin/` :
+
+```bash
+vi /usr/local/sbin/dns.txt
+```
+
+Ajoutez ce qui suit au fichier :
+
+```text
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+```
+
+Sauvegardez le fichier et quittez. Cela montre que vous utilisez les serveurs DNS ouverts de Google. Si vous souhaitez utiliser différents serveurs DNS, remplacez simplement les IP affichées par le DNS de votre choix.
+
 Ensuite, vous allez créer un script bash dans `/usr/local/sbin` appelé `static` :
 
 ```bash
 vi /usr/local/sbin/static
 ```
 
-Le contenu de ce script n'est pas compliqué :
+Le contenu de ce script est plutôt simple :
 
 ```bash
 #!/usr/bin/env bash
@@ -242,15 +257,17 @@ Le contenu de ce script n'est pas compliqué :
 /usr/sbin/ip link set dev net0 up
 sleep 2
 /usr/sbin/ip route add default via 192.168.1.1
+/usr/bin/cat /usr/local/sbin/dns.txt > /etc/resolv.conf
 ```
 
-Qu'est-ce que vous faites ici ?
+Qu'est-ce que vous faites exactement avec ce script ?
 
-- vous renommez `eth0` avec un nouveau nom que vous pouvez gérer (`net0`)
+- vous renommez `eth0` avec un nouveau nom que vous pouvez mieux gérer (`net0`)
 - vous attribuez la nouvelle IP statique que vous avez allouée à votre conteneur (192.168.1.151)
 - vous activez la nouvelle interface `net0`
 - vous ajoutez une attente de 2 secondes pour que l'interface soit active avant d'ajouter la route par défaut
 - vous devez ajouter la route par défaut pour votre interface
+- vous devez remplir le fichier `resolv.conf` pour la résolution DNS
 
 Rendez votre script exécutable avec la commande qui suit :
 
@@ -292,9 +309,9 @@ Ce qui devrait vous afficher le résultat suivant :
 
 ## Ubuntu macvlan
 
-Heureusement, l’implémentation de Network Manager par Ubuntu ne casse pas la pile `macvlan`, ce qui la rend beaucoup plus facile à déployer !
+Heureusement, l’implémentation de NetworkManager par Ubuntu ne casse pas la pile `macvlan`, ce qui la rend beaucoup plus facile à déployer !
 
-Tout comme avec votre conteneur rockylinux-test-9, vous devez attribuer le profil à votre conteneur :
+Tout comme avec votre conteneur `rockylinux-test-9`, vous devez attribuer le profil à votre conteneur :
 
 ```bash
 incus profile assign ubuntu-test default,macvlan
@@ -322,7 +339,7 @@ Listez ensuite à nouveau les conteneurs :
 
 Success!
 
-La configuration de l'IP statique est un peu différente, mais plus difficile. Vous devez modifier le fichier `.yaml` associé à la connexion du conteneur (`10-incus.yaml`). Pour cette IP statique, nous utiliserons 192.168.1.201 :
+La configuration de l'IP statique est un peu différente, mais plus difficile. Vous devez modifier le fichier `.yaml` associé à la connexion du conteneur (`10-incus.yaml`). Pour cette IP statique, vous pouvez utiliser `192.168.1.201` :
 
 ```bash
 vi /etc/netplan/10-incus.yaml
@@ -365,6 +382,6 @@ Lorsque vous listez à nouveau vos conteneurs, vous devriez voir notre nouvelle 
 
 ```
 
-Success!
+CQFD !
 
-Dans les exemples utilisés ici, un conteneur difficile à configurer a été intentionnellement choisi, ainsi que deux autres moins difficiles. Many more versions of Linux are in the image listing. Si vous avez un favori, essayez de l'installer, d'attribuer le modèle `macvlan` et de définir les adresses IP.
+Dans les exemples utilisés ici, un conteneur difficile à configurer a été intentionnellement choisi, ainsi que deux autres moins difficiles. Il y a encore plus de versions de Linux disponibles dans la liste des images. Si vous avez un favori, essayez de l'installer, d'attribuer le modèle `macvlan` et de définir les adresses IP.

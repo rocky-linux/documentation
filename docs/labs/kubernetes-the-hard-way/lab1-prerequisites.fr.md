@@ -13,7 +13,7 @@ tags:
 
     Il s'agit d'un fork de l'original ["Kubernetes the hard way"](https://github.com/kelseyhightower/kubernetes-the-hard-way) écrit à l'origine par Kelsey Hightower (GitHub : kelseyhightower). Contrairement à l'original, qui se base sur des distributions de type Debian pour l'architecture ARM64, ce fork cible les distributions Enterprise Linux telles que Rocky Linux, qui fonctionne sur l'architecture x86_64.
 
-Dans ce laboratoire, vous passerez en revue les exigences machine nécessaires pour suivre ce didacticiel.
+Dans cet atelier, vous passerez en revue les exigences des machines nécessaires pour suivre ce didacticiel.
 
 ## Machines virtuelles ou physiques
 
@@ -40,4 +40,4 @@ Après avoir exécuté la commande `uname`, vous devriez obtenir un résultat si
 
 Le `x86_64` que vous voyez dans le résultat confirme que le système est une architecture x86_64. Cela devrait être le cas pour divers systèmes basés sur AMD et Intel.
 
-À suivre : [setting-up-the-jumpbox](lab2-jumpbox.md)
+Suivant : [setting-up-the-jumpbox](lab2-jumpbox.md)

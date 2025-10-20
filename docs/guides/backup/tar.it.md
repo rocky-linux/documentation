@@ -1,7 +1,7 @@
 ---
 title: Comando tar
 author: tianci li
-contributors: Ganna Zhyrnova
+contributors: Ganna Zhyrnova, Steven Spencer
 tested_with: 8.10
 tags:
   - tar
@@ -50,10 +50,11 @@ La sintassi per estrarre un file da un archivio è:
 
 - `tar [option] [PATH] -C [dir]`. Ad es., `tar -xzvf /tmp/Fullbackup-20241201.tar.gz -C /tmp/D1`
 
-!!! tip "antic"
+!!! tip
 
-Quando si estraggono file da file archiviati, `tar` seleziona automaticamente il tipo di compressione in base al suffisso aggiunto manualmente. Ad esempio, per i file `.tar.gz', si può usare direttamente `tar -vxf' senza usare \`tar -zvxf'.
-È invece **obbligatorio** selezionare il tipo di compressione per la creazione di file compressi di archivio.
+```
+Quando si estraggono file da file archiviati, `tar` seleziona automaticamente il tipo di compressione in base al suffisso aggiunto manualmente. Ad esempio, per i file `.tar.gz`, è possibile utilizzare direttamente `tar -vxf` senza ricorrere a `tar -zvxf`. È **obbligatorio** selezionare il tipo di compressione per creare file compressi archiviati.
+```
 
 !!! Note
 
@@ -83,14 +84,14 @@ L'autore consiglia di mantenere il prefisso “-” per preservare le abitudini 
 ### Opzioni ausiliarie più comuni
 
 | opzione | Descrizione                                                                                                                                    |
-| :-----: | :--------------------------------------------------------------------------------------------------------------------------------------------- |
-|   `-z`  | Usa `gzip` come tipo di compressione. E' applicabile sia per la creazione che l'estrazione degli archivi.      |
-|   `-v`  | Visualizza i dettagli dell'elaborazione                                                                                                        |
-|   `-f`  | Specifica il nome del file per l'archiviazione (compreso il suffisso del file)                                              |
-|   `-j`  | Usa `bzip2` come tipo di compressione. E' applicabile sia per la creazione che l'estrazione degli archivi.     |
-|   `-J`  | Utilizzare `xz` come tipo di compressione. E' applicabile sia per la creazione che l'estrazione degli archivi. |
-|   `-C`  | Salva la posizione dopo l'estrazione dei file dall'archivio                                                                                    |
-|   `-P`  | Salva utilizzando la modalità percorsi assoluti                                                                                                |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-z`    | Usa `gzip` come tipo di compressione. E' applicabile sia per la creazione che l'estrazione degli archivi.      |
+| `-v`    | Visualizza i dettagli dell'elaborazione                                                                                                        |
+| `-f`    | Specifica il nome del file per l'archiviazione (compreso il suffisso del file)                                              |
+| `-j`    | Usa `bzip2` come tipo di compressione. E' applicabile sia per la creazione che l'estrazione degli archivi.     |
+| `-J`    | Utilizzare `xz` come tipo di compressione. E' applicabile sia per la creazione che l'estrazione degli archivi. |
+| `-C`    | Salva la posizione dopo l'estrazione dei file dall'archivio                                                                                    |
+| `-P`    | Salva utilizzando la modalità percorsi assoluti                                                                                                |
 
 Per altre opzioni ausiliarie non menzionate, vedere `man 1 tar`.
 

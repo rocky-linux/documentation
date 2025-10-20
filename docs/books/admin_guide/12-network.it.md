@@ -53,49 +53,269 @@ La notazione chiamata CIDR è sempre più frequente: 192.168.1.10/24
 
 Gli indirizzi IP vengono utilizzati per il corretto routing dei messaggi (pacchetti). Sono divisi in due parti:
 
-* la parte fissa, identifica la rete;
-* l'identificatore dell'host nella rete.
+* network bits - La parte associata a "1" consecutivi nella maschera di sottorete binaria
+* host bits - La parte associata a "0" consecutivi nella subnet mask binaria
 
-La subnet mask è un insieme di **4 byte** destinato a isolare:
+```
+                                            |<- host bits ->|
+                  |<--    network bits  -->|
+192.168.1.10  ==> 11000000.10101000.00000001.00001010
+255.255.255.0 ==> 11111111.11111111.11111111.00000000
+```
+
+La subnet mask viene utilizzata per definire i bit di network e del host di un indirizzo IP. Utilizzando la subnet mask, si può determinare l'indirizzo IP corrente:
 
 * l'indirizzo di rete (**NetID** o **SubnetID**) eseguendo un AND logico bit per bit tra l'indirizzo IP e la maschera;
 * l'indirizzo dell'host. (**HostID**) eseguendo un AND logico bit per bit tra l'indirizzo IP e il complemento della maschera.
 
-Ci sono anche indirizzi specifici all'interno di una rete, che devono essere identificati. Il primo indirizzo di un intervallo e l'ultimo hanno un ruolo particolare:
+```
+192.168.1.10  ==> 11000000.10101000.00000001.00001010
+255.255.255.0 ==> 11111111.11111111.11111111.00000000
 
-* Il primo indirizzo di un intervallo è l'**indirizzo di rete**. Viene utilizzato per identificare le reti e per instradare le informazioni da una rete all'altra.
+NetID             11000000.10101000.00000001.00000000
+                    192   . 168    . 1      . 0
 
-* L'ultimo indirizzo di un intervallo è l'**indirizzo di trasmissione**. Viene utilizzato per trasmettere informazioni a tutte le macchine sulla rete.
+HostID            00000000.00000000.00000000.00001010
+                     0    .   0    .    0   . 10
+```
+
+**Legitimate subnet mask** - Da sinistra a destra, gli 1 consecutivi possono essere definiti come subnet masks valide.
+
+```
+legitimate       11111111.11111111.11111111.00000000
+
+illegitimate     11001001.11111111.11111111.00000000
+```
+
+!!! tip "Suggerimento"
+
+    L'indirizzo IP e la subnet mask devono apparire in coppia, come stabilito dai principi fondamentali della comunicazione di rete.
+
+All'interno di una rete esistono anche indirizzi specifici che devono essere identificati. Il primo indirizzo di un intervallo e l'ultimo hanno un ruolo particolare:
+
+* Il primo indirizzo di un intervallo è l'**indirizzo di rete**. Viene utilizzato per identificare le reti e instradare le informazioni da una rete all'altra. Questo indirizzo può essere ottenuto tramite Logic and Operations
+
+    ```
+    192.168.1.10  ==> 11000000.10101000.00000001.00001010
+    255.255.255.0 ==> 11111111.11111111.11111111.00000000
+
+    network address   11000000.10101000.00000001.00000000
+                        192   . 168    . 1      . 0
+    ```
+
+    **Logic and Operations** - Quando entrambe sono vere (1), il risultato è vero (1); altrimenti, è falso (0)
+
+* L'ultimo indirizzo di un intervallo è l'**indirizzo di broadcast**. Viene utilizzato per trasmettere informazioni a tutte le macchine presenti sulla rete. Mantieni invariati i bit di rete e sostituisci tutti i bit host con 1 per ottenere questo indirizzo.
+
+    ```
+    192.168.1.10  ==> 11000000.10101000.00000001.00001010
+    255.255.255.0 ==> 11111111.11111111.11111111.00000000
+
+    broadcast address 11000000.10101000.00000001.11111111
+                        192   . 168    . 1      . 255
+    ```
+
+!!! tip "Suggerimento"
+
+    Questi due indirizzi che svolgono ruoli speciali **non possono** essere assegnati al terminale per l'utilizzo.
 
 ### Indirizzo MAC / Indirizzo IP
 
-L'**indirizzo MAC** è un identificatore fisico scritto in fabbrica sul dispositivo. Questo a volte viene definito l'indirizzo hardware. Consiste di 6 byte spesso espressi in forma esadecimale (per esempio 5E:FF:56:A2:AF:15). È composto da: 3 byte dell'identificatore del produttore e 3 byte del numero di serie.
+Un **indirizzo MAC** è un identificatore fisico scritto in fabbrica sul dispositivo. Questo viene talvolta indicato come indirizzo hardware. È composto da 6 byte spesso indicati in forma esadecimale (ad esempio 5E:FF:56:A2:AF:15).
+
+Questi 6 byte rappresentano rispettivamente:
+
+* I primi tre byte rappresentano l'identificativo del produttore. Questo identifier è denominato OUI (Organizationally Unique Identifier, identificatore univoco dell'organizzazione).
+* Gli ultimi tre byte rappresentano il numero di serie assegnato dal produttore.
 
 !!! Warning "Attenzione"
 
-    Quest'ultima affermazione è oggi un po' meno vera con la virtualizzazione. Ci sono anche soluzioni software per cambiare l'indirizzo MAC.
+    L'indirizzo MAC è codificato in modo permanente quando l'hardware lascia la fabbrica. Esistono due metodi principali per modificarlo:
 
-Un indirizzo Internet Protocol (**IP**) è un numero di identificazione permanente o temporaneo assegnato a ciascun dispositivo collegato a una rete di computer che utilizza l'Internet Protocol. Una parte definisce l'indirizzo di rete (NetID o SubnetID  a seconda dei casi), l'altra parte definisce l'indirizzo dell'host nella rete (HostID). La dimensione relativa di ciascuna parte varia in base alla (sub)mask della rete.
+    * Modifiche a livello di firmware (permanente): richiede strumenti avanzati in grado di riscrivere direttamente l'indirizzo MAC nella ROM della scheda di rete. Tali strumenti sono solitamente disponibili solo per i produttori di hardware.
+    * Spoofing a livello software (temporaneo): modifica la modalità di visualizzazione dell'indirizzo MAC nel sistema operativo. Queste modifiche vengono solitamente ripristinate dopo il riavvio del sistema. Anche l'indirizzo MAC della scheda di rete virtuale nell'host virtuale viene implementato tramite spoofing.
 
-Un indirizzo IPv4 definisce un indirizzo su 4 byte. Per il numero di indirizzi disponibili che è vicino alla saturazione è stato creato un nuovo standard, l'IPv6 definito su 16 byte.
+Un indirizzo IP (Internet Protocol) è un numero identificativo assegnato in modo permanente o temporaneo a ciascun dispositivo connesso a una rete informatica che utilizza il protocollo Internet. L'indirizzo IP e la subnet mask devono apparire in coppia, come stabilito dai principi fondamentali della comunicazione di rete. Attraverso la subnet mask, possiamo conoscere l'indirizzo IP corrente:
 
-IPv6 è spesso rappresentato da 8 gruppi di 2 byte separati da un due punti. Gli zeri insignificanti possono essere omessi, uno o più gruppi di 4 zeri consecutivi possono essere sostituiti da un doppio due punti.
+* network bits e host bits
+* NetID oppure SubnetID
+* HostID
+* Indirizzo di rete
+* Indirizzo di broadcast
 
-Le maschere di sottorete hanno da 0 a 128 bit. (Per esempio 21ac:0000:0000:0611:21e0:00ba:321b:54da/64 o 21ac::611:21e0:ba:321b:54da/64)
+Gli indirizzi IP sono classificati in base al campo versione nel pacchetto come segue:
 
-In un indirizzo web o URL (Uniform Resource Locator), un indirizzo IP può essere seguito da un due punti e dall'indirizzo della porta (che indica l'applicazione a cui i dati sono destinati). Inoltre per evitare confusione in un URL, l'indirizzo IPv6 è scritto in parentesi quadre [ ], due punti, indirizzo della porta.
+* **IPv4‌** - (4 bits, 0100). La quantità disponibile di IPv4 è 2<sup>32</sup> (ricavata dai campi dell'indirizzo di origine e di destinazione nei pacchetti IPv4). Specificatamente suddivisi in:
 
-Gli indirizzi IP e MAC devono essere univoci su una rete!
+    * Indirizzi di Classe A. Il suo intervallo va da **0.0.0.0** a **127.255.255.255**.
+    * Indirizzi di Classe B. Il suo intervallo va da **128.0.0.0** a **191.255.255.255</0</li>
+    * Indirizzi di Classe C. Il suo intervallo va da **192.0.0.0** a **223.255.255.255**.
+    * Indirizzi di Classe D. Il suo intervallo va da **224.0.0.0** a **239.255.255.255**.
+    * Indirizzi di Classe E. Il suo intervallo va da **240.0.0.0** a **255.255.255.255**.
+
+    Tra questi, gli indirizzi di classe A, gli indirizzi di classe B e gli indirizzi di classe C hanno tutti i propri intervalli di indirizzi privati. 0.0.0.0 è un indirizzo riservato e non è assegnato all'host. Gli indirizzi di classe D sono utilizzati per la comunicazione multicast e non sono assegnati agli host. Gli indirizzi di classe E sono riservati e non vengono utilizzati per le reti regolari.</ul></li>
+
+* **IPv6** - (4 bits, 0110). La quantità disponibile di IPv6 è 2<sup>128</sup> (ricavata dai campi dell'indirizzo di origine e di destinazione nei pacchetti IPv6). Specificatamente suddivisi in:
+
+    * Indirizzo Unicast. Include indirizzo unicast locale di collegamento (LLA), indirizzo locale univoco (ULA), indirizzo unicast globale (GUA), indirizzo di loopback, indirizzo non specificato
+    * Indirizzo Anycast
+    * Indirizzo Multicast</ul>
+
+Descrizione del formato di scrittura per IPv6 a 128 bit:
+
+* Formato di scrittura preferito - **X:X:X:X:X:X:X:X**. In questo formato di scrittura, gli indirizzi IPv6 a 128 bit sono suddivisi in 8 gruppi, ciascuno rappresentato da 4 valori esadecimali (0-9, A-F), separati da due punti (`:`) tra i gruppi. Ogni “X” rappresenta un insieme di valori esadecimali. Ad esempio **2001:0db8:130F:0000:0000:09C0:876A:130B**.
+
+    * Omissione dello 0 iniziale - Per comodità di scrittura, lo “0” iniziale in ciascun gruppo può essere omesso, quindi l'indirizzo sopra riportato può essere abbreviato come **2001:db8:130F:0:0:9C0:876A:130B**.
+    * Utilizzare il due punti due volte - Se l'indirizzo contiene due o più gruppi consecutivi entrambi pari a 0, è possibile utilizzare invece un doppio punto doppio. Quindi l'indirizzo sopra riportato può essere ulteriormente abbreviato come **2001:db8:130F::9C0:876A:130B**. Attenzione!  In un indirizzo IPv6 è possibile inserire solo il doppio due punti.
+
+* Compatibile con i formati di scrittura - **X:X:X:X:X:X:d.d.d.d**. In un ambiente di rete misto, questo formato garantisce la compatibilità tra i nodi IPv6 e i nodi IPv4. Ad esempio **0:0:0:0:0:ffff:192.1.56.10** e **::ffff:192.1.56.10/96**.
+
+In un indirizzo web o URL (Uniform Resource Locator), un indirizzo IP può essere seguito da due punti e dall'indirizzo della porta (che indica l'applicazione a cui sono destinati i dati). Inoltre, per evitare confusione nell'URL, l'indirizzo IPv6 è scritto tra parentesi quadre (ad esempio `[2001:db8:130F::9C0:876A:130B]:443`).
+
+Come accennato in precedenza, le maschere di sottorete dividono gli indirizzi IPv4 in due parti: bit di rete e bit host. In IPv6, anche le subnet mask hanno la stessa funzione, ma il nome è cambiato (“n” rappresenta il numero di bit occupati dalla subnet mask):
+
+* Prefisso di rete - È equivalente ai bit di rete in un indirizzo IPv4. In base alla subnet mask, occupa “n” bit.
+* ID interfaccia - È equivalente ai bit host in un indirizzo IPv4. In base alla subnet mask, occupa “128-n” bit.
+
+Ad esempio **2001:0db8:130F:0000:0000:09C0:876A:130B/64**：
+
+```
+    Network prefix
+|<-    64 bits   ->|
+
+                        Interface ID
+                     |<-    64 bits    ->|
+2001:0db8:130F:0000 : 0000:09C0:876A:130B
+```
+
+All'interno della stessa rete, gli indirizzi IP devono essere univoci: questa è una regola fondamentale della comunicazione di rete. All'interno della stessa LAN (Local Area Network), l'indirizzo MAC deve essere univoco.
+
+### Struttura dei pacchetti IPv4
+
+I pacchetti IPv4 contengono sia parti di intestazione che parti di dati:
+
+![](./images/IPv4-packet.png)
+
+**Versione**: aiuta i router a identificare le versioni dei protocolli. Per IPv4, il valore qui è 0100 (il valore binario 0100 equivale al valore decimale 4).
+
+**IHL**: campo utilizzato per controllare la lunghezza dell'intestazione. Quando il campo “Opzioni” non è incluso, il valore minimo è 5 (ovvero binario 0101), in questo caso la testina occupa 20 byte. Il valore massimo è 15 (ovvero 1111 in binario) e la lunghezza dell'intestazione è di 60 byte.
+
+```
+Lunghezza effettiva dell'intestazione IPv4 = Valore del campo IHL * 4
+```
+
+**Tipo di servizio**: questo campo viene utilizzato per definire la QoS (Quality Of Service) e la priorità dei pacchetti di dati. Questo campo è ora utilizzato principalmente per DSCP (Differentiated Services Code Point) ed ECN (Explicit Congestion Notification).
+
+**Lunghezza totale**: rappresenta la lunghezza totale dell'intero datagramma IPv4 (pacchetto IPv4) in byte.
+
+!!! note "Nota" 
+
+    Il pacchetto IP e il datagramma IP sono espressioni tecnicamente diverse dello stesso concetto, entrambe riferite alle unità di dati trasmesse a livello di rete.
+
+**Identificazione**: identifica tutti i frammenti di un datagramma IPv4. Tutti i frammenti dello stesso datagramma originale condividono lo stesso valore di identificazione per consentire un corretto riassemblaggio.
+
+**Flag**: viene utilizzato per controllare il comportamento della frammentazione dei datagrammi IPv4. In ordine da sinistra a destra:
+
+* Il primo bit - Non utilizzato, valore 0
+* La seconda parte - DF (Don't Fragment, non frammentare). Se DF=1, significa che il datagramma IPv4 deve essere trasmesso nella sua interezza. Se supera l'MTU, viene scartato e viene restituito un errore ICMP (ad esempio “Fragmentazione necessaria”). Se DF=0, il router divide il datagramma IPv4 in più frammenti, ciascuno dei quali trasporta lo stesso valore del campo Identificazione.
+* Il terzo bit - MF (More Fragment). Se MF=1, significa che il frammento corrente non è l'ultimo e che ci sono altri frammenti; se MF=0, significa che questo è l'ultimo frammento.
+
+**Fragment Offset**: indica la posizione relativa del frammento nel datagramma IPv4 originale, in unità di 8 byte. Questo campo viene utilizzato principalmente per il riassemblaggio dei frammenti.
+
+**TTL (Time To Live)**: questo campo viene utilizzato per limitare il tempo massimo di sopravvivenza o il numero massimo di hop dei datagrammi nella rete. Il valore iniziale è determinato dal mittente e il TTL diminuisce di 1 ogni volta che passa attraverso il router. Quando TTL=0, il datagramma viene scartato.
+
+**Protocollo**: indica il tipo di protocollo utilizzato dai dati trasportati in questo datagramma. Il suo intervallo di valori è compreso tra 0 e 255. Ad esempio, il numero di protocollo di TCP è 6, quello di UDP è 17, quello di ICMP è 1.
+
+**Header Checksum**: questo campo verrà ricalcolato ogni volta che il datagramma passa attraverso il router, principalmente a causa della diminuzione del campo TTL che provoca modifiche nell'intestazione. Questo campo verifica solo l'intestazione (esclusa la parte relativa ai dati). Se gli altri campi rimangono invariati e cambia solo il TTL, il checksum verrà aggiornato con un nuovo valore (diverso da zero) per garantire che l'intestazione non sia stata manomessa o danneggiata durante la trasmissione.
+
+**Indirizzo di origine**: indirizzo IPv4 del mittente del datagramma
+
+**Indirizzo di destinazione**: indirizzo IPv4 del destinatario del datagramma
+
+**Opzioni**: campo facoltativo, con una lunghezza compresa tra 0 e 40 byte. Viene utilizzato solo quando l'IHL è superiore a 5. La lunghezza di questo campo deve essere un multiplo intero di 4 byte (se la lunghezza è inferiore a 4 byte, utilizzare il campo **padding** per il riempimento).
+
+!!! tip "Suggerimento"
+
+    Bit ha due significati. Nella teoria dell'informazione, si riferisce all'unità fondamentale di informazione, che rappresenta una scelta binaria (0 o 1). In informatica, è la più piccola unità di archiviazione dati, dove 8 bit equivalgono in genere a 1 byte, salvo diversamente specificato.
+
+### Struttura dei pacchetti IPv6
+
+I datagrammi IPv6 sono composti da tre parti:
+
+* Basic Header
+* Extension Header
+* Upper Layer Protocol Data Unit
+
+In alcuni libri, l'Extended Header  e Upper Layer Protocol Data Unit sono collettivamente denominate **Payload**.
+
+![](./images/IPv6-basic-header.png)
+
+La lunghezza fissa del Basic Header è di 40 byte ed è fissata a 8 campi:
+
+**Versione**: aiuta i router a identificare le versioni dei protocolli. Per IPv6, il valore qui è 0110 (il valore binario 0110 equivale al valore decimale 6).
+
+**Classe di Traffico**: equivalente al campo TOS (Type Of Service) nei datagrammi IPv4. Questo campo viene utilizzato per definire il QOS (Quality Of Service) e la priorità dei pacchetti di dati.
+
+**Flow Label**: questo nuovo campo IPv6 viene utilizzato per controllare il flusso dei pacchetti. Un valore diverso da zero in questo campo indica che il pacchetto deve essere trattato in modo speciale; ovvero, il pacchetto non deve essere inviato attraverso percorsi diversi per raggiungere la destinazione, ma deve utilizzare lo stesso percorso. Un vantaggio di questo sistema è che il destinatario non deve riordinare il pacchetto, velocizzando così il processo. Questo campo aiuta a evitare il riordino dei pacchetti di dati ed è progettato specificamente per lo streaming multimediale/live.
+
+**Payload Length**: Indica la dimensione del payload. Questo campo può rappresentare solo un payload con una lunghezza massima di 65535 byte. Se la lunghezza del payload è superiore a 65535 byte, il campo della lunghezza del payload verrà impostato su 0 e l'opzione jumbo payload verrà utilizzata nell'intestazione di estensione delle opzioni hop-by-hop.
+
+**Next Header**: Utilizzato per indicare il tipo di intestazione del pacchetto dopo l'intestazione di base. Se è presente un primo header di estensione, esso rappresenta il tipo del primo header di estensione. Altrimenti, rappresenta il tipo di protocollo utilizzato dal livello superiore, come 6 (TCP) e 17 (UDP).
+
+**Hop Limit**: questo campo è equivalente al Time To Live (TTL) nei datagrammi IPv4.
+
+**Indirizzo sorgente**: questo campo rappresenta l'indirizzo del mittente del datagramma IPv6.
+
+**Indirizzo di destinazione**: questo campo rappresenta l'indirizzo del destinatario del datagramma IPv6.
+
+![](.//images/IPv6-extension-header.png)
+
+Nei datagrammi IPv4, l'intestazione IPv4 contiene campi opzionali quali Opzioni, che includono Sicurezza, Timestamp, Registrazione percorso, ecc. Queste opzioni possono estendere la lunghezza dell'intestazione IPv4 da 20 byte a 60 byte. Durante il processo di inoltro, la gestione dei datagrammi IPv4 che trasportano queste opzioni può consumare una quantità significativa di risorse del dispositivo, quindi nella pratica viene utilizzata raramente.
+
+IPv6 rimuove queste opzioni dall'intestazione di base IPv6 e le inserisce nell'intestazione di estensione, che si trova tra l'intestazione di base IPv6 e l'unità dati del protocollo di livello superiore.
+
+Un pacchetto IPv6 può contenere 0, 1 o più intestazioni di estensione, che vengono aggiunte dal mittente solo quando il dispositivo o il nodo di destinazione richiedono un'elaborazione speciale.
+
+A differenza del campo Opzioni IPv4 (che può essere esteso fino a 40 byte e richiede uno spazio di archiviazione continuo), l'intestazione di estensione IPv6 adotta una struttura a catena e non ha limiti di lunghezza fissi, rendendola più scalabile in futuro. Il suo meccanismo di allineamento a 8 byte è implementato attraverso il campo Next Header, che garantisce l'efficienza dell'elaborazione ed evita il sovraccarico dovuto alla frammentazione.
+
+**Intestazione successiva**: questo campo ha la stessa funzione del campo Intestazione successiva nell'intestazione di base.
+
+**Extension Header Le**: indica la lunghezza dell'intestazione dell'estensione (esclusa la lunghezza dell'intestazione successiva).
+
+**Extension Head Data**: il contenuto dell'intestazione di estensione è una combinazione di una serie di campi opzionali e campi di riempimento.
+
+Attualmente, RFC definisce i seguenti tipi di Extension Header:
+
+* Intestazione delle opzioni hop-by-hop (il valore del campo dell'intestazione successiva è 0) - Deve essere gestita da tutti i router nel percorso.
+* Intestazione delle opzioni di destinazione (il valore del campo dell'intestazione successivo è 60) - Elaborata solo dal nodo di destinazione.
+* Intestazione di instradamento (il valore del campo dell'intestazione successiva è 43) - Questa intestazione di estensione è simile alle opzioni Loose Source e Record Route in IPv4.
+* Intestazione del frammento (il valore del campo dell'intestazione successivo è 44) - Come i pacchetti IPv4, la lunghezza dei pacchetti IPv6 da inoltrare non può superare l'unità massima di trasmissione (MTU). Quando la lunghezza del pacchetto supera l'MTU, il pacchetto deve essere frammentato. In IPv6, l'intestazione Fragment viene utilizzata da un nodo sorgente IPv6 per inviare un pacchetto più grande dell'MTU.
+* Intestazione di autenticazione (il valore del campo Next Header è 51) - IPSec utilizza questa intestazione per fornire l'autenticazione dell'origine dei dati, il controllo dell'integrità dei dati e le funzioni anti-replay dei pacchetti. Protegge anche alcuni campi nell'intestazione di base IPv6.
+* Intestazione Encapsulating Security Payload (il valore del campo dell'intestazione successiva è 50) - Questa intestazione fornisce le stesse funzioni dell'intestazione Authentication più la crittografia dei pacchetti IPv6.
+
+L'RFC specifica che quando più intestazioni di estensione vengono utilizzate nello stesso datagramma, è consigliabile che tali intestazioni appaiano nel seguente ordine:
+
+1. IPv6 Basic Header
+2. Hop-by-Hop Options header
+3. Destination Options header
+4. Routing header
+5. Fragment header
+6. Authentication header
+7. Encapsulating Security Payload header
+8. Destination Options header
+9. Upper-layer protocol header
+
+Ad eccezione del Destination Option Header, che può apparire una o due volte (una volta prima del Routing Extension Header e una volta prima dell'intestazione Upper-layer protocol), tutte le altre intestazioni di estensione possono apparire solo una volta.
 
 ### Dominio DNS
 
-Le macchine client possono far parte di un dominio DNS (**Domain Name System**, ad esempio `mydomain.lan`).
+I computer client possono far parte di un dominio DNS (**Domain Name System**, ad esempio `mydomain.lan`).
 
-Il nome completo del computer (**FQDN**) diventa `pc-rocky.mydomain.lan`.
+Il nome completo della macchina (**FQDN**) diventa `pc-rocky.mydomain.lan`.
 
-Un insieme di computer può essere raggruppato in un set logico, che risolve i nomi, chiamato dominio DNS. Un dominio DNS non è, ovviamente, limitato a una singola rete fisica.
+Un insieme di computer può essere raggruppato in un insieme logico, con risoluzione dei nomi, chiamato dominio DNS. Un dominio DNS non è, ovviamente, limitato a una singola rete fisica.
 
-Affinché un computer faccia parte di un dominio DNS, è necessario fornire un suffisso DNS (qui `mydomain.lan`) e un server da poter interrogare.
+Affinché un computer possa far parte di un dominio DNS, è necessario assegnargli un suffisso DNS (in questo caso `mydomain.lan`) e indicargli i server a cui può inviare le richieste.
 
 ### Promemoria del modello OSI
 
@@ -113,27 +333,27 @@ Affinché un computer faccia parte di un dominio DNS, è necessario fornire un s
 | 2 - Collegamento dati   | Ethernet, WiFi, Token Ring, ...            |
 | 1 - Collegamento fisici | Cavi, fibre ottiche, onde radio, ...       |
 
-**Livello 1**  (Fisico) supporta la trasmissione su un canale di comunicazione (Wifi, fibra ottica, cavo RJ, ecc.). Unità: il bit.
+**Livello 1** (Fisico) supporta la trasmissione su un canale di comunicazione (Wi-Fi, fibra ottica, cavo RJ, ecc.). Unità: il bit.
 
-**Livello 2** (Data Link) supporta la topologia di rete (token-ring, star, bus, etc.), divisione dei dati ed errori di trasmissione. Unità: il frame.
+**Il livello 2** (collegamento dati) supporta la topologia di rete (token ring, stella, bus, ecc.), la suddivisione dei dati e gli errori di trasmissione. Unità: il frame.
 
-**Livello 3** (Rete) supporta la trasmissione dati end-to-end (Routing IP = Gateway). Unità: il pacchetto.
+**Livello 3** (Rete) supporta la trasmissione dei dati end-to-end (routing IP = Gateway). Unità: il pacchetto.
 
-**Livello 4** (Trasporto) supporta il tipo di servizio (connesso o non connesso) crittografia e controllo del flusso. Unità: il segmento o il datagramma.
+**Il livello 4** (trasporto) supporta il tipo di servizio (connesso o non connesso), la crittografia e il controllo di flusso. Unità: il segmento o il datagramma.
 
 **Livello 5** (Sessione) supporta la comunicazione tra due computer.
 
-**Livello 6** (Presentazione) rappresenta l'area indipendente dai dati a livello di applicazione. Essenzialmente questo livello traduce dal formato di rete al formato dell'applicazione, o dal formato dell'applicazione al formato di rete.
+**Livello 6** (Presentazione) rappresenta l'area indipendente dai dati a livello dell'applicazione. Essenzialmente questo livello traduce dal formato di rete al formato dell'applicazione, o dal formato dell'applicazione al formato di rete.
 
-**Layer 7** (Applicazione) rappresenta il contatto con l'utente. Fornisce i servizi offerti dalla rete: http, dns, ftp, imap, pop, smtp, etc.
+**Livello 7** (Applicazione) rappresenta il contatto con l'utente. Fornisce i servizi offerti dalla rete: http, dns, ftp, imap, pop, smtp, ecc.
 
 ## La denominazione delle interfacce
 
-*lo* è l'intefaccia di "**loopback**" che consente ai programmi TCP/IP di comunicare tra loro senza lasciare la macchina locale. Ciò consente di verificare se il modulo di rete **del sistema funziona correttamente** e consente anche il ping del localhost. Tutti i pacchetti che entrano attraverso localhost escono attraverso localhost. I pacchetti ricevuti corrispondono ai pacchetti inviati.
+*lo* è l'interfaccia "**loopback**" che consente ai programmi TCP/IP di comunicare tra loro senza uscire dalla macchina locale. Ciò consente di verificare se il **modulo di rete del sistema funziona correttamente** e permette anche di eseguire il ping del localhost. Tutti i pacchetti che entrano tramite localhost escono tramite localhost. I pacchetti ricevuti sono i pacchetti inviati.
 
-Il kernel Linux assegna i nomi delle interfacce con un prefisso specifico a seconda del tipo. Ad esempio tradizionalmente, tutte le interfacce **Ethernet**, iniziano con **eth**. Il prefisso è seguito da un numero, il primo è 0 (eth0, eth1, eth2...). Alle interfacce wifi è stato assegnato un prefisso wlan.
+Il kernel Linux assegna nomi alle interfacce con un prefisso specifico a seconda del tipo. Tradizionalmente, tutte le interfacce **Ethernet**, ad esempio, iniziavano con **eth**. Il prefisso era seguito da un numero, il primo dei quali era 0 (eth0, eth1, eth2...). Alle interfacce wifi è stato assegnato un prefisso wlan.
 
-Sulle distribuzioni Linux Rocky 8, systemd nominerà le interfacce seguendo la nuova politica in cui "X" rappresenta un numero:
+Nelle distribuzioni Linux Rocky8, systemd nominerà le interfacce con la nuova politica seguente, dove "X" rappresenta un numero:
 
 * `enoX`: dispositivi on-board
 * `ensX`: slot hotplug PCI Express
@@ -144,17 +364,17 @@ Sulle distribuzioni Linux Rocky 8, systemd nominerà le interfacce seguendo la n
 
 Dimentica il vecchio comando `ifconfig`! Pensa `ip`!
 
-... Note "Nota"
+!!! Note "Nota"
 
-    Commento per gli amministratori di vecchi sistemi Linux:
+    Commento per gli amministratori di sistemi Linux meno recenti:
     
-    Il comando storico di gestione della rete è `ifconfig`. Questo comando è stato sostituito dal comando `ip`, che è già ben noto agli amministratori di rete.
+    Il comando storico per la gestione della rete è `ifconfig`. Questo comando è stato sostituito dal comando `ip`, già ben noto agli amministratori di rete.
     
-    Il comando `ip` è l'unico comando per gestire **indirizzo IP, ARP, routing, ecc.**.
+    Il comando `ip` è l'unico comando che consente di gestire **indirizzi IP, ARP, routing, ecc.**.
     
-    Il comando `ifconfig` non è più installato per impostazione predefinita in Rocky8.
+    Il comando `ifconfig` non è più installato di default in Rocky8.
     
-    È importante iniziare con le buone abitudini ora.
+    È importante acquisire buone abitudini fin da ora.
 
 ## Il nome host
 
@@ -171,32 +391,32 @@ hostname [-f] [hostname]
 
 !!! Tip "Suggerimento"
 
-    Questo comando viene utilizzato da vari programmi di rete per identificare la macchina.
+    Questo comando viene utilizzato da vari programmi di rete per identificare il computer.
 
-Per assegnare un nome host, è possibile utilizzare il comando`hostname`, ma le modifiche non verranno mantenute all'avvio successivo. Il comando senza argomenti visualizza il nome host.
+Per assegnare un nome host, è possibile utilizzare il comando `hostname`, ma le modifiche non verranno mantenute al successivo avvio. Il comando senza argomenti visualizza il nome dell'host.
 
-Per impostare il nome host, bisogna modificare il file `/etc/sysconfig/network`:
+Per impostare il nome host, è necessario modificare il file `/etc/sysconfig/network`:
 
 ```bash
 NETWORKING=yes
 HOSTNAME=pc-rocky.mondomaine.lan
 ```
 
-Lo script di avvio di RedHat consulta anche il file `/etc/hosts` per risolvere il nome host del sistema.
+Lo script di avvio RedHat consulta anche il file `/etc/hosts` per risolvere il nome host del sistema.
 
 All'avvio del sistema, Linux valuta il valore `HOSTNAME` nel file `/etc/sysconfig/network`.
 
-Utilizza quindi il file `/etc/hosts` per valutare l'indirizzo IP principale del server e il suo nome host. E dedurre il nome di dominio DNS.
+Quindi utilizza il file `/etc/hosts` per valutare l'indirizzo IP principale del server e il suo nome host. Deduce il nome di dominio DNS.
 
-È quindi essenziale compilare questi due file prima di qualsiasi configurazione dei servizi di rete.
+È quindi fondamentale compilare questi due file prima di qualsiasi configurazione dei servizi di rete.
 
 !!! Tip "Suggerimento"
 
-    Per sapere se questa configurazione è ben fatta, i comandi `hostname` e `hostname -f` devono rispondere con i valori previsti.
+    Per verificare che questa configurazione sia corretta, i comandi `hostname` e `hostname -f` devono restituire i valori previsti.
 
 ## /etc/hosts file
 
-Il file `/etc/hosts` è una tabella di mapping dei nomi host statici, che segue il seguente formato:
+Il file `/etc/hosts` è una tabella statica di mappatura dei nomi host, che segue il seguente formato:
 
 ```bash
 @IP <hostname>  [alias]  [# comment]
@@ -210,15 +430,15 @@ Esempio di un file `/etc/hosts`:
 192.168.1.10    rockstar.rockylinux.lan rockstar
 ```
 
-Il file `/etc/hosts` viene ancora utilizzato dal sistema, soprattutto al momento dell'avvio quando viene determinato il nome di dominio completo del sistema (FQDN).
+Il file `/etc/hosts` è ancora utilizzato dal sistema, in particolare al momento dell'avvio, quando viene determinato il nome di dominio completo (FQDN) del sistema.
 
 !!! Tip "Suggerimento"
 
-    RedHat raccomanda che sia compilata almeno una linea con il nome del sistema.
+    RedHat raccomanda di compilare almeno una riga contenente il nome del sistema.
 
-Se il servizio **DNS** (**D**domain **N**ame **S**ervice) non è presente, è necessario compilare tutti i nomi nel file hosts per ciascuno dei computer.
+Se il servizio **DNS** (**D**omain **N**ame **S**ervice) non è attivo, è necessario inserire tutti i nomi nel file hosts per ciascuna delle macchine.
 
-Il file `/etc/hosts` contiene una riga per voce, con l'indirizzo IP, il nome di dominio completo, quindi il nome host (in quest'ordine) e una serie di alias (alias1 alias2 ...). L'alias è opzionale.
+Il file `/etc/hosts` contiene una riga per ogni voce, con l'indirizzo IP, l'FQDN, quindi il nome host (in quest'ordine) e una serie di alias (alias1 alias2 ...). L'alias è opzionale.
 
 ## il file `/etc/nsswitch.conf`
 
@@ -236,7 +456,7 @@ hosts: files dns
 
 In questo caso, Linux cercherà prima una corrispondenza del nome host (riga `hosts:`) nel file `/etc/hosts` (valore `files`) prima di interrogare il DNS (valore `dns`)! Questo comportamento può essere variato modificando il file `/etc/nsswitch.conf`.
 
-Naturalmente, è possibile immaginare di interrogare un LDAP, MySQL o altro server configurando il servizio dei nomi per rispondere alle richieste di sistema per host, utenti, gruppi, ecc.
+Naturalmente, è possibile immaginare di interrogare un server LDAP, MySQL o altro configurando il servizio nomi in modo che risponda alle richieste di sistema relative a host, utenti, gruppi, ecc.
 
 La risoluzione del servizio dei nomi può essere testata con il comando `getent` che vedremo più avanti in questo corso.
 
@@ -255,9 +475,9 @@ nameserver 192.168.1.254
 
     Questo file è ormai storia. Non è più compilato direttamente!
 
-Le nuove generazioni di distribuzioni hanno generalmente integrato il servizio `NetworkManager`. Questo servizio consente di gestire la configurazione in modo più efficiente, sia in modalità grafica che console.
+Le distribuzioni di nuova generazione hanno generalmente integrato il servizio `NetworkManager`. Questo servizio consente di gestire la configurazione in modo più efficiente, sia in modalità grafica che in modalità console.
 
-Consente l'aggiunta di server DNS dal file di configurazione di un'interfaccia di rete. Quindi popola dinamicamente il file `/etc/resolv.conf` che non dovrebbe mai essere modificato direttamente, altrimenti le modifiche alla configurazione andranno perse al successivo avvio del servizio di rete.
+Consente l'aggiunta di server DNS dal file di configurazione di un'interfaccia di rete. Quindi popola dinamicamente il file `/etc/resolv.conf`, che non dovrebbe mai essere modificato direttamente, altrimenti le modifiche alla configurazione andranno perse al successivo avvio del servizio di rete.
 
 ## comando `ip`
 
@@ -291,9 +511,9 @@ Tutti i comandi di gestione della rete storici sono stati raggruppati sotto il c
 
 ## configurazione DHCP
 
-Il protocollo **DHCP** (**D**ynamic **H**ost **C**Control **P**rotocol) consente di ottenere una configurazione IP completa tramite la rete. Questa è la modalità di configurazione predefinita di un'interfaccia di rete sotto Rocky Linux, il che spiega perché un sistema connesso alla rete attraverso un router internet può funzionare senza ulteriori configurazioni.
+Il protocollo **DHCP** (**D**ynamic **H**ost **C**ontrol **P**rotocol) consente di ottenere una configurazione IP completa tramite la rete. Questa è la modalità di configurazione predefinita di un'interfaccia di rete in Rocky Linux, il che spiega perché un sistema connesso alla rete di un router Internet può funzionare senza ulteriori configurazioni.
 
-La configurazione delle interfacce sotto Rocky Linux è contenuta nella cartella `/etc/sysconfig/network-scripts/`.
+La configurazione delle interfacce in Rocky Linux viene effettuata nella cartella `/etc/sysconfig/network-scripts/`.
 
 Per ogni interfaccia Ethernet, un file `ifcfg-ethX` consente la configurazione dell'interfaccia associata.
 
@@ -316,13 +536,13 @@ DEVICE=eth0
 ONBOOT=yes
 ```
 
-* Effettuare una richiesta DHCP all'avvio dell'interfaccia:
+* Effettua una richiesta DHCP all'avvio dell'interfaccia:
 
 ```bash
 BOOTPROTO=dhcp
 ```
 
-* Specificare l'indirizzo MAC (opzionale ma utile quando ci sono diverse interfacce):
+* Specificare l'indirizzo MAC (facoltativo ma utile quando sono presenti più interfacce):
 
 ```bash
 HWADDR=00:0c:29:96:32:e3
@@ -330,7 +550,7 @@ HWADDR=00:0c:29:96:32:e3
 
 !!! Tip "Suggerimento"
 
-    Se NetworkManager è installato, le modifiche vengono prese in considerazione automaticamente. In caso contrario, è necessario riavviare il servizio di rete.
+    Se NetworkManager è installato, le modifiche vengono applicate automaticamente. In caso contrario, è necessario riavviare il servizio di rete.
 
 * Riavviare il servizio di rete:
 
@@ -400,11 +620,11 @@ Il comando `ip route`:
 default via 192.168.1.254 dev eth0 proto static
 ```
 
-È una buona idea sapere come leggere una tabella di routing, specialmente in un ambiente con più interfacce di rete.
+È utile sapere come leggere una tabella di routing, specialmente in un ambiente con più interfacce di rete.
 
-* Nell'esempio mostrato, la rete `192.168.1.0/24` è raggiungibile direttamente dal dispositivo `eth0`, quindi c'è una metrica a `1` (non attraversa un router).
+* Nell'esempio mostrato, la rete `192.168.1.0/24` è raggiungibile direttamente dal dispositivo `eth0`, quindi la metrica è `1` (non attraversa un router).
 
-* Tutte le altre reti oltre alla precedente saranno raggiungibili, sempre dal dispositivo `eth0`, ma questa volta i pacchetti saranno indirizzati a un gateway `192.168.1.254`. Il protocollo di routing è un protocollo statico (anche se è possibile aggiungere una route a un indirizzo assegnato dinamicamente in Linux).
+* Tutte le altre reti diverse dalla precedente saranno raggiungibili, sempre dal dispositivo `eth0`, ma questa volta i pacchetti saranno indirizzati a un gateway `192.168.1.254`. Il protocollo di routing è un protocollo statico (anche se in Linux è possibile aggiungere un percorso a un indirizzo assegnato dinamicamente).
 
 ## Risoluzione dei nomi
 
@@ -547,16 +767,16 @@ Sintassi del comando `getent`:
 getent hosts name
 ```
 
-Esempi:
+Esempio:
 
 ```bash
 [root]# getent hosts rockylinux.org
   76.223.126.88 rockylinux.org
 ```
 
-L'interrogazione di un solo server DNS può restituire un risultato errato che non tiene conto del contenuto di un file `hosts`, anche se questo dovrebbe essere raro al giorno d'oggi.
+L'interrogazione di un solo server DNS potrebbe restituire un risultato errato che non tiene conto del contenuto di un file `hosts`, anche se al giorno d'oggi ciò dovrebbe verificarsi raramente.
 
-Per prendere in considerazione il file `/etc/hosts`, è necessario interrogare il servizio nomi di NSSwitch, che si occuperà della risoluzione DNS.
+Per tenere conto del file `/etc/hosts`, è necessario interrogare il servizio di nomi NSSwitch, che si occuperà di qualsiasi risoluzione DNS.
 
 ### comando `ipcalc`
 
@@ -609,7 +829,7 @@ Sintassi del comando `ss`:
 ss [-tuna]
 ```
 
-Esempi:
+Esempio:
 
 ```bash
 [root]# ss –tuna
