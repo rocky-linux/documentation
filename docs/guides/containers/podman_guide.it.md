@@ -106,6 +106,12 @@ Eseguire una piattaforma cloud self-hosted [Nextcloud](https://nextcloud.com/) c
 podman run -d -p 8080:80 nextcloud
 ```
 
+!!! note "Nota"
+
+```
+Di default, Rocky Linux ha `firewalld` abilitato e potrebbe bloccare la porta 8080. Segui [la guida] (../../security/firewalld-beginners/) per aprire la porta e poter accedere al servizio.
+```
+
 Verrà richiesto di selezionare il registro del container da cui scaricare. In questo esempio, si utilizzerà `docker.io/library/nextcloud:latest`.
 
 Una volta scaricata l'immagine di Nextcloud, questa verrà eseguita.
@@ -159,7 +165,7 @@ Per avviare il servizio, eseguite:
 systemctl --user start nextcloud.service
 ```
 
-!!! note "Nota"
+!!! note
 
 ```
 Se si è creato un file in una delle directory per i servizi rootful, omettere il flag `--user`.
