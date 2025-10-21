@@ -29,7 +29,7 @@ In this chapter, you will learn about PHP and PHP-FPM.
 :checkered_flag: **PHP**, **PHP-FPM**, **Application server**
 
 **Knowledge**: :star: :star: :star:  
-**Complexity**: :star: :star: :star: 
+**Complexity**: :star: :star: :star:
 
 **Reading time**: 30 minutes
 
@@ -59,68 +59,37 @@ Rocky Linux, like its upstream, offers many versions of the language. Some of th
 
 To obtain a list of available versions, enter the following command:
 
-=== "9.3 PHP module list"
-
- ```bash
- $ sudo dnf module list php
-
- Rocky Linux 9 - AppStream
- Name                                                 Stream                                                  Profiles                                                                   Summary
- php                                                  8.1 [d]                                                 common [d], devel, minimal
-
- Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
- ```
-
- The Remi repository offers more recent releases of PHP than the Appstream repository, including versions 8.2 and 8.3.
-
- To install the Remi repository, run the following command:
-
- ```bash
- sudo dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
- ```
-
- Enable the Remi repository by running the following command:
-
- ```bash
- sudo dnf config-manager --set-enabled remi
- ```
-
- You can now activate a newer module (PHP 8.3) by entering the following command:
-
- ```bash
- sudo dnf module enable php:remi-8.3
- ```
-
-=== "8.9 PHP module list"
+### PHP module list
 
  ```bash
  $ sudo dnf module list php
 
  Rocky Linux 8 - AppStream
- Name                                                 Stream                                                  Profiles                                                                   Summary
- php                                                  7.2 [d]                                                 common [d], devel, minimal                                                 PHP scripting language
- php                                                  7.3                                                     common [d], devel, minimal                                                 PHP scripting language
- php                                                  7.4                                                     common [d], devel, minimal                                                 PHP scripting language
- php                                                  8.0                                                     common [d], devel, minimal                                                 PHP scripting language
+ Name                 Stream                  Profiles                                   Summary
+ php                  7.2 [d]                 common [d], devel, minimal                 PHP scripting language
+ php                  7.3                     common [d], devel, minimal                 PHP scripting language
+ php                  7.4                     common [d], devel, minimal                 PHP scripting language
+ php                  8.0                     common [d], devel, minimal                 PHP scripting language
+ php                  8.2                     common [d], devel, minimal                 PHP scripting language
 
  Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
  ```
 
  Rocky provides different PHP modules from its AppStream repository.
 
- You will note that Rocky 8.9's default version is 7.2, which has already reached its end of life at the time of this writing.
+ You will note that the Rocky 8 default version is 7.2, which is already end of life at the time of this writing.
 
  You can activate a newer module by entering the following command:
 
  ```bash
- sudo dnf module enable php:8.0
+ sudo dnf module enable php:8.2
  ==============================================================================================
  Package               Architecture         Version               Repository             Size
  ==============================================================================================
  Enabling module streams:
  httpd                                      2.4
  nginx                                      1.14
- php                                        8.0
+ php                                        8.2
 
  Transaction Summary
  ==============================================================================================
@@ -144,63 +113,18 @@ The installation of PHP is relatively trivial. It consists of installing the mai
 
 The example below installs PHP with the modules usually installed with it.
 
-=== "9.3 install PHP"
-
- ```bash
- sudo dnf install php php-cli php-gd php-curl php-zip php-mbstring
- ```
-
- During installation, you will be prompted to import GPG keys for the epel9 (Extra Packages for Enterprise Linux 9) and Remi repositories. Enter y to import the keys:
-
- ```bash
- Extra Packages for Enterprise Linux 9 - x86_64
- Importing GPG key 0x3228467C:
- Userid     : "Fedora (epel9) <epel@fedoraproject.org>"
- Fingerprint: FF8A D134 4597 106E CE81 3B91 8A38 72BF 3228 467C
- From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-9
- Is this ok [y/N]: y
- Key imported successfully
- Remi's RPM repository for Enterprise Linux 9 - x86_64
- Importing GPG key 0x478F8947:
- Userid     : "Remi's RPM repository (https://rpms.remirepo.net/) <remi@remirepo.net>"
- Fingerprint: B1AB F71E 14C9 D748 97E1 98A8 B195 27F1 478F 8947
- From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-remi.el9
- Is this ok [y/N]: y
- Key imported successfully
- Running transaction check
- Transaction check succeeded.
- Running transaction test
- Transaction test succeeded.
-
- Complete!
- ```
-
-=== "8.9 install PHP"
-
  ```bash
  sudo dnf install php php-cli php-gd php-curl php-zip php-mbstring
  ```
 
 You can check that the installed version corresponds to the expected one:
 
-=== "9.3 check PHP version"
-
  ```bash
- $ php -v
- PHP 8.3.2 (cli) (built: Jan 16 2024 13:46:41) (NTS gcc x86_64)
- Copyright (c) The PHP Group
- Zend Engine v4.3.2, Copyright (c) Zend Technologies
- with Zend OPcache v8.3.2, Copyright (c), by Zend Technologies
- ```
-
-=== "8.9 check PHP version"
-
- ```bash
- $ php -v
- PHP 7.4.19 (cli) (built: May  4 2021 11:06:37) ( NTS )
- Copyright (c) The PHP Group
- Zend Engine v3.4.0, Copyright (c) Zend Technologies
- with Zend OPcache v7.4.19, Copyright (c), by Zend Technologies
+ php -v
+PHP 8.2.28 (cli) (built: Mar 11 2025 17:58:12) (NTS gcc x86_64)
+Copyright (c) The PHP Group
+Zend Engine v4.2.28, Copyright (c) Zend Technologies
+    with Zend OPcache v8.2.28, Copyright (c), by Zend Technologies
  ```
 
 ### Apache Integration
@@ -344,7 +268,7 @@ pm.max_children = 10
 
 This configuration starts with 10 processes.
 
-In dynamic mode, PHP-FPM starts at *most* the number of processes specified by the` pm.max_children` value. It first starts some processes corresponding to `pm.start_servers`, keeping at least the value of `pm.min_spare_servers` of inactive processes and, at most, `pm.max_spare_servers` of inactive processes.
+In dynamic mode, PHP-FPM starts at *most* the number of processes specified by the`pm.max_children` value. It first starts some processes corresponding to `pm.start_servers`, keeping at least the value of `pm.min_spare_servers` of inactive processes and, at most, `pm.max_spare_servers` of inactive processes.
 
 Example:
 
@@ -368,7 +292,7 @@ A third mode of operation is the `ondemand` mode. This mode only starts a proces
 
 #### Process status
 
-Like Apache and its `mod_status` module, PHP-FPM offers a page indicating the process's status.
+Just as with Apache and its `mod_status` module, PHP-FPM offers a page indicating the process's status.
 
 To activate the page, set its access path with the `pm.status_path` directive:
 
