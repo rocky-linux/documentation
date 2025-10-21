@@ -22,13 +22,13 @@ In questo capitolo, si potranno apprendere le caratteristiche di PHP e PHP-FPM.
 
 **Obiettivi**: si imparerà come:
 
-:heavy_check_mark: installare un application server PHP\
-:heavy_check_mark: configurare il pool PHP-FPM\
+:heavy_check_mark: installare un application server PHP  
+:heavy_check_mark: configurare il pool PHP-FPM  
 :heavy_check_mark: ottimizzare un server di applicazioni PHP-FPM
 
 :checkered_flag: **PHP**, **PHP-FPM**, **Server applicativo**
 
-**Conoscenza**: :star: :star: :star:\
+**Conoscenza**: :star: :star: :star:  
 **Complessità**: :star: :star: :star:
 
 **Tempo di lettura**: 30 minuti

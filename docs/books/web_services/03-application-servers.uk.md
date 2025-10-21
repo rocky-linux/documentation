@@ -22,13 +22,13 @@ tags:
 
 **Цілі**: Ви дізнаєтеся, як:
 
-:heavy_check_mark: встановити сервер додатків PHP\
-:heavy_check_mark: налаштувати пул PHP-FPM\
+:heavy_check_mark: встановити сервер додатків PHP  
+:heavy_check_mark: налаштувати пул PHP-FPM  
 :heavy_check_mark: оптимізувати сервер додатків PHP-FPM
 
 :checkered_flag: **PHP**, **PHP-FPM**, **Application server**
 
-**Знання**: :star: :star: :star:\
+**Знання**: :star: :star: :star:  
 **Складність**: :star: :star: :star:
 
 **Час читання**: 30 хвилин
