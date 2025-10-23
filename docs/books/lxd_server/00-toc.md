@@ -10,6 +10,10 @@ tags:
 
 # Creating a full LXD server
 
+!!! warning "LXD status"
+
+    Note that LXD does not contain current images of Rocky Linux 10, or most if not all other RHEL clone images. This is likely due to the licensing changes that kept the Linux Containers project from contributing images to LXD. (see other notes below.) That means that if you want a modern containerized platform, based on the original development of LXD and with the many of the original developers contributing, your best bet is to switch to [Incus](../incus_server/00-toc.md). 
+
 !!! info
 
     This procedure should work for Rocky Linux 8.x or 9.x. If you are looking for a modern implementation of this project from the former lead developers of LXD, but available only for Rocky Linux 9.x, check out [the Incus Server book](../incus_server/00-toc.md).
