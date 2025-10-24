@@ -41,7 +41,7 @@ Two firewalls protect the client workstation but never communicate directly with
 
 ![Proxy-based architecture](img/squid-architecture-proxy.png)
 
-!!! Note 
+!!! Note
 
     This architecture requires browser configuration on the client workstation.
 
@@ -51,7 +51,7 @@ The configuration occurs at the gateway level, where it receives client requests
 
 ![Captive proxy-based architecture](img/squid-architecture-proxy-captif.png)
 
-!!! Note 
+!!! Note
 
     This architecture requires a specific configuration on the router.
 
@@ -498,7 +498,7 @@ You can see the trace on your second terminal:
 
 The content is not cached here as you request an `https` connection to the remote server.
 
-#### Task 3: Configure DNS to use your proxy server
+#### Task 3: Configure DNF to use your proxy server
 
 Edit the `/etc/dnf/dnf.conf` file to use the proxy squid:
 
