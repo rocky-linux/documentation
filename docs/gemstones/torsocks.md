@@ -5,9 +5,9 @@ contributors: Steven Spencer, Ganna Zhyrnova
 date: 2024-02-25
 ---
 
- !!! warning "Temporary Hold"
+!!! warning "Temporary Hold"
 
-    `tor` and `torsocks` are currently missing from the EPEL. It will probably be built. The Docs Team will continue to test availability in the EPEL as time allows. For now, your only option is to build `tor` from source, and the instructions for doing that are currently missing here.
+    `tor` and `torsocks` are currently missing from the EPEL. These will probably be built. The Docs Team will continue to test availability in the EPEL as time allows. For now, your only option is to build these from source, and the instructions for doing so are currently missing here.
 
 ## `torsocks` Introduction
 
