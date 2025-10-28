@@ -5,7 +5,13 @@ contributors: Steven Spencer, Ganna Zhyrnova
 date: 2024-02-25
 ---
 
-# `torsocks` - Introduction
+!!! warning "Avertissement"
+
+```
+`tor` et `torsocks` sont actuellement absents de l'EPEL. Ils seront probablement compilés. L'équipe de documentation continuera de tester leur disponibilité dans l'EPEL dès que le temps le permettra. Pour l'instant, votre seule option est de compiler Tor à partir des sources, et les instructions pour ce faire sont actuellement manquantes.
+```
+
+## `torsocks` - Introduction
 
 `torsocks` est un utilitaire permettant de rediriger le trafic IP d'une application de ligne de commande sur le réseau [Tor](https://www.torproject.org/) ou un serveur SOCKS5.
 
