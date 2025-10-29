@@ -218,7 +218,7 @@ Another listing will reveal that the container has the DHCP address assigned:
 
 ### Rocky Linux 9 and 10 `macvlan` - The static IP fix
 
-When statically assigning an IP address, things get even more convoluted. Since `network-scripts` is now deprecated in Rocky Linux 9.x, the only way to do this is through static assignment, and because of the way the containers use the network, you are not going to be able to set the route with a normal `ip route` statement. The problem is that the interface assigned when applying the `macvlan` profile (eth0 in this case), is not manageable with Network Manager. The fix is to rename the container's network interface after restarting and assign the static IP. You can do this with a script and run (again) within root's crontab. Do this with the `ip` command. In addition to setting the IP address, you will also need to set DNS for name resolution. Again, this is not as easy as running `nmtui` to modify the connection, as the connection does not exist within Network Manager. The solution is to create a text file and populate it with the DNS servers you want to use.
+When statically assigning an IP address, things get even more convoluted. Since `network-scripts` is now deprecated in Rocky Linux 9.x, the only way to do this is through static assignment, and because of the way the containers use the network, you are not going to be able to set the route with a normal `ip route` statement. The problem is that the interface assigned when applying the `macvlan` profile (eth0 in this case) is not manageable with Network Manager. The fix is to rename the container's network interface after restarting and assign the static IP. You can do this with a script and run (again) within root's crontab. Do this with the `ip` command. In addition to setting the IP address, you will need to configure DNS for name resolution. Again, this is not as easy as running `nmtui` to modify the connection, as the connection does not exist within Network Manager. The solution is to create a text file containing the DNS servers you want to use.
 
 To do this, you need to gain shell access to the container again:
 
@@ -239,7 +239,7 @@ nameserver 8.8.8.8
 nameserver 8.8.4.4
 ```
 
-Save the file and exit. This shows that you are using Google's open DNS servers. If you want to use different DNS servers, simply replace the IPs shown with your DNS of choice.
+Save the file and exit. This shows that you are using Google's open DNS servers. If you want to use different DNS servers, replace the IP addresses shown with your preferred DNS servers.
 
 Next, you are going to create a bash script in `/usr/local/sbin` called "static":
 
