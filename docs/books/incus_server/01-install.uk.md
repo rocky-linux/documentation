@@ -32,7 +32,7 @@ dnf upgrade
 Встановіть репозиторій OpenZFS за допомогою:
 
 ```bash
-dnf install https://zfsonlinux.org/epel/zfs-release-2-2$(rpm --eval "%{dist}").noarch.rpm
+dnf install https://zfsonlinux.org/epel/zfs-release-2-8$(rpm --eval "%{dist}").noarch.rpm
 ```
 
 ## Встановлення `dkms`, `vim` і `kernel-devel`
