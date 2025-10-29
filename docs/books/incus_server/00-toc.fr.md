@@ -36,7 +36,7 @@ L'installation du serveur Incus n'est disponible que pour Rocky Linux 9.x et est
 
 Incus est le mieux décrit sur le [site officiel](https://linuxcontainers.org/incus/), mais considérez-le comme un système de conteneur offrant les avantages des serveurs virtuels dans un conteneur.
 
-Il est très puissant, et avec le matériel approprié et configuré, peut être mis à profit pour exécuter beaucoup d'instances de serveurs sur un seul matériel. Si vous associez cela à un serveur de snapshot, vous avez également un ensemble de conteneurs que vous pouvez faire tourner presque immédiatement si votre serveur principal se trouve déconnecté.
+Il est très puissant et, avec le matériel approprié et configuré, peut être mis à profit pour exécuter de nombreuses instances de serveurs sur un seul matériel. Si vous associez cela à un serveur de snapshots, vous disposez également d'un ensemble de conteneurs que vous pouvez déployer presque immédiatement si votre serveur principal tombe en panne.
 
 !!! warning "Ceci n'est PAS une sauvegarde"
 
