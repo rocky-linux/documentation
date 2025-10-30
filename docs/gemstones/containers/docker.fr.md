@@ -1,5 +1,5 @@
 ---
-title: Docker Engine – Installation
+title: Docker Engine — Installation
 author: Wale Soyinka
 contributors: Neel Chauhan, Srinivas Nishant Viswanadha, Stein Arne Storslett, Ganna Zhyrnova, Steven Spencer
 date: 2021-08-04
@@ -13,14 +13,10 @@ Docker Engine peut être utilisé en exécutant des charges de travail de type D
 
 ## Ajouter le dépôt Docker
 
-!!! note "Remarque"
-
-    Docker v28 n'a pas actuellement de dépôt RHEL 10, alors vous pouvez utiliser le référentiel CentOS.
-
-Utilisez l’utilitaire `dnf` pour ajouter le référentiel `Docker` à votre serveur Rocky Linux. Pour ce faire tapez la commande suivante :
+Utilisez l'utilitaire `dnf` pour ajouter le dépôt `docker` à votre serveur Rocky Linux. Pour ce faire tapez la commande suivante :
 
 ```bash
-sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
 ```
 
 ## Installer les paquets nécessaires
@@ -33,7 +29,7 @@ sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin d
 
 ## Démarrer et activer Docker (`dockerd`)
 
-Utilisez `systemctl` pour configurer Docker afin qu'il démarre automatiquement au redémarrage et le lancer simultanément maintenant. Pour ce faire tapez la commande suivante :
+Utilisez `systemctl` pour configurer Docker afin qu'il soit lancé automatiquement au redémarrage et démarrez-le en même temps maintenant. Pour ce faire tapez la commande suivante :
 
 ```bash
 sudo systemctl --now enable docker
@@ -43,7 +39,7 @@ sudo systemctl --now enable docker
 
 Ajoutez un utilisateur non root au groupe `docker` pour permettre à l'utilisateur de gérer `docker` sans `sudo`.
 
-Il s'agit d'une étape facultative mais elle peut être pratique si vous êtes l'utilisateur principal du système ou si vous souhaitez autoriser plusieurs utilisateurs à gérer Docker mais ne souhaitez pas leur accorder d'autorisations `sudo`.
+Il s'agit d'une étape facultative, mais elle peut s'avérer pratique si vous êtes l'utilisateur principal du système ou si vous souhaitez autoriser plusieurs utilisateurs à gérer Docker sans leur accorder les permissions `sudo`.
 
 Pour ce faire tapez la commande suivante :
 
@@ -55,7 +51,7 @@ sudo usermod -a -G docker $(whoami)
 sudo usermod -a -G docker custom-user
 ```
 
-Pour être affecté au nouveau groupe, vous devez vous déconnecter et vous reconnecter. Vérifiez avec la commande `id` que le groupe a été ajouté.
+Pour être affecté au nouveau groupe, vous devez vous déconnecter et vous reconnecter. Vérifiez avec la commande `id` que le groupe a effectivement été ajouté.
 
 ### Remarques
 

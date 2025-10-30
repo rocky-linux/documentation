@@ -218,7 +218,7 @@ Une nouvelle liste révélera que le conteneur a été assigné à l'adresse DHC
 
 ### Rocky Linux 9 et 10 `macvlan` — Le correctif IP statique
 
-Lors de l’attribution statique d’une adresse IP, les choses deviennent encore plus compliquées. Étant donné que `network-scripts` est désormais obsolète dans Rocky Linux 9.x, la seule façon de procéder est par attribution statique, et en raison de la manière dont les conteneurs utilisent le réseau, vous ne pourrez pas définir la route avec une instruction `ip route` normale. Le problème est que l'interface attribuée lors de l'application du profil `macvlan` (eth0 dans ce cas), n'est pas gérable avec Network Manager. La solution consiste à renommer l'interface réseau du conteneur après le redémarrage et à attribuer l'IP statique. Vous pouvez le faire avec un script et l'exécuter (à nouveau) dans le crontab de root. Tout cela se fait avec la commande `ip`. En plus de définir l'adresse IP, vous devrez également définir le DNS pour la résolution des noms. Encore une fois, ce n’est pas aussi simple que d’exécuter `nmtui` pour modifier la connexion, car la connexion n’existe pas dans le Network Manager. La solution est de créer un fichier texte et de le remplir avec les serveurs DNS que vous voulez utiliser.
+Lors de l’attribution statique d’une adresse IP, les choses deviennent encore plus compliquées. Étant donné que `network-scripts` est désormais obsolète dans Rocky Linux 9.x, la seule façon de procéder est par attribution statique, et en raison de la manière dont les conteneurs utilisent le réseau, vous ne pourrez pas définir la route avec une instruction `ip route` normale. Le problème est que l'interface attribuée lors de l'application du profil `macvlan` (`eth0` dans ce cas) n'est pas gérable avec Network Manager. La solution consiste à renommer l'interface réseau du conteneur après le redémarrage et à attribuer l'IP statique. Vous pouvez le faire avec un script et l'exécuter (à nouveau) dans le crontab de root. Tout cela se fait avec la commande `ip`. En plus de définir l'adresse IP, vous devrez configurer le DNS pour la résolution des noms. Encore une fois, ce n’est pas aussi simple que d’exécuter `nmtui` pour modifier la connexion, car la connexion n’existe pas dans le Network Manager. La solution consiste à créer un fichier texte contenant les serveurs DNS que vous voulez utiliser.
 
 Pour ce faire, vous devez à nouveau obtenir un accès shell au conteneur:
 
@@ -239,7 +239,7 @@ nameserver 8.8.8.8
 nameserver 8.8.4.4
 ```
 
-Sauvegardez le fichier et quittez. Cela montre que vous utilisez les serveurs DNS ouverts de Google. Si vous souhaitez utiliser différents serveurs DNS, remplacez simplement les IP affichées par le DNS de votre choix.
+Sauvegardez le fichier et quittez. Cela montre que vous utilisez les serveurs DNS ouverts de Google. Si vous souhaitez utiliser différents serveurs DNS, remplacez simplement les adresses IP affichées par le DNS de votre choix.
 
 Ensuite, vous allez créer un script bash dans `/usr/local/sbin` appelé `static` :
 

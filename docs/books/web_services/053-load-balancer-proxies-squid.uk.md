@@ -16,12 +16,12 @@ tags:
 
 **Цілі**: Ви дізнаєтеся, як:
 
-:heavy_check_mark: встановити squid\
+:heavy_check_mark: встановити squid  
 :heavy_check_mark: налаштувати його як проксі та кешувати вміст HTTP.
 
 :checkered_flag: **squid**, **proxy**, **HTTP**
 
-**Знання**: :star: :star:\
+**Знання**: :star: :star:  
 **Складність**: :star: :star:
 
 **Час читання**: 20 хвилин

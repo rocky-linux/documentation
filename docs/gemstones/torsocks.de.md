@@ -8,7 +8,7 @@ date: 2024-02-25
 !!! warning "Warnung"
 
 ```
-`tor` und `torsocks` fehlen derzeit im EPEL-Repository. Sie werden voraussichtlich noch hinzugefügt. Das Dokumentationsteam wird die Verfügbarkeit im EPEL-Repository weiterhin prüfen, sobald es die Zeit erlaubt. Vorerst bleibt Ihnen nur die Möglichkeit, `tor` aus dem Quellcode zu kompilieren. Die entsprechende Anleitung fehlt hier jedoch momentan.
+`tor` und `torsocks` fehlen derzeit im EPEL-Repository. Diese Pakete werden voraussichtlich noch erstellt. Das Dokumentationsteam wird die Verfügbarkeit im EPEL-Repository weiterhin prüfen, sobald es die Zeit zulässt. Vorerst bleibt Ihnen nur die Möglichkeit, diese Programme selbst aus dem Quellcode zu kompilieren. Die entsprechenden Anleitungen dazu fehlen hier jedoch momentan.
 ```
 
 ## `torsocks` - Einleitung

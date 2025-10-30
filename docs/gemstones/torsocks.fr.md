@@ -1,5 +1,5 @@
 ---
-title: torsocks - Route Traffic Via Tor/SOCKS5
+title: torsocks — Acheminement du trafic via Tor/SOCKS5
 author: Neel Chauhan
 contributors: Steven Spencer, Ganna Zhyrnova
 date: 2024-02-25
@@ -8,7 +8,7 @@ date: 2024-02-25
 !!! warning "Avertissement"
 
 ```
-`tor` et `torsocks` sont actuellement absents de l'EPEL. Ils seront probablement compilés. L'équipe de documentation continuera de tester leur disponibilité dans l'EPEL dès que le temps le permettra. Pour l'instant, votre seule option est de compiler Tor à partir des sources, et les instructions pour ce faire sont actuellement manquantes.
+Les bibliothèques `tor` et `torsocks` sont actuellement absentes de l'EPEL. Leur compilation est prévue ultérieurement. L'équipe de documentation continuera de tester leur disponibilité dans l'EPEL dès que possible. Pour l'instant, la seule solution est de les compiler à partir du code source, mais les instructions pour ce faire ne sont pas disponibles ici.
 ```
 
 ## `torsocks` - Introduction

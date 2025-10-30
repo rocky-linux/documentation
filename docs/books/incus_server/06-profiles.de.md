@@ -218,7 +218,7 @@ Eine neue Auflistung wird zeigen, dass dem Container die DHCP-Adresse zugewiesen
 
 ### Rocky Linux 9 and 10 `macvlan` - The static IP fix
 
-Bei der statischen Zuweisung einer IP-Adresse wird es noch komplizierter. Da `network-scripts` in Rocky Linux 9.x mittlerweile veraltet ist, ist die einzige Möglichkeit, dies zu tun, die statische Zuweisung. Aufgrund der Art und Weise, wie die Container das Netzwerk verwenden, können Sie die Route nicht mit einer normalen `ip route`-Anweisung festlegen. Das Problem besteht darin, dass die beim Anwenden des `macvlan`-Profils zugewiesene Schnittstelle (in diesem Fall `eth0`) mit dem NetworkManager nicht verwaltet werden kann. Die Lösung besteht darin, die Netzwerkschnittstelle des Containers nach dem Neustart umzubenennen und die statische IP zuzuweisen. Sie können dies mit einem Skript tun und es (erneut) in der Crontab von Root ausführen. Tun Sie dies mit dem `ip`-Befehl. Zusätzlich zum Festlegen der IP-Adresse müssen Sie auch DNS für die Namensauflösung festlegen. Auch dies ist nicht so einfach wie das Ausführen von `nmtui`, um die Verbindung zu ändern, da die Verbindung im NetworkManager nicht vorhanden ist. Die Lösung besteht darin, eine Textdatei zu erstellen und diese mit den DNS-Servern zu füllen, die Sie verwenden möchten.
+Bei der statischen Zuweisung einer IP-Adresse wird es noch komplizierter. Da `network-scripts` in Rocky Linux 9.x mittlerweile veraltet ist, ist die einzige Möglichkeit, dies zu tun, die statische Zuweisung. Aufgrund der Art und Weise, wie die Container das Netzwerk verwenden, können Sie die Route nicht mit einer normalen `ip route`-Anweisung festlegen. Das Problem besteht darin, dass die Schnittstelle, die bei der Anwendung des `macvlan`-Profils zugewiesen wird (in diesem Fall `eth0`), nicht mit dem NetworkManager verwaltet werden kann. Die Lösung besteht darin, die Netzwerkschnittstelle des Containers nach dem Neustart umzubenennen und die statische IP zuzuweisen. Sie können dies mit einem Skript tun und es (erneut) in der Crontab von Root ausführen. Tun Sie dies mit dem `ip`-Befehl. Zusätzlich zur Festlegung der IP-Adresse müssen Sie auch den DNS-Server für die Namensauflösung konfigurieren. Auch dies ist nicht so einfach wie das Ausführen von `nmtui`, um die Verbindung zu ändern, da die Verbindung im NetworkManager nicht vorhanden ist. Die Lösung besteht darin, eine Textdatei zu erstellen, die die DNS-Server enthält, die Sie verwenden möchten.
 
 Dazu benötigen Sie erneut Shell-Zugriff auf den Container:
 
@@ -239,7 +239,7 @@ nameserver 8.8.8.8
 nameserver 8.8.4.4
 ```
 
-Speichern Sie die Datei und beenden Sie das Programm. Dies zeigt, dass Sie die offenen DNS-Server von Google verwenden. Wenn Sie andere DNS-Server verwenden möchten, ersetzen Sie einfach die angezeigten IPs durch den DNS Ihrer Wahl.
+Speichern Sie die Datei und beenden Sie das Programm. Dies zeigt, dass Sie die offenen DNS-Server von Google verwenden. Wenn Sie andere DNS-Server verwenden möchten, ersetzen Sie die angezeigten IP-Adressen durch Ihre bevorzugten DNS-Server.
 
 Als Nächstes erstellen Sie ein Bash-Skript in `/usr/local/sbin` mit dem Namen „static“:
 
