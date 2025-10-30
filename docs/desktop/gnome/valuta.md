@@ -1,7 +1,7 @@
 ---
 title: Currency Conversion with Valuta on GNOME
 author: Wale Soyinka
-contributors:
+contributors: Ganna Zhyrnova
 tags:
   - gnome
   - desktop
@@ -9,13 +9,15 @@ tags:
   - flatpak
 ---
 
+## Introduction
+
 In an increasingly interconnected world, where digital transactions span continents and travel is but a flight away, the need for quick, reliable currency conversion is paramount. Whether you're a seasoned globetrotter, an astute online shopper, or a remote professional managing international finances, a dedicated currency converter is an indispensable tool. For users of the GNOME desktop environment, Valuta emerges as a prime example of elegant simplicity and focused functionality.
 
 Valuta is not merely a calculator; it's a thoughtfully designed application that integrates seamlessly into the GNOME ecosystem. It eschews unnecessary complexity, offering a straightforward, efficient user experience that gets the job done without fuss. Its minimalist interface and adherence to GNOME's design principles make it feel like a native extension of your desktop, providing instant access to up-to-date exchange rates.
 
 ## Installation: Bringing Valuta to Your GNOME Desktop
 
-Valuta is distributed as a Flatpak, a modern packaging format that ensures applications run consistently across various Linux distributions, offering sandboxing for enhanced security and providing access to the latest versions directly from developers.
+Valuta is distributed as a Flatpak, a modern packaging format that ensures applications run consistently across various Linux distributions, provides sandboxing for enhanced security, and allows access to the latest versions directly from developers.
 
 To install Valuta, open your terminal and run the following command:
 
@@ -37,7 +39,7 @@ The application automatically fetches and updates exchange rates from reliable s
 
 ## Beyond GNOME: Alternatives on Other Platforms
 
-Valuta is a capable replacement for those apps for users coming from other platforms to a Rocky Linux desktop system. Here are a few notable currency converter applications on macOS and Windows 11 platforms that Valuta can at as a suitable substitute for :
+Valuta is a capable replacement for those apps for users coming from other platforms to a Rocky Linux desktop system. Here are a few notable currency converter applications on macOS and Windows 11 platforms that Valuta can use as a suitable substitute for:
 
 ### For macOS
 
