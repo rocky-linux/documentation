@@ -70,7 +70,7 @@ Sie haben den letzten Schritt erreicht – das Ausführen Ihres AppImage!
 !!! note "Anmerkung"
 
 ```
-Beim Ausführen eines AppImage wird das Programm nicht in die Dateien Ihres Systems installiert, wie dies bei herkömmlichen Softwarepaketen der Fall ist. Das bedeutet, dass Sie jedes Mal, wenn Sie das Programm verwenden möchten, auf das AppImage doppelklicken müssen. Aus diesem Grund ist es wichtig, das AppImage an einem sicheren und einprägsamen Ort zu speichern.
+Beim Ausführen eines AppImage wird das Programm nicht in die Dateien Ihres Systems installiert, wie dies bei herkömmlichen Softwarepaketen der Fall ist. Das bedeutet, dass Sie jedes Mal, wenn Sie das Programm verwenden möchten, auf das AppImage doppelklicken müssen. Aus diesem Grund ist es wichtig, das AppImage an einem sicheren und einprägsamen Ort zu speichern. 
 ```
 
 Doppelklicken Sie auf das AppImage:
