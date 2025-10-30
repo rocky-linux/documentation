@@ -8,12 +8,6 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 Nvidia є одним з найпопулярніших виробників GPU. Ви можете встановити драйвери Nvidia GPU кількома способами. Цей посібник використовує офіційне сховище Nvidia для встановлення їх драйверів. Тому [посібник із встановлення Nvidia](https://docs.nvidia.com/cuda/pdf/CUDA_Installation_Guide_Linux.pdf) тут багато посилається.
 
-!!! Note "Примітка"
-
-```
-Посилання на дії перед установкою в офіційному посібнику Nvidia не працює. Щоб установити драйвер Nvidia з офіційного репозиторію, вам потрібно буде встановити необхідні утиліти та залежності. 
-```
-
 Деякі інші альтернативні способи встановлення драйверів Nvidia включають:
 
 - Nvidia's `.run` installer
@@ -46,13 +40,7 @@ sudo dnf groupinstall "Development Tools" -y
 Пакет `kernel-devel` надає необхідні заголовки та інструменти для створення модулів ядра:
 
 ```bash
-sudo dnf install kernel-devel -y
-```
-
-Dynamic Kernel Module Support (DKMS) — це програма, яка використовується для автоматичного відновлення модулів ядра:
-
-```bash
-sudo dnf install dkms -y
+sudo dnf install kernel-devel-matched kernel-headers -y
 ```
 
 ## Встановлення драйверів NVIDIA
@@ -61,26 +49,26 @@ sudo dnf install dkms -y
 
 Додайте офіційний репозиторій Nvidia за допомогою такої команди:
 
-!!! Note "Примітка"
+```bash
+sudo dnf config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/rhel10/$(uname -i)/cuda-rhel10.repo
+```
 
-```
-Якщо ви використовуєте Rocky 8, замініть `rhel9` у шляху до файлу на `rhel8`.
-```
+Далі очистіть кеш репозиторію DNF:
 
 ```bash
-sudo dnf config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/rhel9/$(uname -i)/cuda-rhel9.repo
+sudo dnf clean expire-cache
 ```
 
-Далі встановіть набір пакетів, необхідних для збирання та встановлення модулів ядра:
+Нарешті, встановіть найновіший драйвер NVIDIA для вашої системи. Для відкритих модулів ядра виконайте:
 
 ```bash
-sudo dnf install kernel-headers-$(uname -r) kernel-devel-$(uname -r) tar bzip2 make automake gcc gcc-c++ pciutils elfutils-libelf-devel libglvnd-opengl libglvnd-glx libglvnd-devel acpid pkgconf dkms -y
+sudo dnf install nvidia-open -y
 ```
 
-Встановіть найновіший модуль драйвера NVIDIA для вашої системи:
+Для власницьких модулів ядра виконайте:
 
 ```bash
-sudo dnf module install nvidia-driver:latest-dkms -y
+sudo dnf install cuda-drivers -y
 ```
 
 ## Вимкнення Nouveau
