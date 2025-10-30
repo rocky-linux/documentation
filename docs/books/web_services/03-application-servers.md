@@ -51,11 +51,11 @@ PHP-FPM, **in addition to better performances**, brings:
 
 !!! Note
 
-    Since Apache has a PHP module, php-fpm is more commonly used on an Nginx server.
+    Since Apache has a built-in PHP module, php-fpm is more commonly used on Nginx servers.
 
 ### PHP version
 
-In Rocky Linux 10, as with its upstream, there are no modules. This means that when you install PHP, you will get what the Appstream repository has. To discover what that is use this command:
+In Rocky Linux 10, as with its upstream, there are no modules. This means that when you install PHP, you will get the packages from the Appstream repository. To discover what that is, use this command:
 
 ```bash
 dnf whatprovides php
@@ -70,11 +70,11 @@ Your version might differ if you are on a newer version of 10.
 
 ### Installation of the PHP CGI mode
 
-First, install and use PHP in CGI mode. It can only work with the Apache web server and its `mod_php` module. This document's FastCGI part (php-fpm) explains how to integrate PHP in Nginx (but also Apache).
+First, install and use PHP in CGI mode. It can only work with the Apache web server and its `mod_php` module. This document's FastCGI section (php-fpm) explains how to integrate PHP with Nginx (and also Apache).
 
-The installation of PHP is relatively trivial. It consists of installing the main package and the few modules you will need.
+Installing PHP is relatively trivial. It consists of installing the main package and the few modules you will need.
 
-The example below installs PHP with the modules usually installed with it.
+The example below installs PHP with the modules that are usually included.
 
  ```bash
  sudo dnf install php php-cli php-gd php-curl php-zip php-mbstring
@@ -92,7 +92,7 @@ Zend Engine v4.3.19, Copyright (c) Zend Technologies
 
 ### Apache Integration
 
-To serve PHP pages in CGI mode, you must install the Apache server, configure it, activate it, and start it.
+To serve PHP pages in CGI mode, you must install and configure the Apache server, activate it, and start it.
 
 * Installation:
 
@@ -100,7 +100,7 @@ To serve PHP pages in CGI mode, you must install the Apache server, configure it
  sudo dnf install httpd
  ```
 
-    activation:
+    Activation:
 
  ```bash
  sudo systemctl enable --now httpd
@@ -114,7 +114,7 @@ To serve PHP pages in CGI mode, you must install the Apache server, configure it
  sudo firewall-cmd --reload
  ```
 
-The default vhost should work out of the box. PHP provides a `phpinfo()` function that generates a summary table of its configuration. It is useful to test whether PHP is working well. However, be careful not to leave such test files on your servers. They represent a huge security risk for your infrastructure.
+The default vhost should work out of the box. PHP provides the `phpinfo()` function, which generates a summary table of its configuration. It is helpful to test whether PHP is working well. However, please don't leave these test files on your servers. They pose a significant security risk to your infrastructure.
 
 Create the file `/var/www/html/info.php` (`/var/www/html` being the default vhost directory of the default Apache configuration):
 
@@ -124,15 +124,15 @@ phpinfo();
 ?>
 ```
 
-Use a web browser to check that the server works properly by going to the page [http://your-server-ip/info.php](http://your-server-ip/info.php).
+Use a web browser to verify that the server is working correctly by visiting [http://your-server-ip/info.php](http://your-server-ip/info.php).
 
 !!! Warning
 
     Do not leave the `info.php` file on your server!
 
-### Installation of the PHP cgi mode (PHP-FPM)
+### Installation of the PHP CGI mode (PHP-FPM)
 
-Noted earlier, many advantages exist for switching web hosting to PHP-FPM mode.
+As noted earlier, there are many advantages to switching to PHP-FPM web hosting.
 
 The installation entails only the php-fpm package:
 
@@ -147,7 +147,7 @@ sudo systemctl enable --now php-fpm
 sudo systemctl status php-fpm
 ```
 
-#### Configuration of the PHP cgi mode
+#### Configuration of the PHP CGI mode
 
 The main configuration file is `/etc/php-fpm.conf`.
 
@@ -161,7 +161,7 @@ daemonize = yes
 
 !!! Note
 
-    The php-fpm configuration files are widely commented on. Go and have a look!
+    The php-fpm configuration files are well commented. Go and have a look!
 
 As you can see, the files in the `/etc/php-fpm.d/` directory with the `.conf` extension are always included.
 
@@ -210,11 +210,11 @@ Or with a UNIX socket:
 
 !!! Note
 
-    Using a socket when the web server and PHP server are on the same machine removes the TCP/IP layer and optimizes the performance.
+    Using a socket when the web server and PHP server are on the same machine removes the TCP/IP layer, optimizing performance.
 
 When working with an interface, you have to configure `listen.owner`, `listen.group`, `listen.mode` to specify the owner, the owner group, and the rights of the UNIX socket. **Warning:** Both servers (web and PHP) must have access rights on the socket.
 
-When working with a socket, you must configure `listen.allowed_clients` to restrict access to the PHP server to certain IP addresses.
+When working with a socket, you must configure `listen.allowed_clients` to restrict access to the PHP server to specific IP addresses.
 
 Example: `listen.allowed_clients = 127.0.0.1`
 
@@ -243,19 +243,19 @@ pm.min_spare_servers = 1
 pm.max_spare_servers = 3
 ```
 
-PHP-FPM will create a new process to replace one that has processed several requests equivalent to `pm.max_requests`.
+PHP-FPM will create a new process to replace one that has processed `pm.max_requests` requests.
 
-By default, the value of `pm.max_requests` is 0, meaning processes are never recycled. The `pm.max_requests` option can be attractive for applications with memory leaks.
+By default, `pm.max_requests` is set to 0, meaning processes are never recycled. The `pm.max_requests` option can be attractive for applications with memory leaks.
 
 A third mode of operation is the `ondemand` mode. This mode only starts a process when it receives a request. It is not an optimal mode for sites with strong influences and is reserved for specific needs (sites with feeble requests, management backend, etc.).
 
 !!! Note
 
-    The configuration of the operating mode of PHP-FPM is essential to ensure the optimal functioning of your web server.
+    The PHP-FPM operating mode configuration is essential to ensure optimal operation of your web server.
 
 #### Process status
 
-Like Apache and its `mod_status` module, PHP-FPM offers a page indicating the process's status.
+Like Apache and its `mod_status` module, PHP-FPM provides a page that displays the process's status.
 
 To activate the page, set its access path with the `pm.status_path` directive:
 
