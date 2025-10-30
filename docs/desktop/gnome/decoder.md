@@ -1,7 +1,7 @@
 ---
 title: Decoder QR Code Tool
 author: Wale Soyinka
-contributors:
+contributors: Ganna Zhyrnova
 tags:
   - gnome
   - desktop
@@ -15,8 +15,8 @@ tags:
 
 Decoder provides two primary functions in a clean, focused interface:
 
-1. **Scanning:** Decode QR codes, either by using your computer's webcam or by selecting an image file.
-2. **Generating:** Create your own QR codes from any text you provide.
+1. **Scanning:** Decodes QR codes using your computer's webcam or an image file.
+2. **Generating:** Creates QR codes from any text you provide.
 
 Its tight integration with the GNOME desktop makes it feel like a natural part of the operating system.
 
@@ -26,7 +26,7 @@ The recommended way to install Decoder on Rocky Linux is as a Flatpak from the F
 
 ### 1. Enable Flathub
 
-If you have not already done so, ensure you have Flatpak installed and the Flathub remote configured on your system.
+If you have not already done so, please make sure Flatpak is installed and the Flathub remote is configured on your system.
 
 ```bash
 # Install the Flatpak package
@@ -52,7 +52,7 @@ After installation, you can launch Decoder from the GNOME Activities Overview.
 
 When you first open Decoder, it is ready to scan. You have two options:
 
-* **Scan with Camera:** Click the camera icon in the top-left. A window will appear showing your webcam's feed. Simply point the webcam at a QR code to scan it in real-time.
+* **Scan with Camera:** Click the camera icon in the top-left. A window will appear showing your webcam's feed. Point the webcam at a QR code to scan it in real-time.
 * **Scan from Image:** Click the image icon in the top-right. This will open a file chooser, allowing you to select a saved image or screenshot that contains a QR code.
 
 Once a code is scanned, Decoder intelligently parses its content. If the code contains a website URL, it will display the link with a button to open it in your default web browser. If it contains plain text, it will display the text with a convenient button to copy it to your clipboard.
@@ -61,7 +61,7 @@ Once a code is scanned, Decoder intelligently parses its content. If the code co
 
 To create your own QR code, click the "Generate" button at the top of the Decoder window.
 
-1. A text box will appear. Simply type or paste the text you wish to encode into this box.
+1. A text box will appear. Type or paste the text you wish to encode into this box.
 2. As you type, a QR code representing your text is instantly generated on the right.
 3. You can then click the **"Save as Image..."** button to save the QR code as a `.png` file, or click the **"Copy to Clipboard"** button to paste it into other applications.
 
