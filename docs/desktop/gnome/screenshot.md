@@ -1,7 +1,7 @@
 ---
 title: Taking Screenshots and Recording Screencasts in GNOME
 author: Wale Soyinka
-contributors:
+contributors: Ganna Zhyrnova
 tags:
   - gnome
   - desktop
@@ -10,13 +10,15 @@ tags:
   - guide
 ---
 
+## Introduction
+
 The modern GNOME desktop, featured in Rocky Linux, includes a powerful and seamlessly integrated tool for capturing your screen. This is not a separate application you need to install, but a core part of the desktop shell, providing a fluid and efficient way to take screenshots and record short videos (screencasts).
 
 This guide covers how to use both the interactive user interface and the powerful keyboard shortcuts to capture your screen content.
 
 ## Using the Interactive Screenshot UI
 
-The easiest way to start is with the interactive overlay, which gives you full control over what and how you capture.
+The easiest way to start is with the interactive overlay, which gives you complete control over what you capture and how you capture it.
 
 1. **Launch the Tool:** Press the `Print Screen` (often labeled `PrtSc`) key on your keyboard. The screen will dim, and the screenshot UI will appear.
 
@@ -39,7 +41,7 @@ By default, the screenshot image is automatically saved to the `Pictures/Screens
 2. Select the area you want to record (`Region` or `Screen`).
 3. Click the round **Capture** button to begin recording.
 
-A red dot will appear in the top-right corner of your screen, along with a timer, indicating that recording is active. To stop, simply click this red dot. The video will be automatically saved as a `.webm` file in the `Videos/Screencasts` directory in your home folder.
+A red dot will appear in the top-right corner of your screen, along with a timer, indicating that recording is active. To stop, click the red dot. The video will be automatically saved as a `.webm` file in the `Videos/Screencasts` directory in your home folder.
 
 ## Keyboard Shortcuts for Power Users
 
@@ -47,17 +49,17 @@ For even faster captures, GNOME provides a set of direct keyboard shortcuts that
 
 | Shortcut               | Action                                                           |
 |------------------------|------------------------------------------------------------------|
-| ++print-screen++       | Open the interactive screenshot UI.                              |
-| ++alt+print-screen++   | Take a screenshot of the currently active window immediately.    |
-| ++shift+print-screen++ | Immediately start selecting a rectangular area for a screenshot. |
-| ++ctrl+alt+shift+"R"++ | Start and stop a recording of the entire screen.                 |
+| ++print-screen++       | Opens the interactive screenshot UI.                              |
+| ++alt+print-screen++   | Takes an immediate screenshot of the currently active window.    |
+| ++shift+print-screen++ | Immediately starts selecting a rectangular area for a screenshot. |
+| ++ctrl+alt+shift+"R"++ | Starts and stops a full-screen recording.                 |
 
 ### The "Copy to Clipboard" Modifier
 
-This is a powerful productivity feature. By adding the ++ctrl++ key to any of the screenshot shortcuts, the captured image will copy directly to your clipboard instead of saving to a file. This is perfect for quickly pasting a screenshot into another application such as a document or chat window.
+This is a powerful productivity feature. By adding the ++ctrl++ key to any of the screenshot shortcuts, the captured image will copy directly to your clipboard instead of saving to a file. This is perfect for quickly pasting a screenshot into another application, such as a document or chat window.
 
-* ++ctrl+print-screen++ : Open the interactive UI, but the capture will go to the clipboard.
-* ++ctrl+alt+print-screen++ : Copy a screenshot of the active window to the clipboard.
-* ++ctrl+shift+print-screen++ : Copy a screenshot of a selected area to the clipboard.
+* ++ctrl+print-screen++: Opens the interactive UI, but the capture will go to the clipboard.
+* ++ctrl+alt+print-screen++: Copies a screenshot of the active window to the clipboard.
+* ++ctrl+shift+print-screen++: Copies a screenshot of a selected area to the clipboard.
 
-The built-in GNOME screenshot and screencast tool is a perfect example of elegant and efficient design, providing both a simple, discoverable interface for new users, and a fast, shortcut-driven workflow for power users.
+The built-in GNOME screenshot and screencast tool is a perfect example of elegant and efficient design, providing both a simple, discoverable interface for new users and a fast, shortcut-driven workflow for power users.
