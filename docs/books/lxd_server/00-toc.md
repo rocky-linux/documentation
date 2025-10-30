@@ -12,7 +12,7 @@ tags:
 
 !!! warning "LXD status"
 
-    Note that LXD does not contain current images of Rocky Linux 10, or most if not all other RHEL clone images. This is likely due to the licensing changes that kept the Linux Containers project from contributing images to LXD. (see other notes below.) That means that if you want a modern containerized platform, based on the original development of LXD and with the many of the original developers contributing, your best bet is to switch to [Incus](../incus_server/00-toc.md). 
+    Note that LXD does not contain current images of Rocky Linux 10, or most, if not all, other RHEL clone images. This is likely due to the licensing changes that kept the Linux Containers project from contributing images to LXD. (see other notes below.) That means that if you want a modern containerized platform based on the original LXD development and with many of the original developers contributing, your best bet is to switch to [Incus](../incus_server/00-toc.md). 
 
 !!! info
 
@@ -22,11 +22,11 @@ tags:
 
     Over a year ago now, the following announcement came out on the lxc-users mailing list:
 
-    > Canonical, the creator and main contributor of the LXD project has decided that after over eight years as part of the Linux Containers community, the project would now be better served directly under Canonical’s own set of projects.
+    > Canonical, the creator and main contributor of the LXD project, has decided that after over eight years as part of the Linux Containers community, the project would now be better served directly under Canonical’s own set of projects.
 
-    One of the deciding factors was the resignations of some lead developers for LXD, who then went on to fork LXD into Incus, announcing the fork in August 2023. A release version (0.1) came out in October 2023, and the developers have since rapidly built on that version with step releases through 0.7 (on March 2024). On the heels of 0.7 came the long-term support version, 6.0 LTS, on April 4, 2024, and now 6.4 LTS (as of September 2024).
+    One of the deciding factors was the resignations of several lead developers from LXD, who then forked LXD into Incus in August 2023. A release version (0.1) came out in October 2023, and the developers have since rapidly built on that version with step releases through 0.7 (on March 2024). On the heels of 0.7 came the long-term support version, 6.0 LTS, on April 4, 2024, and now 6.4 LTS (as of September 2024).
 
-    Throughout the process, Canonical was thought to continue maintaining links to the container images provided by Linux Containers. Still, because of a [licensing change](https://stgraber.org/2023/12/12/lxd-now-re-licensed-and-under-a-cla/), it became impossible for Linux Containers to continue offering the container images within LXD. While Linux Containers can no longer provide container images to LXD, the LXD project has managed to build some containers, including containers for Rocky Linux. 
+    Throughout the process, Canonical was thought to continue maintaining links to the container images provided by Linux Containers. Still, because of a [licensing change](https://stgraber.org/2023/12/12/lxd-now-re-licensed-and-under-a-cla/), it became impossible for Linux Containers to continue offering the container images within LXD. While Linux Containers can no longer provide container images to LXD, the LXD project has built some containers, including ones for Rocky Linux. 
 
     This document uses LXD rather than Incus.
 
@@ -44,11 +44,11 @@ For those wanting to use LXD as a lab environment on their notebooks or workstat
 
 ## Prerequisites and assumptions
 
-* One Rocky Linux server, nicely configured. Consider a separate hard disk for ZFS disk space (you have to do so if you are using ZFS) in a production environment. And yes, the assumption here is a bare metal server, not a VPS (Virtual Private Server).
+* One Rocky Linux server, nicely configured. Consider a separate hard disk for ZFS storage (you must do so if you are using ZFS) in a production environment. And yes, the assumption here is a bare metal server, not a VPS (Virtual Private Server).
 * This is an advanced topic, but it is not too difficult to understand. If you follow these instructions from the beginning, you should be successful. That said, knowing a few basic things about container management will go a long way.
 * Comfort at the command line on your machine(s) and fluent in a command line editor. (Using _vi_ throughout these examples, but you can substitute in your favorite editor.)
-* You must be your unprivileged user for most of these processes. For the early setup steps, you will need to be the root user or be able to `sudo` to become so. Throughout these chapters, we assume your unprivileged user to be "lxdadmin". You'll need to create this user account later in the process.
-* For ZFS, please ensure that UEFI secure boot is NOT enabled. Otherwise, you will have to sign the ZFS module to get it to load.
+* You must be your unprivileged user for most of these processes. For the early setup steps, you will need to be the root user or be able to `sudo` to become so. Throughout these chapters, we assume the unprivileged user is "lxdadmin". You'll need to create this user account later in the process.
+* For ZFS, please make sure that UEFI secure boot is NOT enabled. Otherwise, you will have to sign the ZFS module to load it.
 * Using Rocky Linux-based containers for the most part
 
 ## Synopsis
