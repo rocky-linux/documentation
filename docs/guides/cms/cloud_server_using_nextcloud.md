@@ -14,7 +14,7 @@ tags:
 - Server running Rocky Linux (you can install Nextcloud on any Linux distribution, but this procedure assumes you are using Rocky).
 - A high degree of comfort operating from the command line for installation and for configuration.
 - Knowledge of a command-line editor. Using `vi` for this example, but you can use your favorite editor if you have one.
-- This procedure covers the `.zip` file installation method. You can also install Nextcloud via a snap.
+- This procedure covers the `.zip` file installation method. You can also install Nextcloud with a snap.
 - This procedure uses the Apache _sites enabled_ document (linked later) for directory setup.
 - This procedure also uses _mariadb-server_ hardening (also linked later) for database setup.
 - Throughout this document, the assumption is that you are root, or that you can elevate privileges with `sudo`.
