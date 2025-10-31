@@ -287,7 +287,7 @@ Assuming that you have done everything correctly so far, you should see a Nextcl
 
 There are a couple of things that you want to do differently from the defaults:
 
-- At the top of the web page, where it says `Create an admin account`, set the user and password. For the sake of this example, enter `admin` and set a strong password. Remember to save this somewhere safe (e.g., a password manager) so you do not lose it. Even though you have typed into this field, ==do not hit== ++enter++ until you complete **all** the fields.
+- At the top of the web page, where it says `Create an admin account`, set the user and password. For the sake of this example, enter `admin` and set a strong password. Remember to save this somewhere safe (such as a password manager) so you do not lose it. Even though you have typed into this field, ==do not hit== ++enter++ until you complete **all** the fields.
 - Under the `Storage & database` section, change the `Data folder` location from the default document root, to where you moved the data folder earlier: `/var/www/sub-domains/com.yourdomain.nextcloud/data`.
 - Under the `Configure the database` section, change from `SQLite` to `MySQL/MariaDB` by clicking on that button.
 - Type the MariaDB root user and password that you set earlier into the `Database user` and `Database password` fields.
