@@ -22,11 +22,11 @@ tags:
 
 ## Introduction
 
-If you want to synchronize files and folders between computers automatically, `lsyncd` is a great option. However, you must configure everything from the command line.
+If you want to automatically synchronize files and folders between computers, `lsyncd` is a great option. However, you must configure everything from the command line.
 
 It is a program worth learning for any system administrator.
 
-The best description of `lsyncd` comes from its man page. Slightly paraphrased, `lsyncd` is a lightweight live mirror solution that is not hard to install. It does not require new file system or block devices and does not hamper local file system performance. In short, it mirrors files.
+The best description of `lsyncd` comes from its man page. Slightly paraphrased, `lsyncd` is a lightweight live-mirror solution that is easy to install. It does not require a new file system or block devices and does not hamper local file system performance. In short, it mirrors files.
 
 `lsyncd` watches a local directory tree's event monitor interface (`inotify`). It aggregates and combines events for a few seconds and spawns one (or more) process(es) to synchronize the changes. By default, this is `rsync`.
 
@@ -38,9 +38,9 @@ You will also want to set up [Rocky Linux SSH Public Private Key Pairs](../secur
 
 !!! info
 
-    As of this date (Septemer 2025), Rocky Linux 10 with the EPEL (Extra Packages for Enterprise Linux) enabled, does not include the `lsyncd` package. To use `lsyncd` on Rocky Linux 10, you will need to use the **Installing `lsyncd` - source method**. The RPM method is retained here, as it is likely that the EPEL will build this package for version 10 in the future. It never hurts to check to see if the package is available prior to building from source. 
+    As of this date (September 2025), Rocky Linux 10, with the EPEL (Extra Packages for Enterprise Linux) enabled, does not include the `lsyncd` package. To use `lsyncd` on Rocky Linux 10, you will need to use the **Installing `lsyncd` - source method**. The RPM method is retained here, as EPEL is likely to build this package for version 10 in the future. It never hurts to check whether the package is available before building from source. 
 
-You can install `lsyncd` in two ways. Included are descriptions of each method. The RPM tends to lag behind the source packages by a little, but only by a little. The version installed by the RPM method at the time of this writing is 2.2.3-5, whereas the source code version is now 2.3.1. Choose the method you feel the most comfortable with.
+You can install `lsyncd` in two ways. Included are descriptions of each method. The RPMs lag behind the source packages by a little, but only a little. The version installed by the RPM method at the time of this writing is 2.2.3-5, whereas the source code version is now 2.3.1. Choose the method you feel the most comfortable with.
 
 ## Installing `lsyncd` - RPM method
 
@@ -74,7 +74,7 @@ You will need some dependencies for `lsyncd` and for building packages from the 
 dnf groupinstall 'Development Tools'
 ```
 
-Enable the code ready builder repository:
+Enable the code-ready builder repository:
 
 ```bash
 dnf config-manager --enable crb
