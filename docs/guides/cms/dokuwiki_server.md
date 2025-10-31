@@ -20,7 +20,7 @@ tags:
 
 ## Introduction
 
-Documentation can take many forms in an organization. Having a repository that you can reference for that documentation is invaluable. A wiki (meaning _quick_ in Hawaiian), is a way to keep documentation, process notes, corporate knowledge bases, and even code examples, in a centralized location. IT professionals who keep a wiki, even secretly, have a built-in insurance policy against forgetting an obscure routine.
+Documentation can take many forms in an organization. Having a repository that you can reference for that documentation is invaluable. A wiki (meaning _quick_ in Hawaiian) is a way to keep documentation, process notes, corporate knowledge bases, and even code examples, in a centralized location. IT professionals who keep a wiki, even secretly, have a built-in insurance policy against forgetting an obscure routine.
 
 DokuWiki is a mature, fast wiki that runs without a database, has built-in security features, and is not complex to deploy. For more information, examine their [web page](https://www.dokuwiki.org/dokuwiki).
 
@@ -34,7 +34,7 @@ The minimum PHP version for DokuWiki is now 8. Rocky Linux 10 has PHP 8.3 by def
 dnf install tar wget httpd php php-gd php-xml php-json php-mbstring
 ```
 
-Accept and install any additional listed dependencies that come with these packages.
+Accept and install any additional dependencies listed with these packages.
 
 ## Create directories and change configuration
 
@@ -111,9 +111,9 @@ In your server, change to the root directory.
 cd /root
 ```
 
-Get the latest stable version of DokuWiki. You can find this by going to [the download page](https://download.dokuwiki.org/), and on the left side of the page, under "Version," you will see "Stable (Recommended) (direct link)."
+Get the latest stable version of DokuWiki. You can find this by going to [the download page](https://download.dokuwiki.org/). On the left side of the page, under "Version," you will see "Stable (Recommended) (direct link)."
 
-Right-click the "(direct link)" and copy the link. In the console of your DokuWiki server, type `wget` and a space and then paste your copied link into the terminal. You should get something similar to this:
+Right-click the "(direct link)" and copy the link. In the console of your DokuWiki server, type `wget` and a space, and then paste your copied link into the terminal. You should get something similar to this:
 
 ```bash
 wget https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz
@@ -135,7 +135,7 @@ dokuwiki-2020-07-29/inc/lang/fr/recent.txt
 ... (more below)
 ```
 
-You do not want that leading named directory when decompressing the archive, so use some options with `tar` to exclude it. The first option is the `--strip-components=1` that removes the leading directory. The second option is the `-C` option, which tells `tar` where you want the archive decompressed. The decompression will be similar to this:
+You do not want that leading named directory when decompressing the archive, so use `tar` options to exclude it. The first option is `--strip-components=1`, which removes the leading directory. The second option is the `-C` option, which tells `tar` where you want the archive decompressed. The decompression will be similar to this:
 
 ```bash
 tar xzf dokuwiki-stable.tgz  --strip-components=1 -C /var/www/sub-domains/com.example/html/
@@ -145,7 +145,7 @@ Once you run this command, all of DokuWiki should be in your _DocumentRoot_.
 
 You need to make a copy of the `.htaccess.dist` file that came with DokuWiki, and keep the old one in case you need to revert to the original.
 
-In the process, you will change the name to `.htaccess`. This is what _apache_ will be looking for. To do this:
+In the process, you will rename it to `.htaccess`. This is what _apache_ will be looking for. To do this:
 
 ```bash
 cp /var/www/sub-domains/com.example/html/.htaccess{.dist,}
