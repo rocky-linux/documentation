@@ -91,9 +91,10 @@ Available Commands:
 Podman може запускати майже будь-яку команду Docker завдяки подібному інтерфейсу CLI.
 ```
 
-Якщо вам потрібно використовувати файл створення, не забудьте встановити пакет `podman-compose`:
+Якщо вам потрібно використовувати файл для створення, не забудьте встановити пакет `podman-compose` з EPEL:
 
 ```bash
+dnf install epel-release
 dnf install podman-compose
 ```
 
@@ -103,6 +104,12 @@ dnf install podman-compose
 
 ```bash
 podman run -d -p 8080:80 nextcloud
+```
+
+!!! note "Примітка"
+
+```
+З коробки Rocky Linux має ввімкнений `firewalld` і може блокувати порт 8080. Дотримуйтесь [інструкцій](../../security/firewalld-beginners/), щоб відкрити порт і отримати доступ до служби.
 ```
 
 Ви отримаєте підказку вибрати реєстр контейнерів для завантаження. У нашому прикладі ви будете використовувати `docker.io/library/nextcloud:latest`.

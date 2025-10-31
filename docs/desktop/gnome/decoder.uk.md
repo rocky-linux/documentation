@@ -1,7 +1,7 @@
 ---
 title: Інструмент декодування QR-кодів
 author: Wale Soyinka
-contributors:
+contributors: Ganna Zhyrnova
 tags:
   - gnome
   - desktop

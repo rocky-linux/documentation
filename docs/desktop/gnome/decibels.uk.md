@@ -1,7 +1,7 @@
 ---
 title: Аудіоплеєр Decibel
 author: Wale Soyinka
-contributors:
+contributors: Ganna Zhyrnova
 tags:
   - gnome
   - desktop
