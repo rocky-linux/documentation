@@ -5,23 +5,23 @@ contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 8.5, 8.6
 tags:
   - contribute
-  - local environment lxd
+  - local environment LXD
   - local environment incus
 ---
 
 !!! info
 
-    While this method still works for LXD, the author prefers Incus instead. The reason is that from a development standpoint, Incus appears to be out in front of LXD, and that includes the images available. With Incus, as of September 2025, there are images for Rocky Linux 10, and other RHEL rebuild 10 images. LXD images only include 9 builds currently. This may be due to the [licensing change](https://stgraber.org/2023/12/12/lxd-now-re-licensed-and-under-a-cla/) announced by Linux Containers project lead, Stéphane Graber, back in December 2023.
+    While this method still works for LXD, the author prefers Incus instead. The reason is that, from a development standpoint, Incus appears to be ahead of LXD, including the images available. As of September 2025, there are images for Rocky Linux 10 and other RHEL rebuild 10 images on Incus. LXD images currently include only nine builds. This may be due to the [licensing change](https://stgraber.org/2023/12/12/lxd-now-re-licensed-and-under-a-cla/) announced by Linux Containers project lead, Stéphane Graber, back in December 2023.
 
-    In addition, this procedure still works with the current versioning of documentation. If a document is created or edited on any of the version branches (main, rocky-9, and rocky-8), the document synced to the container will show the correct content. This means that you can continue to use this procedure as is. Included are some addtional notes important to versioning.
+    In addition, this procedure still works with the current versioning of documentation. If a document is created or edited on any of the version branches (main, rocky-9, and rocky-8), the document synced to the container will show the correct content. This means you can continue using this procedure as is. I've included additional notes on versioning.
 
 !!! tip
 
-    If you are using Rocky Linux 10 as your workstation, you need to keep in mind that as of the rewriting of this document, `lsyncd` is not available from the EPEL. You will need to use the install from source method.
+    If you are using Rocky Linux 10 as your workstation, keep in mind that, as of this document's rewrite, `lsyncd` is not available from EPEL. You will need to use the install-from-source method.
 
 ## Introduction
 
-There are several ways to run a copy of `mkdocs` to see exactly how your Rocky Linux document will appear when merged on the live system. This particular document deals with using an `incus` container on your local workstation to separate python code in `mkdocs` from other projects you might be working on.
+There are several ways to run a copy of `mkdocs` to see exactly how your Rocky Linux document will appear when merged on the live system. This particular document deals with using an `incus` container on your local workstation to separate Python code in `mkdocs` from other projects you might be working on.
 
 The recommendation is to keep projects separate to avoid causing problems with your workstation's code.
 
@@ -29,11 +29,11 @@ The recommendation is to keep projects separate to avoid causing problems with y
 
 - Familiarity and comfort with the command-line
 - Comfortable using tools for editing, SSH, and synchronization, or willing to follow along and learn
-- Incus reference - there is a long document on [building and using `incus` on a server here](../../../books/incus_server/00-toc.md), but you will use just a basic install on our Linux workstation
+- Incus reference - there is a lengthy document on [building and using `incus` on a server here](../../../books/incus_server/00-toc.md), but you will use just a basic install on our Linux workstation
 - Using `lsyncd` for mirroring files. See [documentation on that here](../../backup/mirroring_lsyncd.md)
 - You will need public keys generated for your user and the "root" user on your local workstation using [this document](../../security/ssh_public_private_keys.md)
-- Our bridge interface is running on 10.56.233.1 and our container is running on 10.56.233.189 in our examples. However your IPs for the bridge and container will be different.
-- "youruser" in this document represents your user id
+- Our bridge interface is running on 10.56.233.1, and our container is running on 10.56.233.189 in our examples. However, your IPs for the bridge and container will be different.
+- "youruser" in this document represents your user ID
 - The assumption is that you are already doing documentation development with a clone of the documentation repository on your workstation
 
 ## The `mkdocs` container
@@ -54,7 +54,7 @@ The container needs to be a proxy. By default, when `mkdocs serve` starts, it ru
 incus config device add mkdocs mkdocsport proxy listen=tcp:0.0.0.0:8000 connect=tcp:127.0.0.1:8000
 ```
 
-In the line above, "mkdocs" is our container name, "mkdocsport" is an arbitrary name you are giving to the proxy port, the type is "proxy", and you are listening on all TCP interfaces on port 8000 and connecting to the localhost for that container on port 8000.
+In the line above, "mkdocs" is our container name, "mkdocsport" is an arbitrary name you are giving to the proxy port, the type is "proxy", and you are listening on all TCP interfaces on port 8000 and connecting to localhost on port 8000.
 
 !!! Note
 
@@ -68,7 +68,7 @@ First, get into the container with:
 incus shell mkdocs bash
 ```
 
-For Rocky Linux 10 you will need a few packages:
+For Rocky Linux 10, you will need a few packages:
 
 ```bash
 dnf install git openssh-server python3-pip rsync
@@ -82,7 +82,7 @@ systemctl enable --now sshd
 
 ### Container users
 
-You need to set a password for our root user and then add our user (the user you use on your local machine) to the sudoers list. You are the "root" user at the moment. To change the password enter:
+You need to set a password for our root user, then add our user (the one you use on your local machine) to the sudoers list. You are the "root" user at the moment. To change the password, enter:
 
 ```text
 passwd
@@ -103,7 +103,7 @@ Add your user to the sudoers group:
 usermod -aG wheel youruser
 ```
 
-You should be able to SSH into the container with the root user or your user from your workstation and enter a password. Ensure that you can do that before continuing.
+You should be able to SSH into the container as root or as your user from your workstation and enter a password. Ensure that you can do that before continuing.
 
 ## SSH for root and your user
 
@@ -113,7 +113,7 @@ In this procedure, the root user (at minimum) needs to be able to SSH into the c
 sudo -s
 ```
 
-The assumption also is that the root user has an `id_rsa.pub` key in the `./ssh` directory. If not, generate one with [this procedure](../../security/ssh_public_private_keys.md):
+The assumption is also that the root user has an `id_rsa.pub` key in the `./ssh` directory. If not, generate one with [this procedure](../../security/ssh_public_private_keys.md):
 
 ```bash
 ls -al .ssh/
@@ -130,9 +130,9 @@ To get SSH access on our container without having to enter a password, provided 
 ssh-copy-id root@10.56.233.189
 ```
 
-For your user, however, you need the entire `.ssh/` directory copied to your container. You will keep everything the same for this user so that your access to GitHub over SSH is the same.
+For your user, however, you need the entire `.ssh/` directory copied to your container. You will keep everything the same for this user so that your SSH access to GitHub remains the same.
 
-To copy everything over to your container, you just need to do this as your user, **not** `sudo`:
+To copy everything over to your container, you need to do this as your user, **not** `sudo`:
 
 ```bash
 scp -r .ssh/ youruser@10.56.233.189:/home/youruser/
@@ -144,7 +144,7 @@ Next, SSH into the container as your user:
 ssh -l youruser 10.56.233.189
 ```
 
-You need to ensure things are identical. You will do this with `ssh-add`. You must also ensure that you have the `ssh-agent` available:
+Please make sure things are the same. You will do this with `ssh-add`. You must also ensure that you have the `ssh-agent` available:
 
 ```bash
 eval "$(ssh-agent)"
@@ -155,7 +155,7 @@ ssh-add
 
 You need two repositories cloned, but no need to add any `git` remotes. The documentation repository here will only display the current documentation (mirrored from your workstation) and the docs.
 
-The rockylinux.org repository is for running `mkdocs serve` and will use the mirror as its source. Run all these steps as your non-root user. If you are not able to clone the repositories as your userid, then there **IS** a problem with your identity as far as `git` is concerned and you will need to review the last few steps for re-creating your key environment (above).
+The rockylinux.org repository is for running `mkdocs serve` and will use the mirror as its source. Run all these steps as your non-root user. If you are not able to clone the repositories as your userid, then there **IS** a problem with your identity as far as `git` is concerned, and you will need to review the last few steps for re-creating your key environment (above).
 
 First, clone the documentation:
 
@@ -169,11 +169,11 @@ Next, clone docs.rockylinux.org:
 git clone git@github.com:rocky-linux/docs.rockylinux.org.git
 ```
 
-If you get errors, return to the earlier steps and ensure that those are all correct before continuing.
+If you get errors, please return to the earlier steps and make sure those are all correct before continuing.
 
 ## Setting up `mkdocs`
 
-Installing the needed plugins is all done with `pip3` and the "requirements.txt" file in the docs.rockylinux.org directory. While this process will argue with you about using the root user to write the changes to the system directories, you have to run it as root.
+Installing the required plugins is done with `pip3` using the "requirements.txt" file in the docs.rockylinux.org directory. While this process will argue with you about using the root user to write changes to system directories, you still have to run it as root.
 
 You do this with `sudo` here.
 
@@ -189,7 +189,7 @@ Then run:
 sudo pip3 install -r requirements.txt
 ```
 
-Next you must set up `mkdocs` with an additional directory.  `mkdocs` requires the creation of a docs directory and then the `documentation/docs` directory linked beneath it. Do this with:
+Next, you must set up `mkdocs` with an additional directory.  `mkdocs` requires the creation of a docs directory and then the `documentation/docs` directory linked beneath it. Do this with:
 
 ```bash
 mkdir docs
@@ -199,7 +199,7 @@ ln -s ../../documentation/docs
 
 ### Testing `mkdocs`
 
-Now that you have `mkdocs` setup, try starting the server. Remember, this process will argue that it looks like this is production. It is not, so ignore the warning. Start `mkdocs serve` with:
+Now that you have `mkdocs` setup, try starting the server. Remember, this process will argue that it appears to be production. It is not, so ignore the warning. Start `mkdocs serve` with:
 
 ```bash
 mkdocs serve -a 0.0.0.0:8000
@@ -234,7 +234,7 @@ INFO     -  [14:12:56] Reloading browsers
 
 If you have done everything correctly, you should be able to open a web browser and go to the IP of your container on port :8000, and see the documentation site.
 
-In our example, enter the following in the browser address (**NOTE** To avoid broken URLs, the IP here is "your-server-ip". You just need to substitute in the IP):
+In our example, enter the following in the browser address (**NOTE** To avoid broken URLs, the IP here is "your-server-ip". You need to substitute in the IP):
 
 ```bash
 http://your-server-ip:8000
@@ -246,11 +246,11 @@ You are almost there if you saw the documentation in the web browser. The last s
 
 As noted, you are doing this here with `lsyncd`.
 
-Installation of `lsyncd` differs depending on your Linux version. [This document](../../backup/mirroring_lsyncd.md) covers ways to install it on Rocky Linux with an RPM from the EPEL (Extra Packages for Enterprise Linux), and from source. If you are using other Linux types (Ubuntu for example), they generally have their own packages, but with nuances.
+Installation of `lsyncd` differs depending on your Linux version. [This document](../../backup/mirroring_lsyncd.md) covers ways to install it on Rocky Linux with an RPM from the EPEL (Extra Packages for Enterprise Linux), and from source. If you are using other Linux distributions (such as Ubuntu), they generally have their own packages, though with nuances.
 
-Ubuntu's, for example, names the configuration file differently. Just be aware that if you are using another Linux workstation type other than Rocky Linux, and do not want to install from source, there are probably packages available for your platform.
+Ubuntu, for example, names the configuration file differently. Just be aware that if you are using another Linux workstation type other than Rocky Linux, and do not want to install from source, there are probably packages available for your platform.
 
-For now, we are assuming that you are using a Rocky Linux workstation and are using the RPM install method from the included document.
+For now, we assume you are using a Rocky Linux workstation and the RPM install method described in the included document.
 
 !!! note
 
@@ -260,7 +260,7 @@ For now, we are assuming that you are using a Rocky Linux workstation and are us
 
 !!! Note
 
-    The root user must run the daemon, so you must be root to create the configuration files and logs. For this we are assuming `sudo -s`.
+    The root user must run the daemon, so you must be root to create the configuration files and logs. For this, we are assuming `sudo -s.
 
 You need to have some logs available for `lsyncd` to write to:
 
@@ -269,13 +269,13 @@ touch /var/log/lsyncd-status.log
 touch /var/log/lsyncd.log
 ```
 
-You also need to have an exclude file created, even though in this case you are not excluding anything:
+You also need to have an exclude file created, even though in this case, you are not excluding anything:
 
 ```bash
 touch /etc/lsyncd.exclude
 ```
 
-Finally you need to create the configuration file. In this example, we are using `vi` as our editor, but use the editor you feel comfortable with:
+Finally, you need to create the configuration file. In this example, we are using `vi` as our editor, but use the editor you feel comfortable with:
 
 ```bash
 vi /etc/lsyncd.conf
@@ -308,13 +308,13 @@ sync {
 }
 ```
 
-Assuming that you enabled `lsyncd` when you installed it, at this point you need just to start or restart the process:
+Assuming that you enabled `lsyncd` when you installed it, at this point you need to start or restart the process:
 
 ```bash
 systemctl restart lsyncd
 ```
 
-To ensure things are working, check the logs-particularly the `lsyncd.log`, which should show content similar to this if everything started correctly:
+To ensure things are working, check the logs, logs-particularly the `lsyncd.log`, which should show content similar to this if everything started correctly:
 
 ```bash
 Fri Feb 25 08:10:16 2022 Normal: --- Startup, daemonizing ---
@@ -325,7 +325,7 @@ Fri Feb 25 08:15:14 2022 Normal: Calling rsync with filter-list of new/modified 
 
 ## Versioning notes
 
-You need a clone of the documentation repository from [Rocky Linux documentation repository](https://github.com/rocky-linux/documentation). That part is important, because if you have instead cloned your own fork of the repository, then your ability to `git checkout` the `rocky-8` and `rocky-9` branches will not be there. Only the `main` branch will be available.
+You need a clone of the [Rocky Linux documentation repository](https://github.com/rocky-linux/documentation). That part is important, because if you have instead cloned your own fork of the repository, then your ability to `git checkout` the `rocky-8` and `rocky-9` branches will not be there. Only the `main` branch will be available.
 
 ### GitHub workstation setup
 
@@ -378,13 +378,13 @@ These steps are not for your container, but for your workstation's copy of the d
     upstream git@github.com:rocky-linux/documentation.git (push)
     ```
 
-4. You need to populate your fork with the version branches (other than `main`). The `main` branch currently holds version 10 information. You want to populate your fork with the `rocky-8` and `rocky-9` branches so that you are ready to edit documents in those older versions. The first step is to `git checkout` these branch names:
+4. You need to populate your fork with the version branches (other than `main`). The `main` branch currently holds version 10 information. You want to merge the `rocky-8` and `rocky-9` branches into your fork so you can edit documents in those older versions. The first step is to `git checkout` these branch names:
 
     ```bash
     git checkout rocky-8
     ```
 
-    The first time you do this, your will see:
+    The first time you do this, you will see:
 
     ```bash
     branch 'rocky-8' set up to track 'upstream/rocky-8'.
@@ -409,10 +409,10 @@ With the branches created, if you want to edit the `README.md` for only `rocky-9
 git checkout -b fixes_for_rocky9_readme rocky-9
 ```
 
-Then edit the document normally. As you save your work, your container documents will update, and running `mkdocs serve` as described in this document, will show that content.
+Then edit the document normally. As you save your work, your container documents will update, and running `mkdocs serve` as described in this document will show that content.
 
-Once finished and changes pushed to your fork to create a pull request, you can checkout the `main` branch again. Since all of your work was within the checked out rocky-9 branch, your synced documentation in your container reverts to what it was before starting the process. In this way, you can always track your work regardless of what version you are working with. Your container will remain in sync with your local workstation content.
+Once finished and changes pushed to your fork to create a pull request, you can check out the `main` branch again. Since all of your work was within the checked-out rocky-9 branch, your synced documentation in your container reverts to its state before you started the process. In this way, you can always track your work regardless of what version you are working with. Your container will remain in sync with the content on your local workstation.
 
 ## Conclusion
 
-You can work on your workstation documentation while seeing changes appear in your synced copy in your container. The recommended practice is that all Python must run separately from any other Python code you might be developing. Using `incus` containers makes that easier.
+You can work on your workstation documentation while seeing changes appear in your synced copy in your container. The recommended practice is that all Python code must run separately from any other Python code you might be developing. Using `incus` containers makes that easier.
