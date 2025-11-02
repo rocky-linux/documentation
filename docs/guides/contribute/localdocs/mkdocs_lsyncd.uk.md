@@ -5,7 +5,7 @@ contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 8.5, 8.6
 tags:
   - сприяти
-  - локальне середовище lxd
+  - локальне середовище LXD
   - локальне середовище incus
 ---
 
