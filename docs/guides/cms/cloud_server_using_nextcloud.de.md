@@ -14,19 +14,19 @@ tags:
 - Server mit Rocky Linux (Sie können Nextcloud auf jeder Linux-Distribution installieren, das Verfahren hier setzt jedoch voraus, dass Sie Rocky verwenden).
 - Efahrung mit der Kommandozeile für Installation und Konfiguration.
 - Sicheren Umgang mit einem Kommandozeilen-Editor. Für dieses Beispiel wird `vi` verwendet, Sie können jedoch auch Ihren bevorzugten Editor verwenden, falls Sie einen haben.
-- Dieses Verfahren umfasst die Installationsmethode mit der `.zip`-Datei. Sie können Nextcloud auch mit einer `Snap`-Anwendung installieren.
+- Dieses Verfahren umfasst die Installationsmethode mit der `.zip`-Datei. Sie können Nextcloud auch als `snap`-Anwendung installieren.
 - Dieses Verfahren verwendet das Apache-Dokument _sites enabled_ (später verlinkt) für die Verzeichniseinrichtung.
 - Dieses Verfahren verwendet auch die _mariadb-server_-Härtung (ebenfalls später verlinkt) für die Datenbankeinrichtung.
-- In diesem Dokument wird davon ausgegangen, dass Sie `root` sind oder Ihre Berechtigungen mit `sudo` erhöhen können.
+- In diesem Dokument wird davon ausgegangen, dass Sie Root-Rechte besitzen oder Ihre Berechtigungen mit `sudo` erhöhen können.
 - Die hier verwendete Beispieldomäne ist `yourdomain.com`.
 
 ## Einleitung
 
-Wenn Sie für eine Serverumgebung für ein großes (oder auch kleines) Unternehmen verantwortlich sind, könnten Sie die Verwendung von Cloud-Anwendungen in Betracht ziehen. Durch die Arbeit in der Cloud können Sie Ihre eigenen Ressourcen für andere Dinge freisetzen, dies hat jedoch auch eine Kehrseite, nämlich den Verlust der Kontrolle über die Daten Ihres Unternehmens. Wenn es zu einer Kompromittierung der Cloud-Anwendung kommt, könnten Sie auch die Daten Ihres Unternehmens gefährden.
+Wenn Sie für die Serverumgebung eines großen (oder auch kleinen) Unternehmens verantwortlich sind, können Sie den Einsatz von Cloud-Anwendungen in Betracht ziehen. Die Verlagerung von Aufgaben in die Cloud kann Ihre eigenen Ressourcen für andere Aufgaben freisetzen, aber es gibt einen Nachteil: den Verlust der Kontrolle über die Daten Ihres Unternehmens. Wenn es zu einer Kompromittierung der Cloud-Anwendung kommt, könnten Sie auch die Daten Ihres Unternehmens gefährden.
 
-Indem Sie die Cloud wieder in Ihre eigene Umgebung integrieren, können Sie die Sicherheit Ihrer Daten wiederherstellen, allerdings auf Kosten Ihrer Zeit und Energie. Manchmal lohnt es sich, diese Kosten in Kauf zu nehmen.
+Die Rückführung der Cloud in die eigene Umgebung ist eine Möglichkeit, die Kontrolle über die eigenen Daten zurückzugewinnen, allerdings auf Kosten von Zeit, Aufwand und Energie. Manchmal lohnt es sich, diese Kosten in Kauf zu nehmen.
 
-Nextcloud bietet eine Open Source Cloud mit Fokus auf Sicherheit und Flexibilität. Beachten Sie, dass der Aufbau eines Nextcloud-Servers eine gute Übung ist, auch wenn Sie sich letztendlich dafür entscheiden, Ihre Cloud extern zu betreiben. Das folgende Verfahren befasst sich mit der Einrichtung von Nextcloud auf Rocky Linux.
+Nextcloud bietet eine Open-Source-Cloud-Plattform, bei der Sicherheit und Flexibilität im Vordergrund stehen. Beachten Sie, dass der Aufbau eines Nextcloud-Servers eine gute Übung ist, selbst wenn Sie Ihre Cloud am Ende extern betreiben. Das folgende Verfahren befasst sich mit der Einrichtung von Nextcloud auf Rocky Linux.
 
 ## Nextcloud — Installation
 
@@ -36,7 +36,7 @@ Für diese Installation benötigen Sie zwei Repositories. Sie müssen EPEL (Extr
 
 !!! note "Anmerkung"
 
-    Während Rocky Linux 10 die mindestens erforderliche PHP-Version 8.3 enthält, enthält das Remi-Repository andere für Nextcloud erforderliche PHP-Pakete.
+    Während Rocky Linux 10 PHP 8.3 benötigt, bietet das Remi-Repository zusätzliche PHP-Pakete, die für Nextcloud erforderlich sind.
 
 So installieren Sie EPEL:
 
@@ -73,7 +73,7 @@ php                    remi-8.4                    common [d], devel, minimal   
 Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
 ```
 
-Verwenden Sie das neueste PHP, mit dem Nextcloud kompatibel ist. Im Moment liegt dieser bei 8.4? Aktivieren Sie dieses Modul mit:
+Verwenden Sie das neueste PHP, mit dem Nextcloud kompatibel ist. Im Moment liegt dieser bei 8.4. Aktivieren Sie dieses Modul mit:
 
 ```bash
 dnf module enable php:remi-8.4
@@ -260,7 +260,7 @@ Der nächste Schritt besteht darin, sicherzustellen, dass `apache` Eigentümer d
 chown -Rf apache.apache /var/www/sub-domains/com.yourdomain.nextcloud/html
 ```
 
-Aus Sicherheitsgründen sollten Sie auch den Ordner _data_ von innerhalb nach außerhalb des _DocumentRoot_ verschieben. Dies geschieht mit dem folgenden Befehl:
+Aus Sicherheitsgründen sollten Sie außerdem den Ordner _data_ aus dem _DocumentRoot_ in einen Ordner außerhalb davon verschieben. Dies geschieht mit dem folgenden Befehl:
 
 ```bash
 mv /var/www/sub-domains/com.yourdomain.nextcloud/html/data /var/www/sub-domains/com.yourdomain.nextcloud/
@@ -296,9 +296,9 @@ Es gibt einige Dinge, die Sie anders als die Standardeinstellungen machen sollte
 
 Wenn Sie dies alles haben, klicken Sie auf `Finish Setup` und alles sollte einsatzbereit sein.
 
-Das Browserfenster wird kurz aktualisiert und lädt die Site dann normalerweise nicht neu. Geben Sie Ihre URL erneut in das Browserfenster ein und Sie sollten die ersten default Seiten sehen.
+Das Browserfenster wird kurz aktualisiert und lädt die Site dann normalerweise nicht neu. Geben Sie Ihre URL erneut in das Browserfenster ein und Sie sollten die Erste der Default-Seiten sehen.
 
-Ihr Administratorbenutzer ist zu diesem Zeitpunkt bereits angemeldet (oder sollte es sein) und es gibt mehrere Informationsseiten, die Ihnen den Einstieg erleichtern sollen. Das „Dashboard“ ist das, was Benutzer sehen, wenn sie sich zum ersten Mal anmelden. Der Administratorbenutzer kann jetzt andere Benutzer erstellen, andere Anwendungen installieren und viele andere Aufgaben ausführen.
+Ihr Administrator-Benutzer ist zu diesem Zeitpunkt bereits angemeldet (oder sollte es sein) und es gibt mehrere Informationsseiten, die Ihnen den Einstieg erleichtern sollen. Das `Dashboard` ist das, was Benutzer sehen, wenn sie sich zum ersten Mal anmelden. Der Administrator-Benutzer kann jetzt andere Benutzer erstellen, zusätzliche Anwendungen installieren und viele andere Aufgaben ausführen.
 
 Die Datei `Nextcloud Manual.pdf` ist das Benutzerhandbuch, damit sich Benutzer mit dem verfügbaren Inhalt vertraut machen können. Der administrative Benutzer sollte die wichtigsten Punkte des Administratorhandbuchs [On the Nextcloud website](https://docs.nextcloud.com/server/21/admin_manual/) durchlesen oder zumindest überfliegen
 
