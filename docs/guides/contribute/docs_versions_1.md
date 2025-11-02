@@ -1,7 +1,7 @@
 ---
 title: Document versioning using two remotes 
 author: Steven Spencer
-contributors:
+contributors: Ganna Zhyrnova
 tags:
   - contributing
   - documentation
@@ -10,7 +10,7 @@ tags:
 
 ## Introduction
 
-In the early Fall of 2025, the documentation team moved from a single version of documentation covering all versions, to each version having its own documentation branch. This makes it easier to differentiate between instructions from one version to the next. It *does*, however, complicate the process of writing or fixing documentation, particularly if it is for one of the older (Rocky Linux 8 or 9) versions. This document outlines a strategy for dealing with the process by using a double-remote approach.
+In the early Fall of 2025, the documentation team moved from a single version of documentation covering all versions to each version having its own documentation branch. This makes it easier to differentiate between instructions across versions. It *does*, however, complicate the process of writing or fixing documentation, particularly if it is for an older version (Rocky Linux 8 or 9). This document outlines a strategy for handling the process using a double-remote approach.
 
 !!! info "Rocky Linux Versions"
 
@@ -31,7 +31,7 @@ In the early Fall of 2025, the documentation team moved from a single version of
 
 ## Cloning the repository
 
-Cloning the Rocky Linux repository moves a copy of the Rocky Linux documentation into your workstation in a `/documentation` directory. You might have read at some point, or on other GitHub projects, to always clone from your personal fork of the project. In this case, in order for your clone to be version aware, this is not the case. You want to clone from the Rocky Linux project. This document will tell you why that is the case as it goes. In addition, you will need to rename your git remotes so that they make logical sense (Rocky Linux "upstream" and your GitHub "origin").
+Cloning the Rocky Linux repository moves a copy of the Rocky Linux documentation into your workstation in a `/documentation` directory. You might have read at some point, or in other GitHub projects, that you should always clone from your personal fork of the project. In this case, for your clone to be version-aware, this is not the case. You want to clone from the Rocky Linux project. This document will explain why that is the case as it goes along. In addition, you will need to rename your git remotes so that they make logical sense (Rocky Linux "upstream" and your GitHub "origin").
 
 1. Clone the Rocky Linux documentation:
 
@@ -76,7 +76,7 @@ Cloning the Rocky Linux repository moves a copy of the Rocky Linux documentation
 
 ## Adding your fork as a remote
 
-With the Rocky Linux remote now added and properly named, you need to add your own personal GitHub fork as the origin remote.
+With the Rocky Linux remote added and properly named, you need to set your personal GitHub fork as the origin remote.
 
 1. For this step, you will need to know your GitHub user name, which you should already know. Replace the "[username]" field with the correct name. Add your remote:
 
@@ -115,7 +115,7 @@ With the Rocky Linux remote now added and properly named, you need to add your o
 
     !!! warning "This does not work if your clone was from your fork"
 
-        This is why the cloning process is done from Rocky Linux instead of from your fork. Your fork will not be aware of the older branches. In order to get the message that follows, you *must* clone your local documentation repository from Rocky Linux. 
+        This is why the cloning process is done from Rocky Linux instead of from your fork. Your fork will not be aware of the older branches. To get the message that follows, you *must* clone your local documentation repository from Rocky Linux. 
 
     If you have set up your remotes correctly, you should now see:
 
@@ -130,41 +130,41 @@ With the Rocky Linux remote now added and properly named, you need to add your o
     git pull upstream rocky-8 && git push origin rocky-8
     ```
 
-    You will probably get some sort of a message that you can create a pull request from the push. You can ignore this. What has happened is that your fork now has a `rocky-8` branch.
+    You will probably get a message that you can create a pull request from the push. You can ignore this. What has happened is that your fork now has a `rocky-8` branch.
 
 3. Check out the remaining older branch. (`rocky-9`) and repeat the steps you just ran with that branch.
 
-Once completed, you will now have `main`, `rocky-8` and `rocky-9` branches on your local fork and clone, and will be able to write documentation on any of those branches.
+Once completed, you will now have `main`, `rocky-8`, and `rocky-9` branches on your local fork and clone, and will be able to write documentation on any of those branches.
 
 ## Writing a document or updating an existing document on an older version
 
-If you are familiar with writing a pull request (PR) against the `main` branch of the documentation, this process still works as it always has. Just remember that `main` is for the newest version (10 at the time of this writing). To make a small change to one of the older versions, you first need to create a branch for editing locally based on that branch. To do that, use the `-b` option with your `git checkout` command. This command, creates a branch called `8_rkhunter_changes` and bases it on the `rocky-8` branch:
+If you are familiar with writing a pull request (PR) against the `main` branch of the documentation, this process still works as it always has. Just remember that `main` is for the newest version (10 at the time of this writing). To make a small change to one of the older versions, you first need to create a branch for editing locally based on that branch. To do that, use the `-b` option with your `git checkout` command. This command creates a branch called `8_rkhunter_changes` and bases it on the `rocky-8` branch:
 
 ```bash
 git checkout -b 8_rkhunter_changes rocky-8
 ```
 
-You can now edit the file you want to make changes to and it will use the version of that document that exists in the `rocky-8` branch.
+You can now edit the file you want to change, and it will use the version of that document from the `rocky-8` branch.
 
-Once completed editing, save, stage, and commit your changes as normal, and then push your changes to your `origin` remote:
+Once completed editing, save, stage, and commit your changes as usual, and then push your changes to your `origin` remote:
 
 ```bash
 git push origin 8_rkhunter_changes
 ```
 
-When you create the PR, though, GitHub will automatically think you are creating a PR to change the `main` branch, even though you specifically used the `rocky-8` branch when modifying the document. Take care not to create the PR to quickly when you see this wrong comparison screen:
+When you create the PR, though, GitHub will automatically treat it as a change to the `main` branch, even though you specifically used the `rocky-8` branch when modifying the document. Take care not to create the PR too quickly when you see this wrong comparison screen:
 
 ![Wrong comparison](../images/incorrect_comparison_branchb_blur.png)
 
-What you need to do here, is change the comparison branch to the correct (`rocky-8` in this case) branch:
+What you need to do here is change the comparison branch to the correct (`rocky-8` in this case) branch:
 
 ![Right comparison](../images/correct_comparison_branch_blur.png)
 
-After correcting the comparison branch, continue creating the PR and then wait for the merge of your PR.
+After correcting the comparison branch, continue creating the PR and wait for it to be merged.
 
 ## Updating your older version branches after a merge
 
-Just as with the `main` branch, it is a good idea to keep your older version branches current with any changes. The following set of commands will update *all* of your versions so that they match the upstream:
+Just as with the `main` branch, it is a good idea to keep your older version branches up to date with any changes. The following set of commands will update *all* of your versions so that they match the upstream:
 
 ```bash
 git checkout rocky-8
@@ -175,7 +175,7 @@ git checkout main
 git pull upstream main && git push origin main
 ```
 
-After completing these commands, all of your local branches and your fork, will be current.
+After completing these commands, all your local branches and your fork will be up to date.
 
 ## Conclusion
 
