@@ -8,11 +8,11 @@ tags:
 
 # Introduction
 
-Certaines installations sur des plateformes x86-64 peuvent échouer en raison d'une « panique du noyau ». Dans la plupart des cas ==cela est dû à une incompatibilité CPU== avec Rocky Linux.
+Certaines installations sur les plates-formes x86-64 peuvent provoquer un plantage du noyau. Dans la plupart des cas ==cela est dû à une incompatibilité CPU== avec Rocky Linux.
 
 ## Test
 
-1. Obtenir une image de démarrage de Rocky Linux 9, Fedora ou autres.
+1. Obtenez une image de démarrage pour Rocky Linux 9, Fedora ou autres distributions.
 
 2. Lancer cette image à partir de la machine sur laquelle vous souhaitez installer Rocky Linux 10.
 
