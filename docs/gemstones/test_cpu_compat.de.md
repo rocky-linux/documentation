@@ -8,11 +8,11 @@ tags:
 
 # Einleitung
 
-Einige Installationen auf x86-64-Plattformen können mit einer Kernel-Panic fehlschlagen. In den meisten Fällen ist dies auf die ==Inkompatibilität der CPU mit Rocky Linux== zurückzuführen.
+Einige Installationen auf x86-64-Plattformen können einen Kernel-Panic verursachen. In den meisten Fällen ist dies auf die ==Inkompatibilität der CPU mit Rocky Linux== zurückzuführen.
 
 ## Testen
 
-1. Besorgen Sie sich ein Boot-Image von Rocky Linux 9, Fedora oder anderen.
+1. Besorgen Sie sich ein Boot-Image für Rocky Linux 9, Fedora oder andere Distributionen.
 
 2. Booten Sie dieses Live-Image auf dem Computer, auf dem Sie Rocky Linux 10 installieren möchten.
 
