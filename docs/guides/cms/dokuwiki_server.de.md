@@ -20,7 +20,7 @@ tags:
 
 ## Einleitung
 
-Dokumentation kann in einer Organisation viele Formen annehmen. Es ist von unschätzbarem Wert, über ein Repository zu verfügen, auf das Sie für diese Dokumentation zurückgreifen können. Ein Wiki (was auf Hawaiisch _schnell_ bedeutet) ist eine Möglichkeit, Dokumentationen, Prozessnotizen, Unternehmenswissensdatenbanken und sogar Codebeispiele an einem zentralen Ort aufzubewahren. IT-Experten, die ein Wiki führen, selbst wenn es heimlich geschieht, verfügen über eine eingebaute Versicherung gegen das Vergessen einer obskuren Routine.
+Dokumentation kann in einer Organisation viele Formen annehmen. Es ist von unschätzbarem Wert, über ein Repository zu verfügen, auf das Sie für diese Dokumentation zurückgreifen können. Ein Wiki (was auf Hawaiianisch „schnell“ bedeutet) ist eine Möglichkeit, Dokumentationen, Prozessnotizen, Wissensdatenbanken und sogar Codebeispiele an einem zentralen Ort zu speichern. IT-Experten, die ein Wiki führen, selbst wenn es heimlich geschieht, verfügen über eine eingebaute Versicherung gegen das Vergessen einer obskuren Routine.
 
 DokuWiki ist ein ausgereiftes, schnelles Wiki, das ohne Datenbank läuft, über integrierte Sicherheitsfunktionen verfügt und nicht komplex bereitzustellen ist. Weitere Informationen finden Sie auf ihrer [Webseite](https://www.dokuwiki.org/dokuwiki).
 
@@ -34,7 +34,7 @@ Die Mindest-PHP-Version für DokuWiki beträgt jetzt 8. Rocky Linux 10 enthält 
 dnf install tar wget httpd php php-gd php-xml php-json php-mbstring
 ```
 
-Akzeptieren und installieren Sie alle zusätzlich aufgeführten Abhängigkeiten, die mit diesen Paketen geliefert werden.
+Akzeptieren und installieren Sie alle zusätzlichen Abhängigkeiten, die mit diesen Paketen gebunden sind.
 
 ## Erstellung der Verzeichnisse und Konfiguration ändern
 
@@ -111,7 +111,7 @@ Wechseln Sie auf Ihrem Server in das `root`-Verzeichnis.
 cd /root
 ```
 
-Holen Sie sich die neueste stabile Version von `DokuWiki`. Sie finden dies, indem Sie auf die [Download-Seite](https://download.dokuwiki.org/) gehen. Auf der linken Seite der Seite sehen Sie unter `Version` `Stable (Recommended) (direct link)`.
+Holen Sie sich die neueste stabile Version von `DokuWiki`. Sie finden dies auf der [Download-Seite](https://download.dokuwiki.org/). Auf der linken Seite der Seite, unter `Version`, sehen Sie Folgendes: `Stable (Recommended) (direct link)`.
 
 Klicken Sie mit der rechten Maustaste auf `(direct link)` und kopieren Sie den Link. Geben Sie in der Konsole Ihres DokuWiki-Servers `wget` und ein Leerzeichen ein und fügen Sie dann Ihren kopierten Link in das Terminal ein. Sie sollten etwas Ähnliches wie das hier erhalten:
 
@@ -135,7 +135,7 @@ dokuwiki-2020-07-29/inc/lang/fr/recent.txt
 ... (mehr unten)
 ```
 
-Sie möchten dieses führende benannte Verzeichnis beim Dekomprimieren des Archivs nicht, verwenden Sie daher einige Optionen mit `tar`, um es auszuschließen. Die erste Option ist `--strip-components=1`, die das führende Verzeichnis entfernt. Die zweite Option ist die Option `-C`, die `tar` mitteilt, wo das Archiv dekomprimiert werden soll. Die Dekomprimierung läuft ungefähr so ​​ab:
+Sie möchten dieses führende Verzeichnis beim Entpacken des Archivs nicht haben, verwenden Sie daher die entsprechenden Optionen von `tar`, um es auszuschließen. Die erste Option ist `--strip-components=1`, die das führende Verzeichnis entfernt. Die zweite Option ist die Option `-C`, die `tar` mitteilt, wo das Archiv dekomprimiert werden soll. Die Dekomprimierung läuft ungefähr so ​​ab:
 
 ```bash
 tar xzf dokuwiki-stable.tgz  --strip-components=1 -C /var/www/sub-domains/com.example/html/
