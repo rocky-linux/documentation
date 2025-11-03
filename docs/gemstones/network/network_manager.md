@@ -1,5 +1,5 @@
 ---
-title: RL9 - network manager
+title: NetworkManager
 author: tianci li
 contributors: Steven Spencer
 tags:
@@ -7,7 +7,7 @@ tags:
   - RL9
 ---
 
-# NetworkManager Network configuration tool suite
+## Network configuration tool suite
 
 In 2004, Red Hat launched the **NetworkManager** project, which aims to make it easier for Linux users to meet the needs of current network management, especially the management of wireless networks. Today, the project is managed by GNOME. The [homepage for NetworkManager can be found here](https://networkmanager.dev/).
 
