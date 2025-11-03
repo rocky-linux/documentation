@@ -20,9 +20,9 @@ Es ist grundsätzlich nicht ersichtlich, wer die Nutzer der Dokumentation sind. 
 
 Redewendungen, Fachjargon, Abkürzungen und Akronyme können für Leser, die damit nicht vertraut sind, verwirrend sein. Dies gilt insbesondere für Nicht-Muttersprachler, neue Mitarbeiter oder Personen, die mit Ihrer spezifischen Branche nicht vertraut sind.
 
-**Redewendungen, Idioms** sind oft kulturspezifisch und können für internationale Leser schwer verständlich sein.\
-**Jargon** umfasst Fachbegriffe, die nur Experten auf einem bestimmten Gebiet verstehen.\
-**Kontraktionen** ersetzen englische Wörter durch Abkürzungen, aber diese gibt es nicht immer in allen Sprachen, was die Übersetzung erschwert.\
+**Redewendungen, Idioms** sind oft kulturspezifisch und können für internationale Leser schwer verständlich sein.  
+**Jargon** umfasst Fachbegriffe, die nur Experten auf einem bestimmten Gebiet verstehen.  
+**Kontraktionen** ersetzen englische Wörter durch Abkürzungen, aber diese gibt es nicht immer in allen Sprachen, was die Übersetzung erschwert.  
 **Akronyme** können mehrdeutig sein, insbesondere wenn sie bei ihrer Verwendung nicht definiert sind.
 
 Ein Beispiel:
@@ -69,10 +69,10 @@ Wenn die Dokumentation bestimmte Schritte enthält, trennen Sie diese voneinande
 
 Zum Beispiel:
 
-Step 1 - Go to the section\
-Step 2 - Click the button\
-Step 3 - Complete the form\
-...\
+Step 1 - Go to the section  
+Step 2 - Click the button  
+Step 3 - Complete the form  
+...  
 Step N - save changes
 
 ## Screenshots wenn nötig
