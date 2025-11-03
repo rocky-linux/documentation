@@ -2,7 +2,7 @@
 title: Tailscale VPN
 author: Neel Chauhan
 contributors: Steven Spencer, Ganna Zhyrnova
-tested_with: 9.3
+tested_with: 10.0
 tags:
   - безпека
   - vpn
@@ -25,10 +25,10 @@ tags:
 
 ## Встановлення Tailscale
 
-Щоб інсталювати Tailscale, спочатку потрібно додати його репозиторій `dnf` (зверніть увагу, якщо ви використовуєте Rocky Linux 8.x або 10.х, замініть його на 8 або 10 відповідно):
+Щоб інсталювати Tailscale, спочатку потрібно додати його репозиторій `dnf`:
 
 ```bash
-dnf config-manager --add-repo https://pkgs.tailscale.com/stable/rhel/9/tailscale.repo
+dnf config-manager --add-repo https://pkgs.tailscale.com/stable/rhel/10/tailscale.repo
 ```
 
 Потім встановіть Tailscale:
