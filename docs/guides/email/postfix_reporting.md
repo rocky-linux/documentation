@@ -214,7 +214,7 @@ vi /usr/local/sbin/test.sh
 
 At the beginning, please keep in mind that even though the file comment says you are sending these messages to email, for now, you are just sending them to standard log output to verify that they are correct.
 
-Also, in your first run of the script, you are grabbing all the messages for the current date, not just the `dbus-daemon` messages. You'll be able to deal with that soon.
+Also, in your first run of the script, you are grabbing all the messages for the current date, not just the `dbus-daemon` messages. You will be able to deal with that soon.
 
 Be aware that the `grep` command will return the filename in the output, which you will not want in this case. To remove this, add the "-h" option to grep. In addition, when you set the variable "today", you need to look for the entire variable as a string, which needs the string within quotes:
 
