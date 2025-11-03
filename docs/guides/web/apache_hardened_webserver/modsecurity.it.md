@@ -10,7 +10,9 @@ tags:
   - nginx
 ---
   
-# Application Firewall (WAF) basato sul Web
+!!! Note "Non ancora testato"
+
+    Questa procedura potrebbe funzionare così com'è. Il test su Rocky 10 è incompleto al 22 settembre 2025. Se lo usi e riscontri dei problemi, ti preghiamo di comunicarcelo.
 
 ## Prerequisiti
 
@@ -26,11 +28,21 @@ tags:
 
 Se volete usare questo e altri strumenti di hardening, fate riferimento alla guida [Apache Hardened Web Server](index.md). Questo documento utilizza anche tutti i presupposti e le convenzioni delineati nel documento originale. È buona norma rivederlo prima di continuare.
 
-Una cosa che manca a `mod_security` quando viene installato dai repository generici di Rocky Linux, è che le regole installate sono minime. Per ottenere un pacchetto più ampio di regole di `mod_security` a costo zero, questa procedura utilizza le regole [OWASP `mod_security` che si trovano qui](https://coreruleset.org/). OWASP è l'acronimo di Open Web Application Security Project. Per saperne [di più su OWASP, cliccate qui](https://owasp.org/).
+Una cosa che manca a `mod_security` quando viene installato dal repository Atomicorp è che le regole installate sono minime. Per ottenere un pacchetto più ampio di regole di `mod_security` a costo zero, questa procedura utilizza le regole [OWASP `mod_security` che si trovano qui](https://coreruleset.org/). OWASP è l'acronimo di Open Web Application Security Project. Per saperne [di più su OWASP, cliccate qui](https://owasp.org/).
 
 !!! tip "Suggerimento"
 
     Come detto, questa procedura utilizza le regole OWASP `mod_security`. Ciò che non viene utilizzato è la configurazione fornita da quel sito. Questo sito fornisce anche ottimi tutorial sull'uso di `mod_security' e di altri strumenti legati alla sicurezza. Il documento che state elaborando con mow non fa altro che aiutarvi a installare gli strumenti e le regole necessarie per l'hardening con `mod_security' su un server web Rocky Linux. Netnea è un team di professionisti tecnici che offre corsi di sicurezza sul proprio sito web. La maggior parte di questi contenuti è disponibile gratuitamente, ma ci sono opzioni per la formazione interna o di gruppo.
+
+## Repository aggiuntivo
+
+Per installare `mod_security` è necessario il repository Atomicorp (atomic.repo). Farlo con questa riga e rispondere sì a tutte le impostazioni predefinite:
+
+```bash
+wget -q -O - https://www.atomicorp.com/installers/atomic | sh
+```
+
+Esegui `dnf upgrade` per leggere tutte le modifiche.
 
 ## Installazione di `mod_security`
 

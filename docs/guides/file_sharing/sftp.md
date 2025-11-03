@@ -13,18 +13,18 @@ tags:
 ---
 
 
-## (with SSH lock down procedures)
+## (with SSH lockdown procedures)
 
 ## Introduction
 
-When the SSH protocol itself is secure, it might seem strange to have a document dedicated to the "secure" use of `sftp` (a part of openssh-server package). But most system administrators do not want to open SSH to everyone to implement `sftp` for everyone. This document describes implementing a change root (**chroot**) jail for `sftp` while limiting SSH access.
+When the SSH protocol itself is secure, it might seem strange to have a document dedicated to the "secure" use of `sftp` (a part of the openssh-server package). But most system administrators do not want to open SSH to everyone to implement `sftp` for everyone. This document describes how to implement a change root (**chroot**) jail for `sftp` while limiting SSH access.
 
 Many documents deal with creating an `sftp` chroot jail, but most do not consider a use case where the user might be accessing a web directory on a server with many websites. This document deals with that. If that is not your use case, you can quickly adapt these concepts to different situations.
 
-The author also feels that it is necessary when making the chroot jail document for `sftp` to discuss the other things needed as a system administrator to minimize the target that you offer to the world by using SSH. For this reason, division of this document is in four parts:
+The author also feels that it is necessary, when creating the chroot jail document for `sftp`, to discuss the other things a system administrator needs to minimize the target you expose to the world via SSH. For this reason, the division of this document is into four parts:
 
 1. The first deals with the general information that you will use for the entire document.
-2. The second deals with the chroot setup. If you stop there that is totally up to you.
+2. The second deals with the chroot setup. If you stop there, that is totally up to you.
 3. The third part deals with setting up public/private key SSH access for your system administrators and turning off remote password-based authentication.
 4. This document's fourth and last section deals with turning off remote root logins.
 
@@ -32,9 +32,9 @@ These steps offer secure `sftp` access for your customers while minimizing the p
 
 !!! Note "chroot jails for beginners:"
 
-    chroot jails are a way to restrict what a process and all of its various child processes can do on your computer. It allows you to choose a specific directory or folder on your machine, and make that the "root" directory for any process or program.
+    Chroot jails are a way to restrict what a process and its child processes can do on your computer. It allows you to choose a specific directory or folder on your machine and set it as the "root" directory for any process or program.
 
-    From there on, that process or program can *only* access that folder and its subfolders.
+    From then on, that process or program can *only* access that folder and its subfolders.
 
 ## Part 1: General information
 
@@ -44,17 +44,17 @@ Assumptions are that:
 
 - You are comfortable executing commands at the command line
 - You can use a command line editor, such as `vi` (used here), `nano`, `micro`, and so on
-- You understand basic Linux commands used for adding groups and users, or can follow along well
+- You understand basic Linux commands used for adding groups and users, or you can follow along well
 - Your multisite website is similar to this: [Apache Multisite](../web/apache-sites-enabled.md)
 - You have already installed `httpd` (Apache) on the server
 
 !!! note
 
-    You can apply these concepts to any server set up and any web daemon. While the assumption here is Apache, you can also use this for Nginx.
+    You can apply these concepts to any server setup and any web daemon. While the assumption here is Apache, you can also use this for Nginx.
 
 ### Sites, users, administrators
 
-These are fictitious scenarios. Any resemblance to persons or sites that are real, is purely accidental:
+These are fictitious scenarios. Any resemblance to persons or sites that are real is purely accidental:
 
 **Sites:**
 
@@ -72,7 +72,7 @@ These are fictitious scenarios. Any resemblance to persons or sites that are rea
 
 ### Installation
 
-Installation is not difficult. You just need to have `openssh-server` installed, which is probably installed already. Enter this command to be sure:
+Installation is not difficult. You need to have `openssh-server` installed, which is likely already installed. Enter this command to be sure:
 
 ```bash
 dnf install openssh-server
@@ -98,7 +98,7 @@ mkdir -p /var/www/sub-domains/com.site1/html
 mkdir -p /var/www/sub-domains/com.site2/html
 ```
 
-You will deal with the ownership of these directories in the script application later.
+You will handle ownership of these directories in the script application later.
 
 ### `httpd` configuration
 
@@ -203,7 +203,7 @@ systemctl enable --now httpd
 
 ### User creation
 
-For this example environment, the assumption is that none of the users exist yet. Start with your administrative users. Note that at this point in your process, you can still log in as the root user to add the other users and set them up the way you want. When the users are setup and tested, you can remove root logins.
+In this example environment, the assumption is that no users exist yet. Start with your administrative users. Note that at this point in your process, you can still log in as the root user to add the other users and set them up the way you want. When the users are set up and tested, you can remove root logins.
 
 #### Administrators
 
@@ -214,7 +214,7 @@ useradd -g wheel lblakely
 
 By adding your users to the group "wheel" you give them `sudo` access.
 
-You still need a password for `sudo` access. Set the two administrative passwords with secure passwords:
+You still need a password for `sudo` access. Set the two administrative passwords to secure passwords:
 
 ```bash
 passwd ssimpson
@@ -256,7 +256,7 @@ Breaking down those commands a bit:
 
 **Note:** For an Nginx server, you would use `nginx` as the group.
 
-Your `sftp` users still need  passwords. Setup a secure password for each now. You have already seen the command output earlier:
+Your `sftp` users still need  passwords. Set up a secure password for each now. You have already seen the command output earlier:
 
 ```bash
 passwd mybroken
@@ -267,7 +267,7 @@ passwd myfixed
 
 !!! warning
 
-    Before you start this process, it is highly recommended that you make a backup of the system file you will modify: `/etc/ssh/sshd_config`. Breaking this file and being unable to return to the original could cause you a world of heartache!
+    Before you start this process, it is highly recommended that you back up the system file you will modify: `/etc/ssh/sshd_config`. Breaking this file and being unable to restore it to its original state could cause you a world of heartache!
 
     ```
     cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak

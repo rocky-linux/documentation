@@ -1,53 +1,57 @@
 ---
-title: Valuta
-author: Christine Belzie
-contributors: Steven Spencer, Ganna Zhyrnova 
+title: Currency Conversion with Valuta on GNOME
+author: Wale Soyinka
+contributors: Ganna Zhyrnova
+tags:
+  - gnome
+  - desktop
+  - currency
+  - flatpak
 ---
 
 ## Introduction
 
- If you often travel or move abroad, ease your financial planning with Valuta. This application quickly converts two currencies.
+In an increasingly interconnected world, where digital transactions span continents and travel is but a flight away, the need for quick, reliable currency conversion is paramount. Whether you're a seasoned globetrotter, an astute online shopper, or a remote professional managing international finances, a dedicated currency converter is an indispensable tool. For users of the GNOME desktop environment, Valuta emerges as a prime example of elegant simplicity and focused functionality.
 
-## Assumptions
+Valuta is not merely a calculator; it's a thoughtfully designed application that integrates seamlessly into the GNOME ecosystem. It eschews unnecessary complexity, offering a straightforward, efficient user experience that gets the job done without fuss. Its minimalist interface and adherence to GNOME's design principles make it feel like a native extension of your desktop, providing instant access to up-to-date exchange rates.
 
-This guide assumes you have the following:
+## Installation: Bringing Valuta to Your GNOME Desktop
 
-- Rocky Linux
-- Flatpak
-- FlatHub
+Valuta is distributed as a Flatpak, a modern packaging format that ensures applications run consistently across various Linux distributions, provides sandboxing for enhanced security, and allows access to the latest versions directly from developers.
 
-## Installation process
+To install Valuta, open your terminal and run the following command:
 
-![Screenshot of the Valuta page on Flathub with the blue install button highlighted in a red square](images/01_valuta.png)
+```bash
+flatpak install flathub io.github.ideveCore.Valuta
+```
 
-1. Go to [Flathub.org](https://flathub.org), type "Valuta" in the search bar, and click  **Install**
+This command will fetch and install Valuta from Flathub, the universal Flatpak app store. Once the installation is complete, you can launch Valuta directly from your applications menu or by typing `flatpak run io.github.ideveCore.Valuta` in the terminal.
 
-    ![manual install script and run script](images/valuta-install.png)
+## Using Valuta: Simplicity in Action
 
-2. Copy the manual script in your terminal:
+Valuta's strength lies in its intuitive design. The application focuses on a single, core task: converting one currency to another with minimal interaction.
 
-    ```bash
-    flatpak install flathub io.github.idevecore.Valuta
-    ```
+1. **Select Your Base Currency:** Upon launching Valuta, you will typically see two currency fields. The top field represents your "base" currency. Click the currency code (e.g., "USD") to open a search bar where you can type and select your desired currency from a comprehensive list.
+2. **Enter the Amount:** In the input box next to your base currency, type the amount you wish to convert. As you type, Valuta will instantly display the converted value in the second currency field.
+3. **Select Your Target Currency:** Similarly, click on the currency code in the bottom field to choose the currency you want to convert to. Valuta will immediately update the converted amount based on the latest exchange rates.
 
-3. Finally, the manual script in your terminal:
+The application automatically fetches and updates exchange rates from reliable sources such as the European Central Bank (via Frankfurter) and Moeda.info, ensuring you always have accurate information at your fingertips. For even quicker conversions, Valuta integrates with the GNOME search provider, allowing you to perform conversions directly from the GNOME Activities overview (e.g., by typing "10 USD to EUR").
 
-    ```bash
-    flatpak run flathub io.github.idevecore.Valuta
-    ```
+## Beyond GNOME: Alternatives on Other Platforms
 
-## How to use
+Valuta is a capable replacement for those apps for users coming from other platforms to a Rocky Linux desktop system. Here are a few notable currency converter applications on macOS and Windows 11 platforms that Valuta can use as a suitable substitute for:
 
-To use Valuta, do the following:
+### For macOS
 
-1. Choose your country from the drop-down menu and type the cash you want to spend.
+* **Converter (Currency Converter Calculator):** This application provides a familiar, calculator-like interface for quick and efficient currency conversions, often praised for its ease of use and integration with the macOS aesthetic.
+* **XE Currency Converter:** A globally recognized name in currency exchange, XE offers a robust application with real-time rates, offline capabilities, and a user-friendly interface. It is a comprehensive tool for both casual and serious currency tracking.
 
-    ![Screenshot of Valuta app showing 1000 USD in the input field, with a grey arrow pointing down to a grey box showing 1000 USD](images/02_valuta.png)
+### For Windows 11
 
-2. Select the country you are traveling to from the drop-down menu. The converted amount will automatically appear.
-
-![Screenshot showing a grey arrow pointing upward to a green box displaying the converted amount, 899.52 EUR](images/03_valuta.png)
+* **Windows Calculator App:** The built-in Calculator application in Windows 11 includes a surprisingly capable currency converter. It supports over 100 currencies and can even perform conversions offline, making it a convenient default option.
+* **Callista Currency Converter:** Available on the Microsoft Store, Callista provides up-to-the-minute exchange rates, supports a vast array of currencies, and often includes features such as conversion history, all within a free and ad-free experience.
+* **XE Currency Converter:** Just like on macOS, XE offers its powerful currency conversion tools to Windows users, complete with real-time rates, money transfer options, and rate alerts.
 
 ## Conclusion
 
-Whether it is for a vacation or a business trip, Valuta simplifies currency conversion. Want to learn more or share ideas to improve it? [Submit an issue in Valuta's repository at GitHub](https://github.com/ideveCore/valuta/issues).
+Valuta stands as a testament to the power of focused design within the GNOME ecosystem. It provides a fast, accurate, and aesthetically pleasing solution for currency conversion, seamlessly integrating into your desktop workflow. For those who appreciate efficiency and elegance in their tools, Valuta is an excellent choice, ensuring that managing international finances or planning your next adventure is always just a few clicks away.

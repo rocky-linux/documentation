@@ -13,7 +13,7 @@ Docker Engine può eseguire carichi di lavoro nativi in stile Docker su server R
 
 ## Aggiungere il repository Docker
 
-Utilizzare l'utilità `dnf` per aggiungere il repository Docker al server Rocky Linux. Digita:
+Utilizza l'utilità `dnf` per aggiungere il repository Docker al tuo server Rocky Linux. Digita:
 
 ```bash
 sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
@@ -29,7 +29,7 @@ sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin d
 
 ## Avviare e abilitare Docker`(dockerd`)
 
-Usare `systemctl` per configurare l'avvio automatico di Docker al riavvio e contemporaneamente avviarlo ora. Digitare:
+Utilizzare `systemctl` per configurare Docker in modo che si avvii automaticamente al riavvio e contemporaneamente avvialo ora. Digita:
 
 ```bash
 sudo systemctl --now enable docker

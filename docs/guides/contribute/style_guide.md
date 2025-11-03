@@ -15,7 +15,7 @@ tags:
 
 ### About
 
-*New contributions are welcome to grow this into the definitive spot on the web for information about using Rocky Linux. You can create docs in the format that makes sense to you, and the documentation team will work with you or otherwise help format it so it looks and feels like part of the Rocky family.*
+*New contributions are welcome to grow this into the definitive spot on the web for information about using Rocky Linux. You can create docs in the format that makes sense to you, and the documentation team will work with you or help format them so they look and feel like part of the Rocky family.*
 
 This guide outlines English-language style standards to **improve readability, highlight special cases,** and **enhance translation work** across Rocky Linux documentation. For style questions not addressed in this guide, see the following:
 
@@ -32,7 +32,7 @@ For a more complete understanding of contributing, consult our related guides:
 
 ## Style Guidelines
 
-*RL documentation aims to use clear and consistent language, for accessibility and to aid ongoing translation efforts.*
+*RL documentation aims to use clear and consistent language for accessibility and to aid ongoing translation efforts.*
 
 ### Grammar and Punctuation
 
@@ -42,36 +42,36 @@ For a more complete understanding of contributing, consult our related guides:
 - Periods and commas go inside quotation marks “like this,” rather than “like this”.
 - The em dash {shift}+{option}+{-} has no spaces before or after—like this—and is our preference for parenthetical phrases.
 - Use a serial comma before the “and” in a list of three items: “Peas, mustard, and carrots.”
-- Headings should be generally made in headline-style capitalization: Capitalize the first and last words, as well as all nouns, pronouns, verbs, and adverbs. If your document works better with sentence-style capitalization, perhaps because you frequently reference acronyms, make it consistent within the entire document.
+- Headings should be generally made using sentence-style capitalization: Capitalize the first word and proper nouns only. Make heading formatting consistent within the entire document.
 - Headings do not need a period or semicolon at the end, even with sentence-style capitalization, unless ending in an abbreviation.
 - Bulleted and numbered lists: Avoid beginning capitalization or ending punctuation, unless the item is a complete sentence.
 
 !!! info "Sentence-style heading capitalization"
 
-    People using the `vale` and other language linters, will find that these suggest using sentence-style capitalization. Much of the documentation created within our documentation pool uses this style of heading capitalization. Just remember that whichever style you choose, keep it consistent within your document.
+    The current standard for documentation is sentence-style capitalization. People using `vale` and other language linters will find that these suggest using sentence-style capitalization. Much of the documentation created within our documentation pool uses this style of heading capitalization. This differs from the Chicago Manual of Style, but because the industry has gravitated towards this style in documentation headings, this document is amended to include this recommendation.
 
 ### Voice and Tone
 
 - **Plain language.** Described as a *less-conversational* style. Most of our documentation fits within this standard.
     - Avoid metaphors and idioms.
     - Say what you mean in as few words as possible.
-    - Identify and avoid unnecessarily technical terms. Consider that your audience is mostly people who have some familiarity with the subject matter, but might not be subject-matter experts.
+    - Identify and avoid unnecessarily technical terms. Consider that your audience is primarily people with some familiarity with the subject matter but not subject-matter experts.
     - Exceptions to plain language:
-        - A more conversational style is appropriate for documentation addressed to newcomers or beginners or for writing content such as blog posts.
+        - A more conversational style is appropriate for documentation addressed to newcomers or beginners, or for writing content such as blog posts.
         - A more formal or terse wording style is appropriate for documentation addressed to advanced users or API (Application Programming Interface) documentation.
 - **Inclusive language.**
-    - Language use evolves over time. Certain words have evolved to carry negative connotations so documentation should be rewritten to use new words.
+    - Language use evolves. Certain words have acquired negative connotations, so documentation should be rewritten to use alternative words.
         - *Master/slave* becomes *primary/secondary* or an agreed upon organizational standard.
         - *Blacklist/whitelist* becomes *blocklist/allowlist* or an agreed upon organizational standard.
         - You might think of other relevant examples as you create documentation.
     - When speaking of a person of *unknown* or *non-binary* gender, it is now considered acceptable to use “they” as a singular pronoun.
     - When speaking of one’s capabilities, frame answers as *abilities* rather than *limitations.* For example, if you are wondering whether we have documentation about running Steam on Rocky Linux, the answer is not just “no.” Rather, “Sounds like that’s a great place for you to create something to add to our tree!”
 - **Avoid contractions.** This assists with translation efforts. The exception to this is when writing something in a more conversational tone, such as blog posts or welcome instructions for new community members.
-- **Use active voice.** Active voice is more clear and direct and helps your reader to quickly understand your meaning.
+- **Use active voice.** Active voice is more precise and direct, helping your reader understand your meaning quickly.
 
 !!! info "Other reading on voice and tone"
 
-    The creation of several additional documents on voice and tone since this style guide's creation include:  
+    The creation of several additional documents on voice and tone since this style guide's creation includes:  
     - [Good Docs-A translator's viewpoint](../../rocky_insights/blogs/good_docs.md)  
     - [Active voice-The way to simple, clear, communication](../../rocky_insights/blogs/active_voice.md)  
 
@@ -79,7 +79,7 @@ For a more complete understanding of contributing, consult our related guides:
 
 ### Dates
 
-When possible use the name of the month in the format {day} {Month} {year}. However, {Month} {day}, {year} is also acceptable to resolve clarity or appearance issues. Either way, to avoid confusion, write out month names rather than a series of numbers. For example: 24 January 2023, but January 24, 2023 is also acceptable—with both preferable over 1/24/2023 or 24/01/2023.
+When possible, use the month name in the format {day} {Month} {year}. However, {Month} {day}, {year} is also acceptable to resolve clarity or appearance issues. Either way, to avoid confusion, write out month names rather than a series of numbers. For example: 24 January 2023, but January 24, 2023 is also acceptable—with both preferable over 1/24/2023 or 24/01/2023.
 
 ### Single-step Procedures
 

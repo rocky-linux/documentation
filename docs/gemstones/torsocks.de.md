@@ -5,7 +5,13 @@ contributors: Steven Spencer, Ganna Zhyrnova
 date: 2024-02-25
 ---
 
-# `torsocks` - Einleitung
+!!! warning "Warnung"
+
+```
+`tor` und `torsocks` fehlen derzeit im EPEL-Repository. Diese Pakete werden voraussichtlich noch erstellt. Das Dokumentationsteam wird die Verfügbarkeit im EPEL-Repository weiterhin prüfen, sobald es die Zeit zulässt. Vorerst bleibt Ihnen nur die Möglichkeit, diese Programme selbst aus dem Quellcode zu kompilieren. Die entsprechenden Anleitungen dazu fehlen hier jedoch momentan.
+```
+
+## `torsocks` - Einleitung
 
 „torsocks“ ist ein Dienstprogramm zum Umleiten des IP-Verkehrs von einem Befehlszeilenprogramm über das [Tor](https://www.torproject.org/)-Netzwerk oder einen SOCKS5-Server.
 

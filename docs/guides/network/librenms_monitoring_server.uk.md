@@ -1,10 +1,12 @@
 - - -
-title: LibreNMS Monitoring Server author: Steven Spencer contributors: Ezequiel Bruni, Ganna Zhyrnova tested_with: 8.5, 8.6, 9.0 tags:
+title: LibreNMS monitoring server author: Steven Spencer contributors: Ezequiel Bruni, Ganna Zhyrnova tested_with: 8.5, 8.6, 9.0 tags:
   - моніторинг
   - мережа
 - - -
 
-# Сервер моніторингу LibreNMS
+!!! Warning "Документація LibreNMS не оновлювалася після Rocky Linux 8"
+
+    Хоча проєкт LibreNMS, судячи з комітів та змін на сайті LibreNMS GitHub, все ще виглядає живим та процвітаючим, інструкції щодо встановлення та запуску (які можна знайти тут і практично незмінні на сайті LibreNMS) не працюють так, як написано для Rocky Linux 10. Наразі рекомендується утриматися від встановлення Rocky Linux 10, доки всі зміни не будуть ретельно досліджені.
 
 ## Вступ
 
@@ -205,7 +207,7 @@ group = librenms
 listen = /run/php-fpm-librenms.sock
 ```
 
-Збережіть зміни та вийдіть із файлу. Якщо це єдина веб-служба, яка працюватиме на цій машині, ви можете видалити старий файл www.conf, який ви скопіювали:
+Збережіть зміни та вийдіть із файлу. Якщо це єдиний веб-сервіс, який працюватиме на цьому комп'ютері, ви можете видалити старий скопійований файл <www.conf>:
 
 ```bash
 rm -f /etc/php-fpm.d/www.conf

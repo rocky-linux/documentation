@@ -1,5 +1,6 @@
 nav:
     - ... | index*.md
+    - ... | minimum_hardware_requirements*.md
     - ... | installation*.md
     - ... | migrate2rocky*.md
     - ... | update_versions*.md

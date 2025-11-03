@@ -1,64 +1,66 @@
 ---
-title: Decibels
-author: Christine Belzie
-contributors: Steven Spencer, Ganna Zhyrnova
+title: Decibels — Audio Player
+author: Wale Soyinka
+contributors:
+tags:
+  - gnome
+  - desktop
+  - audio
+  - flatpak
 ---
 
-## Einleitung
+## Ein einfacher, moderner Audioplayer
 
-`Decibels` ist eine Anwendung zum Abspielen von Audiodateien. Die benutzerfreundliche Oberfläche erleichtert das Hochladen und Abspielen Ihrer Lieblingssongs, Vorlesungsaufzeichnungen, Projektideen und anderer Audiodateien.
+**Decibels** ist ein moderner und eleganter Audioplayer für den GNOME-Desktop. Es basiert auf einer Philosophie der Einfachheit und ist darauf ausgelegt, eine Sache außergewöhnlich gut zu machen: Audiodateien abzuspielen.
 
-## Voraussetzungen
+Im Gegensatz zu voll ausgestatteten Musikbibliotheksanwendungen wie Rhythmbox verwaltet Decibels keine Musiksammlung. Stattdessen konzentriert es sich darauf, ein sauberes, unkompliziertes Erlebnis beim Abspielen einzelner Sounddateien zu bieten. Sein charakteristisches Merkmal ist eine schöne Wellenformanzeige, die eine einfache und präzise Navigation durch die Audiospur ermöglicht.
 
-Für diese Anleitung benötigen Sie Folgendes:
+Dies macht es zum perfekten Tool, um schnell einen heruntergeladenen Podcast, eine Sprachnotiz oder ein neues Lied anzuhören, ohne den Aufwand des Importierens von Dateien in eine Bibliothek.
 
-- Rocky Linux
-- Flatpak
-- FlatHub
+## Installation
 
-## Installations-Ablauf
+Die empfohlene Methode zur Installation von Decibels auf Rocky Linux ist als Flatpak aus dem Flathub-Repository. Mit dieser Methode stellen Sie sicher, dass Sie über die neueste Version der Anwendung verfügen, die vom Rest Ihres Systems in einer Sandbox getrennt ist.
 
-Gehen Sie zu [Flathub.org] (https://flathub.org), geben Sie `Decibels` in die Suchleiste ein und klicken Sie auf **Install**.
+### 1. Flathub Aktivierung
 
-![Screenshot of the Decibels app page on FlatHub, showing the install button being highlighted by a red rectangle](images/01_decibels.png)
+Stellen Sie zunächst sicher, dass Sie Flatpak installiert und `Flathub-Remote` auf Ihrem System konfiguriert haben.
 
-![manual install script and run script](images/decibels-install.png)
+```bash
+# Install the Flatpak package
+sudo dnf install flatpak
 
-2. Kopieren Sie das manuelle Installationsskript und führen Sie es in einem Terminal aus:
-
-   ```bash
-   flatpak install flathub org.gnome.Decibels
-   ```
-
-3. Kopieren Sie abschließend den Ausführungsbefehl und rufen Sie ihn in Ihrem Terminal auf:
-
-   ```bash
-   flatpak run org.gnome.Decibels
-   ```
-
-## Anwendungshinweise
-
-Gehen Sie wie folgt vor, um `Decibels` zu verwenden:
-
-1. Auf **Open** klicken
-
-   ![Screenshot of Decibels' landing page with a red rectangle surrounding the blue open button](images/02_decibels.png)
-
-2. Wählen Sie Ihre gewünschte Datei aus und klicken Sie auf **Open**, das in der oberen rechten Ecke des Bildschirms erscheint
-
-   ![Screenshot of Decibels file selection interface with numbered arrows indicating audio file and Open button](images/03_decibels.png)
-
-!!! note "Anmerkung"
-
-```
-Sind Sie es leid, mit der Maus zu klicken? Hier finden Sie einige Möglichkeiten, wie Sie mit Ihrer Tastatur Ihre Audiodateien abspielen und mit ihnen interagieren können
-
-- ++ctrl++ + ++shift++ + ++o++ = Datei öffnen
-- ++space++ = Abspielen oder Pause
-- ++left++ = Audio um 10 Sekunden nach hinten verschieben
-- ++right++ = Audio 10 Sekunden vorwärts bewegen
+# Add the Flathub remote repository
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 ```
 
-## Zusammenfassung
+!!! note
+Möglicherweise müssen Sie sich abmelden und erneut anmelden, damit Flatpak-Anwendungen in der GNOME-Aktivitätenübersicht angezeigt werden.
 
-Möchten Sie mehr über diese App erfahren oder haben Sie noch weitere Ideen dafür? [Submit an issue in Decibel's repository at GitLab](https://gitlab.gnome.org/GNOME/Incubator/decibels/-/issues).
+### 2. Decibels Installation
+
+Sobald Flathub aktiviert ist, können Sie Decibels mit einem einzigen Befehl installieren:
+
+```bash
+flatpak install flathub org.gnome.Decibels
+```
+
+## Grundlegende Verwendung
+
+Nach der Installation können Sie Decibels über die GNOME-Aktivitätenübersicht starten, indem Sie nach `Decibels` suchen.
+
+So spielen Sie eine Datei ab:
+
+1. Starten Sie die Anwendung. Sie werden von einem sauberen, einfachen Fenster begrüßt.
+2. Klicken Sie auf die Schaltfläche **`Open a File...`** in der Mitte des Fensters.
+3. Navigieren Sie mit der Dateiauswahl zu einer Audiodatei auf Ihrem System und wählen Sie sie aus (z. B. eine MP3-, FLAC-, OGG- oder WAV-Datei).
+4. Die Datei wird geöffnet und ihre Wellenform wird angezeigt. Die Wiedergabe beginnt automatisch.
+
+## Hauptmerkmale
+
+Obwohl Decibels einfach ist, verfügt es über mehrere nützliche Funktionen:
+
+- \*\*Wellenform-Navigation: \*\* anstelle eines einfachen Fortschrittsbalkens zeigt `Decibels` die Wellenform des Audios an. Sie können auf eine beliebige Stelle der Wellenform klicken, um sofort zu diesem Teil der Spur zu gelangen.
+- \*\*Steuerung der Wiedergabegeschwindigkeit: \*\* mit einem Steuerelement in der unteren rechten Ecke können Sie die Wiedergabegeschwindigkeit anpassen. Dies ist ideal, um Podcasts zu beschleunigen oder Audio für die Transkription zu verlangsamen.
+- **Schnellsprungtasten:** Mit speziellen Tasten können Sie in 10-Sekunden-Intervallen vor- oder zurückspringen, sodass Sie eine verpasste Phrase ganz einfach erneut anhören können.
+
+Decibels ist eine ausgezeichnete Wahl für alle, die eine einfache, elegante und moderne Anwendung zum Abspielen einzelner Audiodateien auf dem GNOME-Desktop benötigen.

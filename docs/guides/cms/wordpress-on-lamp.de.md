@@ -1,7 +1,7 @@
 ---
-title: WordPress mit LAMP
+title: WordPress und LAMP
 author: Joseph Brinkman
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.2
 ---
 
@@ -12,11 +12,11 @@ tested_with: 9.2
 
 ## Einleitung
 
-WordPress ist ein Open-Source-Content-Management-System (CMS), das für seine [berühmte 5-Minuten-Installation](https://developer.wordpress.org/advanced-administration/before-install/howto-install/) bekannt ist. Es wird üblicherweise auf einem LAMP-Stack (Linux, Apache, MySQL, PHP) bereitgestellt. Obwohl effiziente lokale Entwicklungstools wie [XAMPP](https://www.apachefriends.org/), [Vagrant](https://www.vagrantup.com/) und [wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/) weithin verfügbar sind, bietet die manuelle Installation von WordPress auf LAMP für die lokale Entwicklung einen wertvollen praktischen Ansatz für Anfänger, die ein tieferes Verständnis anstreben.
+WordPress ist ein Open Source Content-Management-System (CMS), das für seine [berühmte 5-Minuten-Installation](https://developer.wordpress.org/advanced-administration/before-install/howto-install/) bekannt ist. Es wird üblicherweise auf einem LAMP-Stack (Linux, Apache, MySQL, PHP) bereitgestellt. Obwohl effiziente lokale Entwicklungstools wie [XAMPP](https://www.apachefriends.org/), [Vagrant](https://www.vagrantup.com/) und [wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/) weithin verfügbar sind, bietet die manuelle Installation von WordPress auf LAMP für die lokale Entwicklung einen wertvollen praktischen Ansatz für Anfänger, die ein tieferes Verständnis anstreben.
 
 Diese Anleitung setzt voraus, dass Sie Rocky Linux 9.x bereits installiert haben, wodurch der `L`-Teil des LAMP-Stacks abgedeckt wird.
 
-Das Ziel dieses Handbuchs besteht darin, zu untersuchen, wie Sie WordPress mit dem LAMP-Stack manuell auf einer Rocky Linux 9-Maschine installieren können. Dies ist kein produktionsreifer Leitfaden, sondern ein Ausgangspunkt, auf dem Sie aufbauen können. Das in diesem Handbuch enthaltene LAMP-Setup wird ausschließlich für die lokale Entwicklung empfohlen, wenn nicht zuvor geeignete Sicherheitsmaßnahmen ergriffen werden, die eine zusätzliche Konfiguration erfordern.
+In dieser Anleitung wird erläutert, wie Sie WordPress manuell mit dem LAMP-Stack auf einer Rocky Linux 9-Maschine installieren. Dies ist kein produktionsreifer Leitfaden, sondern ein Ausgangspunkt, auf dem Sie aufbauen können. Das in diesem Handbuch enthaltene LAMP-Setup wird ausschließlich für die lokale Entwicklung empfohlen, wenn nicht zuvor geeignete Sicherheitsmaßnahmen ergriffen werden, die eine zusätzliche Konfiguration erfordern.
 
 ## Systempakete aktualisieren
 
@@ -28,7 +28,7 @@ Stellen Sie sicher, dass die Pakete Ihres Systems auf dem neuesten Stand sind:
 
 ## Apache — Installation
 
-Apache ist ein Webserver und wird unsere WordPress-Site bereitstellen. Installieren Sie ihn:
+Apache ist ein Webserver, der Ihre WordPress-Site bereitstellt. Installieren Sie ihn mit folgender Anweisung:
 
 ```bash
     sudo dnf install httpd -y
@@ -36,7 +36,7 @@ Apache ist ein Webserver und wird unsere WordPress-Site bereitstellen. Installie
 
 ## Aktivieren Sie Apache für den automatischen Start beim Booten
 
-Aktivieren Sie Apache nach der Installation, sodass es beim Booten automatisch startet:
+Aktivieren Sie Apache nach der Installation, damit es beim Booten automatisch gestartet wird:
 
 ```bash
     sudo systemctl enable --now httpd
@@ -44,7 +44,7 @@ Aktivieren Sie Apache nach der Installation, sodass es beim Booten automatisch s
 
 ## MariaDB — Installation
 
-WordPress speichert dynamische Inhalte in einer MySQL-Datenbank. MariaDB ist ein freies Open-Source-Fork von MySQL. Installieren Sie sie:
+WordPress speichert dynamische Inhalte in einer MySQL-Datenbank. MariaDB ist ein freies Open-Source-Fork von MySQL. Installieren Sie sie mit folgender Anweisung:
 
 ```bash
     sudo dnf install mariadb-server -y
@@ -96,9 +96,9 @@ Nach der Installation von PHP müssen Sie Apache neu laden, um es als Apache-Mod
     sudo systemctl restart httpd
 ```
 
-Verwenden Sie `curl`, um die neueste Version von WordPress herunterzuladen:
-
 ## WordPress herunterladen und entpacken
+
+Verwenden Sie `curl`, um die neueste Version von WordPress herunterzuladen:
 
 ```bash
     curl -O https://wordpress.org/latest.tar.gz
@@ -153,7 +153,7 @@ Erstellen Sie einen Benutzer mit einem Passwort für Ihre Datenbank:
 !!! note "Anmerkung"
 
 ```
-Es wird dringend empfohlen, ein sicheres Passwort zu verwenden.
+Es wird dringend empfohlen, ein sichereres Passwort zu verwenden.
 ```
 
 ## Einen neuen Benutzer und ein neues Passwort erstellen
@@ -168,7 +168,7 @@ Gewähren Sie mit `grant` dem soeben erstellten Benutzer alle Berechtigungen fü
     GRANT ALL PRIVILEGES ON LOCALDEVELOPMENTENV.* TO 'admin'@'localhost';
 ```
 
-Speichern Sie mit `flush` die Berechtigungen, um die Anwendung der Änderungen sicherzustellen:
+Speichern Sie die Berechtigungen, um die Anwendung der Änderungen sicherzustellen:
 
 ```bash
     FLUSH PRIVILEGES;
@@ -240,4 +240,4 @@ Das Flag `-P` macht diese Konfiguration über Neustarts hinweg persistent
 
 ## Zusammenfassung
 
-Sie sollten jetzt in der Lage sein, über das Netzwerk mit dem Hostnamen oder der privaten IP-Adresse des Servers eine Verbindung zu WordPress herzustellen und die WordPress-Installation abzuschließen. Denken Sie daran, dass dieses Setup in erster Linie für lokale Entwicklungszwecke gedacht ist. Für den Produktionseinsatz sind zusätzliche Konfigurationen erforderlich: Festlegen eines Domänennamens, Installieren eines SSL-Zertifikats, Härten Ihres Apache-Servers, Feinabstimmung Ihrer SELinux-Konfiguration und Implementieren von Backups. Dennoch haben Sie durch Befolgen dieser Anleitung einen soliden Ausgangspunkt für die WordPress-Entwicklung auf einem LAMP-Stack geschaffen.
+Um die Installation abzuschließen, sollten Sie nun in der Lage sein, über das Netzwerk eine Verbindung zu WordPress herzustellen, indem Sie den Hostnamen oder die private IP-Adresse des Servers verwenden. Denken Sie daran, dass dieses Setup in erster Linie für lokale Entwicklungszwecke gedacht ist. Für den Produktionseinsatz müssen Sie Folgendes konfigurieren: einen Domänennamen festlegen, ein SSL-Zertifikat installieren, Ihren Apache-Server härten, Ihre SELinux-Konfiguration optimieren und Backups implementieren. Dennoch hat das Befolgen dieser Anleitung einen soliden Ausgangspunkt für die WordPress-Entwicklung auf einem LAMP-Stack geschaffen.

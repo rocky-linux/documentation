@@ -125,6 +125,6 @@ Laut den Versionshinweisen zu Rocky Linux 10.0 unterstützt RL10 offiziell die 
 
 ---
 
-**Update**: 2025-06-30\
+**Update**: 2025-06-30  
 **Betrifft**: Rocky Linux 10 Release Initial
 **Übersetzung**: <a href="https://crowdin.com/project/rockydocs/activity-stream">2025-09-04 20h25</a>

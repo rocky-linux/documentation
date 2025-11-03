@@ -2,13 +2,11 @@
 title: Сервер бази даних MariaDB
 author: Steven Spencer
 contributors: Ezequiel Bruni, William Perron, Ganna Zhyrnova, Joseph Brinkman
-tested_with: 8.5, 8.6, 9.0, 9.2
+tested_with: 8.5, 8.6, 9.0, 9.2, 10.0
 tags:
   - бази даних
   - mariadb
 ---
-
-# Сервер бази даних MariaDB
 
 ## Передумови
 
@@ -61,21 +59,6 @@ mysql_secure_installation
 ```
 
 
-!!! tip "Підказка"
-
-    Версія MariaDB-сервера, яка ввімкнена за замовчуванням у Rocky Linux 8.5, це 10.3.32. Ви можете встановити 10.5.13, увімкнувши модуль:
-    
-
-
-
-    ```bash
-    dnf module enable mariadb:10.5
-    ```
-
-
-    Потім ми встановлюємо `mariadb`. Починаючи з версії 10.4.6 MariaDB, доступні спеціальні команди MariaDB, які можна використовувати замість старих команд із префіксом `mysql`. До них відноситься раніше згадана `mysql_secure_installation`, яку тепер можна викликати за допомогою версії MariaDB `mariadb-secure-installation`.
-    
-
 Це викликає діалогове вікно:
 
 
@@ -85,31 +68,43 @@ NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
       SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
 
 In order to log into MariaDB to secure it, we'll need the current
-password for the root user.  If you've just installed MariaDB, and
-you haven't set the root password yet, the password will be blank,
-so you should just press enter here.
+password for the root user. If you've just installed MariaDB, and
+haven't set the root password yet, you should just press enter here.
 
 Enter current password for root (enter for none):
 ```
 
 
-Оскільки це абсолютно нова інсталяція, пароль адміністратора не встановлено. Тож просто натисніть тут ++enter++.
+Оскільки це абсолютно нова інсталяція, пароль root не встановлено. Просто натисніть тут ++enter++.
 
 Наступна частина діалогу продовжується:
 
 
 
 ```text
-OK, successfully used password, moving on...
+Setting the root password or using the unix_socket ensures that nobody
+can log into the MariaDB root user without the proper authorisation.
 
-Setting the root password ensures that nobody can log into the MariaDB
-root user without the proper authorization.
+Ви вже захищили свій root-акаунт, тому можете сміливо відповісти «н».
 
-Set root password? [Y/n]
+Switch to unix_socket authentication [Y/n]
 ```
 
 
-Ви абсолютно *обов'язково* бажаєте встановити пароль root. Ви захочете з’ясувати, що це має бути, і задокументувати це десь у менеджері паролів, щоб за потреби можна було його відкрити. Почніть із натискання ++enter++, щоб прийняти «Y» за умовчанням. Відкриється діалогове вікно пароля:
+Відповідь ++"n"++ та натискання ++enter++
+
+
+
+```text
+Ви вже захищили свій root-акаунт, тому можете сміливо відповісти «н».
+
+Змінити пароль root? [Y/n]
+```
+
+
+Насправді, ви не встановили пароль для користувача root **АБО** використали автентифікацію `unix_socket`, тому дайте відповідь ++"Y"++ тут ​​і натисніть ++enter++.
+
+Відкриється діалогове вікно пароля:
 
 
 
@@ -129,6 +124,8 @@ Reloading privilege tables..
  ... Success!
 ```
 
+
+Збережіть цей пароль у менеджері паролів або безпечному місці зберігання.
 
 Далі діалогове вікно має справу з анонімним користувачем:
 
@@ -215,44 +212,6 @@ Thanks for using MariaDB!
 
 
 Тепер MariaDB має бути готова до використання.
-
-
-
-### Зміни Rocky Linux 9.0
-
-Rocky Linux 9.2 використовує `mariadb-server-10.5.22` як версію mariadb-server за умовчанням. Починаючи з версії 10.4.3, на сервері автоматично вмикається новий плагін, який змінює діалогове вікно `mariadb-secure-installation`. Цей плагін є автентифікацією `unix-socket`. [Ця стаття](https://mariadb.com/kb/en/authentication-plugin-unix-socket/) добре пояснює нову функцію. По суті, під час автентифікації unix-сокетів для доступу до бази даних використовуються облікові дані користувача, який увійшов у систему. Це робить так, що якщо користувач root, наприклад, увійшов, а потім використав `mysqladmin` для створення або видалення бази даних (або будь-якої іншої функції), для доступу не потрібен пароль. Те саме працює з `mysql`. Це також означає, що немає пароля для віддаленого зламу. Це залежить від безпеки користувачів, налаштованих на сервері для захисту всіх баз даних.
-
-Друге діалогове вікно під час `mariadb-secure-installation` після встановлення пароля для адміністратора:
-
-
-
-```text
-Switch to unix_socket authentication Y/n
-```
-
-
-За замовчуванням тут є «Y», але навіть якщо ви відповідаєте «n», коли плагін увімкнено, пароль для користувача не запитуватиметься, принаймні через інтерфейс командного рядка. Ви можете вказати пароль або не вказати пароль, і вони обидва працюють:
-
-
-
-```bash
-mysql
-
-MariaDB [(none)]>
-```
-
-
-
-
-```bash
-mysql -p
-Enter password:
-
-MariaDB [(none)]>
-```
-
-
-Щоб дізнатися більше про цю функцію, перейдіть за посиланням вище. Існує спосіб вимкнути цей плагін і повернути пароль як обов’язкове поле, яке також детально описано в цьому посиланні.
 
 
 

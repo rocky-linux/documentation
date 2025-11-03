@@ -1088,6 +1088,60 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "chloetalksalot",
+      "name": "chloe",
+      "avatar_url": "https://avatars.githubusercontent.com/u/48069588?v=4",
+      "profile": "https://github.com/chloetalksalot",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "james-smith-za",
+      "name": "James Smith",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10864691?v=4",
+      "profile": "https://github.com/james-smith-za",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "LeWimbes",
+      "name": "Leon Wimbes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12753781?v=4",
+      "profile": "https://github.com/LeWimbes",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "SirObby",
+      "name": "Samuel Hautamäki",
+      "avatar_url": "https://avatars.githubusercontent.com/u/70753342?v=4",
+      "profile": "https://github.com/SirObby",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "Growl1234",
+      "name": "Growl1234",
+      "avatar_url": "https://avatars.githubusercontent.com/u/148773439?v=4",
+      "profile": "https://github.com/Growl1234",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "JATippit",
+      "name": "JATippit",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11259172?v=4",
+      "profile": "https://github.com/JATippit",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,

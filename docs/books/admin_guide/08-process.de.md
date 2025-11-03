@@ -134,7 +134,7 @@ Systemprozesse werden daher als 'Daemon's bezeichnet (***D**isk **A**nd **E**xec
 
 Wenn ein Kommando ausgeführt wird, werden die Zugangsdaten des Benutzers an den erzeugten Prozess übergeben.
 
-Standardmäßig sind die aktuelle `UID` und `GID` (des Prozesses) daher identisch mit der **tatsächlichen** `UID` und `GID` (die `UID` und `GID` des Benutzers, der den Befehl ausgeführt hat).
+Standardmäßig sind die tatsächliche `UID` und `GID` (des Prozesses) identisch mit der **tatsächlichen** `UID` und `GID` (der `UID` und `GID` des Benutzers, der den Befehl ausgeführt hat).
 
 Wenn eine `SUID` (und/oder `SGID`) für einen Befehl gesetzt wird, wird die tatsächliche `UID` (und/oder `GID`) die des Eigentümers (und/oder der Eigentümergruppe) des Befehls und nicht mehr die des Benutzers oder der Benutzergruppe, die den Befehl ausgelöst hat. Effektive und echte **UIDs** sind daher **verschieden**.
 

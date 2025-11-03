@@ -1,5 +1,5 @@
 ---
-title: LibreNMS Monitoring Server
+title: LibreNMS monitoring server
 author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 8.5, 8.6, 9.0
@@ -8,7 +8,9 @@ tags:
   - network
 ---
 
-# LibreNMS monitoring server
+!!! Warning "LibreNMS documentation not updated past Rocky Linux 8"
+
+    While the LibreNMS project still seems alive and well, based on commits and changes to the LibreNMS GitHub site, the instructions for installing and running (found here and basically unchanged on LibreNMS' site) do not work as written for Rocky Linux 10. For now, the recommendation is to hold off on a Rocky Linux 10 install until all of the changes are fully investigated. 
 
 ## Introduction
 

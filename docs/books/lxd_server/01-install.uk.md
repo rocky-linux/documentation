@@ -29,12 +29,12 @@ dnf upgrade
 
 Якщо під час процесу оновлення ядро було оновлено, перезавантажте сервер.
 
-### Репозиторій OpenZFS для 8 і 9
+### Репозиторій OpenZFS
 
 Встановіть репозиторій OpenZFS за допомогою:
 
 ```bash
-dnf install https://zfsonlinux.org/epel/zfs-release-2-2$(rpm --eval "%{dist}").noarch.rpm
+dnf install https://zfsonlinux.org/epel/zfs-release-2-8$(rpm --eval "%{dist}").noarch.rpm
 ```
 
 ## Встановіть snapd, dkms, vim і kernel-devel

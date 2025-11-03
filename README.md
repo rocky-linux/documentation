@@ -6,7 +6,7 @@
 
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-119-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-125-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Introduction
@@ -356,6 +356,14 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/npezzotti"><img src="https://avatars.githubusercontent.com/u/54044423?v=4?s=100" width="100px;" alt="npezzotti"/><br /><sub><b>npezzotti</b></sub></a><br /><a href="#content-npezzotti" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/bps86"><img src="https://avatars.githubusercontent.com/u/59677031?v=4?s=100" width="100px;" alt="Bayu Putra S"/><br /><sub><b>Bayu Putra S</b></sub></a><br /><a href="#content-bps86" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/AndoniMartin"><img src="https://avatars.githubusercontent.com/u/6407468?v=4?s=100" width="100px;" alt="Andoni Martín Reboredo"/><br /><sub><b>Andoni Martín Reboredo</b></sub></a><br /><a href="#content-AndoniMartin" title="Content">🖋</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/chloetalksalot"><img src="https://avatars.githubusercontent.com/u/48069588?v=4?s=100" width="100px;" alt="chloe"/><br /><sub><b>chloe</b></sub></a><br /><a href="#content-chloetalksalot" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/james-smith-za"><img src="https://avatars.githubusercontent.com/u/10864691?v=4?s=100" width="100px;" alt="James Smith"/><br /><sub><b>James Smith</b></sub></a><br /><a href="#content-james-smith-za" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/LeWimbes"><img src="https://avatars.githubusercontent.com/u/12753781?v=4?s=100" width="100px;" alt="Leon Wimbes"/><br /><sub><b>Leon Wimbes</b></sub></a><br /><a href="#content-LeWimbes" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/SirObby"><img src="https://avatars.githubusercontent.com/u/70753342?v=4?s=100" width="100px;" alt="Samuel Hautamäki"/><br /><sub><b>Samuel Hautamäki</b></sub></a><br /><a href="#content-SirObby" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Growl1234"><img src="https://avatars.githubusercontent.com/u/148773439?v=4?s=100" width="100px;" alt="Growl1234"/><br /><sub><b>Growl1234</b></sub></a><br /><a href="#content-Growl1234" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/JATippit"><img src="https://avatars.githubusercontent.com/u/11259172?v=4?s=100" width="100px;" alt="JATippit"/><br /><sub><b>JATippit</b></sub></a><br /><a href="#content-JATippit" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>

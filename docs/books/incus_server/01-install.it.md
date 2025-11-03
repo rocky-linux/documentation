@@ -32,7 +32,7 @@ Se durante il processo di aggiornamento sono stati effettuati aggiornamenti del 
 Installare il repository OpenZFS con:
 
 ```bash
-dnf install https://zfsonlinux.org/epel/zfs-release-2-2$(rpm --eval "%{dist}").noarch.rpm
+dnf install https://zfsonlinux.org/epel/zfs-release-2-8$(rpm --eval "%{dist}").noarch.rpm
 ```
 
 ## Installazione di `dkms`, `vim` e `kernel-devel`

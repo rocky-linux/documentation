@@ -10,19 +10,19 @@ tags:
 
 ## Introduction
 
-You cannot do much with a computer these days without network connectivity. Whether you need to update the packages on a server or just browse external websites from your laptop, you will need network access. This guide aims to provide Rocky Linux users the basic knowledge on setting up network connectivity.
+You cannot do much with a computer these days without network connectivity. Whether you need to update the packages on a server or browse external websites from your laptop, you will need network access. This guide aims to provide Rocky Linux users with the basic knowledge on setting up network connectivity.
 
-Much has changed with network configuration as of Rocky Linux 10. One of the major changes is the removal of Network-Scripts (deprecated in Rocky Linux 9) to the use of Network Manager and key files. `NetworkManager` as of 10, insists on `keyfiles` over the previous `ifcfg` files. This guide attempts to walk you through the use of Network Manager and the latest changes within Rocky Linux 10.
+Much has changed with network configuration as of Rocky Linux 10. One of the major changes is the removal of Network-Scripts (deprecated in Rocky Linux 9) and the switch to Network Manager and key files. `NetworkManager` as of 10, insists on `keyfiles` over the previous `ifcfg` files. This guide aims to walk you through using Network Manager and the latest changes in Rocky Linux 10.
 
 ## Prerequisites
 
 - A certain amount of comfort operating from the command line
-- Elevated or administrative privileges on the system (for example root, `sudo` and so on)
+- Elevated or administrative privileges on the system (for example, root, `sudo`, and so on)
 - Optional: familiarity with networking concepts
 
 ## Using NetworkManager service
 
-At the user level, the management of the networking stack is with `NetworkManager`. This tool runs as a service. You can check its state with the following command:
+At the user level, network stack management is handled by `NetworkManager`. This tool runs as a service. You can check its state with the following command:
 
 ```bash
 systemctl status NetworkManager
@@ -30,7 +30,7 @@ systemctl status NetworkManager
 
 ## Configuration files
 
-As noted at the beginning, the configuration files by default are now key files. You can see how `NetworkManager` prioritizes these files by running the following command:
+As noted at the beginning, the configuration files are now key files by default. You can see how `NetworkManager` prioritizes these files by running the following command:
 
 ```
 NetworkManager --print-config
@@ -57,11 +57,11 @@ configure-and-quit=no
 # no-auto-default file "/var/lib/NetworkManager/no-auto-default.state"
 ```
 
-Note at the top of the configuration file the reference to `keyfile`. Any time you run any of the `NetworkManager` tools to configure an interface (example: `nmcli` or `nmtui`), it will automatically build or update key files.
+Note the reference to' keyfile' at the top of the configuration file. Whenever you run any of the `NetworkManager` tools to configure an interface (e.g., `nmcli` or `nmtui`), they will automatically build or update key files.
 
 !!! tip "Configuration Storage Location"
 
-    With Rocky Linux 10, the new default storage location for the key files is in `/etc/NetworkManager/system-connections`. 
+    In Rocky Linux 10, the default location for key files is `/etc/NetworkManager/system-connections`. 
 
 The primary (but not the only) utility used for configuring a network interface is the `nmtui` command. You can also do this with the `nmcli` command, but it is much less intuitive. You can show the interface as it is currently configured using `nmcli` with:
 
@@ -89,12 +89,12 @@ IP6.ROUTE[1]:                           dst = fe80::/64, nh = ::, mt = 1024
 
 !!! tip "**Tips:**"  
 
-    There are a few ways or mechanisms by which systems are assigned their IP configuration information.
-    The two most common methods are - **Static IP configuration** scheme and **Dynamic IP configuration** scheme.
+    There are several mechanisms by which systems obtain their IP configuration information.
+    The two most common methods are the **Static IP configuration** and **Dynamic IP configuration** schemes.
         
-    The static IP configuration scheme is very popular on server class systems or networks.
+    The static IP configuration scheme is very popular on server-class systems or networks.
 
-    The dynamic IP approach is popular on home and office networks or workstation and desktop class systems in a business environment.  The dynamic scheme usually needs *something* extra that is locally available and that can supply proper IP configuration information to requesting workstations and desktops. This *something* is called the Dynamic Host Configuration Protocol (DHCP). On a home network, and even on most business networks, this service is provided by a DHCP Server configured for the purpose. This can be a separate server or part of a router configuration.
+    The dynamic IP approach is popular on home and office networks, as well as on workstation- and desktop-class systems in a business environment.  The dynamic scheme usually needs *something* extra that is locally available and that can supply proper IP configuration information to requesting workstations and desktops. This *something* is called the Dynamic Host Configuration Protocol (DHCP). On a home network, and even on most business networks, this service is provided by a DHCP Server configured for the purpose. This can be a separate server or part of a router configuration.
 
 ## IP address
 
@@ -110,7 +110,7 @@ In the previous section, the displayed configuration for the interface `enp0s3` 
 
     ![nmtui_edit](images/nmtui_edit.png)
 
- 4. Once completed, you will be on the screen showing your current configuration. What you need to do is switch from "Manual" to "Automatic" so hit the ++tab++ key several times until you see "Manual" highlighted and then hit ++enter++.
+ 4. Once completed, you will be on the screen showing your current configuration. What you need to do is switch from "Manual" to "Automatic", so hit the ++tab++ key several times until you see "Manual" highlighted, and then hit ++enter++.
 
     ![nmtui_manual](images/nmtui_manual.png)
 
@@ -118,21 +118,21 @@ In the previous section, the displayed configuration for the interface `enp0s3` 
 
     ![nmtui_automatic](images/nmtui_automatic.png)
 
- 6. Once you have switched the interface over to "Automatic" you need to remove the statically assigned IP. Hit the ++tab++ key until you see the highlighting of "Remove" next to the IP address and hit ++enter++.
+ 6. Once you have switched the interface over to "Automatic", you need to remove the statically assigned IP. Hit the ++tab++ key until you see the highlighting of "Remove" next to the IP address and hit ++enter++.
 
     ![nmtui_remove](images/nmtui_remove.png)
 
  7. Finally, hit the ++tab++ key several times until you get to the bottom of the `nmtui` screen showing the highlighting of "OK" and hit ++enter++.
 
-You can deactivate and reactivate your interface with `nmtui` as well, but instead let's do this with `nmcli`. In this way you can string the deactivation of the interface and the reactivation of the interface so that the interface is never down for long:
+You can deactivate and reactivate your interface with `nmtui`, but let's do it with `nmcli` instead. In this way, you can string the deactivation of the interface and the reactivation of the interface so that the interface is never down for long:
 
 ```
 nmcli con down enp0s3 && nmcli con up enp0s3
 ```
 
-Think of this as the equal to the old `ifdown enp0s3 && ifup enp0s3` used in older versions of the operating system.
+Think of this as the equivalent of the old `ifdown enp0s3 && ifup enp0s3` used in older versions of the operating system.
 
-To verify that it worked, go ahead and check using either the `ip addr` command, or the `nmcli device show enp0s3` command used earlier.
+To verify that it worked, go ahead and check using either the `ip addr` command or the `nmcli device show enp0s3` command used earlier.
 
 ```
 ip addr
@@ -151,29 +151,29 @@ inet6 fe80::a00:27ff:feba:ce88/64 scope link noprefixroute
 
 ### IP address changing with `nmcli`
 
-Using the `nmtui` is nice, but if you just want to quickly reconfigure the network interface without all of the time between screens, you probably will want to use `nmcli` by itself. Examine the example earlier of a statically assigned IP and the steps to reconfigure the interface to DHCP by using only `nmcli`.
+Using `nmtui` is nice, but if you want to quickly reconfigure the network interface without all the time spent switching between screens, you probably want to use `nmcli` by itself. Examine the earlier example of a statically assigned IP and the steps to reconfigure the interface to DHCP using only `nmcli`.
 
-Before starting, be aware that to reconfigure the interface to DHCP you need to:
+Before starting, be aware that to reconfigure the interface to DHCP, you need to:
 
 - Remove the IPv4 Gateway
 - Remove the IPv4 Address that you statically assigned
 - Change the IPv4 Method to automatic
 - Down and Up the interface
 
-Note too, that you are not using examples that tell you to use -ipv4.address etc. These do not change the interface completely. To do that you must set the ipv4.address and the ipv4.gateway to an empty string. Again, to save as much time as possible with your command, string them all together in one line:
+Note too that you are not using examples that tell you to use -ipv4.address etc. These do not completely change the interface. To do that, you must set the IPv4.address and the IPv4.gateway to an empty string. Again, to save as much time as possible with your command, string them all together in one line:
 
 ```bash
 nmcli con mod enp0s3 ipv4.gateway '' && nmcli con mod enp0s3 ipv4.address '' && nmcli con mod enp0s3 ipv4.method auto && nmcli con down enp0s3 && nmcli con up enp0s3
 ```
 
-Running the `ip addr` command again, should show you the exact same results as when you ran the changes with `nmtui`. You could do everything in reverse as well (changing your DHCP address to a static one). To do this, you would run the commands in reverse starting with changing the `ipv4.method` to manual, setting the `ipv4.gateway` and then setting the `ipv4.address`. Since in all of these examples you are completely reconfiguring the interface and not adding or subtracting values to it, you would not use the examples out there that talk about using `+ipv4.method`,`+ipv4.gateway`, and `+ipv4.address`. If you used these commands instead of the ones in the examples earlier, you would end up with an interface with *BOTH* a DHCP assigned address and a statically assigned one. That said, this can sometimes be very handy. If you have a web service listening on one IP lets say, and an `sftp` server listening on another IP. Having a method of assigning multiple IP's to an interface is quite useful.
+Running the `ip addr` command again should show you the same results as when you ran the changes with `nmtui`. You could also do everything in reverse (changing your DHCP address to a static one). To do this, you would run the commands in reverse order, starting with changing `ipv4.method` to manual, then setting `ipv4.gateway`, and finally setting `ipv4.address`. Since in all of these examples you are completely reconfiguring the interface and not adding or subtracting values to it, you would not use the examples that talk about `+ipv4.method`, `+ipv4.gateway`, and `+ipv4.address`. If you used these commands instead of the ones in the examples earlier, you would end up with an interface with *BOTH* a DHCP-assigned address and a statically assigned one. That said, this can be very handy at times. If you have a web service listening on one IP, let's say, and an `sftp` server listening on another IP. Having a way to assign multiple IPs to an interface is quite helpful.
 
 ## DNS resolution
 
-You can set the DNS servers with either `nmtui` or `nmcli`. While the `nmtui` interface is easy to navigate and much more intuitive, the process is much slower. Doing this with the `nmcli` is much faster. In the case of the DHCP assigned address, it is not usually necessary to set DNS servers as they normally get forwarded on from the DHCP server. That said, you *can* statically add DNS servers to a DHCP interface. In the case of the statically assigned interface, you will *HAVE* to do this as it will need to know how to get DNS resolution and will not have an automatically assigned method.
+You can set the DNS servers with either `nmtui` or `nmcli`. While the `nmtui` interface is easy to navigate and much more intuitive, the process is much slower. Doing this with the `nmcli` is much faster. For DHCP-assigned addresses, it is usually not necessary to set DNS servers, as they are typically forwarded by the DHCP server. That said, you *can* statically add DNS servers to a DHCP interface. In the case of the statically assigned interface, you will *HAVE* to do this, as it will need to know how to resolve DNS and will not have an automatically assigned method.
 
-Since the best example for all of this is a statically assigned IP, let's return to your original statically assigned address in the example interface (enp0s3). Before changing the DNS values, you need to see what they are currently.
-To get proper name resolution, remove the already set DNS servers and add different ones. Currently the `ipv4.dns` is `8.8.8.8,8.8.4.4,192.168.1.1`. In this case, you do not need to set the ipv4.dns to an empty string. You can use the following command to replace your values:
+Since the best example of all this is a statically assigned IP address, let's return to the example interface (enp0s3) and its statically assigned address. Before changing the DNS values, you need to check their current values.
+To get proper name resolution, remove the existing DNS servers and add new ones. Currently, the `ipv4.dns` is `8.8.8.8,8.8.4.4,192.168.1.1`. In this case, you do not need to set the ipv4.dns to an empty string. You can use the following command to replace your values:
 
 ```bash
 nmcli con mod enp0s3 ipv4.dns '208.67.222.222,208.67.220.220,192.168.1.1'
@@ -198,7 +198,7 @@ PING google.com (172.217.4.46) 56(84) bytes of data.
 
 ## Using the `ip` utility
 
-The `ip` command (provided by the *iproute2* package) is a powerful tool to get information and configure the network of a modern Linux system such as Rocky Linux.
+The `ip` command (provided by the *iproute2* package) is a powerful tool for getting information and configuring the network on a modern Linux system such as Rocky Linux.
 
 In this example, the assumptions are the following parameters:
 
@@ -220,13 +220,13 @@ ip a
     * use the `-c` flag to get a more readable coloured output: `ip -c a`.
     * `ip` accepts abbreviation so `ip a`, `ip addr` and `ip address` are equivalent
 
-### Bring interface up or down
+### Bring the interface up or down
 
 !!! note
 
-    While it is still possible to use this method to bring the interface up and down in Rocky Linux 10, the command reacts much slower than simply using the `nmcli` command.
+    While it is still possible to use this method to bring the interface up and down in Rocky Linux 10, the command is much slower than simply using `nmcli`.
 
-To bring the *enp0s3* down and up again you can just use:
+To bring the *enp0s3* down and up again, you can just use:
 
 ```bash
 ip link set enp0s3 down && ip link set enp0s3 up

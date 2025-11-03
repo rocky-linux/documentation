@@ -6,11 +6,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 ## Introduction
 
-NVIDIA^&reg;^ is one of the most popular GPU manufacturers. You can install NVIDIA GPU drivers in more than one way. This guide uses NVIDIA's official repository to install their drivers. Therefore, [NVIDIA's installation guide](https://docs.nvidia.com/cuda/pdf/CUDA_Installation_Guide_Linux.pdf) is heavily referenced here.
-
-!!! Note
-
-    The link for pre-installation actions in NVIDIA's official guide is broken. To install the NVIDIA driver, you must install the necessary utilities and dependencies from their official repository.
+NVIDIA^&reg;^ is one of the most popular GPU manufacturers. You can install NVIDIA GPU drivers in more than one way. This guide uses NVIDIA's official repository to install their drivers. Therefore, [NVIDIA Driver Installation Guide](https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/index.html) is heavily referenced here.
 
 Some other alternative ways to install NVIDIA drivers include:
 
@@ -44,13 +40,7 @@ sudo dnf groupinstall "Development Tools" -y
 The `kernel-devel` package provides the necessary headers and tools to build kernel modules:
 
 ```bash
-sudo dnf install kernel-devel -y
-```
-
-Dynamic Kernel Module Support (DKMS) is a program used to rebuild kernel modules automatically:
-
-```bash
-sudo dnf install dkms -y
+sudo dnf install kernel-devel-matched kernel-headers -y
 ```
 
 ## Install NVIDIA drivers
@@ -59,24 +49,26 @@ After installing the necessary prerequisites, it is time to install the NVIDIA d
 
 Add the official NVIDIA repository with the following command:
 
-!!! Note
-
-    If you use Rocky 8, replace `rhel9` in the file path with `rhel8`.
-
 ```bash
-sudo dnf config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/rhel9/$(uname -i)/cuda-rhel9.repo
+sudo dnf config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/rhel10/$(uname -i)/cuda-rhel10.repo
 ```
 
-Next, install a set of packages necessary for building and installing kernel modules:
+Next, clean DNF repository cache:
 
 ```bash
-sudo dnf install kernel-headers-$(uname -r) kernel-devel-$(uname -r) tar bzip2 make automake gcc gcc-c++ pciutils elfutils-libelf-devel libglvnd-opengl libglvnd-glx libglvnd-devel acpid pkgconf dkms -y
+sudo dnf clean expire-cache
 ```
 
-Install the latest NVIDIA driver module for your system:
+Finally, install the latest NVIDIA driver for your system. For open kernel modules, run:
 
 ```bash
-sudo dnf module install nvidia-driver:latest-dkms -y
+sudo dnf install nvidia-open -y
+```
+
+While for proprietary kernel modules, run:
+
+```bash
+sudo dnf install cuda-drivers -y
 ```
 
 ## Disable Nouveau

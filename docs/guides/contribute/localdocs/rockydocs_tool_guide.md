@@ -1,7 +1,7 @@
 ---
 title: RockyDocs Script Method
 author: Wale Soyinka
-contributors: 
+contributors: Ganna Zhyrnova
 update: 11-Sep-2025
 ---
 
@@ -11,7 +11,7 @@ This document walks you through using the automated `rockydocs.sh` script to rec
 
 The RockyDocs script provides a modern, automated approach that eliminates the manual setup complexity found in other methods while delivering exact production behavior.
 
-Running a local copy of the documentation website might be useful in the following scenarios:
+Running a local copy of the documentation website might be helpful in the following scenarios:
 
 - You are a documentation author and want to preview exactly how your content will appear on the live website
 - You want to test your contributions across multiple Rocky Linux versions (8, 9, and 10) locally
@@ -25,9 +25,9 @@ The RockyDocs script automatically handles most dependencies, but you'll need:
 - A Linux or macOS system (Windows with WSL2 should work)
 - `git` installed on your system
 - Either Python 3.8+ with `pip` OR Docker (the script supports both environments)
-- About 2GB of free disk space for the full environment
+- About 2GB of free disk space for the whole environment
 
-The script will automatically check for and install other required tools like `mkdocs`, `mike`, and various plugins.
+The script will automatically check for and install other required tools, such as `mkdocs`, `mike`, and various plugins.
 
 ## Setup the content environment
 
@@ -49,10 +49,10 @@ The script will automatically check for and install other required tools like `m
 
 ## Quick start options with the RockyDocs script
 
-The RockyDocs script provides multiple workflow options to match different contributor needs. Choose the option that best fits your writing and review workflow.
+The RockyDocs script provides multiple workflow options to match different contributor needs. You can choose the option that best fits your writing and review workflow.
 
 !!! note "Understanding the Three-Step Process"
-    **Setup** (one-time): Creates a build environment with Python virtual environment and installs MkDocs tools. Also sets the language configuration (minimal or full) that will be used for all subsequent deployments. This creates a separate workspace directory for build files while keeping your content repository clean.
+    **Setup** (one-time): Creates a build environment with a Python virtual environment and installs MkDocs tools. Also sets the language configuration (minimal or complete) that will be used for all subsequent deployments. This creates a separate workspace directory for build files while keeping your content repository clean.
     
     **Deploy**: Builds all Rocky Linux versions (8, 9, 10) into a complete versioned website using Mike and the language configuration set during setup. This creates the multi-version structure you see on docs.rockylinux.org.
     
@@ -81,7 +81,7 @@ The script automatically saves your workspace preference and reuses it for subse
 
 ### Option 1: Production-Identical Preview (Recommended for Final Review)
 
-This option provides the exact same experience as the live docs.rockylinux.org website, perfect for final content review and testing.
+This option provides the same experience as the live docs.rockylinux.org website, perfect for final content review and testing.
 
 1. **Setup the environment** (one-time setup):
 
@@ -106,7 +106,7 @@ This option provides the exact same experience as the live docs.rockylinux.org w
     ```
 
     !!! tip "Static Serving Mode"
-        This serves pre-built static files exactly like production with no redirects. Perfect for verifying how your content will look on the live site. The root URL (`http://localhost:8000/`) serves the latest content directly, just like docs.rockylinux.org.
+        This serves pre-built static files exactly as in production, with no redirects. Perfect for verifying how your content will look on the live site. The root URL (`http://localhost:8000/`) serves the latest content directly, just as docs.rockylinux.org does.
         
         **Note**: You must run `--deploy` again to see content changes, as this serves pre-built files.
     
@@ -147,7 +147,7 @@ This option automatically refreshes your browser when you edit content files, id
     ```
 
     !!! tip "Live Development Mode"
-        This provides live reloading - edit any markdown file in your `docs/` directory and see changes instantly in your browser. Perfect for active writing and editing content. Changes appear automatically without needing to run `--deploy` again.
+        This provides live reloading: edit any Markdown file in your `docs/` directory and see changes instantly in your browser. Perfect for active writing and editing content. Changes appear automatically without needing to run `--deploy` again.
         
         **Note**: May include redirects and behavior that differs slightly from production. Use static mode for final verification.
 
@@ -180,10 +180,10 @@ This option runs two servers simultaneously, giving you both full site navigatio
     !!! tip "Dual Server Mode"
         This runs two servers simultaneously for the best of both worlds:
         
-        - **Port 8000**: Mike serve with full version selector and site navigation
+        - **Port 8000**: Mike serves with full version selector and site navigation
         - **Port 8001**: MkDocs live reload for instant content updates
         
-        Switch between ports depending on whether you need live editing (8001) or full site testing (8000). This mode is ideal for contributors who want both immediate content feedback and complete site navigation testing.
+        Switch between ports depending on whether you need live editing (8001) or complete site testing (8000). This mode is ideal for contributors who want both immediate content feedback and complete site navigation testing.
 
 ### Option 4: Docker Environment
 
@@ -192,7 +192,7 @@ If you prefer containerized environments or don't want to install Python depende
 !!! note "Docker Environment Benefits"
     - **Isolated Environment**: No impact on your local Python installation or system dependencies
     - **Consistent Builds**: Same container environment across different machines
-    - **Easy Cleanup**: Simply remove containers and images when done
+    - **Easy Cleanup**: Remove containers and images when done
     - **All Serving Modes**: Supports static, live, and dual server modes in containers
 
 1. **Setup the Docker environment**:
@@ -452,9 +452,9 @@ The symlink acts as a "smart pointer" that MkDocs follows to find content, while
 ## Notes
 
 - The RockyDocs script creates a workspace **outside** your content repository to keep your git workflow clean
-- All environments are completely local - nothing is uploaded or published automatically
+- All environments are entirely local - nothing is uploaded or published automatically
 - The script automatically manages dependencies, port conflicts, and cleanup
 - Both Python virtual environment and Docker methods provide identical functionality
-- The local website includes the exact same theme, navigation, and features as the production site
+- The local website includes the same theme, navigation, and features as the production site
 - You can safely experiment with content changes - your local environment is completely isolated
 - The script automatically preserves git history for accurate document timestamps

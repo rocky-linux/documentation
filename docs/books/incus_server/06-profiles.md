@@ -216,15 +216,30 @@ Another listing will reveal that the container has the DHCP address assigned:
 
 ```
 
-### Rocky Linux 9.x `macvlan` - The static IP fix
+### Rocky Linux 9 and 10 `macvlan` - The static IP fix
 
-When statically assigning an IP address, things get even more convoluted. Since `network-scripts` is now deprecated in Rocky Linux 9.x, the only way to do this is through static assignment, and because of the way the containers use the network, you are not going to be able to set the route with a normal `ip route` statement. The problem is that the interface assigned when applying the `macvlan` profile (eth0 in this case), is not manageable with Network Manager. The fix is to rename the container's network interface after restarting and assign the static IP. You can do this with a script and run (again) within root's crontab. Do this with the `ip` command.
+When statically assigning an IP address, things get even more convoluted. Since `network-scripts` is now deprecated in Rocky Linux 9.x, the only way to do this is through static assignment, and because of the way the containers use the network, you are not going to be able to set the route with a normal `ip route` statement. The problem is that the interface assigned when applying the `macvlan` profile (eth0 in this case) is not manageable with Network Manager. The fix is to rename the container's network interface after restarting and assign the static IP. You can do this with a script and run (again) within root's crontab. Do this with the `ip` command. In addition to setting the IP address, you will need to configure DNS for name resolution. Again, this is not as easy as running `nmtui` to modify the connection, as the connection does not exist within Network Manager. The solution is to create a text file containing the DNS servers you want to use.
 
 To do this, you need to gain shell access to the container again:
 
 ```bash
 incus shell rockylinux-test-9
 ```
+
+Create a text file in `/usr/local/sbin/`:
+
+```bash
+vi /usr/local/sbin/dns.txt
+```
+
+Add the following to the file:
+
+```text
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+```
+
+Save the file and exit. This shows that you are using Google's open DNS servers. If you want to use different DNS servers, replace the IP addresses shown with your preferred DNS servers.
 
 Next, you are going to create a bash script in `/usr/local/sbin` called "static":
 
@@ -242,6 +257,7 @@ The contents of this script are not complicated:
 /usr/sbin/ip link set dev net0 up
 sleep 2
 /usr/sbin/ip route add default via 192.168.1.1
+/usr/bin/cat /usr/local/sbin/dns.txt > /etc/resolv.conf
 ```
 
 What are you doing here?
@@ -251,6 +267,7 @@ What are you doing here?
 * you bring up the new "net0" interface
 * you add a 2-second wait for the interface to be active before adding the default route
 * you need to add the default route for your interface
+* you need to populate the `resolv.conf` file for DNS resolution
 
 Make your script executable with the following:
 

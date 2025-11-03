@@ -1,96 +1,68 @@
 ---
-title: Decoder
-author: Christine Belzie
-contributors: Steven Spencer, Ganna Zhyrnova 
+title: Decoder QR Code Tool
+author: Wale Soyinka
+contributors: Ganna Zhyrnova
+tags:
+  - gnome
+  - desktop
+  - qr code
+  - flatpak
 ---
 
-## Introduction
+## Scan and Generate QR Codes
 
-Do you need a QR code for your website, application, or social media profiles? Check out Decoder! The application lets you create, save, and export QR codes.
+**Decoder** is a simple and elegant utility for the GNOME desktop designed for a single purpose: working with QR codes. In a world where QR codes are used for everything from sharing Wi-Fi passwords to accessing restaurant menus, having a dedicated tool to handle them is essential.
 
-## Assumptions
+Decoder provides two primary functions in a clean, focused interface:
 
-This guide assumes you have the following:
+1. **Scanning:** Decodes QR codes using your computer's webcam or an image file.
+2. **Generating:** Creates QR codes from any text you provide.
 
-- Rocky Linux
-- Flatpak
-- FlatHub
+Its tight integration with the GNOME desktop makes it feel like a natural part of the operating system.
 
-## Installation Process
+## Installation
 
-1. Go to the [Flathub website](https://flathub.org/), type "Decoder" in the search bar, and click on **Install**. ![Screenshot of the install button highlighted by a red rectangle](images/01_decoder.png)
+The recommended way to install Decoder on Rocky Linux is as a Flatpak from the Flathub repository. This method ensures you have the latest version of the application in a secure, sandboxed environment.
 
-    ![manual install script and run script](images/decoder_install.png)
+### 1. Enable Flathub
 
-2. Copy the manual install script and run it in a terminal:
+If you have not already done so, please make sure Flatpak is installed and the Flathub remote is configured on your system.
 
-    ```bash
-    flatpak install flathub com.belmoussaoui.Decoder
-    ```
+```bash
+# Install the Flatpak package
+sudo dnf install flatpak
 
-3. Finally, copy the run command and run that in your terminal:
+# Add the Flathub remote repository
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+```
 
-    ```bash
-    flatpak run com.belmoussaoui.Decoder
-    ```
+### 2. Install Decoder
 
-## How to Create a QR Code
+Once Flathub is enabled, you can install Decoder with a single command:
 
-Two types of QR codes are available. Choose the option that best suits your needs:
+```bash
+flatpak install flathub com.belmoussaoui.Decoder
+```
 
-- [Text](#text)
-- [Wifi](#wifi)
+## How to Use Decoder
 
-### Text
+After installation, you can launch Decoder from the GNOME Activities Overview.
 
-![Screenshot of the test, description and URL, and Create buttons](images/02_decoder-text.png)
+### Scanning a QR Code
 
-1. Click on the **Text** button
-2. Add a link to your desired website and add a description if you want one
-3. Click on **Create**
+When you first open Decoder, it is ready to scan. You have two options:
 
-    ![Screenshot of the Save and Export screen with arrows](images/03_decoder-text.png)
+* **Scan with Camera:** Click the camera icon in the top-left. A window will appear showing your webcam's feed. Point the webcam at a QR code to scan it in real-time.
+* **Scan from Image:** Click the image icon in the top-right. This will open a file chooser, allowing you to select a saved image or screenshot that contains a QR code.
 
-4. Click on **Save**
-5. Click on **Export**
+Once a code is scanned, Decoder intelligently parses its content. If the code contains a website URL, it will display the link with a button to open it in your default web browser. If it contains plain text, it will display the text with a convenient button to copy it to your clipboard.
 
-### Wifi
+### Generating a QR Code
 
-![Screenshot showing all of the Wifi options with numbers and arrows](images/01_decoder-wifi.png)
+To create your own QR code, click the "Generate" button at the top of the Decoder window.
 
-1. Click on the **Wifi** button
-2. Add the network name
-3. Add the password
-4. Select if the network is hidden or not hidden
-5. Select the encryption algorithm used
-6. Click on **Export**
-7. Click on **Save**
+1. A text box will appear. Type or paste the text you wish to encode into this box.
+2. As you type, a QR code representing your text is instantly generated on the right.
+3. You can then click the **"Save as Image..."** button to save the QR code as a `.png` file, or click the **"Copy to Clipboard"** button to paste it into other applications.
 
-### How to Scan a QR code
-
-In addition to creating and generating QR codes, you can use Decoder to scan QR codes you saved on your computer. Do the following:
-
-![Screenshot of a red circle on a grey button that has the word "Scan" written in black.](images/01_decoder-scan.png)
-
-1. Click on **Scan**
-
-    ![Screenshot of the rectangular button with the words "From a Screenshot" written in white.](images/02_decoder-scan.png)
-
-2. Click on  **From a Screenshot**
-
-    ![Screenshot of grey square surrounding options menu, and red square surrounding the "Take a Screenshot button"](images/03_decoder-scan.png)
-
-3. Pick your desired effects and click on **Take a Screenshot**
-
-    ![Screenshot of a red arrow pointing at a blue button that has the word "Share" written in white](images/04_decoder-scan.png)
-
-4. Click on **Share**
-5. Scan the QR code with your mobile device
-
-!!! note
-
-    To scan a QR code directly from your computer, you must grant the app access to your computer's camera.
-
-## Conclusion
-
-Whether it is to share a restaurant's Wi-Fi with friends, grow your business, or network with other professionals at a conference, Decoder can ease creating and scanning QR codes. Are you eager to learn more about this application or have more ideas for it? [Submit an issue to its repository at GitLab](https://gitlab.gnome.org/World/decoder/-/issues).
+Decoder is a perfect example of the GNOME design philosophy: a simple, beautiful, and highly effective tool that does one job exceptionally well.
