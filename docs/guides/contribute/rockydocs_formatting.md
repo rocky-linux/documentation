@@ -179,11 +179,11 @@ Formatting tabbed content is similar to admonitions. Instead of three exclamatio
 
 === "9"
 
-    Use this procedure if your installation was performed using the whole operating system or a Live image.
+    Use this procedure if you performed your installation with the whole operating system or a Live image.
 
 === "9-minimal"
 
-    Use this procedure if your operating system was installed from the minimal ISO.
+    Use this procedure if you installed your operating system from the minimal ISO.
 
 Which would look like this in your editor:
 
@@ -191,15 +191,15 @@ Which would look like this in your editor:
 === "9"
 
 
-    Use this procedure if your installation was performed using the whole operating system or a Live image.
+    Use this procedure if you performed your installation with the whole operating system or a Live image.
 
 === "9-minimal"
 
-    Use this procedure if your operating system installation was with the minimal ISO.
+    Use this procedure if you installed your operating system from the minimal ISO.
  
 ```
 
-Just to remind you, everything within the section must continue to use 4-space indentation until the section is completed. This is a convenient feature!
+Just to remind you, everything within the section must continue to use 4-space indentation until the completion of this section. This is a convenient feature!
 
 ## Numbered lists
 
@@ -363,7 +363,7 @@ A list of accepted keyboard commands [in this document](https://facelessuser.git
 
 ## Forcing line breaks
 
-There are times when a simple ++enter++ on the keyboard will not give you a new line in markdown. This sometimes occurs when bulleted items contain many formatting characters. I suggest adding a line break to better format text as well. In cases like these, you need to add two spaces to the end of the line where you want a new line.  Since spaces will not be visible in some markdown editors, this example shows the spaces being entered:
+There are times when a simple ++enter++ on the keyboard will not give you a new line in markdown. This sometimes occurs when bulleted items contain many formatting characters. The suggestion is to add a line break to better format text as well. In cases like these, you need to add two spaces to the end of the line where you want a new line.  Since spaces will not be visible in some markdown editors, this example shows the spaces being entered:
 
 * **A bullet item with extra formatting** ++space+space++
 * **Another item**
