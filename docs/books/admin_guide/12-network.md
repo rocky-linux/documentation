@@ -228,9 +228,9 @@ The actual length of IPv4 header = The value of the IHL field * 4
 
 **Header Checksum**: This field will be recalculated every time the datagram passes through the router, mainly due to the decreasing TTL field causing changes in the header. This field only verifies the header (excluding the data part). If other fields remain unchanged and only the TTL changes, the checksum will be updated to a new value (non-zero) to ensure that the header has not been tampered with or damaged during transmission.
 
-**Source Address**: IPv4 address of the datagram sender
+**Source address**: IPv4 address of the datagram sender
 
-**Destination Address**: IPv4 address of the datagram receiver
+**Destination address**: IPv4 address of the datagram receiver
 
 **Options**: Optional field, with a length range of 0-40 bytes. It is only used when the IHL is greater than 5. The length of this field must be an integer multiple of 4 bytes (if the length is less than 4 bytes, use the **padding** field for padding).
 
@@ -242,15 +242,15 @@ The actual length of IPv4 header = The value of the IHL field * 4
 
 IPv6 datagrams consist of three parts:
 
-* Basic Header
-* Extension Header
+* Basic header
+* Extension header
 * Upper Layer Protocol Data Unit
 
-In some books, the Extendsion Header and Upper Layer Protocol Data Unit are collectively referred to as the **Payload**.
+In some books, the Extended header and Upper Layer Protocol Data Unit are collectively referred to as the **Payload**.
 
 ![](./images/IPv6-basic-header.png)
 
-The fixed length of the Basic Header is 40 bytes and it is fixed to 8 fields:
+The fixed length of the Basic header is 40 bytes and it is fixed to 8 fields:
 
 **Version**: Help routers identify protocol versions. For IPv6, the value here is 0110 (Binary 0110 is equivalent to decimal 6).
 
@@ -258,9 +258,9 @@ The fixed length of the Basic Header is 40 bytes and it is fixed to 8 fields:
 
 **Flow Label**: This IPv6 new field is used to control packet flow. A non-zero value in this field means that the packet should be treated specially; i.e., the packet should not be sent through different routes to reach the destination but rather use the same path. An advantage to this is that the receiving end doesn’t have to reorder the package, thus speeding the process. This field helps avoid reordering data packets and is specifically designed for streaming media/live media.
 
-**Payload Length**: Indicate the size of the payload. This field can only represent a Payload with a maximum length of 65535 bytes. In case the length of the payload is greater than 65535 bytes, then the Payload Length field will be set to 0 and the jumbo payload option is used in the Hop-by-Hop Options Extension Header. 
+**Payload Length**: Indicate the size of the payload. This field can only represent a Payload with a maximum length of 65535 bytes. In case the length of the payload is greater than 65535 bytes, then the payload length field will be set to 0 and the jumbo payload option is used in the Hop-by-Hop Options extension header. 
 
-**Next Header**: Used to indicate the type of packet header after the Basic Header. If there is a first Extension Header, it represents the type of the first Extension Header. Otherwise, it represents the protocol type used by the upper layer, such as 6 (TCP) and 17 (UDP).
+**Next header**: Used to indicate the type of packet header after the basic header. If there is a first extension header, it represents the type of the first extension header. Otherwise, it represents the protocol type used by the upper layer, such as 6 (TCP) and 17 (UDP).
 
 **Hop Limit**: This field is equivalent to Time To Live (TTL) in IPv4 datagrams.
 
@@ -272,40 +272,40 @@ The fixed length of the Basic Header is 40 bytes and it is fixed to 8 fields:
 
 In IPv4 datagrams, the IPv4 header contains optional fields such as Options, which include Security, Timestamp, Record Route, etc. These Options can expand the length of the IPv4 header from 20 bytes to 60 bytes. During the forwarding process, handling IPv4 datagrams carrying these Options can consume a significant amount of device resources, so it is rarely used in practice.
 
-IPv6 removes these Options from the IPv6 Basic Header and places them in the Extension Header, which is placed between the IPv6 Basic Header and the Upper Layer Protocol Data Unit. 
+IPv6 removes these Options from the IPv6 basic header and places them in the extension header, which is placed between the IPv6 Basic header and the Upper Layer Protocol Data Unit. 
 
-An IPv6 packet can contain 0, 1, or multiple Extension Headers, which are only added by the sender when special processing is required by the device or destination node. 
+An IPv6 packet can contain 0, 1, or multiple extension headers, which are only added by the sender when special processing is required by the device or destination node. 
 
-Unlike the IPv4 Options field (which can be extended up to 40 bytes and requires continuous storage), the IPv6 Extension Header adopts a chain structure and has no fixed length limit, making it more scalable in the future. Its 8 byte alignment mechanism is implemented through the Next Header field, which ensures processing efficiency and avoids fragment overhead.
+Unlike the IPv4 Options field (which can be extended up to 40 bytes and requires continuous storage), the IPv6 extension header adopts a chain structure and has no fixed length limit, making it more scalable in the future. Its 8 byte alignment mechanism is implemented through the Next header field, which ensures processing efficiency and avoids fragmentation overhead.
 
-**Next Header**: This field has the same function as the Next Header field in the Basic Header.
+**Next header**: This field has the same function as the Next header field in the Basic header.
 
-**Extension Header Len**: Indicate the length of the Extension Header (excluding the length of the Next Header).
+**Extension header Len**: Indicate the length of the extension header (excluding the length of the Next header).
 
-**Extension Header Data**: The content of the Extension Header is a combination of a series of Option fields and Padding fields.
+**Extension header Data**: The content of the extension header is a combination of a series of Option fields and Padding fields.
 
-Currently, RFC defines the following types of Extension Headers:
+Currently, RFC defines the following types of extension headers:
 
-* Hop-by-Hop Options Header (Next Header field value is 0) - Must be handled by all routers in the path.
-* Destination Options Header (Next Header field value is 60) - Only processed by the destination node.
-* Routing Header (Next Header field value is 43) - This Extension Header is similar to the Loose Source and Record Route options in IPv4.
-* Fragment Header (Next Header field value is 44) - Like IPv4 packets, the length of IPv6 packets to be forwarded cannot exceed the maximum transmission unit (MTU). When the packet length exceeds the MTU, the packet needs to be fragmented. In IPv6, the Fragment header is used by an IPv6 source node to send a packet larger than the MTU.
-* Authentication Header (Next Header field value is 51) - IPSec uses this header to provide data origin authentication, data integrity check, and packet anti-replay functions. It also protects some fields in the IPv6 Basic Header.
-* Encapsulating Security Payload Header (Next Header field value is 50) - This header provides the same functions as the Authentication Header plus IPv6 packet encryption.
+* Hop-by-Hop Options header (Next header field value is 0) - Must be handled by all routers in the path.
+* Destination Options header (Next header field value is 60) - Only processed by the destination node.
+* Routing header (Next header field value is 43) - This extension header is similar to the Loose Source and Record Route options in IPv4.
+* Fragment header (Next header field value is 44) - Like IPv4 packets, the length of IPv6 packets to be forwarded cannot exceed the maximum transmission unit (MTU). When the packet length exceeds the MTU, the packet needs to be fragmented. In IPv6, the Fragment header is used by an IPv6 source node to send a packet larger than the MTU.
+* Authentication header (Next header field value is 51) - IPSec uses this header to provide data origin authentication, data integrity check, and packet anti-replay functions. It also protects some fields in the IPv6 Basic header.
+* Encapsulating Security Payload header (Next header field value is 50) - This header provides the same functions as the Authentication header plus IPv6 packet encryption.
 
-RFC specifies that when multiple Extension Headers are used in the same datagram, it is recommended that these headers appear in the following order:
+RFC specifies that when multiple extension headers are used in the same datagram, it is recommended that these headers appear in the following order:
 
-1. IPv6 Basic Header
-2. Hop-by-Hop Options Header
-3. Destination Options Header
-4. Routing Header
-5. Fragment Header
-6. Authentication Header
-7. Encapsulating Security Payload Header
-8. Destination Options Header
-9. Upper-layer Protocol Header
+1. IPv6 Basic header
+2. Hop-by-Hop Options header
+3. Destination Options header
+4. Routing header
+5. Fragment header
+6. Authentication header
+7. Encapsulating Security Payload header
+8. Destination Options header
+9. Upper-layer Protocol header
 
-Except for the Destination Option Header which may appear once or twice (once before the Routing Extension Header and once before the Upper-layer Protocol Header), all other Extension Headers can only appear once.
+Except for the Destination Option header which may appear once or twice (once before the Routing extension header and once before the Upper-layer Protocol header), all other extension headers can only appear once.
 
 ### DNS
 
