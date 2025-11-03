@@ -1,7 +1,7 @@
 ---
 title: Метод сценарію RockyDocs
 author: Wale Soyinka
-contributors:
+contributors: Ganna Zhyrnova
 update: 11-Sep-2025
 ---
 
