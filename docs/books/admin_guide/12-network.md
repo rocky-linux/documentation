@@ -177,7 +177,7 @@ As mentioned earlier, subnet masks divide IPv4 addresses into two parts: network
 * Network prefix - It is equivalent to the network bits in an IPv4 address. According to the subnet mask, occupy "n" bits.
 * Interface ID - It is equivalent to the host bits in an IPv4 address. According to the subnet mask, occupy "128-n" bits.
 
-For example **2001:0db8:130F:0000:0000:09C0:876A:130B/64**：
+For example **2001:0db8:130F:0000:0000:09C0:876A:130B/64**:
 
 ```
     Network prefix
@@ -242,15 +242,15 @@ The actual length of the IPv4 header = The value of the IHL field * 4
 
 IPv6 datagrams consist of three parts:
 
-* Basic Header
-* Extension Header
+* Basic header
+* Extension header
 * Upper Layer Protocol Data Unit
 
-In some books, the Extended Header and Upper Layer Protocol Data Unit are collectively referred to as the **Payload**.
+In some books, the Extended header and Upper Layer Protocol Data Unit are collectively referred to as the **Payload**.
 
 ![](./images/IPv6-basic-header.png)
 
-The fixed length of the Basic Header is 40 bytes, and it is fixed to 8 fields:
+The fixed length of the Basic header is 40 bytes and it is fixed to 8 fields:
 
 **Version**: Help routers identify protocol versions. For IPv6, the value here is 0110 (Binary 0110 is equivalent to decimal 6).
 
@@ -258,9 +258,9 @@ The fixed length of the Basic Header is 40 bytes, and it is fixed to 8 fields:
 
 **Flow Label**: This IPv6 new field is used to control packet flow. A non-zero value in this field indicates that the packet should be treated specially; i.e., it should not be routed through different paths to reach the destination, but instead use the same path. An advantage of this is that the receiving end doesn’t have to reorder the package, thereby speeding up the process. This field helps prevent data packet reordering and is specifically designed for streaming media/live media.
 
-**Payload Length**: Indicate the size of the payload. This field can only represent a Payload with a maximum length of 65535 bytes. If the payload length exceeds 65535 bytes, the payload length field is set to 0, and the jumbo payload option is used in the Hop-by-Hop Options Extension Header. 
+**Payload Length**: Indicate the size of the payload. This field can only represent a Payload with a maximum length of 65535 bytes. In case the length of the payload is greater than 65535 bytes, then the payload length field will be set to 0 and the jumbo payload option is used in the Hop-by-Hop Options extension header. 
 
-**Next Header**: Used to indicate the type of packet header after the basic header. If there is a first extension header, it represents the type of the first extension header. Otherwise, it means the protocol type used by the upper layer, such as 6 (TCP) and 17 (UDP).
+**Next header**: Used to indicate the type of packet header after the basic header. If there is a first extension header, it represents the type of the first extension header. Otherwise, it represents the protocol type used by the upper layer, such as 6 (TCP) and 17 (UDP).
 
 **Hop Limit**: This field is equivalent to Time To Live (TTL) in IPv4 datagrams.
 
@@ -272,30 +272,30 @@ The fixed length of the Basic Header is 40 bytes, and it is fixed to 8 fields:
 
 In IPv4 datagrams, the IPv4 header contains optional fields such as Options, which include Security, Timestamp, Record Route, etc. These Options can increase the IPv4 header length from 20 to 60 bytes. During forwarding, handling IPv4 datagrams carrying these Options can consume significant device resources, so they are rarely used in practice.
 
-IPv6 removes these Options from the IPv6 Basic Header and places them in the extension header, which is located between the IPv6 Basic Header and the upper-layer protocol Data Unit. 
+IPv6 removes these Options from the IPv6 basic header and places them in the extension header, which is placed between the IPv6 Basic header and the Upper Layer Protocol Data Unit. 
 
 An IPv6 packet can contain 0, 1, or multiple extension headers, which are only added by the sender when the device or destination node requires special processing. 
 
-Unlike the IPv4 Options field (which can be up to 40 bytes and requires continuous storage), the IPv6 Extension Header uses a chain structure with no fixed length limit, making it more scalable in the future. Its 8-byte alignment mechanism is implemented via the Next Header field, ensuring efficient processing and avoiding fragmentation overhead.
+Unlike the IPv4 Options field (which can be extended up to 40 bytes and requires continuous storage), the IPv6 extension header adopts a chain structure and has no fixed length limit, making it more scalable in the future. Its 8 byte alignment mechanism is implemented through the Next header field, which ensures processing efficiency and avoids fragmentation overhead.
 
-**Next Header**: This field has the same function as the Next Header field in the Basic Header.
+**Next header**: This field has the same function as the Next header field in the Basic header.
 
-**Extension Header Len**: Indicates the length of the extension header (excluding the Next Header).
+**Extension header Len**: Indicate the length of the extension header (excluding the length of the Next header).
 
-**Extension Head Data**: The Extension Header consists of a series of option fields and padding fields.
+**Extension header Data**: The content of the extension header is a combination of a series of Option fields and Padding fields.
 
-Currently, RFC defines the following types of Extension Headers:
+Currently, RFC defines the following types of extension headers:
 
-* Hop-by-Hop Options header (Next Header Field Value is 0) - Must be handled by all routers in the path.
-* Destination Options header (Next Header Field Value is 60) - Only processed by the destination node.
-* Routing header (Next Header Field Value is 43) - This Extension Header is similar to the Loose Source and Record Route options in IPv4.
-* Fragment header (Next Header Field Value is 44) - Like IPv4 packets, the length of IPv6 packets to be forwarded cannot exceed the maximum transmission unit (MTU). When the packet exceeds the MTU, it must be fragmented. In IPv6, the Fragment header is used by an IPv6 source node to send a packet larger than the MTU.
-* Authentication header (Next Header Field Value is 51) - IPSec uses this header to provide data origin authentication, data integrity check, and packet anti-replay functions. It also protects some fields in the IPv6 basic header.
-* Encapsulating Security Payload header (Next Header Field Value is 50) - This header provides the same functions as the Authentication header, plus IPv6 packet encryption.
+* Hop-by-Hop Options header (Next header field value is 0) - Must be handled by all routers in the path.
+* Destination Options header (Next header field value is 60) - Only processed by the destination node.
+* Routing header (Next header field value is 43) - This extension header is similar to the Loose Source and Record Route options in IPv4.
+* Fragment header (Next header field value is 44) - Like IPv4 packets, the length of IPv6 packets to be forwarded cannot exceed the maximum transmission unit (MTU). When the packet length exceeds the MTU, the packet needs to be fragmented. In IPv6, the Fragment header is used by an IPv6 source node to send a packet larger than the MTU.
+* Authentication header (Next header field value is 51) - IPSec uses this header to provide data origin authentication, data integrity check, and packet anti-replay functions. It also protects some fields in the IPv6 Basic header.
+* Encapsulating Security Payload header (Next header field value is 50) - This header provides the same functions as the Authentication header plus IPv6 packet encryption.
 
 RFC specifies that when multiple extension headers are used in the same datagram, it is recommended that these headers appear in the following order:
 
-1. IPv6 Basic Header
+1. IPv6 Basic header
 2. Hop-by-Hop Options header
 3. Destination Options header
 4. Routing header
@@ -303,57 +303,99 @@ RFC specifies that when multiple extension headers are used in the same datagram
 6. Authentication header
 7. Encapsulating Security Payload header
 8. Destination Options header
-9. Upper-layer protocol header
+9. Upper-layer Protocol header
 
-Except for the Destination Option Header, which may appear once or twice (once before the Routing Extension header and once before the Upper-layer protocol header), all other extension headers can only occur once.
+Except for the Destination Option header which may appear once or twice (once before the Routing extension header and once before the Upper-layer Protocol header), all other extension headers can only appear once.
 
-### DNS Domain
+### DNS
 
-Client machines can be part of a DNS (**Domain Name System**, e.g., `mydomain.lan`) domain.
+**DNS (Domain Name System)**: The TCP/IP protocol family provides the ability to connect to devices through IP addresses, but it is quite difficult for users to remember the IP address of a device. Therefore, a string based host naming mechanism has been specifically designed, where these hostnames correspond to the IP address. There needs to be a conversion and query mechanism between IP addresses and hostnames, and the system that provides this mechanism is the Domain Name System (DNS). The process of "translating" a domain name into an IP address is called **Domain Name Resolution**.
 
-The fully qualified machine name (**FQDN**) becomes `pc-rocky.mydomain.lan`.
+Please note the difference between hostname and domain name:
 
-A set of computers can be grouped into a logical, name-resolving set called a DNS domain. A DNS domain is not, of course, limited to a single physical network.
+* Hostname - It is used to uniquely identify devices within a LAN (Local Area Network) or as part of a domain name (for example `docs`)
+* Domain name - Used to uniquely identify devices on the WAN (Wide Area Network). For example `docs.rockylinux.org`, where `rockylinux.org` is the Domain name of the Domain
 
-For a computer to be part of a DNS domain, it must be given a DNS suffix (here `mydomain.lan`) as well as servers that it can query.
+!!! tip
 
-### Reminder of the OSI model
+    Domain does not represent a specific host
+
+**Q: Why is DNS needed?**
+
+In the early days of the Internet, to remember the correspondence between hostnames and IP addresses, all the correspondence had to be written into a file, and users had to manually maintain the file content. With the vigorous development of the Internet, the main problems that need to be solved are:
+
+* A single file only takes effect on the computer currently in use
+* Manually maintaining file content is becoming increasingly difficult
+
+To solve the problems that emerged, people developed DNS, whose advantages are:
+
+* Distributed - DNS servers available for users all over the world
+* Hierarchical management - Divide the hierarchy for easier management. As shown in the following figure:
+
+    ![](./images/domain.png)
+
+For the root domain, it is commonly referred to as having thirteen root domain servers worldwide. A more standardized expression:
+
+> "The global DNS root server system is logically architected around 13 canonical endpoints (a.root-servers.net through m.root-servers.net), a design rooted in historical protocol constraints. Physically, these endpoints are implemented through over 1,500 anycast-instanced servers distributed worldwide, operated by 13 independent organizations under ICANN/IANA coordination."
+
+For `docs.rockylinux.org.`:
+
+* **Root Domain** - It refers to a point (`.`).
+* **First-level domain** - It refers to the string `org`. There is a lot of controversy about the division of first-level domains, for example, some document materials classify `.org` or `org.` as first-level domains.
+* **Second-level domain** - It refers to the string `rockylinux`. There is a lot of controversy about the division of second-level domains, for example, some document materials `rockylinux.org.` or `.rockylinux.org.` as second-level domains.
+* **hostname** -  It refers to the string `docs`.
+
+**FQDN (Fully Qualified Domain Name)**: A complete domain name consisting of a hostname and various levels of domains. According to the RFC standard (RFC 1034, RFC 2181, RFC 8499), the root domain at the end is industry standard (for example `docs.rockylinux.org.`). In the configuration files of some DNS software, a standard FQDN must be entered, but the root domain can be ignored when accessing certain network resources (for example, when a user visits `https://docs.rockylinux.org`, the browser will automatically add a dot to the end).
+**Domain name**: A structure that connects domains at all levels and starts with a hostname.
+**Zone**: Represents a contiguous portion of the DNS namespace managed by a specific authoritative server, which stores all the FQDN resolution records (such as A, MX, etc.) within that scope.
+
+!!! tip
+
+    Generally speaking, "FQDN" is more effective in expressing the meaning of an author's document than "domain name", as readers from different industries have different understandings of the term "domain name". For example, for `rockylinux.org`, some readers may interpret it as a domain name, but this is actually incorrect. Strictly speaking, this should be referred to as a domain (rather than a domain name). Therefore, in order to enhance rigor, readers are requested to strictly distinguish the meanings of domains and domain names.
+
+### ISO/OSI 7-layer theoretical model
+
+**ISO (International Organization for Standardization)** - An international organization established in 1974, its main role is to set international standards in various fields. For the field of the Internet, ISO has proposed the OSI 7-layer theoretical reference model.
+
+**OSI (Open System Interconnection Reference Model)** - This model proposes a standard framework that attempts to interconnect various computers into a network worldwide.
+
+|  Layer            |  Description                                  |
+|-------------------|----------------------------------------------|
+|  7 - Application  |  Provide various request services for applications or user requests |
+|  6 - Presentation |  Data encoding, format conversion, data encryption                  |
+|  5 - Session      |  Create, manage, and maintain sessions.                     |
+|  4 - Transport    |  Data communication, establishing end-to-end connections, etc.         |
+|  3 - Network      |  Network connection management (establishment, maintenance, and termination), routing path selection, packet grouping, traffic control, etc.                       |
+|  2 - Data Link    |  Frame encapsulation and transmission, traffic control and error checking, etc.         |
+|  1 - Physical     |  Management of transmission media, physical interface specifications, conversion and transmission of signals, etc.   |
 
 !!! Note "Memory aid"
 
-    To remember the order of the layers of the OSI model, remember the following sentence: **Please Do Not Touch Steven's Pet Alligator**.
+    To remember the order of the layers of the ISO/OSI model, remember the following sentence: **All People Seem To Need Data Processing**.
 
-|  Layer            |  Protocols                                  |
-|-------------------|----------------------------------------------|
-|  7 - Application  |  POP, IMAP, SMTP, SSH, SNMP, HTTP, FTP, ...  |
-|  6 - Presentation |  ASCII, MIME, ...                            |
-|  5 - Session      |  TLS, SSL, NetBIOS, ...                      |
-|  4 - Transport    |  TLS, SSL, TCP, UDP, ...                     |
-|  3 - Network      |  IPv4, IPv6, ARP, ...                        |
-|  2 - Data Link    |  Ethernet, WiFi, Token Ring, ...             |
-|  1 - Physical     |  Cables, optical fibers, radio waves, ...    |
+**Hierarchical design of the model**: It embodies a modular design principle, that is, by decomposing complex network communication functions into independent levels, it achieves functional decoupling and standardized collaboration.
 
-**Layer 1** (Physical) supports transmission over a communication channel (Wifi, Optical fiber, RJ cable, etc.).
-Unit: the bit.
+!!! note
 
-**Layer 2** (Data Link) supports network topology
-(token-ring, star, bus, etc.), data splitting and transmission errors.
-Unit: the frame.
+    It should be noted that the ISO/OSI 7-layer model does not exist in real network communication. It merely provides a design framework and approach for Internet communication.
 
-**Layer 3** (Network) supports end-to-end data transmission (IP routing = Gateway).
-Unit: the packet.
+**TCP/IP 4-layer model** - The hierarchical model used in actual network communication (simplifies the ISO/OSI 7-layer model to a 4-layer model). TCP/IP is a synonym for a group of protocols, which includes many protocols and forms the TCP/IP protocol suite. In protocol analysis or teaching environment, it is sometimes unofficiously referred to as **TCP/IP 5-layer model**.
 
-**Layer 4** (Transport) supports service type (connected or unconnected)
-encryption and flow control.
-Unit: the segment or the datagram.
+| Layer | Protocols | Hardware devices working on this layer |
+| :---  | :--- | :--- |
+| 4 - Application | HTTP, FTP, SMTP, DNS, DHCP ... | - |
+| 3 - Transport |  TCP, UDP | Firewall and load balancer |
+| 2 - Internet  | IP, ICMP, ARP, RARP, IGMP | Router |
+| 1 - Network Interface | Ethernet protocol (IEEE 802.3), PPP (Point to Point Protocol), PPPoE (Point-to-Point Protocol over Ethernet), Wi-Fi (IEEE 802.11), ADSL (Asymmetric Digital Subscriber Line) ... | NIC, switch, hub, repeater, twisted pair, modem |
 
-**Layer 5** (Session) supports the communication between two computers.
+* **Application layer** - Unify the application layer, presentation layer, and session layer in the theoretical model into one application layer.
+* **Transport layer** - The transport layer in the theoretical model.
+* **Internet layer** - The network layer in the theoretical model.
+* **Network Interface layer** - Integrating the data link layer and physical layer from the theoretical model into a single layer.
 
-**Layer 6** (Presentation) represents the area of the application layer independent of data. Essentially, this layer translates between the network and application formats.
+!!! tip "Terminology expression"
 
-**Layer 7** (Application) represents the user interface.
-It provides the services offered by the network: HTTP, DNS, FTP, IMAP,
-POP, SMTP, etc.
+    The TCP/IP 4-layer model, the TCP/IP protocol suite, and the TCP/IP protocol stack are different expressions of the same concept.
 
 ## The naming of interfaces
 
