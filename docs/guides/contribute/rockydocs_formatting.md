@@ -15,13 +15,13 @@ A document might or might not need to contain any of these elements. However, if
 
 !!! note "A Note About Headings"
 
-    Headings are not special formatting characters; rather they are standard markdown syntax. They include a **single** level one heading:
+    Headings are not special formatting characters; instead, they are standard markdown syntax. They include a **single** level one heading:
 
     ```
     # This is Level one
     ```
 
-    and any number of sub-heading values, levels 2 through 6:
+    And any number of sub-heading values, levels 2 through 6:
 
     ```
     ## A Level 2 heading
@@ -48,17 +48,17 @@ A document might or might not need to contain any of these elements. However, if
 
 !!! warning "A note about supported HTML elements"
 
-    There are HTML elements that are technically supported in markdown. Some of these are described in this document, and no markdown syntax exists to replace them. These supported HTML tags should be used rarely, because markdown linters will complain about them in a document. For example:
+    There are HTML elements that are technically supported in Markdown. Some of these are described in this document, and there is no Markdown syntax to replace them. These supported HTML tags should be used rarely, because markdown linters will complain about them in a document. For example:
 
     * Inline HTML [element name]
 
-    If you need to use a supported HTML element, see if you can find another way to write your document that will not use these elements. If you must use them, it is still allowed.
+    If you need to use a supported HTML element, you can see if you can find another way to write your document that will not use these elements. If you must use them, it is still allowed.
 
 !!! info "A Note About Links"
 
-    Links are not special formatting, but standard methods of referencing other documents (internal links) or external web pages. However, there is one particular type of link that you should not use when composing documents for Rocky Linux, and it is an anchor, or link to a spot in the same document.
+    Links are not special formatting; they are standard methods for referencing other documents (internal links) or external web pages. However, there is one particular type of link you should not use when composing documents for Rocky Linux: an anchor, or a link to a spot in the same document.
 
-    Anchors work in the source language for Rocky Linux (English), but as soon as they are translated by our Crowdin interface, they break in those languages. This happens because an acceptable anchor in markdown that does not contain HTML elements, uses the header to create the link:
+    Anchors work in the source language for Rocky Linux (English), but as soon as our Crowdin interface translates them, they break in those languages. This happens because an acceptable anchor in markdown that does not contain HTML elements uses the header to create the link:
 
     ```
     ## A Header
@@ -68,11 +68,11 @@ A document might or might not need to contain any of these elements. However, if
     A Link to [that header](#-a-header)
     ```
 
-    This link is found by hovering your mouse over the permalink in a created document, but is essentially the header with the "#" plus the header in lower-case separated by a dash (-).
+    This link is found by hovering your mouse over the permalink in a created document and is essentially the header with the "#" plus the header in lowercase, separated by a dash (-).
 
-    When the document is translated, though, the header is translated BUT the link is outside of what Crowdin allows to be translated, so it remains in its original (English) state.
+    When the document is translated, though, the header is translated, BUT the link is outside of what Crowdin allows to be translated, so it remains in its original (English) state.
 
-    If you find yourself in need of using an anchor, take a look at your document and see if reorganization of the content will make that anchor unnecessary. Just know that if you use an anchor in a newly composed document, that anchor will break once translation of that document occurs.
+    If you need to use an anchor, please review your document to see if reorganizing the content makes it unnecessary. Just know that if you use an anchor in a newly composed document, that anchor will break once translation of that document occurs.
 
 ## Admonitions
 
@@ -159,11 +159,11 @@ Here are examples of each admonition type and how they will look in your documen
 
 ### Expandable admonitions
 
-If an admonition has very long content, consider an expandable admonition. It has the same characteristics of a regular admonition but starts with three question marks, rather than three exclamation marks. All the other admonition rules apply. An expandable admonition looks like this:
+If an admonition is very long, consider an expandable admonition. It has the same characteristics of a regular admonition but starts with three question marks, rather than three exclamation marks. All the other admonition rules apply. An expandable admonition looks like this:
 
 ??? warning "Warning Content"
 
-    This is a warning, with not very much content. You would want to use a regular admonition for this, but Hey, this is just an example!
+    This is a warning with very little content. You would want to use a regular admonition for this, but Hey, this is just an example!
 
 Which looks like this in your editor:
 
@@ -175,15 +175,15 @@ Which looks like this in your editor:
 
 ## Tabbed content within a document
 
-Formatting tabbed content is similar to admonitions. Instead of three exclamation marks or question marks, it begins with three equal signs. All the admonition formatting (4 spaces and so on) applies to this content. For example, a document might need a different procedure based on how the operating system was installed. With the implementation of documentation versioning, tabbed content formatting should not be necessary to separate out full version content (for instance, 9.6 and 8.10).
+Formatting tabbed content is similar to admonitions. Instead of three exclamation marks or question marks, it begins with three equal signs. All the admonition formatting (4 spaces and so on) applies to this content. For example, a document might need a different procedure based on how the operating system was installed. With the implementation of documentation versioning, tabbed content formatting should no longer be necessary to separate full version content (for instance, 9.6 and 8.10).
 
 === "9"
 
-    Use this procedure if your installation was by way of the full operating system, or from a Live image.
+    Use this procedure if your installation was performed using the whole operating system or a Live image.
 
 === "9-minimal"
 
-    Use this procedure if your operating system installation was with the minimal ISO.
+    Use this procedure if your operating system was installed from the minimal ISO.
 
 Which would look like this in your editor:
 
@@ -191,7 +191,7 @@ Which would look like this in your editor:
 === "9"
 
 
-    Use this procedure if your installation was by way of the full operating system, or from a Live image.
+    Use this procedure if your installation was performed using the whole operating system or a Live image.
 
 === "9-minimal"
 
@@ -199,7 +199,7 @@ Which would look like this in your editor:
  
 ```
 
-Remember that everything that falls inside of the section must continue to use the 4-space indentation until completion of the section. This is a very handy feature!
+Just to remind you, everything within the section must continue to use 4-space indentation until the section is completed. This is a convenient feature!
 
 ## Numbered lists
 
@@ -246,7 +246,7 @@ And here is how that looks as raw text:
     dnf update
     ```
 
-2. Here is our second listed item. Because you used the four (4) space indentation (above), it renders with the next sequence of numbering (2), but if you had entered item 1 without the indentation (in the subsequent paragraph and code), then this would show up as item 1 again, which is not what you want.
+2. Here is our second listed item. Because you used the four (4) space indentation (above), it renders with the next sequence of numbering (2). Still, if you had entered item 1 without the indentation (in the subsequent paragraph and code), then this would show up as item 1 again, which is not what you want.
 ```
 
 ## Tables
@@ -273,7 +273,7 @@ In the above case, tables help us lay out command options or admonition types an
 
 ```
 
-Note that it is not necessary to have each column broken down by size (as we have done in the first part of the table), but it is certainly more readable in the markdown source file. It can get confusing when you string the items together, simply by breaking the columns with the pipe character "|" wherever the natural break is, as you can see in the last item in the table.
+Note that it is not necessary to break each column by size (as we did in the first part of the table), but it is certainly more readable in the markdown source file. It can get confusing when you string the items together, simply by breaking the columns with the pipe character "|" wherever the natural break is, as you can see in the last item in the table.
 
 ## Block quotes
 
@@ -282,7 +282,7 @@ Block quotes are for quoting text from other sources to include in your document
 ```text
 > **an item** - A description of that item
 
-followed by:
+Followed by:
 
 > **another item** - Another description of that item
 ```
@@ -293,13 +293,13 @@ That ends up looking like this when the page displays:
 
 > **an item** - A description of that item
 
-followed by:
+Followed by:
 
 > **another item** - Another description of that item
 
 ## Inline and block-level code blocks
 
-Our approach to the use of code blocks is pretty simple. If `your code` is short enough that you can (and want to) use it in a sentence like you just saw, use single backticks ++"`"++:
+Our approach to code blocks is pretty simple. If `your code` is short enough that you can (and want to) use it in a sentence like you just saw, use single backticks ++"`"++:
 
 ```bash
 A sentence with a `command of your choosing` in it.
@@ -345,15 +345,15 @@ When using this method, the automatic line feed is also suppressed.
 
 ## Keyboard
 
-Another way to add as much clarity to your documents as possible is to represent the correct manner of entering keys on a keyboard. In markdown, do this by surrounding the key or keys with double plus signs (`++`). Do this with `++key++`. For instance, to represent that you need to hit the escape key in your document, you would use `++escape++`. When you need to indicate the pressing of multiple keys, add a `+` between them like this: `++ctrl+f4++`. For keys that aren't defined (for instance, we are indicating a mystery function key, `Fx` below), put your definition in quotes (`++ctrl+"Fx"++`). If requiring the pressing of keys simultaneously, add "simultaneously" or "at the same time" or some similar phrase to your instructions. Here is an example of a keyboard instruction in your editor:
+Another way to add as much clarity as possible to your documents is to show the correct way to enter keys on a keyboard. In markdown, do this by surrounding the key or keys with double plus signs (`++`). Do this with `++key++`. For instance, to represent that you need to hit the escape key in your document, you would use `++escape++`. When you need to indicate the pressing of multiple keys, add a `+` between them like this: `++ctrl+f4++`. For keys that aren't defined (for instance, we are indicating a mystery function key, `Fx` below), put your definition in quotes (`++ctrl+"Fx"++`). If requiring simultaneous key pressing, add "simultaneously," "at the same time," or a similar phrase to your instructions. Here is an example of a keyboard instruction in your editor:
 
 ```text
-A workstation-type installation (with a graphical interface) starts this interface on terminal 1. Linux being multi-user, it is possible to connect several users several times, on different **physical terminals** (TTY) or **virtual terminals** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using ++alt+"Fx"++ from the command line or ++ctrl+alt+"Fx"++.
+A workstation-type installation (with a graphical interface) starts this interface on terminal 1. Since Linux is multi-user, it is possible to connect several users simultaneously to different **physical terminals** (TTYs) or **virtual terminals** (PTSs). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using ++alt+"Fx"++ from the command line or ++ctrl+alt+"Fx"++.
 ```
 
 Here is how that renders when displayed:
 
-A workstation-type installation (with a graphical interface) starts this interface on terminal 1. Linux being multi-user, it is possible to connect several users several times, on different **physical terminals** (TTY) or **virtual terminals** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using ++alt+"Fx"++ from the command line or ++ctrl+alt+"Fx"++.
+A workstation-type installation (with a graphical interface) starts this interface on terminal 1. Since Linux is multi-user, it is possible to connect several users simultaneously to different **physical terminals** (TTYs) or **virtual terminals** (PTSs). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using ++alt+"Fx"++ from the command line or ++ctrl+alt+"Fx"++.
 
 A list of accepted keyboard commands [in this document](https://facelessuser.github.io/pymdown-extensions/extensions/keys/#key-map-index).
 
@@ -363,40 +363,40 @@ A list of accepted keyboard commands [in this document](https://facelessuser.git
 
 ## Forcing line breaks
 
-There are times when a simple ++enter++ on the keyboard will not give you a new line in markdown. This sometimes occurs when bulleted items use a lot of formatting characters. You may want to add a line break to better format text as well. In cases like these, you need to add two spaces to the end of the line where you want a new line.  Since spaces will not be visible in some markdown editors, this example shows the spaces being entered:
+There are times when a simple ++enter++ on the keyboard will not give you a new line in markdown. This sometimes occurs when bulleted items contain many formatting characters. I suggest adding a line break to better format text as well. In cases like these, you need to add two spaces to the end of the line where you want a new line.  Since spaces will not be visible in some markdown editors, this example shows the spaces being entered:
 
 * **A bullet item with extra formatting** ++space+space++
 * **Another item**
 
-## Superscript, subscript and special symbols
+## Superscript, subscript, and special symbols
 
-Superscript and subscript notation are supported in Rocky Linux documentation by use of the `^` for superscript and `~` for subscript. Superscript places text entered between the tags slightly above the normal text, while subscript places the text slightly below. Superscript is by far the more commonly used of these two in writing. Some special characters already appear in superscript without adding the tags, but you can also combine the tag to change the orientation of those characters as seen with the copyright symbol below. You can use superscript to:
+Superscript and subscript notation are supported in Rocky Linux documentation by use of the `^` for superscript and `~` for subscript. Superscript places text entered between the tags slightly above the normal text, while subscript places the text slightly below. Superscript is by far the more commonly used of these two in writing. Some special characters already appear in superscript without adding the tags. Still, you can also combine the tag to change the orientation of those characters, as seen with the copyright symbol below. You can use superscript to:
 
 * represent ordinal numbers, such as 1^st^, 2^nd^, 3^rd^
 * copyright and trademark symbols, like ^&copy;^, ^TM^, or ^&trade;^, ^&reg;&^
-* as notation for references, such as this^1^, this^2^ and this^3^
+* as notation for references, such as this^1^, this^2^, and this^3^
 
-Some of the special characters, such as &copy; are not normally superscript, while others such as &trade;, are.
+Some of the special characters, such as &copy;, are generally not superscript, while others, such as &trade;, are.
 
 Here is how all the above looks in your markdown code:
 
 ```text
 * represent ordinal numbers, such as 1^st^, 2^nd^, 3^rd^
 * copyright and trademark symbols, like ^&copy;^, ^TM^ or ^&trade;^, ^&reg;^
-* as notation for references, such as this^1^, this^2^ and this^3^
+* as notation for references, such as this^1^, this^2^, and this^3^
 
-Some special characters, such as &copy; are not normally superscript, while others such as &trade;, are.
+Some special characters, such as &copy; are generally not superscript, while others such as &trade;, are.
 ```
 
-To force superscript, you surround what you want superscript with `^`.
+To force superscript, you surround what you want superscripted with `^`.
 
-Enter subscript by surrounding your text with the `~` tag (H~2~0 is `H~2~0`) and as noted earlier, is not used nearly as much in writing.
+Enter subscript by surrounding your text with the `~` tag (H~2~0 is `H~2~0`), and as noted earlier, it is not used nearly as much in writing.
 
 ### Superscript for references
 
-Some of you may need to reference outside sources when writing documentation. If you only have a single source, you can include it in your conclusion as a single link, but if you have multiples^1^, you can use superscript to note them in your text^2^ and then list them at the end of your document. Note that the positioning of references should come after the "Conclusion" section.
+Some of you may need to consult external sources when writing documentation. If you only have a single source, you can include it in your conclusion as a single link, but if you have multiples^1^, you can use superscript to note them in your text^2^ and then list them at the end of your document. Note that the positioning of references should come after the "Conclusion" section.
 
-Following the conclusion, you can have your notations in a numbered list to match the superscript or enter them as links. Shown here are both examples:
+After the conclusion, you can list your notations in a numbered list to match the superscript or enter them as links. Shown here are both examples:
 
 1. "How Multiples Are Used In Text" by Wordy W. McWords [https://site1.com](https://site1.com)
 2. "Using Superscript In Text" by Sam B. Supersecret [https://site2.com](https://site2.com)
@@ -421,12 +421,12 @@ or
 
 ## Highlighting text
 
-Another possible way to enhance documentation is with ==highlighting==. You can use highlighting by surrounding the text with `==`.
+Another way to enhance documentation is with ==highlighting==. You can use highlighting by surrounding the text with `==`.
 
 This looks like this in your editor:
 
 ```bash
-Another possible way to enhance documentation is with ==highlighting==. You can use highlighting by surrounding the text with `==`. 
+Another way to enhance documentation is with ==highlighting==. You can use highlighting by surrounding the text with `==`. 
 ```
 
 ## Grouping different formatting types
@@ -435,7 +435,7 @@ Rocky documentation offers some elegant formatting options when combining multip
 
 !!! note
 
-    Things can get a little crazy when you are grouping things together. Like when:
+    Things can get a little crazy when you are grouping things. Like when:
 
     1. You add a numbered list of options within an admonition
 
@@ -449,7 +449,7 @@ Rocky documentation offers some elegant formatting options when combining multip
 
 Or you may have a numbered list, with an additional admonition:
 
-1. This item is something very important
+1. This item is very important
 
     Here you are adding a keyboard command to the list item:
 
@@ -461,11 +461,11 @@ Or you may have a numbered list, with an additional admonition:
 
     !!! warning
 
-        Things can get a little crazy with multiple elements within different formatting types!   
+        Things can get a little crazy when multiple elements are in different formatting types!   
 
-If you keep track of the magic four (4) spaces to indent and separate these items, they will display logically and exactly the way you want them to. Sometimes that is really important.
+If you keep track of the magic four (4) spaces to indent and separate these items, they will display logically and precisely the way you want them to. Sometimes that is really important.
 
-You can even embed a table or block quote (literally any formatting item type) within another one. Here you have a numbered list, an admonition, a table and some block quote elements all bundled together:
+You can even embed a table or block quote (literally any formatting item type) within another one. Here you have a numbered list, an admonition, a table, and some block quote elements all bundled together:
 
 1. Trying to keep up with everything that is going on in your document can be a real task when working with multiple elements.
 
@@ -492,9 +492,9 @@ Here is what this example looks like in your editor:
 
 ```text
 
-As long as you keep track of the magic four (4) spaces to separate these items, they will display logically and exactly the way you want them to. Sometimes that is really important.
+As long as you keep track of the magic four (4) spaces to separate these items, they will display logically and precisely the way you want them to. Sometimes that is really important.
 
-You can even embed a table or block quote (literally any formatting item type) within another one. Here  have a numbered list, an admonition, a table, and some block quote elements all bundled together:
+You can even embed a table or block quote (literally any formatting item type) within another one. Here, we  have a numbered list, an admonition, a table, and some block quote elements all bundled together:
 
 1. Trying to keep up with everything that is going on in your document can be a real task when working with multiple elements.
 
@@ -520,7 +520,7 @@ You can even embed a table or block quote (literally any formatting item type) w
 
 ## Non-displaying characters
 
-There are some characters in markdown that will not display properly. Sometimes it is because these characters are HTML or other tag types (links for example). There might be times when writing documentation that you **need** to display these characters to get your point across. The rule to display these characters is to escape them. Here is a table of these non-displaying characters followed by a code block that shows the table code.
+Some Markdown characters will not display correctly. Sometimes it is because these characters are HTML or other tag types (such as a link). There might be times when writing documentation that you **need** to display these characters to get your point across. The rule to display these characters is to escape them. Here is a table of these non-displaying character,s followed by a code block that shows the table code.
 
 | symbol      | description                                       |
 |-------------|---------------------------------------------------|
@@ -592,8 +592,8 @@ A comment should have a blank line before and after the comment.
 
 ## Conclusion
 
-Document formatting with headings, admonitions, tables, numbered lists, and block quotes can add clarity to your document. When using admonitions, take care to pick the correct type. This can make it easier to visually see the importance of the particular admonition.
+Document formatting with headings, admonitions, tables, numbered lists, and block quotes can add clarity. When using admonitions, please ensure you select the correct type. This can make it easier to see the importance of the particular admonition visually.
 
-You do not *have* to use advanced formatting options. Overuse of special elements can add clutter. Learning to use these formatting items conservatively and well can be very helpful to get your point across in a document.
+You do not *have* to use advanced formatting options. Overuse of special elements can add clutter. Learning to use these formatting items effectively can be very helpful for getting your point across in a document.
 
 Lastly, to make formatting easier, consider changing your markdown editor's TAB value to four (4) spaces.
