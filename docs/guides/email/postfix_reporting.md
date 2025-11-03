@@ -69,7 +69,7 @@ The system will respond with the following:
 EOT
 ```
 
-The purpose for doing this is to see how your mail looks to the outside world. You can get a feel for this from the `maillog` that goes active with the starting of `postfix`.
+The purpose is to see how your mail looks to the outside world. You can get a feel for this from the `maillog` that becomes active when `postfix` starts.
 
 Use this command to see the output of the log file:
 
@@ -77,7 +77,7 @@ Use this command to see the output of the log file:
 tail /var/log/maillog
 ```
 
-You will see something similar to this, although the log file will have different domains for the email address, and other items:
+You will see something similar to this, although the log file will have different domains for the email address and other items:
 
 ```bash
 Mar  4 16:51:40 hedgehogct postfix/postfix-script[735]: starting the Postfix mail system
@@ -166,9 +166,9 @@ Start `postfix` and test your email again with the same procedure used earlier. 
 
 ### The `date` command and a variable called today
 
-Not every application will use the same logging format for the date. You might have to get creative with any script you write for reporting by date.
+Not every application will use the same date format. You might have to get creative with any script you write for reporting by date.
 
-Say that you want to see your system log as an example and pull everything that has to do with `dbus-daemon` for today's date, and email it to yourself. (It is probably not the greatest example, but it will give you an idea of how you do this.)
+Say you want to see your system log, pull everything related to `dbus-daemon` for today's date, and email it to yourself. (It is probably not the greatest example, but it will give you an idea of how you do this.)
 
 You need to use a variable in your script. Call it "today". You want it to relate to output from the "date" command and format it in a specific way, so that you can get the data you need from your system log (in `/var/log/messages`). To start with, do some investigative work.
 
@@ -198,23 +198,23 @@ Mar  4 18:50:41 hedgehogct dbus-daemon[60]: [system] Activating via systemd: ser
 Mar  4 18:50:41 hedgehogct dbus-daemon[60]: [system] Successfully activated service 'org.freedesktop.nm_dispatcher
 ```
 
-The date and log outputs need to be exactly the same in your script. Let us see how to format the date with a variable called "today".
+The date and log outputs need to match exactly in your script. Let us see how to format the date with a variable called "today".
 
 Examine what you need to do with the date to get the same output as the system log. You can reference the [Linux man page](https://man7.org/linux/man-pages/man1/date.1.html) or type `man date` on the command line to pull up the date manual page to get the information you need.
 
-What you will find is to format the date the same way as _/var/log/messages_ , you need to use the %b and %e format strings, with %b being the 3 character month and %e being the space-padded day.
+What you will find is that to format the date the same way as _/var/log/messages_, you need to use the %b and %e format strings, with %b being the 3-character month and %e being the space-padded day.
 
 ### The script
 
-For your bash script, you can see that you are going to use the `date` command and a variable called "today". (Remember that "today" is arbitrary. You can call this variable anything). You will call your script in this example, `test.sh` and place it in `/usr/local/sbin`:
+In your bash script, you can see that you will use the `date` command and a variable named "today". (Remember that "today" is arbitrary. You can call this variable anything). You will call your script in this example, `test.sh`, and place it in `/usr/local/sbin`:
 
 ```bash
 vi /usr/local/sbin/test.sh
 ```
 
-At the beginning, notice that even though the comment in the file says you are sending these messages to email, for now, you are just sending them to a standard log output to verify that they are correct.
+At the beginning, please keep in mind that even though the file comment says you are sending these messages to email, for now, you are just sending them to standard log output to verify that they are correct.
 
-Also, in your first run of the script, you are grabbing all the messages for the current date not just the `dbus-daemon` messages. You will deal with that shortly.
+Also, in your first run of the script, you are grabbing all the messages for the current date, not just the `dbus-daemon` messages. You'll be able to deal with that soon.
 
 Be aware that the `grep` command will return the filename in the output, which you will not want in this case. To remove this, add the "-h" option to grep. In addition, when you set the variable "today", you need to look for the entire variable as a string, which needs the string within quotes:
 
@@ -256,7 +256,7 @@ today=`date +"%b %e"`
 grep -h "$today" /var/log/messages | grep dbus-daemon
 ```
 
-Running the script again, will get you only the `dbus-daemon` messages and only the ones that occurred today.
+Rerunning the script will return only the `dbus-daemon` messages, and only those that occurred today.
 
 There is one final step. Remember, you need to get this emailed to the administrator for review. Because you are only using `postfix` on this server for reporting, you do not want to leave the service running. Start it at the beginning of the script and stop it at the end. Here, the `sleep` command pauses for 20 seconds, ensuring sending the email before shutting `postfix` down again. This final edit, adds the stop, start, and sleep issues just discussed, and also pipes the content to the administrator's email.
 
@@ -285,7 +285,7 @@ sleep 20
 /usr/bin/systemctl stop postfix
 ```
 
-Run the script again, and you will now have an email from the server with the `dbus-daemon` message.
+Rerun the script, and you will now have an email from the server with the `dbus-daemon` message.
 
 You can now use [a crontab](../automation/cron_jobs_howto.md) to schedule this to run at a specific time.
 
