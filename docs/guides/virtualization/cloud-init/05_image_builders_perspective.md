@@ -1,7 +1,7 @@
 ---
 title: 5. The image builder's perspective
 author: Wale Soyinka
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - cloud-init
   - rocky linux
@@ -70,7 +70,7 @@ Let us enforce a policy on our golden image: we will disable password authentica
 
 !!! tip "Disabling specific modules"
 
-    A powerful security technique is to completely disable certain `cloud-init` modules. For example, to prevent any user from ever using `runcmd`, you can add the following to your custom `.cfg` file. This tells `cloud-init` to run an empty list of modules during the final stage.
+    A powerful security technique is to disable specific `cloud-init` modules altogether. For example, to prevent any user from ever using `runcmd`, you can add the following to your custom `.cfg` file. This tells `cloud-init` to run an empty list of modules during the final stage.
 
     ```yaml
     cloud_final_modules: []
@@ -78,7 +78,7 @@ Let us enforce a policy on our golden image: we will disable password authentica
 
 ## 3. Generalizing the image
 
-Our VM now contains our custom configuration, but it also holds unique machine identifiers (such as `/etc/machine-id`) and SSH host keys. Before we can clone it, we must remove this data in a process called **generalization**.
+Our VM now contains our custom configuration, as well as unique machine identifiers (such as `/etc/machine-id`) and SSH host keys. Before we can clone it, we must remove this data in a process called **generalization**.
 
 ### Method 1: `cloud-init clean` (inside the VM)
 
