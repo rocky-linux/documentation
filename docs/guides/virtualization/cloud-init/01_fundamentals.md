@@ -1,7 +1,7 @@
 ---
 title: 1. cloud-init fundamentals
 author: Wale Soyinka
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - cloud-init
   - cloud
@@ -9,7 +9,7 @@ tags:
 ---
 
 
-## The architecture of first boot
+## The architecture of the first boot
 
 This guide explores `cloud-init`, the essential tool for automating the initial setup of your Rocky Linux 10 cloud instances. When we talk about deploying servers in the cloud—or even in your local virtualization lab—we often take for granted the almost instantaneous transition from a blank image to a fully functional, network-ready machine. This feat of digital alchemy is performed by a single, tireless utility: cloud-init.
 
@@ -25,16 +25,16 @@ This is the problem **cloud-init** solves.
 
 ### What is cloud-init
 
-Simply put, cloud-init is the industry-standard multi-distribution package that handles early initialization of cloud instances. It is the core service responsible for taking a generic image (such as the one we are using) and performing the required configuration tasks to transform it into a unique, production-ready server.
+Simply put, Cloud-Init is the industry-standard multi-distribution package that handles early initialization of cloud instances. It is the core service responsible for taking a generic image (such as the one we are using) and performing the required configuration tasks to transform it into a unique, production-ready server.
 
 It literally sits at the heart of the provisioning process, interpreting **metadata** and **user-defined instructions** to set up the system. Without it, your cloud instance is just a beautifully compiled Linux kernel with an identity crisis.
 
 ### The cloud-init ecosystem
 
-cloud-init is a consumer, not a creator. It relies on the underlying cloud platform (AWS, Azure, GCP, OpenStack, or local tools such as libvirt) to provide it with configuration information.
+Cloud-init is a consumer, not a creator. It relies on the underlying cloud platform (AWS, Azure, GCP, OpenStack, or local tools such as libvirt) to provide it with configuration information.
 
 * **Cloud Providers** expose data via a specialized *data source* (often a local HTTP endpoint, a specific disk label, or a kernel parameter).
-* **cloud-init** detects this data source, reads the configuration, and executes the appropriate configuration steps.
+* **Cloud-init** detects this data source, reads the configuration, and executes the appropriate configuration steps.
 
 This decoupling—where the image is generic and the configuration is provided externally—is the fundamental genius of the entire cloud deployment model.
 
@@ -44,7 +44,7 @@ For this guide, we will be using the official [Rocky-10-GenericCloud-Base.latest
 
 ### The target image: A pre-wired workhorse
 
-This image is special because it includes the cloud-init package pre-installed and enabled. It has been *generalized*, meaning all machine-specific identifiers, SSH host keys, and log files are all stripped out. It is ready to receive its new identity on first boot.
+This image is special because it includes the cloud-init package pre-installed and enabled. It has been *generalized*, meaning all machine-specific identifiers, SSH host keys, and log files are stripped out. It is ready to receive its new identity on first boot.
 
 !!! warning "Use the Recommended Image"
 
@@ -71,20 +71,20 @@ We will focus primarily on crafting effective **User-Data** files, which typical
 
 ## 3. The life cycle: cloud-init's four stages of initialization
 
-cloud-init doesn't just run a script and exit; it executes a series of highly structured stages that align with the server's boot process. This methodical approach ensures that dependencies are met (e.g., networking is configured before packages are downloaded).
+Cloud-init doesn't just run a script and exit; it executes a series of highly structured stages that align with the server's boot process. This methodical approach ensures that dependencies are met (e.g., networking is configured before packages are downloaded).
 
 Understanding this life cycle is crucial for debugging and knowing precisely when your custom instructions are executed.
 
 | Stage       | Timing & Description                                                                                                                    | Key Actions/Modules                                                                                             |
 | :---------- | :-------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- |
 | **Generator** | Runs very early in the boot process. Sets up internal directories and performs basic configuration checks.                               | Internal setup, log initialisation.                                                                             |
-| **Local**     | Runs before the network is necessarily up. It processes local data sources like CD-ROM or virtual drives (which we'll use in our lab). | Setting hostname from local data, initial disk setup.                                                           |
+| **Local**     | Runs before the network is necessarily up. It processes local data sources, such as CD-ROMs or virtual drives (which we'll use in our lab). | Setting hostname from local data, initial disk setup.                                                           |
 | **Network**   | Runs once networking is fully configured and operational. It queries network-based data sources (like the cloud provider's API).      | Configure network interfaces, fetch keys from network metadata.                                                 |
-| **Final**     | Runs last. This is where the majority of user-defined configuration takes place, as all prerequisites (users, network, disks) are now ready. | Installing packages, running custom scripts (runcmd), writing files (write_files), system clean-up. |
+| **Final**     | Runs last. This is where the majority of user-defined configuration takes place, as all prerequisites (users, network, disks) are now ready. | Installing packages, running custom scripts (runcmd), writing files (write_files), and system clean-up. |
 
 !!! tip "Check the logs"
 
-    When troubleshooting, always check `/var/log/cloud-init.log`. This file is the forensic report of the `cloud-init` process, showing exactly when each stage began and finished, and what modules were executed along the way. If your script didn't run, the log will tell you exactly why, and which stage failed.
+    When troubleshooting, always check `/var/log/cloud-init.log`. This file is the forensic report for the `cloud-init` process, showing exactly when each stage began and ended, and which modules were executed along the way. If your script didn't run, the log will tell you exactly why and which stage failed.
 
 ## What's next
 
