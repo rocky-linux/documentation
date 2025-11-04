@@ -11,7 +11,7 @@ tags:
 
 ## Deep dive into cloud-init modules
 
-In the last chapter, you successfully booted a cloud image and performed a simple customization. While effective, the true power, portability, and idempotency of `cloud-init` are unlocked through its module system. These modules are specialized tools in the `cloud-init` toolkit, designed to handle specific configuration tasks in a declarative, predictable way.
+In the last chapter, you successfully booted a cloud image and performed a simple customization. While effective, you unlock the true power, portability, and idempotency of `cloud-init` with its module system. These modules are specialized tools in the `cloud-init` toolkit, designed to handle specific configuration tasks in a declarative, predictable way.
 
 This chapter dives deep into the module system, explaining what modules are, how they work, and how to use the most essential ones to build a well-configured server.
 
