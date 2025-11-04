@@ -10,7 +10,7 @@ tags:
 
 Welcome to the comprehensive guide to `cloud-init` on Rocky Linux. This series takes you from the fundamental concepts of cloud instance initialization to advanced, real-world provisioning and troubleshooting techniques. Whether you are a new user setting up your first cloud server or an experienced administrator building custom images, this guide has something for you.
 
-The chapters are designed for sequential reading, building on knowledge from the previous sections.
+To get the most from these chapters, you should read them sequentially, building on knowledge from the previous sections.
 
 ---
 
