@@ -1,7 +1,7 @@
 ---
 title: 6. Troubleshooting cloud-init
 author: Wale Soyinka
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - cloud-init
   - rocky linux
@@ -12,7 +12,7 @@ tags:
 
 ## Troubleshooting cloud-init
 
-In any complex, automated system, things will eventually go wrong. When a `cloud-init` configuration fails, knowing how to systematically diagnose the problem is an essential skill. This chapter is your guide to `cloud-init` forensics, covering both in-guest and on-host troubleshooting techniques.
+In any complex, automated system, things will eventually go wrong. When a `cloud-init` configuration fails, knowing how to diagnose the problem systematically is an essential skill. This chapter is your guide to `cloud-init` forensics, covering both in-guest and on-host troubleshooting techniques.
 
 ## 1. In-guest troubleshooting toolkit
 
@@ -62,7 +62,7 @@ Sometimes, a VM will fail to boot entirely, making in-guest tools useless. In th
 
 ### `virt-cat`: Reading files from a guest disk
 
-`virt-cat` allows for the reading of files from inside a VM's disk image without mounting it. This is perfect for grabbing log files from a non-booting instance.
+`virt-cat` allows reading files from a VM's disk image without mounting it. This is perfect for grabbing log files from a non-booting instance.
 
 ```bash
 # From the host, read the cloud-init.log from the VM's disk
@@ -108,8 +108,8 @@ If networking fails to come up, modules such as `packages` will fail. Check your
 
 * **Forcing a re-run:** To test changes on a running VM, run `sudo cloud-init clean --logs` followed by `sudo reboot`.
 * **Disabling `cloud-init`:** To prevent `cloud-init` from running on subsequent boots, create a sentinel file: `sudo touch /etc/cloud/cloud-init.disabled`.
-* **Running on every boot (`bootcmd`):** Use the `bootcmd` module for scripts that must run on every single boot. This is rare but useful for certain diagnostics.
+* **Running on every boot (`bootcmd`):** Use the `bootcmd` module for scripts that must run on every single boot. This is rare but useful for specific diagnostics.
 
 ## What's next
 
-You are now equipped with a powerful set of tools for both in-guest and on-host troubleshooting. In the final chapter, we will examine the `cloud-init` project itself, preparing you to explore its source code and contribute back to the community.
+You are now equipped with a robust set of tools for both in-guest and on-host troubleshooting. In the final chapter, we will examine the `cloud-init` project itself, preparing you to explore its source code and contribute back to the community.
