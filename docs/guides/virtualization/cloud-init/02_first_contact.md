@@ -31,7 +31,7 @@ sudo dnf install -y libvirt qemu-kvm virt-install genisoimage
 
 ### The QCOW2 image
 
-If you haven't already, you can download the official Rocky Linux 10 Generic Cloud image.
+If you have not done so, you can download the official Rocky Linux 10 Generic Cloud image with:
 
 ```bash
 curl -L -o Rocky-10-GenericCloud.qcow2 \
