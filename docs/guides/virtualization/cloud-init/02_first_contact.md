@@ -1,7 +1,7 @@
 ---
 title: 2. First contact
 author: Wale Soyinka
-contributors:
+contributors: Ganna Zhyrnova
 tags:
   - cloud-init
   - cloud
@@ -11,7 +11,7 @@ tags:
 
 ## Simple bootstrapping with the Rocky Linux 10 QCOW2 image
 
-In the previous chapter, we covered the fundamental concepts of `cloud-init`. Now, it is time to move from theory to practice. This chapter is your first hands-on mission: you will take the official Rocky Linux 10 Generic Cloud image, provide it with a simple set of instructions, and watch it configure itself on first boot.
+In the previous chapter, we covered the fundamental concepts of `cloud-init`. Now is the time to move from theory to practice. This chapter is your first hands-on mission: you will take the official Rocky Linux 10 Generic Cloud image, provide it with a simple set of instructions, and watch it configure itself on first boot.
 
 ## 1. Prepping the lab environment
 
@@ -31,7 +31,7 @@ sudo dnf install -y libvirt qemu-kvm virt-install genisoimage
 
 ### The QCOW2 image
 
-If you have not already, download the official Rocky Linux 10 Generic Cloud image.
+If you have not done so, you can download the official Rocky Linux 10 Generic Cloud image with:
 
 ```bash
 curl -L -o Rocky-10-GenericCloud.qcow2 \
@@ -115,7 +115,7 @@ One of the most common ways to provide data to `cloud-init` in a local environme
 
     !!! tip "Secure logins with SSH keys"
 
-        Connecting with a default user is convenient for a quick lab test, but it is not a secure practice. In the next chapter, we will explore how to use `cloud-init` to automatically inject your SSH public key, allowing for secure, passwordless logins.
+        Connecting with a default user is convenient for a quick lab test, but it is not a secure practice. In the next chapter, we will explore how to use `cloud-init` to automatically inject your SSH public key, allowing for safe, passwordless logins.
 
 3. **Verify the changes:** Check the hostname and the file created by `runcmd`.
 
