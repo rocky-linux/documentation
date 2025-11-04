@@ -1,7 +1,7 @@
 ---
 title: 4. Advanced provisioning
 author: Wale Soyinka
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - cloud-init
   - rocky linux
@@ -12,7 +12,7 @@ tags:
 
 ## Networking and multi-part payloads
 
-In the previous chapter, you mastered the core `cloud-init` modules for managing users, packages, and files. You can now build a well-configured server declaratively. Now, it is time to explore more advanced techniques that give you even greater control over your instance's configuration.
+In the previous chapter, you mastered the core `cloud-init` modules for managing users, packages, and files. You can now build a well-configured server declaratively. Now is the time to explore more advanced techniques that give you even greater control over your instance's configuration.
 
 This chapter covers two powerful, advanced topics:
 
@@ -23,7 +23,7 @@ This chapter covers two powerful, advanced topics:
 
 By default, the configuration of most cloud images is to acquire an IP address by DHCP. While convenient, many production environments require servers to have predictable, static IP addresses. The `cloud-init` network configuration system provides a platform-agnostic, declarative way to manage this.
 
-The specification of the network configurations is in a separate YAML document from your main `#cloud-config`. `cloud-init` processes both from the same file, using the standard YAML document separator (`---`) to distinguish between them.
+The network configuration is specified in a separate YAML document from your main `#cloud-config`. `cloud-init` processes both from the same file, using the standard YAML document separator (`---`) to distinguish between them.
 
 !!! note "How `cloud-init` applies network state"
 
@@ -97,7 +97,7 @@ In this exercise, we will configure our virtual machine with a static IP address
 
 ### Example 2: Multi-interface configuration
 
-A common real-world scenario is a server with multiple network interfaces. Here, we will create a VM with two interfaces: `eth0` will use DHCP, and `eth1` will have a static IP.
+A typical real-world scenario is a server with multiple network interfaces. Here, we will create a VM with two interfaces: `eth0` will use DHCP, and `eth1` will have a static IP.
 
 1. **Create `user-data.yml` for two interfaces:**
 
@@ -135,7 +135,7 @@ A common real-world scenario is a server with multiple network interfaces. Here,
 
 ## 2. Unifying payloads with multi-part MIME
 
-Sometimes, you need to run a setup script *before* the main `#cloud-config` modules execute. MIME multi-part files are the solution, allowing you to bundle different content types into one ordered payload.
+Sometimes, you need to run a setup script *before* the main `#cloud-config` modules execute. MIME multipart files are the solution, allowing you to bundle different content types into a single ordered payload.
 
 You can visualize the structure of a MIME file as follows:
 
@@ -199,7 +199,7 @@ We will create a multi-part file that first runs a shell script and then proceed
 
     !!! note "About the MIME boundary"
 
-        The boundary string (`//` in this case) is an arbitrary string that must not appear in the content of any part. It is used to separate the different sections of the file.
+        The boundary string (`//` in this case) is an arbitrary string that must not appear in the content of any part. It is used to separate the file's sections.
 
 2. **Boot and verify:**
 
@@ -226,10 +226,10 @@ We will create a multi-part file that first runs a shell script and then proceed
 
 !!! tip "Other Multi-Part Content Types"
 
-    `cloud-init` supports other content types for advanced use cases, such as `text/cloud-boothook` for very early boot scripts or `text/part-handler` for running custom Python code. Refer to the official documentation for more details.
+    `cloud-init` supports other content types for advanced use cases, such as `text/cloud-boothook` for very early boot scripts or `text/part-handler` for running custom Python code. Please refer to the official documentation for more details.
 
 ## What's next
 
-You have now learned two powerful, advanced `cloud-init` techniques. You can now define static networks and orchestrate complex provisioning workflows with multi-part user-data.
+You have now learned two powerful, advanced `cloud-init` techniques. You can now define static networks and orchestrate complex provisioning workflows with multi-part user data.
 
 In the next chapter, we will shift our perspective from *consuming* `cloud-init` on a per-instance basis to *customizing its default behavior* for creating your own pre-configured "golden images".
