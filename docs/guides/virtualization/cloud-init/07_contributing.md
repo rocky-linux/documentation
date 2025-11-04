@@ -1,7 +1,7 @@
 ---
 title: 7. Contributing
 author: Wale Soyinka
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - cloud-init
   - open source
@@ -9,7 +9,7 @@ tags:
   - python
 ---
 
-## Contributing to cloud-init project
+## Contributing to the cloud-init project
 
 Congratulations! You have journeyed from the fundamental concepts of `cloud-init` to advanced provisioning and troubleshooting techniques. You are now a `cloud-init` power user. This final chapter opens the door to the next step in your journey: moving from a consumer of `cloud-init` to a potential contributor.
 
@@ -17,7 +17,7 @@ Congratulations! You have journeyed from the fundamental concepts of `cloud-init
 
 ## 1. The `cloud-init` source code landscape
 
-Before you can contribute, you need to know your way around the project. Let us explore the source code and set up a basic development environment.
+Before you can contribute, please familiarize yourself with the project. Let us explore the source code and set up a basic development environment.
 
 ### The language and repository
 
@@ -37,7 +37,7 @@ cd cloud-init
 
 ### Setting up a development environment
 
-To work on the code without affecting your system's Python packages, you should always use a virtual environment.
+To work on code without affecting your system's Python packages, always use a virtual environment.
 
 ```bash
 # Create a Python virtual environment
@@ -54,10 +54,10 @@ pip install -r requirements-dev.txt
 
 Navigating a new codebase can be daunting. Here are the most important directories:
 
-* `cloudinit/`: This is the main Python source directory.
+* `cloudinit/`: This is the leading Python source directory.
 * `cloudinit/sources/`: This directory contains the code for **Datasources** (e.g., `DataSourceNoCloud.py`). This is how `cloud-init` detects and reads configuration from different cloud platforms.
 * `cloudinit/config/`: This is where the **Modules** live (e.g., `cc_packages.py`, `cc_users_groups.py`). The `cc_` prefix is a convention for the modules enabled by `#cloud-config`. This is the most common place for new feature contributions.
-* `doc/`: The project's official documentation. Documentation improvements are one of the best ways to make your first contribution.
+* `doc/`: The project's official documentation. Improving documentation is one of the best ways to make your first contribution.
 * `tests/`: The comprehensive test suite for the project.
 
 ## 2. Writing a basic custom module
@@ -100,13 +100,13 @@ Let us create the simplest possible module: one that reads a configuration key f
       message: "My first custom module is working!"
     ```
 
-After booting a VM with this configuration, you can check `/var/log/cloud-init.log` and you will find your custom message, proving your module worked.
+After booting a VM with this configuration, check `/var/log/cloud-init.log` to find your custom message, confirming your module worked.
 
 ## 3. The contribution workflow
 
 Contributing to an open source project follows a standard workflow. Here is a simplified overview:
 
-1. **Find something to work on:** The best place to start is the project's issue tracker on Launchpad. Look for bugs or feature requests. Newcomers are encouraged to start with documentation fixes or issues tagged as "low-hanging-fruit" or "good first issue".
+1. **Find something to work on:** The best place to start is the project's issue tracker on Launchpad. Please be sure to look for bugs or feature requests. Newcomers are encouraged to start with documentation fixes or issues tagged as "low-hanging-fruit" or "good first issue".
 
 2. **Fork and branch:** Create your own copy (a "fork") of the `cloud-init` repository on GitHub. Then, create a new branch for your changes.
 
@@ -132,4 +132,4 @@ To learn more, ask questions, and interact with the community, you can join the 
 
 ## A final word
 
-Congratulations on completing this guide. You have progressed from a novice user to a `cloud-init` power user, and now you have a map to guide you into the world of open source contribution. The `cloud-init` community is welcoming, and they value your contributions, no matter how small. Happy building!
+Congratulations on completing this guide. You have progressed from a novice user to a `cloud-init` power user, and now you have a map to guide you into the world of open source contribution. The `cloud-init` community is welcoming and values your contributions, no matter how small. Happy building!
