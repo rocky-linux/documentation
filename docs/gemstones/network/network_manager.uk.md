@@ -1,5 +1,5 @@
 ---
-title: RL9 - менеджер мережі
+title: NetworkManager
 author: tianci li
 contributors: Steven Spencer
 tags:
@@ -7,7 +7,7 @@ tags:
   - RL9
 ---
 
-# NetworkManager: Набір інструментів налаштування мережі
+## Набір інструментів для налаштування мережі
 
 У 2004 році компанія Red Hat запустила проект **NetworkManager**, який має задовольнити користувачам Linux потреби поточного керування мережами, особливо керування бездротовими мережами. Сьогодні проектом керує GNOME. [Домашню сторінку NetworkManager можна знайти тут](https://networkmanager.dev/).
 
