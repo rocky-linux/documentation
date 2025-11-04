@@ -11,7 +11,7 @@ tags:
 
 ## Deep dive into cloud-init modules
 
-In the last chapter, you successfully booted a cloud image and performed a simple customization. While effective, the true power, portability, and you unlock idempotency of `cloud-init` through its module system. These modules are the specialized tools in the `cloud-init` toolkit, designed to handle specific configuration tasks in a declarative and predictable way.
+In the last chapter, you successfully booted a cloud image and performed a simple customization. While effective, the true power, portability, and idempotency of `cloud-init` are unlocked through its module system. These modules are specialized tools in the `cloud-init` toolkit, designed to handle specific configuration tasks in a declarative, predictable way.
 
 This chapter dives deep into the module system, explaining what modules are, how they work, and how to use the most essential ones to build a well-configured server.
 
@@ -19,17 +19,17 @@ This chapter dives deep into the module system, explaining what modules are, how
 
 ### What are cloud-init modules
 
-A `cloud-init` module is a specialized Python script designed to handle a single, discrete provisioning task. Think of them as plugins for tasks such as managing users, installing packages, or writing files.
+A `cloud-init` module is a specialized Python script designed to handle a single, discrete provisioning task. Think of them as plugins for functions like user management, package installation, and file writing.
 
-The key advantage of using modules over simple scripts (like `runcmd`) is **idempotency**. An idempotent operation produces the same result whether you run it once or ten times. When you declare that a user should exist, the module ensures that state is met—it will create the user if it does not exist, but do nothing if it already does. This makes your configurations reliable and repeatable.
+The key advantage of using modules over simple scripts (like `runcmd`) is **idempotency**. An idempotent operation produces the same result whether you run it once or ten times. When you declare that a user should exist, the module ensures the state is met—it creates the user if it does not exist, but does nothing if it already does. This makes your configurations reliable and repeatable.
 
 ### The `#cloud-config` format revisited
 
-When `cloud-init` sees the `#cloud-config` header, it interprets the file as a YAML-formatted instruction set. The top-level keys in this YAML file map directly to `cloud-init` modules.
+When `cloud-init` sees the `#cloud-config` header, it interprets the file as a YAML-formatted instruction set — the top-level keys in this YAML file map directly to `cloud-init` modules.
 
 ### Module execution and order
 
-Modules run at specific stages of the boot process in a sequence defined in `/etc/cloud/cloud.cfg`. A simplified view of this flow looks such as this:
+Modules run at specific stages of the boot process in a sequence defined in `/etc/cloud/cloud.cfg`. A simplified view of this flow looks like this:
 
 ```
 System Boot
@@ -91,7 +91,7 @@ In this example, we will provision a new, dedicated administrative user named `s
 
 **Example 2: Modifying the default user**
 
-A more common task is to simply secure the default user provided with the cloud image (`rocky`). Here, we will modify this user to add our SSH key.
+A more common task is to secure the default user provided with the cloud image (`rocky`). Here, we will modify this user to add our SSH key.
 
 1. **Create `user-data.yml`:**
 
@@ -117,7 +117,7 @@ A more common task is to simply secure the default user provided with the cloud 
 
 The `packages` module provides a declarative way to manage the software on your instance, ensuring the installation of specific applications at boot time.
 
-In this example, we will ensure the installation of two useful tools, `nginx` (a high-performance web server) and `htop` (an interactive process viewer). We will also instruct `cloud-init` to update the package repository metadata first to ensure it can find the latest versions.
+In this example, we will ensure the installation of two useful tools, `nginx` (a high-performance web server) and `htop` (an interactive process viewer). We will also instruct `cloud-init` to update the package repository metadata first, ensuring it can find the latest versions.
 
 1. **Create `user-data.yml`:**
 
@@ -140,7 +140,7 @@ In this example, we will ensure the installation of two useful tools, `nginx` (a
 
 !!! note "Idempotency in action"
 
-    If you were to reboot this VM with the same `user-data`, the `packages` module would see that `nginx` and `htop` are already installed and do nothing further. It ensures the desired state (packages are present) without taking unnecessary action. That is idempotency.
+    If you were to reboot this VM with the same `user-data`, the `packages` module would see that `nginx` and `htop` are already installed and take no further action. It ensures the desired state (packages are present) without taking unnecessary action. That is idempotency.
 
 ### Module deep dive: `write_files`
 
