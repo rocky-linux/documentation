@@ -16,12 +16,12 @@ Questo capitolo illustra Squid, la cache proxy HTTP.
 
 **Obiettivi**: Imparerete a:
 
-:heavy_check_mark: installare squid\
+:heavy_check_mark: installare squid  
 :heavy_check_mark: configurarlo come un proxy e memorizzare il contenuto HTTP.
 
 :checkered_flag: **squid**, **proxy**, **HTTP**
 
-**Competenze**: :star: :star:\
+**Competenze**: :star: :star:  
 **Complessità**: :star: :star:
 
 **Tempo di lettura**: 20 minuti

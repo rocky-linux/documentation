@@ -1,5 +1,5 @@
 ---
-title: RL9 - network manager
+title: NetworkManager
 author: tianci li
 contributors: Steven Spencer
 tags:
@@ -7,7 +7,7 @@ tags:
   - RL9
 ---
 
-# NetworkManager Suite di strumenti per la configurazione della rete
+## Suite di strumenti per la configurazione di rete
 
 Nel 2004, Red Hat ha lanciato il progetto **NetworkManager**, che mira a rendere più facile per gli utenti Linux soddisfare le esigenze di gestione delle reti attuali, in particolare la gestione delle reti wireless. Oggi il progetto è gestito da GNOME. La [homepage di NetworkManager si trova qui](https://networkmanager.dev/).
 
@@ -40,7 +40,7 @@ ens160  25106d13-ba04-37a8-8eb9-64daa05168c9  ethernet  ens160
 
 Per RockyLinux 8.x, abbiamo introdotto come configurare la rete [in questo documento](./nmtui.md). Si può usare `vim` per modificare il file di configurazione della scheda di rete nella directory **/etc/sysconfig/network-script/**, oppure si può usare `nmcli`/`nmtui`, entrambi utilizzabili.
 
-## Regole di denominazione per udev device Manager
+## Regole di denominazione per il gestore dei dispositivi udev
 
 Per RockyLinux 9.x, se si va nella directory **/etc/sysconfig/network-scripts/**, ci sarà un testo di descrizione **readme-ifcfg-rh.txt** che richiede di andare nella directory **/etc/NetworkManager/system-connections/**.
 
@@ -83,7 +83,7 @@ Aggiungere alcuni suffissi al prefisso, come ad esempio:
 
 È possibile utilizzare `man 7 systemd.net-naming-scheme` per ottenere informazioni più dettagliate.
 
-## comando `nmcli` (consigliato)
+## Comando `nmcli` (consigliato)
 
 Gli utenti possono non solo configurare la rete in modalità puramente a riga di comando, ma anche utilizzare comandi interattivi per configurare la rete.
 
