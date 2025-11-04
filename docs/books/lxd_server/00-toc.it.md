@@ -10,6 +10,10 @@ tags:
 
 # Creare un server LXD completo
 
+!!! warning Attenzione "LXD status"
+
+    Si noti che LXD non contiene immagini attuali di Rocky Linux 10, né la maggior parte, se non tutte, le altre immagini clone di RHEL. Ciò è probabilmente dovuto alle modifiche alle licenze che hanno impedito al progetto Linux Containers di contribuire con immagini a LXD. (vedi le altre note sotto). Ciò significa che se si desidera una piattaforma containerizzata moderna, basata sullo sviluppo originale di LXD e con il contributo di molti degli sviluppatori originali, la soluzione migliore è passare a [Incus](../incus_server/00-toc.md).
+
 !!! info "Informazione"
 
     Questa procedura dovrebbe funzionare per Rocky Linux 8.x o 9.x. Se cercate un'implementazione moderna di questo progetto degli ex sviluppatori di LXD, ma disponibile solo per Rocky Linux 9.x, date un'occhiata a [il libro di Incus Server] (../incus_server/00-toc.md).
@@ -20,9 +24,9 @@ tags:
     
     > Canonical, the creator and main contributor of the LXD project has decided that after over eight years as part of the Linux Containers community, the project would now be better served directly under Canonical’s own set of projects.
     
-    Uno dei fattori decisivi sono state le dimissioni di alcuni sviluppatori principali di LXD, i quali hanno poi effettuato il fork di LXD in Incus, annunciando il fork nell'agosto 2023. Una versione di rilascio (0.1) è stata rilasciata nell'ottobre 2023, e da allora gli sviluppatori hanno rapidamente sviluppato questa versione con rilasci successivi fino alla 0.7 (marzo 2024). Dopo la 0.7 è arrivata la versione di supporto a lungo termine, la 6.0 LTS, il 4 aprile 2024, e ora la 6.4 LTS (da settembre 2024).
+    Uno dei fattori decisivi è stata le dimissioni di diversi sviluppatori principali da LXD, che poi hanno creato un fork di LXD chiamato Incus nell'agosto 2023. Una versione di rilascio (0.1) è stata rilasciata nell'ottobre 2023, e da allora gli sviluppatori hanno rapidamente sviluppato questa versione con rilasci successivi fino alla 0.7 (marzo 2024). Dopo la 0.7 è arrivata la versione di supporto a lungo termine, la 6.0 LTS, il 4 aprile 2024, e ora la 6.4 LTS (da settembre 2024).
     
-    Durante tutto il processo, si pensava che Cannonical avrebbe continuato a mantenere i collegamenti alle immagini dei container fornite da Linux Containers, ma a causa di un [cambio di licenza](https://stgraber.org/2023/12/12/lxd-now-re-licensed-and-under-a-cla/) è diventato impossibile per Linux Containers continuare a offrire le immagini dei container all'interno di LXD. Tuttavia, a causa di un [cambio di licenza](https://stgraber.org/2023/12/12/lxd-now-re-licensed-and-under-a-cla/), è diventato impossibile per Linux Containers continuare a offrire le immagini dei container all'interno di LXD. Mentre Linux Containers non può più fornire immagini di container a LXD, il progetto LXD è riuscito a costruire alcuni container, compresi quelli per Rocky Linux. 
+    Durante tutto il processo, si pensava che Cannonical avrebbe continuato a mantenere i collegamenti alle immagini dei container fornite da Linux Containers, ma a causa di un [cambio di licenza](https://stgraber.org/2023/12/12/lxd-now-re-licensed-and-under-a-cla/) è diventato impossibile per Linux Containers continuare a offrire le immagini dei container all'interno di LXD. Tuttavia, a causa di un [cambio di licenza](https://stgraber.org/2023/12/12/lxd-now-re-licensed-and-under-a-cla/), è diventato impossibile per Linux Containers continuare a offrire le immagini dei container all'interno di LXD. Sebbene Linux Containers non sia più in grado di fornire immagini container a LXD, il progetto LXD ha creato alcuni container, compresi quelli per Rocky Linux. 
     
     Questo documento utilizza LXD anziché Incus.
 
