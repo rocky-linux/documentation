@@ -1,7 +1,7 @@
 ---
 title: 0. cloud-init
 author: Wale Soyinka
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - cloud-init
 ---
@@ -10,7 +10,7 @@ tags:
 
 Welcome to the comprehensive guide to `cloud-init` on Rocky Linux. This series takes you from the fundamental concepts of cloud instance initialization to advanced, real-world provisioning and troubleshooting techniques. Whether you are a new user setting up your first cloud server or an experienced administrator building custom images, this guide has something for you.
 
-The design of the chapters is for reading sequentially, building on the knowledge from the previous sections.
+The chapters are designed for sequential reading, building on knowledge from the previous sections.
 
 ---
 
@@ -29,7 +29,7 @@ The design of the chapters is for reading sequentially, building on the knowledg
 > Tackle complex scenarios, including how to define static network configurations and how to combine scripts and cloud-configs into a single payload.
 
 **[5. The image builder's perspective](./05_image_builders_perspective.md)**
-> Shift your perspective to that of an image builder. Learn how to create "golden images" with baked-in defaults and how to properly generalize them for cloning.
+> Shift your perspective to that of an image builder. Learn how to create "golden images" with baked-in defaults and how to generalize them for cloning properly.
 
 **[6. Troubleshooting](./06_troubleshooting.md)**
 > Learn the essential art of `cloud-init` forensics. Understand the logs, status commands, and common pitfalls to diagnose and solve problems effectively.
