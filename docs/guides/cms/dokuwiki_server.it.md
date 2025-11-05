@@ -11,7 +11,7 @@ tags:
 ## Prerequisiti e presupposti
 
 - Un'istanza di Rocky Linux installata su un server, un container o una macchina virtuale.
-- Abilità nel modificare i file di configurazione dalla riga di comando con un editor (negli esempi qui riportati si utilizzerà _vi_, ma è possibile sostituire l'editor preferito)
+- Dimestichezza con la modifica dei file di configurazione dalla riga di comando con un editor (gli esempi qui riportati utilizzano `vi`, ma è possibile sostituirlo con il proprio editor preferito)
 - Conoscenza delle applicazioni web e della loro configurazione
 - Il nostro esempio utilizzerà [Apache Sites Enabled](../web/apache-sites-enabled.md) per l'impostazione. Se necessario, rivederlo.
 - Questo documento utilizzerà "example.com" come nome di dominio in tutto il documento
@@ -20,7 +20,7 @@ tags:
 
 ## Introduzione
 
-La documentazione può assumere diverse forme in un'organizzazione. Avere un repository a cui fare riferimento per la documentazione è inestimabile. Un wiki (che in hawaiano significa _veloce_) è un modo per conservare in una posizione centralizzata documentazione, note di processo, basi di conoscenza aziendale e persino esempi di codice. I professionisti IT che tengono un wiki, anche di nascosto, hanno una polizza assicurativa integrata contro la dimenticanza di una routine oscura.
+La documentazione può assumere diverse forme in un'organizzazione. Avere un repository a cui fare riferimento per la documentazione è inestimabile. Un wiki (che in hawaiano significa _veloce_) è un modo per conservare documentazione, note sui processi, basi di conoscenza aziendale e persino esempi di codice in un unico luogo centralizzato. I professionisti IT che tengono un wiki, anche di nascosto, hanno una polizza assicurativa integrata contro la dimenticanza di una routine oscura.
 
 DokuWiki è un wiki maturo e veloce che funziona senza database, ha funzioni di sicurezza integrate e non è complesso da distribuire. Per ulteriori informazioni, consultate la loro [pagina web](https://www.dokuwiki.org/dokuwiki).
 
@@ -28,7 +28,7 @@ DokuWiki è uno dei tanti wiki disponibili, anche se è un buon wiki. Un grande 
 
 ## Installazione delle Dipendenze
 
-La versione minima di PHP per DokuWiki è ora la 7.2, che Rocky Linux 8 ha di default. Grazie ai moduli, Rocky Linux 8 può supportare l'installazione fino alla versione 8.2. Rocky Linux 9.0 ha PHP versione 8.0 come impostazione predefinita e moduli che consentono fino alla versione 8.2. Si noti che alcuni dei pacchetti elencati potrebbero già esistere:
+La versione minima di PHP per DokuWiki è ora 8. Rocky Linux 10 ha PHP 8.3 come impostazione predefinita. Si noti che alcuni dei pacchetti elencati potrebbero già esistere:
 
 ```bash
 dnf install tar wget httpd php php-gd php-xml php-json php-mbstring
@@ -87,7 +87,7 @@ Il file di configurazione sarà simile a questo:
 </VirtualHost>
 ```
 
-Si noti che l'opzione "AllowOverride All" sopra riportata consente il funzionamento del file `.htaccess` (sicurezza specifica della directory).
+Si noti che "AllowOverride All" consente il funzionamento del file `.htaccess` (sicurezza specifica della directory).
 
 Procedere con il collegamento del file di configurazione in sites-enabled, ma non avviare ancora i servizi web:
 
@@ -95,7 +95,7 @@ Procedere con il collegamento del file di configurazione in sites-enabled, ma no
 ln -s /etc/httpd/sites-available/com.example /etc/httpd/sites-enabled/
 ```
 
-### Apache DocumentRoot
+### Apache _DocumentRoot_
 
 È necessario creare la _DocumentRoot_. Per farlo eseguire:
 
@@ -111,9 +111,9 @@ Nel server, passare alla root directory.
 cd /root
 ```
 
-Dal momento che il vostro ambiente è pronto per l'uso, procuratevi l'ultima versione stabile di DokuWiki. È possibile trovarlo andando sulla [pagina di download](https://download.dokuwiki.org/) e sul lato sinistro della pagina, sotto “Versione”, si troverà “Stabile (consigliata) (link diretto)”.
+Scarica l'ultima versione stabile di DokuWiki. Puoi trovarla andando alla [pagina di download](https://download.dokuwiki.org/). Sul lato sinistro della pagina, sotto “Versione”, si vedrà “Stabile (consigliata) (link diretto)”.
 
-Fare clic con il tasto destro del mouse sulla parte “(link diretto)” e copiare il link. Nella console del vostro server DokuWiki, digitate `wget` e uno spazio e poi incollate il link copiato nel terminale. Si dovrebbe ottenere qualcosa di simile a questo:
+Cliccare con il tasto destro del mouse su "(link diretto)" e copiare il link. Nella console del vostro server DokuWiki, digitate `wget` e uno spazio e poi incollate il link copiato nel terminale. Si dovrebbe ottenere qualcosa di simile a questo:
 
 ```bash
 wget https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz
@@ -143,9 +143,9 @@ tar xzf dokuwiki-stable.tgz  --strip-components=1 -C /var/www/sub-domains/com.ex
 
 Una volta eseguito questo comando, tutto DokuWiki dovrebbe trovarsi nella _DocumentRoot_.
 
-È necessario fare una copia del file _.htaccess.dist_ fornito con DokuWiki e conservare quello vecchio, nel caso in cui sia necessario tornare all'originale.
+È necessario fare una copia del file `.htaccess.dist` fornito con DokuWiki e conservare quello vecchio, nel caso in cui sia necessario tornare all'originale.
 
-In questo processo, il nome del file verrà modificato in _.htaccess_. Questo è ciò che _apache_ cercherà. Per ottenere questo:
+In questo processo, il nome del file verrà modificato in `.htaccess`. Questo è ciò che _apache_ cercherà. Per ottenere questo:
 
 ```bash
 cp /var/www/sub-domains/com.example/html/.htaccess{.dist,}
@@ -159,9 +159,9 @@ chown -Rf apache.apache /var/www/sub-domains/com.example/html
 
 ## Impostazione del DNS o di `/etc/hosts`
 
-Prima di poter accedere all'interfaccia di DokuWiki, è necessario impostare il nome per questo sito. È possibile utilizzare il file _/etc/hosts_ a scopo di test.
+Prima di poter accedere all'interfaccia di DokuWiki, è necessario impostare il nome per questo sito. È possibile utilizzare il file `/etc/hosts` a scopo di test.
 
-In questo esempio, supponiamo che DokuWiki venga eseguito su un indirizzo IPv4 privato di 10.56.233.179. Si supponga che si stia modificando anche il file _/etc/hosts_ su una workstation Linux. Per farlo, eseguire:
+In questo esempio, supponiamo che DokuWiki venga eseguito su un indirizzo IPv4 privato di 10.56.233.179. Supponiamo che tu stia modificando anche il file `/etc/hosts` su una workstation Linux. Per farlo, eseguire:
 
 ```bash
 sudo vi /etc/hosts
@@ -186,7 +186,7 @@ Una volta terminati i test e pronti a rendere il tutto live, è necessario aggiu
 
 ## Avviare `httpd`
 
-Prima di avviare _httpd_, verificare che la configurazione sia corretta:
+Prima di avviare <`httpd`, verificare che la configurazione sia corretta:
 
 ```bash
 httpd -t
@@ -198,7 +198,7 @@ Dovresti ottenere:
 Syntax OK
 ```
 
-In caso affermativo, si dovrebbe essere pronti ad avviare _httpd_ e a terminare la configurazione. Iniziare abilitando _htpd_ all'avvio:
+In caso affermativo, si dovrebbe essere pronti ad avviare `httpd` e a terminare la configurazione. Iniziare abilitando `htpd` all'avvio:
 
 ```bash
 systemctl enable httpd
@@ -218,7 +218,7 @@ Il passo successivo consiste nell'aprire un browser web e digitare questo indiri
 
 Si accede così alla schermata di impostazione:
 
-- Nel campo "Nome del wiki", digitare il nome del nostro wiki. Esempio "Documentazione tecnica"
+- Nel campo "Nome del wiki", digitare il nome del vostro wiki. Esempio "Documentazione tecnica"
 - Nel campo "Superuser", digitare il nome utente amministrativo. Esempio "admin"
 - Nel campo " Real name", digitare il nome reale dell'utente amministrativo.
 - Nel campo "E-Mail", digitare l'indirizzo e-mail dell'utente amministrativo.
@@ -278,10 +278,10 @@ trusted (active)
   rich rules:
 ```
 
-### SSL
+### SSL/TLS
 
-Per una maggiore sicurezza, si dovrebbe prendere in considerazione l'utilizzo di un SSL per il traffico web crittografato. È possibile acquistare un certificato SSL da un fornitore di certificati SSL oppure utilizzare [Let's Encrypt](../security/generating_ssl_keys_lets_encrypt.md).
+Per garantire la massima sicurezza, è consigliabile utilizzare un protocollo SSL/TLS per crittografare il traffico web. È possibile acquistare un certificato SSL/TLS da un provider SSL/TLS oppure utilizzare [Let's Encrypt](../security/generating_ssl_keys_lets_encrypt.md).
 
 ## Conclusione
 
-Che tu debba documentare processi, politiche aziendali, codice di programmazione o altro, un wiki è un ottimo strumento per farlo. DokuWiki è un prodotto sicuro, flessibile e facile da usare, relativamente semplice da installare e implementare. È anche un progetto stabile che esiste da molti anni.
+Che tu debba documentare processi, politiche aziendali, codice di programmazione o altro, un wiki è un ottimo strumento per farlo. DokuWiki è un prodotto sicuro, flessibile e facile da usare, semplice da installare e implementare. È anche un progetto stabile che esiste da molti anni.
