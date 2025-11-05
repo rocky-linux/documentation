@@ -8,8 +8,8 @@ tags:
   - containers
   - dnf
   - dnf swap
-  - curl
-  - curl-minimal
+  - vim
+  - vim-minimal
   - allowerasing
   - coreutils-single
 ---
@@ -25,35 +25,34 @@ For cases, when the stripped-down package is not enough, you can use the `dnf sw
 
 ## Objective
 
-This Rocky Linux GEMstone demonstrates how to use **dnf** to _swap_ the bundled `curl-minimal` package with the regular `curl` package.
+This Rocky Linux GEMstone demonstrates how to use **dnf** to _swap_ the bundled `vim-minimal` package with the regular `vim` package.
 
-## Check existing curl variant
+## Check existing `vim` variant
 
-While logged into your container or virtual machine environment as a user with administrative privileges, first verify the variant of `curl` package installed. Type:
+While logged into your container or virtual machine environment as a user with administrative privileges, first verify the variant of `vim` package installed. Type:
 
 ```bash
-# rpm -qa | grep  ^curl-minimal
-curl-minimal-*
+# rpm -qa | grep  ^vim
+vim-minimal-9.1.083-5.el10_0.1.x86_64
 ```
 
-We have curl-minimal on our demo system!
+You have `vim-minimal` on our system.
 
-## Swap curl-minimal for curl
+## Swap `vim-minimal` for `vim`
 
-Use `dnf` to swap the installed `curl-minimal` package with regular `curl` package.
+Use `dnf` to swap the installed `vim-minimal` package with regular `vim` package.
 
 ```bash
-# dnf -y swap curl-minimal curl
-
+# dnf -y swap vim-minimal vim
 ```
 
-## Check new curl package variant
+## Check new `vim` package variant
 
-To confirm the changes, query the rpm database again for the installed curl package(s) by running:
+To confirm the changes, query the rpm database again for the installed `vim` package(s) by running:
 
 ```bash
-# rpm -qa | grep  ^curl
-curl-*
+# rpm -qa | grep  ^vim
+vim-enhanced-9.1.083-5.el10_0.1.x86_64
 ```
 
 And it's a GEM !
@@ -68,8 +67,8 @@ DNF Swap Command
 dnf [options] swap <package-to-be-removed> <replacement-package>
 ```
 
-Under the hood, `dnf swap` uses DNF's `--allowerasing` option to resolve any package conflict issues. Therefore the curl minimal example demonstrated in this GEMstone could also have been done by running:
+Under the hood, `dnf swap` uses DNF's `--allowerasing` option to resolve any package conflict issues. Therefore the `vim-minimal` example demonstrated in this GEMstone could also have been done by running:
 
 ```bash
-dnf install -y --allowerasing curl
+dnf install -y --allowerasing vim
 ```
