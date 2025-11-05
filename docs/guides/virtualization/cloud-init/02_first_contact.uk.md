@@ -1,7 +1,7 @@
 ---
 title: 2. Перший контакт
 author: Wale Soyinka
-contributors:
+contributors: Ganna Zhyrnova
 tags:
   - cloud-init
   - cloud
