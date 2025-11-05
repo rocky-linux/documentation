@@ -25,7 +25,7 @@ tags:
 
 ```bash
 for host in node-0 node-1; do
-  SUBNET=$(grep $host machines.txt | cut -d " " -f 5)
+  SUBNET=$(grep $host machines.txt | cut -d " " -f 4)
   sed "s|SUBNET|$SUBNET|g" \
     configs/10-bridge.conf > 10-bridge.conf 
     
