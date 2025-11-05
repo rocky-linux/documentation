@@ -26,7 +26,7 @@ Se si desidera sincronizzare automaticamente file e cartelle tra computer, `lsyn
 
 È un programma che vale la pena di imparare per qualsiasi amministratore di sistema.
 
-La migliore descrizione di `lsyncd` e' fornita dalla sua stessa pagina man. Parafrasando leggermente, `lsyncd` è una soluzione live mirror leggera e non difficile da installare. Non richiede nuovi file system o dispositivi a blocchi e non ostacola le prestazioni del file system locale. In breve, fa il mirror dei file.
+La migliore descrizione di `lsyncd` e' fornita dalla sua stessa pagina man. Parafrasando leggermente, `lsyncd` è una soluzione live-mirror leggera e facile da installare. Non richiede nuovi file system o dispositivi a blocchi e non ostacola le prestazioni del file system locale. In breve, fa il mirror dei file.
 
 `lsyncd` controlla l'interfaccia di monitoraggio degli eventi di una struttura di directory locale (`inotify`). Aggrega e combina gli eventi per alcuni secondi e genera uno (o più) processi per sincronizzare le modifiche. Per impostazione predefinita, si tratta di `rsync`.
 
@@ -40,7 +40,7 @@ Aggrega e combina gli eventi per alcuni secondi e genera uno (o più) processi p
 
     A partire da questa data (settembre 2025), Rocky Linux 10 con EPEL (Extra Packages for Enterprise Linux) abilitato non include il pacchetto `lsyncd`. Per utilizzare `lsyncd` su Rocky Linux 10, è necessario utilizzare il metodo **Installazione di `lsyncd` - metodo sorgente**. Il metodo RPM viene mantenuto in questo caso, poiché è probabile che EPEL crei questo pacchetto per la versione 10 in futuro. Non fa mai male verificare se il pacchetto è disponibile prima di compilare da sorgente.
 
-È possibile installare `lsyncd` in due modi. Sono incluse le descrizioni di entrambi i metodi. L'RPM tende a rimanere leggermente indietro rispetto ai pacchetti sorgente, ma solo di poco. La versione installata con il metodo RPM al momento in cui scriviamo è la 2.2.3-5, mentre la versione del codice sorgente è ora la 2.3.1. Scegliete il metodo con cui vi sentite più a vostro agio.
+È possibile installare `lsyncd` in due modi. Sono incluse le descrizioni di entrambi i metodi. Gli RPM sono leggermente in ritardo rispetto ai pacchetti sorgente, ma solo di poco. La versione installata con il metodo RPM al momento in cui scriviamo è la 2.2.3-5, mentre la versione del codice sorgente è ora la 2.3.1. Scegliete il metodo con cui vi sentite più a vostro agio.
 
 ## Installazione di `lsyncd` - Metodo RPM
 
