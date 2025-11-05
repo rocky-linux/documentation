@@ -1,7 +1,7 @@
 ---
 title: 7. Внесок у проєкт
 author: Wale Soyinka
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - cloud-init
   - open source
