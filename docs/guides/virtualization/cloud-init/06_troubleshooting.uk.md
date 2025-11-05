@@ -1,7 +1,7 @@
 ---
 title: 6. Виправлення неполадок cloud-init
 author: Wale Soyinka
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - cloud-init
   - rocky linux
