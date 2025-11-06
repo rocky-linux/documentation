@@ -12,12 +12,12 @@ title: Частина 5.2 Varnish
 
 **Цілі**: Ви дізнаєтеся, як:
 
-:heavy_check_mark: Встановити та налаштувати Varnish;\
+:heavy_check_mark: Встановити та налаштувати Varnish;  
 :heavy_check_mark: Кешувати вміст веб-сайту.
 
 :checkered_flag: **зворотний проксі**, **кеш**
 
-**Знання**: :star: :star:\
+**Знання**: :star: :star:  
 **Складність**: :star: :star: :star:
 
 **Час читання**: 30 хвилин
