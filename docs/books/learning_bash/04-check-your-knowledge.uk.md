@@ -4,7 +4,7 @@ author: Antoine Le Morvan
 contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.5
 tags:
-  - освіта
+  - education
   - сценарій bash
   - bash
 ---
@@ -28,7 +28,7 @@ tags:
 :heavy_check_mark: Як зберегти повернення команди в змінній:
 
 - [ ] `file=$(ls)`
-- [ ] `file=`ls``
+- [ ] `file=`ls\`\`
 - [ ] `file:=$ls`
 - [ ] `file = $(ls)`
 - [ ] `file=${ls}`
