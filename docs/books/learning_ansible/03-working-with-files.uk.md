@@ -31,13 +31,15 @@ title: Керування файлами
 
 !!! Важливо
 
+    ```
     Більше інформації можна [знайти тут](https://docs.ansible.com/ansible/latest/collections/community/general/ini_file_module.html).
+    ```
 
 Модуль вимагає:
 
-* Значення розділу
-* Назву опції
-* Нове значення
+- Значення розділу
+- Назву опції
+- Нове значення
 
 Приклад використання:
 
@@ -56,7 +58,9 @@ title: Керування файлами
 
 !!! Важливо
 
+    ```
     Більше інформації можна [знайти тут](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html).
+    ```
 
 У цьому випадку рядок у файлі, який потрібно змінити, буде знайдено за допомогою регулярного виразу.
 
@@ -73,9 +77,11 @@ title: Керування файлами
 
 Якщо файл необхідно скопіювати з сервера Ansible на один чи більше хостів, краще використовувати модуль `copy`.
 
-!!! Примітка
+!!! Важливо
 
+    ```
     Більше інформації можна [знайти тут](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html).
+    ```
 
 Тут ми копіюємо `myflile.conf` з одного місця в інше:
 
@@ -92,9 +98,11 @@ title: Керування файлами
 
 Якщо файл потрібно скопіювати з віддаленого сервера на локальний, найкраще використовувати модуль `fetch`.
 
-!!! Примітка
+!!! Важливо
 
+    ```
     Більше інформації можна знайти [тут](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/fetch_module.html).
+    ```
 
 Цей модуль діє протилежно до модуля `copy`:
 
@@ -109,9 +117,11 @@ title: Керування файлами
 
 Ansible і його модуль `template` використовують систему шаблонів **Jinja2** (<http://jinja.pocoo.org/docs/>) для створення файлів на target hosts.
 
-!!! Note "Примітка"
+!!! Важливо
 
+    ```
     Більше інформації можна [знайти тут](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html).
+    ```
 
 Наприклад:
 
