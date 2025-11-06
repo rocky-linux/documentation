@@ -16,7 +16,7 @@ title: Частина 2.1 Веб-сервери Apache
 
 :checkered_flag: **apache**, **http**, **httpd**
 
-**Знання**: :star: :star:\
+**Знання**: :star: :star:  
 **Складність**: :star: :star:
 
 **Час читання**: 30 хвилин
