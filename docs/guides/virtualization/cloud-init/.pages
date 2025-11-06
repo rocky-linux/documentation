@@ -2,10 +2,4 @@
 
 nav:
     - ... | index.md
-    - ... | 01_fundamentals.md
-    - ... | 02_first_contact.md
-    - ... | 03_configuration_engine.md
-    - ... | 04_advanced_provisioning.md
-    - ... | 05_image_builders_perspective.md
-    - ... | 06_troubleshooting.md
-    - ... | 07_contributing.md
+    - ...
