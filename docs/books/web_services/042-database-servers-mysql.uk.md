@@ -22,7 +22,7 @@ title: Частина 4.2 Сервери баз даних MySQL
 
 :checkered_flag: **RDBMS**, **database**, **MariaDB**, **MySQL**
 
-**Знання**: :star: :star: :star:\
+**Знання**: :star: :star: :star:  
 **Складність**: :star: :star: :star:
 
 **Час читання**: 10 хвилин
