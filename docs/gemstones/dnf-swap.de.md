@@ -1,11 +1,11 @@
 - - -
-title: dnf — swap-Befehl <br/> author: wale soyinka <br/> Translations: [https://crowdin.com/project/rockydocs](https://crowdin.com/project/rockydocs) <br/> Translators: [https://crowdin.com/project/rockydocs/activity-stream](https://crowdin.com/project/rockydocs/activity-stream) <br/> date: 2025-09-11 20h19 <br/> tags: <br/>
+title: dnf — swap-Befehl <br/> author: wale soyinka <br/> Translations: [https://crowdin.com/project/rockydocs](https://crowdin.com/project/rockydocs) <br/> Translators: [https://crowdin.com/project/rockydocs/activity-stream](https://crowdin.com/project/rockydocs/activity-stream) <br/> date: 2025-11-05 20h19 <br/> tags: <br/>
   - cloud images
   - container
   - dnf
   - dnf swap
-  - curl
-  - curl-minimal
+  - vim
+  - vim-minimal
   - allowerasing
   - coreutils-single
 - - -
@@ -21,35 +21,34 @@ In den Fällen, in denen das abgespeckte Paket nicht ausreichend ist, können Si
 
 ## Zielsetzung
 
-Dieser Rocky Linux GEMstone zeigt, wie man **dnf swap** verwendet, um den `curl-minimal`-Paket mit dem normalen `curl`-Paket austauscht.
+Dieser Rocky Linux GEMstone zeigt, wie man **dnf** verwendet, um den `vim-minimal`-Paket mit dem normalen `vim`-Paket austauscht.
 
-## Bereits vorhandene curl-Variante prüfen
+## Bereits vorhandene `vim`-Variante prüfen
 
-Wenn Sie als Benutzer mit Administratorrechten auf den Container oder die Umgebung der virtuellen Maschine zugreifen, prüfen Sie bitte zunächst, welche Variante des Pakets `curl` bereits installiert ist. Geben Sie bitte Folgendes ein:
+Wenn Sie als Benutzer mit Administratorrechten auf den Container oder die Umgebung der virtuellen Maschine zugreifen, prüfen Sie bitte zunächst, welche Variante des Pakets `vim` bereits installiert ist. Geben Sie bitte Folgendes ein:
 
 ```bash
-# rpm -qa | grep  ^curl-minimal
-curl-minimal-*
+# rpm -qa | grep  ^vim
+vim-minimal-9.1.083-5.el10_0.1.x86_64
 ```
 
-curl-minimal ist auf unserem Demosystem installiert!
+Sie haben `vim-minimal` auf Ihrem System bereits installiert.
 
-## curl-minimal durch curl ersetzen
+## Ersetzen von `vim-minimal` durch `vim`
 
-Verwenden Sie `dnf`, um das installierte Paket `curl-minimal` durch das reguläre Paket `curl` auszutauschen.
+Verwenden Sie `dnf`, um das installierte Paket `vim-minimal` durch das reguläre Paket `vim` zu ersetzen.
 
 ```bash
-# dnf -y swap curl-minimal curl
-
+# dnf -y swap vim-minimal vim
 ```
 
-## Neue Curl-Paketvariante überprüfen
+## Überprüfung der neuen `vim`-Paketvariante
 
-Um die Änderungen zu übernehmen, fragen Sie die RPM-Datenbank erneut nach installierten Curl-Pakete ab, indem Sie Folgendes ausführen:
+Um die Änderungen zu bestätigen, fragen Sie die RPM-Datenbank erneut nach den installierten `vim`-Paketen ab, indem Sie folgenden Befehl ausführen:
 
 ```bash
-# rpm -qa | grep  ^curl
-curl-*
+# rpm -qa | grep  ^vim
+vim-enhanced-9.1.083-5.el10_0.1.x86_64
 ```
 
 Das war's!
@@ -64,8 +63,8 @@ Das Kommando `dnf swap`
 dnf [options] swap <package-to-be-removed> <replacement-package>
 ```
 
-Unter der Haube nutzt `dnf swap` die Option `--allowerasing` von DNF, um etwaige Paketkonflikte zu lösen. Daher hätte das in diesem GEMstone gezeigte Minimal-Curl-Beispiel auch durch Folgendes ausgeführt werden können:
+Unter der Haube nutzt `dnf swap` die Option `--allowerasing` von DNF, um etwaige Paketkonflikte zu lösen. Daher hätte das in diesem GEMstone gezeigte Beispiel mit `vim-minimal` auch durch Ausführen des folgenden Befehls realisiert werden können:
 
 ```bash
-dnf install -y --allowerasing curl
+dnf install -y --allowerasing vim
 ```
