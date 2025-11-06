@@ -25,7 +25,7 @@ Dal `jumpbox`, copiare i file binari di Kubernetes e i file unit di `systemd` su
 
 ```bash
 for host in node-0 node-1; do
-  SUBNET=$(grep $host machines.txt | cut -d " " -f 5)
+  SUBNET=$(grep $host machines.txt | cut -d " " -f 4)
   sed "s|SUBNET|$SUBNET|g" \
     configs/10-bridge.conf > 10-bridge.conf 
     
@@ -160,7 +160,7 @@ Creare il file di configurazione `kubelet-config.yaml`:
 
 !!! note "Nota"
 
-    Sebbene questa sia considerata una forma di sicurezza inadeguata, potrebbe essere necessario disabilitare temporaneamente o permanentemente SELinux se si riscontrano problemi nell'avvio dei servizi systemd necessari. La soluzione corretta consiste nell'analizzare e creare i file di policy richiesti utilizzando strumenti quali ausearch, audit2allow, ecc.\
+    Sebbene questa sia considerata una forma di sicurezza inadeguata, potrebbe essere necessario disabilitare temporaneamente o permanentemente SELinux se si riscontrano problemi nell'avvio dei servizi systemd necessari. La soluzione corretta consiste nell'analizzare e creare i file di policy richiesti utilizzando strumenti quali ausearch, audit2allow, ecc.  
     
     Per rimuovere SELinux e disabilitarlo, eseguire quanto segue:
 

@@ -170,7 +170,7 @@ Descrizione del formato di scrittura per IPv6 a 128 bit:
 
 * Compatibile con i formati di scrittura - **X:X:X:X:X:X:d.d.d.d**. In un ambiente di rete misto, questo formato garantisce la compatibilità tra i nodi IPv6 e i nodi IPv4. Ad esempio **0:0:0:0:0:ffff:192.1.56.10** e **::ffff:192.1.56.10/96**.
 
-In un indirizzo web o URL (Uniform Resource Locator), un indirizzo IP può essere seguito da due punti e dall'indirizzo della porta (che indica l'applicazione a cui sono destinati i dati). Inoltre, per evitare confusione nell'URL, l'indirizzo IPv6 è scritto tra parentesi quadre (ad esempio `[2001:db8:130F::9C0:876A:130B]:443`).
+In un indirizzo web (Uniform Resource Locator), un indirizzo IP può essere seguito da due punti e da un numero di porta (che indica l'applicazione a cui sono destinati i dati). Inoltre, per evitare confusione nell'URL, l'indirizzo IPv6 è scritto tra parentesi quadre (ad esempio, `[2001:db8:130F::9C0:876A:130B]:443`).
 
 Come accennato in precedenza, le maschere di sottorete dividono gli indirizzi IPv4 in due parti: bit di rete e bit host. In IPv6, anche le subnet mask hanno la stessa funzione, ma il nome è cambiato (“n” rappresenta il numero di bit occupati dalla subnet mask):
 
@@ -198,7 +198,7 @@ I pacchetti IPv4 contengono sia parti di intestazione che parti di dati:
 
 **Versione**: aiuta i router a identificare le versioni dei protocolli. Per IPv4, il valore qui è 0100 (il valore binario 0100 equivale al valore decimale 4).
 
-**IHL**: campo utilizzato per controllare la lunghezza dell'intestazione. Quando il campo “Opzioni” non è incluso, il valore minimo è 5 (ovvero binario 0101), in questo caso la testina occupa 20 byte. Il valore massimo è 15 (ovvero 1111 in binario) e la lunghezza dell'intestazione è di 60 byte.
+**IHL**: campo utilizzato per controllare la lunghezza dell'intestazione. Quando il campo “Opzioni” non è incluso, il valore minimo è 5 (ovvero binario 0101). In questo caso l'intestazione occupa 20 byte. Il valore massimo è 15 (ovvero 1111 in binario) e la lunghezza dell'intestazione è di 60 byte.
 
 ```
 Lunghezza effettiva dell'intestazione IPv4 = Valore del campo IHL * 4
@@ -224,7 +224,7 @@ Lunghezza effettiva dell'intestazione IPv4 = Valore del campo IHL * 4
 
 **TTL (Time To Live)**: questo campo viene utilizzato per limitare il tempo massimo di sopravvivenza o il numero massimo di hop dei datagrammi nella rete. Il valore iniziale è determinato dal mittente e il TTL diminuisce di 1 ogni volta che passa attraverso il router. Quando TTL=0, il datagramma viene scartato.
 
-**Protocollo**: indica il tipo di protocollo utilizzato dai dati trasportati in questo datagramma. Il suo intervallo di valori è compreso tra 0 e 255. Ad esempio, il numero di protocollo di TCP è 6, quello di UDP è 17, quello di ICMP è 1.
+**Protocollo**: indica il tipo di protocollo utilizzato dai dati trasportati in questo datagramma. Il suo intervallo di valori è compreso tra 0 e 255.  Ad esempio, il numero di protocollo di TCP è 6, quello di UDP è 17, e quello di ICMP è 1.
 
 **Header Checksum**: questo campo verrà ricalcolato ogni volta che il datagramma passa attraverso il router, principalmente a causa della diminuzione del campo TTL che provoca modifiche nell'intestazione. Questo campo verifica solo l'intestazione (esclusa la parte relativa ai dati). Se gli altri campi rimangono invariati e cambia solo il TTL, il checksum verrà aggiornato con un nuovo valore (diverso da zero) per garantire che l'intestazione non sia stata manomessa o danneggiata durante la trasmissione.
 
@@ -307,53 +307,101 @@ L'RFC specifica che quando più intestazioni di estensione vengono utilizzate ne
 
 Ad eccezione del Destination Option Header, che può apparire una o due volte (una volta prima del Routing Extension Header e una volta prima dell'intestazione Upper-layer protocol), tutte le altre intestazioni di estensione possono apparire solo una volta.
 
-### Dominio DNS
+### DNS
 
-I computer client possono far parte di un dominio DNS (**Domain Name System**, ad esempio `mydomain.lan`).
+**DNS (Domain Name System)**: La famiglia di protocolli TCP/IP offre la possibilità di connettersi ai dispositivi tramite indirizzi IP, ma per gli utenti è piuttosto difficile ricordare l'indirizzo IP di un dispositivo. Pertanto, è stato appositamente progettato un meccanismo di denominazione degli host basato su stringhe, in cui questi nomi host corrispondono all'indirizzo IP. È necessario un meccanismo di conversione e interrogazione tra indirizzi IP e nomi host, e il sistema che fornisce tale meccanismo è il Domain Name System (DNS). Il processo di "traduzione" di un nome di dominio in un indirizzo IP è chiamato **Risoluzione del nome di dominio**.
 
 Il nome completo della macchina (**FQDN**) diventa `pc-rocky.mydomain.lan`.
 
-Un insieme di computer può essere raggruppato in un insieme logico, con risoluzione dei nomi, chiamato dominio DNS. Un dominio DNS non è, ovviamente, limitato a una singola rete fisica.
+* Hostname - viene utilizzato per identificare in modo univoco i dispositivi all'interno di una LAN (rete locale) o come parte di un nome di dominio (ad esempio `docs`)
+* Domain name - Utilizzato per identificare in modo univoco i dispositivi sulla WAN (Wide Area Network). Ad esempio `docs.rockylinux.org`, dove `rockylinux.org` è il nome di dominio del dominio
 
-Affinché un computer possa far parte di un dominio DNS, è necessario assegnargli un suffisso DNS (in questo caso `mydomain.lan`) e indicargli i server a cui può inviare le richieste.
+!!! tip "Suggerimento"
 
-### Promemoria del modello OSI
+    Il dominio non rappresenta un host specifico
+
+**D: Perché è necessario il DNS?**
+
+Agli albori di Internet, per ricordare la corrispondenza tra nomi host e indirizzi IP, era necessario scrivere tutte le corrispondenze in un file e gli utenti dovevano aggiornare manualmente il contenuto del file. Con il vigoroso sviluppo di Internet, i principali problemi che devono essere risolti sono:
+
+* Un singolo file ha effetto solo sul computer attualmente in uso
+* La gestione manuale dei contenuti dei file sta diventando sempre più difficile
+
+Per risolvere i problemi emersi, è stato sviluppato il DNS, i cui vantaggi sono:
+
+* Distribuito - Server DNS disponibili per gli utenti di tutto il mondo
+* Gestione gerarchica - Divide la gerarchia per una gestione più semplice. Come mostrato nella figura seguente:
+
+    ![](./images/domain.png)
+
+**Il livello 2** (collegamento dati) supporta la topologia di rete (token ring, stella, bus, ecc.), la suddivisione dei dati e gli errori di trasmissione. Un'espressione più standardizzata:
+
+> "Il sistema globale dei server root DNS è strutturato logicamente attorno a 13 endpoint canonici (da a.root-servers.net a m.root-servers.net), un design che affonda le sue radici nei vincoli storici del protocollo. Dal punto di vista fisico, questi endpoint sono implementati attraverso oltre 1.500 server anycast distribuiti in tutto il mondo, gestiti da 13 organizzazioni indipendenti sotto il coordinamento di ICANN/IANA."
+
+Per `docs.rockylinux.org.`:
+
+* **Dominio principale** - Si riferisce a un punto (`.`).
+* **Dominio di primo livello** - Si riferisce alla stringa `org`. Esistono molte controversie riguardo alla divisione dei domini di primo livello; ad esempio, alcuni documenti classificano `.org` o `org.` come domini di primo livello.
+* **Dominio di secondo livello** - Si riferisce alla stringa `rockylinux`. Esistono molte controversie riguardo alla divisione dei domini di secondo livello, ad esempio alcuni documenti riportano `rockylinux.org.` o `.rockylinux.org.` come domini di secondo livello.
+* **hostname** -  Si riferisce alla stringa `docs`.
+
+**FQDN (Fully Qualified Domain Name)**: nome di dominio completo costituito da un nome host e vari livelli di domini. Secondo lo standard RFC (RFC 1034, RFC 2181, RFC 8499), il dominio root alla fine è uno standard industriale (ad esempio `docs.rockylinux.org.`). Nei file di configurazione di alcuni software DNS è necessario inserire un FQDN standard, ma il dominio principale può essere ignorato quando si accede a determinate risorse di rete (ad esempio, quando un utente visita `https://docs.rockylinux.org`, il browser aggiunge automaticamente un punto alla fine). **Domain name**: struttura che collega domini a tutti i livelli e inizia con un nome host. **Zona**: rappresenta una porzione contigua dello spazio dei nomi DNS gestita da un server autoritativo specifico, che memorizza tutti i record di risoluzione FQDN (come A, MX, ecc.) all'interno di tale ambito.
+
+!!! tip "Suggerimento"
+
+    In generale, "FQDN" è più efficace nell'esprimere il significato del documento di un autore rispetto a "nome di dominio", poiché i lettori di settori diversi hanno una comprensione diversa del termine "nome di dominio". Ad esempio, nel caso di `rockylinux.org`, alcuni lettori potrebbero interpretarlo come un nome di dominio, ma in realtà non è corretto. A rigor di termini, questo dovrebbe essere definito dominio (anziché nome di dominio). Pertanto, al fine di garantire un maggiore rigore, si richiede ai lettori di distinguere rigorosamente il significato dei domini e dei nomi di dominio.
+
+### Modello teorico a 7 livelli ISO/OSI
+
+**ISO (Organizzazione internazionale per la normazione)** - Organizzazione internazionale fondata nel 1974, il cui ruolo principale è quello di definire standard internazionali in vari settori. Per il settore Internet, l'ISO ha proposto il modello teorico di riferimento a 7 livelli OSI.
+
+**OSI (Open System Interconnection Reference Model)** - Questo modello propone un quadro standard che cerca di interconnettere vari computer in una rete mondiale.
+
+| Livello                 | Descrizione                                                                                                                                                                    |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 7 - Applicazione        | Fornire vari servizi di richiesta per applicazioni o richieste degli utenti                                                                                                    |
+| 6 - Presentazione       | Codifica dei dati, conversione dei formati, crittografia dei dati                                                                                                              |
+| 5 - Sessione            | Creare, gestire e mantenere le sessioni.                                                                                                                                       |
+| 4 - Trasporto           | Comunicazione dati, creazione di connessioni end-to-end, ecc.                                                                                                                  |
+| 3 - Rete                | Gestione delle connessioni di rete (instaurazione, mantenimento e interruzione), selezione del percorso di routing, raggruppamento dei pacchetti, controllo del traffico, ecc. |
+| 2 - Collegamento dati   | Incapsulamento e trasmissione dei frame, controllo del traffico e verifica degli errori, ecc.                                                                                  |
+| 1 - Collegamento fisici | Gestione dei mezzi di trasmissione, specifiche dell'interfaccia fisica, conversione e trasmissione dei segnali, ecc.                                                           |
 
 !!! Note "Aiuto alla memoria"
 
-    Per ricordare l'ordine degli strati del modello OSI, ricordate la seguente frase: **Please Do Not Touch Steven's Pet Alligator**.
+    Per ricordare l'ordine degli strati del modello ISO/OSI, ricorda la seguente frase: **All People Seem To Need Data Processing**.
 
-| Livello                 | Protocolli                                 |
-| ----------------------- | ------------------------------------------ |
-| 7 - Applicazione        | POP, IMAP, SMTP, SSH, SNMP, HTTP, FTP, ... |
-| 6 - Presentazione       | ASCII, MIME, ...                           |
-| 5 - Sessione            | TLS, SSL, NetBIOS, ...                     |
-| 4 - Trasporto           | TLS, SSL, TCP, UDP, ...                    |
-| 3 - Rete                | IPv4, IPv6, ARP, ...                       |
-| 2 - Collegamento dati   | Ethernet, WiFi, Token Ring, ...            |
-| 1 - Collegamento fisici | Cavi, fibre ottiche, onde radio, ...       |
+**Struttura gerarchica del modello**: incarna un principio di progettazione modulare, ovvero, scomponendo le complesse funzioni di comunicazione di rete in livelli indipendenti, ottiene il disaccoppiamento funzionale e la collaborazione standardizzata.
 
-**Livello 1** (Fisico) supporta la trasmissione su un canale di comunicazione (Wi-Fi, fibra ottica, cavo RJ, ecc.). Unità: il bit.
+!!! note "Nota"
 
-**Il livello 2** (collegamento dati) supporta la topologia di rete (token ring, stella, bus, ecc.), la suddivisione dei dati e gli errori di trasmissione. Unità: il frame.
+    Va notato che il modello a 7 livelli ISO/OSI non esiste nella comunicazione di rete reale. Fornisce semplicemente un quadro di riferimento e un approccio progettuale per la comunicazione via Internet.
 
-**Livello 3** (Rete) supporta la trasmissione dei dati end-to-end (routing IP = Gateway). Unità: il pacchetto.
+**Modello a 4 livelli TCP/IP** - Il modello gerarchico utilizzato nella comunicazione di rete effettiva (semplifica il modello a 7 livelli ISO/OSI in un modello a 4 livelli). TCP/IP è sinonimo di un gruppo di protocolli che comprende numerosi protocolli e costituisce la suite di protocolli TCP/IP. Nell'analisi dei protocolli o nell'ambito didattico, talvolta viene informalmente denominato **modello a 5 livelli TCP/IP**.
 
-**Il livello 4** (trasporto) supporta il tipo di servizio (connesso o non connesso), la crittografia e il controllo di flusso. Unità: il segmento o il datagramma.
+| Livello                 | Protocolli                                                                                                                                                                       | Dispositivi hardware coinvolti in questo layer  |
+|:----------------------- |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |:----------------------------------------------- |
+| 4 - Applicativo         | HTTP, FTP, SMTP, DNS, DHCP ...                                                                                                                                                   | -                                               |
+| 3 - Trasporto           | TCP, UDP                                                                                                                                                                         | Firewall e load balancer                        |
+| 2 - Internet            | IP, ICMP, ARP, RARP, IGMP                                                                                                                                                        | Router                                          |
+| 1 - Interfaccia di rete | Ethernet protocol (IEEE 802.3), PPP (Point to Point Protocol), PPPoE (Point-to-Point Protocol over Ethernet), Wi-Fi (IEEE 802.11), ADSL (Asymmetric Digital Subscriber Line) ... | NIC, switch, hub, repeater, twisted pair, modem |
 
-**Livello 5** (Sessione) supporta la comunicazione tra due computer.
+* **Livello applicativo** - Unifica i livelli applicativo, presentazione e sessione nel modello teorico in un unico livello applicativo.
+* **Livello trasporto** - Il livello di trasporto nel modello teorico.
+* **Livello Internet** - Il livello di rete nel modello teorico.
+* **Livello interfaccia di rete** - Integrazione del livello di collegamento dati e del livello fisico del modello teorico in un unico livello.
 
-**Livello 6** (Presentazione) rappresenta l'area indipendente dai dati a livello dell'applicazione. Essenzialmente questo livello traduce dal formato di rete al formato dell'applicazione, o dal formato dell'applicazione al formato di rete.
+!!! tip Suggerimento “Espressione terminologica”
 
-**Livello 7** (Applicazione) rappresenta il contatto con l'utente. Fornisce i servizi offerti dalla rete: http, dns, ftp, imap, pop, smtp, ecc.
+    Il modello a 4 livelli TCP/IP, la suite di protocolli TCP/IP e lo stack di protocolli TCP/IP sono espressioni diverse dello stesso concetto.
 
 ## La denominazione delle interfacce
 
-*lo* è l'interfaccia "**loopback**" che consente ai programmi TCP/IP di comunicare tra loro senza uscire dalla macchina locale. Ciò consente di verificare se il **modulo di rete del sistema funziona correttamente** e permette anche di eseguire il ping del localhost. Tutti i pacchetti che entrano tramite localhost escono tramite localhost. I pacchetti ricevuti sono i pacchetti inviati.
+*lo* è l'interfaccia "**loopback**", che consente ai programmi TCP/IP di comunicare tra loro senza uscire dal computer locale. Ciò consente di verificare se il **modulo di rete del sistema funziona correttamente** e permette anche di eseguire il ping del localhost. Tutti i pacchetti che entrano tramite localhost escono tramite localhost. I pacchetti ricevuti sono i pacchetti inviati.
 
-Il kernel Linux assegna nomi alle interfacce con un prefisso specifico a seconda del tipo. Tradizionalmente, tutte le interfacce **Ethernet**, ad esempio, iniziavano con **eth**. Il prefisso era seguito da un numero, il primo dei quali era 0 (eth0, eth1, eth2...). Alle interfacce wifi è stato assegnato un prefisso wlan.
+Il kernel Linux assegna nomi alle interfacce con un prefisso specifico a seconda del tipo. Tradizionalmente, tutte le interfacce **Ethernet**, ad esempio, iniziavano con **eth**. Il prefisso era seguito da un numero, il primo dei quali era 0 (eth0, eth1, eth2...). Alle interfacce wifi è stato assegnato un prefisso WLAN.
 
-Nelle distribuzioni Linux Rocky8, systemd nominerà le interfacce con la nuova politica seguente, dove "X" rappresenta un numero:
+Nelle distribuzioni Linux Rocky8, systemd nominerà le interfacce con la seguente politica, dove "X" rappresenta un numero:
 
 * `enoX`: dispositivi on-board
 * `ensX`: slot hotplug PCI Express
@@ -362,7 +410,7 @@ Nelle distribuzioni Linux Rocky8, systemd nominerà le interfacce con la nuova p
 
 ## Uso del comandi `ip`
 
-Dimentica il vecchio comando `ifconfig`! Pensa `ip`!
+Dimenticate il vecchio comando `ifconfig`! Pensa a `ip`!
 
 !!! Note "Nota"
 
@@ -378,7 +426,7 @@ Dimentica il vecchio comando `ifconfig`! Pensa `ip`!
 
 ## Il nome host
 
-Il comando `hostname` visualizza o imposta il nome host del sistema
+Il comando `hostname` visualizza o imposta il nome host del sistema.
 
 ```bash
 hostname [-f] [hostname]
@@ -442,9 +490,9 @@ Il file `/etc/hosts` contiene una riga per ogni voce, con l'indirizzo IP, l'FQDN
 
 ## il file `/etc/nsswitch.conf`
 
-Il **NSS** (**N**ame **S**ervice **S**witch) consente di sostituire i file di configurazione (ad esempio `/etc/passwd`, `/etc/group`, `/etc/hosts`) con uno o più database centralizzati.
+Il **NSS** (**N**ame **S**ervice **S**witch) consente ai file di configurazione (ad esempio, `/etc/passwd`, `/etc/group`, `/etc/hosts`) possano essere sostituiti da uno o più database centralizzati.
 
-Il file `/etc/nsswitch.conf` viene utilizzato per configurare i database del servizio dei nomi.
+Il file `/etc/nsswitch.conf` viene utilizzato per configurare i database dei servizi di nome.
 
 ```bash
 passwd: files
@@ -454,11 +502,11 @@ group: files
 hosts: files dns
 ```
 
-In questo caso, Linux cercherà prima una corrispondenza del nome host (riga `hosts:`) nel file `/etc/hosts` (valore `files`) prima di interrogare il DNS (valore `dns`)! Questo comportamento può essere variato modificando il file `/etc/nsswitch.conf`.
+In questo caso, Linux cercherà prima una corrispondenza del nome host (riga `hosts:`) nel file `/etc/hosts` (valore `files`) prima di interrogare il DNS (valore `dns`)! Questo comportamento può essere modificato modificando il file `/etc/nsswitch.conf`.
 
 Naturalmente, è possibile immaginare di interrogare un server LDAP, MySQL o altro configurando il servizio nomi in modo che risponda alle richieste di sistema relative a host, utenti, gruppi, ecc.
 
-La risoluzione del servizio dei nomi può essere testata con il comando `getent` che vedremo più avanti in questo corso.
+La risoluzione del servizio nomi può essere verificata con il comando `getent`, che vedremo più avanti in questo corso.
 
 ## file `/etc/resolv.conf`
 
@@ -473,11 +521,11 @@ nameserver 192.168.1.254
 
 !!! Tip "Suggerimento"
 
-    Questo file è ormai storia. Non è più compilato direttamente!
+    Questo file è storico. Non viene più compilato direttamente!
 
 Le distribuzioni di nuova generazione hanno generalmente integrato il servizio `NetworkManager`. Questo servizio consente di gestire la configurazione in modo più efficiente, sia in modalità grafica che in modalità console.
 
-Consente l'aggiunta di server DNS dal file di configurazione di un'interfaccia di rete. Quindi popola dinamicamente il file `/etc/resolv.conf`, che non dovrebbe mai essere modificato direttamente, altrimenti le modifiche alla configurazione andranno perse al successivo avvio del servizio di rete.
+Consente di aggiungere server DNS al file di configurazione di un'interfaccia di rete. Quindi popola dinamicamente il file `/etc/resolv.conf`, che non dovrebbe mai essere modificato direttamente, altrimenti le modifiche alla configurazione andranno perse al successivo avvio del servizio di rete.
 
 ## comando `ip`
 
@@ -507,7 +555,7 @@ Mostra la tabella ARP:
 [root]# ip neigh
 ```
 
-Tutti i comandi di gestione della rete storici sono stati raggruppati sotto il comando `ip`, che è ben noto agli amministratori di rete.
+Tutti i comandi storici di gestione della rete sono stati raggruppati sotto il comando `ip`, ben noto agli amministratori di rete.
 
 ## configurazione DHCP
 
@@ -515,7 +563,7 @@ Il protocollo **DHCP** (**D**ynamic **H**ost **C**ontrol **P**rotocol) consente 
 
 La configurazione delle interfacce in Rocky Linux viene effettuata nella cartella `/etc/sysconfig/network-scripts/`.
 
-Per ogni interfaccia Ethernet, un file `ifcfg-ethX` consente la configurazione dell'interfaccia associata.
+Per ogni interfaccia Ethernet, un file `ifcfg-ethX` configura l'interfaccia associata.
 
 ```bash
 DEVICE=eth0
@@ -661,7 +709,7 @@ DNS2=172.16.1.3
 DOMAIN=rockylinux.lan
 ```
 
-In questo caso, per raggiungere il DNS, devi passare attraverso il gateway.
+In questo caso, per raggiungere il DNS, è necessario passare attraverso il gateway.
 
 ```bash
  #Generated by NetworkManager
@@ -671,13 +719,13 @@ In questo caso, per raggiungere il DNS, devi passare attraverso il gateway.
  nameserver 172.16.1.3
 ```
 
-Il file è stato aggiornato da NetworkManager.
+NetworkManager ha aggiornato il file.
 
 ## Risoluzione dei problemi
 
-Il comando `ping` invia i datagrammi a un'altra macchina e attende una risposta.
+Il comando `ping` invia datagrammi a un altro computer e attende una risposta.
 
-È il comando di base per testare la rete perché controlla la connettività tra l'interfaccia di rete e un'altra.
+È il comando di base per testare la connettività di rete perché verifica la connessione tra la tua interfaccia di rete e un'altra.
 
 Sintassi del comando `ping`:
 
@@ -685,7 +733,7 @@ Sintassi del comando `ping`:
 ping [-c numerical] destination
 ```
 
-L'opzione `-c` (conteggio) consente di interrompere il comando dopo il conto alla rovescia in secondi.
+L'opzione `-c` (count) consente di interrompere il comando dopo il conto alla rovescia in secondi.
 
 Esempio:
 
@@ -711,7 +759,7 @@ Esempio:
     [root]# ping 192.168.1.10
     ```
 
-    Per determinare la funzionalità della scheda di rete, dobbiamo eseguire un ping del suo indirizzo IP. Se il cavo di rete non è collegato alla scheda di rete, questa dovrebbe essere in stato "down".
+    Per verificare il funzionamento della scheda di rete, dobbiamo eseguire il ping del suo indirizzo IP. If the network cable is not connected to the network card, the network card should be in a "down" state.
 
     Se il ping non funziona, controllare prima il cavo di rete allo switch di rete e riassemblare l'interfaccia (vedere il comando `if up`), quindi controllare l'interfaccia stessa.
 
@@ -755,11 +803,11 @@ Esempi:
 
 Il comando `dig` è usato per interrogare i server DNS. L'impostazione predefinita è prolissa, ma l'opzione `+short` può modificare questo comportamento.
 
-È anche possibile specificare un **tipo di record** DNS da risolvere, ad esempio un **tipo** MX per ottenere informazioni sugli scambiatori di posta per un dominio.
+È anche possibile specificare un **tipo di record** DNS da risolvere, come un **tipo** MX per ottenere informazioni sui mail exchanger di un dominio.
 
 ### comando `getent`
 
-Il comando `getent` (ottieni voce) ottiene una voce di NSSwitch (`hosts` + `dns`)
+Il comando `getent` (get entry) ottiene una voce NSSwitch (`hosts` + `dns`)
 
 Sintassi del comando `getent`:
 
@@ -780,7 +828,7 @@ Per tenere conto del file `/etc/hosts`, è necessario interrogare il servizio di
 
 ### comando `ipcalc`
 
-Il comando `ipcalc` (**calcolo IP**) calcola l'indirizzo di una rete o di un broadcast a partire da un indirizzo IP e da una maschera.
+Il comando `ipcalc` (**calcolo IP**) calcola l'indirizzo di una rete o di una trasmissione da un indirizzo IP e una maschera.
 
 Sintassi del comando `ipcalc`:
 
@@ -808,16 +856,16 @@ BROADCAST=172.16.79.255
 | `-b`    | Visualizza l'indirizzo di trasmissione.       |
 | `-n`    | Visualizza l'indirizzo di rete e la maschera. |
 
-`ipcalc` è un modo semplice per calcolare le informazioni IP di un host. Le varie opzioni indicano quali informazioni `ipcalc` deve visualizzare sullo standard output. È possibile specificare più opzioni. È necessario specificare un indirizzo IP su cui operare. La maggior parte delle operazioni richiede anche una maschera di rete o un prefisso CIDR.
+`ipcalc` è un modo semplice per calcolare le informazioni IP di un host. Le varie opzioni indicano quali informazioni `ipcalc` deve visualizzare sull'output standard. È possibile specificare più opzioni. Dovrai selezionare un indirizzo IP su cui operare. La maggior parte delle operazioni richiede anche una maschera di rete o un prefisso CIDR.
 
-| Opzione corta | Opzione lunga | Descrizione                                                                                                                                                                                                                                           |
-| ------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-b`          | `--broadcast` | Visualizza l'indirizzo di trasmissione dell'indirizzo IP specifico e la maschera di rete.                                                                                                                                                             |
-| `-h`          | `--hostname`  | Visualizza il nome host dell'indirizzo IP fornito tramite DNS.                                                                                                                                                                                        |
-| `-n`          | `--netmask`   | Calcola la maschera di rete per l'indirizzo IP indicato. Presuppone che l'indirizzo IP faccia parte di una rete completa di classe A, B o C. Molte reti non utilizzano maschere di rete predefinite, nel qual caso verrà restituito un valore errato. |
-| `-p`          | `--prefix`    | Indica il prefisso della maschera/indirizzo IP.                                                                                                                                                                                                       |
-| `-n`          | `--network`   | Indica l'indirizzo di rete dell'indirizzo IP e della maschera forniti.                                                                                                                                                                                |
-| `-s`          | `--silent`    | Non visualizza mai alcun messaggio di errore.                                                                                                                                                                                                         |
+| Opzione corta | Opzione lunga | Descrizione                                                                                                                                                                                                                                       |
+| ------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-b`          | `--broadcast` | Visualizza l'indirizzo di trasmissione dell'indirizzo IP specificato e la maschera di rete.                                                                                                                                                       |
+| `-h`          | `--hostname`  | Visualizza il nome host dell'indirizzo IP fornito tramite DNS.                                                                                                                                                                                    |
+| `-n`          | `--netmask`   | Calcola la maschera di rete per l'indirizzo IP specificato. Presuppone che l'indirizzo IP faccia parte di una rete completa di classe A, B o C. Molte reti non utilizzano maschere di rete predefinite, quindi verrà restituito un valore errato. |
+| `-p`          | `--prefix`    | Indica il prefisso della maschera/indirizzo IP.                                                                                                                                                                                                   |
+| `-n`          | `--network`   | Indica l'indirizzo di rete dell'indirizzo IP e della maschera specificati.                                                                                                                                                                        |
+| `-s`          | `--silent`    | Non visualizza alcun messaggio di errore.                                                                                                                                                                                                         |
 
 ### comando `ss`
 
@@ -836,15 +884,15 @@ Esempio:
 tcp   LISTEN   0   128   *:22   *:*
 ```
 
-I comandi `ss` e `netstat` (che segue) saranno molto importanti per il resto della tua vita con Linux.
+I comandi `ss` e `netstat` (da seguire) saranno molto importanti per il resto della tua vita con Linux.
 
-Quando si implementano i servizi di rete, è molto comune verificare con uno di questi due comandi che il servizio sia in ascolto sulle porte previste.
+Quando si implementano servizi di rete, è prassi comune verificare se il servizio è in ascolto sulle porte previste utilizzando uno di questi due comandi.
 
 ### comando `netstat`
 
 !!! Warning "Attenzione"
 
-    Il comando `netstat` è ora deprecato e non è più installato per impostazione predefinita su Rocky Linux. È possibile che alcune versioni di Linux lo abbiano ancora installato, ma è meglio passare a usare `ss` per tutto ciò per cui si sarebbe usato `netstat`.
+    Il comando `netstat` è ora deprecato e non è più installato di default su Rocky Linux. È ancora possibile trovare alcune versioni di Linux che lo hanno installato, ma è meglio passare a `ss` per tutto ciò per cui avresti usato `netstat`.
 
 Il comando `netstat` (**statistiche di rete**) visualizza le porte in ascolto sulla rete.
 
@@ -863,7 +911,7 @@ tcp  0  0  0.0.0.0:22  0.0.0.0:*  LISTEN 2161/sshd
 
 ### Conflitti di indirizzi IP o MAC
 
-Una configurazione errata può causare l'utilizzo dello stesso indirizzo IP da parte di più interfacce. Questo può accadere quando una rete ha più server DHCP o lo stesso indirizzo IP viene assegnato manualmente più volte.
+Una configurazione errata può causare l'utilizzo dello stesso indirizzo IP da parte di più interfacce. Questo può accadere quando una rete ha più server DHCP o quando lo stesso indirizzo IP viene assegnato manualmente più volte.
 
 Quando la rete non funziona correttamente e la causa potrebbe essere un conflitto di indirizzi IP, è possibile utilizzare il software `arp-scan` (richiede il repository EPEL):
 
@@ -893,7 +941,7 @@ $ arp-scan -I eth0 -l
 
 ## Configurazione a caldo
 
-Il comando `ip` può aggiungere a caldo un indirizzo IP a un'interfaccia.
+Il comando `ip` consente di aggiungere un indirizzo IP a un'interfaccia.
 
 ```bash
 ip addr add @IP dev DEVICE

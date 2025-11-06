@@ -1,7 +1,7 @@
 ---
 title: 4. Розширене забезпечення
 author: Wale Soyinka
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - cloud-init
   - rocky linux

@@ -8,13 +8,13 @@ tags:
 
 # Introduzione
 
-Dal rilascio di Rocky Linux 9, alcune installazioni su piattaforme x86-64 sono fallite con un kernel panic. Nella maggior parte dei casi, ==questo è dovuto all'incompatibilità della CPU== con Rocky Linux 9. Questa procedura consente di verificare la compatibilità della CPU prima dell'installazione. **Aggiornamento:** Questa procedura riflette ora anche la compatibilità minima del processore per Rocky Linux 10.
+Alcune installazioni su piattaforme x86-64 potrebbero causare un kernel panic. Nella maggior parte dei casi, ==ciò è dovuto all'incompatibilità della CPU== con Rocky Linux.
 
 ## Verifica
 
-1. Procurarsi un'immagine di avvio di Rocky Linux 8, Fedora o altri.
+1. Ottieni un'immagine di avvio per Rocky Linux 9, Fedora o altre distribuzioni.
 
-2. Avviare l'immagine live sul computer in cui si vuole installare Rocky Linux 9.
+2. Avvia questa immagine live sul computer su cui desideri installare Rocky Linux 10.
 
 3. Al termine dell'avvio, aprire una finestra del terminale ed eseguire questa operazione:
 
@@ -28,8 +28,8 @@ Dal rilascio di Rocky Linux 9, alcune installazioni su piattaforme x86-64 sono f
    Usage: /lib64/ld-linux-x86-64.so.2 [OPTION]... EXECUTABLE-FILE [ARGS-FOR-PROGRAM...]
    This program interpreter self-identifies as: /lib64/ld-linux-x86-64.so.2
    x86-64-v4
-   x86-64-v3
+   x86-64-v3 (supported, searched)
    x86-64-v2 (supported, searched)
    ```
 
-   Questo output indica la versione minima richiesta per x86-64 (v2). In questo caso, l'installazione può continuare. Se accanto alla voce "x86-64-v2" non compare "(supported, searched)", allora la vostra CPU non è **compatibile** con Rocky Linux 9.x. Se il test indica che l'installazione può procedere e indica anche x86-64-v3 (richiesto per Rocky Linux 10) e x86-64-v4 come "(supported, searched)", la vostra CPU è ben supportata per 9.x e le versioni future.
+   Questo output indica la versione minima richiesta di x86-64 (v3). In questo caso, l'installazione può continuare. Se accanto alla voce "x86-64-v3" manca la dicitura "(supported, searched)", allora la tua CPU **non** è compatibile con Rocky Linux 10. Se il test indica che l'installazione può procedere e riporta anche x86-64-v4 come "(supported, searched)", la tua CPU è ben supportata per le versioni future di Rocky Linux.

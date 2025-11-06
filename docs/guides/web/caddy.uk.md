@@ -2,12 +2,10 @@
 title: Веб-сервер Caddy
 author: Neel Chauhan
 contributors: Steven Spencer, Ganna Zhyrnova
-tested_with: 9.3
+tested_with: 9.3, 10.0
 tags:
   - web
 ---
-
-# Як інсталювати останню версію веб-сервера Caddy на Rocky Linux
 
 ## Вступ
 
@@ -46,6 +44,12 @@ sudo dnf update
 
 ```bash
 sudo dnf install -y epel-release
+```
+
+Якщо ви використовуєте Rocky Linux 10, увімкніть репозиторій Copr:
+
+```bash
+sudo dnf copr enable @caddy/caddy
 ```
 
 Далі встановіть веб-сервер `caddy`:
@@ -117,7 +121,7 @@ public (active)
 Щоб відредагувати файл конфігурації Caddy:
 
 ```bash
-vim /etc/caddy/Caddyfile
+sudo vim /etc/caddy/Caddyfile
 ```
 
 Мінімальна статична конфігурація веб-сервера може бути подібною до цієї:
@@ -141,7 +145,7 @@ echo "<h1>Hi!</h1>" >> /usr/share/caddy/example.com/index.html
 Після цього увімкніть службу Caddy's systemd:
 
 ```bash
-systemctl enable --now caddy
+sudo systemctl enable --now caddy
 ```
 
 Протягом хвилини Caddy отримає сертифікати SSL від Let's Encrypt. Потім ви можете переглянути веб-сайт, який ви щойно налаштували, у браузері:
@@ -154,16 +158,16 @@ systemctl enable --now caddy
 
 Як згадувалося раніше, Caddy підтримує підтримку FastCGI для PHP. Хороша новина полягає в тому, що, на відміну від Apache і Nginx, Caddy автоматично обробляє розширення файлів PHP.
 
-Щоб установити PHP, спочатку додайте репозиторій Remi (примітка: якщо ви використовуєте Rocky Linux 8.x або 10.х, замініть 8 або 10 поруч із «release-» нижче):
+Щоб встановити PHP, спочатку додайте репозиторій Remi (примітка: якщо ви використовуєте Rocky Linux 8.x або 9.x, підставте 8 або 9 поруч із "release-" нижче):
 
 ```bash
-dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
+sudo dnf install https://rpms.remirepo.net/enterprise/remi-release-10.rpm
 ```
 
 Далі нам потрібно встановити PHP (примітка: якщо ви використовуєте іншу версію PHP, замініть потрібну версію на php83):
 
 ```bash
-dnf install -y php83-php-fpm
+sudo dnf install -y php85-php-fpm
 ```
 
 Якщо вам потрібні додаткові модулі PHP (наприклад, GD), додайте їх до наведеної вище команди.
@@ -171,13 +175,13 @@ dnf install -y php83-php-fpm
 Потім нам потрібно налаштувати PHP для прослуховування TCP-сокета:
 
 ```bash
-vim /etc/opt/remi/php83/php-fpm.d/www.conf
+sudo vim /etc/opt/remi/php85/php-fpm.d/www.conf
 ```
 
 Далі знайдіть рядок:
 
 ```bash
-listen = /var/opt/remi/php83/run/php-fpm/www.sock
+listen = /var/opt/remi/php85/run/php-fpm/www.sock
 ```
 
 Замініть його цим:
@@ -186,10 +190,16 @@ listen = /var/opt/remi/php83/run/php-fpm/www.sock
 listen = 127.0.0.1:9000
 ```
 
+Тепер ми можемо увімкнути та запустити php-fpm:
+
+```bash
+sudo systemctl enable --now php85-php-fpm
+```
+
 Потім збережіть і закрийте файл `www.conf` і відкрийте Caddyfile:
 
 ```bash
-vim /etc/caddy/Caddyfile
+sudo vim /etc/caddy/Caddyfile
 ```
 
 Перейдіть до блоку сервера, який ми створили раніше:
@@ -220,7 +230,7 @@ example.com {
 Потім збережіть і вийдіть із Caddyfile і перезапустіть Caddy:
 
 ```bash
-systemctl restart caddy
+sudo systemctl restart caddy
 ```
 
 Щоб перевірити, чи працює PHP, давайте додамо простий файл PHP:

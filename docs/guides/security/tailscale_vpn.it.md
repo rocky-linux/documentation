@@ -2,7 +2,7 @@
 title: Tailscale VPN
 author: Neel Chauhan
 contributors: Steven Spencer, Ganna Zhyrnova
-tested_with: 9.3
+tested_with: 10.0
 tags:
   - security
   - VPN
@@ -25,10 +25,10 @@ I requisiti minimi per l'utilizzo di questa procedura sono i seguenti:
 
 ## Installare Tailscale
 
-Per installare Tailscale, dobbiamo prima aggiungere il suo repository `dnf` (nota: se si utilizza Rocky Linux 8.x o 10.x, sostituire rispettivamente con 8 o 10):
+Per installare Tailscale, dobbiamo prima aggiungere il suo repository `dnf`:
 
 ```bash
-dnf config-manager --add-repo https://pkgs.tailscale.com/stable/rhel/9/tailscale.repo
+dnf config-manager --add-repo https://pkgs.tailscale.com/stable/rhel/10/tailscale.repo
 ```
 
 Quindi, installare Tailscale:
