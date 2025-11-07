@@ -36,7 +36,7 @@ Voci critiche:
 - `systemd` si occupa di troppi componenti del sistema operativo, violando il principio KISS (**K**eep **I**t **S**imple, **S**tupid) di UNIX.
 - Dal punto di vista del codice, `systemd` è troppo complesso e ingombrante, con oltre un milione di righe di codice, riducendo così la manutenibilità e aumentando la possibilità di attacco.
 
-Sito ufficiale - [https://systemd.io/](https://systemd.io/)\
+Sito ufficiale - [https://systemd.io/](https://systemd.io/)  
 Il repository GitHub - [https://github.com/systemd/systemd](https://github.com/systemd/systemd)
 
 ## Storia dello sviluppo
