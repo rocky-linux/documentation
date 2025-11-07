@@ -241,7 +241,7 @@ pm.max_children = 10
 
 Ця конфігурація починається з 10 процесів.
 
-In dynamic mode, PHP-FPM starts at _most_ the number of processes specified by the`pm.max_children` value. Спочатку він запускає деякі процеси, що відповідають `pm.start_servers`, зберігаючи принаймні значення `pm.min_spare_servers` для неактивних процесів і, щонайбільше, `pm.max_spare_servers` для неактивних процесів.
+У динамічному режимі PHP-FPM запускається з _максимальної_ кількості процесів, зазначеної значенням `pm.max_children`. Спочатку він запускає деякі процеси, що відповідають `pm.start_servers`, зберігаючи принаймні значення `pm.min_spare_servers` для неактивних процесів і, щонайбільше, `pm.max_spare_servers` для неактивних процесів.
 
 Приклад:
 

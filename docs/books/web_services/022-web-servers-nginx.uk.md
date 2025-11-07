@@ -16,7 +16,7 @@ title: Частина 2.2 Веб-сервери Nginx
 
 :checkered_flag: **nginx**, **http**
 
-**Знання**: :star: :star:\
+**Знання**: :star: :star:  
 **Складність**: :star: :star:
 
 **Час читання**: 15 хвилин
