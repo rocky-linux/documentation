@@ -16,7 +16,7 @@ In questo capitolo, imparerete a conoscere il server web Nginx.
 
 :checkered_flag: **nginx**, **http**
 
-**Competenze**: :star: :star:\
+**Competenze**: :star: :star:  
 **Complessità**: :star: :star:
 
 **Tempo di lettura**: 15 minuti
