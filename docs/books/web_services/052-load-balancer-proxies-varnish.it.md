@@ -12,7 +12,7 @@ Questo capitolo presenta l'acceleratore web proxy cache : Varnish.
 
 **Obiettivi**: si imparerà come:
 
-:heavy_check_mark: Installare e configurare Varnish;\
+:heavy_check_mark: Installare e configurare Varnish;  
 :heavy_check_mark: Mettere in cache il contenuto di un sito web.
 
 :checkered_flag: **reverse-proxy**, **cache**
