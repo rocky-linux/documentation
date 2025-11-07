@@ -1,7 +1,7 @@
 ---
 title: Rocky Summer of Docs
 author: Steven Spencer
-contributors: null
+contributors:
 ---
 
 ## Вступ
