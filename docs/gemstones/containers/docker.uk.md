@@ -13,7 +13,7 @@ tags:
 
 ## Додавання docker репозиторію
 
-Використовуйте утиліту `dnf`, щоб додати репозиторій Docker до вашого сервера Rocky Linux. Впишіть:
+Використайте утиліту `dnf`, щоб додати репозиторій Docker до вашого сервера Rocky Linux. Впишіть:
 
 ```bash
 sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
@@ -29,7 +29,7 @@ sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin d
 
 ## Запустіть і ввімкніть Docker (`dockerd`)
 
-Використовуйте `systemctl`, щоб налаштувати Docker на автоматичний запуск після перезавантаження та одночасного запуску зараз. Впишіть:
+Використовуйте `systemctl` для налаштування Docker на автоматичний запуск після перезавантаження та одночасного запуску зараз. Впишіть:
 
 ```bash
 sudo systemctl --now enable docker
@@ -51,7 +51,7 @@ sudo usermod -a -G docker $(whoami)
 sudo usermod -a -G docker custom-user
 ```
 
-Щоб призначити нову групу, потрібно вийти та знову увійти. Перевірте за допомогою команди `id`, щоб переконатися, що групу додано.
+Щоб призначити нову групу, потрібно вийти та знову увійти. Перевірте за допомогою команди `id`, чи групу додано.
 
 ### Примітки
 
