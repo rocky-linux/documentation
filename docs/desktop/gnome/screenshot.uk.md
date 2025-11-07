@@ -14,11 +14,9 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 - Rocky Linux
 
-!!! note "Примітка"
+!!! note
 
-```
-Відповідно до [веб-сайту GNOME](https://apps.gnome.org/), ця програма попередньо встановлена ​​на вашому робочому столі. 
-```
+    Відповідно до [веб-сайту GNOME](https://apps.gnome.org/), ця програма попередньо встановлена ​​на вашому робочому столі.
 
 ## Як цим користуватися
 
@@ -30,15 +28,13 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 2. Натисніть **Take a Screenshot**
 
-    ![Screenshot of taken picture of being saved with black arrows pointing at a text box that contains the file name, "Linux.png" as well as Save and Copy buttons](images/screenshot-02.png)
+   ![Screenshot of taken picture of being saved with black arrows pointing at a text box that contains the file name, "Linux.png" as well as Save and Copy buttons](images/screenshot-02.png)
 
 3. Коли ви будете задоволені знімком екрана, перейменуйте файл і натисніть **Зберегти**.
 
-!!! tip "Підказка"
+!!! tip
 
-```
-Хочете заощадити пам’ять комп’ютера? Натисніть **Copy**, щоб швидко додати знімок екрана до своєї роботи.
-```
+    Хочете заощадити пам’ять комп’ютера? Натисніть **Copy**, щоб швидко додати знімок екрана до своєї роботи.
 
 ## Висновок
 
