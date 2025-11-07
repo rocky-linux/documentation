@@ -14,11 +14,9 @@ Flatpak встановлюється за замовчуванням під ча
 
 ## Ручне встановлення
 
-!!! note "Примітка"
+!!! note
 
-```
-Ви можете пропустити цей крок, якщо ви вже використовуєте повне робоче середовище GNOME, описане у вступі.
-```
+    Ви можете пропустити цей крок, якщо ви вже використовуєте повне робоче середовище GNOME, описане у вступі.
 
 Встановіть Flatpak за допомогою:
 
@@ -129,26 +127,15 @@ Application Options:
 
 !!! warning "Rocky Linux 8.x та `flatpak search`"
 
-````
-Якщо ви користуєтеся версією Rocky Linux 8.x, ви зіткнетеся з цією помилкою. Під час виконання команди:
-
-```bash
-flatpak search [packagename]
-```
-
-Де [packagename] — пакет, який ви шукаєте, ви отримаєте:
-
-```text
-F: Failed to parse /var/lib/flatpak/appstream/flathub/x86_64/active/appstream.xml.gz file: Error on line 4065 char 29: <p> already set '
-  Organic Maps is a free Android & iOS offline maps app for travelers,
-  tourists, hikers, drivers, and cyclists.
-  It uses crowd-sourced OpenStreetMap data and is developed with love by
-  ' and tried to replace with ' ('
-No matches found
-```
-
-Для цього немає обхідного шляху. Щоб уникнути помилки, скористайтеся ресурсом Flathub у цьому документі, щоб отримати та встановити потрібний пакет.
-````
+    Якщо ви користуєтеся версією Rocky Linux 8.x, ви зіткнетеся з цією помилкою. Під час виконання команди:
+    
+    `bash     flatpak search [packagename]     `
+    
+    Де [packagename] — пакет, який ви шукаєте, ви отримаєте:
+    
+    `text     F: Failed to parse /var/lib/flatpak/appstream/flathub/x86_64/active/appstream.xml.gz file: Error on line 4065 char 29: <p> already set '       Organic Maps is a free Android & iOS offline maps app for travelers,       tourists, hikers, drivers, and cyclists.       It uses crowd-sourced OpenStreetMap data and is developed with love by       ' and tried to replace with ' ('     No matches found     `
+    
+    Для цього немає обхідного шляху. Щоб уникнути помилки, скористайтеся ресурсом Flathub у цьому документі, щоб отримати та встановити потрібний пакет.
 
 ## Flathub
 
@@ -166,51 +153,51 @@ Flathub — це веб-ресурс для отримання або надси
 
 3. Натисніть стрілку вниз поруч із кнопкою «Встановити»
 
- ![flathub_install_1](images/01_flatpak.png)
+   ![flathub_install_1](images/01_flatpak.png)
 
- ![flathub_install_2](images/02_flatpak.png)
+   ![flathub_install_2](images/02_flatpak.png)
 
 4. Переконайтеся, що ви виконали всі передумови встановлення для Rocky Linux (номер 1 на другому зображенні, яке вже виконано вище), а потім скопіюйте команду (номер 2 на другому зображенні) і вставте її в термінал
 
- ```bash
- flatpak install flathub com.obsproject.Studio
- Looking for matches…
- Required runtime for com.obsproject.Studio/x86_64/stable (runtime/org.kde.Platform/x86_64/6.6) found in remote flathub
- Do you want to install it? [Y/n]: Y
- ```
+    ```bash
+    flatpak install flathub com.obsproject.Studio
+    Looking for matches…
+    Required runtime for com.obsproject.Studio/x86_64/stable (runtime/org.kde.Platform/x86_64/6.6) found in remote flathub
+    Do you want to install it? [Y/n]: Y
+    ```
 
 5. Коли ви відповісте «Y» і натиснете ++enter++, ви побачите таке:
 
- ```bash
- com.obsproject.Studio permissions:
- ipc                             network         pulseaudio              wayland
- x11                             devices         file access [1]         dbus access [2]
- system dbus access [3]
-
- [1] host, xdg-config/kdeglobals:ro, xdg-run/pipewire-0
- [2] com.canonical.AppMenu.Registrar, org.a11y.Bus, org.freedesktop.Flatpak, org.freedesktop.Notifications,
-     org.kde.KGlobalSettings, org.kde.StatusNotifierWatcher, org.kde.kconfig.notify
- [3] org.freedesktop.Avahi
-
-     ID                                                    Branch         Op         Remote          Download
- 1.     com.obsproject.Studio.Locale                          stable         i          flathub          < 47.0 kB (partial)
- 2.     org.kde.KStyle.Adwaita                                6.6            i          flathub           < 8.0 MB
- 3.     org.kde.Platform.Locale                               6.6            i          flathub         < 380.6 MB (partial)
- 4.     org.kde.PlatformTheme.QGnomePlatform                  6.6            i          flathub           < 9.7 MB
- 5.     org.kde.WaylandDecoration.QAdwaitaDecorations         6.6            i          flathub           < 1.2 MB
- 6.     org.kde.Platform                                      6.6            i          flathub         < 325.0 MB
- 7.     com.obsproject.Studio                                 stable         i          flathub         < 207.7 MB
-
- Proceed with these changes to the system installation? [Y/n]:
- ```
+    ```bash
+    com.obsproject.Studio permissions:
+    ipc                             network         pulseaudio              wayland
+    x11                             devices         file access [1]         dbus access [2]
+    system dbus access [3]
+    
+    [1] host, xdg-config/kdeglobals:ro, xdg-run/pipewire-0
+    [2] com.canonical.AppMenu.Registrar, org.a11y.Bus, org.freedesktop.Flatpak, org.freedesktop.Notifications,
+        org.kde.KGlobalSettings, org.kde.StatusNotifierWatcher, org.kde.kconfig.notify
+    [3] org.freedesktop.Avahi
+    
+        ID                                                    Branch         Op         Remote          Download
+    1.     com.obsproject.Studio.Locale                          stable         i          flathub          < 47.0 kB (partial)
+    2.     org.kde.KStyle.Adwaita                                6.6            i          flathub           < 8.0 MB
+    3.     org.kde.Platform.Locale                               6.6            i          flathub         < 380.6 MB (partial)
+    4.     org.kde.PlatformTheme.QGnomePlatform                  6.6            i          flathub           < 9.7 MB
+    5.     org.kde.WaylandDecoration.QAdwaitaDecorations         6.6            i          flathub           < 1.2 MB
+    6.     org.kde.Platform                                      6.6            i          flathub         < 325.0 MB
+    7.     com.obsproject.Studio                                 stable         i          flathub         < 207.7 MB
+    
+    Proceed with these changes to the system installation? [Y/n]:
+    ```
 
 6. Якщо відповісти «Y» і натиснути ++enter++, системні дозволи будуть змінені, як зазначено, і встановлено програму.
 
 7. Якщо все піде добре, ви повинні отримати:
 
- ```text
- Installation complete.
- ```
+    ```text
+    Installation complete.
+    ```
 
 8. Тепер у меню «Activities» ви зможете шукати та запускати OBS Studio.
 
