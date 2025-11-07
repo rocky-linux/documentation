@@ -10,13 +10,13 @@ In questo capitolo imparerete a conoscere le distribuzioni GNU/Linux.
 
 ****
 
-**Obiettivi**: In questo capitolo si apprenderà come:
+**Obiettivi**: In questo capitolo imparerete come:
 
-:heavy_check_mark: Descrivere le caratteristiche e le possibili architetture di un sistema operativo..   
-:heavy_check_mark: Raccontare la storia di UNIX e GNU/Linux.   
-:heavy_check_mark: Scegliete la distribuzione Linux più adatta alle vostre esigenze.   
-:heavy_check_mark: Spiegare la filosofia del software libero e open-source.   
-:heavy_check_mark: Scoprite l'utilità della shell.
+:heavy_check_mark: Descrivere le caratteristiche e le possibili architetture di un sistema operativo.  
+:heavy_check_mark: Raccontare la storia di UNIX e GNU/Linux.  
+:heavy_check_mark: Scegliete la distribuzione Linux più adatta alle vostre esigenze.  
+:heavy_check_mark: Spiegare la filosofia del software libero e open-source.  
+:heavy_check_mark: Scoprire l'utilità della shell.
 
 :checkered_flag: **generalità**, **linux**, **distribuzioni**
 
@@ -31,25 +31,27 @@ In questo capitolo imparerete a conoscere le distribuzioni GNU/Linux.
 
 Linux, UNIX, BSD, Windows e MacOS sono tutti **sistemi operativi**.
 
-!!! abstract "Astrazione"
+!!! abstract
 
     Un sistema operativo è un **insieme di programmi che gestisce le risorse disponibili di un computer**.
 
 Nell'ambito di questa gestione delle risorse, il sistema operativo deve:
 
-* Gestire la memoria **fisica** o **virtuale**.
+- Gestire la memoria **fisica** o **virtuale**.
 
-    * La **memoria fisica** è costituita dalle memorie RAM e dalla memoria cache del processore, utilizzate per l'esecuzione dei programmi.
+  - La **memoria fisica** è costituita dalle memorie RAM e dalla memoria cache del processore, utilizzate per l'esecuzione dei programmi.
 
-    * La **memoria virtuale** è una posizione sul disco rigido (la partizione **swap**) che consente di svuotare la memoria fisica e di salvare lo stato attuale del sistema durante lo spegnimento elettrico del computer.
+  - La **memoria virtuale** è una posizione sul disco rigido (la partizione **swap**) che consente di svuotare la memoria fisica e di salvare lo stato attuale del sistema durante lo spegnimento elettrico del computer.
 
-* Intercettare **l'accesso alle periferiche**. Raramente il software può accedere direttamente all'hardware (ad eccezione delle schede grafiche per esigenze specifiche).
+- Intercettare **l'accesso alle periferiche**.
+  Raramente il software può accedere direttamente all'hardware (ad eccezione delle schede grafiche per esigenze specifiche).
 
-* Fornire alle applicazioni una corretta **gestione delle attività**. Il sistema operativo è responsabile della pianificazione dei processi che occupano il processore
+- Fornire alle applicazioni una corretta **gestione delle attività**.
+  Il sistema operativo è responsabile della pianificazione dei processi che occupano il processore
 
-* **Proteggere i file** da accessi non autorizzati.
+- **Proteggere i file** da accessi non autorizzati.
 
-* **Raccogliere informazioni** sui programmi in uso o in fase di esecuzione.
+- **Raccogliere informazioni** sui programmi in uso o in fase di esecuzione.
 
 ![Funzionamento di un sistema operativo](images/operating_system.png)
 
@@ -59,9 +61,9 @@ Nell'ambito di questa gestione delle risorse, il sistema operativo deve:
 
 #### UNIX
 
-* **1964 - 1968**: MULTICS (MULTiplexed Information and Computing Service) è stato sviluppato per il MIT, i Bell Labs (AT&T) e General Electric.
+- **1964 - 1968**: MULTICS (MULTiplexed Information and Computing Service) è stato sviluppato per il MIT, i Bell Labs (AT&T) e General Electric.
 
-* **1969 — 1971**: Dopo il ritiro di Bell (1969) e poi di General Electric dal progetto, due sviluppatori, Ken Thompson e Dennis Ritchie (a cui si aggiunge in seguito Brian Kernighan), giudicando MULTICS troppo complesso, iniziano lo sviluppo di UNIX (UNiplexed Information and Computing Service). Pur essendo stato creato in linguaggio Assembly, i creatori di UNIX svilupparono alla fine il linguaggio B e poi il linguaggio C (1971) e riscrissero completamente UNIX. Poiché è stato sviluppato nel 1970, la data di riferimento (epoch) per l'inizio del periodo di tempo dei sistemi UNIX/Linux è fissata al 01 gennaio 1970.
+- **1969 — 1971**: Dopo il ritiro di Bell (1969) e poi di General Electric dal progetto, due sviluppatori, Ken Thompson e Dennis Ritchie (a cui si aggiunge in seguito Brian Kernighan), giudicando MULTICS troppo complesso, iniziano lo sviluppo di UNIX (UNiplexed Information and Computing Service). Pur essendo stato creato in linguaggio Assembly, i creatori di UNIX svilupparono alla fine il linguaggio B e poi il linguaggio C (1971) e riscrissero completamente UNIX. Poiché è stato sviluppato nel 1970, la data di riferimento (epoch) per l'inizio del periodo di tempo dei sistemi UNIX/Linux è fissata al 01 gennaio 1970.
 
 Il C rimane oggi uno dei linguaggi di programmazione più diffusi. Un linguaggio di basso livello vicino all'hardware, che consente di adattare il sistema operativo a qualsiasi architettura di macchina dotata di un compilatore C.
 
@@ -71,33 +73,33 @@ UNIX è ancora rilevante al giorno d'oggi (HP-UX, AIX, Solaris, ecc.).
 
 #### Progetto GNU
 
-* **1984**: Richard Matthew Stallman ha lanciato il progetto GNU (GNU's Not Unix), che si propone di creare un sistema Unix **libero** e **aperto**, in cui gli strumenti più importanti sono: il compilatore gcc, la shell bash, l'editor Emacs e così via. GNU è un sistema operativo simile ad Unix. Lo sviluppo di GNU, iniziato nel Gennaio 1984, è noto come Progetto GNU. Molti dei programmi presenti in GNU sono rilasciati sotto l'egida del Progetto GNU; questi vengono chiamati pacchetti GNU.
+- **1984**: Richard Matthew Stallman ha lanciato il progetto GNU (GNU's Not Unix), che si propone di creare un sistema Unix **libero** e **aperto**, in cui gli strumenti più importanti sono: il compilatore gcc, la shell bash, l'editor Emacs e così via. GNU è un sistema operativo simile ad Unix. Lo sviluppo di GNU, iniziato nel Gennaio 1984, è noto come Progetto GNU. Molti dei programmi presenti in GNU sono rilasciati sotto l'egida del Progetto GNU; questi vengono chiamati pacchetti GNU.
 
-* **1990**: Il kernel di GNU, GNU Hurd, è stato creato nel 1990 (prima della nascita di Linux).
+- **1990**: Il kernel di GNU, GNU Hurd, è stato creato nel 1990 (prima della nascita di Linux).
 
 #### MINIX
 
-* **1987**: Andrew S. Tanenbaum sviluppa MINIX, un UNIX semplificato, per insegnare i sistemi operativi in modo semplice. Il signor Tanenbaum rende disponibile il codice sorgente del suo sistema operativo.
+- **1987**: Andrew S. Tanenbaum sviluppa MINIX, un UNIX semplificato, per insegnare i sistemi operativi in modo semplice. Il signor Tanenbaum rende disponibile il codice sorgente del suo sistema operativo.
 
 #### Linux
 
-* **1991**: Uno studente finlandese, **Linus Torvalds**, crea un sistema operativo che gira sul suo computer personale e lo chiama Linux. Pubblica la sua prima versione 0.02, sul forum di discussione Usenet e altri sviluppatori iniziano a contribuire al miglioramento del suo sistema. Il termine Linux è un gioco di parole tra il nome del fondatore, Linus, e UNIX.
+- **1991**: Uno studente finlandese, **Linus Torvalds**, crea un sistema operativo che gira sul suo computer personale e lo chiama Linux. Pubblica la sua prima versione 0.02, sul forum di discussione Usenet e altri sviluppatori iniziano a contribuire al miglioramento del suo sistema. Il termine Linux è un gioco di parole tra il nome del fondatore, Linus, e UNIX.
 
-* **1993**: Viene creata la distribuzione Debian. Debian è una distribuzione non commerciale, basata sulla comunità. Sviluppato originariamente per l'uso sui server, è molto indicato per questo ruolo; tuttavia è un sistema universale, utilizzabile anche su un personal computer. Debian costituisce la base per molte altre distribuzioni, come Mint o Ubuntu.
+- **1993**: Viene creata la distribuzione Debian. Debian è una distribuzione non commerciale, basata sulla comunità. Sviluppato originariamente per l'uso sui server, è molto indicato per questo ruolo; tuttavia è un sistema universale, utilizzabile anche su un personal computer. Debian costituisce la base per molte altre distribuzioni, come Mint o Ubuntu.
 
-* **1994**: la distribuzione commerciale Red Hat viene creata dalla società Red Hat, che oggi è il principale distributore del sistema operativo GNU/Linux. Red Hat supporta la versione comunitaria Fedora e, fino a poco tempo fa, la distribuzione gratuita CentOS.
+- **1994**: la distribuzione commerciale Red Hat viene creata dalla società Red Hat, che oggi è il principale distributore del sistema operativo GNU/Linux. Red Hat supporta la versione comunitaria Fedora e, fino a poco tempo fa, la distribuzione gratuita CentOS.
 
-* **1997**: Viene creato l'ambiente desktop KDE. Si basa sulla libreria di componenti Qt e sul linguaggio di sviluppo C++.
+- **1997**: Viene creato l'ambiente desktop KDE. Si basa sulla libreria di componenti Qt e sul linguaggio di sviluppo C++.
 
-* **1999**: Viene creato l'ambiente desktop GNOME. Basato sulla libreria di componenti GTK+.
+- **1999**: Viene creato l'ambiente desktop GNOME. Basato sulla libreria di componenti GTK+.
 
-* **2002**: Viene creata la distribuzione Arch. Il suo tratto distintivo è che offre una rolling release (aggiornamento continuo).
+- **2002**: Viene creata la distribuzione Arch. Il suo tratto distintivo è che offre una rolling release (aggiornamento continuo).
 
-* **2004**: Ubuntu viene creato dalla società Canonical (Mark Shuttleworth). È basato su Debian ma include software libero e proprietario.
+- **2004**: Ubuntu viene creato dalla società Canonical (Mark Shuttleworth). È basato su Debian ma include software libero e proprietario.
 
-* **2021**: Viene creato Rocky Linux, basato sulla distribuzione Red Hat.
+- **2021**: Viene creato Rocky Linux, basato sulla distribuzione Red Hat.
 
-!!! info "Informazione"
+!!! info
 
     Disputa sul nome: anche se le persone sono abituate a chiamare il sistema operativo Linux verbalmente, Linux è propriamente il kernel. Non dobbiamo dimenticare lo sviluppo e il contributo del progetto GNU alla causa open source, quindi! Preferisco chiamarlo il sistema operativo GNU/Linux.
 
@@ -117,30 +119,30 @@ Linux equipaggia il 100% dei 500 supercomputer dal 2018. Un supercomputer è un 
 
 ### Progettazione dell'architettura
 
-* Il **kernel** è il primo componente software.
+- Il **kernel** è il primo componente software.
 
-    * È il cuore del sistema Linux.
-    * Gestisce le risorse hardware del sistema.
-    * Gli altri componenti software devono passarvi attraverso per accedere all'hardware.
+  - È il cuore del sistema Linux.
+  - Gestisce le risorse hardware del sistema.
+  - Gli altri componenti software devono passarvi attraverso per accedere all'hardware.
 
-* La **shell** è un'utilità che interpreta i comandi dell'utente e ne garantisce l'esecuzione.
+- La **shell** è un'utilità che interpreta i comandi dell'utente e ne garantisce l'esecuzione.
 
-    * Shell principali: shell Bourne, shell C, shell Korn e shell Bourne-Again (bash).
+  - Shell principali: shell Bourne, shell C, shell Korn e shell Bourne-Again (bash).
 
-* **Applicazioni** sono programmi utente, tra cui, a titolo esemplificativo e non esaustivo:
+- **Applicazioni** sono programmi utente, tra cui, a titolo esemplificativo e non esaustivo:
 
-    * Browser Internet
-    * Elaboratore di testi
-    * Fogli di calcolo
+  - Browser Internet
+  - Elaboratore di testi
+  - Fogli di calcolo
 
 #### Multi-task
 
 Linux appartiene alla famiglia dei sistemi operativi a condivisione di tempo. Divide il tempo di elaborazione tra diversi programmi, passando da uno all'altro in modo trasparente per l'utente. Questo implica:
 
-* Esecuzione simultanea di più programmi.
-* Distribuzione del tempo di CPU da parte dello scheduler.
-* Riduzione dei problemi causati da un'applicazione interrotta.
-* Prestazioni ridotte quando ci sono troppi programmi in esecuzione.
+- Esecuzione simultanea di più programmi.
+- Distribuzione del tempo di CPU da parte dello scheduler.
+- Riduzione dei problemi causati da un'applicazione interrotta.
+- Prestazioni ridotte quando ci sono troppi programmi in esecuzione.
 
 #### Multiutente
 
@@ -154,25 +156,25 @@ Linux è in grado di lavorare con computer multiprocessore o con processori mult
 
 Linux è scritto in un linguaggio di alto livello che può essere adattato a diverse piattaforme durante la compilazione. Questo permette di funzionare su:
 
-* Computer di casa (PC o laptop)
-* Server (dati, applicazioni,...)
-* Computer portatili (smartphone o tablet)
-* Sistemi integrati (computer per auto)
-* Elementi di rete attivi (router, switch)
-* Elettrodomestici (TV, frigoriferi,...)
+- Computer di casa (PC o laptop)
+- Server (dati, applicazioni,...)
+- Computer portatili (smartphone o tablet)
+- Sistemi integrati (computer per auto)
+- Elementi di rete attivi (router, switch)
+- Elettrodomestici (TV, frigoriferi,...)
 
 #### Aperto
 
-Linux si basa su standard riconosciuti come [POSIX](http://en.wikipedia.org/wiki/POSIX), [TCP/IP](https://en.wikipedia.org/wiki/Internet_protocol_suite), [NFS](https://en.wikipedia.org/wiki/Network_File_System), e [Samba](https://en.wikipedia.org/wiki/Samba_(software)), che gli consentono di condividere dati e servizi con altri sistemi applicativi.
+Linux si basa su standard riconosciuti come [POSIX](http://en.wikipedia.org/wiki/POSIX), [TCP/IP](https://en.wikipedia.org/wiki/Internet_protocol_suite), [NFS](https://en.wikipedia.org/wiki/Network_File_System), e [Samba](https://en.wikipedia.org/wiki/Samba_\(software\)), che gli consentono di condividere dati e servizi con altri sistemi applicativi.
 
 ### La filosofia UNIX/Linux
 
-* Trattare tutto come un file.
-* Portabilità del valore.
-* Fai solo una cosa e falla bene.
-* KISS: Mantienilo semplice stupido (Keep It Simple Stupid).
-* "UNIX è un sistema operativo semplice, ma bisogna essere un genio per capirne la semplicità" (**Dennis Ritchie**)
-* "Unix è facile da usare. Solamente che non è chiaro con quali utenti sia amichevole." (**Steven King**)
+- Trattare tutto come un file.
+- Portabilità del valore.
+- Fai solo una cosa e falla bene.
+- KISS: Mantienilo semplice stupido (Keep It Simple Stupid).
+- "UNIX è un sistema operativo semplice, ma bisogna essere un genio per capirne la semplicità" (**Dennis Ritchie**)
+- "Unix è facile da usare. Solamente che non è chiaro con quali utenti sia amichevole." (**Steven King**)
 
 ## Le distribuzioni GNU/Linux
 
@@ -216,10 +218,10 @@ La **GPL** garantisce all'autore di un software la sua proprietà intellettuale,
 
 Questo implica:
 
-* La libertà di eseguire il programma, per qualsiasi scopo.
-* La libertà di studiare il funzionamento del programma e di adattarlo alle proprie esigenze.
-* La libertà di ridistribuire le copie.
-* La libertà di migliorare il programma e di pubblicare tali miglioramenti a beneficio dell'intera comunità.
+- La libertà di eseguire il programma, per qualsiasi scopo.
+- La libertà di studiare il funzionamento del programma e di adattarlo alle proprie esigenze.
+- La libertà di ridistribuire le copie.
+- La libertà di migliorare il programma e di pubblicare tali miglioramenti a beneficio dell'intera comunità.
 
 D'altra parte, anche i prodotti con licenza GPL possono avere un costo. Non si tratta del prodotto in sé, ma della **garanzia che un team di sviluppatori continuerà a lavorarci per farlo evolvere e per risolvere gli errori, o anche per fornire assistenza agli utenti**.
 
@@ -227,10 +229,10 @@ D'altra parte, anche i prodotti con licenza GPL possono avere un costo. Non si t
 
 Una distribuzione Linux eccelle per:
 
-* **Server**: HTTP, e-mail, groupware, condivisione di file, ecc.
-* **Sicurezza**: Gateway, firewall, router, proxy, ecc.
-* **Computer centrali**: Banche, assicurazioni, industria, ecc.
-* **Sistemi integrati**: Router, Internet box, SmartTV, ecc.
+- **Server**: HTTP, e-mail, groupware, condivisione di file, ecc.
+- **Sicurezza**: Gateway, firewall, router, proxy, ecc.
+- **Computer centrali**: Banche, assicurazioni, industria, ecc.
+- **Sistemi integrati**: Router, Internet box, SmartTV, ecc.
 
 Linux è una scelta adatta per ospitare database o siti web, oppure come server di posta, DNS o firewall. In breve, Linux può fare praticamente tutto, il che spiega la quantità di distribuzioni specifiche.
 
@@ -244,17 +246,17 @@ Offre un vero e proprio linguaggio di programmazione che include strutture class
 
 Sono disponibili diversi tipi di shell, configurabili su una piattaforma o in base alle preferenze dell'utent. Alcuni esempi includono:
 
-* sh, la shell standard POSIX
-* csh, shell orientata ai comandi in C
-* bash, Bourne-Again Shell, shell di Linux
+- sh, la shell standard POSIX
+- csh, shell orientata ai comandi in C
+- bash, Bourne-Again Shell, shell di Linux
 
 ### Funzionalità
 
-* Esecuzione del comando (verifica il comando dato e lo esegue).
-* Reindirizzamento di Input/Output (restituisce i dati a un file invece di scriverli sullo schermo).
-* Processo di connessione (gestisce la connessione dell'utente).
-* Linguaggio di programmazione interpretato (che consente la creazione di script).
-* Variabili d'ambiente (accesso a informazioni specifiche del sistema durante il funzionamento).
+- Esecuzione del comando (verifica il comando dato e lo esegue).
+- Reindirizzamento di Input/Output (restituisce i dati a un file invece di scriverli sullo schermo).
+- Processo di connessione (gestisce la connessione dell'utente).
+- Linguaggio di programmazione interpretato (che consente la creazione di script).
+- Variabili d'ambiente (accesso a informazioni specifiche del sistema durante il funzionamento).
 
 ### Principio
 
@@ -264,62 +266,62 @@ Sono disponibili diversi tipi di shell, configurabili su una piattaforma o in ba
 
 :heavy_check_mark: Il sistema operativo è necessario per:
 
-* [ ] Vero
-* [ ] Falso
+- [ ] Vero
+- [ ] Falso
 
 :heavy_check_mark: Il sistema operativo è necessario per:
 
-* [ ] Gestire la memoria fisica e virtuale
-* [ ] Consentire l'accesso diretto alle periferiche
-* [ ] Affidare la gestione dei compiti all'elaboratore
-* [ ] Raccogliere informazioni sui programmi utilizzati o in uso
+- [ ] Gestire la memoria fisica e virtuale
+- [ ] Consentire l'accesso diretto alle periferiche
+- [ ] Affidare la gestione dei compiti all'elaboratore
+- [ ] Raccogliere informazioni sui programmi utilizzati o in uso
 
 :heavy_check_mark: Tra queste personalità, quali hanno partecipato allo sviluppo di UNIX?
 
-* [ ] Linus Torvalds
-* [ ] Ken Thompson
-* [ ] Lionel Richie
-* [ ] Brian Kernighan
-* [ ] Andrew Stuart Tanenbaum
+- [ ] Linus Torvalds
+- [ ] Ken Thompson
+- [ ] Lionel Richie
+- [ ] Brian Kernighan
+- [ ] Andrew Stuart Tanenbaum
 
 :heavy_check_mark: La nazionalità originale di Linus Torvalds, creatore del kernel Linux, è:
 
-* [ ] Svedese
-* [ ] Finlandese
-* [ ] Norvegese
-* [ ] Fiamminga
-* [ ] Francese
+- [ ] Svedese
+- [ ] Finlandese
+- [ ] Norvegese
+- [ ] Fiammingo
+- [ ] Francese
 
 :heavy_check_mark: Quale delle seguenti distribuzioni è la più vecchia:
 
-* [ ] Debian
-* [ ] Slackware
-* [ ] RedHat
-* [ ] Arch
+- [ ] Debian
+- [ ] Slackware
+- [ ] RedHat
+- [ ] Arch
 
 :heavy_check_mark: Il kernel di Linux è:
 
-* [ ] Multitasking
-* [ ] Multiutente
-* [ ] Multiprocessore
-* [ ] Multi-core
-* [ ] Multipiattaforma
-* [ ] Aperto
+- [ ] Multitasking
+- [ ] Multiutente
+- [ ] Multiprocessore
+- [ ] Multi-core
+- [ ] Cross-platform
+- [ ] Aperto
 
 :heavy_check_mark: Il software libero è necessariamente open-source?
 
-* [ ] Vero
-* [ ] Falso
+- [ ] Vero
+- [ ] Falso
 
 :heavy_check_mark: Il software Open-Source è necessariamente gratuito?
 
-* [ ] Vero
-* [ ] Falso
+- [ ] Vero
+- [ ] Falso
 
 :heavy_check_mark: Quale delle seguenti non è una shell:
 
-* [ ] Jason
-* [ ] Jason-Bourne shell (jbsh)
-* [ ] Bourne-Again shell (bash)
-* [ ] C shell (csh)
-* [ ] Korn shell (ksh)  
+- [ ] Jason
+- [ ] Jason-Bourne shell (jbsh)
+- [ ] Bourne-Again shell (bash)
+- [ ] C shell (csh)
+- [ ] Korn shell (ksh)

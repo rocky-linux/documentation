@@ -13,7 +13,8 @@ tags:
 nmcli -f name,autoconnect connection 
 ```
 
-Щоб змінити значення властивості для мережевого з’єднання, використовуйте підкоманду `modify` із `nmcli connection`. Наприклад, щоб змінити значення властивості autoconnect з `no` на `yes` для профілю підключення `ens3`, введіть:
+Щоб змінити значення властивості мережевого з’єднання, використовуйте підкоманду `modify` з `nmcli connection`.
+Наприклад, щоб змінити значення властивості autoconnect з `no` на `yes` для профілю підключення `ens3`, введіть:
 
 ```bash
 sudo nmcli con mod ens3 connection.autoconnect yes
@@ -22,12 +23,13 @@ sudo nmcli con mod ens3 connection.autoconnect yes
 ## Пояснення команд
 
 ```bash
-connection (con) : об’єкт підключення NetworkManager. 
-modify (mod) : змінити одну або більше властивостей даного профілю з’єднання.
-connection.autoconnect : налаштування та властивість (<setting>.<property>)
--f, --fields : вказати поля для виведення.
+connection (con)       : NetworkManager connection object. 
+modify (mod)           : Modify one or more properties of a given connection profile.
+connection.autoconnect : The setting and property (<setting>.<property>)
+-f, --fields           : specify fields to output.
 ```
 
 ## Примітки
 
-Ця підказка показує, як змінити наявний профіль підключення NetworkManager. Це корисно, коли мережевий інтерфейс не активується автоматично після нової інсталяції Rocky Linux або оновлення системи. Причиною цього часто є те, що для властивості autoconnect встановлено значення `no`. Ви можете скористатися командою `nmcli`, щоб швидко змінити значення на `yes`.  
+Ця підказка показує, як змінити наявний профіль підключення NetworkManager. Це корисно, коли мережевий інтерфейс не активується автоматично після нової інсталяції Rocky Linux або оновлення системи.
+Причиною цього часто є те, що значення властивості autoconnect встановлено на `no`. Ви можете скористатися командою `nmcli`, щоб швидко змінити значення на `yes`.

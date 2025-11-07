@@ -12,7 +12,7 @@ tags:
 
 # Розділ 3: Ініціалізація LXD і налаштування користувача
 
-У цьому розділі вам потрібно мати права root або вміти викорисовувати `sudo`, щоб стати root. Крім того, припускається, що ви налаштували пул зберігання даних ZFS, описаний у [главі 2](02-zfs_setup.md). Ви можете використовувати інший пул зберігання, якщо ви вирішили не використовувати ZFS, але вам потрібно буде внести зміни до запитань і відповідей щодо ініціалізації.
+У цьому розділі вам потрібно мати права root або вміти викорисовувати `sudo`, щоб стати root. Крім того, припускається, що ви налаштували пул сховищ ZFS, описаний у [Розділі 2] (02-zfs_setup.md). Ви можете використовувати інший пул зберігання, якщо ви вирішили не використовувати ZFS, але вам потрібно буде внести зміни до запитань і відповідей щодо ініціалізації.
 
 ## Ініціалізація LXD
 
@@ -25,13 +25,13 @@ lxd init
 Ось запитання та наші відповіді щодо сценарію з невеликими поясненнями, де це необхідно:
 
 ```text
-Бажаєте використовувати кластеризацію LXD? (Would you like to use LXD clustering?) (yes/no) [default=no]:
+Would you like to use LXD clustering? (yes/no) [default=no]:
 ```
 
 Якщо вас цікавить кластеризація, проведіть додаткові дослідження щодо цього [тут](https://documentation.ubuntu.com/lxd/en/latest/clustering/)
 
 ```text
-Бажаєте налаштувати новий пул зберігання? (Do you want to configure a new storage pool?) (yes/no) [default=yes]:
+Do you want to configure a new storage pool? (yes/no) [default=yes]:
 ```
 
 Це здається неінтуїтивним. Ви вже створили свій пул ZFS, але це стане зрозумілим у наступному питанні. Прийняти значення за замовчуванням.
@@ -49,29 +49,29 @@ lxd init
 Ви хочете прийняти значення за замовчуванням.
 
 ```text
-Створити новий пул ZFS? (yes/no) [default=yes]: no
+Create a new ZFS pool? (yes/no) [default=yes]: no
 ```
 
 Тут вступає в дію вирішення попереднього питання про створення пулу зберігання.
 
 ```text
-Назва існуючого пулу або набору даних ZFS: storage
-Бажаєте підключитися до сервера MAAS? (yes/no) [default=no]:
+Name of the existing ZFS pool or dataset: storage
+Would you like to connect to a MAAS server? (yes/no) [default=no]:
 ```
 
 Metal As A Service (MAAS) виходить за рамки цього документа.
 
 ```text
-Бажаєте створити новий міст локальної мережі? (yes/no) [default=yes]:
-Як мав би називатися новий міст? [default=lxdbr0]: 
-Яку адресу IPv4 слід використовувати? (CIDR subnet notation, “auto” or “none”) [default=auto]:
-Яку адресу IPv6 слід використовувати? (CIDR subnet notation, “auto” or “none”) [default=auto]: none
+Would you like to create a new local network bridge? (yes/no) [default=yes]:
+What should the new bridge be called? [default=lxdbr0]: 
+What IPv4 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]:
+What IPv6 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]: none
 ```
 
 Якщо ви хочете використовувати IPv6 у своїх контейнерах LXD, ви можете ввімкнути цю опцію. Це залежить від вас.
 
 ```text
-Бажаєте, щоб сервер LXD був доступний через мережу? (yes/no) [default=no]: yes
+Would you like the LXD server to be available over the network? (yes/no) [default=no]: yes
 ```
 
 Це необхідно для створення snapshot сервера.
@@ -86,13 +86,13 @@ Again:
 Цей пароль довіри означає, як ви підключатиметеся до snapshot сервера або повертатиметеся із snapshot сервера. Встановіть це з тим, що має сенс у вашому оточенні. Збережіть цей запис у безпечному місці, наприклад у менеджері паролів.
 
 ```text
-Бажаєте, щоб застарілі кешовані зображення оновлювалися автоматично? (yes/no) [default=yes]
-Чи бажаєте ви, щоб надруковано передзапуск YAML "lxd init"? (yes/no) [default=no]:
+Would you like stale cached images to be updated automatically? (yes/no) [default=yes]
+Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:
 ```
 
 ## Налаштування прав користувача
 
-Перш ніж продовжити, нам потрібно створити нашого користувача "lxdadmin" і переконатися, що він має необхідні привілеї. Нам потрібен користувач «lxdadmin», щоб мати змогу використовувати _sudo_ для root і він повинен бути членом групи lxd. Щоб додати користувача та переконатися, що він є членом обох груп, виконайте:
+Перш ніж продовжити, нам потрібно створити нашого користувача "lxdadmin" і переконатися, що він має необхідні привілеї. Вам потрібно, щоб користувач "lxdadmin" мав можливість отримати root-права за допомогою `sudo`, і щоб він був членом групи lxd. Щоб додати користувача та переконатися, що він є членом обох груп, виконайте:
 
 ```bash
 useradd -G wheel,lxd lxdadmin

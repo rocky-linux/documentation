@@ -37,7 +37,7 @@ for x in $(/var/lib/snapd/snap/bin/lxc ls -c n --format csv)
 
 ```
 
- Зробіть його виконуваним:
+Зробіть його виконуваним:
 
 ```bash
 sudo chmod +x /usr/local/sbin/refreshcontainers.sh

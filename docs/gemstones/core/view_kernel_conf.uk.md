@@ -17,13 +17,13 @@ tags:
 - Старіші [procfs](https://man7.org/linux/man-pages/man5/procfs.5.html), які монтують `/proc` (перевірте за допомогою `mount -l -t proc`)
 - Новіший [sysfs](https://man7.org/linux/man-pages/man5/sysfs.5.html), який монтує `/sys` (перевірити за допомогою `mount -l -t sysfs`)
 
-!!! warning "Важливо"
+!!! warning
 
     Будьте обережні, якщо перевіряєте згадані тут файли, їх зміна може змінити поведінку фактично запущеного ядра!
 
 Ці два інтерфейси дозволяють переглядати та змінювати параметри поточного ядра.
 
-Зауважте, що якщо виконати [`ls -l`](https://man7.org/linux/man-pages/man1/ls.1.html) для деяких із цих файлів, вони відображатимуться як довжина «0», але якщо ви їх виділите за допомогою [`cat</ 1></a>, виявиться, що вони насправді містять дані. Більшість із них є ASCII і їх можна редагувати, однак деякі є двійковими. У будь-якому випадку такі команди, як <a href="https://man7.org/linux/man-pages/man1/file.1.html"><code>file`](https://man7.org/linux/man-pages/man1/cat.1.html) або [`stat`](https://man7.org/linux/man-pages/man2/lstat.2.html) зазвичай просто повертають "порожній файл" або "0" для довжини, хоча вони покажуть вам іншу інформацію.
+Зверніть увагу, що якщо ви виконаєте команду [`ls -l`](https://man7.org/linux/man-pages/man1/ls.1.html) для деяких із цих файлів, вони відображатимуться як файли довжиною "0", але якщо ви їх вилучите командою [`cat`](https://man7.org/linux/man-pages/man1/cat.1.html), вони насправді містять дані. Більшість із них є ASCII і їх можна редагувати, однак деякі є двійковими. В обох випадках команди типу [`file`](https://man7.org/linux/man-pages/man1/file.1.html) або [`stat`](https://man7.org/linux/man-pages/man2/lstat.2.html) зазвичай повертають просто "порожній файл" або "0" для довжин, хоча вони також покажуть вам іншу інформацію.
 
 Переважними та стандартними програмами для взаємодії з цими функціями є [`lsmod`](https://man7.org/linux/man-pages/man8/lsmod.8.html), [`modinfo`](https://man7.org/linux/man-pages/man8/modinfo.8.html) та [` sysctl`](https://man7.org/linux/man-pages/man8/sysctl.8.html).
 
@@ -43,7 +43,8 @@ modinfo <module>
 
 `uname -r` і замініть його повертане значення в командах за допомогою `$(uname -r)`
 
-RHEL і похідні дистрибутиви (Fedora, CentOS Stream, Scientific Linux, RockyLinux, AlmaLinux тощо) також зберігайте конфігурацію, яка використовується для завантажувальних встановлених ядер, у каталозі `/boot`, який використовується Grub2, як файли ASCII:
+RHEL і похідні дистрибутиви (Fedora, CentOS Stream, Scientific Linux, RockyLinux, AlmaLinux тощо)
+також зберігайте конфігурацію, що використовується для завантажувальних встановлених ядер, у каталозі `/boot`, який використовується Grub2, у вигляді ASCII-файлів:
 
 ```bash
 /boot/config-<kernel-release>
@@ -121,7 +122,7 @@ modprobe configs
 /sys/module/
 ```
 
-Для кожного встановленого випуску ядра ви можете переглянути ці файли, щоб побачити, які значення було скомпільовано в це ядро та яку версію [GCC](https://man7.org/linux/man-pages/man1/gcc.1. html) використовувався для його компіляції:
+Для кожного встановленого випуску ядра ви можете переглянути ці файли, щоб побачити, які значення були скомпільовані в це ядро, та яку версію [GCC](https://man7.org/linux/man-pages/man1/gcc.1.html) було використано для його компіляції:
 
 ```bash
 cat /lib/modules/$(uname -r)/config | grep -i <keyword>
