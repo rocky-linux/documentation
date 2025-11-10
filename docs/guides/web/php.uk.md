@@ -105,7 +105,7 @@ Zend Engine v4.3.19, Copyright (c) Zend Technologies
  sudo firewall-cmd --reload
  ```
 
-The default vhost should work right away. PHP надає функцію `phpinfo()`, яка генерує зведену таблицю його конфігурації. It is very useful to test the good working of PHP. Однак будьте обережні, щоб не залишати такі тестові файли на своїх серверах. Вони становлять величезний ризик для безпеки вашої інфраструктури.
+Vhost за замовчуванням має запрацювати одразу. PHP надає функцію `phpinfo()`, яка генерує зведену таблицю його конфігурації. Це дуже корисно для перевірки належної роботи PHP. Однак будьте обережні, щоб не залишати такі тестові файли на своїх серверах. Вони становлять величезний ризик для безпеки вашої інфраструктури.
 
 Створіть файл `/var/www/html/info.php` (`/var/www/html` є каталогом vhost за замовчуванням конфігурації apache за замовчуванням):
 
@@ -363,7 +363,7 @@ location ~ \.php$ {
 
 ### Надійна конфігурація пулів PHP
 
-It is essential to optimize the number of served requests, and to analyze the memory used by the PHP scripts, to optimize the maximum amount of launched threads.
+Важливо оптимізувати кількість обслуговуваних запитів та проаналізувати пам'ять, що використовується PHP-скриптами, щоб оптимізувати максимальну кількість запущених потоків.
 
 Налаштування за замовчуванням nginx уже включають необхідну конфігурацію, щоб PHP працював із PHP-FPM.
 
@@ -436,4 +436,4 @@ opcache.max_accelerated_files=4000
 
 !!! Note "Примітка"
 
-    Do not underestimate the speed gain that can be achieved by setting up and configuring the `opcache` correctly.
+    Не варто недооцінювати приріст швидкості, якого можна досягти, правильно налаштувавши та сконфігурувавши `opcache`.
