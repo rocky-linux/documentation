@@ -25,7 +25,7 @@ tags:
 
 !!! tip "Версія WSL"
 
-    Ensure that your WSL version is up to date, as some features were only introduced in later versions. If you are unsure, run `wsl --update`.
+    Переконайтеся, що ваша версія WSL оновлена, оскільки деякі функції були введені лише в пізніших версіях. Якщо ви не впевнені, виконайте команду `wsl --update`.
 
 ## Кроки
 
