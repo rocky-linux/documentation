@@ -20,7 +20,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 1. Перейдіть на [веб-сайт Flathub](https://flathub.org/), введіть «Декодер» у рядку пошуку та натисніть **Встановити**. ![Screenshot of the install button highlighted by a red rectangle](images/01_decoder.png)
 
-    ![manual install script and run script](images/decoder_install.png)
+   ![manual install script and run script](images/decoder_install.png)
 
 2. Скопіюйте сценарій встановлення вручну та запустіть його в терміналі:
 
@@ -51,7 +51,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 3. Натисніть **Create**
 
-    ![Screenshot of the Save and Export screen with arrows](images/03_decoder-text.png)
+   ![Screenshot of the Save and Export screen with arrows](images/03_decoder-text.png)
 
 4. Натисніть **Save**
 
@@ -77,25 +77,23 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 1. Натисніть **Scan**
 
-    ![Screenshot of the rectangular button with the words "From a Screenshot" written in white.](images/02_decoder-scan.png)
+   ![Screenshot of the rectangular button with the words "From a Screenshot" written in white.](images/02_decoder-scan.png)
 
 2. Натисніть  **From a Screenshot**
 
-    ![Screenshot of grey square surrounding options menu, and red square surrounding the "Take a Screenshot button"](images/03_decoder-scan.png)
+   ![Screenshot of grey square surrounding options menu, and red square surrounding the "Take a Screenshot button"](images/03_decoder-scan.png)
 
 3. Виберіть потрібні ефекти та натисніть **Take a Screenshot**
 
-    ![Screenshot of a red arrow pointing at a blue button that has the word "Share" written in white](images/04_decoder-scan.png)
+   ![Screenshot of a red arrow pointing at a blue button that has the word "Share" written in white](images/04_decoder-scan.png)
 
 4. Натисніть **Share**
 
 5. Відскануйте QR-код за допомогою мобільного пристрою
 
-!!! note "Примітка"
+!!! note
 
-```
-Щоб відсканувати QR-код безпосередньо з комп’ютера, потрібно надати програмі доступ до камери комп’ютера.
-```
+    Щоб відсканувати QR-код безпосередньо з комп’ютера, потрібно надати програмі доступ до камери комп’ютера.
 
 ## Висновок
 

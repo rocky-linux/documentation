@@ -12,8 +12,10 @@ title: Дебрендінг упаковки
 
 Розробіть заміни для цих файлів, але замість цього розмістіть бренд Rocky. Залежно від вмісту, який замінюється, для певних типів тексту також можуть знадобитися файли diff/patch.
 
-Файли заміни знаходяться під <https://git.rockylinux.org/patch/PACKAGE/ROCKY/_supporting/> Файл конфігурації (вказує, як застосовувати патчі) міститься в <https://git.rockylinux.org/patch/PACKAGE/ROCKY/CFG/*.cfg>
+Файли заміни розміщуються в <https://git.rockylinux.org/patch/PACKAGE/ROCKY/_supporting/>
+Файл конфігурації (що визначає, як застосовувати патчі) розміщується в <https://git.rockylinux.org/patch/PACKAGE/ROCKY/CFG/\*.cfg>
 
-Примітка. Використовуйте пробіли, а не табуляції. Коли srpmproc імпортує пакунок до Rocky, він побачить виконану роботу в <https://git.rockylinux.org/patch/PACKAGE> і застосує збережені патчі дебрендування, прочитавши файл конфігурації( s) під ROCKY/CFG/*.cfg
+Примітка. Використовуйте пробіли, а не табуляції.
+Коли srpmproc імпортує пакет до Rocky, він побачить виконану роботу в <https://git.rockylinux.org/patch/PACKAGE> та застосує збережені патчі для дебрендингу, прочитавши конфігураційний(і) файл(и) у ROCKY/CFG/\*.cfg
 
 з [вікі-сторінки дебрендування](https://wiki.rockylinux.org/team/release_engineering/debranding/)
