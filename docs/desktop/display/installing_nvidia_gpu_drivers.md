@@ -34,7 +34,7 @@ sudo dnf install epel-release -y
 Enable the CodeReady Builder (CRB) repository:
 
 ```bash
-sudo crb enable
+sudo dnf config-manager --enable crb
 ```
 
 Installing development tools ensures necessary build dependencies:
