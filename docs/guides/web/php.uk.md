@@ -213,7 +213,7 @@ php_value[soap.wsdl_cache_dir]  = /var/lib/php/wsdlcache
 
 #### Статична або динамічна конфігурація
 
-You can manage the processes of PHP-FPM either statically or dynamically.
+Ви можете керувати процесами PHP-FPM статично або динамічно.
 
 У статичному режимі `pm.max_children` встановлює кількість дочірніх процесів:
 
@@ -375,7 +375,7 @@ while true; do ps --no-headers -o "rss,cmd" -C php-fpm | grep "pool www" | awk '
 
 У решті цього документа показано обсяг пам'яті, що займає 120 мегабайт на процес при повному навантаженні.
 
-On a server with 8 gigabytes of RAM, keeping 1 gigabyte for the system and 1 gigabyte for the OPCache (see the rest of this document), 6 gigabytes is left to process PHP requests from clients.
+На сервері з 8 гігабайтами оперативної пам'яті, де 1 гігабайт виділено для системи та 1 гігабайт для OPCache (див. решту цього документа), залишається 6 гігабайт для обробки PHP-запитів від клієнтів.
 
 Можна зробити висновок, що цей сервер може прийняти максимум **50 потоків** `((6*1024) / 120)`.
 
