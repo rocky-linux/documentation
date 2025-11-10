@@ -6,7 +6,7 @@
 
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-125-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-126-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Introduction
@@ -364,6 +364,7 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/SirObby"><img src="https://avatars.githubusercontent.com/u/70753342?v=4?s=100" width="100px;" alt="Samuel Hautamäki"/><br /><sub><b>Samuel Hautamäki</b></sub></a><br /><a href="#content-SirObby" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Growl1234"><img src="https://avatars.githubusercontent.com/u/148773439?v=4?s=100" width="100px;" alt="Growl1234"/><br /><sub><b>Growl1234</b></sub></a><br /><a href="#content-Growl1234" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/JATippit"><img src="https://avatars.githubusercontent.com/u/11259172?v=4?s=100" width="100px;" alt="JATippit"/><br /><sub><b>JATippit</b></sub></a><br /><a href="#content-JATippit" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://nodakengineering.com"><img src="https://avatars.githubusercontent.com/u/4792576?v=4?s=100" width="100px;" alt="Wallace Barnes"/><br /><sub><b>Wallace Barnes</b></sub></a><br /><a href="#content-nodakbarnes" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>

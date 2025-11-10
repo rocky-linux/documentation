@@ -1142,6 +1142,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "nodakbarnes",
+      "name": "Wallace Barnes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4792576?v=4",
+      "profile": "https://nodakengineering.com",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
