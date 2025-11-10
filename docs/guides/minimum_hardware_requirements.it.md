@@ -123,5 +123,5 @@ Secondo le note di rilascio di Rocky Linux 10.0, Rocky Linux 10 supporta ufficia
 
 ---
 
-**Ultimo aggiornamento**: June 2025\
+**Ultimo aggiornamento**: June 2025  
 **Riguardante**: Rocky Linux 10.0 Initial Release

@@ -64,7 +64,7 @@ chmod 644 /etc/systemd/system/etcd.service
 
 !!! note "Nota"
 
-    Sebbene sia considerata una forma di sicurezza inadeguata, potrebbe essere necessario disabilitare temporaneamente o permanentemente SELinux se si riscontrano problemi nell'avvio del servizio `etcd` `systemd`. La soluzione corretta consiste nell'analizzare e creare i file di policy necessari con strumenti quali `ausearch`, `audit2allow` e altri.\
+    Sebbene sia considerata una forma di sicurezza inadeguata, potrebbe essere necessario disabilitare temporaneamente o permanentemente SELinux se si riscontrano problemi nell'avvio del servizio `etcd` `systemd`. La soluzione corretta consiste nell'analizzare e creare i file di policy necessari con strumenti quali `ausearch`, `audit2allow` e altri.  
     
     I comandi eliminano SELinux e lo disabilitano eseguendo quanto segue:
 

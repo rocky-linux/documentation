@@ -11,11 +11,11 @@ tags:
 
 !!! note "Зображення для інших версій"
 
-    If you are looking for WSL instructions for another version of Rocky Linux, select the version you want from the top menu and then refer to the WSL instructions under "Interoperability."
+    Якщо ви шукаєте інструкції WSL для іншої версії Rocky Linux, виберіть потрібну версію у верхньому меню, а потім зверніться до інструкцій WSL у розділі «Інтероперабельність».
 
 ## Передумови
 
-You must enable the Windows-Subsystem for Linux feature. Do this with one of these options:
+Ви повинні ввімкнути функцію Windows-Subsystem для Linux. Зробіть це за допомогою одного з цих варіантів:
 
 - [Новіша версія WSL із додатковими функціями доступна в Microsoft Store](https://apps.microsoft.com/store/detail/windows-subsystem-for-linux/9P9TQF7MRM4R). Використовуйте цю новішу версію, коли це можливо.
 - Відкрийте адміністративний термінал (PowerShell або Command-Prompt) і запустіть `wsl --install` ([посил.](https://docs.microsoft.com/en-us/windows/wsl/install))

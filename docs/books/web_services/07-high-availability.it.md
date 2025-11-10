@@ -78,12 +78,12 @@ In questo capitolo viene illustrato Pacemaker, una soluzione di clustering.
 
 **Obiettivi**: si imparerà a:
 
-:heavy_check_mark: installare e configurare un cluster Pacemaker;\
+:heavy_check_mark: installare e configurare un cluster Pacemaker;  
 :heavy_check_mark: amministrare un cluster Pacemaker.
 
 :checkered_flag: **clustering**, **ha**, **high availability**, **pcs**, **pacemaker**
 
-**Conoscenza**: :star: :star: :star:\
+**Conoscenza**: :star: :star: :star:  
 **Complessità**: :star: :star:
 
 **Tempo di lettura**: 20 minuti
