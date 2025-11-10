@@ -10,7 +10,7 @@ Questa è una guida dettagliata per l'installazione di una versione a 64 bit del
 
 ## Prerequisiti per l'installazione del sistema operativo
 
-Scaricate la ISO da utilizzare per questa installazione di Rocky Linux.\
+Scaricate la ISO da utilizzare per questa installazione di Rocky Linux.  
 È possibile scaricare l'ultima immagine ISO della versione di Rocky Linux per questa installazione qui:
 
 <https://www.rockylinux.org/download/>
@@ -79,7 +79,7 @@ Se il computer è impostato per l'avvio dal supporto che contiene il file ISO, p
 
    È anche possibile premere ++enter++ in qualsiasi momento per avviare immediatamente il processo.
 
-4. Viene eseguita una rapida fase di verifica dei supporti.\
+4. Viene eseguita una rapida fase di verifica dei supporti.  
    Questa fase di verifica del supporto può evitare di avviare l'installazione per poi scoprire a metà strada che il programma di installazione deve essere interrotto a causa di un supporto di installazione difettoso.
 
 5. Una volta completato il controllo del supporto e verificata la sua utilizzabilità, il programma di installazione passa automaticamente alla schermata successiva.
@@ -191,7 +191,7 @@ Facendo clic sul pulsante ++"Network & Hostname"++ nella schermata principale _I
 La seguente importante operazione di configurazione riguarda le interfacce di rete del sistema.
 
 1. Verificare che nel riquadro di sinistra sia elencata una scheda Ethernet (o qualsiasi altra scheda di rete)
-2. Fare clic su uno qualsiasi dei dispositivi di rete rilevati nel riquadro di sinistra per selezionarlo.\
+2. Fare clic su uno qualsiasi dei dispositivi di rete rilevati nel riquadro di sinistra per selezionarlo.  
    Le proprietà configurabili dell'adattatore di rete selezionato appaiono nel riquadro destro della schermata.
 
 !!! Note
@@ -235,7 +235,7 @@ Utilizzare questa sezione per creare una password per l'account utente `root` e 
 
 Per creare l'utente:
 
-1. Fare clic sul campo _User Creation_ in _User Settings_ per avviare la schermata dell'attività _Create User_.\
+1. Fare clic sul campo _User Creation_ in _User Settings_ per avviare la schermata dell'attività _Create User_.  
    Quest'area operativa consente di creare un account utente privilegiato (amministrativo) o non privilegiato (non amministrativo).
 
    !!! Info
@@ -298,7 +298,7 @@ Per accedere al sistema:
 
 2. Al prompt della password, digitate `04302021` (la password di Rockstar) e premete ++invio++ (la password non verrà riecheggiata sullo schermo, è normale).
 
-3. Eseguire il comando `whoami` dopo il login.\
+3. Eseguire il comando `whoami` dopo il login.  
    Questo comando mostra il nome dell'utente attualmente collegato.
 
 ![Login Screen](images/installation_9.0_F03.png)
