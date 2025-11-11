@@ -31,6 +31,12 @@ Nvidia є одним з найпопулярніших виробників GPU.
 sudo dnf install epel-release -y
 ```
 
+Увімкніть репозиторій CodeReady Builder (CRB):
+
+```bash
+sudo dnf config-manager --enable crb
+```
+
 Встановлення засобів розробки забезпечує необхідні залежності збірки:
 
 ```bash
