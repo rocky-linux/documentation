@@ -5,6 +5,12 @@ contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 9.4
 ---
 
+!!! warning "Vorläufig abwarten der Verfügbarkeit"
+
+```
+Diese Anleitung funktioniert nicht für Rocky Linux 10. Der Grund dafür ist, dass EPEL Terminator nicht für RL 10 kompiliert hat. Es *könnte* sein, dass es noch kompiliert wird, allerdings stagniert das Terminator-Projekt seit dem Umzug zu GitHub im Jahr 2020 und wird kaum weiterentwickelt. Das Dokumentationsteam testet das Paket noch eine Weile, um zu sehen, ob es installierbar wird, kann diese Seite aber gegebenenfalls später löschen.
+```
+
 ## Einleitung
 
 Terminator ist ein auf GNOME Terminal basierender Terminal-Emulator, der erweiterte Funktionen wie Terminal-Felder, das Gruppieren von Terminals und das Speichern Ihrer bevorzugten Layouts unterstützt.
