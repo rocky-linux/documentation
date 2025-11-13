@@ -5,6 +5,12 @@ contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 9.4
 ---
 
+!!! warning Avviso “Per ora attendere”
+
+```
+Queste istruzioni non funzionano per la versione 10. Il motivo è che EPEL non ha compilato Terminator per la versione 10. È possibile che venga fatto in futuro, tuttavia il progetto Terminator è in fase di stallo dal trasferimento su GitHub nel 2020, con uno sviluppo limitato. Il team di documentazione continuerà a testare il pacchetto per un po' di tempo per verificare se diventerà installabile, ma potrebbe eliminare questa pagina in futuro.
+```
+
 ## Introduzione
 
 Terminator è un emulatore di terminale basato su GNOME Terminal che supporta funzioni avanzate come multipli pannelli di terminale, raggruppamento di terminali e salvataggio dei layout preferiti.
