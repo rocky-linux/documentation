@@ -9,9 +9,9 @@ tags:
   - proxies
 ---
 
-!!! warning "Temporary Hold"
+!!! note "Caddy alternate installation method"
 
-    `tor` is currently missing from the EPEL. It will probably be built. The Docs Team will continue to test availability in the EPEL as time allows. For now, your only option is to build `tor` from source, and the instructions for doing that are currently missing here.
+    These instructions deal with building out a web service with Caddy. Currently Caddy is not available in the EPEL. Follow [the Caddy document](caddy.md) for alternate installation instructions.
 
 ## Introduction
 
