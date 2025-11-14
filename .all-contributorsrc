@@ -1151,6 +1151,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "evanespen",
+      "name": "Evrard Van Espen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/107409935?v=4",
+      "profile": "https://vanespen.dev",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
