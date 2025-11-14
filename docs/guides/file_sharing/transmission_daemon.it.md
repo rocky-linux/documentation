@@ -7,11 +7,17 @@ tags:
   - file transfer
 ---
 
+!!! warning Avviso “Temporaneamente in Sospenso”
+
+```
+`transmission-daemon` è attualmente assente dall'EPEL. Probabilmente verrà compilato. Il team Docs continuerà a testarne la disponibilità nell'EPEL non appena possibile. Per ora, l'unica opzione è compilare il pacchetto transmission dal sorgente, ma le istruzioni per farlo non sono attualmente disponibili qui. 
+```
+
 ## Introduzione
 
 BitTorrent non ha bisogno di presentazioni, ma se non lo si sa, BitTorrent è un protocollo di condivisione di file peer-to-peer. BitTorrent si basa sul seeding (caricamento) del file richiesto da parte di più peer, ma anche sul seeding per i futuri downloader.
 
-Transmission è un popolare client BitTorrent open-source con diversi frontend e backend. Qui si installerà il backend headless “daemon”.
+Transmission è un popolare client BitTorrent open source con diversi frontend e backend. Qui si installerà il backend headless “daemon”.
 
 Nell'attuale mondo mobile-centrico, ha più senso eseguire Transmission come server headless piuttosto che direttamente su un laptop o un desktop. In questo modo, è possibile seminare i file 24 ore su 24, 7 giorni su 7, senza consumare la batteria del dispositivo mobile durante il download.
 
