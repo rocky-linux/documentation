@@ -1,5 +1,5 @@
 ---
-title: i2pd Anonymous Netzwerk
+title: i2pd — Anonymous Netzwerk
 author: Neel Chauhan
 contributors: Steven Spencer
 tags:

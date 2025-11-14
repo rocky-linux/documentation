@@ -2,7 +2,7 @@
 title: Migrer vers Rocky Linux
 author: Ezequiel Bruni
 contributors: Tianci Li, Steven Spencer, Sébastien Poher
-update: 2023-05-19
+update: 2021-11-23
 ---
 
 # Comment migrer vers Rocky Linux depuis CentOS Stream, CentOS, Alma Linux, RHEL ou Oracle Linux
@@ -46,7 +46,8 @@ Téléchargez les fichiers compressés depuis GitHub et extrayez celui dont vous
 
 Ensuite, téléchargez l'exécutable sur votre serveur avec ssh en exécutant cette commande sur votre machine locale :
 
-!!! Remarque : Si vous utilisez un système 9.x, ajoutez un 9 avant le `.sh`
+!!! note "Remarque"
+    Si vous utilisez un système 9.x, ajoutez un 9 avant le suffixe `.sh`
 
 ```bash
 scp PATH/TO/FILE/migrate2rocky.sh root@votredomaine.com:/home/
@@ -76,7 +77,8 @@ C'est surement la façon la plus facile pour obtenir le script. Vous aurez seule
 
 En supposant que vous ayez installé l'utilitaire `curl`, exécutez la commande suivante pour télécharger le script dans le répertoire que vous utilisez :
 
-!!! Remarque : Si vous utilisez un système 9.x, ajoutez un 9 avant le `.sh`
+!!! note "Remarque"
+    Si vous utilisez un système 9.x, ajoutez un 9 avant le suffixe `.sh`
 
 ```bash
 curl https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh -o migrate2rocky.sh
@@ -88,7 +90,8 @@ Cette commande téléchargera le fichier directement sur votre serveur et *uniqu
 
 Utilisez la commande `cd` pour basculer vers le répertoire où se trouve le script, assurez-vous que le fichier est exécutable et accordez au propriétaire du fichier de script les autorisations `x`.
 
-!!! Remarque : Si vous utilisez un système 9.x, ajoutez un 9 avant le `.sh`
+!!! note "Remarque"
+    Pour les commandes suivantes, si vous utilisez un système 9.x, ajoutez un 9 avant le suffixe `.sh`
 
 ```bash
 chmod u+x migrate2rocky.sh

@@ -5,12 +5,6 @@ contributors: Steven Spencer, Ganna Zhyrnova
 date: 2024-02-25
 ---
 
-!!! warning "Sospensione Temporanea"
-
-```
-`tor` e `torsocks` sono attualmente assenti dall'EPEL. Probabilmente verranno compilati in futuro. Il team Docs continuerà a testarne la disponibilità nell'EPEL non appena possibile. Per ora, l'unica opzione è compilare `tor` dal sorgente, ma le istruzioni per farlo non sono attualmente disponibili qui.
-```
-
 ## Introduzione a `torsocks`
 
 `torsocks` è un'utility per reindirizzare il traffico IP da un'applicazione a riga di comando alla rete [Tor](https://www.torproject.org/) o a un server SOCKS5.

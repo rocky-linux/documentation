@@ -1,5 +1,5 @@
 ---
-title: Formattazione del documento
+title: Formattazione di Rocky Docs
 author: Steven Spencer
 contributors: tianci li, Ezequiel Bruni, Krista Burdine, Ganna Zhyrnova
 tags:
@@ -15,14 +15,14 @@ Un documento può contenere o meno uno di questi elementi. Tuttavia, se ritenete
 
 !!! note "Una nota sulle Intestazioni"
 
-    Le intestazioni non sono caratteri speciali di formattazione, ma sintassi standard di markdown. Includono una **singola** voce di primo livello:
+    I titoli non sono caratteri di formattazione speciali, ma sintassi markdown standard. Includono una **singola** voce di primo livello:
 
     ```
     # Questo è il Primo Livello
     ```
 
 
-    e un numero qualsiasi di valori di sottovoci, dai livelli 2 a 6:
+    E un numero qualsiasi di valori di sottotitolo, livelli da 2 a 6:
 
     ```
     ## Un livello 2 heading
@@ -51,17 +51,17 @@ Un documento può contenere o meno uno di questi elementi. Tuttavia, se ritenete
 
 !!! warning "Una nota sugli elementi HTML supportati"
 
-    Ci sono elementi HTML che sono tecnicamente supportati in markdown. Alcune di queste sono descritte in questo documento e non esiste una sintassi markdown che le sostituisca. Questi tag HTML supportati dovrebbero essere usati raramente, poiché i linters markdown si lamenteranno della loro presenza in un documento. Per esempio:
+    Esistono elementi HTML che sono tecnicamente supportati in Markdown. Alcuni di questi sono descritti in questo documento e non esiste una sintassi Markdown per sostituirli. Questi tag HTML supportati dovrebbero essere usati raramente, poiché i linters markdown si lamenteranno della loro presenza in un documento. Per esempio:
 
     * Inline HTML [nome elemento]
 
-    Se dovete usare un elemento HTML supportato, cercate di trovare un altro modo per scrivere il vostro documento che non utilizzi questi elementi. Se dovete usarli, è comunque consentito.
+    Se è necessario utilizzare un elemento HTML supportato, è possibile verificare se esiste un altro modo per scrivere il documento che non preveda l'uso di tali elementi. Se dovete usarli, è comunque consentito.
 
 !!! info "Una nota sui link"
 
-    I link non sono formattazioni speciali, ma metodi standard di riferimento ad altri documenti (link interni) o a pagine web esterne. Tuttavia, c'è un tipo particolare di link che non si deve usare quando si compongono documenti per Rocky Linux: si tratta di un'ancora, ovvero di un link a un punto dello stesso documento.
+    I link non sono una formattazione speciale, ma metodi standard per fare riferimento ad altri documenti (link interni) o pagine web esterne. Tuttavia, esiste un tipo particolare di collegamento che non dovreste utilizzare quando scrivete documenti per Rocky Linux: un anchor, ovvero un collegamento a un punto all'interno dello stesso documento.
     
-    Le ancore funzionano nella lingua di origine di Rocky Linux (inglese), ma non appena vengono tradotte dalla nostra interfaccia Crowdin, si interrompono in quelle lingue. Questo accade perché un'ancora accettabile in markdown, che non contiene elementi HTML, utilizza l'intestazione per creare il collegamento:
+    Gli anchor funzionano nella lingua di origine di Rocky Linux (inglese), ma non appena vengono tradotti dalla nostra interfaccia Crowdin, smettono di funzionare in quelle lingue. Questo accade perché un anchor accettabile in markdown che non contiene elementi HTML utilizza l'intestazione per creare il link:
 
     ```
     ## A Header
@@ -72,11 +72,11 @@ Un documento può contenere o meno uno di questi elementi. Tuttavia, se ritenete
     ```
 
 
-    Questo link si trova passando il mouse sul permalink in un documento creato, ma è essenzialmente l'intestazione con il "#" più l'intestazione in minuscolo separata da un trattino (-).
+    Questo link si trova passando il mouse sul permalink in un documento creato ed è essenzialmente l'intestazione con il simbolo "#" più l'intestazione in minuscolo, separati da un trattino (-).
     
-    Quando il documento viene tradotto, però, l'intestazione viene tradotta, ma il link è al di fuori di ciò che Crowdin consente di tradurre, quindi rimane nel suo stato originale (inglese).
+    Quando il documento viene tradotto, però, l'intestazione viene tradotta, MA il link non rientra tra gli elementi che Crowdin consente di tradurre, quindi rimane nella sua versione originale (inglese).
     
-    Se vi trovate nella necessità di usare un ancoraggio, date un'occhiata al vostro documento e verificate se la riorganizzazione del contenuto renderà l'ancoraggio non necessario. Sappiate che se utilizzate un ancora in un documento appena composto, tale ancora si interromperà una volta effettuata la traduzione del documento.
+    Se è necessario utilizzare un'ancora, rivedere il documento per verificare se una riorganizzazione del contenuto la renda superflua. Sappiate che se utilizzate un ancora in un documento appena composto, tale ancora si interromperà una volta effettuata la traduzione del documento.
 
 ## Ammonimenti
 
@@ -163,11 +163,11 @@ Ecco alcuni esempi di ogni tipo di ammonimento e il loro aspetto nel documento:
 
 ### Ammonimenti espandibili
 
-Se un ammonimento ha un contenuto molto lungo, prendete in considerazione un ammonimento espandibile. Ha le stesse caratteristiche di un ammonimento regolare, ma inizia con tre punti interrogativi, anziché con tre punti esclamativi. Si applicano tutte le altre regole degli ammonimenti. Un ammonimento espandibile assomiglia a questo:
+Se un'ammonizione è molto lunga, prendete in considerazione un'ammonizione espandibile. Ha le stesse caratteristiche di un ammonimento regolare, ma inizia con tre punti interrogativi, anziché con tre punti esclamativi. Si applicano tutte le altre regole degli ammonimenti. Un ammonimento espandibile assomiglia a questo:
 
 ??? warning "Avvertenze sul contenuto"
 
-    Si tratta di un avviso, con poco contenuto. Per questo si dovrebbe usare un ammonimento normale, ma questo è solo un esempio!
+    Questo è un avviso con pochissimi contenuti. Per questo si dovrebbe usare un ammonimento normale, ma questo è solo un esempio!
 
 Che si presenta così nell'editor:
 
@@ -179,29 +179,31 @@ Che si presenta così nell'editor:
 
 ## Contenuto a schede all'interno di un documento
 
-La formattazione dei contenuti a schede è simile a quella degli ammonimenti. Invece di tre punti esclamativi o interrogativi, inizia con tre segni uguale. Tutta la formattazione dell'ammonimento (4 spazi, ecc.) si applica a questo contenuto. Ad esempio, la documentazione potrebbe richiedere una procedura diversa per una diversa versione di Rocky Linux. Quando si usa il contenuto a schede per le versioni, la release più recente di Rocky Linux deve essere la prima. Al momento della stesura di questo documento, era 9.0:
+La formattazione dei contenuti a schede è simile a quella degli ammonimenti. Invece di tre punti esclamativi o interrogativi, inizia con tre segni uguale. Tutta la formattazione dell'ammonimento (4 spazi, ecc.) si applica a questo contenuto. Ad esempio, un documento potrebbe richiedere una procedura diversa a seconda di come è stato installato il sistema operativo. Con l'implementazione del controllo delle versioni della documentazione, la formattazione dei contenuti con schede non dovrebbe più essere necessaria per separare i contenuti delle versioni complete (ad esempio, 9.6 e 8.10).
 
-=== "9.0"
+=== "9"
 
-    La procedura per farlo in 9.0
+    Utilizzare questa procedura se avete eseguito l'installazione con l'intero sistema operativo o un'immagine Live.
 
-=== "8.6"
+=== "9-minimal"
 
-    La procedura per farlo in 8.6
+    Utilizzare questa procedura se avete installato il sistema operativo dall'ISO minimale.
 
 Che si presenterebbe così nell'editor:
 
 ```text
-=== "9.0"
+=== “9”
 
-    La procedura per farlo in 9.0
 
-=== "8.6"
+    Utilizzare questa procedura se l'installazione è stata eseguita tramite il sistema operativo completo o da un'immagine Live.
 
-    La procedura per eseguire questa operazione in 8.6
+=== “9-minimal”
+
+    Utilizza questa procedura se il vostro sistema operativo è stato installato con l'ISO minimale.
+
 ```
 
-Ricordate che tutto ciò che rientra nella sezione deve continuare a utilizzare il rientro di 4 spazi fino al completamento della sezione. Questa è una funzione molto utile!
+Ricordate che tutto ciò che rientra nella sezione deve continuare a utilizzare il rientro di 4 spazi fino al completamento della sezione stessa. Questa è una funzione molto utile!
 
 ## Liste numerate
 
@@ -235,7 +237,7 @@ Ecco un esempio di elenco numerato a più righe, con un blocco di codice aggiunt
     dnf update
     ```
 
-2. Ecco il nostro secondo articolo in elenco. Poiché si è utilizzato il rientro di quattro (4) spazi (sopra), viene visualizzato con la sequenza di numerazione successiva (2), ma se si fosse inserito l'elemento 1 senza il rientro (nel paragrafo e nel codice successivi), questo verrebbe visualizzato di nuovo come elemento 1, il che non è ciò che si desidera.
+2. Ecco il nostro secondo articolo in elenco. Poiché è stato utilizzato un rientro di quattro (4) spazi (sopra), viene visualizzata la sequenza di numerazione successiva (2). Se si fosse inserito l'elemento 1 senza rientro (nel paragrafo e nel codice successivi), questo sarebbe apparso nuovamente come elemento 1, il che non è desiderabile.
 
 Ecco come appare il testo raw:
 
@@ -245,7 +247,7 @@ Ecco come appare il testo raw:
     Ad esempio: questo ha un rientro di quattro (4) spazi e rappresenta un nuovo paragrafo di testo. Inoltre, è stato aggiunto un blocco di codice in. È anche rientrato degli stessi quattro (4) spazi del nostro paragrafo:
     ```
 
-2. Ecco il nostro secondo articolo in elenco. Poiché si è utilizzato il rientro di quattro (4) spazi (sopra), viene visualizzato con la sequenza di numerazione successiva (2), ma se si fosse inserito l'elemento 1 senza il rientro (nel paragrafo e nel codice successivi), questo verrebbe visualizzato di nuovo come elemento 1, il che non è ciò che si desidera.
+2. Ecco il nostro secondo articolo in elenco. Poiché è stato utilizzato un rientro di quattro (4) spazi (sopra), viene visualizzata la sequenza di numerazione successiva (2). Tuttavia, se si fosse inserito l'elemento 1 senza il rientro (nel paragrafo e nel codice successivi), questo sarebbe apparso nuovamente come elemento 1, il che non è ciò che si desidera.
 ```
 
 ## Tabelle
@@ -272,7 +274,7 @@ Nel caso precedente, le tabelle aiutano a disporre le opzioni di comando o i tip
 
 ```
 
-Si noti che non è necessario che ogni colonna sia suddivisa per dimensione (come abbiamo fatto nella prima parte della tabella), ma è certamente più leggibile nel file sorgente markdown. La confusione può essere maggiore quando si mettono in fila gli elementi, semplicemente interrompendo le colonne con il carattere pipe "|" ovunque si trovi l'interruzione naturale, come si può vedere nell'ultimo elemento della tabella.
+Si noti che non è necessario suddividere ogni colonna in base alle dimensioni (come abbiamo fatto nella prima parte della tabella), ma è sicuramente più leggibile nel file sorgente markdown. La confusione può essere maggiore quando si mettono in fila gli elementi, semplicemente interrompendo le colonne con il carattere pipe "|" ovunque si trovi l'interruzione naturale, come si può vedere nell'ultimo elemento della tabella.
 
 ## Virgolettato
 
@@ -281,7 +283,7 @@ Le virgolette servono per citare il testo di altre fonti da includere nella docu
 ```text
 > **un elemento** - Una descrizione dell'elemento 
 
-seguita da:
+Seguito da:
 
 > **un altro elemento** - Un'altra descrizione dell'elemento
 ```
@@ -292,13 +294,13 @@ L'aspetto finale è questo quando la pagina viene visualizzata:
 
 > **un elemento** - Una descrizione dell'elemento
 
-seguito da:
+Seguito da:
 
 > **un altro elemento** - Un'altra descrizione di quell'elemento
 
 ## Blocchi di codice in linea e a livello di blocco
 
-Il nostro approccio all'uso dei blocchi di codice è piuttosto semplice. Se `il codice` è abbastanza breve da poterlo (e volerlo) utilizzare in una frase come quella appena vista, utilizzare i singoli backtick ++"`"++:
+Our approach to code blocks is pretty simple. Se `il codice` è abbastanza breve da poterlo (e volerlo) utilizzare in una frase come quella appena vista, utilizzare i singoli backtick ++"`"++:
 
 ```bash
 Una frase che contiene un `comando a scelta`.
@@ -339,10 +341,10 @@ Se la formattazione è normale, l'opzione di copia copierà il prompt e il coman
 ````
 Quando si utilizza questo metodo, anche l'avanzamento automatico delle righe viene soppresso.
 ## Tastiera
-Un altro modo per aggiungere più chiarezza possibile ai documenti è quello di rappresentare il modo corretto di digitare i tasti su una tastiera. In markdown, questo avviene circondando il tasto o i tasti con doppi segni più (`++`). Eseguire questa operazione con `++tasto++`. Per esempio, per rappresentare la necessità di premere il tasto escape nel documento, si usa `++escape++`. Quando è necessario indicare la pressione di più tasti, aggiungete un `+` tra di essi, in questo modo: `++ctrl+f4++`. Per i tasti che non sono definiti (ad esempio, stiamo indicando un tasto funzione misterioso, `Fx`), mettete la definizione tra virgolette`(++ctrl+"Fx"++`). Per i tasti non definiti (ad esempio, stiamo indicando un tasto funzione misterioso, `Fx`) mettete la definizione tra virgolette (`++ctrl+"Fx"++`). Se si richiede la pressione simultanea dei tasti, aggiungere "simultaneamente" o "allo stesso tempo" o una frase simile alle istruzioni.
+Un altro modo per rendere i tuoi documenti il più chiari possibile è mostrare il modo corretto di digitare i tasti sulla tastiera. In markdown, questo avviene circondando il tasto o i tasti con doppi segni più (`++`). Eseguire questa operazione con `++tasto++`. Per esempio, per rappresentare la necessità di premere il tasto escape nel documento, si usa `++escape++`. Quando è necessario indicare la pressione di più tasti, aggiungete un `+` tra di essi, in questo modo: `++ctrl+f4++`. Per i tasti che non sono definiti (ad esempio, stiamo indicando un tasto funzione misterioso, `Fx`), mettete la definizione tra virgolette`(++ctrl+"Fx"++`). Se è necessario premere più tasti contemporaneamente, aggiungere “contemporaneamente”, “allo stesso tempo” o una frase simile alle istruzioni. Se si richiede la pressione simultanea dei tasti, aggiungere "simultaneamente" o "allo stesso tempo" o una frase simile alle istruzioni.
 
 ```text
-Un'installazione di tipo workstation (con un'interfaccia grafica) avvia questa interfaccia sul terminale 1. Essendo Linux multiutente, è possibile connettere più utenti più volte, su diversi **terminali fisici** (TTY) o **terminali virtuali** (PTS). I terminali virtuali sono disponibili in un ambiente grafico. L'utente passa da un terminale fisico a un altro utilizzando ++alt+"Fx"++ dalla riga di comando o ++ctrl+alt+"Fx"++.
+Un'installazione di tipo workstation (con un'interfaccia grafica) avvia questa interfaccia sul terminale 1. Poiché Linux è multiutente, è possibile collegare contemporaneamente più utenti a diversi **terminali fisici** (TTY) o **terminali virtuali** (PTS). I terminali virtuali sono disponibili in un ambiente grafico. L'utente passa da un terminale fisico a un altro utilizzando ++alt+"Fx"++ dalla riga di comando o ++ctrl+alt+"Fx"++.
 ```
 
 Ecco come viene visualizzato:
@@ -364,13 +366,13 @@ Ci sono volte in cui un semplice ++enter++ sulla tastiera non permette di creare
 
 ## Superscript, subscript e simboli speciali
 
-La notazione in apice e in pedice è supportata nella documentazione di Rocky Linux dall'uso di `^` per l'apice e `~` per il pedice. Il superscript pone il testo inserito tra i tag leggermente al di sopra del testo normale, mentre il subscript lo pone leggermente al di sotto. Superscript è di gran lunga il più usato tra questi due nella scrittura. Alcuni caratteri speciali appaiono già in apice senza l'aggiunta dei tag, ma è possibile combinare i tag per cambiare l'orientamento di tali caratteri, come si vede con il simbolo del copyright qui sotto. È possibile utilizzare il superscript per:
+La notazione in apice e in pedice è supportata nella documentazione di Rocky Linux dall'uso di `^` per l'apice e `~` per il pedice. Il superscript pone il testo inserito tra i tag leggermente al di sopra del testo normale, mentre il subscript lo pone leggermente al di sotto. Superscript è di gran lunga il più usato tra questi due nella scrittura. Alcuni caratteri speciali appaiono già in apice senza l'aggiunta dei tag. Tuttavia, è anche possibile combinare il tag per modificare l'orientamento di tali caratteri, come si può vedere nel simbolo del copyright riportato di seguito. È possibile utilizzare il superscript per:
 
 * rappresentano numeri ordinali, come 1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup>
 * simboli di copyright e di marchio, come ^&copy;^, ^TM^, or ^&trade;^, ^&reg;&^
 * come notazione per i riferimenti, come questo^1^, questo^2^ e questo^3^
 
-Alcuni caratteri speciali, come &copy;, non sono normalmente apicali, mentre altri, come &trade;, lo sono.
+Alcuni caratteri speciali, come &copy;, non sono normalmente superscript, mentre altri, come &trade;, lo sono.
 
 Ecco come appare tutto questo nel codice markdown:
 
@@ -379,10 +381,10 @@ Ecco come appare tutto questo nel codice markdown:
 * simboli di copyright e di marchio, come ^&copy;^, ^TM^ or ^&trade;^, ^&reg;^
 * come notazione per i riferimenti, come this^1^, this^2^ and this^3^
 
-Alcuni caratteri speciali, come &copy;, non sono normalmente apici, mentre altri, come &trade;, lo sono.
+Alcuni caratteri speciali, come &copy;, non sono normalmente superscript, mentre altri, come &trade;, lo sono.
 ```
 
-Per forzare l'apice, si circonda l'apice con `^`.
+Per forzare l'apice, si circonda il testo con l'apice `^`.
 
 Per inserire un pedice basta circondare il testo con il tag `~` (H~2~0 è `H~2~0`) e, come già detto, non è molto usato nella scrittura.
 
@@ -486,7 +488,7 @@ Ecco come appare questo esempio nell'editor:
 
 ```text
 
-Se si rispettano i magici quattro (4) spazi per separare questi elementi, essi verranno visualizzati in modo logico ed esattamente come si desiderano. A volte è davvero importante.
+Basta tenere presente che questi elementi devono essere separati da quattro (4) spazi per essere visualizzati in modo logico e preciso, proprio come si desidera. A volte è davvero importante.
 
 È anche possibile incorporare una tabella o una citazione a blocchi (letteralmente qualsiasi tipo di elemento di formattazione) all'interno di un'altra. Qui abbiamo un elenco numerato, un'ammonimento, una tabella e alcuni elementi di citazione a blocchi, tutti raggruppati insieme:
 

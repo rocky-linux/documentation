@@ -78,7 +78,7 @@ Assicurati che anche "write_enable" sia impostata a YES:
 write_enable=YES
 ```
 
-Trova la riga "chroot_local_users" e rimuovi il commento. Aggiungere due righe dopo quella mostrata qui:
+Trova la riga "chroot_local_user" e rimuovi il commento. Aggiungere due righe dopo quella mostrata qui:
 
 ```bash
 chroot_local_user=YES

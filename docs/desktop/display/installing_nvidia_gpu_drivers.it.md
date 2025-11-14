@@ -31,6 +31,12 @@ Attivare il repository Extra Packages for Enterprise Linux (EPEL):
 sudo dnf install epel-release -y
 ```
 
+Abilitare la repository CodeReady Builder (CRB):
+
+```bash
+sudo dnf config-manager --enable crb
+```
+
 L'installazione dei 'Development Tools' assicura le necessarie dipendenze di compilazione:
 
 ```bash

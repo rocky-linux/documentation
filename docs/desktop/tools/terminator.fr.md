@@ -5,6 +5,12 @@ contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 9.4
 ---
 
+!!! warning "Dans l'attente du développement futur"
+
+```
+Ces instructions ne fonctionnent pas pour Rocky Linux 10. En effet, l'EPEL n'a pas compilé Terminator pour cette version. Bien qu'une compilation soit encore possible, le projet Terminator est au point mort depuis son passage sur GitHub en 2020, et son développement est très limité. L'équipe de documentation continuera de tester le paquet pendant un certain temps afin de déterminer s'il peut être installé, mais cette page pourrait être supprimée ultérieurement.
+```
+
 ## Introduction
 
 Terminator est un émulateur de terminal basé sur GNOME Terminal qui prend en charge des fonctionnalités avancées telles que de nombreux panneaux de terminaux, le regroupement de terminaux et l'enregistrement de vos dispositions préférées.
