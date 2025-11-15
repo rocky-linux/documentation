@@ -1,5 +1,5 @@
 ---
-title: Rapporti dei Processi con Postfix
+title: Usare Postfix per la Reportistica dei Processi
 author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 8.5, 8.6, 9.0
@@ -8,8 +8,6 @@ tags:
   - reports
   - tools
 ---
-
-# Utilizzo di `postfix` per la segnalazione dei processi del server
 
 ## Prerequisiti
 
@@ -37,45 +35,47 @@ Questo documento mostra come attivare postfix solo per le attività di invio dei
 
 Oltre a `postfix`, è necessario `mailx` per verificare la capacità di inviare e-mail. Per installare queste e le eventuali dipendenze necessarie, inserire quanto segue nella riga di comando del server Rocky Linux:
 
-`dnf install postfix mailx`
-
-!!! warning "Modifiche a Rocky Linux 9.0"
-
-    Questa procedura funziona perfettamente in Rocky Linux 9.0. La differenza è data dalla provenienza del comando `mailx`. Mentre in 8.x è possibile installarlo per nome, in 9.0 `mailx` proviene dal pacchetto appstream `s-nail`. Per installare i pacchetti necessari, è necessario utilizzare:
-
-    ```
-    dnf install postfix s-nail
-    ```
+```bash
+dnf install postfix s-nail
+```
 
 ## Test e configurazione di `postfix`
 
 ### Prima il test della Posta
 
-Prima di configurare `postfix`, è necessario conoscere l'aspetto della posta quando lascia il server, poiché probabilmente si desidera modificarlo. Per farlo, avviare `postfix`:
+Prima di configurare `postfix`, è necessario scoprire come apparirà la posta quando lascerà il server, poiché probabilmente vorrai modificarla. Per farlo, avviare `postfix`:
 
-`systemctl start postfix`
+```bash
+systemctl start postfix
+```
 
-Eseguire il test con `mail` fornito da `mailx` (o `s-nail`):
+Provare con la `mail` fornita da `s-nail`:
 
-`mail -s "Testing from server" myname@mydomain.com`
+```bash
+mail -s "Testing from server" myname@mydomain.com
+```
 
 Verrà visualizzata una riga vuota. Digitare qui il messaggio di prova:
 
-`testing from the server`
+```bash
+testing from the server
+```
 
-Premete invio e inserite un singolo punto:
-
-`.`
+Premi ++Invio++, quindi un singolo ++punto++:
 
 Il sistema risponde con il seguente messaggio:
 
-`EOT`
+```bash
+EOT
+```
 
-Lo scopo di questa operazione è di vedere come la nostra posta appare al mondo esterno. Si può avere un'idea di questo dal _maillog_ che si attiva all'avvio di `postfix`.
+Lo scopo è quello di vedere come appare la posta al mondo esterno. È possibile farsi un'idea di ciò dal `maillog` che si attiva con l'avvio di `postfix`.
 
 Utilizzare questo comando per visualizzare l'output del file di log:
 
-`tail /var/log/maillog`
+```bash
+tail /var/log/maillog
+```
 
 Si vedrà qualcosa di simile a questo, anche se il file di registro avrà domini diversi per l'indirizzo e-mail e altri elementi:
 
@@ -91,80 +91,106 @@ Mar  4 16:52:06 hedgehogct postfix/smtp[745]: C9D42EC0ADD: to=<myname@mydomain.c
 Mar  4 16:52:06 hedgehogct postfix/qmgr[739]: C9D42EC0ADD: removed
 ```
 
-L'indirizzo "somehost.localdomain" indica che è necessario apportare alcune modifiche. Arrestare prima il demone `postfix`:
+L'indirizzo "somehost.localdomain" indica che è necessario apportare alcune modifiche. Arrestare prima il daemon `postfix`:
 
-`systemctl stop postfix`
+```bash
+systemctl stop postfix
+```
 
 ## Configurazione di `postfix`
 
-Poiché non si sta configurando un server di posta completo e perfettamente funzionante, le opzioni di configurazione da utilizzare non sono numerose. La prima cosa da fare è modificare il file _main.cf_ (letteralmente il file di configurazione principale di `postfix`). Eseguire prima una copia di backup:
+Poiché non si sta configurando un server di posta completo e perfettamente funzionante, le opzioni di configurazione da utilizzare non sono numerose. La prima cosa da fare è modificare il file `main.cf` (letteralmente il file di configurazione principale di `postfix`). Eseguire prima una copia di backup:
 
-`cp /etc/postfix/main.cf /etc/postfix/main.cf.bak`
+```bash
+cp /etc/postfix/main.cf /etc/postfix/main.cf.bak
+```
 
 Modificarlo:
 
-`vi /etc/postfix/main.cf`
+```bash
+vi /etc/postfix/main.cf
+```
 
-Nel nostro esempio, il nome del server è "bruno" e il nome del dominio è "nostrodominio.com". Trovare la riga nel file:
+Nel questo esempio, il nome del server è "bruno" e il nome del dominio è "ourdomain.com". Trovare la riga nel file:
 
-`#myhostname = host.domain.tld`
+```bash
+#myhostname = host.domain.tld
+```
 
 È possibile rimuovere l'annotazione (#) o aggiungere una riga sotto questa riga. In base al nostro esempio, la riga si leggerà:
 
-`myhostname = bruno.ourdomain.com`
+```bash
+myhostname = bruno.ourdomain.com
+```
 
-Quindi, trovare la riga per il nome di dominio:
+Quindi, trovare la riga con il nome di dominio:
 
-`#mydomain = domain.tld`
+```bash
+#mydomain = domain.tld
+```
 
 Anche in questo caso, rimuovete il commento e modificatelo, oppure aggiungete una riga sotto di esso:
 
-`mydomain = ourdomain.com`
+```bash
+mydomain = ourdomain.com
+```
 
 Infine, andate in fondo al file e aggiungete questa riga:
 
-`smtp_generic_maps = hash:/etc/postfix/generic`
+```bash
+smtp_generic_maps = hash:/etc/postfix/generic
+```
 
-Salvare le modifiche (in `vi`, sarà `Shift : wq!`) e uscire dal file.
+Salvare le modifiche e uscire dal file.
 
-Prima di continuare a modificare il file generico, è necessario vedere come si presenterà l'e-mail. In particolare, si vuole creare il file " generic " a cui si fa riferimento nel file _main.cf_ di cui sopra:
+Prima di continuare a modificare il file generico, è necessario vedere come si presenterà l'e-mail. In particolare, si vuole creare il file " generic " a cui si fa riferimento nel file `main.cf` di cui sopra:
 
-`vi /etc/postfix/generic`
+```bash
+vi /etc/postfix/generic
+```
 
-Questo file comunica a `postfix` l'aspetto di qualsiasi e-mail proveniente da questo server. Ricordate la nostra e-mail di prova e il file di log? È qui che risolviamo tutto questo:
+Questo file comunica a `postfix` l'aspetto di qualsiasi e-mail proveniente da questo server. Vi ricordate la email di prova e il file di log? È qui che si risolve tutto questo:
 
 ```bash
 root@somehost.localdomain       root@bruno.ourdomain.com
 @somehost.localdomain           root@bruno.ourdomain.com
 ```
 
-Successivamente, occorre indicare a `postfix` di utilizzare tutte le nostre modifiche. Questo si può fare con il comando postmap:
+Successivamente, occorre indicare a `postfix` di utilizzare tutte le modifiche effettuate. Per farlo, utilizzare il comando `sysctl`:
 
-`postmap /etc/postfix/generic`
+```bash
+postmap /etc/postfix/generic
+```
 
-Avviate `postfix` e testate di nuovo la vostra email con la stessa procedura usata sopra. Ora si vedrà che tutte le istanze di "localdomain" sono ora il dominio effettivo.
+Avviate `postfix` e testate di nuovo l'email con la stessa procedura usata sopra. Ora si vedrà che tutte le istanze di "localdomain" sono ora il dominio effettivo.
 
 ### Il comando date e una variabile denominata Today
 
 Non tutte le applicazioni utilizzano lo stesso formato di registrazione della data. Potrebbe essere necessario essere creativi con qualsiasi script si scriva per il reporting in base alla data.
 
-Supponiamo di voler esaminare il registro di sistema come esempio e di voler estrarre tutto ciò che ha a che fare con dbus-daemon per la data odierna e di inviarlo via e-mail a noi stessi. (Probabilmente non è l'esempio migliore, ma vi darà un'idea di come potreste farlo)
+Supponiamo che si voglia visualizzare il log di sistema, estrarre tutto ciò che riguarda `dbus-daemon` per la data odierna e inviarlo via e-mail a te stesso. (Probabilmente non è l'esempio migliore, ma darà un'idea di come si potrebbe farlo)
 
-È necessario utilizzare una variabile nello script. Chiamiamolo "today". Si vuole che si riferisca all'output del comando "date" e che lo formatti in un modo specifico, in modo da poter ottenere i dati necessari dal log del sistema. (in _/var/log/messages_). Per cominciare, fate alcune indagini.
+È necessario utilizzare una variabile nello script. Chiamiamolo "today". Si vuole che si riferisca all'output del comando "date" e che lo formatti in un modo specifico, in modo da poter ottenere i dati necessari dal log del sistema. (in `/var/log/messages`). Per cominciare, fate alcune indagini.
 
 Per prima cosa, inserite il comando date nella riga di comando:
 
-`date`
+```bash
+date
+```
 
 In questo modo si otterrà l'output predefinito della data di sistema, che potrebbe essere simile a questa:
 
-`Thu Mar  4 18:52:28 UTC 2021`
+```bash
+Thu Mar  4 18:52:28 UTC 2021
+```
 
-Controllate il registro di sistema e verificate come registra le informazioni. A tale scopo, utilizzare i comandi `more` e `grep`:
+Controllare il registro di sistema e verificare come sono registrate le informazioni. A tale scopo, utilizzare i comandi `more` e `grep`:
 
-`more /var/log/messages | grep dbus-daemon`
+```bash
+more /var/log/messages | grep dbus-daemon
+```
 
-Il risultato è qualcosa di simile a questo:
+Il risultato sarà simile a questo:
 
 ```bash
 Mar  4 18:23:53 hedgehogct dbus-daemon[60]: [system] Successfully activated service 'org.freedesktop.nm_dispatcher'
@@ -172,7 +198,7 @@ Mar  4 18:50:41 hedgehogct dbus-daemon[60]: [system] Activating via systemd: ser
 Mar  4 18:50:41 hedgehogct dbus-daemon[60]: [system] Successfully activated service 'org.freedesktop.nm_dispatcher
 ```
 
-La data e gli output del registro devono essere esattamente gli stessi nel nostro script. Vediamo come formattare la data con una variabile chiamata " today ".
+La data e gli output del registro devono essere esattamente gli stessi dello script. Vediamo come formattare la data con una variabile chiamata " today ".
 
 Analizzate cosa dovete fare con la data per ottenere lo stesso risultato del log di sistema. È possibile fare riferimento alla [pagina man di Linux](https://man7.org/linux/man-pages/man1/date.1.html) o digitare `man date` sulla riga di comando per richiamare la pagina di manuale della data per ottenere le informazioni necessarie.
 
@@ -180,11 +206,13 @@ Per formattare la data allo stesso modo di _/var/log/messages_, è necessario us
 
 ### Lo script
 
-Per il nostro script bash, possiamo dedurre che utilizzeremo il comando `date` e una variabile chiamata "today". (Tenete presente che il termine "today" è arbitrario. Questa variabile può essere chiamata in qualsiasi modo). In questo esempio, lo script verrà chiamato `test.sh` e collocato in _/usr/local/sbin_:
+Per questo script bash, si può dedurre che verrà usato il comando `date` e una variabile chiamata "today". (Tenete presente che il termine "today" è arbitrario. Questa variabile può essere chiamata in qualsiasi modo). In questo esempio, lo script sarà chiamato `test.sh` e collocato in _/usr/local/sbin_:
 
-`vi /usr/local/sbin/test.sh`
+```bash
+vi /usr/local/sbin/test.sh
+```
 
-All'inizio, si noti che anche se il commento nel nostro file dice che si stanno inviando questi messaggi alla posta elettronica, per ora li si sta solo inviando a un log output standard per verificare che siano corretti.
+All'inizio, tenere presente che anche se il commento del file dice che si sta inviando questi messaggi all'e-mail, per ora li si sta semplicemente inviando all'output di log standard per verificare che siano corretti.
 
 Inoltre, nella prima esecuzione dello script, vengono acquisiti tutti i messaggi per la data corrente, non solo i messaggi di dbus-daemon. Ce ne occuperemo a breve.
 
@@ -200,17 +228,23 @@ today=`date +"%b %e"`
 grep -h "$today" /var/log/messages
 ```
 
-Per il momento è tutto. Salvate le modifiche e rendete lo script eseguibile:
+Questo è quanto. Salvate le modifiche e rendete lo script eseguibile:
 
-`chmod +x /usr/local/sbin/test.sh`
+```bash
+chmod +x /usr/local/sbin/test.sh
+```
 
 Testatelo:
 
-`/usr/local/sbin/test.sh`
+```bash
+/usr/local/sbin/test.sh
+```
 
-Se tutto funziona correttamente, si otterrà un lungo elenco di tutti i messaggi presenti in _/var/log/messages_ di oggi, compresi, ma non solo, i messaggi di dbus-daemon. Il passo successivo consiste nel limitare i messaggi ai messaggi di dbus-daemon. Modificare nuovamente lo script:
+Se tutto funziona correttamente, si otterrà un lungo elenco di tutti i messaggi di oggi presenti in _/var/log/messages_, compresi, ma non solo, i messaggi di dbus-daemon. Il passo successivo consiste nel limitare i messaggi ai messaggi di dbus-daemon. Modificare nuovamente lo script:
 
-`vi /usr/local/sbin/test.sh`
+```bash
+vi /usr/local/sbin/test.sh
+```
 
 ```bash
 #!/bin/bash
@@ -224,9 +258,11 @@ grep -h "$today" /var/log/messages | grep dbus-daemon
 
 Eseguendo nuovamente lo script, si otterranno solo i messaggi di dbus-daemon e solo quelli che si sono verificati oggi.
 
-Rimane un ultimo passo da compiere. Ricordate che dovete inviare questo documento via e-mail all'amministratore per la revisione. Poiché si utilizza `postfix` su questo server solo per la reportistica, non si vuole lasciare il servizio in esecuzione. Avviatelo all'inizio dello script e fermatelo alla fine. In questo caso, il comando `sleep` fa una pausa di 20 secondi, assicurando l'invio dell'e-mail prima di chiudere nuovamente `postfix`. Questa modifica finale aggiunge i passaggi stop, start e sleep appena discussi e invia il contenuto all'e-mail dell'amministratore.
+Rimane un ultimo passo. Ricordate che dovete inviare questo documento via e-mail all'amministratore per la revisione. Poiché si utilizza `postfix` su questo server solo per la reportistica, non si vuole lasciare il servizio in esecuzione. Avviatelo all'inizio dello script e fermatelo alla fine. In questo caso, il comando `sleep` fa una pausa di 20 secondi, assicurando l'invio dell'e-mail prima di chiudere nuovamente `postfix`. Questa modifica finale aggiunge i passaggi stop, start e sleep appena discussi e invia il contenuto all'e-mail dell'amministratore.
 
-`vi /usr/local/sbin/test.sh`
+```bash
+vi /usr/local/sbin/test.sh
+```
 
 E modificare lo script:
 
@@ -249,7 +285,7 @@ sleep 20
 /usr/bin/systemctl stop postfix
 ```
 
-Eseguite di nuovo lo script e avrete un'e-mail dal server con i messaggi di dbus-daemon.
+Eseguendo di nuovo lo script si avrà un'e-mail dal server con i messaggi di dbus-daemon.
 
 È ora possibile utilizzare [un crontab](../automation/cron_jobs_howto.md) per programmare l'esecuzione a un'ora specifica.
 
