@@ -56,7 +56,7 @@ After installing the necessary prerequisites, it is time to install the NVIDIA d
 Add the official NVIDIA repository with the following command:
 
 ```bash
-sudo dnf config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/rhel10/$(uname -i)/cuda-rhel10.repo
+sudo dnf config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/rhel10/$(uname -m)/cuda-rhel10.repo
 ```
 
 Next, clean DNF repository cache:
