@@ -6,30 +6,24 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 ## Introduction
 
-NVIDIA^&reg;^ est l’un des fabricants de GPU les plus connus. Il existe plusieurs façons d'installer les pilotes GPU de NVIDIA. Ce guide utilise le dépôt officiel de NVIDIA pour installer leurs pilotes. Ainsi, le [Guide d'installation NVIDIA] (https://docs.nvidia.com/cuda/pdf/CUDA_Installation_Guide_Linux.pdf) est largement référencé ici.
+NVIDIA^&reg;^ est l’un des fabricants de GPU les plus connus. Il existe plusieurs façons d'installer les pilotes GPU de NVIDIA. Ce guide utilise le dépôt officiel de NVIDIA pour installer leurs pilotes. Par conséquent, le [Guide d'installation du pilote NVIDIA](https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/index.html) est largement référencé ici.
 
-!!! note "Remarque"
+Voici d'autres méthodes alternatives pour installer les pilotes NVIDIA :
 
-```
-Le lien vers les étapes de pré-installation dans le manuel officiel de NVIDIA ne fonctionne pas. Pour installer le pilote NVIDIA depuis le dépôt officiel, vous devrez installer les utilitaires et dépendances nécessaires.
-```
-
-Voici d'autres méthodes de substitution pour installer les pilotes NVIDIA :
-
-- NVIDIA's `.run` installer
+- Programme d'installation `.run` de NVIDIA
 - Dépôt tiers RPMFusion
-- Pilote Third-party ELRepo
+- Pilote ELRepo tiers
 
-Dans la plupart des cas, il est préférable d'installer les pilotes NVIDIA à partir d'une source officielle. RPMFusion et ELRepo sont disponibles pour ceux qui préfèrent un dépôt communautaire. Pour les matériels plus anciens, RPMFusion fonctionne mieux. Il est recommandé d'éviter d'utiliser le programme d'installation `.run`. Bien que pratique, l'utilisation du programme d'installation `.run` est connue pour écraser les fichiers système et présente des problèmes d'incompatibilité.
+Dans la plupart des cas, il est préférable d'installer les pilotes NVIDIA à partir de la source officielle. RPMFusion et ELRepo sont disponibles pour ceux qui préfèrent un dépôt communautaire. Pour les matériels plus anciens, RPMFusion fonctionne mieux. Il est recommandé d'éviter d'utiliser le programme d'installation `.run`. Bien que pratique, l'utilisation du programme d'installation `.run` est connue pour écraser les fichiers système et présente des problèmes d'incompatibilité.
 
 ## Prérequis
 
-Pour ce guide, vous aurez besoin des conditions suivantes :
+Pour ce guide, vous aurez besoin des éléments suivants :
 
 - Poste de travail Rocky Linux
 - Droits d'accès `sudo`
 
-## Installer les utilitaires et dépendances nécessaires
+## Installation des utilitaires et dépendances nécessaires
 
 Installez le dépôt EPEL (Extra Packages for Enterprise Linux) :
 
@@ -37,7 +31,13 @@ Installez le dépôt EPEL (Extra Packages for Enterprise Linux) :
 sudo dnf install epel-release -y
 ```
 
-L'installation des outils de développement fournit les dépendances de construction du logiciel nécessaires :
+Activez le référentiel CodeReady Builder (CRB) :
+
+```bash
+sudo dnf config-manager --enable crb
+```
+
+L'installation des outils de développement garantit les dépendances de compilation nécessaires :
 
 ```bash
 sudo dnf groupinstall "Development Tools" -y
@@ -46,13 +46,7 @@ sudo dnf groupinstall "Development Tools" -y
 Le package `kernel-devel` fournit les fichiers d'en-têtes et les outils nécessaires pour construire les modules du noyau :
 
 ```bash
-sudo dnf install kernel-devel -y
-```
-
-Dynamic Kernel Module Support (DKMS) est un programme utilisé pour restaurer automatiquement les modules du noyau :
-
-```bash
-sudo dnf install dkms -y
+sudo dnf install kernel-devel-matched kernel-headers -y
 ```
 
 ## Installation des pilotes NVIDIA
@@ -61,26 +55,26 @@ Après avoir installé les prérequis nécessaires, il est temps d'installer les
 
 Ajoutez le dépôt officiel NVIDIA avec la commande suivante :
 
-!!! note "Remarque"
+```bash
+sudo dnf config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/rhel10/$(uname -m)/cuda-rhel10.repo
+```
 
-```
-Si vous utilisez Rocky Linux 8, remplacez `rhel9` dans le chemin du fichier par `rhel8`.
-```
+Ensuite, nettoyez le cache du référentiel DNF :
 
 ```bash
-sudo dnf config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/rhel9/$(uname -i)/cuda-rhel9.repo
+sudo dnf clean expire-cache
 ```
 
-Ensuite, installez un ensemble de packages nécessaires pour créer et installer les modules du noyau :
+Finalement, installez le dernier pilote NVIDIA pour votre système. Pour les modules de noyau ouverts, exécutez :
 
 ```bash
-sudo dnf install kernel-headers-$(uname -r) kernel-devel-$(uname -r) tar bzip2 make automake gcc gcc-c++ pciutils elfutils-libelf-devel libglvnd-opengl libglvnd-glx libglvnd-devel acpid pkgconf dkms -y
+sudo dnf install nvidia-open -y
 ```
 
-Installez le dernier module de pilote NVIDIA pour votre système :
+Pour les modules de noyau propriétaires, exécutez :
 
 ```bash
-sudo dnf module install nvidia-driver:latest-dkms -y
+sudo dnf install cuda-drivers -y
 ```
 
 ## Désactivation de `Nouveau`
@@ -113,4 +107,4 @@ sudo reboot now
 
 ## Conclusion
 
-Vous avez installé avec succès les pilotes GPU NVIDIA sur votre système à l'aide du dépôt officiel NVIDIA. Bénéficiez de capacités GPU NVIDIA avancées que les pilotes `Nouveau` par défaut ne peuvent pas fournir.
+Vous avez installé avec succès les pilotes GPU NVIDIA sur votre système à l'aide du dépôt officiel NVIDIA. Bénéficiez des capacités GPU NVIDIA avancées que les pilotes `Nouveau` par défaut ne peuvent pas fournir.

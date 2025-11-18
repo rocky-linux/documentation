@@ -111,13 +111,11 @@ vi /etc/sysctl.d/90-incus-override.conf
 ```bash
 ## The following changes have been made for LXD ##
 
-# fs.inotify.max_queued_events specifies an upper limit on the number of events that can be queued to the corresponding inotify instance
- - (default is 16384)
+# fs.inotify.max_queued_events specifies an upper limit on the number of events that can be queued to the corresponding inotify instance - (default is 16384)
 
 fs.inotify.max_queued_events = 1048576
 
-# fs.inotify.max_user_instances This specifies an upper limit on the number of inotify instances that can be created per real user ID -
-(default value is 128)
+# fs.inotify.max_user_instances This specifies an upper limit on the number of inotify instances that can be created per real user ID - (default value is 128)
 
 fs.inotify.max_user_instances = 1048576
 
@@ -125,13 +123,11 @@ fs.inotify.max_user_instances = 1048576
 
 fs.inotify.max_user_watches = 1048576
 
-# vm.max_map_count contains the maximum number of memory map areas a process may have. Memory map areas are used as a side-effect of cal
-ling malloc, directly by mmap and mprotect, and also when loading shared libraries - (default is 65530)
+# vm.max_map_count contains the maximum number of memory map areas a process may have. Memory map areas are used as a side-effect of calling malloc, directly by mmap and mprotect, and also when loading shared libraries - (default is 65530)
 
 vm.max_map_count = 262144
 
-# kernel.dmesg_restrict denies container access to the messages in the kernel ring buffer. Please note that this also will deny access t
-o non-root users on the host system - (default is 0)
+# kernel.dmesg_restrict denies container access to the messages in the kernel ring buffer. Please note that this also will deny access to non-root users on the host system - (default is 0)
 
 kernel.dmesg_restrict = 1
 
@@ -139,8 +135,7 @@ kernel.dmesg_restrict = 1
 
 net.ipv4.neigh.default.gc_thresh3 = 8192
 
-# This is the maximum number of entries in ARP table (IPv6). You should increase this if you plan to create over 1024 containers.Not nee
-ded if not using IPv6, but...
+# This is the maximum number of entries in ARP table (IPv6). You should increase this if you plan to create over 1024 containers.Not needed if not using IPv6, but...
 
 net.ipv6.neigh.default.gc_thresh3 = 8192
 
@@ -156,8 +151,7 @@ kernel.keys.maxkeys = 2000
 
 kernel.keys.maxbytes = 2000000
 
-# This is the maximum number of concurrent async I/O operations. You might need to increase it further if you have a lot of workloads th
-at use the AIO subsystem (e.g. MySQL)
+# This is the maximum number of concurrent async I/O operations. You might need to increase it further if you have a lot of workloads that use the AIO subsystem (e.g. MySQL)
 
 fs.aio-max-nr = 524288
 ```
