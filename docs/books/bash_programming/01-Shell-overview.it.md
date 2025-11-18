@@ -10,7 +10,7 @@ tags:
 
 **Cos'è la Shell?**
 
-Shell è chiamata **interfaccia di comando** o **interprete di comando**. Fornisce un programma di interfaccia a livello di sistema che consente agli utenti di inviare richieste al kernel Linux per l'esecuzione di programmi.
+La shell è chiamata **interfaccia di comando** o **interprete di comando**. Fornisce un programma di interfaccia a livello di sistema che consente agli utenti di inviare richieste al kernel Linux per l'esecuzione di programmi.
 
 Nel presentare il sistema operativo, abbiamo citato la seguente frase:
 
