@@ -41,7 +41,9 @@ steven
 
 !!! Note "Nota"
 
+    ```
     `uniq` richiede che il file di input sia ordinato perché confronta solo le righe consecutive.
+    ```
 
 Senza argomenti, il comando `uniq` non visualizza le righe identiche che si susseguono nel file `firstnames.txt`:
 
@@ -69,7 +71,7 @@ steven
 xavier
 ```
 
-Per eliminare semplicemente linee che appaiono solo una volta, utilizzare l'opzione `-D`:
+Per eliminare semplicemente le righe che compaiono una sola volta, utilizzare l'opzione `-D`:
 
 ```bash
 $ sort firstnames.txt | uniq -D
@@ -218,7 +220,9 @@ Il pacchetto `yum-utils` è una raccolta di utilità, realizzate per `yum` da va
 
 !!! Note "Nota"
 
+    ```
     Mentre `yum` è stato sostituito da `dnf` in Rocky Linux 8, il nome del pacchetto è rimasto `yum-utils`, sebbene possa essere installato anche come `dnf-utils`. Queste sono le classiche utilities YUM implementate come shims CLI sopra a DNF per mantenere la retrocompatibilità con `yum-3`.
+    ```
 
 Ecco alcuni esempi di queste utilità.
 
@@ -228,13 +232,13 @@ Il comando `repoquery` viene utilizzato per interrogare i pacchetti nel reposito
 
 Esempi di utilizzo:
 
-* Visualizzare le dipendenze di un pacchetto (può essere un pacchetto software che è stato installato o non installato), equivalente a `dnf deplist <nome-pacchetto>`
+- Visualizzare le dipendenze di un pacchetto (può essere un pacchetto software che è stato installato o non installato), equivalente a `dnf deplist <nome-pacchetto>`
 
 ```bash
 repoquery --requires <package-name>
 ```
 
-* Mostra i file forniti da un pacchetto installato (non funziona per i pacchetti che non sono installati), equivalente a `rpm -ql <package-name>`
+- Mostra i file forniti da un pacchetto installato (non funziona per i pacchetti che non sono installati), equivalente a `rpm -ql <package-name>`
 
 ```bash
 $ repoquery -l yum-utils
@@ -266,13 +270,15 @@ $ repoquery -l yum-utils
 
 ### Comando `yumdownloader`
 
-Il comando `yumdownloader` scarica i pacchetti RPM dai repository.  Equivalente a `dnf scaricare --downloadonly --downloaddir ./ package-name`
+Il comando `yumdownloader` scarica i pacchetti RPM dai repository.  Equivalente a `dnf download --downloadonly --downloaddir ./  package-name`
 
 !!! Note "Nota"
 
+    ```
     Questo comando è molto utile per creare rapidamente un repository locale di alcuni rpm!
+    ```
 
-Esempio: `yumdownloader` scaricherà il pacchetto rpm _repoquery_ e tutte le sue dipendenze:
+Esempio: `yumdownloader` scaricherà il pacchetto rpm _samba_ e tutte le sue dipendenze:
 
 ```bash
 $ yumdownloader --destdir /var/tmp --resolve samba
@@ -280,8 +286,8 @@ or
 $ dnf download --downloadonly --downloaddir /var/tmp  --resolve  samba
 ```
 
-| Opzioni     | Commenti                                                               |
-| ----------- | ---------------------------------------------------------------------- |
+| Opzioni     | Commenti                                                                               |
+| ----------- | -------------------------------------------------------------------------------------- |
 | `--destdir` | I pacchetti scaricati verranno memorizzati nella cartella specificata. |
 | `--resolve` | Scarica anche le dipendenze del pacchetto.                             |
 
@@ -289,9 +295,9 @@ $ dnf download --downloadonly --downloaddir /var/tmp  --resolve  samba
 
 Il pacchetto `psmisc` contiene utilità per la gestione dei processi di sistema:
 
-* `pstree`: il comando `pstree` visualizza i processi correnti sul sistema in una struttura ad albero.
-* `killall`: il comando `killall` invia un segnale di kill a tutti i processi identificati dal nome.
-* `fuser`: il comando `fuser` Identifica il `PID` di processi che utilizzano i file o i file system specificati.
+- `pstree`: il comando `pstree` visualizza i processi correnti sul sistema in una struttura ad albero.
+- `killall`: il comando `killall` invia un segnale di kill a tutti i processi identificati dal nome.
+- `fuser`: il comando `fuser` Identifica il `PID` di processi che utilizzano i file o i file system specificati.
 
 Esempi:
 
@@ -333,11 +339,13 @@ L'opzione `-n` consente di specificare il numero di secondi tra ogni esecuzione 
 
 !!! Note "Nota"
 
+    ```
     Per uscire dal comando `watch`, è necessario digitare i tasti: ++control+c++ per terminare il processo.
+    ```
 
 Esempi:
 
-* Visualizza la fine del file `/etc/passwd` ogni 5 secondi:
+- Visualizza la fine del file `/etc/passwd` ogni 5 secondi:
 
 ```bash
 watch -n 5 tail -n 3 /etc/passwd
@@ -353,13 +361,13 @@ chrony:x:995:992::/var/lib/chrony:/sbin/nologin
 sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
 ```
 
-* Monitoraggio del numero di file in una cartella:
+- Monitoraggio del numero di file in una cartella:
 
 ```bash
 watch -n 1 'ls -l | wc -l'
 ```
 
-* Mostra un orologio:
+- Mostra un orologio:
 
 ```bash
 watch -t -n 1 date
@@ -372,24 +380,24 @@ Contrariamente a quanto potrebbe suggerire il nome, il comando `install` non vie
 Questo comando combina la copia dei file (`cp`) e la creazione di cartelle (`mkdir`), con la gestione dei diritti (`chmod`, `chown`) e altre utili funzionalità (come i backup).
 
 ```bash
-install source dest
-install -t directory source [...]
-install -d directory
+install source dest
+install -t directory source [...]
+install -d directory
 ```
 
 Opzioni:
 
-| Opzioni                    | Osservazioni                                                        |
+| Opzioni                    | Osservazioni                                                        |
 | -------------------------- | ------------------------------------------------------------------- |
 | `-b` o `--backup[=suffix]` | crea un backup del file di destinazione                             |
-| `-d`                       | tratta gli argomenti come nomi di cartelle                          |
-| `-D`                       | crea tutti i componenti principali, prima di copiare SOURCE in DEST |
-| `-g` e `-o`                | imposta la proprietà                                                |
-| `-m`                       | imposta le autorizzazioni                                           |
-| `-p`                       | preservare i timestamp dei file sorgente                            |
+| `-d`                       | tratta gli argomenti come nomi di cartelle                          |
+| `-D`                       | crea tutti i componenti principali, prima di copiare SOURCE in DEST |
+| `-g` e `-o`                | imposta la proprietà                                                |
+| `-m`                       | imposta le autorizzazioni                                           |
+| `-p`                       | preservare i timestamp dei file sorgente                            |
 | `-t`                       | copia tutti gli argomenti di origine nella directory                |
 
-!!! note "Nota"
+!!! note
 
     Esistono opzioni per la gestione del contesto SELinux (vedere la pagina del manuale).
 
@@ -421,9 +429,9 @@ Questo comando consente di risparmiare tempo. Combinatelo con la gestione dei pr
 sudo install -v -o rocky -g users -m 644 -D -t ~/samples/ src/sample.txt
 ```
 
-!!! note "Nota"
+!!! note
 
-     In questo caso è necessario `sudo` per apportare modifiche alle proprietà.
+      In questo caso è necessario `sudo` per apportare modifiche alle proprietà.
 
 È anche possibile creare un backup dei file esistenti grazie all'opzione `-b`:
 
@@ -446,14 +454,14 @@ $ install -v -b -S ".bak" -D -t ~/samples/ src/sample.txt
 Espande i file o le cartelle della directory in una struttura ad albero.
 
 | opzioni | descrizione                                                   |
-|:------- |:------------------------------------------------------------- |
+| :------ | :------------------------------------------------------------ |
 | `-a`    | Vengono elencati tutti i file                                 |
 | `-h`    | Stampa le dimensioni in un modo più leggibile per l'utente    |
 | `-u`    | Visualizza il proprietario del file o il numero UID           |
 | `-g`    | Visualizza il proprietario del gruppo di file o il numero GID |
 | `-p`    | Stampa le protezioni per ciascun file                         |
 
-Per esempio:
+Ad esempio:
 
 ```bash
 $ tree -hugp /etc/yum.repos.d/
@@ -495,28 +503,32 @@ Change: 2024-01-24 16:37:34.315995221 +0800
  Birth: 2
 ```
 
-* `File`: Visualizza il percorso del file.
-* `Size`: Visualizza le dimensioni del file in byte. Se si tratta di una directory, visualizza i 4096 byte fissi occupati dal nome della directory.
-* `Blocks`: Visualizza il numero di blocchi allocati. Attenzione, prego! Le dimensioni di ogni blocco in questo comando sono di 512 byte. La dimensione predefinita di ciascun blocco in `ls -ls` è di 1024 byte.
-* `Device` - Numero del dispositivo in notazione decimale o esadecimale.
-* `Inode`: L'inode è un numero ID univoco che il kernel Linux assegna a un file o a una directory.
-* `Links`: Numero di collegamenti diretti. I collegamenti diretti sono talvolta detti collegamenti fisici.
-* `Access`: L'ora dell'ultimo accesso ai file e alle directory, ovvero `atime` in GNU/Linux.
-* `Modify`: La data dell'ultima modifica di file e directory, ovvero `mtime` in GNU/Linux.
-* `Change`: La data dell'ultima modifica della proprietà, ad esempio `ctime` in GNU/Linux.
-* `Birth`: Data di origine (data della creazione). In alcuni documenti è abbreviato come `btime` o `crtime`. Per visualizzare la data di creazione è necessario che la versione del file system e del kernel sia superiore a una determinata versione.
+- `File`: Visualizza il percorso del file.
+- `Size`: Visualizza le dimensioni del file in byte. Se si tratta di una directory, visualizza i 4096 byte fissi occupati dal nome della directory.
+- `Blocks`: Visualizza il numero di blocchi allocati. Attenzione, prego! Le dimensioni di ogni blocco in questo comando sono di 512 byte. La dimensione predefinita di ciascun blocco in `ls -ls` è di 1024 byte.
+- `Device` - Numero del dispositivo in notazione decimale o esadecimale.
+- `Inode`: L'inode è un numero ID univoco che il kernel Linux assegna a un file o a una directory.
+- `Links`: Numero di collegamenti diretti. I collegamenti diretti sono talvolta detti collegamenti fisici.
+- `Access`: L'ora dell'ultimo accesso ai file e alle directory, ovvero `atime` in GNU/Linux.
+- `Modify`: La data dell'ultima modifica di file e directory, ovvero `mtime` in GNU/Linux.
+- `Change`: La data dell'ultima modifica della proprietà, ad esempio `ctime` in GNU/Linux.
+- `Birth`: Data di origine (data della creazione). In alcuni documenti è abbreviato come `btime` o `crtime`. Per visualizzare la data di creazione è necessario che la versione del file system e del kernel sia superiore a una determinata versione.
 
 Per i file:
 
-**atime**: Dopo aver effettuato l'accesso al contenuto del file con comandi quali `cat`, `less`, `more` e `head`, l'`atime` del file può risultare aggiornato. Prestare attenzione! L'`atime` del file non viene aggiornato in tempo reale e, per motivi di prestazioni, deve attendere un certo periodo di tempo prima di poter essere visualizzato. **mtime**: La modifica del contenuto del file può aggiornare il `mtime` del file (come l'aggiunta o la sovrascrittura del contenuto del file tramite reindirizzamento); poiché la dimensione del file è una proprietà del file, anche il `ctime` del file verrà aggiornato simultaneamente. **ctime**: La modifica del proprietario, del gruppo, dei permessi, della dimensione del file e dei collegamenti (soft e hard link) del file aggiornerà ctime.
+**atime**: Dopo aver effettuato l'accesso al contenuto del file con comandi quali `cat`, `less`, `more` e `head`, l'`atime` del file può risultare aggiornato. Prestare attenzione! L'`atime` del file non viene aggiornato in tempo reale e, per motivi di prestazioni, deve attendere un certo periodo di tempo prima di poter essere visualizzato.
+**mtime**: La modifica del contenuto del file può aggiornare il `mtime` del file (come l'aggiunta o la sovrascrittura del contenuto del file tramite reindirizzamento); poiché la dimensione del file è una proprietà del file, anche il `ctime` del file verrà aggiornato simultaneamente.
+**ctime**: La modifica del proprietario, del gruppo, dei permessi, della dimensione del file e dei collegamenti (soft e hard link) del file aggiornerà ctime.
 
 Per le cartelle:
 
-**atime**: Dopo aver usato il comando `cd` per entrare in una nuova directory in cui non si è mai acceduto prima, è possibile aggiornare e correggere l'`atime` di quella directory. **mtime**: L'esecuzione di operazioni quali la creazione, l'eliminazione e la ridenominazione di file in questa directory aggiornerà l'`mtime` e il `ctime` della directory. **ctime**: Quando i permessi, il proprietario, il gruppo e così via di una directory cambiano, il `ctime` della directory viene aggiornato.
+**atime** - Dopo aver utilizzato il comando `cd` per accedere a una nuova directory mai visitata prima, è possibile aggiornare e correggere l'`atime` di tale directory.
+**mtime**: L'esecuzione di operazioni quali la creazione, l'eliminazione e la ridenominazione di file in questa directory aggiornerà l'`mtime` e il `ctime` della directory.
+**ctime**: Quando i permessi, il proprietario, il gruppo e così via di una directory cambiano, il `ctime` della directory viene aggiornato.
 
-!!! tip "Suggerimento"
+!!! tip
 
-    * Se si crea un nuovo file o una nuova directory, i suoi `atime`, `mtime` e `ctime` sono esattamente gli stessi
-    * Se il contenuto del file viene modificato, l'`mtime` e il `ctime` del file verranno inevitabilmente aggiornati.
-    * Se viene creato un nuovo file nella directory, `atime`, `ctime` e `mtime` della directory verranno aggiornati simultaneamente.
-    * Se viene aggiornato l'`mtime` di una directory, deve essere aggiornato anche il `ctime` di quella directory.
+    \* Se si crea un nuovo file o una nuova directory, i suoi `atime`, `mtime` e `ctime` sono esattamente gli stessi
+    \* Se il contenuto del file viene modificato, l'`mtime` e il `ctime` del file verranno inevitabilmente aggiornati.
+    \* Se viene creato un nuovo file nella directory, `atime`, `ctime` e `mtime` della directory verranno aggiornati simultaneamente.
+    \* Se viene aggiornato l'`mtime` di una directory, deve essere aggiornato anche il `ctime` di quella directory.
