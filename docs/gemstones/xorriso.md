@@ -19,23 +19,21 @@ Burn an ISO onto a physical CD/DVD.
 
 ## Procedure
 
-**Install Extra Packages for Enterprise Linux (EPEL)**:
+**Install Xorriso**:
 
    ```bash
-   sudo dnf install epel-release -y
+   sudo dnf install xorriso -y
    ```
 
-**Install Xorris and Library**:
-
-   ```bash
-   sudo dnf install libisofs xorriso -y
-   ```
-
-**Write ISO to Disk**:
+**Write ISO to Disk**: 
 
    ```bash
    sudo xorriso -as cdrecord -v dev/=/dev/sr0 -blank=as_needed -dao Rocky-10.1-x86_64-boot.iso
    ```
+
+## Additional Information
+
+Xorriso relies on a C library libisofs. You can learn more about the libisofs on [Fedora's package watcher](https://packages.fedoraproject.org/pkgs/libisofs/libisofs/index.html).
 
 ## Conclusion
 
