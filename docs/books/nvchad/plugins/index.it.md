@@ -27,12 +27,12 @@ Lo scenario affrontato in questa sezione è la creazione di documentazione per R
 
 ### :material-comment-processing-outline: Suggerimenti generali sui plugin
 
-La configurazione di NvChad prevede l'inserimento dei plugin utente dalla cartella `lua/plugins`. Al suo interno si trova inizialmente il file **init.lua** con l'installazione del plugin *conform.nvim* e alcuni esempi per la personalizzazione delle funzionalità del sistema.  
+La configurazione di NvChad prevede l'inserimento dei plugin utente dalla cartella `lua/plugins`. Al suo interno si trova inizialmente il file **init.lua** con l'installazione del plugin _conform.nvim_ e alcuni esempi per la personalizzazione delle funzionalità del sistema.  
 Anche se è possibile inserire i propri plugin nel file, è consigliabile utilizzare file separati per le configurazioni degli utenti. In questo modo, si può usare il file iniziale per qualsiasi sovrascrittura dei plugin di base, mentre si possono organizzare i plugin in file indipendenti, secondo le proprie preferenze.
 
 ### :material-location-enter: Inserimento dei plugin
 
-La configurazione interroga la cartella `plugins` e vengono caricati tutti i file *.lua* in essa contenuti. Questo permette di unire più file di configurazione quando vengono caricati dall'editor.  
+La configurazione interroga la cartella `plugins` e vengono caricati tutti i file _.lua_ in essa contenuti. Questo permette di unire più file di configurazione quando vengono caricati dall'editor.  
 Per essere inseriti correttamente, i file aggiuntivi devono avere le configurazioni dei plugin racchiuse all'interno di ==tabelle lua==:
 
 ```lua title="lua table example"
@@ -43,7 +43,7 @@ return {
 }
 ```
 
-È presente anche una cartella `configs` in cui è possibile inserire impostazioni particolarmente lunghe di alcuni plugin o parti modificabili dall'utente, come nel caso di *conform.nvim*.
+È presente anche una cartella `configs` in cui è possibile inserire impostazioni particolarmente lunghe di alcuni plugin o parti modificabili dall'utente, come nel caso di _conform.nvim_.
 
 Passando ad un esempio pratico, supponiamo di voler includere nelle funzionalità dell'editor il plugin [karb94/neoscroll.nvim](https://github.com/karb94/neoscroll.nvim), che permette di migliorare lo scorrimento all'interno di file molto lunghi.  
 Per la sua creazione possiamo scegliere di creare un file `plugins/editor.lua` in cui inserire tutti i plugin relativi all'uso dell'editor o un file `plugins/neoscroll.lua` e tenere separati tutti i plugin aggiuntivi.
@@ -69,7 +69,7 @@ return {
 }
 ```
 
-Una volta salvato, verrà riconosciuto dalla configurazione di NvChad, che si occuperà del suo inserimento utilizzando le funzionalità offerte dal gestore *lazy.nvim*.
+Una volta salvato, verrà riconosciuto dalla configurazione di NvChad, che si occuperà del suo inserimento utilizzando le funzionalità offerte dal gestore _lazy.nvim_.
 
 Neovim, su cui si basa la configurazione di NvChad, non integra un meccanismo di aggiornamento automatico della configurazione con l'editor in esecuzione. Questo comporta che ogni volta che il file del plugin viene modificato, è necessario chiudere `nvim` e poi riaprirlo per ottenere la piena funzionalità del plugin.
 

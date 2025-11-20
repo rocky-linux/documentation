@@ -21,11 +21,11 @@ La gestione dei plugin in NvChad 2.0 è affidata a [folke/lazy.nvim](https://git
 - Prestazioni ottimizzate del plugin grazie al caching e alla compilazione del bytecode del modulo Lua.
 - Controllo automatico e installazione dei plugin mancanti all'avvio, una funzione molto utile quando si trasferisce una configurazione da una macchina all'altra.
 - Profiler per la consultazione dei tempi di caricamento dei plugin. Permette di monitorare e risolvere i problemi causati da plugins difettosi.
-- Sincronizzazione dei plugin su più postazioni memorizzando la revisione di tutti i plugin installati nel file *lazy-lock.json*.
+- Sincronizzazione dei plugin su più postazioni memorizzando la revisione di tutti i plugin installati nel file _lazy-lock.json_.
 
 ## :material-arrow-bottom-right-bold-outline: Operazioni Preliminari
 
-*lazy.nvim* integra una funzione di controllo dello stato di salute dell'ambiente che può essere invocata con il comando `:checkhealth lazy`. Il comando dovrebbe restituire qualcosa del genere in un nuovo buffer:
+_lazy.nvim_ integra una funzione di controllo dello stato di salute dell'ambiente che può essere invocata con il comando `:checkhealth lazy`. Il comando dovrebbe restituire qualcosa del genere in un nuovo buffer:
 
 ```text
 lazy: require("lazy.health").check()
@@ -49,15 +49,15 @@ Ora, dopo aver controllato l'ambiente e aver acquisito le conoscenze di base, po
 
 ## Inserimento di un plugin
 
-Mentre la gestione dei plugin installati può essere comodamente eseguita dall'interfaccia *lazy.nvim*, l'inserimento di un nuovo plugin richiede la modifica manuale del file **lua/plugins/init.lua**.
+Mentre la gestione dei plugin installati può essere comodamente eseguita dall'interfaccia _lazy.nvim_, l'inserimento di un nuovo plugin richiede la modifica manuale del file **lua/plugins/init.lua**.
 
-In questo esempio installeremo il plugin [natecraddock/workspaces.nvim.](https://github.com/natecraddock/workspaces.nvim)  Questo plugin consente di salvare e utilizzare successivamente le sessioni di lavoro (workspace) in modo da potervi accedere rapidamente. Apriamo il file con:
+In questo esempio si installerà il plugin [natecraddock/workspaces.nvim](https://github.com/natecraddock/workspaces.nvim). Questo plugin consente di salvare e utilizzare successivamente le sessioni di lavoro (workspace) in modo da potervi accedere rapidamente. Apriamo il file con:
 
 ```bash
 nvim ~/.config/nvim/lua/plugins/init.lua
 ```
 
-e inseriamo il seguente codice dopo il plugin *better-escape.nvim*:
+e inseriamo il seguente codice dopo il plugin _better-escape.nvim_:
 
 ```lua
     -- Workspaces
@@ -82,7 +82,7 @@ Una volta salvato il file, riceveremo una notifica con la richiesta di approvazi
 - **changed**: `lua/plugins/init.lua`
 ```
 
-Questo grazie al meccanismo incorporato in *lazy.nvim* che controlla lo stato dei plugin e delle sue configurazioni e permette quindi di eseguire operazioni sui plugin senza dover uscire dall'editor.
+Questo grazie al meccanismo incorporato in _lazy.nvim_ che controlla lo stato dei plugin e delle sue configurazioni e permette quindi di eseguire operazioni sui plugin senza dover uscire dall'editor.
 
 Chiaramente risponderemo "sì".
 
@@ -116,7 +116,7 @@ Ora abbiamo le funzionalità del plugin che possono essere invocate con i comand
 cmd = { "WorkspacesList", "WorkspacesAdd", "WorkspacesOpen", "WorkspacesRemove" },
 ```
 
-L'inserimento comporta anche l'aggiunta di una stringa al file *lazy-lock.json* per il monitoraggio dello stato e gli aggiornamenti successivi. La funzione del file *lazy-lock.json* sarà descritta nella sezione corrispondente.
+L'inserimento comporta anche l'aggiunta di una stringa al file _lazy-lock.json_ per il monitoraggio dello stato e gli aggiornamenti successivi. La funzione del file _lazy-lock.json_ sarà descritta nella sezione corrispondente.
 
 ```json
   "workspaces.nvim": { "branch": "master", "commit": "dd9574c8a6fbd4910bf298fcd1175a0222e9a09d" },
@@ -124,13 +124,13 @@ L'inserimento comporta anche l'aggiunta di una stringa al file *lazy-lock.json* 
 
 ## :material-tray-remove: Rimozione di un plugin
 
-Come per l'installazione, la rimozione di un plugin dalla configurazione avviene modificando manualmente il file *lua/plugins/init.lua*. Per seguire l'esempio, rimuoveremo il plugin appena installato.
+Come per l'installazione, la rimozione di un plugin dalla configurazione avviene modificando manualmente il file _lua/plugins/init.lua_. Per seguire l'esempio, rimuoveremo il plugin appena installato.
 
 Apriamo il nostro editor e rimuoviamo il plugin dalla configurazione. È possibile farlo comodamente selezionando con il mouse le righe da eliminare e premendo ++"x "++ per eliminarle e ++ctrl++ ++"s "++ per salvare il file.
 
-![Remove Plugin](../images/remove_plugin_01.png)
+![Rimuovere Plugin](../images/remove_plugin_01.png)
 
-Again we will receive a notice about the modification of the *init.lua* file to which we will answer "yes" and once we open *Lazy* we will have our plugin marked as to be removed. La rimozione viene eseguita premendo il tasto ++"X"++.
+Ancora una volta riceveremo un avviso relativo alla modifica del file _init.lua_, al quale risponderemo “sì”, e una volta aperto _Lazy_ vedremo il nostro plugin contrassegnato come da rimuovere. La rimozione viene eseguita premendo il tasto ++"X"++.
 
 ![Lazy Clean](../images/remove_plugin_02.png)
 
@@ -138,11 +138,11 @@ La rimozione di un plugin consiste fondamentalmente nella rimozione della cartel
 
 ## Aggiornamento dei Plugins
 
-Una volta installati e configurati, i plugin sono gestiti in modo indipendente da *lazy.nvim*. Per verificare la presenza di aggiornamenti, è sufficiente aprire il manager e digitare ++"C"++. _Lazy_ controllerà i repository dei plugins installati_(git fetch_) e poi ci presenterà un elenco di plugins aggiornabili che, una volta controllati, possono essere aggiornati tutti in una volta con ++"U"++ o singolarmente dopo averli selezionati con ++"u"++.
+Una volta installati e configurati, i plugin sono gestiti in modo indipendente da _lazy.nvim_. Per verificare la presenza di aggiornamenti, è sufficiente aprire il manager e digitare ++"C"++. _Lazy_ controllerà i repository dei plugins installati_(git fetch_) e poi ci presenterà un elenco di plugins aggiornabili che, una volta controllati, possono essere aggiornati tutti in una volta con ++"U"++ o singolarmente dopo averli selezionati con ++"u"++.
 
 ![Lazy Check](../images/lazy_check.png)
 
-!!! note "Nota"
+!!! note
 
     Anche se non è presente nella schermata precedente, se ci sono plugin con commit che includono "breaking changes", questi verranno visualizzati per primi.
 

@@ -12,7 +12,7 @@ tags:
 
 ![NvimTree](../images/nvimtree_basic.png){ align=right }
 
-Un editor, per essere funzionale, deve fornire il supporto per l'apertura e la gestione dei file che vogliamo scrivere o modificare. Neovim, nella sua installazione di base, non fornisce la funzionalità di gestione dei file. È implementato da NvChad con il plugin _kyazdani42/nvim-tree.lua_. Il plugin fornisce un esploratore di file dal quale è possibile eseguire tutte le operazioni più comuni sui file attraverso i tasti della tastiera. Per aprirla si usa la combinazione ++ctrl++ + ++"n"++, disponibile solo in modalità _NORMAL_, e con la stessa combinazione di tasti la si chiude.
+Un editor, per essere funzionale, deve fornire il supporto per l'apertura e la gestione dei file che vogliamo scrivere o modificare. Neovim, nella sua installazione di base, non fornisce la funzionalità di gestione dei file. Questo è implementato da NvChad con il plugin _kyazdani42/nvim-tree.lua_. Il plugin fornisce un esploratore di file dal quale è possibile eseguire tutte le operazioni più comuni sui file attraverso i tasti della tastiera. Per aprirla si usa la combinazione ++ctrl++ + ++"n"++, disponibile solo in modalità _NORMAL_, e con la stessa combinazione di tasti la si chiude.
 
 Se abbiamo installato i [Nerd Fonts](../nerd_fonts.md) avremo, come evidenziato dalla schermata, un file explorer che, sebbene testuale, ci darà una rappresentazione grafica della nostra struttura dei file.
 
@@ -22,17 +22,17 @@ Una volta aperta, possiamo passare dalla finestra di explorer a quella dell'edit
 
 Per lavorare con l'albero dei file del progetto, _NvimTree_ fornisce una serie di utili scorciatoie per la sua gestione, che sono:
 
-- ++"R"++ (refresh) per eseguire una rilettura dei file contenuti nel progetto
-- ++"H"++ (hide) per nascondere/visualizzare i file e le cartelle nascoste (che iniziano con un punto `.`)
-- ++"E"++ (expand_all) per espandere l'intera struttura dei file partendo dalla cartella principale (area di lavoro)
-- ++"W"++ (collapse_all) per chiudere tutte le cartelle aperte, a partire da quella principale
-- ++"-"++ (dir_up) consente di risalire le cartelle. Questa navigazione consente anche di uscire dalla cartella principale (area di lavoro) per raggiungere la propria home directory
-- ++"s"++ (system) per aprire il file con l'applicazione di sistema impostata di default per quel tipo di file
-- ++"f"++ (find) per aprire la ricerca interattiva dei file a cui si possono applicare i filtri di ricerca
-- ++"F"++ per chiudere la ricerca interattiva
-- ++ctrl++ + ++"k"++ per visualizzare le informazioni sul file, come la dimensione, la data di creazione, ecc.
-- ++"g"++ + ++"?"++ per aprire la guida con tutte le scorciatoie predefinite per una rapida consultazione
-- ++"q"++ per chiudere l'esploratore di file
+- \++"R"++ (refresh) per eseguire una rilettura dei file contenuti nel progetto
+- \++"H"++ (hide) per nascondere/visualizzare i file e le cartelle nascoste (che iniziano con un punto `.`)
+- \++"E"++ (expand_all) per espandere l'intera struttura dei file partendo dalla cartella principale (area di lavoro)
+- \++"W"++ (collapse_all) per chiudere tutte le cartelle aperte, a partire da quella principale
+- \++"-"++ (dir_up) consente di risalire le cartelle. Questa navigazione consente anche di uscire dalla cartella principale (area di lavoro) per raggiungere la propria home directory
+- \++"s"++ (system) per aprire il file con l'applicazione di sistema impostata di default per quel tipo di file
+- \++"f"++ (find) per aprire la ricerca interattiva dei file a cui si possono applicare i filtri di ricerca
+- \++"F"++ per chiudere la ricerca interattiva
+- \++ctrl++ + ++"k"++ per visualizzare le informazioni sul file, come la dimensione, la data di creazione, ecc.
+- \++"g"++ + ++"?"++ per aprire la guida con tutte le scorciatoie predefinite per una rapida consultazione
+- \++"q"++ per chiudere l'esploratore di file
 
 ![Nvimtree Find](../images/nvimtree_find_filter.png){ align=right }
 
@@ -54,11 +54,11 @@ Va sottolineato che la navigazione con i tasti ++"&gt;"++ and ++"&lt;"++ si rife
 
 Posizionati nella cartella desiderata e con il file selezionato da modificare, abbiamo le seguenti combinazioni per aprirlo:
 
-- ++enter++ o ++"o"++ per aprire il file in un nuovo buffer e posizionare il cursore sulla prima riga del file
-- ++tab++ per aprire il file in un nuovo buffer mantenendo il cursore in _nvimtree_; questo è utile, ad esempio, se si vogliono aprire più file contemporaneamente
-- ++ctrl++ + ++"t"++ per aprire il file in una nuova _scheda_ che può essere gestita separatamente dagli altri buffer presenti
-- ++ctrl++ + ++"v"++ per aprire il file nel buffer dividendolo verticalmente in due parti; se c'era già un file aperto, questo verrà visualizzato fianco a fianco con il nuovo file
-- ++ctrl++ + ++"h"++ per aprire il file come il comando descritto sopra, ma dividendo il buffer orizzontalmente
+- \++enter++ o ++"o"++ per aprire il file in un nuovo buffer e posizionare il cursore sulla prima riga del file
+- \++tab++ per aprire il file in un nuovo buffer mantenendo il cursore in _nvimtree_; questo è utile, ad esempio, se si vogliono aprire più file contemporaneamente
+- \++ctrl++ + ++"t"++ per aprire il file in una nuova _scheda_ che può essere gestita separatamente dagli altri buffer presenti
+- \++ctrl++ + ++"v"++ per aprire il file nel buffer dividendolo verticalmente in due parti; se c'era già un file aperto, questo verrà visualizzato fianco a fianco con il nuovo file
+- \++ctrl++ + ++"h"++ per aprire il file come il comando descritto sopra, ma dividendo il buffer orizzontalmente
 
 ### Gestione File
 
@@ -66,14 +66,14 @@ Come tutti gli esploratori di file, in _nvimtree_ è possibile creare, eliminare
 
 I tasti per la modifica sono:
 
-- ++"a"++ (add) consente di creare file o cartelle; la creazione di una cartella si effettua facendo seguire al nome la barra `/`. ad es. `/nvchad/nvimtree.md` creerà il relativo file markdown, mentre `/nvchad/nvimtree/` creerà la cartella _nvimtree_. La creazione avverrà di default nella posizione in cui si trova il cursore nel file explorer in quel momento, quindi la selezione della cartella in cui creare il file dovrà essere fatta in precedenza o, in alternativa, si può scrivere il percorso completo nella statusline; nello scrivere il percorso si può utilizzare la funzione di autocompletamento
-- ++"r"++ (rinominare) per rinominare il file selezionato rispetto al nome originale
-- ++ctrl++ + ++"r"++ per rinominare il file indipendentemente dal suo nome originale
-- ++"d"++ (delete) per cancellare il file selezionato o, nel caso di una cartella, per cancellare la cartella con tutto il suo contenuto
-- ++"x"++ (cut) per tagliare e copiare la selezione negli appunti, possono essere file o cartelle con tutto il loro contenuto; con questo comando associato al comando incolla si effettuano gli spostamenti dei file all'interno dell'albero
-- ++"c"++ (copy) come il comando precedente, copia il file negli appunti ma mantiene il file originale nella sua posizione
-- ++"p"++ (paste) per incollare il contenuto degli appunti nella posizione corrente
-- ++"p"++ per copiare solo il nome del file negli appunti, esistono anche due varianti: ++"Y"++ per copiare il percorso relativo e ++"g"++ + ++"y"++ per copiare il percorso assoluto
+- \++"a"++ (add) consente di creare file o cartelle; la creazione di una cartella si effettua facendo seguire al nome la barra `/`. ad es. `/nvchad/nvimtree.md` creerà il relativo file markdown, mentre `/nvchad/nvimtree/` creerà la cartella _nvimtree_. La creazione avverrà di default nella posizione in cui si trova il cursore nel file explorer in quel momento, quindi la selezione della cartella in cui creare il file dovrà essere fatta in precedenza o, in alternativa, si può scrivere il percorso completo nella statusline; nello scrivere il percorso si può utilizzare la funzione di autocompletamento
+- \++"r"++ (rinominare) per rinominare il file selezionato rispetto al nome originale
+- \++ctrl++ + ++"r"++ per rinominare il file indipendentemente dal suo nome originale
+- \++"d"++ (delete) per cancellare il file selezionato o, nel caso di una cartella, per cancellare la cartella con tutto il suo contenuto
+- \++"x"++ (cut) per tagliare e copiare la selezione negli appunti, possono essere file o cartelle con tutto il loro contenuto; con questo comando associato al comando incolla si effettuano gli spostamenti dei file all'interno dell'albero
+- \++"c"++ (copy) come il comando precedente, copia il file negli appunti ma mantiene il file originale nella sua posizione
+- \++"p"++ (paste) per incollare il contenuto degli appunti nella posizione corrente
+- \++"p"++ per copiare solo il nome del file negli appunti, esistono anche due varianti: ++"Y"++ per copiare il percorso relativo e ++"g"++ + ++"y"++ per copiare il percorso assoluto
 
 ## Funzionalità avanzate
 
