@@ -18,14 +18,14 @@ tags:
     Questo file e le mappature delle chiavi che descrive sono delineati [here](https://nvchad.com/docs/config/mappings). Per essere chiaro, puoi sovrascrivere qualsiasi mappatura di tasti usando un file `mappings.lua` personalizzato (`../nvim/lua/custom/mappings.lua`).
     
     Per evitare confusione nei documenti che state leggendo, assumeremo che stiate usando il file predefinito `mappings.lua` e sostituiremo i comandi effettivi che dovete usare per accedere a una funzione. I riferimenti chiave standard sono:
-
-    * leader = ++space++
-    * A = ++alt++
-    * C = ++ctrl++
-    * S = ++shift++
-
+    
+    \* leader = ++space++
+    \* A = ++alt++
+    \* C = ++ctrl++
+    \* S = ++shift++
+    
     Se un comando specifica `<leader>uu` come esempio, sostituiremo la combinazione di tasti attuale con ++space++ ++"uu"++.
-
+    
     Questo aspetto verrà trattato nuovamente nella prossima sezione [Utilizzo di NvChad](./using_nvchad.md)
 
 Una volta installato Neovim e inserita la configurazione di NvChad, l'IDE dovrebbe avere questo aspetto:
@@ -38,9 +38,9 @@ L'interfaccia è già dotata di alcune funzionalità avanzate, come l'indicazion
 
 ![Tabufline](../images/ui_tabufline.png)
 
-L'interfaccia utente presenta una barra superiore chiamata `Tabufline` in cui vengono gestiti i buffer aperti. La `tabufline` viene visualizzata solo se si ha più di un file aperto. Il buffer aperto presenta l'icona del tipo di file, il nome del file e il suo stato. Lo stato è indicato da un'icona.
+L'interfaccia utente presenta una barra superiore chiamata `Tabufline` in cui vengono gestiti i buffer aperti. `Tabufline` viene visualizzato solo se sono aperti più file. Il buffer aperto presenta l'icona del tipo di file, il nome del file e il suo stato. Lo stato è indicato da un'icona.
 
-Se, come nell'immagine, è presente una `x` rossa, significa che il file può essere chiuso in quanto già salvato. Se invece l'icona è un punto verde `.`, allora il file deve essere salvato e il comando di chiusura ++shift++ + ++":"++ + ++"q"++ produrrà un avviso: "Nessuna scrittura dall'ultima modifica".
+Se, come nell'immagine, è presente una `x` rossa, significa che il file può essere chiuso in quanto già salvato. Se invece l'icona è un punto verde `.`, allora il file deve essere salvato e il comando di chiusura ++shift++ + ++":"++ + ++"q"++ produrrà un avviso: "No write since last change".
 
 A destra si trova l'icona per impostare il tema _scuro_ o _chiaro_. Facendo clic su di esso con il mouse, è possibile selezionare il tema desiderato.
 
@@ -81,7 +81,7 @@ NvChad e Neovim forniscono alcuni comandi utili per visualizzare le combinazioni
 
 Se il tasto ++space++ viene premuto da solo, viene visualizzata una legenda dei comandi associati, come nella seguente schermata:
 
-![Chiave Dello Spazio](../images/ui_escape_key.png)
+![Tasto Spazio](../images/ui_escape_key.png)
 
 Per visualizzare tutti i comandi inclusi nell'editor si può usare il comando ++space++ + ++"wK"++, che darà il seguente risultato:
 
