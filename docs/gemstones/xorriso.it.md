@@ -1,6 +1,7 @@
 ---
 title: Scrivere su CD/DVD fisici con Xorriso
 author: Joseph Brinkman
+contributors: Steven Spencer
 ---
 
 ## Introduzione
@@ -28,7 +29,7 @@ Masterizza un ISO su un CD/DVD fisico.
 **Scrivere la ISO su Disco**:
 
    ```bash
-   sudo xorriso -as cdrecord -v dev/=/dev/sr0 -blank=as_needed -dao Rocky-10.1-x86_64-boot.iso
+   sudo xorriso -as cdrecord -v dev=/dev/sr0 -blank=as_needed -dao Rocky-10.1-x86_64-boot.iso -eject
    ```
 
 ## Informazioni aggiuntive
