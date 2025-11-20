@@ -28,7 +28,7 @@ Burn an ISO onto a physical CD/DVD.
 **Write ISO to Disk**: 
 
    ```bash
-   sudo xorriso -as cdrecord -v dev/=/dev/sr0 -blank=as_needed -dao Rocky-10.1-x86_64-boot.iso
+   sudo xorriso -as cdrecord -v dev=/dev/sr0 -blank=as_needed -dao Rocky-10.1-x86_64-boot.iso -eject
    ```
 
 ## Additional Information
