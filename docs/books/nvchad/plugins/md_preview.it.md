@@ -15,17 +15,17 @@ tags:
 
 Una delle caratteristiche del linguaggio Markdown che lo rendono ampiamente utilizzato nella scrittura di documentazione tecnica è la sua convertibilità. Il codice può essere convertito per la visualizzazione in molti formati (HTML, PDF, testo normale, ecc.), rendendo così il contenuto utilizzabile in numerosi scenari.
 
-In particolare, la documentazione scritta per Rocky Linux viene convertita in `HTML` utilizzando un'applicazione *python*. L'applicazione converte i documenti scritti in *markdown* in pagine HTML statiche.
+In particolare, la documentazione scritta per Rocky Linux viene convertita in `HTML` utilizzando un'applicazione _python_. L'applicazione converte i documenti scritti in _markdown_ in pagine HTML statiche.
 
 Quando si scrive la documentazione per Rocky Linux, si pone il problema di verificarne la corretta visualizzazione quando viene convertita in codice `HTML`.
 
-Per integrare questa funzionalità nel proprio editor, in questa pagina verranno illustrati due dei plugin disponibili a questo scopo, [toppair/peek.nvim](https://github.com/toppair/peek.nvim) e [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim). Entrambi supportano lo *stile github*, la scelta del browser da usare per l'anteprima e lo scorrimento sincronizzato con l'editor.
+Per integrare questa funzionalità nel proprio editor, in questa pagina verranno illustrati due dei plugin disponibili a questo scopo, [toppair/peek.nvim](https://github.com/toppair/peek.nvim) e [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim). Entrambi supportano lo _stile github_, la scelta del browser da usare per l'anteprima e lo scorrimento sincronizzato con l'editor.
 
 ### Peek.nvim
 
 [Peek](https://github.com/toppair/peek.nvim) utilizza [Deno](https://deno.com/manual), un runtime JavaScript, TypeScript e WebAssembly con impostazioni sicure predefinite per il suo funzionamento. Per impostazione predefinita, Deno non consente l'accesso a file, rete o ambiente, a meno che questo non sia esplicitamente abilitato.
 
-Per installare il server linguistico nella configurazione dell'editor, si utilizza il plugin *mason.nvim*, che fornisce il comando `:MasonInstall`, un comando che consente l'inclusione e la configurazione automatica di *Deno*.
+Per installare il server linguistico nella configurazione dell'editor, si utilizza il plugin _mason.nvim_, che fornisce il comando `:MasonInstall`, un comando che consente l'inclusione e la configurazione automatica di _Deno_.
 
 ```text
 :MasonInstall deno
@@ -33,7 +33,9 @@ Per installare il server linguistico nella configurazione dell'editor, si utiliz
 
 !!! Warning "Attenzione"
 
+    ```
     Il server linguistico **deve** essere installato prima di procedere all'installazione del plugin. In caso contrario, l'installazione fallirà e sarà necessario rimuovere il codice da **plugins/init.lua**, eseguire una pulizia della configurazione aprendo `Lazy` e digitando ++"X "++ per eliminare il plugin e quindi ripetere la procedura di installazione.
+    ```
 
 Per installare il plugin è necessario modificare il file **plugins/init.lua** aggiungendo il seguente blocco di codice:
 
@@ -61,7 +63,7 @@ Per installare il plugin è necessario modificare il file **plugins/init.lua** a
 
 Una volta salvato il file, è possibile eseguirne l'installazione aprendo l'interfaccia del gestore dei plugin con il comando `:Lazy`. Il gestore dei plugin lo avrà già riconosciuto automaticamente e vi permetterà di installarlo digitando ++"I"++.
 
-Per ottenere tutte le funzionalità, tuttavia, è necessario chiudere NvChad (*nvim*) e riaprirlo. Questo per consentire all'editor di caricare quelle di **Peek** nella configurazione.
+Per ottenere tutte le funzionalità, tuttavia, è necessario chiudere NvChad (_nvim_) e riaprirlo. Questo per consentire all'editor di caricare quelle di **Peek** nella configurazione.
 
 La sua configurazione include già il comando per attivarlo `<leader>op`, che sulla tastiera si traduce in ++space++ + ++"o"++ seguito da ++"p"++.
 
@@ -137,7 +139,9 @@ In questo modo è possibile aprire l'anteprima del markdown digitando ++enter++ 
 
 !!! Note "Nota"
 
+    ```
     Il plugin fornisce anche il comando `:MarkdownPreviewToggle`, ma al momento della stesura di questo documento non sembra funzionare correttamente. Se si prova a richiamarlo, non cambierà il tema dell'anteprima ma si aprirà una nuova scheda del browser con la stessa anteprima.
+    ```
 
 ![Markdown Preview](./images/markdown_preview_nvim.png)
 
