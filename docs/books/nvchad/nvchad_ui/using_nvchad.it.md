@@ -15,10 +15,10 @@ Questo capitolo introduce alcuni comandi specifici di NvChad e alcuni comandi st
 
 Tutte le sequenze iniziano con una chiave primaria seguita da un'opzione. Le quattro chiavi principali sono:
 
-* leader = ++space++
-* A = ++alt++
-* C = ++ctrl++
-* S = ++shift++
+- leader = ++space++
+- A = ++alt++
+- C = ++ctrl++
+- S = ++shift++
 
 Come nel documento "NvChad UI", sostituiremo il comando effettivo da inserire, anziché le mappature.
 
@@ -40,18 +40,18 @@ Questo mostrerà tutti i file e le cartelle disponibili, a partire dalla radice 
 
 È bene ricordare che ciascuno dei comandi elencati è preceduto da ++shift++ e seguito da uno ++space++ e dal percorso o ++tab++. Ecco un elenco di altre azioni:
 
-* `:view` - Visualizza il file in modalità di sola lettura senza la possibilità di modificarlo. Ottimo per la protezione dei file critici.
-* `:split` - Apre il file in una schermata divisa orizzontalmente.
-* `:vsplit` - Apre il file in uno schermata diviso verticalmente.
-* `:tabedit` - Apre il file in una nuova scheda.
+- `:view` - Visualizza il file in modalità di sola lettura senza la possibilità di modificarlo. Ottimo per la protezione dei file critici.
+- `:split` - Apre il file in una schermata divisa orizzontalmente.
+- `:vsplit` - Apre il file in uno schermata diviso verticalmente.
+- `:tabedit` - Apre il file in una nuova scheda.
 
 Nell'esempio seguente, abbiamo aperto il file utilizzando `:vsplit`.
 
 ![Vsplit Open](../images/vsplit_open.png)
 
-Grazie al lavoro svolto dagli sviluppatori di NvChad, abbiamo a disposizione un modo aggiuntivo per aprire un file, ovvero utilizzare il plugin *nvim-telescope/telescope.nvim*.
+Grazie al lavoro svolto dagli sviluppatori di NvChad, abbiamo a disposizione un modo aggiuntivo per aprire un file, ovvero utilizzare il plugin _nvim-telescope/telescope.nvim_.
 
-Questo plugin, se usato in combinazione con *RipGrep*, ci permette di cercare il file da aprire in modalità interattiva. Digitando i caratteri iniziali del file che stiamo cercando, il plugin ignorerà tutti i file non corrispondenti e ci presenterà solo quelli che corrispondono alla nostra ricerca. Ciò consente un processo di ricerca e apertura molto agevole.
+Questo plugin, se usato in combinazione con _RipGrep_, ci permette di cercare il file da aprire in modalità interattiva. Digitando i caratteri iniziali del file che stiamo cercando, il plugin ignorerà tutti i file non corrispondenti e ci presenterà solo quelli che corrispondono alla nostra ricerca. Ciò consente un processo di ricerca e apertura molto agevole.
 
 Per accedere alla funzione di ricerca dei file di Telescope, è necessario essere in modalità NORMAL nell'editor e digitare: ++shift++ + ++":"++ **Telescope fd**
 
@@ -63,12 +63,12 @@ Una volta che il file è aperto, possiamo iniziare a modificarlo. A tale scopo �
 
 Ora tutti i caratteri digitati vengono inseriti nel documento a partire dalla posizione del cursore. Per spostare il cursore in modalità INSERT gli sviluppatori di Nvchad hanno impostato alcune comode mappature che sono:
 
-* ++ctrl++ + ++"b"++ per andare all'inizio della riga
-* ++ctrl++ + ++"e"++ per andare alla fine della riga
-* ++ctrl++ + ++"h"++ per spostare un carattere a sinistra
-* ++ctrl++ + ++"l"++ per spostare un carattere a destra
-* ++ctrl++ + ++"j"++ per andare alla riga successiva
-* ++ctrl++ + ++"k"++ per andare alla riga precedente
+- \++ctrl++ + ++"b"++ per andare all'inizio della riga
+- \++ctrl++ + ++"e"++ per andare alla fine della riga
+- \++ctrl++ + ++"h"++ per spostare un carattere a sinistra
+- \++ctrl++ + ++"l"++ per spostare un carattere a destra
+- \++ctrl++ + ++"j"++ per andare alla riga successiva
+- \++ctrl++ + ++"k"++ per andare alla riga precedente
 
 Imparare tutte le combinazioni richiede un po' di tempo ma, una volta acquisite, renderanno la navigazione molto veloce. Ad esempio, se si vuole modificare la fine della riga successiva a quella in cui è posizionato il cursore, si può arrivare alla fine della riga corrente con ++ctrl++ + ++"e"++, quindi passare alla successiva con ++ctrl++ + ++"j"++ ed essere già in posizione per aggiungere le modifiche.
 
