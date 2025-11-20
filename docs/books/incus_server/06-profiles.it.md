@@ -1,6 +1,6 @@
 ---
 title: 6 Profili
-author: Spencer Steven
+author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.4
 tags:
@@ -39,7 +39,7 @@ Si vuole cambiare l'interfaccia `macvlan`, ma prima di farlo, è necessario sape
 ip addr
 ```
 
-Cercare l'interfaccia con l'assegnazione IP LAN nella rete 192.168.1.0/24:
+Cercare l'interfaccia con l'assegnazione LAN IP nella rete 192.168.1.0/24:
 
 ```bash
 2: enp3s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
@@ -218,7 +218,7 @@ Un altro elenco rivelerà che al contenitore è stato assegnato un indirizzo DHC
 
 ### Rocky Linux 9.x `macvlan` - Il fix al IP statico
 
-Quando si assegna staticamente un indirizzo IP, le cose si complicano ulteriormente. Poiché `network-scripts` è ora deprecato in Rocky Linux 9.x, l'unico modo per farlo è attraverso l'assegnazione statica e, a causa del modo in cui i container utilizzano la rete, non è possibile impostare la route con una normale istruzione `ip route`. Il problema è che l'interfaccia assegnata quando si applica il profilo `macvlan` (eth0 in questo caso), non è gestibile con Network Manager. La soluzione consiste nel rinominare l'interfaccia di rete del contenitore dopo il riavvio e assegnare l'IP statico. È possibile farlo con uno script ed eseguirlo (di nuovo) nel crontab di root. Per farlo, utilizzare il comando `ip`.
+Quando si assegna staticamente un indirizzo IP, le cose si complicano ulteriormente. Poiché `network-scripts` è ora deprecato in Rocky Linux 9.x, l'unico modo per farlo è attraverso l'assegnazione statica e, a causa del modo in cui i container utilizzano la rete, non è possibile impostare la route con una normale istruzione `ip route`. Il problema è che l'interfaccia assegnata quando si applica il profilo `macvlan` (eth0 in questo caso) non è gestibile con Network Manager. La soluzione consiste nel rinominare l'interfaccia di rete del contenitore dopo il riavvio e assegnare l'IP statico. È possibile farlo con uno script ed eseguirlo (di nuovo) nel crontab di root. Per farlo, utilizzare il comando `ip`.
 
 Per farlo, è necessario ottenere nuovamente l'accesso al contenitore:
 
@@ -246,9 +246,9 @@ sleep 2
 
 Cosa si sta cercando di fare qui?
 
-- si rinomina eth0 con un nuovo nome che si può gestire (“net0”)
+- si rinomina eth0 con un nuovo nome (“net0”)
 - si assegna il nuovo IP statico che è stato assegnato al container (192.168.1.151)
-- si apre la nuova interfaccia "net0"
+- si attiva la nuova interfaccia "net0"
 - si attende 2 secondi affinché l'interfaccia sia attiva prima di aggiungere la route predefinita
 - è necessario aggiungere la route predefinita per la propria interfaccia
 
@@ -270,13 +270,13 @@ Infine, uscire dal container e riavviarlo:
 incus restart rockylinux-test-9
 ```
 
-Aspettate qualche secondo e elencate di nuovo i contenitori:
+Attendi qualche secondo ed elenca nuovamente i contenitori:
 
 ```bash
 incus list
 ```
 
-Il successo dovrebbe essere visibile:
+Dovresti vedere il successo:
 
 ```bash
 +-------------------+---------+----------------------+------+-----------+-----------+
@@ -292,7 +292,7 @@ Il successo dovrebbe essere visibile:
 
 ## Ubuntu macvlan
 
-Fortunatamente, l'implementazione di Ubuntu di Network Manager non interrompe lo stack `macvlan`, rendendo molto più semplice la distribuzione!
+Fortunatamente, l'implementazione di Network Manager da parte di Ubuntu non compromette lo stack `macvlan`, rendendone molto più semplice l'implementazione!
 
 Proprio come nel caso del container rockylinux-test-9, è necessario assegnare il profilo al container:
 
@@ -300,7 +300,7 @@ Proprio come nel caso del container rockylinux-test-9, è necessario assegnare i
 incus profile assign ubuntu-test default,macvlan
 ```
 
-Per sapere se il DHCP assegna un indirizzo al container, arrestarlo e riavviarlo:
+Per verificare se DHCP assegna un indirizzo al contenitore, arrestare e riavviare il contenitore:
 
 ```bash
 incus restart ubuntu-test
@@ -350,7 +350,7 @@ Riavviare il container:
 incus restart ubuntu-test
 ```
 
-Quando si elencano nuovamente i containeri, si vedrà il proprio IP statico:
+Quando elencherai nuovamente i tuoi container, vedrai il tuo IP statico:
 
 ```bash
 +-------------------+---------+----------------------+------+-----------+-----------+
@@ -367,4 +367,4 @@ Quando si elencano nuovamente i containeri, si vedrà il proprio IP statico:
 
 Successo!
 
-Negli esempi qui utilizzati, è stato scelto intenzionalmente un container difficile da configurare e due meno difficili. Molte altre versioni di Linux sono presenti nell'elenco delle immagini. Se si ha una distro preferita, provare a installarla, assegnando il modello `macvlan` e impostare gli IP.
+Negli esempi qui utilizzati, è stato scelto intenzionalmente un container difficile da configurare e due meno difficili. Molte altre versioni di Linux sono presenti nell'elenco delle immagini. Se ne hai una preferita, prova a installarla, assegnando il modello `macvlan` e impostando gli indirizzi IP.
