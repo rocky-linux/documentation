@@ -1,12 +1,12 @@
 ---
 title: Mit Xorriso auf physische CDs/DVDs brennen
 author: Joseph Brinkman
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 ## Einleitung
 
-Der Autor stellte kürzlich fest, dass das Brennen von Hybrid-ISOs auf eine physische CD/DVD unter Rocky Linux mit grafischen Werkzeugen eine Herausforderung darstellt. Zum Glück ist Xorriso eine einfach zu bedienende CLI-Anwendung, die diese Aufgabe gut erledigt!
+Der Autor stellte kürzlich fest, dass das Brennen von Hybrid-ISOs auf eine physische CD/DVD unter Rocky Linux mit grafischen Tools eine Herausforderung darstellt. Zum Glück ist Xorriso eine einfach zu bedienende CLI-Anwendung, die diese Aufgabe gut bewältigt!
 
 ## Problembeschreibung
 
@@ -38,7 +38,7 @@ Xorriso verwendet eine C-Bibliothek namens `libisofs`. Mehr über `libisofs` erf
 
 ## Zusammenfassung
 
-In diesem Kurs haben Sie gelernt, wie man mit Xorriso eine ISO-Datei auf eine physische Disk schreibt! Beachten Sie, dass `Xorriso` auch zum Schreiben anderer Dateitypen auf physische Datenträger verwendet werden kann, aber der Autor fand es besonders praktisch für das hybride ISO-Format, mit dem grafische Tools nicht umgehen konnten.<small>
+In diesem Kurs haben Sie gelernt, wie man mit Xorriso eine ISO-Datei auf eine physische Festplatte schreibt! Beachten Sie, dass `Xorriso` auch zum Schreiben anderer Dateitypen auf physische Datenträger verwendet werden kann, aber der Autor fand es besonders praktisch für das hybride ISO-Format, mit dem grafische Tools nicht umgehen konnten.<small>
 <br/><br/>
 🌐 Übersetzungen: 
 <a href="https://crowdin.com/project/rockydocs/de">crowdin.com/project/rockydocs</a>
