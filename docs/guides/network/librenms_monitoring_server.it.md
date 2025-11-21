@@ -1,14 +1,16 @@
 - - -
-title: LibreNMS Monitoring Server author: Steven Spencer contributors: Ezequiel Bruni, Ganna Zhyrnova tested_with: 8.5, 8.6, 9.0 tags:
+title: LibreNMS monitoring server author: Steven Spencer contributors: Ezequiel Bruni, Ganna Zhyrnova tested_with: 8.5, 8.6, 9.0 tags:
   - monitoring
   - network
 - - -
 
-# LibreNMS Monitoring Server
+!!! Warning Attenzione "La documentazione di LibreNMS non è stata aggiornata dopo Rocky Linux 8."
+
+    Sebbene il progetto LibreNMS sembri ancora attivo e funzionante, sulla base dei commit e delle modifiche apportate al sito GitHub di LibreNMS, le istruzioni per l'installazione e l'esecuzione (disponibili qui e sostanzialmente invariate sul sito di LibreNMS) non funzionano come descritto per Rocky Linux 10. Per ora, si consiglia di rimandare l'installazione di Rocky Linux 10 fino a quando tutte le modifiche non saranno state esaminate a fondo.
 
 ## Introduzione
 
-Gli amministratori di rete e di sistema hanno quasi sempre bisogno di una forma di monitoraggio. Ciò può includere il grafico dell'utilizzo della larghezza di banda negli end point dei router, il monitoraggio dello stato dei servizi in esecuzione su vari server e molto altro ancora. Esistono molte opzioni di monitoraggio, ma una buona opzione con molti, se non tutti, i componenti di monitoraggio disponibili sotto lo stesso tetto, è LibreNMS.
+Gli amministratori di rete e di sistema hanno quasi sempre bisogno di una qualche sorta di monitoraggio. Ciò può includere il grafico dell'utilizzo della larghezza di banda negli end point dei router, il monitoraggio dello stato dei servizi in esecuzione su vari server e molto altro ancora. Esistono molte opzioni di monitoraggio, ma una buona opzione con molti, se non tutti, i componenti di monitoraggio disponibili sotto lo stesso tetto, è LibreNMS.
 
 Questo documento è solo un punto di partenza per LibreNMS. L'autore vi indicherà l'eccellente (ed estesa) documentazione del progetto per ulteriori opzioni. L'autore ha utilizzato molte altre soluzioni di monitoraggio, tra cui Nagios e Cacti, ma LibreNMS offre ciò che questi due progetti offrono singolarmente in un unico prodotto.
 
@@ -34,7 +36,7 @@ Per prima cosa, installare il repository EPEL (Extra Packages for Enterprise Lin
 dnf install -y epel-release
 ```
 
-La versione attuale di LibreNMS richiede una versione minima di PHP pari a 8.1. Rocky Linux 9.0 utilizza PHP 8.0. Abilitare un repository di terze parti (anche in Rocky Linux 8.6) per questa nuova versione.
+La versione attuale di LibreNMS richiede come minimo PHP versione 8.1. Rocky Linux 9.0 utilizza PHP 8.0. Abilitare un repository di terze parti (anche in Rocky Linux 8.6) per questa nuova versione.
 
 La versione del repository da installare dipende dalla versione di Rocky Linux in uso. L'ipotesi è che si tratti della versione 9, ma si può modificare di conseguenza in base alla versione in uso:
 
@@ -69,7 +71,7 @@ Questo comando imposta la directory predefinita per l'utente a `/opt/librenms`, 
 
 ## Scaricare LibreNMS e impostare i permessi
 
-Git facilita il download. Forse conoscete già il processo. Per prima cosa, passate alla directory `/opt`:
+Git facilita il download. Forse conoscete già la procedura. Per prima cosa, spostarsi nella directory `/opt`:
 
 ```bash
 cd /opt
@@ -106,7 +108,7 @@ Inserire quanto segue:
 ./scripts/composer_wrapper.php install --no-dev
 ```
 
-Uscire di nuovo a root:
+Ritornare alla shell di root:
 
 ```text
 exit
@@ -272,7 +274,9 @@ dnf install policycoreutils-python-utils
 Affinché LibreNMS funzioni correttamente con SELinux, è necessario impostare i seguenti contesti:
 
 ```bash
-semanage fcontext -a -t httpd_sys_content_t '/opt/librenms/html(/.*)?' semanage fcontext -a -t httpd_sys_rw_content_t '/opt/librenms/(logs|rrd|storage)(/.*)?' restorecon -RFvv /opt/librenms
+semanage fcontext -a -t httpd_sys_content_t '/opt/librenms/html(/.*)?' 
+semanage fcontext -a -t httpd_sys_rw_content_t '/opt/librenms/(logs|rrd|storage)(/.*)?' 
+restorecon -RFvv /opt/librenms
 setsebool -P httpd_can_sendmail=1
 setsebool -P httpd_execmem 1
 chcon -t httpd_sys_rw_content_t /opt/librenms/.env
@@ -341,9 +345,9 @@ cp /opt/librenms/misc/lnms-completion.bash /etc/bash_completion.d/
 
 ## Configurare `snmpd`
 
-*SNMP* è l'acronimo di "Simple Network Management Protocol" ed è utilizzato da molti programmi di monitoraggio per estrarre dati. La versione 2, utilizzata in questo caso, richiede una "stringa di comunità" specifica per il vostro ambiente.
+*SNMP* è l'acronimo di "Simple Network Management Protocol" ed è utilizzato da molti programmi di monitoraggio per estrarre dati. La versione 2, utilizzata in questo caso, richiede una "community string" specifica per il vostro ambiente.
 
-Assegnate questa "community string" ai dispositivi di rete che volete monitorare, in modo che `snmpd` (la "d" qui sta per il demone) sia in grado di trovarli. Se la rete non è di nuova costruzione, è possibile che sia già in uso una "community string".
+Assegnate questa "community string" ai dispositivi di rete che volete monitorare, in modo che `snmpd` (la "d" qui sta per il demone) sia in grado di trovarli. Se la vostra rete non è nuova, potreste già avere una “community string“ in uso.
 
 Copiare il file `snmpd.conf` da LibreNMS:
 
@@ -393,9 +397,9 @@ cp /opt/librenms/misc/librenms.logrotate /etc/logrotate.d/librenms
 
 ## Installazione di composer (soluzione alternativa)
 
-PHP Composer è un requisito per l'installazione corrente (menzionato nella procedura precedente). Se l'installazione eseguita in precedenza non è andata a buon fine, è necessario eseguire questa operazione.
+PHP Composer è un requisito per l'installazione corrente (menzionato nella procedura precedente). Se l'installazione eseguita in precedenza non fosse andata a buon fine, sarà necessario eseguire questa operazione.
 
-Prima di iniziare, è necessario collegare la versione corrente del binario `php` a una posizione del percorso. Questa procedura ha utilizzato l'installazione REMI per ottenere la versione corretta di PHP, che non è installata nel percorso.
+Prima di iniziare, è necessario collegare la versione corrente del codice binario `php` a una posizione del percorso. Questa procedura ha utilizzato l'installazione REMI per ottenere la versione corretta di PHP, che non è installata nel percorso.
 
 Questo è risolvibile con un collegamento simbolico e vi renderà la vita molto più facile durante l'esecuzione dei passi rimanenti:
 
@@ -422,7 +426,7 @@ mv composer.phar /usr/local/bin/composer
 
 Una volta installati e configurati tutti i componenti, il passo successivo è quello di completare l'installazione via web. Nella versione di laboratorio, non è stato configurato alcun hostname. Per completare la configurazione, è necessario accedere al server web tramite l'indirizzo IP.
 
-L'IP della macchina del laboratorio è 192.168.1.140. Per terminare l'installazione, navigare al seguente indirizzo in un browser web:
+L'IP della macchina del laboratorio è 192.168.1.140. Per terminare l'installazione, andare al seguente indirizzo con un browser web:
 
 `http://192.168.1.140/librenms`
 
@@ -432,7 +436,7 @@ Se tutto funziona correttamente, segue un reindirizzamento ai controlli di prein
 
 Sotto il logo LibreNMS si trovano quattro pulsanti. Il primo pulsante a sinistra è per i controlli preliminari. Il pulsante successivo è per il database. È necessaria la password impostata in precedenza per l'utente del database "librenms".
 
-Se ci avete seguito, avete già salvato questo documento in un posto sicuro. Cliccare sul pulsante "Database". Sono sufficienti "Utente" e "Password". A questo punto, fare clic sul pulsante "Check Credentials".
+Se avete seguito le precedenti istruzioni, avete già salvato questo documento in un posto sicuro. Cliccare sul pulsante "Database". Sono sufficienti "Utente" e "Password". A questo punto, fare clic sul pulsante "Check Credentials".
 
 ![LibreNMS Database](../images/librenms_configure_database.png)
 
@@ -442,17 +446,17 @@ Fare clic sul pulsante "Build Database" se diventa verde.
 
 Il pulsante "Create Admin User" sarà ora attivo. Cliccatelo. Viene quindi richiesto il nome di un utente amministratore. In laboratorio è "admin". Creare una password per questo utente.
 
-Assicurarsi che la password sia sicura e registrarla in un luogo sicuro, ad esempio in un gestore di password. È necessario aggiungere anche l'indirizzo e-mail dell'utente amministrativo. Al termine, fare clic sul pulsante "Add User".
+Assicurarsi che la password sia sicura e registrarla in un luogo sicuro, ad esempio in un gestionale per password. È necessario aggiungere anche l'indirizzo e-mail dell'utente amministrativo. Al termine, fare clic sul pulsante "Add User".
 
 ![LibreNMS Administrative User](../images/librenms_administrative_user.png)
 
-A questo punto apparirà la schermata "Finish Install." Rimarrà solo un elemento per terminare l'installazione, una riga che chiede di "convalidare l'installazione".
+A questo punto apparirà la schermata "Finish Install." Rimarrà solo una cosa per terminare l'installazione, una riga che chiede di "convalidare l'installazione".
 
 Fare clic sul link. Si verifica un reindirizzamento alla pagina di accesso. Accedere con l'utente amministrativo e la password.
 
 ## Aggiungere dispositivi
 
-Anche in questo caso, uno dei presupposti è che si stia utilizzando SNMP v2. Ricordate che ogni dispositivo aggiunto deve essere un membro della vostra stringa di comunità. Qui l'autore utilizza due esempi di dispositivi, una workstation Ubuntu e un server CentOS.
+Anche in questo caso, uno dei presupposti è che si stia utilizzando SNMP v2. Ricordate che ogni dispositivo aggiunto deve essere un membro della vostra "community string". Qui l'autore utilizza due esempi di dispositivi, una workstation Ubuntu e un server CentOS.
 
 È probabile che si debbano aggiungere switch, router e altri dispositivi gestiti. L'autore può dire per esperienza che aggiungere switch e router è più facile che aggiungere workstation e server.
 
@@ -470,7 +474,7 @@ Successivamente, è necessario modificare il file `snmpd.conf`:
 sudo vi /etc/snmpd/snmpd.conf
 ```
 
-Trovate le righe che descrivono la vostra postazione di lavoro e cambiatele con altre che la identificano:
+Trovate le righe che descrivono la vostra workstation e cambiatele con altre che la identificano:
 
 ```bash
 sysLocation    Desktop
@@ -521,7 +525,7 @@ Si presuppone che siate root o che possiate fare `sudo` per elevare i privilegi.
 dnf install net-snmp net-snmp-utils
 ```
 
-Creare un file `snmpd.conf`. Piuttosto che cercare di navigare nel file incluso, spostate questo file per rinominarlo e create un nuovo file vuoto:
+Creare un file `snmpd.conf`. Piuttosto che cercare di navigare nel file originale, spostate questo file per rinominarlo e create un nuovo file vuoto:
 
 ```bash
 mv /etc/snmp/snmpd.conf /etc/snmp/snmpd.conf.orig
@@ -578,7 +582,7 @@ Se la zona "trusted" non è corretta per il vostro ambiente, modificatela in bas
 
 ## Aggiungere i dispositivi in Librenms
 
-Dopo aver configurato i dispositivi campione per accettare il traffico SNMP dal server LibreNMS, il passo successivo consiste nell'aggiungere tali dispositivi a LibreNMS. Con l'interfaccia web di LibreNMS aperta, cliccare per aggiungere un dispositivo:
+Dopo aver configurato i dispositivi di prova per accettare il traffico SNMP dal server LibreNMS, il passo successivo consiste nell'aggiungere tali dispositivi a LibreNMS. Con l'interfaccia web di LibreNMS aperta, cliccare per aggiungere un dispositivo:
 
 ![LibreNMS Add Device](../images/librenms_add_device.png)
 

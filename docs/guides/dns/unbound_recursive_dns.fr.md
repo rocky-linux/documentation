@@ -96,6 +96,6 @@ google.com mail is handled by 10 smtp.google.com.
 
 ## Conclusion
 
-La plupart des gens utilisent le résolveur DNS de leur routeur domestique ou des résolveurs DNS publics gérés par les FAI et les entreprises technologiques. Dans les labos à domicile et les grands réseaux, il est courant d'exécuter un résolveur à l'échelle du réseau pour réduire la latence et la charge du réseau en mettant en cache les requêtes DNS pour les sites Web couramment demandés tels que Google. Un résolveur à l'échelle du réseau autorise également les services intranet tels que SharePoint et Active Directory.
+La plupart des gens utilisent le résolveur DNS de leur routeur domestique ou des résolveurs DNS publics gérés par les FAI et les entreprises technologiques. Dans les laboratoires domestiques et les grands réseaux, il est courant d'exécuter un résolveur à l'échelle du réseau afin de réduire la latence et la charge réseau en mettant en cache les requêtes DNS pour les sites Web fréquemment demandés comme Google. Un résolveur à l'échelle du réseau autorise également les services intranet tels que SharePoint et Active Directory.
 
 Unbound est l'un des nombreux outils open source qui rendent possible la résolution DNS. Félicitations, vous possédez votre propre résolveur DNS !

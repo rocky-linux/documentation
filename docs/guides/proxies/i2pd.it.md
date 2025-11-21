@@ -1,14 +1,11 @@
 ---
 title: i2pd Anonymous Network
 author: Neel Chauhan
-contributors:
-tested_with: 9.3
+contributors: Steven Spencer
 tags:
   - proxy
   - proxies
 ---
-
-# i2pd Anonymous Network
 
 ## Introduzione
 
@@ -22,10 +19,10 @@ I requisiti minimi per l'utilizzo di questa procedura sono i seguenti:
 
 ## Installazione di `i2pd`
 
-Per installare `i2pd`, è necessario installare prima i repository EPEL (Extra Packages for Enterprise Linux) e `i2pd` copr (Cool Other Package Repo) (Nota: se si utilizza Rocky Linux 8, sostituire `8` con `9`):
+Per installare `i2pd`, è necessario prima installare i repository EPEL (Extra Packages for Enterprise Linux) e `i2pd` copr (Cool Other Package Repo):
 
 ```bash
-curl -s https://copr.fedorainfracloud.org/coprs/supervillain/i2pd/repo/epel-9/supervillain-i2pd-epel-9.repo -o /etc/yum.repos.d/i2pd-epel-9.repo
+curl -s https://copr.fedorainfracloud.org/coprs/supervillain/i2pd/repo/epel-10/supervillain-i2pd-epel-10.repo -o /etc/yum.repos.d/i2pd-epel-10.repo
 dnf install -y epel-release
 ```
 
@@ -35,9 +32,9 @@ Quindi installare `i2pd`:
 dnf install -y i2pd
 ```
 
-## (Opzionale) Configurare `i2pd`
+## Configurare `i2pd` (opzionale)
 
-Con i pacchetti installati, è possibile configurare `i2pd`, se lo si desidera. L'autore usa `vim` per questo esempio, ma è possibilie usare qualsiasi altro editor come`nano`:
+Una volta installati i pacchetti, è possibile configurare `i2pd` se necessario. L'autore usa `vim` per questo esempio, ma è possibilie usare qualsiasi altro editor come`nano`:
 
 ```bash
 vim /etc/i2pd/i2pd.conf
@@ -45,7 +42,7 @@ vim /etc/i2pd/i2pd.conf
 
 Il file \`i2pd.conf' predefinito è abbastanza descrittivo, ma può diventare lungo, se si vuole solo una configurazione di base, lo si può lasciare così com'è.
 
-Tuttavia, se si desidera abilitare IPv6 e UPnP e ascoltare il proxy HTTP sulla porta `12345`, la configurazione che lo consente è la seguente:
+Tuttavia, se si desidera abilitare IPv6 e UPnP e impostare la porta proxy HTTP in ascolto su `12345`, ecco una configurazione che lo consente:
 
 ```bash
 ipv6 = true
@@ -67,7 +64,7 @@ systemctl enable --now i2pd
 
 ## Visitare i siti web I2P
 
-In questo esempio, si sta usando Firefox su Rocky Linux. Se non si utilizza Firefox, fare riferimento alla documentazione dell'applicazione per impostare un proxy HTTP.
+Questo esempio utilizza Firefox su Rocky Linux. Se non utilizzi Firefox, consulta la documentazione della tua applicazione per impostare un proxy HTTP.
 
 Aprire Firefox, fare clic sull'icona del menu ad hamburger e andare su **Impostazioni**:
 
@@ -81,10 +78,10 @@ Selezionare quindi **Manual proxy connection** , inserire `localhost` e `4444` (
 
 ![Firefox Connection Settings dialog](../images/i2p_proxy_ff_3.png)
 
-Ora è possibile consultare i siti web I2P. Ad esempio, navigare su `http://planet.i2p` (nota: `http://` è importante per impedire a Firefox di scegliere un motore di ricerca predefinito):
+Ora è possibile consultare i siti web I2P. Ad esempio, si vada su `http://planet.i2p` (Nota: il `http://` è importante per impedire a Firefox di impostare un motore di ricerca predefinito):
 
 ![Firefox viewing planet.i2p](../images/i2p_proxy_ff_4.png)
 
 ## Conclusione
 
-Con tanti utenti di Internet preoccupati per la privacy online, I2P è l'unico modo per accedere ai siti web nascosti in modo sicuro. `i2pd` è un software leggero che rende possibile la navigazione nei siti web I2P, oltre a condividere la propria connessione come relè.
+Con tanti utenti di Internet preoccupati per la privacy online, I2P è l'unico modo per accedere ai siti web nascosti in modo sicuro. `i2pd` è un software leggero che consente di navigare sui siti web I2P e di condividere la propria connessione come relay.

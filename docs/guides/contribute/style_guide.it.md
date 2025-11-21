@@ -87,6 +87,10 @@ Se si tratta di una procedura con una sola fase, utilizzare un punto piuttosto c
 
 - Implementate questa idea e andate avanti.
 
+!!! info “Nota sugli elenchi puntati”
+
+    Sebbene le regole di markdown accettino generalmente sia l'asterisco che il trattino per gli elenchi puntati (a condizione che siano utilizzati in modo coerente in tutto il documento e non siano mischiati), per mantenere la coerenza in tutta la documentazione si consiglia di utilizzare i trattini. Se il documento contiene asterischi per gli elenchi puntati, i redattori potrebbero sostituirli con trattini durante la revisione del contenuto.
+
 ### Linguaggio di interfaccia grafica
 
 - Istruzioni testuali relative a un'interfaccia utente: Quando si descrive l'inserimento di un comando in un'interfaccia utente, utilizzare la parola "enter" piuttosto che "put" o "type". Utilizzate un blocco di codice per scrivere il comando (con i backtick):
