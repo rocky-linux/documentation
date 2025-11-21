@@ -89,7 +89,7 @@ If you have a procedure with only one step, use a bullet rather than a number. F
 
 !!! info "A note about bulleted lists"
 
-    While markdown rules generally accepts either the asterisk or the dash for bulleted lists (provided they are consistently used throughout the document and are not mixed), to maintain consistency throughout the documentation the recommendation is to use dashes. If your document contains asterisks for bulleted lists, an editor might change those to dashes when checking the content. 
+    While markdown rules generally accept either the asterisk or the dash for bulleted lists (provided they are consistently used throughout the document and not mixed), to maintain consistency, the recommendation is to use dashes. If your document uses asterisks for bulleted lists, an editor might change them to dashes during content review. 
 
 ### Graphical Interface Language
 
