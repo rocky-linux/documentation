@@ -38,4 +38,4 @@ Xorriso relies on a C library `libisofs`. You can learn more about the `libisofs
 
 ## Conclusion
 
-In this gemstone, you learned how to write an ISO to a physical disk with Xorriso! Keep in mind that Xorriso can be used to write other filetypes to physical disks, but I found it especially handy for the hybrid ISO format that graphical tools didn't know how to handle.
+In this gemstone, you learned how to write an ISO to a physical disk with Xorriso! Keep in mind that Xorriso can be used to write other filetypes to physical disks, but I found it especially handy for the hybrid ISO format that graphical tools did not know how to handle.
