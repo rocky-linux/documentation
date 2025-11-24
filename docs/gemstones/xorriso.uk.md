@@ -1,7 +1,7 @@
 ---
 title: Запис на фізичний CD/DVD за допомогою Xorriso
 author: Joseph Brinkman
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 ## Вступ
