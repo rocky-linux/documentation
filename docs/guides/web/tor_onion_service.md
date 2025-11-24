@@ -9,10 +9,6 @@ tags:
   - proxies
 ---
 
-!!! note "Caddy alternate installation method"
-
-    These instructions deal with building out a web service with Caddy. Currently Caddy is not available in the EPEL. Follow [the Caddy document](caddy.md) for alternate installation instructions.
-
 ## Introduction
 
 [Tor](https://www.torproject.org/) is an anonymity service and software that routes traffic by way of three volunteer-run servers called relays. The three-hop design is to ensure privacy by resisting surveillance attempts.
