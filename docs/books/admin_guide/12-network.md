@@ -232,7 +232,7 @@ The actual length of the IPv4 header = The value of the IHL field * 4
 
 **Destination address**: IPv4 address of the datagram receiver
 
-**Options**: Optional field, with a length range of 0-40 bytes. It is only used when the IHL is greater than 5. The length of this field must be an integer multiple of 4 bytes (if the length is less than 4 bytes, use the **padding** field for padding).
+**Options**: Optional field, with a length range of 0-40 bytes. It is only used when the IHL is greater than 5. The length of this field must be an integer multiple of 4 bytes (If the length is less than an integer multiple of 4 bytes, use the **padding** field for padding).
 
 !!! tip
 
@@ -401,16 +401,22 @@ For `docs.rockylinux.org.`:
 
 *lo* is the "**loopback**" interface, which allows TCP/IP programs to communicate with each other without leaving the local machine. This enables testing if the **network module of the system is working properly** and also allows pinging the localhost. All packets that enter through localhost leave through localhost. The packets received are the same as the packets sent.
 
-The Linux kernel assigns interface names with a specific prefix depending on the type. Traditionally, all **Ethernet** interfaces, for example, began with **eth**. A number followed the prefix, the first being 0 (eth0, eth1, eth2...). The wifi interfaces were given a WLAN prefix.
+The `udev` device manager assigns interface names with a specific prefix depending on the type. Traditionally, all **Ethernet** interfaces, for example, began with **eth**. A number followed the prefix, the first being 0 (eth0, eth1, eth2...). The wifi interfaces were given a WLAN prefix.
 
-On Rocky8 Linux distributions, systemd will name interfaces with the following policy, where "X" represents a number:
+On Rocky 8/9/10 Linux distributions, `udev` device manager will name interfaces with the following policy, where "X" represents a number:
 
 * `enoX`:  on-board devices
 * `ensX`: PCI Express hotplug slot
 * `enpXsX`: physical/geographical location of the connector of the hardware
 * ...
 
-## Using the `ip` command
+!!! tip "Integration and Takeover"
+
+    In older versions of Linux distributions, udev was a standalone component and ran using a separate process, but modern mainstream Linux distributions have integrated udev code into the systemd project, making it one of the core components of the systemd suite.
+
+## Configure, browse, and test the network
+
+### `ip` command
 
 Forget the old `ifconfig` command! Think `ip`!
 
@@ -422,114 +428,9 @@ Forget the old `ifconfig` command! Think `ip`!
 
     The `ip` command is the only command for managing **IP addresses, ARP, routing, etc.**.
 
-    The `ifconfig` command is no longer installed by default in Rocky8.
+    The `ifconfig` command is no longer installed by default in Rocky 8/9/10. In addition to `ip` command, system administrators can also use commands in the [NetworkManager](https://www.networkmanager.dev/) network component to manage networks, with the most commonly used being the `nmtui` and `nmcli` commands.
 
     It is important to get into good habits now.
-
-## The hostname
-
-The `hostname` command displays or sets the system's hostname.
-
-```bash
-hostname [-f] [hostname]
-```
-
-|  Option  |  Description                   |
-|----------|--------------------------------|
-| `-f`     | Displays the FQDN               |
-| `-i`     | Displays the system's IP address information |
-
-!!! Tip
-
-    This command is used by various network programs to identify the machine.
-
-To assign a hostname, use the `hostname` command, but the change will not be retained at the next boot. The command with no arguments displays the hostname.
-
-To set the host name, the file `/etc/sysconfig/network` must be modified:
-
-```bash
-NETWORKING=yes
-HOSTNAME=pc-rocky.mondomaine.lan
-```
-
-The Red Hat boot script also consults the `/etc/hosts` file to resolve the hostname of the system.
-
-When the system boots, Linux evaluates the `HOSTNAME` value in the `/etc/sysconfig/network` file.
-
-It then uses the `/etc/hosts` file to evaluate the primary IP address of the server and its hostname. It deduces the DNS domain name.
-
-It is therefore essential to complete these two files before configuring network services.
-
-!!! Tip
-
-    To verify that this configuration is correct, the commands `hostname` and `hostname -f` must return the expected values.
-
-## /etc/hosts file
-
-The `/etc/hosts` file is a static host name mapping table, which follows the following format:
-
-```bash
-@IP <hostname>  [alias]  [# comment]
-```
-
-Example of `/etc/hosts` file:
-
-```bash
-127.0.0.1       localhost localhost.localdomain
-::1             localhost localhost.localdomain
-192.168.1.10    rockstar.rockylinux.lan rockstar
-```
-
-The `/etc/hosts` file is still used by the system, especially at boot time when the system FQDN is determined.
-
-!!! Tip
-
-    Red Hat recommends that at least one line containing the system name be filled in.
-
-If the **DNS** service (**D**omain **N**ame **S**ervice) is not in place, you must fill in all the names in the hosts file for each of your machines.
-
-The `/etc/hosts` file contains one line per entry, with the IP address, the FQDN, then the host name (in that order) and a series of aliases (alias1, alias2 ...). The alias is an option.
-
-## `/etc/nsswitch.conf` file
-
-The **NSS** (**N**ame **S**ervice **S**witch) allows configuration files (e.g., `/etc/passwd`, `/etc/group`, `/etc/hosts`) to be substituted for one or more centralized databases.
-
-The `/etc/nsswitch.conf` file is used to configure the name service databases.
-
-```bash
-passwd: files
-shadow: files
-group: files
-
-hosts: files dns
-```
-
-In this case, Linux will first look for a host name match (`hosts:` line) in the `/etc/hosts` file (`files` value) before querying DNS (`dns` value)! This behavior can be changed by editing the `/etc/nsswitch.conf` file.
-
-Of course, it is possible to imagine querying an LDAP, MySQL, or other server by configuring the name service to respond to system requests for hosts, users, groups, etc.
-
-The name service's resolution can be tested with the `getent` command, which we will see later in this course.
-
-## `/etc/resolv.conf` file
-
-The `/etc/resolv.conf` file contains the DNS name resolution configuration.
-
-```bash
-#Generated by NetworkManager
-domain mondomaine.lan
-search mondomaine.lan
-nameserver 192.168.1.254
-```
-
-!!! Tip
-
-    This file is historical. It is no longer filled in directly!
-
-Newer generations of distributions have generally integrated the `NetworkManager` service. This service allows you to manage the configuration more efficiently, either in graphical or console mode.
-
-It allows adding DNS servers to the configuration file of a network interface. It then dynamically populates the `/etc/resolv.conf` file, which should never be edited directly, otherwise the configuration changes will be lost the next time the network service is started.
-
-## `ip` command
 
 The `ip` command from the `iproute2` package allows you to configure an interface and its routing table.
 
@@ -557,292 +458,180 @@ Display the ARP table:
 [root]# ip neigh
 ```
 
-All historical network management commands have been grouped under the `ip` command, which is well known to network administrators.
+### `nmtui` and `nmcli` command
 
-## DHCP configuration
+[This document](../../gemstones/network/nmtui.md) introduces the usage of the `nmtui` command and the related configuration files.
 
-The **DHCP** protocol (**D**ynamic **H**ost **C**ontrol **P**rotocol) allows you to obtain a complete IP configuration via the network. This is the default configuration mode for a network interface in Rocky Linux, which explains why a system connected to an Internet router's network can function without additional configuration.
+[This document](../../gemstones/network/network_manager.md) introduces the usage of `nmcli` command and the related configuration files.
 
-Interface configuration in Rocky Linux is done in the `/etc/sysconfig/network-scripts/` folder.
+### `mtr` command
 
-For each Ethernet interface, a `ifcfg-ethX` file configures the associated interface.
+`mtr` is a network diagnostic tool that can diagnose network problems. It is used to replace the `ping` and `traceroute` commands. In terms of performance, the `mtr` command is faster.
 
-```bash
-DEVICE=eth0
-ONBOOT=yes
-BOOTPROTO=dhcp
-HWADDR=00:0c:29:96:32:e3
+The mtr command is introduced in detail in [this document](../../gemstones/network/mtr.md)
+
+### `ss` command 
+
+This command is a replacement for the old version of the `netstat` command, mainly used to view the status of ports and sockets. Its usage is:
+
+```
+ss [OPTIONS] [FILTER]
 ```
 
-* Interface name: (must be in the file name)
+Common options include:
+
+| Options | Explanation |
+| :--- | :--- |
+| `-a` | Display all sockets |
+| `-r` | Resolve hostname |
+| `-t` | Display TCP sockets |
+| `-u` | Display UDP sockets |
+| `-l` | Display the listening socket |
+| `-n` | Display IP address and port number |
+| `-p` | Display processes using sockets |
+
+Display sockets that have established connections:
 
 ```bash
-DEVICE=eth0
+[root]# ss
 ```
 
-* Automatically start the interface:
+View the ports that the local machine is listening on：
 
 ```bash
-ONBOOT=yes
+[root]# ss -tulnp
+Netid  State   Recv-Q  Send-Q     Local Address:Port     Peer Address:Port    Process
+udp    UNCONN  0       0              127.0.0.1:323           0.0.0.0:*        users:(("chronyd",pid=703,fd=5))
+udp    UNCONN  0       0                  [::1]:323              [::]:*        users:(("chronyd",pid=703,fd=6))
+tcp    LISTEN  0       128              0.0.0.0:22            0.0.0.0:*        users:(("sshd",pid=734,fd=3))
+tcp    LISTEN  0       128                 [::]:22               [::]:*        users:(("sshd",pid=734,fd=4))
 ```
 
-* Make a DHCP request when the interface starts up:
+View all network connections on this device:
 
 ```bash
-BOOTPROTO=dhcp
-```
-
-* Specify the MAC address (optional but useful when there are several interfaces):
-
-```bash
-HWADDR=00:0c:29:96:32:e3
-```
-
-!!! Tip
-
-    If NetworkManager is installed, the changes are automatically applied. If not, you have to restart the network service.
-
-* Restart the network service:
-
-```bash
-[root]# systemctl restart NetworkManager
-```
-
-## Static configuration
-
-The static configuration requires at least:
-
-```bash
-DEVICE=eth0
-ONBOOT=yes
-BOOTPROTO=none
-IPADDR=192.168.1.10
-NETMASK=255.255.255.0
-```
-
-* Here we are replacing "dhcp" with "none" which equals static configuration:
-
-```bash
-BOOTPROTO=none
-```
-
-* IP Address:
-
-```bash
-IPADDR=192.168.1.10
-```
-
-* Subnet mask:
-
-```bash
-NETMASK=255.255.255.0
-```
-
-* The mask can be specified with a prefix:
-
-```bash
-PREFIX=24
-```
-
-!!! Warning
-
-    You must use NETMASK OR PREFIX - Not both!
-
-## Routing
-
-![Network architecture with a gateway](images/network-002.png)
-
-```bash
-DEVICE=eth0
-ONBOOT=yes
-BOOTPROTO=none
-HWADDR=00:0c:29:96:32:e3
-IPADDR=192.168.1.10
-NETMASK=255.255.255.0
-GATEWAY=192.168.1.254
-```
-
-The `ip route` command:
-
-```bash
-[root]# ip route show
-192.168.1.0/24 dev eth0 […] src 192.168.1.10 metric 1
-default via 192.168.1.254 dev eth0 proto static
-```
-
-It is a good idea to know how to read a routing table, especially in an environment with multiple network interfaces.
-
-* In the example shown, the `192.168.1.0/24` network is reachable directly from the `eth0` device, so there is a metric of `1` (does not traverse a router).
-
-* All other networks than the previous one will be reachable, again from the `eth0` device, but this time the packets will be addressed to a `192.168.1.254` gateway. The routing protocol is static (although it is possible to add a route to a dynamically assigned address in Linux).
-
-## Name resolution
-
-A system needs to resolve:
-
-* FQDNs into IP addresses
-
-```bash
-www.free.fr = 212.27.48.10
-```
-
-* IP addresses into names
-
-```bash
-212.27.48.10 = www.free.fr
-```
-
-* or to obtain information about an area:
-
-```bash
-MX de free.fr = 10 mx1.free.fr + 20 mx2.free.fr
-```
-
-```bash
-DEVICE=eth0
-ONBOOT=yes
-BOOTPROTO=none
-HWADDR=00:0c:29:96:32:e3
-IPADDR=192.168.1.10
-NETMASK=255.255.255.0
-GATEWAY=192.168.1.254
-DNS1=172.16.1.2
-DNS2=172.16.1.3
-DOMAIN=rockylinux.lan
-```
-
-In this case, to reach the DNS, you have to go through the gateway.
-
-```bash
- #Generated by NetworkManager
- domain mondomaine.lan
- search mondomaine.lan
- nameserver 172.16.1.2
- nameserver 172.16.1.3
-```
-
-NetworkManager has updated the file.
-
-## Troubleshooting
-
-The `ping` command sends datagrams to another machine and waits for a response.
-
-It is the basic command for testing network connectivity because it checks the connection between your network interface and another.
-
-Syntax of the `ping` command:
-
-```bash
-ping [-c numerical] destination
-```
-
-The `-c` (count) option allows you to stop the command after the countdown in seconds.
-
-Example:
-
-```bash
-[root]# ping –c 4 localhost
-```
-
-!!! Tip
-
-    Validate connectivity from near to far
-
-1. Validate the TCP/IP software layer
-
-    ```bash
-    [root]# ping localhost
-    ```
-
-    "Pinging" the inner loop does not detect a hardware failure on the network interface. It simply determines whether the IP software configuration is correct.
-
-2. Validate the network card
-
-    ```bash
-    [root]# ping 192.168.1.10
-    ```
-
-    To test the network card's functionality, we must ping its IP address. If the network cable is not connected to the network card, the network card should be in a "down" state.
-
-    If the ping does not work, first check the network cable to your network switch and reassemble the interface (see the `if up` command), then check the interface itself.
-
-3. Validate the connectivity of the gateway
-
-    ```bash
-    [root]# ping 192.168.1.254
-    ```
-
-4. Validate the connectivity of a remote server
-
-    ```bash
-    [root]# ping 172.16.1.2
-    ```
-
-5. Validate the DNS service
-
-    ```bash
-    [root]# ping www.free.fr
-    ```
-
-### `dig` command
-
-The `dig` command is used to query the DNS server.
-
-The `dig` command syntax:
-
-```bash
-dig [-t type] [+short] [name]
-```
-
-Examples:
-
-```bash
-[root]# dig +short rockylinux.org
-76.223.126.88
-[root]# dig -t MX +short rockylinux.org                                                          ✔
-5 alt1.aspmx.l.google.com.
+[root]# ss -an
+Netid State  Recv-Q Send-Q     Local Address:Port     Peer Address:Port  Process
+nl    UNCONN 0      0                    0:695                 *
 ...
 ```
 
-The `dig` command is used to query DNS servers. It is verbose by default, but the `+short` option can change this behavior.
+`ss -tulnp`: Only displays TCP/UDP listening status connections and includes process information.
 
-It is also possible to specify a DNS **record type** to resolve, such as an MX **type** to get information about the mail exchangers for a domain.
+`ss -an`: Display all types of connections (including listening and activity)
 
-### `getent` command
+Output column description:
 
-The `getent` (get entry) command gets an NSSwitch entry (`hosts` + `dns`)
+* Netid - Socket type and transmission type
+* State - The status of the socket. "ESTAB" stands for establishing a connection; "UNCONN" represents unconnected connections; "LISTEN" represents the listened connection
+* Recv-Q - The size of the socket receiving queue
+* Send-Q - The size of the socket sending queue
+* Local Address:Port - The local IP address and port
+* Peer Address:Port - IP address and port of the connection end
+* Process - Corresponding process information, including process ID, process name, and file descriptor
 
-Syntax of the `getent` command:
+If you need to know the correspondence between default ports and services, please refer to the contents of the **/etc/services** file.
 
-```bash
-getent hosts name
+### View the properties of the NIC
+
+Frequently use the `ethtool` command to view the properties of NIC (Network Interface Card). Its usage is:
+
+```
+ethtool [option] DEVNAME
 ```
 
-Example:
-
 ```bash
-[root]# getent hosts rockylinux.org
-  76.223.126.88 rockylinux.org
+[root]# ethtool ens160
+Settings for ens160:
+        Supported ports: [ TP ]
+        Supported link modes:   1000baseT/Full
+                                10000baseT/Full
+        Supported pause frame use: No
+        Supports auto-negotiation: No
+        Supported FEC modes: Not reported
+        Advertised link modes:  Not reported
+        Advertised pause frame use: No
+        Advertised auto-negotiation: No
+        Advertised FEC modes: Not reported
+        Speed: 10000Mb/s
+        Duplex: Full
+        Auto-negotiation: off
+        Port: Twisted Pair
+        PHYAD: 0
+        Transceiver: internal
+        MDI-X: Unknown
+        Supports Wake-on: uag
+        Wake-on: d
+        Link detected: yes
 ```
 
-Querying only a DNS server may return an erroneous result that does not take the contents of a `hosts` file into account, though this should be rare nowadays.
+Important attribute description:
 
-To take the `/etc/hosts` file into account, the NSSwitch name service must be queried, which will take care of any DNS resolution.
+* Supports auto-negotiation
+* Speed
+* Duplex
+* Port - This refers to the media for data transmission, such as "Twisted Pair" and "FIBRE"
+* Link detected
+
+If you need to make more detailed Settings for the NIC attributes, please enter the interactive terminal of the `nmcli` command, for example:
+
+```bash
+[root]# nmcli connection show
+NAME    UUID                                  TYPE      DEVICE
+ens160  76999cf9-b99e-4a9d-a325-0c54224d9300  ethernet  ens160
+
+[root]# nmcli connection edit ens160
+
+nmcli> set 802-3-ethernet.
+accept-all-mac-addresses   generate-mac-address-mask  port                       speed
+auto-negotiate             mac-address                s390-nettype               wake-on-lan
+cloned-mac-address         mac-address-blacklist      s390-options               wake-on-lan-password
+duplex                     mtu                        s390-subchannels
+
+nmcli> print
+
+nmcli> save
+
+nmcli> quit
+
+[root]# nmcli connection down ens160
+
+[root]# nmcli connection up ens160
+```
+
+### Test IPv6/IPv4
+
+Query the wide area network IPv4/IPv6 address of this machine:
+
+```bash
+[root]# curl -4 ifconfig.me
+116.207.111.120
+
+[root]# curl -6 ifconfig.me
+240e:36a:8339:8500:20c:29ff:feb3:41fd
+```
 
 ### `ipcalc` command
 
-The `ipcalc` (**ip calculation**) command calculates the address of a network or broadcast from an IP address and a mask.
+The `ipcalc` (**ip calculation**) command calculates the address of a network or broadcast from an IP address and a mask. This command supports both IPv4 address and IPv6 address.
 
 Syntax of the `ipcalc` command:
 
 ```bash
-ipcalc  [options] IP <netmask>
+ipcalc [OPTION]... <IP address>[/prefix] [netmask]
 ```
 
 Example:
 
 ```bash
-[root]# ipcalc –b 172.16.66.203 255.255.240.0
-BROADCAST=172.16.79.255
+[root]# ipcalc -m -p -b -n 192.168.100.20/24
+NETMASK=255.255.255.0
+PREFIX=24
+BROADCAST=192.168.100.255
+NETWORK=192.168.100.0
+
+[root]# ipcalc -h ::1
+HOSTNAME=localhost
 ```
 
 !!! Tip
@@ -853,65 +642,297 @@ BROADCAST=172.16.79.255
     [root]# ipcalc –b 172.16.66.203 255.255.240.0 >> /etc/sysconfig/network-scripts/ifcfg-eth0
     ```
 
-|  Option  |  Description                           |
-|----------|----------------------------------------|
-|  `-b`    | Displays the broadcast address.        |
-|  `-n`    | Displays the network address and mask. |
+|  Option                   |  Description                           |
+| :---:                     | :---:                                  |
+|  `-b` or `--broadcast `   | Displays the broadcast address.        |
+|  `-n` or `--network`      | Display network address                |
+|  `-p` or `--prefix`       | Display network prefix                 |   
+|  `-m` or `--netmask`      | Display netmask for IP                 |
+|  `-s` or`--silent`        | Does not display any error messages    |
+|  `-h` or `--hostname`     | Show hostname determined via DNS       |
 
-`ipcalc` is a simple way to calculate a host's IP information. The various options indicate what information `ipcalc` should display on the standard output. You can specify multiple options. You'll need to select an IP address to operate on. Most operations also require a network mask or CIDR prefix.
+## Content related to the host name
 
-| Option short | Option long | Description                                                                  |
-|---------------|---------------|------------------------------------------------------------------------------|
-| `-b`          | `--broadcast` | Displays the broadcast address of the given IP address and the network mask. |
-| `-h`          | `--hostname`  | Displays the hostname of the IP address given via DNS.                       |
-| `-n`          | `--netmask`   | Calculates the network mask for the given IP address. Assumes that the IP address is part of a complete class A, B, or C network. Many networks do not use default network masks, so an incorrect value will be returned. |
-| `-p`          | `--prefix`    | Indicates the prefix of the mask/IP address.                                 |
-| `-n`          | `--network`   | Indicates the network address of the given IP address and mask.              |
-| `-s`          | `--silent`    | Does not display any error messages.                                           |
+### Set and view the host name
 
-### `ss` command
+systemd is not just an initialization program, it is a large software suite that takes over many system components. `hostnamectl` is a component in systemd used to manage host names.
 
-The `ss` (**socket statistics**) command displays the listening ports on the network.
+The `hostnamectl` command is an alternative to the `hostname` command. It should be noted that the modifications made by the `hostnamectl` command are **permanent**. Its usage is:
 
-Syntax of the `ss` command:
+```
+hostnamectl [OPTIONS...] COMMAND ...
+```
+
+Query the relevant information of the host name:
 
 ```bash
-ss [-tuna]
+[root]# hostnamectl
+   Static hostname: HOME01
+         Icon name: computer-vm
+           Chassis: vm
+        Machine ID: dd5a13887a7b4325a8fa18bb730ff060
+           Boot ID: 87e3adf2b2754ee28fe4497ee956064c
+    Virtualization: vmware
+  Operating System: Rocky Linux 8.10 (Green Obsidian)
+       CPE OS Name: cpe:/o:rocky:rocky:8:GA
+            Kernel: Linux 4.18.0-553.83.1.el8_10.x86_64
+      Architecture: x86-64
+```
+
+Set the hostname of the machine and the location of the host:
+
+```bash
+[root]# hostnamectl set-hostname HOME10
+
+[root]# hostnamectl set-location "Vancouver, Canada"
+
+[root]# hostnamectl
+   Static hostname: HOME10
+         Icon name: computer-vm
+           Chassis: vm
+          Location: Vancouver, Canada
+        Machine ID: dd5a13887a7b4325a8fa18bb730ff060
+           Boot ID: 87e3adf2b2754ee28fe4497ee956064c
+    Virtualization: vmware
+  Operating System: Rocky Linux 8.10 (Green Obsidian)
+       CPE OS Name: cpe:/o:rocky:rocky:8:GA
+            Kernel: Linux 4.18.0-553.83.1.el8_10.x86_64
+      Architecture: x86-64
+```
+
+!!! Tip
+
+    In a local area network, the function of a host name is to identify the uniqueness of a device within the network. Of course, having a unique hostname is not enough, and the IP address corresponding to that hostname must also be unique. 
+    In a wide area network, the FQDN, which consists of host names and various levels of domains, identifies the uniqueness of devices through the hierarchical system of DNS.
+
+### /etc/hostname file
+
+The content of this file is the hostname of the current machine. It is generally not recommended that you directly modify the content of this file.
+
+## Content related to DNS
+
+When the operating system needs to resolve a host name, it will query in the following order:
+
+1. DNS cache
+2. /etc/hosts
+3. DNS servers
+
+### /etc/hosts file
+
+During the startup process of the operating system, the **/etc/hosts** file is used to determine the fully qualified domain name.
+
+The **/etc/hosts** file is a static hostname mapping table, and it will be used first in the following situations:
+
+* DNS servers unavailable
+* Before requesting a query from the DNS servers
+
+The format of this file is as follows:
+
+```bash
+@IP         <hostname>     [alias]    [# comment]
+ ↑              ↑             ↑             ↑    
+required    required       optional     optional
+```
+
+Each line represents a single mapping relationship. The content of this file cannot be empty and must have at least one mapping relationship.
+
+Example of **/etc/hosts** file:
+
+```
+127.0.0.1       localhost localhost.localdomain
+::1             localhost localhost.localdomain
+192.168.1.10    rockstar.rockylinux.lan rockstar
+```
+
+### The DNS resolution process
+
+When a user types www.rockylinux.org in a browser, this happens:
+
+1. **Local resolution stage**
+
+> 1. Search browser cache (DNS cache). If the corresponding mapping record is found, it indicates the end of the query. If not found, the next step will be executed 
+> 2. Search for the local Hosts file (/etc/hosts). If there is a corresponding mapping record, the query ends. Otherwise, proceed to the next step
+
+2. **Recursive query stage**
+
+> 1. Initiate a query request to the DNS server configured in /etc/resolv.conf (such as 8.8.8.8). The DNS server that users configure themselves in the operating system is also known as Local DNS server(s). The Local DNS server(s) here refer to public DNS provided for public use, such as 8.8.8.8 and 114.114.114. If the query request hits the cache record of the Local DNS server, the request ends and returns the result; otherwise, it enters the iterative query process
+> 2. Local DNS server initiates a request to the Root Name server and obtains the server address for the .org domain. 
+> 3. The top-level domain (TLD) server will query the address of rockylinux.org from the .org server
+> 4. The Name Server ‌finally gets the exact IP address of www.rockylinux.org from the rockylinux.org server
+
+3. **Return the parsing results to the user and cache the results locally**
+
+> The Local DNS server returns the obtained IP address to the client and caches the mapping records locally (the caching time is determined based on the TTL value). The user's browser also cached this mapping record.
+
+### /etc/resolv.conf file
+
+The **/etc/resolv.conf** file contains the DNS name resolution configuration.
+
+```bash
+#Generated by NetworkManager
+domain mondomaine.lan
+search mondomaine.lan
+nameserver 192.168.1.254
+```
+
+In Rocky Linux 8/9/10, you should not directly edit this file, but configure the name server through the relevant commands of the `NetworkManager` network component.
+
+```bash
+[root]# nmcli connection modify ens160 ipv4.dns "114.114.114.114,8.8.8.8"
+
+[root]# systemctl restart NetworkManager.service
+
+[root]# nmcli connection show ens160
+...
+ipv4.dns:                               114.114.114.114,8.8.8.8
+...
+
+[root]# cat /etc/resolv.conf
+# Generated by NetworkManager
+nameserver 114.114.114.114
+nameserver 8.8.8.8
+```
+
+### Related commands
+
+The three commands, `host`, `nslookup`, and `dig`, are all used to view the information of the parsing results, among which `dig` is the recommended command.
+
+```bash
+[root]# host www.rockylinux.org
+www.rockylinux.org is an alias for rockylinux.org.
+rockylinux.org has address 76.223.126.88
+rockylinux.org mail is handled by 5 alt2.aspmx.l.google.com.
+rockylinux.org mail is handled by 10 alt4.aspmx.l.google.com.
+rockylinux.org mail is handled by 1 aspmx.l.google.com.
+rockylinux.org mail is handled by 5 alt1.aspmx.l.google.com.
+rockylinux.org mail is handled by 10 alt3.aspmx.l.google.com.
+
+[root]# nslookup docs.rockylinux.org
+Server:         114.114.114.114
+Address:        114.114.114.114#53
+
+Non-authoritative answer:
+docs.rockylinux.org     canonical name = f5612ab73a7647d2.vercel-dns-016.com.
+Name:   f5612ab73a7647d2.vercel-dns-016.com
+Address: 216.150.16.193
+Name:   f5612ab73a7647d2.vercel-dns-016.com
+Address: 216.150.1.193
+
+[root]# dig wiki.rockylinux.org
+
+; <<>> DiG 9.11.36-RedHat-9.11.36-16.el8_10.6 <<>> wiki.rockylinux.org
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 43671
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;wiki.rockylinux.org.           IN      A
+
+;; ANSWER SECTION:
+wiki.rockylinux.org.    305     IN      CNAME   rockylinux.map.fastly.net.
+rockylinux.map.fastly.net. 305  IN      A       151.101.42.132
+
+;; Query time: 98 msec
+;; SERVER: 114.114.114.114#53(114.114.114.114)
+;; WHEN: Sun Nov 23 17:46:13 CST 2025
+;; MSG SIZE  rcvd: 92
+```
+
+### DNS resolution record type
+
+* A - Resolve the domain name to the specified IPv4 address
+* AAAA - Resolve the domain name to the specified IPv6 address
+* NS - Specify a specific DNS server to manage the resolution configuration of domain names
+* CNAME - Resolve a domain name to another domain name.
+* PTR - Map IP addresses to domain names, and verify whether an IP address corresponds to a specific domain name through PTR records. It is mainly used for reverse resolution of mail servers
+* MX - Specify the e-mail server corresponding to the domain name. This is necessary when configuring e-mail related services
+* SRV - It is used to indicate that a server is using a certain service.
+* TXT - It is used to identify and describe domain names. TXT records are commonly used for scenarios such as domain name ownership verification, digital certificates, SPF (Sender Policy Framework) records, and domain name recovery.
+
+## /etc/nsswitch.conf file
+
+This file defines the services and search order used by the operating system when searching for various information (e.g., `/etc/passwd`, `/etc/group`, `/etc/hosts`). This file uses a mechanism called NSS (Name Service Switch) to accomplish all of this.
+
+```bash
+[root]# grep -v ^# /etc/nsswitch.conf
+...
+hosts:      files dns myhostname
+...
+```
+
+The basic syntax for each line is:
+
+```
+<Database Name>: <Method1> [Action1] <Methond2> [Action2] ...
+    ↑               ↑          ↑
+required        required    optional
+```
+
+When resolving the host name, first use the local **/etc/hosts** file for querying, and then use the Local DNS server. `myhostname` is a special method that primarily provides local resolution for the host name of the operating system itself.
+
+In the vast majority of cases, there is no need to modify the content of this file.
+
+### `getent` command
+
+The `genent` command is released from the glibc-common package, so you may need to execute the following command:
+
+```bash
+[root]# dnf -y install glibc-common
+```
+
+The `getent` (get entry) command gets an NSSwitch entry (`hosts` + `dns`)
+
+Syntax of the `getent` command:
+
+```
+getent [OPTION...] database [key ...]
 ```
 
 Example:
 
 ```bash
-[root]# ss –tuna
-tcp   LISTEN   0   128   *:22   *:*
+[root]# getent hosts rockylinux.org
+76.223.126.88   rockylinux.org
 ```
 
-The commands `ss` and `netstat` (to follow) will be very important for the rest of your Linux life.
+Solely querying a Local DNS server may yield incorrect resolution results by failing to account for **/etc/hosts** file entries, though this is uncommon in modern systems. 
 
-When implementing network services, it is common to check whether the service is listening on the expected ports using one of these two commands.
+For proper **/etc/hosts** file resolution, query the NSSwitch name service which handles DNS resolution.
 
-### `netstat` command
+## Q & A
 
-!!! Warning
+**Q: Should I use traditional methods or modern NetworkManager to manage Rocky Linux 8.x's network card configuration files?**
 
-    The `netstat` command is now deprecated and is no longer installed by default on Rocky Linux. You may still find some Linux versions that have it installed, but it is best to switch to `ss` for everything you would have used `netstat` for.
+In this version, NetworkManager is compatible with traditional network card configuration files, but the author recommends that you use the relevant commands of NetworkManager to manage network card configuration files. This way, you can seamlessly manage networks for subsequent versions 9.x or 10.x.
 
-The `netstat` command (**network statistics**) displays the listening ports on the network.
+**Q: Question: In the network interface card configuration file managed by NetworkManager, which attributes (keys) can be configured?**
 
-Syntax of the `netstat` command:
+Please refer to the contents of `man 5 nm-settings` and `man 5 NetworkManager.conf`.
 
-```bash
-netstat -tapn
-```
+**Q: How to check the communication status of the network step by step?**
 
-Example:
+You can use the `mtr` or `ping` command to gradually check the communication status of the network. The objects of inspection are:
 
-```bash
-[root]# netstat –tapn
-tcp  0  0  0.0.0.0:22  0.0.0.0:*  LISTEN 2161/sshd
-```
+1. TCP/IP software layer. For example `mtr -c 4 localhost` or `ping -c 4 localhost`. 
+2. NIC (Network Interface Card). For example `mtr 192.168.100.20` or `ping 192.168.100.20`
+3. Gateway. For example `mtr 192.168.100.1` or `ping 192.168.100.1`
+4. Remote servers for wide area networks. For example `mtr 151.101.42.132` or `ping 151.101.42.132`
+5. Local DNS server. For example `mtr 1.1.1.1` or `ping 1.1.1.1`
 
-### IP or MAC address conflicts
+!!! tip
+
+    During testing, first verify the correct connections in the network topology diagram and inspect whether the network cables and fiber optic cables are damaged.
+
+!!! note "terminology explanation"
+
+    Network topology diagram：A chart that graphically presents the physical or logical connection relationships between network devices
+
+![Network architecture with a gateway](images/network-002.png)
+
+![Method of troubleshooting or network validation](images/network-004.png)
+
+**Q: There is a conflict between IP addresses or MAC addresses in the current network. How should I solve it?**
 
 A misconfiguration can cause multiple interfaces to use the same IP address. This can happen when a network has multiple DHCP servers, or the same IP address is manually assigned numerous times.
 
@@ -919,6 +940,12 @@ When the network is malfunctioning, and when an IP address conflict could be the
 
 ```bash
 dnf install arp-scan
+```
+
+Usage is
+
+```
+arp-scan [options] [hosts...]
 ```
 
 Example:
@@ -937,78 +964,27 @@ $ arp-scan -I eth0 -l
 172.16.1.232  88:51:fb:5e:fa:b3       (Unknown) (DUP: 2)
 ```
 
+Common options for the `arp-scan` command:
+
+|  Option                   |  Description                           |
+| :---:                     | :---:                                  |
+| `-I interface`            | Specify network interface or network connection |
+| `-r count`                | Set the scanning frequency for each host, with a default value of 2 |
+| `-l`                      | Generate an address list based on the specified network interface |
+| `-D`                      | Display RTT (round-trip time) of data packets |
+| `-g`                      | Don't display duplicate packets |
+| `-t timeout`              | Set the timeout time (in milliseconds) for each host, with a default value of 500 |
+
+
 !!! Tip
 
     As the above example shows, MAC address conflicts are possible! Virtualization technologies and the copying of virtual machines cause these problems.
 
-## Hot configuration
+## This document involves multiple files
 
-The `ip` command can hot add an IP address to an interface.
-
-```bash
-ip addr add @IP dev DEVICE
-```
-
-Example:
-
-```bash
-[root]# ip addr add 192.168.2.10 dev eth1
-```
-
-The `ip` command allows for the activation or deactivation of an interface:
-
-```bash
-ip link set DEVICE up
-ip link set DEVICE down
-```
-
-Example:
-
-```bash
-[root]# ip link set eth1 up
-[root]# ip link set eth1 down
-```
-
-The `ip` command adds a route:
-
-```bash
-ip route add [default|netaddr] via @IP [dev device]
-```
-
-Example:
-
-```bash
-[root]# ip route add default via 192.168.1.254
-[root]# ip route add 192.168.100.0/24 via 192.168.2.254 dev eth1
-```
-
-## In summary
-
-The files used in this chapter are:
-
-![Synthesis of the files implemented in the network part](images/network-003.png)
-
-A complete interface configuration could be this (file `/etc/sysconfig/network-scripts/ifcfg-eth0`):
-
-```bash
- DEVICE=eth0
- ONBOOT=yes
- BOOTPROTO=none
- HWADDR=00:0c:29:96:32:e3
- IPADDR=192.168.1.10
- NETMASK=255.255.255.0
- GATEWAY=192.168.1.254
- DNS1=172.16.1.1
- DNS2=172.16.1.2
- DOMAIN=rockylinux.lan
-```
-
-The troubleshooting method should go from closest to farthest:
-
-1. ping localhost (software test)
-2. ping IP-address (hardware test)
-3. ping gateway (connectivity test)
-4. ping remote server (routing test)
-5. DNS query (dig or ping)
-
-![Method of troubleshooting or network validation](images/network-004.png)
+* **/etc/hosts**
+* **/etc/nsswitch.conf**
+* **/etc/hostname**
+* **/etc/resolv.conf**
+* Network card configuration files in the **/etc/sysconfig/network-scripts/** directory
+* Network card configuration files in the **/etc/NetworkManager/system-connections/** directory
