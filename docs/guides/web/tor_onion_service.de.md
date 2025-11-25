@@ -61,11 +61,11 @@ HiddenServicePort 80 127.0.0.1:80
 
 !!! warning
 
-    If you plan to use a directory for your onion service signing keys outside of `/var/lib/tor/`, you will need to make sure the permissions are `0700` and the owner is `toranon:toranon`.
+    Wenn Sie ein Verzeichnis außerhalb von `/var/lib/tor/` für Ihre Onion-Service-Signaturschlüssel verwenden möchten, müssen Sie sicherstellen, dass die Berechtigungen `0700` lauten und der Eigentümer `toranon:toranon` ist.
 
 ## Web-Server — Konfiguration
 
-You will also need a web server on our machine to service clients to your onion service. Any web server (Caddy, Apache, or Nginx) is usable. The author prefers Caddy. Der Einfachheit halber installieren wir Caddy:
+Sie benötigen außerdem einen Webserver auf Ihrem Rechner, um Clients für Ihren Onion-Dienst zu bedienen. Any web server (Caddy, Apache, or Nginx) is usable. The author prefers Caddy. Der Einfachheit halber installieren wir Caddy:
 
 ```bash
 dnf -y install caddy
