@@ -57,7 +57,7 @@ HiddenServicePort 80 127.0.0.1:80
 ### Genauere Betrachtung
 
 - Das Verzeichnis `HiddenServiceDir` enthält den Hostnamen und die kryptografischen Schlüssel Ihres Onion-Dienstes. Sie speichern diese Schlüssel unter `/var/lib/tor/onion-site/`
-- Der `HiddenServicePort` ist die Portweiterleitung von Ihrem lokalen Server zum Onion-Dienst. You are forwarding 127.0.0.1:80 to port 80 on our Tor-facing service
+- Der `HiddenServicePort` ist die Portweiterleitung von Ihrem lokalen Server zum Onion-Dienst. Sie leiten 127.0.0.1:80 an Port 80 unseres Tor-basierten Dienstes weiter
 
 !!! warning
 
@@ -65,13 +65,13 @@ HiddenServicePort 80 127.0.0.1:80
 
 ## Web-Server — Konfiguration
 
-Sie benötigen außerdem einen Webserver auf Ihrem Rechner, um Clients für Ihren Onion-Dienst zu bedienen. Any web server (Caddy, Apache, or Nginx) is usable. The author prefers Caddy. Der Einfachheit halber installieren wir Caddy:
+Sie benötigen außerdem einen Webserver auf Ihrem Rechner, um Clients für Ihren Onion-Dienst zu bedienen. Jeder Webserver (Caddy, Apache oder Nginx) ist verwendbar. Der Autor bevorzugt Caddy. Der Einfachheit halber installieren wir Caddy:
 
 ```bash
 dnf -y install caddy
 ```
 
-Next, you will insert the following to `/etc/caddy/Caddyfile`:
+Als Nächstes fügen Sie Folgendes in die Datei `/etc/caddy/Caddyfile` ein:
 
 ```bash
 http:// {
@@ -82,7 +82,7 @@ http:// {
 
 ## Testen und Hochfahren
 
-Once you have set your Tor relay configuration, the next step is to turn up the Tor and Caddy daemons:
+Sobald Sie Ihre Tor-Relay-Konfiguration eingerichtet haben, besteht der nächste Schritt darin, die Tor- und Caddy-Daemons zu aktivieren:
 
 ```bash
 systemctl enable --now tor caddy
