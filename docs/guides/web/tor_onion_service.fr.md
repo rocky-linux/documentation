@@ -65,13 +65,13 @@ HiddenServicePort 80 127.0.0.1:80
 
 ## Configuration de serveur web
 
-You will also need a web server on our machine to service clients to your onion service. Any web server (Caddy, Apache, or Nginx) is usable. L'auteur favorise `Caddy`. Par souci de simplicité, installons Caddy :
+Vous aurez également besoin d'un serveur Web sur notre machine pour assurer la liaison aux clients de votre service Onion. N'importe quel serveur Web (Caddy, Apache ou Nginx) est utilisable. L'auteur favorise `Caddy`. Par souci de simplicité, installons Caddy :
 
 ```bash
 dnf -y install caddy
 ```
 
-Next, you will insert the following to `/etc/caddy/Caddyfile`:
+Ensuite, vous insérerez ce qui suit dans le fichier `/etc/caddy/Caddyfile` :
 
 ```bash
 http:// {
@@ -82,13 +82,13 @@ http:// {
 
 ## Test et Lancement du Service
 
-Once you have set your Tor relay configuration, the next step is to turn up the Tor and Caddy daemons:
+Une fois votre configuration de relais Tor définie, l'étape suivante consiste à activer les daemons Tor et Caddy :
 
 ```bash
 systemctl enable --now tor caddy
 ```
 
-You can get your onion service's hostname with this command:
+Vous pouvez obtenir le nom d'hôte de votre service Onion grâce à cette commande :
 
 ```bash
 cat /var/lib/tor/onion-site/hostname
