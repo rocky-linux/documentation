@@ -13,21 +13,21 @@ tags:
 
 ## Einleitung
 
-[Tor](https://www.torproject.org/) is an anonymity service and software that routes traffic by way of three volunteer-run servers called relays. The three-hop design is to ensure privacy by resisting surveillance attempts.
+[Tor](https://www.torproject.org/) ist ein Anonymisierungsdienst und eine Software, die den Datenverkehr über drei von Freiwilligen betriebene Server, sogenannte Relays, leitet. Das Three-Hop-Design soll die Privatsphäre gewährleisten, indem es Überwachungsversuchen widersteht.
 
-One feature of Tor is that you can run hidden, Tor-exclusive websites called [onion services](https://community.torproject.org/onion-services/). All traffic to an onion service is therefore private and encrypted.
+Eine Besonderheit von Tor ist, dass man versteckte, Tor-exklusive Websites betreiben kann, die als [Onion-Dienste](https://community.torproject.org/onion-services/) bezeichnet werden. Der gesamte Datenverkehr zu einem Onion-Dienst ist daher privat und verschlüsselt.
 
 ## Voraussetzungen
 
-The following are minimum requirements for using this procedure:
+Folgende Mindestvoraussetzungen gelten für die Anwendung dieses Verfahrens:
 
-- The ability to run commands as the root user or use `sudo` to elevate privileges
-- Familiarity with a command-line editor. The author is using `vi` or `vim` here, but substitute in your favorite editor
-- A web server running on localhost, or another TCP/IP port
+- Die Möglichkeit, Befehle als Root-Benutzer auszuführen oder mit `sudo` die Berechtigungen zu erhöhen
+- Erfahrung im Umgang mit einem Kommandozeilen-Editor. Der Autor verwendet hier `vi` oder `vim`, Sie können aber Ihren bevorzugten Editor verwenden
+- Ein Webserver, der auf localhost oder einem anderen TCP/IP-Port läuft
 
 ## Tor-Installation
 
-To install Tor, you need to first install the EPEL (Extra Packages for Enterprise Linux) and run updates:
+Zur Installation von Tor müssen Sie zuerst EPEL (Extra Packages for Enterprise Linux) installieren und Updates ausführen:
 
 ```bash
 dnf -y install epel-release && dnf -y update
@@ -41,13 +41,13 @@ dnf -y install tor
 
 ## Tor-Konfiguration
 
-With the packages installed, you need to configure Tor. The author uses `vi` for this, but if you prefer `nano` or something else, go ahead and substitute that in:
+Nach der Installation der Pakete müssen Sie Tor konfigurieren. Der Autor verwendet dafür `vim`, aber wenn Sie `nano` oder etwas anderes bevorzugen, können Sie das gerne entsprechend anpassen:
 
 ```bash
 vi /etc/tor/torrc
 ```
 
-The default `torrc` file is pretty descriptive, but can get long if you just want an onion service. A minimum onion service configuration is similar to this:
+Die standardmäßige `torrc`-Datei ist recht aussagekräftig, kann aber sehr lang werden, wenn man nur einen Onion-Dienst benötigt. Eine minimale Onion-Service-Konfiguration sieht in etwa so aus:
 
 ```bash
 HiddenServiceDir /var/lib/tor/onion-site/
@@ -56,8 +56,8 @@ HiddenServicePort 80 127.0.0.1:80
 
 ### Genauere Betrachtung
 
-- The "HiddenServiceDir" is the location of your onion service's hostname and cryptographic keys. You are storing these keys at `/var/lib/tor/onion-site/`
-- The "HiddenServicePort" is the port forwarding from your local server to the onion service. You are forwarding 127.0.0.1:80 to port 80 on our Tor-facing service
+- Das Verzeichnis `HiddenServiceDir` enthält den Hostnamen und die kryptografischen Schlüssel Ihres Onion-Dienstes. Sie speichern diese Schlüssel unter `/var/lib/tor/onion-site/`
+- Der `HiddenServicePort` ist die Portweiterleitung von Ihrem lokalen Server zum Onion-Dienst. You are forwarding 127.0.0.1:80 to port 80 on our Tor-facing service
 
 !!! warning
 
