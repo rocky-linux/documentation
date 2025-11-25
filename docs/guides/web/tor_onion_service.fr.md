@@ -13,9 +13,9 @@ tags:
 
 ## Introduction
 
-[Tor](https://www.torproject.org/) is an anonymity service and software that routes traffic by way of three volunteer-run servers called relays. The three-hop design is to ensure privacy by resisting surveillance attempts.
+[Tor](https://www.torproject.org/) est un service et un logiciel d'anonymat qui achemine le trafic via trois serveurs gérés par des bénévoles appelés relais. La conception à trois sauts `three-hop` vise à assurer la confidentialité en résistant aux tentatives de surveillance.
 
-One feature of Tor is that you can run hidden, Tor-exclusive websites called [onion services](https://community.torproject.org/onion-services/). All traffic to an onion service is therefore private and encrypted.
+Une des caractéristiques de Tor est que vous pouvez exécuter des sites Web cachés et exclusifs à Tor appelés [services onion](https://community.torproject.org/onion-services/). Tout le trafic vers un service Onion est donc privé et crypté.
 
 ## Prérequis
 
