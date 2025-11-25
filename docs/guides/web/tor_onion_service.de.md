@@ -88,13 +88,13 @@ Sobald Sie Ihre Tor-Relay-Konfiguration eingerichtet haben, besteht der nächste
 systemctl enable --now tor caddy
 ```
 
-You can get your onion service's hostname with this command:
+Den Hostnamen Ihres Onion-Dienstes erhalten Sie mit diesem Befehl:
 
 ```bash
 cat /var/lib/tor/onion-site/hostname
 ```
 
-Within a few minutes, your onion service will propagate via the Tor network and you can view your new onion service in the Tor browser:
+Innerhalb weniger Minuten wird Ihr Onion-Dienst über das Tor-Netzwerk verbreitet und Sie können Ihren neuen Onion-Dienst im Tor-Browser anzeigen:
 
 ![Tor Browser showing our Onion Service](../images/onion_service.png)
 
@@ -102,4 +102,4 @@ Within a few minutes, your onion service will propagate via the Tor network and 
 
 Onion services are an invaluable tool if you are hosting a website privately or need to bypass your ISP's Carrier Grade NAT using only open source software.
 
-While onion services are not as fast as hosting a website directly (understandable due to Tor's privacy-first design), it is way more secure and private than the public internet.
+Auch wenn Onion-Dienste nicht so schnell sind wie das direkte Hosten einer Website (was aufgrund des datenschutzorientierten Designs von Tor verständlich ist), sind sie wesentlich sicherer und privater als das öffentliche Internet.
