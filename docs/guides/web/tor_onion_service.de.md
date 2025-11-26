@@ -1,5 +1,5 @@
 ---
-title: Tor Onion Service
+title: Tor Onion Dienst
 author: Neel Chauhan
 contributors: Ganna Zhrynova
 tested_with: 9.3
@@ -100,6 +100,6 @@ Innerhalb weniger Minuten wird Ihr Onion-Dienst über das Tor-Netzwerk verbreite
 
 ## Zusammenfassung
 
-Onion services are an invaluable tool if you are hosting a website privately or need to bypass your ISP's Carrier Grade NAT using only open source software.
+Onion-Dienste sind ein unschätzbares Werkzeug, wenn Sie eine Website privat hosten oder die Carrier-Grade-NAT-Sperre Ihres Internetanbieters ausschließlich mit Open-Source-Software umgehen müssen.
 
 Auch wenn Onion-Dienste nicht so schnell sind wie das direkte Hosten einer Website (was aufgrund des datenschutzorientierten Designs von Tor verständlich ist), sind sie wesentlich sicherer und privater als das öffentliche Internet.
