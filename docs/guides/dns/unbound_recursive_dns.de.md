@@ -96,6 +96,6 @@ google.com mail is handled by 10 smtp.google.com.
 
 ## Zusammenfassung
 
-Die meisten Leute verwenden den DNS-Resolver ihres Heimrouters oder öffentliche DNS-Resolver, die von ISPs und Technologieunternehmen betrieben werden. In Heimlabors und großen Netzwerken ist es üblich, einen netzwerkweiten Resolver auszuführen, um Latenz und Netzwerklast zu reduzieren, indem DNS-Anfragen für häufig angeforderte Websites wie Google zwischengespeichert werden. Ein netzwerkweiter Resolver ermöglicht auch Intranetdienste wie SharePoint und Active Directory.
+Die meisten Leute verwenden den DNS-Resolver ihres Heimrouters oder öffentliche DNS-Resolver, die von ISPs und Technologieunternehmen betrieben werden. In Heim-Labors und großen Netzwerken ist es üblich, einen Netzwerk-weiten Resolver zu betreiben, um die Latenz und die Netzwerklast zu reduzieren, indem DNS-Anfragen für häufig angeforderte Websites wie Google zwischengespeichert werden. Ein netzwerkweiter Resolver ermöglicht auch Intranetdienste wie SharePoint und Active Directory.
 
 Unbound ist eines von vielen Open-Source-Tools, die die DNS-Auflösung ermöglichen. Herzlichen Glückwunsch, Sie haben Ihren eigenen DNS-Resolver!

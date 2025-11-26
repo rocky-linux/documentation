@@ -8,7 +8,13 @@ tags:
   - network
 ---
 
-# Introduzione
+!!! warning Avviso “Temporaneamente in Sospenso”
+
+```
+`glances` è attualmente assente dall'EPEL. Probabilmente verrà compilato. Il team Docs continuerà a testarne la disponibilità nell'EPEL non appena possibile. Per ora, l'unica opzione è compilare `glances` dal sorgente, ma le istruzioni per farlo non sono disponibili qui.
+```
+
+## Introduzione
 
 Questa guida vi mostrerà come impostare un **monitoraggio della rete o delle risorse** decente, con il minimo sforzo.
 Dal punto di vista dell'autore, Glances è simile a `vim` nel mondo degli strumenti di monitoraggio.

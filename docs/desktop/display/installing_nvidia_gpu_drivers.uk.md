@@ -56,7 +56,7 @@ sudo dnf install kernel-devel-matched kernel-headers -y
 Додайте офіційний репозиторій Nvidia за допомогою такої команди:
 
 ```bash
-sudo dnf config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/rhel10/$(uname -i)/cuda-rhel10.repo
+sudo dnf config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/rhel10/$(uname -m)/cuda-rhel10.repo
 ```
 
 Далі очистіть кеш репозиторію DNF:

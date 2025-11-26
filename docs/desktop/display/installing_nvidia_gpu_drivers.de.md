@@ -6,21 +6,15 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 ## Einleitung
 
-NVIDIA^®^ ist einer der beliebtesten GPU-Hersteller. Sie können NVIDIA-GPU-Treiber auf verschiedene Arten installieren. In diesem Handbuch wird das offizielle Repository von NVIDIA zur Installation der Treiber verwendet. Daher wird hier häufig auf [NVIDIA's Installationshandbuch](https://docs.nvidia.com/cuda/pdf/CUDA_Installation_Guide_Linux.pdf) verwiesen.
-
-!!! note "Anmerkung"
-
-```
-Der Link für Vorinstallationsaktionen im offiziellen NVIDIA-Handbuch ist defekt. Um den NVIDIA-Treiber zu installieren, müssen Sie die erforderlichen Dienstprogramme und Abhängigkeiten aus dem offiziellen Repository installieren.
-```
+NVIDIA^®^ ist einer der beliebtesten GPU-Hersteller. Sie können NVIDIA-GPU-Treiber auf verschiedene Arten installieren. In diesem Handbuch wird das offizielle Repository von NVIDIA zur Installation der Treiber verwendet. Daher wird hier häufig auf das [NVIDIA-Treiberinstallationshandbuch](https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/index.html) verwiesen.
 
 Zu den weiteren Möglichkeiten zum Installieren von NVIDIA-Treibern zählen:
 
-- NVIDIA's `.run` installer
-- RPMFusion-Repository eines Drittanbieters
-- Third-party ELRepo-Treiber
+- NVIDIAs `.run`-Installationsprogramm
+- RPM Fusion-Repository eines Drittanbieters
+- ELRepo-Treiber eines Drittanbieters
 
-In den meisten Fällen ist es am besten, NVIDIA-Treiber von der offiziellen Quelle zu installieren. RPMFusion und ELRepo stehen für diejenigen zur Verfügung, die ein Community-basiertes Repository bevorzugen. Für ältere Hardware funktioniert RPMFusion am besten. Es wird empfohlen, die Verwendung des `.run`-Installationsprogramms zu vermeiden. Die Verwendung des „.run“-Installationsprogramms ist zwar praktisch, ist aber dafür berüchtigt, Systemdateien zu überschreiben und Inkompatibilitätsprobleme zu verursachen.
+In den meisten Fällen ist es am besten, NVIDIA-Treiber von der offiziellen Quelle zu installieren. RPM Fusion und ELRepo stehen für diejenigen zur Verfügung, die ein Community-basiertes Repository bevorzugen. Für ältere Hardware funktioniert RPM Fusion am besten. Es wird empfohlen, den `.run`-Installer nicht zu verwenden. Obwohl die Verwendung des `.run`-Installationsprogramms praktisch ist, ist es dafür bekannt, dass es Systemdateien überschreibt und zu Inkompatibilitätsproblemen führt.
 
 ## Voraussetzungen
 
@@ -37,6 +31,12 @@ Aktivieren Sie das EPEL-Repository (Extra Packages for Enterprise Linux):
 sudo dnf install epel-release -y
 ```
 
+Aktivieren Sie das CodeReady Builder (CRB)-Repository:
+
+```bash
+sudo dnf config-manager --enable crb
+```
+
 Durch die Installation von Entwicklungstools werden die erforderlichen Build-Abhängigkeiten sichergestellt:
 
 ```bash
@@ -46,13 +46,7 @@ sudo dnf groupinstall "Development Tools" -y
 Das Paket `kernel-devel` bietet die erforderlichen Header und Tools zum Erstellen von Kernelmodulen:
 
 ```bash
-sudo dnf install kernel-devel -y
-```
-
-Dynamic Kernel Module Support (DKMS) ist ein Programm, mit dem Kernelmodule automatisch neu erstellt werden:
-
-```bash
-sudo dnf install dkms -y
+sudo dnf install kernel-devel-matched kernel-headers -y
 ```
 
 ## Installation der NVIDIA-Treiber
@@ -61,31 +55,31 @@ Nach der Installation der notwendigen Voraussetzungen ist es an der Zeit, die NV
 
 Fügen Sie das offizielle NVIDIA-Repository mit dem folgenden Befehl hinzu:
 
-!!! note "Anmerkung"
+```bash
+sudo dnf config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/rhel10/$(uname -m)/cuda-rhel10.repo
+```
 
-```
-Wenn Sie Rocky 8 verwenden, ersetzen Sie `rhel9` im Dateipfad durch `rhel8`.
-```
+Als nächstes bereinigen Sie den DNF-Repository-Cache:
 
 ```bash
-sudo dnf config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/rhel9/$(uname -i)/cuda-rhel9.repo
+sudo dnf clean expire-cache
 ```
 
-Als nächstes installieren Sie die Pakete, die zum Erstellen und Installieren von Kernelmodulen erforderlich sind:
+Installieren Sie abschließend den neuesten NVIDIA-Treiber für Ihr System. Führen Sie für offene Kernelmodule Folgendes aus:
 
 ```bash
-sudo dnf install kernel-headers-$(uname -r) kernel-devel-$(uname -r) tar bzip2 make automake gcc gcc-c++ pciutils elfutils-libelf-devel libglvnd-opengl libglvnd-glx libglvnd-devel acpid pkgconf dkms -y
+sudo dnf install nvidia-open -y
 ```
 
-Installieren Sie das neueste NVIDIA-Treibermodul für Ihr System:
+Führen Sie für offene Kernelmodule Folgendes aus:
 
 ```bash
-sudo dnf module install nvidia-driver:latest-dkms -y
+sudo dnf install cuda-drivers -y
 ```
 
 ## `Nouveau` deaktivieren
 
-`Nouveau` ist ein Open-Source-NVIDIA-Treiber, der im Vergleich zu den proprietären Treibern von NVIDIA nur begrenzte Funktionalität bietet. Um Treiberkonflikte zu vermeiden, deaktivieren Sie es am besten:
+`Nouveau` ist ein Open-Source-NVIDIA-Treiber, der im Vergleich zu den proprietären Treibern von NVIDIA nur begrenzte Funktionalität bietet. Es empfiehlt sich, diese Funktion zu deaktivieren, um Treiberkonflikte zu vermeiden:
 
 ```bash
 sudo grubby --args="nouveau.modeset=0 rd.driver.blacklist=nouveau" --update-kernel=ALL

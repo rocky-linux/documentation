@@ -95,6 +95,6 @@ google.com mail is handled by 10 smtp.google.com.
 %
 ## Conclusion
 
-Most people use their home router's DNS resolver or public DNS resolvers run by ISPs and tech companies. In-home labs and large networks, it is the norm to run a network-wide resolver to reduce latency and network load by caching DNS requests for commonly requested websites such as Google. A network-wide resolver also enables intranet services such as SharePoint and Active Directory.
+Most people use their home router's DNS resolver or public DNS resolvers run by ISPs and tech companies. In home labs and large networks, it is the norm to run a network-wide resolver to reduce latency and network load by caching DNS requests for commonly requested websites such as Google. A network-wide resolver also enables intranet services such as SharePoint and Active Directory.
 
 Unbound is one of many open-source tools that make resolving DNS possible. Congratulations, you have your very own DNS resolver!
