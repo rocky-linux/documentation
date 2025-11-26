@@ -19,9 +19,9 @@ Volete un IDE che vi aiuti a scrivere i playbook di Ansible? Puoi ottenerlo! Vol
 
 Grazie all'uso dei ==**L**anguage **S**erver **P**rotocols== e dei ==linters==, è possibile configurare un ambiente personalizzato per l'utente. La cosa migliore è che una volta configurato l'ambiente, è possibile aggiornarlo rapidamente quando sono disponibili nuove modifiche attraverso l'uso di [lazy.nvim](https://github.com/folke/lazy.nvim) e [Mason](https://github.com/williamboman/mason.nvim), entrambi trattati qui.
 
-Poiché Neovim è un fork di [Vim](https://www.vim.org/), l'interfaccia generale sarà familiare agli utenti di *vim*. Se non siete utenti di *vim*, con questo libro imparerete rapidamente la sintassi dei comandi. Le informazioni trattate sono molte, ma è facile seguirle e, una volta completato il contenuto, saprete abbastanza per costruire il vostro IDE per *le vostre* esigenze con questi strumenti.
+Poiché Neovim è un fork di [Vim](https://www.vim.org/), l'interfaccia generale sarà familiare agli utenti di _vim_. Se non siete utenti di _vim_, con questo libro imparerete rapidamente la sintassi dei comandi. Le informazioni trattate sono molte, ma è facile seguirle e, una volta completato il contenuto, saprete abbastanza per costruire il vostro IDE per _le vostre_ esigenze con questi strumenti.
 
-L'intento dell'autore era quello di **non** suddividere il libro in capitoli. Il motivo è che ciò implica un ordine da seguire che, nella maggior parte dei casi, non è necessario. *Si* consiglia di iniziare da questa pagina, leggere e seguire le sezioni "Software aggiuntivo", "Installare Neovim" e "Installare NvChad", ma da lì si può scegliere come procedere.
+L'intento dell'autore era quello di **non** suddividere il libro in capitoli. Il motivo è che ciò implica un ordine da seguire che, nella maggior parte dei casi, non è necessario. _Si_ consiglia di iniziare da questa pagina, leggere e seguire le sezioni "Software aggiuntivo", "Installare Neovim" e "Installare NvChad", ma da lì si può scegliere come procedere.
 
 ## :simple-neovim: Utilizzo di Neovim come IDE
 
@@ -37,12 +37,12 @@ Come gli sviluppatori di NvChad tengono a precisare, il progetto vuole essere so
 
 ### Caratteristiche Principali
 
-* :material-run-fast: **Progettato per essere veloce.** Dalla scelta del linguaggio di programmazione alle tecniche di caricamento dei componenti, tutto è stato pensato per ridurre al minimo i tempi di esecuzione.
-* :material-invert-colors: **Interfaccia attraente.** Nonostante sia un'applicazione *cli*, l'interfaccia ha un aspetto moderno e bello dal punto di vista grafico, inoltre tutti i componenti si adattano perfettamente all'interfaccia utente.
-* :material-file-settings-outline: **Estremamente configurabile.** Grazie alla modularità derivata dall'applicazione di base (NeoVim), l'editor può essere adattato perfettamente alle proprie esigenze. Tuttavia, ricordate che quando parliamo di personalizzazione, ci riferiamo alla funzionalità e non all'aspetto dell'interfaccia.
-* :material-update: **Meccanismo di aggiornamento automatico.** L'editor è dotato di un meccanismo (attraverso l'uso di *git*) che consente di effettuare aggiornamenti con un semplice comando `:NvChadUpdate`.
-* :material-language-lua: **Powered by Lua**. La configurazione di NvChad è scritta interamente in *lua*, il che le permette di integrarsi perfettamente nella configurazione di Neovim, sfruttando tutte le potenzialità dell'editor su cui si basa.
-* :material-palette-outline: **Numerosi temi integrati.** La configurazione comprende già un gran numero di temi da utilizzare, ricordando sempre che stiamo parlando di un'applicazione *cli*, i temi possono essere selezionati con il tasto `<leader> + th`.
+- :material-run-fast: **Progettato per essere veloce.** Dalla scelta del linguaggio di programmazione alle tecniche di caricamento dei componenti, tutto è stato pensato per ridurre al minimo i tempi di esecuzione.
+- :material-invert-colors: **Interfaccia attraente.** Nonostante sia un'applicazione _cli_, l'interfaccia ha un aspetto moderno e bello dal punto di vista grafico, inoltre tutti i componenti si adattano perfettamente all'interfaccia utente.
+- :material-file-settings-outline: **Estremamente configurabile.** Grazie alla modularità derivata dall'applicazione di base (NeoVim), l'editor può essere adattato perfettamente alle proprie esigenze. Tuttavia, ricordate che quando parliamo di personalizzazione, ci riferiamo alla funzionalità e non all'aspetto dell'interfaccia.
+- :material-update: **Meccanismo di aggiornamento automatico.** L'editor è dotato di un meccanismo (attraverso l'uso di _git_) che consente di effettuare aggiornamenti con un semplice comando `:NvChadUpdate`.
+- :material-language-lua: **Powered by Lua**. La configurazione di NvChad è scritta interamente in _lua_, il che le permette di integrarsi perfettamente nella configurazione di Neovim, sfruttando tutte le potenzialità dell'editor su cui si basa.
+- :material-palette-outline: **Numerosi temi integrati.** La configurazione comprende già un gran numero di temi da utilizzare, ricordando sempre che stiamo parlando di un'applicazione _cli_, i temi possono essere selezionati con il tasto `<leader> + th`.
 
 ![Temi NvChad](images/nvchad_th.png)
 
@@ -64,28 +64,28 @@ Lua è utilizzato nello sviluppo di videogiochi e motori di gioco (Roblox, Warfr
 
 Ci sono due componenti principali di Lua:
 
-* L'interprete Lua
-* La macchina virtuale Lua (VM)
+- L'interprete Lua
+- La macchina virtuale Lua (VM)
 
 Lua non viene interpretato direttamente attraverso un file Lua come altri linguaggi, ad esempio Python. Utilizza invece l'interprete Lua per compilare un file Lua in bytecode. L'interprete Lua è altamente portatile e in grado di funzionare su una moltitudine di dispositivi.
 
 #### Caratteristiche Principali
 
-* Velocità: Lua è considerato uno dei linguaggi di programmazione più veloci tra i linguaggi di scripting interpretati; può eseguire compiti molto impegnativi dal punto di vista delle prestazioni più velocemente della maggior parte degli altri linguaggi di programmazione.
-* Dimensioni: Lua ha dimensioni ridotte rispetto ad altri linguaggi di programmazione. Le dimensioni ridotte sono ideali per integrare Lua in più piattaforme, dai dispositivi embedded ai motori di gioco.
-* Portabilità e integrazione: La portabilità di Lua è quasi illimitata. Qualsiasi piattaforma che supporti il compilatore C standard può eseguire Lua senza problemi. Lua non richiede complesse riscritture per essere compatibile con altri linguaggi di programmazione.
-* Semplicità: Lua ha un design semplice ma fornisce potenti funzionalità. Una delle caratteristiche principali di Lua sono i meta-meccanismi, che consentono agli sviluppatori di implementare le proprie funzionalità. La sintassi è semplice e facilmente comprensibile, in modo che chiunque possa imparare Lua e utilizzarlo nei propri programmi.
-* Licenza: Lua è un software libero e open-source distribuito sotto la licenza MIT. Questo permette a chiunque di utilizzarlo per qualsiasi scopo senza pagare alcuna licenza o royalty.
+- Velocità: Lua è considerato uno dei linguaggi di programmazione più veloci tra i linguaggi di scripting interpretati; può eseguire compiti molto impegnativi dal punto di vista delle prestazioni più velocemente della maggior parte degli altri linguaggi di programmazione.
+- Dimensioni: Lua ha dimensioni ridotte rispetto ad altri linguaggi di programmazione. Le dimensioni ridotte sono ideali per integrare Lua in più piattaforme, dai dispositivi embedded ai motori di gioco.
+- Portabilità e integrazione: La portabilità di Lua è quasi illimitata. Qualsiasi piattaforma che supporti il compilatore C standard può eseguire Lua senza problemi. Lua non richiede complesse riscritture per essere compatibile con altri linguaggi di programmazione.
+- Semplicità: Lua ha un design semplice ma fornisce potenti funzionalità. Una delle caratteristiche principali di Lua sono i meta-meccanismi, che consentono agli sviluppatori di implementare le proprie funzionalità. La sintassi è semplice e facilmente comprensibile, in modo che chiunque possa imparare Lua e utilizzarlo nei propri programmi.
+- Licenza: Lua è un software libero e open-source distribuito sotto la licenza MIT. Questo permette a chiunque di utilizzarlo per qualsiasi scopo senza pagare alcuna licenza o royalty.
 
 ### :simple-neovim: Neovim
 
 Neovim è descritto in dettaglio nella sua [pagina dedicata](./install_nvim.md), quindi ci soffermeremo solo sulle caratteristiche principali, che sono:
 
-* Prestazioni: Molto veloce.
-* Personalizzabile: Ampio ecosistema di plugin e temi.
-* Evidenziazione della sintassi: Integrazione con Treesitter e LSP (richiede alcune configurazioni aggiuntive).
-* Multpiattaforma: Linux, Windows e macOS
-* Licenza: Mit: Una licenza permissiva breve e semplice con condizioni che richiedono solo la conservazione del copyright e degli avvisi di licenza.
+- Prestazioni: Molto veloce.
+- Personalizzabile: Ampio ecosistema di plugin e temi.
+- Evidenziazione della sintassi: Integrazione con Treesitter e LSP (richiede alcune configurazioni aggiuntive).
+- Multpiattaforma: Linux, Windows e macOS
+- Licenza: Mit: Una licenza permissiva breve e semplice con condizioni che richiedono solo la conservazione del copyright e degli avvisi di licenza.
 
 ### :material-protocol: LSP
 
@@ -101,12 +101,12 @@ L'idea alla base del Language Server Protocol (LSP) è quella di standardizzare 
 
 Un parser è un componente che scompone i dati in elementi più piccoli per facilitarne la traduzione in un'altra lingua o, come nel nostro caso, per passarli alla libreria di parsing. Una volta scomposto il file sorgente, la libreria di parsing analizza il codice e lo trasforma in un albero sintattico, consentendo di manipolare la struttura del codice in modo più intelligente. In questo modo è possibile migliorare (e velocizzare)
 
-* evidenziazione della sintassi
-* navigazione del codice
-* refactoring
-* oggetti e movimenti del testo
+- evidenziazione della sintassi
+- navigazione del codice
+- refactoring
+- oggetti e movimenti del testo
 
-??? note "LSP e complementarità tree-sitter"
+??? note    "LSP e complementarità tree-sitter"
 
     Sebbene possa sembrare che i due servizi (LSP e tree-sitter) siano ridondanti, in realtà sono complementari in quanto LSP lavora a livello di progetto mentre tree-sitter lavora solo sul file sorgente aperto.
 

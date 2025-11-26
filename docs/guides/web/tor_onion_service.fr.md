@@ -13,21 +13,21 @@ tags:
 
 ## Introduction
 
-[Tor](https://www.torproject.org/) is an anonymity service and software that routes traffic by way of three volunteer-run servers called relays. The three-hop design is to ensure privacy by resisting surveillance attempts.
+[Tor](https://www.torproject.org/) est un service et un logiciel d'anonymat qui achemine le trafic via trois serveurs gérés par des bénévoles appelés relais. La conception à trois sauts `three-hop` vise à assurer la confidentialité en résistant aux tentatives de surveillance.
 
-One feature of Tor is that you can run hidden, Tor-exclusive websites called [onion services](https://community.torproject.org/onion-services/). All traffic to an onion service is therefore private and encrypted.
+Une des caractéristiques de Tor est que vous pouvez exécuter des sites Web cachés et exclusifs à Tor appelés [services onion](https://community.torproject.org/onion-services/). Tout le trafic vers un service Onion est donc privé et crypté.
 
 ## Prérequis
 
 Les conditions suivantes sont indispensables pour utiliser cette procédure :
 
-- The ability to run commands as the root user or use `sudo` to elevate privileges
-- Familiarity with a command-line editor. The author is using `vi` or `vim` here, but substitute in your favorite editor
-- A web server running on localhost, or another TCP/IP port
+- La capacité d'exécuter des commandes en tant qu'utilisateur root ou d'utiliser `sudo` pour élever les privilèges
+- Maîtrise d'un éditeur de ligne de commande. L'auteur utilise ici `vi` ou `vim`, mais vous pouvez le remplacez par votre éditeur préféré
+- Un serveur Web fonctionnant sur localhost, ou un autre port TCP/IP
 
 ## Installation de `Tor`
 
-To install Tor, you need to first install the EPEL (Extra Packages for Enterprise Linux) and run updates:
+Pour installer Tor, vous devez d'abord installer EPEL (Extra Packages for Enterprise Linux) et exécuter les mises à jour :
 
 ```bash
 dnf -y install epel-release && dnf -y update
@@ -41,13 +41,13 @@ dnf -y install tor
 
 ## Configuration de `Tor`
 
-With the packages installed, you need to configure Tor. The author uses `vi` for this, but if you prefer `nano` or something else, go ahead and substitute that in:
+Une fois les paquets installés, vous devez configurer Tor. L'auteur utilise `vi` pour cela, mais si vous préférez `nano` ou un autre éditeur, n'hésitez pas à le remplacer :
 
 ```bash
 vi /etc/tor/torrc
 ```
 
-The default `torrc` file is pretty descriptive, but can get long if you just want an onion service. A minimum onion service configuration is similar to this:
+Le fichier `torrc` par défaut est assez descriptif, mais il peut devenir long si vous voulez simplement un service onion. A minimum onion service configuration is similar to this:
 
 ```bash
 HiddenServiceDir /var/lib/tor/onion-site/
@@ -65,13 +65,13 @@ HiddenServicePort 80 127.0.0.1:80
 
 ## Configuration de serveur web
 
-You will also need a web server on our machine to service clients to your onion service. Any web server (Caddy, Apache, or Nginx) is usable. L'auteur favorise `Caddy`. Par souci de simplicité, installons Caddy :
+Vous aurez également besoin d'un serveur Web sur notre machine pour assurer la liaison aux clients de votre service Onion. N'importe quel serveur Web (Caddy, Apache ou Nginx) est utilisable. L'auteur favorise `Caddy`. Par souci de simplicité, installons Caddy :
 
 ```bash
 dnf -y install caddy
 ```
 
-Next, you will insert the following to `/etc/caddy/Caddyfile`:
+Ensuite, vous insérerez ce qui suit dans le fichier `/etc/caddy/Caddyfile` :
 
 ```bash
 http:// {
@@ -82,13 +82,13 @@ http:// {
 
 ## Test et Lancement du Service
 
-Once you have set your Tor relay configuration, the next step is to turn up the Tor and Caddy daemons:
+Une fois votre configuration de relais Tor définie, l'étape suivante consiste à activer les daemons Tor et Caddy :
 
 ```bash
 systemctl enable --now tor caddy
 ```
 
-You can get your onion service's hostname with this command:
+Vous pouvez obtenir le nom d'hôte de votre service Onion grâce à cette commande :
 
 ```bash
 cat /var/lib/tor/onion-site/hostname

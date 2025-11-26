@@ -15,15 +15,15 @@ tags:
 
 ## :material-arrow-bottom-right-bold-outline: Prerequisiti
 
-* È utile la familiarità con NvChad 2.0
-* Possibilità di modificare i file dalla riga di comando utilizzando l'editor preferito. (`vi` o il vostro preferito)
-* Il plugin *nvim-lint* correttamente installato in NvChad.
+- È utile la familiarità con NvChad 2.0
+- Possibilità di modificare i file dalla riga di comando utilizzando l'editor preferito. (`vi` o il vostro preferito)
+- Il plugin _nvim-lint_ correttamente installato in NvChad.
 
 ### :material-monitor-arrow-down-variant: Installazione di nvim-lint
 
 Il plugin [nvim-lint](https://github.com/mfussenegger/nvim-lint) fornisce il supporto per l'inserimento dei ==linters== nell'editor, fornendo la correzione del codice o del contenuto sia per la parte sintattica che per quella semantica.
 
-Per installare il plugin *nvim-lint*, è sufficiente creare un file **nvim-lint.lua** nella cartella `lua/plugins`; al successivo avvio dell'istanza di Neovim, questo verrà integrato nella configurazione.
+Per installare il plugin _nvim-lint_, è sufficiente creare un file **nvim-lint.lua** nella cartella `lua/plugins`; al successivo avvio dell'istanza di Neovim, questo verrà integrato nella configurazione.
 
 Il contenuto del file è il seguente:
 
@@ -67,18 +67,17 @@ Invece di consultare l'intero elenco dei pacchetti, utilizziamo la voce del menu
 
 Sono disponibili due metodi per configurare `vale`. Si può scegliere il proprio preferito tra le due opzioni sottostanti. Una consiste nel creare i file di configurazione all'interno del percorso del binario `vale`, quindi spostarli nella cartella home, mentre l'altra consiste nel creare i file di configurazione direttamente nella cartella home. Funzionano ugualmente bene. La seconda opzione ha meno passaggi manuali, ma richiede un lungo percorso per il binario `vale`.
 
-!!! tip "Suggerimento"
+!!! tip
 
-    Per nascondere la cartella "styles" (sotto), modificare leggermente il contenuto di `.vale.ini' durante la creazione, cambiando l'opzione "StylesPath" da "styles" a qualcosa di nascosto, come ".styles" o ".vale_styles." Esempio:
-
-    ```
-    StylesPath = .vale_styles
-    ```
+    Per nascondere la cartella "styles" (sotto), modificare leggermente il contenuto di \`.vale.ini' durante la creazione, cambiando l'opzione "StylesPath" da "styles" a qualcosa di nascosto, come ".styles" o ".vale_styles." Esempio:
+    
+    `     StylesPath = .vale_styles     `
 
 La sola installazione di `vale` non è sufficiente. Sono necessari un paio di elementi aggiuntivi. Per prima cosa, sarà necessario un file `.vale.ini` che verrà collocato nella radice della cartella home. Successivamente, è necessario generare la cartella "styles" usando `vale sync`.
 
-=== "Installazione dal percorso del file binario `vale`"
+\=== "Installazione dal percorso del file binario `vale`"
 
+    ````
     Se vi trovate nel percorso del binario `vale` qui: `~/.local/share/nvim/mason/packages/vale/` si può semplicemente creare il file `.vale.ini` qui, generare la cartella "styles" e poi spostare entrambi nella propria root `~/`. La creazione del file `.vale.ini' è semplice utilizzando l'utilità di configurazione del sito web `vale.sh` (https://vale.sh/generator). Scegliere "Red Hat Documentation Style Guide" per lo stile di base e "alex" per lo stile supplementare. L'uso di 'alex' è facoltativo, ma aiuta a individuare e correggere le parole di genere, polarizzanti, razziali, ecc. Se si scelgono queste opzioni, la schermata dovrebbe apparire come questa: If you choose those options, your screen should look like this:
     
     ![vale_ini_nvchad](images/vale_ini_nvchad.png)
@@ -86,25 +85,27 @@ La sola installazione di `vale` non è sufficiente. Sono necessari un paio di el
     È sufficiente copiare il contenuto in basso, creare il file `.vale.ini` con il proprio editor preferito e incollare quanto copiato.
     
     È necessario creare la cartella "styles". Per farlo, eseguire il binario `vale` con il comando `sync`. Anche in questo caso, se si sta eseguendo questa operazione dalla directory `~/.local/share/nvim/mason/packages/vale/`, basta fare:
-
+    
     ```bash
     ./vale sync
     ```
-
-
+    
+    
     Una volta terminata l'operazione, verrà visualizzato quanto segue:
     
     ![vale_sync](images/vale_sync.png)
     
     Copiare la cartella `.vale.ini` e la cartella `styles` nella radice della cartella home:
-
+    
     ```bash
     cp .vale.ini ~/
     cp -rf styles ~/
     ```
+    ````
 
-Copiare il file `.vale.ini` e la cartella `styles` nella radice della cartella home:
+Copiare il file <code>.vale.ini</code> e la cartella <code>styles</code> nella radice della cartella home:
 
+    ````
     Se si preferisce non dover copiare i file e si vuole semplicemente crearli nella propria cartella personale, si può usare questo comando da `~/`:
     
     Per prima cosa, creare il file `.vale.ini' nella propria cartella personale usando [il sito web `vale.sh`] (https://vale.sh/generator). Anche in questo caso, scegliere "Red Hat Documentation Style Guide" per lo stile di base e "alex" per lo stile supplementare. Quindi copiare il contenuto nel file `.vale.ini`.
@@ -112,21 +113,22 @@ Copiare il file `.vale.ini` e la cartella `styles` nella radice della cartella h
     ![vale_ini_nvchad](images/vale_ini_nvchad.png)
     
     Successivamente, eseguire il comando `vale sync`. Poiché ci si trova nella propria home directory, è necessario l'intero percorso del binario:
-
+    
     ```bash
     ~/.local/share/nvim/mason/packages/vale/vale sync
     ```
-
-
+    
+    
     ![vale_sync](images/vale_sync.png)
     
     In questo caso, non è necessario copiare i file, poiché verranno creati nella directory principale.
+    ````
 
 ### :material-file-edit-outline: Modifiche al file `lint.lua`
 
 È necessario un ultimo passo. È necessario modificare il file `lint.lua` che si trova in `~/.config/nvim/lua/configs/` e aggiungere il linter `vale`.
 
-Utilizzando l'esempio mostrato sopra per aggiungere *vale* al linter disponibile per i file markdown, sarà necessario aggiungere il nuovo linter alla stringa già presente:
+Utilizzando l'esempio mostrato sopra per aggiungere _vale_ al linter disponibile per i file markdown, sarà necessario aggiungere il nuovo linter alla stringa già presente:
 
 ```lua
 markdown = { "markdownlint", "vale" },
@@ -145,7 +147,6 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
     require("lint").try_lint()
   end,
 })
-
 ```
 
 ## Conclusioni e considerazioni finali
