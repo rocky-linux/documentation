@@ -23,11 +23,11 @@ Les conditions suivantes sont indispensables pour utiliser cette procédure :
 
 - La capacité d'exécuter des commandes en tant qu'utilisateur root ou d'utiliser `sudo` pour élever les privilèges
 - Maîtrise d'un éditeur de ligne de commande. L'auteur utilise ici `vi` ou `vim`, mais vous pouvez le remplacez par votre éditeur préféré
-- A web server running on localhost, or another TCP/IP port
+- Un serveur Web fonctionnant sur localhost, ou un autre port TCP/IP
 
 ## Installation de `Tor`
 
-To install Tor, you need to first install the EPEL (Extra Packages for Enterprise Linux) and run updates:
+Pour installer Tor, vous devez d'abord installer EPEL (Extra Packages for Enterprise Linux) et exécuter les mises à jour :
 
 ```bash
 dnf -y install epel-release && dnf -y update
@@ -41,13 +41,13 @@ dnf -y install tor
 
 ## Configuration de `Tor`
 
-With the packages installed, you need to configure Tor. The author uses `vi` for this, but if you prefer `nano` or something else, go ahead and substitute that in:
+Une fois les paquets installés, vous devez configurer Tor. L'auteur utilise `vi` pour cela, mais si vous préférez `nano` ou un autre éditeur, n'hésitez pas à le remplacer :
 
 ```bash
 vi /etc/tor/torrc
 ```
 
-The default `torrc` file is pretty descriptive, but can get long if you just want an onion service. A minimum onion service configuration is similar to this:
+Le fichier `torrc` par défaut est assez descriptif, mais il peut devenir long si vous voulez simplement un service onion. A minimum onion service configuration is similar to this:
 
 ```bash
 HiddenServiceDir /var/lib/tor/onion-site/
