@@ -21,8 +21,8 @@ Une des caractéristiques de Tor est que vous pouvez exécuter des sites Web cac
 
 Les conditions suivantes sont indispensables pour utiliser cette procédure :
 
-- The ability to run commands as the root user or use `sudo` to elevate privileges
-- Familiarity with a command-line editor. The author is using `vi` or `vim` here, but substitute in your favorite editor
+- La capacité d'exécuter des commandes en tant qu'utilisateur root ou d'utiliser `sudo` pour élever les privilèges
+- Maîtrise d'un éditeur de ligne de commande. L'auteur utilise ici `vi` ou `vim`, mais vous pouvez le remplacez par votre éditeur préféré
 - A web server running on localhost, or another TCP/IP port
 
 ## Installation de `Tor`
