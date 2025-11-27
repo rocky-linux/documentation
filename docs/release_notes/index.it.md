@@ -1,5 +1,5 @@
 ---
-title: Note Di Rilascio Rocky
+title: Note delle Release di Rocky
 tags:
   - release
   - release notes
