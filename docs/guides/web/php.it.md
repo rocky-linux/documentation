@@ -2,7 +2,7 @@
 title: PHP e PHP-FPM
 author: Antoine Le Morvan
 contributors: Steven Spencer, Ganna Zhyrnova, Joseph Brinkman
-tested_with: 9.3, 8.9
+tested_with: 10.0
 tags:
   - web
   - php
@@ -35,160 +35,49 @@ PHP-FPM, **oltre a prestazioni migliori**, porta con sé:
 
 ## Scegliere una versione PHP
 
-Rocky Linux, come il suo upstream, offre molte versioni del linguaggio. Alcuni di essi hanno raggiunto la fine del loro ciclo di vita, ma vengono mantenuti per continuare a ospitare applicazioni storiche che non sono ancora compatibili con le nuove versioni di PHP. Per scegliere una versione, consultare la pagina delle [versioni supportate](https://www.php.net/supported-versions.php) del sito web php.net.
+Rocky Linux 10, come il suo upstream, non ha più moduli. La versione di PHP è quella disponibile nel repository Appstream. Per verificare la versione disponibile di PHP, utilizzare:
 
-Per ottenere un elenco delle versioni disponibili, basta inserire il seguente comando:
+```bash
+dnf whatprovides php
 
-=== "Elenco dei moduli PHP 9.3"
+Last metadata expiration check: 0:00:03 ago on Wed 22 Oct 2025 03:58:30 PM UTC.
 
-    ```bash
-    $ sudo dnf module list php
+php-8.3.19-1.el10_0.x86_64 : PHP scripting language for creating dynamic web sites
+Repo        : @System
+Matched from:
+Provide    : php = 8.3.19-1.el10_0
 
-    Rocky Linux 9 - AppStream
-    Name                                                 Stream                                                  Profiles                                                                   Summary                                                         
-    php                                                  8.1 [d]                                                 common [d], devel, minimal                                 
-
-    Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
-    ```
-
-
-    Il repository Remi offre versioni più recenti di PHP rispetto al repository Appstream, incluse le versioni 8.3 e 8.4. 
-    
-    Per installare il repository Remi, eseguire il seguente comando (nota: se si utilizza Rocky Linux 8.x o 10.x, sostituire 8 o 10 dopo “release-” nel comando riportato di seguito):
-
-    ```bash
-    sudo dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
-    ```
-
-
-    Una volta installato il repository Remi, abilitarlo eseguendo il seguente comando.
-
-    ```bash
-    sudo dnf config-manager --set-enabled remi
-    ```
-
-
-    È ora possibile attivare un modulo più recente (PHP 8.4) immettendo il seguente comando:
-
-    ```bash
-    sudo dnf module enable php:remi-8.4
-    ```
-
-=== "Elenco dei moduli PHP 8.9"
-
-    ```bash
-    $ sudo dnf module list php
-
-    Rocky Linux 8 - AppStream
-    Name                                                 Stream                                                  Profiles                                                                   Summary                                                         
-    php                                                  7.2 [d]                                                 common [d], devel, minimal                                                 PHP scripting language                                          
-    php                                                  7.3                                                     common [d], devel, minimal                                                 PHP scripting language                                          
-    php                                                  7.4                                                     common [d], devel, minimal                                                 PHP scripting language                                          
-    php                                                  8.0                                                     common [d], devel, minimal                                                 PHP scripting language                                          
-
-    Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
-    ```
-
-
-    Rocky fornisce diversi moduli PHP dal suo repository AppStream.
-    
-    Noterai che la versione predefinita di un Rocky 8.9 è la 7.2, che ha già raggiunto il termine del proprio ciclo vitale, al momento della scrittura.
-    
-    Puoi attivare un modulo più recente inserendo il seguente comando:
-
-    ```bash
-    sudo dnf module enable php:8.0
-    ==============================================================================================
-    Package               Architecture         Version               Repository             Size
-    ==============================================================================================
-    Enabling module streams:
-    httpd                                      2.4                                                                                                                              
-    nginx                                      1.14                                                                                                                             
-    php                                        8.0                                                                                                                              
-
-    Transaction Summary
-    ==============================================================================================
-
-    Is this ok [y/N]:
-
-    Transaction Summary
-    ==============================================================================================
-
-    Is this ok [y/N]: y
-    Complete!
-    ```
+php-8.3.19-1.el10_0.x86_64 : PHP scripting language for creating dynamic web sites
+Repo        : appstream
+Matched from:
+Provide    : php = 8.3.19-1.el10_0
+```
 
 Ora si può procedere all'installazione del motore PHP.
 
 ## Modalità PHP cgi
 
-Prima di tutto, vediamo come installare e utilizzare PHP in modalità CGI. Possiamo farlo funzionare soltanto con il server web di Apache e il suo modulo `mod_php`. Vedremo, più avanti in questo documento, nella parte FastCGI (php-fpm) come integrare PHP in Nginx (ma anche in Apache).
+Per prima cosa, instalare PHP. È possibile farlo funzionare solo con il server web Apache e il suo modulo `mod_php`. Più avanti in questo documento, nella parte dedicata a FastCGI (`php-fpm`), si vedrà come integrare PHP in Nginx e Apache.
 
 ### Installazione
 
 L'installazione di PHP è relativamente semplice, poiché consiste nell'installare il pacchetto principale e i pochi moduli necessari.
 
-Il seguente esempio installa PHP con i moduli solitamente installati con esso.
+Questo esempio installa PHP con i moduli comunemente installati con esso:
 
-=== "9.3 installare PHP"
-
-    ```bash
-    sudo dnf install php php-cli php-gd php-curl php-zip php-mbstring
-    ```
-
-
-    Durante l'installazione verrà richiesto di importare le chiavi GPG per i repository epel9 (Extra Packages for Enterprise Linux 9) e Remi. Immettere y per importare le chiavi:
-
-    ```bash
-    Extra Packages for Enterprise Linux 9 - x86_64                                                                        
-    Importing GPG key 0x3228467C:
-    Userid     : "Fedora (epel9) <epel@fedoraproject.org>"
-    Fingerprint: FF8A D134 4597 106E CE81 3B91 8A38 72BF 3228 467C
-    From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-9
-    Is this ok [y/N]: y
-    Key imported successfully
-    Remi's RPM repository for Enterprise Linux 9 - x86_64                                                         
-    Importing GPG key 0x478F8947:
-    Userid     : "Remi's RPM repository (https://rpms.remirepo.net/) <remi@remirepo.net>"
-    Fingerprint: B1AB F71E 14C9 D748 97E1 98A8 B195 27F1 478F 8947
-    From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-remi.el9
-    Is this ok [y/N]: y
-    Key imported successfully
-    Running transaction check
-    Transaction check succeeded.
-    Running transaction test
-    Transaction test succeeded.
-
-    Complete!
-    ```
-
-=== "8.9 installare PHP"
-
-    ```bash
-    sudo dnf install php php-cli php-gd php-curl php-zip php-mbstring
-    ```
+```bash
+sudo dnf install php php-cli php-gd php-curl php-zip php-mbstring
+```
 
 È possibile verificare che la versione installata corrisponda a quella prevista:
 
-=== "9.3 controllare la versione di PHP"
-
-    ```bash
-    $ php -v
-    PHP 8.3.2 (cli) (built: Jan 16 2024 13:46:41) (NTS gcc x86_64)
-    Copyright (c) The PHP Group
-    Zend Engine v4.3.2, Copyright (c) Zend Technologies
-    with Zend OPcache v8.3.2, Copyright (c), by Zend Technologies
-    ```
-
-=== "8.9 controllare la versione di PHP"
-
-    ```bash
-    $ php -v
-    PHP 7.4.19 (cli) (built: May  4 2021 11:06:37) ( NTS )
-    Copyright (c) The PHP Group
-    Zend Engine v3.4.0, Copyright (c) Zend Technologies
-    with Zend OPcache v7.4.19, Copyright (c), by Zend Technologies
-    ```
+```bash
+php -v
+PHP 8.3.19 (cli) (built: Mar 12 2025 13:10:27) (NTS gcc x86_64)
+Copyright (c) The PHP Group
+Zend Engine v4.3.19, Copyright (c) Zend Technologies
+    with Zend OPcache v8.3.19, Copyright (c), by Zend Technologies
+```
 
 ### Configurazione
 
@@ -198,27 +87,27 @@ Per servire pagine PHP in modalità CGI, è necessario installare il server Apac
 
 * Installazione:
 
-    ```bash
-    sudo dnf install httpd
-    ```
+ ```bash
+ sudo dnf install httpd
+ ```
 
     * Attivazione:
 
-    ```bash
-    sudo systemctl enable --now httpd
-    sudo systemctl status httpd
-    ```
+ ```bash
+ sudo systemctl enable --now httpd
+ sudo systemctl status httpd
+ ```
 
-* Non dimenticate di configurare il firewall:
+* Non dimenticare di configurare il firewall:
 
-    ```bash
-    sudo firewall-cmd --add-service=http --permanent
-    sudo firewall-cmd --reload
-    ```
+ ```bash
+ sudo firewall-cmd --add-service=http --permanent
+ sudo firewall-cmd --reload
+ ```
 
-Il vhost predefinito dovrebbe funzionare subito. PHP fornisce una funzione `phpinfo()` che genera una tabella riassuntiva della sua configurazione. È molto utile per verificare il buon funzionamento di PHP. Tuttavia, fate attenzione a non lasciare tali file di prova sui vostri server. Rappresentano un enorme rischio per la sicurezza della vostra infrastruttura.
+Il vhost predefinito dovrebbe funzionare immediatamente. PHP fornisce una funzione `phpinfo()` che genera una tabella riassuntiva della sua configurazione. It is very useful to test the good working of PHP. Tuttavia, fate attenzione a non lasciare tali file di prova sui vostri server. Rappresentano un enorme rischio per la sicurezza della vostra infrastruttura.
 
-Creare il file `/var/www/html/info.php` (`/var/www/html` è la cartella vhost della configurazione predefinita di Apache):
+Create il file `/var/www/html/info.php` (`/var/www/html` è la cartella vhost della configurazione predefinita di Apache):
 
 ```bash
 <?php
@@ -228,23 +117,23 @@ phpinfo();
 
 Utilizzate un browser web per verificare il corretto funzionamento del server accedendo alla pagina [http://your-server-ip/info.php](http://your-server-ip/info.php).
 
-!!! Warning
+!!! Warning Attenzione
 
-    Non lasciare il file info.php sul server!
+    Non lasciare il file `info.php` sul tuo server!
 
 ## PHP-FPM (FastCGI)
 
 Come abbiamo evidenziato in precedenza in questo documento, ci sono molti vantaggi nel passare l'hosting web alla modalità PHP-FPM.
 
-### Installazione
+### Installare `php-fpm`
 
-L'installazione è limitata al pacchetto php-fpm:
+Per installare il pacchetto `php-fpm` utilizzare:
 
 ```bash
 sudo dnf install php-fpm
 ```
 
-Poiché php-fpm è un servizio per il sistema, deve essere attivato e avviato:
+Poiché `php-fpm` è un servizio dal punto di vista del sistema, è necessario attivarlo e avviarlo:
 
 ```bash
 sudo systemctl enable --now php-fpm
@@ -253,7 +142,7 @@ sudo systemctl status php-fpm
 
 ### Configurazione
 
-Il file di configurazione principale è memorizzato in `/etc/php-fpm.conf`.
+`php-fpm` memorizza il file di configurazione principale in `/etc/php-fpm.conf`:
 
 ```bash
 include=/etc/php-fpm.d/*.conf
@@ -265,11 +154,11 @@ daemonize = yes
 
 !!! Note
 
-    I file di configurazione di php-fpm sono ampiamente commentati. Andate a dare un'occhiata!
+    I file di configurazione `php-fpm` sono ampiamente commentati. Andate a dare un'occhiata!
 
 Come si può vedere, i file della cartella `/etc/php-fpm.d/` con estensione `.conf` sono sempre inclusi.
 
-Per impostazione predefinita, un pool di processi PHP, denominato `www`, è dichiarato in `/etc/php-fpm.d/www.conf`.
+Per impostazione predefinita, `php-fpm` dichiara un pool di processi PHP denominato `www` in `/etc/php-fpm.d/www.conf`:
 
 ```bash
 [www]
@@ -300,33 +189,33 @@ php_value[soap.wsdl_cache_dir]  = /var/lib/php/wsdlcache
 | `[pool]`   | Nome del pool di processi. Il file di configurazione può comprendere diversi pool di processi (il nome del pool tra parentesi inizia una nuova sezione). |
 | `listen`   | Definisce l'interfaccia di ascolto o il socket unix utilizzato.                                                                                          |
 
-#### Configurazione del modo di accedere ai processi di php-fpm
+#### Configurare il modo di accedere ai processi di `php-fpm`
 
 Ci sono due modi per connettersi.
 
-Tramite un'interfaccia inet come:
+Con un'interfaccia inet come:
 
 `listen = 127.0.0.1:9000`.
 
-O tramite un socket Unix:
+Oppure con un socket Unix:
 
 `listen = /run/php-fpm/www.sock`.
 
 !!! Note
 
-    Utilizzando un socket quando il server web e il server PHP si trovano sulla stessa macchina, si elimina il livello TCP/IP e si ottimizzano le prestazioni.
+    Utilizzando un socket, quando il server web e il server PHP si trovano sulla stessa macchina, si elimina il livello TCP/IP e si ottimizzano le prestazioni.
 
-Quando si lavora tramite un'interfaccia, è necessario configurare `listen.owner`, `listen.group`, `listen.mode` per specificare il proprietario, il gruppo di proprietari e i diritti del socket Unix. **Attenzione:** Entrambi i server (web e PHP) devono avere i diritti di accesso al socket.
+Quando si lavora con un'interfaccia, è necessario configurare `listen.owner`, `listen.group`, `listen.mode` per specificare il proprietario, il gruppo proprietario e i diritti del socket Unix. **Attenzione:** Entrambi i server (web e PHP) devono avere i diritti di accesso al socket.
 
-Quando si lavora tramite un socket, è necessario configurare `listen.allowed_clients` per limitare l'accesso al server PHP a determinati indirizzi IP.
+Quando si lavora con un socket, è necessario configurare `listen.allowed_clients` per limitare l'accesso al server PHP a determinati indirizzi IP.
 
 Esempio: `listen.allowed_clients = 127.0.0.1`
 
 #### Configurazione statica o dinamica
 
-I processi di PHP-FPM possono essere gestiti staticamente o dinamicamente.
+You can manage the processes of PHP-FPM either statically or dynamically.
 
-In modalità statica, il numero di processi figli è impostato dal valore di `pm.max_children`;
+In modalità statica, `pm.max_children` imposta il numero di processi figlio:
 
 ```bash
 pm = static
@@ -349,9 +238,9 @@ pm.max_spare_servers = 3
 
 PHP-FPM creerà un nuovo processo per sostituire quello che ha elaborato più richieste equivalenti a `pm.max_requests`.
 
-Per impostazione predefinita, `pm.max_requests` è impostato su 0, il che significa che i processi non vengono mai riciclati. L'uso dell'opzione `pm.max_requests` può essere interessante per le applicazioni con perdite di memoria.
+Per impostazione predefinita, `php-fpm` imposta `pm.max_requests` su 0, il che significa che i processi non vengono mai riciclati. L'uso dell'opzione `pm.max_requests` può essere interessante per le applicazioni con perdite di memoria.
 
-Esiste una terza modalità di funzionamento, quella `ondemand`. Questa modalità avvia un processo solo quando riceve una richiesta. Non è una modalità ottimale per i siti con forti influenze e deve essere riservata a esigenze specifiche (siti con richieste molto deboli, backend di gestione, ecc.).
+Esiste una terza modalità di funzionamento, quella `ondemand`. Questa modalità avvia un processo solo quando riceve una richiesta. Non è una modalità ottimale per siti con forti affluenze e si dovrebbe riservarla per esigenze specifiche (siti con flussi richieste molto deboli, backend di gestione e così via).
 
 !!! Note
 
@@ -359,9 +248,9 @@ Esiste una terza modalità di funzionamento, quella `ondemand`. Questa modalità
 
 #### Stato del processo
 
-PHP-FPM offre, come Apache e il suo modulo `mod_status`, una pagina che indica lo stato del processo.
+Come Apache e il suo modulo `mod_status`, PHP-FPM offre una pagina che indica lo stato del processo.
 
-Per attivare la pagina, impostare il suo percorso di accesso tramite la direttiva `pm.status_path:`:
+Per attivare la pagina, impostare il percorso di accesso con la direttiva `pm.status_path`:
 
 ```bash
 pm.status_path = /status
@@ -387,7 +276,7 @@ slow requests:        0
 
 #### Registrazione di richieste lunghe
 
-La direttiva slowlog specifica il file che riceve la registrazione delle richieste troppo lunghe (cioè il cui tempo supera il valore della direttiva `request_slowlog_timeout`).
+La direttiva `slowlog` specifica il file che riceve la registrazione delle richieste troppo lunghe (ad esempio, un file il cui tempo supera il valore della direttiva `request_slowlog_timeout`).
 
 La posizione predefinita del file generato è `/var/log/php-fpm/www-slow.log`.
 
@@ -400,7 +289,7 @@ Un valore di 0 per `request_slowlog_timeout` disabilita la registrazione.
 
 ### Integrazione con NGinx
 
-L'impostazione predefinita di nginx include già la configurazione necessaria per far funzionare PHP con PHP-FPM.
+L'impostazione predefinita di `nginx` include già la configurazione necessaria per far funzionare PHP con PHP-FPM.
 
 Il file di configurazione `fastcgi.conf` (o `fastcgi_params`) si trova in `/etc/nginx/`:
 
@@ -432,7 +321,7 @@ fastcgi_param  SERVER_NAME        $server_name;
 fastcgi_param  REDIRECT_STATUS    200;
 ```
 
-Affinché nginx possa elaborare i file `.php`, è necessario aggiungere le seguenti direttive al file di configurazione del sito:
+PHP-FPM offre, come Apache e il suo modulo `mod_status`, una pagina che indica lo stato del processo.
 
 Se PHP-FPM è in ascolto sulla porta 9000:
 
@@ -443,7 +332,7 @@ location ~ \.php$ {
 }
 ```
 
-Se php-fpm è in ascolto su un socket unix:
+Se `php-fpm` è in ascolto su un socket Unix:
 
 ```bash
 location ~ \.php$ {
@@ -474,21 +363,21 @@ La configurazione di apache per utilizzare un pool PHP è abbastanza semplice. �
 
 ### Configurazione consistente dei pool PHP
 
-È essenziale ottimizzare il numero di richieste che potranno essere servite e analizzare la memoria utilizzata dagli script PHP, per ottimizzare la quantità massima di thread lanciati.
+It is essential to optimize the number of served requests, and to analyze the memory used by the PHP scripts, to optimize the maximum amount of launched threads.
 
-Prima di tutto, dobbiamo conoscere la quantità media di memoria utilizzata da un processo PHP con il comando:
+Prima di tutto, è necessario conoscere la quantità media di memoria utilizzata da un processo PHP con il comando:
 
 ```bash
 while true; do ps --no-headers -o "rss,cmd" -C php-fpm | grep "pool www" | awk '{ sum+=$1 } END { printf ("%d%s\n", sum/NR/1024,"Mb") }' >> avg_php_proc; sleep 60; done
 ```
 
-Dopo un po' di tempo, questo dovrebbe darci un'idea abbastanza precisa dell'ingombro medio della memoria di un processo PHP su questo server.
+Dopo un po' di tempo, questo dovrebbe darci un'idea abbastanza precisa dell'uso medio della memoria di un processo PHP su questo server.
 
-Il risultato riportato nel resto del documento è un ingombro di memoria pari a 120 Mb per processo a pieno carico.
+Il risultato del resto di questo documento è un uso di memoria di 120 megabyte per ogni processo a pieno carico.
 
-Su un server con 8 Gb di RAM, mantenendo 1 Gb per il sistema e 1 Gb per la OPCache (si veda il resto di questo documento), rimangono 6 Gb per elaborare le richieste PHP dei client.
+On a server with 8 gigabytes of RAM, keeping 1 gigabyte for the system and 1 gigabyte for the OPCache (see the rest of this document), 6 gigabytes is left to process PHP requests from clients.
 
-Possiamo facilmente concludere che questo server può accettare al massimo **50 thread** ( `(6*1024) / 120)`.
+Si può concludere che questo server può accettare al massimo **50 thread** `((6*1024) / 120)`.
 
 Una buona configurazione di `php-fpm` specifica per questo caso d'uso sarebbe:
 
@@ -515,8 +404,8 @@ Mantiene gli script PHP compilati in memoria, il che ha un forte impatto sull'es
 
 Per configurarlo, dobbiamo lavorare su:
 
-* La dimensione della memoria dedicata alla opcache in base all'hit ratio, configurandola correttamente
-* il numero di script PHP da memorizzare nella cache (numero di chiavi + numero massimo di script)
+* La dimensione della memoria dedicata all'`opcache` in base al rapporto di hit, configurandola correttamente
+* Il numero di script PHP da mettere in cache (numero di chiavi + numero massimo di script)
 * il numero di stringhe da mettere in cache
 
 Per installarla:
@@ -535,16 +424,16 @@ opcache.max_accelerated_files=4000
 
 dove:
 
-* `opcache.memory_consumption` corrisponde alla quantità di memoria necessaria per l'opcache (da aumentare fino a ottenere un rapporto di hit corretto).
+* `opcache.memory_consumption` corrisponde alla quantità di memoria necessaria per `opcache` (aumentarla fino a ottenere un rapporto di successo corretto).
 * `opcache.interned_strings_buffer` la quantità di stringhe da mettere in cache.
-* `opcache.max_accelerated_files` è prossimo al risultato del comando `find ./ -iname "*.php"|wc -l`.
+* `opcache.max_accelerated_files` è simile al risultato del comando `find ./ -iname "*.php"|wc -l`.
 
-Si può fare riferimento a una pagina `info.php` (compresa la `phpinfo();`) per configurare l'opcache (si vedano ad esempio i valori di `Cached scripts` e `Cached strings`).
-
-!!! Note
-
-    A ogni nuova distribuzione di nuovo codice, sarà necessario svuotare la opcache (ad esempio riavviando il processo php-fpm).
+È possibile fare riferimento alla pagina `info.php` (incluso il comando `phpinfo();`) per configurare `opcache` (vedere ad esempio i valori di `Cached scripts` e `Cached strings`).
 
 !!! Note
 
-    Non sottovalutate il guadagno di velocità che si può ottenere impostando e configurando correttamente l'opcache.
+    Ad ogni nuova implementazione di codice, sarà necessario svuotare l'opcache (ad esempio riavviando il processo php-fpm).
+
+!!! Note
+
+    Do not underestimate the speed gain that can be achieved by setting up and configuring the `opcache` correctly.
