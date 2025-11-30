@@ -1,6 +1,7 @@
 ---
 author: Wale Soyinka
-contributors: Steven Spencer, Ganna Zhyrnova
+title: 'Lab 6: Gestione Utenti e Gruppi'
+contributors: Steven Spencer, Ganna Zhyrnova, Franco Colussi
 tested on: Tutte le versioni
 tags:
   - introduction system administration
@@ -8,8 +9,6 @@ tags:
   - users
   - groups
 ---
-
-# Lab 6: Gestione di utenti e gruppi
 
 ## Obiettivi
 
@@ -27,6 +26,7 @@ Tempo stimato per terminare il laboratorio: 40 minuti
 La gestione degli utenti è importante in qualsiasi sistema operativo di rete multiutente. Linux è un sistema operativo di rete multiutente. Senza gli utenti, non ci sarebbe bisogno di un sistema operativo di rete multiutente!
 
 La gestione degli utenti su un sistema è strettamente legata alla sicurezza del sistema stesso. C'è un vecchio proverbio che dice:
+
 > Un sistema è tanto sicuro quanto il suo utente più debole.
 
 Linux eredita la vecchia tradizione UNIX di governare l'accesso a file, programmi e altre risorse in base ad utente e gruppi.
@@ -37,7 +37,7 @@ Esamineremo anche in breve la proprietà e i permessi dei file.
 
 Di seguito i file importanti per la gestione di utenti e gruppi. Vengono discussi anche alcuni campi o voci dei file.
 
-### /etc/passwd
+### `/etc/passwd`
 
 - **Scopo:** informazioni sull'account utente
 - **Contenuto:**
@@ -49,7 +49,7 @@ Di seguito i file importanti per la gestione di utenti e gruppi. Vengono discuss
     - home directory dell'utente
     - shell di default
 
-### /etc/shadow
+### `/etc/shadow`
 
 - **Scopo:** proteggere le informazioni dell'account utente
 - **Contenuto:**
@@ -63,7 +63,7 @@ Di seguito i file importanti per la gestione di utenti e gruppi. Vengono discuss
     - giorni a partire dal 1/01/1970 di quando l'account sarà disabilitato
     - riservato
 
-### /etc/group
+### `/etc/group`
 
 - **Scopo:** informazioni sui gruppi
 - **Contenuto:**
@@ -72,7 +72,7 @@ Di seguito i file importanti per la gestione di utenti e gruppi. Vengono discuss
     - id del gruppo (GID)
     - elenco degli utenti appartenenti al gruppo
 
-### /etc/skel
+### `/etc/skel`
 
 - **Scopo:** contiene dei template da applicare ai nuovi account
 
@@ -82,92 +82,99 @@ Di seguito sono elencate alcune utilità comunemente utilizzate nelle attività 
 
 ### `useradd`
 
-    ```bash
+- Il comando `useradd` è uno strumento di gestione degli utenti che consente agli amministratori di sistema di creare nuovi account utente direttamente dalla riga di comando.
 
-    Utilizzo: useradd [options] LOGIN
+    ```bash
+    Usage: useradd [options] LOGIN
         useradd -D
         useradd -D [options]
 
-    Opzioni:
-        --badname                 non controllare i nomi non validi
-    -b, --base-dir BASE_DIR       directory di base per la directory home del nuovo account
-        --btrfs-subvolume-home    utilizza il sottovolume BTRFS per la directory home.
-    -c, --comment COMMENT         Campo GECOS del nuovo account
-    -d, --home-dir HOME_DIR       directory home del nuovo account
-    -D, --defaults                stampa o modifica la configurazione predefinita di useradd
-    -e, --expiredate EXPIRE_DATE  data di scadenza del nuovo account
-    -g, --gid GROUP               nome o ID del gruppo principale del nuovo account
-    -G, --groups GROUPS           elenco dei gruppi supplementari del nuovo account
-    -h, --help                    visualizza questo messaggio di aiuto e esci
-    -k, --skel SKEL_DIR           utilizza questa directory scheletro alternativa.
-    -K, --key KEY=VALUE           sovrascrivere le impostazioni predefinite di /etc/login.defs
-    -l, --no-log-init             non aggiungere l'utente ai database lastlog e faillog.
-    -m, --create-home             creare la directory home dell'utente
-    -M, --no-create-home          non creare la directory home dell'utente.
-    -N, --no-user-group           non creare un gruppo con lo stesso nome dell'utente.
-    -o, --non-unique              consenti la creazione di utenti con UID duplicati (non univoci)
-    -p, --password PASSWORD       password crittografata del nuovo account
-    -r, --system                  creare un account di sistema
-    -R, --root CHROOT_DIR         directory in cui eseguire il chroot
-    -P, --prefix PREFIX_DIR       directory dei prefissi in cui si trovano i file /etc/*
-    -s, --shell SHELL             shell di accesso del nuovo account
-    -u, --uid UID                 ID utente del nuovo account
-    -U, --user-group              creare un gruppo con lo stesso nome dell'utente
-    -Z, --selinux-user SEUSER     utilizzare un SEUSER specifico per la mappatura degli utenti SELinux
+    Options:
+        --badname                 do not check for bad names
+        -b, --base-dir BASE_DIR       base directory for the home directory of the new account
+            --btrfs-subvolume-home    use BTRFS subvolume for home directory
+        -c, --comment COMMENT         GECOS field of the new account
+        -d, --home-dir HOME_DIR       home directory of the new account
+        -D, --defaults                print or change default useradd configuration
+        -e, --expiredate EXPIRE_DATE  expiration date of the new account
+        -g, --gid GROUP               name or ID of the primary group of the new account
+        -G, --groups GROUPS           list of supplementary groups of the new account
+        -h, --help                    display this help message and exit
+        -k, --skel SKEL_DIR           use this alternative skeleton directory
+        -K, --key KEY=VALUE           override /etc/login.defs defaults
+        -l, --no-log-init             do not add the user to the lastlog and faillog databases
+        -m, --create-home             create the user's home directory
+        -M, --no-create-home          do not create the user's home directory
+        -N, --no-user-group           do not create a group with the same name as the user
+        -o, --non-unique              allow to create users with duplicate (non-unique) UID
+        -p, --password PASSWORD       encrypted password of the new account
+        -r, --system                  create a system account
+        -R, --root CHROOT_DIR         directory to chroot into
+        -P, --prefix PREFIX_DIR       prefix directory where are located the /etc/* files
+        -s, --shell SHELL             login shell of the new account
+        -u, --uid UID                 user ID of the new account
+        -U, --user-group              create a group with the same name as the user
+        -Z, --selinux-user SEUSER     use a specific SEUSER for the SELinux user mapping
     ```
 
 ### `groupadd`
 
-    ```bash
-    Utilizzo: groupadd [options] GROUP
+- Il comando `groupadd` è un'utilità per la gestione dei gruppi di utenti sul sistema. Disponibile nella maggior parte delle distribuzioni Linux, questo comando consente agli amministratori di creare nuovi gruppi, specificando opzioni quali il GID (Group ID), il nome del gruppo e altre proprietà.
 
-    Opzioni:
-    -f, --force                   esci correttamente se il gruppo esiste già e annulla -g se il GID è già utilizzato.
-    -g, --gid GID                 utilizza il GID per il nuovo gruppo
-    -h, --help                    visualizza questo messaggio di aiuto e esci
-    -K, --key KEY=VALUE           sovrascrivere le impostazioni predefinite di /etc/login.defs
-    -o, --non-unique              consenti la creazione di gruppi con GID duplicati (non univoci)
-    -p, --password PASSWORD       Utilizza questa password crittografata per il nuovo gruppo.
-    -r, --system                  creare un account di sistema
-    -R, --root CHROOT_DIR         directory in cui eseguire il chroot
-    -P, --prefix PREFIX_DI        prefisso della directory
-    -U, --users USERS             elenco degli utenti membri di questo gruppo
+    ```bash
+    Usage: groupadd [options] GROUP
+
+    Options:
+        -f, --force                   exit successfully if the group already exists, and cancel -g if the GID is already used
+        -g, --gid GID                 use GID for the new group
+        -h, --help                    display this help message and exit
+        -K, --key KEY=VALUE           override /etc/login.defs defaults
+        -o, --non-unique              allow to create groups with duplicate (non-unique) GID
+        -p, --password PASSWORD       use this encrypted password for the new group
+        -r, --system                  create a system account
+        -R, --root CHROOT_DIR         directory to chroot into
+        -P, --prefix PREFIX_DIR        directory prefix
+        -U, --users USERS             list of user members of this group
     ```
 
 ### `passwd`
 
-    ```bash
-    Utilizzo: passwd [OPTION...] <accountName>
-    -k, --keep-tokens       conserva i token di autenticazione non scaduti
-    -d, --delete            elimina la password dell'account specificato (solo root); rimuove anche il blocco della password, se presente.
-    -l, --lock              blocca la password per l'account specificato (solo root)
-    -u, --unlock            sblocca la password per l'account specificato (solo root)
-    -e, --expire            scadenza della password per l'account specificato (solo root)
-    -f, --force             funzionamento forzato
-    -x, --maximum=DAYS      durata massima della password (solo root)
-    -n, --minimum=DAYS      durata minima della password (solo root)
-    -w, --warning=DAYS      numero di giorni di preavviso che gli utenti ricevono prima della scadenza della password (solo root)
-    -i, --inactive=DAYS     numero di giorni dopo la scadenza della password in cui un account viene disabilitato (solo root)
-    -S, --status            segnalare lo stato della password sull'account specificato (solo root)
-      --stdin             leggi nuovi il token da stdin (solo root)
+- Il comando `passwd` è uno strumento per la gestione delle password degli utenti. Consente agli utenti di modificare le proprie password, mentre gli amministratori (root) possono reimpostare le password di altri account, gestire la scadenza delle password e configurare le politiche di sicurezza.
 
-    Opzioni di aiuto:
-      -?, --help              Mostra questo messaggio di aiuto
-      --usage             Visualizza breve messaggio di utilizzo
+    ```bash
+    Usage: passwd [OPTION...] <accountName>
+
+    Options:
+        -k, --keep-tokens       keep non-expired authentication tokens
+        -d, --delete            delete the password for the named account (root only); also removes password lock if any
+        -l, --lock              lock the password for the named account (root only)
+        -u, --unlock            unlock the password for the named account (root only)
+        -e, --expire            expire the password for the named account (root only)
+        -f, --force             force operation
+        -x, --maximum=DAYS      maximum password lifetime (root only)
+        -n, --minimum=DAYS      minimum password lifetime (root only)
+        -w, --warning=DAYS      number of days warning users receives before password expiration (root only)
+        -i, --inactive=DAYS     number of days after password expiration when an account becomes disabled (root only)
+        -S, --status            report password status on the named account (root only)
+            --stdin             read new tokens from stdin (root only)
+
+    Help options:
+        -?, --help          Show this help message
+        --usage             Display brief usage message
     ```
 
-## Esercizio 1
+## Esercizi
 
-### Creazione manuale di un nuovo utente
+### 1. Creare manualmente un nuovo utente
 
-Finora, durante i laboratori precedenti, si è utilizzato il sistema come utente con i privilegi più elevati, ovvero l'utente `root`. Questa non è una buona pratica in un sistema di produzione perché rende il sistema vulnerabile dal punto di vista della sicurezza. L'utente root può causare danni illimitati al sistema, sia in modo permanente che temporaneo.
+Finora, durante i laboratori precedenti, si è utilizzato il sistema come utente con i privilegi più elevati, ovvero l'utente **root**. Questa non è una buona pratica in un sistema di produzione perché rende il sistema vulnerabile dal punto di vista della sicurezza. L'utente root può causare danni illimitati al sistema, sia in modo permanente che temporaneo.
 
 Ad eccezione del superutente, tutti gli altri utenti hanno un accesso limitato ai file e alle directory. Utilizzare sempre il computer come un utente normale. Due concetti confusi saranno chiariti qui.
 
-- In primo luogo, la directory home dell'utente root è  " /root ".
-- In secondo luogo, la directory principale è la directory più alta, nota come directory /  (barra). ("/root" è diverso da  "/ ")
+- In primo luogo, la directory home dell'utente root è  `/root`.
+- In secondo luogo, la directory principale è la directory più alta, nota come directory `/`  (barra). (`/root` è diverso da  `/` “)
 
-In questo laboratorio si creerà un nuovo utente chiamato "Me Mao". Il nome utente per "Me Mao" sarà il nome proprio - "me". Questo nuovo utente apparterrà al gruppo "me". La password sarà “a1b2c3”
+In questo laboratorio si creerà un nuovo utente chiamato "Me Mao". Il nome utente per "Me Mao" sarà il nome proprio - “**me**”. Questo nuovo utente apparterrà al gruppo “**me**”. La password sarà “**a1b2c3**”
 
 !!! warning "Attenzione"
 
@@ -185,13 +192,13 @@ In questo laboratorio si creerà un nuovo utente chiamato "Me Mao". Il nome uten
     gdm:x:42:42::/var/gdm:/sbin/nologin    
     ```
 
-    Si modificherà il file passwd utilizzando il formato sopra indicato.
+Modificare il file *passwd* utilizzando il formato sopra riportato.
 
-#### Creazione dell'utente
+#### Creare l'utente
 
 1. Sarà necessario modificare il file `/etc/passwd`.
 
-    Avviare l'editor preferito e aprire il file "/etc/passwd"
+    Avviare l'editor preferito e aprire il file `/etc/passwd`
 
     Aggiungere il testo sottostante alla fine del file:
 
@@ -201,7 +208,9 @@ In questo laboratorio si creerà un nuovo utente chiamato "Me Mao". Il nome uten
 
 2. Salvare le modifiche e chiudere il file passwd.
 
-3. Successivamente modificheremo il file `/etc/shadow`. Avviare l'editor e aprire il file "/etc/shadow". Aggiungere una nuova voce come quella riportata di seguito alla fine del file, inserendo un asterisco  (*) nel campo della password. Digitare:
+3. Successivamente modificheremo il file `/etc/shadow`.  
+   Avviare l'editor e aprire il file `/etc/shadow`.  
+   Aggiungere una nuova voce come quella riportata di seguito alla fine del file, inserendo un asterisco  (*) nel campo della password. Digitare:
 
     ```bash
     me:x:11898:11898:99999:7
@@ -216,11 +225,11 @@ In questo laboratorio si creerà un nuovo utente chiamato "Me Mao". Il nome uten
     me:x:1000:me
     ```
 
-6. Salvare le modifiche e chiudere il file group.
+6. Salvare le modifiche e chiudere il *file group*.
 
 7. È ora di creare la directory home.
 
-    Copiare l'intero contenuto della directory "/etc/skel" nella directory /home, rinominando la nuova directory con il nome dell'utente, ad esempio "/home/me". Digitare:
+    Copiare l'intero contenuto della directory `/etc/skel` nella directory `/home`, rinominando la nuova directory con il nome dell'utente, ovvero `/home/me`. Digitare:
 
     ```bash
     [root@localhost root]# cp -r /etc/skel /home/me
@@ -232,7 +241,7 @@ In questo laboratorio si creerà un nuovo utente chiamato "Me Mao". Il nome uten
     [root@localhost root]# chown -R me:me /home/me
     ```
 
-9. Creare una password per l'utente. Impostare il valore della password su `a!b!c!d!`. Si utilizzerà l'utilità "passwd". Digitare "passwd" e seguire le istruzioni
+9. Creare una password per l'utente. Impostare il valore della password su **a!b!c!d!**. Si utilizzerà l'utility `passwd`. Digitare “**passwd me**” e seguire le istruzioni
 
     ```bash
     [root@localhost root]# passwd me
@@ -244,25 +253,19 @@ In questo laboratorio si creerà un nuovo utente chiamato "Me Mao". Il nome uten
 
 10. Uscire dal sistema una volta finito.
 
-## Esercizio 2
+### 2. Creazione automatica di un nuovo utente
 
-### Creazione automatica di un nuovo utente
+Esistono numerose utility disponibili per semplificare tutte le attività/passaggi che abbiamo eseguito manualmente nell'esercizio precedente. Abbiamo approfondito soltanto il procedimento manuale di creazione di un utente, così che tu possa vedere ciò che realmente avviene in background.
 
-Esistono numerose utility disponibili per semplificare tutte le attività/passaggi che abbiamo eseguito manualmente nell'esercizio precedente. Abbiamo solo illustrato il processo manuale di creazione di un utente, in modo che si possa vedere cosa succede effettivamente in background.
+In questo esercizio verranno utilizzate alcune utility comuni per gestire e semplificare il processo. Creerai un altro account utente per l'utente “**Ying Yang**” con nome di accesso **ying**.  
+La password per **ying** sarà **y@i@n@g@**.  
+Creerai anche un gruppo chiamato “**common**” e aggiungerai gli utenti **me** e **ying** al gruppo.
 
-In questo esercizio verranno utilizzate alcune utilità comuni per gestire e semplificare il processo.
-
-Si creerà un altro account utente per l'utente "Ying Yang"; il nome di accesso sarà "ying".
-
-E la password per "ying" sarà "y@i@n@g@".
-
-Inoltre, si creerà un gruppo denominato “common” e si aggiungeranno gli utenti “me” e “ying” al gruppo.
-
-#### Per creare automaticamente un nuovo account
+#### Creare automaticamente un nuovo account
 
 1. Accedere al sistema come root.
 
-2. Creare l'utente ying utilizzando tutte le impostazioni predefinite del comando `useradd`. Digitare:
+2. Creare l'utente **ying** utilizzando tutte le impostazioni predefinite del comando `useradd`. Digitare:
 
     ```bash
     [root@localhost root]# useradd -c "Ying Yang" ying
@@ -282,7 +285,7 @@ Inoltre, si creerà un gruppo denominato “common” e si aggiungeranno gli ute
 
      Elencare qui la nuova voce?
 
-4. L'utente ying non potrà accedere al sistema finché non sarà stata creata una password per l'utente. Impostare la password di Ying su `y@i@n@g@`. Digitare:
+4. L'utente **ying**  non potrà accedere al sistema finché non sarà stata creata una password per l'utente. Impostare la password di Ying su **y@i@n@g@**. Digitare:
 
     ```bash
     [root@localhost root]# passwd ying
@@ -299,7 +302,7 @@ Inoltre, si creerà un gruppo denominato “common” e si aggiungeranno gli ute
         uid=1000(me) gid=1000(me) groups=1000(me)
     ```
 
-6. Fare la stessa cosa per l'utente ying. Digitare:
+6. Fare la stessa cosa per l'utente **ying**. Digitare:
 
     ```bash
     [root@localhost root]# id ying
@@ -308,7 +311,7 @@ Inoltre, si creerà un gruppo denominato “common” e si aggiungeranno gli ute
 
 #### Creazione automatica di un nuovo gruppo
 
-1. Utilizzare il programma `groupadd` per creare il nuovo gruppo "common".
+1. Utilizzare il programma `groupadd` per creare il nuovo gruppo **common**.
 
     ```bash
     [root@localhost root]# groupadd common
@@ -320,34 +323,34 @@ Inoltre, si creerà un gruppo denominato “common” e si aggiungeranno gli ute
    
         Qual è il comando per farlo?
 
-3. Utilizzare il comando `usermod` per aggiungere un utente esistente a un gruppo esistente. Si aggiunge l'utente ying al gruppo `common` appena creato nel passaggio 1. Digitare:
+3. Utilizzare il comando `usermod` per aggiungere un utente esistente a un gruppo esistente. Si aggiunge l'utente **ying** al gruppo **common** appena creato nel passaggio 1. Digitare:
 
     ```bash
     [root@localhost root]# usermod -G common -a ying
     ```
 
-4. Fare le stessa cosa per l'utente me. Digitare:
+4. Fare le stessa cosa per l'utente **me**. Digitare:
 
     ```bash
     [root@localhost root]# usermod -G common -a me
     ```
 
-5. Eseguire nuovamente il comando `id` sugli utenti "ying" e "me".
+5. Eseguire nuovamente il comando `id` sugli utenti **ying** e **me**.
 
     !!! question "Domanda"
    
         Cosa è cambiato?
 
-6. Utilizzare il comando `grep` per visualizzare le modifiche apportate alla voce del gruppo `common` nel file. Digitare:
+6. Utilizzare il comando `grep` per visualizzare le modifiche apportate alla voce del gruppo **common** nel file. Digitare:
 
-     ```bash
+    ```bash
     [root@localhost root]# grep common /etc/group
         common:x:1002:ying,me
     ```
 
 #### Modifica del profilo di un utente
 
-1. Utilizzare il comando `usermod` per modificare il campo commento dell'utente "me". Il nuovo commento che si aggiungerà sarà "first last". Digitare:
+1. Utilizzare il comando `usermod` per modificare il campo commento dell'utente **me**. Il nuovo commento che si aggiungerà sarà “`first last`”. Digitare:
 
     ```bash
     [root@localhost root]# usermod -c "first last" me
@@ -363,7 +366,7 @@ Inoltre, si creerà un gruppo denominato “common” e si aggiungeranno gli ute
 
      Qual è la shell di login dell'utente me?
 
-2. Utilizzare nuovamente il comando `usermod` per modificare la shell di login di me in shell csh. Digitare:
+2. Utilizzare nuovamente il comando `usermod` per modificare la shell di login di **me** in shell `csh` . Digitare:
 
     ```bash
     [root@localhost root]# usermod -s /bin/csh me
@@ -377,37 +380,33 @@ Inoltre, si creerà un gruppo denominato “common” e si aggiungeranno gli ute
    
         Quali sono i comandi per farlo?
 
-## Esercizio 3
+### 3. Impostazione utente
 
-### Impostazione dell'utente
-
-Non sempre è conveniente uscire completamente dal sistema per accedere con un altro utente. Questo potrebbe essere dovuto al fatto che sono in esecuzione determinate attività che non si desidera terminare. Il programma `su` (set user) viene utilizzato per diventare temporaneamente un altro utente. È possibile passare da un account utente normale all'account root o viceversa utilizzando il comando "su".
+Non sempre è conveniente uscire completamente dal sistema per accedere con un altro utente. Questo potrebbe essere dovuto al fatto che sono in esecuzione determinate attività che non si desidera terminare. Il programma `su` (*set user*) viene utilizzato per diventare temporaneamente un altro utente. È possibile passare da un account utente normale all'account root o viceversa utilizzando il comando "su".
 
 Cambia l'utente corrente in modo che abbia i diritti di accesso dell'utente temporaneo.
 
-Le variabili di ambiente HOME, LOGNAME e USER verranno impostate di default su quelle dell'utente temporaneo.
+Le variabili di ambiente *HOME*, *LOGNAME* e *USER* saranno impostate di default su quelle dell'utente temporaneo.
 
 #### Per diventare temporaneamente un altro utente
 
 1. Dopo aver effettuato l'accesso come utente root, passare all'utente "me". Digitare:
 
     ```bash
-    [root@localhost root]# su   me
-
+    [root@localhost root]# su me
     [me@localhost root]$
     ```
 
-    Il comando `su` non ha richiesto la password dell'utente me perché siete root
+    Il comando `su` non ha richiesto la password dell'utente **me** perché siete root
 
-2. Passare alla directory home di me.
+2. Passare alla directory home di **me**.
 
     ```bash
     [me@localhost root]$ cd
-
     [me@localhost me]$ cd
     ```
 
-3. Mentre si è temporaneamente connessi come me, usare `su` per effettuare il login come utente ying. Digitare:
+3. Mentre si è temporaneamente connessi come **me**, usare `su` per effettuare il login come utente **ying**. Digitare:
 
     ```bash
     [me@localhost me]$ su  ying
@@ -415,15 +414,15 @@ Le variabili di ambiente HOME, LOGNAME e USER verranno impostate di default su q
     [ying@localhost me]$
     ```
 
-4. Per uscire dall'account di Ying, digitare:
+4. Per uscire dall'account di **ying**, digitare:
 
     ```bash
     [ying@localhost me]$ exit
     ```
 
-    Questo vi riporterà all'account me.
+    Questo vi riporterà all'account **me**.
 
-5. Uscire dall'account di me per tornare all'account root.
+5. Uscire dall'account di **me** per tornare all'account root.
 
     !!! question "Domanda"
    
@@ -435,11 +434,10 @@ Le variabili di ambiente HOME, LOGNAME e USER verranno impostate di default su q
 
     ```bash
     [root@system1 root]# su - me
-
     [me@system1 me]$
     ```
 
-    La differenza è immediatamente evidente. Notare la directory di lavoro corrente.
+    La differenza è immediatamente evidente. Notare la *directory di lavoro* corrente.
 
 2. Uscire completamente dal sistema e riavviare il computer.
 
