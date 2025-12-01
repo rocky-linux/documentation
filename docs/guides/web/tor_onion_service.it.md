@@ -9,12 +9,6 @@ tags:
   - proxies
 ---
 
-!!! warning “Temporaneamente in Sospeso”
-
-```
-`tor` è attualmente assente dall'EPEL. Probabilmente verrà compilato. Il team Docs continuerà a testarne la disponibilità nell'EPEL non appena possibile. Per ora, l'unica opzione è compilare `tor` dal sorgente, ma le istruzioni per farlo non sono attualmente disponibili qui.
-```
-
 ## Introduzione
 
 [Tor](https://www.torproject.org/) è un servizio e un software di anonimato che instrada il traffico attraverso tre server gestiti da volontari e chiamati relay. Il design a tre hop serve a garantire la privacy resistendo ai tentativi di sorveglianza.
