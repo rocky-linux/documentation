@@ -1,5 +1,5 @@
 ---
-title: Tor Onion Service
+title: Tor Onion Dienst
 author: Neel Chauhan
 contributors: Ganna Zhrynova
 tested_with: 9.3
@@ -13,21 +13,21 @@ tags:
 
 ## Einleitung
 
-[Tor](https://www.torproject.org/) is an anonymity service and software that routes traffic by way of three volunteer-run servers called relays. The three-hop design is to ensure privacy by resisting surveillance attempts.
+[Tor](https://www.torproject.org/) ist ein Anonymisierungsdienst und eine Software, die den Datenverkehr über drei von Freiwilligen betriebene Server, sogenannte Relays, leitet. Das Three-Hop-Design soll die Privatsphäre gewährleisten, indem es Überwachungsversuchen widersteht.
 
-One feature of Tor is that you can run hidden, Tor-exclusive websites called [onion services](https://community.torproject.org/onion-services/). All traffic to an onion service is therefore private and encrypted.
+Eine Besonderheit von Tor ist, dass man versteckte, Tor-exklusive Websites betreiben kann, die als [Onion-Dienste](https://community.torproject.org/onion-services/) bezeichnet werden. Der gesamte Datenverkehr zu einem Onion-Dienst ist daher privat und verschlüsselt.
 
 ## Voraussetzungen
 
-The following are minimum requirements for using this procedure:
+Folgende Mindestvoraussetzungen gelten für die Anwendung dieses Verfahrens:
 
-- The ability to run commands as the root user or use `sudo` to elevate privileges
-- Familiarity with a command-line editor. The author is using `vi` or `vim` here, but substitute in your favorite editor
-- A web server running on localhost, or another TCP/IP port
+- Die Möglichkeit, Befehle als Root-Benutzer auszuführen oder mit `sudo` die Berechtigungen zu erhöhen
+- Erfahrung im Umgang mit einem Kommandozeilen-Editor. Der Autor verwendet hier `vi` oder `vim`, Sie können aber Ihren bevorzugten Editor verwenden
+- Ein Webserver, der auf localhost oder einem anderen TCP/IP-Port läuft
 
 ## Tor-Installation
 
-To install Tor, you need to first install the EPEL (Extra Packages for Enterprise Linux) and run updates:
+Zur Installation von Tor müssen Sie zuerst EPEL (Extra Packages for Enterprise Linux) installieren und Updates ausführen:
 
 ```bash
 dnf -y install epel-release && dnf -y update
@@ -41,13 +41,13 @@ dnf -y install tor
 
 ## Tor-Konfiguration
 
-With the packages installed, you need to configure Tor. The author uses `vi` for this, but if you prefer `nano` or something else, go ahead and substitute that in:
+Nach der Installation der Pakete müssen Sie Tor konfigurieren. Der Autor verwendet dafür `vim`, aber wenn Sie `nano` oder etwas anderes bevorzugen, können Sie das gerne entsprechend anpassen:
 
 ```bash
 vi /etc/tor/torrc
 ```
 
-The default `torrc` file is pretty descriptive, but can get long if you just want an onion service. A minimum onion service configuration is similar to this:
+Die standardmäßige `torrc`-Datei ist recht aussagekräftig, kann aber sehr lang werden, wenn man nur einen Onion-Dienst benötigt. Eine minimale Onion-Service-Konfiguration sieht in etwa so aus:
 
 ```bash
 HiddenServiceDir /var/lib/tor/onion-site/
@@ -56,22 +56,22 @@ HiddenServicePort 80 127.0.0.1:80
 
 ### Genauere Betrachtung
 
-- The "HiddenServiceDir" is the location of your onion service's hostname and cryptographic keys. You are storing these keys at `/var/lib/tor/onion-site/`
-- The "HiddenServicePort" is the port forwarding from your local server to the onion service. You are forwarding 127.0.0.1:80 to port 80 on our Tor-facing service
+- Das Verzeichnis `HiddenServiceDir` enthält den Hostnamen und die kryptografischen Schlüssel Ihres Onion-Dienstes. Sie speichern diese Schlüssel unter `/var/lib/tor/onion-site/`
+- Der `HiddenServicePort` ist die Portweiterleitung von Ihrem lokalen Server zum Onion-Dienst. Sie leiten 127.0.0.1:80 an Port 80 unseres Tor-basierten Dienstes weiter
 
 !!! warning
 
-    If you plan to use a directory for your onion service signing keys outside of `/var/lib/tor/`, you will need to make sure the permissions are `0700` and the owner is `toranon:toranon`.
+    Wenn Sie ein Verzeichnis außerhalb von `/var/lib/tor/` für Ihre Onion-Service-Signaturschlüssel verwenden möchten, müssen Sie sicherstellen, dass die Berechtigungen `0700` lauten und der Eigentümer `toranon:toranon` ist.
 
 ## Web-Server — Konfiguration
 
-You will also need a web server on our machine to service clients to your onion service. Any web server (Caddy, Apache, or Nginx) is usable. The author prefers Caddy. Der Einfachheit halber installieren wir Caddy:
+Sie benötigen außerdem einen Webserver auf Ihrem Rechner, um Clients für Ihren Onion-Dienst zu bedienen. Jeder Webserver (Caddy, Apache oder Nginx) ist verwendbar. Der Autor bevorzugt Caddy. Der Einfachheit halber installieren wir Caddy:
 
 ```bash
 dnf -y install caddy
 ```
 
-Next, you will insert the following to `/etc/caddy/Caddyfile`:
+Als Nächstes fügen Sie Folgendes in die Datei `/etc/caddy/Caddyfile` ein:
 
 ```bash
 http:// {
@@ -82,24 +82,24 @@ http:// {
 
 ## Testen und Hochfahren
 
-Once you have set your Tor relay configuration, the next step is to turn up the Tor and Caddy daemons:
+Sobald Sie Ihre Tor-Relay-Konfiguration eingerichtet haben, besteht der nächste Schritt darin, die Tor- und Caddy-Daemons zu aktivieren:
 
 ```bash
 systemctl enable --now tor caddy
 ```
 
-You can get your onion service's hostname with this command:
+Den Hostnamen Ihres Onion-Dienstes erhalten Sie mit diesem Befehl:
 
 ```bash
 cat /var/lib/tor/onion-site/hostname
 ```
 
-Within a few minutes, your onion service will propagate via the Tor network and you can view your new onion service in the Tor browser:
+Innerhalb weniger Minuten wird Ihr Onion-Dienst über das Tor-Netzwerk verbreitet und Sie können Ihren neuen Onion-Dienst im Tor-Browser anzeigen:
 
 ![Tor Browser showing our Onion Service](../images/onion_service.png)
 
 ## Zusammenfassung
 
-Onion services are an invaluable tool if you are hosting a website privately or need to bypass your ISP's Carrier Grade NAT using only open source software.
+Onion-Dienste sind ein unschätzbares Werkzeug, wenn Sie eine Website privat hosten oder die Carrier-Grade-NAT-Sperre Ihres Internetanbieters ausschließlich mit Open-Source-Software umgehen müssen.
 
-While onion services are not as fast as hosting a website directly (understandable due to Tor's privacy-first design), it is way more secure and private than the public internet.
+Auch wenn Onion-Dienste nicht so schnell sind wie das direkte Hosten einer Website (was aufgrund des datenschutzorientierten Designs von Tor verständlich ist), sind sie wesentlich sicherer und privater als das öffentliche Internet.

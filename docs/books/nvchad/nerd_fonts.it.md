@@ -27,11 +27,13 @@ https://www.nerdfonts.com/font-downloads
 
 ### :material-monitor-arrow-down-variant: Procedura di installazione
 
-L'installazione dei Nerd Fonts in Rocky Linux si effettua interamente dalla riga di comando grazie all'implementazione della procedura fornita dal repository del progetto [ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts). La procedura utilizza *git* per recuperare i font necessari e *fc-cache* per la loro configurazione.
+L'installazione dei Nerd Fonts in Rocky Linux si effettua interamente dalla riga di comando grazie all'implementazione della procedura fornita dal repository del progetto [ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts). La procedura utilizza _git_ per recuperare i font necessari e _fc-cache_ per la loro configurazione.
 
-!!! Note "Nota"
+!!! Note
 
+    ```
     Questo metodo può essere usato su tutte le distribuzioni *linux* che usano [fontconfig](https://www.freedesktop.org/wiki/Software/fontconfig/) per la gestione dei font di sistema.
+    ```
 
 Per iniziare, recuperare i file necessari dal repository del progetto:
 
@@ -39,7 +41,7 @@ Per iniziare, recuperare i file necessari dal repository del progetto:
 git clone --filter=blob:none --sparse git@github.com:ryanoasis/nerd-fonts
 ```
 
-Questo comando scarica solo i file necessari, omettendo i font contenuti in *patched-fonts*, in modo da non appesantire il repository locale con font che poi non verranno utilizzati, consentendo così un'installazione selettiva.  
+Questo comando scarica solo i file necessari, omettendo i font contenuti in _patched-fonts_, in modo da non appesantire il repository locale con font che poi non verranno utilizzati, consentendo così un'installazione selettiva.  
 Questa guida utilizzerà il font [IBM Plex Mono](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/IBMPlexMono), che offre una visualizzazione pulita e leggermente tipografica, caratteristiche che lo rendono particolarmente adatto alla scrittura di documentazione Markdown.  
 Visitare il sito [dedicato](https://www.programmingfonts.org/#plex-mono) per una panoramica e un'anteprima dei font disponibili.
 
@@ -50,7 +52,7 @@ cd ~/nerd-fonts/
 git sparse-checkout add patched-fonts/IBMPlexMono
 ```
 
-Il comando scaricherà i font nella cartella *patched-fonts* e al termine sarà possibile installarli con lo script ==install.sh== fornito, digitando:
+Il comando scaricherà i font nella cartella _patched-fonts_ e al termine sarà possibile installarli con lo script ==install.sh== fornito, digitando:
 
 ```bash
 ./install.sh IBMPlexMono
@@ -58,9 +60,11 @@ Il comando scaricherà i font nella cartella *patched-fonts* e al termine sarà 
 
 !!! Note "Nome riservato"
 
+    ```
     Il font durante l'installazione viene rinominato in *BlexMono* per rispettare la SIL Open Font License (OFL) e in particolare il meccanismo [reserved name mechanism](http://scripts.sil.org/cms/scripts/page.php?item_id=OFL_web_fonts_and_RFNs#14cbfd4a).
+    ```
 
-Lo script *install.sh* copia i font nella cartella utente `~/.local/share/fonts/` e invoca il programma *fc-cache* per registrarli nel sistema. Una volta terminato, i font saranno disponibili per l'emulatore di terminale; in particolare, troveremo installati i seguenti font:
+Lo script _install.sh_ copia i font nella cartella utente `~/.local/share/fonts/` e invoca il programma _fc-cache_ per registrarli nel sistema. Una volta terminato, i font saranno disponibili per l'emulatore di terminale; in particolare, troveremo installati i seguenti font:
 
 ```text title="~/.local/share/fonts/"
 NerdFonts/
