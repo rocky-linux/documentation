@@ -213,7 +213,7 @@ Esempio: `listen.allowed_clients = 127.0.0.1`
 
 #### Configurazione statica o dinamica
 
-You can manage the processes of PHP-FPM either statically or dynamically.
+È possibile gestire i processi di PHP-FPM in modo statico o dinamico.
 
 In modalità statica, `pm.max_children` imposta il numero di processi figlio:
 
@@ -375,7 +375,7 @@ Dopo un po' di tempo, questo dovrebbe darci un'idea abbastanza precisa dell'uso 
 
 Il risultato del resto di questo documento è un uso di memoria di 120 megabyte per ogni processo a pieno carico.
 
-On a server with 8 gigabytes of RAM, keeping 1 gigabyte for the system and 1 gigabyte for the OPCache (see the rest of this document), 6 gigabytes is left to process PHP requests from clients.
+Su un server con 8 gigabyte di RAM, mantenendo 1 gigabyte per il sistema e 1 gigabyte per l'OPCache (vedere il resto di questo documento), rimangono 6 gigabyte per elaborare le richieste PHP dai client.
 
 Si può concludere che questo server può accettare al massimo **50 thread** `((6*1024) / 120)`.
 
