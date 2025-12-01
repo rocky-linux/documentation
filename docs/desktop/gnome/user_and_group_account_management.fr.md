@@ -97,7 +97,7 @@ Pour ajouter un utilisateur à un groupe, procédez comme suit :
 
 - Cliquez sur l'icône de points de suspension verticaux à côté du nouvel utilisateur, puis cliquez sur **Edit user**
 
-- Cliquez sur la zone de texte **Groups** et commencez à saisir le nom du groupe.\
+- Cliquez sur la zone de texte **Groups** et commencez à saisir le nom du groupe.  
   Vous pouvez également faire défiler le menu déroulant et cliquer sur le nom du groupe que vous souhaitez ajouter
 
   ![img](images/user_group_acctmgt_images/14.png)
