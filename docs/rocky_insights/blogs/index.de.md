@@ -1,5 +1,5 @@
 ---
-title: Introduktion
+title: Einleitung
 author: Steven Spencer
 contributors:
 ---
