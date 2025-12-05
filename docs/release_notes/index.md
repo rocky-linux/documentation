@@ -18,6 +18,7 @@ Rocky 10 (Code Name "Red Quartz") has general support until 31 May 2030 and secu
 | Release Number | General Availability Date | Kernel Version |
 |----------------|---------------------------|----------------|
 | 10.0           | 2025-06-11                | 6.12.0-55.14.1 |
+| 10.1           | 2025-11-25                | 6.12.0-124.8.1 |
 
 ## Rocky 9
 
@@ -36,6 +37,7 @@ Rocky 9 (Code Name "Blue Onyx") has general support until 31 May 2027 and securi
 | 9.4            | 2024-05-09                | 5.14.0-427.13.1 |
 | 9.5            | 2024-11-19                | 5.14.0-503.14.1 |
 | 9.6            | 2025-06-04                | 5.14.0-570.18.1 |
+| 9.7            | 2025-12-01                | 5.14.0-611.5.1  |
 
 ## Rocky 8
 
