@@ -20,9 +20,9 @@ contributors: Steven Spencer
 
 习语、术语、缩略形式和首字母缩略词可能会让不熟悉它们的读者感到困惑，尤其是非母语人士、新员工或特定领域之外的人。
 
-**习语** 通常具有文化特殊性，对于国际读者来说很难理解。\
-**术语** 涉及只有某一领域的专家才能识别的专业术语。\
-**缩略形式** 在英语中用简化形式替代完整词汇，但并非所有语言都存在类似用法，导致翻译困难。\
+**习语** 通常具有文化特殊性，对于国际读者来说很难理解。  
+**术语** 涉及只有某一领域的专家才能识别的专业术语。  
+**缩略形式** 在英语中用简化形式替代完整词汇，但并非所有语言都存在类似用法，导致翻译困难。  
 **首字母缩略词** 易产生歧义，尤其是在首次使用时没有定义的情况下。
 
 示例：
@@ -69,10 +69,10 @@ The system opens the dialog where you need to complete the form.
 
 例如：
 
-Step 1 - Go to the section\
-Step 2 - Click the button\
-Step 3 - Complete the form\
-...\
+Step 1 - Go to the section  
+Step 2 - Click the button  
+Step 3 - Complete the form  
+...  
 Step N - save changes
 
 ## 必要时进行截图

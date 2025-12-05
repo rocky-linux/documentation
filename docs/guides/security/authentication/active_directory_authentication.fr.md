@@ -88,7 +88,7 @@ Cela sera découvert à l'aide des enregistrements SRV pertinents stockés dans 
 
 ### Rejoindre
 
-Une fois que vous avez effectué avec succès une découverte de votre installation Active Directory à partir de l'hôte Linux, vous devriez pouvoir utiliser `realmd` pour rejoindre le domaine, ce qui orchestrera la configuration de `sssd` en utilisant `adcli` et d'autres outils.
+Une fois que vous avez réussi à découvrir votre installation Active Directory depuis l'hôte Linux, vous devriez pouvoir utiliser `realmd` pour rejoindre le domaine, ce qui orchestrera la configuration de `sssd` à l'aide de `adcli` et d'autres outils similaires.
 
 ```sh
 [user@host ~]$ sudo realm join ad.company.local

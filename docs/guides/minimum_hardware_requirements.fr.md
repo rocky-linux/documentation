@@ -123,6 +123,6 @@ Selon les notes de publication officielles de Rocky Linux 10.0, RL10 prend en c
 
 ---
 
-**Mise à Jour**: 2025-06-30\
+**Mise à Jour**: 2025-06-30  
 **Concerne**: Rocky Linux 10 Release Initial
 **Traductions**: <a href="https://crowdin.com/project/rockydocs/activity-stream">2025-09-04 20h15</a>

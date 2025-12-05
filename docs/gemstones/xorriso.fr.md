@@ -1,7 +1,7 @@
 ---
 title: Graver sur CD/DVD avec Xorriso
 author: Joseph Brinkman
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 ## Introduction

@@ -12,8 +12,8 @@ tags:
 Voici ce dont vous aurez besoin pour comprendre et suivre ce guide :
 
 - Un ordinateur fonctionnant sous Rocky Linux
-- Savoir modifier les fichiers de configuration à partir de la ligne de commande.
-- Savoir utiliser un éditeur comme _vi_.
+- Être à l'aise avec la modification des fichiers de configuration à partir de la ligne de commande
+- Connaissance de l'utilisation d'un éditeur de ligne de commande (nous utilisons `vi` ici, mais n'hésitez pas à le remplacer par votre éditeur favori)
 - Vous aurez besoin des droits d'accès `root` ou bien obtenir les privilèges nécessaires grâce à `sudo`
 - Les paires de clés SSH publique et privée
 - Pouvoir créer un script bash avec `vi` ou votre éditeur préféré et le tester.
@@ -25,7 +25,7 @@ L'utilisation de `rsync` sur SSH n'est pas aussi efficace que [lsyncd](../backup
 
 Si vous avez besoin de garder à jour un ensemble de répertoires sur l'ordinateur cible, et vous ne vous souciez pas de la synchronisation en temps réel en tant que fonctionnalité, alors `rsync` par l'intermédiaire de SSH est probablement la meilleure solution.
 
-Pour cette procédure, vous aurez besoin de l'utilisateur `root`. Connectez-vous en tant qu'utilisateur `root` ou utilisez la commande `sudo -s` pour passer à l'utilisateur `root` dans votre terminal.
+Vous travaillerez en tant qu'utilisateur `root` pour cette procédure. Connectez-vous en tant qu'utilisateur `root` ou utilisez la commande `sudo -s` pour passer à l'utilisateur `root` dans votre terminal.
 
 ### Installation de `rsync`
 
@@ -37,7 +37,7 @@ dnf install rsync
 
 Si le paquet n'est pas installé, `dnf` vous demandera de confirmer l'installation. S'il est déjà installé, `dnf` cherchera une mise à jour et vous demandera de l'installer.
 
-### Préparation de l’Environnement
+### Préparation de l’environnement
 
 Cet exemple utilisera `rsync` sur l'ordinateur cible pour extraire de la source au lieu de transférer de la source vers la cible. Pour cela vous devez configurer une [paire de clés SSH](../security/ssh_public_private_keys.md). Après avoir créé la paire de clés SSH, vérifiez l’accès sans mot de passe de l’ordinateur cible à l’ordinateur source.
 
@@ -58,7 +58,7 @@ Les seules options supplémentaires dont nous aurons besoin dans cet exemple son
 - `-e`, précise le shell distant à utiliser
 - `--delete`, qui indique que si le répertoire cible contient un fichier qui n'existe pas sur la source, il faut le supprimer
 
-Ensuite, nous devons configurer un script en créant un fichier pour cela (encore une fois, utilisez votre éditeur préféré si vous n'êtes pas familier avec `vi`). Pour créer le fichier, utilisez la commande suivante :
+Ensuite, configurez un script sur l'ordinateur cible en créant un fichier pour celui-ci (encore une fois, utilisez votre éditeur favori si vous n'êtes pas familier avec `vi`). Pour créer le fichier, utilisez la commande suivante :
 
 ```bash
 vi /usr/local/sbin/rsync_dirs
@@ -93,7 +93,7 @@ Exécutez le script :
 /usr/local/sbin/rsync_dirs
 ```
 
-Si tout se passe bien, vous obtiendrez une copie entièrement synchronisée de votre répertoire personnel sur l’ordinateur cible. Vérifiez pour être sûr que c'est bien le cas.
+Si tout se passe bien, vous obtiendrez une copie synchronisée de votre répertoire personnel sur l'ordinateur cible. Vérifiez pour être sûr que c'est bien le cas.
 
 En supposant que tout a bien marché comme prévu, continuez en créant un nouveau fichier dans votre répertoire personnel sous `/home/` de l'ordinateur source :
 
@@ -101,7 +101,7 @@ En supposant que tout a bien marché comme prévu, continuez en créant un nouve
 touch /home/your_user/testfile.txt
 ```
 
-Relancez le script :
+Relancez le script :
 
 ```bash
 /usr/local/sbin/rsync_dirs
@@ -113,7 +113,7 @@ Ensuite vérifiez que la cible reçoit bien le nouveau fichier. Si oui, l'étape
 rm -f /home/your_user/testfile.txt
 ```
 
-Relancez le script :
+Relancez le script :
 
 ```bash
 /usr/local/sbin/rsync_dirs
@@ -137,7 +137,7 @@ Le fichier qui vient d'être créé sur l'ordinateur de destination devrait disp
 
 En supposant que tout fonctionne correctement, modifiez le script pour synchroniser tous les répertoires requis.
 
-## Automatisation Complète
+## Automatisation complète
 
 Vous ne souhaiterez probablement pas exécuter ce script chaque fois que vous voulez effectuer une synchronisation manuelle. Utilisez un `crontab` pour effectuer cette opération automatiquement selon un calendrier précis. Supposons que vous désiriez lancer le script à 23: 00 chaque soir :
 
@@ -175,7 +175,7 @@ Cela s'affichera et ressemblera à ceci :
 
 !!! info "Info"
 
-    L'exemple `crontab` montre un fichier vide, mais commenté. Le commentaire n'apparaît pas sur chaque instance d'ordinateur et le fichier en question peut être un fichier vide. Sur un ordinateur en service vous pouvez voir d’autres entrées.
+    L'exemple `crontab` montre un fichier vide mais commenté. Les commentaires n'apparaissent pas sur tous les ordinateurs et peuvent correspondre à un fichier vide. Sur un ordinateur en service vous pouvez voir d’autres entrées.
 
 Le `crontab` correspond à une horloge de 24 heures. Vous devrez insérer la ligne suivante au bas du fichier :
 
