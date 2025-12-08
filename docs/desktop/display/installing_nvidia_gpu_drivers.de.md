@@ -11,7 +11,7 @@ NVIDIA^®^ ist einer der beliebtesten GPU-Hersteller. Sie können NVIDIA-GPU-Tre
 Zu den weiteren Möglichkeiten zum Installieren von NVIDIA-Treibern zählen:
 
 - NVIDIAs `.run`-Installationsprogramm
-- RPM Fusion-Repository eines Drittanbieters
+- RPMFusion-Repository eines Drittanbieters
 - ELRepo-Treiber eines Drittanbieters
 
 In den meisten Fällen ist es am besten, NVIDIA-Treiber von der offiziellen Quelle zu installieren. RPM Fusion und ELRepo stehen für diejenigen zur Verfügung, die ein Community-basiertes Repository bevorzugen. Für ältere Hardware funktioniert RPM Fusion am besten. Es wird empfohlen, den `.run`-Installer nicht zu verwenden. Obwohl die Verwendung des `.run`-Installationsprogramms praktisch ist, ist es dafür bekannt, dass es Systemdateien überschreibt und zu Inkompatibilitätsproblemen führt.
@@ -65,13 +65,13 @@ Als nächstes bereinigen Sie den DNF-Repository-Cache:
 sudo dnf clean expire-cache
 ```
 
-Installieren Sie abschließend den neuesten NVIDIA-Treiber für Ihr System. Führen Sie für offene Kernelmodule Folgendes aus:
+Installieren Sie abschließend den neuesten NVIDIA-Treiber für Ihr System. Führen Sie für offene Kernel-Module Folgendes aus:
 
 ```bash
 sudo dnf install nvidia-open -y
 ```
 
-Führen Sie für offene Kernelmodule Folgendes aus:
+Für proprietäre Kernel-Module führen Sie Folgendes aus:
 
 ```bash
 sudo dnf install cuda-drivers -y
