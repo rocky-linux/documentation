@@ -11,7 +11,7 @@ NVIDIA^&reg;^ est l’un des fabricants de GPU les plus connus. Il existe plusie
 Voici d'autres méthodes alternatives pour installer les pilotes NVIDIA :
 
 - Programme d'installation `.run` de NVIDIA
-- Dépôt tiers RPMFusion
+- Dépôt RPMFusion tiers
 - Pilote ELRepo tiers
 
 Dans la plupart des cas, il est préférable d'installer les pilotes NVIDIA à partir de la source officielle. RPMFusion et ELRepo sont disponibles pour ceux qui préfèrent un dépôt communautaire. Pour les matériels plus anciens, RPMFusion fonctionne mieux. Il est recommandé d'éviter d'utiliser le programme d'installation `.run`. Bien que pratique, l'utilisation du programme d'installation `.run` est connue pour écraser les fichiers système et présente des problèmes d'incompatibilité.
