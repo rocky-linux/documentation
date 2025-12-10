@@ -11,9 +11,18 @@ Bienvenido a nuestra lista de notas de publicación y registros de cambios para 
 
 ## Rocky Linux Releases
 
+## Rocky 10
+
+Rocky 10 (Code Name "Red Quartz") tiene soporte general hasta el 31 de mayo de 2030 y soporte de seguridad hasta el 31 de mayo de 2035. Las arquitecturas soportadas son x86_64_v3, riscv64, aarch64, ppc64le y s390x.
+
+| Número de Versión | Fecha General de Disponibilidad | Versión del Kernel |
+| ----------------- | ------------------------------- | ------------------ |
+| 10.0              | 2025-06-11                      | 6.12.0-55.14.1     |
+| 10.1              | 2025-11-25                      | 6.12.0-124.8.1     |
+
 ## Rocky 9
 
-### Visión General
+### Visión general
 
 Rocky 9 (Code Name "Blue Onyx") tiene soporte general hasta el 31 de mayo de 2027 y soporte de seguridad hasta el 31 de mayo de 2032. Las arquitecturas soportadas son x86_64-v2, aarch64, pc64le y s390x.
 
@@ -27,10 +36,12 @@ Rocky 9 (Code Name "Blue Onyx") tiene soporte general hasta el 31 de mayo de 202
 | 9.3               | 2023-11-20                      | 5.14.0-362.8.1     |
 | 9.4               | 2024-05-09                      | 5.14.0-427.13.1    |
 | 9.5               | 2024-11-19                      | 5.14.0-503.14.1    |
+| 9.6               | 2025-06-04                      | 5.14.0-570.18.1    |
+| 9.7               | 2025-12-01                      | 5.14.0-611.5.1     |
 
 ## Rocky 8
 
-### Visión General
+### Visión general
 
 Rocky 8 (Code Name "Green Obsidian") tiene soporte general hasta el 1 de mayo de 2024 y soporte de seguridad hasta el 1 de mayo de 2029. Las arquitecturas soportadas son x86_64 y aarch64.
 
