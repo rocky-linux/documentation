@@ -77,6 +77,16 @@ While for proprietary kernel modules, run:
 sudo dnf install cuda-drivers -y
 ```
 
+### Older GPUs
+Release 590 of the NVIDIA driver [dropped support for Maxwell-, Pascal-, and Volta- based GPUs](https://forums.developer.nvidia.com/t/unix-graphics-feature-deprecation-schedule/60588). On such systems, the above instructions will install the driver without an error, but on reboot will fail to load the module, since it can't find any GPUs it supports. However, if you have such a GPU, you can still install the older driver:
+
+```bash
+sudo dnf install cuda-drivers-580 -y
+```
+
+You will then need to protect the `cuda-drivers` package from future updates via [dnf's versionlock plugin](https://docs.rockylinux.org/books/admin_guide/13-softwares/#versionlock-plugin).
+
+
 ## Disable Nouveau
 
 Nouveau is an open-source NVIDIA driver that provides limited functionality compared to NVIDIA's proprietary drivers. It is best to disable it to avoid driver conflicts:
