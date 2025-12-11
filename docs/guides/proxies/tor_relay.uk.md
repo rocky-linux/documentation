@@ -130,7 +130,7 @@ systemctl enable --now tor
 У ваших журналах systemd ви повинні отримати такий рядок:
 
 ```bash
-14 січня 15:46:36 ім’я хосту tor[1142]: 14 січня 15:46:36.000 [повідомлення] Самотестування вказує на те, що ваш ORPort A.B.C.D:9001 доступний ззовні. Чудово. Дескриптор сервера публікації.
+Jan 14 15:46:36 hostname tor[1142]: Jan 14 15:46:36.000 [notice] Self-testing indicates your ORPort A.B.C.D:9001 is reachable from the outside. Excellent. Publishing server descriptor.
 ```
 
 Це означає, що ваше реле доступне.

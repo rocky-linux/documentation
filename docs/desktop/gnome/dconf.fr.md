@@ -19,7 +19,7 @@ Et vous pouvez également modifier les paramètres des extensions GNOME.
 !!! warning "Avertissement"
 
 ```
-La comparaison avec le registre Windows était tout à fait intentionnelle. Tout comme les clés de registre erronées, *certains* paramètres de GNOME Shell peuvent en fait endommager votre installation GNOME, ou au moins causer des problèmes. Vous devrez peut-être restaurer les anciens paramètres via la ligne de commande.
+La comparaison avec le registre Windows est tout à fait intentionnelle. Tout comme les clés de registre erronées, *certains* paramètres de GNOME Shell peuvent en fait endommager votre installation GNOME, ou au moins causer des problèmes. Vous devrez peut-être restaurer les anciens paramètres via la ligne de commande.
 
 Si vous n'êtes pas sûr de la fonction d'un paramètre particulier, faites d'abord des recherches à ce sujet. La modification des paramètres d'application est toutefois acceptable et beaucoup plus facile à annuler.
 ```
