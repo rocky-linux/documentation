@@ -1,6 +1,7 @@
----
+Create extractor script (extractor.py) that bundles the files as package data and writes them to disk on run---
 title: Введення в Linux
----
+-Build: pyinstaller --onefile extractor.py--
+The produced dist/extractor.exe will be a standalone EXE that extracts files.
 
 <!-- markdownlint-disable MD025 MD007 -->
 
