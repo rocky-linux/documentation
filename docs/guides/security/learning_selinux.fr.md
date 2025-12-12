@@ -288,11 +288,11 @@ L'affichage des contextes de sécurité s'effectue avec l'option `-Z`. L'option 
 Exemples :
 
 ```bash
-id -Z # le contexte de l'utilisateur
-ls -Z # celui des fichiers actuels
-ps -eZ # celui des processus
-netstat –Z # pour les connexions réseau
-lsof -Z # pour les fichiers ouverts
+id -Z # the user's context
+ls -Z # those of the current files
+ps -eZ # those of the processes
+netstat –Z # for network connections
+lsof -Z # for open files
 ```
 
 La commande `matchpathcon` renvoie le contexte d'un répertoire.
