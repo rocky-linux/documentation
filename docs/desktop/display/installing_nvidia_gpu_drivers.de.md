@@ -77,6 +77,16 @@ Für proprietäre Kernel-Module führen Sie Folgendes aus:
 sudo dnf install cuda-drivers -y
 ```
 
+### Ältere GPUs
+
+Mit Version 590 des NVIDIA-Treibers wurde die Unterstützung für GPUs auf Basis von Maxwell, Pascal und Volta [eingestellt] (https://forums.developer.nvidia.com/t/unix-graphics-feature-deprecation-schedule/60588). Auf solchen Systemen wird der Treiber gemäß den obigen Anweisungen fehlerfrei installiert, jedoch kann das Modul nach einem Neustart nicht geladen werden, da es keine unterstützten GPUs findet. Falls Sie jedoch über eine solche GPU verfügen, können Sie trotzdem den älteren Treiber installieren:
+
+```bash
+sudo dnf install cuda-drivers-580 -y
+```
+
+Anschließend müssen Sie das Paket `cuda-drivers` mithilfe des [dnf versionlock plugin](https://docs.rockylinux.org/books/admin_guide/13-softwares/#versionlock-plugin) vor zukünftigen Aktualisierungen schützen.
+
 ## `Nouveau` deaktivieren
 
 `Nouveau` ist ein Open-Source-NVIDIA-Treiber, der im Vergleich zu den proprietären Treibern von NVIDIA nur begrenzte Funktionalität bietet. Es empfiehlt sich, diese Funktion zu deaktivieren, um Treiberkonflikte zu vermeiden:
