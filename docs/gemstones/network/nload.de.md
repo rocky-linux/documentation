@@ -1,5 +1,5 @@
 ---
-title: nload – Bandbreitenstatistik
+title: nload — Bandbreitenstatistik
 author: Neel Chauhan
 contributors: Steven Spencer, Ganna Zhyrnova
 date: 2024-01-16
