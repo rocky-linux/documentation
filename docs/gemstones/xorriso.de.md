@@ -39,7 +39,8 @@ Xorriso verwendet eine C-Bibliothek namens `libisofs`. Mehr über `libisofs` erf
 ## Zusammenfassung
 
 In diesem Kurs haben Sie gelernt, wie man mit Xorriso eine ISO-Datei auf eine physische Festplatte schreibt! Beachten Sie, dass `Xorriso` auch zum Schreiben anderer Dateitypen auf physische Datenträger verwendet werden kann, aber der Autor fand es besonders praktisch für das hybride ISO-Format, mit dem grafische Tools nicht umgehen konnten.<small>
-<br/><br/>
+<br/>
+<br/>
 🌐 Übersetzungen: 
 <a href="https://crowdin.com/project/rockydocs/de">crowdin.com/project/rockydocs</a>
 <br/>

@@ -1,6 +1,6 @@
 - - -
-title: dnf — swap command <br/> author: wale soyinka <br/> translators: [https://crowdin.com/project/rockydocs](https://crowdin.com/project/rockydocs/activity-stream) <br/> date: 2025-09-05 19h49 <br/> tags: <br/>
-  - cloud images
+title: dnf — swap command <br/> author: wale soyinka <br/> translators: [https://crowdin.com/project/rockydocs](https://crowdin.com/project/rockydocs/activity-stream) <br/> date: 2025-12-13 12h49 <br/> tags: <br/>
+  - Images Cloud
   - conteneurs
   - dnf
   - dnf swap
@@ -25,7 +25,7 @@ Ce GEMstone Rocky Linux démontre comment utiliser **dnf** pour _échanger_ le p
 
 ## Vérifiez la variante de `vim` existante
 
-Lorsque vous êtes connecté à votre environnement de conteneur ou de machine virtuelle en tant qu'utilisateur disposant de privilèges administratifs, vérifiez d'abord la variante du package `vim` installée. Entrer la commande suivante :
+Lorsque vous êtes connecté à votre environnement de conteneur ou de machine virtuelle en tant qu'utilisateur disposant de privilèges administratifs, vérifiez d'abord la variante du package `vim` installée. Entrez la commande suivante :
 
 ```bash
 # rpm -qa | grep  ^vim
