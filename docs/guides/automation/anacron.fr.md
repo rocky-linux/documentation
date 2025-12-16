@@ -13,12 +13,12 @@ update: 2021-10-20
 
 ## Prérequis
 
-- Vous avez compris les concepts de base de bash, python ou d'autres outils de script/programmation et vous voulez exécuter le script automatiquement.
+- Vous avez des connaissances de base en bash, Python ou autres outils de script ou de programmation, et vous voulez exécuter le script automatiquement.
 - Vous êtes connecté en tant qu'utilisateur root ou pouvez accéder à root avec `su - root`.
 
 ## Introduction
 
-`anacron` est utilisé pour exécuter des commandes périodiquement et la fréquence de fonctionnement est définie en unités de jours. Il convient aux ordinateurs qui ne fonctionnent pas 24h sur 24, 7 jours sur 7, tels que les ordinateurs portables et les ordinateurs de bureau. Supposons que vous ayez une tâche planifiée (comme un script de sauvegarde) à exécuter tôt le matin à l'aide de `crontab`. Lorsque vous vous endormez, votre ordinateur de bureau ou votre ordinateur portable est éteint. Votre script de sauvegarde ne sera pas exécuté. Cependant, si vous utilisez `anacron`, vous pouvez être assuré que la prochaine fois que vous allumerez l'ordinateur, le script de sauvegarde sera exécuté.
+`anacron` exécute des commandes régulièrement, et la fréquence est exprimée en jours. Il convient aux ordinateurs qui ne fonctionnent pas 24h sur 24, 7 jours sur 7, tels que les ordinateurs portables et les ordinateurs de bureau. Supposons que vous ayez une tâche planifiée (comme un script de sauvegarde) à exécuter tôt le matin à l'aide de `crontab`. Lorsque vous vous endormez, votre ordinateur de bureau ou votre ordinateur portable est éteint. Votre script de sauvegarde ne sera pas exécuté. Cependant, si vous utilisez `anacron`, vous pouvez être assuré que la prochaine fois que vous allumerez l'ordinateur, le script de sauvegarde sera exécuté.
 
 La finalité de `anacron` n'est pas de remplacer `crontab`, mais de compléter `crontab`. Leur relation est la suivante :
 
@@ -97,7 +97,7 @@ Afin de veiller à ce que certains fichiers soient exécutés dans ces temps dé
 Utilisons cron.daily pour illustrer le processus d'exécution de /etc/anacrontab :
 
 1. `anacron` lit le fichier **/var/spool/anacron/cron.daily** et le contenu du fichier montre l'heure de la dernière exécution.
-2. Par rapport à l'heure actuelle, si la différence entre les deux fois dépasse 1 jour, la tâche cron.daily sera exécutée.
+2. Si, par rapport à l'heure actuelle, la différence entre les deux dépasse une journée, la tâche `cron.daily` sera exécutée.
 3. Cette tâche ne peut être exécutée que de 03h00 à 22h00.
 4. Vérifier si un fichier est exécuté plus de 5 minutes après le démarrage. Lorsque le premier job est exécuté, les suivants serons retardés aléatoirement de 0 à 45 minutes.
 5. Utilisez le paramètre nice pour spécifier la priorité par défaut, et utilisez le paramètre run-parts pour lancer tous les fichiers exécutables du répertoire /etc/cron.daily/ .
@@ -106,10 +106,10 @@ Utilisons cron.daily pour illustrer le processus d'exécution de /etc/anacrontab
 
 Utilisation de la commande `anacron`, les options couramment utilisées sont :
 
-| Options | Description                                                                |
-| ------- | -------------------------------------------------------------------------- |
-| -t      | Exécuter toutes les tâches, ignorer les horodatages                        |
-| -u      | Mettre à jour l'horodatage à l'heure actuelle sans effectuer aucune action |
-| -T      | Tester la validité du fichier de configuration /etc/anacrontab             |
+| Options | Description                                                             |
+| ------- | ----------------------------------------------------------------------- |
+| -t      | Exécute toutes les tâches, en ignorant les horodatages                  |
+| -u      | Met à jour l'horodatage à l'heure actuelle sans effectuer aucune action |
+| -T      | Vérifie la validité du fichier de configuration `/etc/anacrontab`     |
 
 Pour plus d'informations, veuillez consulter [la page de manuel](https://man7.org/linux/man-pages/man8/anacron.8.html)

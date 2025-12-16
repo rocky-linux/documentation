@@ -1,5 +1,5 @@
 ---
-title: anacron - Kommandos Automatisierung
+title: anacron — Kommandos Automatisierung
 author: tianci li
 contributors: Steven Spencer, Ganna Zhyrnova
 update: 2021-10-20
@@ -14,11 +14,11 @@ update: 2021-10-20
 ## Voraussetzungen
 
 - Sie haben Grundkenntnisse von bash, python oder anderen Skript-/Programmierwerkzeugen und möchten das Skript automatisch ausführen.
-- Sie sind als Root-Benutzer eingeloggt oder wechseln mit `su - root` zum Root.
+- Sie haben sich als Root-Benutzer angemeldet oder wechseln mit `su - root` zum Root-Benutzer.
 
 ## Einleitung
 
-`anacron` wird verwendet, um Befehle automatisiert auszuführen. Die Einheit für die Wiederholung der Jobs ist der Tag. Es eignet sich für Computer, die nicht rund um die Uhr in Betrieb sind, wie zum Beispiel Laptops und Desktops. Angenommen, Sie haben eine geplante Aufgabe (z. B., ein Sicherungsskript), die jeden Tag frühmorgens mithilfe von `crontab`\` ausgeführt werden soll. Wenn Sie einschlafen, wird Ihr Desktop/Laptop heruntergefahren. Ihr Backup-Skript wird nicht ausgeführt. Wenn Sie jedoch `anacron` verwenden, können Sie sicher sein, dass das Sicherungsskript beim nächsten Einschalten des Desktops oder Notebooks ausgeführt wird.**
+`anacron` führt regelmäßig Befehle aus, wobei die Ausführungsfrequenz in Tagen angegeben wird. Es eignet sich für Computer, die nicht rund um die Uhr laufen, wie z. B. Laptops und Desktop-Computer. Angenommen, Sie haben eine geplante Aufgabe (z. B., ein Sicherungsskript), die jeden Tag frühmorgens mithilfe von `crontab`\` ausgeführt werden soll. Wenn Sie einschlafen, wird Ihr Desktop/Laptop heruntergefahren. Ihr Backup-Skript wird nicht ausgeführt. Wenn Sie jedoch `anacron` verwenden, können Sie sicher sein, dass das Sicherungsskript beim nächsten Einschalten des Desktops oder Notebooks ausgeführt wird.**
 
 Die Implementierung und der Einsatz von `anacron` soll `crontab` nicht ersetzen, sondern `crontab` ergänzen. Ihre Verbindung zueinander ist wie folgt:
 
@@ -106,10 +106,10 @@ Lasst uns cron.daily anschauen, um den Ausführungsprozess von /etc/anacrontab z
 
 Verwenden Sie den Befehl `anacron`, <br/> häufig verwendete Optionen sind:
 
-| Optionen | Beschreibung                                                                          |
-| -------- | ------------------------------------------------------------------------------------- |
-| -f       | Alle Jobs ausführen und Zeitstempel ignorieren                                        |
-| -u       | Den Zeitstempel auf die aktuelle Uhrzeit aktualisieren ohne eine Aktion durchzuführen |
-| -T       | Die Gültigkeit der Konfigurationsdatei /etc/anacrontab überprüfen                     |
+| Optionen | Beschreibung                                                                           |
+| -------- | -------------------------------------------------------------------------------------- |
+| -f       | Führt alle Jobs aus und ignoriert dabei die Zeitstempel                                |
+| -u       | Aktualisiert den Zeitstempel auf die aktuelle Zeit, ohne dabei eine Aktion auszuführen |
+| -T       | Prüft die Gültigkeit der Konfigurationsdatei `/etc/anacrontab`                       |
 
-Weitere Informationen erhalten Sie [auf der Handbuch-Seite](https://man7.org/linux/man-pages/man8/anacron.8.html)
+Weitere Informationen finden Sie [auf der Handbuchseite](https://man7.org/linux/man-pages/man8/anacron.8.html)
