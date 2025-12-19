@@ -30,7 +30,7 @@ La migliore descrizione di `lsyncd` e' fornita dalla sua stessa pagina man. Para
 
 `lsyncd` controlla l'interfaccia di monitoraggio degli eventi di una struttura di directory locale (`inotify`). Aggrega e combina gli eventi per alcuni secondi e genera uno (o più) processi per sincronizzare le modifiche. Per impostazione predefinita, si tratta di `rsync`.
 
-Aggrega e combina gli eventi per alcuni secondi e genera uno (o più) processi per sincronizzare le modifiche. Utilizzando `lsyncd`, è possibile eseguire il mirroring completo di un server specificando attentamente le directory e i file che si desidera sincronizzare.
+In questa guida, l'insieme dei file originali sarà chiamato "source", e quello da sincronizzare "target". Utilizzando `lsyncd`, è possibile eseguire il mirroring completo di un server specificando attentamente le directory e i file che si desidera sincronizzare.
 
 È inoltre necessario configurare [Rocky Linux SSH Public Private Key Pairs](../security/ssh_public_private_keys.md) per la sincronizzazione remota. Gli esempi qui riportati utilizzano SSH (porta 22).
 
