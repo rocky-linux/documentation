@@ -59,7 +59,7 @@ Il primo passo per unire un sistema Linux ad AD è quello di rilevare il cluster
 - Installare i pacchetti richiesti per la connessione AD sul lato Linux:
 
   ```sh
-  [user@host ~]$ sudo dnf install realmd oddjob oddjob-mkhomedir ssd adcli krb5-workstation
+  [user@host ~]$ sudo dnf install realmd oddjob oddjob-mkhomedir sssd adcli krb5-workstation
   ```
 
 
