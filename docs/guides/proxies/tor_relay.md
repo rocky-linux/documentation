@@ -8,10 +8,6 @@ tags:
   - proxies
 ---
 
-!!! warning "Temporary Hold"
-
-    `tor` is currently missing from the EPEL. It will probably be built. The Docs Team will continue to test availability in the EPEL as time allows. For now, your only option is to build `tor` from source, and the instructions for doing that are currently missing here.
-
 ## Introduction
 
 [Tor](https://www.torproject.org/) is an anonymity service and software that routes traffic by way of three volunteer-run servers called relays. The three-hop design is to ensure privacy by resisting surveillance attempts.
@@ -36,6 +32,24 @@ To install Tor, you need to first install the EPEL (Extra Packages for Enterpris
 dnf -y install epel-release && dnf -y update
 ```
 
+If you're on Rocky Linux 10, you need to add the RPM repository. The author uses `vi` for this, but if you prefer `nano` or something else, go ahead and substitute that in:
+
+```bash
+vi /etc/yum.repos.d/tor.repo
+```
+
+Insert the following:
+
+```bash
+[tor]
+name=Tor for Enterprise Linux $releasever - $basearch
+baseurl=https://rpm.torproject.org/centos/$releasever/$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://rpm.torproject.org/centos/public_gpg.key
+cost=100
+```
+
 Then install Tor:
 
 ```bash
@@ -44,7 +58,7 @@ dnf -y install tor
 
 ## Configuring Tor
 
-With the packages installed, you need to configure Tor. The author uses `vi` for this, but if you prefer `nano` or something else, go ahead and substitute that in:
+With the packages installed, you need to configure Tor:
 
 ```bash
 vi /etc/tor/torrc
