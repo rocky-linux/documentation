@@ -197,7 +197,7 @@ runuser = asterisk ; The user to run as.
 rungroup = asterisk ; The group to run as.
 ```
 
-### Configuration du service Asterisk
+### Configuration du service `Asterisk`
 
 ```bash
 sudo systemctl enable asterisk
