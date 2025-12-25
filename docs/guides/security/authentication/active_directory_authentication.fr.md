@@ -120,7 +120,7 @@ administrator@ad.company.local:*:1450400500:1450400513:Administrator:/home/admin
 | --os-version='8'                                           | Indique la version de l'OS stockée dans Active Directory               |
 | -U admin_username                                          | Indique un compte administrateur                                       |
 
-### Tentative d'Authentification
+### Tentative d'authentification
 
 Now your users should be able to authenticate to your Linux host against Active Directory.
 
