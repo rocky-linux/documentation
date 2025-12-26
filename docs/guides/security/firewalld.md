@@ -1,8 +1,8 @@
 ---
 title: firewalld from iptables
 author: Steven Spencer
-contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni, qyecst, Ganna Zhyrnova
-update: 22-Jun-2023
+contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni, qyecst, Ganna Zhyrnova, Neel Chauhan
+update: 25-Dec-2025
 tags:
   - security
   - firewalld
@@ -10,7 +10,7 @@ tags:
 
 # `iptables` guide to `firewalld` - Introduction
 
-When the introduction of `firewalld` as the default firewall happened (Its introduction was in 2011, but I believe it showed up first in CentOS 7.), the author continued to use `iptables`. There were two reasons for this. First, the documentation available at the time for `firewalld` used simplistic rules and did not show how `firewalld` was securing the server *down to the IP level*. Second, the author had over a decade of experience with `iptables` and it was easier to continue using that instead of learning `firewalld`.
+When `firewalld` became the default firewall manager in CentOS 7 (from originally being introduced in Fedora 18), the author continued to use `iptables`. There were two reasons for this. First, the documentation available at the time for `firewalld` used simplistic rules and did not show how `firewalld` was securing the server *down to the IP level*. Second, the author had over a decade of experience with `iptables` and it was easier to continue using that instead of learning `firewalld`.
 
 This document aims to address the limitations of most `firewalld` references and, to force the author to use `firewalld` to mimic those more granular firewall rules.
 
