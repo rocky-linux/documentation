@@ -80,7 +80,7 @@ Einige zusätzliche Optionen:
 
 Ohne Angabe einer Option zeigt der Befehl `ps` nur Prozesse an, die vom aktuellen Terminal ausgeführt werden.
 
-Das Ergebnis wird in Spalten angezeigt:
+Das Ergebnis wird in den folgenden Spalten angezeigt:
 
 ```bash
 # ps -ef
