@@ -53,13 +53,13 @@ sudo dnf install ksnip -y
 
 | Option | Tool               | Beschreibung                                                                                                                                                                                                                                                                           |
 | ------ | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1      | `Select`           | das Werkzeug wird verwendet, um eine Auswahl zu treffen. Klicken Sie auf ein Element, um es auszuwählen, oder klicken Sie und ziehen Sie, um eine Auswahl zu treffen.                                                                                  |
+| 1      | `Select`           | das Tool wird verwendet, um eine Auswahl zu treffen. Klicken Sie auf ein Element, um es auszuwählen, oder klicken Sie und ziehen Sie, um eine Auswahl zu treffen.                                                                                      |
 | 2      | `Duplicate`        | das Tool wird zum Duplizieren einer Auswahl verwendet. Klicken und ziehen Sie, um eine Auswahl zu treffen. Dann klicken und ziehen Sie dann die Auswahl, um sie zu verschieben oder weiter zu transformieren.                          |
 | 3a     | `Arrow`            | das Standard Arrow-Tool, mit dem Sie durch Klicken und Ziehen einen Pfeil erstellen und von einer Position zu einer neuen Position bewegen können                                                                                                                                      |
-| 3b     | `Double Arrow`     | die zweite Arrow-Option erreichen Sie, indem Sie auf den Abwärtspfeil neben dem Arrow-Tool klicken. Wie der Werkzeug-Name vermuten lässt, verfügt das Tool an beiden Endpunkten über einen Pfeil.                                                      |
+| 3b     | `Double Arrow`     | die zweite Arrow-Option erreichen Sie, indem Sie auf den Abwärtspfeil neben dem Arrow-Tool klicken. Wie der Name vermuten lässt, verfügt das Tool an beiden Endpunkten über einen Pfeil.                                                               |
 | 3c     | `Line`             | die dritte Option erreichen Sie, indem Sie auf den Abwärtspfeil neben dem Arrow-Tool klicken. Es ersetzt Pfeile durch eine einfache Linie.                                                                                                             |
 | 4      | `Pen`              | macht Striche, die an einen Stift erinnern. Klicken Sie und bewegen Sie den Mauszeiger über den Screenshot, um den Stift zu verwenden. ^1^                                                                                                             |
-| 5a     | `Marker Pen`       | das Standard-Marker-Tool erzeugt Striche, die einem Textmarker ähneln. Um den Markierungsstift zu verwenden, halten Sie die Maustaste gedrückt und ziehen Sie den Cursor über den Screenshot. ^1^                                                      |
+| 5a     | `Marker Pen`       | das Standard-Marker-Tool erzeugt Striche, die einem Textmarker ähneln. Um den Markierung-Stift zu verwenden, halten Sie die Maustaste gedrückt und ziehen Sie den Cursor über den Screenshot. ^1^                                                      |
 | 5b     | `Marker Rectangle` | die zweite Marker-Option erreichen Sie, indem Sie auf den Abwärtspfeil neben dem Marker-Tool klicken. Wenn Sie mit der linken Maustaste klicken und den Cursor ziehen, füllt das Marker-Rectangle-Werkzeug das aus der Auswahl gebildete Rechteck. ^1^ |
 | 5c     | `Marker Elipse`    | die dritte Marker-Option erreichen Sie, indem Sie auf den Abwärtspfeil neben dem Marker-Tool klicken. Wenn Sie mit der linken Maustaste klicken und den Cursor ziehen, füllt das Marker-Ellipse-Werkzeug die aus der Auswahl erstellte Ellipse. ^1^    |
 | 6a     | `Text`             | Mit dem Standard-Textwerkzeug können Sie den Screenshot mit Text kommentieren. ^1^                                                                                                                                                                                     |
@@ -76,8 +76,8 @@ sudo dnf install ksnip -y
 
 ## Zusammenfassung
 
-Ksnip ist ein ausgezeichnetes Dienstprogramm zum Kommentieren von Screenshots. Es können auch Screenshots erstellt werden. Der Schwerpunkt dieses Handbuchs liegt jedoch auf den Kommentierung-Funktionen und -Tools, die Ksnip bereitstellt.
+Ksnip ist ein ausgezeichnetes Dienstprogramm zum Kommentieren von Screenshots. Es kann auch Screenshots erstellen, aber dieser Leitfaden konzentriert sich hauptsächlich auf die von Ksnip bereitgestellten Annotation-Funktionen und -Werkzeuge.
 
-Sehen Sie sich das [Ksnip GitHub Repo](https://github.com/ksnip/ksnip){target="_blank"} an, um mehr über dieses hervorragende Screenshot-Dienstprogramm zu erfahren.
+Im [Ksnip GitHub Repository](https://github.com/ksnip/ksnip){target="_blank"} finden Sie weitere Informationen zu diesem hervorragenden Screenshot-Tool.
 
 **1.** Für jedes der Werkzeuge, deren Beschreibung mit ==diesem hochgestellten Zeichen== (^1^) beginnt, sind nach der Werkzeugauswahl im oberen Menü verschiedene Befehlsoptionen verfügbar. Diese ändern die Deckkraft, den Rahmen, die Schriftart, den Schriftstil und andere Attribute.

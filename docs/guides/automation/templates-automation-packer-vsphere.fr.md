@@ -17,7 +17,7 @@ contributors: Steven Spencer, Ryan Johnson, Pedro Garcia, Ganna Zhyrnova
 - Un serveur web interne pour stocker des fichiers.
 - Accès Web aux dépôts de Rocky Linux.
 - Une ISO de Rocky Linux.
-- Un environnement Ansible disponible.
+- Un environnement Ansible est disponible
 - Il est supposé que vous avez quelques connaissances de chaque produit mentionné. Sinon, veuillez consulter la documentation correspondante avant de commencer.
 - Vagrant n'est **pas utilisé** ici. Il a été constaté qu'avec Vagrant, une clé SSH qui n'était pas auto-signée serait fournie. Si vous voulez y arriver, vous pouvez le faire, mais ce n'est pas couvert dans ce document.
 
