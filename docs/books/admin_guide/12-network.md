@@ -496,7 +496,7 @@ Display sockets that have established connections:
 [root]# ss
 ```
 
-View the ports that the local machine is listening on：
+View the ports that the local machine is listening on:
 
 ```bash
 [root]# ss -tulnp
@@ -875,7 +875,7 @@ In the vast majority of cases, there is no need to modify the content of this fi
 
 ### `getent` command
 
-The `genent` command is released from the glibc-common package, so you may need to execute the following command:
+The `getent` command is released from the glibc-common package, so you may need to execute the following command:
 
 ```bash
 [root]# dnf -y install glibc-common
@@ -926,7 +926,7 @@ You can use the `mtr` or `ping` command to gradually check the communication sta
 
 !!! note "terminology explanation"
 
-    Network topology diagram：A chart that graphically presents the physical or logical connection relationships between network devices
+    Network topology diagram: A chart that graphically presents the physical or logical connection relationships between network devices
 
 ![Network architecture with a gateway](images/network-002.png)
 
