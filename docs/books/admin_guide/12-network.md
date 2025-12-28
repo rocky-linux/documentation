@@ -906,7 +906,7 @@ For proper **/etc/hosts** file resolution, query the NSSwitch name service which
 
 In this version, NetworkManager is compatible with traditional network card configuration files, but the author recommends that you use the relevant commands of NetworkManager to manage network card configuration files. This way, you can seamlessly manage networks for subsequent versions 9.x or 10.x.
 
-**Q: Question: In the network interface card configuration file managed by NetworkManager, which attributes (keys) can be configured?**
+**Q: In the network interface card configuration file managed by NetworkManager, which attributes (keys) can be configured?**
 
 Please refer to the contents of `man 5 nm-settings` and `man 5 NetworkManager.conf`.
 
