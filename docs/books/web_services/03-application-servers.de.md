@@ -1,7 +1,7 @@
 ---
 author: Antoine Le Morvan
 contributors: Steven Spencer, Ganna Zhyrnova
-title: Part 3. Applikation Servers
+title: Kapitel 3 — Applikation Servers
 tags:
   - web
   - php
