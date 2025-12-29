@@ -120,7 +120,7 @@ configure: host-cpu:vendor:os: x86_64 : pc : linux-gnu :
 
 ### Définir les options du menu Asterisk [pour plus d'options]
 
-C'est l'une des étapes où l'administrateur devra bien faire ses devoirs. Il y a beaucoup d'options de menu dont vous pouvez avoir besoin ou non. Exécuter la commande suivante :
+C'est l'une des étapes où l'administrateur devra bien faire ses devoirs. Il existe de nombreuses options de menu dont vous n'aurez peut-être pas besoin. Exécuter la commande suivante :
 
 ```bash
 make menuselect
