@@ -49,7 +49,7 @@ sudo usermod -aG libvirt $USER
 * Activate the `libvirt` group by using the `newgrp` command:
 
 ```bash
-sudo newgrp libvirt
+newgrp libvirt
 ```
 
 * Enable and start the `libvirtd` service:
