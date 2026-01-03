@@ -148,7 +148,77 @@ kernel-4.18.0-240.22.1.el8.x86_64             Mon 24 May 2021 02:33:35 PM CEST
 
 ### Verify the signature of the software package
 
+The `-K` option is required to complete this operation.
+
 When you download the rpm binary package from an unknown website or untrusted location, you don't know if the package has been tampered with. Therefore, users need to verify the signature of the software package to ensure that the downloaded package is complete and has not been tampered with.
+
+Before performing signature verification on the software package, it is necessary to import the required public key in advance (this operation is usually carried out by the system administrator).
+
+Starting from RHEL 8.x, you can use the `dnf download` command to download specific software packages. For example, if you need to download the `wget` package, please entry:
+
+```bash
+sudo dnf download wget
+
+ls -l wget-1.19.5-12.el8_10.x86_64.rpm
+-rw-r--r-- 1 root root 750748 Jan  3 17:29 wget-1.19.5-12.el8_10.x86_64.rpm
+
+# Use the "-K" option to verify the signature of the corresponding software package
+## You can also use the "-v" or "-vv" option to display more detailed information
+sudo rpm -K wget-1.19.5-12.el8_10.x86_64.rpm
+wget-1.19.5-12.el8_10.x86_64.rpm: digests signatures OK
+
+# If the software package you downloaded has been tampered with, the following information will be displayed:
+echo  "change content" >> /root/wget-1.19.5-12.el8_10.x86_64.rpm
+sudo rpm -K wget-1.19.5-12.el8_10.x86_64.rpm
+wget-1.19.5-12.el8_10.x86_64.rpm: DIGESTS SIGNATURES NOT OK
+```
+
+When the signature of a software package fails to pass the verification, you should not continue to use the package.
+
+### Verify file changes after software package installation
+
+The `-V` option is required to complete this operation.
+
+After installing the RPM software package, the RPM database will record the initial and changed characteristics of the relevant files to determine whether they have been maliciously modified by someone.
+
+```bash
+sudo rpm -q chrony
+chrony-4.5-2.el8_10.x86_64
+
+rpm -V chrony
+S.5....T.  c /etc/chrony.conf
+```
+
+The output is broken down into 3 separate columns.
+
+- **First Column (S.5....T.)**
+
+    Use 9 fields to represent the valid information of the file after the RPM software package is installed. Any field or characteristic that passed a given check/test is indicated by a ".".
+
+    These 9 different fields or checks are described here:
+
+    - S: Whether the size of the file has been modified.
+    - M: Whether the type of file or file permissions (rwx) have been modified.
+    - 5: Whether the file MD5 checksum has modified.
+    - D: Whether the number of the device has been modified.
+    - L: Whether the path to the file has been modified.
+    - U: Whether the owner of the file has been modified.
+    - G: Whether the group to which the file belongs has been modified.
+    - T: Whether the mTime (modify time) of the file has been modified.
+    - P: Whether the program function has been modified.
+
+- **Second Column (c)**
+
+    **c**: Indicates modifications to the configuration file. It can also be the following values:
+    
+    - d: documentation file
+    - g: ghost file. Very few can be seen
+    - l: license file
+    - r: readme file
+
+- **Third column (/etc/chrony.conf)**
+
+    - **/etc/chrony.conf**：Represents the path of the modified file.
 
 ## DNF: Dandified Yum
 
