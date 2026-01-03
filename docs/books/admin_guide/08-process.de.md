@@ -99,7 +99,7 @@ root 1 0 Jan01 ?   00:00/03  /sbin/init
 | `TIME`  | Dauer der Bearbeitung.                |
 | `CMD`   | Befehl ausgeführt.                    |
 
-Das Verhalten der Steuerung kann vollständig angepasst werden:
+Das Verhalten des Befehls kann vollständig angepasst werden:
 
 ```bash
 # ps -e --format "%P %p %c %n" --sort ppid --headers
