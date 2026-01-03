@@ -848,4 +848,4 @@ Take the time synchronization program `chrony` as an example to illustrate the m
 
     - **Third column (/etc/chrony.conf)**
 
-        - **/etc/chrony.conf**：Represents the path of the modified file.
+        - **/etc/chrony.conf**: Represents the path of the modified file.
