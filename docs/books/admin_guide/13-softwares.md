@@ -15,92 +15,105 @@ tags:
 
 On a Linux system, it is possible to install software in two ways:
 
-* Using an installation package;
-* Compiling from source files.
+* Download software packages from the repository and install them on the local computer
+* Compile the project source code package and install it on the local computer
 
 !!! Note
 
-    Installing from source is not covered here. As a rule, you should use the package method unless the software you want is not available via the package manager. The reason for this is that dependencies are generally managed by the package system, whereas with source, you need to manage the dependencies manually.
+    This document does not describe how to compile and install the project source code package to the local computer. Usually, you should obtain the corresponding software package from the repository, unless the software package you need is not in the repository. This is because the package management system can help users solve dependency issues, while for beginners, it is very difficult to solve the dependencies of compiling project source code packages.
 
-**The package**: This is a single file containing all the data needed to install the program. It can be executed directly on the system from a software repository.
+**The package**: Developers compile a set of source files into executable machine language in advance and package them into binary files in a specific format. Unless otherwise specified, software packages in Linux specifically refer to binary software packages.
 
-**The source files**: Some software is not provided in packages ready to be installed, but via an archive containing the source files. It is up to the administrator to prepare these files and compile them to install the program.
+**The source file**: A single code file that is readable by humans (such as .c, .py, .java), which may be just a code snippet or module of the entire project that needs to be compiled or interpreted to run on a computer.
+
+**The source code package**: A compressed archive file that packages the source files and related files (such as build files like Makefile and configure; document files such as README and LICENSE ) of the entire project. This file is often identified using file suffixes such as `.tar.gz` or `.tar.xz`.
 
 ## RPM: RedHat Package Manager
 
 **RPM** (RedHat Package Manager) is a software management system. It is possible to install, uninstall, update or check software contained in packages.
 
-**RPM** is the format used by all RedHat based distributions (RockyLinux, Fedora, CentOS, SuSe, Mandriva, ...). Its equivalent in the Debian world is DPKG (Debian Package).
+**RPM** is the package management system used by all RedHat distributions (RockyLinux, Fedora, CentOS, Suse, Mandriva, ...), with packages identified by the file suffix `.rpm`. In the world of Debian, the DPKG package management system is used to manage software packages, with packages identified by the file suffix `.deb`.
 
-The name of an RPM package follows a specific nomenclature:
+Naming conventions for RPM software packages:
 
 ![Illustration of a package name](images/software-001.png)
 
-### `rpm` command
+!!! tip "Terminology Explanation"
 
-The rpm command allows you to install a package.
+    When we use the capitalized "RPM", it refers to the package management system. When using the lowercase "rpm", in the vast majority of cases, it specifically refers to the `rpm` command. When using `.rpm`, it refers to the format suffix of the software package. Readers should not be confused by them when reading the documents.
+
+Today's RPM package management system is still constantly updated and iterated, see [here](https://rpm.org/).
+
+## `rpm` local package manager
+
+`rpm` command: Command-line tools for managing local RPM packages in Red Hat's upstream and downstream distributions.
+
+**Full Package Name**: The complete name of the binary software package, such as `tree-1.7.0-15.el8.x86_64.rpm`.
+
+**Package Name**: The name of the software package, such as `tree`.
+
+If the corresponding software package is never installed in the operating system, when operating with `rpm` command, the "Full Package Name" should be used. If the corresponding software has already been installed on the operating system, when operating with `rpm` command, the "Package Name" should be used, this is because the information of the relevant software packages has been stored in the **/var/lib/rpm/** database directory.
+
+The usage of the `rpm` command is as follows:
 
 ```bash
-rpm [-i][-U] package.rpm [-e] package
+rpm [options] <Package-Name> | <Full-Package-Name>
 ```
 
-Example (for a package named 'package'):
+### Install, upgrade, and uninstall software packages
 
-```bash
-rpm -ivh package.rpm
-```
+The relevant options are as follows:
 
 | Option            | Description                                  |
 |-------------------|----------------------------------------------|
-| `-i package.rpm`  | Installs the package.                        |
-| `-U package.rpm`  | Updates an already installed package.        |
-| `-e package.rpm`  | Uninstalls the package.                      |
+| `-i <Full-Package-Name>`  | Installs the package.                        |
+| `-U <Full-Package-Name>`  | Updates an already installed package.        |
+| `-e <Package-Name>`  | Uninstalls the package.                      |
 | `-h`              | Displays a progress bar.                     |
 | `-v`              | Informs about the progress of the operation. |
 | `--test`          | Tests the command without executing it.      |
 
-The `rpm` command also allows you to query the system package database by adding the `-q` option.
+* Install one or more packages - `rpm-ivh <Full-Package-Name> ... `
+* Upgrade one or more packages - `rpm-Uvh <Full-Package-Name> ...`
+* Uninstall one or more packages - `rpm -e <Package-Name> ...`
 
-It is possible to execute several types of queries to obtain different information about the installed packages. The RPM database is located in the directory `/var/lib/rpm`.
+Since `rpm` is a local package manager, users need to manually resolve dependency issues during software installation. If relevant dependencies are missing, a prompt such as "failed dependencies" will appear.
 
-Example:
+Understand the dependency relationships of RPM packages:
 
-```bash
-rpm -qa
-```
+* **Tree dependency relationship (a.rpm ---> b.rpm ---> c.rpm)** - When installing a.rpm, it prompts that b.rpm needs to be installed first. When installing b.rpm, it prompts that c.rpm needs to be installed first. This problem is easier to solve, that is, `rpm -ivh a.rpm b.rpm c.rpm`
+* **Circular dependency relationship (a.rpm ---> b.rpm ---> c.rpm ---> a.rpm)** - `rpm -ivh a.rpm b.rpm c.rpm`
+* **Module dependency relationship** - Go to [this website](https://www.rpmfind.net/) to search
 
-This command queries all the packages installed on the system.
+**Q: Why does software package installation always have dependency issues?**
 
-```bash
-rpm -q [-a][-i][-l] package [-f] file
-```
+Because software or applications almost always rely on another software or library, if the required program or shared library is not found on the operating system, this prerequisite must be met before installing the target application.
 
-Example:
+### Query package
 
-```bash
-rpm -qil package
-rpm -qf /path/to/file
-```
+The relevant options are as follows:
 
-| Option           | Description                                                                                    |
-|------------------|------------------------------------------------------------------------------------------------|
-| `-a`             | Lists all packages installed on the system.                                                    |
-| `-i __package__` | Displays the package information.                                                              |
-| `-l __package__` | Lists the files contained in the package.                                                      |
-| `-f`             | Shows the name of the package containing the specified file.                                   |
-| `--last`         | The list of packages is given by installation date (the last installed packages appear first). |
+| Option            | Description                                  |
+|-------------------|----------------------------------------------|
+| `-q`             | Query whether the software package has been installed, such as `rpm -q tree-1.7.0-15.el8.x86_64.rpm` |
+| `-a`             | When used in conjunction with the `-q` option, query all installed rpm packages, such as `rpm -qa` |
+| `-i`             | Used in conjunction with the `-q` option to query detailed information about the corresponding installed rpm package. Such as `rpm -qi bash` |
+| `-l`             | When used in combination with the `-q` option, query the list of files released by the corresponding installed rpm package |
+| `-p`             | Specify uninstalled software packages, for example `rpm -qip tree-1.7.0-15.el8.x86_64.rpm` and `rpm -qlp tree-1.7.0-15.el8.x86_64.rpm`|
+| `-f`            | When used in conjunction with the `-q` option, query the software package to which the installation file belongs, such as `rpm -qf /usr/bin/bash` |
+| `-R`             | When used in conjunction with the `-q` option, query the dependencies of installed rpm packages. When used in conjunction with the `-p` option, you can query the dependencies of rpm packages that are not installed, such as`rpm -qRp rpm -qRp mtr-0.92-3.el8.x86_64.rpm` |
+| `--last`       | list package(s) by install time, most recent first |
 
-!!! Warning
+The RPM database is located in the directory `/var/lib/rpm/`.
 
-    After the `-q` option, the package name must be exact. Metacharacters (wildcards) are not supported.
-
-!!! Tip
-
-    However, it is possible to list all installed packages and filter with the `grep` command.
-
-Example: list the last installed packages:
+Some examples:
 
 ```bash
+sudo rpm -qa
+
+sudo rpm -qilp zork-1.0.3-1.el8.x86_64.rpm tree-1.7.0-15.el8.x86_64.rpm
+
+# list the last installed packages:
 sudo rpm -qa --last | head
 NetworkManager-config-server-1.26.0-13.el8.noarch Mon 24 May 2021 02:34:00 PM CEST
 iwl2030-firmware-18.168.6.1-101.el8.1.noarch  Mon 24 May 2021 02:34:00 PM CEST
@@ -112,25 +125,30 @@ iwl1000-firmware-39.31.5.1-101.el8.1.noarch   Mon 24 May 2021 02:34:00 PM CEST
 alsa-sof-firmware-1.5-2.el8.noarch            Mon 24 May 2021 02:34:00 PM CEST
 iwl7260-firmware-25.30.13.0-101.el8.1.noarch  Mon 24 May 2021 02:33:59 PM CEST
 iwl6050-firmware-41.28.5.1-101.el8.1.noarch   Mon 24 May 2021 02:33:59 PM CEST
-```
 
-Example: list the installation history of the kernel:
-
-```bash
+# list the installation history of the kernel:
 sudo rpm -qa --last kernel
 kernel-4.18.0-305.el8.x86_64                  Tue 25 May 2021 06:04:56 AM CEST
 kernel-4.18.0-240.22.1.el8.x86_64             Mon 24 May 2021 02:33:35 PM CEST
 ```
 
-Example: list all installed packages with a specific name using `grep`:
+!!! tip "Usage Tips"
 
-```bash
-sudo dnf list installed | grep httpd
-centos-logos-httpd.noarch           80.5-2.el8                              @baseos
-httpd.x86_64                        2.4.37-30.module_el8.3.0+561+97fdbbcc   @appstream
-httpd-filesystem.noarch             2.4.37-30.module_el8.3.0+561+97fdbbcc   @appstream
-httpd-tools.x86_64                  2.4.37-30.module_el8.3.0+561+97fdbbcc   @appstream
-```
+    When using the query function (the `-q` option), the corresponding software package must be deterministic. In other words, you cannot use wildcards in the `rpm` command line to match the package name. To filter a specific one or more packages, you need to use the pipe symbol (`|`) and the `grep` command.
+
+    ```bash
+    sudo rpm -qa | grep ^dbus
+    dbus-common-1.12.8-27.el8_10.noarch
+    dbus-glib-0.110-2.el8.x86_64
+    dbus-libs-1.12.8-27.el8_10.x86_64
+    dbus-daemon-1.12.8-27.el8_10.x86_64
+    dbus-tools-1.12.8-27.el8_10.x86_64
+    dbus-1.12.8-27.el8_10.x86_64
+    ```
+
+### Verify the signature of the software package
+
+When you download the rpm binary package from an unknown website or untrusted location, you don't know if the package has been tampered with. Therefore, users need to verify the signature of the software package to ensure that the downloaded package is complete and has not been tampered with.
 
 ## DNF: Dandified Yum
 
