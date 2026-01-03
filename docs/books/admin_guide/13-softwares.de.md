@@ -122,7 +122,7 @@ kernel-4.18.0-305.el8.x86_64                  Tue 25 May 2021 06:04:56 AM CEST
 kernel-4.18.0-240.22.1.el8.x86_64             Mon 24 May 2021 02:33:35 PM CEST
 ```
 
-Beispiel, Liste aller installierten Pakete mit einem bestimmten Namen mit `grep`:
+Beispiel: Alle installierten Pakete mit einem bestimmten Namen mit `grep` auflisten:
 
 ```bash
 sudo dnf list installed | grep httpd
