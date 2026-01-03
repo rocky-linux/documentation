@@ -821,7 +821,7 @@ Take the time synchronization program `chrony` as an example to illustrate the m
 
     The output is broken down into 3 separate columns.
 
-    - **First Column (S.5....T.)**
+    - **First column (S.5....T.)**
 
         Use 9 fields to represent the valid information of the file after the RPM software package is installed. Any field or characteristic that passed a given check/test is indicated by a ".".
 
@@ -837,7 +837,7 @@ Take the time synchronization program `chrony` as an example to illustrate the m
         - T: Whether the mTime (modify time) of the file has been modified.
         - P: Whether the program function has been modified.
 
-    - **Second Column (c)**
+    - **Second column (c)**
 
         **c** indicates modifications to the configuration file. It can also be the following values:
        
