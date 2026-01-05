@@ -821,9 +821,9 @@ Take the time synchronization program `chrony` as an example to illustrate the m
 
     The output is broken down into 3 separate columns.
 
-    - **First Column (S.5....T.)**
-  
-        The sample output - `S.5....T.` indicates the 9 fields that are used to indicate useful information   about the validity of files in an RPM package. Any field or characteristic that passed a given check/test is indicated by a ".".
+    - **First column (S.5....T.)**
+
+        Use 9 fields to represent the valid information of the file after the RPM software package is installed. Any field or characteristic that passed a given check/test is indicated by a ".".
 
         These 9 different fields or checks are described here:
 
@@ -837,13 +837,14 @@ Take the time synchronization program `chrony` as an example to illustrate the m
         - T: Whether the mTime (modify time) of the file has been modified.
         - P: Whether the program function has been modified.
 
-    - **Second Column (c)**
+    - **Second column (c)**
 
-        - **c**: Indicates modifications to the configuration file. It can also be the following values:
-        - d: documentation file.
-        - g: ghost file. Very few can be seen.
-        - l: license file.
-        - r: readme file.
+        **c** indicates modifications to the configuration file. It can also be the following values:
+       
+        - d: documentation file
+        - g: ghost file. Very few can be seen
+        - l: license file
+        - r: readme file
 
     - **Third column (/etc/chrony.conf)**
 
