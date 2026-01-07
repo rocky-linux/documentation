@@ -356,20 +356,20 @@ The "command" in syntax represents the functional item command of `dnf`. Some co
     | `metadata`             | Removes repository metadata.                                  |
     | `packages`             | Removes any cached packages from the system.                  |
 
-15.  **`download` command**
+15. **`download` command**
 
     Download one or more software packages from the repository to the local computer without installing them. 
 
     You can use the options `--destdir DESTDIR` or `--downloaddir DESRDIR` to specify the saving path, such as `dnf download tree --downloaddir /tmp/`.
 
-16.  **`repoquery` command**
+16. **`repoquery` command**
 
     Query relevant information by the different options after the command, similar to `rpm -q`.
 
     * `dnf repoquery --deplist <Package-Name>` - View dependencies
     * `dnf repoquery --list <Package-Name>` - View the list of files after installing the software package (regardless of whether the software is already installed on the operating system)
   
-17.  **`config-manager` command**
+17. **`config-manager` command**
 
     Manage repositories through the command line, including adding, deleting, enabling, and disabling repositories.
 
@@ -379,34 +379,58 @@ The "command" in syntax represents the functional item command of `dnf`. Some co
 
 ### configuration file description
 
-
-### How DNF works
-
-The DNF manager relies on one or more configuration files to target the repositories containing the RPM packages.
-
-These files are located in `/etc/yum.repos.d/` and must end with `.repo` in order to be used by DNF.
-
-Example:
+All repository configuration files are stored in the **/etc/yum.repos.d/** directory and end with `.repo`. Each `.repo` file can contain a single or multiple repositories, and users can selectively enable or disable them according to their actual situation.
 
 ```bash
-/etc/yum.repos.d/Rocky-BaseOS.repo
+ls -l /etc/yum.repos.d/
+total 72
+-rw-r--r--  1 root root 1919 Sep 13  2024 docker-ce.repo
+-rw-r--r--  1 root root 1680 Aug 31  2024 epel-modular.repo
+-rw-r--r--  1 root root 1332 Aug 31  2024 epel.repo
+-rw-r--r--  1 root root 1779 Aug 31  2024 epel-testing-modular.repo
+-rw-r--r--  1 root root 1431 Aug 31  2024 epel-testing.repo
+-rw-r--r--. 1 root root  710 Jun  7  2024 Rocky-AppStream.repo
+-rw-r--r--. 1 root root  695 Jun  7  2024 Rocky-BaseOS.repo
+-rw-r--r--  1 root root 1773 Jun  7  2024 Rocky-Debuginfo.repo
+-rw-r--r--. 1 root root  360 Jul 11  2024 Rocky-Devel.repo
+-rw-r--r--. 1 root root  695 Jun  7  2024 Rocky-Extras.repo
+-rw-r--r--. 1 root root  731 Jun  7  2024 Rocky-HighAvailability.repo
+-rw-r--r--. 1 root root  680 Jun  7  2024 Rocky-Media.repo
+-rw-r--r--. 1 root root  680 Jun  7  2024 Rocky-NFV.repo
+-rw-r--r--. 1 root root  690 Jun  7  2024 Rocky-Plus.repo
+-rw-r--r--. 1 root root  715 Mar 29 17:39 Rocky-PowerTools.repo
+-rw-r--r--. 1 root root  746 Jun  7  2024 Rocky-ResilientStorage.repo
+-rw-r--r--. 1 root root  681 Jun  7  2024 Rocky-RT.repo
+-rw-r--r--  1 root root 2335 Jun  7  2024 Rocky-Sources.repo
 ```
 
-Each `.repo` file consists of at least the following information, one directive per line.
+The content format of a single repository in each `.repo` file is fixed, for example:
 
-Example:
-
-```bash
-[baseos] # Short name of the repository
-name=Rocky Linux $releasever - BaseOS # Short name of the repository #Detailed name
-mirrorlist=http://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=BaseOS-$releasever # http address of a list or mirror
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/BaseOS/$basearch/os/ # http address for direct access
-gpgcheck=1 # Repository requiring a signature
-enabled=1 # Activated =1, or not activated =0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial # GPG public key path
+```
+[baseos]
+name=Rocky Linux $releasever - BaseOS
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=BaseOS-$releasever
+#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/BaseOS/$basearch/os/
+gpgcheck=1
+enabled=1
+countme=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
 ```
 
-By default, the `enabled` directive is absent which means that the repository is enabled. To disable a repository, you must specify the `enabled=0` directive.
+Content description:
+
+* Use "[ ]" to include the repository ID, which must be unique.
+* Below the "[ ]" are the options for the repository.
+* The "name" option - Specifies the detailed name of the repository.
+* The "mirrorlist" option - URL of a mirrorlist for the repository. URLs support multiple protocols, such as https, http, ftp, file, NFS, etc. The "$" in the value represents the relevant repository variable.
+* The "baseurl" option - List of URLs for the repository. URLs support multiple protocols, such as https, http, ftp, file, NFS, etc. The "$" in the value represents the relevant repository variable.
+* Lines starting with "#" are comment lines.
+* The "gpgcheck" option - Whether to perform GPG signature check on packages found in this repository. The default value is False(0).
+* The "enabled" option - Include this repository as a package source. The default value is True(1).
+* The "countme" option - Upload anonymous usage statistics data. The default value is False(0).
+* The "gpgkey" option - GPG public key path.
+
+For more information, please refer to `man 5 yum.conf`.
 
 ## DNF modules
 
