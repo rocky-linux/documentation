@@ -239,6 +239,8 @@ We will also need our booting virtual machine to access a `ks.cfg` (Kickstart) f
 
 A Kickstart file contains the answers to the questions asked during the installation process. This file passes all its contents to Anaconda (the installation process), which allows you to fully automate the creation of the template.
 
+To learn more about kickstart files and how to deploy them on Rocky Linux, please check out the [Kickstart Files and Rocky Linux guide](<URL_HERE>). 
+
 The author likes to store his `ks.cfg` file in an internal web server accessible from his template, but other possibilities exist that you may choose to use instead.
 
 For example, the `ks.cfg` file is accessible from the VM at this URL in our lab: <http://fileserver.rockylinux.lan/packer/rockylinux/8/ks.cfg>. You would need to set up something similar to use this method.
