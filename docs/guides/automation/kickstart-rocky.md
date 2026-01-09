@@ -1,7 +1,7 @@
 ---
 title: Kickstart Files and Rocky Linux
 author: Howard Van Der Wal
-contributors: <empty> 
+contributors: Steven Spencer
 tested with: 10, 9, 8
 tags:
 - file
