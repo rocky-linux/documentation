@@ -432,6 +432,312 @@ Content description:
 
 For more information, please refer to `man 5 yum.conf`.
 
+## Application Streams
+
+**Application Streams in RL 8.x and RL 9.x:**: In Rocky Linux 8.x and 9.x, a new modular technology is used, allowing repositories to host multiple versions of applications and their dependencies. Due to the adoption of a modular architecture, the Application Streams in these two operating systems is also referred to as "Module Streams". System administrators can choose a specific version to use, bringing more flexibility. If system administrators need to manage the Application Streams, they often need to use the `dnf module` command.
+
+**Application Streams in RL 10.x**: Starting from Rocky Linux 10.x, system administrators can still use the Application Streams, but the Application Streams is no longer provided in a modular form, in other words, the `dnf module` command has been removed, and system administrators can manage different versions of applications in the traditional way. In this version of the operating system, the term "Application Streams" does not equal "Module Streams".
+
+Each Application Stream has a different lifecycle. Please refer to the following link:
+
+* https://access.redhat.com/support/policy/updates/rhel-app-streams-life-cycle#rhel8_application_streams
+* https://access.redhat.com/support/policy/updates/rhel-app-streams-life-cycle#rhel9_application_streams
+* https://access.redhat.com/support/policy/updates/rhel-app-streams-life-cycle#rhel10_dependent_application_streams
+
+In this document, the author mainly explains the Application Streams of modular architecture. 
+
+### Module Streams
+
+Important note:
+
+* To use modular architecture Application Streams in RL 8.x and RL 9.x, please enable the **AppStream** repository first. In the Appstream repository, **modules** represent a collection of software packages for logical units, which are built, tested, and published together. A single module can contain multiple streams (versions) of the same application.
+* Each module receives updates separately.
+* After enabling a single module, users can only use one stream (version) of that module.
+* Each module can have its own default stream (default version) marked with "[d]". 
+* The default stream is active unless you disable the module or enable another stream for the module.
+
+### Module Profiles
+
+**Module Profiles**: A set of software package lists bound together for specific usage scenarios is specified. For example:
+
+```bash
+sudo dnf module list nginx
+Last metadata expiration check: 10:04:05 ago on Wed 07 Jan 2026 01:42:24 PM CST.
+Rocky Linux 8 - AppStream
+Name                      Stream                       Profiles                       Summary
+nginx                     1.14 [d]                     common [d]                     nginx webserver
+nginx                     1.16                         common [d]                     nginx webserver
+nginx                     1.18                         common [d]                     nginx webserver
+nginx                     1.20                         common [d]                     nginx webserver
+nginx                     1.22                         common [d]                     nginx webserver
+nginx                     1.24                         common [d]                     nginx webserver
+
+sudo sudo dnf module install nginx:1.14
+Last metadata expiration check: 10:04:31 ago on Wed 07 Jan 2026 01:42:24 PM CST.
+Dependencies resolved.
+========================================================================================================================
+ Package                            Architecture  Version                                        Repository        Size
+========================================================================================================================
+Installing group/module packages:
+ nginx                              x86_64        1:1.14.1-9.module+el8.4.0+542+81547229         appstream        566 k
+ nginx-all-modules                  noarch        1:1.14.1-9.module+el8.4.0+542+81547229         appstream         22 k
+ nginx-filesystem                   noarch        1:1.14.1-9.module+el8.4.0+542+81547229         appstream         23 k
+ nginx-mod-http-image-filter        x86_64        1:1.14.1-9.module+el8.4.0+542+81547229         appstream         34 k
+ nginx-mod-http-perl                x86_64        1:1.14.1-9.module+el8.4.0+542+81547229         appstream         45 k
+ nginx-mod-http-xslt-filter         x86_64        1:1.14.1-9.module+el8.4.0+542+81547229         appstream         32 k
+ nginx-mod-mail                     x86_64        1:1.14.1-9.module+el8.4.0+542+81547229         appstream         63 k
+ nginx-mod-stream                   x86_64        1:1.14.1-9.module+el8.4.0+542+81547229         appstream         84 k
+Installing dependencies:
+ dejavu-fonts-common                noarch        2.35-7.el8                                     baseos            73 k
+ dejavu-sans-fonts                  noarch        2.35-7.el8                                     baseos           1.5 M
+ fontconfig                         x86_64        2.13.1-4.el8                                   baseos           273 k
+ fontpackages-filesystem            noarch        1.44-22.el8                                    baseos            15 k
+ gd                                 x86_64        2.2.5-7.el8                                    appstream        143 k
+ jbigkit-libs                       x86_64        2.1-14.el8                                     appstream         54 k
+ libX11                             x86_64        1.6.8-9.el8_10                                 appstream        611 k
+ libX11-common                      noarch        1.6.8-9.el8_10                                 appstream        157 k
+ libXau                             x86_64        1.0.9-3.el8                                    appstream         36 k
+ libXpm                             x86_64        3.5.12-11.el8                                  appstream         58 k
+ libjpeg-turbo                      x86_64        1.5.3-14.el8_10                                appstream        156 k
+ libtiff                            x86_64        4.0.9-36.el8_10                                appstream        190 k
+ libwebp                            x86_64        1.0.0-11.el8_10                                appstream        273 k
+ libxcb                             x86_64        1.13.1-1.el8                                   appstream        228 k
+Installing module profiles:
+ nginx/common
+Enabling module streams:
+ nginx                                            1.14
+
+Transaction Summary
+========================================================================================================================
+Install  22 Packages
+
+Total download size: 4.5 M
+Installed size: 14 M
+Is this ok [y/N]:
+```
+
+Each Moudle Stream can have any number of profiles (or none at all), and the profiles of module streams can be marked with "[d]" to indicate the "default" meaning.
+
+In the above example, when the user needs to install nginx, the following command is equivalent:
+
+```bash
+sudo dnf install nginx
+
+sudo dnf install nginx:1.14
+
+sudo dnf install nginx:1.14/common
+```
+
+### Management Module Streams
+
+The command used is `dnf module`, and there are some subcommands for functional items under this command.
+
+!!! tip "Usage Tips"
+
+    When a single line `dnf module` command operation involves modules, multiple module names are allowed, such as `dnf module enable nginx httpd:2.4` or `dnf module list nodejs:10 perl`.
+
+#### View
+
+You can use the subcommands of the `list` or `info` function items to perform the corresponding operations.
+
+* `dnf module list` - Get a list of all available modules.
+* `dnf module list <Module-Name>` or `dnf module list <Module-Name>:<Stream>`- List all available streams (versions) for the current module. List the information of a single module stream. For example `dnf module list postgresql` or `dnf module list postgresql:15`.
+* `dnf module list --enabled` - List the enabled module stream(s).
+* `dnf module info <Module-Name>` or `dnf module info info <Module-name>:<Stream>` - Display module stream information. If you only type the name of a module without a stream, all stream information for that module will be displayed. For example `dnf module info ruby` or `dnf  module info ruby:2.6`.
+* `dnf moudle --info --profile <Module-Name>` or `dnf moudle --info --profile <Module-Name>:<Stream>` - List the profile information of the module stream. If you only type the name of a module without a stream, all stream profile information for that module will be displayed.
+
+#### Install
+
+Before installing a specific stream of the corresponding module, you need to first enable the specific stream of the module. The syntax used is as follows:
+
+```bash
+dnf moudle enable <Module-Name>:<Stream> ...
+```
+
+For example:
+
+```bash
+dnf -y module enable httpd:2.4
+```
+
+!!! tip "Re-emphasize"
+
+    The default stream is active unless you disable the module or enable another stream for the module.
+
+The following installation methods are acceptable:
+
+* `dnf -y module install <Module-Name>` - Use the default stream and default profile of a single module (if a default profile exists). For example `dnf -y install httpd`
+* `dnf -y install <Module-Name>:<Stream>/<Profile>` - Using specific stream and profile of a single module. For example `dnf -y install httpd:2.4:/minimal`. If there are multiple profiles, you can use `*` to represent all of them ,for example `dnf module install httpd:2.4/*`
+
+#### Remove
+
+The following syntax can be accepted:
+
+* `dnf -y module remove --all <Module-name>:<Stream> ...` - Remove all packages from a single stream in a single module. For example `dnf -y module remove --all httpd:2.4`
+* `dnf -y module remove --all <Module-name>:<Stream>/<Profile> ...` - Remove all packages associated with a specific profile, using `*` to represent all profiles. For example `dnf -y module remove httpd:2.4/*`
+
+#### Reset
+
+You can use the `reset` function item command to reset the module to its initial state. The corresponding syntax is as follows:
+
+* `dnf -y module reset <Module-Name> ...` - For example `dnf -y module reset httpd`
+
+!!! tip "Important Notice"
+
+    Resetting the module will not change any installed software packages.
+
+#### Switch
+
+You can switch to the updated stream. There are two prerequisites to complete this operation:
+
+1. The operating system has been fully updated
+2. The installed software packages in the operating system are not newer than the software packages available in the repository
+
+You can use the `dnf distro-sync` command to switch to a new stream.
+
+If there are available updates for the module's stream, you need to perform the following steps:
+
+1. `dnf module reset <Module-Name> ...`
+2. `dnf module enable <Module-Name>:<New-Stream> ...`
+3. `dnf distro-sync`
+
+If a specific module's specific stream has already been installed in the operating system, you can also use the 'switch to' command to upgrade or downgrade the software package. The specific syntax is:
+
+```bash
+dnf module switch-to <Module-Name>:<Stream>
+```
+
+### disable
+
+The syntax used is:
+
+```bash
+dnf module disable <Module-Name> ...
+```
+
+#### Customize using YAML file
+
+System administrator can customize default stream and default profile by creating a YAML file in the **/etc/dnf/modules.defaults.d/** directory.
+
+Taking the postgresql module as an example, it can be seen from the output information that its default stream is 10 and the default profile is "server".
+
+```bash
+sudo dnf module list postgresql
+Name                   Stream             Profiles                       Summary
+postgresql             9.6                client, server [d]             PostgreSQL server and client module
+postgresql             10 [d]             client, server [d]             PostgreSQL server and client module
+postgresql             12                 client, server [d]             PostgreSQL server and client module
+postgresql             13                 client, server [d]             PostgreSQL server and client module
+postgresql             15                 client, server [d]             PostgreSQL server and client module
+postgresql             16                 client, server [d]             PostgreSQL server and client module
+
+Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
+```
+
+Set 15 as the default stream and set the default profile for postgresql:12 to "client":
+
+```bash
+sudo vim /etc/dnf/modules.defaults.d/postgresql.yaml
+---
+document: modulemd-defaults
+version: 1
+data:
+        module: postgresql
+        stream: "15"
+        profiles:
+                "9.6": [server]
+                "10": [server]
+                "12": [client]
+                "13": [server]
+                "15": [server]
+...
+
+sudo dnf module list postgresql
+Last metadata expiration check: 0:41:35 ago on Sat 10 Jan 2026 10:10:22 PM CST.
+Rocky Linux 8 - AppStream
+Name                   Stream             Profiles                       Summary
+postgresql             9.6                client, server [d]             PostgreSQL server and client module
+postgresql             10                 client, server [d]             PostgreSQL server and client module
+postgresql             12                 client [d], server             PostgreSQL server and client module
+postgresql             13                 client, server [d]             PostgreSQL server and client module
+postgresql             15 [d]             client, server [d]             PostgreSQL server and client module
+postgresql             16                 client, server                 PostgreSQL server and client module
+
+Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
+```
+
+## Complete Example
+
+Taking the nodejs module as an example:
+
+```bash
+sudo dnf module list nodejs
+Last metadata expiration check: 0:44:38 ago on Sat 10 Jan 2026 10:10:22 PM CST.
+Rocky Linux 8 - AppStream
+Name                Stream              Profiles                                          Summary
+nodejs              10 [d]              common [d], development, minimal, s2i             Javascript runtime
+nodejs              12                  common [d], development, minimal, s2i             Javascript runtime
+nodejs              14                  common [d], development, minimal, s2i             Javascript runtime
+nodejs              16                  common [d], development, minimal, s2i             Javascript runtime
+nodejs              18                  common [d], development, minimal, s2i             Javascript runtime
+nodejs              20                  common [d], development, minimal, s2i             Javascript runtime
+nodejs              22                  common, development, minimal, s2i                 Javascript runtime
+nodejs              24                  common, development, minimal, s2i                 Javascript runtime
+
+Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
+
+sudo dnf -y module enable nodejs:18
+
+sudo dnf module list --enabled nodejs
+Last metadata expiration check: 0:46:01 ago on Sat 10 Jan 2026 10:10:22 PM CST.
+Rocky Linux 8 - AppStream
+Name                Stream              Profiles                                          Summary
+nodejs              18 [e]              common [d], development, minimal, s2i             Javascript runtime
+
+Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
+
+sudo dnf -y module install nodejs:18/minimal
+
+sudo dnf module list --enabled nodejs
+Last metadata expiration check: 0:47:26 ago on Sat 10 Jan 2026 10:10:22 PM CST.
+Rocky Linux 8 - AppStream
+Name               Stream             Profiles                                             Summary
+nodejs             18 [e]             common [d], development, minimal [i], s2i            Javascript runtime
+
+Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
+
+sudo dnf -y module install nodejs:18/common
+
+sudo dnf module list --enabled nodejs
+Last metadata expiration check: 0:48:34 ago on Sat 10 Jan 2026 10:10:22 PM CST.
+Rocky Linux 8 - AppStream
+Name              Stream            Profiles                                                Summary
+nodejs            18 [e]            common [d] [i], development, minimal [i], s2i           Javascript runtime
+
+Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
+
+sudo dnf -y module remove --all nodejs:18/*
+
+sudo dnf -y module reset nodejs
+
+sudo dnf module list nodejs
+Last metadata expiration check: 0:50:03 ago on Sat 10 Jan 2026 10:10:22 PM CST.
+Rocky Linux 8 - AppStream
+Name                Stream              Profiles                                          Summary
+nodejs              10 [d]              common [d], development, minimal, s2i             Javascript runtime
+nodejs              12                  common [d], development, minimal, s2i             Javascript runtime
+nodejs              14                  common [d], development, minimal, s2i             Javascript runtime
+nodejs              16                  common [d], development, minimal, s2i             Javascript runtime
+nodejs              18                  common [d], development, minimal, s2i             Javascript runtime
+nodejs              20                  common [d], development, minimal, s2i             Javascript runtime
+nodejs              22                  common, development, minimal, s2i                 Javascript runtime
+nodejs              24                  common, development, minimal, s2i                 Javascript runtime
+
+Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
+```
+
+## Extended content
+
 ## DNF modules
 
 Modules were introduced in Rocky Linux 8 by the upstream. In order to use modules, the AppStream repository must exist and be enabled.
@@ -444,7 +750,7 @@ Modules were introduced in Rocky Linux 8 by the upstream. In order to use module
 
 Modules come from the AppStream repository and contain both streams and profiles. These can be described as follows:
 
-* **module streams:** A module stream can be thought of as a separate repository within the AppStream repository that contains different application versions. These module repositories contain the application RPMs, dependencies, and documentation for that particular stream. An example of a module stream in Rocky Linux 8 would be `postgresql`. If you install `postgresql` using the standard `sudo dnf install postgresql` you will get version 10. However, using modules, you can instead install versions 9.6, 12 or 13.
+* **module streams:** A module stream can be thought of as a separate repository within the AppStream repository that contains different application versions. These module repositories contain the application RPMs, dependencies, and documentation for that particular stream. 
 
 * **module profiles:** What a module profile does is take into consideration the use case for the module stream when installing the package. Applying a profile adjusts the package RPMs, dependencies and documentation to account for the module's use. Using the same `postgresql` stream in our example, you can apply a profile of either "server" or "client". Obviously, you do not need the same packages installed on your system if you are just going to use `postgresql` as a client to access a server.
 
