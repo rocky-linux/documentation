@@ -771,7 +771,7 @@ Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
 
 ## Using the EPEL repository
 
-**Q:What is EPEL and how is it used?**
+**Q: What is EPEL and how is it used?**
 
 **EPEL** (**E**xtra **P**ackages for **E**nterprise **L**inux) is an open-source and free community-based repository maintained by the [EPEL Fedora Special Interest Group](https://docs.fedoraproject.org/en-US/epel/) that provides a set of additional packages for RHEL (and CentOS, Rocky Linux, and others) from the Fedora sources.
 
@@ -876,3 +876,5 @@ Is this ok [y/N]:
 !!! attention "Support consideration"
 
     EPEL is a project initiated by volunteers in the Fedora community, which means that the project is not commercially supported by Red Hat. Just like Fedora itself, Red Hat hosts infrastructure for this project and Red Hat engineers are involved as maintainers and leaders but there are no commercial support contracts or service level agreements provided by Red Hat for packages in EPEL.
+
+For the FAQ about EPEL, please refer to [here](https://docs.fedoraproject.org/en-US/epel/epel-faq/).
