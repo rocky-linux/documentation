@@ -1,7 +1,7 @@
 ---
 title: Les bases d'Ansible
 author: Antoine Le Morvan
-contributors: Steven Spencer, tianci li, Aditya Putta, Ganna Zhyrnova
+contributors: Steven Spencer, tianci li, Aditya Putta, Ganna Zhyrnova, sjpp
 update: 15-Déc-2021
 ---
 
