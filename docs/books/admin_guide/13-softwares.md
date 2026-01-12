@@ -377,6 +377,39 @@ The "command" in syntax represents the functional item command of `dnf`. Some co
     * `dnf config-manager --set-disabled devel` - Permanently disable a single repository
     * `dnf config-manager --set-enabled devel` - Permanently enable a single repository
 
+You can view the available plugin commands through the output of the `dnf --help` command:
+
+```bash
+sudo dnf --help
+...
+List of Plugin Commands:
+
+builddep                  Install build dependencies for package or spec file
+changelog                 Show changelog data of packages
+config-manager            manage dnf configuration options and repositories
+copr                      Interact with Copr repositories.
+debug-dump                dump information about installed rpm packages to file
+debug-restore             restore packages recorded in debug-dump file
+debuginfo-install         install debuginfo packages
+download                  Download package to current directory
+groups-manager            create and edit groups metadata file
+needs-restarting          determine updated binaries that need restarting
+offline-distrosync        Prepare offline distrosync of the system
+offline-upgrade           Prepare offline upgrade of the system
+playground                Interact with Playground repository.
+repoclosure               Display a list of unresolved dependencies for repositories
+repodiff                  List differences between two sets of repositories
+repograph                 Output a full package dependency graph in dot format
+repomanage                Manage a directory of rpm packages
+reposync                  download all packages from remote repo
+system-upgrade            Prepare system for upgrade to a new release
+...
+```
+
+!!! tip 
+
+    If these plugin commands are missing, please install the `dnf-plugins-core` package. See more informations here: https://dnf-plugins-core.readthedocs.io/en/latest/index.html
+
 ### configuration file description
 
 All repository configuration files are stored in the **/etc/yum.repos.d/** directory and end with `.repo`. Each `.repo` file can contain a single or multiple repositories, and users can selectively enable or disable them according to their actual situation.
@@ -607,7 +640,7 @@ If a specific module's specific stream has already been installed in the operati
 dnf module switch-to <Module-Name>:<Stream>
 ```
 
-### disable
+#### Disable
 
 The syntax used is:
 
@@ -666,7 +699,7 @@ postgresql             16                 client, server                 Postgre
 Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
 ```
 
-## Complete Example
+#### Complete Example
 
 Taking the nodejs module as an example:
 
@@ -736,502 +769,110 @@ nodejs              24                  common, development, minimal, s2i       
 Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
 ```
 
-## Extended content
+## Using the EPEL repository
 
-## DNF modules
-
-Modules were introduced in Rocky Linux 8 by the upstream. In order to use modules, the AppStream repository must exist and be enabled.
-
-!!! hint "Package Confusion"
-
-    The creation of module streams in the AppStream repository caused a lot of people confusion. Since modules are packaged within a stream (see our examples below), a particular package would show up in our RPMs, but if an attempt was made to install it without enabling the module, nothing would happen. Remember to look at modules if you attempt to install a package and it fails to find it.
-
-### What are modules
-
-Modules come from the AppStream repository and contain both streams and profiles. These can be described as follows:
-
-* **module streams:** A module stream can be thought of as a separate repository within the AppStream repository that contains different application versions. These module repositories contain the application RPMs, dependencies, and documentation for that particular stream. 
-
-* **module profiles:** What a module profile does is take into consideration the use case for the module stream when installing the package. Applying a profile adjusts the package RPMs, dependencies and documentation to account for the module's use. Using the same `postgresql` stream in our example, you can apply a profile of either "server" or "client". Obviously, you do not need the same packages installed on your system if you are just going to use `postgresql` as a client to access a server.
-
-### Listing modules
-
-You can obtain a list of all modules by executing the following command:
-
-```bash
-dnf module list
-```
-
-This will give you a long list of the available modules and the profiles that can be used for them. The thing is you probably already know what package you are interested in, so to find out if there are modules for a particular package, add the package name after "list". We will use our `postgresql` package example again here:
-
-```bash
-dnf module list postgresql
-```
-
-This will give you output that looks like this:
-
-```bash
-Rocky Linux 8 - AppStream
-Name                       Stream                 Profiles                           Summary                                            
-postgresql                 9.6                    client, server [d]                 PostgreSQL server and client module                
-postgresql                 10 [d]                 client, server [d]                 PostgreSQL server and client module                
-postgresql                 12                     client, server [d]                 PostgreSQL server and client module                
-postgresql                 13                     client, server [d]                 PostgreSQL server and client module
-```
-
-Notice in the listing the "[d]". This means that this is the default. It shows that the default version is 10 and that regardless of which version you choose, if you do not specify a profile, then the server profile will be the profile used, as it is the default as well.
-
-### Enabling Modules
-
-Using our example `postgresql` package, let's say that we want to enable version 12. To do this, you simply use the following:
-
-```bash
-dnf module enable postgresql:12
-```
-
-Here the enable command requires the module name followed by a ":" and the stream name.
-
-To verify that you have enabled `postgresql` module stream version 12, use your list command again which should show you the following output:
-
-```bash
-Rocky Linux 8 - AppStream
-Name                       Stream                 Profiles                           Summary                                            
-postgresql                 9.6                    client, server [d]                 PostgreSQL server and client module                
-postgresql                 10 [d]                 client, server [d]                 PostgreSQL server and client module                
-postgresql                 12 [e]                 client, server [d]                 PostgreSQL server and client module                
-postgresql                 13                     client, server [d]                 PostgreSQL server and client module
-```
-
-Here we can see the "[e]" for "enabled" next to stream 12, so we know that version 12 is enabled.
-
-### Installing packages from the module stream
-
-Now that our module stream is enabled, the next step is to install `postgresql`, the client application for the postgresql server. This can be achieved by running the following command:
-
-```bash
-dnf install postgresql
-```
-
-Which should give you this output:
-
-```bash
-========================================================================================================================================
- Package                    Architecture           Version                                              Repository                 Size
-========================================================================================================================================
-Installing group/module packages:
- postgresql                 x86_64                 12.12-1.module+el8.6.0+1049+f8fc4c36                 appstream                 1.5 M
-Installing dependencies:
- libpq                      x86_64                 13.5-1.el8                                           appstream                 197 k
-
-Transaction Summary
-========================================================================================================================================
-Install  2 Packages
-Total download size: 1.7 M
-Installed size: 6.1 M
-Is this ok [y/N]:
-```
-
-After approving by typing "y" you installed the application.
-
-### Installing packages from module stream profiles
-
-It's also possible to directly install packages without even having to enable the module stream! In this example, let's assume that we only want the client profile applied to our installation. To do this, we simply enter this command:
-
-```bash
-dnf install postgresql:12/client
-```
-
-Which should give you this output:
-
-```bash
-========================================================================================================================================
- Package                    Architecture           Version                                              Repository                 Size
-========================================================================================================================================
-Installing group/module packages:
- postgresql                 x86_64                 12.12-1.module+el8.6.0+1049+f8fc4c36                 appstream                 1.5 M
-Installing dependencies:
- libpq                      x86_64                 13.5-1.el8                                           appstream                 197 k
-Installing module profiles:
- postgresql/client
-Enabling module streams:
- postgresql                                        12
-
-Transaction Summary
-========================================================================================================================================
-Install  2 Packages
-
-Total download size: 1.7 M
-Installed size: 6.1 M
-Is this ok [y/N]:
-```
-
-Answering "y" to the prompt will install everything you need to use postgresql version 12 as a client.
-
-### Module Removal and Reset or Switch-To
-
-After you install, you may decide that for whatever reason, you need a different version of the stream. The first step is to remove your packages. Using our example `postgresql` package again, we would do this with:
-
-```bash
-dnf remove postgresql
-```
-
-This will display similar output as the install procedure above, except it will be removing the package and all of its dependencies. Answer "y" to the prompt and hit enter to uninstall `postgresql`.
-
-Once this step is complete, you can issue the reset command for the module using:
-
-```bash
-dnf module reset postgresql
-```
-
-Which will give you output like this:
-
-```bash
-Dependencies resolved.
-========================================================================================================================================
- Package                         Architecture                   Version                           Repository                       Size
-========================================================================================================================================
-Disabling module profiles:
- postgresql/client                                                                                                                     
-Resetting modules:
- postgresql                                                                                                                            
-
-Transaction Summary
-========================================================================================================================================
-
-Is this ok [y/N]:
-```
-
-Answering "y" to the prompt will then reset `postgresql` back to the default stream with the stream that we had enabled (12 in our example) no longer enabled:
-
-```bash
-Rocky Linux 8 - AppStream
-Name                       Stream                 Profiles                           Summary                                            
-postgresql                 9.6                    client, server [d]                 PostgreSQL server and client module                
-postgresql                 10 [d]                 client, server [d]                 PostgreSQL server and client module                
-postgresql                 12                     client, server [d]                 PostgreSQL server and client module                
-postgresql                 13                     client, server [d]                 PostgreSQL server and client module
-```
-
-Now you can use the default.
-
-You can also use the switch-to sub-command to switch from one enabled stream to another. Using this method not only switches to the new stream, but installs the needed packages (either downgrade or upgrade) without a separate step. To use this method to enable `postgresql` stream version 13 and use the "client" profile, you would use:
-
-```bash
-dnf module switch-to postgresql:13/client
-```
-
-### Disable a module stream
-
-There may be times when you wish to disable the ability to install packages from a module stream. In the case of our `postgresql` example, this could be because you want to use the repository directly from [PostgreSQL](https://www.postgresql.org/download/linux/redhat/) so that you could use a newer version (at the time of this writing, versions 14 and 15 are available from this repository). Disabling a module stream, makes installing any of those packages impossible without first enabling them again.
-
-To disable the module streams for `postgresql` simply do:
-
-```bash
-dnf module disable postgresql
-```
-
-And if you list out the `postgresql` modules again, you will see the following showing all `postgresql` module versions disabled:
-
-```bash
-Rocky Linux 8 - AppStream
-Name                       Stream                   Profiles                          Summary                                           
-postgresql                 9.6 [x]                  client, server [d]                PostgreSQL server and client module               
-postgresql                 10 [d][x]                client, server [d]                PostgreSQL server and client module               
-postgresql                 12 [x]                   client, server [d]                PostgreSQL server and client module               
-postgresql                 13 [x]                   client, server [d]                PostgreSQL server and client module
-```
-
-## The EPEL repository
-
-### What is EPEL and how is it used?
+**Q:What is EPEL and how is it used?**
 
 **EPEL** (**E**xtra **P**ackages for **E**nterprise **L**inux) is an open-source and free community-based repository maintained by the [EPEL Fedora Special Interest Group](https://docs.fedoraproject.org/en-US/epel/) that provides a set of additional packages for RHEL (and CentOS, Rocky Linux, and others) from the Fedora sources.
 
-It provides packages that are not included in the official RHEL repositories. These are not included because they are not considered necessary in an enterprise environment or deemed outside the scope of RHEL. We must not forget that RHEL is an enterprise class distribution, and desktop utilities or other specialized software may not be a priority for an enterprise project.
+Whether individuals or businesses use Rocky Linux 8.x/9.x/10.x, it is usually recommended to enable the EPEL repository.
 
-### Installation
-
-Installation of the necessary files can be easily done with the package provided by default from Rocky Linux.
-
-If you are behind an internet proxy:
+You can install the EPEL repository in the following ways:
 
 ```bash
-export http_proxy=http://172.16.1.10:8080
+sudo dnf install epel-release
 ```
 
-Then:
+Review relevant information and verify successful installation:
 
 ```bash
-dnf install epel-release
-```
-
-Once installed you can check that the package has been installed correctly with the command `dnf info`.
-
-```bash
-dnf info epel-release
-Last metadata expiration check: 1:30:29 ago on Thu 24 Mar 2022 09:36:42 AM CET.
+sudo dnf info epel-release
+Last metadata expiration check: 1 day, 23:02:38 ago on Sat 10 Jan 2026 10:10:22 PM CST.
 Installed Packages
 Name         : epel-release
 Version      : 8
-Release      : 14.el8
+Release      : 22.el8
 Architecture : noarch
-Size         : 32 k
-Source       : epel-release-8-14.el8.src.rpm
+Size         : 34 k
+Source       : epel-release-8-22.el8.src.rpm
 Repository   : @System
 From repo    : epel
 Summary      : Extra Packages for Enterprise Linux repository configuration
 URL          : http://download.fedoraproject.org/pub/epel
 License      : GPLv2
-Description  : This package contains the Extra Packages for Enterprise Linux
-             : (EPEL) repository GPG key as well as configuration for yum.
+Description  : This package contains the Extra Packages for Enterprise Linux (EPEL) repository
+             : GPG key as well as configuration for yum.
+
+rpm -qa | grep epel
+epel-release-8-14.el8.noarch
+
+sudo dnf repolist
+repo id            repo name
+...
+epel                                      Extra Packages for Enterprise Linux 8 - x86_64
+...
 ```
 
 The package, as you can see from the package description above, does not contain executables, libraries, etc... but only the configuration files and GPG keys for setting up the repository.
 
-Another way to verify the correct installation is to query the rpm database.
+Associated `.repo` files:
 
 ```bash
-rpm -qa | grep epel
-epel-release-8-14.el8.noarch
+ls -lh /etc/yum.repos.d/epel*
+-rw-r--r-- 1 root root 1.7K Apr 23  2025 /etc/yum.repos.d/epel-modular.repo
+-rw-r--r-- 1 root root 1.4K Apr 23  2025 /etc/yum.repos.d/epel.repo
+-rw-r--r-- 1 root root 1.8K Apr 23  2025 /etc/yum.repos.d/epel-testing-modular.repo
+-rw-r--r-- 1 root root 1.4K Apr 23  2025 /etc/yum.repos.d/epel-testing.repo
 ```
 
-Now you need to run an update to let `dnf` recognize the repository. You will be asked to accept the GPG keys of the repositories. Clearly, you have to answer YES in order to use them.
+By default, only repositories with the ID epel in the `epel.repo` file are enabled.
 
 ```bash
-dnf update
-```
-
-Once the update is complete you can check that the repository has been configured correctly with the `dnf repolist` command which should now list the new repositories.
-
-```bash
-dnf repolist
-repo id            repo name
-...
-epel               Extra Packages for Enterprise Linux 8 - aarch64
-epel-modular       Extra Packages for Enterprise Linux Modular 8 - aarch64
-...
-```
-
-The repository configuration files are located in `/etc/yum.repos.d/`.
-
-```bash
-ll /etc/yum.repos.d/ | grep epel
--rw-r--r--. 1 root root 1485 Jan 31 17:19 epel-modular.repo
--rw-r--r--. 1 root root 1422 Jan 31 17:19 epel.repo
--rw-r--r--. 1 root root 1584 Jan 31 17:19 epel-testing-modular.repo
--rw-r--r--. 1 root root 1521 Jan 31 17:19 epel-testing.repo
-```
-
-And below we can see the contents of the file `epel.repo`.
-
-```bash
+cat /etc/yum.repos.d/epel.repo
 [epel]
-name=Extra Packages for Enterprise Linux $releasever - $basearch
+name=Extra Packages for Enterprise Linux 8 - $basearch
 # It is much more secure to use the metalink, but if you wish to use a local mirror
 # place its address here.
-#baseurl=https://download.example/pub/epel/$releasever/Everything/$basearch
-metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-$releasever&arch=$basearch&infra=$infra&content=$contentdir
+#baseurl=https://download.example/pub/epel/8/Everything/$basearch
+metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-8&arch=$basearch&infra=$infra&content=$contentdir
 enabled=1
 gpgcheck=1
 countme=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
-
-[epel-debuginfo]
-name=Extra Packages for Enterprise Linux $releasever - $basearch - Debug
-# It is much more secure to use the metalink, but if you wish to use a local mirror
-# place its address here.
-#baseurl=https://download.example/pub/epel/$releasever/Everything/$basearch/debug
-metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-debug-$releasever&arch=$basearch&infra=$infra&content=$contentdir
-enabled=0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
-gpgcheck=1
-
-[epel-source]
-name=Extra Packages for Enterprise Linux $releasever - $basearch - Source
-# It is much more secure to use the metalink, but if you wish to use a local mirror
-# place it's address here.
-#baseurl=https://download.example/pub/epel/$releasever/Everything/source/tree/
-metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-source-$releasever&arch=$basearch&infra=$infra&content=$contentdir
-enabled=0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
-gpgcheck=1
-```
-
-### Using EPEL
-
-At this point, once configured, we are ready to install the packages from EPEL. To start, we can list the packages available in the repository with the command:
-
-```bash
-dnf --disablerepo="*" --enablerepo="epel" list available
-```
-
-And an excerpt of the command
-
-```bash
-dnf --disablerepo="*" --enablerepo="epel" list available | less
-Last metadata expiration check: 1:58:22 ago on Fri 25 Mar 2022 09:23:29 AM CET.
-Available Packages
-3proxy.aarch64                                                    0.8.13-1.el8                                    epel
-AMF-devel.noarch                                                  1.4.23-2.el8                                    epel
-AMF-samples.noarch                                                1.4.23-2.el8                                    epel
-AusweisApp2.aarch64                                               1.22.3-1.el8                                    epel
-AusweisApp2-data.noarch                                           1.22.3-1.el8                                    epel
-AusweisApp2-doc.noarch                                            1.22.3-1.el8                                    epel
-BackupPC.aarch64                                                  4.4.0-1.el8                                     epel
-BackupPC-XS.aarch64                                               0.62-1.el8                                      epel
-BibTool.aarch64                                                   2.68-1.el8                                      epel
-CCfits.aarch64                                                    2.5-14.el8                                      epel
-CCfits-devel.aarch64                                              2.5-14.el8                                      epel
 ...
 ```
 
-From the command we can see that to install from EPEL we must force **dnf** to query the requested repository with the options `--disablerepo` and `--enablerepo`, this is because otherwise a match found in other optional repositories (RPM Fusion, REMI, ELRepo, etc.) could be newer and therefore have priority. These options are not necessary if you have only installed EPEL as an optional repository because the packages in the repository will never be available in the official ones. At least in the same version!
-
-!!! attention "Support consideration"
-
-    One aspect to consider regarding support (updates, bug fixes, security patches) is that EPEL packages have no official support from RHEL and technically their life could last the space of a development of Fedora (six months) and then disappear. This is a remote possibility but one to consider.
-
-So, to install a package from the EPEL repositories you would use:
+List all available software packages with repository ID epel:
 
 ```bash
-dnf --disablerepo="*" --enablerepo="epel" install nmon
-Last metadata expiration check: 2:01:36 ago on Fri 25 Mar 2022 04:28:04 PM CET.
+dnf --repoid epel list --available 
+```
+
+If there are other repositories in your operating system but you wish to install packages only from EPEL:
+
+```bash
+sudo dnf --disablerepo="*" --enablerepo="epel" install nmon
+Last metadata expiration check: 0:08:13 ago on Mon 12 Jan 2026 09:34:25 PM CST.
 Dependencies resolved.
-==============================================================================================================================================================
- Package                            Architecture                          Version                                    Repository                          Size
-==============================================================================================================================================================
+========================================================================================================================
+ Package                   Architecture                Version                          Repository                 Size
+========================================================================================================================
 Installing:
- nmon                               aarch64                               16m-1.el8                                  epel                                71 k
+ nmon                      x86_64                      16p-5.el8                        epel                       80 k
 
 Transaction Summary
-==============================================================================================================================================================
+========================================================================================================================
 Install  1 Package
 
-Total download size: 71 k
-Installed size: 214 k
+Total download size: 80 k
+Installed size: 161 k
 Is this ok [y/N]:
 ```
 
-### Conclusion
+!!! tip "Friendly reminder"
 
-EPEL is not an official repository for RHEL, but it can be useful for administrators and developers who work with RHEL or derivatives and need some utilities prepared for RHEL from a source they can feel confident about.
+    When multiple repositories are enabled, the same software package may have multiple versions, and by default, the newer version of the software package has the highest priority. This is also the reason why the `--disablerepo` and `--enablrepo` options are used.
 
-## DNF Plugins
+!!! attention "Support consideration"
 
-The `dnf-plugins-core` package adds plugins to `dnf` that will be useful for managing your repositories.
-
-!!! NOTE
-
-    See more informations here: https://dnf-plugins-core.readthedocs.io/en/latest/index.html
-
-Install the package on your system:
-
-```bash
-dnf install dnf-plugins-core
-```
-
-Not all plugins will be presented here but you can refer to the package documentation for a complete list of plugins and detailed information.
-
-### `config-manager` plugin
-
-Manage DNF options, add repos, or disable them.
-
-Examples:
-
-* Download a `.repo` file and use it:
-
-```bash
-dnf config-manager --add-repo https://packages.centreon.com/ui/native/rpm-standard/23.04/el8/centreon-23.04.repo
-```
-
-* You can also set an url as a base url for a repo:
-
-```bash
-dnf config-manager --add-repo https://repo.rocky.lan/repo
-```
-
-* Enable or disable one or more repos:
-
-```bash
-dnf config-manager --set-enabled epel centreon
-dnf config-manager --set-disabled epel centreon
-```
-
-* Add a proxy to your config file:
-
-```bash
-dnf config-manager --save --setopt=*.proxy=http://proxy.rocky.lan:3128/
-```
-
-### `copr` plugin
-
-`copr` is an automatic rpm forge, providing a repo with built packages.
-
-* Activate a copr repo:
-
-```bash
-copr enable xxxx
-```
-
-### `download` plugin
-
-Download rpm package instead of installing it:
-
-```bash
-dnf download ansible
-```
-
-If you just want to obtain the remote location url of the package:
-
-```bash
-dnf download --url ansible
-```
-
-Or if you want to also download the dependencies:
-
-```bash
-dnf download --resolv --alldeps ansible
-```
-
-### `needs-restarting` plugin
-
-After running a `dnf update`, the running processes will continue to run but with the old binaries. In order to take into account the code changes and especially the security updates, they have to be restarted.
-
-The `needs-restarting` plugin will allow you to detect processes that are in this case.
-
-```bash
-dnf needs-restarting [-u] [-r] [-s]
-```
-
-| Options | Description                                                                  |
-| --------| --------------------------------------------------------------------------- |
-| `-u`     | Only consider processes belonging to the running user.                       |
-| `-r`     |  to check if a reboot may be required. |
-| `-s`     | to check if services need restarting.                                  |
-| `-s -r` | to do both in one run.                                                       |
-
-### `versionlock` plugin
-
-Sometimes it is useful to protect packages from all updates or to exclude certain versions of a package (because of known problems for example). For this purpose, the versionlock plugin will be of great help.
-
-You need to install an extra package:
-
-```bash
-dnf install python3-dnf-plugin-versionlock
-```
-
-Examples:
-
-* Lock the ansible version:
-
-```bash
-dnf versionlock add ansible
-Adding versionlock on: ansible-0:6.3.0-2.el9.*
-```
-
-* List locked packages:
-
-```bash
-dnf versionlock list
-ansible-0:6.3.0-2.el9.*
-```
+    EPEL is a project initiated by volunteers in the Fedora community, which means that the project is not commercially supported by Red Hat. Just like Fedora itself, Red Hat hosts infrastructure for this project and Red Hat engineers are involved as maintainers and leaders but there are no commercial support contracts or service level agreements provided by Red Hat for packages in EPEL.
