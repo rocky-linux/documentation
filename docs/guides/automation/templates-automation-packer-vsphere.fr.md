@@ -9,7 +9,7 @@ contributors: Steven Spencer, Ryan Johnson, Pedro Garcia, Ganna Zhyrnova
 **Connaissances** : :star: :star: :star:  
 **Complexité** : :star: :star: :star:
 
-**Temps de lecture** : 30 minutes
+**Temps de lecture** : 31 minutes
 
 ## Prérequis, Hypothèses et Généralités
 
@@ -69,13 +69,13 @@ Il y a deux façons d'installer Packer dans votre système Rocky Linux.
     sudo dnf install -y dnf-plugins-core
     ```
 
-2. Ajouter le dépôt HashiCorp aux repos disponibles dans notre système Rocky Linux :
+1. Ajouter le dépôt HashiCorp aux repos disponibles dans notre système Rocky Linux :
 
     ```bash
     sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
     ```
 
-3. Installation de Packer :
+1. Installation de Packer :
 
     ```bash
     sudo dnf -y install packer
@@ -87,7 +87,7 @@ Vous pouvez commencer par télécharger les binaires pour votre propre plateform
 
 1. Sur la page de téléchargement, copiez le lien dans la section Téléchargement binaire de Linux qui correspond à l'architecture de votre système.
 
-2. À partir d'un shell ou d'un terminal, téléchargez-le à l'aide de l'outil `wget` :
+1. À partir d'un shell ou d'un terminal, téléchargez-le à l'aide de l'outil `wget` :
 
     ```bash
     wget https://releases.hashicorp.com/packer/1.8.3/packer_1.8.3_linux_amd64.zip
@@ -95,7 +95,7 @@ Vous pouvez commencer par télécharger les binaires pour votre propre plateform
 
     Ceci va télécharger un fichier .zip.
 
-3. Pour décompresser l'archive téléchargée, exécutez la commande suivante dans le shell :
+1. Pour décompresser l'archive téléchargée, exécutez la commande suivante dans le shell :
 
     ```bash
     unzip packer_1.8.3_linux_amd64.zip
@@ -105,7 +105,7 @@ Vous pouvez commencer par télécharger les binaires pour votre propre plateform
 
      Si vous obtenez une erreur et que vous n'avez pas l'application unzip installée sur votre système, vous pouvez l'installer en exécutant la commande ```sudo dnf install unzip```.
 
-4. Déplacer l'application Packer dans le dossier 'bin' adéquat :
+1. Déplacer l'application Packer dans le dossier 'bin' adéquat :
 
     ```bash
     sudo mv packer /usr/local/bin/
@@ -238,6 +238,8 @@ Nous utiliserons la variable `version` plus tard dans le nom du modèle que nous
 Nous aurons également besoin de notre machine virtuelle de démarrage pour accéder à un fichier `ks.cfg` (Kickstart).
 
 Un fichier 'Kickstart' contient les réponses aux questions posées au cours du processus d'installation. Ce fichier transmet tout son contenu à 'Anaconda' (le processus d'installation), ce qui vous permet d'automatiser complètement la création du modèle.
+
+Pour en savoir plus sur les fichiers Kickstart et comment les déployer sur Rocky Linux, veuillez consulter le [Guide des fichiers Kickstart et de Rocky Linux](kickstart-rocky.md).
 
 L'auteur préfère stocker son fichier `ks.cfg` sur un serveur web interne accessible à partir de son modèle, mais il existe d'autres possibilités que vous pouvez choisir d'utiliser à la place.
 
