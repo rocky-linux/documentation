@@ -80,4 +80,4 @@ mkksiso --add ~/baseos --ks <PATH_TO_KICKSTART_FILE> ~/<PATH_TO_ISO> ~/<PATH_TO_
 
 ## Conclusion
 
-Once your own ISO is built with your kickstart file, it makes it much easier to deploy hundreds of machines with the one image and not needing to configure each machine individually. To learn more about `kickstart` files, along with multiple examples, please check out the [Kickstart Files and Rocky Linux guide](https://docs.rockylinux.org/guides/automation/kickstart-rocky/). 
+Once your own ISO is built with your kickstart file, it makes it much easier to deploy hundreds of machines with the one image and not needing to configure each machine individually. To learn more about `kickstart` files, along with multiple examples, please check out the [Kickstart Files and Rocky Linux guide](../../automation/kickstart-rocky/). 
