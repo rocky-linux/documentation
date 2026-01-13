@@ -69,13 +69,13 @@ HashiCorp maintains and signs packages for different Linux distributions. To ins
     sudo dnf install -y dnf-plugins-core
     ```
 
-2. Add the HashiCorp repository to the available repos in our Rocky Linux system:
+1. Add the HashiCorp repository to the available repos in our Rocky Linux system:
 
     ```bash
     sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
     ```
 
-3. Install Packer:
+1. Install Packer:
 
     ```bash
     sudo dnf -y install packer
@@ -87,7 +87,7 @@ You can start by downloading the binaries for your own platform with [Packer dow
 
 1. On the download page, copy the download link in the Linux Binary Download section that corresponds to your system architecture.
 
-2. From a shell or terminal download it using ```wget``` tool:
+1. From a shell or terminal download it using ```wget``` tool:
 
     ```bash
     wget https://releases.hashicorp.com/packer/1.8.3/packer_1.8.3_linux_amd64.zip
@@ -95,7 +95,7 @@ You can start by downloading the binaries for your own platform with [Packer dow
 
     This will download a .zip file.
 
-3. To decompress the downloaded archive, run the following command in the shell:
+1. To decompress the downloaded archive, run the following command in the shell:
 
     ```bash
     unzip packer_1.8.3_linux_amd64.zip
@@ -105,7 +105,7 @@ You can start by downloading the binaries for your own platform with [Packer dow
 
         If you get an error and you don’t have the unzip app installed on your system, you can install it by executing this command ```sudo dnf install unzip```.
 
-4. Move the Packer app to the bin folder:
+1. Move the Packer app to the bin folder:
 
     ```bash
     sudo mv packer /usr/local/bin/
@@ -239,7 +239,7 @@ We will also need our booting virtual machine to access a `ks.cfg` (Kickstart) f
 
 A Kickstart file contains the answers to the questions asked during the installation process. This file passes all its contents to Anaconda (the installation process), which allows you to fully automate the creation of the template.
 
-To learn more about kickstart files and how to deploy them on Rocky Linux, please check out the [Kickstart Files and Rocky Linux guide](https://docs.rockylinux.org/guides/automation/kickstart-rocky/). 
+To learn more about kickstart files and how to deploy them on Rocky Linux, please check out the [Kickstart Files and Rocky Linux guide](kickstart-rocky.md). 
 
 The author likes to store his `ks.cfg` file in an internal web server accessible from his template, but other possibilities exist that you may choose to use instead.
 
@@ -303,7 +303,7 @@ This builder lets us configure the hardware we need:
 ],
 ```
 
-!!! "Note"
+!!! note
 
     You will never forget again to include CPU_hot_plug as it is automatic now!
 
@@ -482,7 +482,7 @@ As we have chosen to use the minimal iso, instead of the Boot or DVD, not all re
 
 As Packer relies on VMware Tools to detect the end of the installation, and the `open-vm-tools` package is only available in the AppStream repos, we have to specify to the installation process that we want to use as source both the CD-ROM and this remote repo:
 
-!!! "Note"
+!!! note
 
     If you do not have access to the external repos, you can use either a mirror of the repo, a squid proxy, or the DVD.
 
