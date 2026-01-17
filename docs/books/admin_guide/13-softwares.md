@@ -73,8 +73,8 @@ The relevant options are as follows:
 | `-v`              | Informs about the progress of the operation. |
 | `--test`          | Tests the command without executing it.      |
 
-* Install one or more packages - `rpm-ivh <Full-Package-Name> ... `
-* Upgrade one or more packages - `rpm-Uvh <Full-Package-Name> ...`
+* Install one or more packages - `rpm -ivh <Full-Package-Name> ... `
+* Upgrade one or more packages - `rpm -Uvh <Full-Package-Name> ...`
 * Uninstall one or more packages - `rpm -e <Package-Name> ...`
 
 Since `rpm` is a local package manager, users need to manually resolve dependency issues during software installation. If relevant dependencies are missing, a prompt such as "failed dependencies" will appear.
