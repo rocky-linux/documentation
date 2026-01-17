@@ -27,7 +27,7 @@ Installez d’abord EPEL :
 dnf install epel-release
 ```
 
-Ensuite, installez Knot :
+Ensuite, installez `Knot` :
 
 ```bash
 dnf install knot
