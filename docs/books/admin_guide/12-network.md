@@ -4,17 +4,17 @@ title: Implementing the Network
 
 # Implementing the Network
 
-In this chapter you will learn how to work with and manage the network.
+In this chapter, you will learn how to work with and manage the network.
 
 ****
 
-**Objectives**: In this chapter you will learn how to:
+**Objectives**: In this chapter, you will learn how to:
 
 :heavy_check_mark: Configure a workstation to use DHCP;  
 :heavy_check_mark: Configure a workstation to use a static configuration;  
 :heavy_check_mark: Configure a workstation to use a gateway;  
 :heavy_check_mark: Configure a workstation to use DNS servers;  
-:heavy_check_mark: Troubleshoot the network of a workstation.  
+:heavy_check_mark: Troubleshoot a workstation's network.  
 
 :checkered_flag: **network**, **linux**, **ip**
 
@@ -49,7 +49,7 @@ Example:
 * `192.168.1.10`;
 * `255.255.255.0`.
 
-The notation called CIDR is more and more frequent: 192.168.1.10/24
+The notation called CIDR is becoming more and more frequent: 192.168.1.10/24
 
 IP addresses are used for the proper routing of messages (packets). They are divided into two parts:
 
@@ -63,7 +63,7 @@ IP addresses are used for the proper routing of messages (packets). They are div
 255.255.255.0 ==> 11111111.11111111.11111111.00000000
 ```
 
-The subnet mask is used to define the network bits and host bits of an IP address. By using subnet mask, we can determine the current IP address:
+The subnet mask defines the network and host bits of an IP address. By using the subnet mask, we can determine the current IP address:
 
 * the network address (**NetID** or **SubnetID**) by performing a bitwise logical AND between the IP address and the mask;
 * the host address (**HostID**) by performing a bitwise logical AND between the IP address and the complement of the mask.
@@ -91,9 +91,9 @@ illegitimate     11001001.11111111.11111111.00000000
 
     The IP address and subnet mask must appear in pairs, which is determined by the basic principles of network communication.
 
-There are also specific addresses within a network, which must be identified. The first address of a range as well as the last one have a particular role:
+There are also specific addresses within a network, which must be identified. The first address of a range, as well as the last one have a particular role:
 
-* The first address of a range is the **network address**. It is used to identify networks and to route information from one network to another. This address can be obtained through Logic and Operations.
+* The first address of a range is the **network address**. It is used to identify networks and route information between them. This address can be obtained through Logic and Operations.
 
     ```
     192.168.1.10  ==> 11000000.10101000.00000001.00001010
@@ -105,7 +105,7 @@ There are also specific addresses within a network, which must be identified. Th
 
     **Logic and Operations** - When both are true (1), the result is true (1); otherwise, it is false (0)
 
-* The last address of a range is the **broadcast address**. It is used to broadcast information to all the machines on the network. Keep the network bits unchanged and replace all host bits with 1 to obtain the this address.
+* The last address of a range is the **broadcast address**. It is used to broadcast information to all the machines on the network. Keep the network bits unchanged and replace all host bits with 1 to obtain this address.
 
     ```
     192.168.1.10  ==> 11000000.10101000.00000001.00001010
@@ -117,11 +117,11 @@ There are also specific addresses within a network, which must be identified. Th
 
 !!! tip
 
-    These two addresses, which play special roles, **cannot** be assigned to the terminal machine for use.
+    These two addresses, which play special roles, **cannot** be assigned to the terminal machine.
 
 ### MAC address and IP address
 
-A **MAC address** is a physical identifier written in the factory onto the device. This is sometimes referred to as the hardware address. It consists of 6 bytes often given in hexadecimal form (for example, 5E:FF:56:A2:AF:15).
+A **MAC address** is a physical identifier assigned to a device at the factory. This is sometimes called the hardware address. It consists of 6 bytes often given in hexadecimal form (for example, 5E:FF:56:A2:AF:15).
 
 These 6 bytes respectively represent:
 
@@ -135,7 +135,7 @@ These 6 bytes respectively represent:
     * Firmware-level modification (permanent): Requires advanced tools that can directly rewrite the MAC address in the network card's ROM. Such tools are typically only available to hardware manufacturers.
     * Software-level spoofing (temporary): Modifies how the MAC address appears to the operating system. These changes are usually reset after a system reboot. The MAC address of the virtual network card in the virtual host is also spoofed.
 
-An Internet Protocol (**IP**) address is an identification number permanently or temporarily assigned to each device connected to a computer network using the Internet Protocol. The IP address and subnet mask must appear in pairs, which is determined by the basic principles of network communication. Through the subnet mask, we can know the current IP address:
+An Internet Protocol (**IP**) address is a unique identifier permanently or temporarily assigned to each device connected to a computer network using the Internet Protocol. The IP address and subnet mask must appear in pairs, which is determined by the basic principles of network communication. Through the subnet mask, we can know the current IP address:
 
 * network bits and host bits
 * NetID or SubnetID
@@ -379,7 +379,7 @@ For `docs.rockylinux.org.`:
 
     It should be noted that the ISO/OSI 7-layer model does not exist in real network communication. It merely provides a design framework and approach for Internet communication.
 
-**TCP/IP 4-layer model** - The hierarchical model used in actual network communication (simplifies the ISO/OSI 7-layer model to a 4-layer model). TCP/IP is a synonym for a group of protocols, which includes many protocols and forms the TCP/IP protocol suite. In protocol analysis or teaching environment, it is sometimes unofficiously referred to as **TCP/IP 5-layer model**.
+**TCP/IP 4-layer model** - The hierarchical model used in actual network communication (simplifies the ISO/OSI 7-layer model to a 4-layer model). TCP/IP is a synonym for a set of protocols that includes many protocols and forms the TCP/IP protocol suite. In a protocol analysis or teaching environment, it is sometimes unofficiously referred to as the **TCP/IP 5-layer model**.
 
 | Layer | Protocols | Hardware devices working on this layer |
 | :---  | :--- | :--- |
@@ -399,7 +399,7 @@ For `docs.rockylinux.org.`:
 
 ## The naming of interfaces
 
-*lo* is the "**loopback**" interface, which allows TCP/IP programs to communicate with each other without leaving the local machine. This enables testing if the **network module of the system is working properly** and also allows pinging the localhost. All packets that enter through localhost leave through localhost. The packets received are the same as the packets sent.
+*lo* is the "**loopback**" interface, which allows TCP/IP programs to communicate with each other without leaving the local machine. This enables testing if the **network module of the system is working properly** and also allows pinging the localhost. All packets that enter through localhost leave through localhost. The packets received are identical to those sent.
 
 The `udev` device manager assigns interface names with a specific prefix depending on the type. Traditionally, all **Ethernet** interfaces, for example, began with **eth**. A number followed the prefix, the first being 0 (eth0, eth1, eth2...). The wifi interfaces were given a WLAN prefix.
 
@@ -412,7 +412,7 @@ On Rocky 8/9/10 Linux distributions, `udev` device manager will name interfaces 
 
 !!! tip "Integration and Takeover"
 
-    In older versions of Linux distributions, udev was a standalone component and ran using a separate process, but modern mainstream Linux distributions have integrated udev code into the systemd project, making it one of the core components of the systemd suite.
+    In older Linux distributions, udev was a standalone component that ran in a separate process, but modern mainstream Linux distributions have integrated udev code into the systemd project, making it one of the core components of the systemd suite.
 
 ## Configure, browse, and test the network
 
@@ -458,7 +458,7 @@ Display the ARP table:
 [root]# ip neigh
 ```
 
-### `nmtui` and `nmcli` command
+### `nmtui` and `nmcli` commands
 
 [This document](../../gemstones/network/nmtui.md) introduces the usage of the `nmtui` command and the related configuration files.
 
@@ -472,23 +472,23 @@ The mtr command is introduced in detail in [this document](../../gemstones/netwo
 
 ### `ss` command 
 
-This command is a replacement for the old version of the `netstat` command, mainly used to view the status of ports and sockets. Its usage is:
+This command replaces the old `netstat` and is mainly used to view the status of ports and sockets. Its usage is:
 
 ```
 ss [OPTIONS] [FILTER]
 ```
 
-Common options include:
+Common options include the following:
 
 | Options | Explanation |
 | :--- | :--- |
-| `-a` | Display all sockets |
-| `-r` | Resolve hostname |
-| `-t` | Display TCP sockets |
-| `-u` | Display UDP sockets |
-| `-l` | Display the listening socket |
-| `-n` | Display IP address and port number |
-| `-p` | Display processes using sockets |
+| `-a` | Displays all sockets |
+| `-r` | Resolves hostname |
+| `-t` | Displays TCP sockets |
+| `-u` | Displays UDP sockets |
+| `-l` | Displays the listening socket |
+| `-n` | Displays IP address and port number |
+| `-p` | Displays processes using sockets |
 
 Display sockets that have established connections:
 
@@ -518,7 +518,7 @@ nl    UNCONN 0      0                    0:695                 *
 
 `ss -tulnp`: Only displays TCP/UDP listening status connections and includes process information.
 
-`ss -an`: Display all types of connections (including listening and activity)
+`ss -an`: Displays all types of connections (including listening and activity)
 
 Output column description:
 
@@ -613,7 +613,7 @@ Query the wide area network IPv4/IPv6 address of this machine:
 
 ### `ipcalc` command
 
-The `ipcalc` (**ip calculation**) command calculates the address of a network or broadcast from an IP address and a mask. This command supports both IPv4 address and IPv6 address.
+The `ipcalc` (**ip calculation**) command calculates the address of a network or broadcast from an IP address and a mask. This command supports both IPv4 addresses and IPv6 addresses.
 
 Syntax of the `ipcalc` command:
 
@@ -645,25 +645,25 @@ HOSTNAME=localhost
 |  Option                   |  Description                           |
 | :---:                     | :---:                                  |
 |  `-b` or `--broadcast `   | Displays the broadcast address.        |
-|  `-n` or `--network`      | Display network address                |
-|  `-p` or `--prefix`       | Display network prefix                 |   
-|  `-m` or `--netmask`      | Display netmask for IP                 |
+|  `-n` or `--network`      | Displays network address                |
+|  `-p` or `--prefix`       | Displays network prefix                 |   
+|  `-m` or `--netmask`      | Displays netmask for IP                 |
 |  `-s` or`--silent`        | Does not display any error messages    |
-|  `-h` or `--hostname`     | Show hostname determined via DNS       |
+|  `-h` or `--hostname`     | Shows hostname determined via DNS       |
 
-## Content related to the host name
+## Content related to the hostname
 
 ### Set and view the host name
 
-systemd is not just an initialization program, it is a large software suite that takes over many system components. `hostnamectl` is a component in systemd used to manage host names.
+systemd is not just an initialization program; it is a large software suite that manages many system components. `hostnamectl` is a systemd component used to manage host names.
 
-The `hostnamectl` command is an alternative to the `hostname` command. It should be noted that the modifications made by the `hostnamectl` command are **permanent**. Its usage is:
+The `hostnamectl` command is an alternative to `hostname`. It should be noted that the modifications made by the `hostnamectl` command are **permanent**. Its usage is:
 
 ```
 hostnamectl [OPTIONS...] COMMAND ...
 ```
 
-Query the relevant information of the host name:
+Query the relevant information of the hostname:
 
 ```bash
 [root]# hostnamectl
@@ -702,8 +702,8 @@ Set the hostname of the machine and the location of the host:
 
 !!! Tip
 
-    In a local area network, the function of a host name is to identify the uniqueness of a device within the network. Of course, having a unique hostname is not enough, and the IP address corresponding to that hostname must also be unique. 
-    In a wide area network, the FQDN, which consists of host names and various levels of domains, identifies the uniqueness of devices through the hierarchical system of DNS.
+    In a local area network, a hostname identifies a device within the network. Of course, having a unique hostname is not enough, and the IP address corresponding to that hostname must also be unique. 
+    In a wide-area network, the FQDN, which consists of host names and various levels of domains, uniquely identifies devices through the hierarchical DNS system.
 
 ### /etc/hostname file
 
@@ -711,7 +711,7 @@ The content of this file is the hostname of the current machine. It is generally
 
 ## Content related to DNS
 
-When the operating system needs to resolve a host name, it will query in the following order:
+When the operating system needs to resolve a hostname, it will query in the following order:
 
 1. DNS cache
 2. /etc/hosts
@@ -750,19 +750,19 @@ When a user types www.rockylinux.org in a browser, this happens:
 
 1. **Local resolution stage**
 
-> 1. Search browser cache (DNS cache). If the corresponding mapping record is found, it indicates the end of the query. If not found, the next step will be executed 
+> 1. Search browser cache (DNS cache). If the corresponding mapping record is found, the query ends. If not found, the next step will be executed 
 > 2. Search for the local Hosts file (/etc/hosts). If there is a corresponding mapping record, the query ends. Otherwise, proceed to the next step
 
 2. **Recursive query stage**
 
-> 1. Initiate a query request to the DNS server configured in /etc/resolv.conf (such as 8.8.8.8). The DNS server that users configure themselves in the operating system is also known as Local DNS server(s). The Local DNS server(s) here refer to public DNS provided for public use, such as 8.8.8.8 and 114.114.114. If the query request hits the cache record of the Local DNS server, the request ends and returns the result; otherwise, it enters the iterative query process
-> 2. Local DNS server initiates a request to the Root Name server and obtains the server address for the .org domain. 
+> 1. Initiate a query request to the DNS server configured in /etc/resolv.conf (such as 8.8.8.8). The DNS server (s) users configure in the operating system are also known as the Local DNS server(s). The Local DNS server(s) here refer to public DNS provided for public use, such as 8.8.8.8 and 114.114.114. If the query request hits the cache record of the Local DNS server, the request ends and returns the result; otherwise, it enters the iterative query process
+> 2. The local DNS server initiates a request to the Root Name Server and obtains the address of the .org domain. 
 > 3. The top-level domain (TLD) server will query the address of rockylinux.org from the .org server
 > 4. The Name Server ‌finally gets the exact IP address of www.rockylinux.org from the rockylinux.org server
 
 3. **Return the parsing results to the user and cache the results locally**
 
-> The Local DNS server returns the obtained IP address to the client and caches the mapping records locally (the caching time is determined based on the TTL value). The user's browser also cached this mapping record.
+> The Local DNS server returns the IP address to the client and caches the mapping records locally (caching time is determined by the TTL). The user's browser also cached this mapping record.
 
 ### /etc/resolv.conf file
 
@@ -775,7 +775,7 @@ search mondomaine.lan
 nameserver 192.168.1.254
 ```
 
-In Rocky Linux 8/9/10, you should not directly edit this file, but configure the name server through the relevant commands of the `NetworkManager` network component.
+In Rocky Linux 8/9/10, you should not directly edit this file; instead, configure the name server using the relevant commands of the `NetworkManager` network component.
 
 ```bash
 [root]# nmcli connection modify ens160 ipv4.dns "114.114.114.114,8.8.8.8"
@@ -795,7 +795,7 @@ nameserver 8.8.8.8
 
 ### Related commands
 
-The three commands, `host`, `nslookup`, and `dig`, are all used to view the information of the parsing results, among which `dig` is the recommended command.
+The three commands, `host`, `nslookup`, and `dig`, are all used to view parsing results, and `dig` is the recommended command.
 
 ```bash
 [root]# host www.rockylinux.org
@@ -841,12 +841,12 @@ rockylinux.map.fastly.net. 305  IN      A       151.101.42.132
 
 ### DNS resolution record type
 
-* A - Resolve the domain name to the specified IPv4 address
-* AAAA - Resolve the domain name to the specified IPv6 address
-* NS - Specify a specific DNS server to manage the resolution configuration of domain names
-* CNAME - Resolve a domain name to another domain name.
-* PTR - Map IP addresses to domain names, and verify whether an IP address corresponds to a specific domain name through PTR records. It is mainly used for reverse resolution of mail servers
-* MX - Specify the e-mail server corresponding to the domain name. This is necessary when configuring e-mail related services
+* A - Resolves the domain name to the specified IPv4 address
+* AAAA - Resolves the domain name to the specified IPv6 address
+* NS - Specifies a specific DNS server to manage the resolution configuration of domain names
+* CNAME - Resolves a domain name to another domain name.
+* PTR - Maps IP addresses to domain names, and verify whether an IP address corresponds to a specific domain name through PTR records. It is mainly used for reverse resolution of mail servers
+* MX - Specifies the e-mail server corresponding to the domain name. This is necessary when configuring e-mail related services
 * SRV - It is used to indicate that a server is using a certain service.
 * TXT - It is used to identify and describe domain names. TXT records are commonly used for scenarios such as domain name ownership verification, digital certificates, SPF (Sender Policy Framework) records, and domain name recovery.
 
@@ -968,12 +968,12 @@ Common options for the `arp-scan` command:
 
 |  Option                   |  Description                           |
 | :---:                     | :---:                                  |
-| `-I interface`            | Specify network interface or network connection |
-| `-r count`                | Set the scanning frequency for each host, with a default value of 2 |
-| `-l`                      | Generate an address list based on the specified network interface |
-| `-D`                      | Display RTT (round-trip time) of data packets |
-| `-g`                      | Don't display duplicate packets |
-| `-t timeout`              | Set the timeout time (in milliseconds) for each host, with a default value of 500 |
+| `-I interface`            | Specifies network interface or network connection |
+| `-r count`                | Sets the scanning frequency for each host, with a default value of 2 |
+| `-l`                      | Generates an address list based on the specified network interface |
+| `-D`                      | Displays RTT (round-trip time) of data packets |
+| `-g`                      | Doesn't display duplicate packets |
+| `-t timeout`              | Sets the timeout time (in milliseconds) for each host, with a default value of 500 |
 
 
 !!! Tip
