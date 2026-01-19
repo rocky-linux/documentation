@@ -2,7 +2,7 @@
 title: Tutorial Labs
 ---
 
-# Rocky Linux Tutorial Labs
+# Rocky Linux Schulungs-Unterlagen
 
 Was sind **Labs** und wie unterscheiden sie sich von längeren Dokumentationen wie unter **Books**? Die **Labos** sind Workshops, die es Ihnen ermöglichen, in bestimmten Themen Schritt für Schritt voranzukommen, um den Lernprozess zu optimieren. Dazu gehören Übungen zur Überprüfung des erworbenen Wissens. Diese Workshops dienen ausschließlich Pädagogischen- und Bildunds-Zwecken. Sie sollen Ihnen helfen, bestimmte Themen der Systemadministration zu verstehen, zum Experimentieren anzuregen, die Zusammenarbeit zu fördern, usw. – und das in einer sicheren, simulierten Laborumgebung.
 
