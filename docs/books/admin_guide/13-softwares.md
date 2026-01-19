@@ -52,7 +52,7 @@ The `rpm` command: Command-line tool for managing local RPM packages in RedHat's
 
 **Package Name**: The name of the software package, such as `tree`.
 
-If the corresponding software package is new to the operating system (not installed), you should use the "Full Package Name" when using the `rpm` command. If the corresponding software package is not new to the operating system (already installed), you should use the "Package Name" when using `rpm` command instead. This is because the information of the relevant software packages has been stored in the **/var/lib/rpm/** database directory.
+If the corresponding software package is new to the operating system (not installed), you should use the "Full Package Name" when using the `rpm` command. If the corresponding software package is not new to the operating system (already installed), you should use the "Package Name" when using `rpm` command instead. This is because the `rpm` stores the relevant software package information in the **/var/lib/rpm/** database directory.
 
 The usage of the `rpm` command is as follows:
 
@@ -344,7 +344,7 @@ The "command" in syntax represents the functional item command of `dnf`. Some co
 
     To avoid ambiguity, when operating on a single or multiple package groups, You should enclose the name of a single package group in double quotation marks.
 
-11. **`clean` command**
+1. **`clean` command**
 
     Clean the cached data. You can clean all the data caches with: `dnf clean all`.
 
