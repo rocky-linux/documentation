@@ -52,7 +52,7 @@ The `rpm` command: Command-line tool for managing local RPM packages in RedHat's
 
 **Package Name**: The name of the software package, such as `tree`.
 
-If the corresponding software package is new to the operating system (not installed), you should use the "Full Package Name" when using the `rpm` command. If the corresponding software package is not new to the operating system (already installed), you should use the "Package Name" when using `rpm` command instead, this is because the information of the relevant software packages has been stored in the **/var/lib/rpm/** database directory.
+If the corresponding software package is new to the operating system (not installed), you should use the "Full Package Name" when using the `rpm` command. If the corresponding software package is not new to the operating system (already installed), you should use the "Package Name" when using `rpm` command instead. This is because the information of the relevant software packages has been stored in the **/var/lib/rpm/** database directory.
 
 The usage of the `rpm` command is as follows:
 
@@ -258,25 +258,25 @@ The "command" in syntax represents the functional item command of `dnf`. Some co
     | `--autoremove` | show only autoremove packages |
     | `--recent`     | show only recently changed packages |
 
-2. **`search` command**
+1. **`search` command**
 
     Search for software packages from the repository based on the given string. Such as `dnf search vim`.
 
-3. **`install` command**
+1. **`install` command**
 
     Install one or more software packages from the repository. Such as `dnf -y install wget tree`. The `-y` option indicates that the automatic response is "yes". When you install packages in this way, `dnf` will take care of dependency resolution issues automatically.
 
     In addition to installing software packages from the repository, you can also install software packages from specified URL or local RPM software package, such as `dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm`, `dnf install /tmp/mtr-0.92-3.el8.x86_64.rpm`
 
-4. **`info` command**
+1. **`info` command**
 
     View information on one or more software packages, such as `dnf info wget tree`
 
-5. **`deplist` command**
+1. **`deplist` command**
 
     List the dependencies of the software package, which has been deprecated. Please use `dnf repoquery --deplist <Package-Name>` as an alternative.
 
-6. **`repolist` command**
+1. **`repolist` command**
 
     Display repository related information, default to displaying enabled repositories (`dnf repolist` is equivalent to `dnf repolist --enabled`)
 
@@ -284,31 +284,31 @@ The "command" in syntax represents the functional item command of `dnf`. Some co
     * `dnf repolist -v` - Display detailed information of enabled repositories
     * `dnf repolist --disabled` - Lists only disabled repositories.
 
-7. **`history` command**
+1. **`history` command**
 
     Display the history of typed `dnf` commands. By default, `dnf history` is equivalent to `dnf history list`, You can replace the "list" here with any one of `info`, `redo`, `replay`, `rollback`, `store`, `undo` or `userinstalled`.
 
-8. **`provides` command**
+1. **`provides` command**
 
     View the software package to which the given file belongs. Such as `dnf provides /usr/bin/systemctl`.
 
-9. **`remove` command**
+1. **`remove` command**
 
     Remove one or more software packages from the current operating system. By default, it will ask whether to uninstall the software package and its corresponding dependency package, and can automatically respond with "yes" through the `-y` option.
 
-10. **`autoremove` command**
+1. **`autoremove` command**
 
     Automatically delete packages that were once used as dependencies but are no longer in use now. Such as `dnf -y autoremove`.
 
-11. **`makecache` command**
+1. **`makecache` command**
 
     Generate a cache for newly added repositories or for outdated metadata.
 
-12. **`update` or `upgrade` command**
+1. **`update` or `upgrade` command**
 
     Upgrade one or more software packages in the operating system. For example, `dnf update -y` will upgrade all upgradable software packages in the operating system.
 
-13. **`grouplist`, `groupinstall`, `groupremove` or `groupinfo` command**
+1. **`grouplist`, `groupinstall`, `groupremove` or `groupinfo` command**
 
     The operation objects of these commands are package groups, which refer to a set of software packages prepared for a specific scenario or environment.
 
@@ -344,7 +344,7 @@ The "command" in syntax represents the functional item command of `dnf`. Some co
 
     To avoid ambiguity, when operating on a single or multiple package groups, You should enclose the name of a single package group in double quotation marks.
 
-14. **`clean` command**
+11. **`clean` command**
 
     Clean the cached data. You can clean all the data caches with: `dnf clean all`.
 
@@ -356,20 +356,20 @@ The "command" in syntax represents the functional item command of `dnf`. Some co
     | `metadata`             | Removes repository metadata.                                  |
     | `packages`             | Removes any cached packages from the system.                  |
 
-15. **`download` command**
+1. **`download` command**
 
     Download one or more software packages from the repository to the local computer without installing them. 
 
     You can use the options `--destdir DESTDIR` or `--downloaddir DESRDIR` to specify the saving path, such as `dnf download tree --downloaddir /tmp/`.
 
-16. **`repoquery` command**
+1. **`repoquery` command**
 
     Query relevant information by the different options after the command, similar to `rpm -q`.
 
     * `dnf repoquery --deplist <Package-Name>` - View dependencies
     * `dnf repoquery --list <Package-Name>` - View the list of files after installing the software package (regardless of whether the software is already installed on the operating system)
   
-17. **`config-manager` command**
+1. **`config-manager` command**
 
     Manage repositories through the command line, including adding, deleting, enabling, and disabling repositories.
 
