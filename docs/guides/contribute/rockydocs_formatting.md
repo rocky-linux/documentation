@@ -208,16 +208,16 @@ Numbered lists sound easy to create and use, and once you get the hang of them, 
 ```text
 1. Item 1
 
-2. Item 2
+1. Item 2
 
-3. Item 3
+1. Item 3
 ```
 
 1. Item 1
 
-2. Item 2
+1. Item 2
 
-3. Item 3
+1. Item 3
 
 If you need to add code blocks, multiple lines, or even paragraphs of text to a numbered list, then the text must have the same four (4) space indentation you used in the admonitions.
 
@@ -233,7 +233,7 @@ Here is an example of a multi-line numbered list with a code block thrown in for
     dnf update
     ```
 
-2. Here is our second listed item. Because you used the four (4) space indentation (above), it renders with the next sequence of numbering (2). If you had entered item 1 without the indentation (in the subsequent paragraph and code), then this would show up as item 1 again, which is not what you want.
+1. Here is our second listed item. Because you used the four (4) space indentation (above), it renders with the next sequence of numbering (2). If you had entered item 1 without the indentation (in the subsequent paragraph and code), then this would show up as item 1 again, which is not what you want.
 
 And here is how that looks as raw text:
 
@@ -246,8 +246,43 @@ And here is how that looks as raw text:
     dnf update
     ```
 
-2. Here is our second listed item. Because you used the four (4) space indentation (above), it renders with the next sequence of numbering (2). Still, if you had entered item 1 without the indentation (in the subsequent paragraph and code), then this would show up as item 1 again, which is not what you want.
+1. Here is our second listed item. Because you used the four (4) space indentation (above), it renders with the next sequence of numbering (2). Still, if you had entered item 1 without the indentation (in the subsequent paragraph and code), then this would show up as item 1 again, which is not what you want.
 ```
+
+
+!!! tip "Numbering the numbered list does not necessarily correspond to the actual number displayed."
+
+    When including a numbered (ordered) list, the natural inclination of the author is to number them in sequence, but Markdown actually handles this task itself, and therefor numbering in sequence has no effect on the actual number shown. What matters is the formattting (spaces, indentation, and so on). As an example, these two lists are functionally the same:
+
+    ```text
+    1. This is item 1
+    2. This is item 2
+    ```
+
+    and
+
+    ```text
+    1. This is item 1
+    
+    1. This is item 2
+    ```
+
+    Here is how they both render in markdown:
+
+    1. This is item 1
+    2. This is item 2
+    
+    and
+
+    1. This is item 1
+    
+    1. This is item 2
+
+    To make things more complicated visually, some editors may strip away manually added numbers and replace them with "1" BUT if you are editing a document and adding numbered list items, the same editor will helpfully number sequentially for you so that you are seeing the correct number. When saved, these editors will strip away the sequential numbers and replace them with the same "1". 
+
+    Just be aware that if you see what you think are the removal of the numbered lists sequences by an author, that this may have happened from the editor they use and probably will not affect the markdown rendered numbered sequence.
+
+    As further proof of this, when the author pulled this document in to add this note, the editor stripped away the numbered list items shown at the top of this section and replaced them all with 1. They still render correctly as 1, 2, 3, and so on.
 
 ## Tables
 
@@ -439,7 +474,7 @@ Rocky documentation offers some elegant formatting options when combining multip
 
     1. You add a numbered list of options within an admonition
 
-    2. Or you add a numbered list with multiple code blocks:
+    1. Or you add a numbered list with multiple code blocks:
 
         ```
         dnf install some-great-package
@@ -455,7 +490,7 @@ Or you may have a numbered list, with an additional admonition:
 
     Press ++escape++ for no particular reason.
 
-2. But this item is something very important *and* has multiple paragraphs to it
+1. But this item is something very important *and* has multiple paragraphs to it
 
     And it has an admonition in the middle of it:
 
@@ -469,7 +504,7 @@ You can even embed a table or block quote (literally any formatting item type) w
 
 1. Trying to keep up with everything that is going on in your document can be a real task when working with multiple elements.
 
-2. If you are feeling overwhelmed, consider:
+1. If you are feeling overwhelmed, consider:
 
     !!! warning "important: I think my brain hurts!"
 
@@ -486,7 +521,7 @@ You can even embed a table or block quote (literally any formatting item type) w
 
         > **suffer** if all else fails, concentrate more
 
-3. Many examples exist, but the above illustrates that it is possible to nest everything within. Just remember the four (4) magic spaces.
+1. Many examples exist, but the above illustrates that it is possible to nest everything within. Just remember the four (4) magic spaces.
 
 Here is what this example looks like in your editor:
 
@@ -498,7 +533,7 @@ You can even embed a table or block quote (literally any formatting item type) w
 
 1. Trying to keep up with everything that is going on in your document can be a real task when working with multiple elements.
 
-2. If you are feeling overwhelmed, consider:
+1. If you are feeling overwhelmed, consider:
 
     !!! warning "important: I think my brain hurts!"
 
@@ -515,7 +550,7 @@ You can even embed a table or block quote (literally any formatting item type) w
 
         > **suffer** if all else fails, concentrate more
 
-3. Many examples exist, but the above illustrates that it is possible to nest everything within. Just remember the four (4) magic spaces.
+1. Many examples exist, but the above illustrates that it is possible to nest everything within. Just remember the four (4) magic spaces.
 ```
 
 ## Non-displaying characters
