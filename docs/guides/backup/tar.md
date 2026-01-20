@@ -23,7 +23,7 @@ The `tar` currently used on modern GNU/Linux initially came from the [GNU Projec
 
     ```bash
     # RockyLinux 8 and Fedora 41
-    Shell > tar --show-defaults
+    tar --show-defaults
     --format=gnu -f- -b20 --quoting-style=escape --rmt-command=/etc/rmt --rsh-command=/usr/bin/ssh
     ```
 
@@ -158,7 +158,7 @@ You might also add the date to the filename.
 1. Archive and compress **/etc/** in relative mode, with a suffix of `.tar.gz`:
 
     ```bash
-    Shell > tar -czvf /tmp/etc-20241207.tar.gz /etc/
+    tar -czvf /tmp/etc-20241207.tar.gz /etc/
     ```
 
     Due to `tar` working in relative mode by default, the first line of the command output will display the following:
@@ -170,9 +170,9 @@ You might also add the date to the filename.
 2. Archive **/var/log/** and select xz type for compression:
 
     ```bash
-    Shell > tar -cJvf /tmp/log-20241207.tar.xz /var/log/
+    tar -cJvf /tmp/log-20241207.tar.xz /var/log/
 
-    Shell > du -sh /var/log/ ; ls -lh /tmp/log-20241207.tar.xz
+    du -sh /var/log/ ; ls -lh /tmp/log-20241207.tar.xz
     18M     /var/log/
     -rw-r--r-- 1 root root 744K Dec  7 14:40 /tmp/log-20241207.tar.xz
     ```
@@ -180,7 +180,7 @@ You might also add the date to the filename.
 3. Estimate file size without generating an archive:
 
     ```bash
-    Shell > tar -cJf - /etc | wc -c
+    tar -cJf - /etc | wc -c
     tar: Removing leading `/' from member names
     3721884
     ```
@@ -190,9 +190,9 @@ You might also add the date to the filename.
 4. Cut large `.tar.gz` files:
 
     ```bash
-    Shell > cd /tmp/ ; tar -czf - /etc/  | split -d -b 2M - etc-backup20241207.tar.gz.
+    cd /tmp/ ; tar -czf - /etc/  | split -d -b 2M - etc-backup20241207.tar.gz.
 
-    Shell > ls -lh /tmp/
+    ls -lh /tmp/
     -rw-r--r-- 1 root root 2.0M Dec  7 20:46 etc-backup20241207.tar.gz.00
     -rw-r--r-- 1 root root 2.0M Dec  7 20:46 etc-backup20241207.tar.gz.01
     -rw-r--r-- 1 root root 2.0M Dec  7 20:46 etc-backup20241207.tar.gz.02
@@ -204,9 +204,9 @@ You might also add the date to the filename.
     To extract these cut small files, you can point to the following operation:
 
     ```bash
-    Shell > cd /tmp/ ; cat etc-backup20241207.tar.gz.* >> /tmp/etc-backup-20241207.tar.gz
+    cd /tmp/ ; cat etc-backup20241207.tar.gz.* >> /tmp/etc-backup-20241207.tar.gz
 
-    Shell > cd /tmp/ ; tar -xvf etc-backup-20241207.tar.gz -C /tmp/dir1/
+    cd /tmp/ ; tar -xvf etc-backup-20241207.tar.gz -C /tmp/dir1/
     ```
 
 #### `-x` type
@@ -214,15 +214,15 @@ You might also add the date to the filename.
 1. Download the Redis source code and extract it to the `/usr/local/src/` directory：
 
     ```bash
-    Shell > wget -c https://github.com/redis/redis/archive/refs/tags/7.4.1.tar.gz
+    wget -c https://github.com/redis/redis/archive/refs/tags/7.4.1.tar.gz
 
-    Shell > tar -xvf 7.4.1.tar.gz -C /usr/local/src/
+    tar -xvf 7.4.1.tar.gz -C /usr/local/src/
     ```
 
 2. Extract only one file from the archive zip file
 
     ```bash
-    Shell > tar -xvf /tmp/etc-20241207.tar.gz etc/chrony.conf
+    tar -xvf /tmp/etc-20241207.tar.gz etc/chrony.conf
     ```
 
 #### `-A` or `-r` type
@@ -230,11 +230,11 @@ You might also add the date to the filename.
 1. Append one `.tar` file to another `.tar` file:
 
     ```bash
-    Shell > tar -cvf /tmp/etc.tar /etc/
+    tar -cvf /tmp/etc.tar /etc/
 
-    Shell > tar -cvf /tmp/log.tar /var/log/
+    tar -cvf /tmp/log.tar /var/log/
 
-    Shell > tar -Avf /tmp/etc.tar /tmp/log.tar
+    tar -Avf /tmp/etc.tar /tmp/log.tar
     ```
 
     This means that all files in "log.tar" will append to the end of "etc.tar".
@@ -242,12 +242,12 @@ You might also add the date to the filename.
 2. Append files or directories to a `.tar` file:
 
     ```bash
-    Shell > tar -rvf /tmp/log.tar /etc/chrony.conf
+    tar -rvf /tmp/log.tar /etc/chrony.conf
     tar: Removing leading `/' from member names
     /etc/chrony.conf
     tar: Removing leading `/' from hard link targets
     
-    Shell > tar -rvf /tmp/log.tar /tmp/dir1
+    tar -rvf /tmp/log.tar /tmp/dir1
     ```
 
 !!! warning
@@ -263,9 +263,9 @@ You might also add the date to the filename.
 1. Review the contents of the archive:
 
     ```bash
-    Shell > tar -tvf /tmp/log.tar
+    tar -tvf /tmp/log.tar
 
-    Shell > tar -tvf /tmp/etc-20241207.tar.gz | less
+    tar -tvf /tmp/etc-20241207.tar.gz | less
     ```
 
 #### `-d` type
@@ -273,10 +273,10 @@ You might also add the date to the filename.
 1. Compare file differences:
 
     ```bash
-    Shell > cd / ; tar -dvf /tmp/etc.tar etc/chrony.conf
+    cd / ; tar -dvf /tmp/etc.tar etc/chrony.conf
     etc/chrony.conf
 
-    Shell > cd / ; tar -dvf /tmp/etc-20241207.tar.gz etc/
+    cd / ; tar -dvf /tmp/etc-20241207.tar.gz etc/
     ```
 
     For storage methods that use relative mode, when using the `-d` type, switch the file path to '/'.
@@ -286,15 +286,15 @@ You might also add the date to the filename.
 1. If there are multiple versions of the same file, you can use the `-u` type:
 
     ```bash
-    Shell > touch /tmp/tmpfile1
+    touch /tmp/tmpfile1
 
-    Shell > tar -rvf /tmp/log.tar /tmp/tmpfile1
+    tar -rvf /tmp/log.tar /tmp/tmpfile1
 
-    Shell > echo "File Name" >> /tmp/tmpfile1
+    echo "File Name" >> /tmp/tmpfile1
 
-    Shell > tar -uvf /tmp/log.tar /tmp/tmpfile1
+    tar -uvf /tmp/log.tar /tmp/tmpfile1
 
-    Shell > tar -tvf /tmp/log.tar
+    tar -tvf /tmp/log.tar
     ...
     -rw-r--r-- root/root         0 2024-12-07 18:53 tmp/tmpfile1
     -rw-r--r-- root/root        10 2024-12-07 18:54 tmp/tmpfile1
@@ -305,9 +305,9 @@ You might also add the date to the filename.
 1. You can also use `--delete` to delete files inside a `.tar` file.
 
     ```bash
-    Shell > tar --delete -vf /tmp/log.tar tmp/tmpfile1
+    tar --delete -vf /tmp/log.tar tmp/tmpfile1
 
-    Shell > tar --delete -vf /tmp/etc.tar etc/motd.d/
+    tar --delete -vf /tmp/etc.tar etc/motd.d/
     ```
 
     When deleting, you will delete all files with the same name from the archive.

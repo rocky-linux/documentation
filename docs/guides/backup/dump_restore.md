@@ -28,7 +28,7 @@ This utility applies to the following file systems:
 Before using this utility, run the following command to install it:
 
 ```bash
-Shell > dnf -y install dump
+dnf -y install dump
 ```
 
 After installation, two commonly used command tools are available:
@@ -58,7 +58,7 @@ Common options are:
 1. Perform a Full Backup of the root partition:
 
     ```bash
-    Shell > dump -0u -j3 -f /tmp/root-20241208.bak.bz2 /
+    dump -0u -j3 -f /tmp/root-20241208.bak.bz2 /
     DUMP: Date of this level 0 dump: Sun Dec  8 19:04:39 2024
     DUMP: Dumping /dev/nvme0n1p2 (/) to /tmp/root-20241208.bak.bz2
     DUMP: Label: none
@@ -87,17 +87,17 @@ Common options are:
     DUMP: Wrote 14722930kB uncompressed, 6607183kB compressed, 2.229:1
     DUMP: DUMP IS DONE
 
-    Shell > ls -lh /tmp/root-20241208.bak.bz2
+    ls -lh /tmp/root-20241208.bak.bz2
     -rw-r--r-- 1 root root 6.4G Dec  8 19:26 /tmp/root-20241208.bak.bz2
     ```
 
 2. After successful dumping, check the relevant information:
 
     ```bash
-    Shell > cat /etc/dumpdates
+    cat /etc/dumpdates
     /dev/nvme0n1p2 0 Sun Dec  8 19:04:39 2024 +0800
 
-    Shell > dump -W
+    dump -W
     Last dump(s) done (Dump '>' file systems):
     /dev/nvme0n1p2        (     /) Last dump: Level 0, Date Sun Dec  8 19:04:39 2024
     ```
@@ -105,9 +105,9 @@ Common options are:
 3. Implement Incremental Backup on the basis of Full Backup:
 
     ```bash
-    Shell > echo "jack" >> /tmp/tmpfile.txt
+    echo "jack" >> /tmp/tmpfile.txt
 
-    Shell > dump -1u -j4 -f /tmp/root-20241208-LV1.bak.bz2 /
+    dump -1u -j4 -f /tmp/root-20241208-LV1.bak.bz2 /
     DUMP: Date of this level 1 dump: Sun Dec  8 19:38:51 2024
     DUMP: Date of last level 0 dump: Sun Dec  8 19:04:39 2024
     DUMP: Dumping /dev/nvme0n1p2 (/) to /tmp/root-20241208-LV1.bak.bz2
@@ -135,11 +135,11 @@ Common options are:
     DUMP: Wrote 6620910kB uncompressed, 6600592kB compressed, 1.004:1
     DUMP: DUMP IS DONE
 
-    Shell > cat /etc/dumpdates
+    cat /etc/dumpdates
     /dev/nvme0n1p2 0 Sun Dec  8 19:04:39 2024 +0800
     /dev/nvme0n1p2 1 Sun Dec  8 19:38:51 2024 +0800
 
-    Shell > dump -W
+    dump -W
     Last dump(s) done (Dump '>' file systems):
     /dev/nvme0n1p2        (     /) Last dump: Level 1, Date Sun Dec  8 19:38:51 2024
     ```
@@ -147,11 +147,11 @@ Common options are:
 4. For non-partitioned directory, you can only use the Full Backup (`-0`) option, not the `-u` option:
 
     ```bash
-    Shell > dump -0uj -f /tmp/etc-full-20241208.bak.bz2 /etc/
+    dump -0uj -f /tmp/etc-full-20241208.bak.bz2 /etc/
     DUMP: You can't update the dumpdates file when dumping a subdirectory
     DUMP: The ENTIRE dump is aborted.
 
-    Shell > dump -0j -f /tmp/etc-full-20241208.bak.bz2 /etc/
+    dump -0j -f /tmp/etc-full-20241208.bak.bz2 /etc/
     DUMP: Date of this level 0 dump: Sun Dec  8 20:00:38 2024
     DUMP: Dumping /dev/nvme0n1p2 (/ (dir etc)) to /tmp/etc-full-20241208.bak.bz2
     DUMP: Label: none
@@ -177,10 +177,10 @@ Common options are:
     DUMP: DUMP IS DONE
     ```
 
-   Performing an incremental backup of the /etc/ directory will result in an error:
+    Performing an incremental backup of the /etc/ directory will result in an error:
 
     ```bash
-    Shell > dump -1j -f /tmp/etc-incr-20241208.bak.bz2 /etc/
+    dump -1j -f /tmp/etc-incr-20241208.bak.bz2 /etc/
     DUMP: Only level 0 dumps are allowed on a subdirectory
     DUMP: The ENTIRE dump is aborted.
     ```
@@ -202,13 +202,13 @@ The mode (flag) can be one of the following:
 1. Restore data from /tmp/etc-full-20241208.bak.bz2 :
 
     ```bash
-    Shell > mkdir /tmp/data/
+    mkdir /tmp/data/
 
-    Shell > restore -t -f /tmp/etc-full-20241208.bak.bz2
+    restore -t -f /tmp/etc-full-20241208.bak.bz2
 
-    Shell > cd /tmp/data/ ; restore -r -f /tmp/etc-full-20241208.bak.bz2
+    cd /tmp/data/ ; restore -r -f /tmp/etc-full-20241208.bak.bz2
 
-    Shell > ls -l /tmp/data/
+    ls -l /tmp/data/
     total 4992
     drwxr-xr-x. 90 root root    4096 Dec  8 17:13 etc
     -rw-------   1 root root 5107632 Dec  8 20:39 restoresymtable
@@ -219,7 +219,7 @@ The mode (flag) can be one of the following:
 2. Process backup files in Interactive mode:
 
     ```bash
-    Shell > restore -i -f /tmp/etc-full-20241208.bak.bz2
+    restore -i -f /tmp/etc-full-20241208.bak.bz2
     Dump tape is compressed.
     
     restore > ?
