@@ -24,7 +24,7 @@ At the end of this article, you will have an understanding of how `kickstart` fi
 
 ## What are kickstart configurations?
 
-Kickstart files are a set of configurations implemented by the user to quickly and easily deploy a Linux distribution. Kickstart files not only work on Rocky Linux, but also CentOS Stream, Fedora, and many other distributions.
+Kickstart files are a set of configuration files that users can use to quickly and easily deploy a Linux distribution. Kickstart files work not only on Rocky Linux but also on CentOS Stream, Fedora, and many other distributions.
 
 ## How are kickstart configurations applied to an ISO?
 
@@ -36,13 +36,13 @@ cat /mnt/EFI/BOOT/grub.cfg | grep shadow | head -1
 linuxefi /images/pxeboot/vmlinuz inst.stage2=hd:LABEL=Rocky-10-1-x86_64-dvd quiet inst.ks=hd:LABEL=Rocky-10-1-x86_64-dvd:/rocky_linux10_shadow.ks
 ```
 
-Once done, `mkkiso` produces a new ISO with the `kickstart` configuration built-in. When the ISO boots, `anaconda` runs the instructions listed in the `kickstart` file.
+Once done, `mkkiso` produces a new ISO with the `kickstart` configuration built in. When the ISO boots, `anaconda` runs the instructions listed in the `kickstart` file.
 
 ## Prerequisites
 
 * Optional - deploy your `kickstart` ISO via a PXE Server: check out the guide on [How to Setup a PXE Server on Rocky Linux 9.x](https://kb.ciq.com/article/rocky-linux/rl-pxe-boot-kickstart-file) to learn more. 
 
-* One USB gen 3.0+ memory stick for a USB install. 
+* One USB Gen 3.0+ memory stick for a USB install. 
 
 * A Rocky Linux 8, 9, or 10 Minimal ISO from https://rockylinux.org/download (the DVD ISO is not a requirement).
 
@@ -186,13 +186,13 @@ For `ssh` access to the `root` account, add the `--allow-ssh` option to the `roo
 
 #### user 
 
-Similarly use the `--iscrypted` option to ensure your passwords are not shown in plain text.
+Similarly, use the `--iscrypted` option to ensure your passwords are not shown in plain text.
 
 If you want to make your user an administrator, add them to the `wheel` group with `--groups=wheel`
 
 #### URL
 
-Using the `cdrom` option with `ignoredisk` causes issues where Anaconda is not able to access the USB drive and hangs when checking the storage configuration. Using `url --url` works around that issue by downloading the installation from `BaseOS`.
+Using the `cdrom` option with `ignoredisk` causes issues: Anaconda cannot access the USB drive and hangs during storage configuration. Using `url --url` works around that issue by downloading the installation from `BaseOS`.
 
 #### Bootloader
 
@@ -208,11 +208,11 @@ Erases all partitions on the target disk and sets the disk label as `gpt`.
 
 #### Ignoredisk
 
-If `ignoredisk` is not specified, `anaconda` will have access to all of the disks in the system. If specified, `anaconda` will only be able to use the disk as chosen by the user. 
+If `ignoredisk` is not specified, `anaconda` will have access to all disks on the system. If specified, `anaconda` will only use the disk chosen by the user. 
 
 #### Part
 
-`part` allows the user to specify the partitions they want to create. The above shows an example of a `/boot`, `/boot/efi` and Logical Volume Management configuration. This is what you get when you perform an automatic installation of Rocky Linux. 
+`part` allows the user to specify the partitions they want to create. The above shows an example of a `/boot`, `/boot/efi`, and Logical Volume Management configuration. This is what you get when you perform an automatic installation of Rocky Linux. 
 
 #### Volgroup
 
@@ -228,7 +228,7 @@ You can choose here to either statically or dynamically set your network configu
 
 #### Skipx
 
-Stops the configuration of the X server on the system.
+Stops the X server configuration on the system.
 
 #### Firstboot
 
@@ -236,7 +236,7 @@ In this case, we set the `--disable` flag, which stops the Setup Agent from star
 
 #### Firewall
 
-Allowing `ssh` access through the firewall with `--ssh` is important, so you can login to your machine where console access is not available.
+Allowing `ssh` access through the firewall with `--ssh` is important, so you can log in to your machine where console access is not available.
 
 #### %packages
 
@@ -246,9 +246,9 @@ Furthermore, you can also select individual packages to install here, exclude th
 
 #### %post
 
-After the completion of the installation of the OS, you can list additional tasks to perform here too. In the example given, the author is configuring and mounting the additional storage that is present in their system.
+After the completion of the installation of the OS, you can list additional tasks to perform here, too. In the example given, the author is configuring and mounting the additional storage available in their system.
 
-The availability of other options are here too, such as `%pre`, `%pre-install`, `%onerror`, and `%traceback`. You can find more about these options with the references provided at the end of this document.
+Other options are available here too, such as `%pre`, `%pre-install`, `%onerror`, and `%traceback`. You can find more about these options with the references provided at the end of this document.
 
 ### Differences of note between Rocky Linux kickstarts
 
@@ -266,7 +266,7 @@ keyboard jp106
 
 For `ssh` access to the `root` account, Rocky Linux 8's `kickstart` file does **not** need the `--allow-ssh` flag added. 
 
-The `crashkernel` kernel cmdline parameter differs between all three Rocky Linux versions, please keep that in mind when setting the parameter.
+The `crashkernel` kernel cmdline parameter differs between all three Rocky Linux versions. Please keep that in mind when setting the parameter.
 
 In the Rocky Linux 8 `kickstart` example (this applies to all Rocky Linux versions), if you wish to automatically partition your drive, just set the `autopart` option.
 
@@ -274,9 +274,9 @@ In the Rocky Linux 8 `kickstart` example (this applies to all Rocky Linux versio
 
 If you want to automate your Rocky Linux installations, then `kickstart` files are the way to go. This guide is just the tip of the iceberg of what you can accomplish with `kickstart` files. For a great resource on every `kickstart` option available with examples, check out Chris Lumens and the Anaconda installer team's `kickstart` documentation^2^.
 
-For those wishing to take automation further in the realm of virtual machine deployment and also utilize their `kickstart` knowledge, Antoine Le Morvan wrote an excellent guide^1^ on just how to do that with `packer`.
+For those wishing to take automation further in the realm of virtual machine deployment and also leverage their `kickstart` knowledge, Antoine Le Morvan wrote an excellent guide^1^ on how to do so with `packer`.
 
-The Rocky Linux Release Engineering Team also have multiple `kickstart` file examples available at the Rocky Linux repository^4^.
+The Rocky Linux Release Engineering Team also has multiple `kickstart` file examples available at the Rocky Linux repository^4^.
 
 Finally, if you have access to a Red Hat account, there is a Kickstart Generator that Red Hat provides, which allows you to quickly and easily create `kickstart` files via a UI.
 
