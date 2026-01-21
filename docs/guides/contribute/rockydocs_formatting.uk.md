@@ -257,11 +257,11 @@ tags:
 
 ```
 
-Зауважте, що необов’язково розбивати кожен стовпець за розміром (як ми зробили в першій частині таблиці), але це, звичайно, легше читається у вихідному файлі розмітки. Це може заплутати, коли ви об’єднуєте елементи разом, просто розбиваючи стовпці вертикальною рискою «|» де б не було природного розриву, як ви можете бачити в останніх двох пунктах таблиці.
+Зауважте, що необов’язково розбивати кожен стовпець за розміром (як ми зробили в першій частині таблиці), але це, звичайно, легше читається у вихідному файлі розмітки. It can get confusing when you string the items together, simply by breaking the columns with the pipe character "|" wherever the natural break is, as you can see in the last item in the table.
 
-## Блок з цитатою
+## Block quotes
 
-Блокові лапки призначені для цитування тексту з інших джерел для включення у вашу документацію. Приклади блоків з цитатами у розмітці:
+Block quotes are for quoting text from other sources to include in your documentation. Examples of block quotes in markdown would be:
 
 ```text
 > **предмет** – опис цього предмета
@@ -269,9 +269,9 @@ tags:
 > **інший предмет** – інший опис цього предмета
 ```
 
-Якщо ви поєднуєте дві цитати, вам потрібно розділити їх іншими словами, щоб уникнути генерації помилки розцінки (як це було зроблено вище).
+If you are putting two quotes together, you need to separate them by other words to avoid generating a markdown error (as done above).
 
-Під час відтворення сторінки це виглядає так:
+That ends up looking like this when the page displays:
 
 > **елемент** – опис цього елемента
 
@@ -279,15 +279,15 @@ tags:
 
 > **інший елемент** – інший опис цього елемента
 
-## Вбудовані та блочні кодові блоки
+## Inline and block-level code blocks
 
 Наш підхід до використання блоків коду досить простий. Якщо `ваш код` достатньо короткий, щоб ви могли (і хотіли) використати його в реченні, як ви щойно бачили, використовуйте одинарні зворотні лапки ++"\`"++:
 
 ```bash
-Речення з `командою за вашим вибором`.
+A sentence with a `command of your choosing` in it.
 ```
 
-Будь-яка команда, яка не використовується всередині текстового абзацу (особливо довгі шматки коду з кількома рядками), має бути повним блоком коду, визначеним потрійними зворотними галочками ++"\`\`\`"++:
+Any command that is not used inside of a text paragraph (especially the long bits of code with multiple lines) should be a full code block, defined with triple backticks ++"\`\`\`"++:
 
 ````markdown
 ```bash
@@ -295,9 +295,9 @@ sudo dnf install the-kitchen-sink
 ```
 ````
 
-Частина `bash` цього форматування є рекомендованим ідентифікатором коду Markdown, але може допомогти з підсвічуванням синтаксису. Якщо ви демонструєте текст, Python, PHP, Ruby, HTML, CSS або будь-який інший код, «bash» зміниться на будь-яку мову, яку ви використовуєте.
+Частина `bash` цього форматування є рекомендованим ідентифікатором коду Markdown, але може допомогти з підсвічуванням синтаксису. If you showcase text, Python, PHP, Ruby, HTML, CSS, or any other code, the "bash" will change to whatever language you use.
 
-До речі, якщо вам потрібно показати блок коду в блоці коду, додайте ще одну зворотну галочку ++"\`"++ до батьківського блоку:
+Incidentally, if you need to show a code block within a code block, add one more backtick ++"\`"++ to the parent block:
 
 `````markdown
 ````markdown
@@ -307,15 +307,15 @@ sudo dnf install the-kitchen-sink
 ````
 `````
 
-І так, блок коду, який ви щойно бачили, використовував п’ять зворотних галочок на початку та в кінці, щоб правильно відтворити його.
+Yes, the code block you just saw used five backticks at the beginning and end to make it render correctly.
 
 ### Придушення підказки та автоматичного переходу рядка
 
-Під час написання документації можуть бути випадки, коли ви хочете показати підказку у вашій команді, але не бажаєте, щоб користувач копіював це підказку, коли він використовує параметр копіювання. Застосуванням цього може бути написання лабораторій, де ви хочете показати розташування з підказкою, як у цьому прикладі:
+There might be times when writing documentation when you want to show a prompt in your command but do not want the user to copy that prompt when they use the copy option. An application of this might be writing labs where you want to show the location with the prompt, as in this example:
 
 ![copy_option](copy_option.png)
 
-У разі нормального форматування параметр копіювання скопіює підказку та команду, тоді як копіювання лише команди є кращим. Щоб обійти це, ви можете використати такий синтаксис, щоб повідомити опції копіювання, що ви хочете скопіювати:
+If formatted normally, the copy option will copy the prompt and the command, whereas copying just the command is preferable. To get around this, you can use the following syntax to tell the copy option what you want copied:
 
 ````text
 ``` { .sh data-copy="cd /usr/local" }
@@ -323,36 +323,36 @@ sudo dnf install the-kitchen-sink
 ```
 ````
 
-При використанні цього методу автоматичний переклад рядка також пригнічується.
+When using this method, the automatic line feed is also suppressed.
 
-## Клавіатура
+## Keyboard
 
-Інший спосіб додати якомога більше ясності вашим документам - це відобразити правильний спосіб введення клавіш на клавіатурі. У markdown це робиться шляхом обведення клавіші або клавіш подвійним знаком плюс (`++`). Зробіть це за допомогою `++key++`. Наприклад, щоб показати, що вам потрібно натиснути клавішу Escape у вашому документі, ви б використали `++escape++`. Коли вам потрібно вказати на натискання кількох клавіш, додайте знак `+` між ними ось так: `++ctrl+f4++`. Для клавіш, які не визначені (наприклад, нижче ми вказуємо на таємничу функціональну клавішу `Fx`), візьміть визначення в лапки (`++ctrl+"Fx"++`). Якщо потрібно натискати клавіші одночасно, додайте до своїх інструкцій «одночасно» або «одночасно» або іншу подібну фразу. Ось приклад клавіатурної інструкції у вашому редакторі:
+Інший спосіб додати якомога більше ясності вашим документам - це відобразити правильний спосіб введення клавіш на клавіатурі. У markdown це робиться шляхом обведення клавіші або клавіш подвійним знаком плюс (`++`). Зробіть це за допомогою `++key++`. Наприклад, щоб показати, що вам потрібно натиснути клавішу Escape у вашому документі, ви б використали `++escape++`. Коли вам потрібно вказати на натискання кількох клавіш, додайте знак `+` між ними ось так: `++ctrl+f4++`. Для клавіш, які не визначені (наприклад, нижче ми вказуємо на таємничу функціональну клавішу `Fx`), візьміть визначення в лапки (`++ctrl+"Fx"++`). Якщо потрібно натискати клавіші одночасно, додайте до своїх інструкцій «одночасно» або «одночасно» або іншу подібну фразу. Here is an example of a keyboard instruction in your editor:
 
 ```text
 Інсталяція типу робочої станції (з графічним інтерфейсом) запускає цей інтерфейс на терміналі 1. Оскільки Linux є багатокористувацькою системою, можна підключити кількох користувачів кілька разів на різних **фізичних терміналах** (TTY) або **віртуальних терміналах** (PTS). Віртуальні термінали доступні в графічному середовищі. Користувач перемикається з одного фізичного термінала на інший за допомогою ++alt+"Fx"++ з командного рядка або ++ctrl+alt+"Fx"++.
 ```
 
-Ось як це відображається під час відображення:
+Here is how that renders when displayed:
 
-Інсталяція типу робочої станції (з графічним інтерфейсом) запускає цей інтерфейс на терміналі 1. Оскільки Linux є багатокористувацьким, можна підключати кількох користувачів кілька разів до різних **фізичних терміналів** (TTY) або **віртуальних терміналів** (PTS). Віртуальні термінали доступні в графічному середовищі. Користувач перемикається з одного фізичного терміналу на інший за допомогою ++alt+"Fx"++ у командному рядку або за допомогою ++ctrl+alt+"Fx"++.
+A workstation-type installation (with a graphical interface) starts this interface on terminal 1. Оскільки Linux є багатокористувацьким, можна підключати кількох користувачів кілька разів до різних **фізичних терміналів** (TTY) або **віртуальних терміналів** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using ++alt+"Fx"++ from the command line or ++ctrl+alt+"Fx"++.
 
 Список прийнятих команд клавіатури [у цьому документі](https://facelessuser.github.io/pymdown-extensions/extensions/keys/#key-map-index).
 
 !!! note
 
-    Ці комбінації клавіш завжди вводяться в нижньому регістрі, за винятком випадків, коли в лапках використовується спеціальна клавіатурна команда.
+    These keyboard shortcuts are always entered in lower case except where a custom keyboard command is used within the quotes.
 
-## Примусові розриви рядків
+## Forcing line breaks
 
-Іноді простий ++enter++ на клавіатурі не дасть вам новий рядок у розмітці. Іноді це трапляється, коли в маркованих елементах використовується багато символів форматування. Ви також можете додати розрив рядка до тексту в кращому форматі. У таких випадках вам потрібно додати два пробіли в кінці рядка, де ви хочете створити новий рядок.  Оскільки пробіли не будуть видимі в деяких редакторах розміток, у цьому прикладі показано введені пробіли:
+There are times when a simple ++enter++ on the keyboard will not give you a new line in markdown. Іноді це трапляється, коли в маркованих елементах використовується багато символів форматування. Ви також можете додати розрив рядка до тексту в кращому форматі. In cases like these, you need to add two spaces to the end of the line where you want a new line.  Since spaces will not be visible in some markdown editors, this example shows the spaces being entered:
 
 - **Елемент маркованого списку з додатковим форматуванням** ++пробіл+пробіл++
 - **Ще один елемент**
 
 ## Верхній, нижній індекс та спеціальні символи
 
-У документації Rocky Linux підтримуються верхні та нижні індексні нотації за допомогою символів `^` для верхнього індексу та `~` для нижнього індексу. Верхній індекс розміщує текст, введений між тегами, трохи вище звичайного тексту, тоді як нижній індекс розміщує текст трохи нижче. Верхній індекс є найбільш часто використовуваним з цих двох на письмі. Деякі спеціальні символи вже з’являються в верхньому індексі без додавання тегів, але ви також можете комбінувати теги, щоб змінити орієнтацію цих символів, як показано на символі авторського права нижче. Ви можете використовувати верхній індекс, щоб:
+У документації Rocky Linux підтримуються верхні та нижні індексні нотації за допомогою символів `^` для верхнього індексу та `~` для нижнього індексу. Superscript places text entered between the tags slightly above the normal text, while subscript places the text slightly below. Superscript is by far the more commonly used of these two in writing. Деякі спеціальні символи вже з’являються в верхньому індексі без додавання тегів, але ви також можете комбінувати теги, щоб змінити орієнтацію цих символів, як показано на символі авторського права нижче. You can use superscript to:
 
 - представити порядкові числа, наприклад 1^st^, 2^nd^, 3^rd^
 - символи авторського права та торговельних марок, такі як ^&copy;^, ^TM^ або ^&trade;^, ^&reg;&^
@@ -360,7 +360,7 @@ sudo dnf install the-kitchen-sink
 
 Деякі спеціальні символи, такі як &copy;, зазвичай не є верхніми індексами, тоді як інші, такі як &trade;, є.
 
-Ось як все вищесказане виглядає у вашому коді markdown:
+Here is how all the above looks in your markdown code:
 
 ```text
 * позначають порядкові числа, такі як 1^st^, 2^nd^, 3^rd^
@@ -376,19 +376,19 @@ sudo dnf install the-kitchen-sink
 
 ### Верхній індекс для посилань
 
-Декому з вас може знадобитися посилання на зовнішні джерела під час написання документації. Якщо у вас є лише одне джерело, ви можете включити його у свій висновок як одне посилання, але якщо у вас є кілька^1^, ви можете використовувати верхній індекс, щоб позначити їх у своєму тексті^2^, а потім перелічити їх у кінці ваш документ. Зверніть увагу, що літературу слід розташовувати після розділу «Висновок».
+Декому з вас може знадобитися посилання на зовнішні джерела під час написання документації. If you only have a single source, you can include it in your conclusion as a single link, but if you have multiples^1^, you can use superscript to note them in your text^2^ and then list them at the end of your document. Note that the positioning of references should come after the "Conclusion" section.
 
-Після висновку ви можете мати свої позначки в пронумерованому списку відповідно до верхнього індексу, або ви можете ввести їх як посилання. Тут показано обидва приклади:
+Після висновку ви можете мати свої позначки в пронумерованому списку відповідно до верхнього індексу, або ви можете ввести їх як посилання. Shown here are both examples:
 
 1. "How Multiples Are Used In Text" by Wordy W. McWords [https://site1.com](https://site1.com)
 2. "Using Superscript In Text" by Sam B. Supersecret [https://site2.com](https://site2.com)
 
-або
+or
 
 [1](https://site1.com) "How Multiples Are Used In Text" by Wordy W. McWords  
 [2](https://site2.com) "Using Superscript In Text" by Sam B. Supersecret
 
-Ось як це все виглядає у вашому редакторі:
+Here is what that all looks like in your editor:
 
 ```text
 1. "How Multiples Are Used In Text" by Wordy W. McWords [https://site1.com](https://site1.com)
@@ -401,19 +401,19 @@ or
 
 ```
 
-## Виділення тексту
+## Highlighting text
 
-Ще один можливий спосіб покращити документацію за допомогою ==підсвічування==. Підсвічування обробляється оточуванням тексту `==`.
+Ще один можливий спосіб покращити документацію за допомогою ==підсвічування==. You can use highlighting by surrounding the text with `==`.
 
-У вашому редакторі це виглядає так:
+This looks like this in your editor:
 
 ```bash
 Ще один можливий спосіб покращити документацію – це використання ==highlighting==. Ви можете використовувати підсвічування, обрамляючи текст у `==`. 
 ```
 
-## Групування різних типів форматування
+## Grouping different formatting types
 
-Документація Rocky пропонує кілька елегантних варіантів форматування при поєднанні кількох елементів в одному елементі. Наприклад, попередження з пронумерованим списком:
+Rocky documentation offers some elegant formatting options when combining multiple elements within another element. For example, an admonition with a numbered list:
 
 !!! note
 
@@ -427,29 +427,29 @@ or
     
     Який також знаходиться всередині багатоабзацного нумерованого списку.
 
-Або у вас може бути пронумерований список із додатковим зауваженням:
+Or you may have a numbered list, with an additional admonition:
 
 1. Цей елемент є дуже важливим
 
-   Тут ми додаємо команду з клавіатури до елемента списку:
+   Here you are adding a keyboard command to the list item:
 
-   Натисніть ++escape++ без особливої причини.
+   Press ++escape++ for no particular reason.
 
 2. Але цей пункт дуже важливий _і_ має кілька абзаців
 
-   І в середині це застереження:
+   And it has an admonition in the middle of it:
 
    !!! warning
 
             З кількома елементами в різних типах форматування може бути трохи складно!
 
-Якщо ви будете стежити за магічними чотирма (4) пробілами, щоб робити відступи та розділяти ці елементи, вони відображатимуться логічно та саме так, як ви хочете. Іноді це дійсно важливо.
+Якщо ви будете стежити за магічними чотирма (4) пробілами, щоб робити відступи та розділяти ці елементи, вони відображатимуться логічно та саме так, як ви хочете. Sometimes that is really important.
 
-Ви можете вставити таблицю або заблокувати цитату (буквально будь-який тип елемента форматування) в іншу. Тут у вас є пронумерований список, попередження, таблиця та деякі елементи блок-цитат, об’єднані разом:
+You can even embed a table or block quote (literally any formatting item type) within another one. Тут у вас є пронумерований список, попередження, таблиця та деякі елементи блок-цитат, об’єднані разом:
 
-1. Намагатися встигати за всім, що відбувається у вашому документі, може бути справжньою проблемою під час роботи з кількома елементами.
+1. Trying to keep up with everything that is going on in your document can be a real task when working with multiple elements.
 
-2. Якщо ви відчуваєте себе перевантаженими, подумайте про:
+2. If you are feeling overwhelmed, consider:
 
        !!! warning "важливо: здається, у мене болить мозок!"
 
@@ -468,9 +468,9 @@ or
          > **suffer** if all else fails, concentrate more
         ```
 
-3. Є більше прикладів, але наведене вище повинно показати, що все може бути вкладено всередину. Просто запам’ятайте чотири (4) магічних місця.
+3. Many examples exist, but the above illustrates that it is possible to nest everything within. Just remember the four (4) magic spaces.
 
-Ось як цей приклад виглядає у вашому редакторі:
+Here is what this example looks like in your editor:
 
 ```text
 
@@ -500,9 +500,9 @@ You can even embed a table or block quote (literally any formatting item type) w
 3. Many examples exist, but the above illustrates that it is possible to nest everything within. Just remember the four (4) magic spaces.
 ```
 
-## Символи, що не відображаються
+## Non-displaying characters
 
-У розмітці є деякі символи, які не відображаються належним чином. Іноді це тому, що ці символи є HTML або іншими типами тегів (наприклад, посилання). Під час написання документації можуть виникнути випадки, коли вам **потрібно** відобразити ці символи, щоб донести свою думку. Правило відображення цих символів полягає в тому, щоб їх екранувати. Ось таблиця цих символів, що не відображаються, за якою йде блок коду, який показує код таблиці.
+У розмітці є деякі символи, які не відображаються належним чином. Іноді це тому, що ці символи є HTML або іншими типами тегів (наприклад, посилання). Під час написання документації можуть виникнути випадки, коли вам **потрібно** відобразити ці символи, щоб донести свою думку. The rule to display these characters is to escape them. Ось таблиця цих символів, що не відображаються, за якою йде блок коду, який показує код таблиці.
 
 | символ                                                      | опис                                                                             |
 | ----------------------------------------------------------- | -------------------------------------------------------------------------------- |
@@ -520,7 +520,7 @@ You can even embed a table or block quote (literally any formatting item type) w
 | &#45;                                   | знак мінус або дефіс (використовується в таблицях і маркерах) |
 | &#33;                                   | знак оклику (використовується в застереженнях і таблицях)     |
 
-Ця таблиця в коді:
+That table in code is:
 
 ```table
 | symbol      | description                                       |
@@ -540,19 +540,19 @@ You can even embed a table or block quote (literally any formatting item type) w
 | &#33;       | exclamation (used in admonitions and tables)      |
 ```
 
-Останній код показує, що певні символи потребують коду символів HTML, якщо вони використовуються в таблиці.
+The last code shows that certain characters require their HTML character code if used in a table.
 
-У реальному тексті ви б уникли символу. Наприклад, `\|` покаже символ вертикальної лінії, `\>` покаже символ кутової дужки, `\+` покаже знак плюс, `\-` покаже знак мінус, а `\!` покаже знак оклику.
+In actual text, you would escape the character. Наприклад, `\|` покаже символ вертикальної лінії, `\>` покаже символ кутової дужки, `\+` покаже знак плюс, `\-` покаже знак мінус, а `\!` покаже знак оклику.
 
-Ви можете побачити, що якщо ми позбудемося задніх галочок у цьому реченні:
+You can see that if we get rid of the backticks in this sentence:
 
-У реальному тексті ви б уникли символу. Наприклад, \| покаже символ вертикальної лінії, \> покаже символ кутової дужки, \+ покаже знак плюс, \- покаже знак мінус, а \! покаже знак оклику.
+In actual text, you would escape the character. Наприклад, \| покаже символ вертикальної лінії, \> покаже символ кутової дужки, \+ покаже знак плюс, \- покаже знак мінус, а \! will show the exclamation mark.
 
-## Останній пункт – коментарі
+## One final item - comments
 
-Час від часу ви можете додати коментар до розмітки, який не відображатиметься під час візуалізації. Для цього існує багато причин. Наприклад, якщо ви хочете додати заповнювач для чогось, що буде додано пізніше, ви можете використати коментар, щоб позначити своє місце.
+From time to time, you might want to add a comment to your markdown that will not display when rendered. Many reasons exist for this. If you want to add a placeholder for something that you are adding later, you could use a comment to mark your spot.
 
-Найкращий спосіб додати коментар до вашої розмітки – використовувати квадратні дужки «[]» навколо двох похилих рисок «//», за якими йде двокрапка та вміст. Це виглядало б так:
+The best way to add a comment to your markdown is to use the square brackets "[]" around two forward slashes "//" followed by a colon and the content. This would look like this:
 
 ```text
 
@@ -560,9 +560,9 @@ You can even embed a table or block quote (literally any formatting item type) w
 
 ```
 
-У коментарі має бути порожній рядок перед і після коментаря.
+A comment should have a blank line before and after the comment.
 
-## Більше читання
+## More reading
 
 - Rocky Linux [документ про те, як зробити внесок] (README.md)
 
@@ -572,10 +572,10 @@ You can even embed a table or block quote (literally any formatting item type) w
 
 - [Більше коротких довідників](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) для Markdown
 
-## Висновок
+## Conclusion
 
 Форматування документа за допомогою заголовків, попереджень, таблиць, нумерованих списків і цитат може додати чіткості вашому документу. Використовуючи поради, подбайте про те, щоб вибрати правильний тип. Це може полегшити візуальне розуміння важливості конкретного застереження.
 
-Вам не _потрібно_ використовувати розширені параметри форматування. Надмірне використання спеціальних елементів може додати безладу. Навчання використовувати ці елементи форматування консервативно та добре може бути дуже корисним, щоб донести свою точку зору в документі.
+Вам не _потрібно_ використовувати розширені параметри форматування. Overuse of special elements can add clutter. Навчання використовувати ці елементи форматування консервативно та добре може бути дуже корисним, щоб донести свою точку зору в документі.
 
-Нарешті, щоб спростити форматування, подумайте про те, щоб змінити значення TAB редактора розмітки на чотири (4) пробіли.
+Lastly, to make formatting easier, consider changing your markdown editor's TAB value to four (4) spaces.
