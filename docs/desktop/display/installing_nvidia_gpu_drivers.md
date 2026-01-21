@@ -6,7 +6,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 ## Introduction
 
-NVIDIA^&reg;^ is one of the most popular GPU manufacturers. You can install NVIDIA GPU drivers in more than one way. This guide uses NVIDIA's official repository to install their drivers. Therefore, [NVIDIA Driver Installation Guide](https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/index.html) is heavily referenced here.
+NVIDIA^&reg;^ is one of the most popular GPU manufacturers. You can install NVIDIA GPU drivers in several ways. This guide uses NVIDIA's official repository to install their drivers. Therefore, [NVIDIA Driver Installation Guide](https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/index.html) is heavily referenced here.
 
 Some other alternative ways to install NVIDIA drivers include:
 
@@ -14,7 +14,7 @@ Some other alternative ways to install NVIDIA drivers include:
 * Third-party RPMFusion repository
 * Third-party ELRepo driver
 
-In most cases, installing NVIDIA drivers from the official source is best. RPMFusion and ELRepo are available for those who prefer a community-based repository. For older hardware, RPMFusion works best. It is advisable to avoid using the `.run` installer. While convenient, using the `.run` installer is notorious for overwriting system files, and having incompatibility issues.
+In most cases, installing NVIDIA drivers from the official source is best. RPMFusion and ELRepo are available for those who prefer a community-based repository. For older hardware, RPMFusion works best. It is advisable to avoid using the `.run` installer. While convenient, using the `.run` installer is notorious for overwriting system files and having compatibility issues.
 
 ## Assumptions
 
@@ -59,7 +59,7 @@ Add the official NVIDIA repository with the following command:
 sudo dnf config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/rhel10/$(uname -m)/cuda-rhel10.repo
 ```
 
-Next, clean DNF repository cache:
+Next, clean the DNF repository cache:
 
 ```bash
 sudo dnf clean expire-cache
@@ -78,7 +78,7 @@ sudo dnf install cuda-drivers -y
 ```
 
 ### Older GPUs
-Release 590 of the NVIDIA driver [dropped support for Maxwell-, Pascal-, and Volta- based GPUs](https://forums.developer.nvidia.com/t/unix-graphics-feature-deprecation-schedule/60588). On such systems, the above instructions will install the driver without an error, but on reboot will fail to load the module, since it can't find any GPUs it supports. However, if you have such a GPU, you can still install the older driver:
+Release 590 of the NVIDIA driver [dropped support for Maxwell-, Pascal-, and Volta- based GPUs](https://forums.developer.nvidia.com/t/unix-graphics-feature-deprecation-schedule/60588). On such systems, the above instructions will install the driver without error, but on reboot, it will fail to load the module because it can't find any GPUs it supports. However, if you have such a GPU, you can still install the older driver:
 
 ```bash
 sudo dnf install cuda-drivers-580 -y
@@ -97,13 +97,13 @@ sudo grubby --args="nouveau.modeset=0 rd.driver.blacklist=nouveau" --update-kern
 
 !!! Note
 
-    For systems with secure boot enabled you need to perform this step:
+    For systems with secure boot enabled, you need to perform this step:
 
     ```bash
     sudo mokutil --import /var/lib/dkms/mok.pub
     ```
 
-    The `mokutil` command will prompt for you to make up a password, which will be used during reboot.
+    The `mokutil` command will prompt you to create a password that will be used during the reboot.
     
     After the reboot, your system should ask you if you want to enroll a key or something like that, say "yes" and it asks for the password you gave in the `mokutil` command.
 
