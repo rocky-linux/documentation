@@ -20,19 +20,19 @@ On a Linux system, it is possible to install software in two ways:
 
 !!! Note
 
-    This document does not describe how to compile and install source code packages to the local computer. Usually, you should obtain the corresponding software package from the repository, unless the software package you need is not in the repository. This is because the package management system can help users solve dependency issues. For beginners, it is very difficult to solve the dependencies of compiling source code packages.
+    This document does not describe how to compile and install source code packages on the local computer. Usually, you should obtain the corresponding software package from the repository, unless the software package you need is not in the repository. This is because the package management system can help users solve dependency issues. For beginners, resolving the dependencies required to compile source code packages can be challenging.
 
-**The package**: Developers compile a set of source files into executable machine language in advance and package them into binary files in a specific format. Unless otherwise specified, software packages in Linux specifically refer to binary software packages.
+**The package**: Developers compile a set of source files into executable machine language in advance and package them into binary files in a specific format. Unless otherwise specified, the term "software package" in Linux refers to binary software packages.
 
 **The source file**: A single code file that is readable by humans (with extensions such as .c, .py, .java), which might be just a code snippet or module of the entire project that requires compilation or an interpreter to run on a computer.
 
-**The source code package**: A compressed archive file that packages the source files and related files (such as build files like Makefile and configure; document files such as README and LICENSE ) of the entire project. This file is often identified using file suffixes such as `.tar.gz` or `.tar.xz`.
+**The source code package**: A compressed archive file that packages the source files and related files (such as build files like Makefile and configure; document files such as README and LICENSE ) of the entire project. File suffixes such as `.tar.gz` or `.tar.xz` often indicate this file type.
 
 ## RPM Overview
 
-**RPM** (RedHat Package Manager) is a software management system. It is possible to install, uninstall, update or check software contained in packages.
+**RPM** (RedHat Package Manager) is a software management system. It is possible to install, uninstall, update, or check software contained in packages.
 
-**RPM** is the package management system used by all RedHat distributions (RockyLinux, Fedora, CentOS, Suse, Mandriva, ...), with packages identified by the file suffix `.rpm`. Debian and its derivatives use the DPKG package management system to manage software packages, with packages identified by the file suffix `.deb`.
+**RPM** is the package management system used by all Red Hat distributions (Rocky Linux, Fedora, CentOS, SUSE, Mandriva, ...), with packages identified by the `.rpm` file suffix. Debian and its derivatives use the DPKG package management system to manage software packages, which are identified by the `.deb` file suffix.
 
 Naming conventions for RPM software packages:
 
@@ -40,19 +40,19 @@ Naming conventions for RPM software packages:
 
 !!! tip "Terminology Explanation"
 
-    When we use the capitalized "RPM", it refers to the package management system. When using the lowercase "rpm", in the vast majority of cases, it specifically refers to the `rpm` command. When using `.rpm`, it refers to the format suffix of the software package. Readers should not be confused by them when reading the documents.
+    When we use the capitalized "RPM", it refers to the package management system. When using the lowercase "rpm", in the vast majority of cases, it specifically refers to the `rpm` command. When using `.rpm`, it refers to the package format suffix. Readers should not be confused by them when reading the documents.
 
 Today's RPM package management system is still constantly updated and iterated, see [here](https://rpm.org/).
 
 ## Local package manager
 
-The `rpm` command: Command-line tool for managing local RPM packages in RedHat's upstream and downstream distributions.
+The `rpm` command: Command-line tool for managing local RPM packages in Red Hat's upstream and downstream distributions.
 
 **Full Package Name**: The complete name of the binary software package, such as `tree-1.7.0-15.el8.x86_64.rpm`.
 
 **Package Name**: The name of the software package, such as `tree`.
 
-If the corresponding software package is new to the operating system (not installed), you should use the "Full Package Name" when using the `rpm` command. If the corresponding software package is not new to the operating system (already installed), you should use the "Package Name" when using `rpm` command instead. This is because the `rpm` stores the relevant software package information in the **/var/lib/rpm/** database directory.
+If the corresponding software package is new to the operating system (not installed), you should use the "Full Package Name" when using the `rpm` command. If the corresponding software package is not new to the operating system (already installed), you should use the "Package Name" when using the `rpm` command instead. This is because the `rpm` stores the relevant software package information in the **/var/lib/rpm/** database directory.
 
 The usage of the `rpm` command is as follows:
 
@@ -73,21 +73,21 @@ The relevant options are as follows:
 | `-v`              | Informs about the progress of the operation. |
 | `--test`          | Tests the command without executing it.      |
 
-* Install one or more packages - `rpm -ivh <Full-Package-Name> ... `
-* Upgrade one or more packages - `rpm -Uvh <Full-Package-Name> ...`
+* Install one or more packages - `rpm-ivh <Full-Package-Name> ... `
+* Upgrade one or more packages - `rpm-Uvh <Full-Package-Name> ...`
 * Uninstall one or more packages - `rpm -e <Package-Name> ...`
 
-Since `rpm` is a local package manager, users need to manually resolve dependency issues during software installation. If relevant dependencies are missing, a prompt such as "failed dependencies" will appear.
+Since `rpm` is a local package manager, users must resolve dependency issues manually during software installation. If relevant dependencies are missing, a prompt such as "failed dependencies" will appear.
 
 Understand the dependency relationships of RPM packages:
 
-* **Tree dependency relationship (a.rpm ---> b.rpm ---> c.rpm)** - When installing a.rpm, it prompts for the required installation of b.rpm first. When installing b.rpm, it prompts for the required installation of c.rpm first. This problem is easiest to solve by stringing the installations together with: `rpm -ivh a.rpm b.rpm c.rpm`
+* **Tree dependency relationship (a.rpm ---> b.rpm ---> c.rpm)** - When installing a.rpm, it prompts for the required installation of b.rpm first. When installing b.rpm, it prompts to install c.rpm first. This problem is easiest to solve by stringing the installations together with: `rpm -ivh a.rpm b.rpm c.rpm`
 * **Circular dependency relationship (a.rpm ---> b.rpm ---> c.rpm ---> a.rpm)** - `rpm -ivh a.rpm b.rpm c.rpm`
 * **Module dependency relationship** - Go to [this website](https://www.rpmfind.net/) to search
 
 **Q: Why does software package installation always have dependency issues?**
 
-Because software or applications almost always rely on another software or library, if the required program or shared library is not found on the operating system, this prerequisite must be met before installing the target application.
+Because software or applications almost always rely on other software or libraries, if the required program or shared library is not present on the operating system, this prerequisite must be met before installing the target application.
 
 ### Query package
 
@@ -99,7 +99,7 @@ The relevant options are as follows:
 | `-a`             | When used in conjunction with the `-q` option, query all installed rpm packages, such as `rpm -qa` |
 | `-i`             | Used in conjunction with the `-q` option to query detailed information about the corresponding installed rpm package. Such as `rpm -qi bash` |
 | `-l`             | When used in combination with the `-q` option, query the list of files released by the corresponding installed rpm package |
-| `-p`             | Specify uninstalled software packages, for example `rpm -qip tree-1.7.0-15.el8.x86_64.rpm` and `rpm -qlp tree-1.7.0-15.el8.x86_64.rpm`|
+| `-p`             | Specifies uninstalled software packages, for example `rpm -qip tree-1.7.0-15.el8.x86_64.rpm` and `rpm -qlp tree-1.7.0-15.el8.x86_64.rpm`|
 | `-f`            | When used in conjunction with the `-q` option, query the software package to which the installation file belongs, such as `rpm -qf /usr/bin/bash` |
 | `-R`             | When used in conjunction with the `-q` option, query the dependencies of installed rpm packages. When used in conjunction with the `-p` option, you can query the dependencies of rpm packages that are not installed, such as`rpm -qRp rpm -qRp mtr-0.92-3.el8.x86_64.rpm` |
 | `--last`       | list package(s) by install time, most recent first |
@@ -150,9 +150,9 @@ kernel-4.18.0-240.22.1.el8.x86_64             Mon 24 May 2021 02:33:35 PM CEST
 
 You must use the `-K` option to complete this operation.
 
-When you download the rpm binary package from an unknown website or untrusted location, you do not know if any tampering of the package has taken place. Therefore, users need to verify the signature of the software package to ensure that the downloaded package is complete and that no tampering has taken place.
+When you download an rpm binary package from an unknown website or untrusted location, you do not know whether it has been tampered with. Therefore, users need to verify the software package's signature to ensure the downloaded package is complete and free of tampering.
 
-Before performing signature verification on the software package, it is necessary to import the required public key in advance (this operation is usually carried out by the system administrator).
+Before performing signature verification on the software package, the required public key must be imported in advance (this is usually done by the system administrator).
 
 Starting from RHEL 8.x, you can use the `dnf download` command to download specific software packages. For example, if you need to download the `wget` package, use:
 
@@ -179,7 +179,7 @@ When the signature of a software package fails to pass the verification, you sho
 
 You need to use the `-V` option to complete this operation.
 
-After installing the RPM software package, the RPM database will record the initial and changed characteristics of the relevant files to determine whether they have been maliciously modified by someone.
+After installing the RPM software package, the RPM database records the initial and changed characteristics of the relevant files to determine whether they have been maliciously modified.
 
 ```bash
 sudo rpm -q chrony
@@ -197,15 +197,15 @@ The output is broken into 3 separate columns.
 
     These 9 different fields or checks are:
 
-    - S: Whether there is modification to the size of the file.
-    - M: Whether there is modification to the  type of file or file permissions (rwx).
-    - 5: Whether there is modification to the  MD5 checksum of the file.
-    - D: Whether there is modification to the number of the device.
-    - L: Whether there is modification of the path to the file.
-    - U: Whether there is modification of the owner of the file.
-    - G: Whether there is modification of the group to which the file belongs.
-    - T: Whether there is modification to the  mTime (modify time) of the file.
-    - P: Whether there is modification to the program function.
+    - S: Whether there is a modification to the size of the file.
+    - M: Whether there is a modification to the type of file or file permissions (rwx).
+    - 5: Whether there is a modification to the MD5 checksum of the file.
+    - D: Whether there is a modification to the number of devices.
+    - L: Whether there is a modification of the path to the file.
+    - U: Whether there is a modification of the owner of the file.
+    - G: Whether there is a modification of the group to which the file belongs.
+    - T: Whether there is a modification to the mTime (modify time) of the file.
+    - P: Whether there is a modification to the program function.
 
 - **Second column (c)**
 
@@ -226,7 +226,7 @@ The output is broken into 3 separate columns.
 
 The `dnf` command: This command lets you manage binary software packages by interacting with the repository. For the most common functional item commands, their usage is the same as the `yum` command. For some newer distributions (such as Rocky Linux 10.x or Fedora 43), there are updates to the `dnf` command-line tool. For example, in Rocky Linux 10.x, users can selectively install `dnf5` from the repository.
 
-Red Hat based distributions, such as Rocky Linux, Fedora, CentOS, and so on, use `dnf` command-line tool. Its equivalent in the Debian world is `apt` (**A**dvanced **P**ackaging **T**ool) command-line tool.
+Red Hat-based distributions, such as Rocky Linux, Fedora, and CentOS, use the `dnf` command-line tool. Its equivalent in the Debian world is `apt` (**A**dvanced **P**ackaging **T**ool) command-line tool.
 
 ### `dnf`'s functional item commands
 
@@ -240,7 +240,7 @@ The "command" in syntax represents the functional item command of `dnf`. Some co
 
 1. **`list` command**
 
-    list the software packages based on the different options following this command. By default, list all the software packages available for installation in the operating system (`dnf list` is equivalent to `dnf list --all`).
+    List the software packages based on the different options following this command. By default, list all the software packages available for installation in the operating system (`dnf list` is equivalent to `dnf list --all`).
 
     * `dnf list --installed` - List the installed software packages for the current operating system
     * `dnf list --updates` - List the software packages that you can upgrade
@@ -249,22 +249,22 @@ The "command" in syntax represents the functional item command of `dnf`. Some co
 
     | Specific options   |Description                                                                |
     |-------------|---------------------------------------------------------------------------|
-    | `--all`        | show all packages (default) |
-    | `--available`  | show only available packages |
-    | `--installed`  | show only installed packages |
-    | `--extras`     | show only extras packages    |
-    | `--updates`    | show only upgrades packages |
-    | `--upgrades`   | show only upgrades packages |
-    | `--autoremove` | show only autoremove packages |
-    | `--recent`     | show only recently changed packages |
+    | `--all`        | shows all packages (default) |
+    | `--available`  | shows only available packages |
+    | `--installed`  | shows only installed packages |
+    | `--extras`     | shows only extras packages    |
+    | `--updates`    | shows only upgrades packages |
+    | `--upgrades`   | shows only upgrades packages |
+    | `--autoremove` | shows only autoremove packages |
+    | `--recent`     | shows only recently changed packages |
 
 1. **`search` command**
 
-    Search for software packages from the repository based on the given string. Such as `dnf search vim`.
+    Search for software packages in the repository using the given string. Such as `dnf search vim`.
 
 1. **`install` command**
 
-    Install one or more software packages from the repository. Such as `dnf -y install wget tree`. The `-y` option indicates that the automatic response is "yes". When you install packages in this way, `dnf` will take care of dependency resolution issues automatically.
+    Install one or more software packages from the repository. Such as `dnf -y install wget tree`. The `-y` option indicates that the automatic response is "yes". When you install packages this way, `dnf` handles dependency resolution automatically.
 
     In addition to installing software packages from the repository, you can also install software packages from specified URL or local RPM software package, such as `dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm`, `dnf install /tmp/mtr-0.92-3.el8.x86_64.rpm`
 
@@ -274,19 +274,19 @@ The "command" in syntax represents the functional item command of `dnf`. Some co
 
 1. **`deplist` command**
 
-    List the dependencies of the software package, which has been deprecated. Please use `dnf repoquery --deplist <Package-Name>` as an alternative.
+    Lists the dependencies of the software package, which has been deprecated. Please use `dnf repoquery --deplist <Package-Name>` as an alternative.
 
 1. **`repolist` command**
 
-    Display repository related information, default to displaying enabled repositories (`dnf repolist` is equivalent to `dnf repolist --enabled`)
+    Displays repository-related information, default to displaying enabled repositories (`dnf repolist` is equivalent to `dnf repolist --enabled`)
 
-    * `dnf repolist --all` - List all repositories
-    * `dnf repolist -v` - Display detailed information of enabled repositories
+    * `dnf repolist --all` - Lists all repositories
+    * `dnf repolist -v` - Displays detailed information of enabled repositories
     * `dnf repolist --disabled` - Lists only disabled repositories.
 
 1. **`history` command**
 
-    Display the history of typed `dnf` commands. By default, `dnf history` is equivalent to `dnf history list`, You can replace the "list" here with any one of `info`, `redo`, `replay`, `rollback`, `store`, `undo` or `userinstalled`.
+    Displays the history of typed `dnf` commands. By default, `dnf history` is equivalent to `dnf history list`, You can replace the "list" here with any one of `info`, `redo`, `replay`, `rollback`, `store`, `undo` or `userinstalled`.
 
 1. **`provides` command**
 
@@ -294,23 +294,23 @@ The "command" in syntax represents the functional item command of `dnf`. Some co
 
 1. **`remove` command**
 
-    Remove one or more software packages from the current operating system. By default, it will ask whether to uninstall the software package and its corresponding dependency package, and can automatically respond with "yes" through the `-y` option.
+    Removes one or more software packages from the current operating system. By default, it will ask whether to uninstall the software package and its corresponding dependency package, and can automatically respond with "yes" through the `-y` option.
 
 1. **`autoremove` command**
 
-    Automatically delete packages that were once used as dependencies but are no longer in use now. Such as `dnf -y autoremove`.
+    Automatically deletes packages that were once used as dependencies but are no longer in use. Such as `dnf -y autoremove`.
 
 1. **`makecache` command**
 
-    Generate a cache for newly added repositories or for outdated metadata.
+    Generates a cache for newly added repositories or for outdated metadata.
 
 1. **`update` or `upgrade` command**
 
-    Upgrade one or more software packages in the operating system. For example, `dnf update -y` will upgrade all upgradable software packages in the operating system.
+    Upgrades one or more software packages in the operating system. For example, `dnf update -y` will upgrade all upgradable software packages in the operating system.
 
 1. **`grouplist`, `groupinstall`, `groupremove` or `groupinfo` command**
 
-    The operation objects of these commands are package groups, which refer to a set of software packages prepared for a specific scenario or environment.
+    The objects of these commands are package groups, which are sets of software packages prepared for a specific scenario or environment.
 
     There are these package groups in Rocky Linux 8.x:
 
@@ -342,40 +342,40 @@ The "command" in syntax represents the functional item command of `dnf`. Some co
        Xfce
     ```
 
-    To avoid ambiguity, when operating on a single or multiple package groups, You should enclose the name of a single package group in double quotation marks.
+    To avoid ambiguity, when operating on a single or multiple package groups, you should enclose the name of a single package group in double quotation marks.
 
 1. **`clean` command**
 
-    Clean the cached data. You can clean all the data caches with: `dnf clean all`.
+    Cleans the cached data. You can clean all the data caches with: `dnf clean all`.
 
     | Metadata type to clean | Description                                                   |
     |------------------------|---------------------------------------------------------------|
     | `all`                  | Removes all temporary files created for enabled repositories. |
     | `dbcache`              | Removes cache files generated from the repository metadata.   |
-    | `expire-cache`         | Marks the repository metadata expired.                        |
+    | `expire-cache`         | Marks the repository metadata as expired.                        |
     | `metadata`             | Removes repository metadata.                                  |
     | `packages`             | Removes any cached packages from the system.                  |
 
 1. **`download` command**
 
-    Download one or more software packages from the repository to the local computer without installing them. 
+    Downloads one or more software packages from the repository to the local computer without installing them. 
 
     You can use the options `--destdir DESTDIR` or `--downloaddir DESRDIR` to specify the saving path, such as `dnf download tree --downloaddir /tmp/`.
 
 1. **`repoquery` command**
 
-    Query relevant information by the different options after the command, similar to `rpm -q`.
+    Queries relevant information using the different options after the command, similar to `rpm -q`.
 
-    * `dnf repoquery --deplist <Package-Name>` - View dependencies
-    * `dnf repoquery --list <Package-Name>` - View the list of files after installing the software package (regardless of whether the software is already installed on the operating system)
+    * `dnf repoquery --deplist <Package-Name>` - Views dependencies
+    * `dnf repoquery --list <Package-Name>` - Views the list of files after installing the software package (regardless of whether the software is already installed on the operating system)
   
 1. **`config-manager` command**
 
-    Manage repositories through the command line, including adding, deleting, enabling, and disabling repositories.
+    Manages repositories through the command line, including adding, deleting, enabling, and disabling repositories.
 
-    * `dnf config-manager --add-repo <URL>` - Add a single brand-new repository
-    * `dnf config-manager --set-disabled devel` - Permanently disable a single repository
-    * `dnf config-manager --set-enabled devel` - Permanently enable a single repository
+    * `dnf config-manager --add-repo <URL>` - Adds a single brand-new repository
+    * `dnf config-manager --set-disabled devel` - Permanently disables a single repository
+    * `dnf config-manager --set-enabled devel` - Permanently enables a single repository
 
 You can view the available plugin commands through the output of the `dnf --help` command:
 
@@ -408,11 +408,11 @@ system-upgrade            Prepare system for upgrade to a new release
 
 !!! tip 
 
-    If these plugin commands are missing, please install the `dnf-plugins-core` package. See more informations here: https://dnf-plugins-core.readthedocs.io/en/latest/index.html
+    If these plugin commands are missing, please install the `dnf-plugins-core` package. See more information here: https://dnf-plugins-core.readthedocs.io/en/latest/index.html
 
 ### configuration file description
 
-You can find all repository configuration files (ending with the suffix `.repo`) in the **/etc/yum.repos.d/** directory. Each `.repo` file can contain a single or multiple repositories, and users can selectively enable or disable them according to their actual situation.
+You can find all repository configuration files (ending in `.repo`) in the **/etc/yum.repos ** directory.d/** directory. Each `.repo` file can contain a single or multiple repositories, and users can selectively enable or disable them based on their specific situation.
 
 ```bash
 ls -l /etc/yum.repos.d/
@@ -453,13 +453,13 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
 Content description:
 
 * Use "[ ]" to include the repository ID, which must be unique.
-* Below the "[ ]" are the options for the repository.
+* Below the "[ ]" are the repository options.
 * The "name" option - Specifies the detailed name of the repository.
 * The "mirrorlist" option - URL of a mirrorlist for the repository. URLs support multiple protocols, such as https, http, ftp, file, NFS, etc. The "$" in the value represents the relevant repository variable.
 * The "baseurl" option - List of URLs for the repository. URLs support multiple protocols, such as https, http, ftp, file, NFS, etc. The "$" in the value represents the relevant repository variable.
 * Lines starting with "#" are comment lines.
 * The "gpgcheck" option - Whether to perform GPG signature check on packages found in this repository. The default value is False(0).
-* The "enabled" option - Include this repository as a package source. The default value is True(1).
+* The "enabled" option - Includes this repository as a package source. The default value is True(1).
 * The "countme" option - Upload anonymous usage statistics data. The default value is False(0).
 * The "gpgkey" option - GPG public key path.
 
@@ -467,9 +467,9 @@ For more information, please refer to `man 5 yum.conf`.
 
 ## Application Streams
 
-**Application Streams in RL 8.x and RL 9.x:**: Rocky Linux 8.x and 9.x, use a new modular technology, allowing repositories to host multiple versions of applications and their dependencies. Due to the adoption of a modular architecture, the Application Streams in these two operating systems is also referred to as "Module Streams". System administrators can choose a specific version to use, bringing more flexibility. If system administrators need to manage the Application Streams, they often need to use the `dnf module` command.
+**Application Streams in RL 8.x and RL 9.x:**: Rocky Linux 8.x and 9.x, use a new modular technology, allowing repositories to host multiple versions of applications and their dependencies. Due to the adoption of a modular architecture, the Application Streams in these two operating systems are also referred to as "Module Streams". System administrators can choose a specific version, which provides greater flexibility. If system administrators need to manage the Application Streams, they often need to use the `dnf module` command.
 
-**Application Streams in RL 10.x**: Starting from Rocky Linux 10.x, system administrators can still use the Application Streams, but the Application Streams is no longer provided in a modular form. In other words, in 10.x the `dnf module` command no-longer exists, and system administrators can manage different versions of applications in the traditional way. In this version of the operating system, the term "Application Streams" does not equal "Module Streams".
+**Application Streams in RL 10.x**: Starting from Rocky Linux 10.x, system administrators can still use the Application Streams, but the Application Streams are no longer provided in a modular form. In other words, in 10.x, the `dnf module` command no longer exists, and system administrators can manage different versions of applications in the traditional way. In this version of the operating system, the term "Application Streams" does not equal "Module Streams".
 
 Each Application Stream has a different lifecycle. Please refer to the following link:
 
@@ -483,7 +483,7 @@ In this document, the author mainly explains the Application Streams of modular 
 
 Important note:
 
-* To use modular architecture Application Streams in RL 8.x and RL 9.x, you need to enable the **AppStream** repository first. In the Appstream repository, **modules** represent a collection of software packages for logical units, which are built, tested, and published together. A single module can contain multiple streams (versions) of the same application.
+* To use modular architecture Application Streams in RL 8.x and RL 9.x, you need to enable the **AppStream** repository first. In the Appstream repository, **modules** represent collections of software packages for logical units that are built, tested, and published together. A single module can contain multiple streams (versions) of the same application.
 * Each module receives updates separately.
 * After enabling a single module, users can only use one stream (version) of that module.
 * Each module can have its own default stream (default version) marked with "[d]". 
@@ -563,7 +563,7 @@ sudo dnf install nginx:1.14/common
 
 ### Management Module Streams
 
-The command used is `dnf module`, and there are some subcommands for functional items under this command.
+The command used is `dnf module`, and it has some subcommands for functional items.
 
 !!! tip "Usage Tips"
 
@@ -573,15 +573,15 @@ The command used is `dnf module`, and there are some subcommands for functional 
 
 You can use the subcommands of the `list` or `info` function items to perform the corresponding operations.
 
-* `dnf module list` - Get a list of all available modules.
-* `dnf module list <Module-Name>` or `dnf module list <Module-Name>:<Stream>`- List all available streams (versions) for the current module. List the information of a single module stream. For example `dnf module list postgresql` or `dnf module list postgresql:15`.
-* `dnf module list --enabled` - List the enabled module stream(s).
-* `dnf module info <Module-Name>` or `dnf module info info <Module-name>:<Stream>` - Display module stream information. If you only type the name of a module without a stream, all stream information for that module will be displayed. For example `dnf module info ruby` or `dnf  module info ruby:2.6`.
-* `dnf moudle --info --profile <Module-Name>` or `dnf moudle --info --profile <Module-Name>:<Stream>` - List the profile information of the module stream. If you only type the name of a module without a stream, all stream profile information for that module will be displayed.
+* `dnf module list` - Gets a list of all available modules.
+* `dnf module list <Module-Name>` or `dnf module list <Module-Name>:<Stream>`- Lists all available streams (versions) for the current module. Lists the information of a single module stream. For example, `dnf module list postgresql` or `dnf module list postgresql:15`.
+* `dnf module list --enabled` - Lists the enabled module stream(s).
+* `dnf module info <Module-Name>` or `dnf module info info <Module-name>:<Stream>` - Displays module stream information. If you only type the name of a module without a stream, all stream information for that module will be displayed. For example `dnf module info ruby` or `dnf  module info ruby:2.6`.
+* `dnf moudle --info --profile <Module-Name>` or `dnf moudle --info --profile <Module-Name>:<Stream>` - Lists the profile information of the module stream. If you only type the name of a module without a stream, all stream profile information for that module will be displayed.
 
 #### Install
 
-Before installing a specific stream of the corresponding module, you need to first enable the specific stream of the module. The syntax used is as follows:
+Before installing a specific stream of a module, you need to enable that stream. The syntax used is as follows:
 
 ```bash
 dnf moudle enable <Module-Name>:<Stream> ...
@@ -599,15 +599,15 @@ dnf -y module enable httpd:2.4
 
 The following installation methods are acceptable:
 
-* `dnf -y module install <Module-Name>` - Use the default stream and default profile of a single module (if a default profile exists). For example `dnf -y install httpd`
-* `dnf -y install <Module-Name>:<Stream>/<Profile>` - Using specific stream and profile of a single module. For example `dnf -y install httpd:2.4:/minimal`. If there are multiple profiles, you can use `*` to represent all of them ,for example `dnf module install httpd:2.4/*`
+* `dnf -y module install <Module-Name>` - Uses the default stream and default profile of a single module (if a default profile exists). For example, `dnf -y install httpd`
+* `dnf -y install <Module-Name>:<Stream>/<Profile>` - Using a specific stream and profile of a single module. For example, `dnf -y install httpd:2.4:/minimal`. If there are multiple profiles, you can use `*` to represent all of them, for example, `dnf module install httpd:2.4/*`
 
 #### Remove
 
-You can use the following syntax for removal::
+You can use the following syntax for removal:
 
-* `dnf -y module remove --all <Module-name>:<Stream> ...` - Remove all packages from a single stream in a single module. For example `dnf -y module remove --all httpd:2.4`
-* `dnf -y module remove --all <Module-name>:<Stream>/<Profile> ...` - Remove all packages associated with a specific profile, using `*` to represent all profiles. For example `dnf -y module remove httpd:2.4/*`
+* `dnf -y module remove --all <Module-name>:<Stream> ...` - Removes all packages from a single stream in a single module. For example `dnf -y module remove --all httpd:2.4`
+* `dnf -y module remove --all <Module-name>:<Stream>/<Profile> ...` - Removes all packages associated with a specific profile, using `*` to represent all profiles. For example `dnf -y module remove httpd:2.4/*`
 
 #### Reset
 
@@ -634,7 +634,7 @@ If there are available updates for the module's stream, you need to perform the 
 2. `dnf module enable <Module-Name>:<New-Stream> ...`
 3. `dnf distro-sync`
 
-If the installation of a specific module's stream is in the operating system, you can also use the 'switch to' command to upgrade or downgrade the software package. The specific syntax is:
+If the installation stream for a specific module is in the operating system, you can also use the 'switch to' command to upgrade or downgrade the software package. The specific syntax is:
 
 ```bash
 dnf module switch-to <Module-Name>:<Stream>
@@ -648,11 +648,11 @@ The syntax used is:
 dnf module disable <Module-Name> ...
 ```
 
-#### Customize using YAML file
+#### Customize using a YAML file
 
-System administrator can customize default stream and default profile by creating a YAML file in the **/etc/dnf/modules.defaults.d/** directory.
+A system administrator can customize the default stream and the default profile by creating a YAML file in the **/etc/dnf/modules.defaults.d/** directory.
 
-Taking the postgresql module as an example, you can see from the output information that its default stream is 10 and the default profile is "server":
+Taking the PostgreSQL module as an example, you can see from the output information that its default stream is 10 and the default profile is "server":
 
 ```bash
 sudo dnf module list postgresql
@@ -871,10 +871,10 @@ Is this ok [y/N]:
 
 !!! tip "Friendly reminder"
 
-    When multiple repositories are enabled, the same software package may have multiple versions, and by default, the newer version of the software package has the highest priority. This is also the reason why the `--disablerepo` and `--enablrepo` options are used.
+    When multiple repositories are enabled, the same software package may have multiple versions, and by default, the newer version has the highest priority. This is also the reason why the `--disablerepo` and `--enablrepo` options are used.
 
 !!! attention "Support consideration"
 
-    EPEL is a project initiated by volunteers in the Fedora community, which means that the project is not commercially supported by Red Hat. Just like Fedora itself, Red Hat hosts infrastructure for this project and Red Hat engineers are involved as maintainers and leaders but there are no commercial support contracts or service level agreements provided by Red Hat for packages in EPEL.
+    EPEL is a project initiated by volunteers in the Fedora community, so it is not commercially supported by Red Hat. Just like Fedora itself, Red Hat hosts the infrastructure for this project, and Red Hat engineers are involved as maintainers and leaders, but there are no commercial support contracts or service-level agreements provided by Red Hat for packages in EPEL.
 
 For the FAQ about EPEL, see [The Fedora Project EPEL FAQ here](https://docs.fedoraproject.org/en-US/epel/epel-faq/).
