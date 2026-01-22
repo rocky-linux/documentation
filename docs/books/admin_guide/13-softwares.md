@@ -87,7 +87,7 @@ Understand the dependency relationships of RPM packages:
 
 **Q: Why does software package installation always have dependency issues?**
 
-Because software or applications almost always rely on other software or libraries, if the required program or shared library is not present on the operating system, this prerequisite must be met before installing the target application.
+Because software or applications almost always rely on other software or libraries, if the required program or shared library is not present on the operating system, you must meet this prerequisite before installing the target application.
 
 ### Query package
 
@@ -152,7 +152,7 @@ You must use the `-K` option to complete this operation.
 
 When you download an rpm binary package from an unknown website or untrusted location, you do not know whether it has been tampered with. Therefore, users need to verify the software package's signature to ensure the downloaded package is complete and free of tampering.
 
-Before performing signature verification on the software package, the required public key must be imported in advance (this is usually done by the system administrator).
+Import the required public key before performing signature verification on the software package. This is usually done by the system administrator.
 
 Starting from RHEL 8.x, you can use the `dnf download` command to download specific software packages. For example, if you need to download the `wget` package, use:
 
