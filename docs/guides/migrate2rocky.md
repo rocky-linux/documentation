@@ -81,7 +81,7 @@ Assuming you have the `curl` utility installed, run the following command to dow
     If you're running a 9.x system, add a 9 before the `.sh`
 
 ```bash
-curl https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh -o migrate2rocky.sh
+curl -O https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh
 ```
 
 That command will download the file to your server, and *only* the file you want. But again, security concerns suggest this is not necessarily the best practice, so keep that in mind.
