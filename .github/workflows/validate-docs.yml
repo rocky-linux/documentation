@@ -1,0 +1,275 @@
+name: Validate Documentation
+
+on:
+  pull_request:
+    paths:
+      - 'docs/**/*.md'
+      - 'CONTRIBUTING.md'
+      - 'README.md'
+      - '.markdownlint.yml'
+      - '.pyspelling.yml'
+      - '.wordlist.txt'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  spell-check:
+    name: Spell Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Cache pip packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-pyspelling
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install aspell
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y aspell aspell-en
+
+      - name: Install pyspelling
+        run: pip install pyspelling
+
+      - name: Run spell check
+        id: spellcheck
+        continue-on-error: true
+        run: |
+          pyspelling > spellcheck-output.txt 2>&1 || true
+          echo "SPELL_OUTPUT<<EOF" >> $GITHUB_OUTPUT
+          cat spellcheck-output.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          if grep -q "Spelling check passed" spellcheck-output.txt; then
+            echo "SPELL_STATUS=passed" >> $GITHUB_OUTPUT
+          else
+            echo "SPELL_STATUS=issues" >> $GITHUB_OUTPUT
+          fi
+
+    outputs:
+      spell_output: ${{ steps.spellcheck.outputs.SPELL_OUTPUT }}
+      spell_status: ${{ steps.spellcheck.outputs.SPELL_STATUS }}
+
+  markdown-lint:
+    name: Markdown Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Cache npm packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-markdownlint
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install markdownlint-cli
+        run: npm install -g markdownlint-cli
+
+      - name: Run markdownlint
+        id: mdlint
+        continue-on-error: true
+        run: |
+          markdownlint docs/ --config .markdownlint.yml > mdlint-output.txt 2>&1 || true
+          echo "MDLINT_OUTPUT<<EOF" >> $GITHUB_OUTPUT
+          head -100 mdlint-output.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          if [ -s mdlint-output.txt ]; then
+            echo "MDLINT_STATUS=issues" >> $GITHUB_OUTPUT
+            echo "MDLINT_COUNT=$(wc -l < mdlint-output.txt)" >> $GITHUB_OUTPUT
+          else
+            echo "MDLINT_STATUS=passed" >> $GITHUB_OUTPUT
+            echo "MDLINT_COUNT=0" >> $GITHUB_OUTPUT
+          fi
+
+    outputs:
+      mdlint_output: ${{ steps.mdlint.outputs.MDLINT_OUTPUT }}
+      mdlint_status: ${{ steps.mdlint.outputs.MDLINT_STATUS }}
+      mdlint_count: ${{ steps.mdlint.outputs.MDLINT_COUNT }}
+
+  link-check:
+    name: Link Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run link check
+        id: linkcheck
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: >-
+            --no-progress
+            --exclude-loopback
+            --exclude-mail
+            --exclude 'avatars\.githubusercontent\.com'
+            --exclude 'example\.com'
+            --exclude 'your-server-ip'
+            --exclude 'your-server-hostname'
+            --exclude 'localhost'
+            --exclude '127\.0\.0\.1'
+            --exclude '192\.168\.'
+            --exclude '172\.16\.'
+            --exclude 'home\.arpa'
+            --exclude 'your_fork_name'
+            --exclude 'SERVER_IP'
+            --exclude 'ip_address'
+            --exclude 'github\.com.*/(issues|pull|commit)'
+            --exclude 'cyber\.gov\.au'
+            --exclude 'reddit\.com'
+            --exclude 'linode\.com'
+            --exclude 'developer\.download\.nvidia\.com'
+            --exclude 'azure\.microsoft\.com'
+            --exclude 'azuremarketplace\.microsoft\.com'
+            --exclude 'www\.gnu\.org'
+            --exclude 'www\.samba\.org'
+            --exclude 'rsync\.samba\.org'
+            --timeout 10
+            --format markdown
+            docs/
+          fail: false
+          output: linkcheck-output.md
+
+      - name: Read link check output
+        id: read_output
+        run: |
+          echo "LINK_OUTPUT<<EOF" >> $GITHUB_OUTPUT
+          head -50 linkcheck-output.md >> $GITHUB_OUTPUT 2>/dev/null || echo "No output file" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          if [ -f linkcheck-output.md ] && grep -q "0 errors" linkcheck-output.md; then
+            echo "LINK_STATUS=passed" >> $GITHUB_OUTPUT
+          else
+            echo "LINK_STATUS=issues" >> $GITHUB_OUTPUT
+          fi
+
+    outputs:
+      link_output: ${{ steps.read_output.outputs.LINK_OUTPUT }}
+      link_status: ${{ steps.read_output.outputs.LINK_STATUS }}
+
+  report:
+    name: Report Results
+    needs: [spell-check, markdown-lint, link-check]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create comment
+        uses: actions/github-script@v7
+        env:
+          SPELL_OUTPUT: ${{ needs.spell-check.outputs.spell_output }}
+          SPELL_STATUS: ${{ needs.spell-check.outputs.spell_status }}
+          MDLINT_OUTPUT: ${{ needs.markdown-lint.outputs.mdlint_output }}
+          MDLINT_STATUS: ${{ needs.markdown-lint.outputs.mdlint_status }}
+          MDLINT_COUNT: ${{ needs.markdown-lint.outputs.mdlint_count }}
+          LINK_OUTPUT: ${{ needs.link-check.outputs.link_output }}
+          LINK_STATUS: ${{ needs.link-check.outputs.link_status }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const spellStatus = process.env.SPELL_STATUS;
+            const mdlintStatus = process.env.MDLINT_STATUS;
+            const mdlintCount = process.env.MDLINT_COUNT;
+            const linkStatus = process.env.LINK_STATUS;
+
+            const spellIcon = spellStatus === 'passed' ? ':white_check_mark:' : ':warning:';
+            const mdlintIcon = mdlintStatus === 'passed' ? ':white_check_mark:' : ':warning:';
+            const linkIcon = linkStatus === 'passed' ? ':white_check_mark:' : ':warning:';
+
+            let body = `## Documentation Validation Results
+
+            | Check | Status |
+            |-------|--------|
+            | Spell Check | ${spellIcon} ${spellStatus} |
+            | Markdown Lint | ${mdlintIcon} ${mdlintStatus} (${mdlintCount} issues) |
+            | Link Check | ${linkIcon} ${linkStatus} |
+
+            `;
+
+            if (spellStatus !== 'passed') {
+              body += `<details>
+            <summary>Spell Check Details</summary>
+
+            \`\`\`
+            ${process.env.SPELL_OUTPUT}
+            \`\`\`
+
+            **Fix**: Add valid technical terms to \`.wordlist.txt\` or correct spelling errors.
+            </details>
+
+            `;
+            }
+
+            if (mdlintStatus !== 'passed') {
+              body += `<details>
+            <summary>Markdown Lint Details (showing first 100 issues)</summary>
+
+            \`\`\`
+            ${process.env.MDLINT_OUTPUT}
+            \`\`\`
+
+            **Fix**: Review \`.markdownlint.yml\` for rules and correct markdown formatting.
+            </details>
+
+            `;
+            }
+
+            if (linkStatus !== 'passed') {
+              body += `<details>
+            <summary>Link Check Details</summary>
+
+            ${process.env.LINK_OUTPUT}
+
+            **Fix**: Update broken links or add false positives to exclude patterns.
+            </details>
+
+            `;
+            }
+
+            body += `---
+            *This is an automated check. Issues found here are recommendations and do not block merging.*
+            *For help, visit the [Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation).*`;
+
+            // Write to job summary
+            const fs = require('fs');
+            fs.writeFileSync(process.env.GITHUB_STEP_SUMMARY, body);
+
+            // Find and update/create PR comment
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+            });
+
+            const botComment = comments.find(comment =>
+              comment.user.login === 'github-actions[bot]' &&
+              comment.body.includes('Documentation Validation Results')
+            );
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                body: body,
+              });
+            }

@@ -1,0 +1,94 @@
+# Pre-commit hooks for Rocky Linux Documentation
+# Install: pip install pre-commit && pre-commit install
+# Manual run: pre-commit run --all-files
+
+repos:
+  # Standard pre-commit hooks for common issues
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        # Preserve markdown line breaks (two trailing spaces)
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+        # Block files larger than 1MB to prevent accidental binary commits
+        args: ['--maxkb=1024']
+
+  # Markdown linting using markdownlint-cli
+  # Rules configured in .markdownlint.yml
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.38.0
+    hooks:
+      - id: markdownlint
+        args:
+          - --config
+          - .markdownlint.yml
+          - --fix
+        files: \.md$
+        # Exclude files that shouldn't be linted
+        exclude: |
+          (?x)^(
+            LICENSE\.md|
+            build_pdf/.*
+          )$
+
+  # Local hooks that require system-installed tools
+  - repo: local
+    hooks:
+      # Spell check using pyspelling with aspell
+      # Requires: pip install pyspelling && dnf install aspell aspell-en
+      - id: pyspelling
+        name: Spell check with pyspelling
+        entry: pyspelling
+        language: system
+        types: [markdown]
+        # Run against all files in config, not just staged files
+        pass_filenames: false
+        always_run: true
+
+      # Link checking using lychee
+      # Requires: dnf install lychee (or cargo install lychee)
+      - id: lychee
+        name: Check links with lychee
+        entry: lychee
+        language: system
+        types: [markdown]
+        args:
+          - --no-progress
+          - --exclude-loopback
+          - --exclude-mail
+          # Exclude patterns for placeholder URLs used in documentation examples
+          # These are intentionally not real URLs
+          - --exclude
+          - 'avatars\.githubusercontent\.com'
+          - --exclude
+          - 'example\.com'
+          - --exclude
+          - 'your-server-ip'
+          - --exclude
+          - 'your-server-hostname'
+          - --exclude
+          - 'localhost'
+          - --exclude
+          - '127\.0\.0\.1'
+          - --exclude
+          - '192\.168\.'
+          - --exclude
+          - '172\.16\.'
+          # RFC 8375 recommended domain for local networks
+          - --exclude
+          - 'home\.arpa'
+          - --exclude
+          - 'your_fork_name'
+          - --exclude
+          - 'SERVER_IP'
+          - --exclude
+          - 'ip_address'
+          # GitHub API rate limits can cause false failures
+          - --exclude
+          - 'github\.com.*/(issues|pull|commit)'
+          - --timeout
+          - '10'
+          - docs/
