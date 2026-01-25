@@ -79,7 +79,7 @@ sudo dnf install cuda-drivers -y
 
 ### Anciens GPUs
 
-La version 590 du pilote NVIDIA [abandonne la prise en charge des GPU basés sur Maxwell, Pascal et Volta](https://forums.developer.nvidia.com/t/unix-graphics-feature-deprecation-schedule/60588). Sur de tels systèmes, les instructions ci-dessus installeront le pilote sans erreur, mais au redémarrage, le chargement du module échouera, car il ne trouvera aucun GPU compatible. Toutefois, si vous avez une telle carte graphique, vous pouvez toujours installer l'ancien pilote :
+La version 590 du pilote NVIDIA [abandonne la prise en charge des GPU basés sur Maxwell, Pascal et Volta](https://forums.developer.nvidia.com/t/unix-graphics-feature-deprecation-schedule/60588). Sur de tels systèmes, les instructions ci-dessus installeront le pilote sans erreur, mais au redémarrage, le chargement du module échouera car il ne trouvera aucun GPU compatible. Toutefois, si vous avez une telle carte graphique, vous pouvez toujours installer l'ancien pilote :
 
 ```bash
 sudo dnf install cuda-drivers-580 -y
