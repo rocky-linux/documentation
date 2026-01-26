@@ -8,7 +8,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 `Proton` ist ein Projekt von `Valve`, um Gaming innerhalb ihres `Steam`-Clients auf den Linux-Desktop zu bringen. `Proton` ist ein Fork von [Wine](https://www.winehq.org/), einer Kompatibilitätsschicht, die zum Ausführen von Windows-Anwendungen unter Linux (und anderen POSIX-kompatiblen Betriebssystemen) verwendet wird.
 
-Seit der Einführung von `Proton` im August 2018 wurden 802 Bewertungen in der [Proton Compatible Steam Group](https://store.steampowered.com/curator/33483305-Proton-Compatible/about/) gepostet! Dies ist ein enormer Fortschritt für `Valve` und die `Proton`-Community, da zum ursprünglichen Veröffentlichungsdatum nur 27 Spiele getestet und zertifiziert wurden.
+Seit der Einführung von `Proton` im August 2018 wurden mindestens 800 Bewertungen in der [Proton Compatible Steam Group](https://store.steampowered.com/curator/33483305-Proton-Compatible/about/) gepostet! Dies ist ein enormer Fortschritt für `Valve` und die `Proton`-Community, da zum ursprünglichen Veröffentlichungsdatum nur 27 Spiele getestet und zertifiziert wurden.
 
 Im Gegensatz zu `Wine` erfordert `Proton` normalerweise keine Konfiguration und richtet sich an absolute Anfänger. Installieren Sie einfach `Steam` und aktivieren Sie `Proton`!
 
