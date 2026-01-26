@@ -81,7 +81,7 @@ En supposant que vous ayez installé l'utilitaire `curl`, exécutez la commande 
     Si vous utilisez un système 9.x, ajoutez un 9 avant le suffixe `.sh`
 
 ```bash
-curl https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh -o migrate2rocky.sh
+curl -O https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh
 ```
 
 Cette commande téléchargera le fichier directement sur votre serveur et *uniquement* le fichier que vous voulez. Mais encore une fois, cela peut poser des problèmes de sécurité impliquant que ce n'est pas nécessairement la meilleure pratique, alors gardez cela à l'esprit.
