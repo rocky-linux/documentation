@@ -415,9 +415,9 @@ pm.max_requests = 500
 
 with:
 
-- `pm.start_servers` = 25% of `max_children`
-- `pm.min_spare_servers` = 25% of `max_children`
-- `pm.max_spare_servers` = 75% of `max_children`
+- `pm.start_servers` = 25% von `max_children`
+- `pm.min_spare_servers` = 25% von `max_children`
+- `pm.max_spare_servers` = 75% von`max_children`
 
 ### Opcache configuration
 
