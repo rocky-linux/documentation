@@ -205,12 +205,12 @@ php_value[session.save_path]    = /var/lib/php/session
 php_value[soap.wsdl_cache_dir]  = /var/lib/php/wsdlcache
 ```
 
-| Anweisungen | Beschreibung                                                                                                                                                                                     |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `[pool]`    | Process pool name. Die Konfigurationsdatei kann mehrere Prozesspools umfassen (der Name des Pools in Klammern beginnt einen neuen Abschnitt). |
-| `listen`    | Defines the listening interface or the Unix socket used.                                                                                                                         |
+| Anweisungen | Beschreibung                                                                                                                                                                                         |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `[pool]`    | Name des Prozesspools. Die Konfigurationsdatei kann mehrere Prozesspools umfassen (der Name des Pools in Klammern beginnt einen neuen Abschnitt). |
+| `listen`    | Definiert die Listening-Schnittstelle oder den verwendeten Unix-Socket.                                                                                                              |
 
-#### Configuring the way to access php-fpm processes
+#### Konfiguration der Art und Weise, auf PHP-FPM-Prozesse zuzugreifen
 
 Es gibt zwei Möglichkeiten zur Verbindung.
 
@@ -218,7 +218,7 @@ Mit einer „Inet-Schnittstelle“ wie:
 
 `listen = 127.0.0.1:9000`.
 
-Or with a UNIX socket:
+Oder über einen UNIX-Socket:
 
 `listen = /run/php-fpm/www.sock`.
 
@@ -232,7 +232,7 @@ Wenn Sie mit einem Socket arbeiten, müssen Sie `listen.allowed_clients` konfigu
 
 Beispiel: `listen.allowed_clients = 127.0.0.1`
 
-#### Static or dynamic configuration
+#### Statische oder dynamische Konfiguration
 
 Sie können PHP-FPM-Prozesse statisch oder dynamisch verwalten.
 
@@ -247,7 +247,7 @@ Diese Konfiguration beginnt mit 10 Prozessen.
 
 In dynamic mode, PHP-FPM starts at _most_ the number of processes specified by the`pm.max_children` value. Es startet zunächst einige Prozesse, die `pm.start_servers` entsprechen, wobei mindestens der Wert von `pm.min_spare_servers` inaktiver Prozesse und höchstens `pm.max_spare_servers` inaktiver Prozesse beibehalten wird.
 
-Example:
+Beispiel:
 
 ```bash
 pm = dynamic
@@ -261,13 +261,13 @@ PHP-FPM erstellt einen neuen Prozess, um einen Prozess zu ersetzen, der mehrere 
 
 Standardmäßig ist der Wert von `pm.max_requests` 0, was bedeutet, dass Prozesse nie wiederverwendet werden. Die Option `pm.max_requests` kann für Anwendungen mit Speicherlecks nützlich sein.
 
-Ein dritter Betriebsmodus ist der `ondemand`-Modus. This mode only starts a process when it receives a request. Dies ist kein optimaler Modus für stark frequentierte Sites und ist für spezielle Anforderungen reserviert (Sites mit wenigen Anfragen, Verwaltungs--Backend usw.).
+Ein dritter Betriebsmodus ist der `ondemand`-Modus. Ist der Modus eingestellt, startet der Server nur einen Prozess, wenn er eine Anfrage erhält. Dies ist kein optimaler Modus für stark frequentierte Sites und ist für spezielle Anforderungen reserviert (Sites mit wenigen Anfragen, Verwaltungs--Backend usw.).
 
 !!! note "Anmerkung"
 
     Die Konfiguration des Betriebsmodus von PHP-FPM ist wichtig, um die optimale Funktion Ihres Webservers sicherzustellen.
 
-#### Process status
+#### Prozess-Status
 
 Wie Apache und sein Modul `mod_status` bietet PHP-FPM eine Seite, die den Status des Prozesses anzeigt.
 
@@ -295,9 +295,9 @@ max children reached: 0
 slow requests:        0
 ```
 
-#### Logging long requests
+#### Lange Anfragen protokollieren
 
-The `slowlog` directive specifies the file that receives logging requests that are too long (for instance, whose time exceeds the value of the `request_slowlog_timeout` directive).
+Die Direktive `slowlog` gibt die Datei an, die übermäßig lange Logging-Requests empfängt (z. B. solche, deren Zeit den Wert der Direktive `request_slowlog_timeout` überschreitet).
 
 Der Standardspeicherort der generierten Datei ist `/var/log/php-fpm/www-slow.log`.
 
@@ -308,7 +308,7 @@ slowlog = /var/log/php-fpm/www-slow.log
 
 Ein Wert von 0 für `request_slowlog_timeout` deaktiviert die Protokollierung.
 
-### NGinx integration
+### NGinx-Integration
 
 Die Standardeinstellung von nginx enthält bereits die notwendige Konfiguration, damit PHP mit PHP-FPM funktioniert.
 
