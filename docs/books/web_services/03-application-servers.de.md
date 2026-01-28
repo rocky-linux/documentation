@@ -81,9 +81,9 @@ Sie können nun mit der Installation der PHP-Engine fortfahren.
 
 ### Installation des PHP CGI-Modus
 
-Installieren und verwenden Sie zunächst PHP im CGI-Modus. It can only work with the Apache web server and its `mod_php` module. This document's FastCGI part (php-fpm) explains how to integrate PHP in Nginx (but also Apache).
+Installieren und verwenden Sie zunächst PHP im CGI-Modus. Es kann nur zusammen mit dem Apache-Webserver und seinem Modul `mod_php` funktionieren. This document's FastCGI part (php-fpm) explains how to integrate PHP in Nginx (but also Apache).
 
-The installation of PHP is relatively trivial. It consists of installing the main package and the few modules you will need.
+The installation of PHP is relatively trivial. Sie besteht aus der Installation des Hauptpakets und der wenigen Module, die Sie benötigen.
 
 The example below installs PHP with the modules usually installed with it.
 
@@ -127,7 +127,7 @@ To serve PHP pages in CGI mode, you must install the Apache server, configure it
  sudo firewall-cmd --reload
  ```
 
-The default vhost should work out of the box. PHP bietet eine Funktion `phpinfo()`, die eine Übersichtstabelle seiner Konfiguration generiert. Es ist sinnvoll zu testen, ob PHP gut funktioniert. However, be careful not to leave such test files on your servers. Sie stellen ein enormes Sicherheitsrisiko für Ihre Infrastruktur dar.
+Der Standard-`vhost` sollte auf Anhieb funktionieren. PHP bietet eine Funktion `phpinfo()`, die eine Übersichtstabelle seiner Konfiguration generiert. Es ist sinnvoll zu testen, ob PHP gut funktioniert. However, be careful not to leave such test files on your servers. Sie stellen ein enormes Sicherheitsrisiko für Ihre Infrastruktur dar.
 
 Erstellen Sie die Datei `/var/www/html/info.php` (`/var/www/html` ist das Standardverzeichnis `vhost` der Standardkonfiguration von Apache):
 
@@ -140,11 +140,9 @@ phpinfo();
 Überprüfen Sie mithilfe eines Webbrowsers, ob der Server ordnungsgemäß funktioniert, indem Sie auf die Seite
 [http://your-server-ip/info.php](http://your-server-ip/info.php).
 
-!!! Warning
+!!! warning "Warnhinweis"
 
-    ```
     Lassen Sie die Datei `info.php` nicht auf Ihrem Server!
-    ```
 
 ### Installation des PHP-CGI-Modus (PHP-FPM)
 
@@ -207,12 +205,12 @@ php_value[session.save_path]    = /var/lib/php/session
 php_value[soap.wsdl_cache_dir]  = /var/lib/php/wsdlcache
 ```
 
-| Instructions | Description                                                                                                                                                                                      |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `[pool]`     | Process pool name. Die Konfigurationsdatei kann mehrere Prozesspools umfassen (der Name des Pools in Klammern beginnt einen neuen Abschnitt). |
-| `listen`     | Defines the listening interface or the Unix socket used.                                                                                                                         |
+| Anweisungen | Beschreibung                                                                                                                                                                                         |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `[pool]`    | Name des Prozesspools. Die Konfigurationsdatei kann mehrere Prozesspools umfassen (der Name des Pools in Klammern beginnt einen neuen Abschnitt). |
+| `listen`    | Definiert die Listening-Schnittstelle oder den verwendeten Unix-Socket.                                                                                                              |
 
-#### Configuring the way to access php-fpm processes
+#### Konfiguration der Art und Weise, auf PHP-FPM-Prozesse zuzugreifen
 
 Es gibt zwei Möglichkeiten zur Verbindung.
 
@@ -220,7 +218,7 @@ Mit einer „Inet-Schnittstelle“ wie:
 
 `listen = 127.0.0.1:9000`.
 
-Or with a UNIX socket:
+Oder über einen UNIX-Socket:
 
 `listen = /run/php-fpm/www.sock`.
 
@@ -234,7 +232,7 @@ Wenn Sie mit einem Socket arbeiten, müssen Sie `listen.allowed_clients` konfigu
 
 Beispiel: `listen.allowed_clients = 127.0.0.1`
 
-#### Static or dynamic configuration
+#### Statische oder dynamische Konfiguration
 
 Sie können PHP-FPM-Prozesse statisch oder dynamisch verwalten.
 
@@ -249,7 +247,7 @@ Diese Konfiguration beginnt mit 10 Prozessen.
 
 In dynamic mode, PHP-FPM starts at _most_ the number of processes specified by the`pm.max_children` value. Es startet zunächst einige Prozesse, die `pm.start_servers` entsprechen, wobei mindestens der Wert von `pm.min_spare_servers` inaktiver Prozesse und höchstens `pm.max_spare_servers` inaktiver Prozesse beibehalten wird.
 
-Example:
+Beispiel:
 
 ```bash
 pm = dynamic
@@ -263,13 +261,13 @@ PHP-FPM erstellt einen neuen Prozess, um einen Prozess zu ersetzen, der mehrere 
 
 Standardmäßig ist der Wert von `pm.max_requests` 0, was bedeutet, dass Prozesse nie wiederverwendet werden. Die Option `pm.max_requests` kann für Anwendungen mit Speicherlecks nützlich sein.
 
-Ein dritter Betriebsmodus ist der `ondemand`-Modus. This mode only starts a process when it receives a request. Dies ist kein optimaler Modus für stark frequentierte Sites und ist für spezielle Anforderungen reserviert (Sites mit wenigen Anfragen, Verwaltungs--Backend usw.).
+Ein dritter Betriebsmodus ist der `ondemand`-Modus. Ist der Modus eingestellt, startet der Server nur einen Prozess, wenn er eine Anfrage erhält. Dies ist kein optimaler Modus für stark frequentierte Sites und ist für spezielle Anforderungen reserviert (Sites mit wenigen Anfragen, Verwaltungs--Backend usw.).
 
 !!! note "Anmerkung"
 
     Die Konfiguration des Betriebsmodus von PHP-FPM ist wichtig, um die optimale Funktion Ihres Webservers sicherzustellen.
 
-#### Process status
+#### Prozess-Status
 
 Wie Apache und sein Modul `mod_status` bietet PHP-FPM eine Seite, die den Status des Prozesses anzeigt.
 
@@ -297,9 +295,9 @@ max children reached: 0
 slow requests:        0
 ```
 
-#### Logging long requests
+#### Lange Anfragen protokollieren
 
-The `slowlog` directive specifies the file that receives logging requests that are too long (for instance, whose time exceeds the value of the `request_slowlog_timeout` directive).
+Die Direktive `slowlog` gibt die Datei an, die übermäßig lange Logging-Requests empfängt (z. B. solche, deren Zeit den Wert der Direktive `request_slowlog_timeout` überschreitet).
 
 Der Standardspeicherort der generierten Datei ist `/var/log/php-fpm/www-slow.log`.
 
@@ -310,7 +308,7 @@ slowlog = /var/log/php-fpm/www-slow.log
 
 Ein Wert von 0 für `request_slowlog_timeout` deaktiviert die Protokollierung.
 
-### NGinx integration
+### NGinx-Integration
 
 Die Standardeinstellung von nginx enthält bereits die notwendige Konfiguration, damit PHP mit PHP-FPM funktioniert.
 
@@ -364,9 +362,9 @@ location ~ \.php$ {
 }
 ```
 
-### Apache integration
+### Apache-Integration
 
-The configuration of Apache to use a PHP pool is quite simple. Sie müssen die Proxy-Module mit einer `ProxyPassMatch`-Anweisung verwenden, zum Beispiel:
+Die Konfiguration von Apache für die Nutzung eines PHP-Pools ist recht einfach. Sie müssen die Proxy-Module mit einer `ProxyPassMatch`-Anweisung verwenden, zum Beispiel:
 
 ```bash
 <VirtualHost *:80>
@@ -413,13 +411,13 @@ pm.max_spare_servers = 36
 pm.max_requests = 500
 ```
 
-with:
+mit:
 
-- `pm.start_servers` = 25% of `max_children`
-- `pm.min_spare_servers` = 25% of `max_children`
-- `pm.max_spare_servers` = 75% of `max_children`
+- `pm.start_servers` = 25% von `max_children`
+- `pm.min_spare_servers` = 25% von `max_children`
+- `pm.max_spare_servers` = 75% von`max_children`
 
-### Opcache configuration
+### Opcache-Konfiguration
 
 Der `opcache` (Optimizer Plus Cache) ist die erste Cache-Ebene, die Sie beeinflussen können.
 
@@ -427,17 +425,17 @@ Es behält die kompilierten PHP-Skripte im Speicher, was sich stark auf die Ausf
 
 Um es zu konfigurieren, müssen Sie folgende Schritte ausführen:
 
-- The size of the memory dedicated to the opcache according to the hit ratio, configuring it correctly
-- The number of PHP scripts to cache (number of keys + maximum number of scripts)
-- The number of strings to cache
+- Die Größe des dem Opcache zugewiesenen Speichers richtet sich nach der Trefferquote und muss korrekt konfiguriert werden
+- Die Anzahl der zwischenzuspeichernden PHP-Skripte (Anzahl der Schlüssel + maximale Anzahl der Skripte)
+- Die Anzahl der Zeichenketten, die zwischengespeichert werden sollen
 
-To install it:
+Um sie zu installieren:
 
 ```bash
 sudo dnf install php-opcache
 ```
 
-To configure it, edit the `/etc/php.d/10-opcache.ini` configuration file:
+Um dies zu konfigurieren, bearbeiten Sie die Konfigurationsdatei `/etc/php.d/10-opcache.ini`:
 
 ```bash
 opcache.memory_consumption=128
@@ -445,21 +443,21 @@ opcache.interned_strings_buffer=8
 opcache.max_accelerated_files=4000
 ```
 
-Where:
+Wobei:
 
-- `opcache.memory_consumption` corresponds to the amount of memory needed for the opcache (increase this until obtaining a correct hit ratio).
-- `opcache.interned_strings_buffer` is the amount of strings to cache.
-- `opcache.max_accelerated_files` is near to the result of the `find ./ -iname "*.php"|wc -l` command.
+- `opcache.memory_consumption` entspricht der Speichermenge, die für den opcache benötigt wird (erhöht bis ein korrektes Treffer-Verhältnis erreicht wird).
+- `opcache.interned_strings_buffer` ist die Anzahl der zwischenzuspeichernden Zeichenketten.
+- `opcache.max_accelerated_files` entspricht in etwa dem Ergebnis des Befehls `find ./ -iname "*.php"|wc -l`.
 
-To configure the opcache, refer to an `info.php` page (including the `phpinfo();`) (see, for example, the values of `Cached scripts` and `Cached strings`).
-
-!!! note "Anmerkung"
-
-    At each new deployment of new code, it will be necessary to empty the opcache (for example by restarting the php-fpm process).
+Informationen zur Konfiguration des Opcache finden Sie auf einer `info.php`-Seite (einschließlich `phpinfo();`) (siehe beispielsweise die Werte von `Cached scripts` und `Cached strings`).
 
 !!! note "Anmerkung"
 
-    Do not underestimate the speed gain that can be achieved by setting up and configuring the opcache correctly.
+    Bei jeder neuen Bereitstellung von neuem Code muss der Opcache geleert werden (z. B. durch Neustart des `php-fpm`-Prozesses).
+
+!!! note "Anmerkung"
+
+    Unterschätzen Sie nicht den Geschwindigkeitsgewinn, der durch die korrekte Einrichtung und Konfiguration des Opcache erzielt werden kann.
 
 <!---
 
