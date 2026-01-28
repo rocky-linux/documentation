@@ -67,7 +67,8 @@ Um Ihre GNOME-Erweiterungen zu verwalten, gehen Sie zunächst zu <https://extens
 
 ![Manage GNOME extensions](images/gnome_extensions_images/gnome-shell-installed-extensions.webp)
 
-Auf der Seite finden Sie eine Liste der installierten Erweiterungen. Sie können jedes dieser Elemente ein- oder ausschalten. Sie können die Shell-Einstellungen auch mithilfe des Umschaltknopfs auf einer der beiden verfügbaren Menüoptionen „Alle Erweiterungen deaktivieren“ oder „Versionsvalidierung deaktivieren“ konfigurieren.
+Auf der Seite finden Sie eine Liste der installierten Erweiterungen. Sie können jedes dieser Elemente ein- oder ausschalten. Sie können die Shell-Einstellungen auch konfigurieren, indem Sie auf den Umschalter einer der beiden verfügbaren Menüoptionen klicken:
+`Disable all extensions` oder `Disable version validation`.
 
 ## Zusammenfassung
 

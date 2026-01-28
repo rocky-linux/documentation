@@ -24,7 +24,7 @@ Rocky 10 (Codename „Red Quartz“) hat allgemeinen Support bis 31. Mai 2030 un
 
 ### Übersicht
 
-Rocky 9 (Code Name "Blue Onyx") wird bis zum 31. Mai 2027 angeboten und Sicherheitsunterstützung bis zum 31. Mai 2032 gewährleistet. Folgende Architekturen werden unterstützt: x86_64-v2, aarch64, ppc64le und s390x.
+Rocky 9 (Codename „Blue Onyx“) erhält allgemeinen Support bis zum 31. Mai 2027 und Sicherheitssupport bis zum 31. Mai 2032. Folgende Architekturen werden unterstützt: x86_64-v2, aarch64, ppc64le und s390x.
 
 ### Veröffentlichungsinformationen
 
