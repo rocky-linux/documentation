@@ -218,7 +218,7 @@ The output is broken into 3 separate columns.
 
 - **Third column (/etc/chrony.conf)**
 
-    - **/etc/chrony.conf**：Represents the path of the modified file.
+    - **/etc/chrony.conf**: Represents the path of the modified file.
 
 ## DNF Package Manager 
 
@@ -272,9 +272,9 @@ The "command" in syntax represents the functional item command of `dnf`. Some co
 
     View information on one or more software packages, such as `dnf info wget tree`
 
-1. **`deplist` command**
+1. **`deplist` command** (deprecated)
 
-    Lists the dependencies of the software package, which has been deprecated. Please use `dnf repoquery --deplist <Package-Name>` as an alternative.
+    Lists the dependencies of the software package. Please use `dnf repoquery --deplist <Package-Name>` as an alternative.
 
 1. **`repolist` command**
 
@@ -412,7 +412,7 @@ system-upgrade            Prepare system for upgrade to a new release
 
 ### configuration file description
 
-You can find all repository configuration files (ending in `.repo`) in the **/etc/yum.repos ** directory.d/** directory. Each `.repo` file can contain a single or multiple repositories, and users can selectively enable or disable them based on their specific situation.
+You can find all repository configuration files (ending in `.repo`) in the **/etc/yum.repos.d/** directory. Each `.repo` file can contain a single or multiple repositories, and users can selectively enable or disable them based on their specific situation.
 
 ```bash
 ls -l /etc/yum.repos.d/
@@ -469,7 +469,7 @@ For more information, please refer to `man 5 yum.conf`.
 
 **Application Streams in RL 8.x and RL 9.x:**: Rocky Linux 8.x and 9.x, use a new modular technology, allowing repositories to host multiple versions of applications and their dependencies. Due to the adoption of a modular architecture, the Application Streams in these two operating systems are also referred to as "Module Streams". System administrators can choose a specific version, which provides greater flexibility. If system administrators need to manage the Application Streams, they often need to use the `dnf module` command.
 
-**Application Streams in RL 10.x**: Starting from Rocky Linux 10.x, system administrators can still use the Application Streams, but the Application Streams are no longer provided in a modular form. In other words, in 10.x, the `dnf module` command no longer exists, and system administrators can manage different versions of applications in the traditional way. In this version of the operating system, the term "Application Streams" does not equal "Module Streams".
+**Application Streams in RL 10.x**: Starting from Rocky Linux 10.x, system administrators can still use the Application Streams, but the Application Streams are no longer provided in a modular form. In other words, the `dnf module` command in 10.x no longer works, and system administrators can manage different versions of applications in the traditional way. In this version of the operating system, the term "Application Streams" does not equal "Module Streams".
 
 Each Application Stream has a different lifecycle. Please refer to the following link:
 
@@ -549,7 +549,7 @@ Installed size: 14 M
 Is this ok [y/N]:
 ```
 
-Each Module Stream can have any number of profiles (or none at all), and you can mark the profiles of module streams with "[d]" to indicate the "default", or selected, module.
+Each Module Stream can have any number of profiles (or none at all). The default profiles of the Module Stream is marked with "[d]".
 
 In the above example, when the user needs to install nginx, the following command is equivalent:
 
@@ -571,12 +571,12 @@ The command used is `dnf module`, and it has some subcommands for functional ite
 
 #### View
 
-You can use the subcommands of the `list` or `info` function items to perform the corresponding operations.
+You can use `list` or `info` in the subcommands to complete this operation.
 
 * `dnf module list` - Gets a list of all available modules.
-* `dnf module list <Module-Name>` or `dnf module list <Module-Name>:<Stream>`- Lists all available streams (versions) for the current module. Lists the information of a single module stream. For example, `dnf module list postgresql` or `dnf module list postgresql:15`.
+* `dnf module list <Module-Name>` or `dnf module list <Module-Name>:<Stream>` - Lists all available streams (versions) for the current module. Lists the information of a single module stream. For example `dnf module list postgresql` or `dnf module list postgresql:15`.
 * `dnf module list --enabled` - Lists the enabled module stream(s).
-* `dnf module info <Module-Name>` or `dnf module info info <Module-name>:<Stream>` - Displays module stream information. If you only type the name of a module without a stream, all stream information for that module will be displayed. For example `dnf module info ruby` or `dnf  module info ruby:2.6`.
+* `dnf module info <Module-Name>` or `dnf module info <Module-name>:<Stream>` - Displays module stream information. If you only type the name of a module without a stream, all stream information for that module will be displayed. For example `dnf module info ruby` or `dnf module info ruby:2.6`.
 * `dnf moudle --info --profile <Module-Name>` or `dnf moudle --info --profile <Module-Name>:<Stream>` - Lists the profile information of the module stream. If you only type the name of a module without a stream, all stream profile information for that module will be displayed.
 
 #### Install
@@ -599,8 +599,8 @@ dnf -y module enable httpd:2.4
 
 The following installation methods are acceptable:
 
-* `dnf -y module install <Module-Name>` - Uses the default stream and default profile of a single module (if a default profile exists). For example, `dnf -y install httpd`
-* `dnf -y install <Module-Name>:<Stream>/<Profile>` - Using a specific stream and profile of a single module. For example, `dnf -y install httpd:2.4:/minimal`. If there are multiple profiles, you can use `*` to represent all of them, for example, `dnf module install httpd:2.4/*`
+* `dnf -y module install <Module-Name>` - Uses the default stream and default profile of a single module (if a default profile exists). For example `dnf -y install httpd`
+* `dnf -y install <Module-Name>:<Stream>/<Profile>` - Using a specific stream and profile of a single module. For example, `dnf -y install httpd:2.4:/minimal`. If there are multiple profiles, you can use `*` to represent all of them, for example `dnf module install httpd:2.4/*`
 
 #### Remove
 
@@ -634,7 +634,7 @@ If there are available updates for the module's stream, you need to perform the 
 2. `dnf module enable <Module-Name>:<New-Stream> ...`
 3. `dnf distro-sync`
 
-If the installation stream for a specific module is in the operating system, you can also use the 'switch to' command to upgrade or downgrade the software package. The specific syntax is:
+If already installed in the operating system, you can use the `switch-to` command option to upgrade or downgrade these software packages. The specific syntax is:
 
 ```bash
 dnf module switch-to <Module-Name>:<Stream>
@@ -871,10 +871,10 @@ Is this ok [y/N]:
 
 !!! tip "Friendly reminder"
 
-    When multiple repositories are enabled, the same software package may have multiple versions, and by default, the newer version has the highest priority. This is also the reason why the `--disablerepo` and `--enablrepo` options are used.
+    When multiple repositories are enabled, the same software package may have multiple versions, and by default, the newer version has the highest priority. This is also the reason why the `--disablerepo` and `--enablerepo` options are used.
 
 !!! attention "Support consideration"
 
     EPEL is a project initiated by volunteers in the Fedora community, so it is not commercially supported by Red Hat. Just like Fedora itself, Red Hat hosts the infrastructure for this project, and Red Hat engineers are involved as maintainers and leaders, but there are no commercial support contracts or service-level agreements provided by Red Hat for packages in EPEL.
 
-For the FAQ about EPEL, see [The Fedora Project EPEL FAQ here](https://docs.fedoraproject.org/en-US/epel/epel-faq/).
+For the FAQ about EPEL, See [the EPEL FAQ in the Fedora documentation](https://docs.fedoraproject.org/en-US/epel/epel-faq/).
