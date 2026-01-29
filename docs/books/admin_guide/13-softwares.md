@@ -634,7 +634,7 @@ If there are available updates for the module's stream, you need to perform the 
 2. `dnf module enable <Module-Name>:<New-Stream> ...`
 3. `dnf distro-sync`
 
-If already installed, the software packages associated with a specific module stream (version) are in the operating system, and you can use the `switch-to` command to upgrade or downgrade these software packages. The specific syntax is:
+If already installed in the operating system, you can use the `switch-to` command option to upgrade or downgrade these software packages. The specific syntax is:
 
 ```bash
 dnf module switch-to <Module-Name>:<Stream>
