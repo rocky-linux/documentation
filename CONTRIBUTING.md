@@ -1058,7 +1058,7 @@ Every document must include front matter metadata at the top:
 title: Your Document Title
 author: Your Name
 contributors: Comma, Separated, Names
-tested_with: 8.9, 9.3
+tested_with: 8.10, 9.7, 10.1
 tags:
   - relevant
   - tags
@@ -1201,7 +1201,7 @@ Every document requires front matter metadata. Check that your document includes
 | `title` | Yes | Document title |
 | `author` | Yes | Your name |
 | `contributors` | Recommended | Comma-separated list of contributors |
-| `tested_with` | Yes | Rocky Linux versions tested (e.g., `8.9, 9.3, 10`) |
+| `tested_with` | Yes | Rocky Linux versions tested (e.g., `8.10, 9.7, 10.1`) |
 | `tags` | Yes | Searchable one-word terms |
 
 **Check for required metadata:**
