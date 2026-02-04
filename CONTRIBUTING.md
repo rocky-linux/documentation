@@ -4,7 +4,7 @@ Thank you for your interest in contributing to Rocky Linux documentation. This g
 
 ## Quick Start
 
-1. Fork the repository
+1. Fork the [Rocky Linux Documentation repository](https://github.com/rocky-linux/documentation)
 2. Clone your fork locally
 3. Set up pre-commit hooks (required)
 4. Create or edit documentation
