@@ -82,7 +82,7 @@ Verify the installation:
 lychee --version
 ```
 
-#### Step 5: Clone and Configure the Repository
+#### Step 5: Clone your Forked Repository and Configure it
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/documentation.git
@@ -245,7 +245,7 @@ Verify the installation:
 lychee --version
 ```
 
-#### Step 5: Clone and Configure the Repository
+#### Step 5: Clone your Forked Repository and Configure it
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/documentation.git
@@ -403,7 +403,7 @@ Verify the installation:
 lychee --version
 ```
 
-#### Step 5: Clone and Configure the Repository
+#### Step 5: Clone your Forked Repository and Configure it
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/documentation.git
@@ -599,7 +599,7 @@ Then install markdownlint:
 npm install -g markdownlint-cli
 ```
 
-#### Step 6: Clone and Configure the Repository
+#### Step 6: Clone your Forked Repository and Configure it
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/documentation.git
@@ -817,7 +817,7 @@ choco install -y hunspell.portable
 choco install -y lychee
 ```
 
-#### Step 7: Clone and Configure the Repository
+#### Step 7: Clone your Forked Repository and Configure it
 
 ```powershell
 cd ~\Documents
@@ -1067,11 +1067,11 @@ After the front matter, structure your document with:
 
 ### Example Guides
 
-Study these existing guides to understand our formatting and style:
+Feel free to take a look at some example gudes to understand the formatting and styling:
 
-- [Beginner Contributors Guide](https://docs.rockylinux.org/guides/contribute/beginners/) - Good example of contributor-focused documentation
-- [Rocky Linux Installation](https://docs.rockylinux.org/guides/installation/) - Example of step-by-step installation guide
-- [Anacron](https://docs.rockylinux.org/guides/automation/anacron/) - Example of a focused automation guide
+- [Kickstart Files and Rocky Linux](https://docs.rockylinux.org/guides/automation/kickstart-rocky/)
+- [Setting Up libvirt on Rocky Linux](https://docs.rockylinux.org/guides/virtualization/libvirt-rocky/)
+- [Automatic template creation with Packer and deployment with Ansible in a VMware vSphere environment](https://docs.rockylinux.org/guides/automation/templates-automation-packer-vsphere/)
 
 ### AI Usage
 
