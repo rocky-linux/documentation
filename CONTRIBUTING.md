@@ -183,7 +183,7 @@ docs/guides/automation/kickstart-rocky-broken.md:1 error MD041/first-line-headin
 docs/guides/automation/kickstart-rocky-broken.md:162 error MD001/heading-increment Heading levels should only increment by one level at a time [Expected: h2; Actual: h3]
 ```
 
-#### Troubleshooting Rocky Linux 10 Setup
+#### Troubleshooting your Rocky Linux 10 Setup
 
 **pyspelling error: "option 'attributes' must be a float type"**
 
