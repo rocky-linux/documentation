@@ -1,7 +1,25 @@
+spellchecker: aspell
 matrix:
   - name: Markdown
     sources:
-      - "docs/**/*.md"
+      - 'docs/**/*.md'
+      # Exclude translation files
+      - '!docs/**/*.af.md'
+      - '!docs/**/*.de.md'
+      - '!docs/**/*.es.md'
+      - '!docs/**/*.fr.md'
+      - '!docs/**/*.hi.md'
+      - '!docs/**/*.id.md'
+      - '!docs/**/*.it.md'
+      - '!docs/**/*.ja.md'
+      - '!docs/**/*.ko.md'
+      - '!docs/**/*.pl.md'
+      - '!docs/**/*.pt.md'
+      - '!docs/**/*.pt-BR.md'
+      - '!docs/**/*.sv.md'
+      - '!docs/**/*.tr.md'
+      - '!docs/**/*.uk.md'
+      - '!docs/**/*.zh.md'
     expect_match: false
     aspell:
       lang: en
@@ -11,10 +29,8 @@ matrix:
         - .wordlist.txt
       output: build/spelling-wordlist.dic
     pipeline:
-      - pyspelling.filters.markdown:
-          comments: false
+      - pyspelling.filters.markdown
       - pyspelling.filters.html:
-          comments: true
           ignores:
             - code
             - pre

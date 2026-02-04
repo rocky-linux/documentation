@@ -12,6 +12,14 @@ repos:
         args: [--markdown-linebreak-ext=md]
       - id: end-of-file-fixer
       - id: check-yaml
+        # Exclude MkDocs config files that use Python-specific YAML tags
+        exclude: |
+          (?x)^(
+            tools/mkdocs-docker\.yml|
+            tools/docker-compose\.yml|
+            build_pdf/build_base\.yml|
+            mkdocs\.yml
+          )$
       - id: check-added-large-files
         # Block files larger than 1MB to prevent accidental binary commits
         args: ['--maxkb=1024']
@@ -31,14 +39,19 @@ repos:
         exclude: |
           (?x)^(
             LICENSE\.md|
-            build_pdf/.*
+            build_pdf/.*|
+            # Exclude translation files (non-English)
+            .*\.(af|de|es|fr|hi|id|it|ja|ko|pl|pt|pt-BR|sv|tr|uk|zh)\.md$
           )$
 
   # Local hooks that require system-installed tools
+  # These are set to manual stage - run with: pre-commit run --hook-stage manual <hook-id>
   - repo: local
     hooks:
       # Spell check using pyspelling with aspell
       # Requires: pip install pyspelling && dnf install aspell aspell-en
+      # Run manually: pre-commit run --hook-stage manual pyspelling
+      # Or directly: pyspelling -S "docs/guides/your-document.md"
       - id: pyspelling
         name: Spell check with pyspelling
         entry: pyspelling
@@ -47,18 +60,32 @@ repos:
         # Run against all files in config, not just staged files
         pass_filenames: false
         always_run: true
+        stages: [manual]
 
       # Link checking using lychee
       # Requires: dnf install lychee (or cargo install lychee)
+      # Run manually: pre-commit run --hook-stage manual lychee
+      # Or directly: lychee docs/guides/your-document.md
       - id: lychee
         name: Check links with lychee
         entry: lychee
         language: system
         types: [markdown]
+        stages: [manual]
+        # Exclude translation files from link checking
+        exclude: |
+          (?x)^(
+            .*\.(af|de|es|fr|hi|id|it|ja|ko|pl|pt|pt-BR|sv|tr|uk|zh)\.md$
+          )$
         args:
           - --no-progress
           - --exclude-loopback
-          - --exclude-mail
+          # Limit concurrent connections to avoid "too many open files" on macOS
+          - --max-concurrency
+          - '20'
+          # Exclude email addresses from link checking
+          - --exclude
+          - 'mailto:'
           # Exclude patterns for placeholder URLs used in documentation examples
           # These are intentionally not real URLs
           - --exclude
