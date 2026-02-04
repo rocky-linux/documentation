@@ -175,6 +175,14 @@ When running `pre-commit run --all-files` for the first time, you may see errors
 markdownlint "docs/guides/your-document.md"
 ```
 
+Example output:
+
+```text
+markdownlint docs/guides/automation/kickstart-rocky-broken.md
+docs/guides/automation/kickstart-rocky-broken.md:1 error MD041/first-line-heading/first-line-h1 First line in a file should be a top-level heading [Context: "---"]
+docs/guides/automation/kickstart-rocky-broken.md:162 error MD001/heading-increment Heading levels should only increment by one level at a time [Expected: h2; Actual: h3]
+```
+
 #### Troubleshooting Rocky Linux 10 Setup
 
 **pyspelling error: "option 'attributes' must be a float type"**
