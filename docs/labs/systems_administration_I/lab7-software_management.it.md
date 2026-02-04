@@ -859,7 +859,7 @@ Prendiamo come esempio il programma di sincronizzazione dell'ora `chrony` per il
 
    - **Prima colonna (S.5.... T.)**
 
-     L'output di esempio - `S.5....T.` indica i 9 campi utilizzati per indicare informazioni utili   sulla validità dei file in un pacchetto RPM. Qualsiasi campo o caratteristica che ha superato un determinato controllo/test è indicato da un “.”.
+     Utilizza 9 campi per rappresentare le informazioni valide del file dopo l'installazione del pacchetto software RPM. Qualsiasi campo o caratteristica che ha superato un determinato controllo/test è indicato da un “.”.
 
      Di seguito sono descritti questi 9 differenti campi o controlli:
 
@@ -873,13 +873,14 @@ Prendiamo come esempio il programma di sincronizzazione dell'ora `chrony` per il
      - T: Se l'ora di modifica (mTime) del file è stata modificata.
      - P: Se la funzione del programma è stata modificata.
 
-   - **Seconda Colonna (c)**
+   - **Seconda colonna (c)**
 
-     - **c**: Indica le modifiche apportate al file di configurazione. Può anche assumere i seguenti valori:
-     - d: file di documentazione.
-     - g: file ghost. Se ne vedono pochissimi.
-     - l: file di licenza.
-     - r: file readme.
+     **c** indica le modifiche apportate al file di configurazione. Può anche assumere i seguenti valori:
+
+     - d: file di documentazione
+     - g: file ghost. Se ne vedono pochissimi
+     - l: file di licenza
+     - r: file readme
 
    - **Terza colonna (/etc/chrony.conf)**
 
