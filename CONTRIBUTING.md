@@ -21,6 +21,23 @@ Before contributing, you need:
 - [Node.js](https://nodejs.org/) for markdown linting
 - A text editor (see [Local Editors](#local-editors) below)
 
+## Fork and Clone the Repository
+
+1. Navigate to the [Rocky Linux documentation repository](https://github.com/rocky-linux/documentation)
+2. Click the **Fork** button in the upper right corner
+3. Clone your fork to your local machine:
+
+```bash
+git clone https://github.com/YOUR_USERNAME/documentation.git
+cd documentation
+```
+
+4. Add the upstream repository as a remote:
+
+```bash
+git remote add upstream https://github.com/rocky-linux/documentation.git
+```
+
 ## Setting Up Your Environment
 
 ### Rocky Linux 10 Setup
@@ -909,23 +926,6 @@ winget install Git.Git Python.Python.3.12 OpenJS.NodeJS.LTS
 
 Note: You will still need Chocolatey for hunspell and lychee, or download them manually.
 
-### Fork and Clone the Repository
-
-1. Navigate to the [Rocky Linux documentation repository](https://github.com/rocky-linux/documentation)
-2. Click the **Fork** button in the upper right corner
-3. Clone your fork to your local machine:
-
-```bash
-git clone https://github.com/YOUR_USERNAME/documentation.git
-cd documentation
-```
-
-4. Add the upstream repository as a remote:
-
-```bash
-git remote add upstream https://github.com/rocky-linux/documentation.git
-```
-
 ### Install Pre-commit Hooks (Required)
 
 Pre-commit hooks run automatically before each commit to check spelling, markdown formatting, and links. You must set these up before contributing.
@@ -1072,6 +1072,10 @@ Study these existing guides to understand our formatting and style:
 - [Beginner Contributors Guide](https://docs.rockylinux.org/guides/contribute/beginners/) - Good example of contributor-focused documentation
 - [Rocky Linux Installation](https://docs.rockylinux.org/guides/installation/) - Example of step-by-step installation guide
 - [Anacron](https://docs.rockylinux.org/guides/automation/anacron/) - Example of a focused automation guide
+
+### AI Usage
+
+The Rocky Linux Documentation Team permits AI and LLM tools in the contribution process, following the [Fedora AI Policy](https://docs.fedoraproject.org/en-US/docs/ai-policy/) as a baseline. If you use AI for any part of your documentation (drafting, research, grammar, code generation), you must include a disclosure at the beginning of your document stating that AI was used and that you take full responsibility for correctness. You must test every procedure and verify all technical content yourself, as AI frequently produces errors. Do not pass other contributors' existing work through AI tools and resubmit it as a contribution, as this erases the original author's voice and creates unnecessary churn. Minor corrections such as typos and broken links do not require disclosure.
 
 ## Formatting Guidelines
 
@@ -1494,10 +1498,6 @@ git commit -m "Fix typo in installation guide"
 ```bash
 git push origin fix-typo-in-installation-guide
 ```
-
-## AI Usage in Contributions
-
-The Rocky Linux Documentation Team permits AI and LLM tools in the contribution process, following the [Fedora AI Policy](https://docs.fedoraproject.org/en-US/docs/ai-policy/) as a baseline. If you use AI for any part of your documentation (drafting, research, grammar, code generation), you must include a disclosure at the beginning of your document stating that AI was used and that you take full responsibility for correctness. You must test every procedure and verify all technical content yourself, as AI frequently produces errors. Do not pass other contributors' existing work through AI tools and resubmit it as a contribution, as this erases the original author's voice and creates unnecessary churn. Minor corrections such as typos and broken links do not require disclosure.
 
 ## Submitting a Pull Request
 
