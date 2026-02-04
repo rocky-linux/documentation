@@ -165,7 +165,7 @@ When running `pre-commit run --all-files` for the first time, you may see errors
 | end-of-file-fixer | May auto-fix files | Changes are staged automatically |
 | check-yaml | Pass | MkDocs config files are excluded |
 | check-added-large-files | Pass | |
-| markdownlint | May show errors | Errors in existing files are not your responsibility |
+| markdownlint | May show errors | |
 | pyspelling | Pass (with Hunspell config) | Requires Step 6 configuration |
 | lychee | Pass | Some timeouts are normal |
 
