@@ -23,7 +23,7 @@ Before contributing, you need:
 
 ## Setting Up Your Environment
 
-### Rocky Linux 10 Complete Setup
+### Rocky Linux 10 Setup
 
 If you are running Rocky Linux 10, follow these steps to set up a complete documentation validation environment. This installs all required tools and enables you to run the same checks that the Documentation Team uses to validate pull requests.
 
@@ -187,7 +187,7 @@ If you see YAML errors on these files, verify that your `.pre-commit-config.yaml
 
 The `--exclude-mail` flag was deprecated in lychee v0.15.x and removed in v0.19.x. Email addresses are now excluded by default. If you encounter this error, verify that your `.pre-commit-config.yaml` uses `--exclude 'mailto:'` instead of `--exclude-mail`.
 
-### Rocky Linux 9 Complete Setup
+### Rocky Linux 9 Setup
 
 If you are running Rocky Linux 9, follow these steps to set up a complete documentation validation environment. Rocky Linux 9 uses Hunspell for spell checking (aspell is not available in EPEL for Rocky Linux 9).
 
@@ -334,7 +334,7 @@ When using `pip install --user`, the binary is in `~/.local/bin/`:
 export PATH="$HOME/.local/bin:$PATH"
 ```
 
-### Rocky Linux 8 Complete Setup
+### Rocky Linux 8 Setup
 
 If you are running Rocky Linux 8, follow these steps to set up a complete documentation validation environment. Rocky Linux 8 uses Aspell for spell checking (available from base repositories).
 
@@ -505,7 +505,7 @@ When using `pip install --user`, the binary is in `~/.local/bin/`:
 export PATH="$HOME/.local/bin:$PATH"
 ```
 
-### macOS Sequoia Complete Setup
+### macOS Sequoia Setup
 
 If you are running macOS Sequoia (macOS 15), follow these steps to set up a complete documentation validation environment. These instructions have been tested on both Apple Silicon (M1/M2/M3/M4) and Intel Macs.
 
@@ -753,6 +753,162 @@ brew install ca-certificates
 lychee --insecure docs/your-document.md
 ```
 
+### Windows 11 Setup
+
+If you are running Windows 11, follow these steps to set up a complete documentation validation environment.
+
+#### Step 1: Install Chocolatey Package Manager
+
+Open **PowerShell as Administrator** (right-click Start → Terminal (Admin)) and run:
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force
+iwr https://community.chocolatey.org/install.ps1 -UseBasicParsing | iex
+```
+
+Close and reopen PowerShell as Administrator after installation.
+
+#### Step 2: Install Git, Python, and Node.js
+
+```powershell
+choco install -y git python nodejs-lts
+```
+
+Close and reopen PowerShell as Administrator to refresh the PATH.
+
+#### Step 3: Install Python Packages
+
+```powershell
+pip install pre-commit pyspelling
+```
+
+#### Step 4: Install Node.js Packages
+
+```powershell
+npm install -g markdownlint-cli
+```
+
+#### Step 5: Install Hunspell (Spell Checker)
+
+```powershell
+choco install -y hunspell.portable
+```
+
+#### Step 6: Install Lychee (Link Checker)
+
+```powershell
+choco install -y lychee
+```
+
+#### Step 7: Clone and Configure the Repository
+
+```powershell
+cd ~\Documents
+git clone https://github.com/YOUR_USERNAME/documentation.git
+cd documentation
+```
+
+#### Step 8: Create Pre-commit Configuration
+
+Create a `.pre-commit-config.yaml` file in the repository root:
+
+```powershell
+@"
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer
+      - id: check-yaml
+        exclude: |
+          (?x)^(
+            tools/mkdocs-docker\.yml|
+            tools/docker-compose\.yml|
+            build_pdf/build_base\.yml|
+            mkdocs\.yml
+          )$
+      - id: check-added-large-files
+        args: ['--maxkb=1024']
+
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.38.0
+    hooks:
+      - id: markdownlint
+        args:
+          - --config
+          - .markdownlint.yml
+          - --fix
+        files: \.md$
+        exclude: |
+          (?x)^(
+            LICENSE\.md|
+            build_pdf/.*
+          )$
+"@ | Out-File -FilePath .pre-commit-config.yaml -Encoding UTF8
+```
+
+#### Step 9: Install Pre-commit Hooks
+
+```powershell
+pre-commit install
+```
+
+#### Step 10: Verify Your Setup
+
+Run validation checks to confirm everything is working:
+
+```powershell
+pre-commit run --files docs/guides/automation/kickstart-rocky.md
+```
+
+#### Troubleshooting Windows 11 Setup
+
+**Chocolatey installation fails**
+
+If the Chocolatey installation command fails due to line break issues when pasting, run the two commands separately:
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force
+```
+
+Then:
+
+```powershell
+iwr https://community.chocolatey.org/install.ps1 -UseBasicParsing | iex
+```
+
+**Commands not found after installation**
+
+Close and reopen PowerShell after installing packages to refresh the PATH environment variable.
+
+**aspell not available**
+
+Aspell is not available in Chocolatey. Use Hunspell instead:
+
+```powershell
+choco install -y hunspell.portable
+```
+
+**Permission errors with pip or npm**
+
+Run PowerShell as Administrator for all installation commands.
+
+**pre-commit config file not found**
+
+Ensure you created the `.pre-commit-config.yaml` file in the repository root directory (the `documentation` folder, not a subdirectory).
+
+**Alternative: Use winget instead of Chocolatey**
+
+Windows 11 includes winget by default. You can use it as an alternative:
+
+```powershell
+winget install Git.Git Python.Python.3.12 OpenJS.NodeJS.LTS
+```
+
+Note: You will still need Chocolatey for hunspell and lychee, or download them manually.
+
 ### Fork and Clone the Repository
 
 1. Navigate to the [Rocky Linux documentation repository](https://github.com/rocky-linux/documentation)
@@ -774,11 +930,13 @@ git remote add upstream https://github.com/rocky-linux/documentation.git
 
 Pre-commit hooks run automatically before each commit to check spelling, markdown formatting, and links. You must set these up before contributing.
 
-**Rocky Linux users**: Follow the version-specific setup section instead of the general instructions below:
+**Platform-specific setup guides** - Follow the appropriate section instead of the general instructions below:
 
-- [Rocky Linux 10 Complete Setup](#rocky-linux-10-complete-setup) - Uses Hunspell, npm bundled with nodejs
-- [Rocky Linux 9 Complete Setup](#rocky-linux-9-complete-setup) - Uses Hunspell (aspell not available in EPEL)
-- [Rocky Linux 8 Complete Setup](#rocky-linux-8-complete-setup) - Uses Aspell, requires Python 3.9 and Node.js 18 module
+- [Rocky Linux 10 Setup](#rocky-linux-10-setup) - Uses Hunspell, npm bundled with nodejs
+- [Rocky Linux 9 Setup](#rocky-linux-9-setup) - Uses Hunspell (aspell not available in EPEL)
+- [Rocky Linux 8 Setup](#rocky-linux-8-setup) - Uses Aspell, requires Python 3.9 and Node.js 18 module
+- [macOS Sequoia Setup](#macos-sequoia-setup) - Uses Homebrew and Aspell
+- [Windows 11 Setup](#windows-11-setup) - Uses Chocolatey, Hunspell, and PowerShell
 
 1. Install pre-commit:
 
@@ -1401,7 +1559,7 @@ sudo apt-get install aspell aspell-en
 brew install aspell
 ```
 
-**Note for Rocky Linux 9 and 10 users**: Rocky Linux 9 and 10 use Hunspell instead of Aspell. The `aspell` package is not available in Rocky Linux 9 EPEL or Rocky Linux 10 base repositories. If you encounter spell check errors, ensure your `.pyspelling.yml` is configured for Hunspell (see [Rocky Linux 10 Complete Setup](#rocky-linux-10-complete-setup) or [Rocky Linux 9 Complete Setup](#rocky-linux-9-complete-setup)).
+**Note for Rocky Linux 9 and 10 users**: Rocky Linux 9 and 10 use Hunspell instead of Aspell. The `aspell` package is not available in Rocky Linux 9 EPEL or Rocky Linux 10 base repositories. If you encounter spell check errors, ensure your `.pyspelling.yml` is configured for Hunspell (see [Rocky Linux 10 Setup](#rocky-linux-10-setup) or [Rocky Linux 9 Setup](#rocky-linux-9-setup)).
 
 To verify which spell checker is installed:
 
