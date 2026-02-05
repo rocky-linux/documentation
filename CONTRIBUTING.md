@@ -40,6 +40,19 @@ git remote add upstream https://github.com/rocky-linux/documentation.git
 
 ## Setting Up Your Environment
 
+### Alternative Tooling
+
+The setup instructions in this section describe one approach to documentation validation using pre-commit hooks and command-line tools. There are other methods available to check your markdown documents, before submitting them as a PR.
+
+If you already use a terminal-based editor (Neovim, Emacs, Helix, etc.) with integrated linting tools, you can continue using your existing workflow. Tools like:
+
+- [markdownlint](https://github.com/DavidAnson/markdownlint) or [markdownlint-cli2](https://github.com/DavidAnson/markdownlint-cli2) - Available as editor plugins for real-time markdown linting
+- [vale](https://github.com/errata-ai/vale) - Prose linter that can enforce style guide rules
+- [harper-ls](https://github.com/Automattic/harper) - Grammar checker with LSP support
+- [ltex-ls](https://github.com/valentjn/ltex-ls) - LanguageTool-based grammar and spell checking via LSP
+
+These tools provide the same validation capabilities and can be configured to match the Rocky Linux documentation standards. The key requirement is that your contributions pass the automated CI checks when you submit a pull request, regardless of which tools you use locally.
+
 ### Rocky Linux 10 Setup
 
 If you are running Rocky Linux 10, follow these steps to set up a complete documentation validation environment. This installs all required tools and enables you to run the same checks that the Documentation Team uses to validate pull requests.
@@ -1536,6 +1549,13 @@ Choose a markdown editor that suits your workflow:
 
 - [NvChad](https://nvchad.com/) - For Neovim users. See our [NvChad setup guide](https://docs.rockylinux.org/books/nvchad/)
 - [Doom Emacs](https://github.com/doomemacs/doomemacs) - For Emacs users. Enable the `markdown` module in your config
+
+Terminal editors can integrate the same validation tools used by the pre-commit hooks directly into your editing workflow:
+
+- [markdownlint](https://github.com/DavidAnson/markdownlint)
+- [vale](https://github.com/errata-ai/vale)
+- [harper-ls](https://github.com/Automattic/harper)
+- [ltex-ls](https://github.com/valentjn/ltex-ls)
 
 ## Troubleshooting
 
