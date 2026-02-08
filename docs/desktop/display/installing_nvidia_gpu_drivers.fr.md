@@ -16,6 +16,8 @@ Voici d'autres méthodes alternatives pour installer les pilotes NVIDIA :
 
 Dans la plupart des cas, il est préférable d'installer les pilotes NVIDIA à partir de la source officielle. RPMFusion et ELRepo sont disponibles pour ceux qui préfèrent un dépôt communautaire. Pour les matériels plus anciens, RPMFusion fonctionne mieux. Il est recommandé d'éviter d'utiliser le programme d'installation `.run`. Bien que pratique, l'utilisation du programme d'installation `.run` est connue pour écraser les fichiers système et présente des problèmes d'incompatibilité.
 
+Le pilote GPU NVIDIA pour Linux contient deux « variantes » de modules de noyau : une variante de module de noyau ouvert prise en charge pour Turing et les architectures plus récentes et une variante de module de noyau propriétaire requise pour les architectures plus anciennes. Notez que la version du module noyau ouvert est devenue l'installation par défaut et recommandée depuis la sortie du pilote 560, et que les séries de GPU plus récentes telles que la série RTX 50 ne prennent en charge que la version du module noyau ouvert.
+
 ## Prérequis
 
 Pour ce guide, vous aurez besoin des éléments suivants :

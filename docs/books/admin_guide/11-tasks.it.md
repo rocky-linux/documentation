@@ -211,7 +211,7 @@ Per semplificare la notazione della definizione di tempo, è consigliabile utili
 | `*`              | Indica tutti i valori temporali del campo |
 | `-`              | Indica un intervallo di tempo continuo    |
 | `,`              | Indica l'intervallo di tempo discontinuo  |
-| `/`              | Intervallo di tempo indicato              |
+| `/`              | Indica l'intervallo di tempo              |
 
 Esempi:
 
