@@ -577,14 +577,14 @@ You can use `list` or `info` in the subcommands to complete this operation.
 * `dnf module list <Module-Name>` or `dnf module list <Module-Name>:<Stream>` - Lists all available streams (versions) for the current module. Lists the information of a single module stream. For example `dnf module list postgresql` or `dnf module list postgresql:15`.
 * `dnf module list --enabled` - Lists the enabled module stream(s).
 * `dnf module info <Module-Name>` or `dnf module info <Module-name>:<Stream>` - Displays module stream information. If you only type the name of a module without a stream, all stream information for that module will be displayed. For example `dnf module info ruby` or `dnf module info ruby:2.6`.
-* `dnf moudle --info --profile <Module-Name>` or `dnf moudle --info --profile <Module-Name>:<Stream>` - Lists the profile information of the module stream. If you only type the name of a module without a stream, all stream profile information for that module will be displayed.
+* `dnf module --info --profile <Module-Name>` or `dnf module --info --profile <Module-Name>:<Stream>` - Lists the profile information of the module stream. If you only type the name of a module without a stream, all stream profile information for that module will be displayed.
 
 #### Install
 
 Before installing a specific stream of a module, you need to enable that stream. The syntax used is as follows:
 
 ```bash
-dnf moudle enable <Module-Name>:<Stream> ...
+dnf module enable <Module-Name>:<Stream> ...
 ```
 
 For example:
