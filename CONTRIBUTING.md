@@ -196,7 +196,14 @@ When running `pre-commit run --all-files` for the first time, you may see errors
 Before submitting your documentation, validate your specific file to ensure it passes all checks:
 
 ```bash
+# Spell check
+pyspelling -S "docs/guides/your-document.md"
+
+# Markdown lint
 markdownlint "docs/guides/your-document.md"
+
+# Link check
+lychee "docs/guides/your-document.md" --no-progress
 ```
 
 Example output:
@@ -378,7 +385,14 @@ Run all validation checks to confirm everything is working:
 Before submitting your documentation, validate your specific file to ensure it passes all checks:
 
 ```bash
+# Spell check
+pyspelling -S "docs/guides/your-document.md"
+
+# Markdown lint
 markdownlint "docs/guides/your-document.md"
+
+# Link check
+lychee "docs/guides/your-document.md" --no-progress
 ```
 
 #### Troubleshooting Rocky Linux 9 Setup
@@ -545,7 +559,14 @@ Run all validation checks to confirm everything is working:
 Before submitting your documentation, validate your specific file to ensure it passes all checks:
 
 ```bash
+# Spell check
+pyspelling -S "docs/guides/your-document.md"
+
+# Markdown lint
 markdownlint "docs/guides/your-document.md"
+
+# Link check
+lychee "docs/guides/your-document.md" --no-progress
 ```
 
 #### Troubleshooting Rocky Linux 8 Setup
