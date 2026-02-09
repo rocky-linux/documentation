@@ -3,6 +3,7 @@ admonitions
 Ansible
 API
 APIs
+Apptainer
 Aspell
 AWX
 backend
@@ -29,6 +30,7 @@ crowdin
 datatype
 datatypes
 Debian
+Devel
 distro
 distros
 DNS
@@ -41,6 +43,7 @@ favicon
 frontend
 frontends
 GitHub
+Grafana
 hostname
 hostnames
 howto
@@ -62,7 +65,9 @@ LXD
 macOS
 markdownlint
 Mattermost
+Minecraft
 MkDocs
+munge
 namespace
 namespaces
 Neovim
@@ -79,7 +84,11 @@ RESF
 RHEL
 RPM
 rsync
+SchedMD
 SELinux
+Slurm
+slurm
+SlurmUser
 SMB
 SSH
 SSL

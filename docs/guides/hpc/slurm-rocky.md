@@ -2299,7 +2299,7 @@ EOF
 
 ## Conclusion
 
-Now that you have your `slurm` cluster running on Rocky Linux, there are almost infinite possiblities on where to go next. Here are a few practical options for your home lab:
+Now that you have your `slurm` cluster running on Rocky Linux, there are almost infinite possibilities on where to go next. Here are a few practical options for your home lab:
 
 * Set up `slurm` accounting^1^, so you're able to track every job submitted and what resources were consumed.
 
@@ -2307,7 +2307,7 @@ Now that you have your `slurm` cluster running on Rocky Linux, there are almost 
 
 * How about Apptainer^2^ and using that to pull your container images and submit `slurm` jobs that execute the containerized applications?
 
-* For an added challenege, try running a Minecraft or similar game server on your `slurm` cluster.
+* For an added challenge, try running a Minecraft or similar game server on your `slurm` cluster.
 
 The list is endless and of course, `slurm`'s is massively used in HPC and data science.
 
