@@ -1715,7 +1715,7 @@ Some websites block automated requests. If you get false failures:
 
 ## Getting Help
 
-- **Mattermost**: Join the [Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation) and the community of contributors will be more than happy to help you with your document: whether that be with the local editing setup to content review and formatting
+- **Mattermost**: Join the [Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation) and the community of contributors will be more than happy to help you with your document: whether that be with your local editing setup to content review and formatting.
 - **GitHub Issues**: Report documentation bugs or suggest improvements
 - **Forums**: Visit the [Rocky Linux Forums](https://forums.rockylinux.org) for general questions
 
