@@ -109,56 +109,18 @@ cd documentation
 git pull origin main
 ```
 
-#### Step 6: Configure Pyspelling for Hunspell
+#### Step 6: Verify Pyspelling Configuration
 
-Rocky Linux 10 uses Hunspell instead of Aspell. Create a `.pyspelling.yml` file in the repository root if one does not exist or if you need to override the default:
+The repository includes a `.pyspelling.yml` configured for Hunspell, which is the default spell checker on Rocky Linux 10. No additional configuration is needed. Verify that Hunspell is installed:
 
 ```bash
-cat > .pyspelling.yml << 'EOF'
-spellchecker: hunspell
-matrix:
-  - name: Markdown
-    sources:
-      # Process English files only - exclude translations
-      - 'docs/**/*.md|!docs/**/*.{af,de,en,es,fr,hi,id,it,ja,ko,pl,pt,pt-BR,sv,tr,uk,zh}.md'
-    expect_match: false
-    hunspell:
-      d: en_US
-    dictionary:
-      wordlists:
-        - .wordlist.txt
-      output: build/spelling-wordlist.dic
-    pipeline:
-      - pyspelling.filters.markdown:
-      - pyspelling.filters.html:
-          comments: true
-          ignores:
-            - code
-            - pre
-            - kbd
-      - pyspelling.filters.context:
-          context_visible_first: true
-          escapes: '\\[\\`]'
-          delimiters:
-            # Ignore front matter
-            - open: '(?s)^---'
-              close: '^---'
-            # Ignore code blocks
-            - open: '(?s)^(?P<open>`{3,}).*$'
-              close: '^(?P=open)$'
-            # Ignore inline code
-            - open: '`'
-              close: '`'
-            # Ignore URLs
-            - open: '\('
-              content: 'https?://[^\)]*'
-              close: '\)'
-            # Ignore email addresses
-            - open: '<'
-              content: '[^>]+@[^>]+'
-              close: '>'
-      - pyspelling.filters.url:
-EOF
+rpm -q hunspell hunspell-en-US
+```
+
+If not installed:
+
+```bash
+sudo dnf install -y hunspell hunspell-en-US
 ```
 
 #### Step 7: Install Pre-commit Hooks
@@ -307,56 +269,18 @@ git clone https://github.com/YOUR_USERNAME/documentation.git
 cd documentation
 ```
 
-#### Step 6: Configure Pyspelling for Hunspell
+#### Step 6: Verify Pyspelling Configuration
 
-Rocky Linux 9 uses Hunspell instead of Aspell. Create a `.pyspelling.yml` file in the repository root:
+The repository includes a `.pyspelling.yml` configured for Hunspell, which is the default spell checker on Rocky Linux 9. No additional configuration is needed. Verify that Hunspell is installed:
 
 ```bash
-cat > .pyspelling.yml << 'EOF'
-spellchecker: hunspell
-matrix:
-  - name: Markdown
-    sources:
-      # Process English files only - exclude translations
-      - 'docs/**/*.md|!docs/**/*.{af,de,en,es,fr,hi,id,it,ja,ko,pl,pt,pt-BR,sv,tr,uk,zh}.md'
-    expect_match: false
-    hunspell:
-      d: en_US
-    dictionary:
-      wordlists:
-        - .wordlist.txt
-      output: build/spelling-wordlist.dic
-    pipeline:
-      - pyspelling.filters.markdown:
-      - pyspelling.filters.html:
-          comments: true
-          ignores:
-            - code
-            - pre
-            - kbd
-      - pyspelling.filters.context:
-          context_visible_first: true
-          escapes: '\\[\\`]'
-          delimiters:
-            # Ignore front matter
-            - open: '(?s)^---'
-              close: '^---'
-            # Ignore code blocks
-            - open: '(?s)^(?P<open>`{3,}).*$'
-              close: '^(?P=open)$'
-            # Ignore inline code
-            - open: '`'
-              close: '`'
-            # Ignore URLs
-            - open: '\('
-              content: 'https?://[^\)]*'
-              close: '\)'
-            # Ignore email addresses
-            - open: '<'
-              content: '[^>]+@[^>]+'
-              close: '>'
-      - pyspelling.filters.url:
-EOF
+rpm -q hunspell hunspell-en-US
+```
+
+If not installed:
+
+```bash
+sudo dnf install -y hunspell hunspell-en-US
 ```
 
 #### Step 7: Install Pre-commit Hooks
@@ -482,7 +406,7 @@ cd documentation
 
 #### Step 6: Configure Pyspelling for Aspell
 
-Rocky Linux 8 uses Aspell from the base repositories. Create a `.pyspelling.yml` file in the repository root:
+The repository `.pyspelling.yml` is configured for Hunspell by default. Rocky Linux 8 uses Aspell instead, so you need to create a local override. Create a `.pyspelling.yml` file in the repository root:
 
 ```bash
 cat > .pyspelling.yml << 'EOF'
@@ -532,6 +456,8 @@ matrix:
       - pyspelling.filters.url:
 EOF
 ```
+
+**Important**: Do not commit this local `.pyspelling.yml` override, as the repository default uses Hunspell for Rocky Linux 9 and 10 compatibility.
 
 #### Step 7: Install Pre-commit Hooks
 
@@ -699,7 +625,7 @@ git remote add upstream https://github.com/rocky-linux/documentation.git
 
 #### Step 7: Configure Pyspelling for macOS
 
-macOS uses Aspell (installed via Homebrew). Create a `.pyspelling.yml` file in the repository root configured for Aspell:
+The repository `.pyspelling.yml` is configured for Hunspell by default. macOS uses Aspell (installed via Homebrew), so you need to create a local override. Create a `.pyspelling.yml` file in the repository root configured for Aspell:
 
 ```bash
 cat > .pyspelling.yml << 'EOF'
@@ -742,6 +668,8 @@ matrix:
       - pyspelling.filters.url
 EOF
 ```
+
+**Important**: Do not commit this local `.pyspelling.yml` override, as the repository default uses Hunspell for Rocky Linux 9 and 10 compatibility.
 
 #### Step 8: Install Pre-commit Hooks
 

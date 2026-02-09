@@ -1,4 +1,4 @@
-spellchecker: aspell
+spellchecker: hunspell
 matrix:
   - name: Markdown
     sources:
@@ -21,8 +21,7 @@ matrix:
       - '!docs/**/*.uk.md'
       - '!docs/**/*.zh.md'
     expect_match: false
-    aspell:
-      lang: en
+    hunspell:
       d: en_US
     dictionary:
       wordlists:
