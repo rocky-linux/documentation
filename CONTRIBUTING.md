@@ -1540,6 +1540,19 @@ If the spell checker flags a valid technical term, add it to `.wordlist.txt` in 
 - Technical acronyms
 - Command names
 
+**Important**: Do not include `.wordlist.txt` changes in your pull request. Keep your wordlist additions local to your machine. The documentation team maintains the shared `.wordlist.txt` and will add any necessary terms during the review process. When staging files for your commit, only add your document:
+
+```bash
+# Only stage your document, not the wordlist
+git add docs/guides/your-document.md
+```
+
+If you have already staged `.wordlist.txt` by mistake, unstage it before committing:
+
+```bash
+git restore --staged .wordlist.txt
+```
+
 ## Editing Existing Documentation
 
 1. Sync your fork with upstream:
