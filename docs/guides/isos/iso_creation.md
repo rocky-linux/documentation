@@ -18,7 +18,7 @@ tags:
 
 ## Introduction
 
-There are many reasons for creating an ISO. Perhaps you want to change the boot process, add specific packages at install time, or update particular configuration files.
+There are many reasons for creating an ISO. Perhaps you want to modify the boot process, add specific packages during installation, or update specific configuration files.
 
 This guide will instruct you on how to build your own Rocky Linux ISO.
 
@@ -80,4 +80,4 @@ mkksiso --add ~/baseos --ks <PATH_TO_KICKSTART_FILE> ~/<PATH_TO_ISO> ~/<PATH_TO_
 
 ## Conclusion
 
-Once your own ISO is built with your kickstart file, it makes it much easier to deploy hundreds of machines with the one image and not needing to configure each machine individually. To learn more about `kickstart` files, along with multiple examples, please check out the [Kickstart Files and Rocky Linux guide](../../automation/kickstart-rocky/). 
+Once your ISO is built with your kickstart file, it becomes much easier to deploy hundreds of machines from a single image without configuring each machine individually. To learn more about `kickstart` files, along with multiple examples, please check out the [Kickstart Files and Rocky Linux guide](../../automation/kickstart-rocky/). 
