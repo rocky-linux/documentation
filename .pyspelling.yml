@@ -1,0 +1,58 @@
+spellchecker: hunspell
+matrix:
+  - name: Markdown
+    sources:
+      - 'docs/**/*.md'
+      # Exclude translation files
+      - '!docs/**/*.af.md'
+      - '!docs/**/*.de.md'
+      - '!docs/**/*.es.md'
+      - '!docs/**/*.fr.md'
+      - '!docs/**/*.hi.md'
+      - '!docs/**/*.id.md'
+      - '!docs/**/*.it.md'
+      - '!docs/**/*.ja.md'
+      - '!docs/**/*.ko.md'
+      - '!docs/**/*.pl.md'
+      - '!docs/**/*.pt.md'
+      - '!docs/**/*.pt-BR.md'
+      - '!docs/**/*.sv.md'
+      - '!docs/**/*.tr.md'
+      - '!docs/**/*.uk.md'
+      - '!docs/**/*.zh.md'
+    expect_match: false
+    hunspell:
+      d: en_US
+    dictionary:
+      wordlists:
+        - .wordlist.txt
+      output: build/spelling-wordlist.dic
+    pipeline:
+      - pyspelling.filters.markdown
+      - pyspelling.filters.html:
+          ignores:
+            - code
+            - pre
+            - kbd
+      - pyspelling.filters.context:
+          context_visible_first: true
+          escapes: '\\[\\`]'
+          delimiters:
+            # Ignore front matter
+            - open: '(?s)^---'
+              close: '^---'
+            # Ignore code blocks
+            - open: '(?s)^(?P<open>`{3,}).*$'
+              close: '^(?P=open)$'
+            # Ignore inline code
+            - open: '`'
+              close: '`'
+            # Ignore URLs
+            - open: '\('
+              content: 'https?://[^\)]*'
+              close: '\)'
+            # Ignore email addresses
+            - open: '<'
+              content: '[^>]+@[^>]+'
+              close: '>'
+      - pyspelling.filters.url:
