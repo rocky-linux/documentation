@@ -102,6 +102,13 @@ git clone https://github.com/YOUR_USERNAME/documentation.git
 cd documentation
 ```
 
+If you have already cloned the repository, ensure it is up to date:
+
+```bash
+cd documentation
+git pull origin main
+```
+
 #### Step 6: Configure Pyspelling for Hunspell
 
 Rocky Linux 10 uses Hunspell instead of Aspell. Create a `.pyspelling.yml` file in the repository root if one does not exist or if you need to override the default:
@@ -182,7 +189,11 @@ When running `pre-commit run --all-files` for the first time, you may see errors
 | pyspelling | Pass (with Hunspell config) | Requires Step 6 configuration |
 | lychee | Pass | Some timeouts are normal |
 
-**Important**: The markdownlint errors you see are in existing repository documentation files, not files you created. When contributing, you only need to ensure your own files pass validation. You can validate a single file with:
+**Important**: The markdownlint errors you see are in existing repository documentation files, not files you created. When contributing, you only need to ensure your own files pass validation.
+
+#### Step 9: Validate Your Document
+
+Before submitting your documentation, validate your specific file to ensure it passes all checks:
 
 ```bash
 markdownlint "docs/guides/your-document.md"
@@ -197,6 +208,22 @@ docs/guides/automation/kickstart-rocky-broken.md:162 error MD001/heading-increme
 ```
 
 #### Troubleshooting your Rocky Linux 10 Setup
+
+**pre-commit error: ".pre-commit-config.yaml is not a file"**
+
+This error means the `.pre-commit-config.yaml` file is missing from your local repository. Pull the latest changes from your fork:
+
+```bash
+git pull origin main
+```
+
+If your fork is behind the upstream repository, sync it first:
+
+```bash
+git fetch upstream
+git merge upstream/main
+git push origin main
+```
 
 **pyspelling error: "option 'attributes' must be a float type"**
 
@@ -344,6 +371,14 @@ Run all validation checks to confirm everything is working:
 
 ```bash
 ~/.local/bin/pre-commit run --all-files
+```
+
+#### Step 9: Validate Your Document
+
+Before submitting your documentation, validate your specific file to ensure it passes all checks:
+
+```bash
+markdownlint "docs/guides/your-document.md"
 ```
 
 #### Troubleshooting Rocky Linux 9 Setup
@@ -503,6 +538,14 @@ Run all validation checks to confirm everything is working:
 
 ```bash
 ~/.local/bin/pre-commit run --all-files
+```
+
+#### Step 9: Validate Your Document
+
+Before submitting your documentation, validate your specific file to ensure it passes all checks:
+
+```bash
+markdownlint "docs/guides/your-document.md"
 ```
 
 #### Troubleshooting Rocky Linux 8 Setup
@@ -1331,15 +1374,18 @@ fi
 
 #### Raw HTML Warning
 
-Avoid using raw HTML elements. Markdown linters flag them and they may not render correctly.
+Avoid using raw HTML elements. Markdown linters flag them and they may not render correctly. The following HTML elements are allowed in `.markdownlint.yml` and will not trigger linting errors:
+
+- `<sub>` and `<sup>` - For subscript and superscript text
+- `<details>` and `<summary>` - For collapsible/expandable content sections
 
 ```bash
-# Check for HTML tags
-html_tags=$(grep -cE '<[a-zA-Z][^>]*>' path/to/your-document.md 2>/dev/null || echo 0)
+# Check for HTML tags (excluding allowed elements: sub, sup, details, summary)
+html_tags=$(grep -cE '<(?!sub|sup|details|summary|/sub|/sup|/details|/summary)[a-zA-Z][^>]*>' path/to/your-document.md 2>/dev/null || echo 0)
 if [ "$html_tags" -eq 0 ]; then
-    echo "✓ No raw HTML found"
+    echo "✓ No disallowed raw HTML found"
 else
-    echo "⚠ Found $html_tags HTML tags (use markdown instead)"
+    echo "⚠ Found $html_tags HTML tags (use markdown instead, or allowed elements: sub, sup, details, summary)"
 fi
 ```
 
@@ -1403,11 +1449,11 @@ else
     echo "  No Anchors:   ⚠ WARN - $anchors found (translation risk)"
 fi
 
-html_tags=$(grep -cE '<[a-zA-Z][^>]*>' "$DOC" 2>/dev/null || echo 0)
+html_tags=$(grep -cE '<(?!sub|sup|details|summary|/sub|/sup|/details|/summary)[a-zA-Z][^>]*>' "$DOC" 2>/dev/null || echo 0)
 if [ "$html_tags" -eq 0 ]; then
-    echo "  No Raw HTML:  ✓ PASS"
+    echo "  No Raw HTML:  ✓ PASS (sub, sup, details, summary are allowed)"
 else
-    echo "  No Raw HTML:  ⚠ WARN - $html_tags tags found"
+    echo "  No Raw HTML:  ⚠ WARN - $html_tags disallowed tags found"
 fi
 echo ""
 echo "TOOL CHECKS:"
