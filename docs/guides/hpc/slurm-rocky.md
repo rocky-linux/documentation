@@ -13,6 +13,7 @@ tags:
 # Installing Slurm on Rocky Linux
 
 **Knowledge**: :star: :star: :star: :star:
+
 **Reading time**: 30 minutes
 
 ## AI Usage Disclaimer
