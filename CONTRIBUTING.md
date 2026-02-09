@@ -159,7 +159,7 @@ Before submitting your documentation, validate your specific file to ensure it p
 
 ```bash
 # Spell check
-pyspelling -S "docs/guides/your-document.md"
+pyspelling -n Markdown -S "docs/guides/your-document.md"
 
 # Markdown lint
 markdownlint "docs/guides/your-document.md"
@@ -310,7 +310,7 @@ Before submitting your documentation, validate your specific file to ensure it p
 
 ```bash
 # Spell check
-pyspelling -S "docs/guides/your-document.md"
+pyspelling -n Markdown -S "docs/guides/your-document.md"
 
 # Markdown lint
 markdownlint "docs/guides/your-document.md"
@@ -486,7 +486,7 @@ Before submitting your documentation, validate your specific file to ensure it p
 
 ```bash
 # Spell check
-pyspelling -S "docs/guides/your-document.md"
+pyspelling -n Markdown -S "docs/guides/your-document.md"
 
 # Markdown lint
 markdownlint "docs/guides/your-document.md"
@@ -699,7 +699,7 @@ rocky-docs-env
 markdownlint docs/guides/your-document.md
 
 # Spell check
-pyspelling -S docs/guides/your-document.md
+pyspelling -n Markdown -S docs/guides/your-document.md
 
 # Link check
 lychee docs/guides/your-document.md --no-progress
@@ -1188,7 +1188,7 @@ Replace `path/to/your-document.md` with your document path in all commands below
 
 ```bash
 # Spell check
-pyspelling -S "path/to/your-document.md"
+pyspelling -n Markdown -S "path/to/your-document.md"
 
 # Markdown lint
 markdownlint "path/to/your-document.md"
@@ -1408,10 +1408,10 @@ echo ""
 echo "TOOL CHECKS:"
 echo "--------------------------------------------"
 echo "Running pyspelling..."
-if pyspelling -S "$DOC" > /dev/null 2>&1; then
+if pyspelling -n Markdown -S "$DOC" > /dev/null 2>&1; then
     echo "  Spell Check:  ✓ PASS"
 else
-    echo "  Spell Check:  ✗ FAIL - Run: pyspelling -S \"$DOC\""
+    echo "  Spell Check:  ✗ FAIL - Run: pyspelling -n Markdown -S \"$DOC\""
 fi
 
 echo "Running markdownlint..."

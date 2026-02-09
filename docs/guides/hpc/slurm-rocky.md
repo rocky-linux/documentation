@@ -2309,7 +2309,7 @@ Now that you have your `slurm` cluster running on Rocky Linux, there are almost 
 
 * For an added challenge, try running a Minecraft or similar game server on your `slurm` cluster.
 
-The list is endless and of course, `slurm`'s is massively used in HPC and data science.
+The list is endless and of course, `slurm` is massively used in HPC and data science.
 
 ## References
 

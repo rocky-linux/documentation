@@ -1,5 +1,6 @@
 admonition
 admonitions
+ansible
 Ansible
 API
 APIs
@@ -22,14 +23,17 @@ codebase
 codebases
 codeblock
 codeblocks
+Configurator
 config
 configs
+crypto
 cron
 crontab
 crowdin
 datatype
 datatypes
 Debian
+Der
 Devel
 distro
 distros
@@ -39,6 +43,7 @@ dockerfile
 Doom
 dropdown
 Emacs
+EOF
 favicon
 frontend
 frontends
@@ -52,11 +57,16 @@ HTML
 HTTPS
 hyperlink
 hyperlinks
+ip
 iSCSI
 JSON
 kickstart
 Kubernetes
 lifecycle
+linux
+linux8
+linux9
+linux10
 linter
 linters
 localhost
@@ -65,6 +75,7 @@ LXD
 macOS
 markdownlint
 Mattermost
+mysql
 Minecraft
 MkDocs
 munge
@@ -73,6 +84,7 @@ namespaces
 Neovim
 NFS
 NvChad
+posix
 POSIX
 proxmox
 pyspelling
@@ -124,5 +136,7 @@ versioning
 virtualization
 VM
 VMs
+Wal
 YAML
+yaml
 yum
