@@ -168,12 +168,26 @@ markdownlint "docs/guides/your-document.md"
 lychee "docs/guides/your-document.md" --no-progress
 ```
 
-Example output:
+Example output for a passing spell check:
+
+```text
+pyspelling -n Markdown -S "docs/guides/hpc/slurm-rocky.md"
+Spelling check passed :)
+```
+
+Example output for a failing markdown lint check:
 
 ```text
 markdownlint docs/guides/automation/kickstart-rocky-broken.md
 docs/guides/automation/kickstart-rocky-broken.md:1 error MD041/first-line-heading/first-line-h1 First line in a file should be a top-level heading [Context: "---"]
 docs/guides/automation/kickstart-rocky-broken.md:162 error MD001/heading-increment Heading levels should only increment by one level at a time [Expected: h2; Actual: h3]
+```
+
+Example output for a passing link check:
+
+```text
+lychee docs/guides/hpc/slurm-rocky.md --no-progress
+🔍 8 Total (in 0s) ✅ 8 OK 🚫 0 Errors
 ```
 
 #### Troubleshooting your Rocky Linux 10 Setup
