@@ -2,6 +2,46 @@
 
 Thank you for your interest in contributing to Rocky Linux documentation. This guide walks you through everything you need to create, edit, and submit documentation that meets our standards.
 
+## Table of Contents
+
+* [Quick Start](#quick-start)
+* [Prerequisites](#prerequisites)
+* [Fork and Clone the Repository](#fork-and-clone-the-repository)
+* [Setting Up Your Environment](#setting-up-your-environment)
+    * [Alternative Tooling](#alternative-tooling)
+    * [Rocky Linux 10 Setup](#rocky-linux-10-setup)
+    * [Rocky Linux 9 Setup](#rocky-linux-9-setup)
+    * [Rocky Linux 8 Setup](#rocky-linux-8-setup)
+    * [macOS Sequoia Setup](#macos-sequoia-setup)
+    * [Windows 11 Setup](#windows-11-setup)
+    * [Install Pre-commit Hooks (Required)](#install-pre-commit-hooks-required)
+* [Creating New Documentation](#creating-new-documentation)
+    * [Document Naming](#document-naming)
+    * [Document Location](#document-location)
+    * [Document Structure](#document-structure)
+    * [Example Guides](#example-guides)
+    * [AI Usage](#ai-usage)
+* [Formatting Guidelines](#formatting-guidelines)
+    * [Style Guide](#style-guide)
+    * [Markdown Formatting](#markdown-formatting)
+    * [Code Blocks](#code-blocks)
+* [Validation Checks](#validation-checks)
+    * [Running Checks Manually](#running-checks-manually)
+    * [Rocky Docs Contribution Guidelines Validation](#rocky-docs-contribution-guidelines-validation)
+    * [Adding Words to the Dictionary](#adding-words-to-the-dictionary)
+* [Editing Existing Documentation](#editing-existing-documentation)
+* [Submitting a Pull Request](#submitting-a-pull-request)
+* [Local Editors](#local-editors)
+    * [Graphical Editors](#graphical-editors)
+    * [Terminal Editors](#terminal-editors)
+* [Troubleshooting](#troubleshooting)
+    * [Pre-commit Hook Failures](#pre-commit-hook-failures)
+    * [Spell Check False Positives](#spell-check-false-positives)
+    * [Link Check Timeouts](#link-check-timeouts)
+* [Getting Help](#getting-help)
+* [Additional Resources](#additional-resources)
+* [License](#license)
+
 ## Quick Start
 
 1. Fork the [Rocky Linux Documentation repository](https://github.com/rocky-linux/documentation)
