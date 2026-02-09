@@ -1,6 +1,6 @@
-# Contributing to Rocky Linux Documentation
+# Contributing to the Rocky Linux Documentation
 
-Thank you for your interest in contributing to Rocky Linux documentation. This guide walks you through everything you need to create, edit, and submit documentation that meets our standards.
+Thank you for your interest in contributing to the Rocky Linux documentation. This guide walks you through everything you need to create, edit, and submit documentation that meets our standards.
 
 ## Table of Contents
 
