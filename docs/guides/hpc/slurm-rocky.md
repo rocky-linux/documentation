@@ -79,7 +79,7 @@ ansible-galaxy collection install -r requirements.yaml
 ```
 
 <details>
-<summary>**Rocky Linux 8 Slurm Deployment Playbook**</summary>
+<summary>Rocky Linux 8 Slurm Deployment Playbook</summary>
 
 ```yaml
 ---
@@ -795,7 +795,7 @@ EOF
 ```
 
 <details>
-<summary>**Rocky Linux 9 Slurm Deployment Playbook**</summary>
+<summary>Rocky Linux 9 Slurm Deployment Playbook</summary>
 
 ```yaml
 ---
@@ -1572,7 +1572,7 @@ EOF
 ```
 
 <details>
-<summary>**Rocky Linux 10 Slurm Deployment Playbook**</summary>
+<summary>Rocky Linux 10 Slurm Deployment Playbook</summary>
 
 ```yaml
 ---
