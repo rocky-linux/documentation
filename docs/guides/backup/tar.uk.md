@@ -24,7 +24,7 @@ tags:
 
 ```bash
 # RockyLinux 8 and Fedora 41
-Shell > tar --show-defaults
+tar --show-defaults
 --format=gnu -f- -b20 --quoting-style=escape --rmt-command=/etc/rmt --rsh-command=/usr/bin/ssh
 ```
 ````
@@ -168,7 +168,7 @@ Shell > tar --show-defaults
 1. Архівуйте та стискайте **/etc/** у відносному режимі з суфіксом `.tar.gz`:
 
    ```bash
-   Shell > tar -czvf /tmp/etc-20241207.tar.gz /etc/
+   tar -czvf /tmp/etc-20241207.tar.gz /etc/
    ```
 
    Через те, що `tar` за замовчуванням працює у відносному режимі, перший рядок виводу команди відображатиме наступне:
@@ -180,9 +180,9 @@ Shell > tar --show-defaults
 2. Архівуйте **/var/log/** і виберіть тип xz для стиснення:
 
    ```bash
-   Shell > tar -cJvf /tmp/log-20241207.tar.xz /var/log/
+   tar -cJvf /tmp/log-20241207.tar.xz /var/log/
 
-   Shell > du -sh /var/log/ ; ls -lh /tmp/log-20241207.tar.xz
+   du -sh /var/log/ ; ls -lh /tmp/log-20241207.tar.xz
    18M     /var/log/
    -rw-r--r-- 1 root root 744K Dec  7 14:40 /tmp/log-20241207.tar.xz
    ```
@@ -190,7 +190,7 @@ Shell > tar --show-defaults
 3. Оцініть розмір файлу без створення архіву:
 
    ```bash
-   Shell > tar -cJf - /etc | wc -c
+   tar -cJf - /etc | wc -c
    tar: Removing leading `/' from member names
    3721884
    ```
@@ -200,9 +200,9 @@ Shell > tar --show-defaults
 4. Виріжте великі файли `.tar.gz`:
 
    ```bash
-   Shell > cd /tmp/ ; tar -czf - /etc/  | split -d -b 2M - etc-backup20241207.tar.gz.
+   cd /tmp/ ; tar -czf - /etc/  | split -d -b 2M - etc-backup20241207.tar.gz.
 
-   Shell > ls -lh /tmp/
+   ls -lh /tmp/
    -rw-r--r-- 1 root root 2.0M Dec  7 20:46 etc-backup20241207.tar.gz.00
    -rw-r--r-- 1 root root 2.0M Dec  7 20:46 etc-backup20241207.tar.gz.01
    -rw-r--r-- 1 root root 2.0M Dec  7 20:46 etc-backup20241207.tar.gz.02
@@ -214,9 +214,9 @@ Shell > tar --show-defaults
    Щоб витягнути ці вирізані невеликі файли, ви можете вказати таку операцію:
 
    ```bash
-   Shell > cd /tmp/ ; cat etc-backup20241207.tar.gz.* >> /tmp/etc-backup-20241207.tar.gz
+   cd /tmp/ ; cat etc-backup20241207.tar.gz.* >> /tmp/etc-backup-20241207.tar.gz
 
-   Shell > cd /tmp/ ; tar -xvf etc-backup-20241207.tar.gz -C /tmp/dir1/
+   cd /tmp/ ; tar -xvf etc-backup-20241207.tar.gz -C /tmp/dir1/
    ```
 
 #### Тип `-x`
@@ -224,15 +224,15 @@ Shell > tar --show-defaults
 1. Завантажте вихідний код Redis і розпакуйте його в каталог `/usr/local/src/`：
 
    ```bash
-   Shell > wget -c https://github.com/redis/redis/archive/refs/tags/7.4.1.tar.gz
+   wget -c https://github.com/redis/redis/archive/refs/tags/7.4.1.tar.gz
 
-   Shell > tar -xvf 7.4.1.tar.gz -C /usr/local/src/
+   tar -xvf 7.4.1.tar.gz -C /usr/local/src/
    ```
 
 2. Розпакуйте лише один файл із zip-архіву
 
    ```bash
-   Shell > tar -xvf /tmp/etc-20241207.tar.gz etc/chrony.conf
+   tar -xvf /tmp/etc-20241207.tar.gz etc/chrony.conf
    ```
 
 #### Тип -A або -r
@@ -240,11 +240,11 @@ Shell > tar --show-defaults
 1. Додайте один файл `.tar` до іншого файлу `.tar`:
 
    ```bash
-   Shell > tar -cvf /tmp/etc.tar /etc/
+   tar -cvf /tmp/etc.tar /etc/
 
-   Shell > tar -cvf /tmp/log.tar /var/log/
+   tar -cvf /tmp/log.tar /var/log/
 
-   Shell > tar -Avf /tmp/etc.tar /tmp/log.tar
+   tar -Avf /tmp/etc.tar /tmp/log.tar
    ```
 
    Це означає, що всі файли в "log.tar" будуть додані в кінець "etc.tar".
@@ -252,12 +252,12 @@ Shell > tar --show-defaults
 2. Додайте файли або каталоги до файлу `.tar`:
 
    ```bash
-   Shell > tar -rvf /tmp/log.tar /etc/chrony.conf
+   tar -rvf /tmp/log.tar /etc/chrony.conf
    tar: Removing leading `/' from member names
    /etc/chrony.conf
    tar: Removing leading `/' from hard link targets
 
-   Shell > tar -rvf /tmp/log.tar /tmp/dir1
+   tar -rvf /tmp/log.tar /tmp/dir1
    ```
 
 !!! warning "Важливо"
@@ -277,9 +277,9 @@ Shell > tar --show-defaults
 1. Перегляньте вміст архіву:
 
    ```bash
-   Shell > tar -tvf /tmp/log.tar
+   tar -tvf /tmp/log.tar
 
-   Shell > tar -tvf /tmp/etc-20241207.tar.gz | less
+   tar -tvf /tmp/etc-20241207.tar.gz | less
    ```
 
 #### тип `-d`
@@ -287,10 +287,10 @@ Shell > tar --show-defaults
 1. Порівняйте відмінності файлів:
 
    ```bash
-   Shell > cd / ; tar -dvf /tmp/etc.tar etc/chrony.conf
+   cd / ; tar -dvf /tmp/etc.tar etc/chrony.conf
    etc/chrony.conf
 
-   Shell > cd / ; tar -dvf /tmp/etc-20241207.tar.gz etc/
+   cd / ; tar -dvf /tmp/etc-20241207.tar.gz etc/
    ```
 
    Для методів зберігання, які використовують відносний режим, при використанні типу `-d` змініть шлях до файлу на '/'.
@@ -300,15 +300,15 @@ Shell > tar --show-defaults
 1. Якщо існує кілька версій одного файлу, ви можете використовувати тип `-u`:
 
    ```bash
-   Shell > touch /tmp/tmpfile1
+   touch /tmp/tmpfile1
 
-   Shell > tar -rvf /tmp/log.tar /tmp/tmpfile1
+   tar -rvf /tmp/log.tar /tmp/tmpfile1
 
-   Shell > echo "File Name" >> /tmp/tmpfile1
+   echo "File Name" >> /tmp/tmpfile1
 
-   Shell > tar -uvf /tmp/log.tar /tmp/tmpfile1
+   tar -uvf /tmp/log.tar /tmp/tmpfile1
 
-   Shell > tar -tvf /tmp/log.tar
+   tar -tvf /tmp/log.tar
    ...
    -rw-r--r-- root/root         0 2024-12-07 18:53 tmp/tmpfile1
    -rw-r--r-- root/root        10 2024-12-07 18:54 tmp/tmpfile1
@@ -319,9 +319,9 @@ Shell > tar --show-defaults
 1. Ви також можете використовувати `--delete`, щоб видалити файли всередині `.tar` файлу.
 
    ```bash
-   Shell > tar --delete -vf /tmp/log.tar tmp/tmpfile1
+   tar --delete -vf /tmp/log.tar tmp/tmpfile1
 
-   Shell > tar --delete -vf /tmp/etc.tar etc/motd.d/
+   tar --delete -vf /tmp/etc.tar etc/motd.d/
    ```
 
    При видаленні ви видаляєте з архіву всі файли з однаковою назвою.

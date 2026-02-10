@@ -30,7 +30,7 @@ tags:
 Перш ніж використовувати цю утиліту, виконайте таку команду, щоб інсталювати її:
 
 ```bash
-Shell > dnf -y install dump
+dnf -y install dump
 ```
 
 Після інсталяції доступні два часто використовувані командні інструменти:
@@ -60,7 +60,7 @@ Shell > dnf -y install dump
 1. Виконайте повне резервне копіювання кореневого розділу:
 
    ```bash
-   Shell > dump -0u -j3 -f /tmp/root-20241208.bak.bz2 /
+   dump -0u -j3 -f /tmp/root-20241208.bak.bz2 /
    DUMP: Date of this level 0 dump: Sun Dec  8 19:04:39 2024
    DUMP: Dumping /dev/nvme0n1p2 (/) to /tmp/root-20241208.bak.bz2
    DUMP: Label: none
@@ -89,17 +89,17 @@ Shell > dnf -y install dump
    DUMP: Wrote 14722930kB uncompressed, 6607183kB compressed, 2.229:1
    DUMP: DUMP IS DONE
 
-   Shell > ls -lh /tmp/root-20241208.bak.bz2
+   ls -lh /tmp/root-20241208.bak.bz2
    -rw-r--r-- 1 root root 6.4G Dec  8 19:26 /tmp/root-20241208.bak.bz2
    ```
 
 2. Після успішного скидання перевірте відповідну інформацію:
 
    ```bash
-   Shell > cat /etc/dumpdates
+   cat /etc/dumpdates
    /dev/nvme0n1p2 0 Sun Dec  8 19:04:39 2024 +0800
 
-   Shell > dump -W
+   dump -W
    Last dump(s) done (Dump '>' file systems):
    /dev/nvme0n1p2        (     /) Last dump: Level 0, Date Sun Dec  8 19:04:39 2024
    ```
@@ -107,9 +107,9 @@ Shell > dnf -y install dump
 3. Реалізувати інкрементне резервне копіювання на основі повного резервного копіювання:
 
    ```bash
-   Shell > echo "jack" >> /tmp/tmpfile.txt
+   echo "jack" >> /tmp/tmpfile.txt
 
-   Shell > dump -1u -j4 -f /tmp/root-20241208-LV1.bak.bz2 /
+   dump -1u -j4 -f /tmp/root-20241208-LV1.bak.bz2 /
    DUMP: Date of this level 1 dump: Sun Dec  8 19:38:51 2024
    DUMP: Date of last level 0 dump: Sun Dec  8 19:04:39 2024
    DUMP: Dumping /dev/nvme0n1p2 (/) to /tmp/root-20241208-LV1.bak.bz2
@@ -137,11 +137,11 @@ Shell > dnf -y install dump
    DUMP: Wrote 6620910kB uncompressed, 6600592kB compressed, 1.004:1
    DUMP: DUMP IS DONE
 
-   Shell > cat /etc/dumpdates
+   cat /etc/dumpdates
    /dev/nvme0n1p2 0 Sun Dec  8 19:04:39 2024 +0800
    /dev/nvme0n1p2 1 Sun Dec  8 19:38:51 2024 +0800
 
-   Shell > dump -W
+   dump -W
    Last dump(s) done (Dump '>' file systems):
    /dev/nvme0n1p2        (     /) Last dump: Level 1, Date Sun Dec  8 19:38:51 2024
    ```
@@ -149,11 +149,11 @@ Shell > dnf -y install dump
 4. Для нерозділеного каталогу можна використовувати лише параметр «Повна резервна копія» (`-0`), а не параметр `-u`:
 
    ```bash
-   Shell > dump -0uj -f /tmp/etc-full-20241208.bak.bz2 /etc/
+   dump -0uj -f /tmp/etc-full-20241208.bak.bz2 /etc/
    DUMP: You can't update the dumpdates file when dumping a subdirectory
    DUMP: The ENTIRE dump is aborted.
 
-   Shell > dump -0j -f /tmp/etc-full-20241208.bak.bz2 /etc/
+   dump -0j -f /tmp/etc-full-20241208.bak.bz2 /etc/
    DUMP: Date of this level 0 dump: Sun Dec  8 20:00:38 2024
    DUMP: Dumping /dev/nvme0n1p2 (/ (dir etc)) to /tmp/etc-full-20241208.bak.bz2
    DUMP: Label: none
@@ -182,7 +182,7 @@ Shell > dnf -y install dump
    Виконання інкрементного резервного копіювання каталогу /etc/ призведе до помилки:
 
    ```bash
-   Shell > dump -1j -f /tmp/etc-incr-20241208.bak.bz2 /etc/
+   dump -1j -f /tmp/etc-incr-20241208.bak.bz2 /etc/
    DUMP: Only level 0 dumps are allowed on a subdirectory
    DUMP: The ENTIRE dump is aborted.
    ```
@@ -204,13 +204,13 @@ Shell > dnf -y install dump
 1. Відновити дані з /tmp/etc-full-20241208.bak.bz2:
 
    ```bash
-   Shell > mkdir /tmp/data/
+   mkdir /tmp/data/
 
-   Shell > restore -t -f /tmp/etc-full-20241208.bak.bz2
+   restore -t -f /tmp/etc-full-20241208.bak.bz2
 
-   Shell > cd /tmp/data/ ; restore -r -f /tmp/etc-full-20241208.bak.bz2
+   cd /tmp/data/ ; restore -r -f /tmp/etc-full-20241208.bak.bz2
 
-   Shell > ls -l /tmp/data/
+   ls -l /tmp/data/
    total 4992
    drwxr-xr-x. 90 root root    4096 Dec  8 17:13 etc
    -rw-------   1 root root 5107632 Dec  8 20:39 restoresymtable
@@ -221,7 +221,7 @@ Shell > dnf -y install dump
 2. Обробка резервних копій файлів в інтерактивному режимі:
 
    ```bash
-   Shell > restore -i -f /tmp/etc-full-20241208.bak.bz2
+   restore -i -f /tmp/etc-full-20241208.bak.bz2
    Dump tape is compressed.
 
    restore > ?
