@@ -139,11 +139,9 @@ phpinfo();
 
 Use a web browser to check that the server works properly by going to the page [http://your-server-ip/info.php](http://your-server-ip/info.php).
 
-!!! Warning
+!!! warning "Avertissement"
 
-    ```
     Do not leave the `info.php` file on your server!
-    ```
 
 ### Installation of the PHP cgi mode (PHP-FPM)
 
