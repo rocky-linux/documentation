@@ -5,7 +5,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 9.5
 tags:
   - create
-  - custom "Власний заголовок"
+  - custom
   - ISO
 ---
 
@@ -17,7 +17,7 @@ tags:
 
 ## Передумови
 
-- 64-бітна машина під керуванням Rocky Linux 9 створює новий образ ISO.
+- 64-розрядна машина під керуванням Rocky Linux 9
 - ISO-образ DVD Rocky Linux 9.
 - Файл `kickstart` для застосування до ISO.
 - Прочитайте документацію Lorax [Quickstart](https://weldr.io/lorax/lorax.html#quickstart) і [mkksiso](https://weldr.io/lorax/mkksiso.html), щоб ознайомитися зі створенням `boot.iso` `Anaconda`.
