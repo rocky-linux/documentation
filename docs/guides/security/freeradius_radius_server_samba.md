@@ -1,7 +1,7 @@
 ---
 title: FreeRADIUS RADIUS Server with Samba Active Directory
 author: Neel Chauhan
-contributors:
+contributors: Steven Spencer
 tested_with: 10.1
 tags:
   - security
