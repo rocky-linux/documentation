@@ -656,7 +656,7 @@ dnf -y install cloud-init
 echo "manual_cache_clean: True" > /etc/cloud/cloud.cfg.d/99-manual.cfg
 ```
 
-Comme vSphere utilise maintenant `cloud-init` via les outils VMware pour configurer le réseau d'une machine invitée centos8, le paquet doit être installé. Cependant, si vous ne faites rien, la configuration sera appliquée au premier redémarrage et tout ira bien. Mais au prochain redémarrage, 'cloud-init' ne recevra pas de nouvelles informations de vSphere. Dans ce cas, sans information sur ce qu'il faut faire, 'cloud-init' reconfigurera l'interface réseau de la machine virtuelle pour utiliser DHCP et vous perdrez votre configuration statique.
+Comme vSphere utilise maintenant `cloud-init` via les outils VMware pour configurer le réseau d'une machine invitée centos8, le paquet doit être installé. Cependant, si vous ne faites rien, la configuration sera appliquée au prochain redémarrage et tout ira bien. Mais au prochain redémarrage, 'cloud-init' ne recevra pas de nouvelles informations de vSphere. Dans ce cas, sans information sur ce qu'il faut faire, 'cloud-init' reconfigurera l'interface réseau de la machine virtuelle pour utiliser DHCP et vous perdrez votre configuration statique.
 
 Comme ce n'est pas le comportement que nous souhaitons, nous devons spécifier à `cloud-init` de ne pas supprimer son cache automatiquement, et donc de réutiliser les informations de configuration qu'il a reçues lors de son premier redémarrage et de chaque redémarrage suivant.
 
