@@ -1,6 +1,8 @@
 ---
 title: Contributing to the Rocky Linux Documentation
 author: Howard Van Der Wal
+contributors:
+ai-contributors: Claude Code
 tags:
   - contributing
   - documentation
