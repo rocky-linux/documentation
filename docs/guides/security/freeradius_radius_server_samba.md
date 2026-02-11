@@ -1,19 +1,18 @@
 ---
 title: FreeRADIUS RADIUS Server with Samba Active Directory
 author: Neel Chauhan
-contributors:
+contributors: Steven Spencer
 tested_with: 10.1
 tags:
   - security
 ---
 
-# FreeRADIUS RADIUS Server with Samba Active Directory
 
 ## Introduction
 
-RADIUS is an AAA (authentication, authorization and accounting) protocol to manage network access. [FreeRADIUS](https://www.freeradius.org/) is the de-facto RADIUS server for Linux and other Unix-like systems.
+RADIUS is an AAA (authentication, authorization and accounting) protocol to manage network access. [FreeRADIUS](https://www.freeradius.org/) is the de facto RADIUS server for Linux and other Unix-like systems.
 
-FreeRADIUS can be made to work with Microsoft's Active Directory, say for 802.1X, Wi-Fi or VPN authentication.
+You can make FreeRADIUS work with Microsoft's Active Directory, say for 802.1X, Wi-Fi or VPN authentication.
 
 ## Prerequisites and assumptions
 
@@ -25,7 +24,7 @@ The following are minimum requirements for this procedure:
 
 ## Configuring Samba
 
-You will need to [configure Active Directory with Samba](authentication/active_directory_authentication_with_samba/). Keep in mind sssd will not work.
+You will need to [configure Active Directory with Samba](authentication/active_directory_authentication_with_samba/). Note that sssd will not work.
 
 ## Installing FreeRADIUS
 
