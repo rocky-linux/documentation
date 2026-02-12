@@ -2,7 +2,7 @@
 title: Deploying Slurm on Rocky Linux
 author: Howard Van Der Wal
 contributors: Steven Spencer
-ai_contributors: Claude (claude-opus-4-5-20251101), Gemini (gemini-2.5-pro)
+ai_contributors: Claude (claude-opus-4-5-20251101)
 tested with: 10, 9, 8
 tags:
 - deploy
