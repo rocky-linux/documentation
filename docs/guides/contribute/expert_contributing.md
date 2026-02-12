@@ -15,7 +15,7 @@ This document was created with the assistance of AI. All content has been review
 
 ## Welcome
 
-Thank you for your interest in contributing to the Rocky Linux documentation. Whether you are writing new guides, translating existing content, editing for clarity, or reviewing pull requests, every contribution matters and is deeply valued by the community.
+Thank you for your interest in contributing to the Rocky Linux documentation. Whether you are writing new guides, translating existing content, or editing for clarity, every contribution matters and is deeply valued by the community.
 
 This guide is for contributors who want to set up a full local validation environment with spell checking, markdown linting, and link checking tools. **Setting up these tools is entirely optional.** You do not need any of this to contribute to the Rocky Linux documentation. If you are new to contributing, the [Beginner contributors guide](beginners.md) is a great place to start. You can also edit documentation directly on GitHub without installing anything locally.
 
