@@ -902,6 +902,7 @@ Every document must include front matter metadata at the top:
 title: Your Document Title
 author: Your Name
 contributors: Comma, Separated, Names
+ai_contributors: AI Model (model-version)
 tested_with: 8.10, 9.7, 10.1
 tags:
   - relevant
