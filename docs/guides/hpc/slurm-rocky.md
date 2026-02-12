@@ -2,6 +2,7 @@
 title: Deploying Slurm on Rocky Linux
 author: Howard Van Der Wal
 contributors: Steven Spencer
+ai_contributors: Claude (claude-opus-4-5-20251101), Gemini (gemini-2.5-pro)
 tested with: 10, 9, 8
 tags:
 - deploy
@@ -18,7 +19,7 @@ tags:
 
 ## AI Usage Disclaimer
 
-AI was used to generate the playbooks for Rocky Linux 8, 9 and 10. Manual testing was performed to ensure that they work correctly.
+AI was used to generate the playbooks for Rocky Linux 8, 9 and 10. Manual testing was performed to ensure that they work correctly. The author takes full responsibility for the correctness of this document. Please report any errors you encounter to the Rocky Linux documentation team.
 
 ## Introduction
 
