@@ -12,7 +12,7 @@ tags:
 
 Використання локальної копії документації Rocky Linux корисно для тих, хто часто робить внесок і має потребу точно побачити, як документ виглядатиме у веб-інтерфейсі після об’єднання. Наведені тут методи відображають уподобання учасників на сьогоднішній день.
 
-Використання локальної копії документації є одним із кроків у процесі розробки для тих, хто підтримує філософію «документи як код», робочий процес для документації, подібний до розробки коду.
+Using a local copy of the documentation is one step in the development process for those who subscribe to the philosophy of "docs as code," a workflow for documentation similar to code development.
 
 ## Markdown linting
 
