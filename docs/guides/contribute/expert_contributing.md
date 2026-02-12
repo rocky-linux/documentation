@@ -11,7 +11,7 @@ tags:
 
 ## AI usage disclosure
 
-This document was created with the assistance of AI. All content has been reviewed, tested, and verified by a human author. The author takes full responsibility for the accuracy and correctness of this document.
+This document was created with the assistance of AI. All content has been reviewed, tested, and verified by a human author. The author takes full responsibility for the accuracy and correctness of this document. Please report any errors you encounter to the Rocky Linux documentation team.
 
 ## Welcome
 
