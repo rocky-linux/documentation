@@ -503,7 +503,7 @@ agentAddress udp:127.0.0.1:161,udp:192.168.1.122:161
 Aggiungere una riga:
 
 ```bash
-rocomunità LABone
+rocommunity  LABone
 ```
 
 Salvare le modifiche e uscire.
