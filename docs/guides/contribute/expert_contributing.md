@@ -1373,7 +1373,7 @@ git push origin your-new-document
 
 ## Getting help
 
-The Rocky Linux community is welcoming and supportive of contributors at all experience levels. Do not hesitate to ask for help.
+The Rocky Linux community is welcoming and supportive of contributors of all experience levels. Do not hesitate to ask for help.
 
 - **Mattermost**: Join the [Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation) and the community of contributors will be more than happy to help you with your document
 - **GitHub Issues**: Report documentation bugs or suggest improvements
