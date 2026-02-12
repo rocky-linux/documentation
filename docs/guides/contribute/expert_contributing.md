@@ -17,7 +17,7 @@ This document was created with the assistance of AI. All content has been review
 
 Thank you for your interest in contributing to the Rocky Linux documentation. Whether you are writing new guides, translating existing content, or editing for clarity, every contribution matters and is deeply valued by the community.
 
-This guide is for contributors who want to set up a full local validation environment with spell checking, markdown linting, and link checking tools. **Setting up these tools is entirely optional.** You do not need any of this to contribute to the Rocky Linux documentation. If you are new to contributing, the [Beginner contributors guide](beginners.md) is a great place to start. You can also edit documentation directly on GitHub without installing anything locally.
+This guide is for contributors who want to set up a full local validation environment with spell checking, markdown linting, and link checking tools. **Setting up these tools is entirely optional, but recommended for first-time contributors.** If you are new to contributing, the [Beginner contributors guide](beginners.md) is a great place to start. You can also edit documentation directly on GitHub without installing anything locally.
 
 No matter your experience level, the Rocky Linux community is here to help. If you have questions, run into problems, or just want guidance on where to start, reach out on the [Mattermost Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation). Someone will be happy to help you get started.
 
