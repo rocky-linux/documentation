@@ -19,6 +19,7 @@ nav:
     - Email: email
     - File Sharing Services: file_sharing
     - Hardware: hardware
+    - HPC: hpc
     - Interoperability: interoperability
     - ISOs: isos
     - Kernel: kernel
