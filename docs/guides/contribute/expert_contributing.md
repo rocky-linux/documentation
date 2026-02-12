@@ -1,7 +1,7 @@
 ---
-title: Contributing to the Rocky Linux Documentation
+title: An expert contribution guide
 author: Howard Van Der Wal
-contributors:
+contributors: Steven Spencer
 ai_contributors: Claude (claude-opus-4-6)
 tags:
   - contributing
@@ -11,13 +11,14 @@ tags:
 
 ## AI usage disclosure
 
-This document was created with the assistance of AI. All content has been reviewed, tested, and verified by a human author. The author takes full responsibility for the accuracy and correctness of this document. Please report any errors you encounter to the Rocky Linux documentation team.
+The creation of this document was with the assistance of AI. The author reviewed all content, tested, and verified, its accuracy, and takes full responsibility for the correctness of this document. Please report any errors you encounter to the Rocky Linux documentation team.
+
 
 ## Welcome
 
 Thank you for your interest in contributing to the Rocky Linux documentation. Whether you are writing new guides, translating existing content, or editing for clarity, every contribution matters and is deeply valued by the community.
 
-This guide is for contributors who want to set up a full local validation environment with spell checking, markdown linting, and link checking tools. **Setting up these tools is entirely optional, but recommended for first-time contributors.** You can also edit documentation directly on GitHub without installing anything locally.
+This guide is for contributors who want to set up a full local validation environment with spell checking, Markdown linting, and link checking tools. **Setting up these tools is entirely optional, but recommended for first-time contributors.** You can also edit documentation directly on GitHub without installing anything locally.
 
 No matter your experience level, the Rocky Linux community is here to help. If you have questions, run into problems, or just want guidance on where to start, join the [Mattermost Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation). Someone will be happy to help you get started.
 
@@ -37,7 +38,7 @@ Before setting up the local validation environment, you need:
 - A [GitHub account](https://github.com/signup)
 - [Git](https://git-scm.com/downloads) installed on your machine
 - [Python 3.8+](https://www.python.org/downloads/) for spell checking
-- [Node.js](https://nodejs.org/) for markdown linting
+- [Node.js](https://nodejs.org/) for Markdown linting
 - A text editor (see the local editors section below)
 
 ## Fork and clone the repository
@@ -51,7 +52,7 @@ git clone https://github.com/YOUR_USERNAME/documentation.git
 cd documentation
 ```
 
-4. Add the upstream repository as a remote:
+1. Add the upstream repository as a remote:
 
 ```bash
 git remote add upstream https://github.com/rocky-linux/documentation.git
@@ -61,16 +62,16 @@ git remote add upstream https://github.com/rocky-linux/documentation.git
 
 ### Alternative tooling
 
-The setup instructions in this section describe one approach to documentation validation using pre-commit hooks and command-line tools. There are other methods available to check your markdown documents, before submitting them as a PR.
+The setup instructions in this section describe one approach to documentation validation using pre-commit hooks and command-line tools. There are other methods available to check your Markdown documents, before submitting them as a PR.
 
 If you already use a terminal-based editor (Neovim, Emacs, Helix, etc.) with integrated linting tools, you can continue using your existing workflow. Tools like:
 
-- [markdownlint](https://github.com/DavidAnson/markdownlint) or [markdownlint-cli2](https://github.com/DavidAnson/markdownlint-cli2) - Available as editor plugins for real-time markdown linting
+- [markdownlint](https://github.com/DavidAnson/markdownlint) or [markdownlint-cli2](https://github.com/DavidAnson/markdownlint-cli2) - Available as editor plugins for real-time Markdown linting
 - [vale](https://github.com/errata-ai/vale) - Prose linter that can enforce style guide rules
 - [harper-ls](https://github.com/Automattic/harper) - Grammar checker with LSP support
 - [ltex-ls](https://github.com/valentjn/ltex-ls) - LanguageTool-based grammar and spell checking via LSP
 
-These tools provide the same validation capabilities and can be configured to match the Rocky Linux documentation standards. The key requirement is that your contributions pass the automated CI checks when you submit a pull request, regardless of which tools you use locally.
+These tools provide the same validation capabilities. You can configure them to match the Rocky Linux documentation standards. The key requirement is that your contributions pass the automated CI checks when you submit a pull request, regardless of which tools you use locally.
 
 ### Local editors
 
@@ -87,8 +88,8 @@ Choose a markdown editor that suits your workflow:
 
 #### Terminal editors
 
-- [NvChad](https://nvchad.com/) - For Neovim users. See our [NvChad setup guide](../../../books/nvchad/index.md)
-- [Doom Emacs](https://github.com/doomemacs/doomemacs) - For Emacs users looking for evil-mode. Enable the `markdown` module in your config
+- [NvChad](https://nvchad.com/) - For Neovim users. See our [NvChad setup guide](../../books/nvchad/index.md)
+- [Doom Emacs](https://github.com/doomemacs/doomemacs) - For Emacs users looking for evil-mode. Enable the `markdown` module in your configuration.
 
 Terminal editors can integrate the same validation tools used by the pre-commit hooks directly into your editing workflow:
 
@@ -99,7 +100,7 @@ Terminal editors can integrate the same validation tools used by the pre-commit 
 
 ### Rocky Linux 10 setup
 
-If you are running Rocky Linux 10, follow these steps to set up a complete documentation validation environment. This installs all required tools and enables you to run the same checks that the Documentation Team uses to validate pull requests.
+If you are running Rocky Linux 10, follow these steps to set up a complete documentation validation environment. This installs all required tools that you to run the same checks that the Documentation Team uses to validate pull requests.
 
 #### Step 1: Install system dependencies
 
@@ -155,7 +156,7 @@ git pull origin main
 
 #### Step 6: Verify pyspelling configuration
 
-The repository includes a `.pyspelling.yml` configured for Hunspell, which is the default spell checker on Rocky Linux 10. No additional configuration is needed. Verify that Hunspell is installed:
+The repository includes a `.pyspelling.yml` configured for Hunspell, which is the default spell checker on Rocky Linux 10. You do not need additional configuration. Verify the installation of Hunspell with:
 
 ```bash
 rpm -q hunspell hunspell-en-US
@@ -183,7 +184,7 @@ pre-commit run --all-files
 
 #### Expected behavior on first run
 
-When running `pre-commit run --all-files` for the first time, you may see errors from existing repository files. This is expected behavior:
+When running `pre-commit run --all-files` for the first time, you might see errors from existing repository files. This is expected behavior:
 
 | Hook | Expected Result | Notes |
 |------|-----------------|-------|
@@ -284,7 +285,7 @@ cd documentation
 
 #### Step 6: Verify pyspelling configuration
 
-The repository includes a `.pyspelling.yml` configured for Hunspell, which is the default spell checker on Rocky Linux 9. No additional configuration is needed. Verify that Hunspell is installed:
+The repository includes a `.pyspelling.yml` configured for Hunspell, which is the default spell checker on Rocky Linux 9. You do not need additional configuration. Verify the installation of Hunspell with:
 
 ```bash
 rpm -q hunspell hunspell-en-US
@@ -302,7 +303,9 @@ sudo dnf install -y hunspell hunspell-en-US
 ~/.local/bin/pre-commit install
 ```
 
-**Note**: When using `pip install --user`, the `pre-commit` binary is installed to `~/.local/bin/`. You can either use the full path or add `~/.local/bin` to your PATH:
+!!! note
+ 
+    When using `pip install --user`, the `pre-commit` binary is installed to `~/.local/bin/`. You can either use the full path or add `~/.local/bin` to your PATH:
 
 ```bash
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
@@ -393,7 +396,7 @@ cd documentation
 
 #### Step 6: Configure pyspelling for Aspell
 
-The repository `.pyspelling.yml` is configured for Hunspell by default. Rocky Linux 8 uses Aspell instead, so you need to create a local override. Create a `.pyspelling.yml` file in the repository root:
+The configuration of Hunspell in the repository `.pyspelling.yml` already exists. Rocky Linux 8 uses Aspell instead, so you need to create a local override. Create a `.pyspelling.yml` file in the repository root:
 
 ```bash
 cat > .pyspelling.yml << 'EOF'
@@ -450,7 +453,7 @@ After creating the override, tell Git to ignore your local changes to this file 
 git update-index --assume-unchanged .pyspelling.yml
 ```
 
-This prevents the modified `.pyspelling.yml` from appearing in `git status` or being staged by `git add`. If you ever need to undo this (for example, to pull upstream changes to the file), run:
+This prevents the modified `.pyspelling.yml` from appearing in `git status` or staging by `git add`. If you ever need to undo this (for example, to pull upstream changes to the file), run:
 
 ```bash
 git update-index --no-assume-unchanged .pyspelling.yml
@@ -462,7 +465,10 @@ git update-index --no-assume-unchanged .pyspelling.yml
 ~/.local/bin/pre-commit install
 ```
 
-**Note**: When using `pip install --user`, the `pre-commit` binary is installed to `~/.local/bin/`. You can either use the full path or add `~/.local/bin` to your PATH:
+!!! note
+
+    When using `pip install --user`, the `pre-commit` binary is installed to `~/.local/bin/`. You can either use the full path or add `~/.local/bin` to your PATH:
+
 
 ```bash
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
@@ -527,7 +533,9 @@ Verify Homebrew is working:
 brew doctor
 ```
 
-**Note for Intel Macs**: Homebrew installs to `/usr/local` on Intel Macs, which is already in the default PATH. No additional configuration is needed.
+!!! note "For Intel Macs"
+
+    Homebrew installs to `/usr/local` on Intel Macs, which is already in the default PATH. You need no additional configuration.
 
 #### Step 3: Install system dependencies
 
@@ -584,7 +592,7 @@ git remote add upstream https://github.com/rocky-linux/documentation.git
 
 #### Step 7: Configure pyspelling for macOS
 
-The repository `.pyspelling.yml` is configured for Hunspell by default. macOS uses Aspell (installed via Homebrew), so you need to create a local override. Create a `.pyspelling.yml` file in the repository root configured for Aspell:
+The configuration of the repository `.pyspelling.yml` is for Hunspell by default. macOS uses Aspell (installed by way of Homebrew), so you need to create a local override. Create a `.pyspelling.yml` file in the repository root configured for Aspell:
 
 ```bash
 cat > .pyspelling.yml << 'EOF'
@@ -634,7 +642,7 @@ After creating the override, tell Git to ignore your local changes to this file 
 git update-index --assume-unchanged .pyspelling.yml
 ```
 
-This prevents the modified `.pyspelling.yml` from appearing in `git status` or being staged by `git add`. If you ever need to undo this (for example, to pull upstream changes to the file), run:
+This prevents the modified `.pyspelling.yml` from appearing in `git status` or staging by `git add`. If you ever need to undo this (for example, to pull upstream changes to the file), run:
 
 ```bash
 git update-index --no-assume-unchanged .pyspelling.yml
@@ -654,11 +662,13 @@ Run the validation checks:
 pre-commit run --all-files
 ```
 
-**Note**: The pyspelling (spell check) and lychee (link check) hooks are configured as manual hooks to avoid long run times on the full repository. When running `pre-commit run --all-files`, you may see markdownlint errors from existing repository files. These are pre-existing issues and are not your responsibility to fix.
+!!! note
+
+    The configuration of pyspelling (spell check) and lychee (link check) is as manual hooks to avoid long run times on the full repository. When running `pre-commit run --all-files`, you might see markdownlint errors from existing repository files. These are pre-existing issues and are not your responsibility to fix.
 
 #### Validating your own documents
 
-When contributing, validate your specific document using these commands:
+When contributing, validate your specific document by using these commands:
 
 ```bash
 # Activate the virtual environment first
@@ -786,7 +796,7 @@ pre-commit run --files docs/guides/automation/kickstart-rocky.md
 
 ### Install pre-commit hooks
 
-Pre-commit hooks run automatically before each commit to check spelling, markdown formatting, and links. If you followed one of the platform-specific setup guides above, you have already completed this step.
+Pre-commit hooks run automatically before each commit to check spelling, Markdown formatting, and links. If you followed one of the platform-specific setup guides above, you have already completed this step.
 
 For other platforms not listed above, here are the general instructions:
 
@@ -796,7 +806,7 @@ For other platforms not listed above, here are the general instructions:
 pip install pre-commit
 ```
 
-2. Install the required tools:
+1. Install the required tools:
 
 ```bash
 # Install pyspelling for spell checking
@@ -831,13 +841,13 @@ cargo install lychee
 brew install lychee
 ```
 
-3. Install the pre-commit hooks:
+1. Install the pre-commit hooks:
 
 ```bash
 pre-commit install
 ```
 
-4. Verify the installation by running hooks manually:
+1. Verify the installation by running hooks manually:
 
 ```bash
 pre-commit run --all-files
@@ -895,7 +905,7 @@ If your guide does not fit any existing category, place it in the most relevant 
 
 ### AI usage
 
-The Rocky Linux Documentation Team permits AI and LLM tools in the contribution process, following the [Fedora AI Policy](https://docs.fedoraproject.org/en-US/docs/ai-policy/) as a baseline. If you use AI for any part of your documentation (drafting, research, grammar, code generation), you must include a disclosure at the beginning of your document stating that AI was used and that you take full responsibility for correctness of the content. You must test every procedure and verify all technical content yourself, as AI frequently produces errors. Do not pass other contributors' existing work through AI tools and resubmit it as a contribution, as this erases the original author's voice. Minor corrections such as typos and broken links do not require disclosure.
+The Rocky Linux Documentation Team permits AI and LLM tools in the contribution process, following the [Fedora AI Policy](https://docs.fedoraproject.org/en-US/docs/ai-policy/) as a baseline. If you use AI for any part of your documentation (drafting, research, grammar, code generation), you must include a disclosure at the beginning of your document stating the use of AI and that you take full responsibility for the correctness of the content. You must test every procedure and verify all technical content yourself, as AI frequently produces errors. Do not pass other contributors' existing work through AI tools and resubmit it as a contribution, as this erases the original author's voice. Minor corrections such as typos and broken links do not require disclosure.
 
 ### Document structure
 
@@ -924,7 +934,7 @@ After the front matter, structure your document with:
 
 ### Example guides
 
-Feel free to take a look at some example guides to understand the formatting and styling:
+Feel free to examine some example guides to understand the formatting and styling:
 
 - [Kickstart Files and Rocky Linux](../automation/kickstart-rocky.md)
 - [Setting Up libvirt on Rocky Linux](../virtualization/libvirt-rocky.md)
@@ -976,7 +986,7 @@ systemctl enable --now httpd
 ```
 ````
 
-For commands where output is shown, use `text` as the language:
+For commands that show output, use `text` as the language:
 
 ````markdown
 ```text
@@ -993,7 +1003,7 @@ Before committing, the pre-commit hooks automatically run:
 2. **Markdown lint** (markdownlint) - Validates markdown formatting
 3. **Link check** (lychee) - Verifies all links are valid
 
-If any check fails, the commit is blocked. Fix the issues and try again.
+If any check fails, they block the commit. Fix the issues and try again.
 
 ### Running checks manually
 
@@ -1070,7 +1080,7 @@ grep -q '^tags:' path/to/your-document.md && echo "✓ Tags found" || echo "✗ 
 
 #### Heading structure validation
 
-Documents should have at most one Level 1 heading (`#`). If your document has `title:` metadata, the title is auto-generated, so you may not need a Level 1 heading at all.
+Documents should have at most one Level 1 heading (`#`). If your document has `title:` metadata, this metadata generates the Level 1 heading for you. There is no requirement for an additional Level 1 heading.
 
 ```bash
 # Count Level 1 headings (should be 0 or 1)
@@ -1149,7 +1159,7 @@ When using example URLs in documentation, use approved domains to pass link vali
 
 #### Internal anchors warning
 
-Avoid internal document anchors like `[link](#section-name)` as they may break during translation.
+Avoid internal document anchors like `[link](#section-name)` as they might break during translation.
 
 ```bash
 # Check for internal anchors
@@ -1163,7 +1173,7 @@ fi
 
 #### Raw HTML warning
 
-Avoid using raw HTML elements. Markdown linters flag them and they may not render correctly. The following HTML elements are allowed in `.markdownlint.yml` and will not trigger linting errors:
+Avoid the use of raw HTML elements. Markdown linters flag them and they might not render correctly. These allowed HTML elements in the `.markdownlint.yml` will not trigger linting errors:
 
 - `<sub>` and `<sup>` - For subscript and superscript text
 - `<details>` and `<summary>` - For collapsible/expandable content sections
@@ -1351,26 +1361,28 @@ git checkout main
 git merge upstream/main
 ```
 
-2. Create a branch for your changes:
+1. Create a branch for your changes:
 
 ```bash
 git checkout -b your-new-document
 ```
 
-3. Add your document and commit:
+1. Add your document and commit:
 
 ```bash
 git add docs/guides/your-document.md
 git commit -m "Add new document for your-document"
 ```
 
-4. Push and create a pull request:
+1. Push and create a pull request:
 
 ```bash
 git push origin your-new-document
 ```
 
-> **Note:** You can also edit existing documentation and push your changes to the Rocky Linux Documentation repository using the same method.
+!!! note
+
+    You can also edit existing documentation and push your changes to the Rocky Linux Documentation repository using the same method.
 
 ## Getting help
 
@@ -1386,10 +1398,10 @@ If you are unsure where to start, or if something in this guide is unclear, just
 
 - [Style guide](style_guide.md) - Writing standards
 - [Document formatting](rockydocs_formatting.md) - Markdown syntax and admonitions
-- [Beginner contributors guide](beginners.md) - Detailed walkthrough for new contributors
+- [Beginner contributors guide](beginners.md) - Detailed walk through for new contributors
 - [Creating new documents](createnew.md) - GitHub-specific instructions
-- [Navigation and structure](navigation.md) - How the documentation site is organized
+- [Navigation and structure](navigation.md) - The organization of the documentation site
 
 ## License
 
-Documents contributed to Rocky Linux documentation are published under the [Creative Commons BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). By contributing, you agree to license your work under these terms.
+The published documents contributed to Rocky Linux documentation use the [Creative Commons BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). By contributing, you agree to license your work under these terms.
