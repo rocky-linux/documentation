@@ -17,7 +17,7 @@ tags:
 
 **Reading time**: 30 minutes
 
-## AI Usage Disclaimer
+## AI usage disclosure
 
 AI was used to generate the playbooks for Rocky Linux 8, 9 and 10. Manual testing was performed to ensure that they work correctly. The author takes full responsibility for the correctness of this document. Please report any errors you encounter to the Rocky Linux documentation team.
 
