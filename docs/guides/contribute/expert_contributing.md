@@ -1,5 +1,5 @@
 ---
-title: An expert's guide to contributing
+title: Contributing to the Rocky Linux Documentation
 author: Howard Van Der Wal
 contributors:
 ai_contributors: Claude (claude-opus-4-6)
