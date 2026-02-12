@@ -2,7 +2,7 @@
 title: An expert's guide to contributing
 author: Howard Van Der Wal
 contributors:
-ai-contributors: Claude Code
+ai_contributors: Claude (claude-opus-4-6)
 tags:
   - contributing
   - documentation
