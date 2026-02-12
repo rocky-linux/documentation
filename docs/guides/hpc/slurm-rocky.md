@@ -11,7 +11,6 @@ tags:
 - slurm
 ---
 
-# Installing Slurm on Rocky Linux
 
 **Knowledge**: :star: :star: :star: :star:
 
@@ -19,17 +18,17 @@ tags:
 
 ## AI usage disclosure
 
-AI was used to generate the playbooks for Rocky Linux 8, 9 and 10. Manual testing was performed to ensure that they work correctly. The author takes full responsibility for the correctness of this document. Please report any errors you encounter to the Rocky Linux documentation team.
+To generate the playbooks for Rocky Linux 8, 9, and 10, the human author used AI. The human author manually tested these procedures to ensure that they work correctly. The author takes full responsibility for the correctness of this document. Please report any errors you encounter to the Rocky Linux documentation team.
 
 ## Introduction
 
-`slurm` is an integral technology in the HPC world. It is the backbone of science experimentation ranging from space exploration to weather forecasting. `slurm` allows the user to easily deploy workloads across a cluster of hundreds or even thousands of nodes.
+`slurm` is an integral technology in the HPC world. It is the backbone of science experimentation ranging from space exploration to weather forecasting. `slurm` allows for the easy deployment of workloads across a cluster of hundreds or even thousands of nodes.
 
 By the end of this guide, you will better understand what `slurm` is, how to deploy `slurm` on a basic controller-compute node configuration, and how to run a basic job on a compute node.
 
 ## Background
 
-`slurm` is a cluster management and job scheduling system for Linux clusters. It allows you to run workloads on nodes, anything from memory usage checks to full aerodynamic simulations.
+`slurm` is a cluster management and job scheduling system for Linux clusters. You can use it to run workloads on nodes, anything from memory usage checks to full aerodynamic simulations.
 
 ## Prerequisites
 
@@ -39,9 +38,9 @@ By the end of this guide, you will better understand what `slurm` is, how to dep
 
 ## Slurm setup on Rocky Linux 8
 
-Rocky Linux 8 is still utilizing `cgroups v1` and thus as part of the install process, `cgroups v2` will be enabled on the host system.
+Rocky Linux 8 is still using `cgroups v1` and so as part of the install process, you must enable `cgroups v2` on the host system.
 
-The deployment process is presented below as an Ansible playbook.
+An Ansible playbook is in use for the deployment process.
 
 Ansible `hosts` file setup:
 
@@ -741,7 +740,7 @@ ansible-galaxy collection install -r requirements.yaml
 
 Task `Enable the devel repository for access to the munge-devel package` requires the Devel^5^ repository for ease of deployment of `munge`.
 
-Once the `munge` package is built, the Devel repository should be disabled again with `dnf config-manager --set-disabled devel`.
+Once the build of the `munge` package is complete, you should disable the Devel repository again with `dnf config-manager --set-disabled devel`.
 
 As a note, it is best practice to build `munge` from source^4^
 
@@ -2303,15 +2302,15 @@ EOF
 
 Now that you have your `slurm` cluster running on Rocky Linux, there are almost infinite possibilities on where to go next. Here are a few practical options for your home lab:
 
-* Set up `slurm` accounting^1^, so you're able to track every job submitted and what resources were consumed.
+* Set up `slurm` accounting^1^, so you are able to track the submission of every job and the resources consumed.
 
 * Deploy Grafana^3^ to your `slurm` cluster to have a visual confirmation of your GPU utilization, memory usage, jobs running, and more.
 
-* How about Apptainer^2^ and using that to pull your container images and submit `slurm` jobs that execute the containerized applications?
+* How about Apptainer^2^ and using that to pull your container images and submit `slurm` jobs that run the containerized applications?
 
 * For an added challenge, try running a Minecraft or similar game server on your `slurm` cluster.
 
-The list is endless and of course, `slurm` is massively used in HPC and data science.
+The list is endless and  `slurm` is massively used in HPC and data science.
 
 ## References
 
