@@ -893,6 +893,10 @@ Place your document in the appropriate directory under `docs/guides/`:
 
 If your guide does not fit any existing category, place it in the most relevant directory or ask the documentation team in the [Mattermost Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation).
 
+### AI usage
+
+The Rocky Linux Documentation Team permits AI and LLM tools in the contribution process, following the [Fedora AI Policy](https://docs.fedoraproject.org/en-US/docs/ai-policy/) as a baseline. If you use AI for any part of your documentation (drafting, research, grammar, code generation), you must include a disclosure at the beginning of your document stating that AI was used and that you take full responsibility for correctness of the content. You must test every procedure and verify all technical content yourself, as AI frequently produces errors. Do not pass other contributors' existing work through AI tools and resubmit it as a contribution, as this erases the original author's voice. Minor corrections such as typos and broken links do not require disclosure.
+
 ### Document structure
 
 Every document must include front matter metadata at the top:
@@ -925,10 +929,6 @@ Feel free to take a look at some example guides to understand the formatting and
 - [Kickstart Files and Rocky Linux](../automation/kickstart-rocky.md)
 - [Setting Up libvirt on Rocky Linux](../virtualization/libvirt-rocky.md)
 - [Automatic template creation with Packer and deployment with Ansible in a VMware vSphere environment](../automation/templates-automation-packer-vsphere.md)
-
-### AI usage
-
-The Rocky Linux Documentation Team permits AI and LLM tools in the contribution process, following the [Fedora AI Policy](https://docs.fedoraproject.org/en-US/docs/ai-policy/) as a baseline. If you use AI for any part of your documentation (drafting, research, grammar, code generation), you must include a disclosure at the beginning of your document stating that AI was used and that you take full responsibility for correctness of the content. You must test every procedure and verify all technical content yourself, as AI frequently produces errors. Do not pass other contributors' existing work through AI tools and resubmit it as a contribution, as this erases the original author's voice. Minor corrections such as typos and broken links do not require disclosure.
 
 ## Formatting guidelines
 
