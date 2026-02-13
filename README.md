@@ -151,6 +151,10 @@ The process for [submitting original content](https://docs.rockylinux.org/guides
 
 ## Notes
 
+### AI-Assisted Contributions
+
+For information about the Rocky Linux Documentation policy on AI-Assisted Contributions please review [Ai-Assisted Contributions Policy](https://docs.rockylinux.org/guides/contribute/createnew/)  
+
 ### Links
 
 Links can be internal (other docs within our domain), external (publicly hosted URLs), or lab-based (used as examples within your document).
