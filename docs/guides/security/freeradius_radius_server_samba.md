@@ -24,7 +24,8 @@ The following are minimum requirements for this procedure:
 
 ## Configuring Samba
 
-You will need to [configure Active Directory with Samba](authentication/active_directory_authentication_with_samba/). Note that sssd will not work.
+You will need to [configure Active Directory with Samba](../security/authentication/active_directory_authentication_with_samba.md
+). Note that sssd will not work.
 
 ## Installing FreeRADIUS
 
