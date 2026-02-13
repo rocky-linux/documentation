@@ -43,7 +43,7 @@ You *MAY* use AI assistance for contributing to the Rocky Linux Documentation Pr
 
 *Respect for Existing Contributions*:
 
-  You *MUST NOT* submit AI-generated contributions that are primarily derived from or substantially rework other contributors’ work.
+  You *MUST NOT* submit AI-generated contributions that are primarily derived from, or substantially a rework of, other contributors’ work.
   AI-assisted edits *SHOULD* preserve the original author’s intent, voice, and structure.
 
 
