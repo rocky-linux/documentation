@@ -780,7 +780,7 @@ rocky_linux9_slurm_compute_node_ip: <COMPUTE_IP>
 EOF
 ```
 
-Ansible `requirements.yaml`:
+Ansible `requirements.yaml` :
 
 ```bash
 cat << "EOF" | tee ~/requirements.yaml
@@ -1546,7 +1546,7 @@ ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 EOF
 ```
 
-Ansible `group_vars` setup:
+Ansible `group_vars` setup :
 
 ```bash
 cat << "EOF" | sudo tee /etc/ansible/group_vars/all
@@ -1556,7 +1556,7 @@ rocky_linux10_slurm_compute_node_ip: <COMPUTE_IP>
 EOF
 ```
 
-Ansible `requirements.yaml`:
+Ansible `requirements.yaml` :
 
 ```bash
 cat << "EOF" | tee ~/requirements.yaml
