@@ -577,14 +577,14 @@ sudo dnf install nginx:1.14/common
 * `dnf module list <Module-Name>` or `dnf module list <Module-Name>:<Stream>` - 列出当前模块的所有可用流（版本）。 列出单个模块流的信息。 例如 `dnf module list postgresql` 或 `dnf module list postgresql:15`。
 * `dnf module list --enabled` - 列出启用的模块流。
 * `dnf module info <Module-Name>` 或 `dnf module info <Module-name>:<Stream>` - 显示模块流信息。 如果只键入没有流的模块名称，则将显示该模块的所有流信息。 例如 `dnf module info ruby` 或 `dnf module info ruby:2.6`。
-* `dnf moudle --info --profile <Module-Name>` 或 `dnf moudle --info --profile <Module-Name>:<Stream>` - 列出模块流的配置集信息。 如果只键入没有流的模块名称，则将显示该模块的所有流配置集信息。
+* `dnf module --info --profile <Module-Name>` 或 `dnf module --info --profile <Module-Name>:<Stream>` - 列出模块流的配置集信息。 如果只键入没有流的模块名称，则将显示该模块的所有流配置集信息。
 
 #### 安装
 
 在安装模块的某一特定流之前，您需要先启用该流。 使用的语法如下：
 
 ```bash
-dnf moudle enable <Module-Name>:<Stream> ...
+dnf module enable <Module-Name>:<Stream> ...
 ```
 
 例如：
