@@ -9,7 +9,7 @@ tags:
   - descontinuação
 ---
 
-!!! info: "Imagens de Contas de Publicação Antiga Obsoletas A partir de abril de 2024"
+!!! info "Imagens de Contas de Publicação Antiga Obsoletas A partir de abril de 2024"
 
 ```
 O publicador de contas da Microsoft é um marketplace que permite que desenvolvedores publiquem suas ofertas para Microsoft AppSource ou Marketplace Azure. O RESF provê máquinas virtuais com Imagens Rocky Linux sobre 2 contas separadas publicadas na Azure; uma conta legado identificada como erockyenterprisesoftwarefoundationinc1653071250513 e uma nova conta oficial chamada 'resf'.
