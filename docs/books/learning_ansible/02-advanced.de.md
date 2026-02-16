@@ -435,7 +435,7 @@ Dies kann einige Probleme verursachen, insbesondere:
 * wenn die Ausführungszeit der Aufgabe länger ist als das SSH-Verbindungs-Timeout
 * wenn die Verbindung während der Aktion unterbrochen wird (Server-Neustart zum Beispiel)
 
-In diesem Fall müssen Sie in den asynchronen Modus wechseln und eine maximale Ausführungszeit sowie die Häufigkeit (standardmäßig 10s) angeben, mit der Sie den Host-Status überprüfen.
+In diesem Fall müssen Sie in den asynchronen Modus wechseln und eine maximale Ausführungszeit sowie die Häufigkeit (standardmäßig 10 Sekunden) festlegen, mit der Sie den Host-Status überprüfen.
 
 Durch Angabe eines Umfragewertes von 0 wird Ansible die Aufgabe ausführen und fortfahren, ohne sich um das Ergebnis Sorgen zu machen.
 
