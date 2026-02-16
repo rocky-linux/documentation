@@ -6,7 +6,7 @@
 
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-130-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-131-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Introduction
@@ -371,6 +371,7 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/obtekin"><img src="https://avatars.githubusercontent.com/u/65900550?v=4?s=100" width="100px;" alt="Oğuzhan Burak Tekin"/><br /><sub><b>Oğuzhan Burak Tekin</b></sub></a><br /><a href="#content-obtekin" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://www.wistly.net"><img src="https://avatars.githubusercontent.com/u/288769?v=4?s=100" width="100px;" alt="Carson Chittom"/><br /><sub><b>Carson Chittom</b></sub></a><br /><a href="#content-cmchittom" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/daomah"><img src="https://avatars.githubusercontent.com/u/129229601?v=4?s=100" width="100px;" alt="daomah"/><br /><sub><b>daomah</b></sub></a><br /><a href="#content-daomah" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Margrie"><img src="https://avatars.githubusercontent.com/u/16573570?v=4?s=100" width="100px;" alt="Margri"/><br /><sub><b>Margri</b></sub></a><br /><a href="#content-Margrie" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>
