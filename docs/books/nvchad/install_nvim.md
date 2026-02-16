@@ -107,7 +107,7 @@ As with Vim, Neovim requires a basic knowledge of its commands and options. You 
     The Neovim clone, by default, is synchronized with the Neovim development branch (at the time of this writing, version 0.10.0). To compile the stable version, we will have to switch to the corresponding branch before cloning with:
 
     ```bash
-    mkdir ~/lab/build
+    mkdir -p ~/lab/build
     cd ~/lab/build
     ```
 
