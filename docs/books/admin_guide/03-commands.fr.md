@@ -1593,7 +1593,7 @@ none        on  /proc/sys/fs/binfmt_misc                   type  binfmt_misc  (r
 
 Le caractère `;` enchaîne les commandes.
 
-Les commandes s’exécuteront toutes séquentiellement dans l’ordre de saisie une fois que l’utilisateur aura appuyé sur ++enter++.
+Les commandes seront exécutées toutes séquentiellement dans l’ordre de saisie une fois que l’utilisateur aura appuyé sur ++enter++.
 
 ```bash
 ls /; cd /home; ls -lia; cd /
