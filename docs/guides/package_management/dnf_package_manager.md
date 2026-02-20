@@ -18,7 +18,7 @@ DNF is commonly used in Rocky Linux, Fedora, RHEL (Red Hat Enterprise Linux) 8 a
 
 ## Prerequisites
 
-- For all Rocky Linux versions, the ability to use `sudo` to elevate privileges.
+- For all Rocky Linux versions, the ability to use `sudo` to elevate privileges is required for DNF to modify the system. For example, when installing or removing packages. It is important to note that each user has their own cache, which includes `sudo`, and it can be confusing for new DNF users. For example, `dnf clean all` is not the same as `sudo dnf clean all` because which cache is cleaned. This guide has both user level commands and elevated privilege commands.
 
 ## Installing packages
 
@@ -142,7 +142,7 @@ sudo dnf install @kde-desktop-environment
 If you decide to update your packages, use this code on the terminal:
 
 ```bash
-  sudo dnf update
+sudo dnf update
 ```
 
 Which may show something like this:
@@ -195,19 +195,19 @@ The `dnf upgrade` command yields the same results as the `dnf update` command.
 ### Update a single package
 
 ```bash
-  sudo dnf upgrade package_name
+sudo dnf upgrade package_name
 ```
 
 For example, if you want to upgrade your `openssl`, use `dnf`:
 
 ```bash
-dnf upgrade openssl
+sudo dnf upgrade openssl
 ```
 
 Which might show:
 
 ```bash
-dnf upgrade openssl
+sudo dnf upgrade openssl
 Last metadata expiration check: 1:21:40 ago on Mon 05 Feb 2024 08:31:09 PM UTC.
 Dependencies resolved.
 ========================================================================================================================================================================================================================================================Package                                                        Architecture                                             Version                                                               Repository                                    Size
@@ -479,11 +479,11 @@ ID     | Command line                                                           
 One of the most advantageous aspects of DNF history is the ability to revert (undo) and repeat (redo) transactions.
 
 ```bash
-dnf history undo id
+sudo dnf history undo id
 ```
 
 ```bash
-dnf history redo id
+sudo dnf history redo id
 ```
 
 ```bash
@@ -526,7 +526,7 @@ The command will return a long list of packages that include "yum" and "vim", as
 To display information about packages, use this command:
 
 ```bash
-sudo dnf info perl
+dnf info perl
 
 Last metadata expiration check: 2:33:15 ago on Mon 05 Feb 2024 08:31:09 PM UTC.
 Available Packages
@@ -560,10 +560,10 @@ Description  : Perl is a high-level programming language with roots in C, sed, a
 To display information about all available packages, both installed and available from a repository, use this command:
 
 ```bash
-sudo dnf repoquery perl --info
+dnf repoquery perl --info
 ```
 
-While it is not always the case, in the above instance, the results of this command is identical to the `sudo dnf info perl` command.
+While it is not always the case, in the above instance, the results of this command is identical to the `dnf info perl` command.
 
 ## DNF repository configuration
 
@@ -589,8 +589,10 @@ To retrieve a comprehensive list of configuration options along with their respe
 
 ```bash
 dnf config-manager --dump
+```
 
-sudo dnf config-manager --dump
+```bash
+dnf config-manager --dump
 ============================================================ main ============================================================
 [main]
 allow_vendor_change = 1
