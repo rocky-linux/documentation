@@ -82,6 +82,10 @@ Is this ok [y/N]:
 
 Installing a package group, as for **Xfce desktop** or  **Kde desktop**, and so on, is similar. You'll need to install `epel-release` first:
 
+!!! note
+
+    Xfce is not currently available for Rocky Linux 10
+
 ```bash
 sudo dnf install epel
 sudo dnf group install xfce
