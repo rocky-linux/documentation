@@ -39,13 +39,13 @@ Cloning the Rocky Linux repository moves a copy of the Rocky Linux documentation
     git clone git@github.com:rocky-linux/documentation.git
     ```
 
-2. Change into the `/documentation` directory:
+1. Change into the `/documentation` directory:
 
     ```bash
     cd documentation
     ```
 
-3. Check the remote name:
+1. Check the remote name:
 
     ```bash
     git remote -v
@@ -60,7 +60,7 @@ Cloning the Rocky Linux repository moves a copy of the Rocky Linux documentation
 
     You want this resource to be "upstream" rather than "origin".
 
-4. Change the remote name
+1. Change the remote name
 
     ```bash
     git remote rename origin upstream
@@ -84,7 +84,7 @@ With the Rocky Linux remote added and properly named, you need to set your perso
     git remote add origin git@github.com:[username]/documentation.git
     ```
 
-2. Check your git remotes:
+1. Check your git remotes:
 
     ```bash
     git remote -v
@@ -107,13 +107,19 @@ With the Rocky Linux remote added and properly named, you need to set your perso
     git pull upstream main && git push origin main
     ```
 
-2. Check out one of the two older version branches:
+1. Make your local clone aware of the branches that exist on the `upstream` with:
+
+    ```bash
+    git fetch upstream
+    ```
+
+1. Check out one of the two older version branches:
 
     ```bash
     git checkout rocky-8
     ```
 
-    !!! warning "This does not work if your clone was from your fork"
+    !!! warning "This does not work if your clone was from your fork."
 
         This is why the cloning process is done from Rocky Linux instead of from your fork. Your fork will not be aware of the older branches. To get the message that follows, you *must* clone your local documentation repository from Rocky Linux. 
 
@@ -132,7 +138,7 @@ With the Rocky Linux remote added and properly named, you need to set your perso
 
     You will probably get a message that you can create a pull request from the push. You can ignore this. What has happened is that your fork now has a `rocky-8` branch.
 
-3. Check out the remaining older branch. (`rocky-9`) and repeat the steps you just ran with that branch.
+1. Check out the remaining older branch. (`rocky-9`) and repeat the steps you just ran with that branch.
 
 Once completed, you will now have `main`, `rocky-8`, and `rocky-9` branches on your local fork and clone, and will be able to write documentation on any of those branches.
 
