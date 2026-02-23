@@ -13,7 +13,6 @@ tags:
 
 AI assisted in creating this document. The author reviewed all content, tested, and verified its accuracy, and takes full responsibility for the correctness of this document. Please report any errors you encounter to the Rocky Linux documentation team.
 
-
 ## Welcome
 
 Thank you for your interest in contributing to the Rocky Linux documentation. Whether you write new guides, translate existing content, or edit for clarity, the community deeply values every contribution you make.
@@ -47,16 +46,16 @@ Before setting up the local validation environment, you need:
 2. Click the **Fork** button in the upper right corner
 3. Clone your fork to your local machine:
 
-```bash
-git clone https://github.com/YOUR_USERNAME/documentation.git
-cd documentation
-```
+    ```bash
+    git clone https://github.com/YOUR_USERNAME/documentation.git
+    cd documentation
+    ```
 
-1. Add the upstream repository as a remote:
+4. Add the upstream repository as a remote:
 
-```bash
-git remote add upstream https://github.com/rocky-linux/documentation.git
-```
+    ```bash
+    git remote add upstream https://github.com/rocky-linux/documentation.git
+    ```
 
 ## Setting up your environment
 
@@ -304,7 +303,7 @@ sudo dnf install -y hunspell hunspell-en-US
 ```
 
 !!! note
- 
+
     When using `pip install --user`, the `pre-commit` binary is installed to `~/.local/bin/`. You can either use the full path or add `~/.local/bin` to your PATH:
 
 ```bash
@@ -468,7 +467,6 @@ git update-index --no-assume-unchanged .pyspelling.yml
 !!! note
 
     When using `pip install --user`, the `pre-commit` binary is installed to `~/.local/bin/`. You can either use the full path or add `~/.local/bin` to your PATH:
-
 
 ```bash
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
@@ -802,56 +800,82 @@ For other platforms not listed above, here are the general instructions:
 
 1. Install pre-commit:
 
-```bash
-pip install pre-commit
-```
+    ```bash
+    pip install pre-commit
+    ```
 
 1. Install the required tools:
 
+    ```bash
+    # Install pyspelling for spell checking
+    pip install pyspelling
+    ```
+
+## Install aspell dictionaries (varies by OS)
+
+### On Rocky Linux / RHEL / Fedora
+
 ```bash
-# Install pyspelling for spell checking
-pip install pyspelling
-
-# Install aspell dictionaries (varies by OS)
-# On Rocky Linux / RHEL / Fedora:
 sudo dnf install aspell aspell-en
+```
 
-# On Debian / Ubuntu:
+### On Debian / Ubuntu
+
+```bash
 sudo apt-get install aspell aspell-en
+```
 
-# On macOS:
+### On macOS
+
+```bash
 brew install aspell
+```
 
-# Install markdownlint-cli for markdown linting
+### Install markdownlint-cli for markdown linting
+
+```bash
 npm install -g markdownlint-cli
+```
 
-# Install lychee for link checking
-# On Rocky Linux 10 (binary installation - lychee is not in repos):
+## Install lychee for link checking
+
+### On Rocky Linux 10 (binary installation - lychee is not in repos)
+
+```bash
 cd /tmp && curl -sLO https://github.com/lycheeverse/lychee/releases/latest/download/lychee-x86_64-unknown-linux-gnu.tar.gz
 tar xzf lychee-x86_64-unknown-linux-gnu.tar.gz && sudo mv lychee /usr/local/bin/
 sudo chmod +x /usr/local/bin/lychee && rm -f lychee-x86_64-unknown-linux-gnu.tar.gz
+```
 
-# On Fedora (may be available in repos):
+### On Fedora (may be available in repos)
+
+```bash
 sudo dnf install lychee
+```
 
-# On Debian / Ubuntu (via cargo):
+### On Debian / Ubuntu (via cargo)
+
+```bash
 cargo install lychee
+```
 
-# On macOS:
+### On macOS
+
+```bash
 brew install lychee
 ```
 
 1. Install the pre-commit hooks:
 
-```bash
-pre-commit install
-```
+    ```bash
+    pre-commit install
+    ```
 
 1. Verify the installation by running hooks manually:
 
-```bash
-pre-commit run --all-files
-```
+    ```bash
+    pre-commit run --all-files
+    ```
 
 ## Creating new documentation
 
@@ -1361,20 +1385,20 @@ git checkout main
 git merge upstream/main
 ```
 
-2. Create a branch for your changes:
+1. Create a branch for your changes:
 
 ```bash
 git checkout -b your-new-document
 ```
 
-3. Add your document and commit:
+1. Add your document and commit:
 
 ```bash
 git add docs/guides/your-document.md
 git commit -m "Add new document for your-document"
 ```
 
-4. Push and create a pull request:
+1. Push and create a pull request:
 
 ```bash
 git push origin your-new-document
