@@ -1,7 +1,7 @@
 ---
 title: An expert contribution guide
 author: Howard Van Der Wal
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ai_contributors: Claude (claude-opus-4-6)
 tags:
   - contributing
@@ -11,16 +11,16 @@ tags:
 
 ## AI usage disclosure
 
-The creation of this document was with the assistance of AI. The author reviewed all content, tested, and verified, its accuracy, and takes full responsibility for the correctness of this document. Please report any errors you encounter to the Rocky Linux documentation team.
+AI assisted in creating this document. The author reviewed all content, tested, and verified its accuracy, and takes full responsibility for the correctness of this document. Please report any errors you encounter to the Rocky Linux documentation team.
 
 
 ## Welcome
 
-Thank you for your interest in contributing to the Rocky Linux documentation. Whether you are writing new guides, translating existing content, or editing for clarity, every contribution matters and is deeply valued by the community.
+Thank you for your interest in contributing to the Rocky Linux documentation. Whether you write new guides, translate existing content, or edit for clarity, the community deeply values every contribution you make.
 
-This guide is for contributors who want to set up a full local validation environment with spell checking, Markdown linting, and link checking tools. **Setting up these tools is entirely optional, but recommended for first-time contributors.** You can also edit documentation directly on GitHub without installing anything locally.
+This guide is for contributors who want to set up a full local validation environment with spell-checking, Markdown linting, and link-checking tools. **Setting up these tools is entirely optional, but recommended for first-time contributors.** You can also edit documentation directly on GitHub without installing anything locally.
 
-No matter your experience level, the Rocky Linux community is here to help. If you have questions, run into problems, or just want guidance on where to start, join the [Mattermost Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation). Someone will be happy to help you get started.
+No matter your experience level, the Rocky Linux community is here to help. If you have questions, run into problems, or want guidance on where to start, join the [Mattermost Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation). Someone will be happy to help you get started.
 
 ## Quick start
 
@@ -62,7 +62,7 @@ git remote add upstream https://github.com/rocky-linux/documentation.git
 
 ### Alternative tooling
 
-The setup instructions in this section describe one approach to documentation validation using pre-commit hooks and command-line tools. There are other methods available to check your Markdown documents, before submitting them as a PR.
+The setup instructions in this section describe one approach to documentation validation using pre-commit hooks and command-line tools. There are other methods for checking your Markdown documents before submitting a PR.
 
 If you already use a terminal-based editor (Neovim, Emacs, Helix, etc.) with integrated linting tools, you can continue using your existing workflow. Tools like:
 
@@ -100,7 +100,7 @@ Terminal editors can integrate the same validation tools used by the pre-commit 
 
 ### Rocky Linux 10 setup
 
-If you are running Rocky Linux 10, follow these steps to set up a complete documentation validation environment. This installs all required tools that you to run the same checks that the Documentation Team uses to validate pull requests.
+If you are running Rocky Linux 10, follow these steps to set up a complete documentation validation environment. This installs all the required tools that you need to run the same checks that the Documentation Team uses to validate pull requests.
 
 #### Step 1: Install system dependencies
 
@@ -121,7 +121,7 @@ pip install pre-commit pyspelling
 sudo npm install -g markdownlint-cli
 ```
 
-#### Step 4: Install lychee link checker
+#### Step 4: Install Lychee link checker
 
 Lychee is not available in the Rocky Linux repositories, so install the binary directly:
 
@@ -154,9 +154,9 @@ cd documentation
 git pull origin main
 ```
 
-#### Step 6: Verify pyspelling configuration
+#### Step 6: Verify the pyspelling configuration
 
-The repository includes a `.pyspelling.yml` configured for Hunspell, which is the default spell checker on Rocky Linux 10. You do not need additional configuration. Verify the installation of Hunspell with:
+The repository includes a `.pyspelling.yml` configuration for Hunspell, the default spell checker on Rocky Linux 10. You do not need additional configuration. Verify the installation of Hunspell with:
 
 ```bash
 rpm -q hunspell hunspell-en-US
@@ -396,7 +396,7 @@ cd documentation
 
 #### Step 6: Configure pyspelling for Aspell
 
-The configuration of Hunspell in the repository `.pyspelling.yml` already exists. Rocky Linux 8 uses Aspell instead, so you need to create a local override. Create a `.pyspelling.yml` file in the repository root:
+The Hunspell configuration in the repository `.pyspelling.yml` already exists. Rocky Linux 8 uses Aspell instead, so you need to create a local override. Create a `.pyspelling.yml` file in the repository root:
 
 ```bash
 cat > .pyspelling.yml << 'EOF'
@@ -453,7 +453,7 @@ After creating the override, tell Git to ignore your local changes to this file 
 git update-index --assume-unchanged .pyspelling.yml
 ```
 
-This prevents the modified `.pyspelling.yml` from appearing in `git status` or staging by `git add`. If you ever need to undo this (for example, to pull upstream changes to the file), run:
+This prevents the modified `.pyspelling.yml` from appearing in `git status` or in the staging area when using `git add`. If you ever need to undo this (for example, to pull upstream changes to the file), run:
 
 ```bash
 git update-index --no-assume-unchanged .pyspelling.yml
@@ -500,7 +500,7 @@ lychee "docs/guides/your-document.md" --no-progress
 
 ### macOS Sequoia setup
 
-If you are running macOS Sequoia (macOS 15), follow these steps to set up a complete documentation validation environment. These instructions have been tested on both Apple Silicon (M1/M2/M3/M4) and Intel Macs.
+If you are running macOS Sequoia (macOS 15), follow these steps to set up a complete documentation validation environment. We tested these instructions on both Apple Silicon (M1/M2/M3/M4) and Intel Macs.
 
 #### Step 1: Install Xcode command line tools
 
@@ -1361,20 +1361,20 @@ git checkout main
 git merge upstream/main
 ```
 
-1. Create a branch for your changes:
+2. Create a branch for your changes:
 
 ```bash
 git checkout -b your-new-document
 ```
 
-1. Add your document and commit:
+3. Add your document and commit:
 
 ```bash
 git add docs/guides/your-document.md
 git commit -m "Add new document for your-document"
 ```
 
-1. Push and create a pull request:
+4. Push and create a pull request:
 
 ```bash
 git push origin your-new-document
