@@ -366,7 +366,7 @@ Shell > systemctl show sshd.service
 
 !!! info
 
-     You can operate on one or more units in a single command line for the above operations. The above operations are not limited to ".service".
+    You can operate on one or more units in a single command line for the above operations. The above operations are not limited to ".service".
 
 About "units":
 
