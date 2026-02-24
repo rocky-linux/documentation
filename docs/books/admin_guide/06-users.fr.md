@@ -61,7 +61,7 @@ Les fichiers liés aux utilisateurs/groupes sont:
 
     Certaines commandes dans ce chapitre nécessitent des droits d'administrateur. 
     Par convention, nous spécifierons la commande « sudo » lorsque les commandes doivent être exécutées avec des droits d'administrateur.
-    Pour que les exemples fonctionnent correctement, veuillez vérifier que le compte que vous utilisez a le droit d'utiliser la commande `sudo`.
+    Pour que les exemples fonctionnent correctement, assurez-vous que votre compte dispose des droits nécessaires pour utiliser la commande `sudo`.
 
 ## Gestion des groupes
 
@@ -246,7 +246,7 @@ GroupA:$6$2,9,v...SBn160:alain:rockstar
 
     Le nom du groupe dans **/etc/group** et **/etc/gshadow** doivent correspondre un par un. Autrement dit, chaque ligne du fichier **/etc/group** doit avoir une ligne correspondante dans le fichier **/etc/gshadow**.
 
-An `!` in the password indicates it is locked. Ainsi aucun utilisateur ne peut utiliser le mot de passe pour accéder au groupe (sachant que les membres du groupe n’en ont pas besoin).
+Un point d'exclamation –`!`– dans le mot de passe indique qu'il est verrouillé. Ainsi aucun utilisateur ne peut utiliser le mot de passe pour accéder au groupe (sachant que les membres du groupe n’en ont pas besoin).
 
 ## Gestion des utilisateurs
 
@@ -287,17 +287,17 @@ Exemple :
 sudo useradd -u 1000 -g 1013 -d /home/GroupC/carine carine
 ```
 
-| Option              | Description                                                                                                                                                                        |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-u UID`            | `UID` de l’utilisateur à créer.                                                                                                                                                    |
-| `-g GID`            | `GID` du groupe principal. Le `GID` ici peut également être un nom de groupe ``.                                                                                                   |
-| `-G GID1,[GID2]...` | `GID` des groupes supplémentaires. Le `GID` ici peut également être un `nom de groupe`. Il est possible de spécifier plusieurs groupes supplémentaires séparés par des virgules.   |
-| `-d repertoire`     | Crée le répertoire personnel.                                                                                                                                                      |
-| `-s shell`          | Spécifie l'interpréteur de commandes de l'utilisateur.                                                                                                                             |
-| `-c COMMENTAIRES`   | Ajoute un commentaire.                                                                                                                                                             |
-| `-U`                | Ajoute l’utilisateur à un groupe portant le même nom créé simultanément. Si cette option n'est pas indiquée, un groupe avec le même nom sera créé lorsque l'utilisateur sera créé. |
-| `-M`                | Pas de création du répertoire personnel de l'utilisateur.                                                                                                                          |
-| `-r`                | Créer un compte système.                                                                                                                                                           |
+| Option              | Description                                                                                                                                                                      |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-u UID`            | `UID` de l’utilisateur à créer.                                                                                                                                                  |
+| `-g GID`            | `GID` du groupe principal. Le `GID` ici peut également être un nom de groupe ``.                                                                                                 |
+| `-G GID1,[GID2]...` | `GID` des groupes supplémentaires. Le `GID` ici peut également être un `nom de groupe`. Il est possible de spécifier plusieurs groupes supplémentaires séparés par des virgules. |
+| `-d repertoire`     | Crée le répertoire personnel.                                                                                                                                                    |
+| `-s shell`          | Spécifie l'interpréteur de commandes de l'utilisateur.                                                                                                                           |
+| `-c COMMENTAIRES`   | Ajoute un commentaire.                                                                                                                                                           |
+| `-U`                | Ajoute l’utilisateur à un groupe portant le même nom créé simultanément. Si rien n'est spécifié, un groupe portant le même nom est créé lors de la création de l'utilisateur.    |
+| `-M`                | Pas de création du répertoire personnel de l'utilisateur.                                                                                                                        |
+| `-r`                | Crée un compte système.                                                                                                                                                          |
 
 À la création, le compte ne possède pas de mot de passe et est verrouillé.
 
@@ -385,7 +385,7 @@ sudo useradd -D -g 1000 -b /home -s /bin/bash
 | `-g groupe`         | Définit le groupe par défaut.                                                                                                                                                                                            |
 | `-s shell`          | Définit le shell par défaut.                                                                                                                                                                                             |
 | `-f`                | Nombre de jours suivant l’expiration du mot de passe avant que le compte ne soit désactivé.                                                                                                                              |
-| `-e`                | Date à laquelle le compte sera désactivé.                                                                                                                                                                                |
+| `-e`                | Définit la date de désactivation du compte.                                                                                                                                                                              |
 
 ### La commande `usermod`
 
@@ -406,7 +406,7 @@ Options identiques à celles de la commande `useradd`.
 | Option          | Observation                                                                                                                                                                                                                                                                         |
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `-m`            | Associé à l'option `-d.`  Déplace le contenu de l'ancien répertoire de connexion vers le nouveau. Si l'ancien répertoire d'origine n'existe pas, la création d'un nouveau répertoire d'origine n'a pas lieu ; la création du nouveau répertoire d'origine a lieu s'il n'existe pas. |
-| `-l login`      | Nouveau nom de connexion. Une fois que vous avez modifié le nom de connexion, vous devez également modifier le nom du répertoire personnel pour le correspondre.                                                                                                                    |
+| `-l login`      | Modifie le nom d'utilisateur. Une fois que vous avez modifié le nom de connexion, vous devez également modifier le nom du répertoire personnel pour le correspondre.                                                                                                                |
 | `-e AAAA-MM-JJ` | Change la date d’expiration du compte.                                                                                                                                                                                                                                              |
 | `-L`            | Verrouille définitivement le compte. C'est-à-dire, un point d'exclamation `!` est ajouté au début du champ de mot de passe de `/etc/shadow`.                                                                                                                                        |
 | `-U`            | Déverrouille le compte.                                                                                                                                                                                                                                                             |
@@ -417,7 +417,7 @@ Options identiques à celles de la commande `useradd`.
 
     Pour pouvoir être modifié, un utilisateur doit être déconnecté et ne pas avoir de processus en cours.
 
-After changing the identifier, the files belonging to the user have an unknown `UID`. Il faut leur réattribuer le nouvel `UID`.
+Après modification de l'identifiant, les fichiers appartenant à l'utilisateur ont un `UID` inconnu. Il faut leur réattribuer le nouvel `UID`.
 
 Où `1000` est l'ancien `UID` et `1044` le nouveau. En voici quelques exemples :
 
@@ -804,8 +804,8 @@ sudo chage -m 60 -M 90 -W 80 -I 10 alain
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `-I DAYS`            | Définit le délai avant la désactivation lorsque le mot de passe expire. Changement permanent.                                                                                     |
 | `-l`                 | Affiche le détail de la stratégie (l minuscule).                                                                                                                                  |
-| `-m DAYS`            | Durée de vie minimale du mot de passe. Changement permanent.                                                                                                                      |
-| `-M DAYS`            | Durée de vie maximale du mot de passe. Changement permanent.                                                                                                                      |
+| `-m DAYS`            | Définit la durée de vie minimale du mot de passe. Changement permanent.                                                                                                           |
+| `-M DAYS`            | Définit la durée de vie maximale du mot de passe. Changement permanent.                                                                                                           |
 | `-d LAST_DAY`        | Définit le nombre de jours depuis la dernière modification du mot de passe. Vous pouvez utiliser le style de l'horodatage des jours ou le style AAAA-MM-JJ. Changement permanent. |
 | `-E DATE_EXPIRATION` | Indique la date d’expiration du compte. Vous pouvez utiliser le style de l'horodatage des jours ou le style YYYY-MM-DD. Changement permanent.                                     |
 | `-W WARN_DAYS`       | Indique le délai d’avertissement avant expiration. Changement permanent.                                                                                                          |
@@ -863,8 +863,8 @@ CREATE_MAIL_SPOOL=yes
 | `HOME`              | Définir le chemin du répertoire du niveau supérieur au répertoire de connexion d'un l'utilisateur standard.                                                                                       |
 | `INACTIVE`          | Nombre de jours de grâce après l'expiration du mot de passe. Correspond au 7ème champ du fichier `/etc/shadow`. La valeur `-1` signifie que la fonctionnalité de période de grâce est désactivée. |
 | `EXPIRE`            | Date d’expiration du compte. Correspond au 8ème champ du fichier `/etc/shadow`.                                                                                                                   |
-| `SHELL`             | Interpréteur de commandes.                                                                                                                                                                        |
-| `SKEL`              | Répertoire squelette du répertoire de connexion.                                                                                                                                                  |
+| `SHELL`             | Définit l'interpréteur de commandes.                                                                                                                                                              |
+| `SKEL`              | Définit le répertoire squelette du dossier de connexion.                                                                                                                                          |
 | `CREATE_MAIL_SPOOL` | Définit la création de la boîte aux lettres dans `/var/spool/mail/`.                                                                                                                              |
 
 Si vous n'avez pas besoin d'un groupe primaire portant le même nom lors de la création d'utilisateurs, vous pouvez faire comme suit :
