@@ -288,7 +288,7 @@ You can also use the `--all` option to expand all "units".
 
 ### Unit types
 
-The `systemctl` command is the most commonly used management tool, and it is a combination of previous `service` commands and `chkconfig` commands.
+The `systemctl` command is mainly used to manage the "unit(s)" and related files of `systemd`.
 
 `systemd` manages so-called "units", which are representations of system resources and services. The following list shows the "unit" types that `systemd` can manage:
 
