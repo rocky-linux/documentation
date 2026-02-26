@@ -47,7 +47,7 @@ Examples:
 
 The policy does not cover the large scale initiatives which may significantly change the ways the project operates or lead to exponential growth in contributions in some parts of the project. Such initiatives need to be discussed separately with the project leadership.
 
-## Respect for Existing Contributions
+## Respect for existing contributions
 
 - You *MUST NOT* submit AI-generated contributions that are primarily derived from, or substantially a rework of, other contributors’ work.
 - AI-assisted edits *SHOULD* preserve the original author’s intent, voice, and structure.
