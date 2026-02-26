@@ -48,7 +48,7 @@ We host our media sources at github.com. Our team created this document on this 
 
 The RL [Style Guide](https://docs.rockylinux.org/guides/contribute/style_guide/) outlines standards for the wording within your document.
 
-### GitHub  
+### GitHub
 
 Rocky Linux uses GitHub to manage its code and files, including documentation files. Login to GitHub and follow the official [Rocky Linux documentation repository](https://github.com/rocky-linux/documentation).
 
@@ -154,7 +154,7 @@ The process for [submitting original content](https://docs.rockylinux.org/guides
 
 ### AI-assisted contributions
 
-For information about the Rocky Linux documentation policy on AI-assisted contributions please review [Ai-assisted contributions policy](https://docs.rockylinux.org/guides/contribute/createnew/).
+For information about the Rocky Linux documentation policy on AI-assisted contributions please review [Ai-assisted contributions policy](https://docs.rockylinux.org/guides/contribute/ai-contribution-policy.md).
 
 ### Links
 
