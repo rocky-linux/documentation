@@ -1,7 +1,7 @@
 ---
 title: Deploying Slurm on Rocky Linux
 author: Howard Van Der Wal
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ai_contributors: Claude (claude-opus-4-5-20251101)
 tested with: 10, 9, 8
 tags:
@@ -22,7 +22,7 @@ To generate the playbooks for Rocky Linux 8, 9, and 10, the human author used AI
 
 ## Introduction
 
-`slurm` is an integral technology in the HPC world. It is the backbone of science experimentation ranging from space exploration to weather forecasting. `slurm` allows for the easy deployment of workloads across a cluster of hundreds or even thousands of nodes.
+`slurm` is an integral technology in the HPC world. It is the backbone of scientific experimentation, ranging from space exploration to weather forecasting. `slurm` enables the easy deployment of workloads across a cluster of hundreds or even thousands of nodes.
 
 By the end of this guide, you will better understand what `slurm` is, how to deploy `slurm` on a basic controller-compute node configuration, and how to run a basic job on a compute node.
 
@@ -38,7 +38,7 @@ By the end of this guide, you will better understand what `slurm` is, how to dep
 
 ## Slurm setup on Rocky Linux 8
 
-Rocky Linux 8 is still using `cgroups v1` and so as part of the install process, you must enable `cgroups v2` on the host system.
+Rocky Linux 8 still uses `cgroups v1`, so as part of the installation process, you must enable `cgroups v2` on the host system.
 
 An Ansible playbook is in use for the deployment process.
 
@@ -753,7 +753,7 @@ NodeName=rocky-linux8-slurm-compute-node NodeAddr={{ rocky_linux8_slurm_compute_
 
 Alter each of the above values to suit your cluster.
 
-Generally it is best to leave `SlurmUser` as `slurm`, as you do not want to run your workloads as `root` for security^8^ reasons.
+Generally, it is best to leave `SlurmUser` as `slurm`, as you do not want to run your workloads as `root` for security^8^ reasons.
 
 ## Slurm setup on Rocky Linux 9
 
@@ -2304,7 +2304,7 @@ Now that you have your `slurm` cluster running on Rocky Linux, there are almost 
 
 * For an added challenge, try running a Minecraft or similar game server on your `slurm` cluster.
 
-The list is endless and  `slurm` is massively used in HPC and data science.
+The list is endless, and  `slurm` is massively used in HPC and data science.
 
 ## References
 
