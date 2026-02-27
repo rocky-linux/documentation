@@ -567,8 +567,8 @@ While it is not always the case, in the above instance, the results of this comm
 
 ## DNF repository configuration
 
-The configuration file for DNF and its associated utilities is located at `/etc/dnf/dnf.conf`.
-This file includes a mandatory [main] section that allows configuration of DNF options with global effects. Additionally, it may include one or more [repository] sections, allowing repository-specific options to be set.
+You can find the configuration file for DNF and its associated utilities at `/etc/dnf/dnf.conf`.
+This file includes a mandatory [main] section that allows configuration of DNF options with global effects. Additionally, it may include one or more [repository] sections, allowing for the setting of repository-specific options.
 
 Any values specified in the [repository] sections of the `/etc/dnf/dnf.conf` file will take precedence over values set in the [main] section.
 
