@@ -88,7 +88,7 @@ Choose a markdown editor that suits your workflow:
 #### Terminal editors
 
 - [NvChad](https://nvchad.com/) - For Neovim users. See our [NvChad setup guide](../../books/nvchad/index.md)
-- [Doom Emacs](https://github.com/doomemacs/doomemacs) - For Emacs users. Enable the `markdown` module in your configuration.
+- [Doom Emacs](https://github.com/doomemacs/doomemacs) - For Emacs users looking for evil-mode, enable the `markdown` module in your configuration.
 
 Terminal editors can integrate the same validation tools used by the pre-commit hooks directly into your editing workflow:
 
