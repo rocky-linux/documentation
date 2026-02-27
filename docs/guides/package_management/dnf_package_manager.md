@@ -80,7 +80,7 @@ Installed size: 343 M
 Is this ok [y/N]:
 ```
 
-Installing a package group, as for **Xfce desktop** or  **Kde desktop**, and so on, is similar. You'll need to install `epel-release` first:
+Installing a package group, as for **Xfce desktop** or  **Kde desktop**, and so on, is similar. Install `epel-release` first:
 
 !!! note
 
