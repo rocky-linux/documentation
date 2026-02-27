@@ -1,7 +1,7 @@
 ---
 title: Slurm und Rocky Linux
 author: Howard Van Der Wal
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ai_contributors: Claude (claude-opus-4-5-20251101)
 tested with: 10, 9, 8
 tags:
@@ -103,7 +103,7 @@ NodeName=rocky-linux8-slurm-compute-node NodeAddr={{ rocky_linux8_slurm_compute_
 
 Passen Sie jeden der oben genannten Werte an Ihre Clusterkonfiguration an.
 
-Im Allgemeinen ist es am besten, `SlurmUser` auf `slurm` zu belassen, da Sie Ihre Workloads aus Sicherheitsgründen^8^ nicht als `root` ausführen möchten.
+Im Allgemeinen ist es am besten, `SlurmUser` auf `slurm` zu belassen, da Sie Ihre Workloads aus Sicherheitsgründen^8^ nicht als `root` ausführen sollten.
 
 ## Slurm-Setup unter Rocky Linux 9
 
