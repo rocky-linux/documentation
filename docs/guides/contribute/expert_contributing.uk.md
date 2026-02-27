@@ -1,7 +1,7 @@
 ---
 title: Експертний посібник зі створення внесків
 author: Howard Van Der Wal
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ai_contributors: Claude (claude-opus-4-6)
 tags:
   - contributing
@@ -43,30 +43,32 @@ tags:
 ## Розщеплення та клонування репозиторію
 
 1. Перейдіть до [репозиторію документації Rocky Linux] (https://github.com/rocky-linux/documentation)
+
 2. Натисніть кнопку **Fork** у верхньому правому куті
+
 3. Клонуйте свій fork на вашу локальну машину:
 
-```bash
-git clone https://github.com/YOUR_USERNAME/documentation.git
-cd documentation
-```
+    ```bash
+    git clone https://github.com/YOUR_USERNAME/documentation.git
+    cd documentation
+    ```
 
-1. Додайте репозиторій основної платформи як віддалений:
+4. Додайте репозиторій основної платформи як віддалений:
 
-```bash
-git remote add upstream https://github.com/rocky-linux/documentation.git
-```
+    ```bash
+    git remote add upstream https://github.com/rocky-linux/documentation.git
+    ```
 
 ## Налаштування вашого середовища
 
 ### Альтернативні інструменти
 
-Інструкції з налаштування в цьому розділі описують один підхід до перевірки документації за допомогою перехоплювачів перед комітом та інструментів командного рядка. There are other methods for checking your Markdown documents before submitting a PR.
+Інструкції з налаштування в цьому розділі описують один підхід до перевірки документації за допомогою перехоплювачів перед комітом та інструментів командного рядка. Існують інші методи перевірки ваших документів Markdown перед поданням PR-запиту.
 
-Якщо ви вже використовуєте термінальний редактор (Neovim, Emacs, Helix тощо) завдяки інтегрованим інструментам лінтингу ви можете продовжувати використовувати свій існуючий робочий процес. Такі інструменти, як:
+Якщо ви вже використовуєте термінальний редактор (Neovim, Emacs, Helix тощо) з інтегрованими інструментами linting, ви можете продовжувати використовувати наявний робочий процес. Такі інструменти, як:
 
 - [markdownlint](https://github.com/DavidAnson/markdownlint) або [markdownlint-cli2](https://github.com/DavidAnson/markdownlint-cli2) – доступні як плагіни редактора для лінтингу Markdown у режимі реального часу
-- [vale](https://github.com/errata-ai/vale) – Лінтер прози, який може забезпечити дотримання правил посібника зі стилю
+- [vale](https://github.com/errata-ai/vale) – Лінтер прози, який може запроваджувати правила стилю
 - [harper-ls](https://github.com/Automattic/harper) – Перевірка граматики з підтримкою LSP
 - [ltex-ls](https://github.com/valentjn/ltex-ls) – перевірка граматики та орфографії на основі LanguageTool через LSP
 
@@ -88,7 +90,7 @@ git remote add upstream https://github.com/rocky-linux/documentation.git
 #### Редактори терміналів
 
 - [NvChad](https://nvchad.com/) – Для користувачів Neovim. Дивіться наш [посібник з налаштування NvChad](../../books/nvchad/index.md)
-- [Doom Emacs](https://github.com/doomemacs/doomemacs) – Для користувачів Emacs, які шукають режим злості. Увімкніть модуль `markdown` у вашій конфігурації.
+- [Doom Emacs](https://github.com/doomemacs/doomemacs) – Для користувачів Emacs. Увімкніть модуль `markdown` у вашій конфігурації.
 
 Редактори терміналів можуть інтегрувати ті ж інструменти перевірки, що й хуки перед коммітами, безпосередньо у ваш робочий процес редагування:
 
@@ -146,7 +148,7 @@ git clone https://github.com/YOUR_USERNAME/documentation.git
 cd documentation
 ```
 
-Якщо ви вже клонували репозиторій, переконайтеся, що він актуальний:
+Якщо ви вже клонували репозиторій, переконайтеся, що він оновлений:
 
 ```bash
 cd documentation
@@ -155,7 +157,7 @@ git pull origin main
 
 #### Крок 6: Перевірте конфігурацію pyspelling
 
-Репозиторій містить файл `.pyspelling.yml`, налаштований для Hunspell, який є перевіркою орфографії за замовчуванням у Rocky Linux 10. Вам не потрібна додаткова конфігурація. Перевірте встановлення Hunspell за допомогою:
+Репозиторій містить конфігурацію `.pyspelling.yml` для Hunspell, програми перевірки орфографії за замовчуванням у Rocky Linux 10. Вам не потрібна додаткова конфігурація. Перевірте встановлення Hunspell за допомогою:
 
 ```bash
 rpm -q hunspell hunspell-en-US
@@ -496,7 +498,7 @@ markdownlint "docs/guides/your-document.md"
 lychee "docs/guides/your-document.md" --no-progress
 ```
 
-### Налаштування macOS Sequoia
+### налаштування macOS Sequoia
 
 Якщо ви використовуєте macOS Sequoia (macOS 15), виконайте ці кроки, щоб налаштувати повне середовище перевірки документації. Ми протестували ці інструкції як на комп'ютерах Mac з процесором Apple Silicon (M1/M2/M3/M4), так і на комп'ютерах Mac з процесором Intel.
 
@@ -800,56 +802,82 @@ pre-commit run --files docs/guides/automation/kickstart-rocky.md
 
 1. Встановлення перед комітом:
 
+    ```bash
+    pip install pre-commit
+    ```
+
+2. Встановіть необхідні інструменти:
+
+    ```bash
+    # Install pyspelling for spell checking
+    pip install pyspelling
+    ```
+
+## Встановлення словників Aspell (залежно від ОС)
+
+### У Rocky Linux / RHEL / Fedora
+
 ```bash
-pip install pre-commit
+sudo dnf install aspell aspell-en
 ```
 
-1. Встановіть необхідні інструменти:
+### На Debian / Ubuntu
 
 ```bash
-# Install pyspelling for spell checking
-pip install pyspelling
-
-# Install aspell dictionaries (varies by OS)
-# On Rocky Linux / RHEL / Fedora:
-sudo dnf install aspell aspell-en
-
-# On Debian / Ubuntu:
 sudo apt-get install aspell aspell-en
+```
 
-# On macOS:
+### На macOS
+
+```bash
 brew install aspell
+```
 
-# Install markdownlint-cli for markdown linting
+### Встановіть markdownlint-cli для лінтингу markdown
+
+```bash
 npm install -g markdownlint-cli
+```
 
-# Install lychee for link checking
-# On Rocky Linux 10 (binary installation - lychee is not in repos):
+## Встановіть Lychee для перевірки посилань
+
+### На Rocky Linux 10 (бінарне встановлення — lychee не знаходиться в репозиторіях)
+
+```bash
 cd /tmp && curl -sLO https://github.com/lycheeverse/lychee/releases/latest/download/lychee-x86_64-unknown-linux-gnu.tar.gz
 tar xzf lychee-x86_64-unknown-linux-gnu.tar.gz && sudo mv lychee /usr/local/bin/
 sudo chmod +x /usr/local/bin/lychee && rm -f lychee-x86_64-unknown-linux-gnu.tar.gz
+```
 
-# On Fedora (may be available in repos):
+### У Fedora (може бути доступно в репозиторіях)
+
+```bash
 sudo dnf install lychee
+```
 
-# On Debian / Ubuntu (via cargo):
+### На Debian / Ubuntu (через cargo)
+
+```bash
 cargo install lychee
+```
 
-# On macOS:
+### На macOS
+
+```bash
 brew install lychee
 ```
 
 1. Встановіть перехоплювачі перед комітами:
 
-```bash
-pre-commit install
-```
+    ```bash
+    pre-commit install
+    ```
 
-1. Перевірте встановлення, запустивши перехоплювачі вручну:
+2. Перевірте встановлення, запустивши перехоплювачі вручну:
 
-```bash
-pre-commit run --all-files
-```
+    ```bash
+    pre-commit run --all-files
+    ```
 
 ## Створення нової документації
 
