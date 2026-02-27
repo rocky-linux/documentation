@@ -140,7 +140,7 @@ sudo dnf group install kde-desktop-environment
 sudo dnf install @kde-desktop-environment
 ```
 
-You will need to install `epel-release` as shown previously and enable the CodeReady Builder in Rocky Linux 9 and 10 or PowerTools for Rocky Linux 8 in order for KDE to install succesfully.
+Install `epel-release` as shown previously and enable the CodeReady Builder in Rocky Linux 9 and 10 or PowerTools for Rocky Linux 8 in order for KDE to install succesfully.
 
 For Rocky Linux 9 and 10:
 
