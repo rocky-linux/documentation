@@ -80,9 +80,14 @@ Installed size: 343 M
 Is this ok [y/N]:
 ```
 
-Installing a package group, as for **Xfce desktop** or  **Kde desktop**, and so on, is similar:
+Installing a package group, as for **Xfce desktop** or  **Kde desktop**, and so on, is similar. Install `epel-release` first:
+
+!!! note
+
+    Xfce is not currently available for Rocky Linux 10
 
 ```bash
+sudo dnf install epel
 sudo dnf group install xfce
 ```
 
@@ -133,6 +138,20 @@ As you can see, there are several ways to install the KDE desktop group:
 sudo dnf group install "KDE Plasma Workspaces"
 sudo dnf group install kde-desktop-environment
 sudo dnf install @kde-desktop-environment
+```
+
+Install `epel-release` as shown previously and enable the CodeReady Builder in Rocky Linux 9 and 10 or PowerTools for Rocky Linux 8 in order for KDE to install succesfully.
+
+For Rocky Linux 9 and 10:
+
+```bash
+sudo dnf config-manager --set-enabled crb
+```
+
+For Rocky Linux 8:
+
+```bash
+sudo dnf config-manager --set-enabled powertools
 ```
 
 ## Update and upgrade packages
