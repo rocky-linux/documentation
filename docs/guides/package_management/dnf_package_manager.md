@@ -80,7 +80,7 @@ Installed size: 343 M
 Is this ok [y/N]:
 ```
 
-Installing a package group, as for **Xfce desktop** or  **Kde desktop**, and so on, is similar. Install `epel-release` first:
+Installing a package group, such as the **Xfce desktop** or **KDE desktop**, is similar. Install `epel-release` first:
 
 !!! note
 
@@ -140,7 +140,7 @@ sudo dnf group install kde-desktop-environment
 sudo dnf install @kde-desktop-environment
 ```
 
-Install `epel-release` as shown previously and enable the CodeReady Builder in Rocky Linux 9 and 10 or PowerTools for Rocky Linux 8 in order for KDE to install succesfully.
+Install `epel-release` as shown previously, and enable the CodeReady Builder in Rocky Linux 9 and 10, or PowerTools for Rocky Linux 8, to ensure KDE installs successfully.
 
 For Rocky Linux 9 and 10:
 
