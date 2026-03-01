@@ -1,5 +1,5 @@
 ---
-title: Special Authority
+title: Special permissions
 author: tianci li
 contributors: Serge, Ganna Zhyrnova
 tags:
@@ -69,13 +69,14 @@ For directory:
 
     For directories, **r** and **x** permissions usually appear at the same time.
 
-## Special authority
+## Special permissions
 
 In GNU/Linux, in addition to the basic permissions mentioned above, there are also some special permissions, which we will introduce one by one.
 
 ### ACL permissions
 
-What is ACL?
+**Q: What is ACL?**
+
 ACL(Access Control List), the purpose is to solve the problem that the three identities under Linux can not meet the needs of resource permission allocation.
 
 For example, the teacher gives lessons to the students, and the teacher creates a directory under the root directory of OS. Only the students in this class are allowed to upload and download, and others are not allowed. At this point, the permissions for the directory are 770. One day, a student from another school came to listen to the teacher, how should permissions be assigned? If you put this student in the **owner group**, he will have the same permissions as the students in this class - **rwx**. If the student is put into the **other users**, he will not have any permissions. At this time, the basic permission allocation cannot meet the requirements, and you need to use ACL.
@@ -86,7 +87,8 @@ There is a similar feature in the Windows operating system. For example, to assi
 
 The same is true of GNU/Linux: add the specified user/group to the file/directory and grant the appropriate permissions to complete the ACL permission assignment.
 
-How do I enable an ACL?
+**Q: How do I enable an ACL?**
+
 You need to find the file name of the device where the mount point is located and its partition number. For example, on my machine, you could do something like this:
 
 ```bash
@@ -186,7 +188,8 @@ other::---
 
 #### Maximum valid permissions of ACL
 
-When using the `getfacl` command, what does the "mask:: rwx" in the output message mean?
+**Q: When using the `getfacl` command, what does the "mask:: rwx" in the output message mean?**
+
 The **mask** is used to specify the maximum valid permissions. The permissions given to the user are not real permissions, the real permissions can only be obtained by using the "logical and" of the user's permissions and mask permissions.
 
 !!! info
@@ -234,7 +237,8 @@ Shell > setfacl -b FILE_NAME
 
 #### Default and recursion of ACL permissions
 
-What is the recursion of ACL permissions?
+**Q: What is the recursion of ACL permissions?**
+
 For ACL permissions, this means that when the parent directory sets ACL permissions, all subdirectories and sub-files will have the same ACL permissions.
 
 !!! info
@@ -260,7 +264,8 @@ Shell > ls -l /project
 -rw-r-xr--+ 1 root root 0 Jan  12 14:35 file2
 ```
 
-Now there is a question: if I create a new file in this directory, does it have ACL permission?
+**Q: if I create a new file in this directory, does it have ACL permission?**
+
 The answer is no, because the newly created file is after the command `setfacl-m u:tom:rx -R /project` is executed.
 
 ```bash
@@ -308,7 +313,8 @@ The role of "SetUID":
 * The executor of the command obtains the identity of the owner of the program file when executing the program.
 * The identity change is only valid during execution, and once the binary program is finished, the executor's identity is restored to the original identity.
 
-Why does GNU/Linux need such strange permissions?
+**Q: Why does GNU/Linux need such strange permissions?**
+
 Take the most common `passwd` command as an example:
 
 ![SetUID1](./images/SetUID1.png)
@@ -453,7 +459,8 @@ The role of "Sticky BIT":
 
 SBIT is represented by the number **1**.
 
-Can the file or directory have **7755** permission?
+**Q: Can the file or directory have **7755** permission?**
+
 No, they are aimed at different objects. SUID is for executable binary files; SGID is used for executable binaries and directories; SBIT is only for directories. That is, you need to set these special permissions according to different objects.
 
 The directory **/tmp** has SBIT permission. The following is an example:
@@ -621,10 +628,12 @@ Shell > chattr -a /etc/tmpfile1 /etc/dira/
 
 !!! question
 
-    What happens when I set the ai attribute on a file? 
+    **Q: What happens when I set the ai attribute on a file? **
+
     You cannot do anything with the file other than to view it.
 
-    What about the directory?
+    **Q: What about the directory?**
+
     Allowed are: free modification, appending file contents, and viewing.
     Disallowed: delete and create files.
 
