@@ -46,16 +46,16 @@ Before setting up the local validation environment, you need:
 2. Click the **Fork** button in the upper right corner
 3. Clone your fork to your local machine:
 
-```bash
-git clone https://github.com/YOUR_USERNAME/documentation.git
-cd documentation
-```
+    ```bash
+    git clone https://github.com/YOUR_USERNAME/documentation.git
+    cd documentation
+    ```
 
 4. Add the upstream repository as a remote:
 
-```bash
-git remote add upstream https://github.com/rocky-linux/documentation.git
-```
+    ```bash
+    git remote add upstream https://github.com/rocky-linux/documentation.git
+    ```
 
 ## Setting up your environment
 
@@ -792,56 +792,56 @@ For other platforms not listed above, here are the general instructions:
 
 1. Install pre-commit:
 
-```bash
-pip install pre-commit
-```
+    ```bash
+    pip install pre-commit
+    ```
 
 2. Install the required tools:
 
-```bash
-# Install pyspelling for spell checking
-pip install pyspelling
+    ```bash
+    # Install pyspelling for spell checking
+    pip install pyspelling
 
-# Install aspell dictionaries (varies by OS)
-# On Rocky Linux / RHEL / Fedora:
-sudo dnf install aspell aspell-en
+    # Install aspell dictionaries (varies by OS)
+    # On Rocky Linux / RHEL / Fedora:
+    sudo dnf install aspell aspell-en
 
-# On Debian / Ubuntu:
-sudo apt-get install aspell aspell-en
+    # On Debian / Ubuntu:
+    sudo apt-get install aspell aspell-en
 
-# On macOS:
-brew install aspell
+    # On macOS:
+    brew install aspell
 
-# Install markdownlint-cli for markdown linting
-npm install -g markdownlint-cli
+    # Install markdownlint-cli for markdown linting
+    npm install -g markdownlint-cli
 
-# Install lychee for link checking
-# On Rocky Linux 10 (binary installation - lychee is not in repos):
-cd /tmp && curl -sLO https://github.com/lycheeverse/lychee/releases/latest/download/lychee-x86_64-unknown-linux-gnu.tar.gz
-tar xzf lychee-x86_64-unknown-linux-gnu.tar.gz && sudo mv lychee /usr/local/bin/
-sudo chmod +x /usr/local/bin/lychee && rm -f lychee-x86_64-unknown-linux-gnu.tar.gz
+    # Install lychee for link checking
+    # On Rocky Linux 10 (binary installation - lychee is not in repos):
+    cd /tmp && curl -sLO https://github.com/lycheeverse/lychee/releases/latest/download/lychee-x86_64-unknown-linux-gnu.tar.gz
+    tar xzf lychee-x86_64-unknown-linux-gnu.tar.gz && sudo mv lychee /usr/local/bin/
+    sudo chmod +x /usr/local/bin/lychee && rm -f lychee-x86_64-unknown-linux-gnu.tar.gz
 
-# On Fedora (may be available in repos):
-sudo dnf install lychee
+    # On Fedora (may be available in repos):
+    sudo dnf install lychee
 
-# On Debian / Ubuntu (via cargo):
-cargo install lychee
+    # On Debian / Ubuntu (via cargo):
+    cargo install lychee
 
-# On macOS:
-brew install lychee
-```
+    # On macOS:
+    brew install lychee
+    ```
 
 3. Install the pre-commit hooks:
 
-```bash
-pre-commit install
-```
+    ```bash
+    pre-commit install
+    ```
 
 4. Verify the installation by running hooks manually:
 
-```bash
-pre-commit run --all-files
-```
+    ```bash
+    pre-commit run --all-files
+    ```
 
 ## Creating new documentation
 
@@ -895,7 +895,7 @@ If your guide does not fit any existing category, place it in the most relevant 
 
 ### AI usage
 
-The Rocky Linux Documentation Team permits AI and LLM tools in the contribution process, following the [Fedora AI Policy](https://docs.fedoraproject.org/en-US/docs/ai-policy/) as a baseline. If you use AI for any part of your documentation (drafting, research, grammar, code generation), you must include a disclosure at the beginning of your document stating that AI was used and that you take full responsibility for correctness of the content. You must test every procedure and verify all technical content yourself, as AI frequently produces errors. Do not pass other contributors' existing work through AI tools and resubmit it as a contribution, as this erases the original author's voice. Minor corrections such as typos and broken links do not require disclosure.
+The Rocky Linux Documentation Team permits AI and LLM tools in the contribution process. For full details on requirements, disclosures, and guidelines, see the [Rocky Linux Documentation AI Policy](https://docs.rockylinux.org/guides/contribute/ai-contribution-policy/).
 
 ### Document structure
 
@@ -1345,30 +1345,30 @@ git restore --staged .wordlist.txt
 
 1. Sync your fork with upstream:
 
-```bash
-git fetch upstream
-git checkout main
-git merge upstream/main
-```
+    ```bash
+    git fetch upstream
+    git checkout main
+    git merge upstream/main
+    ```
 
 2. Create a branch for your changes:
 
-```bash
-git checkout -b your-new-document
-```
+    ```bash
+    git checkout -b your-new-document
+    ```
 
 3. Add your document and commit:
 
-```bash
-git add docs/guides/your-document.md
-git commit -m "Add new document for your-document"
-```
+    ```bash
+    git add docs/guides/your-document.md
+    git commit -m "Add new document for your-document"
+    ```
 
 4. Push and create a pull request:
 
-```bash
-git push origin your-new-document
-```
+    ```bash
+    git push origin your-new-document
+    ```
 
 > **Note:** You can also edit existing documentation and push your changes to the Rocky Linux Documentation repository using the same method.
 
