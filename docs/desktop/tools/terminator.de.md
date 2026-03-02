@@ -84,4 +84,4 @@ Obwohl ++ctrl+alt+"T"++ die traditionelle Wahl ist, können Sie jede beliebige K
 
 ## Fazit
 
-Terminator ist ein leistungsstarker Terminal-Emulator sowohl für normale als auch für erfahrene Benutzer. Diese Beispiele stellen nur einen kleinen Teil der Fähigkeiten von `Terminator` dar. Dieser Leitfaden bietet einen Überblick über die Installationsschritte für Rocky Linux. Eine vollständige Erklärung der Funktionen von Terminator finden Sie in der [Dokumentation](https://gnome-terminator.readthedocs.io/en/latest/).
+Terminator ist ein leistungsstarker Terminal-Emulator für normale und fortgeschrittene Benutzer. Diese Beispiele stellen nur einen kleinen Teil der Fähigkeiten von `Terminator` dar. Dieser Leitfaden bietet einen Überblick über die Installationsschritte für Rocky Linux. Eine vollständige Erklärung der Funktionen von Terminator finden Sie in der [Dokumentation](https://gnome-terminator.readthedocs.io/en/latest/).
