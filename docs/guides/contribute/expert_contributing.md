@@ -929,7 +929,7 @@ If your guide does not fit any existing category, place it in the most relevant 
 
 ### AI usage
 
-The Rocky Linux Documentation Team permits AI and LLM tools in the contribution process, following the [Fedora AI Policy](https://docs.fedoraproject.org/en-US/docs/ai-policy/) as a baseline. If you use AI for any part of your documentation (drafting, research, grammar, code generation), you must include a disclosure at the beginning of your document stating the use of AI and that you take full responsibility for the correctness of the content. You must test every procedure and verify all technical content yourself, as AI frequently produces errors. Do not pass other contributors' existing work through AI tools and resubmit it as a contribution, as this erases the original author's voice. Minor corrections such as typos and broken links do not require disclosure.
+The Rocky Linux Documentation Team permits AI and LLM tools in the contribution process. For full details on requirements, disclosures, and guidelines, see the [Rocky Linux Docs AI-assisted contribution policy](https://docs.rockylinux.org/guides/contribute/ai-contribution-policy/).
 
 ### Document structure
 
@@ -1379,30 +1379,30 @@ git restore --staged .wordlist.txt
 
 1. Sync your fork with upstream:
 
-```bash
-git fetch upstream
-git checkout main
-git merge upstream/main
-```
+    ```bash
+    git fetch upstream
+    git checkout main
+    git merge upstream/main
+    ```
 
-1. Create a branch for your changes:
+2. Create a branch for your changes:
 
-```bash
-git checkout -b your-new-document
-```
+    ```bash
+    git checkout -b your-new-document
+    ```
 
-1. Add your document and commit:
+3. Add your document and commit:
 
-```bash
-git add docs/guides/your-document.md
-git commit -m "Add new document for your-document"
-```
+    ```bash
+    git add docs/guides/your-document.md
+    git commit -m "Add new document for your-document"
+    ```
 
-1. Push and create a pull request:
+4. Push and create a pull request:
 
-```bash
-git push origin your-new-document
-```
+    ```bash
+    git push origin your-new-document
+    ```
 
 !!! note
 
