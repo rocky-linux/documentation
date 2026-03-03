@@ -64,7 +64,7 @@ The output includes RX and TX statistics. Look for the `dropped` counter in the 
     9876543210 8765432   0       0       0       0
 ```
 
-For NIC-level statistics, use `ethtool -S` and filter for drop counters:
+For NIC-level statistics, use `ethtool -S`^5^ and filter for drop counters:
 
 ```bash
 ethtool -S eth0 | grep -i drop
@@ -98,7 +98,7 @@ When `rx_dropped.nic` is zero but `rx_dropped` is increasing, the problem is in 
 
 ## Diagnosing IRQ imbalance
 
-Network interface cards generate hardware interrupts (IRQs) to notify the kernel when packets arrive. Each NIC queue has its own IRQ, and the kernel assigns each IRQ to a specific CPU. When too many IRQs land on the same CPU, that CPU becomes a bottleneck while other CPUs sit idle.
+Network interface cards generate hardware interrupts (IRQs) to notify the kernel when packets arrive. Each NIC queue has its own IRQ^1^, and the kernel assigns each IRQ to a specific CPU. When too many IRQs land on the same CPU, that CPU becomes a bottleneck while other CPUs sit idle.
 
 ### Reading /proc/interrupts
 
@@ -152,7 +152,7 @@ awk '{printf "CPU%-4d processed=%-12d dropped=%-8d time_squeeze=%d\n", NR-1, str
 
 ### Checking current IRQ affinity
 
-To see which CPU an IRQ is currently assigned to:
+The kernel exposes IRQ affinity settings^2^ through the `/proc/irq/` interface. To see which CPU an IRQ is currently assigned to:
 
 ```bash
 cat /proc/irq/45/smp_affinity_list
@@ -170,7 +170,7 @@ done
 
 ## Understanding APIC vector exhaustion
 
-Each CPU has a limited number of APIC vectors (approximately 200 usable per CPU) for handling hardware interrupts. Every MSI/MSI-X capable PCI device consumes one or more vectors on each CPU it targets.
+Each CPU has a limited number of APIC vectors (approximately 200 usable per CPU) for handling hardware interrupts. Every MSI/MSI-X^3^ capable PCI device consumes one or more vectors on each CPU it targets.
 
 ### How vectors become exhausted
 
@@ -196,7 +196,7 @@ The most effective way to reduce vector consumption is to lower the number of NI
 
 ## Configuring irqbalance
 
-The `irqbalance` daemon automatically distributes hardware interrupts across CPUs. It runs by default on Rocky Linux and is usually the right starting point for interrupt management.
+The `irqbalance`^4^ daemon automatically distributes hardware interrupts across CPUs. It runs by default on Rocky Linux and is usually the right starting point for interrupt management.
 
 ### Verifying irqbalance status
 
@@ -527,7 +527,7 @@ sysctl -w net.core.netdev_max_backlog=5000
 
 ## LACP bond interface considerations
 
-When tuning network performance on bonded interfaces, several additional factors apply.
+When tuning network performance on bonded^6^ interfaces, several additional factors apply.
 
 ### IRQ tuning targets slave interfaces
 
@@ -602,7 +602,7 @@ sysctl --system
 
 ### NetworkManager dispatcher scripts
 
-Dispatcher scripts in `/etc/NetworkManager/dispatcher.d/` run automatically when interface state changes. They are the recommended method for persisting interface-specific settings on Rocky Linux 9.
+Dispatcher scripts^7^ in `/etc/NetworkManager/dispatcher.d/` run automatically when interface state changes. They are the recommended method for persisting interface-specific settings on Rocky Linux.
 
 The scripts shown in the ring buffer and txqueuelen sections above demonstrate this approach. Ensure scripts are executable and named with a numeric prefix for ordering:
 
@@ -622,7 +622,7 @@ udevadm control --reload-rules
 
 ### tuned profiles
 
-The `tuned` daemon provides profiles that apply a collection of tuning parameters. Rocky Linux includes several network-oriented profiles:
+The `tuned`^8^ daemon provides profiles that apply a collection of tuning parameters. Rocky Linux includes several network-oriented profiles:
 
 ```bash
 tuned-adm list | grep -i network
@@ -657,3 +657,14 @@ Network performance issues on Rocky Linux most often come from software-level bo
 6. **Tune kernel parameters**: Adjust `netdev_budget` and `netdev_max_backlog` via sysctl
 7. **Persist all changes**: Use sysctl.d files, NetworkManager dispatcher scripts, and tuned profiles to survive reboots
 8. **Monitor continuously**: Watch drop counters and softnet statistics over time to verify improvements
+
+## References
+
+1. "Scaling in the Linux Networking Stack" by the Linux Kernel Community [https://www.kernel.org/doc/html/latest/networking/scaling.html](https://www.kernel.org/doc/html/latest/networking/scaling.html)
+2. "SMP IRQ Affinity" by the Linux Kernel Community [https://www.kernel.org/doc/html/latest/core-api/irq/irq-affinity.html](https://www.kernel.org/doc/html/latest/core-api/irq/irq-affinity.html)
+3. "MSI/MSI-X Support in Linux" by the Linux Kernel Community [https://www.kernel.org/doc/html/latest/PCI/msi-howto.html](https://www.kernel.org/doc/html/latest/PCI/msi-howto.html)
+4. "irqbalance" by the irqbalance Project [https://github.com/Irqbalance/irqbalance](https://github.com/Irqbalance/irqbalance)
+5. "ethtool(8) - Linux Man Page" by the Linux Kernel Community [https://man7.org/linux/man-pages/man8/ethtool.8.html](https://man7.org/linux/man-pages/man8/ethtool.8.html)
+6. "Linux Ethernet Bonding Driver" by the Linux Kernel Community [https://www.kernel.org/doc/html/latest/networking/bonding.html](https://www.kernel.org/doc/html/latest/networking/bonding.html)
+7. "NetworkManager Dispatcher Scripts" by the NetworkManager Project [https://networkmanager.dev/docs/api/latest/NetworkManager-dispatcher.html](https://networkmanager.dev/docs/api/latest/NetworkManager-dispatcher.html)
+8. "TuneD" by the TuneD Project [https://tuned-project.org/](https://tuned-project.org/)
