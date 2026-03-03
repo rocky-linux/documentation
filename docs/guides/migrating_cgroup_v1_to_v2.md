@@ -13,7 +13,7 @@ tags:
 
 ## Introduction
 
-Control groups (cgroups) are a Linux kernel feature that organizes processes into hierarchical groups to manage and limit system resources such as CPU, memory, and I/O. The cgroup v2 interface (also called the unified hierarchy) replaces the original cgroup v1 interface with a single, consistent tree structure.
+Control groups (cgroups) are a Linux kernel feature that organizes processes into hierarchical groups to manage and limit system resources such as CPU, memory, and I/O. The cgroup v2 interface^1^ (also called the unified hierarchy) replaces the original cgroup v1 interface with a single, consistent tree structure.
 
 Rocky Linux 8 defaults to cgroup v1. Migrating to cgroup v2 is necessary when:
 
@@ -47,7 +47,7 @@ uname -r
 systemctl --version
 ```
 
-Rocky Linux 8.10 ships with systemd 239, which has known limitations with cgroup v2. This guide addresses those limitations.
+Rocky Linux 8.10 ships with systemd 239, which has known limitations^5^ with cgroup v2. This guide addresses those limitations.
 
 ## Enabling cgroup v2
 
@@ -59,7 +59,7 @@ sudo grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=1"
 
 !!! warning "Additional parameters for Slurm environments"
 
-    If you are running Slurm, SchedMD recommends adding two additional parameters to prevent cgroup v1 controllers from loading alongside cgroup v2:
+    If you are running Slurm, SchedMD recommends^2^ adding two additional parameters to prevent cgroup v1 controllers from loading alongside cgroup v2:
 
     ```bash
     sudo grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=1 systemd.legacy_systemd_cgroup_controller=0 cgroup_no_v1=all"
@@ -225,11 +225,11 @@ unix:path=/run/user/<UID>/bus
 
 !!! warning "HPC compute nodes with pam_slurm_adopt"
 
-    If you use `pam_slurm_adopt` on compute nodes, do NOT enable `pam_systemd.so` in the PAM configuration. The `pam_slurm_adopt` documentation states it should be the last session module and that `pam_systemd.so` should be disabled. See the "HPC compute node configuration" section below for the recommended approach.
+    If you use `pam_slurm_adopt`^6^ on compute nodes, do NOT enable `pam_systemd.so` in the PAM configuration. The `pam_slurm_adopt` documentation states it should be the last session module and that `pam_systemd.so` should be disabled. See the "HPC compute node configuration" section below for the recommended approach.
 
 ## Rootless Podman compatibility
 
-Rootless Podman requires cgroup v2. With cgroup v1, rootless cgroup management is not supported by the kernel.
+Rootless Podman^7^ requires cgroup v2. With cgroup v1, rootless cgroup management is not supported by the kernel.
 
 ### Cgroup manager configuration
 
@@ -255,7 +255,7 @@ WARN[0005] Failed to retrieve cgroup stats: open /sys/fs/cgroup/.../pids.current
 
 !!! note "Cosmetic warnings in Podman 4.9.x"
 
-    These warnings are caused by a race condition where the container cgroup directory is removed before `podman stats` finishes reading it. This is a cosmetic issue only and does not affect container functionality. The fix was merged into Podman 5.3 ([GitHub PR #24400](https://github.com/containers/podman/pull/24400)) but has not been backported to the 4.9.x series shipped with Rocky Linux 8.
+    These warnings are caused by a race condition where the container cgroup directory is removed before `podman stats` finishes reading it. This is a cosmetic issue only and does not affect container functionality. The fix^4^ was merged into Podman 5.3 but has not been backported to the 4.9.x series shipped with Rocky Linux 8.
 
 !!! warning "NFS-backed container storage"
 
@@ -279,7 +279,7 @@ WARN[0005] Failed to retrieve cgroup stats: open /sys/fs/cgroup/.../pids.current
 
 ## Slurm considerations
 
-Slurm supports cgroup v2 for job resource isolation. The following configuration changes are needed on the Slurm controller and compute nodes.
+Slurm supports cgroup v2 for job resource isolation^2^. The following configuration changes are needed on the Slurm controller and compute nodes.
 
 ### Slurm cgroup configuration
 
@@ -294,11 +294,11 @@ AllowedSwapSpace=0
 EnableControllers=yes
 ```
 
-The `EnableControllers=yes` setting tells Slurm to enable the cgroup controllers it needs in the cgroup v2 subtree.
+The `EnableControllers=yes` setting tells Slurm to enable the cgroup controllers it needs in the cgroup v2 subtree^3^.
 
 ### Slurmd service delegation
 
-Ensure the `slurmd` service has cgroup delegation enabled. Create a systemd drop-in:
+Ensure the `slurmd` service has cgroup delegation^5^ enabled. Create a systemd drop-in:
 
 ```bash
 sudo mkdir -p /etc/systemd/system/slurmd.service.d
@@ -508,3 +508,13 @@ Migrating from cgroup v1 to cgroup v2 on Rocky Linux 8.10 requires addressing th
 5. Update Slurm cgroup configuration with `EnableControllers=yes`
 
 For HPC environments, the cgroupfs approach with Slurm prolog and epilog scripts provides a robust solution that does not require systemd user sessions or linger mode on shared compute nodes.
+
+## References
+
+1. "Control Group v2" by the Linux Kernel Team [https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v2.html](https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v2.html)
+2. "Control Group v2 plugin" by SchedMD [https://slurm.schedmd.com/cgroup_v2.html](https://slurm.schedmd.com/cgroup_v2.html)
+3. "cgroup.conf - Slurm configuration file for the cgroup support" by SchedMD [https://slurm.schedmd.com/cgroup.conf.html](https://slurm.schedmd.com/cgroup.conf.html)
+4. "libpod: report cgroups deleted during Stat() call" by Giuseppe Scrivano [https://github.com/containers/podman/pull/24400](https://github.com/containers/podman/pull/24400)
+5. "systemd.resource-control - Resource control unit settings" by the systemd Team [https://www.freedesktop.org/software/systemd/man/latest/systemd.resource-control.html](https://www.freedesktop.org/software/systemd/man/latest/systemd.resource-control.html)
+6. "pam_slurm_adopt" by SchedMD [https://slurm.schedmd.com/pam_slurm_adopt.html](https://slurm.schedmd.com/pam_slurm_adopt.html)
+7. "Podman Documentation" by the Podman Team [https://docs.podman.io/en/latest/markdown/podman.1.html](https://docs.podman.io/en/latest/markdown/podman.1.html)
