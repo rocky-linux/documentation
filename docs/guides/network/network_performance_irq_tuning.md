@@ -16,11 +16,11 @@ Servers under heavy network load can experience packet drops, latency spikes, an
 
 This guide covers diagnosing and resolving common network performance issues on Rocky Linux, including:
 
-- Distinguishing kernel-level packet drops from NIC hardware drops
-- Identifying and correcting IRQ imbalance across CPUs
-- Tuning NIC ring buffers, channel counts, and transmit queue lengths
-- Configuring irqbalance for optimal interrupt distribution
-- Persisting all changes across reboots
+- Distinguishing kernel-level packet drops from NIC hardware drops.
+- Identifying and correcting IRQ imbalance across CPUs.
+- Tuning NIC ring buffers, channel counts, and transmit queue lengths.
+- Configuring irqbalance for optimal interrupt distribution.
+- Persisting all changes across reboots.
 
 These techniques apply to bare-metal servers and virtual machines with paravirtualized or SR-IOV network interfaces. The diagnostic commands work on any Rocky Linux system, while some tuning operations require hardware support.
 
