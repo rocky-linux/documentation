@@ -1,5 +1,5 @@
 ---
-title: Rootless Podman advanced topics and troubleshooting on Rocky Linux
+title: Rootless Podman on Rocky Linux
 author: Howard Van Der Wal
 ai_contributors: Claude (claude-opus-4-6)
 tested with: 9
