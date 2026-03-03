@@ -178,9 +178,9 @@ Modern servers with multiple high-speed NICs, storage controllers, and SR-IOV vi
 
 ### Symptoms of vector exhaustion
 
-- IRQ affinity scripts (such as `set_irq_affinity`) fail or produce unexpected results
-- Network IRQs cluster on a small number of CPUs despite irqbalance running
-- `/proc/interrupts` shows extreme skew with most CPUs handling zero network interrupts
+- IRQ affinity scripts (such as `set_irq_affinity`) fail or produce unexpected results.
+- Network IRQs cluster on a small number of CPUs despite irqbalance running.
+- `/proc/interrupts` shows extreme skew with most CPUs handling zero network interrupts.
 
 !!! note "Vector exhaustion is not limited to SR-IOV"
 
@@ -188,7 +188,7 @@ Modern servers with multiple high-speed NICs, storage controllers, and SR-IOV vi
 
 !!! note "Rocky Linux 9 kernel improvements"
 
-    Rocky Linux 9 ships with kernel 5.14 and later, which includes improvements to APIC vector management introduced in Linux 4.15. These improvements reduce but do not eliminate the risk of vector exhaustion on systems with many PCI devices.
+    Rocky Linux 9 ships with kernel 5.14 and later, which includes improvements to APIC vector management introduced in Linux 4.15.
 
 ### Reducing vector consumption
 
