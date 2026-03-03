@@ -29,11 +29,11 @@ These techniques apply to bare-metal servers and virtual machines with paravirtu
 Before starting, ensure you have:
 
 - A system running Rocky Linux 8.10, 9.x, or 10.x
-- Root or sudo access
-- The `ethtool` package installed (`dnf install ethtool`)
-- The `irqbalance` package installed (`dnf install irqbalance`)
-- The `sysstat` package installed for `mpstat` (`dnf install sysstat`)
-- Basic familiarity with Linux networking and the command line
+- Root or sudo access.
+- The `ethtool` package installed (`dnf install ethtool`).
+- The `irqbalance` package installed (`dnf install irqbalance`).
+- The `sysstat` package installed for `mpstat` (`dnf install sysstat`).
+- Basic familiarity with Linux networking and the command line.
 
 Install all required packages at once:
 
@@ -552,9 +552,9 @@ cat /proc/net/bonding/bond0 | grep "Transmit Hash"
 
 Common policies:
 
-- **layer2**: Hash on MAC addresses (default)
-- **layer2+3**: Hash on MAC and IP addresses (better distribution for routed traffic)
-- **layer3+4**: Hash on IP addresses and ports (best distribution but may reorder packets)
+- `layer2` — hash on MAC addresses (default).
+- `layer2+3` — hash on MAC and IP addresses (better distribution for routed traffic).
+- `layer3+4` — hash on IP addresses and ports (best distribution but may reorder packets).
 
 ### Monitoring bond status
 
