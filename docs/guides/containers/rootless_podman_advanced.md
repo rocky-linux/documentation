@@ -2,7 +2,7 @@
 title: Rootless Podman on Rocky Linux
 author: Howard Van Der Wal
 ai_contributors: Claude (claude-opus-4-6)
-tested with: 9
+tested with: 8, 9, 10
 tags:
 - podman
 - containers
@@ -14,14 +14,14 @@ tags:
 
 Rootless Podman runs containers entirely within a non-root user's namespace, eliminating the need for a privileged daemon. While the basic setup is straightforward, production environments — especially HPC clusters and multi-user systems — encounter issues around user namespace mappings, filesystem compatibility, networking limitations, and system service integration.
 
-This guide covers advanced rootless Podman configuration and troubleshooting on Rocky Linux 9. Topics include verifying cgroups v2 and user namespace support, configuring subordinate ID mappings, resolving supplementary group visibility problems, handling NFS incompatibility, understanding multicast limitations, fixing D-Bus session bus errors, and writing robust wrapper scripts.
+This guide covers advanced rootless Podman configuration and troubleshooting on Rocky Linux 8, 9, and 10. Topics include verifying cgroups v2 and user namespace support, configuring subordinate ID mappings, resolving supplementary group visibility problems, handling NFS incompatibility, understanding multicast limitations, fixing D-Bus session bus errors, and writing robust wrapper scripts.
 
 ## Prerequisites
 
 Before starting, ensure you have:
 
-- A system running Rocky Linux 9 with cgroups v2 (the default)
-- User namespaces enabled (the default on Rocky Linux 9)
+- A system running Rocky Linux 8, 9, or 10 with cgroups v2 enabled
+- User namespaces enabled (the default on all supported Rocky Linux versions)
 - `/etc/subuid` and `/etc/subgid` configured for each non-root user who will run containers
 - The `podman` package installed
 - `slirp4netns` or `pasta` installed for rootless networking
@@ -36,11 +36,11 @@ dnf install podman slirp4netns
 
 !!! note
 
-    Rocky Linux 9 ships with Podman 4.x or later, which uses `pasta` as the default rootless network backend. The `slirp4netns` package provides a fallback if `pasta` is unavailable.
+    Rocky Linux 9 and 10 ship with Podman 5.x, which uses `pasta` as the default rootless network backend. Rocky Linux 8 ships with Podman 4.x and uses `slirp4netns`. Installing `slirp4netns` on Rocky Linux 9 and 10 provides a fallback if `pasta` is unavailable.
 
 ## Verifying cgroups v2 and user namespace support
 
-Rootless Podman requires cgroups v2 (the unified hierarchy) and unprivileged user namespaces. Rocky Linux 9 enables both by default, but you should verify this before proceeding.
+Rootless Podman requires cgroups v2 (the unified hierarchy) and unprivileged user namespaces. Rocky Linux 9 and 10 enable both by default. Rocky Linux 8 defaults to cgroups v1 and requires a kernel parameter change.
 
 ### Confirm cgroups v2
 
@@ -56,7 +56,14 @@ The expected output is:
 cgroup2fs
 ```
 
-If the output is `tmpfs`, your system is running cgroups v1. Rocky Linux 8 defaults to cgroups v1 and requires a kernel parameter change to enable cgroups v2. Rocky Linux 9 uses cgroups v2 by default.
+If the output is `tmpfs`, your system is running cgroups v1. Rocky Linux 8 defaults to cgroups v1. Enable cgroups v2 by adding the unified hierarchy kernel parameter and rebooting:
+
+```bash
+sudo grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=1"
+sudo reboot
+```
+
+After the reboot, run the `stat` command again to confirm the output is `cgroup2fs`. Rocky Linux 9 and 10 use cgroups v2 by default and do not require this step.
 
 ### Confirm user namespace support
 
