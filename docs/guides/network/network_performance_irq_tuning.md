@@ -649,14 +649,14 @@ tuned-adm verify
 
 Network performance issues on Rocky Linux most often come from software-level bottlenecks in how the kernel distributes and processes network interrupts, rather than from hardware failures. The diagnostic and tuning workflow follows this order:
 
-1. **Identify where drops occur**: Use `ethtool -S` to determine if drops are at the kernel level (`rx_dropped` with `rx_dropped.nic: 0`) or the NIC level
-2. **Check IRQ distribution**: Read `/proc/interrupts` and `/proc/net/softnet_stat` to find imbalance and time squeezes
-3. **Reduce interrupt count**: Lower combined queue count with `ethtool -L` to ease APIC vector pressure
-4. **Increase buffer capacity**: Raise ring buffers with `ethtool -G` and transmit queue length with `ip link set`
-5. **Redistribute IRQs**: Configure irqbalance or manually pin IRQs to spread the load evenly across CPUs
-6. **Tune kernel parameters**: Adjust `netdev_budget` and `netdev_max_backlog` via sysctl
-7. **Persist all changes**: Use sysctl.d files, NetworkManager dispatcher scripts, and tuned profiles to survive reboots
-8. **Monitor continuously**: Watch drop counters and softnet statistics over time to verify improvements
+1. Identify where drops occur — use `ethtool -S` to determine if drops are at the kernel level (`rx_dropped` with `rx_dropped.nic: 0`) or the NIC level
+2. Check IRQ distribution — read `/proc/interrupts` and `/proc/net/softnet_stat` to find imbalance and time squeezes
+3. Reduce interrupt count — lower combined queue count with `ethtool -L` to ease APIC vector pressure
+4. Increase buffer capacity — raise ring buffers with `ethtool -G` and transmit queue length with `ip link set`
+5. Redistribute IRQs — configure irqbalance or manually pin IRQs to spread the load evenly across CPUs
+6. Tune kernel parameters — adjust `netdev_budget` and `netdev_max_backlog` via sysctl
+7. Persist all changes — use sysctl.d files, NetworkManager dispatcher scripts, and tuned profiles to survive reboots
+8. Monitor continuously — watch drop counters and softnet statistics over time to verify improvements
 
 ## References
 
