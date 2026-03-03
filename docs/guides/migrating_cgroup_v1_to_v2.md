@@ -1,17 +1,14 @@
 ---
-title: 'Migrating from cgroup v1 to cgroup v2 on Rocky Linux'
-author: 'Howard Van Der Wal'
-tested_with: '8.10'
+title: Migrating from cgroup v1 to cgroup v2 on Rocky Linux
+author: Howard Van Der Wal
+ai_contributors: Claude (claude-sonnet-4-6)
+tested with: 8.10
 tags:
-  - cgroups
-  - containers
-  - hpc
-  - podman
-  - slurm
-contributors:
-  - howard-van-der-wal
-ai_contributors:
-  - 'Claude claude-sonnet-4-6'
+- cgroups
+- containers
+- hpc
+- podman
+- slurm
 ---
 
 ## Introduction
