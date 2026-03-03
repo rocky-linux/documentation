@@ -2,7 +2,7 @@
 title: Migrating from cgroup v1 to cgroup v2 on Rocky Linux
 author: Howard Van Der Wal
 ai_contributors: Claude (claude-opus-4-6)
-tested with: 8
+tested with: 8.10
 tags:
 - cgroups
 - containers
