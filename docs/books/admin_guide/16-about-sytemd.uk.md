@@ -582,13 +582,13 @@ method=disabled
 
    - `Also=`. Інші пристрої для встановлення або видалення під час встановлення або видалення цього пристрою.
 
-     На додаток до сторінок посібника, згаданих вище, ви також можете ввести `man 5 systemd.exec` або `man 5 systemd.kill`, щоб отримати доступ до іншої інформації.
+     In addition to the manual pages mentioned above, you can also type `man 5 systemd.exec` or `man 5 systemd.kill` to access other information.
 
-## Команда, пов'язана з іншими компонентами
+## Command related to other components
 
-- `timedatactl` - Запитує або змінює параметри системного часу та дати.
-- `hostnamectl` - Запитує або змінює назву хоста системи.
-- `localectl` - Запитує або змінює локаль системи та налаштування клавіатури.
-- `systemd-analyze` - Профіль `systemd`, показує залежності модулів, перевіряє файли модулів.
-- `journalctl` - Переглядає системні або службові журнали. Команда `journalctl` настільки важлива, що пізніше буде окремий розділ, де пояснюватиметься її використання та на що слід звернути увагу.
-- `loginctl` - Управління сеансами користувачів, які ввійшли в систему.
+- `timedatactl` - Queries or changes system time and date settings.
+- `hostnamectl` - Queries or changes system hostname.
+- `localectl` - Queries or changes system locale and keyboard settings.
+- `systemd-analyze` - Profile `systemd`, shows unit dependencies, checks unit files.
+- `journalctl` - Views system or service logs. The `journalctl` command is so important that a separate section will come later explaining its use and what to look out for.
+- `loginctl` - Session management of login users.
