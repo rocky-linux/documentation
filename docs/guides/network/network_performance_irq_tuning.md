@@ -2,7 +2,7 @@
 title: Network performance tuning - IRQ affinity and packet drop diagnosis
 author: Howard Van Der Wal
 ai_contributors: Claude (claude-opus-4-6)
-tested with: 9
+tested with: 8.10, 9.7, 10.1
 tags:
 - network
 - performance
@@ -28,7 +28,7 @@ These techniques apply to bare-metal servers and virtual machines with paravirtu
 
 Before starting, ensure you have:
 
-- A system running Rocky Linux 9.x
+- A system running Rocky Linux 8.10, 9.x, or 10.x
 - Root or sudo access
 - The `ethtool` package installed (`dnf install ethtool`)
 - The `irqbalance` package installed (`dnf install irqbalance`)
