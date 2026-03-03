@@ -183,19 +183,19 @@ cpuset cpu memory pids
 
 !!! note "Persistent cpuset enablement"
 
-    The manual `echo "+cpuset"` command does not survive reboots. To make it persistent, add the command to a systemd service or to the Slurm prolog on compute nodes. On some systems, `echo "+cpuset"` may fail with `Invalid argument` if real-time (FIFO/RR) kernel processes are running. In that case, a reboot after setting `DefaultCPUAccounting=yes` may resolve the issue, or consult the Slurm `EnableControllers=yes` setting which handles controller delegation automatically.
+    The manual `echo "+cpuset"` command does not survive reboots. On Slurm compute nodes, the `EnableControllers=yes` setting in `/etc/slurm/cgroup.conf` handles controller delegation automatically, including cpuset, so manual enablement is not needed. For non-Slurm systems, add the command to a systemd service to make it persistent. On some systems, `echo "+cpuset"` may fail with `Invalid argument` if real-time (FIFO/RR) kernel processes are running. In that case, a reboot after setting `DefaultCPUAccounting=yes` may resolve the issue.
 
 ## PAM configuration
 
-When connecting over SSH, the `pam_systemd.so` module registers the user session with systemd, which creates the `/run/user/$UID` directory and sets the `XDG_RUNTIME_DIR` and `DBUS_SESSION_BUS_ADDRESS` environment variables. These are required for rootless containers and other user-level services that communicate over D-Bus.
+When connecting over ssh, the `pam_systemd.so` module registers the user session with systemd, which creates the `/run/user/$UID` directory and sets the `XDG_RUNTIME_DIR` and `DBUS_SESSION_BUS_ADDRESS` environment variables. These are required for rootless containers and other user-level services that communicate over D-Bus.
 
-Check whether `pam_systemd.so` is enabled for SSH sessions:
+On a default Rocky Linux 8.10 installation, `pam_systemd.so` is loaded through the `password-auth` include in `/etc/pam.d/sshd`. Check whether it is active:
 
 ```bash
-grep pam_systemd /etc/pam.d/sshd
+grep pam_systemd /etc/pam.d/sshd /etc/pam.d/password-auth
 ```
 
-If the line is missing or commented out, add it to `/etc/pam.d/sshd` immediately after the `pam_selinux.so open env_params` line:
+If the line is commented out in `/etc/pam.d/password-auth` (common on HPC compute nodes where it was intentionally disabled), you can re-enable it by adding it directly to `/etc/pam.d/sshd` after the `pam_selinux.so open env_params` line:
 
 ```bash
 sudo sed -i '/pam_selinux.so open env_params/a session    optional     pam_systemd.so' /etc/pam.d/sshd
@@ -207,7 +207,7 @@ Restart `systemd-logind` for the change to take effect:
 sudo systemctl restart systemd-logind
 ```
 
-Verify by opening a new SSH session (do not use `sudo -i -u` or `su`, as these do not trigger PAM session modules) and checking:
+Verify by opening a new ssh session (do not use `sudo -i -u` or `su`, as these do not trigger PAM session modules) and checking:
 
 ```bash
 echo $XDG_RUNTIME_DIR
@@ -440,7 +440,7 @@ If `systemd.unified_cgroup_hierarchy=1` does not appear, the grubby command may 
 sudo grubby --update-kernel=/boot/vmlinuz-$(uname -r) --args="systemd.unified_cgroup_hierarchy=1"
 ```
 
-### XDG_RUNTIME_DIR not set after SSH login
+### XDG_RUNTIME_DIR not set after ssh login
 
 Verify `pam_systemd.so` is enabled in `/etc/pam.d/sshd`:
 
@@ -448,7 +448,7 @@ Verify `pam_systemd.so` is enabled in `/etc/pam.d/sshd`:
 grep pam_systemd /etc/pam.d/sshd
 ```
 
-If the line is present but `XDG_RUNTIME_DIR` is still unset, restart `systemd-logind` and open a new SSH session:
+If the line is present but `XDG_RUNTIME_DIR` is still unset, restart `systemd-logind` and open a new ssh session:
 
 ```bash
 sudo systemctl restart systemd-logind
