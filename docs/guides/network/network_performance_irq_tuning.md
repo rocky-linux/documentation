@@ -87,8 +87,8 @@ Example output:
 
 The distinction between `rx_dropped` and `rx_dropped.nic` is critical:
 
-- **rx_dropped.nic: 0** means the NIC hardware received all packets successfully. The NIC ring buffer did not overflow.
-- **rx_dropped: 1523** means the kernel dropped 1523 packets after the NIC delivered them. The kernel software stack could not process them fast enough.
+- `rx_dropped.nic: 0` means the NIC hardware received all packets successfully. The NIC ring buffer did not overflow.
+- `rx_dropped: 1523` means the kernel dropped 1523 packets after the NIC delivered them. The kernel software stack could not process them fast enough.
 
 When `rx_dropped.nic` is zero but `rx_dropped` is increasing, the problem is in the kernel, not the hardware. This pattern points to IRQ imbalance, insufficient ring buffers, or CPU saturation preventing timely packet processing.
 
