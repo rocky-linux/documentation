@@ -582,13 +582,13 @@ method=disabled
 
    - `Also=`. 이 유닛을 설치하거나 제거할 때 설치 또는 제거하는 다른 유닛들입니다.
 
-     위에서 언급한 매뉴얼 페이지 외에도 `man 5 systemd.exec` 또는 `man 5 systemd.kill`을 입력하여 다른 정보에 액세스할 수 있습니다.
+     In addition to the manual pages mentioned above, you can also type `man 5 systemd.exec` or `man 5 systemd.kill` to access other information.
 
-## 다른 구성요소와 관련된 명령어
+## Command related to other components
 
-- `timedatactl` - 시스템의 시간 및 날짜 설정을 조회하거나 변경합니다.
-- `hostnamectl` - 시스템 호스트명을 조회하거나 변경합니다.
-- `localectl` - 시스템 로케일 및 키보드 설정을 조회하거나 변경합니다.
-- `systemd-analyze` - `systemd`를 프로파일링하며, 유닛 의존성을 보여주고 유닛 파일을 확인합니다.
-- `journalctl` - 시스템 또는 서비스 로그를 조회합니다. `journalctl` 명령어는 그 중요성 때문에 사용 방법과 주의해야 할 사항을 설명하는 별도의 섹션이 나중에 제공됩니다.
-- `loginctl` - 로그인 사용자의 세션 관리입니다.
+- `timedatactl` - Queries or changes system time and date settings.
+- `hostnamectl` - Queries or changes system hostname.
+- `localectl` - Queries or changes system locale and keyboard settings.
+- `systemd-analyze` - Profile `systemd`, shows unit dependencies, checks unit files.
+- `journalctl` - Views system or service logs. The `journalctl` command is so important that a separate section will come later explaining its use and what to look out for.
+- `loginctl` - Session management of login users.
