@@ -113,7 +113,7 @@ Each row shows an IRQ number and the count of interrupts processed by each CPU. 
 To summarize the distribution for a specific interface, count how many IRQs are assigned to each CPU:
 
 ```bash
-grep eth0 /proc/interrupts | awk '{max=0; maxcpu=""; for(i=2; i<=NF; i++) {if($i ~ /^[0-9]+$/ && $i+0 > max) {max=$i+0; maxcpu=i-2}}} {print "IRQ " $1 " -> CPU " maxcpu " (" max " interrupts)"}'
+grep eth0 /proc/interrupts | awk '{irq=$1; sub(/:$/,"",irq); max=0; maxcpu="N/A"; for(i=2; i<=NF; i++) {if($i ~ /^[0-9]+$/ && $i+0 > max) {max=$i+0; maxcpu=i-2}} print "IRQ " irq " -> CPU " maxcpu " (" max " interrupts)"}'
 ```
 
 ### Checking CPU utilization
