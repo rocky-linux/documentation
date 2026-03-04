@@ -12,7 +12,7 @@ tags:
 
 ## AI usage
 
-This document adheres to the [AI contribution policy found here](contribute/ai-contribution-policy.md). If you find any errors in the instructions, please let us know.
+This document adheres to the [AI contribution policy found here.](../contribute/ai-contribution-policy.md) If you find any errors in the instructions, please let us know.
 
 ## Introduction
 
@@ -20,7 +20,7 @@ Rootless Podman runs containers entirely within a non-root user's namespace, eli
 
 This guide covers advanced rootless Podman configuration and troubleshooting on Rocky Linux 8, 9, and 10. Topics include verifying cgroups v2 and user namespace support, configuring subordinate ID mappings, resolving supplementary group visibility problems, handling NFS incompatibility, understanding multicast limitations, fixing D-Bus session bus errors, and writing robust wrapper scripts.
 
-For an introduction to Podman and basic container usage, see the [Podman guide](https://docs.rockylinux.org/guides/containers/podman_guide/?h=podman).
+For an introduction to Podman and basic container usage, see the [Podman guide.](podman_guide.md)
 
 ## Prerequisites
 
