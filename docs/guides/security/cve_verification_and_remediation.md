@@ -2,7 +2,7 @@
 title: CVE verification and remediation
 author: Howard Van Der Wal
 contributors: Steven Spencer
-tested with: 8, 9, 10
+tested with: 8.10, 9.7, 10.1
 tags:
 - security
 - CVE
