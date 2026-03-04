@@ -1,5 +1,5 @@
 ---
-title: Rootless Podman on Rocky Linux
+title: Rootless Podman
 author: Howard Van Der Wal
 ai_contributors: Claude (claude-opus-4-6)
 tested with: 8.10, 9.7, 10.1
@@ -15,6 +15,8 @@ tags:
 Rootless Podman runs containers entirely within a non-root user's namespace, eliminating the need for a privileged daemon. While the basic setup is straightforward, production environments — especially HPC clusters and multi-user systems — encounter issues around user namespace mappings, filesystem compatibility, networking limitations, and system service integration.
 
 This guide covers advanced rootless Podman configuration and troubleshooting on Rocky Linux 8, 9, and 10. Topics include verifying cgroups v2 and user namespace support, configuring subordinate ID mappings, resolving supplementary group visibility problems, handling NFS incompatibility, understanding multicast limitations, fixing D-Bus session bus errors, and writing robust wrapper scripts.
+
+For an introduction to Podman and basic container usage, see the [Podman guide](https://docs.rockylinux.org/guides/containers/podman_guide/?h=podman).
 
 ## Prerequisites
 
