@@ -1,5 +1,5 @@
 ---
-title: Migrating from cgroup v1 to cgroup v2 on Rocky Linux
+title: Migrating cgroups v1 to v2 on Rocky Linux
 author: Howard Van Der Wal
 ai_contributors: Claude (claude-opus-4-6)
 tested with: 8.10
