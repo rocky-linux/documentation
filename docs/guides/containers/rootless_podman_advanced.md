@@ -10,6 +10,10 @@ tags:
 - cgroups
 ---
 
+## AI usage
+
+This document adheres to the [AI contribution policy found here](contribute/ai-contribution-policy.md). If you find any errors in the instructions, please let us know.
+
 ## Introduction
 
 Rootless Podman runs containers entirely within a non-root user's namespace, eliminating the need for a privileged daemon. While the basic setup is straightforward, production environments — especially HPC clusters and multi-user systems — encounter issues around user namespace mappings, filesystem compatibility, networking limitations, and system service integration.
