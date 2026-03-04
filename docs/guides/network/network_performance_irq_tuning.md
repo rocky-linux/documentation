@@ -1,5 +1,5 @@
 ---
-title: Network performance tuning - IRQ affinity and packet drop diagnosis
+title: IRQs and kernel packet drops
 author: Howard Van Der Wal
 ai_contributors: Claude (claude-opus-4-6)
 tested with: 8.10, 9.7, 10.1
