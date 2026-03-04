@@ -125,17 +125,6 @@ grep testuser /etc/subuid
 grep testuser /etc/subgid
 ```
 
-### Adding supplementary group GIDs
-
-When a user belongs to supplementary groups and runs containers with `--userns=keep-id --group-add=keep-groups`, those supplementary GIDs must also appear in `/etc/subgid`. Without this mapping, supplementary groups appear as `nobody(65534)` inside the container.
-
-For example, if `testuser` belongs to supplementary groups with GIDs 2001 and 2002, add each GID to `/etc/subgid`:
-
-```bash
-echo "testuser:2001:1" | sudo tee -a /etc/subgid
-echo "testuser:2002:1" | sudo tee -a /etc/subgid
-```
-
 !!! warning
 
     After any change to `/etc/subuid` or `/etc/subgid`, you must run `podman system migrate` to apply the new mappings. Stop any running containers first — `podman system migrate` will force-stop them if they are still running, which may cause data loss.
@@ -156,36 +145,12 @@ podman system reset --force
 
     `podman system reset --force` deletes all containers, images, and volumes for the current user. Use this only when `podman system migrate` does not resolve the mapping issue.
 
-### Verifying supplementary group mappings
-
-After adding the GID entries and running the migration, verify that supplementary groups appear correctly inside a container by specifying each GID explicitly:
-
-```bash
-podman run --rm --userns=keep-id \
-  --group-add 2001 --group-add 2002 \
-  docker.io/library/alpine:latest id
-```
-
-The output should list your supplementary GIDs:
-
-```text
-uid=1001(testuser) gid=1001(testuser) groups=1001(testuser),2001,2002
-```
-
-!!! note
-
-    The `--group-add=keep-groups` flag is intended to pass all host supplementary groups automatically, but its behavior with `--userns=keep-id` can produce incorrect GID mappings in some Podman versions. Specifying each GID explicitly with `--group-add <GID>` is the most reliable method.
-
 ## Interaction with Apptainer fakeroot
 
 Apptainer (formerly Singularity) and Podman share the same `/etc/subuid` and `/etc/subgid` files for user namespace mappings. This means:
 
 - Subordinate UID and GID ranges configured for Podman also work for Apptainer fakeroot builds.
 - Changes to either file affect both tools.
-
-!!! note
-
-    The supplementary GID entries described in the previous section fix group visibility in Podman but not in Apptainer. Apptainer fakeroot only maps the main subordinate range from `/etc/subgid` and does not use individual GID entries. Supplementary groups will appear as `nobody(65534)` inside Apptainer containers regardless of `/etc/subgid` configuration.
 
 After modifying `/etc/subuid` or `/etc/subgid`, verify Apptainer fakeroot still works:
 
@@ -267,25 +232,27 @@ In HPC environments where containers must run from shared storage, consider NVID
 
 ## Supplementary group visibility in containers
 
-When a user belongs to supplementary groups (such as a shared project group on an HPC cluster), those groups may appear as `nobody(65534)` inside a rootless container. This happens because the supplementary GIDs are not included in the user namespace mapping defined by `/etc/subgid`.
+When a user belongs to supplementary groups (such as a shared project group on an HPC cluster), those groups may appear as `nobody(65534)` inside a rootless container when using the `--group-add=keep-groups` flag. This flag is intended to pass all host supplementary groups automatically, but it does not map them correctly in rootless mode.
 
 ### Symptoms
 
-Running `id` inside a container shows incorrect group membership:
+Running `id` inside a container with `--group-add=keep-groups` shows incorrect group membership:
 
 ```bash
 podman run --rm --userns=keep-id \
-  --group-add 2001 --group-add 2002 \
+  --group-add=keep-groups \
   docker.io/library/alpine:latest id
 ```
 
-Without the proper `/etc/subgid` entries, supplementary groups appear as `nobody(65534)`:
+Supplementary groups appear as `nobody(65534)` instead of the actual GIDs:
 
 ```text
 uid=1001(testuser) gid=1001(testuser) groups=1001(testuser),65534(nobody),65534(nobody)
 ```
 
-### Adding the missing GID entries
+### Using explicit group IDs
+
+The fix is to specify each supplementary GID explicitly with `--group-add` instead of using `--group-add=keep-groups`.
 
 Identify the user's supplementary GIDs:
 
@@ -299,20 +266,7 @@ Example output:
 1001 2001 2002
 ```
 
-Add each supplementary GID (other than the primary GID) to `/etc/subgid`:
-
-```bash
-echo "testuser:2001:1" | sudo tee -a /etc/subgid
-echo "testuser:2002:1" | sudo tee -a /etc/subgid
-```
-
-Apply the changes:
-
-```bash
-podman system migrate
-```
-
-Verify the fix by specifying the supplementary GIDs explicitly:
+Run the container with each supplementary GID (other than the primary GID) specified explicitly:
 
 ```bash
 podman run --rm --userns=keep-id \
@@ -320,7 +274,7 @@ podman run --rm --userns=keep-id \
   docker.io/library/alpine:latest id
 ```
 
-The output should now show the correct GIDs:
+The output shows the correct GIDs:
 
 ```text
 uid=1001(testuser) gid=1001(testuser) groups=1001(testuser),2001,2002
@@ -460,15 +414,19 @@ podman --remote --log-level=info run myimage  # run is $3
 Rootless Podman on Rocky Linux 9 provides secure, unprivileged container execution, but advanced deployments require attention to user namespace configuration, filesystem compatibility, and system service integration. The key points covered in this guide are:
 
 - Verify cgroups v2 and user namespace support before configuring rootless containers
-- Add supplementary GIDs to `/etc/subgid` and run `podman system migrate` after any changes
+- Use explicit `--group-add <GID>` instead of `--group-add=keep-groups` to pass supplementary groups into rootless containers
 - Keep container storage on local filesystems — NFS and other network filesystems are not compatible with rootless Podman
 - Multicast networking is a known limitation of user namespaces and requires `--network=host` as a workaround
 - D-Bus session bus errors typically trace back to `pam_systemd.so` being disabled in PAM configuration
 - Wrapper scripts must iterate through arguments to find subcommands, because global flags can appear first
 
-For more information, refer to the following resources:
+## References
 
-- [Podman documentation](https://docs.podman.io/en/latest/)
-- [Podman troubleshooting guide](https://github.com/containers/podman/blob/main/troubleshooting.md)
-- [containers storage.conf documentation](https://github.com/containers/storage/blob/main/docs/containers-storage.conf.5.md)
-- [NVIDIA enroot documentation](https://github.com/NVIDIA/enroot)
+1. "Apptainer User Guide: Fakeroot feature" by the Apptainer Team [https://apptainer.org/docs/user/main/fakeroot.html](https://apptainer.org/docs/user/main/fakeroot.html)
+2. "Basic Networking Guide for Podman" by the Podman Team [https://github.com/containers/podman/blob/main/docs/tutorials/basic_networking.md](https://github.com/containers/podman/blob/main/docs/tutorials/basic_networking.md)
+3. "Basic Setup and Use of Podman in a Rootless environment" by the Podman Team [https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md](https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md)
+4. "containers-storage.conf(5) Container Storage Configuration File" by the Containers Team [https://github.com/containers/storage/blob/main/docs/containers-storage.conf.5.md](https://github.com/containers/storage/blob/main/docs/containers-storage.conf.5.md)
+5. "Enroot" by NVIDIA [https://github.com/NVIDIA/enroot](https://github.com/NVIDIA/enroot)
+6. "Podman documentation" by the Podman Team [https://docs.podman.io/en/latest/](https://docs.podman.io/en/latest/)
+7. "subuid(5) — subordinate user IDs" by the Linux man-pages Project [https://man7.org/linux/man-pages/man5/subuid.5.html](https://man7.org/linux/man-pages/man5/subuid.5.html)
+8. "Troubleshooting" by the Podman Team [https://github.com/containers/podman/blob/main/troubleshooting.md](https://github.com/containers/podman/blob/main/troubleshooting.md)
