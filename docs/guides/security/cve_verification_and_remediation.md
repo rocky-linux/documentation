@@ -20,7 +20,6 @@ Vulnerability scanners frequently flag packages on Rocky Linux systems as unpatc
 - A Rocky Linux 8, 9, or 10 system with `dnf` package manager
 - Root or `sudo` access
 - Familiarity with basic command-line operations
-- Optional: `policycoreutils-python-utils` for SELinux context management during remediation
 
 ## Checking RPM changelogs for CVE patches
 
