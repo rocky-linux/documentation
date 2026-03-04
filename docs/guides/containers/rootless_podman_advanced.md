@@ -86,22 +86,6 @@ echo "user.max_user_namespaces = 31790" | sudo tee /etc/sysctl.d/userns.conf
 sudo sysctl --system
 ```
 
-### Verify UID mapping for the current user
-
-Check that the current user has a valid UID mapping:
-
-```bash
-cat /proc/self/uid_map
-```
-
-The expected output for a non-root user is:
-
-```text
-         0       1000          1
-```
-
-The three values represent the starting UID inside the namespace, the starting UID outside the namespace, and the count. Your user's UID will appear in the second column.
-
 ## Configuring `/etc/subuid` and `/etc/subgid`
 
 Rootless Podman uses subordinate UID and GID ranges from `/etc/subuid` and `/etc/subgid` to map container users into the host user namespace. Each non-root user who runs containers needs entries in both files.
