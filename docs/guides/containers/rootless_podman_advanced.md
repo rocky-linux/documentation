@@ -286,13 +286,13 @@ uid=1001(testuser) gid=1001(testuser) groups=1001(testuser),2001,2002
 
 ## Troubleshooting: D-Bus session bus errors
 
-After migrating to cgroups v2 or on systems where PAM configuration has been modified, rootless Podman may fail with a D-Bus error:
+After migrating to cgroups v2 or on systems where PAM configuration has been modified, rootless Podman may fail with an error such as:
 
 ```text
-dbus: couldn't determine address of session bus
+Error: creating events dirs: mkdir /run/user/1001: permission denied
 ```
 
-This error occurs because `systemd-logind` is not creating the user session infrastructure that rootless Podman depends on. The root cause is typically `pam_systemd.so` being disabled or commented out in the PAM configuration.
+This error occurs because `systemd-logind` is not creating the user runtime directory (`/run/user/<UID>`) that rootless Podman depends on. The root cause is typically `pam_systemd.so` being disabled or commented out in the PAM configuration.
 
 ### Verify the issue
 
@@ -411,14 +411,14 @@ podman --remote --log-level=info run myimage  # run is $3
 
 ## Conclusion
 
-Rootless Podman on Rocky Linux 9 provides secure, unprivileged container execution, but advanced deployments require attention to user namespace configuration, filesystem compatibility, and system service integration. The key points covered in this guide are:
+Rootless Podman on Rocky Linux 8, 9, and 10 provides secure, unprivileged container execution, but advanced deployments require attention to user namespace configuration, filesystem compatibility, and system service integration. The key points covered in this guide are:
 
-- Verify cgroups v2 and user namespace support before configuring rootless containers
-- Use explicit `--group-add <GID>` instead of `--group-add=keep-groups` to pass supplementary groups into rootless containers
-- Keep container storage on local filesystems — NFS and other network filesystems are not compatible with rootless Podman
-- Multicast networking is a known limitation of user namespaces and requires `--network=host` as a workaround
-- D-Bus session bus errors typically trace back to `pam_systemd.so` being disabled in PAM configuration
-- Wrapper scripts must iterate through arguments to find subcommands, because global flags can appear first
+- Verify cgroups v2 and user namespace support before configuring rootless containers. Rocky Linux 8 requires a kernel parameter change to enable cgroups v2.
+- Use explicit `--group-add <GID>` instead of `--group-add=keep-groups` to pass supplementary groups into rootless containers.
+- Keep container storage on local filesystems — NFS and other network filesystems are not compatible with rootless Podman.
+- Multicast networking is a known limitation of user namespaces and requires `--network=host` as a workaround.
+- Runtime directory errors typically trace back to `pam_systemd.so` being disabled in PAM configuration.
+- Wrapper scripts must iterate through arguments to find subcommands, because global flags can appear first.
 
 ## References
 
