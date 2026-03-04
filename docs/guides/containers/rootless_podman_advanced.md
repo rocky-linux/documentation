@@ -86,7 +86,7 @@ echo "user.max_user_namespaces = 31790" | sudo tee /etc/sysctl.d/userns.conf
 sudo sysctl --system
 ```
 
-## Configuring `/etc/subuid` and `/etc/subgid`
+## Configuring /etc/subuid and /etc/subgid
 
 Rootless Podman uses subordinate UID and GID ranges from `/etc/subuid` and `/etc/subgid` to map container users into the host user namespace. Each non-root user who runs containers needs entries in both files.
 
@@ -98,9 +98,9 @@ Each line in `/etc/subuid` and `/etc/subgid` follows the format:
 username:start_id:count
 ```
 
-- `username` — the login name of the user
-- `start_id` — the first subordinate ID allocated to this user
-- `count` — how many subordinate IDs this user can use
+- `username` — the login name of the user.
+- `start_id` — the first subordinate ID allocated to this user.
+- `count` — how many subordinate IDs this user can use.
 
 For example:
 
@@ -138,7 +138,7 @@ echo "testuser:2002:1" | sudo tee -a /etc/subgid
 
 !!! warning
 
-    After any change to `/etc/subuid` or `/etc/subgid`, you must run `podman system migrate` to apply the new mappings. Running containers must be stopped first.
+    After any change to `/etc/subuid` or `/etc/subgid`, you must run `podman system migrate` to apply the new mappings. Stop any running containers first — `podman system migrate` will force-stop them if they are still running, which may cause data loss.
 
 Apply the changes:
 
@@ -180,9 +180,12 @@ uid=1001(testuser) gid=1001(testuser) groups=1001(testuser),2001,2002
 
 Apptainer (formerly Singularity) and Podman share the same `/etc/subuid` and `/etc/subgid` files for user namespace mappings. This means:
 
-- Subordinate UID and GID ranges configured for Podman also work for Apptainer fakeroot builds
-- The supplementary GID entries described in the previous section fix group visibility in both Podman and Apptainer
-- Changes to either file affect both tools
+- Subordinate UID and GID ranges configured for Podman also work for Apptainer fakeroot builds.
+- Changes to either file affect both tools.
+
+!!! note
+
+    The supplementary GID entries described in the previous section fix group visibility in Podman but not in Apptainer. Apptainer fakeroot only maps the main subordinate range from `/etc/subgid` and does not use individual GID entries. Supplementary groups will appear as `nobody(65534)` inside Apptainer containers regardless of `/etc/subgid` configuration.
 
 After modifying `/etc/subuid` or `/etc/subgid`, verify Apptainer fakeroot still works:
 
