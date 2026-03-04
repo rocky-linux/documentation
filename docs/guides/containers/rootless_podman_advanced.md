@@ -286,13 +286,21 @@ uid=1001(testuser) gid=1001(testuser) groups=1001(testuser),2001,2002
 
 ## Troubleshooting: D-Bus session bus errors
 
-After migrating to cgroups v2 or on systems where PAM configuration has been modified, rootless Podman may fail with an error such as:
+After migrating to cgroups v2 or on systems where PAM configuration has been modified, rootless Podman may fail with one of the following errors.
+
+On Rocky Linux 8 with Podman 4.9:
+
+```text
+dbus: couldn't determine address of session bus
+```
+
+On Rocky Linux 9 and 10 with Podman 5.6:
 
 ```text
 Error: creating events dirs: mkdir /run/user/1001: permission denied
 ```
 
-This error occurs because `systemd-logind` is not creating the user runtime directory (`/run/user/<UID>`) that rootless Podman depends on. The root cause is typically `pam_systemd.so` being disabled or commented out in the PAM configuration.
+Both errors occur because `systemd-logind` is not creating the user runtime directory (`/run/user/<UID>`) that rootless Podman depends on. The root cause is typically `pam_systemd.so` being disabled or commented out in the PAM configuration.
 
 ### Verify the issue
 
