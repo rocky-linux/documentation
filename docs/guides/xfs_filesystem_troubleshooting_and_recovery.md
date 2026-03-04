@@ -1,5 +1,5 @@
 ---
-title: XFS Filesystem Troubleshooting and Recovery on Rocky Linux
+title: XFS troubleshooting and recovery
 author: Howard Van Der Wal
 ai_contributors: Claude (claude-opus-4-6)
 tested with: 9
