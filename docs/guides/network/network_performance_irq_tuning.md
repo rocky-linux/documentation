@@ -10,6 +10,10 @@ tags:
 - tuning
 ---
 
+## AI usage
+
+This document adheres to the [AI contribution policy found here](contribute/ai-contribution-policy.md). If you find any errors in the instructions, please let us know.
+
 ## Introduction
 
 Servers under heavy network load can experience packet drops, latency spikes, and degraded throughput even when the hardware is capable of handling the traffic. These problems often stem from how the Linux kernel distributes network interrupt processing across CPUs rather than from the network interface card (NIC) itself.
