@@ -11,6 +11,10 @@ tags:
 - slurm
 ---
 
+## AI usage
+
+This document adheres to the [AI contribution policy found here](contribute/ai-contribution-policy.md). If you find any errors in the instructions, please let us know.
+
 ## Introduction
 
 Control groups (cgroups) are a Linux kernel feature that organizes processes into hierarchical groups to manage and limit system resources such as CPU, memory, and I/O. The cgroup v2 interface^1^ (also called the unified hierarchy) replaces the original cgroup v1 interface with a single, consistent tree structure.
