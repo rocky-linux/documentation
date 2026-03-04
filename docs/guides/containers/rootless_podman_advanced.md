@@ -12,7 +12,7 @@ tags:
 
 ## Introduction
 
-Rootless Podman runs containers entirely within a non-root user's namespace, eliminating the need for a privileged daemon. While the basic setup is straightforward, production environments — especially HPC clusters and multi-user systems — encounter issues around user namespace mappings, filesystem compatibility, networking limitations, and system service integration.
+Rootless Podman^6^ runs containers entirely within a non-root user's namespace, eliminating the need for a privileged daemon. While the basic setup is straightforward, production environments — especially HPC clusters and multi-user systems — encounter issues around user namespace mappings, filesystem compatibility, networking limitations, and system service integration.
 
 This guide covers advanced rootless Podman configuration and troubleshooting on Rocky Linux 8, 9, and 10. Topics include verifying cgroups v2 and user namespace support, configuring subordinate ID mappings, resolving supplementary group visibility problems, handling NFS incompatibility, understanding multicast limitations, fixing D-Bus session bus errors, and writing robust wrapper scripts.
 
@@ -38,11 +38,11 @@ dnf install podman slirp4netns
 
 !!! note
 
-    Rocky Linux 9 and 10 ship with Podman 5.x, which uses `pasta` as the default rootless network backend. Rocky Linux 8 ships with Podman 4.x and uses `slirp4netns`. Installing `slirp4netns` on Rocky Linux 9 and 10 provides a fallback if `pasta` is unavailable.
+    Rocky Linux 9 and 10 ship with Podman 5.x, which uses `pasta` as the default rootless network backend.^2^ Rocky Linux 8 ships with Podman 4.x and uses `slirp4netns`. Installing `slirp4netns` on Rocky Linux 9 and 10 provides a fallback if `pasta` is unavailable.
 
 ## Verifying cgroups v2 and user namespace support
 
-Rootless Podman requires cgroups v2 (the unified hierarchy) and unprivileged user namespaces. Rocky Linux 9 and 10 enable both by default. Rocky Linux 8 defaults to cgroups v1 and requires a kernel parameter change.
+Rootless Podman requires cgroups v2 (the unified hierarchy) and unprivileged user namespaces.^3^ Rocky Linux 9 and 10 enable both by default. Rocky Linux 8 defaults to cgroups v1 and requires a kernel parameter change.
 
 ### Confirm cgroups v2
 
@@ -94,7 +94,7 @@ Rootless Podman uses subordinate UID and GID ranges from `/etc/subuid` and `/etc
 
 ### Format and meaning of entries
 
-Each line in `/etc/subuid` and `/etc/subgid` follows the format:
+Each line in `/etc/subuid` and `/etc/subgid` follows the format:^7^
 
 ```text
 username:start_id:count
@@ -149,7 +149,7 @@ podman system reset --force
 
 ## Interaction with Apptainer fakeroot
 
-Apptainer (formerly Singularity) and Podman share the same `/etc/subuid` and `/etc/subgid` files for user namespace mappings. This means:
+Apptainer (formerly Singularity) and Podman share the same `/etc/subuid` and `/etc/subgid` files for user namespace mappings.^1^ This means:
 
 - Subordinate UID and GID ranges configured for Podman also work for Apptainer fakeroot builds.
 - Changes to either file affect both tools.
@@ -209,7 +209,7 @@ Configure Podman to use local storage paths. Edit the user-level storage configu
 mkdir -p ~/.config/containers
 ```
 
-Create or edit `~/.config/containers/storage.conf`:
+Create or edit `~/.config/containers/storage.conf`:^4^
 
 ```ini
 [storage]
@@ -226,7 +226,7 @@ Replace `/home/testuser` and `1000` with the appropriate home directory and UID 
 
 ### Alternative for HPC shared-filesystem workflows
 
-In HPC environments where containers must run from shared storage, consider NVIDIA enroot as an alternative container runtime. Enroot is designed for unprivileged container execution on shared filesystems and does not require subordinate UID/GID mappings.
+In HPC environments where containers must run from shared storage, consider NVIDIA enroot^5^ as an alternative container runtime. Enroot is designed for unprivileged container execution on shared filesystems and does not require subordinate UID/GID mappings.
 
 !!! danger
 
@@ -302,7 +302,7 @@ On Rocky Linux 9 and 10 with Podman 5.6:
 Error: creating events dirs: mkdir /run/user/1001: permission denied
 ```
 
-Both errors occur because `systemd-logind` is not creating the user runtime directory (`/run/user/<UID>`) that rootless Podman depends on. The root cause is typically `pam_systemd.so` being disabled or commented out in the PAM configuration.
+Both errors occur because `systemd-logind` is not creating the user runtime directory (`/run/user/<UID>`) that rootless Podman depends on.^8^ The root cause is typically `pam_systemd.so` being disabled or commented out in the PAM configuration.
 
 ### Verify the issue
 
