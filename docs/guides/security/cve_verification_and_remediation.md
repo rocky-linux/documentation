@@ -1,5 +1,5 @@
 ---
-title: CVE verification and remediation on Rocky Linux
+title: CVE verification and remediation
 author: Howard Van Der Wal
 contributors: Steven Spencer
 tested with: 8, 9
