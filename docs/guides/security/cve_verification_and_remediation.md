@@ -2,7 +2,7 @@
 title: CVE verification and remediation
 author: Howard Van Der Wal
 contributors: Steven Spencer
-tested with: 8, 9
+tested with: 8, 9, 10
 tags:
 - security
 - CVE
@@ -17,7 +17,7 @@ Vulnerability scanners frequently flag packages on Rocky Linux systems as unpatc
 
 ## Prerequisites and assumptions
 
-- A Rocky Linux 8 or 9 system with `dnf` package manager
+- A Rocky Linux 8, 9, or 10 system with `dnf` package manager
 - Root or `sudo` access
 - Familiarity with basic command-line operations
 - Optional: `policycoreutils-python-utils` for SELinux context management during remediation
