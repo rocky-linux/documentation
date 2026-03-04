@@ -20,9 +20,23 @@ Vulnerability scanners frequently flag packages on Rocky Linux systems as unpatc
 - A Rocky Linux 8, 9, or 10 system with `dnf` package manager
 - Root or `sudo` access
 
+## Methods for verifying CVE patches
+
+There are several ways to determine whether a specific CVE has been fixed on your Rocky Linux system:
+
+- **RPM changelogs**: Query the package changelog for CVE identifiers
+- **dnf updateinfo**: Check security advisories from Rocky Linux repositories
+- **Rocky Linux Errata**: Search the advisory database at [errata.rockylinux.org](https://errata.rockylinux.org/)
+- **Upstream security advisories**: Search the upstream vendor advisory database at [access.redhat.com/security/security-updates/security-advisories](https://access.redhat.com/security/security-updates/security-advisories)
+- **Upstream CVE pages**: Check platform applicability and severity at `https://access.redhat.com/security/cve/CVE-XXXX-XXXXX`
+- **Build systems**: Check Koji or Peridot for pending package builds
+- **OVAL scanning**: Use OpenSCAP with Rocky Linux OVAL data for automated vulnerability assessment
+
+Each method has strengths. RPM changelogs confirm what is installed locally. The `dnf updateinfo` commands show what advisories are available or already applied. The upstream security advisories page and Rocky Linux Errata provide the broadest view of all published fixes. The following sections cover each method in detail.
+
 ## Checking RPM changelogs for CVE patches
 
-The most reliable way to determine whether a specific CVE has been fixed in an installed package is to inspect its RPM changelog. Red Hat and Rocky Linux package maintainers include CVE identifiers in changelog entries when backporting security fixes.
+One way to determine whether a specific CVE has been fixed in an installed package is to inspect its RPM changelog. Upstream and Rocky Linux package maintainers include CVE identifiers in changelog entries when backporting security fixes.
 
 ### Basic changelog query
 
@@ -127,16 +141,16 @@ dnf check-update --security
 
 ## Understanding RHSA and RLSA advisory numbering
 
-Rocky Linux security advisories (RLSA) directly mirror Red Hat Security Advisories (RHSA). The advisory numbers are shared, with only the prefix differing.
+Rocky Linux security advisories (RLSA) directly mirror upstream security advisories (RHSA). The advisory numbers are shared, with only the prefix differing.
 
 For example:
 
-- **RHSA-2024:2551** is the Red Hat advisory
+- **RHSA-2024:2551** is the upstream advisory
 - **RLSA-2024:2551** is the corresponding Rocky Linux advisory
 
 ### Advisory type prefixes
 
-| Red Hat | Rocky Linux | Meaning |
+| Upstream | Rocky Linux | Meaning |
 | --------- | ------------- | --------- |
 | RHSA | RLSA | Security Advisory |
 | RHBA | RLBA | Bug Fix Advisory |
@@ -150,7 +164,7 @@ Rocky Linux advisories are published at [Rocky Linux Errata](https://errata.rock
 
 !!! note "Publication timing"
 
-    Rocky Linux advisories may appear later than the corresponding Red Hat advisory. The time lag depends on the Rocky Linux release engineering pipeline. A missing RLSA does not necessarily mean the fix is unavailable. Always check the RPM changelog and the build systems described in the "Monitoring Rocky Linux build systems" section below.
+    Rocky Linux advisories may appear later than the corresponding upstream advisory. The time lag depends on the Rocky Linux release engineering pipeline. A missing RLSA does not necessarily mean the fix is unavailable. Always check the RPM changelog and the build systems described in the "Monitoring Rocky Linux build systems" section below.
 
 ## Module stream version naming
 
@@ -199,7 +213,7 @@ The package version (`0.10.12`) and RPM release (`6`) are identical. These packa
 
 !!! warning "Scanner configuration"
 
-    If your vulnerability scanner repeatedly flags module stream version differences as vulnerabilities, work with your scanner vendor to add proper Rocky Linux package mapping. Scanners that rely on generic NVD feeds without understanding RHEL-style backporting will produce inaccurate results.
+    If your vulnerability scanner repeatedly flags module stream version differences as vulnerabilities, work with your scanner vendor to add proper Rocky Linux package mapping. Scanners that rely on generic NVD feeds without understanding enterprise Linux backporting will produce inaccurate results.
 
 ## Identifying Windows-only CVEs
 
@@ -207,27 +221,27 @@ Some CVEs listed in security advisories only affect specific platforms. Vulnerab
 
 ### How to check platform applicability
 
-1. Visit the Red Hat CVE page for the specific CVE:
+1. Visit the upstream CVE page for the specific CVE:
 
     ```text
     https://access.redhat.com/security/cve/CVE-XXXX-XXXXX
     ```
 
-2. Look for the **Affected Packages and Issued Red Hat Security Errata** section
+2. Look for the **Affected Packages and Issued Security Errata** section
 
 3. Check whether the vulnerability applies to your platform
 
-For example, CVE-2024-38472 and CVE-2024-40898 affect the `httpd` package but only on Windows. The Red Hat CVE page explicitly states the platform applicability. These CVEs will never receive a Linux patch because Linux is not affected.
+For example, CVE-2024-38472 and CVE-2024-40898 affect the `httpd` package but only on Windows. The upstream CVE page explicitly states the platform applicability. These CVEs will never receive a Linux patch because Linux is not affected.
 
 !!! tip "Documenting false positives"
 
-    When you identify a Windows-only CVE flagged on your Linux system, document the finding with the Red Hat CVE page URL as evidence. This documentation is useful when responding to audit findings or vulnerability scan reports.
+    When you identify a Windows-only CVE flagged on your Linux system, document the finding with the upstream CVE page URL as evidence. This documentation is useful when responding to audit findings or vulnerability scan reports.
 
 ## Understanding CVSS scoring and backport policies
 
-### Red Hat severity ratings
+### Upstream severity ratings
 
-Red Hat uses a four-level severity scale that does not map directly to CVSS numeric scores:
+The upstream vendor uses a four-level severity scale that does not map directly to CVSS numeric scores:
 
 | Rating | Description |
 | -------- | ------------- |
@@ -236,11 +250,11 @@ Red Hat uses a four-level severity scale that does not map directly to CVSS nume
 | Moderate | More difficult to exploit but could still have significant impact |
 | Low | Minimal security impact, harder to exploit |
 
-Red Hat performs independent security analysis and may assign a different severity than the NVD CVSS score suggests. This is because Red Hat evaluates how a vulnerability affects their specific products, not just the theoretical impact.
+The upstream vendor performs independent security analysis and may assign a different severity than the NVD CVSS score suggests. This is because the upstream evaluation considers how a vulnerability affects their specific products, not just the theoretical impact.
 
 ### Backporting policy
 
-Red Hat (and by extension, Rocky Linux) addresses vulnerabilities based on severity:
+The upstream vendor (and by extension, Rocky Linux) addresses vulnerabilities based on severity:
 
 - **Critical and Important**: Addressed during all support phases, typically as asynchronous updates
 - **Moderate** (CVSS base score above 7.0): Also addressed asynchronously
@@ -250,19 +264,21 @@ Red Hat (and by extension, Rocky Linux) addresses vulnerabilities based on sever
 
     For CIQ Rocky Linux LTS customers, the remediation threshold is a CVSS base score of 7.0 or higher. CVEs below this threshold are addressed during scheduled updates rather than as individual patches. Check the [CIQ Advisories repository](https://github.com/ctrliq/advisories/tree/main) for CIQ-specific advisory information.
 
-### Checking Red Hat severity ratings
+### Checking upstream severity ratings
 
-To see how Red Hat rates a specific CVE:
+To see how the upstream vendor rates a specific CVE:
 
 ```text
 https://access.redhat.com/security/cve/CVE-XXXX-XXXXX
 ```
 
-The page shows the CVSS score, Red Hat severity rating, and affected products.
+The page shows the CVSS score, upstream severity rating, and affected products.
+
+You can also browse all published upstream security advisories at [access.redhat.com/security/security-updates/security-advisories](https://access.redhat.com/security/security-updates/security-advisories). This page allows filtering by product, severity, date, and CVE identifier.
 
 ## Monitoring Rocky Linux build systems
 
-When a CVE fix has been announced by Red Hat but is not yet available in Rocky Linux repositories, you can track the build and publication pipeline.
+When a CVE fix has been announced upstream but is not yet available in Rocky Linux repositories, you can track the build and publication pipeline.
 
 ### Build system URLs
 
@@ -366,7 +382,7 @@ Vulnerability scanners such as Nessus (Tenable), Wazuh, and Nexpose can produce 
 
 1. **Module stream version comparison**: Scanners flag `el8.6.0` as outdated compared to `el8.10.0` (see the "Module stream version naming" section)
 
-2. **Upstream version comparison**: Scanners compare against upstream (unpatched) version numbers without accounting for Red Hat or Rocky Linux backporting
+2. **Upstream version comparison**: Scanners compare against upstream (unpatched) version numbers without accounting for enterprise Linux backporting
 
 3. **Missing Rocky Linux OVAL data**: Some scanners lack proper Rocky Linux vulnerability mappings and fall back to generic NVD feeds
 
@@ -388,7 +404,7 @@ When a vulnerability scanner reports a finding, follow this workflow:
     dnf updateinfo info --cve CVE-XXXX-XXXXX
     ```
 
-3. **Check the Red Hat CVE page** for platform applicability:
+3. **Check the upstream CVE page** for platform applicability:
 
     ```text
     https://access.redhat.com/security/cve/CVE-XXXX-XXXXX
@@ -401,6 +417,48 @@ When a vulnerability scanner reports a finding, follow this workflow:
 !!! tip "Documenting scanner exceptions"
 
     Maintain a record of verified false positives with their evidence. This documentation helps streamline future vulnerability scan reviews and supports audit compliance processes.
+
+## OVAL scanning with OpenSCAP
+
+Rocky Linux publishes OVAL (Open Vulnerability and Assessment Language) data that can be used with OpenSCAP to perform automated vulnerability assessments.
+
+### Downloading Rocky Linux OVAL data
+
+OVAL definition files are available at [dl.rockylinux.org/pub/oval/](https://dl.rockylinux.org/pub/oval/):
+
+- Rocky Linux 8: `org.rockylinux.rlsa-8.xml`
+- Rocky Linux 9: `org.rockylinux.rlsa-9.xml`
+
+Download the file for your version:
+
+```bash
+wget https://dl.rockylinux.org/pub/oval/org.rockylinux.rlsa-9.xml.bz2
+bunzip2 org.rockylinux.rlsa-9.xml.bz2
+```
+
+### Running an OVAL scan
+
+Install OpenSCAP if not already present:
+
+```bash
+sudo dnf install openscap-scanner
+```
+
+Run the vulnerability scan:
+
+```bash
+oscap oval eval --results oval-results.xml org.rockylinux.rlsa-9.xml
+```
+
+Generate an HTML report:
+
+```bash
+oscap oval generate report oval-results.xml > oval-report.html
+```
+
+!!! warning "OVAL data limitations"
+
+    OVAL scans may produce false positives on Rocky Linux, particularly for packages where the OVAL definitions have not been updated to reflect the latest advisory status. Always cross-reference OVAL results with RPM changelogs and `dnf updateinfo` for confirmation.
 
 ## Conclusion
 
