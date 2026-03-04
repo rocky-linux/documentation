@@ -20,13 +20,13 @@ This guide covers advanced rootless Podman configuration and troubleshooting on 
 
 Before starting, ensure you have:
 
-- A system running Rocky Linux 8, 9, or 10 with cgroups v2 enabled
-- User namespaces enabled (the default on all supported Rocky Linux versions)
-- `/etc/subuid` and `/etc/subgid` configured for each non-root user who will run containers
-- The `podman` package installed
-- `slirp4netns` or `pasta` installed for rootless networking
-- `pam_systemd.so` enabled in PAM configuration (required for D-Bus and `XDG_RUNTIME_DIR`)
-- Root access for system-level configuration changes
+- A system running Rocky Linux 8, 9, or 10 with cgroups v2 enabled.
+- User namespaces enabled (the default on all supported Rocky Linux versions).
+- `/etc/subuid` and `/etc/subgid` configured for each non-root user who will run containers.
+- The `podman` package installed.
+- `slirp4netns` or `pasta` installed for rootless networking.
+- `pam_systemd.so` enabled in PAM configuration (required for D-Bus and `XDG_RUNTIME_DIR`).
+- Root access for system-level configuration changes.
 
 Install Podman and the rootless networking dependencies:
 
