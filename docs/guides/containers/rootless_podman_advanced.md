@@ -12,7 +12,7 @@ tags:
 
 ## Introduction
 
-Rootless Podman^6^ runs containers entirely within a non-root user's namespace, eliminating the need for a privileged daemon. While the basic setup is straightforward, production environments — especially HPC clusters and multi-user systems — encounter issues around user namespace mappings, filesystem compatibility, networking limitations, and system service integration.
+Rootless Podman runs containers entirely within a non-root user's namespace, eliminating the need for a privileged daemon. While the basic setup is straightforward, production environments — especially HPC clusters and multi-user systems — encounter issues around user namespace mappings, filesystem compatibility, networking limitations, and system service integration.
 
 This guide covers advanced rootless Podman configuration and troubleshooting on Rocky Linux 8, 9, and 10. Topics include verifying cgroups v2 and user namespace support, configuring subordinate ID mappings, resolving supplementary group visibility problems, handling NFS incompatibility, understanding multicast limitations, fixing D-Bus session bus errors, and writing robust wrapper scripts.
 
@@ -94,7 +94,7 @@ Rootless Podman uses subordinate UID and GID ranges from `/etc/subuid` and `/etc
 
 ### Format and meaning of entries
 
-Each line in `/etc/subuid` and `/etc/subgid` follows the format:^7^
+Each line in `/etc/subuid` and `/etc/subgid` follows the format:^6^
 
 ```text
 username:start_id:count
@@ -302,7 +302,7 @@ On Rocky Linux 9 and 10 with Podman 5.6:
 Error: creating events dirs: mkdir /run/user/1001: permission denied
 ```
 
-Both errors occur because `systemd-logind` is not creating the user runtime directory (`/run/user/<UID>`) that rootless Podman depends on.^8^ The root cause is typically `pam_systemd.so` being disabled or commented out in the PAM configuration.
+Both errors occur because `systemd-logind` is not creating the user runtime directory (`/run/user/<UID>`) that rootless Podman depends on.^7^ The root cause is typically `pam_systemd.so` being disabled or commented out in the PAM configuration.
 
 ### Verify the issue
 
@@ -338,7 +338,7 @@ sudo sed -i 's/^#\(-session.*pam_systemd.so\)/\1/' /etc/pam.d/system-auth
 sudo sed -i 's/^#\(-session.*pam_systemd.so\)/\1/' /etc/pam.d/password-auth
 ```
 
-On Rocky Linux 9, the lines use the `-session` form (the leading dash tells PAM to ignore errors if the module is missing):
+On Rocky Linux 9 and 10, the lines use the `-session` form (the leading dash tells PAM to ignore errors if the module is missing):
 
 ```text
 -session   optional pam_systemd.so
@@ -437,6 +437,5 @@ Rootless Podman on Rocky Linux 8, 9, and 10 provides secure, unprivileged contai
 3. "Basic Setup and Use of Podman in a Rootless environment" by the Podman Team [https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md](https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md)
 4. "containers-storage.conf(5) Container Storage Configuration File" by the Containers Team [https://github.com/containers/storage/blob/main/docs/containers-storage.conf.5.md](https://github.com/containers/storage/blob/main/docs/containers-storage.conf.5.md)
 5. "Enroot" by NVIDIA [https://github.com/NVIDIA/enroot](https://github.com/NVIDIA/enroot)
-6. "Podman documentation" by the Podman Team [https://docs.podman.io/en/latest/](https://docs.podman.io/en/latest/)
-7. "subuid(5) — subordinate user IDs" by the Linux man-pages Project [https://man7.org/linux/man-pages/man5/subuid.5.html](https://man7.org/linux/man-pages/man5/subuid.5.html)
-8. "Troubleshooting" by the Podman Team [https://github.com/containers/podman/blob/main/troubleshooting.md](https://github.com/containers/podman/blob/main/troubleshooting.md)
+6. "subuid(5) — subordinate user IDs" by the Linux man-pages Project [https://man7.org/linux/man-pages/man5/subuid.5.html](https://man7.org/linux/man-pages/man5/subuid.5.html)
+7. "Troubleshooting" by the Podman Team [https://github.com/containers/podman/blob/main/troubleshooting.md](https://github.com/containers/podman/blob/main/troubleshooting.md)
