@@ -9,9 +9,9 @@ tags:
   - guide
 ---
 
-## AI usage disclosure
+## AI usage
 
-AI assisted in creating this document. The author reviewed all content, tested, and verified its accuracy, and takes full responsibility for the correctness of this document. Please report any errors you encounter to the Rocky Linux documentation team.
+This document adheres to the [AI contribution policy found here.](ai-contribution-policy.md) If you find any errors in the instructions, please let us know.
 
 ## Welcome
 
