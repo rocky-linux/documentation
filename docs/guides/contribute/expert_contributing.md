@@ -939,7 +939,7 @@ If you use AI tools to assist in writing your document, you must add the followi
 This document adheres to the [AI contribution policy found here.](../contribute/ai-contribution-policy.md) If you find any errors in the instructions, please let us know.
 ````
 
-This informs readers that AI tools contributed to the document and directs them to the full policy.
+This informs the reader that AI tools contributed to the document and directs them to the full policy.
 
 ### Document structure
 
