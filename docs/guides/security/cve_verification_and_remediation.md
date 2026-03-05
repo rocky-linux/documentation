@@ -376,8 +376,6 @@ Operating systems that have reached end of life (EOL) no longer receive security
 
     Running an EOL operating system in a production environment means accepting all future security vulnerabilities without remediation. The recommended action is migrating to a supported operating system version.
 
-For CIQ LTS customers, extended support may be available beyond standard EOL dates. Contact CIQ for details on extended lifecycle support options.
-
 ## Addressing vulnerability scanner false positives
 
 Vulnerability scanners such as Nessus (Tenable), Wazuh, and Nexpose can produce false positives on Rocky Linux for several reasons:
