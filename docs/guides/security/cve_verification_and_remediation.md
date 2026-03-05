@@ -30,17 +30,17 @@ There are several ways to determine whether a specific CVE has been fixed on you
 
 - **RPM changelogs**: Query the package changelog for CVE identifiers
 - **dnf updateinfo**: Check security advisories from Rocky Linux repositories
-- **Rocky Linux Errata**: Search the advisory database at [errata.rockylinux.org](https://errata.rockylinux.org/)
-- **Upstream security advisories**: Search the upstream vendor advisory database at [access.redhat.com/security/security-updates/security-advisories](https://access.redhat.com/security/security-updates/security-advisories)
-- **Upstream CVE pages**: Check platform applicability and severity at `https://access.redhat.com/security/cve/CVE-XXXX-XXXXX`
-- **Build systems**: Check Koji or Peridot for pending package builds
-- **OVAL scanning**: Use OpenSCAP with Rocky Linux OVAL data for automated vulnerability assessment
+- **Rocky Linux Errata**: Search the advisory database at [errata.rockylinux.org](https://errata.rockylinux.org/)^1^
+- **Upstream security advisories**: Search the upstream vendor advisory database at [access.redhat.com/security/security-updates/security-advisories](https://access.redhat.com/security/security-updates/security-advisories)^2^
+- **Upstream CVE pages**: Check platform applicability and severity at `https://access.redhat.com/security/cve/CVE-XXXX-XXXXX`^3^
+- **Build systems**: Check Koji^4^ or Peridot^5^ for pending package builds
+- **OVAL scanning**: Use OpenSCAP^11^ with Rocky Linux OVAL data^7^ for automated vulnerability assessment
 
 Each method has strengths. RPM changelogs confirm what is installed locally. The `dnf updateinfo` commands show what advisories are available or already applied. The upstream security advisories page and Rocky Linux Errata provide the broadest view of all published fixes. The following sections cover each method in detail.
 
 ## Checking RPM changelogs for CVE patches
 
-One way to determine whether a specific CVE has been fixed in an installed package is to inspect its RPM changelog. Upstream and Rocky Linux package maintainers include CVE identifiers in changelog entries when backporting security fixes.
+One way to determine whether a specific CVE has been fixed in an installed package is to inspect its RPM changelog. Upstream and Rocky Linux package maintainers include CVE identifiers in changelog entries when backporting security fixes.^10^
 
 ### Basic changelog query
 
@@ -145,7 +145,7 @@ dnf check-update --security
 
 ## Understanding RHSA and RLSA advisory numbering
 
-Rocky Linux security advisories (RLSA) directly mirror upstream security advisories (RHSA). The advisory numbers are shared, with only the prefix differing.
+Rocky Linux security advisories (RLSA) directly mirror upstream security advisories (RHSA).^13^ The advisory numbers are shared, with only the prefix differing.
 
 For example:
 
@@ -160,11 +160,11 @@ For example:
 | RHBA | RLBA | Bug Fix Advisory |
 | RHEA | RLEA | Enhancement Advisory |
 
-The sequential number after the year is shared across all advisory types. RHSA numbers may appear to skip because the intervening numbers belong to RHBA and RHEA advisories.
+The sequential number after the year is shared across all advisory types.^13^ RHSA numbers may appear to skip because the intervening numbers belong to RHBA and RHEA advisories.
 
 ### Where to find Rocky Linux advisories
 
-Rocky Linux advisories are published at [Rocky Linux Errata](https://errata.rockylinux.org/). You can search by advisory ID, package name, or CVE identifier.
+Rocky Linux advisories are published at [Rocky Linux Errata](https://errata.rockylinux.org/).^1^ You can search by advisory ID, package name, or CVE identifier.
 
 !!! note "Publication timing"
 
@@ -245,7 +245,7 @@ For example, CVE-2024-38472 and CVE-2024-40898 affect the `httpd` package but on
 
 ### Upstream severity ratings
 
-The upstream vendor uses a four-level severity scale that does not map directly to CVSS numeric scores:
+The upstream vendor uses a four-level severity scale^9^ that does not map directly to CVSS numeric scores:
 
 | Rating | Description |
 | -------- | ------------- |
@@ -258,7 +258,7 @@ The upstream vendor performs independent security analysis and may assign a diff
 
 ### Backporting policy
 
-The upstream vendor (and by extension, Rocky Linux) addresses vulnerabilities based on severity:
+The upstream vendor (and by extension, Rocky Linux) addresses vulnerabilities based on severity:^10^
 
 - **Critical and Important**: Addressed during all support phases, typically as asynchronous updates
 - **Moderate** (CVSS base score 7.0 or higher): Also addressed asynchronously
@@ -266,7 +266,7 @@ The upstream vendor (and by extension, Rocky Linux) addresses vulnerabilities ba
 
 !!! note "CIQ LTS remediation threshold"
 
-    For CIQ Rocky Linux LTS customers, the remediation threshold is a CVSS base score of 7.0 or higher. CVEs below this threshold are addressed during scheduled updates rather than as individual patches. Check the [CIQ Advisories repository](https://github.com/ctrliq/advisories/tree/main) for CIQ-specific advisory information.
+    For CIQ Rocky Linux LTS customers, the remediation threshold is a CVSS base score of 7.0 or higher.^8^ CVEs below this threshold are addressed during scheduled updates rather than as individual patches. Check the [CIQ Advisories repository](https://github.com/ctrliq/advisories/tree/main)^8^ for CIQ-specific advisory information.
 
 ### Checking upstream severity ratings
 
@@ -278,7 +278,7 @@ https://access.redhat.com/security/cve/CVE-XXXX-XXXXX
 
 The page shows the CVSS score, upstream severity rating, and affected products.
 
-You can also browse all published upstream security advisories at [access.redhat.com/security/security-updates/security-advisories](https://access.redhat.com/security/security-updates/security-advisories). This page allows filtering by product, severity, date, and CVE identifier.
+You can also browse all published upstream security advisories at [access.redhat.com/security/security-updates/security-advisories](https://access.redhat.com/security/security-updates/security-advisories).^2^ This page allows filtering by product, severity, date, and CVE identifier.
 
 ## Monitoring Rocky Linux build systems
 
@@ -288,10 +288,10 @@ When a CVE fix has been announced upstream but is not yet available in Rocky Lin
 
 | System | URL | Purpose |
 | -------- | ----- | --------- |
-| Koji | [koji.rockylinux.org](https://koji.rockylinux.org/koji/) | Build system for Rocky Linux 8 |
-| Peridot | [peridot.build.resf.org](https://peridot.build.resf.org/) | Build system for Rocky Linux 9 |
-| Errata | [errata.rockylinux.org](https://errata.rockylinux.org/) | Advisory database |
-| Git | [git.rockylinux.org](https://git.rockylinux.org/) | Source package repositories |
+| Koji | [koji.rockylinux.org](https://koji.rockylinux.org/koji/)^4^ | Build system for Rocky Linux 8 |
+| Peridot | [peridot.build.resf.org](https://peridot.build.resf.org/)^5^ | Build system for Rocky Linux 9 |
+| Errata | [errata.rockylinux.org](https://errata.rockylinux.org/)^1^ | Advisory database |
+| Git | [git.rockylinux.org](https://git.rockylinux.org/)^6^ | Source package repositories |
 
 ### Checking build status in Koji
 
@@ -342,7 +342,7 @@ Install the `dnf-automatic` package:
 sudo dnf install dnf-automatic
 ```
 
-Edit `/etc/dnf/automatic.conf` to enable security-only updates:
+Edit `/etc/dnf/automatic.conf` to enable security-only updates:^12^
 
 ```ini
 [commands]
@@ -368,9 +368,9 @@ Operating systems that have reached end of life (EOL) no longer receive security
 
 | Distribution | EOL Date |
 | ------------- | ---------- |
-| CentOS 7 | June 30, 2024 |
-| Rocky Linux 8 | May 31, 2029 |
-| Rocky Linux 9 | May 31, 2032 |
+| CentOS 7 | June 30, 2024^14^ |
+| Rocky Linux 8 | May 31, 2029^14^ |
+| Rocky Linux 9 | May 31, 2032^14^ |
 
 !!! danger "EOL systems receive no patches"
 
@@ -422,11 +422,11 @@ When a vulnerability scanner reports a finding, follow this workflow:
 
 ## OVAL scanning with OpenSCAP
 
-Rocky Linux publishes OVAL (Open Vulnerability and Assessment Language) data that can be used with OpenSCAP to perform automated vulnerability assessments.
+Rocky Linux publishes OVAL (Open Vulnerability and Assessment Language) data that can be used with OpenSCAP^11^ to perform automated vulnerability assessments.
 
 ### Downloading Rocky Linux OVAL data
 
-OVAL definition files are available at [dl.rockylinux.org/pub/oval/](https://dl.rockylinux.org/pub/oval/):
+OVAL definition files are available at [dl.rockylinux.org/pub/oval/](https://dl.rockylinux.org/pub/oval/):^7^
 
 - Rocky Linux 8: `org.rockylinux.rlsa-8.xml`
 - Rocky Linux 9: `org.rockylinux.rlsa-9.xml`
@@ -465,3 +465,20 @@ oscap oval generate report oval-results.xml > oval-report.html
 ## Conclusion
 
 Effective CVE management on Rocky Linux requires understanding how backporting, advisory numbering, and module stream versioning work. Vulnerability scanners are valuable tools, but their findings must be validated against RPM changelogs, `dnf updateinfo`, and official advisory databases. By following the verification workflow in this guide, you can accurately distinguish between genuine vulnerabilities and false positives.
+
+## References
+
+1. "Rocky Linux Errata" by the Rocky Enterprise Software Foundation [https://errata.rockylinux.org/](https://errata.rockylinux.org/)
+2. "Security Updates and Advisories" by Red Hat [https://access.redhat.com/security/security-updates/security-advisories](https://access.redhat.com/security/security-updates/security-advisories)
+3. "CVE Database" by Red Hat [https://access.redhat.com/security/cve/](https://access.redhat.com/security/cve/)
+4. "Rocky Linux Koji Build System" by the Rocky Enterprise Software Foundation [https://koji.rockylinux.org/koji/](https://koji.rockylinux.org/koji/)
+5. "Peridot Build System" by the Rocky Enterprise Software Foundation [https://peridot.build.resf.org/](https://peridot.build.resf.org/)
+6. "Rocky Linux Git" by the Rocky Enterprise Software Foundation [https://git.rockylinux.org/](https://git.rockylinux.org/)
+7. "Rocky Linux OVAL Data" by the Rocky Enterprise Software Foundation [https://dl.rockylinux.org/pub/oval/](https://dl.rockylinux.org/pub/oval/)
+8. "CIQ Security Advisories" by CIQ [https://github.com/ctrliq/advisories/tree/main](https://github.com/ctrliq/advisories/tree/main)
+9. "Severity Ratings" by Red Hat [https://access.redhat.com/security/updates/classification](https://access.redhat.com/security/updates/classification)
+10. "Red Hat Enterprise Linux Life Cycle - Update Policies" by Red Hat [https://access.redhat.com/support/policy/updates/errata](https://access.redhat.com/support/policy/updates/errata)
+11. "OpenSCAP Portal" by the OpenSCAP Project [https://www.open-scap.org/](https://www.open-scap.org/)
+12. "DNF Automatic" by the DNF Development Team [https://dnf.readthedocs.io/en/latest/automatic.html](https://dnf.readthedocs.io/en/latest/automatic.html)
+13. "Explaining Red Hat Errata" by Red Hat [https://access.redhat.com/articles/explaining_redhat_errata](https://access.redhat.com/articles/explaining_redhat_errata)
+14. "Rocky Linux Version Information" by the Rocky Enterprise Software Foundation [https://wiki.rockylinux.org/rocky/version/](https://wiki.rockylinux.org/rocky/version/)
