@@ -1019,6 +1019,34 @@ rocky.example.com
 ```
 ````
 
+### Linking to other guides
+
+When linking to other documents within the Rocky Linux documentation, use relative file paths instead of full URLs. The only place where a full hard link (using `https://docs.rockylinux.org/...`) should appear is in the `README.md` file at the repository root.
+
+**Same directory**: If the document you are linking to is in the same directory as your document, use just the filename:
+
+```markdown
+[Style guide](style_guide.md)
+```
+
+**Different directory**: If the document is in a different directory, use a relative path with `../` to navigate up:
+
+```markdown
+[AI contribution policy](../contribute/ai-contribution-policy.md)
+```
+
+**Do not use full URLs for internal links:**
+
+```markdown
+<!-- Incorrect -->
+[AI contribution policy](https://docs.rockylinux.org/guides/contribute/ai-contribution-policy/)
+
+<!-- Correct -->
+[AI contribution policy](../contribute/ai-contribution-policy.md)
+```
+
+Using relative paths ensures that links work correctly in the local development environment and on the published site.
+
 ## Validation checks
 
 Before committing, the pre-commit hooks automatically run:
