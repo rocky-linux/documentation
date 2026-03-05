@@ -11,6 +11,10 @@ tags:
 ai_contributors: Claude (claude-opus-4-6)
 ---
 
+## AI usage
+
+This document adheres to the [AI contribution policy found here.](../contribute/ai-contribution-policy.md) If you find any errors in the instructions, please let us know.
+
 ## Introduction
 
 Vulnerability scanners frequently flag packages on Rocky Linux systems as unpatched or outdated. In many cases, these are false positives caused by how scanners interpret package version strings. This guide teaches you how to independently verify whether a CVE has been patched in your Rocky Linux packages, understand advisory numbering, address scanner false positives, and apply security updates.
