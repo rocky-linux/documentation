@@ -927,7 +927,7 @@ Place your document in the appropriate directory under `docs/guides/`:
 
 If your guide does not fit any existing category, place it in the most relevant directory or ask the documentation team in the [Mattermost Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation).
 
-### AI usage
+### AI disclosure in your document
 
 The Rocky Linux Documentation Team permits AI and LLM tools in the contribution process. For full details on requirements, disclosures, and guidelines, see the [Rocky Linux Docs AI-assisted contribution policy](../contribute/ai-contribution-policy.md).
 
