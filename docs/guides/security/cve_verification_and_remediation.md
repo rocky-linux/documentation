@@ -261,8 +261,8 @@ The upstream vendor performs independent security analysis and may assign a diff
 The upstream vendor (and by extension, Rocky Linux) addresses vulnerabilities based on severity:
 
 - **Critical and Important**: Addressed during all support phases, typically as asynchronous updates
-- **Moderate** (CVSS base score above 7.0): Also addressed asynchronously
-- **Moderate** (CVSS 7.0 or below) and **Low**: Generally addressed during scheduled minor release updates
+- **Moderate** (CVSS base score 7.0 or higher): Also addressed asynchronously
+- **Moderate** (CVSS below 7.0) and **Low**: Generally addressed during scheduled minor release updates
 
 !!! note "CIQ LTS remediation threshold"
 
