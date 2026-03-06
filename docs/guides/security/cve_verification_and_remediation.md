@@ -148,8 +148,8 @@ Rocky Linux security advisories (RLSA) directly mirror upstream security advisor
 
 For example:
 
-- **RHSA-2024:2551** is the upstream advisory
-- **RLSA-2024:2551** is the corresponding Rocky Linux advisory
+- **RHSA-2024:2551** is the upstream advisory.
+- **RLSA-2024:2551** is the corresponding Rocky Linux advisory.
 
 ### Advisory type prefixes
 
@@ -350,9 +350,9 @@ When a vulnerability scanner reports a finding, follow this workflow:
     https://access.redhat.com/security/cve/CVE-XXXX-XXXXX
     ```
 
-4. **If the CVE is patched**, document the evidence (changelog entry, advisory number) and mark the scanner finding as a false positive
+4. **If the CVE is patched**, document the evidence (changelog entry, advisory number) and mark the scanner finding as a false positive.
 
-5. **If the CVE is not patched**, check the build systems (Koji or Peridot) for a pending fix, or apply the available security update
+5. **If the CVE is not patched**, check the build systems (Koji or Peridot) for a pending fix, or apply the available security update.
 
 !!! tip "Documenting scanner exceptions"
 
@@ -364,7 +364,7 @@ Rocky Linux publishes OVAL (Open Vulnerability and Assessment Language) data tha
 
 ### Downloading Rocky Linux OVAL data
 
-OVAL definition files are available at [dl.rockylinux.org/pub/oval/](https://dl.rockylinux.org/pub/oval/):^7^
+OVAL definition files are available at [dl.rockylinux.org/pub/oval/](https://dl.rockylinux.org/pub/oval/)^7^:
 
 - Rocky Linux 8: `org.rockylinux.rlsa-8.xml`
 - Rocky Linux 9: `org.rockylinux.rlsa-9.xml`
