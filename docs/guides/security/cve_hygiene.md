@@ -11,6 +11,8 @@ tags:
 - patching
 ---
 
+## (Or why vulnerability scanners cannot be trusted to be the final arbiter of security patching)
+
 ## AI usage
 
 This document adheres to the [AI contribution policy found here.](../contribute/ai-contribution-policy.md) If you find any errors in the instructions, please let us know.
