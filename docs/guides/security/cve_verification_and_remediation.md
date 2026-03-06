@@ -1,5 +1,5 @@
 ---
-title: CVE verification and remediation
+title: CVE hygiene
 author: Howard Van Der Wal
 contributors: Steven Spencer
 tested with: 8, 9, 10
