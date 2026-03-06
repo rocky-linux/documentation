@@ -28,19 +28,19 @@ Vulnerability scanners frequently flag packages on Rocky Linux systems as unpatc
 
 There are several ways to determine whether a specific CVE has been fixed on your Rocky Linux system:
 
-- **RPM changelogs**: Query the package changelog for CVE identifiers
-- **dnf updateinfo**: Check security advisories from Rocky Linux repositories
-- **Rocky Linux Errata**: Search the advisory database at [errata.rockylinux.org](https://errata.rockylinux.org/)^1^
-- **Upstream security advisories**: Search the upstream vendor advisory database at [access.redhat.com/security/security-updates/security-advisories](https://access.redhat.com/security/security-updates/security-advisories)^2^
-- **Upstream CVE pages**: Check platform applicability and severity at [access.redhat.com/security/cve/](https://access.redhat.com/security/cve/)^3^
-- **Build systems**: Check Koji^4^ or Peridot^5^ for pending package builds
-- **OVAL scanning**: Use OpenSCAP^11^ with Rocky Linux OVAL data^7^ for automated vulnerability assessment
+- **RPM changelogs**: Query the package changelog for CVE identifiers.
+- **dnf updateinfo**: Check security advisories from Rocky Linux repositories.
+- **Rocky Linux Errata**: Search the advisory database at [errata.rockylinux.org](https://errata.rockylinux.org/).^1^
+- **Upstream security advisories**: Search the upstream vendor advisory database at [access.redhat.com/security/security-updates/security-advisories](https://access.redhat.com/security/security-updates/security-advisories).^2^
+- **Upstream CVE pages**: Check platform applicability and severity at [access.redhat.com/security/cve/](https://access.redhat.com/security/cve/).^3^
+- **Build systems**: Check Koji^4^ or Peridot^5^ for pending package builds.
+- **OVAL scanning**: Use OpenSCAP^11^ with Rocky Linux OVAL data^7^ for automated vulnerability assessment.
 
 Each method has strengths. RPM changelogs confirm what is installed locally. The `dnf updateinfo` commands show what advisories are available or already applied. The upstream security advisories page and Rocky Linux Errata provide the broadest view of all published fixes. The following sections cover each method in detail.
 
 ## Checking RPM changelogs for CVE patches
 
-One way to determine whether a specific CVE has been fixed in an installed package is to inspect its RPM changelog. Upstream and Rocky Linux package maintainers include CVE identifiers in changelog entries when backporting security fixes.^10^
+One way to determine whether a specific CVE has been fixed in an installed package is to inspect its RPM changelog. Upstream and Rocky Linux package maintainers include CVE identifiers in changelog entries when backporting security fixes^10^.
 
 ### Basic changelog query
 
@@ -144,7 +144,7 @@ dnf check-update --security
 
 ## Understanding RHSA and RLSA advisory numbering
 
-Rocky Linux security advisories (RLSA) directly mirror upstream security advisories (RHSA).^13^ The advisory numbers are shared, with only the prefix differing.
+Rocky Linux security advisories (RLSA) directly mirror upstream security advisories RHSA^13^. The advisory numbers are shared, with only the prefix differing.
 
 For example:
 
@@ -159,11 +159,11 @@ For example:
 | RHBA | RLBA | Bug Fix Advisory |
 | RHEA | RLEA | Enhancement Advisory |
 
-The sequential number after the year is shared across all advisory types.^13^ RHSA numbers may appear to skip because the intervening numbers belong to RHBA and RHEA advisories.
+The sequential number after the year is shared across all advisory types^13^. RHSA numbers may appear to skip because the intervening numbers belong to RHBA and RHEA advisories.
 
 ### Where to find Rocky Linux advisories
 
-Rocky Linux advisories are published at [Rocky Linux Errata](https://errata.rockylinux.org/).^1^ You can search by advisory ID, package name, or CVE identifier.
+Rocky Linux advisories are published at [Rocky Linux Errata](https://errata.rockylinux.org/)^1^. You can search by advisory ID, package name, or CVE identifier.
 
 !!! note "Publication timing"
 
