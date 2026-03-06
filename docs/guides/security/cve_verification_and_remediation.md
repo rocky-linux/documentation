@@ -53,8 +53,7 @@ rpm -q --changelog openssl | grep CVE-2024-6119
 If the CVE has been addressed, you will see a changelog entry similar to:
 
 ```text
-* Thu Sep 05 2024 Dmitry Belyavskiy <dbelyavs@redhat.com> - 1:3.0.7-28
-- Possible denial of service in X.509 name checks
+- Fix CVE-2024-6119: Possible denial of service in X.509 name checks
   Resolves: CVE-2024-6119
 ```
 
@@ -218,28 +217,6 @@ The package version (`0.10.12`) and RPM release (`6`) are identical. These packa
 !!! warning "Scanner configuration"
 
     If your vulnerability scanner repeatedly flags module stream version differences as vulnerabilities, work with your scanner vendor to add proper Rocky Linux package mapping. Scanners that rely on generic NVD feeds without understanding enterprise Linux backporting will produce inaccurate results.
-
-## Identifying Windows-only CVEs
-
-Some CVEs listed in security advisories only affect specific platforms. Vulnerability scanners may flag these on Linux systems even though they have no applicability.
-
-### How to check platform applicability
-
-1. Visit the upstream CVE page for the specific CVE:
-
-    ```text
-    https://access.redhat.com/security/cve/CVE-XXXX-XXXXX
-    ```
-
-2. Look for the **Affected Packages and Issued Security Errata** section
-
-3. Check whether the vulnerability applies to your platform
-
-For example, CVE-2024-38472 and CVE-2024-40898 affect the `httpd` package but only on Windows. The upstream CVE page explicitly states the platform applicability. These CVEs will never receive a Linux patch because Linux is not affected.
-
-!!! tip "Documenting false positives"
-
-    When you identify a Windows-only CVE flagged on your Linux system, document the finding with the upstream CVE page URL as evidence. This documentation is useful when responding to audit findings or vulnerability scan reports.
 
 ## Understanding CVSS scoring and backport policies
 
@@ -469,16 +446,16 @@ Effective CVE management on Rocky Linux requires understanding how backporting, 
 ## References
 
 1. "Rocky Linux Errata" by the Rocky Enterprise Software Foundation [https://errata.rockylinux.org/](https://errata.rockylinux.org/)
-2. "Security Updates and Advisories" by Red Hat [https://access.redhat.com/security/security-updates/security-advisories](https://access.redhat.com/security/security-updates/security-advisories)
-3. "CVE Database" by Red Hat [https://access.redhat.com/security/cve/](https://access.redhat.com/security/cve/)
+2. "Security Updates and Advisories" by the upstream vendor [https://access.redhat.com/security/security-updates/security-advisories](https://access.redhat.com/security/security-updates/security-advisories)
+3. "CVE Database" by the upstream vendor [https://access.redhat.com/security/cve/](https://access.redhat.com/security/cve/)
 4. "Rocky Linux Koji Build System" by the Rocky Enterprise Software Foundation [https://koji.rockylinux.org/koji/](https://koji.rockylinux.org/koji/)
 5. "Peridot Build System" by the Rocky Enterprise Software Foundation [https://peridot.build.resf.org/](https://peridot.build.resf.org/)
 6. "Rocky Linux Git" by the Rocky Enterprise Software Foundation [https://git.rockylinux.org/](https://git.rockylinux.org/)
 7. "Rocky Linux OVAL Data" by the Rocky Enterprise Software Foundation [https://dl.rockylinux.org/pub/oval/](https://dl.rockylinux.org/pub/oval/)
 8. "CIQ Security Advisories" by CIQ [https://github.com/ctrliq/advisories/tree/main](https://github.com/ctrliq/advisories/tree/main)
-9. "Severity Ratings" by Red Hat [https://access.redhat.com/security/updates/classification](https://access.redhat.com/security/updates/classification)
-10. "Red Hat Enterprise Linux Life Cycle - Update Policies" by Red Hat [https://access.redhat.com/support/policy/updates/errata](https://access.redhat.com/support/policy/updates/errata)
+9. "Severity Ratings" by the upstream vendor [https://access.redhat.com/security/updates/classification](https://access.redhat.com/security/updates/classification)
+10. "Enterprise Linux Life Cycle - Update Policies" by the upstream vendor [https://access.redhat.com/support/policy/updates/errata](https://access.redhat.com/support/policy/updates/errata)
 11. "OpenSCAP Portal" by the OpenSCAP Project [https://www.open-scap.org/](https://www.open-scap.org/)
 12. "DNF Automatic" by the DNF Development Team [https://dnf.readthedocs.io/en/latest/automatic.html](https://dnf.readthedocs.io/en/latest/automatic.html)
-13. "Explaining Red Hat Errata" by Red Hat [https://access.redhat.com/articles/explaining_redhat_errata](https://access.redhat.com/articles/explaining_redhat_errata)
+13. "Explaining Errata" by the upstream vendor [https://access.redhat.com/articles/explaining_redhat_errata](https://access.redhat.com/articles/explaining_redhat_errata)
 14. "Rocky Linux Version Information" by the Rocky Enterprise Software Foundation [https://wiki.rockylinux.org/rocky/version/](https://wiki.rockylinux.org/rocky/version/)
