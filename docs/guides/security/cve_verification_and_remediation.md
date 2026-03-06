@@ -2,13 +2,13 @@
 title: CVE hygiene
 author: Howard Van Der Wal
 contributors: Steven Spencer
+ai_contributors: Claude (claude-opus-4-6)
 tested with: 8, 9, 10
 tags:
 - security
 - CVE
 - vulnerability
 - patching
-ai_contributors: Claude (claude-opus-4-6)
 ---
 
 ## AI usage
