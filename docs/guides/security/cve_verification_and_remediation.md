@@ -218,45 +218,6 @@ The package version (`0.10.12`) and RPM release (`6`) are identical. These packa
 
     If your vulnerability scanner repeatedly flags module stream version differences as vulnerabilities, work with your scanner vendor to add proper Rocky Linux package mapping. Scanners that rely on generic NVD feeds without understanding enterprise Linux backporting will produce inaccurate results.
 
-## Understanding CVSS scoring and backport policies
-
-### Upstream severity ratings
-
-The upstream vendor uses a four-level severity scale^9^ that does not map directly to CVSS numeric scores:
-
-| Rating | Description |
-| -------- | ------------- |
-| Critical | Easily exploited remotely by an unauthenticated attacker, leads to system compromise without user interaction |
-| Important | Can compromise confidentiality, integrity, or availability of resources |
-| Moderate | More difficult to exploit but could still have significant impact |
-| Low | Minimal security impact, harder to exploit |
-
-The upstream vendor performs independent security analysis and may assign a different severity than the NVD CVSS score suggests. This is because the upstream evaluation considers how a vulnerability affects their specific products, not just the theoretical impact.
-
-### Backporting policy
-
-The upstream vendor (and by extension, Rocky Linux) addresses vulnerabilities based on severity:^10^
-
-- **Critical and Important**: Addressed during all support phases, typically as asynchronous updates
-- **Moderate** (CVSS base score 7.0 or higher): Also addressed asynchronously
-- **Moderate** (CVSS below 7.0) and **Low**: Generally addressed during scheduled minor release updates
-
-!!! note "CIQ LTS remediation threshold"
-
-    For CIQ Rocky Linux LTS customers, the remediation threshold is a CVSS base score of 7.0 or higher.^8^ CVEs below this threshold are addressed during scheduled updates rather than as individual patches. Check the [CIQ Advisories repository](https://github.com/ctrliq/advisories/tree/main)^8^ for CIQ-specific advisory information.
-
-### Checking upstream severity ratings
-
-To see how the upstream vendor rates a specific CVE:
-
-```text
-https://access.redhat.com/security/cve/CVE-XXXX-XXXXX
-```
-
-The page shows the CVSS score, upstream severity rating, and affected products.
-
-You can also browse all published upstream security advisories at [access.redhat.com/security/security-updates/security-advisories](https://access.redhat.com/security/security-updates/security-advisories).^2^ This page allows filtering by product, severity, date, and CVE identifier.
-
 ## Monitoring Rocky Linux build systems
 
 When a CVE fix has been announced upstream but is not yet available in Rocky Linux repositories, you can track the build and publication pipeline.
