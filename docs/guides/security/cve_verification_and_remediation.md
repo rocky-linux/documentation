@@ -32,7 +32,7 @@ There are several ways to determine whether a specific CVE has been fixed on you
 - **dnf updateinfo**: Check security advisories from Rocky Linux repositories
 - **Rocky Linux Errata**: Search the advisory database at [errata.rockylinux.org](https://errata.rockylinux.org/)^1^
 - **Upstream security advisories**: Search the upstream vendor advisory database at [access.redhat.com/security/security-updates/security-advisories](https://access.redhat.com/security/security-updates/security-advisories)^2^
-- **Upstream CVE pages**: Check platform applicability and severity at `https://access.redhat.com/security/cve/CVE-XXXX-XXXXX`^3^
+- **Upstream CVE pages**: Check platform applicability and severity at [access.redhat.com/security/cve/](https://access.redhat.com/security/cve/)^3^
 - **Build systems**: Check Koji^4^ or Peridot^5^ for pending package builds
 - **OVAL scanning**: Use OpenSCAP^11^ with Rocky Linux OVAL data^7^ for automated vulnerability assessment
 
