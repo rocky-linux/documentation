@@ -590,7 +590,7 @@ method=disabled
 
    - `Also=`。 安装或卸载此 unit 时要安装或卸载的其他 unit。
 
-     除了上述手册页外，您还可以输入 `man 5 systemd.exec` 或 `man 5 systemd.kill` 来获取其他信息。
+除了上述手册页外，您还可以输入 `man 5 systemd.exec` 或 `man 5 systemd.kill` 来获取其他信息。
 
 ## 与其他组件相关的命令
 
