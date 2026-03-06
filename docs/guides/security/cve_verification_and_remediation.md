@@ -21,8 +21,8 @@ Vulnerability scanners frequently flag packages on Rocky Linux systems as unpatc
 
 ## Prerequisites and assumptions
 
-- A Rocky Linux 8, 9, or 10 system with `dnf` package manager
-- Root or `sudo` access
+- A Rocky Linux 8, 9, or 10 system.
+- Root or `sudo` access.
 
 ## Methods for verifying CVE patches
 
