@@ -3,6 +3,8 @@ title: Crash analysis
 author: Howard Van Der Wal
 contributors: Steven Spencer
 tested_with: 8,9,10
+ai_contributors:
+- Claude (claude-opus-4-6)
 tags:
   - crash
   - debugging
@@ -14,9 +16,9 @@ tags:
 **Knowledge**: :star: :star: :star:
 **Reading time**: 30 minutes
 
-!!! note "AI Disclosure"
+## AI usage
 
-    This document was initially authored with the help of AI (Claude claude-sonnet-4-6). The technical content was verified through hands-on testing on Rocky Linux 9.7 and reviewed for accuracy by a human author. All commands and procedures were validated in a live environment.
+This document adheres to the [AI contribution policy found here.](../contribute/ai-contribution-policy.md) If you find any errors in the instructions, please let us know.
 
 ## Introduction
 
@@ -26,7 +28,7 @@ This guide walks through the complete process — from configuring kdump to capt
 
 ## Prerequisites
 
-- A Rocky Linux 9.x system (physical or virtual machine, not a container)
+- A Rocky Linux 8.x, 9.x, or 10.x system (physical or virtual machine, not a container)
 - Root or sudo access
 - At least 2 GB of free disk space in `/var/crash` for vmcore dumps
 - Network access to install packages from Rocky Linux repositories
@@ -51,17 +53,21 @@ The kernel must reserve memory for the crash kernel at boot time. Check the curr
 cat /proc/cmdline | grep crashkernel
 ```
 
-Rocky Linux 9.x sets a default crashkernel value through the `kexec-tools` package. You can check the default with:
+On Rocky Linux 9.x and 10.x, the `kexec-tools` package sets a default crashkernel value. You can check the default with:
 
 ```bash
 kdumpctl get-default-crashkernel
 ```
 
-On Rocky Linux 9.5+, this returns `1G-2G:192M,2G-64G:256M,64G-:512M`. If the parameter is missing from the boot command line, add it using `grubby`:
+On Rocky Linux 9.5+, this returns `1G-2G:192M,2G-64G:256M,64G-:512M`. The exact values vary by version and architecture. If the parameter is missing from the boot command line, add it using `grubby`:
 
 ```bash
 grubby --update-kernel=ALL --args="crashkernel=1G-2G:192M,2G-64G:256M,64G-:512M"
 ```
+
+!!! note
+
+    On Rocky Linux 8, `kdumpctl get-default-crashkernel` is not available. Rocky Linux 8 uses `crashkernel=auto` by default, which lets the kernel calculate the reserved memory size automatically.
 
 Reboot for the change to take effect:
 
@@ -87,7 +93,7 @@ cat /etc/kdump.conf | grep -v "^#" | grep -v "^$"
 
 The default configuration writes dumps to the local filesystem. Key settings include:
 
-- `auto_reset_crashkernel yes` — automatically adjusts crashkernel reservation when memory changes
+- `auto_reset_crashkernel yes` — automatically adjusts crashkernel reservation when memory changes (Rocky Linux 9+ only)
 - `path /var/crash` — directory where vmcores are stored
 - `core_collector makedumpfile -l --message-level 7 -d 31` — compresses the dump and filters unnecessary pages
 
@@ -273,7 +279,7 @@ crash> struct task_struct <address>
 To display specific fields:
 
 ```text
-crash> struct task_struct <address> | grep blocked_on
+crash> struct task_struct <address> | grep pi_blocked_on
 ```
 
 ```text
@@ -431,7 +437,7 @@ Timer bugs are typically fixed in upstream kernel patches. The backtrace and the
 
 ## PREEMPT_RT kernel considerations
 
-The PREEMPT_RT patch set converts kernel `spinlock_t` and `rwlock_t` into `rt_mutex`-based implementations to provide deterministic scheduling latency. Standard `struct mutex` types are unaffected, as they are already sleeping locks. This conversion changes blocking behavior significantly.
+The PREEMPT_RT patch set converts kernel `spinlock_t` and `rwlock_t` into `rt_mutex`-based implementations to provide deterministic scheduling latency. Standard `struct mutex` types are also reimplemented on top of `rt_mutex` under PREEMPT_RT, gaining priority inheritance support, though they remain sleeping locks in both configurations. This conversion changes blocking behavior significantly.
 
 **Key differences under PREEMPT_RT:**
 
