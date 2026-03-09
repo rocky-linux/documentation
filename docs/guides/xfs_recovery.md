@@ -86,9 +86,9 @@ Key `XFS`-related slab objects to monitor:
 
 Other kernel slab objects that grow alongside `XFS` under memory pressure:
 
-- `dentry` - directory entry cache
-- `inode_cache` - `VFS` `inode` cache
-- `radix_tree_node` - tree nodes used for page cache indexing
+- `dentry` - directory entry cache.
+- `inode_cache` - `VFS` `inode` cache.
+- `radix_tree_node` - tree nodes used for page cache indexing.
 
 ### Checking `/proc/slabinfo` directly
 
