@@ -73,7 +73,7 @@ Record which CPU cores belong to which NUMA node. You will need this information
 
 ## The dangers of `vm.min_free_kbytes` on NUMA systems
 
-The `vm.min_free_kbytes` kernel parameter controls the minimum amount of memory the kernel keeps free for emergency allocations. On NUMA systems, this reservation is **distributed across all memory zones and NUMA nodes**, not applied as a single system-wide pool.
+The `vm.min_free_kbytes` kernel parameter controls the minimum amount of memory the kernel keeps free for emergency allocations^1^. On NUMA systems, this reservation is distributed across lowmem zones on all NUMA nodes, not applied as a single system-wide pool.
 
 !!! danger "Setting `vm.min_free_kbytes` too high can cause immediate OOM kills"
 
@@ -156,7 +156,7 @@ Edit your VM domain XML with `virsh edit`:
 virsh edit your-vm-name
 ```
 
-Add a `<cputune>` section. Each `<vcpupin>` directive maps a guest vCPU to a specific host CPU:
+Add a `<cputune>` section^2^. Each `<vcpupin>` directive maps a guest vCPU to a specific host CPU:
 
 ```xml
 <cputune>
@@ -191,10 +191,10 @@ Pin emulator threads to your housekeeping CPUs (the cores not assigned to any gu
 
 Follow these rules for effective vCPU pinning:
 
-- **Pin all vCPUs to the same NUMA node** as the VM memory allocation.
-- **Use dedicated 1:1 pinning**, where each guest vCPU maps to exactly one host CPU. Avoid floating pools where multiple vCPUs share a cpuset.
-- **Reserve housekeeping CPUs** (typically cores 0-3) for the host kernel, IRQ handling, QEMU emulator threads, and system daemons.
-- **Never overlap housekeeping cores with guest vCPU pins.** Allowing guest vCPU pools to include housekeeping cores causes scheduling contention.
+- Pin all vCPUs to the same NUMA node as the VM memory allocation.
+- Use dedicated 1:1 pinning, where each guest vCPU maps to exactly one host CPU. Avoid floating pools where multiple vCPUs share a cpuset.
+- Reserve housekeeping CPUs (typically cores 0-3) for the host kernel, IRQ handling, QEMU emulator threads, and system daemons.
+- Never overlap housekeeping cores with guest vCPU pins. Allowing guest vCPU pools to include housekeeping cores causes scheduling contention.
 
 ### Complete vCPU pinning example
 
@@ -246,11 +246,11 @@ Reboot to apply:
 sudo reboot
 ```
 
-These parameters work together:
+These parameters work together^3^:
 
 - `isolcpus=4-63`: removes CPUs 4-63 from the general scheduler. Only explicitly pinned tasks run on them.
-- `nohz_full=4-63`: disables the scheduler tick on isolated CPUs when only one task is running, reducing jitter.
-- `rcu_nocbs=4-63`: offloads RCU (Read-Copy-Update) callback processing from isolated CPUs to housekeeping CPUs.
+- `nohz_full=4-63`: disables the scheduler tick on isolated CPUs when only one task is running, reducing jitter^4^.
+- `rcu_nocbs=4-63`: offloads RCU (Read-Copy-Update) callback processing from isolated CPUs to dedicated kthreads, which can then be affined to housekeeping CPUs.
 
 ### Verifying CPU isolation
 
@@ -351,7 +351,7 @@ cat /proc/cmdline | tr ' ' '\n' | grep -E "isolcpus|nohz_full|rcu_nocbs"
 
 ## GPU passthrough with IOMMU and VFIO
 
-GPU passthrough allows a virtual machine to directly access a physical GPU, achieving near-native performance. This requires IOMMU (Input/Output Memory Management Unit) support and the VFIO (Virtual Function I/O) driver framework.
+GPU passthrough allows a virtual machine to directly access a physical GPU, achieving near-native performance. This requires IOMMU (Input/Output Memory Management Unit) support and the VFIO (Virtual Function I/O) driver framework^5^.
 
 ### Enabling IOMMU
 
@@ -439,7 +439,7 @@ echo 'force_drivers+=" vfio vfio_pci vfio_iommu_type1 "' | sudo tee /etc/dracut.
 
 !!! note "The `vfio_virqfd` module"
 
-    On Rocky Linux 9 (kernel 5.14+), `vfio_virqfd` has been merged into the core `vfio` module and does not need to be loaded separately. On Rocky Linux 8, it is still a separate module. If you are running Rocky Linux 8, add `vfio_virqfd` to the `force_drivers` line.
+    The `vfio_virqfd` module was merged into the core `vfio` module in upstream kernel 6.2. On Rocky Linux 8 and 9 (which use kernels older than 6.2), `vfio_virqfd` is a separate module and should be added to the `force_drivers` line. On Rocky Linux 10 (kernel 6.12), it is included in the core `vfio` module and does not need to be loaded separately.
 
 Rebuild the initramfs:
 
@@ -526,7 +526,7 @@ Large timestamps (120+ seconds) on PCI register messages indicate that BAR (Base
 sudo grubby --args="pci=realloc" --update-kernel=ALL
 ```
 
-**Outdated kernel**: kernels older than `5.14.0-558.el9` lack PCI BAR batch sizing optimizations. On these kernels, each BAR sizing operation runs sequentially, adding 10-20 seconds per large GPU BAR. Updating to a current Rocky Linux 9 kernel resolves this issue.
+**Outdated kernel**: older kernels lack PCI BAR batch sizing optimizations. On these kernels, each BAR sizing operation runs sequentially, adding 10-20 seconds per large GPU BAR. Keep your kernel up to date to benefit from PCI performance improvements as they are backported.
 
 **Soft lockup warnings during boot**: messages such as `watchdog: BUG: soft lockup - CPU#76 stuck for 21s!` during PCI enumeration are a symptom of slow BAR sizing operations, not a separate issue. Updating the kernel resolves these warnings.
 
@@ -536,7 +536,7 @@ For optimal performance, a VM's memory and vCPUs must be on the same NUMA node. 
 
 ### Configuring NUMA memory binding
 
-In the VM domain XML, use the `<numatune>` element to bind VM memory to a specific NUMA node:
+In the VM domain XML, use the `<numatune>` element to bind VM memory to a specific NUMA node^2^:
 
 ```xml
 <numatune>
@@ -544,7 +544,7 @@ In the VM domain XML, use the `<numatune>` element to bind VM memory to a specif
 </numatune>
 ```
 
-The `strict` mode ensures that all memory allocations for this VM come from NUMA node 0. The VM will fail to start if the node does not have sufficient free memory, which is preferable to silently falling back to remote memory.
+The `strict` mode ensures that all memory allocations for this VM come from NUMA node 0. If the node does not have sufficient free memory, allocations will fail rather than silently falling back to remote memory. This may trigger the OOM killer rather than preventing VM startup, so ensure the target NUMA node has sufficient free memory before starting the VM.
 
 ### Aligning vCPU pins with NUMA memory
 
@@ -620,7 +620,7 @@ grep HugePages /proc/meminfo
 
 ### Configuring hugepages in the VM domain XML
 
-Add the `<memoryBacking>` element to use hugepages:
+Add the `<memoryBacking>` element to use hugepages^2^:
 
 ```xml
 <memoryBacking>
@@ -648,7 +648,7 @@ Match the hugepage allocation to the VM placement on each NUMA node.
 
 ## Putting it all together
 
-A fully tuned VM configuration combines all the elements covered in this guide. Here is a complete example for a performance-critical VM on a dual-socket Rocky Linux 9 host:
+A fully tuned VM configuration combines all the elements covered in this guide^6^. Here is a complete example for a performance-critical VM on a dual-socket Rocky Linux 9 host:
 
 ```xml
 <domain type='kvm'>
@@ -702,3 +702,12 @@ Performance tuning KVM/libvirt on Rocky Linux requires a holistic approach that 
 - **Be cautious with `vm.min_free_kbytes`** on NUMA systems to avoid OOM conditions.
 - **Enable `iommu=pt`** alongside `intel_iommu=on` for GPU passthrough to reduce DMA translation overhead.
 - **Keep your kernel up to date** to benefit from PCI performance improvements and bug fixes.
+
+## References
+
+1. "Documentation for /proc/sys/vm/" by the Linux kernel documentation project [https://docs.kernel.org/admin-guide/sysctl/vm.html](https://docs.kernel.org/admin-guide/sysctl/vm.html)
+2. "Domain XML format" by the libvirt project [https://libvirt.org/formatdomain.html](https://libvirt.org/formatdomain.html)
+3. "The kernel's command-line parameters" by the Linux kernel documentation project [https://docs.kernel.org/admin-guide/kernel-parameters.html](https://docs.kernel.org/admin-guide/kernel-parameters.html)
+4. "NO_HZ: Reducing scheduling-clock ticks" by the Linux kernel documentation project [https://docs.kernel.org/timers/no_hz.html](https://docs.kernel.org/timers/no_hz.html)
+5. "VFIO - Virtual Function I/O" by the Linux kernel documentation project [https://docs.kernel.org/driver-api/vfio.html](https://docs.kernel.org/driver-api/vfio.html)
+6. "KVM real time guest configuration" by the libvirt project [https://libvirt.org/kbase/kvm-realtime.html](https://libvirt.org/kbase/kvm-realtime.html)
