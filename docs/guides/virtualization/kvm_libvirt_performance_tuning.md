@@ -2,6 +2,7 @@
 title: KVM/libvirt performance tuning on Rocky Linux
 author: Howard Van Der Wal
 tested_with: 8, 9, 10
+ai_contributors: Claude (claude-opus-4-6)
 tags:
   - kvm
   - libvirt
@@ -9,7 +10,6 @@ tags:
   - performance
   - numa
   - gpu
-ai_contributors: Claude (claude-opus-4-6)
 ---
 
 ## Introduction
