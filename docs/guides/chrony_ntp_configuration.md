@@ -171,9 +171,9 @@ The `Can't synchronise: no majority` message^1^ appears when `chrony` cannot est
 
 ### Common causes
 
-1. **Too few NTP sources**: With only two sources that disagree on the time, `chrony` cannot determine which source is correct
-2. **Source offset disagreement**: Even with the correct number of sources, if too many sources disagree beyond acceptable thresholds, `chrony` cannot establish a majority
-3. **Network issues**: Intermittent connectivity to NTP sources reduces the number of reachable sources
+1. Too few NTP sources: With only two sources that disagree on the time, `chrony` cannot determine which source is correct
+2. Source offset disagreement: Even with the correct number of sources, if too many sources disagree beyond acceptable thresholds, `chrony` cannot establish a majority
+3. Network issues: Intermittent connectivity to NTP sources reduces the number of reachable sources
 
 ### Diagnostic commands
 
