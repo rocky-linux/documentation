@@ -280,10 +280,10 @@ The `-L` flag tells `xfs_repair` to zero (clear) the file system journal log. Th
 
 Use `xfs_repair -L` when:
 
-- The file system cannot be mounted due to journal corruption (`LSN` errors)
-- Running `xfs_repair` without `-L` reports `Maximum metadata LSN is ahead of log` and formats the log
-- Running `xfs_repair` without `-L` shows extensive `CRC` errors and metadata corruption
-- The system will not boot and standard repair alone did not restore the ability to mount
+- The file system cannot be mounted due to journal corruption (`LSN` errors).
+- Running `xfs_repair` without `-L` reports `Maximum metadata LSN is ahead of log` and formats the log.
+- Running `xfs_repair` without `-L` shows extensive `CRC` errors and metadata corruption.
+- The system will not boot and standard repair alone did not restore the ability to mount.
 
 ### When NOT to use `-L`
 
