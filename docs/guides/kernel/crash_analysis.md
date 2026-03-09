@@ -22,16 +22,16 @@ This document adheres to the [AI contribution policy found here.](../contribute/
 
 ## Introduction
 
-When a Linux kernel crashes, the system produces a memory dump called a **vmcore**. Analyzing this dump is often the only way to determine why a production server went down. Rocky Linux ships with two essential tools for this workflow: **kdump**, which captures the vmcore at crash time, and the **crash** utility, which opens the dump for post-mortem analysis.
+When a Linux kernel crashes, the system produces a memory dump called a vmcore. Analyzing this dump is often the only way to determine why a production server went down. Rocky Linux ships with two essential tools for this workflow: `kdump`, which captures the vmcore at crash time, and the `crash` utility, which opens the dump for post-mortem analysis.
 
 This guide walks through the complete process — from configuring kdump to capture vmcores, to using crash commands to identify common crash patterns such as blocked task panics, mutex corruption, and cgroup deadlocks. It also covers safe sosreport collection during crash investigation and guidance on when to upgrade the kernel versus apply workarounds.
 
 ## Prerequisites
 
-- A Rocky Linux 8.x, 9.x, or 10.x system (physical or virtual machine, not a container)
-- Root or sudo access
-- At least 2 GB of free disk space in `/var/crash` for vmcore dumps
-- Network access to install packages from Rocky Linux repositories
+- A Rocky Linux 8, 9, or 10 system.
+- Root or sudo access.
+- At least 2 GB of free disk space in `/var/crash` for vmcore dumps.
+- Network access to install packages from Rocky Linux repositories.
 
 ## Setting up kdump for vmcore capture
 
