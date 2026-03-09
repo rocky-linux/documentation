@@ -1,5 +1,5 @@
 ---
-title: XFS troubleshooting and recovery
+title: XFS recovery
 author: Howard Van Der Wal
 ai_contributors: Claude (claude-opus-4-6)
 tested with: 9
