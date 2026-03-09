@@ -104,9 +104,9 @@ Three fields in `/proc/meminfo` track slab memory^4^:
 grep -E 'Slab|SReclaimable|SUnreclaim' /proc/meminfo
 ```
 
-- `Slab` — total memory used by the slab manager
-- `SReclaimable` — slab memory that the kernel can reclaim under pressure
-- `SUnreclaim` — slab memory that cannot be reclaimed
+- `Slab` - total memory used by the slab manager
+- `SReclaimable` - slab memory that the kernel can reclaim under pressure
+- `SUnreclaim` - slab memory that cannot be reclaimed
 
 An increasing `SUnreclaim` value over days or weeks indicates a potential memory leak.
 
@@ -241,13 +241,13 @@ Use `rd.break` when:
 
 ### Step-by-step recovery procedure
 
-**Step 1** — Access the GRUB boot menu. When the GRUB menu appears during boot, press `e` to edit the default boot entry.
+**Step 1** - Access the GRUB boot menu. When the GRUB menu appears during boot, press `e` to edit the default boot entry.
 
-**Step 2** — Add `rd.break` to the kernel command line. Find the line that begins with `linux` (or `linuxefi`) and append `rd.break` to the end of that line.
+**Step 2** - Add `rd.break` to the kernel command line. Find the line that begins with `linux` (or `linuxefi`) and append `rd.break` to the end of that line.
 
-**Step 3** — Boot with the modified parameters. Press `Ctrl+X` to boot. The system will stop in the `initramfs` environment before mounting the root file system. You will see a `switch_root:/#` prompt.
+**Step 3** - Boot with the modified parameters. Press `Ctrl+X` to boot. The system will stop in the `initramfs` environment before mounting the root file system. You will see a `switch_root:/#` prompt.
 
-**Step 4** — Activate `LVM` volumes. If the system uses `LVM` (which is the default Rocky Linux layout)^7^, activate all volume groups:
+**Step 4** - Activate `LVM` volumes. If the system uses `LVM` (which is the default Rocky Linux layout)^7^, activate all volume groups:
 
 ```bash
 lvm vgchange -ay
@@ -259,7 +259,7 @@ List the available logical volumes to identify which ones need repair:
 lvm lvs
 ```
 
-**Step 5** — Run `xfs_repair` on each `XFS` logical volume. Start without the `-L` flag to assess the damage:
+**Step 5** - Run `xfs_repair` on each `XFS` logical volume. Start without the `-L` flag to assess the damage:
 
 ```bash
 xfs_repair /dev/mapper/rootvg-rootlv
@@ -282,7 +282,7 @@ xfs_repair -L /dev/mapper/rootvg-varloglv
 
     Do not run `xfs_repair` on swap volumes. Swap uses a different format and is not an `XFS` file system. Running `xfs_repair` on a swap volume will produce errors or damage the swap signature.
 
-**Step 6** — Reboot the system. After repairing all `XFS` volumes:
+**Step 6** - Reboot the system. After repairing all `XFS` volumes:
 
 ```bash
 reboot -f
@@ -315,7 +315,7 @@ Use `xfs_repair -L` when:
 
 Do not use `xfs_repair -L` when:
 
-- The file system mounts normally — use `xfs_repair` without `-L` instead
+- The file system mounts normally - use `xfs_repair` without `-L` instead
 - You have not tried `xfs_repair` without `-L` first
 - The issue is performance-related rather than corruption-related
 
@@ -327,7 +327,7 @@ Run `xfs_repair` without any flags first:
 xfs_repair /dev/mapper/rootvg-rootlv
 ```
 
-If the journal can be replayed cleanly, this preserves all pending writes. Only escalate to `-L` when standard repair reports `LSN` mismatches or extensive metadata `CRC` errors. Note that `xfs_repair` without `-L` may still complete its phases but output a `Maximum metadata LSN is ahead of log` message — this indicates that `-L` is needed for a full repair.
+If the journal can be replayed cleanly, this preserves all pending writes. Only escalate to `-L` when standard repair reports `LSN` mismatches or extensive metadata `CRC` errors. Note that `xfs_repair` without `-L` may still complete its phases but output a `Maximum metadata LSN is ahead of log` message - this indicates that `-L` is needed for a full repair.
 
 !!! danger "Potential data loss"
 
@@ -370,8 +370,8 @@ A "foreign configuration" occurs when a RAID controller detects physical disks t
 
 The RAID controller presents two options:
 
-- **Import** — reads the existing RAID metadata and reconstructs the virtual disk. All data is preserved.
-- **Clear** — removes the RAID metadata and treats the disks as new. All data on the array is destroyed.
+- **Import** - reads the existing RAID metadata and reconstructs the virtual disk. All data is preserved.
+- **Clear** - removes the RAID metadata and treats the disks as new. All data on the array is destroyed.
 
 ### Import preserves data, clear destroys data
 
@@ -456,7 +456,7 @@ To reduce the risk of RAID-related data loss:
 2. System shows "No boot device available":
     - Check RAID controller for foreign configuration
     - If foreign configuration exists, **import** it (do not clear)
-    - If no foreign configuration and disks show as empty, data has been lost — reinstall the OS
+    - If no foreign configuration and disks show as empty, data has been lost - reinstall the OS
     - Verify disk state with `fdisk -l`, `lvm pvscan`, and `dd | hexdump`
 
 3. System boots but shows high memory usage with no application cause:
@@ -468,12 +468,12 @@ To reduce the risk of RAID-related data loss:
 
 ## References
 
-1. [`XFS` Administration — Linux Kernel Project](https://docs.kernel.org/admin-guide/xfs.html)
-2. [`xfs_info`(8) — Linux manual page](https://man7.org/linux/man-pages/man8/xfs_info.8.html)
-3. [Short Users Guide for `SLUB` — Linux Kernel Project](https://docs.kernel.org/mm/slab.html)
-4. [The `/proc` File System — Linux Kernel Project](https://www.kernel.org/doc/html/latest/filesystems/proc.html)
-5. [Transparent Huge Page Support — Linux Kernel Project](https://docs.kernel.org/admin-guide/mm/transhuge.html)
-6. [`dracut.cmdline`(7) — Linux manual page](https://man7.org/linux/man-pages/man7/dracut.cmdline.7.html)
+1. [`XFS` Administration - Linux Kernel Project](https://docs.kernel.org/admin-guide/xfs.html)
+2. [`xfs_info`(8) - Linux manual page](https://man7.org/linux/man-pages/man8/xfs_info.8.html)
+3. [Short Users Guide for `SLUB` - Linux Kernel Project](https://docs.kernel.org/mm/slab.html)
+4. [The `/proc` File System - Linux Kernel Project](https://www.kernel.org/doc/html/latest/filesystems/proc.html)
+5. [Transparent Huge Page Support - Linux Kernel Project](https://docs.kernel.org/admin-guide/mm/transhuge.html)
+6. [`dracut.cmdline`(7) - Linux manual page](https://man7.org/linux/man-pages/man7/dracut.cmdline.7.html)
 7. [`LVM2` Resource Page](https://www.sourceware.org/lvm2/)
-8. [`xfs_repair`(8) — Linux manual page](https://man7.org/linux/man-pages/man8/xfs_repair.8.html)
-9. [GNU GRUB Manual — GNU Project](https://www.gnu.org/software/grub/manual/grub/grub.html)
+8. [`xfs_repair`(8) - Linux manual page](https://man7.org/linux/man-pages/man8/xfs_repair.8.html)
+9. [GNU GRUB Manual - GNU Project](https://www.gnu.org/software/grub/manual/grub/grub.html)
