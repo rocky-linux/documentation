@@ -236,7 +236,7 @@ lvm lvs
 **Step 5** - Run `xfs_repair` on each `XFS` logical volume. Start without the `-L` flag to assess the damage:
 
 ```bash
-xfs_repair /dev/mapper/rootvg-rootlv
+xfs_repair /dev/mapper/vg00-lv_root
 ```
 
 If `xfs_repair` completes but reports `Maximum metadata LSN is ahead of log` or shows extensive `CRC` errors and metadata corruption, the file system needs log zeroing. Proceed with the `-L` flag as described in the next section.
@@ -244,12 +244,12 @@ If `xfs_repair` completes but reports `Maximum metadata LSN is ahead of log` or 
 Run `xfs_repair -L` on every `XFS` logical volume that reported `LSN` or metadata errors:
 
 ```bash
-xfs_repair -L /dev/mapper/rootvg-rootlv
-xfs_repair -L /dev/mapper/rootvg-homelv
-xfs_repair -L /dev/mapper/rootvg-varlv
-xfs_repair -L /dev/mapper/rootvg-tmplv
-xfs_repair -L /dev/mapper/rootvg-optlv
-xfs_repair -L /dev/mapper/rootvg-varloglv
+xfs_repair -L /dev/mapper/vg00-lv_root
+xfs_repair -L /dev/mapper/vg00-lv_home
+xfs_repair -L /dev/mapper/vg00-lv_var
+xfs_repair -L /dev/mapper/vg00-lv_tmp
+xfs_repair -L /dev/mapper/vg00-lv_opt
+xfs_repair -L /dev/mapper/vg00-lv_var_log
 ```
 
 !!! note "Skip swap volumes"
@@ -298,7 +298,7 @@ Do not use `xfs_repair -L` when:
 Run `xfs_repair` without any flags first:
 
 ```bash
-xfs_repair /dev/mapper/rootvg-rootlv
+xfs_repair /dev/mapper/vg00-lv_root
 ```
 
 If the journal can be replayed cleanly, this preserves all pending writes. Only escalate to `-L` when standard repair reports `LSN` mismatches or extensive metadata `CRC` errors. Note that `xfs_repair` without `-L` may still complete its phases but output a `Maximum metadata LSN is ahead of log` message - this indicates that `-L` is needed for a full repair.
@@ -312,7 +312,7 @@ If the journal can be replayed cleanly, this preserves all pending writes. Only 
 After running `xfs_repair` (with or without `-L`), mount the file system and verify:
 
 ```bash
-mount /dev/mapper/rootvg-rootlv /mnt
+mount /dev/mapper/vg00-lv_root /mnt
 ls -la /mnt
 df -h /mnt
 umount /mnt
@@ -339,19 +339,19 @@ When a server with hardware RAID fails to boot, the RAID controller configuratio
 A "foreign configuration" occurs when a RAID controller detects physical disks that contain RAID metadata from a different controller or a previous configuration. This commonly happens after:
 
 - Cable or disk removal and replacement during hardware maintenance
-- Controller replacement or firmware update
+- Controller replacement
 - Moving disks between servers
 
 The RAID controller presents two options:
 
 - **Import** - reads the existing RAID metadata and reconstructs the virtual disk. All data is preserved.
-- **Clear** - removes the RAID metadata and treats the disks as new. All data on the array is destroyed.
+- **Clear** - removes the RAID metadata and treats the disks as new. The virtual disk mapping is destroyed and all data on the array becomes inaccessible.
 
 ### Import preserves data, clear destroys data
 
 !!! danger "Clearing a foreign configuration is irreversible"
 
-    Clearing a foreign RAID configuration removes all RAID metadata, partition tables, `LVM` metadata, and file system data from the affected disks. The data cannot be recovered after clearing. Always import the foreign configuration unless you are intentionally rebuilding the array from scratch.
+    Clearing a foreign RAID configuration destroys the RAID metadata that maps physical disks to virtual disks. Without this mapping, the controller can no longer present a coherent virtual disk to the operating system. Partition tables, `LVM` metadata, and file system data remain on the raw disk sectors but become inaccessible through normal means. The data is effectively unrecoverable. Always import the foreign configuration unless you are intentionally rebuilding the array from scratch.
 
 When presented with a foreign configuration:
 
