@@ -290,8 +290,8 @@ tuned-adm list
 
 The relevant profiles for KVM hosts are:
 
-- **`virtual-host`**: basic tuning for virtualization hosts. Enables transparent hugepages and adjusts kernel scheduling parameters.
-- **`cpu-partitioning`**: advanced profile that combines CPU isolation with optimized scheduling. Best for latency-sensitive VM workloads.
+- `virtual-host`: basic tuning for virtualization hosts. Enables transparent hugepages and adjusts kernel scheduling parameters.
+- `cpu-partitioning`: advanced profile that combines CPU isolation with optimized scheduling. Best for latency-sensitive VM workloads.
 
 ### Configuring `cpu-partitioning`
 
@@ -307,10 +307,6 @@ Set the isolated and non-balanced cores to match your CPU isolation plan:
 isolated_cores=4-63
 no_balance_cores=4-63
 ```
-
-!!! warning "The `no_balance_cores` option and multi-threaded tasks"
-
-    On RHEL/Rocky Linux 8.x, the `no_balance_cores` option may not work correctly for multi-threaded processes. Multi-threaded tasks can still have their threads migrated onto nominally non-balanced cores. Verify isolation with the `stress-ng` test described in the CPU isolation section above.
 
 Activate the profile:
 
