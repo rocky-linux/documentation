@@ -75,16 +75,16 @@ slabtop -s c
 
 Key `XFS`-related slab objects to monitor:
 
-- `xfs_inode` — cached `XFS` `inode` structures
-- `xfs_buf` — `XFS` buffer cache entries
-- `xfs_ili` — `XFS` `inode` log items
-- `xfs_trans` — `XFS` transaction structures
+- `xfs_inode` - cached `XFS` `inode` structures
+- `xfs_buf` - `XFS` buffer cache entries
+- `xfs_ili` - `XFS` `inode` log items
+- `xfs_trans` - `XFS` transaction structures
 
 Other kernel slab objects that grow alongside `XFS` under memory pressure:
 
-- `dentry` — directory entry cache
-- `inode_cache` — `VFS` `inode` cache
-- `radix_tree_node` — tree nodes used for page cache searches
+- `dentry` - directory entry cache
+- `inode_cache` - `VFS` `inode` cache
+- `radix_tree_node` - tree nodes used for page cache searches
 
 ### Checking `/proc/slabinfo` directly
 
