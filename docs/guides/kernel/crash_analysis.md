@@ -1,5 +1,5 @@
 ---
-title: Kernel Crash Analysis with kdump and crash on Rocky Linux
+title: Crash analysis
 author: Howard Van Der Wal
 contributors: Steven Spencer
 tested_with: 9.7
