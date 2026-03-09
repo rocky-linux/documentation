@@ -184,7 +184,7 @@ Pin emulator threads to your housekeeping CPUs (the cores not assigned to any gu
 
 ### Pinning rules
 
-Follow these rules for effective vCPU pinning:
+Follow these steps for effective vCPU pinning:
 
 - Pin all vCPUs to the same NUMA node as the VM memory allocation.
 - Use dedicated 1:1 pinning, where each guest vCPU maps to exactly one host CPU. Avoid floating pools where multiple vCPUs share a cpuset.
