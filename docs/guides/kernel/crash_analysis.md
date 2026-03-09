@@ -53,7 +53,7 @@ The kernel must reserve memory for the crash kernel at boot time. Check the curr
 cat /proc/cmdline | grep crashkernel
 ```
 
-On Rocky Linux 9.x and 10.x, the `kexec-tools` package sets a default crashkernel value. You can check the default with:
+On Rocky Linux 9 and 10, the `kexec-tools` package sets a default crashkernel value. You can check the default with:
 
 ```bash
 kdumpctl get-default-crashkernel
