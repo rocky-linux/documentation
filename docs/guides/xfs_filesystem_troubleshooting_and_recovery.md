@@ -13,7 +13,7 @@ tags:
 
 ## Introduction
 
-Rocky Linux uses `XFS` as its default file system for all partitions except `/boot` (which uses `ext4`). `XFS` is a high-performance, journal-based file system that handles large files and high I/O workloads well ^1^, but like any file system, it can encounter issues ranging from kernel-level memory leaks to metadata corruption that prevents booting.
+Rocky Linux uses `XFS` as its default file system for all partitions except `/boot` (which uses `ext4`). `XFS` is a high-performance, journal-based file system that handles large files and high I/O workloads well^1^, but like any file system, it can encounter issues ranging from kernel-level memory leaks to metadata corruption that prevents booting.
 
 This guide covers:
 
@@ -43,7 +43,7 @@ dnf install xfsprogs
 
 ## Viewing `XFS` file system information
 
-Use `xfs_info` to display the configuration of a mounted `XFS` file system ^2^. Pass the mount point as the argument:
+Use `xfs_info` to display the configuration of a mounted `XFS` file system^2^. Pass the mount point as the argument:
 
 ```bash
 xfs_info /
@@ -63,7 +63,7 @@ mount -t xfs
 
 ## Monitoring `XFS` slab memory usage
 
-The Linux kernel uses slab memory managers to handle internal objects, including those used by `XFS` ^3^. Monitoring slab usage helps identify memory leaks and abnormal growth patterns.
+The Linux kernel uses slab memory managers to handle internal objects, including those used by `XFS`^3^. Monitoring slab usage helps identify memory leaks and abnormal growth patterns.
 
 ### Viewing slab allocations with `slabtop`
 
@@ -98,7 +98,7 @@ Each line shows the object name, active objects, total objects, object size, and
 
 ### Monitoring memory fields in `/proc/meminfo`
 
-Three fields in `/proc/meminfo` track slab memory ^4^:
+Three fields in `/proc/meminfo` track slab memory^4^:
 
 ```bash
 grep -E 'Slab|SReclaimable|SUnreclaim' /proc/meminfo
@@ -175,7 +175,7 @@ reboot
 
 ## Mitigating `XFS` memory issues with `THP`
 
-Transparent Huge Pages (`THP`) can interact poorly with the kernel memory compaction system, triggering slab memory leaks on affected kernel versions ^5^. Disabling `THP` is the recommended workaround when a kernel update is not immediately possible.
+Transparent Huge Pages (`THP`) can interact poorly with the kernel memory compaction system, triggering slab memory leaks on affected kernel versions^5^. Disabling `THP` is the recommended workaround when a kernel update is not immediately possible.
 
 ### Checking the current `THP` state
 
@@ -204,7 +204,7 @@ The output should show `always madvise [never]`.
 
 ### Making the `THP` change persistent
 
-To ensure `THP` remains disabled across reboots, add a kernel boot parameter ^9^. Edit the GRUB configuration:
+To ensure `THP` remains disabled across reboots, add a kernel boot parameter^9^. Edit the GRUB configuration:
 
 ```bash
 grubby --update-kernel=ALL --args="transparent_hugepage=never"
@@ -224,7 +224,7 @@ The `transparent_hugepage=never` parameter should appear in the kernel arguments
 
 ## Recovering a system that will not boot with `rd.break`
 
-When an `XFS` file system suffers metadata corruption, the system may fail to mount its root file system during boot. The error `Metadata has LSN ahead of current LSN` in the boot output indicates that the `XFS` journal (log) contains sequence numbers that are inconsistent with the file system metadata. The `rd.break` kernel parameter interrupts the boot process before the root file system is mounted ^6^.
+When an `XFS` file system suffers metadata corruption, the system may fail to mount its root file system during boot. The error `Metadata has LSN ahead of current LSN` in the boot output indicates that the `XFS` journal (log) contains sequence numbers that are inconsistent with the file system metadata. The `rd.break` kernel parameter interrupts the boot process before the root file system is mounted^6^.
 
 !!! warning "Console access required"
 
@@ -247,7 +247,7 @@ Use `rd.break` when:
 
 **Step 3** — Boot with the modified parameters. Press `Ctrl+X` to boot. The system will stop in the `initramfs` environment before mounting the root file system. You will see a `switch_root:/#` prompt.
 
-**Step 4** — Activate `LVM` volumes. If the system uses `LVM` (which is the default Rocky Linux layout) ^7^, activate all volume groups:
+**Step 4** — Activate `LVM` volumes. If the system uses `LVM` (which is the default Rocky Linux layout)^7^, activate all volume groups:
 
 ```bash
 lvm vgchange -ay
@@ -296,7 +296,7 @@ dmesg | grep -i xfs
 
 ## Understanding `xfs_repair -L`
 
-The `xfs_repair` command checks and repairs `XFS` file system metadata ^8^. The `-L` flag has a specific and significant purpose that you should understand before using it.
+The `xfs_repair` command checks and repairs `XFS` file system metadata^8^. The `-L` flag has a specific and significant purpose that you should understand before using it.
 
 ### What `-L` does
 
