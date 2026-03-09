@@ -3,13 +3,12 @@ title: Configuring chrony for NTP Time Synchronization on Rocky Linux
 author: Howard Van Der Wal
 contributors: Steven Spencer
 tested with: 8, 9, 10
+ai_contributors: Claude (claude-opus-4-6)
 tags:
 - chrony
 - ntp
 - time
 - synchronization
-ai_contributors:
-- Claude claude-sonnet-4-6
 ---
 
 # Configuring chrony for NTP Time Synchronization on Rocky Linux
