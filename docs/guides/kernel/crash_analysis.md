@@ -2,13 +2,13 @@
 title: Crash analysis
 author: Howard Van Der Wal
 contributors: Steven Spencer
-tested_with: 9.7
+tested_with: 8,9,10
 tags:
   - crash
+  - debugging
   - kdump
   - kernel
   - vmcore
-  - debugging
 ---
 
 **Knowledge**: :star: :star: :star:
