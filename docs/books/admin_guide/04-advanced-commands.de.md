@@ -214,11 +214,11 @@ Mit der Option `-I` können Sie ein Zeichen (in unserem Beispiel das `%` Zeichen
 
 ## Das Paket `yum-utils`
 
-Das `yum-utils` Paket ist eine Sammlung von Werkzeugen verschiedener Autoren für `yum`, die es einfacher und leistungsfähiger machen.
+Das `yum-utils`-Paket ist eine Sammlung von Hilfsprogrammen, die von verschiedenen Autoren für `yum` entwickelt wurden und die die Verwendung von `yum` einfacher und leistungsfähiger machen.
 
 !!! note "Anmerkung"
 
-    Während `yum` in Rocky Linux 8 durch `dnf` ersetzt wurde der Paketname bleibt `yum-utils`, obwohl er auch als `dnf-utils` installiert werden kann. Dies sind klassische YUM Werkzeuge, die als CLI Shims auf DNF implementiert werden, um die Rückwärtskompatibilität mit `yum-3` zu gewährleisten.
+    Obwohl `yum` in Rocky Linux 8 durch `dnf` ersetzt wurde, ist der Paketname `yum-utils` geblieben, obwohl es auch als `dnf-utils` installiert werden kann. Dies sind klassische YUM Werkzeuge, die als CLI Shims auf DNF implementiert werden, um die Rückwärtskompatibilität mit `yum-3` zu gewährleisten.
 
 Nachfolgend finden Sie einige Beispiele für diese Dienstprogramme.
 
