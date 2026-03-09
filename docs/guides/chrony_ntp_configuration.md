@@ -30,7 +30,7 @@ This guide covers the essential aspects of configuring `chrony` on Rocky Linux, 
 
 ## Prerequisites
 
-- A Rocky Linux 10 or 9 system with `root` or `sudo` access
+- A Rocky Linux 8, 9, or 10 system with `root` or `sudo` access
 - The `chrony` package installed (installed by default on Rocky Linux)
 - Network access to at least one NTP server (for internet-connected systems)
 
