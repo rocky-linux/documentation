@@ -4,11 +4,11 @@ author: Howard Van Der Wal
 ai_contributors: Claude (claude-opus-4-6)
 tested with: 9
 tags:
-- xfs
 - filesystem
-- troubleshooting
 - recovery
 - storage
+- troubleshooting
+- xfs
 ---
 
 ## Introduction
