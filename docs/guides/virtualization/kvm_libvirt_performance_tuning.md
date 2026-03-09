@@ -1,5 +1,5 @@
 ---
-title: KVM/libvirt performance tuning - NUMA, vCPU pinning, and hugepages on Rocky Linux
+title: KVM tuning
 author: Howard Van Der Wal
 tested_with: 8, 9, 10
 ai_contributors: Claude (claude-opus-4-6)
