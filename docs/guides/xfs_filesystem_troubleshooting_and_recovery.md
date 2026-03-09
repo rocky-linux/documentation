@@ -355,9 +355,9 @@ The RAID controller presents two options:
 
 When presented with a foreign configuration:
 
-1. **Always attempt import first.** Importing reads the existing metadata and reconstructs the array as it was before the disruption.
-2. **Verify the array state after import.** Check that virtual disks show as "Online" or "Optimal" in the RAID management interface (`iDRAC`, BIOS RAID utility, or `storcli`/`perccli`).
-3. **Only clear if import fails and you accept data loss.** Some scenarios where import is not possible include physical disk failure or metadata corruption. In these cases, clearing is the only option, but it requires a full OS install.
+1. Always attempt import first. Importing reads the existing metadata and reconstructs the array as it was before the disruption.
+2. Verify the array state after import. Check that virtual disks show as "Online" or "Optimal" in the RAID management interface (`iDRAC`, BIOS RAID utility, or `storcli`/`perccli`).
+3. Only clear if import fails and you accept data loss. Some scenarios where import is not possible include physical disk failure or metadata corruption. In these cases, clearing is the only option, but it requires a full OS install.
 
 ### Verifying disk state after RAID recovery
 
@@ -391,10 +391,10 @@ A valid disk contains non-zero data in the first sector (partition table, boot c
 
 To reduce the risk of RAID-related data loss:
 
-- Document the RAID configuration (virtual disk layout, RAID level, disk slot assignments) before any hardware maintenance
-- Take screenshots of the RAID management interface before and after hardware work
-- Ensure hardware maintenance personnel understand the difference between importing and clearing foreign configurations
-- Keep current backups of all boot disks
+- Document the RAID configuration (virtual disk layout, RAID level, disk slot assignments) before any hardware maintenance.
+- Take screenshots of the RAID management interface before and after hardware work.
+- Ensure hardware maintenance personnel understand the difference between importing and clearing foreign configurations.
+- Keep current backups of all boot disks.
 
 ## Quick reference
 
@@ -442,12 +442,12 @@ To reduce the risk of RAID-related data loss:
 
 ## References
 
-1. [`XFS` Administration - Linux Kernel Project](https://docs.kernel.org/admin-guide/xfs.html)
-2. [`xfs_info`(8) - Linux manual page](https://man7.org/linux/man-pages/man8/xfs_info.8.html)
-3. [Short Users Guide for `SLUB` - Linux Kernel Project](https://docs.kernel.org/mm/slab.html)
-4. [The `/proc` File System - Linux Kernel Project](https://www.kernel.org/doc/html/latest/filesystems/proc.html)
-5. [Transparent Huge Page Support - Linux Kernel Project](https://docs.kernel.org/admin-guide/mm/transhuge.html)
-6. [`dracut.cmdline`(7) - Linux manual page](https://man7.org/linux/man-pages/man7/dracut.cmdline.7.html)
-7. [`LVM2` Resource Page](https://www.sourceware.org/lvm2/)
-8. [`xfs_repair`(8) - Linux manual page](https://man7.org/linux/man-pages/man8/xfs_repair.8.html)
-9. [GNU GRUB Manual - GNU Project](https://www.gnu.org/software/grub/manual/grub/grub.html)
+1. "`XFS` Administration" by the Linux Kernel Project [`https://docs.kernel.org/admin-guide/xfs.html`](https://docs.kernel.org/admin-guide/xfs.html)
+2. "`xfs_info`(8) manual page" by the Linux man-pages Project [`https://man7.org/linux/man-pages/man8/xfs_info.8.html`](https://man7.org/linux/man-pages/man8/xfs_info.8.html)
+3. "Short Users Guide for `SLUB`" by the Linux Kernel Project [`https://docs.kernel.org/mm/slab.html`](https://docs.kernel.org/mm/slab.html)
+4. "The `/proc` File System" by the Linux Kernel Project [`https://www.kernel.org/doc/html/latest/filesystems/proc.html`](https://www.kernel.org/doc/html/latest/filesystems/proc.html)
+5. "Transparent Huge Page Support" by the Linux Kernel Project [`https://docs.kernel.org/admin-guide/mm/transhuge.html`](https://docs.kernel.org/admin-guide/mm/transhuge.html)
+6. "`dracut.cmdline`(7) manual page" by the Linux man-pages Project [`https://man7.org/linux/man-pages/man7/dracut.cmdline.7.html`](https://man7.org/linux/man-pages/man7/dracut.cmdline.7.html)
+7. "`LVM2` Resource Page" by the `LVM2` Project [`https://www.sourceware.org/lvm2/`](https://www.sourceware.org/lvm2/)
+8. "`xfs_repair`(8) manual page" by the Linux man-pages Project [`https://man7.org/linux/man-pages/man8/xfs_repair.8.html`](https://man7.org/linux/man-pages/man8/xfs_repair.8.html)
+9. "`GNU GRUB` Manual" by the GNU Project [`https://www.gnu.org/software/grub/manual/grub/grub.html`](https://www.gnu.org/software/grub/manual/grub/grub.html)
