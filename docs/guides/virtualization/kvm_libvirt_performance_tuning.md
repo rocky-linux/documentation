@@ -1,7 +1,7 @@
 ---
 title: KVM/libvirt performance tuning on Rocky Linux
 author: Howard Van Der Wal
-tested_with: 8.10, 9.7, 10.1
+tested_with: 8, 9, 10
 tags:
   - kvm
   - libvirt
