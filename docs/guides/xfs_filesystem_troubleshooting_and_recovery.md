@@ -198,7 +198,7 @@ The `transparent_hugepage=never` parameter should appear in the kernel arguments
 
 ## Recovering a system that will not boot with `rd.break`
 
-When an `XFS` file system suffers metadata corruption, the system may fail to mount its root file system during boot. The error `Metadata has LSN ahead of current LSN` in the boot output indicates that the `XFS` journal (log) contains sequence numbers that are inconsistent with the file system metadata. The `rd.break` kernel parameter interrupts the boot process before the root file system is mounted^6^.
+When an `XFS` file system suffers metadata corruption, the system may fail to mount its root file system during boot. Errors such as `Metadata has LSN ahead of current LSN` in the boot output indicate that the `XFS` journal (log) contains sequence numbers that are inconsistent with the file system metadata. The `rd.break` kernel parameter interrupts the boot process before the root file system is mounted^6^.
 
 !!! warning "Console access required"
 
