@@ -24,7 +24,6 @@ The topics covered include:
 - CPU isolation with `isolcpus` for dedicated VM workloads.
 - `tuned` profiles for virtualization hosts.
 - GPU passthrough with IOMMU and VFIO.
-- Diagnosing slow VM boot times.
 - NUMA-aware VM placement with `virsh`.
 
 ## Prerequisites
@@ -467,69 +466,6 @@ Add the GPU as a hostdev in your VM domain XML:
 </hostdev>
 ```
 
-For VMs with large GPU BARs (such as NVIDIA data center GPUs with 256 GB or larger BARs), you must configure the OVMF 64-bit MMIO window size. Add the following to your domain XML inside the `<domain>` element:
-
-```xml
-<qemu:commandline xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
-  <qemu:arg value='-fw_cfg'/>
-  <qemu:arg value='name=opt/ovmf/X-PciMmio64Mb,string=262144'/>
-</qemu:commandline>
-```
-
-!!! note "Large GPU BAR support"
-
-    Data center GPUs such as the NVIDIA B200 have very large prefetchable BARs (256 GB per GPU). Without the `X-PciMmio64Mb` OVMF configuration, the guest UEFI firmware cannot allocate sufficient address space for these devices.
-
-## Diagnosing slow VM boot times
-
-Virtual machines with GPU passthrough or many PCI devices may exhibit unusually long boot times. The delay typically occurs during the kernel phase, not during userspace initialization.
-
-### Using `systemd-analyze` inside the guest
-
-From within the guest VM, run:
-
-```bash
-systemd-analyze
-```
-
-Example output indicating a kernel-phase bottleneck:
-
-```text
-Startup finished in 12min 22.264s (kernel) + 20.027s (initrd) + 1min 1.747s (userspace) = 13min 44.039s
-```
-
-If the kernel phase dominates the boot time, the delay is occurring during PCI device enumeration, not in systemd services.
-
-### Analyzing `dmesg` for PCI enumeration delays
-
-Check the guest `dmesg` for large time gaps during PCI initialization:
-
-```bash
-dmesg -T | grep -i "pci"
-```
-
-Look for messages like:
-
-```text
-[  120.456789] pci 0000:08:00.0: reg 0x18: [mem 0x380000000000-0x383fffffffff 64bit pref]
-```
-
-Large timestamps (120+ seconds) on PCI register messages indicate that BAR (Base Address Register) sizing operations are taking a long time. Each operation requires a round trip through the VFIO stack: Guest Kernel to QEMU/KVM to Host Kernel to physical hardware and back.
-
-### Common causes and solutions
-
-**Missing `iommu=pt` on the host**: without passthrough mode, every DMA operation goes through IOMMU translation. Add `iommu=pt` to the host kernel cmdline.
-
-**Missing `pci=realloc` on the guest**: this parameter allows the guest kernel to dynamically reallocate PCI resources. Add it to the guest kernel cmdline:
-
-```bash
-sudo grubby --args="pci=realloc" --update-kernel=ALL
-```
-
-**Outdated kernel**: older kernels lack PCI BAR batch sizing optimizations. On these kernels, each BAR sizing operation runs sequentially, adding 10-20 seconds per large GPU BAR. Keep your kernel up to date to benefit from PCI performance improvements as they are backported.
-
-**Soft lockup warnings during boot**: messages such as `watchdog: BUG: soft lockup - CPU#76 stuck for 21s!` during PCI enumeration are a symptom of slow BAR sizing operations, not a separate issue. Updating the kernel resolves these warnings.
-
 ## NUMA-aware VM placement with `virsh`
 
 For optimal performance, a VM's memory and vCPUs must be on the same NUMA node. Accessing memory on a remote NUMA node adds significant latency.
@@ -701,7 +637,6 @@ Performance tuning KVM/libvirt on Rocky Linux requires a holistic approach that 
 - **Use the `cpu-partitioning` tuned profile** for consistent system-wide tuning.
 - **Be cautious with `vm.min_free_kbytes`** on NUMA systems to avoid OOM conditions.
 - **Enable `iommu=pt`** alongside `intel_iommu=on` for GPU passthrough to reduce DMA translation overhead.
-- **Keep your kernel up to date** to benefit from PCI performance improvements and bug fixes.
 
 ## References
 
