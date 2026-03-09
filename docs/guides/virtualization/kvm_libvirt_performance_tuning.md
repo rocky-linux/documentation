@@ -18,14 +18,14 @@ This guide covers advanced performance tuning for KVM/libvirt virtual machines o
 
 The topics covered include:
 
-- NUMA topology awareness and memory placement
-- The dangers of `vm.min_free_kbytes` on NUMA systems
-- vCPU pinning with libvirt domain XML
-- CPU isolation with `isolcpus` for dedicated VM workloads
-- `tuned` profiles for virtualization hosts
-- GPU passthrough with IOMMU and VFIO
-- Diagnosing slow VM boot times
-- NUMA-aware VM placement with `virsh`
+- NUMA topology awareness and memory placement.
+- The dangers of `vm.min_free_kbytes` on NUMA systems.
+- vCPU pinning with libvirt domain XML.
+- CPU isolation with `isolcpus` for dedicated VM workloads.
+- `tuned` profiles for virtualization hosts.
+- GPU passthrough with IOMMU and VFIO.
+- Diagnosing slow VM boot times.
+- NUMA-aware VM placement with `virsh`.
 
 ## Prerequisites
 
