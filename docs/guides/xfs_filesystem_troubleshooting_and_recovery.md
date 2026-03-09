@@ -28,7 +28,7 @@ This guide covers:
 - Understanding when and how to use `xfs_repair -L`
 - Avoiding data loss during RAID controller recovery
 
-The procedures in this guide apply to Rocky Linux 8 and Rocky Linux 9. Where the two versions differ, the guide notes the distinction.
+The procedures in this guide apply to Rocky Linux 8, Rocky Linux 9, and Rocky Linux 10. Where versions differ, the guide notes the distinction.
 
 ## Prerequisites
 
