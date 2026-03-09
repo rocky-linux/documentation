@@ -142,7 +142,6 @@ Then, set the database name, username and password:
 
 Replace the above fields with your respective server, username.
 
-
 You will also need to define clients. This is to prevent unauthorized access to our RADIUS server. Edit the `clients.conf` file:
 
 ```bash
@@ -168,7 +167,7 @@ systemctl enable --now mysql
 mysql_secure_installation
 ```
 
-Next log into MariaDB:
+Next login to MariaDB:
 
 ```bash
 mysql -u root -p
