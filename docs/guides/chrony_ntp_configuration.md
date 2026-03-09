@@ -42,7 +42,7 @@ rpm -q chrony
 
 ## The default chrony configuration
 
-Rocky Linux ships with a default `/etc/chrony.conf` that provides a working time synchronization setup out of the box. The following is the default configuration on Rocky Linux 10:
+Rocky Linux ships with a default `/etc/chrony.conf` that provides a working time synchronization setup out of the box. The following is the stock RPM default configuration on Rocky Linux 10:
 
 ```bash
 cat /etc/chrony.conf
@@ -94,9 +94,13 @@ logdir /var/log/chrony
 
 The key directive here is `pool 2.rocky.pool.ntp.org iburst`, which uses the Rocky Linux NTP pool to obtain time sources.
 
+!!! warning
+
+    Cloud providers, Kickstart installations, and hosting providers frequently modify `/etc/chrony.conf` during provisioning. For example, Vultr replaces the `pool 2.rocky.pool.ntp.org` line with their own `server` directives pointing to `time.constant.com`. If your configuration does not match what is shown above, check whether your provider has customized the NTP source lines. The core directives (`makestep`, `driftfile`, `rtcsync`) remain the same regardless of provider.
+
 !!! note
 
-    Rocky Linux 9's default `chrony.conf` is similar but includes `keyfile /etc/chrony.keys` and `leapsectz right/UTC` directives that are not present in Rocky Linux 10's default. Rocky Linux 10 adds `sourcedir`, `ntsdumpdir`, and `authselectmode`. The core NTP configuration (`pool`, `makestep`, `driftfile`, `rtcsync`) is the same across both versions. Cloud providers may also add their own NTP server entries to the default configuration.
+    Rocky Linux 9's default `chrony.conf` is similar but includes `keyfile /etc/chrony.keys` and `leapsectz right/UTC` directives that are not present in Rocky Linux 10's default. Rocky Linux 10 adds `sourcedir`, `ntsdumpdir`, and `authselectmode`. The core NTP configuration (`pool`, `makestep`, `driftfile`, `rtcsync`) is the same across both versions.
 
 ## Understanding `pool` and `server` directives
 
