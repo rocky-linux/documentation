@@ -16,9 +16,11 @@ tags:
 **Knowledge**: :star: :star:
 **Reading time**: 20 minutes
 
-## Introduction
+## AI usage
 
-This document adheres to the [AI contribution policy found here.](contribute/ai-contribution-policy.md) If you find any errors in the instructions, please let us know.
+This document adheres to the [AI contribution policy found here.](../contribute/ai-contribution-policy.md) If you find any errors in the instructions, please let us know.
+
+## Introduction
 
 Accurate time synchronization is fundamental to the operation of modern Linux systems. Services such as Kerberos authentication, TLS certificate validation, distributed databases, log correlation, and cluster schedulers all depend on accurate system clocks. On Rocky Linux, `chrony` is the default NTP implementation and replaces the legacy `ntpd` daemon.
 
