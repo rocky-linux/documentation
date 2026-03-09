@@ -34,10 +34,10 @@ The procedures in this guide apply to Rocky Linux 8, Rocky Linux 9, and Rocky Li
 
 Before working through this guide, ensure you have:
 
-- Root or `sudo` access to the Rocky Linux system
-- Basic familiarity with `LVM` (Logical Volume Manager) concepts
-- Console access (physical, `IPMI`, or `iDRAC`) for `rd.break` recovery procedures
-- A current backup of critical data before running any repair operations
+- Root or `sudo` access to the Rocky Linux system.
+- Basic familiarity with `LVM` (Logical Volume Manager) concepts.
+- Console access (physical, `IPMI`, or `iDRAC`) for `rd.break` recovery procedures.
+- A current backup of critical data before running any repair operations.
 
 Install the `xfsprogs` package if it is not already present:
 
