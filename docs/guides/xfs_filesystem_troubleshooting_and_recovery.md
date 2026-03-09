@@ -88,7 +88,7 @@ Other kernel slab objects that grow alongside `XFS` under memory pressure:
 
 - `dentry` - directory entry cache
 - `inode_cache` - `VFS` `inode` cache
-- `radix_tree_node` - tree nodes used for page cache searches
+- `radix_tree_node` - tree nodes used for page cache indexing
 
 ### Checking `/proc/slabinfo` directly
 
@@ -139,7 +139,7 @@ Signs of a kernel slab memory leak:
 
 ### Checking for runaway `kworker` threads
 
-Kernel worker threads (`kworker`) handle deferred I/O operations including `XFS` journal writes. An abnormally high count indicates a kernel I/O issue:
+Kernel worker threads (`kworker`) handle deferred kernel operations. `XFS` uses kernel work queues for journal writes and metadata operations, so an abnormally high `kworker` count can indicate a kernel I/O issue:
 
 ```bash
 ps -eLf | grep -c kworker
@@ -249,7 +249,7 @@ Use `rd.break` when:
 
 **Step 2** - Add `rd.break` to the kernel command line. Find the line that begins with `linux` (or `linuxefi`) and append `rd.break` to the end of that line.
 
-**Step 3** - Boot with the modified parameters. Press `Ctrl+X` to boot. The system will stop in the `initramfs` environment before mounting the root file system. You will see a `switch_root:/#` prompt.
+**Step 3** - Boot with the modified parameters. Press `Ctrl+X` to boot. The system will stop in the `initramfs` environment before mounting the root file system. You will see a `switch_root:/root#` prompt.
 
 **Step 4** - Activate `LVM` volumes. If the system uses `LVM` (which is the default Rocky Linux layout)^7^, activate all volume groups:
 
