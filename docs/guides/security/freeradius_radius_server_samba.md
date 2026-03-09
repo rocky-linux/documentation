@@ -104,7 +104,9 @@ systemctl enable --now radiusd
 
 ## Configuring RADIUS on a switch
 
-After setting up the FreeRADIUS server, you will configure a RADIUS client on the author's MikroTik switch as a wired 802.1X client:
+After setting up the FreeRADIUS server, you will configure a RADIUS client.
+
+As an example, the author's MikroTik switch can be configured like:
 
 ```bash
 /radius

@@ -9,9 +9,9 @@ tags:
   - guide
 ---
 
-## AI usage disclosure
+## AI usage
 
-AI assisted in creating this document. The author reviewed all content, tested, and verified its accuracy, and takes full responsibility for the correctness of this document. Please report any errors you encounter to the Rocky Linux documentation team.
+This document adheres to the [AI contribution policy found here.](../contribute/ai-contribution-policy.md) If you find any errors in the instructions, please let us know.
 
 ## Welcome
 
@@ -927,9 +927,19 @@ Place your document in the appropriate directory under `docs/guides/`:
 
 If your guide does not fit any existing category, place it in the most relevant directory or ask the documentation team in the [Mattermost Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation).
 
-### AI usage
+### AI disclosure in your document
 
-The Rocky Linux Documentation Team permits AI and LLM tools in the contribution process. For full details on requirements, disclosures, and guidelines, see the [Rocky Linux Docs AI-assisted contribution policy](https://docs.rockylinux.org/guides/contribute/ai-contribution-policy/).
+The Rocky Linux Documentation Team permits AI and LLM tools in the contribution process. For full details on requirements, disclosures, and guidelines, see the [Rocky Linux Docs AI-assisted contribution policy](../contribute/ai-contribution-policy.md).
+
+If you use AI tools to assist in writing your document, you must add the following section immediately after the front matter:
+
+````markdown
+## AI usage
+
+This document adheres to the [AI contribution policy found here.](../contribute/ai-contribution-policy.md) If you find any errors in the instructions, please let us know.
+````
+
+This informs the reader that AI tools contributed to the document and directs them to the full policy.
 
 ### Document structure
 

@@ -1,7 +1,7 @@
 ---
 title: Політика щодо внесків за допомогою штучного інтелекту
 authors: Wale Soyinka, Steven Spencer, Documentation Team
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 !!! note
