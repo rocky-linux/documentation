@@ -205,7 +205,7 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 | Column | Meaning |
 | ------ | ------- |
 | M | Source mode: `^` server, `=` peer, `#` local clock |
-| S | Source state: `*` best, `+` combined, `-` selectable, `?` unusable, `x` falseticker, `~` too variable |
+| S | Source state: `*` best, `+` combined, `-` selectable but not selected, `?` unusable, `x` falseticker, `~` too variable |
 | Stratum | Distance from a reference clock (1 = directly attached) |
 | Poll | Polling interval as a base-2 logarithm in seconds |
 | Reach | Reachability register in octal (377 = last 8 attempts all successful) |
@@ -264,7 +264,7 @@ server ntp2.example.com iburst trust
 
 !!! warning
 
-    The `trust` option is a workaround for environments where fewer than four NTP sources are available. It bypasses the normal source selection algorithm. Use it only when adding additional NTP sources is not possible. Always prefer adding more sources over using `trust`.
+    The `trust` option is a workaround for environments where fewer than four NTP sources are available. It changes the falseticker detection so that trusted sources can only be rejected if another trusted source disagrees. Use it only when adding additional NTP sources is not possible. Always prefer adding more sources over using `trust`.
 
 ## Hardware timestamping
 
@@ -458,7 +458,7 @@ UNCONN 0      0            0.0.0.0:123       0.0.0.0:*    users:(("chronyd",pid=
 
 Proper `chrony` configuration is essential for reliable time synchronization on Rocky Linux. The most common misconfiguration is using too few NTP sources. Follow RFC 8633^2^ and configure at least four independent sources. Use the `server` directive for individual IP addresses and the `pool` directive for DNS names that resolve to multiple addresses. For diagnostics, `chronyc sources` and `chronyc tracking` provide the information needed to identify and resolve synchronization issues.
 
-For air-gapped networks, the `local` directive with `orphan` mode^1^ provides resilient time distribution without external connectivity. Hardware timestamping^1^ is available for environments that require sub-microsecond accuracy.
+For air-gapped networks, the `local` directive with `orphan` mode^1^ provides resilient time distribution without external connectivity. Hardware timestamping^1^ can achieve sub-microsecond accuracy when combined with good network switches and short polling intervals.
 
 The full `chrony` documentation^1^ provides additional options and advanced configurations beyond the scope of this guide.
 
