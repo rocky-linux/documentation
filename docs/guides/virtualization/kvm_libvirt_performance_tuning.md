@@ -26,7 +26,7 @@ The topics covered include:
 
 ## Prerequisites
 
-- A 64-bit machine running Rocky Linux 9 with KVM/libvirt installed and configured. See the [Setting Up libvirt on Rocky Linux](https://docs.rockylinux.org/guides/virtualization/libvirt-rocky/) guide for initial setup.
+- A machine running Rocky Linux 8, 9, or 10 with KVM/libvirt installed and configured. See the [Setting Up libvirt on Rocky Linux](libvirt-rocky.md) guide for initial setup.
 - Root or `sudo` access on the hypervisor host.
 - Familiarity with `virsh` and libvirt domain XML.
 - A multi-socket or multi-NUMA-node server for NUMA-related sections.
