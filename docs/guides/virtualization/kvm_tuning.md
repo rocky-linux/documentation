@@ -229,7 +229,7 @@ vCPU pinning alone does not prevent the host kernel scheduler from placing other
 
 ### Kernel command line parameters
 
-Add the following to the kernel command line to isolate CPUs 4-63 for exclusive VM use:
+Add the following to the kernel command line to isolate non-housekeeping CPUs (in this example CPU 4-63) for exclusive VM use:
 
 ```bash
 sudo grubby --args="isolcpus=4-63 nohz_full=4-63 rcu_nocbs=4-63" --update-kernel=ALL
