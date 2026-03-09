@@ -417,7 +417,7 @@ To reduce the risk of RAID-related data loss:
 | Check kernel version | `uname -r` |
 | Check `XFS` messages in kernel log | `dmesg \| grep -i xfs` |
 
-### Decision tree for boot failures
+### What to do in case of boot failures
 
 1. System drops to `dracut` emergency shell or fails to mount `/sysroot`:
     - Access GRUB, add `rd.break`, boot to `initramfs` shell
