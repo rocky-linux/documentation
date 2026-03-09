@@ -12,7 +12,7 @@ tags:
 
 ## AI usage
 
-This document adheres to the [AI contribution policy found here.](../contribute/ai-contribution-policy.md) If you find any errors in the instructions, please let us know.
+This document adheres to the [AI contribution policy found here.](../../contribute/ai-contribution-policy.md) If you find any errors in the instructions, please let us know.
 
 ## Introduction
 
