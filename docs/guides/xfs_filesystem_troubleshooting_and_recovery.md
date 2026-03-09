@@ -289,9 +289,9 @@ Use `xfs_repair -L` when:
 
 Do not use `xfs_repair -L` when:
 
-- The file system mounts normally - use `xfs_repair` without `-L` instead
-- You have not tried `xfs_repair` without `-L` first
-- The issue is performance-related rather than corruption-related
+- The file system mounts normally - use `xfs_repair` without `-L` instead.
+- You have not tried `xfs_repair` without `-L` first.
+- The issue is performance-related rather than corruption-related.
 
 ### Always try standard repair first
 
