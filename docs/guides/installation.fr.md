@@ -70,7 +70,7 @@ Une fois le système configuré pour démarrer à partir du média avec le fichi
 
 2. Une fois l'ordinateur démarré, vous voyez l'écran de démarrage du programme d'installation de Rocky Linux 10.
 
-    ![Rocky Linux installation splash screen](images/installation_10_0_F01.png)
+    ![Rocky Linux installation splash screen](images/installation_10_1_F01.png)
 
 3. Sur l'écran d'accueil, vous pouvez utiliser les touches fléchées ++"up"++ ou ++"down"++ pour sélectionner l'une des options, puis appuyer sur ++enter++ pour exécuter l'option sélectionnée. Si vous n'appuyez sur aucune touche, le programme d'installation démarre un compte à rebours, après quoi le processus d'installation exécute automatiquement l'option par défaut en surbrillance :
 
