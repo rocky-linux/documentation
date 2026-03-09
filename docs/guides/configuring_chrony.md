@@ -7,8 +7,8 @@ ai_contributors: Claude (claude-opus-4-6)
 tags:
 - chrony
 - ntp
-- time
 - synchronization
+- time
 ---
 
 # Configuring chrony
@@ -30,9 +30,9 @@ This guide covers the essential aspects of configuring `chrony` on Rocky Linux, 
 
 ## Prerequisites
 
-- A Rocky Linux 8, 9, or 10 system with `root` or `sudo` access
-- The `chrony` package installed (installed by default on Rocky Linux)
-- Network access to at least one NTP server (for internet-connected systems)
+- A Rocky Linux 8, 9, or 10 system with `root` or `sudo` access.
+- The `chrony` package installed (installed by default on Rocky Linux).
+- Network access to at least one NTP server (for internet-connected systems).
 
 Verify `chrony` is installed:
 
@@ -100,7 +100,7 @@ The key directive here is `pool 2.rocky.pool.ntp.org iburst`, which uses the Roc
 
 !!! note
 
-    Rocky Linux 9's default `chrony.conf` is similar but includes `keyfile /etc/chrony.keys` and `leapsectz right/UTC` directives that are not present in Rocky Linux 10's default. Rocky Linux 10 adds `sourcedir`, `ntsdumpdir`, and `authselectmode`. The core NTP configuration (`pool`, `makestep`, `driftfile`, `rtcsync`) is the same across both versions.
+    Rocky Linux 8 and 9 both include `keyfile /etc/chrony.keys` and `leapsectz right/UTC` directives that are not present in Rocky Linux 10's default. Rocky Linux 10 adds `sourcedir`, `ntsdumpdir`, and `authselectmode`, which are not present in Rocky Linux 8 or 9. The core NTP configuration (`pool`, `makestep`, `driftfile`, `rtcsync`) is the same across all three versions.
 
 ## Understanding `pool` and `server` directives
 
