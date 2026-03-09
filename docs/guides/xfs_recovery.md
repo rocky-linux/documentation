@@ -132,10 +132,10 @@ Slab memory leaks in the kernel manifest as a steady increase in slab allocation
 
 Signs of a kernel slab memory leak:
 
-- `SUnreclaim` in `/proc/meminfo` grows steadily over days without returning to baseline
-- Specific slab objects (such as `numa_policy`, `xfs_inode`, or `pid`) grow by 10x or more compared to a freshly booted system
-- Total memory usage climbs to 80-90% of physical RAM despite stable application workloads
-- Swap usage increases as the kernel consumes available memory
+- `SUnreclaim` in `/proc/meminfo` grows steadily over days without returning to baseline.
+- Specific slab objects (such as `numa_policy`, `xfs_inode`, or `pid`) grow by 10x or more compared to a freshly booted system.
+- Total memory usage climbs to 80-90% of physical RAM despite stable application workloads.
+- Swap usage increases as the kernel consumes available memory.
 
 ### Checking for runaway `kworker` threads
 
