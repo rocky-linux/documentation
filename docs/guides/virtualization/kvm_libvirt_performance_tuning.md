@@ -1,10 +1,9 @@
 ---
-title: KVM/libvirt performance tuning on Rocky Linux
+title: KVM/libvirt performance tuning - NUMA, vCPU pinning, and hugepages on Rocky Linux
 author: Howard Van Der Wal
 tested_with: 8, 9, 10
 ai_contributors: Claude (claude-opus-4-6)
 tags:
-  - gpu
   - kvm
   - libvirt
   - numa
@@ -14,7 +13,7 @@ tags:
 
 ## Introduction
 
-This guide covers advanced performance tuning for KVM/libvirt virtual machines on Rocky Linux. It addresses common production issues including NUMA memory misallocation, vCPU scheduling contention, and GPU passthrough optimization.
+This guide covers advanced performance tuning for KVM/libvirt virtual machines on Rocky Linux. It addresses common production issues including NUMA memory misallocation and vCPU scheduling contention.
 
 The topics covered include:
 
@@ -23,7 +22,6 @@ The topics covered include:
 - vCPU pinning with libvirt domain XML.
 - CPU isolation with `isolcpus` for dedicated VM workloads.
 - `tuned` profiles for virtualization hosts.
-- GPU passthrough with IOMMU and VFIO.
 - NUMA-aware VM placement with `virsh`.
 
 ## Prerequisites
@@ -32,7 +30,6 @@ The topics covered include:
 - Root or `sudo` access on the hypervisor host.
 - Familiarity with `virsh` and libvirt domain XML.
 - A multi-socket or multi-NUMA-node server for NUMA-related sections.
-- For GPU passthrough: a discrete GPU with IOMMU support and VT-d or AMD-Vi enabled in the BIOS.
 
 ## Understanding your NUMA topology
 
@@ -348,124 +345,6 @@ After reboot, confirm that the profile has applied the expected kernel parameter
 cat /proc/cmdline | tr ' ' '\n' | grep -E "isolcpus|nohz_full|rcu_nocbs"
 ```
 
-## GPU passthrough with IOMMU and VFIO
-
-GPU passthrough allows a virtual machine to directly access a physical GPU, achieving near-native performance. This requires IOMMU (Input/Output Memory Management Unit) support and the VFIO (Virtual Function I/O) driver framework^5^.
-
-### Enabling IOMMU
-
-Ensure that VT-d (Intel) or AMD-Vi (AMD) is enabled in the BIOS. Then add the appropriate kernel parameters.
-
-For Intel systems:
-
-```bash
-sudo grubby --args="intel_iommu=on iommu=pt" --update-kernel=ALL
-```
-
-For AMD systems:
-
-```bash
-sudo grubby --args="amd_iommu=on iommu=pt" --update-kernel=ALL
-```
-
-Reboot to apply:
-
-```bash
-sudo reboot
-```
-
-!!! note "The purpose of `iommu=pt`"
-
-    The `iommu=pt` (passthrough) parameter enables DMA passthrough mode for devices that are not assigned to VMs. Without it, all DMA operations go through IOMMU translation, adding latency to every I/O operation on the host. Always use `iommu=pt` alongside `intel_iommu=on` or `amd_iommu=on`.
-
-### Verifying IOMMU is active
-
-After rebooting, confirm IOMMU is enabled:
-
-```bash
-dmesg | grep -i -e DMAR -e IOMMU
-```
-
-You should see messages indicating that IOMMU is enabled and DMAR (DMA Remapping) is active.
-
-### Identifying the GPU IOMMU group
-
-List IOMMU groups and find your GPU:
-
-```bash
-for d in /sys/kernel/iommu_groups/*/devices/*; do
-  n=${d#*/iommu_groups/*}
-  n=${n%%/*}
-  printf "IOMMU Group %s: " "$n"
-  lspci -nns "${d##*/}"
-done | sort -t: -k1 -n
-```
-
-Note the PCI IDs for your GPU and its audio device (if present). For example:
-
-```text
-IOMMU Group 15: 41:00.0 VGA compatible controller [0300]: NVIDIA Corporation [...] [10de:2684]
-IOMMU Group 15: 41:00.1 Audio device [0403]: NVIDIA Corporation [...] [10de:22ba]
-```
-
-!!! warning "All devices in an IOMMU group must be passed through together"
-
-    If your GPU shares an IOMMU group with other devices, all devices in that group must be passed through to the same VM. If unrelated devices share the group, you may need to enable ACS (Access Control Services) override, although this has security implications.
-
-### Binding the GPU to VFIO
-
-Create a configuration file to bind the GPU to the `vfio-pci` driver at boot. Replace the PCI IDs with your GPU's IDs:
-
-```bash
-echo "options vfio-pci ids=10de:2684,10de:22ba" | sudo tee /etc/modprobe.d/vfio.conf
-```
-
-To prevent the native GPU driver from loading before `vfio-pci`, add a soft dependency:
-
-```bash
-echo "softdep nouveau pre: vfio-pci" | sudo tee -a /etc/modprobe.d/vfio.conf
-```
-
-!!! note "NVIDIA proprietary driver"
-
-    If you are using the NVIDIA proprietary driver instead of `nouveau`, replace the soft dependency line with: `softdep nvidia pre: vfio-pci`
-
-Create a `dracut` configuration to load the VFIO modules early in the initramfs:
-
-```bash
-echo 'force_drivers+=" vfio vfio_pci vfio_iommu_type1 "' | sudo tee /etc/dracut.conf.d/vfio.conf
-```
-
-!!! note "The `vfio_virqfd` module"
-
-    On Rocky Linux 9 and 10, `vfio_virqfd` has been merged into the core `vfio` module and does not need to be loaded separately. On Rocky Linux 8 (kernel 4.18), it is still a separate module. If you are running Rocky Linux 8, add `vfio_virqfd` to the `force_drivers` line.
-
-Rebuild the initramfs:
-
-```bash
-sudo dracut -f --kver $(uname -r)
-```
-
-Reboot and verify the GPU is bound to `vfio-pci`:
-
-```bash
-lspci -nnk -s 41:00.0
-```
-
-The `Kernel driver in use` field should show `vfio-pci`.
-
-### Adding the GPU to a VM
-
-Add the GPU as a hostdev in your VM domain XML:
-
-```xml
-<hostdev mode='subsystem' type='pci' managed='yes'>
-  <source>
-    <address domain='0x0000' bus='0x41' slot='0x00' function='0x0'/>
-  </source>
-</hostdev>
-```
-
 ## NUMA-aware VM placement with `virsh`
 
 For optimal performance, a VM's memory and vCPUs must be on the same NUMA node. Accessing memory on a remote NUMA node adds significant latency.
@@ -584,7 +463,7 @@ Match the hugepage allocation to the VM placement on each NUMA node.
 
 ## Putting it all together
 
-A fully tuned VM configuration combines all the elements covered in this guide^6^. Here is a complete example for a performance-critical VM on a dual-socket Rocky Linux 9 host:
+A fully tuned VM configuration combines all the elements covered in this guide^5^. Here is a complete example for a performance-critical VM on a dual-socket Rocky Linux 9 host:
 
 ```xml
 <domain type='kvm'>
@@ -630,13 +509,12 @@ A fully tuned VM configuration combines all the elements covered in this guide^6
 
 Performance tuning KVM/libvirt on Rocky Linux requires a holistic approach that addresses CPU scheduling, memory placement, and I/O configuration together. The key principles are:
 
-- **Understand your NUMA topology** before making any changes.
-- **Pin vCPUs to specific cores** on the same NUMA node as the VM memory.
-- **Always configure `emulatorpin`** to prevent QEMU threads from contending with guest vCPUs.
-- **Isolate CPUs** with `isolcpus`, `nohz_full`, and `rcu_nocbs` for latency-sensitive workloads.
-- **Use the `cpu-partitioning` tuned profile** for consistent system-wide tuning.
-- **Be cautious with `vm.min_free_kbytes`** on NUMA systems to avoid OOM conditions.
-- **Enable `iommu=pt`** alongside `intel_iommu=on` for GPU passthrough to reduce DMA translation overhead.
+- Understand your NUMA topology before making any changes.
+- Pin vCPUs to specific cores on the same NUMA node as the VM memory.
+- Always configure `emulatorpin` to prevent QEMU threads from contending with guest vCPUs.
+- Isolate CPUs with `isolcpus`, `nohz_full`, and `rcu_nocbs` for latency-sensitive workloads.
+- Use the `cpu-partitioning` tuned profile for consistent system-wide tuning.
+- Be cautious with `vm.min_free_kbytes` on NUMA systems to avoid OOM conditions.
 
 ## References
 
@@ -644,5 +522,4 @@ Performance tuning KVM/libvirt on Rocky Linux requires a holistic approach that 
 2. "Domain XML format" by the libvirt project [https://libvirt.org/formatdomain.html](https://libvirt.org/formatdomain.html)
 3. "The kernel's command-line parameters" by the Linux kernel documentation project [https://docs.kernel.org/admin-guide/kernel-parameters.html](https://docs.kernel.org/admin-guide/kernel-parameters.html)
 4. "NO_HZ: Reducing scheduling-clock ticks" by the Linux kernel documentation project [https://docs.kernel.org/timers/no_hz.html](https://docs.kernel.org/timers/no_hz.html)
-5. "VFIO - Virtual Function I/O" by the Linux kernel documentation project [https://docs.kernel.org/driver-api/vfio.html](https://docs.kernel.org/driver-api/vfio.html)
-6. "KVM real time guest configuration" by the libvirt project [https://libvirt.org/kbase/kvm-realtime.html](https://libvirt.org/kbase/kvm-realtime.html)
+5. "KVM real time guest configuration" by the libvirt project [https://libvirt.org/kbase/kvm-realtime.html](https://libvirt.org/kbase/kvm-realtime.html)
