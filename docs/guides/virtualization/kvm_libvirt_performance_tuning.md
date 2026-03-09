@@ -439,7 +439,7 @@ echo 'force_drivers+=" vfio vfio_pci vfio_iommu_type1 "' | sudo tee /etc/dracut.
 
 !!! note "The `vfio_virqfd` module"
 
-    The `vfio_virqfd` module was merged into the core `vfio` module in upstream kernel 6.2. On Rocky Linux 8 and 9 (which use kernels older than 6.2), `vfio_virqfd` is a separate module and should be added to the `force_drivers` line. On Rocky Linux 10 (kernel 6.12), it is included in the core `vfio` module and does not need to be loaded separately.
+    On Rocky Linux 9 and 10, `vfio_virqfd` has been merged into the core `vfio` module and does not need to be loaded separately. On Rocky Linux 8 (kernel 4.18), it is still a separate module. If you are running Rocky Linux 8, add `vfio_virqfd` to the `force_drivers` line.
 
 Rebuild the initramfs:
 
