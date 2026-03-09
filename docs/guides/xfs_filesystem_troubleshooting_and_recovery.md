@@ -208,10 +208,10 @@ When an `XFS` file system suffers metadata corruption, the system may fail to mo
 
 Use `rd.break` when:
 
-- The system drops to a `dracut` emergency shell during boot
-- Boot messages show `XFS` mount failures with `LSN` errors
-- The root file system (`/sysroot`) fails to mount
-- Standard rescue mode (`systemd.unit=rescue.target`) also fails because it depends on mounting root
+- The system drops to a `dracut` emergency shell during boot.
+- Boot messages show `XFS` mount failures with `LSN` errors.
+- The root file system (`/sysroot`) fails to mount.
+- Standard rescue mode (`systemd.unit=rescue.target`) also fails because it depends on mounting root.
 
 ### Step-by-step recovery procedure
 
