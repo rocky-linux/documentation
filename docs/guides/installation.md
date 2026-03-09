@@ -70,7 +70,7 @@ Once the system is set up to boot from the media with the ISO file, we can begin
 
 2. Once the computer has booted, you see the Rocky Linux 10 installer splash screen.
 
-    ![Rocky Linux installation splash screen](images/installation_10_0_F01.png)
+    ![Rocky Linux installation splash screen](images/installation_10_1_F01.png)
 
 3. At the welcome screen, you can use the ++"up"++ or ++"down"++ arrow keys to select any of the options, followed by pressing ++enter++ to run the selected option. If you do not press any key, the installation program starts a countdown, after which the installation process automatically executes the default, highlighted option:
 
