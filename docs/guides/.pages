@@ -18,11 +18,13 @@ nav:
     - Editors: editors
     - Email: email
     - File Sharing Services: file_sharing
+    - Filesystems: filesystems
     - Hardware: hardware
     - HPC: hpc
     - Interoperability: interoperability
     - ISOs: isos
     - Kernel: kernel
+    - ... | migrating_cgroup_v1_to_v2*.md
     - Mirror Management: mirror_management
     - Network: network
     - Package Management: package_management
