@@ -70,7 +70,7 @@ Sobald das System für den Start vom Medium mit der ISO-Datei eingerichtet ist, 
 
 2. Sobald der Computer hochgefahren ist, sehen Sie den Begrüßungsbildschirm des Installationsprogramms von Rocky Linux 10.
 
-    ![Splash-Bildschirm der Rocky Linux-Installation](images/installation_10_0_F01.png)
+    ![Splash-Bildschirm der Rocky Linux-Installation](images/installation_10_1_F01.png)
 
 3. Auf dem Begrüßungsbildschirm können Sie mit den Pfeiltasten ++up++ oder ++down++ eine der Optionen auswählen und anschließend die ++enter++ drücken, um die ausgewählte Option auszuführen. Wenn Sie keine Taste drücken, startet das Installationsprogramm einen Countdown, nach dessen Ablauf der Installationsvorgang automatisch die standardmäßig hervorgehobene Option ausführt:
 
