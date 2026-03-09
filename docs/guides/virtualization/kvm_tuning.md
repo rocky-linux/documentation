@@ -11,6 +11,10 @@ tags:
   - virtualization
 ---
 
+## AI usage
+
+This document adheres to the [AI contribution policy found here.](../contribute/ai-contribution-policy.md) If you find any errors in the instructions, please let us know.
+
 ## Introduction
 
 This guide covers advanced performance tuning for KVM/libvirt virtual machines on Rocky Linux. It addresses common production issues including NUMA memory misallocation and vCPU scheduling contention.
