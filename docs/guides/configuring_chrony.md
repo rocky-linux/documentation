@@ -11,8 +11,6 @@ tags:
 - time
 ---
 
-# Configuring chrony
-
 **Knowledge**: :star: :star:
 **Reading time**: 20 minutes
 
