@@ -79,10 +79,10 @@ slabtop -s c
 
 Key `XFS`-related slab objects to monitor:
 
-- `xfs_inode` - cached `XFS` `inode` structures
-- `xfs_buf` - `XFS` buffer cache entries
-- `xfs_ili` - `XFS` `inode` log items
-- `xfs_trans` - `XFS` transaction structures
+- `xfs_inode` - cached `XFS` `inode` structures.
+- `xfs_buf` - `XFS` buffer cache entries.
+- `xfs_ili` - `XFS` `inode` log items.
+- `xfs_trans` - `XFS` transaction structures.
 
 Other kernel slab objects that grow alongside `XFS` under memory pressure:
 
