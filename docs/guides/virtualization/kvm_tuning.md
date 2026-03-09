@@ -29,7 +29,6 @@ The topics covered include:
 - A machine running Rocky Linux 8, 9, or 10 with KVM/libvirt installed and configured. See the [Setting Up libvirt on Rocky Linux](libvirt-rocky.md) guide for initial setup.
 - Root or `sudo` access on the hypervisor host.
 - Familiarity with `virsh` and libvirt domain XML.
-- A multi-socket or multi-NUMA-node server for NUMA-related sections.
 
 ## Understanding your NUMA topology
 
