@@ -11,6 +11,10 @@ tags:
 - xfs
 ---
 
+## AI usage
+
+This document adheres to the [AI contribution policy found here.](../contribute/ai-contribution-policy.md) If you find any errors in the instructions, please let us know.
+
 ## Introduction
 
 Rocky Linux uses `XFS` as its default file system for all partitions except `/boot` (which uses `ext4`). `XFS` is a high-performance, journal-based file system that handles large files and high I/O workloads well^1^, but like any file system, it can encounter issues ranging from kernel-level memory leaks to metadata corruption that prevents booting.
