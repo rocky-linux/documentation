@@ -154,7 +154,7 @@ The mechanism:
 3. A bug in the compaction code fails to free `numa_policy` objects after migration
 4. Over approximately 23 days, these leaked objects exhaust system memory
 
-The fix is included in `kernel-4.18.0-553.94.1` (`RHSA-2026:0759`), which contains the upstream commit for proper compaction event handling.
+The fix is included in `kernel-4.18.0-553.94.1`, which contains the upstream commit for proper compaction event handling.
 
 !!! warning "Long incubation period"
 
