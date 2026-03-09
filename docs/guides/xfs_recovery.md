@@ -108,9 +108,9 @@ Three fields in `/proc/meminfo` track slab memory^4^:
 grep -E 'Slab|SReclaimable|SUnreclaim' /proc/meminfo
 ```
 
-- `Slab` - total memory used by the slab manager
-- `SReclaimable` - slab memory that the kernel can reclaim under pressure
-- `SUnreclaim` - slab memory that cannot be reclaimed
+- `Slab` - total memory used by the slab manager.
+- `SReclaimable` - slab memory that the kernel can reclaim under pressure.
+- `SUnreclaim` - slab memory that cannot be reclaimed.
 
 An increasing `SUnreclaim` value over days or weeks indicates a potential memory leak.
 
