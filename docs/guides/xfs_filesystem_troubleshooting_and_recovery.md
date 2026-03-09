@@ -147,36 +147,6 @@ ps -eLf | grep -c kworker
 
 A healthy system typically has dozens to low hundreds of `kworker` threads depending on CPU count and I/O load. Counts of 500 or more, combined with high slab growth, indicate a kernel-level problem.
 
-### Known Rocky Linux 8 kernel bug
-
-A confirmed memory leak affects Rocky Linux 8 kernels from `4.18.0-553.81.1` through versions prior to `4.18.0-553.94.1`. The leak is triggered when both Transparent Huge Pages (`THP`) and swap are enabled simultaneously.
-
-The mechanism:
-
-1. Applications using `NUMA` memory policies (such as `JVM` with `-XX:+UseNUMA`) call `set_mempolicy()` and `mbind()`, which create `numa_policy` slab objects
-2. `THP` memory compaction attempts to consolidate memory by migrating huge pages
-3. A bug in the compaction code fails to free `numa_policy` objects after migration
-4. Over approximately 23 days, these leaked objects exhaust system memory
-
-The fix is included in `kernel-4.18.0-553.94.1`, which contains the upstream commit for proper compaction event handling.
-
-!!! warning "Long incubation period"
-
-    This memory leak takes approximately 23 days to reach critical levels on a 1 TB RAM system. Short monitoring windows of hours or even days may not reveal the problem. If you suspect this bug, monitor slab growth continuously for at least one week.
-
-To check your current kernel version:
-
-```bash
-uname -r
-```
-
-To update to the fixed kernel on Rocky Linux 8:
-
-```bash
-dnf update kernel
-reboot
-```
-
 ## Mitigating `XFS` memory issues with `THP`
 
 Transparent Huge Pages (`THP`) can interact poorly with the kernel memory compaction system, triggering slab memory leaks on affected kernel versions^5^. Disabling `THP` is the recommended workaround when a kernel update is not immediately possible.
