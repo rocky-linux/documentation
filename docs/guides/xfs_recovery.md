@@ -21,12 +21,12 @@ Rocky Linux uses `XFS` as its default file system for all partitions except `/bo
 
 This guide covers:
 
-- Monitoring `XFS`-related kernel slab memory usage
-- Diagnosing slab memory leaks caused by known kernel bugs
-- Mitigating memory issues related to Transparent Huge Pages (`THP`)
-- Recovering a system that will not boot using `rd.break` and `xfs_repair`
-- Understanding when and how to use `xfs_repair -L`
-- Avoiding data loss during RAID controller recovery
+- Monitoring `XFS`-related kernel slab memory usage.
+- Diagnosing slab memory leaks caused by known kernel bugs.
+- Mitigating memory issues related to Transparent Huge Pages (`THP`).
+- Recovering a system that will not boot using `rd.break` and `xfs_repair`.
+- Understanding when and how to use `xfs_repair -L`.
+- Avoiding data loss during RAID controller recovery.
 
 The procedures in this guide apply to Rocky Linux 8, Rocky Linux 9, and Rocky Linux 10. Where versions differ, the guide notes the distinction.
 
@@ -194,7 +194,7 @@ The `transparent_hugepage=never` parameter should appear in the kernel arguments
 
 !!! note "Performance considerations"
 
-    Disabling `THP` may reduce performance for applications that benefit from large memory pages, such as databases and in-memory caches. Monitor application performance after disabling `THP`. If the kernel has been updated to the fixed version (`4.18.0-553.94.1` or later for Rocky Linux 8), re-enable `THP` if your workload benefits from it.
+    Disabling `THP` may reduce performance for applications that benefit from large memory pages, such as databases and in-memory caches. Monitor application performance after disabling `THP` and re-enable it if your workload benefits from it.
 
 ## Recovering a system that will not boot with `rd.break`
 
@@ -443,11 +443,11 @@ To reduce the risk of RAID-related data loss:
 ## References
 
 1. "`XFS` Administration" by the Linux Kernel Project [`https://docs.kernel.org/admin-guide/xfs.html`](https://docs.kernel.org/admin-guide/xfs.html)
-2. "`xfs_info`(8) manual page" by the Linux man-pages Project [`https://man7.org/linux/man-pages/man8/xfs_info.8.html`](https://man7.org/linux/man-pages/man8/xfs_info.8.html)
+2. "`xfs_info`(8) man page" by the Linux man-pages Project [`https://man7.org/linux/man-pages/man8/xfs_info.8.html`](https://man7.org/linux/man-pages/man8/xfs_info.8.html)
 3. "Short Users Guide for `SLUB`" by the Linux Kernel Project [`https://docs.kernel.org/mm/slab.html`](https://docs.kernel.org/mm/slab.html)
 4. "The `/proc` File System" by the Linux Kernel Project [`https://www.kernel.org/doc/html/latest/filesystems/proc.html`](https://www.kernel.org/doc/html/latest/filesystems/proc.html)
 5. "Transparent Huge Page Support" by the Linux Kernel Project [`https://docs.kernel.org/admin-guide/mm/transhuge.html`](https://docs.kernel.org/admin-guide/mm/transhuge.html)
-6. "`dracut.cmdline`(7) manual page" by the Linux man-pages Project [`https://man7.org/linux/man-pages/man7/dracut.cmdline.7.html`](https://man7.org/linux/man-pages/man7/dracut.cmdline.7.html)
+6. "`dracut.cmdline`(7) man page" by the Linux man-pages Project [`https://man7.org/linux/man-pages/man7/dracut.cmdline.7.html`](https://man7.org/linux/man-pages/man7/dracut.cmdline.7.html)
 7. "`LVM2` Resource Page" by the `LVM2` Project [`https://www.sourceware.org/lvm2/`](https://www.sourceware.org/lvm2/)
-8. "`xfs_repair`(8) manual page" by the Linux man-pages Project [`https://man7.org/linux/man-pages/man8/xfs_repair.8.html`](https://man7.org/linux/man-pages/man8/xfs_repair.8.html)
+8. "`xfs_repair`(8) man page" by the Linux man-pages Project [`https://man7.org/linux/man-pages/man8/xfs_repair.8.html`](https://man7.org/linux/man-pages/man8/xfs_repair.8.html)
 9. "`GNU GRUB` Manual" by the GNU Project [`https://www.gnu.org/software/grub/manual/grub/grub.html`](https://www.gnu.org/software/grub/manual/grub/grub.html)
