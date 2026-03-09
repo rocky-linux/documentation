@@ -4,12 +4,12 @@ author: Howard Van Der Wal
 tested_with: 8, 9, 10
 ai_contributors: Claude (claude-opus-4-6)
 tags:
+  - gpu
   - kvm
   - libvirt
-  - virtualization
-  - performance
   - numa
-  - gpu
+  - performance
+  - virtualization
 ---
 
 ## Introduction
