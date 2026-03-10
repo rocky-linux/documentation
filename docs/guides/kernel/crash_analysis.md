@@ -21,7 +21,7 @@ This document adheres to the [AI contribution policy found here.](../contribute/
 
 ## Introduction
 
-When a Linux kernel crashes, the system produces a memory dump called a `vmcore`. Analyzing this dump is often the only way to determine why a production server went down. Rocky Linux ships with two essential tools for this workflow: `kdump`, which captures the vmcore at crash time, and the `crash` utility, which opens the dump for post-mortem analysis.
+When a Linux kernel crashes, the system produces a memory dump called a `vmcore`. Analyzing this dump is often the only way to determine why a production server went down. Rocky Linux ships with two essential tools for this workflow: `kdump`, which captures the vmcore at crash time, and the `crash` utility, which opens the dump for post-mortem analysis^5^.
 
 This guide walks through the complete process — from configuring kdump to capture vmcores, to using crash commands to identify common crash patterns such as blocked task panics, mutex corruption, and cgroup deadlocks. It also covers safe sosreport collection during crash investigation and guidance on when to upgrade the kernel versus apply workarounds.
 
@@ -34,7 +34,7 @@ This guide walks through the complete process — from configuring kdump to capt
 
 ## Setting up kdump for vmcore capture
 
-The `kdump` service reserves a portion of system memory for a secondary kernel. When the primary kernel crashes, `kdump` boots this secondary kernel and uses it to write the contents of memory to disk as a vmcore file.
+The `kdump` service reserves a portion of system memory for a secondary kernel. When the primary kernel crashes, `kdump` boots this secondary kernel and uses it to write the contents of memory to disk as a vmcore file^1^.
 
 ### Installing kdump
 
@@ -107,7 +107,7 @@ The default configuration writes dumps to the local filesystem. Key settings inc
 
 !!! note
 
-    The `-d 31` flag in `makedumpfile` filters out zero pages, cache pages, user data pages, and free pages. This significantly reduces vmcore size. For a system with 64 GB of RAM, the resulting vmcore is typically 1-4 GB rather than the full 64 GB.
+    The `-d 31` flag in `makedumpfile` filters out zero pages, cache pages, user data pages, and free pages^3^. This significantly reduces vmcore size. For a system with 64 GB of RAM, the resulting vmcore is typically 1-4 GB rather than the full 64 GB.
 
 ### Enabling and verifying kdump
 
@@ -133,7 +133,7 @@ This should report `Kdump is operational`.
 
 ## Installing the crash utility and kernel-debuginfo packages
 
-The `crash` utility requires both the `crash` package and the matching `kernel-debuginfo` package for the kernel that produced the vmcore.
+The `crash` utility requires both the `crash` package and the matching `kernel-debuginfo` package for the kernel that produced the vmcore^2^.
 
 ### Installing crash
 
@@ -212,7 +212,7 @@ Key fields to examine:
 
 ### `log` — kernel ring buffer
 
-The `log` command displays the kernel ring buffer (equivalent to `dmesg`). This is usually the first command to run after opening a vmcore:
+The `log` command displays the kernel ring buffer (equivalent to `dmesg`)^4^. This is usually the first command to run after opening a vmcore:
 
 ```text
 crash> log
@@ -445,7 +445,7 @@ Timer bugs are typically fixed in upstream kernel patches. The backtrace and the
 
 ## PREEMPT_RT kernel considerations
 
-The PREEMPT_RT patch set converts kernel `spinlock_t` and `rwlock_t` into `rt_mutex`-based implementations to provide deterministic scheduling latency. Standard `struct mutex` types are also reimplemented on top of `rt_mutex` under PREEMPT_RT, gaining priority inheritance support, though they remain sleeping locks in both configurations. This conversion changes blocking behavior significantly.
+The PREEMPT_RT patch set converts kernel `spinlock_t` and `rwlock_t` into `rt_mutex`-based implementations to provide deterministic scheduling latency^6^. Standard `struct mutex` types are also reimplemented on top of `rt_mutex` under PREEMPT_RT, gaining priority inheritance support, though they remain sleeping locks in both configurations. This conversion changes blocking behavior significantly.
 
 Key differences under PREEMPT_RT:
 
@@ -472,7 +472,7 @@ On PREEMPT_RT kernels, pay particular attention to the relationship between mute
 
 ## Collecting sosreport safely during crash investigation
 
-The `sosreport` tool (provided by the `sos` package) collects system configuration and diagnostic information. However, running a full sosreport on a system that is already under stress — for example, one that has recently recovered from a panic or is exhibiting hung tasks — can trigger additional crashes.
+The `sosreport` tool (provided by the `sos` package) collects system configuration and diagnostic information^7^. However, running a full sosreport on a system that is already under stress — for example, one that has recently recovered from a panic or is exhibiting hung tasks — can trigger additional crashes.
 
 ### Risk of full sosreport on stressed systems
 
@@ -584,10 +584,10 @@ Key takeaways:
 
 ## References
 
-1. "Documentation for kdump — The kexec-based Crash Dumping Solution" by The Linux Kernel documentation project [https://docs.kernel.org/admin-guide/kdump/kdump.html]
-2. "crash utility" by Dave Anderson and the crash-utility team [https://github.com/crash-utility/crash]
-3. "makedumpfile" by the makedumpfile project [https://github.com/makedumpfile/makedumpfile]
-4. "crash(8) man page" by Dave Anderson [https://man7.org/linux/man-pages/man8/crash.8.html]
-5. "How to deal with a kernel panic" by Rocky Linux Documentation [https://docs.rockylinux.org/guides/troubleshooting/kernel_panic/]
-6. "Real-Time Linux" by The Linux Foundation [https://wiki.linuxfoundation.org/realtime/start]
-7. "sos — A unified tool for collecting system logs and other debug information" by the sos project [https://github.com/sosreport/sos]
+1. "Documentation for kdump — The kexec-based Crash Dumping Solution" by The Linux Kernel documentation project [https://docs.kernel.org/admin-guide/kdump/kdump.html](https://docs.kernel.org/admin-guide/kdump/kdump.html)
+2. "crash utility" by Dave Anderson and the crash-utility team [https://github.com/crash-utility/crash](https://github.com/crash-utility/crash)
+3. "makedumpfile" by the makedumpfile project [https://github.com/makedumpfile/makedumpfile](https://github.com/makedumpfile/makedumpfile)
+4. "crash(8) man page" by Dave Anderson [https://man7.org/linux/man-pages/man8/crash.8.html](https://man7.org/linux/man-pages/man8/crash.8.html)
+5. "How to deal with a kernel panic" by Rocky Linux Documentation [https://docs.rockylinux.org/guides/troubleshooting/kernel_panic/](https://docs.rockylinux.org/guides/troubleshooting/kernel_panic/)
+6. "Real-Time Linux" by The Linux Foundation [https://wiki.linuxfoundation.org/realtime/start](https://wiki.linuxfoundation.org/realtime/start)
+7. "sos — A unified tool for collecting system logs and other debug information" by the sos project [https://github.com/sosreport/sos](https://github.com/sosreport/sos)
