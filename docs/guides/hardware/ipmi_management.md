@@ -1,5 +1,5 @@
 ---
-title: IPMI and BMC hardware management on Rocky Linux
+title: IPMI management
 author: Howard Van Der Wal
 contributors: Steven Spencer
 ai_contributors: Claude (claude-sonnet-4-6)
@@ -18,7 +18,7 @@ tags:
 
 ## AI usage
 
-This document adheres to the [AI contribution policy found here.](contribute/ai-contribution-policy.md) If you find any errors in the instructions, please let us know.
+This document adheres to the [AI contribution policy found here.](../contribute/ai-contribution-policy.md) If you find any errors in the instructions, please let us know.
 
 ## Introduction
 
