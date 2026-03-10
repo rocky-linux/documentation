@@ -194,7 +194,7 @@ systemctl cat fstrim.service
 
 The output should show the override section after the original unit file contents.
 
-**What each setting does:**
+What each setting does:
 
 - `IOSchedulingClass=best-effort`: Places `fstrim` I/O in the best-effort scheduling class, which shares I/O bandwidth with other processes rather than waiting for the I/O queue to be completely idle.
 - `IOSchedulingPriority=7`: Sets the lowest priority (0-7 scale) within the best-effort class^4^.
@@ -325,8 +325,8 @@ TRIM and UNMAP are the same concept applied to different storage types. Understa
 
 On SSDs, TRIM informs the flash controller that specific blocks are no longer in use. This enables:
 
-- **Garbage collection**: The SSD controller can erase and reclaim unused NAND blocks during idle periods, improving write performance.
-- **Wear leveling**: The controller can more evenly distribute writes across all available NAND cells when it knows which blocks are free.
+- Garbage collection: The SSD controller can erase and reclaim unused NAND blocks during idle periods, improving write performance.
+- Wear leveling: The controller can more evenly distribute writes across all available NAND cells when it knows which blocks are free.
 
 Without TRIM, SSD write performance degrades over time as the controller runs out of pre-erased blocks and must perform read-erase-write cycles inline with new writes.
 
@@ -334,8 +334,8 @@ Without TRIM, SSD write performance degrades over time as the controller runs ou
 
 On thin-provisioned SAN storage, UNMAP informs the storage array that blocks are no longer in use. This enables:
 
-- **Space reclamation**: The array returns the unused blocks to the thin pool, making them available for other volumes.
-- **Capacity reporting**: Storage management tools accurately reflect the actual space consumed rather than the allocated size.
+- Space reclamation: The array returns the unused blocks to the thin pool, making them available for other volumes.
+- Capacity reporting: Storage management tools accurately reflect the actual space consumed rather than the allocated size.
 
 Without UNMAP, a thin-provisioned LUN only grows. Even after deleting large amounts of data, the SAN continues to report the high-water mark as the used space.
 
@@ -343,9 +343,9 @@ Without UNMAP, a thin-provisioned LUN only grows. Even after deleting large amou
 
 Virtual machines using virtio-scsi^5^ can pass discard commands from the guest to the hypervisor, which then translates them to the appropriate storage operation:
 
-- **KVM/QEMU with virtio-scsi**: The `discard='unmap'` option in the domain XML enables discard passthrough from the guest to the host storage.
-- **VMware**: VMFS 6 supports UNMAP from guest operating systems on thin-provisioned virtual disks.
-- **Hyper-V**: Generation 2 VMs support TRIM passthrough to Hyper-V virtual hard disks.
+- KVM/QEMU with virtio-scsi: The `discard='unmap'` option in the domain XML enables discard passthrough from the guest to the host storage.
+- VMware: VMFS 6 supports UNMAP from guest operating systems on thin-provisioned virtual disks.
+- Hyper-V: Generation 2 VMs support TRIM passthrough to Hyper-V virtual hard disks.
 
 The guest operating system configuration (this guide) remains the same regardless of the virtualization platform. The hypervisor handles translating the discard commands to the underlying physical storage.
 
@@ -353,11 +353,11 @@ The guest operating system configuration (this guide) remains the same regardles
 
 For most Rocky Linux deployments on thin-provisioned storage or SSDs, the recommended configuration is:
 
-1. **Do not** use the `discard` mount option on XFS filesystems in production. The inline TRIM operations drain the I/O queue and cause latency spikes.
-2. **Enable `fstrim.timer`** with a systemd override that sets `IOSchedulingClass=best-effort`, `IOSchedulingPriority=7`, and `Nice=19`. On Rocky Linux 10, the timer is already enabled by default.
-3. **Set `issue_discards = 1`** in lvm.conf only if you need discard commands during LVM operations such as `lvremove`. This setting does not replace `fstrim` for filesystem-level space reclamation.
-4. **Verify discard support** at every layer of the storage stack using `lsblk -D`, `dmsetup table`, and `fstrim -v`.
-5. **Add `RandomizedDelaySec`** to `fstrim.timer` when multiple VMs share the same underlying storage.
+1. Do not use the `discard` mount option on XFS filesystems in production. The inline TRIM operations drain the I/O queue and cause latency spikes.
+2. Enable `fstrim.timer` with a systemd override that sets `IOSchedulingClass=best-effort`, `IOSchedulingPriority=7`, and `Nice=19`. On Rocky Linux 10, the timer is already enabled by default.
+3. Set `issue_discards = 1` in lvm.conf only if you need discard commands during LVM operations such as `lvremove`. This setting does not replace `fstrim` for filesystem-level space reclamation.
+4. Verify discard support at every layer of the storage stack using `lsblk -D`, `dmsetup table`, and `fstrim -v`.
+5. Add `RandomizedDelaySec` to `fstrim.timer` when multiple VMs share the same underlying storage.
 
 ## References
 
