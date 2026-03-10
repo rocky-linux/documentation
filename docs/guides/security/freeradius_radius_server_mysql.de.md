@@ -38,7 +38,7 @@ dnf install -y freeradius freeradius-mysql
 
 ## MariaDB
 
-Sie müssen MariaDB installieren:
+Sie müssen MariaDB wie folgt installieren:
 
 ```bash
 dnf install mariadb-server
@@ -167,7 +167,7 @@ systemctl enable --now mysql
 mysql_secure_installation
 ```
 
-Melden Sie sich zunächst bei MariaDB an:
+Als Nächstes melden Sie sich bei MariaDB an:
 
 ```bash
 mysql -u root -p
