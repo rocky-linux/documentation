@@ -168,7 +168,7 @@ Verify the `vmlinux` file exists:
 ls /usr/lib/debug/lib/modules/$(uname -r)/vmlinux
 ```
 
-## Opening a vmcore with crash
+## Opening a vmcore with the crash utility
 
 To open a vmcore, provide the path to the `vmlinux` debugging symbols and the vmcore file:
 
@@ -204,10 +204,10 @@ LOAD AVERAGE: 45.67, 42.31, 38.92
 
 Key fields to examine:
 
-- **UPTIME** — how long the system was running before the crash
-- **LOAD AVERAGE** — system load at crash time (high values may indicate resource exhaustion)
-- **PANIC** — the panic message that triggered the crash
-- **PID** and **COMMAND** — the process and command running when the crash occurred
+- `UPTIME` — how long the system was running before the crash
+- `LOAD AVERAGE` — system load at crash time (high values may indicate resource exhaustion)
+- `PANIC` — the panic message that triggered the crash
+- `PID` and `COMMAND` — the process and command running when the crash occurred
 
 ## Essential crash analysis commands
 
@@ -325,7 +325,7 @@ A tainted kernel (for example, by out-of-tree or proprietary modules) may behave
 
 The `khungtaskd` kernel thread monitors tasks in uninterruptible sleep (D state). If a task remains in this state for longer than the `kernel.hung_task_timeout_secs` threshold (default: 120 seconds), `khungtaskd` logs a warning. If `kernel.hung_task_panic` is set to 1, it triggers a kernel panic.
 
-**Recognizing the pattern in log output:**
+Recognizing the pattern in log output:
 
 ```text
 crash> log | grep "blocked for more than"
@@ -338,7 +338,7 @@ INFO: task kworker/2:1:1234 blocked for more than 120 seconds.
 INFO: task runc:[2:INIT]:5678 blocked for more than 600 seconds.
 ```
 
-**Finding all blocked tasks:**
+Finding all blocked tasks:
 
 ```text
 crash> foreach UN ps -m
@@ -346,7 +346,7 @@ crash> foreach UN ps -m
 
 This lists every task in uninterruptible sleep along with the duration. Tasks blocked for hundreds of seconds are strong candidates for the root cause.
 
-**Tracing the blocking chain:**
+Tracing the blocking chain:
 
 Once you identify a blocked task, examine its backtrace:
 
@@ -360,7 +360,7 @@ Look for functions related to locks, mutexes, or I/O waits in the backtrace. Com
 
 On kernels using PREEMPT_RT, `spinlock_t` and `rwlock_t` are replaced with `rt_mutex`-based implementations, converting them from spinning locks to sleeping locks. Corruption of these structures can cause cascading task blockages.
 
-**Examining pi_blocked_on:**
+Examining pi_blocked_on:
 
 If a task is blocked on an rt_mutex, the `pi_blocked_on` field in its `task_struct` points to the `rt_mutex_waiter` structure:
 
@@ -382,7 +382,7 @@ crash> struct rt_mutex <mutex_address>
 
 The `owner` field of the `rt_mutex` shows which task holds the lock. An invalid owner pointer (such as `0x1` or another clearly invalid address) indicates mutex corruption.
 
-**Example of a corrupted rt_mutex chain:**
+Example of a corrupted rt_mutex chain:
 
 ```text
 crash> struct task_struct.pi_blocked_on ffff9a3c0e4b0000
@@ -399,7 +399,7 @@ An `owner` value of `0x1` means the lock's ownership tracking has been corrupted
 
 Container environments are susceptible to cgroup-related deadlocks, particularly when container runtimes (such as `runc`) interact with kernel cgroup subsystems.
 
-**Identifying the pattern:**
+Identifying the pattern:
 
 ```text
 crash> log | grep -i "cgroup\|threadgroup"
@@ -407,7 +407,7 @@ crash> log | grep -i "cgroup\|threadgroup"
 
 A common deadlock scenario involves the `cgroup_mutex` and `cgroup_threadgroup_rwsem` locks. One task holds `cgroup_mutex` while waiting for `cgroup_threadgroup_rwsem`, while another task holds `cgroup_threadgroup_rwsem` and waits for `cgroup_mutex`.
 
-**Tracing the deadlock:**
+Tracing the deadlock:
 
 1. Find blocked tasks related to container operations:
 
@@ -418,11 +418,11 @@ A common deadlock scenario involves the `cgroup_mutex` and `cgroup_threadgroup_r
 2. Identify tasks holding the conflicting locks by examining their backtraces. Look for functions like `cgroup_lock`, `cgroup_attach_task`, `copy_process`, and `cgroup_exit`.
 
 3. The deadlock often involves:
-    - A container runtime process (runc) holding `cgroup_mutex` during container setup
-    - Fork or exit operations blocking on `cgroup_threadgroup_rwsem`
-    - The two locks creating a circular dependency
+    - A container runtime process (for example runc) holding `cgroup_mutex` during container setup.
+    - Fork or exit operations blocking on `cgroup_threadgroup_rwsem`.
+    - The two locks creating a circular dependency.
 
-**Mitigation:**
+Mitigation:
 
 Reducing the frequency of operations that trigger cgroup lock contention — such as container exec probes in Kubernetes — can prevent these deadlocks from occurring.
 
@@ -430,7 +430,7 @@ Reducing the frequency of operations that trigger cgroup lock contention — suc
 
 Timer-related kernel bugs manifest as `BUG_ON` assertions in timer code paths.
 
-**Recognizing the pattern:**
+Recognizing the pattern:
 
 ```text
 crash> log | grep -i "BUG.*timer\|timer.*BUG"
@@ -448,13 +448,13 @@ Timer bugs are typically fixed in upstream kernel patches. The backtrace and the
 
 The PREEMPT_RT patch set converts kernel `spinlock_t` and `rwlock_t` into `rt_mutex`-based implementations to provide deterministic scheduling latency. Standard `struct mutex` types are also reimplemented on top of `rt_mutex` under PREEMPT_RT, gaining priority inheritance support, though they remain sleeping locks in both configurations. This conversion changes blocking behavior significantly.
 
-**Key differences under PREEMPT_RT:**
+Key differences under PREEMPT_RT:
 
-- **Spinlocks become sleeping locks**: Code paths that are non-blocking on standard kernels can block under PREEMPT_RT, creating new deadlock possibilities.
-- **Priority inheritance**: rt_mutexes implement priority inheritance, which means mutex chains can become more complex. The `pi_blocked_on` and `pi_waiters` fields in `task_struct` are actively used.
-- **Longer blocking chains**: Because more locks are sleepable, tasks can be blocked for longer periods, making `khungtaskd` panics more likely.
+- Spinlocks become sleeping locks: Code paths that are non-blocking on standard kernels can block under PREEMPT_RT, creating new deadlock possibilities.
+- Priority inheritance: rt_mutexes implement priority inheritance, which means mutex chains can become more complex. The `pi_blocked_on` and `pi_waiters` fields in `task_struct` are actively used.
+- Longer blocking chains: Because more locks are sleepable, tasks can be blocked for longer periods, making `khungtaskd` panics more likely.
 
-**Additional analysis techniques for RT kernels:**
+Additional analysis techniques for RT kernels:
 
 Examine the priority inheritance chain:
 
@@ -479,9 +479,9 @@ The `sosreport` tool (provided by the `sos` package) collects system configurati
 
 A full sosreport runs numerous diagnostic commands and reads many files from `/proc` and `/sys`. On a system with kernel subsystems in an inconsistent state, this activity can:
 
-- Trigger additional kernel panics by accessing corrupted data structures
-- Cause the system to become completely unresponsive
-- Produce an incomplete sosreport that is not useful for analysis
+- Trigger additional kernel panics by accessing corrupted data structures.
+- Cause the system to become completely unresponsive.
+- Produce an incomplete sosreport that is not useful for analysis.
 
 ### Using limited plugin scope
 
@@ -543,17 +543,17 @@ dnf check-update kernel
 
 ### Evaluating the decision
 
-**Upgrade the kernel when:**
+Upgrade the kernel when:
 
-- The crash pattern matches a known bug with a fix in a newer kernel version
-- The `rpm --changelog` output for the newer version includes the relevant fix
-- The system can tolerate a maintenance window for the reboot
+- The crash pattern matches a known bug with a fix in a newer kernel version.
+- The `rpm --changelog` output for the newer version includes the relevant fix.
+- The system can tolerate a maintenance window for the reboot.
 
-**Apply a workaround when:**
+Apply a workaround when:
 
-- No kernel fix is available yet
-- The system cannot tolerate downtime for a kernel upgrade
-- The crash can be avoided by changing system behavior (for example, reducing container exec probe frequency to avoid cgroup lock contention)
+- No kernel fix is available yet.
+- The system cannot tolerate downtime for a kernel upgrade.
+- The crash can be avoided by changing system behavior (for example, reducing container exec probe frequency to avoid cgroup lock contention).
 
 ### Verifying a fix is included
 
@@ -576,7 +576,7 @@ Kernel crash analysis with kdump and crash provides a systematic approach to dia
 
 Key takeaways:
 
-- Configure kdump and verify it is operational **before** a crash occurs
+- Configure kdump and verify it is operational before a crash occurs
 - Start analysis with `log`, `bt`, and `foreach UN ps -m` to understand the crash context
 - For blocked task panics, trace the blocking chain through mutex and lock structures
 - On PREEMPT_RT kernels, pay particular attention to rt_mutex behavior
@@ -585,10 +585,10 @@ Key takeaways:
 
 ## References
 
-1. [Red Hat Enterprise Linux 9 — Managing, monitoring, and updating the kernel](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/managing_monitoring_and_updating_the_kernel/index)
+1. [Linux kernel documentation — kdump](https://docs.kernel.org/admin-guide/kdump/kdump.html)
 2. [crash utility GitHub repository](https://github.com/crash-utility/crash)
 3. [makedumpfile GitHub repository](https://github.com/makedumpfile/makedumpfile)
 4. [crash utility man page](https://man7.org/linux/man-pages/man8/crash.8.html)
 5. [Rocky Linux Documentation — How to deal with a kernel panic](https://docs.rockylinux.org/guides/troubleshooting/kernel_panic/)
 6. [kernel.org — PREEMPT_RT documentation](https://wiki.linuxfoundation.org/realtime/start)
-7. [Red Hat Enterprise Linux 9 — Generating sos reports for technical support](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/getting_the_most_from_your_support_experience/generating-an-sos-report-for-technical-support_getting-the-most-from-your-support-experience)
+7. [sos project GitHub repository](https://github.com/sosreport/sos)
