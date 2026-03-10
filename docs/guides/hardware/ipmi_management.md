@@ -354,7 +354,7 @@ Most vendors provide their own BMC firmware update utilities:
 
 You now have a working IPMI configuration on Rocky Linux for managing server hardware locally and remotely. The key steps covered include loading and persisting the required kernel modules^3^, using `ipmitool` for common management tasks^1^, troubleshooting the most frequent `/dev/ipmi0` issues, and using FreeIPMI as an alternative^4^.
 
-For deeper exploration of the IPMI specification and advanced features, refer to the Intel IPMI specification^1^ and the `ipmitool` manual page^2^.
+For deeper exploration of the IPMI specification and advanced features, refer to the Intel IPMI specification^1^ and the `ipmitool` repository^2^.
 
 ## References
 
