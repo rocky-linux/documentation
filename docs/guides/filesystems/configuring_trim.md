@@ -3,7 +3,7 @@ title: Configuring TRIM
 author: Howard Van Der Wal
 contributors: Steven Spencer
 ai_contributors: Claude (claude-sonnet-4-6)
-tested with: 8.10, 9.7, 10.1
+tested with: 8, 9, 10
 tags:
 - discard
 - fstrim
@@ -28,9 +28,9 @@ This guide covers configuring TRIM and discard on Rocky Linux with LVM and XFS, 
 ## Prerequisites
 
 - A system running Rocky Linux 8, 9, or 10.
-- Root or `sudo` access
-- Storage that supports discard operations (SSD, thin-provisioned SAN LUN, or thin-provisioned virtual disk)
-- LVM-based storage configuration
+- Root or `sudo` access.
+- Storage that supports discard operations (SSD, thin-provisioned SAN LUN, or thin-provisioned virtual disk).
+- LVM-based storage configuration.
 
 ## Understanding the TRIM and discard stack
 
@@ -361,8 +361,8 @@ For most Rocky Linux deployments on thin-provisioned storage or SSDs, the recomm
 
 ## References
 
-1. [lvm.conf(5) man page - issue_discards setting](https://man7.org/linux/man-pages/man5/lvm.conf.5.html)
-2. [xfs(5) man page - discard mount option documentation](https://man7.org/linux/man-pages/man5/xfs.5.html)
-3. [fstrim(8) man page](https://man7.org/linux/man-pages/man8/fstrim.8.html)
-4. [ionice(1) man page - I/O scheduling classes and priorities](https://man7.org/linux/man-pages/man1/ionice.1.html)
-5. [libvirt domain XML - disk elements and discard configuration](https://libvirt.org/formatdomain.html#hard-drives-floppy-disks-cdroms)
+1. "lvm.conf(5) - issue_discards setting" by the Linux man-pages project [https://man7.org/linux/man-pages/man5/lvm.conf.5.html](https://man7.org/linux/man-pages/man5/lvm.conf.5.html)
+2. "xfs(5) - discard mount option documentation" by the Linux man-pages project [https://man7.org/linux/man-pages/man5/xfs.5.html](https://man7.org/linux/man-pages/man5/xfs.5.html)
+3. "fstrim(8)" by the Linux man-pages project [https://man7.org/linux/man-pages/man8/fstrim.8.html](https://man7.org/linux/man-pages/man8/fstrim.8.html)
+4. "ionice(1) - I/O scheduling classes and priorities" by the Linux man-pages project [https://man7.org/linux/man-pages/man1/ionice.1.html](https://man7.org/linux/man-pages/man1/ionice.1.html)
+5. "Domain XML format - disk elements and discard configuration" by the libvirt project [https://libvirt.org/formatdomain.html#hard-drives-floppy-disks-cdroms](https://libvirt.org/formatdomain.html#hard-drives-floppy-disks-cdroms)
