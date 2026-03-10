@@ -53,21 +53,30 @@ The kernel must reserve memory for the crash kernel at boot time. Check the curr
 cat /proc/cmdline | grep crashkernel
 ```
 
-On Rocky Linux 9 and 10, the `kexec-tools` package sets a default crashkernel value. You can check the default with:
+On Rocky Linux 8, `crashkernel` is set by default using the `crashkernel=auto` mechanism, which lets the kernel calculate the reserved memory size automatically. On Rocky Linux 9 and 10, the `crashkernel=auto` option was replaced by a new mechanism in `kexec-tools`. You can check the default value with:
 
 ```bash
 kdumpctl get-default-crashkernel
 ```
 
-On Rocky Linux 9.5+, this returns `1G-2G:192M,2G-64G:256M,64G-:512M`. The exact values vary by version and architecture. If the parameter is missing from the boot command line, add it using `grubby`:
-
-```bash
-grubby --update-kernel=ALL --args="crashkernel=1G-2G:192M,2G-64G:256M,64G-:512M"
-```
+On Rocky Linux 9, this returns `1G-2G:192M,2G-64G:256M,64G-:512M`. On Rocky Linux 10, this returns `2G-64G:256M,64G-:512M`. On Rocky Linux 8, this subcommand is not available.
 
 !!! note
 
-    On Rocky Linux 8, `kdumpctl get-default-crashkernel` is not available. Rocky Linux 8 uses `crashkernel=auto` by default, which lets the kernel calculate the reserved memory size automatically.
+    Standard interactive installations (using the Anaconda installer) configure `crashkernel` automatically through the kdump installer addon. Cloud images and kickstart installations without the kdump addon may not include the `crashkernel` parameter on the boot command line.
+
+If `crashkernel` is missing from the boot command line, add it using `grubby`:
+
+```bash
+kdumpctl get-default-crashkernel
+grubby --update-kernel=ALL --args="crashkernel=<value from above>"
+```
+
+On Rocky Linux 8, where `kdumpctl get-default-crashkernel` is not available, use:
+
+```bash
+grubby --update-kernel=ALL --args="crashkernel=auto"
+```
 
 Reboot for the change to take effect:
 
