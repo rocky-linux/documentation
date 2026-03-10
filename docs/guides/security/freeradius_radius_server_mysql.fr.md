@@ -38,7 +38,7 @@ dnf install -y freeradius freeradius-mysql
 
 ## Installation de MariaDB
 
-Il vous faut installer MariaDB :
+Il vous faut installer MariaDB comme suit :
 
 ```bash
 dnf install mariadb-server
@@ -217,7 +217,7 @@ Après la configuration initiale, vous pouvez démarrer `radiusd` :
 systemctl enable --now radiusd
 ```
 
-## Configuration de RADIUS sur un commutateur
+## Configuration de RADIUS sur un Switch
 
 Après avoir configuré le serveur FreeRADIUS, vous configurerez un client RADIUS.
 
