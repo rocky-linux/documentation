@@ -69,7 +69,7 @@ mount | grep discard
 ```
 
 ```text
-/dev/mapper/vg01-lv_data on /data type xfs (rw,relatime,attr2,inode64,logbufs=8,logbsize=32k,noquota,discard)
+/dev/mapper/rl-data on /data type xfs (rw,relatime,attr2,inode64,logbufs=8,logbsize=32k,noquota,discard)
 ```
 
 ### The `issue_discards` setting in lvm.conf
@@ -119,10 +119,10 @@ If you currently have `discard` in your mount options and want to remove it, edi
 
 ```bash
 # Before (inline discard enabled):
-/dev/mapper/vg01-lv_data  /data  xfs  defaults,discard  0 0
+/dev/mapper/rl-data  /data  xfs  defaults,discard  0 0
 
 # After (inline discard removed):
-/dev/mapper/vg01-lv_data  /data  xfs  defaults  0 0
+/dev/mapper/rl-data  /data  xfs  defaults  0 0
 ```
 
 Remount the filesystem to apply the change without rebooting:
