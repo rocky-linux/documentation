@@ -963,7 +963,7 @@ tags:
 
 You can optionally add a **Knowledge** rating and **Reading time** estimate at the very top of your document content, right after the front matter. These badges help readers quickly assess the difficulty level and time commitment before reading the guide.
 
-The markdown must be formatted exactly as follows:
+Please format the markdown like the following:
 
 ```markdown
 **Knowledge**: :star: :star:
