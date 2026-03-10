@@ -959,6 +959,28 @@ tags:
 ---
 ```
 
+#### Optional knowledge and reading time badges
+
+You can optionally add a **Knowledge** rating and **Reading time** estimate at the very top of your document content, right after the front matter. These badges help readers quickly assess the difficulty level and time commitment before reading the guide.
+
+The markdown must be formatted exactly as follows:
+
+```markdown
+**Knowledge**: :star: :star:
+**Reading time**: 15 minutes
+```
+
+Use the `:star:` emoji to indicate the knowledge level required, where more stars indicate a higher level of expertise:
+
+| Stars | Level |
+|-------|-------|
+| :star: | Beginner |
+| :star: :star: | Intermediate |
+| :star: :star: :star: | Advanced |
+| :star: :star: :star: :star: | Expert |
+
+Adjust the **Reading time** value to reflect the approximate time it takes to read and follow the guide. These fields are entirely optional — if you choose not to include them, simply omit both lines.
+
 After the front matter, structure your document with:
 
 1. A brief introduction explaining what the guide covers
