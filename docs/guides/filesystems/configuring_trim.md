@@ -13,6 +13,9 @@ tags:
 - xfs
 ---
 
+**Knowledge**: :star: :star: :star:
+**Reading time**: 20 minutes
+
 ## AI usage
 
 This document adheres to the [AI contribution policy found here.](../contribute/ai-contribution-policy.md) If you find any errors in the instructions, please let us know.
