@@ -338,18 +338,18 @@ bmc-info -h <BMC_IP> -u <username> -p <password>
 
 General guidance for BMC firmware updates:
 
-- **Download firmware only from your server vendor's official support site** (Dell, HPE, Supermicro, Lenovo).
-- **Read the release notes** for the firmware version before applying the update.
-- **Ensure stable power** throughout the update process. Use a UPS if available.
-- **Do not reboot or power off the server** during the firmware update.
-- **Back up the current BMC configuration** before updating, if your vendor's tools support this.
+- Download firmware only from your server vendor's official support site (Dell, HPE, Supermicro, Lenovo).
+- Read the release notes for the firmware version before applying the update.
+- Ensure stable power throughout the update process. Use a UPS if available.
+- Do not reboot or power off the server during the firmware update.
+- Back up the current BMC configuration before updating, if your vendor's tools support this.
 
 Most vendors provide their own BMC firmware update utilities:
 
-- **Dell**: `racadm` or Dell EMC Repository Manager.
-- **HPE**: `ilorest` or HPE Smart Update Manager.
-- **Supermicro**: `sum` (Supermicro Update Manager) or web-based BMC interface.
-- **Lenovo**: `OneCLI` or Lenovo XClarity.
+- Dell: `racadm` or Dell EMC Repository Manager.
+- HPE: `ilorest` or HPE Smart Update Manager.
+- Supermicro: `sum` (Supermicro Update Manager) or web-based BMC interface.
+- Lenovo: `OneCLI` or Lenovo XClarity.
 
 ## Conclusion
 
