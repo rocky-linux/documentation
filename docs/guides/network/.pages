@@ -1,0 +1,9 @@
+nav:
+    - ... | accel-ppp_pppoe_server*.md
+    - ... | hurricane_electric_ipv6_tunnel*.md
+    - ... | librenms_monitoring_server*.md
+    - ... | basic_network_configuration*.md
+    - ... | glances_network_monitoring*.md
+    - ... | openbgpd_bgp_router*.md
+    - Performance tuning: performance_tuning
+    - ...

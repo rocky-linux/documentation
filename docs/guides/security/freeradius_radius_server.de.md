@@ -94,7 +94,9 @@ systemctl enable --now radiusd
 
 ## Konfigurieren von RADIUS auf einem Switch
 
-Nachdem Sie den FreeRADIUS-Server eingerichtet haben, konfigurieren Sie einen RADIUS-Client auf dem MikroTik-Switch des Autors als kabelgebundenen 802.1X-Client:
+Nach der Einrichtung des FreeRADIUS-Servers konfigurieren Sie einen RADIUS-Client.
+
+Beispielsweise kann der MikroTik-Switch des Autors wie folgt konfiguriert werden:
 
 ```bash
 /radius
@@ -103,4 +105,4 @@ add address=172.20.0.12 secret=secret123 service=dot1x
 add interface=combo3
 ```
 
-Ersetzen Sie `172.20.0.12` durch die IP-Adresse des FreeRADIUS-Servers und `secret123` durch das zuvor festgelegte Geheimnis.
+Ersetzen Sie `172.20.0.12` durch die IP-Adresse des FreeRADIUS-Servers und `secret123` durch das zuvor festgelegte `secret`-Wert.

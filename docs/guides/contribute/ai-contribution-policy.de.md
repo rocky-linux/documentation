@@ -1,7 +1,7 @@
 ---
 title: KI-gestützte Beitragsrichtlinien
 authors: Wale Soyinka, Steven Spencer, Documentation Team
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 !!! note
@@ -38,7 +38,7 @@ Beispiele:
 
 ## Beitrags- und Gemeinschaftsbewertung
 
-- KI-Tools können zur Unterstützung menschlicher Gutachter eingesetzt werden, indem sie Analysen und Vorschläge liefern.
+- KI-Tools können zur Unterstützung menschlicher Reviewer eingesetzt werden, indem sie Analysen und Vorschläge liefern.
 - Sie dürfen KI _NICHT_ als alleiniges oder endgültiges Entscheidungsinstrument bei der Beurteilung eines Beitrags verwenden, weder inhaltlich noch subjektiv, noch darf sie dazu verwendet werden, den Status einer Person innerhalb der Gemeinschaft zu bewerten (z. B. im Hinblick auf Finanzierung, Führungsrollen oder Fragen des Verhaltenskodex).
 - Dies schließt den Einsatz automatisierter Werkzeuge zur objektiven technischen Validierung, wie z. B. CI/CD-Pipelines, automatisierte Tests oder Spamfilter, nicht aus.
 - Die endgültige Verantwortung für die Annahme eines Beitrags, auch wenn dies von einem automatisierten System umgesetzt wird, liegt stets bei dem menschlichen Beitragenden, der die Aktion autorisiert.
