@@ -3,7 +3,7 @@ title: IPMI and BMC hardware management on Rocky Linux
 author: Howard Van Der Wal
 contributors: Steven Spencer
 ai_contributors: Claude (claude-sonnet-4-6)
-tested with: 10.1, 9.7, 8.10
+tested with: 8, 9, 10
 tags:
 - bmc
 - hardware
@@ -12,15 +12,13 @@ tags:
 - server
 ---
 
-# IPMI and BMC hardware management on Rocky Linux
-
 **Knowledge**: :star: :star: :star:
 
 **Reading time**: 20 minutes
 
-## AI usage disclosure
+## AI usage
 
-AI assisted in creating this document. The author reviewed all content, tested, and verified its accuracy, and takes full responsibility for the correctness of this document. Please report any errors you encounter to the Rocky Linux documentation team.
+This document adheres to the [AI contribution policy found here.](contribute/ai-contribution-policy.md) If you find any errors in the instructions, please let us know.
 
 ## Introduction
 
@@ -30,13 +28,13 @@ This guide covers installing and configuring IPMI tools on Rocky Linux, performi
 
 ## Prerequisites
 
-* A Rocky Linux 8.x, 9.x, or 10.x server with BMC/IPMI-capable hardware (most rack and tower servers from Dell, HPE, Supermicro, and Lenovo include a BMC).
+- A system running Rocky Linux 8, 9, or 10 with BMC/IPMI-capable hardware (most rack and tower servers from Dell, HPE, Supermicro, and Lenovo include a BMC).
 
-* Root or `sudo` access on the Rocky Linux host.
+- Root or `sudo` access on the Rocky Linux host.
 
-* Network access to the BMC management interface (for remote operations).
+- Network access to the BMC management interface (for remote operations).
 
-* The `ipmitool` or `freeipmi` packages (installation covered below).
+- The `ipmitool` or `freeipmi` packages (installation covered below).
 
 ## Installing IPMI tools
 
@@ -68,9 +66,9 @@ sudo modprobe ipmi_devintf
 sudo modprobe ipmi_si
 ```
 
-* `ipmi_msghandler` — the core IPMI message handler that provides the framework for IPMI communication^3^.
-* `ipmi_devintf` — creates the `/dev/ipmi0` character device that user-space tools such as `ipmitool` use to communicate with the BMC^3^.
-* `ipmi_si` — the system interface driver that communicates with the BMC over the KCS (Keyboard Controller Style), SMIC, or BT interfaces^3^.
+- `ipmi_msghandler` — the core IPMI message handler that provides the framework for IPMI communication^3^.
+- `ipmi_devintf` — creates the `/dev/ipmi0` character device that user-space tools such as `ipmitool` use to communicate with the BMC^3^.
+- `ipmi_si` — the system interface driver that communicates with the BMC over the KCS (Keyboard Controller Style), SMIC, or BT interfaces^3^.
 
 Verify the modules loaded:
 
@@ -142,10 +140,10 @@ Remote access connects to a BMC over the network using the IPMI LAN interface. T
 ipmitool -H <BMC_IP> -I lanplus -U <username> -P <password> <command>
 ```
 
-* `-H` — the BMC IP address or hostname.
-* `-I lanplus` — use the IPMI v2.0 RMCP+ (LAN Plus) interface, which provides authentication and encryption^1^.
-* `-U` — the BMC username.
-* `-P` — the BMC password.
+- `-H` — the BMC IP address or hostname.
+- `-I lanplus` — use the IPMI v2.0 RMCP+ (LAN Plus) interface, which provides authentication and encryption^1^.
+- `-U` — the BMC username.
+- `-P` — the BMC password.
 
 !!! warning
 
@@ -183,8 +181,8 @@ sudo ipmitool chassis power cycle
 sudo ipmitool chassis power reset
 ```
 
-* `power cycle` — turns the server off and then on again (hard power cycle).
-* `power reset` — performs a hardware reset without a full power cycle.
+- `power cycle` — turns the server off and then on again (hard power cycle).
+- `power reset` — performs a hardware reset without a full power cycle.
 
 ### Chassis status
 
@@ -252,7 +250,7 @@ This section addresses the most common issue: `ipmitool` failing because `/dev/i
 lsmod | grep ipmi
 ```
 
-If no output appears, load the modules as described in the [Loading IPMI kernel modules](#loading-ipmi-kernel-modules) section.
+If no output appears, load the modules as described in the Loading IPMI kernel modules section above.
 
 ### Step 2 — Check dmesg for errors
 
@@ -262,8 +260,8 @@ dmesg | grep -i ipmi
 
 Look for messages such as:
 
-* `ipmi_si: Unable to find any System Interface(s)` — this means the kernel could not detect a BMC. Verify that your hardware has a BMC and that IPMI is enabled in the BIOS/UEFI settings.
-* `ipmi_si: Trying KCS-defined... success` — the interface was found successfully.
+- `ipmi_si: Unable to find any System Interface(s)` — this means the kernel could not detect a BMC. Verify that your hardware has a BMC and that IPMI is enabled in the BIOS/UEFI settings.
+- `ipmi_si: Trying KCS-defined... success` — the interface was found successfully.
 
 ### Step 3 — Restart the IPMI service
 
@@ -284,10 +282,10 @@ sudo systemctl enable --now ipmi
 
 If the modules load but no BMC is detected:
 
-* Enter the BIOS/UEFI setup during boot.
-* Navigate to the IPMI or BMC configuration section.
-* Ensure that IPMI over KCS is enabled.
-* Save changes and reboot.
+- Enter the BIOS/UEFI setup during boot.
+- Navigate to the IPMI or BMC configuration section.
+- Ensure that IPMI over KCS is enabled.
+- Save changes and reboot.
 
 !!! warning
 
@@ -340,18 +338,18 @@ bmc-info -h <BMC_IP> -u <username> -p <password>
 
 General guidance for BMC firmware updates:
 
-* **Download firmware only from your server vendor's official support site** (Dell, HPE, Supermicro, Lenovo).
-* **Read the release notes** for the firmware version before applying the update.
-* **Ensure stable power** throughout the update process. Use a UPS if available.
-* **Do not reboot or power off the server** during the firmware update.
-* **Back up the current BMC configuration** before updating, if your vendor's tools support this.
+- **Download firmware only from your server vendor's official support site** (Dell, HPE, Supermicro, Lenovo).
+- **Read the release notes** for the firmware version before applying the update.
+- **Ensure stable power** throughout the update process. Use a UPS if available.
+- **Do not reboot or power off the server** during the firmware update.
+- **Back up the current BMC configuration** before updating, if your vendor's tools support this.
 
 Most vendors provide their own BMC firmware update utilities:
 
-* **Dell**: `racadm` or Dell EMC Repository Manager
-* **HPE**: `ilorest` or HPE Smart Update Manager
-* **Supermicro**: `sum` (Supermicro Update Manager) or web-based BMC interface
-* **Lenovo**: `OneCLI` or Lenovo XClarity
+- **Dell**: `racadm` or Dell EMC Repository Manager.
+- **HPE**: `ilorest` or HPE Smart Update Manager.
+- **Supermicro**: `sum` (Supermicro Update Manager) or web-based BMC interface.
+- **Lenovo**: `OneCLI` or Lenovo XClarity.
 
 ## Conclusion
 
@@ -361,7 +359,7 @@ For deeper exploration of the IPMI specification and advanced features, refer to
 
 ## References
 
-1. "Intelligent Platform Management Interface Specification, Second Generation, v2.0" by Intel Corporation [https://www.intel.com/content/www/us/en/servers/ipmi/second-gen-interface-spec-v2-rev1-4.html](https://www.intel.com/content/www/us/en/servers/ipmi/second-gen-interface-spec-v2-rev1-4.html)
+1. "Intelligent Platform Management Interface Specification, Second Generation, v2.0" by Intel Corporation [https://www.intel.com/content/dam/www/public/us/en/documents/product-briefs/ipmi-second-gen-interface-spec-v2-rev1-1.pdf](https://www.intel.com/content/dam/www/public/us/en/documents/product-briefs/ipmi-second-gen-interface-spec-v2-rev1-1.pdf)
 2. "ipmitool — utility for controlling IPMI-enabled devices" by ipmitool contributors [https://github.com/ipmitool/ipmitool](https://github.com/ipmitool/ipmitool)
 3. "IPMI — The Linux Kernel documentation" by the Linux Kernel community [https://www.kernel.org/doc/html/latest/driver-api/ipmi.html](https://www.kernel.org/doc/html/latest/driver-api/ipmi.html)
 4. "FreeIPMI — GNU Project" by the Free Software Foundation [https://www.gnu.org/software/freeipmi/](https://www.gnu.org/software/freeipmi/)
