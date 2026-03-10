@@ -3,8 +3,7 @@ title: Crash analysis
 author: Howard Van Der Wal
 contributors: Steven Spencer
 tested_with: 8,9,10
-ai_contributors:
-- Claude (claude-opus-4-6)
+ai_contributors: Claude (claude-opus-4-6)
 tags:
   - crash
   - debugging
@@ -576,19 +575,19 @@ Kernel crash analysis with kdump and crash provides a systematic approach to dia
 
 Key takeaways:
 
-- Configure kdump and verify it is operational before a crash occurs
-- Start analysis with `log`, `bt`, and `foreach UN ps -m` to understand the crash context
-- For blocked task panics, trace the blocking chain through mutex and lock structures
-- On PREEMPT_RT kernels, pay particular attention to rt_mutex behavior
-- Collect sosreports safely using `-o` to limit plugin scope on stressed systems
-- Use kernel changelogs to verify that fixes are included before upgrading
+- Configure kdump and verify it is operational before a crash occurs.
+- Start analysis with `log`, `bt`, and `foreach UN ps -m` to understand the crash context.
+- For blocked task panics, trace the blocking chain through mutex and lock structures.
+- On PREEMPT_RT kernels, pay particular attention to rt_mutex behavior.
+- Collect sosreports safely using `-o` to limit plugin scope on stressed systems.
+- Use kernel changelogs to verify that fixes are included before upgrading.
 
 ## References
 
-1. [Linux kernel documentation — kdump](https://docs.kernel.org/admin-guide/kdump/kdump.html)
-2. [crash utility GitHub repository](https://github.com/crash-utility/crash)
-3. [makedumpfile GitHub repository](https://github.com/makedumpfile/makedumpfile)
-4. [crash utility man page](https://man7.org/linux/man-pages/man8/crash.8.html)
-5. [Rocky Linux Documentation — How to deal with a kernel panic](https://docs.rockylinux.org/guides/troubleshooting/kernel_panic/)
-6. [kernel.org — PREEMPT_RT documentation](https://wiki.linuxfoundation.org/realtime/start)
-7. [sos project GitHub repository](https://github.com/sosreport/sos)
+1. "Documentation for kdump — The kexec-based Crash Dumping Solution" by The Linux Kernel documentation project [https://docs.kernel.org/admin-guide/kdump/kdump.html]
+2. "crash utility" by Dave Anderson and the crash-utility team [https://github.com/crash-utility/crash]
+3. "makedumpfile" by the makedumpfile project [https://github.com/makedumpfile/makedumpfile]
+4. "crash(8) man page" by Dave Anderson [https://man7.org/linux/man-pages/man8/crash.8.html]
+5. "How to deal with a kernel panic" by Rocky Linux Documentation [https://docs.rockylinux.org/guides/troubleshooting/kernel_panic/]
+6. "Real-Time Linux" by The Linux Foundation [https://wiki.linuxfoundation.org/realtime/start]
+7. "sos — A unified tool for collecting system logs and other debug information" by the sos project [https://github.com/sosreport/sos]
