@@ -13,7 +13,6 @@ tags:
 ---
 
 **Knowledge**: :star: :star: :star:
-
 **Reading time**: 20 minutes
 
 ## AI usage
