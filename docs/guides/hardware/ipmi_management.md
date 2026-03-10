@@ -34,7 +34,7 @@ This guide covers installing and configuring IPMI tools on Rocky Linux, performi
 
 - Network access to the BMC management interface (for remote operations).
 
-- The `ipmitool` or `freeipmi` packages (installation covered below).
+- The `ipmitool` or `freeipmi` packages (installation is covered below).
 
 ## Installing IPMI tools
 
