@@ -1,9 +1,9 @@
 ---
-title: TRIM and discard configuration for thin-provisioned storage
+title: Configuring TRIM
 author: Howard Van Der Wal
 contributors: Steven Spencer
 ai_contributors: Claude (claude-sonnet-4-6)
-tested with: 9.7
+tested with: 8.10, 9.7, 10.1
 tags:
 - discard
 - fstrim
@@ -27,7 +27,7 @@ This guide covers configuring TRIM and discard on Rocky Linux with LVM and XFS, 
 
 ## Prerequisites
 
-- Rocky Linux 9.x (tested with 9.7)
+- Rocky Linux 8.x, 9.x, or 10.x (tested with 8.10, 9.7, and 10.1)
 - Root or `sudo` access
 - Storage that supports discard operations (SSD, thin-provisioned SAN LUN, or thin-provisioned virtual disk)
 - LVM-based storage configuration
@@ -80,9 +80,7 @@ The `issue_discards` setting^1^ in `/etc/lvm/lvm.conf` controls whether LVM send
 grep -n "issue_discards" /etc/lvm/lvm.conf
 ```
 
-```text
-421:    # issue_discards = 0
-```
+The output shows the setting is commented out and disabled by default. The exact line number varies by version (line 383 on Rocky Linux 8, line 421 on Rocky Linux 9 and 10).
 
 To enable it:
 
@@ -141,7 +139,11 @@ mount | grep /data
 
 ## Configuring `fstrim.timer` for periodic TRIM (recommended)
 
-The `fstrim.timer`^3^ systemd timer runs `fstrim` on filesystems listed in `/etc/fstab` and `/proc/self/mountinfo` that support discard. This is the recommended approach because it batches all discard operations into a single maintenance window rather than issuing them inline with every file operation.
+The `fstrim.timer`^3^ systemd timer runs `fstrim` on mounted filesystems that support discard. This is the recommended approach because it batches all discard operations into a single maintenance window rather than issuing them inline with every file operation.
+
+!!! note "Rocky Linux 10 enables `fstrim.timer` by default"
+
+    On Rocky Linux 10, the `fstrim.timer` is enabled by default (preset: enabled). On Rocky Linux 8 and 9, it must be enabled manually.
 
 ### Enabling the timer
 
@@ -165,7 +167,7 @@ systemctl status fstrim.timer
    Triggers: ● fstrim.service
 ```
 
-The default configuration runs `fstrim` weekly (every Monday at midnight) with a randomized delay of up to 100 minutes built in.
+The default configuration runs `fstrim` weekly (every Monday at midnight) with a built-in randomized delay.
 
 ### Creating a systemd override for I/O priority
 
@@ -204,7 +206,7 @@ The output should show the override section after the original unit file content
 
 ### Adding randomized delay for multi-VM environments
 
-If multiple virtual machines share the same underlying storage (such as a SAN or hypervisor datastore), having all VMs run `fstrim` simultaneously can overwhelm the storage controller. The default `fstrim.timer` already includes `RandomizedDelaySec=100min`, which adds a random delay of up to 100 minutes. For large VM environments, you can increase this:
+If multiple virtual machines share the same underlying storage (such as a SAN or hypervisor datastore), having all VMs run `fstrim` simultaneously can overwhelm the storage controller. The default `fstrim.timer` already includes a randomized delay (6000 seconds on Rocky Linux 8 and 9, 100 minutes on Rocky Linux 10). For large VM environments, you can increase this:
 
 ```bash
 sudo systemctl edit fstrim.timer
@@ -215,7 +217,7 @@ sudo systemctl edit fstrim.timer
 RandomizedDelaySec=6h
 ```
 
-This overrides the default 100-minute delay with up to 6 hours, further spreading the load across VMs.
+This overrides the default delay with up to 6 hours, further spreading the load across VMs.
 
 ### Adjusting the schedule
 
@@ -352,7 +354,7 @@ The guest operating system configuration (this guide) remains the same regardles
 For most Rocky Linux deployments on thin-provisioned storage or SSDs, the recommended configuration is:
 
 1. **Do not** use the `discard` mount option on XFS filesystems in production. The inline TRIM operations drain the I/O queue and cause latency spikes.
-2. **Enable `fstrim.timer`** with a systemd override that sets `IOSchedulingClass=best-effort`, `IOSchedulingPriority=7`, and `Nice=19`.
+2. **Enable `fstrim.timer`** with a systemd override that sets `IOSchedulingClass=best-effort`, `IOSchedulingPriority=7`, and `Nice=19`. On Rocky Linux 10, the timer is already enabled by default.
 3. **Set `issue_discards = 1`** in lvm.conf only if you need discard commands during LVM operations such as `lvremove`. This setting does not replace `fstrim` for filesystem-level space reclamation.
 4. **Verify discard support** at every layer of the storage stack using `lsblk -D`, `dmsetup table`, and `fstrim -v`.
 5. **Add `RandomizedDelaySec`** to `fstrim.timer` when multiple VMs share the same underlying storage.
