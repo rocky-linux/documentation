@@ -139,7 +139,7 @@ mount | grep /data
 
 ## Configuring `fstrim.timer` for periodic TRIM (recommended)
 
-The `fstrim.timer`^3^ systemd timer runs `fstrim` on mounted filesystems that support discard. This is the recommended approach because it batches all discard operations into a single maintenance window rather than issuing them inline with every file operation.
+The `fstrim.timer`^3^ systemd timer runs `fstrim` on mounted filesystems that support the `discard` option. This is the recommended approach because it batches all discard operations into a single maintenance window rather than issuing them inline with every file operation.
 
 !!! note "Rocky Linux 10 enables `fstrim.timer` by default"
 
