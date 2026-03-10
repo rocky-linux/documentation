@@ -27,7 +27,7 @@ This guide covers configuring TRIM and discard on Rocky Linux with LVM and XFS, 
 
 ## Prerequisites
 
-- Rocky Linux 8.x, 9.x, or 10.x (tested with 8.10, 9.7, and 10.1)
+- A system running Rocky Linux 8, 9, or 10.
 - Root or `sudo` access
 - Storage that supports discard operations (SSD, thin-provisioned SAN LUN, or thin-provisioned virtual disk)
 - LVM-based storage configuration
