@@ -19,7 +19,7 @@ This document adheres to the [AI contribution policy found here.](../contribute/
 
 ## Introduction
 
-When files are deleted from a filesystem, the underlying storage device has no way to know that those blocks are no longer in use. On traditional thick-provisioned storage this does not matter, but on solid-state drives (SSDs) and thin-provisioned SAN or virtual storage, informing the device about freed blocks is important for performance and space reclamation.
+When files are deleted from a filesystem, the underlying storage device has no way to know that those blocks are no longer in use. On traditional thick-provisioned storage this does not matter, but on solid-state drives and thin-provisioned SAN or virtual storage, informing the device about freed blocks is important for performance and space reclamation.
 
 TRIM (for SSDs) and UNMAP (for SCSI/SAN storage) are commands that notify the storage device that specific blocks are no longer needed. Without these commands, thin-provisioned storage pools grow over time but never shrink, and SSDs cannot perform efficient garbage collection.
 
