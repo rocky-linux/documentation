@@ -28,7 +28,7 @@ This guide covers installing and configuring IPMI tools on Rocky Linux, performi
 
 ## Prerequisites
 
-- A system running Rocky Linux 8, 9, or 10 with BMC/IPMI-capable hardware (most rack and tower servers from Dell, HPE, Supermicro, and Lenovo include a BMC).
+- A system running Rocky Linux 8, 9, or 10 with BMC/IPMI-capable hardware (most rack and tower servers from Dell, HPE, Supermicro, and Lenovo etc include a BMC).
 
 - Root or `sudo` access on the Rocky Linux host.
 
