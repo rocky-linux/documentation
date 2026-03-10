@@ -585,8 +585,8 @@ Key takeaways:
 ## References
 
 1. "Documentation for kdump — The kexec-based Crash Dumping Solution" by The Linux Kernel documentation project [https://docs.kernel.org/admin-guide/kdump/kdump.html](https://docs.kernel.org/admin-guide/kdump/kdump.html)
-2. "crash utility" by Dave Anderson and the crash-utility team [https://github.com/crash-utility/crash](https://github.com/crash-utility/crash)
+2. "crash utility" by the crash-utility project [https://github.com/crash-utility/crash](https://github.com/crash-utility/crash)
 3. "makedumpfile" by the makedumpfile project [https://github.com/makedumpfile/makedumpfile](https://github.com/makedumpfile/makedumpfile)
-4. "crash(8) man page" by Dave Anderson [https://man7.org/linux/man-pages/man8/crash.8.html](https://man7.org/linux/man-pages/man8/crash.8.html)
+4. "crash(8) man page" by the crash-utility project [https://man7.org/linux/man-pages/man8/crash.8.html](https://man7.org/linux/man-pages/man8/crash.8.html)
 5. "Real-Time Linux" by The Linux Foundation [https://wiki.linuxfoundation.org/realtime/start](https://wiki.linuxfoundation.org/realtime/start)
 6. "sos — A unified tool for collecting system logs and other debug information" by the sos project [https://github.com/sosreport/sos](https://github.com/sosreport/sos)
