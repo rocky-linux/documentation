@@ -361,8 +361,8 @@ For most Rocky Linux deployments on thin-provisioned storage or SSDs, the recomm
 
 ## References
 
-1. "lvm.conf(5) - issue_discards setting" by Red Hat, Inc. (LVM2 project) [https://man7.org/linux/man-pages/man5/lvm.conf.5.html](https://man7.org/linux/man-pages/man5/lvm.conf.5.html)
+1. "lvm.conf(5) - issue_discards setting" by Red Hat, Inc. [https://man7.org/linux/man-pages/man5/lvm.conf.5.html](https://man7.org/linux/man-pages/man5/lvm.conf.5.html)
 2. "xfs(5) - discard mount option documentation" by the xfsprogs project [https://man7.org/linux/man-pages/man5/xfs.5.html](https://man7.org/linux/man-pages/man5/xfs.5.html)
-3. "fstrim(8)" by Lukas Czerner and Karel Zak (util-linux) [https://man7.org/linux/man-pages/man8/fstrim.8.html](https://man7.org/linux/man-pages/man8/fstrim.8.html)
-4. "ionice(1) - I/O scheduling classes and priorities" by Jens Axboe and Karel Zak (util-linux) [https://man7.org/linux/man-pages/man1/ionice.1.html](https://man7.org/linux/man-pages/man1/ionice.1.html)
+3. "fstrim(8)" by Lukas Czerner and Karel Zak [https://man7.org/linux/man-pages/man8/fstrim.8.html](https://man7.org/linux/man-pages/man8/fstrim.8.html)
+4. "ionice(1) - I/O scheduling classes and priorities" by Jens Axboe and Karel Zak [https://man7.org/linux/man-pages/man1/ionice.1.html](https://man7.org/linux/man-pages/man1/ionice.1.html)
 5. "Domain XML format - disk elements and discard configuration" by the libvirt project [https://libvirt.org/formatdomain.html#hard-drives-floppy-disks-cdroms](https://libvirt.org/formatdomain.html#hard-drives-floppy-disks-cdroms)
