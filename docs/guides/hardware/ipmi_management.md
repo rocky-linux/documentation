@@ -149,7 +149,7 @@ ipmitool -H <BMC_IP> -I lanplus -U <username> -P <password> <command>
 
     Passing passwords on the command line exposes them in process listings and shell history. For scripted or production use, consider the `-f` flag to read the password from a file, or use the `-E` flag to read the password from the `IPMI_PASSWORD` environment variable.
 
-Example — checking the power status of a remote server:
+Example checking the power status of a remote server:
 
 ```bash
 ipmitool -H 192.168.1.100 -I lanplus -U admin -P password chassis power status
