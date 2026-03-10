@@ -362,4 +362,4 @@ For deeper exploration of the IPMI specification and advanced features, refer to
 1. "Intelligent Platform Management Interface Specification, Second Generation, v2.0" by Intel Corporation [https://www.intel.com/content/dam/www/public/us/en/documents/product-briefs/ipmi-second-gen-interface-spec-v2-rev1-1.pdf](https://www.intel.com/content/dam/www/public/us/en/documents/product-briefs/ipmi-second-gen-interface-spec-v2-rev1-1.pdf)
 2. "ipmitool — utility for controlling IPMI-enabled devices" by Duncan Laurie and contributors [https://github.com/ipmitool/ipmitool](https://github.com/ipmitool/ipmitool)
 3. "IPMI — The Linux Kernel documentation" by Corey Minyard [https://www.kernel.org/doc/html/latest/driver-api/ipmi.html](https://www.kernel.org/doc/html/latest/driver-api/ipmi.html)
-4. "FreeIPMI — GNU Project" by the Free Software Foundation [https://www.gnu.org/software/freeipmi/](https://www.gnu.org/software/freeipmi/)
+4. "FreeIPMI — GNU Project" by Albert Chu and the GNU FreeIPMI Team [https://www.gnu.org/software/freeipmi/](https://www.gnu.org/software/freeipmi/)
