@@ -265,8 +265,8 @@ sda                      0      512B       2G         0
 
 The key columns are:
 
-- **DISC-GRAN** (discard granularity): The minimum size of a discard operation. A non-zero value indicates the device supports discard.
-- **DISC-MAX** (maximum discard size): The maximum size of a single discard operation. A non-zero value confirms discard support.
+- `DISC-GRAN` (discard granularity): The minimum size of a discard operation. A non-zero value indicates the device supports discard.
+- `DISC-MAX` (maximum discard size): The maximum size of a single discard operation. A non-zero value confirms discard support.
 
 If both `DISC-GRAN` and `DISC-MAX` show `0`, the device does not support discard operations, or the support is not exposed to the operating system.
 
