@@ -4,11 +4,12 @@
 name: Trigger Vercel Deploy - main branch
 
 on:
-  push:
-    branches:
-      - main
-      - rocky-8
-      - rocky-9
+  # Manual trigger from GitHub UI
+  workflow_dispatch:
+
+  # Scheduled run
+  schedule:
+    - cron: "0 */6 * * *"
 
 jobs:
   trigger-deploy:
