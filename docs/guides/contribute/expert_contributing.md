@@ -887,11 +887,9 @@ Use lowercase filenames with underscores or hyphens. Keep names short and descri
 - `HowToInstallRockyLinuxUsingKickstart.md` - Too long
 - `ks.md` - Too vague
 
-For translated documents, append the language code before `.md`:
+!!! note
 
-- `kickstart_rocky.md` - English (default)
-- `kickstart_rocky.de.md` - German
-- `kickstart_rocky.es.md` - Spanish
+    Documents are only created in the source (English) language. Translations are provided by [Crowdin](https://crowdin.com/). You do not need to translate your document into other languages.
 
 ### Document location
 
