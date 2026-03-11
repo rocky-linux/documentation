@@ -887,9 +887,9 @@ Use lowercase filenames with underscores or hyphens. Keep names short and descri
 - `HowToInstallRockyLinuxUsingKickstart.md` - Too long
 - `ks.md` - Too vague
 
-!!! note
+### What language to write your documents in
 
-    Documents are only created in the source (English) language. Translations are provided by [Crowdin](https://crowdin.com/). Contributors are not expected to translate their documents into other languages.
+Documents are only created in the source (English) language. Translations are provided by [Crowdin](https://crowdin.com/). Contributors are not expected to translate their documents into other languages.
 
 ### Document location
 
