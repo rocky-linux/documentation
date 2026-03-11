@@ -889,7 +889,7 @@ Use lowercase filenames with underscores or hyphens. Keep names short and descri
 
 ### What language to write your documents in
 
-Documents are only created in the source (English) language. Translations are provided by [Crowdin](https://crowdin.com/). Contributors are not expected to translate their documents into other languages.
+Please write your documents using US English. Translations are provided by [Crowdin](https://crowdin.com/). Contributors are not expected to translate their documents into other languages.
 
 ### Document location
 
