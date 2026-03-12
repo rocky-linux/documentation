@@ -1,5 +1,5 @@
 ---
-title: DNF Package Manager
+title: DNF package manager
 author: Emre Camalan
 contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.9, 9.3
@@ -18,7 +18,7 @@ DNF is commonly used in Rocky Linux, Fedora, RHEL (Red Hat Enterprise Linux) 8 a
 
 - For all Rocky Linux versions, the ability to use `sudo` to elevate privileges.
 
-## Installing Packages
+## Installing packages
 
 You can use the DNF package manager on Rocky Linux operating system just like you do with other package managers to install, remove, and update the packages you desire.
 
@@ -133,9 +133,9 @@ sudo dnf group install kde-desktop-environment
 sudo dnf install @kde-desktop-environment
 ```
 
-## Update and Upgrade Packages
+## Update and upgrade packages
 
-### Update and Upgrade
+### Update and upgrade
 
 If you decide to update your packages, use this code on the terminal:
 
@@ -190,7 +190,7 @@ The `dnf upgrade` command yields the same results as the `dnf update` command.
 sudo dnf upgrade
 ```
 
-### Update a Single Package
+### Update a single package
 
 ```bash
 sudo dnf upgrade package_name
@@ -224,7 +224,7 @@ Is this ok [y/N]:
 
 If you used the `sudo dnf update` or `sudo dnf upgrade` commands earlier, your entire system is up-to-date and there will be no package to update manually.
 
-## Removing Packages
+## Removing packages
 
 Like installing packages, you can use `dnf` to uninstall packages. However, dependencies are crucial in the Linux system, and if you are not aware of them, it is recommended not to remove a package. For instance, a mistakenly installed package may have 20 dependencies, and when you remove that package, the system will also remove those 20 packages shared with other programs. Consequently, some previously functioning programs may become unusable. Moreover, if you think you can resolve it by reinstalling the same package, you may encounter version and old version conflict issues. Be cautious in this regard.
 
@@ -303,7 +303,7 @@ sudo dnf group remove kde-desktop-environment
 sudo dnf remove @kde-desktop-environment
 ```
 
-## DNF List
+## DNF list
 
 You can list any package, even if you do not know the entire name of the package, by running this command:
 
@@ -440,7 +440,7 @@ epel-cisco-openh264                                                             
 extras                                                                                                 Rocky Linux 9 - Extras
 ```
 
-## DNF List History
+## DNF list history
 
 You can see DNF list history with this command:
 
@@ -497,7 +497,7 @@ Warning, the following problems occurred while running a transaction:
 
 The `sudo dnf history redo 20` command used above, attempts to repeat the command with ID:20 from the DNF history list, to reinstall `tar`. Naturally, the operation displayed "is already installed," since it had been installed before.
 
-### Searching Packages
+### Searching packages
 
 Search any package by running this command:
 
@@ -519,7 +519,7 @@ sudo dnf search all yum vim
 
 The command will return a long list of packages that include "yum" and "vim", as the package name, or as descriptions for other packages.
 
-### DNF Package Information
+### DNF package information
 
 To display information about packages, use this command:
 
@@ -563,7 +563,7 @@ sudo dnf repoquery perl --info
 
 While it is not always the case, in the above instance, the results of this command is identical to the `sudo dnf info perl` command.
 
-## DNF Repository Configuration
+## DNF repository configuration
 
 The configuration file for DNF and its associated utilities can be found at `/etc/dnf/dnf.conf`.
 Within this file, there is a mandatory [main] section that allows the configuration of DNF options with global effects. Additionally, it may include one or more [repository] sections, providing the ability to set repository-specific options.
