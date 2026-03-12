@@ -1,5 +1,5 @@
 ---
-title: Création d'image ISO Rocky Linux perso
+title: Création d'image personnalisée Rocky Linux
 author: Howard Van Der Wal
 contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 9
@@ -13,7 +13,7 @@ tags:
   - rocky
 ---
 
-**Connaissances** : :star: :star:
+**Connaissances** : :star: :star:<br/>
 **Temps de lecture** : 11 minutes
 
 ## Introduction
@@ -80,4 +80,4 @@ mkksiso --add ~/baseos --ks <PATH_TO_KICKSTART_FILE> ~/<PATH_TO_ISO> ~/<PATH_TO_
 
 ## Conclusion
 
-Une fois votre propre image ISO créée à partir de votre fichier `kickstart`, il devient beaucoup plus facile de déployer des centaines de machines avec une seule image, sans avoir besoin de configurer chaque machine individuellement. Pour en savoir plus sur les fichiers `kickstart`, ainsi que sur de nombreux exemples, veuillez consulter le [guide Kickstart Files et Rocky Linux](../../automation/kickstart-rocky/).
+Une fois votre propre image ISO créée à partir de votre fichier `kickstart`, il devient beaucoup plus facile de déployer des centaines de machines avec une seule image, sans avoir besoin de configurer chaque machine individuellement. Pour en savoir plus sur les fichiers `kickstart`, ainsi que sur de nombreux exemples, veuillez consulter le [guide Kickstart Files et Rocky Linux](../automation/kickstart-rocky.md).

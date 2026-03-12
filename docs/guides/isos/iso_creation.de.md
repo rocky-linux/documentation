@@ -84,4 +84,4 @@ mkksiso --add ~/baseos --ks <PATH_TO_KICKSTART_FILE> ~/<PATH_TO_ISO> ~/<PATH_TO_
 
 ## Zusammenfassung
 
-Sobald Ihre ISO-Datei mit Ihrer Kickstart-Datei erstellt ist, wird es wesentlich einfacher, Hunderte von Maschinen von einem einzigen Image aus bereitzustellen, ohne jede Maschine einzeln konfigurieren zu müssen. Um mehr über `kickstart`-Dateien zu erfahren und zahlreiche Beispiele zu untersuchen, besuchen Sie bitte den [Kickstart Files and Rocky Linux guide](../../automation/kickstart-rocky/).
+Sobald Ihre ISO-Datei mit Ihrer Kickstart-Datei erstellt ist, wird es wesentlich einfacher, Hunderte von Maschinen von einem einzigen Image aus bereitzustellen, ohne jede Maschine einzeln konfigurieren zu müssen. Um mehr über `kickstart`-Dateien zu erfahren und zahlreiche Beispiele zu untersuchen, besuchen Sie bitte den [Kickstart Files and Rocky Linux guide](../automation/kickstart-rocky.md).
