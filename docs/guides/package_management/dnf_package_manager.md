@@ -1,5 +1,5 @@
 ---
-title: Dnf Package Manager
+title: DNF Package Manager
 author: Emre Camalan
 contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.9, 9.3
@@ -10,8 +10,6 @@ tags:
   - Package Manager
 ---
 
-# DNF package manager
-
 DNF, or Dandified Yum, is a package manager in some Linux distributions. It is the next-generation version of the Yum (Yellowdog Updater, Modified) package manager, widely used in Red Hat-based systems. DNF was introduced as a replacement for Yum to address some limitations and improve performance.
 
 DNF is commonly used in Rocky Linux, Fedora, RHEL (Red Hat Enterprise Linux) 8 and later, and other Linux distributions that have adopted it as their package manager. It aims to provide users and administrators a more modern and efficient package management experience.
@@ -20,12 +18,12 @@ DNF is commonly used in Rocky Linux, Fedora, RHEL (Red Hat Enterprise Linux) 8 a
 
 - For all Rocky Linux versions, the ability to use `sudo` to elevate privileges.
 
-## Installing packages
+## Installing Packages
 
 You can use the DNF package manager on Rocky Linux operating system just like you do with other package managers to install, remove, and update the packages you desire.
 
 ```bash
-sudo dnf install package_name1 package_name2 package_name3 
+sudo dnf install package_name1 package_name2 package_name3
 ```
 
 To install `perl`:
@@ -80,7 +78,7 @@ Installed size: 343 M
 Is this ok [y/N]:
 ```
 
-Installing a package group, as for **Xfce desktop** or  **Kde desktop**, and so on, is similar:
+Installing a package group, as for **Xfce desktop** or **Kde desktop**, and so on, is similar:
 
 ```bash
 sudo dnf group install xfce
@@ -112,11 +110,11 @@ Thunar                                                                       x86
  xfce4-screensaver                                                            x86_64                                        4.18.2-1.el9                                                               epel                                     305 k
  xfce4-session                                                                x86_64                                        4.18.3-1.el9                                                               epel                                     541 k
  xfce4-settings                                                               x86_64                                        4.18.2-2.el9                                                               epel                                     1.2 M
- 
+
  ... (some packages not shown)
 
 Installing Groups:
- Xfce                                                                                                                                                                                                                                                        
+ Xfce
 
 Transaction Summary
 ========================================================================================================================================================================================================================================================
@@ -135,14 +133,14 @@ sudo dnf group install kde-desktop-environment
 sudo dnf install @kde-desktop-environment
 ```
 
-## Update and upgrade packages
+## Update and Upgrade Packages
 
-### Update and upgrade
+### Update and Upgrade
 
 If you decide to update your packages, use this code on the terminal:
 
 ```bash
-  sudo dnf update
+sudo dnf update
 ```
 
 Which may show something like this:
@@ -188,26 +186,26 @@ Is this ok [y/N]
 
 The `dnf upgrade` command yields the same results as the `dnf update` command.
 
-  ```bash
-  sudo dnf upgrade
-  ```
+```bash
+sudo dnf upgrade
+```
 
-### Update a single package
+### Update a Single Package
 
 ```bash
-  sudo dnf upgrade package_name
+sudo dnf upgrade package_name
 ```
 
 For example, if you want to upgrade your `openssl`, use `dnf`:
 
 ```bash
-dnf upgrade openssl
+sudo dnf upgrade openssl
 ```
 
 Which might show:
 
 ```bash
-dnf upgrade openssl
+sudo dnf upgrade openssl
 Last metadata expiration check: 1:21:40 ago on Mon 05 Feb 2024 08:31:09 PM UTC.
 Dependencies resolved.
 ========================================================================================================================================================================================================================================================Package                                                        Architecture                                             Version                                                               Repository                                    Size
@@ -226,11 +224,11 @@ Is this ok [y/N]:
 
 If you used the `sudo dnf update` or `sudo dnf upgrade` commands earlier, your entire system is up-to-date and there will be no package to update manually.
 
-## Removing packages
+## Removing Packages
 
 Like installing packages, you can use `dnf` to uninstall packages. However, dependencies are crucial in the Linux system, and if you are not aware of them, it is recommended not to remove a package. For instance, a mistakenly installed package may have 20 dependencies, and when you remove that package, the system will also remove those 20 packages shared with other programs. Consequently, some previously functioning programs may become unusable. Moreover, if you think you can resolve it by reinstalling the same package, you may encounter version and old version conflict issues. Be cautious in this regard.
 
-!!! Warning
+!!! warning
 
     DNF cannot remove a package without removing packages that depend on it.
 
@@ -241,7 +239,7 @@ sudo dnf remove package_name1 package_name2
 ```
 
 ```bash
-sudo dnf remove wget 
+sudo dnf remove wget
 ```
 
 !!! warning
@@ -255,7 +253,7 @@ Dependencies resolved.
  Package                                                                  Architecture                                       Version                                                             Repository                                  Size
 ========================================================================================================================================================================================================================================================
 Removing:
- perl                                                                     x86_64                                             4:5.32.1-480.el9                                                    @appstream                                   0  
+ perl                                                                     x86_64                                             4:5.32.1-480.el9                                                    @appstream                                   0
 Removing unused dependencies:
  annobin                                                                  x86_64                                             12.12-1.el9                                                         @appstream                                 1.0 M
  binutils                                                                 x86_64                                             2.35.2-42.el9                                                       @baseos                                    24 M
@@ -269,7 +267,7 @@ Removing unused dependencies:
  gcc                                                                      x86_64                                             11.4.1-2.1.el9                                                      @appstream                                 85 M
  gcc-c++                                                                  x86_64                                             11.4.1-2.1.el9                                                      @appstream                                 32 M
  gcc-plugin-annobin                                                       x86_64                                             11.4.1-2.1.el9                                                      @appstream                                 52 k
- ghc-srpm-macros                                                          noarch                                             1.5.0-6.el9                                                         @appstream                                 535  
+ ghc-srpm-macros                                                          noarch                                             1.5.0-6.el9                                                         @appstream                                 535
  glibc-devel                                                              x86_64                                             2.34-83.el9.7                                                       @appstream                                 157 k
  glibc-headers                                                            x86_64                                             2.34-83.el9.7                                                       @appstream                                 2.1 M
  go-srpm-macros                                                           noarch                                             3.2.0-2.el9                                                         @appstream                                 60 k
@@ -305,7 +303,7 @@ sudo dnf group remove kde-desktop-environment
 sudo dnf remove @kde-desktop-environment
 ```
 
-## DNF list
+## DNF List
 
 You can list any package, even if you do not know the entire name of the package, by running this command:
 
@@ -317,29 +315,29 @@ Installed Packages
 kernel-headers.x86_64                                                                                                           5.14.0-362.18.1.el9_3                                                                                   @appstream
 kernel-srpm-macros.noarch                                                                                                       1.0-13.el9                                                                                              @appstream
 Available Packages
-kernel.x86_64                                                                                                                   5.14.0-362.18.1.el9_3                                                                                   baseos    
-kernel-abi-stablelists.noarch                                                                                                   5.14.0-362.18.1.el9_3                                                                                   baseos    
-kernel-core.x86_64                                                                                                              5.14.0-362.18.1.el9_3                                                                                   baseos    
-kernel-cross-headers.x86_64                                                                                                     5.14.0-362.18.1.el9_3                                                                                   crb       
-kernel-debug.x86_64                                                                                                             5.14.0-362.18.1.el9_3                                                                                   baseos    
-kernel-debug-core.x86_64                                                                                                        5.14.0-362.18.1.el9_3                                                                                   baseos    
-kernel-debug-devel.x86_64                                                                                                       5.14.0-362.18.1.el9_3                                                                                   appstream 
-kernel-debug-devel-matched.x86_64                                                                                               5.14.0-362.18.1.el9_3                                                                                   appstream 
-kernel-debug-modules.x86_64                                                                                                     5.14.0-362.18.1.el9_3                                                                                   baseos    
-kernel-debug-modules-core.x86_64                                                                                                5.14.0-362.18.1.el9_3                                                                                   baseos    
-kernel-debug-modules-extra.x86_64                                                                                               5.14.0-362.18.1.el9_3                                                                                   baseos    
-kernel-debug-uki-virt.x86_64                                                                                                    5.14.0-362.18.1.el9_3                                                                                   baseos    
-kernel-devel.x86_64                                                                                                             5.14.0-362.18.1.el9_3                                                                                   appstream 
-kernel-devel-matched.x86_64                                                                                                     5.14.0-362.18.1.el9_3                                                                                   appstream 
-kernel-doc.noarch                                                                                                               5.14.0-362.18.1.el9_3                                                                                   appstream 
-kernel-modules.x86_64                                                                                                           5.14.0-362.18.1.el9_3                                                                                   baseos    
-kernel-modules-core.x86_64                                                                                                      5.14.0-362.18.1.el9_3                                                                                   baseos    
-kernel-modules-extra.x86_64                                                                                                     5.14.0-362.18.1.el9_3                                                                                   baseos    
-kernel-rpm-macros.noarch                                                                                                        185-13.el9                                                                                              appstream 
-kernel-tools.x86_64                                                                                                             5.14.0-362.18.1.el9_3                                                                                   baseos    
-kernel-tools-libs.x86_64                                                                                                        5.14.0-362.18.1.el9_3                                                                                   baseos    
-kernel-tools-libs-devel.x86_64                                                                                                  5.14.0-362.18.1.el9_3                                                                                   crb       
-kernel-uki-virt.x86_64                                                                                                          5.14.0-362.18.1.el9_3                                                                                   baseos    
+kernel.x86_64                                                                                                                   5.14.0-362.18.1.el9_3                                                                                   baseos
+kernel-abi-stablelists.noarch                                                                                                   5.14.0-362.18.1.el9_3                                                                                   baseos
+kernel-core.x86_64                                                                                                              5.14.0-362.18.1.el9_3                                                                                   baseos
+kernel-cross-headers.x86_64                                                                                                     5.14.0-362.18.1.el9_3                                                                                   crb
+kernel-debug.x86_64                                                                                                             5.14.0-362.18.1.el9_3                                                                                   baseos
+kernel-debug-core.x86_64                                                                                                        5.14.0-362.18.1.el9_3                                                                                   baseos
+kernel-debug-devel.x86_64                                                                                                       5.14.0-362.18.1.el9_3                                                                                   appstream
+kernel-debug-devel-matched.x86_64                                                                                               5.14.0-362.18.1.el9_3                                                                                   appstream
+kernel-debug-modules.x86_64                                                                                                     5.14.0-362.18.1.el9_3                                                                                   baseos
+kernel-debug-modules-core.x86_64                                                                                                5.14.0-362.18.1.el9_3                                                                                   baseos
+kernel-debug-modules-extra.x86_64                                                                                               5.14.0-362.18.1.el9_3                                                                                   baseos
+kernel-debug-uki-virt.x86_64                                                                                                    5.14.0-362.18.1.el9_3                                                                                   baseos
+kernel-devel.x86_64                                                                                                             5.14.0-362.18.1.el9_3                                                                                   appstream
+kernel-devel-matched.x86_64                                                                                                     5.14.0-362.18.1.el9_3                                                                                   appstream
+kernel-doc.noarch                                                                                                               5.14.0-362.18.1.el9_3                                                                                   appstream
+kernel-modules.x86_64                                                                                                           5.14.0-362.18.1.el9_3                                                                                   baseos
+kernel-modules-core.x86_64                                                                                                      5.14.0-362.18.1.el9_3                                                                                   baseos
+kernel-modules-extra.x86_64                                                                                                     5.14.0-362.18.1.el9_3                                                                                   baseos
+kernel-rpm-macros.noarch                                                                                                        185-13.el9                                                                                              appstream
+kernel-tools.x86_64                                                                                                             5.14.0-362.18.1.el9_3                                                                                   baseos
+kernel-tools-libs.x86_64                                                                                                        5.14.0-362.18.1.el9_3                                                                                   baseos
+kernel-tools-libs-devel.x86_64                                                                                                  5.14.0-362.18.1.el9_3                                                                                   crb
+kernel-uki-virt.x86_64                                                                                                          5.14.0-362.18.1.el9_3                                                                                   baseos
 kernelshark.x86_64                                                                                                              1:1.2-10.el9                                                                                            appstream
 ```
 
@@ -431,7 +429,7 @@ Available Groups:
 List the repository information of packages it provides for each enabled repository.
 
 ```bash
-sudo dnf repolist 
+sudo dnf repolist
 
 repo id                                                                                                repo name
 appstream                                                                                              Rocky Linux 9 - AppStream
@@ -442,7 +440,7 @@ epel-cisco-openh264                                                             
 extras                                                                                                 Rocky Linux 9 - Extras
 ```
 
-## DNF list history
+## DNF List History
 
 You can see DNF list history with this command:
 
@@ -450,26 +448,26 @@ You can see DNF list history with this command:
 sudo dnf history list
 ID     | Command line                                                            | Date and time    | Action(s)      | Altered
 ------------------------------------------------------------------------------------------------------------------------------
-    23 | remove perl                                                             | 2024-02-05 22:30 | Removed        |  206   
-    22 | install perl                                                            | 2024-02-05 22:05 | Install        |  206   
-    21 | install sqlite                                                          | 2024-01-27 15:49 | I, U           |    2   
-    20 | install tar gzip                                                        | 2024-01-27 14:27 | Install        |    1   
-    19 | install htop                                                            | 2024-01-27 14:24 | Install        |    3   
-    18 | install yarnpkg                                                         | 2024-01-27 14:21 | Install        |    1   
-    17 | install nodejs mariadb-server npm                                       | 2024-01-27 14:14 | Install        |   81   
-    16 | upgrade                                                                 | 2023-12-20 16:02 | Upgrade        |    2   
-    15 | install wget                                                            | 2023-12-20 15:38 | Install        |    1   
-    14 | remove iptables*                                                        | 2023-12-19 15:22 | Removed        |   10   
-    13 | install iptables-utils                                                  | 2023-12-19 15:09 | Install        |    1   
-    12 | install iptables-services                                               | 2023-12-19 15:08 | Install        |    1   
+    23 | remove perl                                                             | 2024-02-05 22:30 | Removed        |  206
+    22 | install perl                                                            | 2024-02-05 22:05 | Install        |  206
+    21 | install sqlite                                                          | 2024-01-27 15:49 | I, U           |    2
+    20 | install tar gzip                                                        | 2024-01-27 14:27 | Install        |    1
+    19 | install htop                                                            | 2024-01-27 14:24 | Install        |    3
+    18 | install yarnpkg                                                         | 2024-01-27 14:21 | Install        |    1
+    17 | install nodejs mariadb-server npm                                       | 2024-01-27 14:14 | Install        |   81
+    16 | upgrade                                                                 | 2023-12-20 16:02 | Upgrade        |    2
+    15 | install wget                                                            | 2023-12-20 15:38 | Install        |    1
+    14 | remove iptables*                                                        | 2023-12-19 15:22 | Removed        |   10
+    13 | install iptables-utils                                                  | 2023-12-19 15:09 | Install        |    1
+    12 | install iptables-services                                               | 2023-12-19 15:08 | Install        |    1
     11 | install iptables                                                        | 2023-12-19 15:02 | Install        |    8  <
     10 | remove firewalld                                                        | 2023-12-19 15:02 | Removed        |   20 >E
      9 | install firewalld                                                       | 2023-12-19 14:18 | Install        |   20 EE
-     8 | install postfix s-nail                                                  | 2023-12-14 15:28 | Install        |    3   
+     8 | install postfix s-nail                                                  | 2023-12-14 15:28 | Install        |    3
      7 | upgrade                                                                 | 2023-11-30 14:30 | I, U           |  128 EE
      6 | install epel-release                                                    | 2023-11-30 14:30 | Install        |    8 EE
-     5 | install which                                                           | 2023-01-24 14:31 | Install        |    1   
-     4 | install zip                                                             | 2023-01-20 13:28 | Install        |    2   
+     5 | install which                                                           | 2023-01-24 14:31 | Install        |    1
+     4 | install zip                                                             | 2023-01-20 13:28 | Install        |    2
      3 | -y --allowerasing install NetworkManager                                | 2023-01-19 02:47 | Install        |    7 EE
      2 | -y --allowerasing install cronie cronie-noanacron curl dhclient glibc-l | 2023-01-19 02:42 | Install        |   42 EE
      1 | --installroot=/rootfs -y --releasever=9 --skip-broken install basesyste | 2023-01-19 02:41 | Install        |  147 EE
@@ -497,14 +495,14 @@ Warning, the following problems occurred while running a transaction:
   Package "tar.x86_64" is already installed for action "Install".
 ```
 
-The `sudo dnf history redo 20` command used above, attempts to repeat the command with ID:20 from the DNF history list, to reinstall `tar`. Naturally, the operation displayed 'is already installed', since it had been installed before.
+The `sudo dnf history redo 20` command used above, attempts to repeat the command with ID:20 from the DNF history list, to reinstall `tar`. Naturally, the operation displayed "is already installed," since it had been installed before.
 
-### Searching packages
+### Searching Packages
 
 Search any package by running this command:
 
 ```bash
-sudo dnf search wget 
+sudo dnf search wget
 
 Last metadata expiration check: 2:27:09 ago on Mon 05 Feb 2024 08:31:09 PM UTC.
 ================================================= Name Exactly Matched: wget =================================================
@@ -516,12 +514,12 @@ perl-HTTP-Tinyish-Wget.noarch : HTTP::Tinyish wget backend
 Search for more than one package in one search by running this command:
 
 ```bash
-sudo dnf search all yum vim 
+sudo dnf search all yum vim
 ```
 
 The command will return a long list of packages that include "yum" and "vim", as the package name, or as descriptions for other packages.
 
-### DNF package information
+### DNF Package Information
 
 To display information about packages, use this command:
 
@@ -546,10 +544,10 @@ Description  : Perl is a high-level programming language with roots in C, sed, a
              : good at handling text. Perl's hallmarks are practicality and efficiency.
              : While it is used to do a lot of different things, Perl's most common
              : applications are system administration utilities and web programming.
-             : 
+             :
              : This is a metapackage with all the Perl bits and core modules that can be
              : found in the upstream tarball from perl.org.
-             : 
+             :
              : If you need only a specific feature, you can install a specific package
              : instead. E.g. to handle Perl scripts with /usr/bin/perl interpreter,
              : install perl-interpreter package. See perl-interpreter description for more
@@ -565,7 +563,7 @@ sudo dnf repoquery perl --info
 
 While it is not always the case, in the above instance, the results of this command is identical to the `sudo dnf info perl` command.
 
-## DNF repository configuration
+## DNF Repository Configuration
 
 The configuration file for DNF and its associated utilities can be found at `/etc/dnf/dnf.conf`.
 Within this file, there is a mandatory [main] section that allows the configuration of DNF options with global effects. Additionally, it may include one or more [repository] sections, providing the ability to set repository-specific options.
@@ -589,7 +587,9 @@ To retrieve a comprehensive list of configuration options along with their respe
 
 ```bash
 dnf config-manager --dump
+```
 
+```bash
 sudo dnf config-manager --dump
 ============================================================ main ============================================================
 [main]
@@ -624,15 +624,15 @@ debuglevel = 2
 defaultyes = 0
 deltarpm = 1
 deltarpm_percentage = 75
-disable_excludes = 
+disable_excludes =
 diskspacecheck = 1
 enabled = 1
 enablegroups = 1
 errorlevel = 3
-exclude = 
-exclude_from_weak = 
+exclude =
+exclude_from_weak =
 exclude_from_weak_autodetect = 1
-excludepkgs = 
+excludepkgs =
 exit_on_lock = 0
 fastestmirror = 0
 gpgcheck = 1
@@ -642,7 +642,7 @@ history_list_view = commands
 history_record = 1
 history_record_packages = dnf, rpm
 ignorearch = 0
-includepkgs = 
+includepkgs =
 install_weak_deps = 1
 installonly_limit = 3
 installonlypkgs = kernel, kernel-PAE, installonlypkg(kernel), installonlypkg(kernel-module), installonlypkg(vm), multiversion(kernel)
@@ -664,18 +664,18 @@ module_obsoletes = 0
 module_stream_switch = 0
 multilib_policy = best
 obsoletes = 1
-password = 
+password =
 persistdir = /var/lib/dnf
 pluginconfpath = /etc/dnf/plugins
 pluginpath = /usr/lib/python3.9/site-packages/dnf-plugins
 plugins = 1
 protect_running_kernel = 1
 protected_packages = dnf, setup, systemd, systemd-udev, dnf, yum, sudo, setup, systemd, systemd-udev, dnf, yum, sudo
-proxy = 
+proxy =
 proxy_auth_method = any
-proxy_sslcacert = 
-proxy_sslclientcert = 
-proxy_sslclientkey = 
+proxy_sslcacert =
+proxy_sslclientcert =
+proxy_sslclientkey =
 proxy_sslverify = 1
 recent = 7
 repo_gpgcheck = 0
@@ -686,9 +686,9 @@ rpmverbosity = info
 showdupesfromrepos = 0
 skip_broken = 0
 skip_if_unavailable = 0
-sslcacert = 
-sslclientcert = 
-sslclientkey = 
+sslcacert =
+sslclientcert =
+sslclientkey =
 sslverify = 1
 sslverifystatus = 0
 strict = 1
@@ -696,10 +696,10 @@ system_cachedir = /var/cache/dnf
 throttle = 0
 timeout = 30
 transformdb = 1
-tsflags = 
+tsflags =
 upgrade_group_objects_upgrade = 1
 user_agent = libdnf (Rocky Linux 9.3; generic; Linux.x86_64)
-username = 
+username =
 varsdir = /etc/yum/vars, /etc/dnf/vars
 zchunk = 1
 
@@ -707,4 +707,4 @@ zchunk = 1
 
 ## Conclusion
 
-Rocky linux uses DNF, the next-generation replacement for YUM. Shown on this page were examples of basic DNF usage. For more information, refer to the [official documentation for DNF](https://dnf.readthedocs.io/en/latest/index.html)
+Rocky Linux uses DNF, the next-generation replacement for YUM. Shown on this page were examples of basic DNF usage. For more information, refer to the [official documentation for DNF](https://dnf.readthedocs.io/en/latest/index.html).
