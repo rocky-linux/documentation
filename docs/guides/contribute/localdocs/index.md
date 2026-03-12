@@ -12,7 +12,7 @@ tags:
 
 Using a local copy of Rocky Linux documentation is helpful for those who contribute often and need to see exactly how a document will look in the web interface after merging. The methods included here represent contributors' preferences to date.
 
-Using a local copy of the documentation is one step in the development process for those who subscribe to the philosophy of "docs as code," a workflow for documentation similar to code development.
+Using a local copy of the documentation is one step in the development process for those who subscribe to the philosophy of "docs as code," a workflow for documentation similar to code development. While not found in the local documentation section, [an expert contribution guide](../expert_contributing.md) fits within the local docs guides as well, but includes many other references that might be of interest to all contributors. You can review that document in conjunction with the other documents here and might find it useful.
 
 ## Markdown linting
 

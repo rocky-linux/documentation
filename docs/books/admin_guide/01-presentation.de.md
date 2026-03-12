@@ -144,7 +144,7 @@ Linux gehört zur Familie der Time-Sharing-Betriebssysteme. Es teilt die Verarbe
 
 #### Mehrbenutzer
 
-Der Zweck von MULTICS war es, mehreren Benutzern die Möglichkeit zu geben, von verschiedenen Terminals (Bildschirm und Tastatur) auf einem einzigen Computer zu arbeiten (sehr teuer zu dieser Zeit). Linux, inspiriert von diesem Betriebssystem, behielt die Möglichkeit bei, mit mehreren Benutzern gleichzeitig und unabhängig zu arbeiten, wobei jeder über ein eigenes Benutzerkonto mit Speicherplatz und Zugriffsrechten auf Dateien und Software verfügt.
+Der Zweck von MULTICS war es, mehreren Benutzern die Möglichkeit zu geben, von verschiedenen Terminals (Bildschirm und Tastatur) auf einem einzigen Computer zu arbeiten (sehr teuer zu dieser Zeit). Inspiriert von diesem Betriebssystem behielt Linux die Fähigkeit bei, mit mehreren Benutzern gleichzeitig und unabhängig voneinander zu arbeiten, wobei jeder Benutzer über sein eigenes Benutzerkonto mit Speicherplatz und Zugriffsrechten auf Dateien und Software verfügt.
 
 #### Multi-Prozessor
 

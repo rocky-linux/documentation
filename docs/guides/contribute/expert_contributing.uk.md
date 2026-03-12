@@ -1,0 +1,1431 @@
+---
+title: Експертний посібник зі створення внесків
+author: Howard Van Der Wal
+contributors: Steven Spencer, Ganna Zhyrnova
+ai_contributors: Claude (claude-opus-4-6)
+tags:
+  - contributing
+  - documentation
+  - guide
+---
+
+## Розкриття інформації про використання ШІ
+
+Штучний інтелект допоміг у створенні цього документа. Автор переглянув весь вміст, протестував та підтвердив його точність і несе повну відповідальність за правильність цього документа. Будь ласка, повідомляйте про будь-які помилки, з якими ви зіткнулися, команді документації Rocky Linux.
+
+## Ласкаво просимо
+
+Дякуємо за ваш інтерес до внеску в документацію Rocky Linux. Незалежно від того, чи пишете ви нові посібники, перекладаєте існуючий контент чи редагуєте для ясності, спільнота високо цінує кожен ваш внесок.
+
+Цей посібник призначений для авторів, які хочуть налаштувати повноцінне локальне середовище перевірки з інструментами перевірки орфографії, зв'язування Markdown та перевірки посилань. **Налаштування цих інструментів є абсолютно необов’язковим, але рекомендується для новачків.** Ви також можете редагувати документацію безпосередньо на GitHub, не встановлюючи нічого локально.
+
+Незалежно від вашого рівня досвіду, спільнота Rocky Linux готова допомогти. Якщо у вас є запитання, виникли проблеми або вам потрібна допомога щодо того, з чого почати, приєднуйтесь до [каналу документації Mattermost] (https://chat.rockylinux.org/rocky-linux/channels/documentation). Хтось із радістю допоможе вам розпочати.
+
+## Швидкий старт
+
+1. Створіть форк [репозиторію документації Rocky Linux](https://github.com/rocky-linux/documentation)
+2. Клонуйте свою форку локально
+3. Налаштуйте перехоплювачі перед комітами (необов'язково, але рекомендовано)
+4. Створіть або відредагуйте документацію
+5. Виконайте перевірки валідації
+6. Надішліть pull request
+
+## Передумови
+
+Перш ніж налаштовувати локальне середовище перевірки, вам потрібно:
+
+- Обліковий запис [GitHub](https://github.com/signup)
+- [Git](https://git-scm.com/downloads), встановлено на вашому комп’ютері
+- [Python 3.8+](https://www.python.org/downloads/) для перевірки орфографії
+- [Node.js](https://nodejs.org/) для лінтингу Markdown
+- Текстовий редактор (див. розділ про локальні редактори нижче)
+
+## Розщеплення та клонування репозиторію
+
+1. Перейдіть до [репозиторію документації Rocky Linux] (https://github.com/rocky-linux/documentation)
+
+2. Натисніть кнопку **Fork** у верхньому правому куті
+
+3. Клонуйте свій fork на вашу локальну машину:
+
+    ```bash
+    git clone https://github.com/YOUR_USERNAME/documentation.git
+    cd documentation
+    ```
+
+4. Додайте репозиторій основної платформи як віддалений:
+
+    ```bash
+    git remote add upstream https://github.com/rocky-linux/documentation.git
+    ```
+
+## Налаштування вашого середовища
+
+### Альтернативні інструменти
+
+Інструкції з налаштування в цьому розділі описують один підхід до перевірки документації за допомогою перехоплювачів перед комітом та інструментів командного рядка. Існують інші методи перевірки ваших документів Markdown перед поданням PR-запиту.
+
+Якщо ви вже використовуєте термінальний редактор (Neovim, Emacs, Helix тощо) з інтегрованими інструментами linting, ви можете продовжувати використовувати наявний робочий процес. Такі інструменти, як:
+
+- [markdownlint](https://github.com/DavidAnson/markdownlint) або [markdownlint-cli2](https://github.com/DavidAnson/markdownlint-cli2) – доступні як плагіни редактора для лінтингу Markdown у режимі реального часу
+- [vale](https://github.com/errata-ai/vale) – Лінтер прози, який може запроваджувати правила стилю
+- [harper-ls](https://github.com/Automattic/harper) – Перевірка граматики з підтримкою LSP
+- [ltex-ls](https://github.com/valentjn/ltex-ls) – перевірка граматики та орфографії на основі LanguageTool через LSP
+
+Ці інструменти забезпечують однакові можливості перевірки. Ви можете налаштувати їх відповідно до стандартів документації Rocky Linux. Ключова вимога полягає в тому, щоб ваші внески пройшли автоматичні перевірки CI під час надсилання пул-реквесту, незалежно від того, які інструменти ви використовуєте локально.
+
+### Місцеві редактори
+
+Оберіть редактор markdown, який відповідає вашому робочому процесу:
+
+#### Графічні редактори
+
+- [ReText](https://github.com/retext-project/retext) – безкоштовний, кросплатформний, з відкритим вихідним кодом
+- [Zettlr](https://www.zettlr.com/) – безкоштовний, кросплатформний, з відкритим вихідним кодом
+- [MarkText](https://github.com/marktext/marktext) – безкоштовний, кросплатформний, із відкритим кодом
+- [Remarkable](https://remarkableapp.github.io/) – Linux та Windows, з відкритим вихідним кодом
+- [Zed](https://zed.dev/) – безкоштовний, кросплатформний, з відкритим вихідним кодом, написаний на Rust. Плагіни, доступні для vale, marksman, harper-ls та markdownlint
+- [VS Code](https://code.visualstudio.com/) – частково відкритий код від Microsoft. Рекомендовані розширення: Git Graph, Markdown All in One, Markdown Preview Enhanced, markdownlint
+
+#### Редактори терміналів
+
+- [NvChad](https://nvchad.com/) – Для користувачів Neovim. Дивіться наш [посібник з налаштування NvChad](../../books/nvchad/index.md)
+- [Doom Emacs](https://github.com/doomemacs/doomemacs) – Користувачам Emacs, які шукають режим злості, слід увімкнути модуль `markdown` у конфігурації.
+
+Редактори терміналів можуть інтегрувати ті ж інструменти перевірки, що й хуки перед коммітами, безпосередньо у ваш робочий процес редагування:
+
+- [markdownlint](https://github.com/DavidAnson/markdownlint)
+- [vale](https://github.com/errata-ai/vale)
+- [harper-ls](https://github.com/Automattic/harper)
+- [ltex-ls](https://github.com/valentjn/ltex-ls)
+
+### Налаштування Rocky Linux 10
+
+Якщо ви використовуєте Rocky Linux 10, виконайте ці кроки, щоб налаштувати повне середовище перевірки документації. Це встановлює всі необхідні інструменти, необхідні для виконання тих самих перевірок, які команда документації використовує для перевірки пул-реквестів.
+
+#### Крок 1: Встановлення системних залежностей
+
+```bash
+# Note: npm is bundled with nodejs in Rocky Linux 10
+sudo dnf install -y git python3-pip hunspell hunspell-en-US nodejs
+```
+
+#### Крок 2: Встановлення пакетів Python
+
+```bash
+pip install pre-commit pyspelling
+```
+
+#### Крок 3: Встановлення пакетів Node.js
+
+```bash
+sudo npm install -g markdownlint-cli
+```
+
+#### Крок 4: Встановіть перевірку посилань Lychee
+
+Lychee недоступний у репозиторіях Rocky Linux, тому встановіть бінарний файл безпосередньо:
+
+```bash
+cd /tmp
+curl -sLO https://github.com/lycheeverse/lychee/releases/latest/download/lychee-x86_64-unknown-linux-gnu.tar.gz
+tar xzf lychee-x86_64-unknown-linux-gnu.tar.gz
+sudo mv lychee /usr/local/bin/
+sudo chmod +x /usr/local/bin/lychee
+rm -f lychee-x86_64-unknown-linux-gnu.tar.gz
+```
+
+Перевірте встановлення:
+
+```bash
+lychee --version
+```
+
+#### Крок 5: Клонуйте свій роздвоєний репозиторій та налаштуйте його
+
+```bash
+git clone https://github.com/YOUR_USERNAME/documentation.git
+cd documentation
+```
+
+Якщо ви вже клонували репозиторій, переконайтеся, що він оновлений:
+
+```bash
+cd documentation
+git pull origin main
+```
+
+#### Крок 6: Перевірте конфігурацію pyspelling
+
+Репозиторій містить конфігурацію `.pyspelling.yml` для Hunspell, програми перевірки орфографії за замовчуванням у Rocky Linux 10. Вам не потрібна додаткова конфігурація. Перевірте встановлення Hunspell за допомогою:
+
+```bash
+rpm -q hunspell hunspell-en-US
+```
+
+Якщо не встановлено:
+
+```bash
+sudo dnf install -y hunspell hunspell-en-US
+```
+
+#### Крок 7: Встановлення хуків перед комітом
+
+```bash
+pre-commit install
+```
+
+#### Крок 8: Перевірте налаштування
+
+Виконайте всі перевірки, щоб переконатися, що все працює:
+
+```bash
+pre-commit run --all-files
+```
+
+#### Очікувана поведінка під час першого запуску
+
+Під час першого запуску команди `pre-commit run --all-files` ви можете побачити помилки з існуючих файлів репозиторію. Це очікувана поведінка:
+
+| Hook                    | Очікуваний результат                                   | Примітки                            |
+| ----------------------- | ------------------------------------------------------ | ----------------------------------- |
+| trailing-whitespace     | Може автоматично виправляти файли                      | Зміни вносяться автоматично         |
+| end-of-file-fixer       | Може автоматично виправляти файли                      | Зміни вносяться автоматично         |
+| check-yaml              | Пройдено                                               | Файли конфігурації MkDocs виключено |
+| check-added-large-files | Пройдено                                               |                                     |
+| markdownlint            | Може показувати помилки                                |                                     |
+| pyspelling              | Пройдено (з конфігурацією Hunspell) | Потрібна конфігурація кроку 6       |
+| lychee                  | Пройдено                                               | Деякі тайм-аути є нормальними       |
+
+**Важливо**: Помилки markdownlint, які ви бачите, знаходяться в існуючих файлах документації репозиторію, а не у файлах, які ви створили. Під час внесення змін вам потрібно лише переконатися, що ваші власні файли пройшли перевірку.
+
+#### Крок 9: Перевірте свій документ
+
+Перш ніж надсилати документацію, перевірте свій конкретний файл, щоб переконатися, що він пройшов усі перевірки:
+
+```bash
+# Spell check
+pyspelling -n Markdown -S "docs/guides/your-document.md"
+
+# Markdown lint
+markdownlint "docs/guides/your-document.md"
+
+# Link check
+lychee "docs/guides/your-document.md" --no-progress
+```
+
+Приклад виводу для успішної перевірки орфографії:
+
+```text
+pyspelling -n Markdown -S "docs/guides/hpc/slurm-rocky.md"
+Spelling check passed :)
+```
+
+Приклад виводу для невдалої перевірки lint на Markdown:
+
+```text
+markdownlint docs/guides/automation/kickstart-rocky-broken.md
+docs/guides/automation/kickstart-rocky-broken.md:1 error MD041/first-line-heading/first-line-h1 First line in a file should be a top-level heading [Context: "---"]
+docs/guides/automation/kickstart-rocky-broken.md:162 error MD001/heading-increment Heading levels should only increment by one level at a time [Expected: h2; Actual: h3]
+```
+
+Приклад виводу для успішної перевірки посилання:
+
+```text
+lychee docs/guides/hpc/slurm-rocky.md --no-progress
+🔍 8 Total (in 0s) ✅ 8 OK 🚫 0 Errors
+```
+
+### Налаштування Rocky Linux 9
+
+Якщо ви використовуєте Rocky Linux 9, виконайте ці кроки, щоб налаштувати повне середовище перевірки документації. Rocky Linux 9 використовує Hunspell для перевірки орфографії (aspell недоступний в EPEL для Rocky Linux 9).
+
+#### Крок 1: Встановлення системних залежностей
+
+```bash
+sudo dnf install -y git python3-pip hunspell hunspell-en-US nodejs npm
+```
+
+#### Крок 2: Встановлення пакетів Python
+
+```bash
+pip install --user pre-commit pyspelling
+```
+
+#### Крок 3: Встановлення пакетів Node.js
+
+```bash
+sudo npm install -g markdownlint-cli
+```
+
+#### Крок 4: Встановіть перевірку посилань Lychee
+
+Lychee недоступний у репозиторіях Rocky Linux, тому встановіть бінарний файл безпосередньо:
+
+```bash
+cd /tmp
+curl -sLO https://github.com/lycheeverse/lychee/releases/latest/download/lychee-x86_64-unknown-linux-gnu.tar.gz
+tar xzf lychee-x86_64-unknown-linux-gnu.tar.gz
+sudo mv lychee /usr/local/bin/
+sudo chmod +x /usr/local/bin/lychee
+rm -f lychee-x86_64-unknown-linux-gnu.tar.gz
+```
+
+Перевірте встановлення:
+
+```bash
+lychee --version
+```
+
+#### Крок 5: Клонуйте свій роздвоєний репозиторій та налаштуйте його
+
+```bash
+git clone https://github.com/YOUR_USERNAME/documentation.git
+cd documentation
+```
+
+#### Крок 6: Перевірте конфігурацію pyspelling
+
+Репозиторій містить конфігурацію `.pyspelling.yml` для Hunspell, програми перевірки орфографії за замовчуванням у Rocky Linux 9. Вам не потрібна додаткова конфігурація. Перевірте встановлення Hunspell за допомогою:
+
+```bash
+rpm -q hunspell hunspell-en-US
+```
+
+Якщо не встановлено:
+
+```bash
+sudo dnf install -y hunspell hunspell-en-US
+```
+
+#### Крок 7: Встановлення хуків перед комітом
+
+```bash
+~/.local/bin/pre-commit install
+```
+
+!!! note
+
+    Під час використання `pip install --user`, бінарний файл `pre-commit` встановлюється до `~/.local/bin/`. Ви можете використовувати повний шлях або додати `~/.local/bin` до вашого PATH:
+
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+#### Крок 8: Перевірте налаштування
+
+Виконайте всі перевірки, щоб переконатися, що все працює:
+
+```bash
+~/.local/bin/pre-commit run --all-files
+```
+
+#### Крок 9: Перевірте свій документ
+
+Перш ніж надсилати документацію, перевірте свій конкретний файл, щоб переконатися, що він пройшов усі перевірки:
+
+```bash
+# Spell check
+pyspelling -n Markdown -S "docs/guides/your-document.md"
+
+# Markdown lint
+markdownlint "docs/guides/your-document.md"
+
+# Link check
+lychee "docs/guides/your-document.md" --no-progress
+```
+
+### Налаштування Rocky Linux 8
+
+Якщо ви використовуєте Rocky Linux 8, виконайте ці кроки, щоб налаштувати повне середовище перевірки документації. Rocky Linux 8 використовує Aspell для перевірки орфографії (доступно з базових репозиторіїв).
+
+#### Крок 1: Встановлення системних залежностей
+
+Rocky Linux 8 використовує потоки модулів Python 3.9 та Node.js:
+
+```bash
+# Install Python 3.9 and other dependencies
+sudo dnf install -y git python39-pip python39 aspell aspell-en
+
+# Enable Node.js 18 module stream
+sudo dnf module enable -y nodejs:18
+
+# Install Node.js
+sudo dnf install -y nodejs
+```
+
+#### Крок 2: Встановлення пакетів Python
+
+Використайте pip з Python 3.9:
+
+```bash
+pip3.9 install --user pre-commit pyspelling
+```
+
+#### Крок 3: Встановлення пакетів Node.js
+
+```bash
+sudo npm install -g markdownlint-cli
+```
+
+#### Крок 4: Встановіть перевірку посилань Lychee
+
+Lychee недоступний у репозиторіях Rocky Linux, тому встановіть бінарний файл безпосередньо:
+
+```bash
+cd /tmp
+curl -sLO https://github.com/lycheeverse/lychee/releases/latest/download/lychee-x86_64-unknown-linux-gnu.tar.gz
+tar xzf lychee-x86_64-unknown-linux-gnu.tar.gz
+sudo mv lychee /usr/local/bin/
+sudo chmod +x /usr/local/bin/lychee
+rm -f lychee-x86_64-unknown-linux-gnu.tar.gz
+```
+
+Перевірте встановлення:
+
+```bash
+lychee --version
+```
+
+#### Крок 5: Клонуйте свій роздвоєний репозиторій та налаштуйте його
+
+```bash
+git clone https://github.com/YOUR_USERNAME/documentation.git
+cd documentation
+```
+
+#### Крок 6: Налаштування pyspelling для Aspell
+
+Конфігурація Hunspell у репозиторії `.pyspelling.yml` вже існує. Rocky Linux 8 використовує Aspell, тому вам потрібно створити локальне перевизначення. Створіть файл `.pyspelling.yml` у кореневому каталозі репозиторію:
+
+```bash
+cat > .pyspelling.yml << 'EOF'
+spellchecker: aspell
+matrix:
+  - name: Markdown
+    sources:
+      # Process English files only - exclude translations
+      - 'docs/**/*.md|!docs/**/*.{af,de,en,es,fr,hi,id,it,ja,ko,pl,pt,pt-BR,sv,tr,uk,zh}.md'
+    expect_match: false
+    aspell:
+      lang: en
+      d: en_US
+    dictionary:
+      wordlists:
+        - .wordlist.txt
+      output: build/spelling-wordlist.dic
+    pipeline:
+      - pyspelling.filters.markdown:
+      - pyspelling.filters.html:
+          comments: true
+          ignores:
+            - code
+            - pre
+            - kbd
+      - pyspelling.filters.context:
+          context_visible_first: true
+          escapes: '\\[\\`]'
+          delimiters:
+            # Ignore front matter
+            - open: '(?s)^---'
+              close: '^---'
+            # Ignore code blocks
+            - open: '(?s)^(?P<open>`{3,}).*$'
+              close: '^(?P=open)$'
+            # Ignore inline code
+            - open: '`'
+              close: '`'
+            # Ignore URLs
+            - open: '\('
+              content: 'https?://[^\)]*'
+              close: '\)'
+            # Ignore email addresses
+            - open: '<'
+              content: '[^>]+@[^>]+'
+              close: '>'
+      - pyspelling.filters.url:
+EOF
+```
+
+Після створення перевизначення, накажіть Git ігнорувати ваші локальні зміни в цьому файлі, щоб ви випадково не закомітили його:
+
+```bash
+git update-index --assume-unchanged .pyspelling.yml
+```
+
+Це запобігає появі зміненого файлу `.pyspelling.yml` у `git status` або в області проміжної обробки під час використання `git add`. Якщо вам коли-небудь знадобиться скасувати це (наприклад, щоб витягнути зміни з файлу), виконайте:
+
+```bash
+git update-index --no-assume-unchanged .pyspelling.yml
+```
+
+#### Крок 7: Встановлення хуків перед комітом
+
+```bash
+~/.local/bin/pre-commit install
+```
+
+!!! note
+
+    Під час використання `pip install --user`, бінарний файл `pre-commit` встановлюється до `~/.local/bin/`. Ви можете використовувати повний шлях або додати `~/.local/bin` до вашого PATH:
+
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+#### Крок 8: Перевірте налаштування
+
+Виконайте всі перевірки, щоб переконатися, що все працює:
+
+```bash
+~/.local/bin/pre-commit run --all-files
+```
+
+#### Крок 9: Перевірте свій документ
+
+Перш ніж надсилати документацію, перевірте свій конкретний файл, щоб переконатися, що він пройшов усі перевірки:
+
+```bash
+# Spell check
+pyspelling -n Markdown -S "docs/guides/your-document.md"
+
+# Markdown lint
+markdownlint "docs/guides/your-document.md"
+
+# Link check
+lychee "docs/guides/your-document.md" --no-progress
+```
+
+### налаштування macOS Sequoia
+
+Якщо ви використовуєте macOS Sequoia (macOS 15), виконайте ці кроки, щоб налаштувати повне середовище перевірки документації. Ми протестували ці інструкції як на комп'ютерах Mac з процесором Apple Silicon (M1/M2/M3/M4), так і на комп'ютерах Mac з процесором Intel.
+
+#### Крок 1: Встановлення інструментів командного рядка Xcode
+
+Перед встановленням Homebrew необхідно встановити інструменти командного рядка Xcode:
+
+```bash
+xcode-select --install
+```
+
+З’явиться діалогове вікно із запитом на встановлення інструментів. Натисніть кнопку **Install** та зачекайте завершення встановлення.
+
+#### Крок 2: Встановлення Homebrew (якщо ще не встановлено)
+
+Якщо у вас не встановлено [Homebrew](https://brew.sh/), виконайте:
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+**Важливо для комп’ютерів Apple Silicon Mac (M1/M2/M3/M4)**: Homebrew встановлюється в `/opt/homebrew` на Apple Silicon, якого немає в каталозі PATH за замовчуванням. Після встановлення виконайте ці команди для налаштування оболонки:
+
+```bash
+(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+```
+
+Перевірте, чи працює Homebrew:
+
+```bash
+brew doctor
+```
+
+!!! note "Для комп'ютерів Mac з процесором Intel"
+
+    Homebrew встановлюється до `/usr/local` на комп'ютерах Mac з Intel, що вже знаходиться в каталозі PATH за замовчуванням. Вам не потрібно жодного додаткового налаштування.
+
+#### Крок 3: Встановлення системних залежностей
+
+```bash
+brew install git python node aspell lychee
+```
+
+#### Крок 4: Встановлення пакетів Python
+
+Рекомендований підхід полягає у використанні віртуального середовища:
+
+```bash
+python3 -m venv ~/rocky-docs-env
+source ~/rocky-docs-env/bin/activate
+pip install pre-commit pyspelling
+```
+
+Додайте псевдонім до конфігурації оболонки для легкої активації:
+
+```bash
+echo "alias rocky-docs-env='source ~/rocky-docs-env/bin/activate'" >> ~/.zshrc
+source ~/.zshrc
+```
+
+#### Крок 5: Встановлення пакетів Node.js
+
+Якщо виникли помилки дозволів під час глобальних інсталяцій npm, налаштуйте npm для використання каталогу користувача:
+
+```bash
+mkdir -p ~/.npm-global
+npm config set prefix '~/.npm-global'
+echo 'export PATH="$HOME/.npm-global/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+Потім встановіть markdownlint:
+
+```bash
+npm install -g markdownlint-cli
+```
+
+#### Крок 6: Клонуйте свій роздвоєний репозиторій та налаштуйте його
+
+```bash
+git clone https://github.com/YOUR_USERNAME/documentation.git
+cd documentation
+```
+
+Додайте дистанційне керування:
+
+```bash
+git remote add upstream https://github.com/rocky-linux/documentation.git
+```
+
+#### Крок 7: Налаштуйте pyspelling для macOS
+
+Конфігурація репозиторію `.pyspelling.yml` за замовчуванням призначена для Hunspell. macOS використовує Aspell (встановлюється через Homebrew), тому вам потрібно створити локальне перевизначення. Створіть файл `.pyspelling.yml` у кореневому каталозі репозиторію, налаштованому для Aspell:
+
+```bash
+cat > .pyspelling.yml << 'EOF'
+spellchecker: aspell
+matrix:
+  - name: Markdown
+    sources:
+      - 'docs/**/*.md'
+    expect_match: false
+    aspell:
+      lang: en
+      d: en_US
+    dictionary:
+      wordlists:
+        - .wordlist.txt
+      output: build/spelling-wordlist.dic
+    pipeline:
+      - pyspelling.filters.markdown
+      - pyspelling.filters.html:
+          ignores:
+            - code
+            - pre
+            - kbd
+      - pyspelling.filters.context:
+          context_visible_first: true
+          escapes: '\\[\\`]'
+          delimiters:
+            - open: '(?s)^---'
+              close: '^---'
+            - open: '(?s)^(?P<open>`{3,}).*$'
+              close: '^(?P=open)$'
+            - open: '`'
+              close: '`'
+            - open: '\('
+              content: 'https?://[^\)]*'
+              close: '\)'
+            - open: '<'
+              content: '[^>]+@[^>]+'
+              close: '>'
+      - pyspelling.filters.url
+EOF
+```
+
+Після створення перевизначення, накажіть Git ігнорувати ваші локальні зміни в цьому файлі, щоб ви випадково не закомітили його:
+
+```bash
+git update-index --assume-unchanged .pyspelling.yml
+```
+
+Це запобігає появі зміненого файлу `.pyspelling.yml` у `git status` або в області проміжної обробки під час використання `git add`. Якщо вам коли-небудь знадобиться скасувати це (наприклад, щоб витягнути зміни з файлу), виконайте:
+
+```bash
+git update-index --no-assume-unchanged .pyspelling.yml
+```
+
+#### Крок 8: Встановлення хуків перед комітом
+
+```bash
+pre-commit install
+```
+
+#### Крок 9: Перевірте налаштування
+
+Виконайте перевірки валідації:
+
+```bash
+pre-commit run --all-files
+```
+
+!!! note
+
+    Конфігурація pyspelling (перевірка орфографії) та lychee (перевірка посилань) виконана як ручні перехоплювачі, щоб уникнути тривалого часу виконання на повному репозиторії. Під час запуску `pre-commit run --all-files` ви можете побачити помилки markdownlint з існуючих файлів репозиторію. Це вже існуючі проблеми, і ви не зобов'язані їх виправляти.
+
+#### Перевірка власних документів
+
+Під час внесення змін перевірте свій документ за допомогою таких команд:
+
+```bash
+# Activate the virtual environment first
+rocky-docs-env
+
+# Markdown lint check
+markdownlint docs/guides/your-document.md
+
+# Spell check
+pyspelling -n Markdown -S docs/guides/your-document.md
+
+# Link check
+lychee docs/guides/your-document.md --no-progress
+```
+
+### Налаштування Windows 11
+
+Якщо ви використовуєте Windows 11, виконайте ці кроки, щоб налаштувати повне середовище перевірки документації.
+
+#### Крок 1: Встановлення менеджера пакетів Chocolatey
+
+Відкрийте **PowerShell від імені адміністратора** (клацніть правою кнопкою миші Start → Terminal (Admin)) та:
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force
+iwr https://community.chocolatey.org/install.ps1 -UseBasicParsing | iex
+```
+
+Закрийте та знову відкрийте PowerShell від імені адміністратора після встановлення.
+
+#### Крок 2: Встановлення Git, Python та Node.js
+
+```powershell
+choco install -y git python nodejs-lts
+```
+
+Закрийте та знову відкрийте PowerShell від імені адміністратора, щоб оновити шлях (PATH).
+
+#### Крок 3: Встановлення пакетів Python
+
+```powershell
+pip install pre-commit pyspelling
+```
+
+#### Крок 4: Встановлення пакетів Node.js
+
+```powershell
+npm install -g markdownlint-cli
+```
+
+#### Крок 5: Встановіть Hunspell (перевірку орфографії)
+
+```powershell
+choco install -y hunspell.portable
+```
+
+#### Крок 6: Встановлення Lychee (перевірка посилань)
+
+```powershell
+choco install -y lychee
+```
+
+#### Крок 7: Клонуйте свій роздвоєний репозиторій та налаштуйте його
+
+```powershell
+cd ~\Documents
+git clone https://github.com/YOUR_USERNAME/documentation.git
+cd documentation
+```
+
+#### Крок 8: Створення конфігурації перед комітом
+
+Створіть файл `.pre-commit-config.yaml` у кореневому каталозі репозиторію:
+
+```powershell
+@"
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer
+      - id: check-yaml
+        exclude: |
+          (?x)^(
+            tools/mkdocs-docker\.yml|
+            tools/docker-compose\.yml|
+            build_pdf/build_base\.yml|
+            mkdocs\.yml
+          )$
+      - id: check-added-large-files
+        args: ['--maxkb=1024']
+
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.38.0
+    hooks:
+      - id: markdownlint
+        args:
+          - --config
+          - .markdownlint.yml
+          - --fix
+        files: \.md$
+        exclude: |
+          (?x)^(
+            LICENSE\.md|
+            build_pdf/.*
+          )$
+"@ | Out-File -FilePath .pre-commit-config.yaml -Encoding UTF8
+```
+
+#### Крок 9: Встановлення хуків перед комітом
+
+```powershell
+pre-commit install
+```
+
+#### Крок 10: Перевірте налаштування
+
+Виконайте перевірки валідації, щоб переконатися, що все працює:
+
+```powershell
+pre-commit run --files docs/guides/automation/kickstart-rocky.md
+```
+
+### Встановлення хуків перед комітом
+
+Перехоплювачі перед комітами запускаються автоматично перед кожним комітом для перевірки орфографії, форматування Markdown та посилань. Якщо ви виконали один із наведених вище посібників із налаштування для конкретної платформи, ви вже виконали цей крок.
+
+Для інших платформ, не перелічених вище, ось загальні інструкції:
+
+1. Встановлення перед комітом:
+
+    ```bash
+    pip install pre-commit
+    ```
+
+2. Встановіть необхідні інструменти:
+
+    ```bash
+    # Install pyspelling for spell checking
+    pip install pyspelling
+    ```
+
+## Встановлення словників Aspell (залежно від ОС)
+
+### У Rocky Linux / RHEL / Fedora
+
+```bash
+sudo dnf install aspell aspell-en
+```
+
+### На Debian / Ubuntu
+
+```bash
+sudo apt-get install aspell aspell-en
+```
+
+### На macOS
+
+```bash
+brew install aspell
+```
+
+### Встановіть markdownlint-cli для лінтингу markdown
+
+```bash
+npm install -g markdownlint-cli
+```
+
+## Встановіть Lychee для перевірки посилань
+
+### На Rocky Linux 10 (бінарне встановлення — lychee не знаходиться в репозиторіях)
+
+```bash
+cd /tmp && curl -sLO https://github.com/lycheeverse/lychee/releases/latest/download/lychee-x86_64-unknown-linux-gnu.tar.gz
+tar xzf lychee-x86_64-unknown-linux-gnu.tar.gz && sudo mv lychee /usr/local/bin/
+sudo chmod +x /usr/local/bin/lychee && rm -f lychee-x86_64-unknown-linux-gnu.tar.gz
+```
+
+### У Fedora (може бути доступно в репозиторіях)
+
+```bash
+sudo dnf install lychee
+```
+
+### На Debian / Ubuntu (через cargo)
+
+```bash
+cargo install lychee
+```
+
+### На macOS
+
+```bash
+brew install lychee
+```
+
+1. Встановіть перехоплювачі перед комітами:
+
+    ```bash
+    pre-commit install
+    ```
+
+2. Перевірте встановлення, запустивши перехоплювачі вручну:
+
+    ```bash
+    pre-commit run --all-files
+    ```
+
+## Створення нової документації
+
+### Найменування документів
+
+Використовуйте назви файлів у нижньому регістрі з підкресленнями або дефісами. Робіть імена короткими та описовими:
+
+- `kickstart_rocky.md` – Добре
+- `HowToInstallRockyLinuxUsingKickstart.md` – Занадто довгий файл
+- `ks.md` – Занадто розпливчасто
+
+Для перекладених документів додайте код мови перед `.md`:
+
+- `kickstart_rocky.md` - англійська (за замовчуванням)
+- `kickstart_rocky.de.md` - німецька
+- `kickstart_rocky.es.md` - іспанська
+
+### Розташування документа
+
+Помістіть ваш документ у відповідний каталог у `docs/guides/`:
+
+| Тема                   | Каталог                           |
+| ---------------------- | --------------------------------- |
+| Automation tasks       | `docs/guides/automation/`         |
+| Backup solutions       | `docs/guides/backup/`             |
+| Cloud deployments      | `docs/guides/cloud/`              |
+| Content management     | `docs/guides/cms/`                |
+| Communication tools    | `docs/guides/communications/`     |
+| Container technologies | `docs/guides/containers/`         |
+| Contributing guides    | `docs/guides/contribute/`         |
+| Database systems       | `docs/guides/database/`           |
+| Desktop environments   | `docs/guides/desktop/`            |
+| DNS configuration      | `docs/guides/dns/`                |
+| Text editors           | `docs/guides/editors/`            |
+| Email servers          | `docs/guides/email/`              |
+| File sharing           | `docs/guides/file_sharing/`       |
+| Hardware guides        | `docs/guides/hardware/`           |
+| Interoperability       | `docs/guides/interoperability/`   |
+| Kernel topics          | `docs/guides/kernel/`             |
+| Mirror management      | `docs/guides/mirror_management/`  |
+| Networking             | `docs/guides/network/`            |
+| Package management     | `docs/guides/package_management/` |
+| Proxy servers          | `docs/guides/proxies/`            |
+| Repositories           | `docs/guides/repositories/`       |
+| Security               | `docs/guides/security/`           |
+| Troubleshooting        | `docs/guides/troubleshooting/`    |
+| Virtualization         | `docs/guides/virtualization/`     |
+| Web servers            | `docs/guides/web/`                |
+
+Якщо ваш посібник не відповідає жодній існуючій категорії, розмістіть його в найвідповіднішому каталозі або зверніться до команди документації на [каналі документації Mattermost] (https://chat.rockylinux.org/rocky-linux/channels/documentation).
+
+### Використання штучного інтелекту
+
+Команда документації Rocky Linux дозволяє використання інструментів штучного інтелекту та LLM у процесі внесення змін, дотримуючись [Політики Fedora щодо штучного інтелекту](https://docs.fedoraproject.org/en-US/docs/ai-policy/) як базової. Якщо ви використовуєте штучний інтелект для будь-якої частини вашої документації (складання чернеток, дослідження, граматики, генерації коду), ви повинні включити розкриття на початку документа, в якому зазначається використання штучного інтелекту та те, що ви несете повну відповідальність за правильність вмісту. Ви повинні самостійно протестувати кожну процедуру та перевірити весь технічний контент, оскільки штучний інтелект часто створює помилки. Не передайте існуючі роботи інших авторів через інструменти штучного інтелекту та не надсилайте їх повторно як внесок, оскільки це стирає голос оригінального автора. Незначні виправлення, такі як друкарські помилки та непрацюючі посилання, не потребують розкриття інформації.
+
+### Структура документа
+
+Кожен документ повинен містити метадані вступної частини у верхній частині:
+
+```yaml
+---
+title: Your Document Title
+author: Your Name
+contributors: Comma, Separated, Names
+ai_contributors: AI Model (model-version)
+tested_with: 8.10, 9.7, 10.1
+tags:
+  - relevant
+  - tags
+  - here
+---
+```
+
+Після вступної частини структуруйте свій документ таким чином:
+
+1. Короткий вступ, що пояснює, що охоплює посібник
+2. Передумови або вимоги
+3. Покрокові інструкції
+4. Висновок або короткий зміст
+
+### Приклади посібників
+
+Сміливо ознайомтеся з деякими прикладами посібників, щоб зрозуміти форматування та стилізацію:
+
+- [Файли Kickstart та Rocky Linux](../automatization/kickstart-rocky.md)
+- [Налаштування libvirt на Rocky Linux](../virtualization/libvirt-rocky.md)
+- [Автоматичне створення шаблонів за допомогою Packer та розгортання за допомогою Ansible у середовищі VMware vSphere](../automation/templates-automation-packer-vsphere.md)
+
+## Рекомендації щодо форматування
+
+### Посібник зі стилю
+
+Дотримуйтесь [стильового посібника Rocky Linux](style_guide.md) для:
+
+- Граматичних та пунктуаційних стандартів
+- Рекомендації щодо голосу та тону
+- Вимоги до доступності
+
+Ключові моменти:
+
+- Використовуйте правопис американської англійської мови
+- Використовуйте активний стан
+- Уникайте скорочень (допомагає перекладу)
+- Використовуйте великі літери для заголовків у стилі речень
+- Використовуйте коми через послідовність ("яблука, апельсини та банани")
+
+### Форматування Markdown
+
+Дотримуйтесь інструкцій [Посібника з форматування документів](rockydocs_formatting.md) для:
+
+- Застереження (примітки, попередження, поля для порад)
+- Блоки коду
+- Таблиці
+- Списки
+
+Ключові правила, яких дотримується наш лінтер:
+
+- Використовуйте тире (`-`) для невпорядкованих списків, а не зірочки
+- Включіть порожні рядки навколо заголовків
+- Використовуйте огороджені блоки коду з ідентифікаторами мов
+- Уникайте пробілів у кінці
+- Закінчуйте файли одним символом нового рядка
+
+### Блоки коду
+
+Завжди вказуйте мову для підсвічування синтаксису:
+
+````markdown
+```bash
+dnf install httpd
+systemctl enable --now httpd
+```
+````
+
+Для команд, що показують вивід, використовуйте мову `text`:
+
+````markdown
+```text
+$ hostname
+rocky.example.com
+```
+````
+
+## Перевірки валідації
+
+Перед комітом автоматично запускаються прекоміти-хуки:
+
+1. **Перевірка орфографії** (pyspelling) – перевіряє наявність орфографічних помилок у англійській мові США
+2. **Markdown lint** (markdownlint) – Перевіряє форматування markdown
+3. **Перевірка посилань** (lychee) – Перевіряє дійсність усіх посилань
+
+Якщо будь-яка перевірка не проходить, вони блокують коміт. Виправте проблеми та спробуйте ще раз.
+
+### Виконання перевірок вручну
+
+Виконайте всі перевірки:
+
+```bash
+pre-commit run --all-files
+```
+
+Виконайте окремі перевірки:
+
+```bash
+# Spell check only
+pyspelling
+
+# Markdown lint only
+markdownlint docs/
+
+# Link check only
+lychee docs/
+```
+
+### Перевірка правил внесення вкладів до документації Rocky
+
+Окрім стандартних перевірок, ваш документ має відповідати [керівним принципам щодо написання документації Rocky Linux](beginners.md) та [стандартам форматування](rockydocs_formatting.md). Використайте наступні перевірки для перевірки вашого документа перед надсиланням запиту на зняття змін.
+
+#### Перевірити один документ
+
+Замініть `path/to/your-document.md` на шлях до вашого документа в усіх командах нижче.
+
+**Виконайте стандартні перевірки вашого документа:**
+
+```bash
+# Spell check
+pyspelling -n Markdown -S "path/to/your-document.md"
+
+# Markdown lint
+markdownlint "path/to/your-document.md"
+
+# Link check
+lychee "path/to/your-document.md" --no-progress
+```
+
+#### Перевірка метаданих
+
+Кожен документ вимагає метаданих вступної частини. Перевірте, чи ваш документ містить:
+
+| Поле           | Обов'язково   | Опис                                                                           |
+| -------------- | ------------- | ------------------------------------------------------------------------------ |
+| `title`        | Так           | Назва документа                                                                |
+| `author`       | Так           | Ваше ім'я                                                                      |
+| `contributors` | Рекомендовано | Список співавторів, розділених комами                                          |
+| `tested_with`  | Так           | Тестовані версії Rocky Linux (наприклад, `8.10, 9.7, 10.1`) |
+| `tags`         | Так           | Однослівні терміни для пошуку                                                  |
+
+**Перевірте наявність необхідних метаданих:**
+
+```bash
+# Check for title
+grep -q '^title:' path/to/your-document.md && echo "✓ Title found" || echo "✗ Missing title"
+
+# Check for author
+grep -q '^author:' path/to/your-document.md && echo "✓ Author found" || echo "✗ Missing author"
+
+# Check for contributors (recommended)
+grep -q '^contributors:' path/to/your-document.md && echo "✓ Contributors found" || echo "⚠ Contributors recommended"
+
+# Check for tested with
+grep -qE '^tested.*(with|_with|on)?:' path/to/your-document.md && echo "✓ Tested with found" || echo "✗ Missing tested with"
+
+# Check for tags
+grep -q '^tags:' path/to/your-document.md && echo "✓ Tags found" || echo "✗ Missing tags"
+```
+
+#### Перевірка структури заголовків
+
+Документи повинні мати щонайбільше один заголовок першого рівня (`#`). Якщо ваш документ містить метадані `title:`, ці метадані генерують для вас заголовок першого рівня. Немає вимоги до додаткового заголовка рівня 1.
+
+```bash
+# Count Level 1 headings (should be 0 or 1)
+h1_count=$(grep -c '^# ' path/to/your-document.md || echo 0)
+if [ "$h1_count" -le 1 ]; then
+    echo "✓ Heading structure OK ($h1_count H1 headings)"
+else
+    echo "✗ Too many H1 headings: $h1_count (maximum 1 allowed)"
+fi
+```
+
+#### Форматування застережень
+
+У застереженнях використовується синтаксис `!!!` з відповідними типами та 4-пробілним відступом для вмісту:
+
+!!! warning "Додатковий користувацький заголовок"
+    
+    Цей контент має бути з відступом у 4 пробіли.
+
+    
+
+```bash
+# Check admonition syntax
+if grep -qE '^!!!\s+(note|abstract|info|tip|success|question|warning|failure|danger|bug|example|quote)' path/to/your-document.md; then
+    echo "✓ Admonitions use valid types"
+else
+    if grep -q '^!!!' path/to/your-document.md; then
+        echo "⚠ Admonitions found but may have invalid types"
+    else
+        echo "ℹ No admonitions found"
+    fi
+fi
+```
+
+#### Перевірка блоку коду
+
+Блоки коду повинні вказувати ідентифікатор мови для підсвічування синтаксису:
+
+````markdown
+```bash
+dnf install httpd
+```
+````
+
+```bash
+# Check for code blocks without language identifiers
+blocks_without_lang=$(grep -c '^```$' path/to/your-document.md 2>/dev/null || echo 0)
+blocks_with_lang=$(grep -c '^```[a-zA-Z]' path/to/your-document.md 2>/dev/null || echo 0)
+
+if [ "$blocks_without_lang" -eq 0 ]; then
+    echo "✓ All code blocks have language identifiers ($blocks_with_lang blocks)"
+else
+    echo "✗ $blocks_without_lang code blocks missing language identifiers"
+fi
+```
+
+#### Перевірка формату посилання
+
+Посилання повинні використовувати правильний формат розмітки `[текст](url)`. Уникайте пустих URL-адрес.
+
+```bash
+# Count properly formatted links
+proper_links=$(grep -oE '\[[^]]+\]\([^)]+\)' path/to/your-document.md 2>/dev/null | wc -l)
+echo "ℹ Found $proper_links properly formatted links"
+```
+
+#### Перевірка домену тестів
+
+Використовуючи приклади URL-адрес у документації, використовуйте схвалені домени для проходження перевірки посилань:
+
+- `example.com`, `example.org`, `example.net`
+- `home.arpa`
+- `localhost` або `127.0.0.1`
+
+#### Попередження про внутрішні якорі
+
+Уникайте внутрішніх прив’язок документа, таких як `[посилання](#назва-розділу)`, оскільки вони можуть бути пошкоджені під час перекладу.
+
+```bash
+# Check for internal anchors
+anchors=$(grep -cE '\[.+\]\(#[^)]+\)' path/to/your-document.md 2>/dev/null || echo 0)
+if [ "$anchors" -eq 0 ]; then
+    echo "✓ No internal anchors found"
+else
+    echo "⚠ Found $anchors internal anchors (may break during translation)"
+fi
+```
+
+#### Попередження про необроблений HTML-код
+
+Уникайте використання необроблених HTML-елементів. Лінтери Markdown позначають їх, і вони можуть відображатися неправильно. Ці дозволені елементи HTML у `.markdownlint.yml` не спричинятимуть помилок зв'язування:
+
+- `<sub>` та `<sup>` – для нижнього та надрядкового тексту
+- `<details>` та `<summary>` – для розділів вмісту, що згортаються/розгортаються
+
+```bash
+# Check for HTML tags (excluding allowed elements: sub, sup, details, summary)
+html_tags=$(grep -cE '<(?!sub|sup|details|summary|/sub|/sup|/details|/summary)[a-zA-Z][^>]*>' path/to/your-document.md 2>/dev/null || echo 0)
+if [ "$html_tags" -eq 0 ]; then
+    echo "✓ No disallowed raw HTML found"
+else
+    echo "⚠ Found $html_tags HTML tags (use markdown instead, or allowed elements: sub, sup, details, summary)"
+fi
+```
+
+#### Повний скрипт перевірки
+
+Збережіть цей скрипт як `validate-doc.sh` та запустіть його для вашого документа:
+
+```bash
+#!/bin/bash
+# Rocky Linux Documentation Validator
+# Usage: ./validate-doc.sh path/to/your-document.md
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <path-to-markdown-file>"
+    exit 1
+fi
+
+DOC="$1"
+
+if [ ! -f "$DOC" ]; then
+    echo "Error: File not found: $DOC"
+    exit 1
+fi
+
+echo "============================================"
+echo "ROCKY LINUX DOCUMENTATION VALIDATOR"
+echo "============================================"
+echo "Document: $DOC"
+echo "--------------------------------------------"
+echo ""
+echo "METADATA CHECKS:"
+echo "--------------------------------------------"
+grep -q '^title:' "$DOC" && echo "  Title:        ✓ PASS" || echo "  Title:        ✗ FAIL - Required"
+grep -q '^author:' "$DOC" && echo "  Author:       ✓ PASS" || echo "  Author:       ✗ FAIL - Required"
+grep -q '^contributors:' "$DOC" && echo "  Contributors: ✓ PASS" || echo "  Contributors: ⚠ WARN - Recommended"
+grep -qE '^tested.*(with|_with|on)?:' "$DOC" && echo "  Tested With:  ✓ PASS" || echo "  Tested With:  ✗ FAIL - Required"
+grep -q '^tags:' "$DOC" && echo "  Tags:         ✓ PASS" || echo "  Tags:         ✗ FAIL - Required"
+echo ""
+echo "STRUCTURE CHECKS:"
+echo "--------------------------------------------"
+h1_count=$(grep -c '^# ' "$DOC" 2>/dev/null || echo 0)
+if [ "$h1_count" -le 1 ]; then
+    echo "  Single H1:    ✓ PASS ($h1_count heading)"
+else
+    echo "  Single H1:    ✗ FAIL - Found $h1_count (max 1)"
+fi
+echo ""
+echo "FORMATTING CHECKS:"
+echo "--------------------------------------------"
+blocks_without_lang=$(grep -c '^```$' "$DOC" 2>/dev/null || echo 0)
+if [ "$blocks_without_lang" -eq 0 ]; then
+    echo "  Code Blocks:  ✓ PASS"
+else
+    echo "  Code Blocks:  ✗ FAIL - $blocks_without_lang missing language"
+fi
+
+anchors=$(grep -cE '\[.+\]\(#[^)]+\)' "$DOC" 2>/dev/null || echo 0)
+if [ "$anchors" -eq 0 ]; then
+    echo "  No Anchors:   ✓ PASS"
+else
+    echo "  No Anchors:   ⚠ WARN - $anchors found (translation risk)"
+fi
+
+html_tags=$(grep -cE '<(?!sub|sup|details|summary|/sub|/sup|/details|/summary)[a-zA-Z][^>]*>' "$DOC" 2>/dev/null || echo 0)
+if [ "$html_tags" -eq 0 ]; then
+    echo "  No Raw HTML:  ✓ PASS (sub, sup, details, summary are allowed)"
+else
+    echo "  No Raw HTML:  ⚠ WARN - $html_tags disallowed tags found"
+fi
+echo ""
+echo "TOOL CHECKS:"
+echo "--------------------------------------------"
+echo "Running pyspelling..."
+if pyspelling -n Markdown -S "$DOC" > /dev/null 2>&1; then
+    echo "  Spell Check:  ✓ PASS"
+else
+    echo "  Spell Check:  ✗ FAIL - Run: pyspelling -n Markdown -S \"$DOC\""
+fi
+
+echo "Running markdownlint..."
+if markdownlint "$DOC" > /dev/null 2>&1; then
+    echo "  Markdown:     ✓ PASS"
+else
+    echo "  Markdown:     ✗ FAIL - Run: markdownlint \"$DOC\""
+fi
+
+echo "Running lychee..."
+if lychee "$DOC" --no-progress > /dev/null 2>&1; then
+    echo "  Links:        ✓ PASS"
+else
+    echo "  Links:        ✗ FAIL - Run: lychee \"$DOC\" --no-progress"
+fi
+echo ""
+echo "============================================"
+```
+
+Зробіть скрипт виконуваним та запустіть його:
+
+```bash
+chmod +x validate-doc.sh
+./validate-doc.sh docs/guides/automation/kickstart-rocky.md
+```
+
+Приклад виводу:
+
+```text
+============================================
+ROCKY LINUX DOCUMENTATION VALIDATOR
+============================================
+Document: docs/guides/automation/kickstart-rocky.md
+--------------------------------------------
+
+METADATA CHECKS:
+--------------------------------------------
+  Title:        ✓ PASS
+  Author:       ✓ PASS
+  Contributors: ✓ PASS
+  Tested With:  ✓ PASS
+  Tags:         ✓ PASS
+
+STRUCTURE CHECKS:
+--------------------------------------------
+  Single H1:    ✓ PASS (1 heading)
+
+FORMATTING CHECKS:
+--------------------------------------------
+  Code Blocks:  ✓ PASS
+  No Anchors:   ✓ PASS
+  No Raw HTML:  ✓ PASS
+
+TOOL CHECKS:
+--------------------------------------------
+Running pyspelling...
+  Spell Check:  ✓ PASS
+Running markdownlint...
+  Markdown:     ✓ PASS
+Running lychee...
+  Links:        ✓ PASS
+
+============================================
+```
+
+### Додавання слів до словника
+
+Якщо перевірка орфографії позначає дійсний технічний термін, додайте його до `.wordlist.txt` в алфавітному порядку. До поширених доповнень належать:
+
+- Специфічні терміни для Rocky Linux
+- Назви пакетів
+- Технічні абревіатури
+- Назви команд
+
+**Важливо**: Не включайте зміни `.wordlist.txt` у ваш пул-реквест. Зберігайте додавання списків слів локально на вашому комп'ютері. Команда документації підтримує спільний файл `.wordlist.txt` та додаватиме всі необхідні терміни під час процесу рецензування. Під час індексації файлів для вашого коміту додавайте лише ваш документ:
+
+```bash
+# Only stage your document, not the wordlist
+git add docs/guides/your-document.md
+```
+
+Якщо ви вже помилково додали файл `.wordlist.txt` до індексу, видаліть його перед фіксацією:
+
+```bash
+git restore --staged .wordlist.txt
+```
+
+## Подання запиту на зняття (pull request)
+
+### Надсилання змін до репозиторію документації Rocky Linux
+
+1. Синхронізуйте свою форку з апстрімом:
+
+```bash
+git fetch upstream
+git checkout main
+git merge upstream/main
+```
+
+1. Створіть гілку для ваших змін:
+
+```bash
+git checkout -b your-new-document
+```
+
+1. Додайте свій документ та зафіксуйте його:
+
+```bash
+git add docs/guides/your-document.md
+git commit -m "Add new document for your-document"
+```
+
+1. Надсилання та створення пул-реквесту:
+
+```bash
+git push origin your-new-document
+```
+
+!!! note
+
+    Ви також можете редагувати існуючу документацію та надсилати свої зміни до репозиторію документації Rocky Linux, використовуючи той самий метод.
+
+## Отримання допомоги
+
+Спільнота Rocky Linux вітає та підтримує учасників будь-якого рівня досвіду. Не соромтеся просити про допомогу.
+
+- **Mattermost**: Приєднуйтесь до [каналу документації](https://chat.rockylinux.org/rocky-linux/channels/documentation), і спільнота учасників буде рада допомогти вам із вашим документом
+- **Проблеми GitHub**: Повідомляйте про помилки в документації або пропонуйте покращення
+- **Форуми**: Відвідайте [Форуми Rocky Linux](https://forums.rockylinux.org) для загальних питань
+
+Якщо ви не знаєте, з чого почати, або якщо щось у цьому посібнику незрозуміло, просто запитайте. Хтось вкаже вам правильний напрямок.
+
+## Додаткові ресурси
+
+- [Стильовий посібник](style_guide.md) - Стандарти письма
+- [Форматування документа](rockydocs_formatting.md) - Синтаксис та застереження щодо Markdown
+- [Посібник для початківців](beginners.md) – Детальний посібник для нових учасників
+- [Створення нових документів](createnew.md) - інструкції, специфічні для GitHub
+- [Навігація та структура](navigation.md) - Організація сайту документації
+
+## Ліцензія
+
+Опубліковані документи, що внесли свій вклад у документацію Rocky Linux, використовують ліцензію [Creative Commons BY-SA 4.0] (https://creativecommons.org/licenses/by-sa/4.0/). Роблячи свій внесок, ви погоджуєтеся ліцензувати свою роботу відповідно до цих умов.

@@ -14,11 +14,11 @@ contributors: Steven Spencer, Ryan Johnson, Pedro Garcia, Ganna Zhyrnova
 ## Prérequis, Hypothèses et Généralités
 
 - Un environnement vSphere disponible et un utilisateur avec un accès autorisé.
-- Un serveur web interne pour stocker des fichiers.
-- Accès Web aux dépôts de Rocky Linux.
-- Une ISO de Rocky Linux.
+- Un serveur web interne pour stocker des fichiers
+- Accès Web aux dépôts de Rocky Linux
+- Une image ISO de Rocky Linux
 - Un environnement Ansible est disponible
-- Il est supposé que vous avez quelques connaissances de chaque produit mentionné. Sinon, veuillez consulter la documentation correspondante avant de commencer.
+- L'auteur de ce guide présume que vous avez une certaine connaissance de chaque produit mentionné. Sinon, veuillez consulter la documentation correspondante avant de commencer.
 - Vagrant n'est **pas utilisé** ici. Il a été constaté qu'avec Vagrant, une clé SSH qui n'était pas auto-signée serait fournie. Si vous voulez y arriver, vous pouvez le faire, mais ce n'est pas couvert dans ce document.
 
 ## Introduction
@@ -37,7 +37,7 @@ Vous pouvez aussi choisir de ne pas convertir la machine virtuelle en modèle. D
 
 ### Introduction à Packer
 
-Packer est un outil d'imagerie de machines virtuelles open source, publié sous la licence MPL 2.0 et créé par Hashicorp. Il vous aidera à automatiser le processus de création d'images de machine virtuelle avec des systèmes d'exploitation pré-configurés et des logiciels installés à partir d'une configuration source unique dans les deux cas, des environnements virtualisés sur le cloud et sur prém.
+Packer est un outil d'imagerie de machines virtuelles open source, publié sous la licence MPL 2.0 et créé par HashiCorp. Il vous aidera à automatiser le processus de création d'images de machine virtuelle avec des systèmes d'exploitation pré-configurés et des logiciels installés à partir d'une configuration source unique dans les deux cas, des environnements virtualisés sur le cloud et sur prém.
 
 With Packer you can create images to be used on the following platforms:
 
@@ -59,9 +59,9 @@ Pour de plus amples informations veuillez consulter les ressources suivantes :
 
 Il y a deux façons d'installer Packer dans votre système Rocky Linux.
 
-#### Installation de Packer à partir du dépôt Hashicorp
+#### Installation de Packer à partir du dépôt `HashiCorp`
 
-`HashiCorp` maintient et signe des paquets pour différentes distributions GNU/Linux. Pour installer packer dans notre système Rocky Linux, veuillez suivre les étapes suivantes :
+`HashiCorp` maintient et signe des paquets pour différentes distributions GNU/Linux. Pour installer Packer sur votre système Rocky Linux, veuillez suivre les étapes suivantes :
 
 1. Installation du 'dnf-config-manager' :
 
@@ -656,7 +656,7 @@ dnf -y install cloud-init
 echo "manual_cache_clean: True" > /etc/cloud/cloud.cfg.d/99-manual.cfg
 ```
 
-Comme vSphere utilise maintenant `cloud-init` via les outils VMware pour configurer le réseau d'une machine invitée centos8, le paquet doit être installé. Cependant, si vous ne faites rien, la configuration sera appliquée au premier redémarrage et tout ira bien. Mais au prochain redémarrage, 'cloud-init' ne recevra pas de nouvelles informations de vSphere. Dans ce cas, sans information sur ce qu'il faut faire, 'cloud-init' reconfigurera l'interface réseau de la machine virtuelle pour utiliser DHCP et vous perdrez votre configuration statique.
+Comme vSphere utilise maintenant `cloud-init` via les outils VMware pour configurer le réseau d'une machine invitée centos8, le paquet doit être installé. Cependant, si vous ne faites rien, la configuration sera appliquée au prochain redémarrage et tout ira bien. Mais au prochain redémarrage, 'cloud-init' ne recevra pas de nouvelles informations de vSphere. Dans ce cas, sans information sur ce qu'il faut faire, 'cloud-init' reconfigurera l'interface réseau de la machine virtuelle pour utiliser DHCP et vous perdrez votre configuration statique.
 
 Comme ce n'est pas le comportement que nous souhaitons, nous devons spécifier à `cloud-init` de ne pas supprimer son cache automatiquement, et donc de réutiliser les informations de configuration qu'il a reçues lors de son premier redémarrage et de chaque redémarrage suivant.
 

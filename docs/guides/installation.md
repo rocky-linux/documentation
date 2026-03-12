@@ -18,7 +18,7 @@ You can download the latest ISO image for the version of Rocky Linux for this in
 To download the ISO directly from the command line on an existing Linux-based system, use the `wget` command:
 
 ```bash
-wget https://download.rockylinux.org/pub/rocky/10/isos/x86_64/Rocky-10.0-x86_64-minimal.iso
+wget https://download.rockylinux.org/pub/rocky/10/isos/x86_64/Rocky-10.1-x86_64-minimal.iso
 ```
 
 Rocky Linux ISOs follow this naming convention:
@@ -27,7 +27,7 @@ Rocky Linux ISOs follow this naming convention:
 Rocky-<MAJOR#>.<MINOR#>-<ARCH>-<VARIANT>.iso
 ```
 
-For example, `Rocky-10.0-x86_64-minimal.iso`
+For example, `Rocky-10.1-x86_64-minimal.iso`
 
 !!! Note
 
@@ -35,7 +35,7 @@ For example, `Rocky-10.0-x86_64-minimal.iso`
 
 ## Verifying the Installation Program ISO File
 
-If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, you can use the `sha256sum` utility to verify that the file(s) you downloaded are not corrupt. We will demonstrate the verification of the `Rocky-10.0-x86_64-minimal.iso` file by checking its checksum.
+If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, you can use the `sha256sum` utility to verify that the file(s) you downloaded are not corrupt. We will demonstrate the verification of the `Rocky-10.1-x86_64-minimal.iso` file by checking its checksum.
 
 1. Download the file that contains the official checksums for the available ISOs.
 
@@ -54,7 +54,7 @@ If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, y
     This checks the integrity of the previously downloaded ISO file, provided it is in the same directory. The output should show:
 
     ```text
-    Rocky-10.0-x86_64-minimal.iso: OK
+    Rocky-10.1-x86_64-minimal.iso: OK
     ```
 
 ## The Installation
@@ -74,7 +74,7 @@ Once the system is set up to boot from the media with the ISO file, we can begin
 
 3. At the welcome screen, you can use the ++"up"++ or ++"down"++ arrow keys to select any of the options, followed by pressing ++enter++ to run the selected option. If you do not press any key, the installation program starts a countdown, after which the installation process automatically executes the default, highlighted option:
 
-    `Test this media & install Rocky Linux 10.0`
+    `Test this media & install Rocky Linux 10.1`
 
 4. A quick media verification step takes place.  
 This media verification step can save you the trouble of starting the installation only to discover halfway through that the installation program has to stop due to faulty installation media.

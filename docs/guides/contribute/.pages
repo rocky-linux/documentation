@@ -2,6 +2,7 @@
 nav:
     - ... | README*.md
     - ... | beginners*.md
+    - ... | ai-contribution-policy*.md
     - ... | createnew*.md
     - ... | rockydocs_formatting*.md
     - Local Documentation: localdocs

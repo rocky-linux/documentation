@@ -114,8 +114,8 @@ MD025:
   # Heading level
   level: 1
   # RegExp for matching title in front matter
-  #front_matter_title: "^\\s*title\\s*[:=]"
-  front_matter_title: ""
+  front_matter_title: "^\\s*title\\s*[:=]"
+  #front_matter_title: ""
 
 # MD026/no-trailing-punctuation : Trailing punctuation in heading : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md026.md
 MD026:

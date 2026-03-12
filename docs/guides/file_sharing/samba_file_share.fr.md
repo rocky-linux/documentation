@@ -1,7 +1,7 @@
 ---
 title: Partage de Fichiers avec Samba
 author: Neel Chauhan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.4
 tags:
   - transfert de fichiers
@@ -10,7 +10,7 @@ tags:
 
 ## Introduction
 
-Si vous avez déjà utilisé des systèmes Windows, il est probable que vous connaissiez SMB (Server Message Block) pour le partage de fichiers. Si vous êtes un administrateur Linux chevronné, il y a de fortes chances que vous ayez entendu parler de Samba, mais si ce n'est pas le cas, [Samba](https://www.samba.org/) est l'implémentation open-source de facto de SMB pour permettre le partage de fichiers et l'accès Active Directory des machines Linux vers les réseaux Windows.
+Si vous avez déjà utilisé des systèmes Windows, il est probable que vous connaissiez SMB (Server Message Block) pour le partage de fichiers. Si vous êtes un administrateur Linux chevronné, il y a de fortes chances que vous ayez entendu parler de `Samba`, mais si ce n'est pas le cas, [Samba](https://www.samba.org/) est l'implémentation open-source de facto standard de `SMB` pour permettre le partage de fichiers et l'accès Active Directory des machines Linux vers les réseaux Windows.
 
 ## Installation
 
@@ -62,7 +62,7 @@ Si vous ne connaissez pas les options ci-dessus, ce sont les suivantes :
 - `read only` consiste à marquer le partage en lecture seule. Si vous souhaitez autoriser l'accès en écriture ou en exécution, réglez-le sur `no`.
 - `guest ok` permet aux utilisateurs non authentifiés d'accéder à notre partage. Si vous souhaitez refuser l'accès, réglez cette option sur `no`.
 
-Pour tester la configuration, vous pouvez exécuter :
+Pour tester la configuration, vous pouvez exécuter la commande suivante :
 
 ```bash
 testparm
@@ -90,7 +90,7 @@ Vous pouvez accéder au partage Samba en utilisant l'URI suivant (Remarque : re
 - Windows: `\\SERVER_IP`
 - Linux ou bien Mac : `smb://SERVER_IP`
 
-`SERVER_IP` sur le réseau domestique de l'auteur est `172.20.0.100` donc bien que les instructions varient en fonction du système d'exploitation, l'auteur accédera au nouveau partage depuis son ordinateur portable Fedora 40 :
+`SERVER_IP` sur le réseau privé de l'auteur est `172.20.0.100` donc bien que les instructions varient en fonction du système d'exploitation, l'auteur accédera au nouveau partage depuis son ordinateur portable Fedora 40 :
 
 ![Fedora 40 Nautilus showing our Samba Share](../images/samba_nautilus.png)
 
@@ -98,4 +98,4 @@ Tous les fichiers accessibles sur le serveur le sont également sur les machines
 
 ## Conclusion
 
-Bien que SMB ait la réputation d'être centré sur Microsoft, SMB est de facto un standard de l'industrie et votre partage Samba est accessible depuis Linux, Mac, BSD et même des appareils mobiles. Félicitations, vous partagez désormais les fichiers de votre serveur !
+Bien que `SMB` ait la réputation d'être centré sur Microsoft, SMB est de facto un standard de l'industrie et votre partage Samba est accessible depuis Linux, Mac, BSD et même des appareils mobiles. Félicitations, vous partagez désormais les fichiers de votre serveur !

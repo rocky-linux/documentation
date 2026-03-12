@@ -18,7 +18,7 @@ Vous pouvez télécharger la dernière image ISO pour la version de Rocky Linux 
 Pour télécharger l'image ISO directement depuis la ligne de commande sur un système Linux existant, utilisez la commande `wget` comme suit :
 
 ```bash
-wget https://download.rockylinux.org/pub/rocky/10/isos/x86_64/Rocky-10.0-x86_64-minimal.iso
+wget https://download.rockylinux.org/pub/rocky/10/isos/x86_64/Rocky-10.1-x86_64-minimal.iso
 ```
 
 Les images ISO de Rocky Linux respectent la convention de nommage suivante :
@@ -27,7 +27,7 @@ Les images ISO de Rocky Linux respectent la convention de nommage suivante :
 Rocky-<MAJOR#>.<MINOR#>-<ARCH>-<VARIANT>.iso
 ```
 
-Par exemple, `Rocky-10.0-x86_64-minimal.iso`
+Par exemple, `Rocky-10.1-x86_64-minimal.iso`
 
 !!! note "Remarque"
 
@@ -35,7 +35,7 @@ Par exemple, `Rocky-10.0-x86_64-minimal.iso`
 
 ## Vérification du fichier ISO d'installation
 
-Si vous avez téléchargé un des fichiers ISO Rocky Linux, vous pouvez utiliser l'utilitaire `sha256sum` pour vérifier que le fichier téléchargé n'est pas corrompu. Nous allons montrer un exemple de la façon de valider le fichier `Rocky-10.0-x86_64-minimal.iso` en vérifiant sa somme de contrôle.
+Si vous avez téléchargé un des fichiers ISO Rocky Linux, vous pouvez utiliser l'utilitaire `sha256sum` pour vérifier que le fichier téléchargé n'est pas corrompu. Nous allons démontrer la validation du fichier `Rocky-10.1-x86_64-minimal.iso` en vérifiant sa somme de contrôle.
 
 1. Téléchargez le fichier qui contient les sommes de contrôle officielles pour les fichiers ISO disponibles.
 
@@ -54,7 +54,7 @@ Si vous avez téléchargé un des fichiers ISO Rocky Linux, vous pouvez utiliser
     Cela vérifie l'intégrité du fichier ISO téléchargé précédemment, à condition qu'il se trouve dans le même répertoire. Le résultat suivant devrait être affiché :
 
     ```text
-    Rocky-10.0-x86_64-minimal.iso: OK
+    Rocky-10.1-x86_64-minimal.iso: OK
     ```
 
 ## L'installation
@@ -70,11 +70,11 @@ Une fois le système configuré pour démarrer à partir du média avec le fichi
 
 2. Une fois l'ordinateur démarré, vous voyez l'écran de démarrage du programme d'installation de Rocky Linux 10.
 
-    ![Rocky Linux installation splash screen](images/installation_10_0_F01.png)
+    ![Rocky Linux installation splash screen](images/installation_10_1_F01.png)
 
 3. Sur l'écran d'accueil, vous pouvez utiliser les touches fléchées ++"up"++ ou ++"down"++ pour sélectionner l'une des options, puis appuyer sur ++enter++ pour exécuter l'option sélectionnée. Si vous n'appuyez sur aucune touche, le programme d'installation démarre un compte à rebours, après quoi le processus d'installation exécute automatiquement l'option par défaut en surbrillance :
 
-    `Tester le media & installer Rocky Linux 10`
+    `` `Test this media & install Rocky Linux 10.1` ``
 
 4. Une vérification rapide du media sera effectuée. <br/> Cette vérification peut vous éviter de démarrer l'installation et de découvrir à mi-chemin que le programme d'installation doit s'arrêter en raison d'un support d'installation défectueux.
 

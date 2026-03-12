@@ -18,7 +18,7 @@ DNF зазвичай використовується в Rocky Linux, Fedora, RH
 
 ## Передумови
 
-- Для всіх версій Rocky Linux можливість використовувати `sudo` для підвищення привілеїв.
+- Для всіх версій Rocky Linux необхідно використовувати `sudo` для підвищення прав, щоб DNF міг змінювати систему. Наприклад, під час встановлення або видалення пакетів. Важливо зазначити, що кожен користувач має власний кеш, включаючи `sudo`, що може заплутати нових користувачів DNF. Наприклад, `dnf clean all` не виконує ту саму дію, що й `sudo dnf clean all`, оскільки кожна команда очищає різний кеш. Цей посібник містить команди як на рівні користувача, так і на рівні підвищених привілеїв.
 
 ## Встановлення пакетів
 
@@ -80,10 +80,17 @@ Installed size: 343 M
 Is this ok [y/N]:
 ```
 
-Встановлення групи пакетів, як для **Xfce desktop** або **Kde desktop** тощо, відбувається подібно до:
+Встановлення групи пакетів, такої як **робочий стіл Xfce** або **робочий стіл Kde**, відбувається подібним чином. Спочатку встановіть `epel-release`:
+
+!!! note "Примітка"
+
+```
+Xfce наразі недоступний для Rocky Linux 10
+```
 
 ```bash
-sudo dnf groupinstall xfce
+sudo dnf install epel
+sudo dnf group install xfce
 ```
 
 Що створить такі результати:
@@ -135,6 +142,20 @@ sudo dnf group install kde-desktop-environment
 sudo dnf install @kde-desktop-environment
 ```
 
+Встановіть `epel-release`, як показано раніше, та увімкніть CodeReady Builder у Rocky Linux 9 та 10 або PowerTools для Rocky Linux 8, щоб забезпечити успішне встановлення KDE.
+
+Для Rocky Linux 9 та 10:
+
+```bash
+sudo dnf config-manager --set-enabled crb
+```
+
+Для Rocky Linux 8:
+
+```bash
+sudo dnf config-manager --set-enabled powertools
+```
+
 ## Оновлення пакетів
 
 ### Оновлення
@@ -142,7 +163,7 @@ sudo dnf install @kde-desktop-environment
 Якщо ви вирішите оновити свої пакети, використовуйте цей код на терміналі:
 
 ```bash
-  sudo dnf update
+sudo dnf update
 ```
 
 Що може показати щось на зразок цього:
@@ -195,19 +216,19 @@ sudo dnf upgrade
 ### Оновлення одного пакету
 
 ```bash
-  sudo dnf upgrade package_name
+sudo dnf upgrade package_name
 ```
 
 Наприклад, якщо ви хочете оновити `openssl`, використовуйте `dnf`:
 
 ```bash
-dnf upgrade openssl
+sudo dnf upgrade openssl
 ```
 
 Що може показати:
 
 ```bash
-dnf upgrade openssl
+sudo dnf upgrade openssl
 Last metadata expiration check: 1:21:40 ago on Mon 05 Feb 2024 08:31:09 PM UTC.
 Dependencies resolved.
 ========================================================================================================================================================================================================================================================Package                                                        Architecture                                             Version                                                               Repository                                    Size
@@ -483,11 +504,11 @@ ID     | Command line                                                           
 Одним із найвигідніших аспектів історії DNF є можливість повертати (скасовувати) і повторювати (повторювати) транзакції.
 
 ```bash
-dnf history undo id
+sudo dnf history undo id
 ```
 
 ```bash
-dnf history redo id
+sudo dnf history redo id
 ```
 
 ```bash
@@ -530,7 +551,7 @@ sudo dnf search all yum vim
 Щоб відобразити інформацію про пакети, використовуйте цю команду:
 
 ```bash
-sudo dnf info perl
+dnf info perl
 
 Last metadata expiration check: 2:33:15 ago on Mon 05 Feb 2024 08:31:09 PM UTC.
 Available Packages
@@ -564,10 +585,10 @@ Description  : Perl is a high-level programming language with roots in C, sed, a
 Щоб відобразити інформацію про всі доступні пакунки, встановлені та доступні зі сховища, скористайтеся цією командою:
 
 ```bash
-sudo dnf repoquery perl --info
+dnf repoquery perl --info
 ```
 
-Хоча це не завжди так, у наведеному вище випадку результати цієї команди ідентичні результатам команди `sudo dnf info perl`.
+Хоча це не завжди так, у наведеному вище випадку результати цієї команди ідентичні команді `dnf info perl`.
 
 ## Конфігурація сховища DNF
 
@@ -593,8 +614,10 @@ skip_if_unavailable=False
 
 ```bash
 dnf config-manager --dump
+```
 
-sudo dnf config-manager --dump
+```bash
+dnf config-manager --dump
 ============================================================ main ============================================================
 [main]
 allow_vendor_change = 1

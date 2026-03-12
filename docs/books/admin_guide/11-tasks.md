@@ -211,7 +211,7 @@ To simplify the notation for the definition of time, it is advisable to use spec
 | `*`           | Indicates all the time values of the field |
 | `-`           | Indicates a continuous time range     |
 | `,`           | Indicates the discontinuous time range      |
-| `/`           | Indicateds time interval                  |
+| `/`           | Indicates time interval                  |
 
 Examples:
 

@@ -1,7 +1,7 @@
 ---
 title: Dokumentversionierung mit zwei Remotes
 author: Steven Spencer
-contributors:
+contributors: Ganna Zhyrnova
 tags:
   - contributing
   - Dokumentation
@@ -10,7 +10,7 @@ tags:
 
 ## Einleitung
 
-Im Frühherbst 2025 wechselte das Dokumentationsteam von einer einzigen, alle Versionen umfassenden Dokumentationsversion zu einer Version mit einem eigenen Dokumentationszweig für jede Version. Dadurch können die Anweisungen der einzelnen Versionen leichter unterschieden werden. Es _erschwert_ jedoch den Prozess des Schreibens oder Korrigierens der Dokumentation, insbesondere wenn es sich um eine der älteren Versionen (Rocky Linux 8 oder 9) handelt. Dieses Dokument beschreibt eine Strategie zur Bewältigung des Prozesses mithilfe eines doppelten Remote-Ansatzes.
+Im Frühherbst 2025 ging das Dokumentationsteam dazu über, von einer einzigen Dokumentationsversion, die alle Versionen abdeckte, zu jeder Version einen eigenen Dokumentationszweig zu entwickeln. Dadurch können die Anweisungen der einzelnen Versionen leichter unterschieden werden. Allerdings erschwert dies den Prozess des Schreibens oder Korrigierens von Dokumentationen, insbesondere wenn es sich um ältere Versionen handelt (Rocky Linux 8 oder 9). Dieses Dokument beschreibt eine Strategie zur Bewältigung des Workflows mithilfe eines doppelten Remote-Ansatzes.
 
 !!! info "Rocky Linux Versionen"
 
@@ -31,7 +31,7 @@ Im Frühherbst 2025 wechselte das Dokumentationsteam von einer einzigen, alle Ve
 
 ## Repository klonen
 
-Durch das Klonen des Rocky Linux-Repository wird eine Kopie der Rocky Linux-Dokumentation in ein Verzeichnis `/documentation` auf Ihrer Workstation aufgesetzt. Möglicherweise haben Sie irgendwann oder bei anderen GitHub-Projekten gelesen, dass Sie immer von Ihrem persönlichen Fork des Projekts klonen sollen. In diesem Fall ist dies nicht der Fall, damit Ihr Klon die vorhandenen RL-Versionen der Dokumentation verwalten kann. Sie werden vom Rocky Linux-Projekt klonen. In diesem Artikel erfahren Sie, warum das so ist. Darüber hinaus müssen Sie Ihre Git-Remotes umbenennen, damit sie logisch Sinn ergeben (Rocky Linux `upstream` und Ihr GitHub `origin`).
+Durch das Klonen des Rocky Linux-Repository wird eine Kopie der Rocky Linux-Dokumentation in ein Verzeichnis `/documentation` auf Ihrer Workstation aufgesetzt. Möglicherweise haben Sie irgendwann oder bei anderen GitHub-Projekten gelesen, dass Sie immer von Ihrem persönlichen Fork des Projekts klonen sollen. In diesem Dokumentations-Projekt ist dies nicht der Fall, damit Ihr Klon die vorhandenen RL-Versionen der Dokumentation verwalten kann. Sie werden vom Rocky Linux-Git-Projekt klonen. In diesem Artikel erfahren Sie, warum das so ist. Darüber hinaus müssen Sie Ihre Git-Remotes umbenennen, damit sie logisch Sinn ergeben (Rocky Linux `upstream` und Ihr GitHub `origin`).
 
 1. Klonen Sie die Rocky Linux-Dokumentation:
 
@@ -76,8 +76,7 @@ Durch das Klonen des Rocky Linux-Repository wird eine Kopie der Rocky Linux-Doku
 
 ## Ihr `fork` als Remote hinzufügen
 
-Nachdem Sie die Rocky Linux-Remote nun hinzugefügt und richtig benannt haben, müssen Sie Ihren eigenen persönlichen GitHub-Fork als
-`origin remote` hinzufügen.
+Nachdem das Rocky Linux-Remote hinzugefügt und korrekt benannt wurde, müssen Sie Ihren persönlichen GitHub-Fork als Ursprungs-Remote festlegen.
 
 1. Für diesen Schritt müssen Sie Ihren GitHub-Benutzernamen kennen, den Sie bereits besitzen sollten. Ersetzen Sie das Feld `[username]` durch den richtigen Namen. Fügen Sie Ihr `remote` hinzu:
 
@@ -108,16 +107,22 @@ Nachdem Sie die Rocky Linux-Remote nun hinzugefügt und richtig benannt haben, m
     git pull upstream main && git push origin main
     ```
 
-2. Schauen Sie sich einen der beiden älteren Versionszweige an:
+2. Machen Sie Ihren lokalen Klon mit folgendem Befehl auf die im `Upstream` vorhandenen Branches aufmerksam:
+
+    ```bash
+    git fetch upstream
+    ```
+
+3. Schauen Sie sich einen der beiden älteren Versionszweige an:
 
     ```bash
     git checkout rocky-8
     ```
 
-       !!! warning "Dies funktioniert nicht, wenn Ihr Klon von Ihrem Fork stammt"
+       !!! warning "Dies funktioniert nicht, wenn Ihr Klon von Ihrem Fork stammt."
 
         ```
-         Aus diesem Grund wird der Klonvorgang von Rocky Linux und nicht von Ihrem Fork aus durchgeführt. Ihr Fork kennt die älteren Zweige nicht. Um die folgende Meldung zu erhalten, *müssen* Sie Ihr lokales Dokumentations-Repository von Rocky Linux aus klonen. 
+         Deshalb erfolgt der Klonvorgang von Rocky Linux aus und nicht von Ihrem Fork. Ihr Fork kennt die älteren Branches nicht. Um die folgende Meldung zu erhalten, müssen Sie Ihr lokales Dokumentations-Repository von Rocky Linux klonen. 
         ```
 
    Wenn Sie Ihre `remotes` richtig eingerichtet haben, sollten Sie jetzt Folgendes sehen:
@@ -135,13 +140,13 @@ Nachdem Sie die Rocky Linux-Remote nun hinzugefügt und richtig benannt haben, m
 
    Sie erhalten wahrscheinlich eine Art Nachricht, dass Sie aus dem Push ein Pull-Request erstellen können. Sie können dies ignorieren. Was passiert ist, ist, dass Ihr Fork jetzt einen `rocky-8`-Branch hat.
 
-3. Schauen Sie sich den verbleibenden älteren Zweig an. (`rocky-9`) und wiederholen Sie die Schritte, die Sie gerade mit diesem Zweig ausgeführt haben.
+4. Schauen Sie sich den verbleibenden älteren Zweig an. (`rocky-9`) und wiederholen Sie die Schritte, die Sie gerade mit diesem Zweig ausgeführt haben.
 
-Nach Abschluss verfügen Sie nun über die Zweige `main`, `rocky-8` und `rocky-9` auf Ihrem lokalen Fork und Klon und können Dokumentationen zu jedem dieser Zweige schreiben.
+Nach Abschluss dieses Vorgangs verfügen Sie nun über die Branches `main`, `rocky-8` und `rocky-9` in Ihrem lokalen Fork und Klon und können Dokumentation zu jedem dieser Branches schreiben.
 
 ## Schreiben eines Dokuments oder Aktualisieren eines vorhandenen Dokuments auf einer älteren Version
 
-Wenn Sie mit dem Schreiben eines Pull Requests (PR) für den `main`-Branch der Dokumentation vertraut sind, funktioniert dieser Vorgang weiterhin wie immer. Denken Sie daran, dass `main` für die neueste Version steht (10 zum Zeitpunkt —2025-10-19— des Schreibens dieses Artikels). Um eine kleine Änderung an einer der älteren Versionen vorzunehmen, müssen Sie zunächst einen Zweig zur lokalen Bearbeitung basierend auf diesem Zweig erstellen. Verwenden Sie dazu die Option `-b` mit Ihrem Befehl `git checkout`. Dieser Befehl erstellt einen Zweig namens `8_rkhunter_changes` und basiert auf dem Zweig `rocky-8`:
+Wenn Sie mit dem Schreiben eines Pull Requests (PR) für den `main`-Branch der Dokumentation vertraut sind, funktioniert dieser Vorgang weiterhin wie immer. Denken Sie daran, dass `main` für die neueste Version steht (10 zum Zeitpunkt —2025-10-19— des Schreibens dieses Artikels). Um eine kleine Änderung an einer der älteren Versionen vorzunehmen, müssen Sie zunächst einen Zweig zur lokalen Bearbeitung basierend auf diesem Zweig erstellen. Verwenden Sie dazu die Option `-b` mit Ihrem Befehl `git checkout`. Dieser Befehl erstellt einen Branch namens `8_rkhunter_changes` basierend auf dem Branch `rocky-8`:
 
 ```bash
 git checkout -b 8_rkhunter_changes rocky-8
@@ -149,25 +154,25 @@ git checkout -b 8_rkhunter_changes rocky-8
 
 Sie können jetzt die Datei bearbeiten, an der Sie Änderungen vornehmen möchten. Dabei wird die Version des Dokuments verwendet, die im Zweig `rocky-8` vorhanden ist.
 
-Wenn Sie mit der Bearbeitung fertig sind, speichern, inszenieren und übernehmen Sie Ihre Änderungen wie gewohnt und übertragen Sie sie dann auf Ihr `origin`-Remote:
+Sobald Sie mit dem Bearbeiten, Speichern, Zwischenspeichern und Übertragen Ihrer Änderungen wie gewohnt fertig sind, übertragen Sie diese bitte an Ihren Remote-`origin`-Server:
 
 ```bash
 git push origin 8_rkhunter_changes
 ```
 
-Wenn Sie den PR erstellen, geht GitHub jedoch automatisch davon aus, dass Sie einen PR erstellen, um den Zweig `main` zu ändern, obwohl Sie beim Ändern des Dokuments ausdrücklich den Zweig `rocky-8` verwendet haben. Achten Sie darauf, den PR nicht zu schnell zu erstellen, wenn Sie diesen falschen Vergleichsbildschirm sehen:
+Wenn Sie den PR erstellen, geht GitHub jedoch automatisch davon aus, dass Sie einen PR erstellen, um den Zweig `main` zu ändern, obwohl Sie beim Ändern des Dokuments ausdrücklich den Zweig `rocky-8` verwendet haben. Achten Sie darauf, den Pull Request nicht zu schnell zu erstellen, wenn Sie diesen fehlerhaften Vergleichsbildschirm sehen:
 
 ![Wrong comparison](../images/incorrect_comparison_branchb_blur.png)
 
-Was Sie hier tun müssen, ist, den Vergleichszweig in den richtigen Zweig (in diesem Fall `rocky-8`) zu ändern:
+Hier müssen Sie den Vergleichszweig auf den richtigen Zweig (in diesem Fall `rocky-8`) ändern:
 
 ![Right comparison](../images/correct_comparison_branch_blur.png)
 
-Fahren Sie nach der Korrektur des Vergleichszweigs mit der Erstellung des PR fort und warten Sie dann auf die Zusammenführung Ihres PR.
+Nachdem der Vergleichszweig korrigiert wurde, kann mit der Erstellung des Pull Requests fortgefahren werden. Anschließend muss auf die Zusammenführung gewartet werden.
 
 ## Aktualisieren Ihrer älteren Versionszweige nach einer Zusammenführung
 
-Genau wie beim `main`-Zweig ist es eine gute Idee, Ihre älteren Versionszweige mit allen Änderungen auf dem neuesten Stand zu halten. Der folgende Befehlssatz aktualisiert _alle_ Ihre Versionen, sodass sie mit dem `upstream` übereinstimmen:
+Genau wie beim `main`-Branch ist es ratsam, auch die älteren Versionszweige stets mit allen Änderungen auf dem neuesten Stand zu halten. Der folgende Befehlssatz aktualisiert _alle_ Ihre Versionen, sodass sie mit dem `upstream` übereinstimmen:
 
 ```bash
 git checkout rocky-8
@@ -178,7 +183,7 @@ git checkout main
 git pull upstream main && git push origin main
 ```
 
-Nach Abschluss dieser Befehle sind alle Ihre lokalen Branches und Ihr Fork aktuell.
+Nach Ausführung dieser Befehle sind alle Ihre lokalen Branches und Ihr Fork auf dem neuesten Stand.
 
 ## Fazit
 

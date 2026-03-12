@@ -81,7 +81,7 @@ git clone https://github.com/rocky-linux/rocky-tools.git
     Якщо ви використовуєте систему 9.x, додайте 9 перед `.sh`
 
 ```bash
-curl https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh -o migrate2rocky.sh
+curl -O https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh
 ```
 
 Ця команда завантажить файл на ваш сервер і *тільки* той файл, який ви хочете. Але знову ж таки, проблеми безпеки свідчать про те, що це не обов’язково найкраща практика, тому майте це на увазі.

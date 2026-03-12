@@ -5,8 +5,9 @@
 -->
 
 # Contribution Guide
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-130-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-132-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Introduction
@@ -47,7 +48,7 @@ We host our media sources at github.com. Our team created this document on this 
 
 The RL [Style Guide](https://docs.rockylinux.org/guides/contribute/style_guide/) outlines standards for the wording within your document.
 
-### GitHub  
+### GitHub
 
 Rocky Linux uses GitHub to manage its code and files, including documentation files. Login to GitHub and follow the official [Rocky Linux documentation repository](https://github.com/rocky-linux/documentation).
 
@@ -77,29 +78,29 @@ Maybe you have found a broken link or incorrect information while exploring the 
 
     The first time you contribute to the RL repository, you will receive a prompt with a green button to “**Fork** this **repository** and propose changes.” This creates a duplicate copy of the RL repository where you make your suggested edits. Click the green button and continue.
 
-2. Make your changes
+1. Make your changes
 
     Follow the existing Markdown formatting. Make the necessary change.
 
-3. Propose changes
+1. Propose changes
 
     At the bottom of the page, write a brief description in the title of the block entitled Propose changes.
 
     Then click Propose changes, which will **Commit** your changes to a completed document within your forked repository.
 
-4. Review changes
+1. Review changes
 
     Now you can review what your changes, line by line. If you missed anything, back up to the previous page and correct it again (you will have to start over), then click Propose Changes again.
 
     Once the doc is the way you want it, click the green button that says Create Pull Request (PR). This provides one more chance to double check your changes and confirm the doc is ready.
 
-5. Create Pull Request
+1. Create Pull Request
 
     So far you have been working in your own repository. Next you submit it to the documentation team to merge your version into the main version of the document.
 
     Click the green button that says Create Pull Request, which sends it to the RL documentation team for review.
 
-6. Wait
+1. Wait
 
     Once the RL team reviews your request, they will respond in one of three ways.
 
@@ -147,9 +148,13 @@ To add more advanced elements to your Markdown-formatted document beyond text, v
 
 #### Contribute
 
-The process for [submitting original content](https://docs.rockylinux.org/guides/contribute/createnew/)  is similar to updating an existing document from your local repository. Create a new document within your Markdown editor, Commit it to your GitHub repository, then submit a Pull Request to merge into the main branch of the repository. The documentation leads will decide where the new document will live.
+The process for [submitting original content](https://docs.rockylinux.org/guides/contribute/createnew/) is similar to updating an existing document from your local repository. Create a new document within your Markdown editor, Commit it to your GitHub repository, then submit a Pull Request to merge into the main branch of the repository. The documentation leads will decide where the new document will live.
 
 ## Notes
+
+### AI-assisted contributions
+
+For information about the Rocky Linux documentation policy on AI-assisted contributions please review [Ai-assisted contributions policy](https://docs.rockylinux.org/guides/contribute/ai-contribution-policy.md).
 
 ### Links
 
@@ -371,6 +376,8 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/obtekin"><img src="https://avatars.githubusercontent.com/u/65900550?v=4?s=100" width="100px;" alt="Oğuzhan Burak Tekin"/><br /><sub><b>Oğuzhan Burak Tekin</b></sub></a><br /><a href="#content-obtekin" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://www.wistly.net"><img src="https://avatars.githubusercontent.com/u/288769?v=4?s=100" width="100px;" alt="Carson Chittom"/><br /><sub><b>Carson Chittom</b></sub></a><br /><a href="#content-cmchittom" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/daomah"><img src="https://avatars.githubusercontent.com/u/129229601?v=4?s=100" width="100px;" alt="daomah"/><br /><sub><b>daomah</b></sub></a><br /><a href="#content-daomah" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Margrie"><img src="https://avatars.githubusercontent.com/u/16573570?v=4?s=100" width="100px;" alt="Margri"/><br /><sub><b>Margri</b></sub></a><br /><a href="#content-Margrie" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/dvenadm"><img src="https://avatars.githubusercontent.com/u/119517709?v=4?s=100" width="100px;" alt="Remyl Vrij"/><br /><sub><b>Remyl Vrij</b></sub></a><br /><a href="#content-dvenadm" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>

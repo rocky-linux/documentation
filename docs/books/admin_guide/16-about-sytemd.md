@@ -59,7 +59,7 @@ In February 2014, Ubuntu adopted `systemd` as its init and abandoned its own Ups
 
 In August 2015, `systemd` began providing login shells callable through `machinectl`.
 
-In 2016, `systemd` discovered a security vulnerability that allows any non-privileged user to perform a "denial of service attack" on `systemd`.
+In 2016, `systemd` discovered a security vulnerability that allows any non-privileged user to perform a "denial-of-service attack" on `systemd`.
 
 In 2017, `systemd` discovered another security vulnerability - **CVE-2017-9445**. Remote attackers can trigger a buffer overflow vulnerability and execute malicious code through malicious DNS responses.
 
@@ -288,7 +288,7 @@ You can also use the `--all` option to expand all "units".
 
 ### Unit types
 
-The `systemctl` command is the main tool for managing `systemd`, and it is a combination of previous `service` commands and `chkconfig` commands.
+The `systemctl` command is the main tool for managing the "unit(s)" and related files of `systemd`.
 
 `systemd` manages so-called "units", which are representations of system resources and services. The following list shows the "unit" types that `systemd` can manage:
 
@@ -366,7 +366,7 @@ Shell > systemctl show sshd.service
 
 !!! info
 
-     You can operate on one or more units in a single command line for the above operations. The above operations are not limited to ".service".
+    You can operate on one or more units in a single command line for the above operations. The above operations are not limited to ".service".
 
 About "units":
 
@@ -482,7 +482,7 @@ Usually three titles exist for the ".service" type unit:
     * `Documentation=man:sshd(8) man:sshd_config(5)`.  A space-separated list of URIs referencing documentation for this "unit" or its configuration. Accepted are only URIs of the types "http://", "https://", "file:", "info:", "man:".
     * `After=network.target sshd-keygen.target`. Defines the startup sequence relationship with other "units". In this example, "network.target" and "sshd-keygen.target" start first, and "sshd.service" starts last.
     * `Before=`. Define the startup sequence relationship with other "units".
-    * `Requires=`. Configure dependencies on other "units." The values can be multiple units separated by spaces. If the current "unit" is activated, the values listed here will also activate. If at least one of the listed values of "unit" fails to activate successfully, `systemd` does not start the current "unit".
+    * `Requires=`. Configure dependencies on other "units". The values can be multiple units separated by spaces. If the current "unit" is activated, the values listed here will also activate. If at least one of the listed values of "unit" fails to activate successfully, `systemd` does not start the current "unit".
     * `Wants=sshd-keygen.target`. Similar to the `Requires` key. The difference is that if the dependent unit fails to start, it will not affect the normal operation of the current "unit".
     * `BindsTo=`. Similar to the `Requires` key. The difference is that if any dependent "unit" fails to start, the current unit is stopped in addition to the "unit" that stops the dependency.
     * `PartOf=`. Similar to the `Requires` key. The difference is that if any dependent "unit" fails to start, in addition to stopping and restarting the dependent units, the current "unit" will be stopped and restarted.
@@ -581,7 +581,7 @@ Usually three titles exist for the ".service" type unit:
 
     * `Also=`. Other units to install or uninstall when installing or uninstalling this unit.
 
-      In addition to the manual pages mentioned above, you can also type `man 5 systemd.exec` or `man 5 systemd.kill` to access other information.
+In addition to the manual pages mentioned above, you can also type `man 5 systemd.exec` or `man 5 systemd.kill` to access other information.
 
 ## Command related to other components
 

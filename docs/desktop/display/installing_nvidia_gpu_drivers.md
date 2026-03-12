@@ -16,6 +16,8 @@ Some other alternative ways to install NVIDIA drivers include:
 
 In most cases, installing NVIDIA drivers from the official source is best. RPMFusion and ELRepo are available for those who prefer a community-based repository. For older hardware, RPMFusion works best. It is advisable to avoid using the `.run` installer. While convenient, using the `.run` installer is notorious for overwriting system files and having compatibility issues.
 
+NVIDIA Linux GPU Driver contains two “flavors” of kernel modules: open kernel module flavor supported for Turing and newer architectures and proprietary kernel module flavor required for the older. Note that the open kernel module flavor has become the default and suggested installation since 560 driver release, and the newer GPU series such as RTX 50 series support the open kernel module flavor only.
+
 ## Assumptions
 
 For this guide, you need the following:

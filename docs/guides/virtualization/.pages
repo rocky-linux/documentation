@@ -1,0 +1,8 @@
+nav:
+    - ... | cockpit-machines*.md
+    - Cloud init: cloud-init
+    - ... | kvm_tuning*.md
+    - ... | vbox-rocky*.md
+    - ... | libvirt-rocky*.md
+    - ... | vmware_tools*.md
+    - ...

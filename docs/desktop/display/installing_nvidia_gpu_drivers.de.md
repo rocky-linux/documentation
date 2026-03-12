@@ -16,6 +16,8 @@ Zu den weiteren Möglichkeiten zum Installieren von NVIDIA-Treibern zählen:
 
 In den meisten Fällen ist es am besten, NVIDIA-Treiber von der offiziellen Quelle zu installieren. RPM Fusion und ELRepo stehen für diejenigen zur Verfügung, die ein Community-basiertes Repository bevorzugen. Für ältere Hardware funktioniert RPM Fusion am besten. Es wird empfohlen, den `.run`-Installer nicht zu verwenden. Obwohl die Verwendung des `.run`-Installationsprogramms praktisch ist, ist es dafür bekannt, dass es Systemdateien überschreibt und zu Inkompatibilitätsproblemen führt.
 
+Der NVIDIA Linux GPU-Treiber enthält zwei „Varianten“ von Kernelmodulen: eine offene Kernelmodulvariante, die für Turing-Architekturen und neuere Architekturen unterstützt wird, und eine proprietäre Kernelmodulvariante, die für ältere Architekturen erforderlich ist. Beachten Sie, dass die Variante mit offenem Kernelmodul seit der Veröffentlichung des Treibers 560 zur Standardinstallationsmethode und empfohlenen Installationsmethode geworden ist und dass neuere GPU-Serien wie die RTX 50-Serie ausschließlich die Variante mit offenem Kernelmodul unterstützen.
+
 ## Voraussetzungen
 
 Für diese Anleitung benötigen Sie Folgendes:
