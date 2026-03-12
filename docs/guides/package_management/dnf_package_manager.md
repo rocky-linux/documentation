@@ -726,4 +726,4 @@ zchunk = 1
 
 ## Conclusion
 
-Rocky Linux uses DNF, the next-generation replacement for YUM. Shown on this page are examples of basic DNF usage. For more information, refer to the [official documentation for DNF](https://dnf.readthedocs.io/en/latest/index.html)
+Rocky Linux uses DNF, the next-generation replacement for YUM. Shown on this page are examples of basic DNF usage. For more information, refer to the [official documentation for DNF](https://dnf.readthedocs.io/en/latest/index.html).
