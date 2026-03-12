@@ -1,15 +1,25 @@
 # V1: Simple Deploy Hook
 # Triggers vercel builds 
 
-name: Trigger Vercel Deploy - main branch
+name: vercel_deploy_main_branch
 
 on:
   # Manual trigger from GitHub UI
   workflow_dispatch:
 
-  # Schedule: Runs at 0 minutes past the hour, every 6 hours
+# Schedule: Runs at 0 minutes past the hour, every 6 hours
+# Runs at approx: 0:00, 06:00, 12:00, 18:00 UTC (04:00, 10:00, 16:00, 22:00 EDT)
   schedule:
     - cron: "0 */6 * * *"
+
+# CONCURRENCY
+# 'group' creates a unique ID based on the workflow name, branch, and event type.
+# 'cancel-in-progress: true' prevents "build pile-up" by terminating 
+# older runs if a newer merge or trigger occurs before the old one finishes.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name }}
+  cancel-in-progress: true
+
 
 jobs:
   trigger-deploy:
