@@ -364,7 +364,7 @@ sudo useradd -u 1000 -g GroupA -G GroupP,GroupC albert
 à la place.
     ```
 
-#### Valeur par défaut de création d’utilisateur.
+#### Valeur par défaut pour la création d'utilisateur
 
 Modification du fichier `/etc/default/useradd`.
 
