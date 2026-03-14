@@ -447,7 +447,7 @@ Cette commande affiche l'arborescence des processus et son utilisation est la su
 | Option | Observation                                         |
 |:------ |:--------------------------------------------------- |
 | `-p`   | Affiche l'identifiant PID du processus              |
-| `-n`   | trier la sortie par PID                             |
+| `-n`   | trie les résultats par PID                          |
 | `-h`   | met en évidence le processus actuel et ses ancêtres |
 | `-u`   | affichage des transitions d'UID                     |
 
