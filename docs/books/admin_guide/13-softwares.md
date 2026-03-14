@@ -101,7 +101,7 @@ The relevant options are as follows:
 | `-l`             | When used in combination with the `-q` option, query the list of files released by the corresponding installed rpm package |
 | `-p`             | Specifies uninstalled software packages, for example `rpm -qip tree-1.7.0-15.el8.x86_64.rpm` and `rpm -qlp tree-1.7.0-15.el8.x86_64.rpm`|
 | `-f`            | When used in conjunction with the `-q` option, query the software package to which the installation file belongs, such as `rpm -qf /usr/bin/bash` |
-| `-R`             | When used in conjunction with the `-q` option, query the dependencies of installed rpm packages. When used in conjunction with the `-p` option, you can query the dependencies of rpm packages that are not installed, such as`rpm -qRp rpm -qRp mtr-0.92-3.el8.x86_64.rpm` |
+| `-R`             | When used in conjunction with the `-q` option, query the dependencies of installed rpm packages. When used in conjunction with the `-p` option, you can query the dependencies of rpm packages that are not installed, such as`rpm -qRp mtr-0.92-3.el8.x86_64.rpm` |
 | `--last`       | list package(s) by install time, most recent first |
 
 The RPM database is located in the directory `/var/lib/rpm/`.
