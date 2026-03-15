@@ -1376,7 +1376,7 @@ ls -R / >> ok_file 2>> nok_file
 Redirection des 2 sorties vers un fichier unique :
 
 ```bash
-ls -R / >> log_file 2>&1
+ls -R / >> ok_file 2>> nok_file
 ```
 
 Redirection de _stderr_ vers un "puits sans fond" (`/dev/null`) :

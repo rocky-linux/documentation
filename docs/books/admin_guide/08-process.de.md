@@ -144,7 +144,7 @@ Jedes Mal, wenn auf eine Datei zugegriffen wird, prüft das System die Rechte de
 
 Ein Prozess kann nicht auf unbestimmte Zeit ausgeführt werden, da dies zu Lasten anderer laufender Prozesse würde und Multitasking verhindern würde.
 
-Die gesamte Bearbeitungszeit ist daher in kleine Bereiche unterteilt und jeder Prozess (mit einer Priorität) greift sequenziell auf den Prozessor zu. Der Prozess wird mehrere Zustände während seiner Ausführung durchlaufen:
+Daher wird die gesamte verfügbare Verarbeitungszeit in kleine Abschnitte unterteilt, und jeder Prozess (mit einer Priorität) greift sequenziell auf den Prozessor zu. Der Prozess wird mehrere Zustände während seiner Ausführung durchlaufen:
 
 * ready: Warten auf die Verfügbarkeit des Prozesses;
 * in execution: Zugriff auf den Prozessor;

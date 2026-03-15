@@ -26,9 +26,9 @@ Ce dernier point peut sembler inutile pour certaines personnes qui le lisent, ma
 
 ## Prérequis
 
-Il est supposé que vous avez un clone local du dépôt GitHub de Rocky : [https://github.com/rocky-linux/documentation](https://github.com/rocky-linux/documentation).
+On suppose que vous avez un clone local du dépôt GitHub de Rocky : <https://github.com/rocky-linux/documentation>.
 
-## Changements d'environnement
+## Changements de l'environnement
 
 Avec ces changements vient un réel besoin de "voir" comment toute modification que vous apportez affecte le contenu, dans le contexte du site Web, *AVANT* que le contenu soit enregistré dans le référentiel de la documentation et qu'il soit ensuite publié en ligne.
 
