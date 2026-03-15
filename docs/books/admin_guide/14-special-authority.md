@@ -396,7 +396,7 @@ The `locate` command uses the **mlocate.db** database file to quickly search for
 
 Because the `locate` command has SGID permission, when the executor (ordinary users) executes the `locate` command, the owner group is switched to **slocate**. `slocate` has r permission for the **/var/lib/mlocate/mlocate.db** file.
 
-SGID is represented by the number **2**, so the `locate` command has a permission of 2711.
+The representation of SGID is with the number **2**, so the `locate` command has a permission of 2711.
 
 ```bash
 # Set SGID permissions
