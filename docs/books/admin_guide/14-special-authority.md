@@ -396,7 +396,7 @@ The `locate` command uses the **mlocate.db** database file to quickly search for
 
 Because the `locate` command has SGID permission, when the executor (ordinary users) executes the `locate` command, the owner group is switched to **slocate**. `slocate` has r permission for the **/var/lib/mlocate/mlocate.db** file.
 
-The SGID is indicated by the number **2**, so the `locate` command has a permission of 2711.
+The representation of SGID is with the number **2**, so the `locate` command has a permission of 2711.
 
 ```bash
 # Set SGID permissions
@@ -459,7 +459,19 @@ The role of "Sticky BIT":
 
 SBIT is represented by the number **1**.
 
-**Q: Can the file or directory have **7755** permission?**
+```bash
+# Set SBIT permissions for the directory
+Shell > chmod 1777 DIR
+# or
+Shell > chmod o+t DIR
+
+# Remove SBIT permissions from the directory
+Shell > chmod 777 DIR
+# or
+Shell > chmow o-t DIR
+```
+
+**Q: Can the file or directory have 7755 permission?**
 
 No, they are aimed at different objects. SUID is for executable binary files; SGID is used for executable binaries and directories; SBIT is only for directories. That is, you need to set these special permissions according to different objects.
 
@@ -507,7 +519,7 @@ The most commonly used permissions (also called attribute) are **a** and **i**.
 |            | Delete | Free modification | Append file content | View | Create file |
 |:----------:|:------:|:-----------------:|:-------------------:|:----:|:-----------:|
 | file       |  ×     |       ×           |   ×                 | √    |    -        |
-| directory  |  x <br>(Directory and files under the directory) | √ <br>(Files in the directory) | √ <br>(Files in the directory)  | √ <br>(Files in the directory)  |  x |
+| directory  |  x <br>(Directory and files under the directory) | √ <br>(Files in the directory) | √ <br>(Files in the directory)  | √ <br>(Files in the directory)  |  × |
 
 Examples for files:
 
@@ -628,7 +640,7 @@ Shell > chattr -a /etc/tmpfile1 /etc/dira/
 
 !!! question
 
-    **Q: What happens when I set the ai attribute on a file? **
+    **Q: What happens when I set the ai attribute on a file?**
 
     You cannot do anything with the file other than to view it.
 
@@ -644,7 +656,7 @@ The role of "sudo":
 * Through the root user, assign the commands that can only be executed by the root user (uid=0) to ordinary users for execution.
 * The operation object of "sudo" is the system command.
 
-We know that only the administrator root has permission to use the commands under **/sbin/** and **/usr/sbin/** in the GNU/Linux directory. Generally speaking, a company has a team to maintain a set of servers. This set of servers can refer to a single computer room in one geographic location, or it can refer to a computer room in multiple geographical locations. The team leader uses the permissions of the root user, and other team members may only have the permissions of the ordinary user. As the person in charge has a lot of work, there is no time to maintain the daily work of the server, most of the work needs to be maintained by ordinary users. However, ordinary users have many restrictions on the use of commands, and at this point, you need to use sudo permissions.
+We know that in the GNU/Linux operating system, only the administrator root user has permission to use commands located in the **/sbin/** and **/usr/sbin/** directories. Generally speaking, a company has a team to maintain a set of servers. This set of servers can refer to a single computer room in one geographic location, or it can refer to a computer room in multiple geographical locations. The team leader uses the permissions of the root user, and other team members may only have the permissions of the ordinary user. As the person in charge has a lot of work, there is no time to maintain the daily work of the server, most of the work needs to be maintained by ordinary users. However, ordinary users have many restrictions on the use of commands, and at this point, you need to use sudo permissions.
 
 To grant permissions to ordinary users, **you must use the root user (uid=0)**.
 
@@ -676,7 +688,7 @@ Shell > visudo
 | 1    | User name or owner group name. Refers to which user/group is granted permissions. If it is an owner group, you need to write "%", such as **%root**. |
 | 2    | Which machines are allowed to execute commands. It can be a single IP address, a network segment, or ALL. |
 | 3    | Indicates which identities can be transformed into. |
-| 4    | The authorized command, which needs to be represented by an absolute path. |
+| 4    | One or more authorized commands (represented by absolute paths). Multiple authorization commands need to be separated by commas. |
 
 For example:
 
@@ -701,4 +713,14 @@ If your authorization command is `/sbin/shutdown`, it means that authorized user
 
 !!! warning
 
-    Because sudo is a "ultra vires" operation, you need to be careful when dealing with **/etc/sudoers** files!
+    Since sudo is an operation that "increase user permissions", one must be extremely careful when dealing with the **/etc/sudoers** file!
+
+Due to various reasons during the initial design of sudo (such as complex design, redundant functions, heavy historical burden, etc.), the current sudo has discovered many high-risk vulnerabilities:
+
+* ‌CVE-2019-14287
+* ‌CVE-2021-3156
+* ‌CVE-2025-32462
+* ‌CVE-2025-32463
+
+You can use the Rust version of sudo as an alternative. For more details, see [here](https://github.com/trifectatechfoundation/sudo-rs).
+
