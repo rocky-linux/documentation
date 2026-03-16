@@ -8,7 +8,7 @@ Dans ce chapitre, vous allez approfondir vos connaissances sur Ansible.
 
 ****
 
-**Objectifs** : Dans ce chapitre, vous apprendrez à :
+**Objectifs** : Dans ce chapitre, vous apprendrez à :
 
 :heavy_check_mark: travailler avec des variables ;  
 :heavy_check_mark: utiliser des boucles ;  
