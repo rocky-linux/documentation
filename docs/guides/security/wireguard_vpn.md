@@ -41,6 +41,16 @@ sudo dnf install wireguard-tools -y
 
 ## Configuring WireGuard Server
 
+Set a temporary mask so only the owner has read/write access to newly created files.
+
+!!! Note
+
+    The mask only applies to the current terminal session. Once you close the window or log out, the system defaults will return.
+
+```bash
+umask 077
+```
+
 Create a folder to put your WireGuard configuration files and keys:
 
 ```bash
