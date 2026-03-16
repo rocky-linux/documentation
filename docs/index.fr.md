@@ -6,7 +6,7 @@ title: Page d’accueil
 
 ## Bienvenue !
 
-Bienvenue sur le site de la documentation de Rocky Linux, nous sommes très heureux que vous soyez ici. Nous avons un certain nombre de contributeurs qui ajoutent du contenu, ce qui ne cesse de croître. Vous trouverez ici des documents sur la façon de construire Rocky Linux lui-même, ainsi que des documents sur divers sujets importants pour la communauté Rocky Linux. Qui est donc cette communauté, vous-demandez vous?
+Bienvenue sur le site de la documentation de Rocky Linux, nous sommes très heureux de vous accueillir dans ce projet. Nous avons un certain nombre de contributeurs qui ajoutent du contenu, ce qui ne cesse de croître. Vous trouverez ici des documents sur la façon de construire Rocky Linux lui-même, ainsi que des documents sur divers sujets importants pour la communauté Rocky Linux. Qui est donc cette communauté, vous-demandez vous?
 
 Eh bien, c'est vous même en participant de différentes manières.
 
@@ -53,7 +53,7 @@ Pour ouvrir une page parmi les résultats de recherche, cliquez simplement (ou a
 
 
 
-## Première fois
+## Pour ce lancer
 
 Si c'est la première fois que vous visitez le site de documentation de Rocky Linux alors probablement vous êtes nouveau sur Rocky Linux et vous avez envie de l'installer ! Pas de problème, passez à la page [Installation de Rocky Linux](guides/installation.md) pour obtenir des instructions détaillées.
 
