@@ -193,7 +193,7 @@ Replace the database name with the one you selected.
 
 ## Creating users
 
-First log into MariaDB:
+First login to MariaDB:
 
 ```bash
 mysql -u root -p radius
