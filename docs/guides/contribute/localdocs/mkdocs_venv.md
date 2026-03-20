@@ -1,7 +1,7 @@
 ---
 title: Python VENV Method 
 author: Franco Colussi
-contributors: Steven Spencer, Ganna Zhyrnova
+contributors: Steven Spencer, Ganna Zhyrnova, Joey Brinkman
 tested_with: 8.7, 9.1, 9.4
 tags:
   - mkdocs
@@ -54,6 +54,9 @@ Go to the folder just created (*rockydocs*) and create the virtual environment w
 
 ```bash
 cd ~/lab/rockydocs/
+```
+
+```bash
 python -m venv env
 ```
 
@@ -89,8 +92,11 @@ Among the files listed in the structure, there are several files named **activat
 Activation separates this python instance from the system python instance and allows us to perform documentation development without interference. To activate it, go to the *env* folder and run the command:
 
 ```bash
-[rocky_user@rl9 rockydocs]$ cd ~/lab/rockydocs/env/
-[rocky_user@rl9 env]$ source ./bin/activate
+cd ~/lab/rockydocs/env/
+```
+
+```bash
+source ./bin/activate
 ```
 
 The *activate* command was issued without any suffix because this refers to the *bash* shell, Rocky Linux's default shell. At this point your *shell prompt* should be:
@@ -105,8 +111,9 @@ As you can see, the initial *(env)* part indicates that you are now in the virtu
 python -m pip install --upgrade pip
 ```
 
+Below is an example of what this may look like in your shell.
+
 ```bash
-python -m pip install --upgrade pip
 Requirement already satisfied: pip in ./lib/python3.9/site-packages (21.2.3)
 Collecting pip
   Downloading pip-23.1-py3-none-any.whl (2.1 MB)
@@ -122,6 +129,12 @@ Successfully installed pip-23.1
 #### Deactivate the environment
 
 To exit the virtual environment, use the *deactivate* command:
+
+```bash
+deactivate
+```
+
+Below is an example of what this may look like in your shell.
 
 ```bash
 (env) [rocky_user@rl9 env]$ deactivate
@@ -140,6 +153,9 @@ Start with the site structure repository, which you will clone into the **rockyd
 
 ```bash
 cd ~/lab/rockydocs/
+```
+
+```bash
 git clone https://github.com/rocky-linux/docs.rockylinux.org.git
 ```
 
@@ -169,18 +185,26 @@ As pointed out earlier, the developers of Rocky Linux provide the **requirement.
 First you enter your python virtual environment:
 
 ```bash
-[rocky_user@rl9 rockydocs]$ cd ~/lab/rockydocs/env/
-[rocky_user@rl9 env]$ source ./bin/activate
-(env) [rocky_user@rl9 env]$
+cd ~/lab/rockydocs/env/
+```
+
+```bash
+source ./bin/activate
 ```
 
 Next, proceed to install MkDocs and all its components with the command:
 
 ```bash
-(env) [rocky_user@rl9 env]$ python -m pip install -r ../docs.rockylinux.org/requirements.txt
+python -m pip install -r ../docs.rockylinux.org/requirements.txt
 ```
 
 To check that everything went well, you can call up the MkDocs help, which also introduces us to the available commands:
+
+```bash
+mkdocs -h
+```
+
+At this point your *shell prompt* should be:
 
 ```bash
 (env) [rocky_user@rl9 env]$ mkdocs -h
@@ -204,6 +228,10 @@ Commands:
 If everything has worked as planned, you can exit the virtual environment and start preparing the necessary connections.
 
 ```bash
+deactivate
+```
+
+```bash
 (env) [rocky_user@rl9 env]$ deactivate
 [rocky_user@rl9 env]$
 ```
@@ -219,10 +247,19 @@ docs_dir: 'docs/docs'
 You will first need to create a **docs** folder in **docs.rockylinux.org** and then from within it link your **docs** folder from the **documentation** repository.
 
 ```bash
-cd ~/lab/rockydocs/docs.rockylinux.org
+cd ~/lab/rockydocs/docs.rockylinux.org/configs
+```
+
+```bash
 mkdir docs
-cd docs/
-ln -s ../../documentation/docs/ docs
+```
+
+```bash
+cd docs
+```
+
+```bash
+ln -s ~/lab/rockydocs/documentation/docs/ docs
 ```
 
 ## Starting local documentation
@@ -236,9 +273,15 @@ The developers for the site's UI chose the [Material for MkDocs](https://squidfu
 Perform the following commands:
 
 ```bash
-[rocky_user@rl9 rockydocs]$ cd ~/lab/rockydocs/env/
-[rocky_user@rl9 rockydocs]$ source ./bin/activate
-(env) [rocky_user@rl9 env]$ mkdocs serve -f ../docs.rockylinux.org/mkdocs.yml
+cd ~/lab/rockydocs/env/
+```
+
+```bash
+source .bin/activate
+```
+
+```bash
+mkdocs serve -f ../docs.rockylinux.org/configs/mkdocs.yml --theme material
 ```
 
 You should see in your terminal the start of site construction. The display will show any errors found by MkDocs, such as missing links or other:
@@ -270,6 +313,12 @@ Since the time for MkDocs to build the static site can be several minutes, the r
 Once the display of your new page meets your satisfaction, you can exit your development environment. This involves first exiting *MkDocs* and then deactivating the python virtual environment. To exit *MkDocs* you need to use the key combination ++ctrl++ + ++"C"++, and as you saw above, to exit the virtual environment you will need to invoke the `deactivate` command.
 
 ```bash
+deactivate
+```
+
+Below is an example of what this may look like in your shell.
+
+```bash
 ...
 INFO     -  [22:32:41] Serving on http://127.0.0.1:8000/
 ^CINFO     -  Shutting down...
@@ -285,7 +334,7 @@ You can create a bash alias to expedite the process of serving mkdocs with the v
 Run the command below to add the alias `venv` to your `.bash_profile`:
 
 ```bash
-printf "# mkdocs alias\nalias venv='source $HOME/lab/rockydocs/env/bin/activate && mkdocs serve -f $HOME/lab/rockydocs/docs.rockylinux.org/mkdocs.yml'" >> ~/.bash_profile
+printf "# mkdocs alias\nalias venv='source $HOME/lab/rockydocs/env/bin/activate && mkdocs serve -f $HOME/lab/rockydocs/docs.rockylinux.org/configs/mkdocs.yml --theme material'" >> ~/.bash_profile
 ```
 
 Update the shell environment with your newly created alias:
