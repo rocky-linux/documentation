@@ -109,7 +109,7 @@ Sauvegardez vos modifications (pour *vi*, ++shift+colon+w+q+exclam++)
 
 Vous aurez besoin de deux fichiers dans `/var/named`. Vous allez éditer ces fichiers pour ajouter des machines à votre réseau afin de les inclure au DNS.
 
-Le premier est le fichier de transfert pour associer l'adresse IP au nom de l'hôte correspondant. Encore une fois, nous utilisons « ourdomain » comme exemple. Notez que l'adresse IP de notre DNS local dans l'exemple est 192.168.1.136. Les hôtes sont ajoutés au bas de ce fichier.
+Le premier est le fichier de transfert pour associer l'adresse IP au nom de l'hôte correspondant. Encore une fois, nous utilisons « ourdomain » comme exemple. Notez que l'adresse IP de notre DNS local dans l'exemple est 192.168.1.136. Ajoutez les hôtes au bas de ce fichier.
 
 ```bash
 vi /var/named/ourdomain.lan.db
@@ -180,7 +180,7 @@ Just making things work is not good enough if you do not know what each term mea
 
 - **TTL** apparaît dans les deux fichiers et signifie « Time To Live». TTL indique au serveur DNS combien de temps il faut conserver son cache avant de demander une nouvelle copie. Dans ce cas, le TTL est le paramètre par défaut pour tous les enregistrements, à moins qu'un TTL spécifique ne soit défini. La valeur par défaut ici est 86400 secondes c'est-à-dire 24 heures.
 - **IN** signifie Internet. Dans notre exemple, nous n'utilisons pas Internet, alors considérez IN comme l'intranet. Considérez plutôt cela comme l’Intranet.
-- **SOA** signifie "Start Of Authority" ou ce que le serveur DNS principal est pour le domaine.
+- **SOA** signifie « Start Of Authority » ou désigne le serveur DNS principal du domaine
 - **NS** signifie "Name Server"
 - **Serial** est la valeur utilisée par le serveur DNS pour vérifier que le contenu du fichier de zone est à jour
 - **Refresh** spécifie à quelle fréquence un serveur DNS slave doit effectuer un transfert de zone depuis le serveur master
@@ -370,12 +370,11 @@ systemctl start named
     ```
 
 
-    Enregistrez vos modifications (encore une fois, pour _vi_, `SHIFT:wq!`).
+    Sauvegardez ces modifications (pour *vi*, utilisez ++shift+colon+w+q+exclam++).
     
+    ## 8 Machines d'essai
     
-    ##8 Machines d'essais
-    
-    Vous devez ajouter le serveur DNS (dans notre exemple 192.168.1.136) à chaque machine sur laquelle vous souhaitez avoir accès aux serveurs ajoutés à votre DNS local. L'auteur montre uniquement un exemple de la façon de procéder sur un poste de travail Rocky Linux. Des méthodes similaires existent pour d'autres distributions Linux, machines Windows et Mac.
+    Vous devez ajouter le serveur DNS (dans notre exemple, 192.168.1.136) à chaque machine qui doit avoir accès aux serveurs ajoutés à votre DNS local. L'auteur montre uniquement un exemple de la façon de procéder sur un poste de travail Rocky Linux. Des méthodes similaires existent pour d'autres distributions Linux, machines Windows et Mac.
     
     Vous devez ajouter votre serveur DNS à la liste, car vous avez toujours besoin d'un accès Internet, qui nécessite vos serveurs DNS actuellement attribués. En règle générale, DHCP (Dynamic Host Configuration Protocol) les attribue automatiquement ou alors ils sont attribués de manière statique.
     
