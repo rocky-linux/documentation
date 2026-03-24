@@ -94,6 +94,36 @@ client 172.20.0.254 {
 
 Replace `172.20.0.254` and `secret123` with the IP address and secret value the clients will use. Repeat this for other clients.
 
+## Enabling MS-CHAP
+
+MS-CHAP allows hashed passwords to be sent to Active Directory via RADIUS. This is highly recommended.
+
+Remove the following line from `/etc/raddb/mods-config/files/authorize`:
+
+```bash
+DEFAULT   Auth-Type = ntlm_auth
+```
+
+Then in `/etc/raddb/mods-enabled/mschap` insert the following line:
+
+```bash
+mschap {
+...
+        ntlm_auth = "/usr/bin/ntlm_auth --request-nt-key --allow-mschapv2 --username=%{mschap:User-Name:-None} --domain=%{%{mschap:NT-Domain}:-MYDOMAIN} --challenge=%{mschap:Challenge:-00} --nt-response=%{mschap:NT-Response:-00}"
+...
+}
+```
+
+Replace `MYDOMAIN` with your Active Directory domain name.
+
+Finally, add the `radiusd` user to the `wbpriv` group:
+
+```bash
+usermod -a -G wbpriv radiusd
+```
+
+This step is important since it allows MS-CHAP authentication.
+
 ## Enabling FreeRADIUS
 
 After the initial configuration, you can start `radiusd`:
