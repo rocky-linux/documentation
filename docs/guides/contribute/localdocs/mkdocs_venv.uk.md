@@ -132,9 +132,9 @@ Successfully installed pip-23.1
 
 ### Завантаження репозиторіїв
 
-Тепер, коли ви побачили, як створити своє віртуальне середовище та як ним керувати, ви можете переходити до підготовки всього необхідного.
+Now that you have seen how to create your virtual environment and how to manage it, you can move on to preparing everything needed.
 
-Для реалізації локальної версії документації Rocky Linux потрібні два репозиторії: репозиторій документації [documentation](https://github.com/rocky-linux/documentation) та репозиторій структури сайту [docs.rockylinux.org](https://github.com/rocky-linux/docs.rockylinux.org). Їх завантаження здійснюється з Rocky Linux GitHub.
+Для реалізації локальної версії документації Rocky Linux потрібні два репозиторії: репозиторій документації [documentation](https://github.com/rocky-linux/documentation) та репозиторій структури сайту [docs.rockylinux.org](https://github.com/rocky-linux/docs.rockylinux.org). Downloading these is done from the Rocky Linux GitHub.
 
 Почніть зі сховища структури сайту, яке ви клонуєте в папку **rockydocs**:
 
@@ -143,9 +143,9 @@ cd ~/lab/rockydocs/
 git clone https://github.com/rocky-linux/docs.rockylinux.org.git
 ```
 
-У цій папці є два файли, які ви збираєтеся використовувати для створення локальної документації. Це **mkdocs.yml**, файл конфігурації, який використовується для ініціалізації MkDocs, та **requirement.txt**, який містить усі пакети Python, необхідні для встановлення _mkdocs_.
+In this folder there are two files that you are going to use for building the local documentation. Це **mkdocs.yml**, файл конфігурації, який використовується для ініціалізації MkDocs, та **requirement.txt**, який містить усі пакети Python, необхідні для встановлення _mkdocs_.
 
-Після завершення вам також потрібно завантажити репозиторій документації:
+When finished, you also need to download the documentation repository:
 
 ```bash
 git clone https://github.com/rocky-linux/documentation.git
@@ -164,9 +164,9 @@ rockydocs/
 
 ### Установка MkDocs
 
-Як зазначалося раніше, розробники Rocky Linux надають файл **requirement.txt**, який містить список модулів, необхідних для належного запуску користувацького екземпляра MkDocs. Ви будете використовувати файл, щоб установити все необхідне за одну операцію.
+Як зазначалося раніше, розробники Rocky Linux надають файл **requirement.txt**, який містить список модулів, необхідних для належного запуску користувацького екземпляра MkDocs. You will use the file to install everything needed in a single operation.
 
-Спочатку ви входите у своє віртуальне середовище python:
+First you enter your python virtual environment:
 
 ```bash
 [rocky_user@rl9 rockydocs]$ cd ~/lab/rockydocs/env/
@@ -174,13 +174,13 @@ rockydocs/
 (env) [rocky_user@rl9 env]$
 ```
 
-Далі перейдіть до встановлення MkDocs і всіх його компонентів за допомогою команди:
+Next, proceed to install MkDocs and all its components with the command:
 
 ```bash
 (env) [rocky_user@rl9 env]$ python -m pip install -r ../docs.rockylinux.org/requirements.txt
 ```
 
-Щоб перевірити, чи все пройшло добре, ви можете викликати довідку MkDocs, яка також знайомить нас із доступними командами:
+To check that everything went well, you can call up the MkDocs help, which also introduces us to the available commands:
 
 ```bash
 (env) [rocky_user@rl9 env]$ mkdocs -h
@@ -201,7 +201,7 @@ Usage: mkdocs [OPTIONS] COMMAND [ARGS]...
    serve Запускає вбудований сервер розробки
 ```
 
-Якщо все спрацювало, як планувалося, ви можете вийти з віртуального середовища і почати підготовку необхідних підключень.
+If everything has worked as planned, you can exit the virtual environment and start preparing the necessary connections.
 
 ```bash
 (env) [rocky_user@rl9 env]$ deactivate
@@ -227,13 +227,13 @@ ln -s ../../documentation/docs/ docs
 
 ## Запуск локальної документації
 
-На цьому етапі ви готові почати локальну копію документації Rocky Linux. Спочатку вам потрібно запустити віртуальне середовище Python, а потім ініціалізувати ваш екземпляр MkDocs з налаштуваннями, визначеними в **docs.rockylinux.org/mkdocs.yml**.
+You are ready to start the local copy of the Rocky Linux documentation. Спочатку вам потрібно запустити віртуальне середовище Python, а потім ініціалізувати ваш екземпляр MkDocs з налаштуваннями, визначеними в **docs.rockylinux.org/mkdocs.yml**.
 
-Цей файл містить усі параметри для локалізації, керування функціями та темами.
+This file has all the settings for localization, feature, and theme management.
 
 Розробники інтерфейсу користувача сайту обрали тему [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/), яка надає багато додаткових функцій і налаштувань порівняно зі стандартною темою MkDocs.
 
-Виконайте наступні команди:
+Perform the following commands:
 
 ```bash
 [rocky_user@rl9 rockydocs]$ cd ~/lab/rockydocs/env/
@@ -241,7 +241,7 @@ ln -s ../../documentation/docs/ docs
 (env) [rocky_user@rl9 env]$ mkdocs serve -f ../docs.rockylinux.org/mkdocs.yml
 ```
 
-Ви повинні побачити у своєму терміналі початок білду сайту. На дисплеї відображатимуться будь-які помилки, знайдені MkDocs, наприклад, відсутні посилання чи інші:
+You should see in your terminal the start of site construction. The display will show any errors found by MkDocs, such as missing links or other:
 
 ```text
 INFO     -  Building documentation...
@@ -259,15 +259,15 @@ INFO     -  [11:46:50] Watching paths for changes:
 INFO     -  [11:46:50] Serving on http://127.0.0.1:8000/
 ```
 
-Ваша копія сайту з документацією буде запущена після відкриття браузера за вказаною адресою [http://127.0.0.1:8000](http://127.0.0.1:8000). Копія ідеально відображає онлайн-сайт за функціональністю та структурою, дозволяючи оцінити зовнішній вигляд і вплив вашої сторінки на сайт.
+Ваша копія сайту з документацією буде запущена після відкриття браузера за вказаною адресою [http://127.0.0.1:8000](http://127.0.0.1:8000). The copy perfectly mirrors the online site in functionality and structure, allowing you to assess the appearance and impact your page will have on the site.
 
 MkDocs містить механізм для перевірки змін у файлах у папці, визначеній шляхом `docs_dir`, і вставлення нової сторінки або зміна існуючої в `documentation/docs` буде автоматично розпізнано та створить нову статичну збірку сайту.
 
-Оскільки MkDocs створює статичний сайт за кілька хвилин, радимо уважно переглянути сторінку, яку ви пишете, перш ніж зберігати або вставляти її. Це економить чекання створення сайту лише тому, що ви забули, наприклад, знаки пунктуації.
+Since the time for MkDocs to build the static site can be several minutes, the recommendation is to carefully review the page you are writing before saving or inserting it. This saves waiting for the site to build just because you forgot, for example, punctuation.
 
 ### Вихід із середовища розробки
 
-Коли відображення нової сторінки задовольнить вас, ви можете вийти з середовища розробки. Це передбачає спочатку вихід з _MkDocs_, а потім деактивацію віртуального середовища python. Щоб вийти з _MkDocs_, потрібно скористатися комбінацією клавіш ++ctrl++ + ++"C"++, і, як ви бачили вище, для виходу з віртуального середовища потрібно буде викликати команду `deactivate`.
+Once the display of your new page meets your satisfaction, you can exit your development environment. Це передбачає спочатку вихід з _MkDocs_, а потім деактивацію віртуального середовища python. Щоб вийти з _MkDocs_, потрібно скористатися комбінацією клавіш ++ctrl++ + ++"C"++, і, як ви бачили вище, для виходу з віртуального середовища потрібно буде викликати команду `deactivate`.
 
 ```bash
 ...
@@ -280,7 +280,7 @@ INFO     -  [22:32:41] Serving on http://127.0.0.1:8000/
 
 ### Створіть псевдонім для методу venv
 
-Ви можете створити псевдонім bash, щоб пришвидшити процес обслуговування mkdocs за допомогою методу venv.
+You can create a bash alias to expedite the process of serving mkdocs with the venv method.
 
 Виконайте наведену нижче команду, щоб додати псевдонім `venv` до вашого `.bash_profile`:
 
@@ -288,7 +288,7 @@ INFO     -  [22:32:41] Serving on http://127.0.0.1:8000/
 printf "# mkdocs alias\nalias venv='source $HOME/lab/rockydocs/env/bin/activate && mkdocs serve -f $HOME/lab/rockydocs/docs.rockylinux.org/mkdocs.yml'" >> ~/.bash_profile
 ```
 
-Оновіть середовище оболонки за допомогою свого щойно створеного псевдоніма:
+Update the shell environment with your newly created alias:
 
 ```bash
 source ~/.bash_profile
@@ -308,8 +308,8 @@ deactivate
 
 ## Висновки та заключні думки
 
-Перевірка ваших нових сторінок на сайті локальної розробки гарантує нам, що ваша робота завжди відповідатиме веб-сайту онлайн-документації, дозволяючи нам робити оптимальний внесок.
+Verifying your new pages in a local development site assures us that your work will always conform to the online documentation site, allowing us to contribute optimally.
 
-Відповідність документів також є великою підмогою для кураторів сайту документації, яким потім залишається лише займатися коректністю контенту.
+Document compliance is also a great help to the curators of the documentation site, who then only have to deal with the correctness of the content.
 
-На завершення можна сказати, що цей метод дозволяє виконати вимоги щодо «чистої» інсталяції MkDocs без необхідності вдаватися до контейнеризації.
+In conclusion, you can say that this method allows for meeting the requirements for a "clean" installation of MkDocs without the need to resort to containerization.
