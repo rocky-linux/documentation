@@ -46,4 +46,4 @@ Vous pouvez compiler le système de documentation localement sans Docker ou LXD 
 
 ## Conclusion
 
-Ceci fournit un moyen rapide et simple d'exécuter une copie locale de la documentation sans Docker ni LXD. Si vous choisissez cette méthode, il est fortement conseillé de configurer un environnement virtuel Python pour protéger vos autres processus Python.
+Ceci fournit un moyen rapide et simple d'exécuter une copie locale de la documentation sans Docker ni LXD. Si vous choisissez cette méthode, il est fortement conseillé de configurer un environnement virtuel Python pour protéger vos autres procédures dépendantes de Python.

@@ -53,7 +53,7 @@ Pour ouvrir une page parmi les résultats de recherche, cliquez simplement (ou a
 
 
 
-## Pour ce lancer
+## Pour se lancer
 
 Si c'est la première fois que vous visitez le site de documentation de Rocky Linux alors probablement vous êtes nouveau sur Rocky Linux et vous avez envie de l'installer ! Pas de problème, passez à la page [Installation de Rocky Linux](guides/installation.md) pour obtenir des instructions détaillées.
 

@@ -94,15 +94,15 @@ update_messages = yes
 # Whether updates should be downloaded when they are available.
 download_updates = yes
 
-# Whether updates should be applied when they are available.  Примітка
-# щоб download_updates також мав бути yes для застосування оновлення.
+# Whether updates should be applied when they are available.  Note
+# that download_updates must also be yes for the update to be applied.
 apply_updates = yes
 
-# Максимальний час довільного сну, у хвилинах.  Програма
-# буде спати протягом випадкового проміжку часу від 0 до random_sleep
-# хвилин перед початком.  Це корисно, наприклад, для випадків
-# коли кілька систем отримуватимуть доступ до серверів оновлення.  Якщо
-# random_sleep дорівнює 0 або негативне значення, програма запуститься негайно.
+# Maximum amount of time to randomly sleep, in minutes.  The program
+# will sleep for a random amount of time between 0 and random_sleep
+# minutes before running.  This is useful for e.g. staggering the
+# times that multiple systems will access update servers.  If
+# random_sleep is 0 or negative, the program will run immediately.
 # 6*60 = 360
 random_sleep = 30
 ```
