@@ -18,7 +18,7 @@ Diese Startseite gibt Ihnen eine kurze Einführung in diesem Dokumentationsporta
 
 Sie befinden sich gerade auf der Startseite der Dokumentation. Wenn Sie einen Blick auf das oberste Menü werfen (das immer verfügbar ist, auch auf mobilen Geräten), können Sie eine Übersicht sehen, die die Abschnitte der obersten Ebene der Dokumentationsseite zeigt. Wenn Sie auf jeden oberen Menüpunkt klicken (versuchen Sie zum Beispiel "Anleitungen"), dann sehen Sie auf der linken Seite die Liste von *Unterabschnitten* für jeden Hauptabschnitt. "Anleitungen" enthält viele interessante Themen.
 
-Wenn Sie ein Dokument öffnen, werden Sie auf der rechten Seite ein 'Inhaltsverzeichnis' mit anklickbaren Navigationslinks für dieses Dokument sehen (für mobile Geräte sollten die horizontale Ausrichtung einstellen). Für lange Dokumente, wie die [Versionshinweise](release_notes/8_8.md), erleichtert das Inhaltsverzeichnis die Navigation im Dokument. Wenn Sie ein langes Dokument lesen und zum Anfang zurückgehen möchten, drücken Sie ++page-up++. Oben auf dem Bildschirm wird die Schaltfläche `Zurück zum Anfang` angezeigt.
+Wenn Sie ein Dokument öffnen, werden Sie auf der rechten Seite ein 'Inhaltsverzeichnis' mit anklickbaren Navigationslinks für dieses Dokument sehen (für mobile Geräte sollten die horizontale Ausrichtung einstellen). Für lange Dokumente, wie die [Versionshinweise](release_notes/10_1.md), erleichtert das Inhaltsverzeichnis die Navigation im Dokument. Wenn Sie ein langes Dokument lesen und zum Anfang zurückgehen möchten, drücken Sie ++page-up++. Oben auf dem Bildschirm wird die Schaltfläche `Zurück zum Anfang` angezeigt.
 
 Die Hauptbereiche der Dokumentationseite sind:
 
