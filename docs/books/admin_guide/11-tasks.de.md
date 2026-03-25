@@ -1,10 +1,10 @@
 ---
-title: Task-Verwaltung
+title: Task-Verwaltung mit `cron`
 ---
 
-# Task-Verwaltung
+# Task-Verwaltung mit `cron`
 
-In diesem Kapitel erfahren Sie, wie Sie geplante Aufgaben verwalten.
+In diesem Kapitel lernen Sie, wie Sie geplante Aufgaben verwalten.
 
 ****
 
@@ -12,7 +12,7 @@ In diesem Kapitel erfahren Sie, wie Sie geplante Aufgaben verwalten.
 
 :heavy_check_mark: wie GNU/Linux die Aufgabenplanung implementiert;  
 :heavy_check_mark: die Verwendung von **`cron`** auf bestimmte Benutzer beschränken;  
-:heavy_check_mark: Aufgaben planen.
+:heavy_check_mark: Tasks planen.
 
 :checkered_flag: **crontab**, **crond**, **scheduling**, **linux**
 
@@ -27,7 +27,7 @@ In diesem Kapitel erfahren Sie, wie Sie geplante Aufgaben verwalten.
 
 Die Zeitplanung der Aufgaben wird mit dem `cron` Tool verwaltet. Es ermöglicht die periodische Ausführung von Aufgaben.
 
-Es ist dem Administrator für Systemaufgaben vorbehalten, kann aber von normalen Benutzern für Aufgaben oder Skripte verwendet werden, auf die sie selber Zugriff haben. Um auf das `cron` Tool zuzugreifen, verwenden wir: `crontab`.
+Dieses Hilfsprogramm ist dem Administrator für Systemaufgaben vorbehalten, kann aber von normalen Benutzern für Aufgaben oder Skripte verwendet werden, zu denen sie Zugriff haben. Um auf das `cron` Tool zuzugreifen, verwenden wir: `crontab`.
 
 Der `cron` Dienst wird verwendet für:
 
@@ -44,7 +44,7 @@ Der Name `crontab` steht für **cron-Tabelle**, kann aber als Task-Planungstabel
 
 ## Wie der Dienst funktioniert
 
-Der `cron`-Dienst wird durch einen `crond`-Daemon im Speicher ausgeführt.
+Der `crond`-Daemon wird von einem `cron`-Dienst im Speicher ausgeführt.
 
 Um seinen Status zu überprüfen:
 
@@ -56,7 +56,7 @@ Um seinen Status zu überprüfen:
 
     Wenn der `crond`-Daemon nicht läuft, müssen Sie ihn manuell initialisieren und/oder beim Start automatisch starten. Selbst wenn Aufgaben geplant sind, werden sie nicht gestartet.
 
-Initialisierung des `crond`-Daemons, Syntax:
+Initialisierung des `crond`-Daemons aus dem Handbuch:
 
 ```bash
 [root]# systemctl {status|start|restart|stop} crond
@@ -70,7 +70,7 @@ Initialisierung des `crond`-Daemons beim Start:
 
 ## Sicherheit
 
-Um einen Zeitplan zu implementieren, muss ein Benutzer die Berechtigung haben, den `cron`-Dienst zu verwenden.
+Um einen Zeitplan auszuführen, muss ein Benutzer die Berechtigung zur Nutzung des `cron`-Dienstes haben.
 
 Diese Berechtigung hängt von den Informationen ab, die in den folgenden Dateien enthalten sind:
 
@@ -99,7 +99,7 @@ Benutzer in dieser Datei dürfen `cron` nicht verwenden.
 
 Wenn es leer ist, können alle Benutzer `cron` verwenden.
 
-Standardmäßig existiert `/etc/cron.deny` und ist leer und `/etc/cron.allow` existiert nicht.
+Standardmäßig ist die Datei `/etc/cron.deny` vorhanden und leer, und `/etc/cron.allow` ist nicht vorhanden. Wenn zwei Dateien gleichzeitig vorhanden sind, verwendet das System nur den Inhalt von `cron.allow` als Grundlage für die Beurteilung und ignoriert die Existenz der Datei `cron.deny.` vollständig.
 
 ### Einen Benutzer zulassen
 
@@ -112,20 +112,20 @@ user1
 
 ### Benutzer verbieten
 
-Nur **user2** kann `cron` nicht verwenden.
+Nur **user2** kann `cron` nicht verwenden. Beachten Sie, dass die Datei `/etc/cron.allow` nicht existieren darf.
 
 ```bash
 [root]# vi /etc/cron.deny
 user2
 ```
 
-`cron.allow` darf nicht vorhanden sein.
+Wenn derselbe Benutzer gleichzeitig in `/etc/cron.deny` und `/etc/cron.allow` existiert, kann der Benutzer cron normal verwenden.
 
 ## Aufgabenplanung - tasks scheduling
 
-Wenn ein Benutzer eine Aufgabe plant, wird eine Datei mit seinem Namen unter `/var/spool/cron/` erstellt.
+Wenn ein Benutzer eine Aufgabe plant, wird unter `/var/spool/cron/` eine Datei mit seinem Namen erstellt.
 
-Diese Datei enthält alle Informationen, die der `crond` über alle von diesem Benutzer erstellten Aufgaben wissen muss, die Befehle oder Programme zum Ausführen und wann sie ausgeführt werden sollen (Stunde, Minute, Tag, ...).
+Diese Datei enthält alle Informationen, die `crond` über die von diesem Benutzer erstellten Aufgaben wissen muss, einschließlich der auszuführenden Befehle oder Programme und des Zeitplans für deren Ausführung (Stunde, Minute, Tag usw.). Beachten Sie, dass die kleinste Zeiteinheit, die `crond` erkennen kann, 1 Minute beträgt. Es gibt ähnliche Planungsaufgaben in RDBMS (wie MySQL), wobei zeitbasierte Planungsaufgaben als `Event Scheduler` (dessen erkennbare Zeiteinheit die Sekunde ist) und Ereignis-basierte Planungsaufgaben als `Trigger` bezeichnet werden.
 
 ![Cron tree](images/tasks-001.png)
 
@@ -143,20 +143,20 @@ Beispiel:
 [root]# crontab -u user1 -e
 ```
 
-| Option | Beschreibung                                                      |
-| ------ | ----------------------------------------------------------------- |
-| `-e`   | Bearbeitet die schedule-Datei mit vi                              |
-| `-l`   | Zeigt den Inhalt der schedule-Datei an                            |
-| `-u`   | Name des Benutzers, dessen schedule-Datei manipuliert werden soll |
-| `-r`   | Schedule-Datei löschen                                            |
+| Option            | Beschreibung                                       |
+| ----------------- | -------------------------------------------------- |
+| `-e`              | Bearbeitet die schedule-Datei mit vi               |
+| `-l`              | Zeigt den Inhalt der schedule-Datei an             |
+| `-u <user>` | Legt einen einzelnen Benutzer für den Betrieb fest |
+| `-r`              | Schedule-Datei löschen                             |
 
 !!! warning "Warnhinweis"
 
     `crontab` ohne Option löscht die alte schedule-Datei und wartet auf die Eingabe neuer Zeilen. Mit der Tastenkombination <kbd>ctrl</kbd> + <kbd>d</kbd> können Sie den Editiermodus verlassen.
     
-    Nur `root` kann die `-u user` Option verwenden, um die schedule-Datei eines anderen Benutzers zu bearbeiten.
+    Nur `root` kann die `-u <user>` Option verwenden, um die Schedule-Datei eines anderen Benutzers zu bearbeiten.
     
-    Das obige Beispiel erlaubt root eine Aufgabe für user1 zu planen.
+    Das obige Beispiel ermöglicht es dem Root-Benutzer, eine Aufgabe für `user1` zu planen.
 
 ### Anwendungen von `crontab`
 
@@ -181,7 +181,7 @@ Die Datei `crontab` ist nach folgenden Regeln strukturiert.
 
 * Jede Zeile dieser Datei entspricht einem Schedule;
 * Jede Zeile hat sechs Felder, 5 für die Zeit und 1 für die Aufgabe;
-* Jedes Feld wird durch ein Leerzeichen oder einen Tabulatorzeichen getrennt;
+* Jedes Feld wird durch ein Leer- oder ein Tabulatorzeichen getrennt;
 * Jede Zeile endet mit einem Zeilenvorschub;
 * Das Zeichen `#` am Anfang der Zeile kommentiert sie aus.
 
@@ -202,16 +202,16 @@ Die Datei `crontab` ist nach folgenden Regeln strukturiert.
 
 !!! warning "Warnhinweis"
 
-    Die auszuführenden Aufgaben müssen absolute Pfade verwenden und wenn möglich Umleitungen verwenden.
+    Die auszuführenden Aufgaben müssen absolute Pfade verwenden und, wenn möglich, Weiterleitungen nutzen.
 
-Um die Schreibweise für die Definition der Zeit zu vereinfachen, ist es ratsam, spezielle Symbole zu verwenden.
+Um die Notation für die Definition der Zeit zu vereinfachen, empfiehlt es sich, spezielle Symbole zu verwenden.
 
-| Wildcards | Beschreibung                    |
-| --------- | ------------------------------- |
-| `*`       | Alle möglichen Werte des Feldes |
-| `-`       | Zeigt einen Wertebereich an     |
-| `,`       | Zeigt eine Werteliste an        |
-| `/`       | Definiert einen Schritt         |
+| Besondere Symbole | Beschreibung                                       |
+| ----------------- | -------------------------------------------------- |
+| `*`               | Zeigt alle Zeitwerte des Feldes an                 |
+| `-`               | Kennzeichnet einen kontinuierlichen Zeitbereich    |
+| `,`               | Kennzeichnet einen diskontinuierlichen Zeitbereich |
+| `/`               | Gibt ein Zeitintervall an                          |
 
 Beispiele:
 
@@ -221,19 +221,19 @@ Skript ausgeführt am 15. April um 10:25 Uhr:
 25 10 15 04 * /root/scripts/script > /log/…
 ```
 
-Starte jeden Tag um 11 Uhr und dann um 16 Uhr:
+Führt die Aufgabe einmal täglich um 11 Uhr und um 16 Uhr aus:
 
 ```bash
 00 11,16 * * * /root/scripts/script > /log/…
 ```
 
-Jeden Tag von 11:00 bis 16:00 Uhr:
+Die Aufgabe wird täglich einmal pro Stunde von 11 bis 16 Uhr ausgeführt:
 
 ```bash
 00 11-16 * * * /root/scripts/script > /log/…
 ```
 
-Alle 10 Minuten während der üblichen Geschäftszeiten:
+Läuft an Werktagen während der Arbeitszeit alle 10 Minuten:
 
 ```bash
 */10 8-17 * * 1-5 /root/scripts/script > /log/…
@@ -254,12 +254,12 @@ Für den Root-Benutzer hat `crontab` auch einige spezielle Zeiteinstellungen:
 
 Ein Benutzer, rockstar, möchte seine `crontab` Datei bearbeiten:
 
-1. `crond` prüft, ob er dazu berechtigt ist (`/etc/cron.allow` und `/etc/cron.deny`).
+1. Der `crond`-Daemon prüft, ob der Benutzer die Berechtigung hat (`/etc/cron.allow` und `/etc/cron.deny`).
 
-2. Falls er berechtigt ist, bearbeitet er seine `crontab` Datei (`/var/spool/cron/rockstar`).
+2. Falls er dazu berechtigt ist, bearbeitet er seine `crontab`-Datei (`/var/spool/cron/rockstar`).
 
-    Die schedule-Dateien werden jede Minute von `crond` gelesen.
+Der `crond`-Daemon:
 
-3. `crond` führt die geplanten Aufgaben aus.
-
-4. Es aktualisiert systematisch eine Protokolldatei (`/var/log/cron`).
+* Reads – Liest jede Minute die geplanten Aufgabendateien aller Benutzer.
+* Runs – Führt Aufgaben gemäß dem Zeitplan aus.
+* Writes – Schreibt die entsprechenden Ereignisse und Meldungen in die Datei (`/var/log/cron`).
