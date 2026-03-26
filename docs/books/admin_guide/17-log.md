@@ -30,7 +30,7 @@ In Rocky Linux 8.x or 9.x, there are various log files in the **/var/log/** dire
 * `/var/log/dmegs` - Records the log of the kernel self-check after startup. The file content is plain text. You can also use the `dmegs` command to view.
 * `/var/log/lastlog` - Records the last login time of all users in the operating system. To view this binary, you must use the `lastlog` command.
 * `/var/log/maillog` - Records email-related logs.
-* `/var/log/messages` - The system-level log file used to record the core information of the operating system. The file content is plain text. When some errors occur in your operating system, you should first view the contents of this log file.
+* `/var/log/messages` - The system-level log file records the core information of the operating system. The file content is plain text. When some errors occur in your operating system, you should first view the contents of this log file.
 * `/var/log/secure` - Records logs related to user identity, such as user login, `su` switch, new user added, user password change, etc.
 * `/var/log/wtmp` - Records user login and logout, operating system startup, shutdown, and restart events. To view this binary file, use the `last` command.
 
@@ -43,7 +43,7 @@ For plain text files, the format is usually:
 5. User and terminal information
 6. Some keywords prompt (such as error, fail, info, etc.)
 
-The logs for different purposes vary greatly in format, so the above format description cannot cover all the logs.
+The logs for different purposes vary greatly in format, so the above format description cannot cover all of the logs.
 
 If `rsyslog` is missing from your operating system, run the following command:
 
