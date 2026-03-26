@@ -7,13 +7,13 @@ tags:
   - journald
 ---
 
-## Basic overview
+## Overview
 
 In this chapter, you will learn how to manage logs in the operating system.
 
 **Q: What is a log?**
 
-**Log**：Records all events and messages occurring since the start of the operating system, including boot logs, kernel initialization logs, `systemd` initialization logs, and application startup or running logs. Log is one of the most essential functions of the operating system. Administrators can query logs to troubleshoot existing or upcoming problems.
+**Log**: Records all events and messages occurring since the start of the operating system, including boot logs, kernel initialization logs, `systemd` initialization logs, and application startup or running logs. The log is one of the indispensable functions in the operating system. Administrators can query logs to troubleshoot existing or upcoming problems.
 
 In RHEL 8.x and RHEL 9.x, log collection is mainly completed through the following two programs:
 
@@ -30,7 +30,7 @@ In Rocky Linux 8.x or 9.x, there are various log files in the **/var/log/** dire
 * `/var/log/dmegs` - Records the log of the kernel self-check after startup. The file content is plain text. You can also use the `dmegs` command to view.
 * `/var/log/lastlog` - Records the last login time of all users in the operating system. To view this binary, you must use the `lastlog` command.
 * `/var/log/maillog` - Records email-related logs.
-* `/var/log/messages` - The system-level log file records the operating system's core. The file content is plain text. When some errors occur in your operating system, you should first view the log file.
+* `/var/log/messages` - The system-level log file records the core information of the operating system. The file content is plain text. When some errors occur in your operating system, you should first view the contents of this log file.
 * `/var/log/secure` - Records logs related to user identity, such as user login, `su` switch, new user added, user password change, etc.
 * `/var/log/wtmp` - Records user login and logout, operating system startup, shutdown, and restart events. To view this binary file, use the `last` command.
 
@@ -43,7 +43,7 @@ For plain text files, the format is usually:
 5. User and terminal information
 6. Some keywords prompt (such as error, fail, info, etc.)
 
-The format of logs for different purposes varies greatly, so the above format description cannot represent all logs.
+The logs for different purposes vary greatly in format, so the above format description cannot cover all of the logs.
 
 If `rsyslog` is missing from your operating system, run the following command:
 
@@ -54,7 +54,7 @@ Shell > dnf install -y rsyslog
 ### Configuration file
 
 * `/etc/rsyslog.conf` - Main configuration files
-* `/etc/rsyslog.d/` - Storage directory of additional configuration files
+* `/etc/rsyslog.d/` - Directory for storing additional configuration files
 
 `/etc/rsyslog.conf` mainly consists of several parts:
 
@@ -108,7 +108,7 @@ Fields are separated from each other by one or more spaces.
 
 | Facility   | Description                                                                                                                                                             |
 |------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `auth`     | Records events related to system security, user authentication, and authority management                                                                              |
+| `auth`     | Records events related to system security, user authentication, and permissions management                                                                              |
 | `authpriv` | Records more sensitive security events (such as `sudo` operations). "priv" is equivalent to private                                                                  |
 | `cron`     | Records events related to scheduled tasks                                                                                                                            |
 | `daemon`   | Records the running log of the system daemon, covering service startup, running status, and error information                                                         |
@@ -144,7 +144,7 @@ kern.err;mail.alert  /var/log/critical.log
 | Connector | Description                                                                                                                                                 |
 |-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `.`       | Records logs with a higher priority than keywords. For example, `cron.info` means it will record in `cron` whose log priority is greater than info          |
-| `.=`      | Only records the corresponding keyword priority. For example, `*.=emerg` indicates it will record logs with priority equal to `emerg` in all applications |
+| `.=`      | Only record priority logs equal to keywords. For example, `*.=emerg` indicates it will record logs with priority equal to `emerg` in all applications |
 | `.!`      | It means excluded or not equal to                                                                                                                        |
 
 Priorities are sorted from low to high:
@@ -178,14 +178,14 @@ The lower the log priority, the more detailed the content recorded and the lower
 
 * **Rotation** - Automatically archive the current log file according to specific rules (such as time or file size), and create a new empty log file for recording to prevent the log file from being too large.
 * **Compress** - Compress archived old logs to save disk space.
-* **Delete** - Retain relevant log files and delete expired old ones according to relevant policies.
+* **Delete** - According to the relevant strategies, retain the log files that meet the criteria and delete the outdated old log files.
 
 We often use the `logrotate` tool to rotate logs.
 
 Naming rules for log files during rotation:
 
-* `dateext` parameter - Uses date as the file suffix for log rotation. For example, during the first log rotation, the old log file "secure" will change to "secure-20250424" and `logrotate` creates a new "secure"
-* No `dateetx` parameter - Uses the rotation numbers as the file suffix after the log rotation. For example, when the first log rotation occurs, the old log file "secure" will change to "secure.1" and `logrotate` will create a new "secure"
+* `dateext` parameter - Uses date as the file suffix for log rotation. For example, during the first log rotation, the old log file "secure" will change to "secure-20250424" and `logrotate` creates a new "secure" file
+* No `dateetx` parameter - Uses the rotation numbers as the file suffix after the log rotation. For example, when the first log rotation occurs, the old log file "secure" will change to "secure.1" and `logrotate` will create a new "secure" file
 
 #### /etc/logrotate.conf and /etc/logrotate.d/
 
@@ -435,7 +435,7 @@ The usage is `journalctl [OPTIONS...] [MATCHES...]`.
 
 Here is a listing of the options in an unordered list:
 
-* `-u` - It specifies 'unit'; you can use this multiple times in a single line command. For example, `journalctl -u crond.service -u sshd.service`
+* `-u` - Specify a single "unit" to view relevant information. You can use this option multiple times in a single line command. For example, `journalctl -u crond.service -u sshd.service`
 * `--system` - Shows messages from system services and the kernel
 * `--user` - Shows messages from the service of the current user
 * `-k` - Shows kernel message log from the current boot
@@ -444,19 +444,19 @@ Here is a listing of the options in an unordered list:
 * `--list-boots` - Shows terse information about recorded boots
 * `-n N` - Controls the number of entries output. If "N" is not specified, the default value is 10
 * `-p PRIORITY` - Specifies priority or range of priorities. If you specify a single log priority keyword, this priority and entries higher than this priority will be displayed. For example, `journalctl -p 3` or `journalctl -p err` Equivalent to `journalctl -p 0..3` or `journalctl -p emerg..err`
-* `-b` - Query the log since the start of the current boot ID. Please don't confuse the boot ID with the index number of the kernel boot.
+* `-b` - Query the log since the start of the current boot ID. Please don't confuse the boot ID with the index number of the kernel boot
 * `-f` - Dynamic query log, similar to the `tail -f` command
 * `-x` - Adds message explanations where available
 * `-e` - Jumps to the end page of the log, often used with the `-x` option
-* `-r` - Reverse Log.
+* `-r` - Reverse Log
 * `--disk-usage` - Displays the disk space occupied by log files
 * `--rotate` - Requests immediate rotation of the journal files
 * `--vacuum-size=BYTES` - Reduces the log file to the specified size. Deletes the old log content gradually until it meets the specified file size. The supported size suffixes are K, M, G, T
 * `--vacuum-time=TIME` - You can delete old log records by specifying a time point, that is, it will delete log records earlier than that. The supported time suffixes are s, m, h, days, months, weeks, years
 * `--vacuum-files=INT` - Indicates how many log files to reserve
-* `-N` - Lists all field names currently used. Users can use the "FIELD=VALUE" method to match related content. For example, `journalctl _SYSTEMD_UNIT=sshd.service`.
-* `-g` or `-grep=PATTERN`- Matches log content through a pattern, and supports regular expressions. If PATTERN is all lowercase, matching log content is not case-sensitive by default. You can adjust case sensitivity through the `--case-sensitive` option
-* `--case-sensitive=[BOOLEAN]` - Adjusts whether it is case-sensitive.
+* `-N` - Lists all field names currently used. Users can use the "FIELD=VALUE" method to match related content. For example, `journalctl _SYSTEMD_UNIT=sshd.service`
+* `-g` or `-grep=PATTERN` - Matches log content through a pattern, and supports regular expressions. If PATTERN is all lowercase, matching log content is not case-sensitive by default. You can adjust case sensitivity through the `--case-sensitive` option
+* `--case-sensitive=[BOOLEAN]` - Adjusts whether it is case-sensitive
 * `-o` or `--output=STRING` - Change the output mode of `journalctl`. A STRING can be short, short-precise, short-iso, short-iso-precise, short-full, short-monotonic, short-unix, verbose, export, json, json-pretty, json-sse, cat, and with-unit
 * `-q` or `--quiet` - Quiet output
 * `--sync` - Synchronizes unwritten journal messages to disk
@@ -496,41 +496,41 @@ Shell > cat /etc/systemd/journald.conf
 #LineMax=48K
 ```
 
-Uses "[ ]" to contain the title, like the configuration files of other `systemd` components, and below the title are specific key-value pairs. There is **no space on either side of the equal sign** in the key-value pair. For the complete configuration manual page, see `man 5 journald.conf`
+Uses "[ ]" to contain the title, like the configuration files of other `systemd` components, and below the title are specific key-value pairs. There is **no space on either side of the equal sign** in the key-value pair. For the complete configuration manual page, see `man 5 journald.conf`.
 
-* `Storage=` - Controls the location of the `journald` data store. The default value is auto.
+* `Storage=` - Controls the location of the `journald` data store. The default value is auto
 
-    * volatile - Stores the log data in memory, that is, the temporary file located in the **/run/log/journal/** directory.
-    * persistent - Stores the log data in the **/var/log/journal/** directory. You need to create this manually. If this directory is not writable, log data will write to the **/run/log/journal/** directory.
+    * volatile - Stores the log data in memory, that is, the temporary file located in the **/run/log/journal/** directory
+    * persistent - Stores the log data in the **/var/log/journal/** directory. You need to create this manually. If this directory is not writable, log data will write to the **/run/log/journal/** directory
     * auto - Similar to persistent
     * none - Do not saves any logs, but it will not affect the logs forwarded to other "targets"
 
-* `Compress=` - Whether to enable the compression function. The default value is yes.
-* `Seal=` - Whether to use FSS (Forward Secure Sealing) to protect log entries from malicious tampering. The default value is yes.
-* `SplitMode=` - Defines the basis for splitting log files. Meeting the precondition (Storage=persistent) must occur before it takes effect. The default value is uid.
-* `SyncIntervalSec=` - Defines the time interval for synchronizing the log data in memory to the disk. Please note! This only occurs for err, warning, notice, info, and debug log priorities. Other log priorities are immediately synchronized to disk. The default value is 5m.
-* `RateLimitIntervalSec=` - Defines the time interval for log generation frequency. The default value is 30s.
-* `RateLimitBurst=` - The maximum number of entries the log generates in a given time interval. The default value is 10000. If the log entries are greater than 10000 within a given time interval, it will delete the redundant logs, and it will create no new log entries until the next time interval.
-* `SystemMaxUse=` - Controls the total size of all log files in the **/var/log/journal/** directory.
+* `Compress=` - Whether to enable the compression function. The default value is yes
+* `Seal=` - Whether to use FSS (Forward Secure Sealing) to protect log entries from malicious tampering. The default value is yes
+* `SplitMode=` - Defines the basis for splitting log files. Meeting the precondition (Storage=persistent) must occur before it takes effect. The default value is uid
+* `SyncIntervalSec=` - Defines the time interval for synchronizing the log data in memory to the disk. Please note! This only occurs for err, warning, notice, info, and debug log priorities. Other log priorities are immediately synchronized to disk. The default value is 5m
+* `RateLimitIntervalSec=` - Defines the time interval for log generation frequency. The default value is 30s
+* `RateLimitBurst=` - The maximum number of entries the log generates in a given time interval. The default value is 10000. If the log entries are greater than 10000 within a given time interval, it will delete the redundant logs, and it will create no new log entries until the next time interval
+* `SystemMaxUse=` - Controls the total size of all log files in the **/var/log/journal/** directory
 * `SystemKeepFree=` - Controls how much disk space to reserve in the **/var/log/journal/** directory. Based on 1024, suffixes include K, M, G, T, P, E
 * `SystemMaxFileSize=` - Limits the size of a single file in the **/var/log/journal/** directory. If the size exceeds the specified size, log rotation will occur
-* `SystemMaxFiles=` - Specifies how many files to keep in the **/var/log/journal/** directory. When it exceeds the defined number, it will delete the oldest log.
-* `RuntimeMaxUse=` - Controls the total size of log data in the **/run/log/journal/** directory.
-* `RuntimeKeepFree=` - Controls how much space to reserve in the **/run/log/journal/** directory.
-* `RuntimeMaxFileSize=` - Controls the size of a single log file in the **/run/log/journal/** directory. When the log reaches the specified size, log rotation will occur.
-* `RuntimeMaxFiles=` - How many files of logs need to be kept in the **/run/log/journal/** directory.
+* `SystemMaxFiles=` - Specifies how many files to keep in the **/var/log/journal/** directory. When it exceeds the defined number, it will delete the oldest log
+* `RuntimeMaxUse=` - Controls the total size of log data in the **/run/log/journal/** directory
+* `RuntimeKeepFree=` - Controls how much space to reserve in the **/run/log/journal/** directory
+* `RuntimeMaxFileSize=` - Controls the size of a single log file in the **/run/log/journal/** directory. When the log reaches the specified size, log rotation will occur
+* `RuntimeMaxFiles=` - How many files of logs need to be kept in the **/run/log/journal/** directory
 * `MaxRetentionSec=` - Defines the retention time for log files; if it exceeds the defined time, it deletes old log files. A value of 0 indicates that the function is off. The value suffix has year, month, week, day，h，m
-* `MaxFileSec=` - Time-based log rotation. Since file size-based polling (`SystemMaxFileSize` and `RuntimeMaxFileSize`) already exists, time-based log polling is usually unnecessary. Set it to 0 to disable this function.
-* `ForwardToSyslog=` - Whether to forward the collected log messages to the traditional `syslog` daemon. The default value is no.
-* `ForwardToKMsg=` - Whether to forward the received log message to kmsg. The default value is no.
+* `MaxFileSec=` - Time-based log rotation. Since file size-based polling (`SystemMaxFileSize` and `RuntimeMaxFileSize`) already exists, time-based log polling is usually unnecessary. Set it to 0 to disable this function
+* `ForwardToSyslog=` - Whether to forward the collected log messages to the traditional `syslog` daemon. The default value is no
+* `ForwardToKMsg=` - Whether to forward the received log message to kmsg. The default value is no
 * `ForwardToConsole=` - Whether to forward the received log messages to the system console. The default value is no. If it is set to yes, you also need to configure `TTYPath`
-* `ForwardToWall=` - Whether to send the received log message as a warning to all logged-in users. The default value is yes.
+* `ForwardToWall=` - Whether to send the received log message as a warning to all logged-in users. The default value is yes
 * `TTYPath=` - Specifies the path of the console. Requires `ForwardToConsole=yes`. The default value is /dev/console
 * `MaxLevelStore=` - Sets the maximum log level recorded to the log file. The default value is debug
 * `MaxLevelSyslog=` - Sets the maximum log level forwarded to the traditional `syslog` daemon. The default value is debug
 * `MaxLevelKMsg=` - Sets the maximum log level forwarded to kmsg. The default value is notice
 * `MaxLevelConsole=` - Sets the maximum log level forwarded to the system console. The default value is info
-* `MaxLevelWall=` - Sets the maximum log level sent to all logged-in users. The default value is `emerg`
+* `MaxLevelWall=` - Sets the maximum log level sent to all logged-in users. The default value is emerg
 * `LineMax=` - The maximum allowable length (bytes) of each log record when converting the log stream to log records. With 1024 as the base, the suffix can be K, M, G, or T. The default value is 48K
 
 ## Other instructions
