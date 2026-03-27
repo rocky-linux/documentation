@@ -18,7 +18,7 @@ By developing comprehensive, user-friendly, and multilingual desktop user guides
 
 - Develop a framework and template for contributing desktop-focused documentation.
 - Create user-friendly guides for desktop users.
-- Craft guides tailored for both general and accessibility-focused use.
+- Créez des guides adaptés à une utilisation générale et axée sur l’accessibilité.
 - Translate documentation into multiple languages.
 
 ## Timeline
