@@ -1,8 +1,8 @@
 ---
 title: Parcheo con dnf-automatic
 author: Antoine Le Morvan
-contributors: Steven Spencer, Pedro Garcia
-tested with: 8.5
+contributors: Steven Spencer, Ganna Zhyrnova, Pedro Garcia
+tested_with: 8.5
 tags:
   - seguridad
   - dnf
@@ -26,7 +26,7 @@ La seguridad de su sistema de información se verá reforzada. `dnf-automatic` e
 
 Puede instalar `dnf-automatic` desde los repositorios de Rocky Linux:
 
-```
+```bash
 sudo dnf install dnf-automatic
 ```
 
@@ -34,14 +34,14 @@ sudo dnf install dnf-automatic
 
 De forma predeterminada, el proceso de actualización comenzará a las 6am, con un delta de tiempo aleatorio extra para evitar que todas sus máquinas se actualicen al mismo tiempo. Para cambiar este comportamiento, debe sobreescribir la configuración del temporizador asociada con el servicio de la aplicación:
 
-```
+```bash
 sudo systemctl edit dnf-automatic.timer
 
 [Unit]
 Description=dnf-automatic timer
-# Ver comentario en dnf-makecache.service
+# See comment in dnf-makecache.service
 ConditionPathExists=!/run/ostree-booted
-Wants=network-online. Apuntar
+Wants=network-online.target
 
 [Timer]
 OnCalendar=*-*-* 6:00
@@ -56,27 +56,27 @@ Esta configuración reduce el retraso en el inicio entre las 6:00 y las 6:10 am.
 
 Luego active el temporizador asociado al servicio (no el servicio en sí):
 
-```
-$ sudo systemctl enable --now dnf-automatic.timer
+```bash
+sudo systemctl enable --now dnf-automatic.timer
 ```
 
 ## ¿Qué pasa con los servidores CentOS 7?
 
-!!! tip
+!!! tip "Sugerencia"
 
     Sí, esta es la documentación de Rocky Linux, pero si usted es un administrador de sistemas o red, puede que disponga de algunas máquinas ejecutando CentOS 7. Lo entendemos, y por eso incluimos esta sección en la documentación.
 
 El proceso bajo CentOS 7 es similar pero utiliza la herramienta: `yum-cron`.
 
-```
-$ sudo yum install yum-cron
+```bash
+sudo yum install yum-cron
 ```
 
 Esta vez la configuración del servicio se realiza en el archivo `/etc/yum/yum-cron.conf`.
 
 Establezca la configuración según sea necesario:
 
-```
+```text
 [commands]
 #  What kind of update to use:
 # default                            = yum upgrade
@@ -98,7 +98,7 @@ download_updates = yes
 # that download_updates must also be yes for the update to be applied.
 apply_updates = yes
 
-# Maximum amout of time to randomly sleep, in minutes.  The program
+# Maximum amount of time to randomly sleep, in minutes.  The program
 # will sleep for a random amount of time between 0 and random_sleep
 # minutes before running.  This is useful for e.g. staggering the
 # times that multiple systems will access update servers.  If
@@ -111,8 +111,8 @@ Los comentarios en el archivo de configuración hablan por sí mismos.
 
 Ahora puede activar el servicio e iniciarlo:
 
-```
-$ sudo systemctl enable --now yum-cron
+```bash
+sudo systemctl enable --now yum-cron
 ```
 
 ## Conclusión
