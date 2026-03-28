@@ -10,7 +10,15 @@ tags:
 
 # PAM Authentication Modules
 
-## Prerequisites and Assumptions
+## Description of Document Content
+
+In this chapter, you will learn the following knowledge about PAM:
+
+1. Basic theoretical content
+1. Configuration file description
+1. Using PAM to enhance the security of the operating system
+
+Prerequisites and Assumptions:
 
 * A non-critical Rocky Linux PC, server, or VM
 * Root access
@@ -20,12 +28,116 @@ tags:
 
 ## Introduction
 
-PAM (**Pluggable Authentication Modules**) is the system under GNU/Linux that allows many applications or services to authenticate users in a centralized fashion. To put it another way:
+PAM (**Pluggable Authentication Modules**) is the system under GNU/Linux that allows many applications or services to authenticate users in a centralized fashion. PAM was initially proposed by **Vipin Samar** and **Charlie Lai** of Sun Microsystems (later acquired by Oracle) in 1995 and implemented on their Solaris system. Later, various UNIX variants and GNU/Linux distributions also added support for it. The original intention of PAM's design was to integrate different underlying authentication mechanisms into a high-level API, saving developers the trouble of designing and implementing various complex authentication mechanisms themselves. In 1997, the Open Group published the X/Open Single Sign-on (XSSO) preliminary specification, which standardized the PAM API and added extensions for single (or rather integrated) sign-on.
 
-> PAM is a library suite that allows a Linux system administrator to configure methods to authenticate users. It provides a flexible and centralized way to switch authentication methods for secured applications using configuration files instead of changing application code. 
-> \- [Wikipedia](https://en.wikipedia.org/wiki/Linux_PAM)
+PAM is open source, you can find more information [here](https://github.com/linux-pam/linux-pam).
 
-This document is *not* designed to teach you exactly how to harden your machine. It is more of a reference guide to show you what PAM *can* do, and not what you *should* do.
+**Q: Why is it necessary to use PAM?**
+
+* How to ensure that the users of the applications, services, or tools used in the system are always themselves?
+* How to specify time periods for system users to restrict access to services?
+* How to limit the usage of system resources by various applications or services?
+* ...
+
+Without PAM, authentication functions can only be written in various applications. Once a certain authentication method needs to be modified, developers may have to rewrite the program, recompile it, and install it again. With PAM, the identity authentication work of the application is entrusted to PAM, and the program subject can no longer focus on the issue of identity authentication itself.
+
+PAM is mainly composed of a group of shared files (files ending with the .so extension) and some configuration files. Its main characteristics are as follows:
+
+* Based on modular design and with insertable functionality
+* The authentication method is independent of the application
+* Provide developers with a unified API
+* High flexibility, allowing applications to freely choose the required authentication method through PAM
+* Enhance operating system security
+
+## Terms in PAM
+
+In the early days of PAM, **Vipin Samar** and **Charlie Lai** did not formally define these terms, but they did indeed use those terms that were not formally defined, which led to misleading or incomprehensible situations when using some terms. In 1999, **Andrew G.Morgan** (author of Linux-PAM) established consistent and clear terminology for the first time in his white paper, although it was not yet perfect. The explanations of the following terms are sourced from FreeBSD's documentation:
+
+* **account** - The set of credentials the applicant is requesting from the arbitrator.
+* **applicant** - The user or entity requesting authentication.
+* **arbitrator** - The user or entity who has the privileges necessary to verify the applicant’s credentials and the authority to grant or deny the request.
+* **chain** - A sequence of modules that will be invoked in response to a PAM request. The chain includes information about the order in which to invoke the modules, what arguments to pass to them, and how to interpret the results.
+* **client** - The application responsible for initiating an authentication request on behalf of the applicant and for obtaining the necessary authentication information from him.
+* **facility** - One of the four basic groups of functionality provided by PAM: **_authentication_**, **_account management_**, **_session management_** and **_authentication token update_**.
+* **module** - A collection of one or more related functions implementing a particular authentication facility, gathered into a single (normally dynamically loadable) binary file and identified by a single name.
+* **policy** - The complete set of configuration statements describing how to handle PAM requests for a particular service. **_A policy normally consists of four chains, one for each facility, though some services do not use all four facilities_**.
+* **server** - The application acting on behalf of the arbitrator to converse with the client, retrieve authentication information, verify the applicant’s credentials and grant or deny requests.
+* **service** - A class of servers providing similar or related functionality and requiring similar authentication. PAM policies are defined on a per-service basis, so all servers that claim the same service name will be subject to the same policy.
+* **session** - The context within which service is rendered to the applicant by the server. One of PAM’s four facilities, session management, is concerned exclusively with setting up and tearing down this context.
+* **token** - A chunk of information associated with the account, such as a password or passphrase, which the applicant must provide to prove his identity.
+* **transaction** - A sequence of requests from the same applicant to the same instance of the same server, beginning with authentication and session set-up and ending with session tear-down.
+
+### Illustrate the terms with examples
+
+Client and Server Are One:
+
+```bash
+bash > whoami
+alice
+
+bash > ls -l `which su`
+
+bash > su  - 
+Password: 1Q.3werzasd
+
+bash > whoami
+root
+```
+
+* The applicant is alice
+* The account is root
+* The su process is both client and server
+* The authentication token is 1Q.3werzasd
+* The arbitrator is root
+
+Client and Server Are Separate:
+
+```bash
+bash > whoami
+eve
+
+bash > ssh bob@login.example.com
+bob@login.example.com's password:
+god
+Last login: Thu Oct 11 09:52:57 2024 from 192.168.0.1
+
+```
+
+* The applicant is eve
+* The client is Eve’s ssh process
+* The server is the sshd process on login.example.com
+* The account is bob
+* The authentication token is god
+* Although this is not shown in this example, the arbitrator is root
+
+### Example policy
+
+```
+sshd	auth		required	pam_nologin.so	no_warn
+sshd	auth		required	pam_unix.so	no_warn try_first_pass
+sshd	account		required	pam_login_access.so
+sshd	account		required	pam_unix.so
+sshd	session		required	pam_lastlog.so	no_fail
+sshd	password	required	pam_permit.so
+```
+
+* This policy is applicable to sshd service
+* auth, account, session, and password are facilities
+* pam_nologin.so, pam_unix.so, pam_login_access.so, pam_lastlog.so and pam_permit.so are modules. From this example, it can be seen that pam_unix.so has at least implemented two functionality groups (authentication and account management)
+
+## PAM Essentials
+
+### Facilities and Primitives
+
+### Modules
+
+### Chains and Policies
+
+### Transactions
+
+## Configuration file description
+
+## Actual configuration case
 
 ## Generalities
 
