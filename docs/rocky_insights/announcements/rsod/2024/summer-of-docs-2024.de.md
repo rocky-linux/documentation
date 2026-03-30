@@ -2,46 +2,48 @@
 title: Rocky Linux Summer of Docs 2024
 ---
 
-!!! note "Projekt Abgeschlossen"
+!!! NOTE "Projekt Abschluss"
 
-```
-Dieses Projekt ist beendet. Halten Sie Ausschau nach zukünftigen RSOD-Programmen.
-```
+    Dieses Projekt ist beendet. Halten Sie Ausschau nach zukünftigen RSOD-Programmen.
 
-## Projekt: Erweiterung der Desktop-Benutzer-Dokumentation
+## Project: Desktop User Documentation Enhancement
 
-Das Ziel unserer ersten Rocky Linux (RL) Summer of Docs-Initiative besteht darin, eine neue Dokumentationskategorie für Enterprise Linux Desktop-Benutzer zu erstellen.
+Our first Rocky Linux (RL) Summer of Docs initiative aims to create a new documentation category for Enterprise Linux Desktop Users.
 
-Dieses Projekt, inspiriert vom geschätzten und gleichnamigen `Google Season of Docs`-Projekt, zielt darauf ab, eine Lücke in der aktuellen RL-Dokumentation zu schließen.
+Inspired by the highly esteemed and eponymous Google Season of Docs project, this project aims to fill a gap in the current RL documentation.
 
-Durch die Entwicklung umfassender, benutzerfreundlicher und mehrsprachiger Desktop-Benutzerhandbücher können wir die Benutzerbasis von RL erweitern und seine Benutzerfreundlichkeit verbessern. Dadurch wird Rocky Linux für ein breiteres Publikum attraktiver und seine Position auf dem Enterprise-Linux-Markt gestärkt.
+By developing comprehensive, user-friendly, and multilingual desktop user guides, we can expand RL's user base and improve its usability. This will make Rocky Linux more appealing to a wider audience and strengthen its position in the enterprise Linux market.
 
-## Geltungsbereich
+## Scope
 
-- Entwickeln Sie ein Framework und eine Vorlage für die Bereitstellung von Dokumentationen für den Desktop.
-- Erstellen Sie benutzerfreundliche Handbücher für Desktop-Benutzer.
+- Develop a framework and template for contributing desktop-focused documentation.
+- Create user-friendly guides for desktop users.
 - Anleitungen, die sowohl für den allgemeinen als auch für den barrierefreien Gebrauch zugeschnitten sind.
 - Dokumentation in mehrere Sprachen übersetzen.
 
 ## Kalender
 
 - **15. Juni – 30. Juni**: Erste Bewertung, Sprintplanung, Teilnehmerauswahl, Onboarding, Themenauswahl und Einrichtung einer virtuellen Desktop-Umgebung.
-- **1. Juli – 30. August**: Erstellung von Inhalten und Übersetzungen.
-- **1. Sept. – 15. September**: Überarbeitungen basierend auf dem Feedback der Community und den endgültigen Übersetzungen.
+- **July 1 - August 30**: Content creation and translations.
+- **Sept 1 - Sept 15**: Revisions based on community feedback and final translations.
 
-## Bewerbungsprozess
+## Application Process
 
-Dieses Projekt ist für jedermann offen. Interessierte Kandidaten sollten eine E-Mail an docs@rockylinux.org mit einer der folgenden Informationen senden:
+This project is open to everyone. Interested candidates should email docs@rockylinux.org with any of the following:
 
-- Portfolios oder sonstige Open-Source-Beiträge
-- Vorgeschlagene Themen/Titel für die RL-Desktop-Dokumentation
-- Sprachen für die Übersetzung auswählen
+- Portfolios or other open-source contributions
+- Proposed topics/titles for RL desktop documentation
+- Preferred languages for translation
 
-(Wenn Sie Fragen haben oder Hilfe bei der Teilnahme benötigen, kontaktieren Sie uns bitte unter https://chat.rockylinux.org.)
+(If you have any questions or need assistance participating, please connect with us at https://chat.rockylinux.org)
 
-## Förderung
+## Grant
 
-- Sie leisten einen Beitrag zu 5 originalen Anleitungen zur neuen Kategorie „Desktop“ und erhalten 200 $ (bis zu 1.000 $).
-- Sie überprüfen und übersetzen 4 Handbücher für den Desktop und erhalten 100 $ (bis zu 500 $).
+- Contribute 5 original desktop-focused guides to the new "Desktop" category and receive $200 (up to $1000).
+- Review and translate 4 desktop-focused guides and receive $100 (up to $500).
 
-Das Ziel besteht darin, mindestens 25 neue Dokumente und 20 Übersetzungen zur neuen Desktop-Kategorie hinzuzufügen.
+The goal is to add at least 25 new documents and 20 translations to the new Desktop category.
+
+
+
+

@@ -62,7 +62,7 @@ sudo systemctl enable --now dnf-automatic.timer
 
 ## Qu'en est-il des serveurs CentOS 7 ?
 
-!!! tip "Astuce"
+!!! tip "Remarque"
 
     Oui, c'est la documentation de Rocky Linux, mais si vous êtes un administrateur système ou réseau, vous avez peut-être encore des machines `CentOS 7` en service. Nous le comprenons, et c'est pourquoi nous incluons cette section.
 
