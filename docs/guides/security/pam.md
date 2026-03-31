@@ -41,6 +41,8 @@ PAM is open source, you can find more information [here](https://github.com/linu
 
 Without PAM, authentication functions can only be written in various applications. Once a certain authentication method needs to be modified, developers may have to rewrite the program, recompile it, and install it again. With PAM, the identity authentication work of the application is entrusted to PAM, and the program subject can no longer focus on the issue of identity authentication itself.
 
+![](./images/pam-001.png)
+
 PAM is mainly composed of a group of shared files (files ending with the .so extension) and some configuration files. Its main characteristics are as follows:
 
 * Based on modular design and with insertable functionality
@@ -72,15 +74,15 @@ In the early days of PAM, **Vipin Samar** and **Charlie Lai** did not formally d
 Client and Server Are One:
 
 ```bash
-bash > whoami
+Bash > whoami
 alice
 
-bash > ls -l `which su`
+Bash > ls -l `which su`
 
-bash > su  - 
+Bash > su  - 
 Password: 1Q.3werzasd
 
-bash > whoami
+Bash > whoami
 root
 ```
 
@@ -93,10 +95,10 @@ root
 Client and Server Are Separate:
 
 ```bash
-bash > whoami
+Bash > whoami
 eve
 
-bash > ssh bob@login.example.com
+Bash > ssh bob@login.example.com
 bob@login.example.com's password:
 god
 Last login: Thu Oct 11 09:52:57 2024 from 192.168.0.1
@@ -140,7 +142,7 @@ The PAM API provides six different authentication primitives, which are divided 
 
 !!! tip "Different definitions"
 
-    Some distributions define these 4 facilities as "module interfaces".
+    Some distributions define these 4 facilities as "module interfaces" or "module types".
 
 ### Modules
 
@@ -173,6 +175,8 @@ The following figure shows how to record the success or failure of each control 
 
 ![](./images/pam-control-flags.jpg)
 
+![](./images/pam-002.png)
+
 For other control flags, please refer to `man 5 pam.conf`.
 
 When a server invokes one of the six PAM primitives, PAM retrieves the chain for the facility the primitive belongs to, and invokes each of the modules listed in the chain, in the order they are listed, until it reaches the end, or determines that no further processing is necessary (either because a "binding" or "sufficient" module succeeded, or because a "requisite" module failed.) The request is granted if and only if at least one module was invoked, and all non-optional modules succeeded.
@@ -197,7 +201,7 @@ The fields are, in order: service name, facility name, control flag, module name
 OpenPAM and Linux-PAM support another configuration mechanism, which is to centralize policy files into the **/etc/pam.d/** directory, where the service name is used as the file name to represent the policy file for that service.
 
 ```bash
-bash > ls -l /etc/pam.d/
+Bash > ls -l /etc/pam.d/
 total 88
 -rw-r--r--. 1 root root 232 Nov 27 03:04 config-util
 -rw-r--r--. 1 root root 322 Nov 30  2023 crond
@@ -224,7 +228,7 @@ total 88
 ```
 
 ```bash
-bash > grep -v ^# /etc/pam.d/sshd
+Bash > grep -v ^# /etc/pam.d/sshd
 auth       substack     password-auth
 auth       include      postlogin
 account    required     pam_sepermit.so
@@ -253,13 +257,13 @@ In the **/etc/security/** directory, there are global configuration files for PA
 Due to PAM's policy being determined by file name rather than specified in the content of the policy file, the same policy file can be used for multiple services with different names. For example:
 
 ```bash
-bash > cd /etc/pam.d/ && ln -s sudo ftp
+Bash > cd /etc/pam.d/ && ln -s sudo ftp
 ```
 
 ### Explanation of the content of the policy file
 
 ```bash
-bash > cat /etc/pam.d/system-auth
+Bash > cat /etc/pam.d/system-auth
 #%PAM-1.0
 # This file is auto-generated.
 # User changes will be destroyed the next time authselect is run.
@@ -279,7 +283,7 @@ session     required      pam_limits.so
 session     [success=1 default=ignore] pam_succeed_if.so service in crond quiet use_uid
 session     required      pam_unix.so
 
-bash > cat /etc/pam.d/login
+Bash > cat /etc/pam.d/login
 #%PAM-1.0
 auth       substack     system-auth
 auth       include      postlogin
@@ -319,7 +323,7 @@ Content description:
 system-auth is a very important PAM policy file, mainly responsible for authenticating user login to the system. Not only that, other programs or services can call it through the include keyword, saving a lot of time that needs to be reconfigured. When you are unsure how to configure, you need to first search for the corresponding information or consult relevant technical personnel.
 
 ```bash
-bash > cat /etc/pam.d/system-auth
+Bash > cat /etc/pam.d/system-auth
 #%PAM-1.0
 # This file is auto-generated.
 # User changes will be destroyed the next time authselect is run.
@@ -358,7 +362,7 @@ When a user logs in, the user's identity will be identified and password verifie
 
 #### password chain
 
-* **pam_pwquality.so** - Check the complexity of passwords, with commonly used module parameters as follows:
+* **pam_pwquality.so** - This module can only be used in the password facility. Check the complexity of passwords, with commonly used module parameters as follows:
 
     * debug	- Enable this parameter to write the behavior information of the module to syslog
     * authtok_type=XXX - The default action is for the module to use the following prompts when requesting passwords: "New UNIX password: " and "Retype UNIX password: ". The example word UNIX can be replaced with this option, by default it is empty.
@@ -378,327 +382,295 @@ When a user logs in, the user's identity will be identified and password verifie
 
 #### session chain
 
+* **pam_keyinit.so** - Create a corresponding keyring during the user login process and revoke it after the user logs out. This module can only be used in session facility.
+
+    * revoke - Causes the session keyring of the invoking process to be revoked when the invoking process exits if the session keyring was created for this process in the first place.
+
+* **pam_limits.so** - Modules that restrict system resources. Root (uid=0) users will also be restricted. By default, this module will first read the contents of the **/etc/security/limits.conf** file, and then read all .conf files in the **/etc/security/limits.d/** directory.
+
+* **pam_systemd.so** - The pam_systemd module will register user sessions in the systemd login manager (i.e. systemd-logind.service) and also register them in the systemd control group. This module can only be used in session facility.
+
+* **pam_succeed_if.so** - A module that performs logical judgments on the characteristics of user accounts. From the module name, it can be inferred that you need to first define the criteria for judgment. The basic usage is `pam_succeed_if.so  [flag...]  [condition...]`
+
+    * Support these flags: debug, use_uid, quiet, quiet_fail, quiet_success, audit.
+    * Conditions are three words: a field, a test, and a value to test for. 
+    * Among them, "field" supports: user, uid, gid, shell, home, ruser, rhost, tty, service
+
+    The example configuration of this module:
+
+    ```
+    pam_succeed_if.so    quiet    uid < 1000  
+    pam_succeed_if.so    quiet    gid  eq  1000
+    pam_succeed_if.so    quiet    gid <= 1000
+    pam_succeed_if.so    quiet    gid >= 1000
+    pam_succeed_if.so    quiet    user = root
+    pam_succeed_if.so    quiet    user   ingroup  root
+    ```
+
 ## Actual configuration case
 
-## Generalities
+**Requirement for Case 1**: Increase the complexity of passwords. For ordinary users (with UID >= 1000), when they change their passwords, it is required that the password must be at least 10 characters long, and it must contain at least one digit character, at least one capital letter character, at least one lowercase letter character, and at least one special character. When a user changes their password, they are only allowed to retry 3 times.
 
-Authentication is the phase during which it is verified that you are the person you claim to be. The most common example is the password, but other forms of authentication exist.
-
-![PAM generalities](images/pam-001.png)
-
-Implementing a new authentication method should not require changes in source code for program or service configuration. This is why applications rely on PAM, which gives them the primitives* necessary to authenticate their users.
-
-All the applications in a system can thus implement complex functionalities such as **SSO** (Single Sign On), **OTP** (One Time Password) or **Kerberos** in a completely transparent manner. A system administrator can choose exactly which authentication policy is to be used for a single application (e.g. to harden the SSH service) independently of the application.
-
-Each application or service supporting PAM will have a corresponding configuration file in the `/etc/pam.d/` directory. For example, the process `login` assigns the name `/etc/pam.d/login` to its configuration file.
-
-\* Primitives are literally the simplest elements of a program or language, allowing you to build more sophisticated and complex things on top of them.
-
-!!! WARNING
-
-    A misconfigured instance of PAM can compromise the security of your whole system. If PAM is vulnerable, then the whole system is vulnerable. Make any changes with care.
-
-## Directives
-
-A directive is used to set up an application for usage with PAM. Directives will follow this format:
-
-```
-mechanism [control] path-to-module [argument]
+```bash
+Bash > vim /etc/pam.d/system-auth
+...
+password requisite  pam_pwquality.so  try_first_pass  local_users_only  retry=3  authtok_type=  minlen=10  dcredit=-1  lcredit=-1  ucredit=-1  ocredit=-1
+...
 ```
 
-A **directive** (a complete line) is composed of a **mechanism** (`auth`, `account`, `password` or `session`), a **success check** (`include`, `optional`, `required`, ...), the **path to the module** and possibly **arguments** (like `revoke` for example).
+Since I did not add the "enforce_for_root" module parameter, the password complexity requirement does not apply to root.
 
-Each PAM configuration file contains a set of directives. The module interface directives can be stacked or placed on top of each other. In fact, **the order in which the modules are listed is very important to the authentication process.**
+```bash
+Bash > whoami
+root
 
-For example, here's the config file `/etc/pam.d/sudo`:
+Bash > id
+uid=0(root) gid=0(root) groups=0(root)
+
+Bash > useradd -u 3000 pam-jack
+```
+
+If the root user changes the password for pam-jack, although there will be a text prompt, it will still be allowed:
+
+```bash
+# Assuming the password is 'qwer1234'
+Bash > passwd pam-jack
+Changing password for user pam-jack.
+New password:
+BAD PASSWORD: The password contains less than 1 uppercase letters
+Retype new password:
+passwd: all authentication tokens updated successfully.
+```
+
+If the pam-jack user changes their password, their password will strictly adhere to the complexity requirements:
+
+```bash
+Bash > su - pam-jack
+
+# Assuming the password is "400!@GooBing."
+Bash > passwd
+Changing password for user pam-jack.
+Current password:
+New password:
+Retype new password:
+passwd: all authentication tokens updated successfully.
+```
+
+Any password that does not meet the complexity requirements will result in a failure to be accepted:
+
+```bash
+Bash > passwd
+Changing password for user pam-jack.
+Current password:
+New password:
+BAD PASSWORD: The password contains less than 1 uppercase letters
+New password:
+BAD PASSWORD: The password contains less than 1 digits
+New password:
+BAD PASSWORD: The password contains less than 1 non-alphanumeric characters
+passwd: Have exhausted maximum number of retries for service
+
+Bash > 
+```
+
+After three failed requests, the password change interaction process will end.
+
+**Requirement for Case 2**: Limit the number of password attempts for SSH and lock the account after reaching the maximum limit. When a user logs in remotely via SSH, if the password is entered incorrectly three times within 900 seconds, the user account will be locked for 180 seconds.
+
+First, let's take a look at the module parameters for the **pam_faillock.so** module:
+
+* preauth - Pre-authorization. The preauth argument must be used when the module is called before the modules which ask for the user credentials such as the password. The module just examines whether the user should be blocked from accessing the service in case there were anomalous number of failed consecutive authentication attempts recently. 
+* authfail - The authfail argument must be used when the module is called after the modules which determine the authentication outcome, failed.
+* authsucc - The authsucc argument must be used when the module is called after the modules which determine the authentication outcome, succeded.
+* silent - Do not print out various types of messages.
+* deny=n - If the user attempting to log in has failed to log in continuously for more than n times in the recent interval, access will be denied. The default value is 3.
+* audit - If no corresponding user is found, the user name will be recorded in the system log.
+* even_deny_root - The restriction of locking accounts also applies to root.
+* root_unlock_time=n - Set the time for locking the root account. If this parameter is not specified, the value of the unlock_time parameter will be used.
+* unlock_time=n	- The time to lock the account is in seconds, with a default value of 600. After exceeding this time limit, the account will be automatically unlocked.
+* fail_interval=n - Define the interval between login failures, with a default of 900. That is to say, login failures within fifteen minutes will be counted.
+
+The above parameters are only briefly explained. For more detailed information, please refer to `man 8 pam_faillock`.
+
+By default without changing the configuration file, the SSH server allows users to retry 6 times when logging in, while the SSH client allows retry 3 times. You can see through the manual page:
+
+```bash
+Bash > man 5 sshd_config
+...
+MaxAuthTries
+            Specifies the maximum number of authentication attempts permitted per connection.  Once the number of failures reaches half this value, additional failures are logged. The default is 6.
+...
+
+Bash > man 5 ssh_config
+...
+NumberOfPasswordPrompts
+            Specifies the number of password prompts before giving up.  The argument to this keyword must be an integer. The default is 3.
+```
+
+Specify the number of client attempts in PowerShell:
 
 ```
+PS > ssh -p 22 -o NumberOfPasswordPrompts=6 root@192.168.100.20
+```
+
+The sshd policy file contains the contents of the password-auth file:
+
+```bash
+Bash > cat /etc/pam.d/sshd
+...
+account    include      password-auth
+...
+```
+
+Modify the content of the password-auth file:
+
+```bash
+Bash > vim /etc/pam.d/password-auth
+auth        required      pam_faillock.so  preauth  silent audit even_deny_root deny=3  unlock_time=180  <<< Add a new line
+auth        required      pam_env.so
+auth        sufficient    pam_unix.so try_first_pass nullok
+auth      [default=die]   pam_faillock.so  authfail  audit  even_deny_root  deny=3 unlock_time=180  <<< Add a new line
+auth        required      pam_deny.so
+
+account     required      pam_unix.so
+
+password    requisite     pam_pwquality.so try_first_pass local_users_only retry=5 authtok_type=
+password    sufficient    pam_unix.so try_first_pass use_authtok nullok sha512 shadow
+password    required      pam_deny.so
+
+session     optional      pam_keyinit.so revoke
+session     required      pam_limits.so
+-session     optional      pam_systemd.so
+session     [success=1 default=ignore] pam_succeed_if.so service in crond quiet use_uid
+session     required      pam_unix.so
+```
+
+The SSH client intentionally entered the wrong password three times in a row:
+
+```
+PS > ssh -p 22 root@192.168.100.20
+root@192.168.100.20's password:
+Permission denied, please try again.
+root@192.168.100.20's password:
+Permission denied, please try again.
+root@192.168.100.20's password:
+root@192.168.100.20: Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).
+```
+
+When reconnecting, even if your password is correct, it will not pass identity authentication because the account has been locked for 180 seconds.
+
+You can use the `faillock` command in the SSH server to view specific information. Locked information can also be viewed in the **/var/log/secure** log.
+
+```bash
+Bash > faillock
+root:
+When                Type  Source                                           Valid
+2025-03-31 20:15:19 RHOST 192.168.100.8                                        V
+2025-03-31 20:15:55 RHOST 192.168.100.8                                        V
+2025-03-31 20:15:59 RHOST 192.168.100.8                                        V
+
+Bash > grep -i lock /var/log/secure
+Mar 31 20:15:59 HOME01 sshd[6239]: pam_faillock(sshd:auth): Consecutive login failures for user root account temporarily locked
+```
+
+The relevant account data after failed login attempts are stored in the **/var/run/faillock/** directory. To clear data, use `faillock -reset` command.
+
+**Requirement for Case 3**: Prohibit changing password to the last three used password. 
+
+Just use the "remember" module parameter of the pam_pwhistory.so module.
+
+!!! tip "tip"
+
+    Only after the user password is successfully changed can it be defined as a "remembered password" by PAM. The record of successfully changing the user password will be saved to the **/etc/security/opasswd** file.
+
+
+
+```bash
+Bash > vim /etc/pam.d/system-auth
 #%PAM-1.0
-auth       include      system-auth
-account    include      system-auth
-password   include      system-auth
-session    include      system-auth
+# This file is auto-generated.
+# User changes will be destroyed the next time authselect is run.
+auth        required      pam_env.so
+auth        sufficient    pam_unix.so try_first_pass nullok
+auth        required      pam_deny.so
+
+account     required      pam_unix.so
+
+password    requisite     pam_pwquality.so try_first_pass local_users_only retry=3 authtok_type=
+password    requisite     pam_pwhistory.so  remember=3 use_authtok  <<<< Add a new line
+password    sufficient    pam_unix.so try_first_pass use_authtok nullok sha512 shadow
+password    required      pam_deny.so
+
+session     optional      pam_keyinit.so revoke
+session     required      pam_limits.so
+-session     optional      pam_systemd.so
+session     [success=1 default=ignore] pam_succeed_if.so service in crond quiet use_uid
+session     required      pam_unix.so
 ```
 
-## Mechanisms
+```bash
+Bash > useradd -u 3000 hisuser
 
-### `auth` - Authentication
+# Change the password of the hisuser user for the first time using the root user
+## The password is Flzx3QC<...>
+Bash > passwd hisuser
 
-This handles the authentication of the requester and establishes the rights of the account:
+# Second password change
+## The password is Talk---5Ing,
+Bash > passwd hisuser
 
-* Usually authenticates with a password by comparing it to a value stored in a database, or by relying on an authentication server,
+# Third password change
+## The password is u>=1000And
+Bash > passwd hisuser
 
-* Establishes account settings: uid, gid, groups, and resource limits.
+Bash > cat /etc/security/opasswd.old
+hisuser:2500:2:!!,$6$boNLeNZGXelC2G6H$zlLzz3IMMkUeLozLNRN5OljyGHiNacWKNX.6j.RUEb1mI.pgQH7TubBO8QRCEW7ZcyKM6boTE3CUZKL2ybKDw0
 
-### `account` - Account management
-
-Checks that the requested account is available:
-
-* Relates to the availability of the account for reasons other than authentication (e.g. for time restrictions).
-
-### `session` - Session management
-
-Relates to session setup and termination:
-
-* Performs tasks associated with session setup (e.g. logging),
-* Performs tasks associated with session termination.
-
-### `password` - Password management
-
-Used to modify the authentication token associated with an account (expiration or change):
-
-* Changes the authentication token and possibly verifies that it is robust enough or has not already been used.
-
-## Control Indicators
-
-The PAM mechanisms (`auth`, `account`, `session` and `password`) indicate `success` or `failure`. The control flags (`required`, `requisite`, `sufficient`, `optional`) tell PAM how to handle this result.
-
-### `required`
-
-Successful completion of all `required` modules is necessary.
-
-* **If the module passes:** The rest of the chain is executed. The request is allowed unless other modules fail.
-
-* **If the module fails:** The rest of the chain is executed. Finally the request is rejected.
-
-The module must be successfully verified for the authentication to continue. If the verification of a module marked `required` fails, the user is not notified until all modules associated with that interface have been verified.
-
-### `requisite`
-
-Successful completion of all `requisite` modules is necessary.
-
-* **If the module passes:** The rest of the chain is executed. The request is allowed unless other modules fail.
-
-* **If the module fails:** The request is immediately rejected.
-
-The module must be successfully verified for authentication to continue. However, if the verification of a `requisite`-marked module fails, the user is immediately notified by a message indicating the failure of the first `required` or `requisite` module.
-
-### `sufficient`
-
-Modules marked `sufficient` can be used to let a user in "early" under certain conditions:
-
-* **If the module succeeds:** The authentication request is immediately allowed if none of the previous modules failed.
-
-* **If the module fails:** The module is ignored. The rest of the chain is executed.
-
-However, if a module check marked `sufficient` is successful, but modules marked `required` or `requisite` have failed their checks, the success of the `sufficient` module is ignored, and the request fails.
-
-### `optional`
-
-The module is executed but the result of the request is ignored. If all modules in the chain were marked `optional`, all requests would always be accepted.
-
-### Conclusion
-
-![Rocky Linux installation splash screen](images/pam-002.png)
-
-## PAM modules
-
-There are many modules for PAM. Here are the most common ones:
-
-* pam_unix
-* pam_ldap
-* pam_wheel
-* pam_cracklib
-* pam_console
-* pam_tally
-* pam_securetty
-* pam_nologin
-* pam_limits
-* pam_time
-* pam_access
-
-### `pam_unix`
-
-The `pam_unix` module allows you to manage the global authentication policy.
-
-In `/etc/pam.d/system-auth` you might add:
-
-```
-password sufficient pam_unix.so sha512 nullok
+Bash > cat /etc/security/opasswd
+hisuser:2500:3:!!,$6$boNLeNZGXelC2G6H$zlLzz3IMMkUeLozLNRN5OljyGHiNacWKNX.6j.RUEb1mI.pgQH7TubBO8QRCEW7ZcyKM6boTE3CUZKL2ybKDw0,$6$8Ohz/v429eBRjk58$N7lG7E9sNYAhD1xLSi0S33teWFuf2udEc5ECwqBiV2x2314s6tt2eZu8EZiVAitIIzeYM9zMJtREOpNQLj05Q.
 ```
 
-Arguments are possible for this module:
+Document content description:
 
-* `nullok`: in the `auth` mechanism allows an empty login password.
-* `sha512`: in the password mechanism, defines the encryption algorithm.
-* `debug`: sends information to `syslog`.
-* `remember=n`: Use this to remember the last `n` passwords used (works in conjunction with the `/etc/security/opasswd` file, which is to be created by the administrator).
+* Use ":" to separate 4 fields
+* These four fields, from left to right, are: user name, uid, record the number of old passwords, password ciphertext
+* In the fourth field, use "," to separate and record historical password ciphertexts
 
-### `pam_cracklib`
-
-The `pam_cracklib` module allows you to test passwords.
-
-In `/etc/pam.d/password-auth` add:
+If an ordinary user (uid>=1000) changes their password to one of the last three uses, the following text content will be output:
 
 ```
-password sufficient pam_cracklib.so retry=2
+Password has been already used. Choose another.
 ```
 
-This module uses the `cracklib` library to check the strength of a new password. It can also check that the new password is not built from the old one. It *only* affects the password mechanism.
+## Short description of other modules
 
-By default this module checks the following aspects and rejects if this is the case:
+* **pam_cracklib.so** - PAM module to check the password against dictionary words
+* **pam_time.so** - PAM module for time control access
+* **pam_nologin.so** - Prevent non-root users from login
+* **pam_wheel.so** - Only permit root access to members of group wheel
 
-* Is the new password from the dictionary?
-* Is the new password a palindrome of the old one (e.g.: azerty <> ytreza)?
-* Has the user only changed the password case (e.g.: azerty <>AzErTy)?
+## Use the Tips
 
-Possible arguments for this module:
+Please note which facilities the corresponding module is applicable to.
 
-* `retry=n`: imposes `n` requests (1` by default) for the new password.
-* `difok=n`: imposes at least `n` characters (`10` by default), different from the old password. If half of the characters of the new password are different from the old one, the new password is validated.
-* `minlen=n`: imposes a password of `n+1` characters minimum. You cannot assign a minimum lower than 6 characters (the module is compiled this way).
+```bash
+Bash > man 8 pam_unix
+...
+MODULE TYPES PROVIDED
+       All module types (account, auth, password and session) are provided.
+...
 
-Other possible arguments:
+Bash > man 8 pam_success_if
+...
+MODULE TYPES PROVIDED
+       All module types (account, auth, password and session) are provided.
+...
 
-* `dcredit=-n`: imposes a password containing at least `n` digits,
-* `ucredit=-n`: imposes a password containing at least `n` capital letters,
-* `credit=-n`: imposes a password containing at least `n` lower case letters,
-* `ocredit=-n`: imposes a password containing at least `n` special characters.
-
-### `pam_tally`
-
-The `pam_tally` module allows you to lock an account based on a number of unsuccessful login attempts.
-
-The default config file for this module might look like: `/etc/pam.d/system-auth`:
-
-```
-auth required /lib/security/pam_tally.so onerr=fail no_magic_root
-account required /lib/security/pam_tally.so deny=3 reset no_magic_root
-```
-
-The `auth` mechanism accepts or denies authentication and resets the counter.
-
-The `account` mechanism increments the counter.
-
-Some arguments of the pam_tally module include:
-
-* `onerr=fail`: increments the counter.
-* `deny=n`: once the number `n` of unsuccessful attempts is exceeded, the account is locked.
-* `no_magic_root`: can be used to deny access to root-level services launched by daemons. 
-    * e.g. don't use this for `su`.
-* `reset`: resets the counter to 0 if the authentication is validated.
-* `lock_time=nsec`: the account is locked for `n` seconds.
-
-This module works together with the default file for unsuccessful attempts `/var/log/faillog` (which can be replaced by another file with the argument `file=xxxx`), and the associated command `faillog`.
-
-Syntax of the faillog command:
-
-```
-faillog[-m n] |-u login][-r]
+Bash > man 8 pam_faillock
+...
+MODULE TYPES PROVIDED
+       The auth and account module types are provided.
+...
 ```
 
-Options:
-
-* `m`: to define, in the command display, the maximum number of unsuccessful attempts,
-* `u`: to specify a user,
-* `r`: to unlock a user.
-
-### `pam_time`
-
-The `pam_time` module allows you to limit the access times to services managed by PAM.
-
-To activate it, edit `/etc/pam.d/system-auth` and add:
-
-```
-account required /lib/security/pam_time.so
-```
-
-The configuration is done in the `/etc/security/time.conf` file:
-
-```
-login ; * ; users ;MoTuWeThFr0800-2000
-http ; * ; users ;Al0000-2400
-```
-
-The syntax of a directive is as follows:
-
-```
-services; ttys; users; times
-```
-
-In the following definitions, the logical list uses:
-
-* `&`: is the "and" logical.
-* `|`: is the "or" logical.
-* `!`: means negation, or "all except".
-* `*`: is the wildcard character.
-
-The columns correspond to:
-
-* `services`: a logical list of services managed by PAM that are also to be managed by this rule
-* `ttys`: a logical list of related devices
-* `users`: logical list of users managed by the rule
-* `times`: a logical list of authorized time slots
-
-How to manage time slots:
-
-* Days: `Mo`, `Tu`, `We`, `Th`, `Fr,` `Sa`, `Su`, `Wk`, (Monday to Friday), `Wd` (Saturday and Sunday), and `Al` (Monday to Sunday)
-* The hourly range: `HHMM-HHMM`
-* A repetition cancels the effect: `WkMo` = all days of the week (M-F), minus Monday (repeat).
-
-Examples:
-
-* Bob, can login via a terminal every day between 07:00 and 09:00, except Wednesday:
-
-```
-login; tty*; bob; alth0700-0900
-```
-
-No login, terminal or remote, except root, every day of the week between 17:30 and 7:45 the next day:
-
-```
-login; tty* | pts/*; !root; !wk1730-0745
-```
-
-### `pam_nologin`
-
-The `pam_nologin` module disables all accounts except root:
-
-In `/etc/pam.d/login` you'd put:
-
-```
-auth required pam_nologin.so
-```
-
-Only root can connect if the file `/etc/nologin` exists and is readable.
-
-### `pam_wheel`
-
-The `pam_wheel` module allows you to limit the access to the `su` command to the members of the `wheel` group.
-
-In `/etc/pam.d/su` you'd put:
-
-```
-auth required pam_wheel.so
-```
-
-The argument `group=my_group` limits the use of the `su` command to members of the group `my_group`
-
-!!! NOTE
-
-    If the group `my_group` is empty, then the `su` command is no longer available on the system, which forces the use of the sudo command.
-
-### `pam_mount`
-
-The `pam_mount` module allows you to mount a volume for a user session.
-
-In `/etc/pam.d/system-auth` you'd put:
-
-```
-auth optional pam_mount.so
-password optional pam_mount.so
-session optional pam_mount.so
-```
-
-Mount points are configured in the `/etc/security/pam_mount.conf` file:
-
-```
-<volume fstype="nfs" server="srv" path="/home/%(USER)" mountpoint="~" />
-<volume user="bob" fstype="smbfs" server="filesrv" path="public" mountpoint="/public" />
-```
-
-## Wrapping Up
-
-By now, you should have a much better idea of what PAM can do, and how to make changes when needed. However, we must reiterate the importance of being very, *very* careful with any changes you make to PAM modules. You could lock yourself out of your system, or worse, let everyone else in.
-
-We would strongly recommend testing all changes in an environment that can be easily reverted to a previous configuration. That said, have fun with it!
+By now, you should have a much better idea of what PAM can do, and how to make changes when needed. However, we must reiterate the importance of being very, *very* careful with any changes you make to PAM modules. We strongly recommend that you perform a snapshot operation on the operating system before testing the corresponding functionality of the PAM module.
