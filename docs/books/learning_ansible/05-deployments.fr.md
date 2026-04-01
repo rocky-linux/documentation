@@ -18,8 +18,7 @@ Dans ce chapitre vous allez apprendre le déploiement d'applications en utilisan
 
 :checkered_flag: **ansible**, **ansistrano**, **rôles**, **déploiements**
 
-**Connaissances** : :star: :star:  
-**Complexité** : :star: :star: :star:
+**Connaissances** : :star: :star:<br/> **Complexité** : :star: :star: :star:
 
 **Temps de lecture** : 40 minutes
 
