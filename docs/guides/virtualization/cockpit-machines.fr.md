@@ -1,8 +1,8 @@
 ---
 title: Cockpit KVM Dashboard
 author: Neel Chauhan
-contributors: Ganna Zhrynova
-tested on: 9.3
+contributors: Ganna Zhrynova, Steven Spencer
+tested on: 9.3, 10.1
 tags:
   - virtualisation
 ---
@@ -20,31 +20,25 @@ Cockpit est un outil d'administration qui fournit un tableau de bord facile à u
 
 ## Installation de Cockpit
 
-Cockpit est fourni par défaut dans Rocky Linux. Cependant, la prise en charge de KVM n'est pas installée prête à l'emploi. Nous allons l'installer via `dnf` :
+Cockpit est fourni par défaut dans Rocky Linux. Cependant, la prise en charge de KVM n'est pas installée prête à l'emploi. Installez-le ainsi que les autres paquets nécessaires avec `dnf` :
 
 ```bash
-dnf install -y cockpit-machines
-```
-
-Installez également `libvirtd` :
-
-```bash
-dnf install -y libvirt
+dnf install -y cockpit-machines cockpit-ws cockpit-system libvirt
 ```
 
 ## Activation de `cockpit`
 
-Pour activer à la fois la virtualisation KVM et Cockpit, activez les services `systemd` correspondants :
+Pour activer à la fois la virtualisation KVM et Cockpit, activez les services `systemd` :
 
 ```bash
 systemctl enable --now libvirtd cockpit.socket
 ```
 
-Après avoir activé `cockpit`, ouvrez un navigateur sur **http://ip_address:9090** (remarque : remplacez **ip_address** par l'adresse IP de votre serveur) :
+Après avoir activé `cockpit`, ouvrez un navigateur à l'adresse <http://ip_address:9090> (note : remplacez **ip_address** par l'adresse IP de votre serveur) :
 
 ![Cockpit login screen](../images/cockpit_login.png)
 
-Connectez-vous en tant qu'utilisateur non root et vous devriez voir un dashboard similaire à celui présenté ici :
+Connectez-vous en tant qu'utilisateur non root, et vous devriez voir un tableau de bord semblable à celui présenté ici :
 
 ![Cockpit dashboard](../images/cockpit_dashboard.png)
 
@@ -74,11 +68,11 @@ Ensuite, cliquez sur **Automation** et renseignez les informations de connexion 
 
 Enfin, sélectionnez **Create and run**.
 
-Dans quelques minutes, sélectionnez votre VM nouvellement créée et vous obtiendrez son adresse IP :
+Après quelques minutes, sélectionnez votre VM nouvellement créée et vous obtiendrez son adresse IP :
 
 ![Our VM's IP address](../images/cockpit_vm_ip.png)
 
-Connectez-vous en SSH à votre hyperviseur et connectez-vous avec SSH à l'adresse IP de Cockpit. Dans cet exemple, il s'agit de **172.20.0.103**. Vous serez connecté à votre nouveau serveur :
+Accédez par SSH à votre hyperviseur, puis connectez-vous en SSH à l'adresse IP depuis Cockpit. Dans cet exemple, il s'agit de **172.20.0.103**. Vous serez connecté à votre nouveau serveur :
 
 ![Our VM's terminal](../images/cockpit_vm_terminal.png)
 
@@ -86,11 +80,11 @@ Connectez-vous en SSH à votre hyperviseur et connectez-vous avec SSH à l'adres
 
 Bien que Cockpit soit idéal pour créer et gérer des machines virtuelles, il y a quelques limitations à prendre en compte :
 
-- Vous ne pouvez pas créer une interface bridge.
+- Vous ne pouvez pas créer d\`interface bridge.
 - Vous ne pouvez pas créer une nouvelle image dans un pool de stockage, uniquement celui « par défaut ».
 
-Heureusement, vous pouvez les créer en ligne de commande, puis Cockpit peut les utiliser.
+Heureusement, vous pouvez les créer en ligne de commande, et Cockpit peut ensuite les utiliser.
 
 ## Conclusion
 
-Cockpit est un outil précieux pour gérer un serveur Rocky Linux via une interface Web. C'est, du point de vue de l'auteur, l'outil de référence pour créer des machines virtuelles dans son laboratoire personnel. Même si les « machines cockpit » ne sont peut-être pas aussi complètes que sous ESXi ou Proxmox, elles font le travail dans 90 % des cas d'utilisation d'hyperviseur.
+Cockpit est un outil précieux pour gérer un serveur Rocky Linux via une interface Web. C'est, du point de vue de l'auteur, l'outil de référence pour créer des machines virtuelles dans son laboratoire personnel. Bien que `cockpit-machines` ne soit pas aussi complet qu'ESXi ou Proxmox, il remplit sa fonction dans 90 % des cas d'utilisation d'hyperviseurs.
