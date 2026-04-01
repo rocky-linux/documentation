@@ -24,9 +24,9 @@ Dans ce chapitre, vous allez approfondir vos connaissances sur Ansible.
 
 ****
 
-Dans le chapitre précédent, vous avez appris à installer Ansible, à l'utiliser en ligne de commande ou comment écrire des playbooks pour permettre la réutilisation de votre code.
+Dans le chapitre précédent, vous avez appris à installer Ansible, à l'utiliser en ligne de commande et à écrire des playbooks pour favoriser la réutilisation de votre code.
 
-Dans ce chapitre, nous pouvons commencer à découvrir des notions plus avancées sur la façon d'utiliser Ansible et quelques tâches intéressantes que vous utiliserez très régulièrement.
+Dans ce chapitre, nous allons découvrir des notions plus avancées sur l'utilisation d'Ansible et quelques tâches intéressantes que vous utiliserez régulièrement.
 
 ## Les variables
 
@@ -45,7 +45,7 @@ Ces variables peuvent être organisées ainsi :
 * dictionnaires,
 * listes.
 
-Une variable peut être définie à différents endroits, comme dans un playbook, dans un rôle ou à partir de la ligne de commande par exemple.
+Une variable peut être définie à différents endroits, comme un playbook, un rôle ou la ligne de commande.
 
 Par exemple, à partir d'un playbook :
 
@@ -154,7 +154,7 @@ Les chaînes qui composent la variable stockée peuvent être accédées via la 
 
 ### Exercices :
 
-* Écrire un playbook `play-vars.yml` qui affiche le nom de la distribution de la cible avec sa version majeure, en utilisant des variables globales.
+* Écrivez un playbook, `play-vars.yml,` en utilisant des variables globales qui affichent le nom de la distribution cible et la version majeure.
 
 * Écrivez un playbook en utilisant le dictionnaire suivant pour afficher les services qui seront installés :
 
@@ -176,7 +176,7 @@ Le type par défaut doit être "web".
 
 ## Gestion de boucles
 
-Avec l'aide d'une boucle, vous pouvez itérer une tâche sur une liste, un hachage ou un dictionnaire par exemple.
+Une boucle permet d'itérer une tâche sur une liste, un hachage ou un dictionnaire, par exemple.
 
 !!! note "Remarque"
 
@@ -209,7 +209,7 @@ users:
   - xavier
 ```
 
-et être utilisé dans la tâche comme ceci (après avoir inclus le fichier vars) :
+et être utilisé dans la tâche comme ceci (après avoir inclus le fichier de variables) :
 
 ```bash
 - name: add users
@@ -220,7 +220,7 @@ et être utilisé dans la tâche comme ceci (après avoir inclus le fichier vars
   loop: "{{ users }}"
 ```
 
-Nous pouvons utiliser l'exemple vu lors de l'étude des variables stockées pour l'améliorer. Utilisation d'une variable stockée :
+On peut utiliser l'exemple observé lors de l'étude des variables stockées pour l'améliorer. Utilisation d'une variable stockée :
 
 ```bash
 - name: /home content
@@ -235,9 +235,9 @@ Nous pouvons utiliser l'exemple vu lors de l'étude des variables stockées pour
 
 Un dictionnaire peut également être utilisé dans une boucle.
 
-Dans ce cas, vous devrez transformer le dictionnaire en un élément avec ce que l'on appelle un filtre **jinja** (jinja est le moteur utilisé par Ansible) : `| dict2items`.
+Dans ce cas, vous devez transformer le dictionnaire en un élément avec un **jinja filter** (jinja est le moteur de modèles utilisé par Ansible) : `| dict2items`.
 
-Dans la boucle, il devient possible d'utiliser `item.key` qui correspond à la clé de dictionnaire et `item.value` qui correspond à la valeur de la clé.
+Dans la boucle, il devient possible d'utiliser `item.key`, qui correspond à la clé du dictionnaire, et `item.value`, qui correspond aux valeurs de la clé.
 
 Voyons cela à travers un exemple concret, montrant la gestion des utilisateurs du système :
 
@@ -267,7 +267,7 @@ Voyons cela à travers un exemple concret, montrant la gestion des utilisateurs 
 
 !!! note "Remarque"
 
-    Beaucoup d'applications peuvent être réalisées avec les boucles. Vous découvrirez les possibilités qu'offrent les boucles au fur et à mesure que votre utilisation d'Ansible vous pousse à les utiliser de manière plus complexe.
+    Beaucoup d'applications peuvent être réalisées avec les boucles. Lorsque votre utilisation d'Ansible vous incitera à les utiliser de manière plus complexe, vous découvrirez les possibilités qu'ils offrent.
 
 ### Exercices :
 
@@ -287,7 +287,7 @@ Voyons cela à travers un exemple concret, montrant la gestion des utilisateurs 
 
     Pour plus d'informations veuillez consulter la documentation [ici](https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html).
 
-L'instruction `when` est très utile dans de nombreux cas : ne pas effectuer certaines actions sur certains types de serveurs, si un fichier ou un utilisateur n'existe pas, ...
+L'instruction `when` est très utile dans plusieurs cas, par exemple pour ne pas effectuer certaines actions sur certains types de serveurs, si un fichier ou un utilisateur n'existe pas, etc.
 
 !!! note "Remarque"
 
@@ -362,11 +362,11 @@ when: myboolean is defined and myboolean
 
 Les 'handlers' permettent de lancer des opérations, comme redémarrer un service, lorsque des changements se produisent.
 
-Un module, étant idempotent, un playbook peut détecter qu'il y a eu un changement significatif sur un système distant, et donc déclencher une opération en réaction à ce changement. Une notification est envoyée à la fin d'un bloc de tâches du playbook et l'opération de réaction ne sera déclenchée qu'une seule fois même si plusieurs tâches envoient la même notification.
+Un module étant idempotent, un playbook peut détecter qu'un changement significatif est survenu sur un système distant et ainsi déclencher une opération en réaction à ce changement. Une notification est envoyée à la fin d'un bloc de tâches du playbook et l'opération de réaction ne sera déclenchée qu'une seule fois même si plusieurs tâches envoient la même notification.
 
 ![Handlers](images/handlers.png)
 
-Par exemple, plusieurs tâches peuvent indiquer que le service `httpd` doit être redémarré en raison d'un changement dans ses fichiers de configuration. Mais le service ne sera redémarré qu'une seule fois pour éviter de multiples démarrages inutiles.
+Par exemple, plusieurs tâches peuvent indiquer que le service `httpd` doit être redémarré en raison d'un changement dans ses fichiers de configuration. Toutefois, le service ne sera redémarré qu'une seule fois afin d'éviter plusieurs démarrages inutiles.
 
 ```bash
 - name: template configuration file
@@ -428,12 +428,12 @@ tasks:
 
     Plus d'informations sont disponibles [ici](https://docs.ansible.com/ansible/latest/user_guide/playbooks_async.html).
 
-Par défaut, les connexions SSH aux hôtes restent ouvertes pendant l'exécution de diverses tâches du playbook sur tous les nœuds.
+Par défaut, les connexions SSH aux hôtes restent ouvertes pendant l'exécution des différentes tâches du playbook sur tous les nœuds.
 
 Cela peut causer des problèmes, en particulier :
 
 * si le temps d'exécution de la tâche est plus long que le délai de connexion SSH
-* si la connexion est interrompue pendant l'action (redémarrage du serveur par exemple)
+* si la connexion est interrompue pendant l'opération (redémarrage du serveur, par exemple)
 
 Dans ce cas, vous devrez passer en mode asynchrone et spécifier un temps d'exécution maximum ainsi que la fréquence (par défaut 10s) avec laquelle vous allez vérifier le statut de l'hôte.
 
@@ -466,7 +466,7 @@ Vous pouvez également décider de lancer une tâche longue durée et de l'oubli
 
 ## Résultats de l'exercice
 
-* Écrire un playbook `play-vars.yml` qui affiche le nom de la distribution de la cible avec sa version majeure, en utilisant des variables globales.
+* Écrivez un playbook, `play-vars.yml, ' en utilisant des variables globales, qui affiche le nom de la distribution cible et sa version majeure.
 
 ```bash
 ---
