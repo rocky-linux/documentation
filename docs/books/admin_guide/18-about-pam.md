@@ -8,8 +8,6 @@ tags:
   - pam
 ---
 
-# PAM Authentication Modules
-
 ## Description of Document Content
 
 In this chapter, you will learn the following knowledge about PAM:
