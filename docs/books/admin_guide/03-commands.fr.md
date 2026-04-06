@@ -36,7 +36,7 @@ Les systèmes GNU/Linux actuels possèdent des utilitaires graphiques dédiés a
 * Afin de préserver les ressources du serveur, l’interface graphique n’est soit pas installée, soit lancée à la demande.
 * L’administration se fait par des scripts.
 
-L'apprentissage de ces commandes permet à l'administrateur de se connecter à un terminal Linux, gérer ses ressources et ses fichiers, identifier la station, le terminal, les utilisateurs connectés, etc.
+L'apprentissage de ces commandes permet à l'administrateur de se connecter à un terminal Linux, de gérer ses ressources et ses fichiers, d'identifier la station, le terminal et les utilisateurs connectés, etc.
 
 ### Les utilisateurs
 
@@ -1603,9 +1603,9 @@ ls /; cd /home; ls -lia; cd /
 
 :heavy_check_mark: Qu’est ce qui défini un utilisateur sous Linux ? (7 réponses)
 
-:heavy_check_mark: Qu’est ce qui caractérise une option longue pour une commande ?
+:heavy_check_mark: Qu'est-ce qui caractérise une option longue pour une commande ?
 
-:heavy_check_mark: Quelles commandes permettent de rechercher de l’aide sur une commande ?
+:heavy_check_mark: Quelles commandes permettent de rechercher de l'aide sur une commande ?
 
 * [ ] `google`
 * [ ] `chuck --norris`
@@ -1613,19 +1613,19 @@ ls /; cd /home; ls -lia; cd /
 * [ ] `apropos`
 * [ ] `whatis`
 
-:heavy_check_mark: Quelle commande permet de visualiser l’historique d’un utilisateur ?
+:heavy_check_mark: Quelle commande permet de consulter l'historique d'un utilisateur ?
 
-:heavy_check_mark: Quelle commande permet de rechercher un fichier ?
-
-* [ ] `find`
-* [ ] `grep`
-
-:heavy_check_mark: Quelle commande permet de rechercher du texte dans un fichier ?
+:heavy_check_mark: Quelle commande permet de rechercher du texte dans un fichier ?
 
 * [ ] `find`
 * [ ] `grep`
 
-:heavy_check_mark: Quelle commande redirige le flux des erreurs d’une commande vers un nouveau fichier `errors.log` ?
+:heavy_check_mark: Quelle commande permet de rechercher un fichier ?
+
+* [ ] `find`
+* [ ] `grep`
+
+:heavy_check_mark: Quelle commande redirige le flux d'erreurs d'une commande vers un nouveau fichier `errors.log` ?
 
 * [ ] `ls -R / 2> errors.log`
 * [ ] `ls -R / 2>> errors.log`
