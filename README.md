@@ -7,7 +7,7 @@
 # Contribution Guide
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-132-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-133-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Introduction
@@ -378,6 +378,7 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/daomah"><img src="https://avatars.githubusercontent.com/u/129229601?v=4?s=100" width="100px;" alt="daomah"/><br /><sub><b>daomah</b></sub></a><br /><a href="#content-daomah" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Margrie"><img src="https://avatars.githubusercontent.com/u/16573570?v=4?s=100" width="100px;" alt="Margri"/><br /><sub><b>Margri</b></sub></a><br /><a href="#content-Margrie" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/dvenadm"><img src="https://avatars.githubusercontent.com/u/119517709?v=4?s=100" width="100px;" alt="Remyl Vrij"/><br /><sub><b>Remyl Vrij</b></sub></a><br /><a href="#content-dvenadm" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://99tools.net/"><img src="https://avatars.githubusercontent.com/u/206251832?v=4?s=100" width="100px;" alt="Bansidhar kadiya"/><br /><sub><b>Bansidhar kadiya</b></sub></a><br /><a href="#content-bansidhark" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>
