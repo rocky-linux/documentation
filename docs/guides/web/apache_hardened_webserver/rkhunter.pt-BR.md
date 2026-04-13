@@ -5,7 +5,7 @@ contributors: Ezequiel Bruni, Andrew Thiesen, Ganna Zhyrnova
 tested_with: "9.2"
 tags:
   - servidor
-  - security
+  - segurança
   - rkhunter
 ---
 
