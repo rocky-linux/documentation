@@ -1,5 +1,5 @@
 ---
-title: Ansible Intermediate
+title: Ansible für Fortgeschrittene
 ---
 
 # Ansible für Fortgeschrittene
@@ -26,7 +26,7 @@ In diesem Kapitel lernen Sie weitere Themen über die Arbeit mit Ansible.
 
 Im vorherigen Kapitel haben Sie gelernt, wie man Ansible installiert und in der Befehlszeile verwendet oder wie man Playbooks entwirft, um die Wiederverwendbarkeit Ihres Codes zu sichern.
 
-In diesem Kapitel können wir einige fortgeschrittenere Konzepte zur Verwendung von Ansible kennenlernen und interessante Vorgehensweisen entdecken, die Sie regelmäßig verwenden können.
+In diesem Kapitel werden Sie, fortgeschrittenere Konzepte zur Verwendung von Ansible kennenlernen und einige interessante Tasks entdecken, die Sie regelmäßig verwenden werden.
 
 ## Die Variablen
 
@@ -45,7 +45,7 @@ Diese Variablen können wie folgt organisiert werden:
 * als Wörterbücher: dictionaries,
 * als Listen.
 
-Eine Variable kann an verschiedenen Orten definiert werden, wie in einem Playbook, in einer Rolle oder in der Kommandozeile zum Beispiel.
+Eine Variable kann an verschiedenen Stellen definiert werden, beispielsweise in einem Playbook, einer Rolle oder in der Befehlszeile.
 
 Zum Beispiel in einem Playbook:
 
@@ -148,7 +148,7 @@ Verwendung einer gespeicherten Variable:
 
 !!! note "Anmerkung"
 
-    Die Variable `homes.stdout_lines` ist eine Liste von Variablen des Typ String, eine Möglichkeit, Variablen zu organisieren, die wir bisher noch nicht gesehen hatten.
+    Die Variable `homes.stdout_lines` ist eine Liste von Variablen vom Typ String. Dies ist eine Möglichkeit, Variablen zu organisieren, die wir bisher noch nicht kennengelernt haben.
 
 Die Strings, aus denen die gespeicherte Variable besteht, können über den Wert von `stdout` abgerufen werden (der Ihnen Dinge wie `homes.stdout.find("core") != -1`ermöglicht), um sie mithilfe einer Schleife (siehe `loop`) oder einfach anhand ihrer Indizes abzugreifen, wie im vorherigen Beispiel gezeigt wurde.
 
@@ -267,7 +267,7 @@ Sehen wir uns das an einem konkreten Beispiel, das die Verwaltung der Systembenu
 
 !!! note "Anmerkung"
 
-    Viele Dinge können mit Schleifen implementiert werden. Sie werden die Möglichkeiten entdecken, die Schleifen bieten, wenn Ihre Verwendung von Ansible Sie dazu bringt, sie auf komplexere Weise zu nutzen.
+    Viele Dinge können mit Schleifen implementiert werden. Wenn Sie durch die Nutzung von Ansible dazu angeregt werden, diese Funktionen komplexer einzusetzen, werden Sie die Möglichkeiten entdecken, die sie bieten.
 
 ### Übungen:
 
@@ -362,7 +362,7 @@ when: myboolean is defined and myboolean
 
 Die Handler erlauben den Start von Operationen, wie, z.B., das Neustarten eines Dienstes, wenn Änderungen vorkommen.
 
-In einem Playbook kann ein Modul erkennen, dass es eine bedeutende Änderung auf einem entfernten System gegeben hat und so eine Operation als Reaktion auf diese Änderung auslösen. Eine Benachrichtigung wird am Ende eines Playbook-Taskblocks versendet, und die Reaktionsoperation nur einmal ausgelöst, selbst wenn mehrere Aufgaben die gleiche Benachrichtigung senden.
+In einem Playbook kann ein Modul erkennen, dass es eine bedeutende Änderung auf einem entfernten System gegeben hat und so eine Operation als Reaktion auf diese Änderung auslösen. Am Ende eines Playbook-Taskblocks wird eine Benachrichtigung gesendet, und die Reaktionsoperation wird nur einmal ausgelöst, selbst wenn mehrere Tasks die gleiche Benachrichtigung senden.
 
 ![Handlers](images/handlers.png)
 
@@ -428,12 +428,12 @@ tasks:
 
     Weitere Informationen sind [hier](https://docs.ansible.com/ansible/latest/user_guide/playbooks_async.html) verfügbar.
 
-Standardmäßig bleiben SSH-Verbindungen zu Hosts während der Ausführung verschiedener Playbook-Tasks auf allen Knoten offen.
+Standardmäßig bleiben SSH-Verbindungen zu Hosts während der Ausführung verschiedener Playbook-Tasks auf allen Knoten geöffnet.
 
 Dies kann einige Probleme verursachen, insbesondere:
 
 * wenn die Ausführungszeit der Aufgabe länger ist als das SSH-Verbindungs-Timeout
-* wenn die Verbindung während der Aktion unterbrochen wird (Server-Neustart zum Beispiel)
+* wenn die Verbindung während der Aktion unterbrochen wird (z. B. durch einen Serverneustart)
 
 In diesem Fall müssen Sie in den asynchronen Modus wechseln und eine maximale Ausführungszeit sowie die Häufigkeit (standardmäßig 10 Sekunden) festlegen, mit der Sie den Host-Status überprüfen.
 
@@ -509,7 +509,7 @@ service:
     rpm: mariadb-server
 ```
 
-Der Default-Typ sollte "web" sein.
+Der Default-Typ sollte `web` sein.
 
 ```bash
 ---
@@ -568,7 +568,7 @@ PLAY RECAP *********************************************************************
 192.168.1.11               : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
-* Variablen in einer `vars.yml` Datei auslagern
+* Variablen in einer `vars.yml`-Datei auslagern
 
 ```bash
 type: web

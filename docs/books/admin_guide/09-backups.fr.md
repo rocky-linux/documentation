@@ -4,7 +4,7 @@ title: Sauvegarde et Restauration
 
 # Sauvegarde et Restauration
 
-Dans ce chapitre, vous apprendrez comment sauvegarder et restaurer vos données avec Linux.
+Dans ce chapitre, vous apprendrez comment sauvegarder et restaurer vos données sous GNU/Linux.
 
 ****
 
@@ -90,7 +90,7 @@ Outre ces considérations, les administrateurs système doivent également prend
 
 Selon les utilitaires disponibles, il sera possible de réaliser plusieurs types de restaurations.
 
-Dans certains systèmes de gestion de bases de données relationnelles, les opérations correspondantes de `recover` (parfois `recovery` est utilisée dans la documentation) et de `restore` sont différentes, ce qui nécessite de consulter la documentation officielle pour plus d'informations. Ce document de base n'entrera pas trop dans les détails sur cette partie du `SGBDR`.
+Dans certains systèmes de gestion de bases de données relationnelles, les opérations correspondantes de `recover` (parfois `recovery` est utilisée dans la documentation) et de `restore` sont différentes. Pour plus d'informations, consultez la documentation officielle. Ce document de base n'entrera pas trop dans les détails sur cette partie du `SGBDR`.
 
 * **Récupération complète** : Récupération de données basée sur une sauvegarde complète ou « Sauvegarde complète + Sauvegarde incrémentielle » ou « Sauvegarde complète + Sauvegarde différentielle ».
 * **Récupération sélective** : Récupération de données basée sur une sauvegarde sélective (sauvegarde partielle).
@@ -337,10 +337,10 @@ L'ajout d'un répertoire est similaire. Par exemple ajouter `dirtoadd` au fichie
 tar rvf backup_name.tar dirtoadd
 ```
 
-| Option | Observation                                                           |
-| ------ | --------------------------------------------------------------------- |
-| `r`    | Ajouter les fichiers ou les répertoires à la fin de l’archive.        |
-| `A`    | Ajouter tous les fichiers d’une archive à la fin d’une autre archive. |
+| Option | Observation                                                          |
+| ------ | -------------------------------------------------------------------- |
+| `r`    | Ajoute les fichiers ou les répertoires à la fin de l’archive.        |
+| `A`    | Ajoute tous les fichiers d’une archive à la fin d’une autre archive. |
 
 !!! note "Remarque"
 
@@ -467,9 +467,9 @@ tar xvfP /backups/etc.133.P.tar
     
     Encore une fois, avant d'effectuer des opérations d'extraction, vous devez toujours vérifier le contenu des fichiers de sauvegarde (en particulier ceux enregistrés en mode absolu).
 
-| Option | Observation                                                                        |
-| ------ | ---------------------------------------------------------------------------------- |
-| `x`    | Extraire des fichiers à partir de sauvegardes (qu'elles soient compressées ou non) |
+| Option | Observation                                                                       |
+| ------ | --------------------------------------------------------------------------------- |
+| `x`    | Extrait des fichiers à partir de sauvegardes (qu'elles soient compressées ou non) |
 
 L'extraction d'une sauvegarde *tar-gzipped* (`*.tar.gz`) se fait avec les options `xvfz` :
 
@@ -523,9 +523,9 @@ tar xvfz backup.tar.gz /path/to/dir1/ /path/to/dir2/
 tar xvfj backup.tar.bz2 /path/to/dir1/ /path/to/dir2/
 ```
 
-##### Extraire un groupe de fichiers d'une sauvegarde *tar* en utilisant des expressions régulières (*regex*)
+##### Extraire un groupe de fichiers d'une sauvegarde *tar* en utilisant des wildcards
 
-Spécifiez une expression régulière (*regex*) pour extraire les fichiers correspondant au modèle de sélection spécifié.
+Spécifiez une wildcard pour extraire les fichiers correspondant au modèle de sélection spécifié.
 
 Par exemple, pour extraire tous les fichiers avec l'extension `.conf` veuillez procéder comme suit :
 
@@ -535,7 +535,16 @@ tar xvf backup.tar --wildcards '*.conf'
 
 Options :
 
-* **--wildcards *.conf** correspond aux fichiers avec l'extension `.conf`.
+* __--wildcards *.conf__ correspond aux fichiers avec l'extension `.conf`.
+
+!!! tip "Astuce"
+
+    Bien que les wildcards et les expressions régulières utilisent généralement les mêmes symboles ou le même style, les objets auxquels ils correspondent sont complètement différents, ce qui peut souvent prêter à confusion.
+    
+    **wildcard (caractère générique)** : utilisé pour faire correspondre les noms de fichiers ou de répertoires. 
+    **expression régulière** : utilisée pour faire correspondre le contenu d'un fichier.
+    
+    Vous pouvez voir une introduction avec des détails supplémentaires dans [ce document](../sed_awk_grep/1_regular_expressions_vs_wildcards.md).
 
 ## *CoPy Input Output* - `cpio`
 
@@ -543,28 +552,42 @@ La commande `cpio` permet d'enregistrer sur plusieurs supports successifs sans s
 
 Il est possible d'extraire tout ou une partie d'une sauvegarde.
 
-Il n'y a pas d'option, contrairement à la commande `tar`, pour sauvegarder et compresser en même temps. Donc, cela est effectué en deux étapes: la sauvegarde puis la compression.
+Il n'y a pas d'option, contrairement à la commande `tar`, pour sauvegarder et compresser en même temps. Cela est effectué en deux étapes : la sauvegarde puis la compression.
 
-Pour effectuer une sauvegarde avec `cpio`, vous devez spécifier la liste de fichiers à sauvegarder.
+`cpio` dispose de trois modes de fonctionnement, chacun correspondant à une fonction différente :
 
-Cette liste peut être fournie avec les commandes `find`, `ls` ou `cat`.
+1. **Mode copy-out** – Création de sauvegarde (archive). Vous pouvez activer ce mode grâce aux options `-o` ou `--create`. Dans ce mode, vous devez générer une liste de noms de fichiers avec une commande spécifique (`find`, `ls` ou `cat`) et la passer à cpio.
 
-* `find` : parcourir un arbre, récursivement ou non ;
-* `ls` : liste un répertoire, récursivement ou non ;
-* `cat` : lit un fichier contenant les arbres ou les fichiers à sauvegarder.
+   * `find` : parcoure un arbre, récursivement ou non ;
+   * `ls` : liste un répertoire, récursivement ou non ;
+   * `cat` : lit un fichier contenant les arbres ou les fichiers à sauvegarder.
+
+    !!! note "Remarque"
+
+        `ls` ne peut pas être utilisé avec `-l` (détails) ou `-R` (récursif).
+
+        Une liste de noms est nécessaire.
+
+2. **mode copy-in** – extraction de fichiers d'une archive. Vous pouvez activer ce mode en utilisant l'option `-i`.
+3. **mode copy-pass** – copie les fichiers d’un répertoire à un autre. Vous pouvez activer ce mode via les options `-p` ou bien `--pass-through`.
+
+Comme pour la commande `tar`, les utilisateurs doivent tenir compte de la manière dont la liste des fichiers est enregistrée (**chemin absolu** ou **chemin relatif**) lors de la création d'une archive.
+
+Fonction secondaire :
+
+1. `-t` – Affiche une table des contenus en entrée.
+2. `-A` – Ajoute à une archive existante. Fonctionne uniquement en mode `copy-in`.
 
 !!! note "Remarque"
 
-    `ls` ne peut pas être utilisé avec `-l` (détails) ni avec `-R` (récursive).
-    
-    Il faut une simple liste de noms.
+    Certaines options de `cpio` doivent être combinées avec le mode de fonctionnement approprié pour opérer correctement. Cf. `man 1 cpio`
 
-### Créer une sauvegarde avec la commande `cpio`
+### mode copy-out
 
 Syntaxe de la commande `cpio` :
 
 ```bash
-[files command |] cpio {-o| --create} [-options] [<file-list] [>device]
+[files command |] cpio {-o| --create} [-options] [< file-list] [> device]
 ```
 
 Exemple :
@@ -581,17 +604,17 @@ Utilisation du nom d'un support de sauvegarde :
 find /etc | cpio -ovF /backups/etc.cpio
 ```
 
-Le résultat de la commande `find` est envoyé en entrée à la commande `cpio` via un *pipe* (le caractère `|`, ++alt-graph+6++).
+Le résultat de la commande `find` est envoyé en entrée de la commande `cpio` via un *pipe* (le caractère `|`, ++left-shift+backslash++).
 
-Ici, la commande `find /etc` renvoie une liste de fichiers correspondant au contenu du répertoire `/etc` (de manière récursive) à la commande `cpio`, qui effectue la sauvegarde.
+Ici, la commande `find /etc` renvoie une liste de fichiers correspondant au contenu du répertoire `/etc` (de manière récursive) et la transmet à la commande `cpio`, qui effectue la sauvegarde.
 
-N'oubliez pas le signe `>` lors de la sauvegarde ou le `F save_name_cpio`.
+N'oubliez pas le signe `>` lors de la sauvegarde ou bien l'option `F save_name_cpio`.
 
-| Options | Observation                                |
-| ------- | ------------------------------------------ |
-| `-o`    | Crée une sauvegarde (*output*).            |
-| `-v`    | Affiche le nom des fichiers traités.       |
-| `-F`    | Indique la sauvegarde à modifier (médium). |
+| Options | Observation                                                                                                                              |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `-o`    | Crée une sauvegarde via le mode _cp-out_.                                                                                                |
+| `-v`    | Affiche le nom des fichiers traités.                                                                                                     |
+| `-F`    | Sauvegarde sur un support spécifique, qui peut remplacer l'entrée standard (`<`) et la sortie standard (`>`) dans la commande `cpio` |
 
 Sauvegarde vers un média :
 
@@ -604,16 +627,12 @@ Le support peut être de plusieurs types :
 * tape drive: `/dev/rmt0`;
 * une partition : `/dev/sda5`, `/dev/hda5`, etc.
 
-### Type de sauvegarde
-
-#### Sauvegarde avec chemin relatif
+#### Chemins relatifs et absolus de la liste de fichiers
 
 ```bash
 cd /
 find etc | cpio -o > /backups/etc.cpio
 ```
-
-#### Sauvegarde avec chemin absolu
 
 ```bash
 find /etc | cpio -o > /backups/etc.A.cpio
@@ -623,12 +642,12 @@ find /etc | cpio -o > /backups/etc.A.cpio
 
     Si le chemin spécifié dans la commande `find` est **absolu**, alors la sauvegarde sera effectuée en mode **absolu**.
     
-    Si le chemin indiqué dans la commande `find` est **relatif**, alors la sauvegarde sera faite en mode **relatif**.
+    Si le chemin indiqué dans la commande `find` est **relatif**, alors la sauvegarde sera faite en mode **relative**.
 
-### Ajouter à une sauvegarde
+#### Ajouter des fichiers à une sauvegarde existante
 
 ```bash
-[files command |] cpio {-o| --create} -A [-options] [<fic-list] {F|>device}
+[files command |] cpio {-o| --create} -A [-options] [< fic-list] {F| > device}
 ```
 
 Exemple :
@@ -639,12 +658,12 @@ find /etc/shadow | cpio -o -AF SystemFiles.A.cpio
 
 L'ajout de fichiers n'est possible que sur les supports à accès direct.
 
-| Option | Observation                                                     |
-| ------ | --------------------------------------------------------------- |
-| `-A`   | Ajoute un ou plusieurs fichiers à une sauvegarde sur le disque. |
-| `-F`   | Indique la sauvegarde à modifier.                               |
+| Option | Observation                                                 |
+| ------ | ----------------------------------------------------------- |
+| `-A`   | Ajoute un ou plusieurs fichiers à une sauvegarde existante. |
+| `-F`   | Indique la sauvegarde à modifier.                           |
 
-### Compression d'une sauvegarde
+#### Compression d'une sauvegarde
 
 * Enregistrer la sauvegarde**puis** comprimer
 
@@ -667,18 +686,18 @@ La syntaxe de la première méthode est plus facile à comprendre et à retenir,
 
 Pour la première méthode, le fichier de sauvegarde est automatiquement renommé par l'utilitaire `gzip` qui ajoute automatiquement `.gz` à la fin du nom du fichier. De même, l'utilitaire `bzip2` ajoute automatiquement le suffixe `.bz2`.
 
-### Lire le contenu d'une sauvegarde
+### Lister le contenu d'une sauvegarde
 
-Syntaxe de la commande `cpio` pour lire le contenu d'une sauvegarde *cpio* :
+La syntaxe de la commande `cpio` pour lire le contenu d'une sauvegarde *cpio* est la suivante :
 
 ```bash
-cpio -t [-options] [<fic-list]
+cpio -t [-options] [< fic-list]
 ```
 
 Exemple :
 
 ```bash
-cpio -tv </backups/etc.152.cpio | less
+cpio -tv < /backups/etc.152.cpio | less
 ```
 
 | Options | Observation                       |
@@ -690,18 +709,18 @@ Après avoir fait une sauvegarde, vous devez lire son contenu pour vous assurer 
 
 De la même manière, avant d'effectuer une restauration, vous devez lire le contenu de la sauvegarde qui sera utilisée.
 
-### Restaurer une sauvegarde
+### mode copy-in
 
-Syntaxe de la commande `cpio` pour restaurer une sauvegarde :
+La syntaxe de la commande `cpio` pour restaurer une sauvegarde est la suivante :
 
 ```bash
-cpio {-i| --extract} [-E file] [-options] [<device]
+cpio {-i| --extract} [-E file] [-options] [< device]
 ```
 
 Exemple :
 
 ```bash
-cpio -iv </backups/etc.152.cpio | less
+cpio -iv < /backups/etc.152.cpio | less
 ```
 
 | Options                      | Observation                                                                  |
@@ -716,7 +735,7 @@ cpio -iv </backups/etc.152.cpio | less
 
     Par défaut, au moment de la restauration, les fichiers du disque dont la date de dernière modification est plus récente ou égale à la date de la sauvegarde ne sont pas restaurés (afin d'éviter d'écraser des informations récentes par des informations plus anciennes).
     
-    L'option `u` vous permet par contre de restaurer les anciennes versions des fichiers.
+    Die Option `u` hingegen ermöglicht es, ältere Versionen der Dateien wiederherzustellen.
 
 Exemples :
 
@@ -728,7 +747,7 @@ cpio –ivF home.A.cpio
 
 * Restauration absolue sur une arborescence existante
 
-L'option `u` vous permet de remplacer les fichiers existants à l'endroit où la restauration a lieu.
+Mit der Option `u` können Sie vorhandene Dateien an dem Ort, an dem die Wiederherstellung stattfindet, überschreiben.
 
 ```bash
 cpio –iuvF home.A.cpio
@@ -749,12 +768,12 @@ cpio --no-absolute-filenames -divuF home.A.cpio
 * Restaurer une sauvegarde relative
 
 ```bash
-cpio –iv <etc.cpio
+cpio –iv < etc.cpio
 ```
 
 * Restauration absolue d'un fichier ou d'un répertoire
 
-La restauration d'un fichier ou d'un répertoire particulier nécessite la création d'un fichier contenant une liste qui doit ensuite être supprimé.
+La restauration d'un fichier ou d'un répertoire particulier nécessite la création d'un fichier contenant une liste, ce fichier doit ensuite être supprimé.
 
 ```bash
 echo "/etc/passwd" > tmp
@@ -764,14 +783,14 @@ rm -f tmp
 
 ## Utilitaires de compression - décompression
 
-L'utilisation de la compression au moment d'une sauvegarde peut avoir un certain nombre d'inconvénients :
+L'utilisation de la compression lors d'une sauvegarde peut avoir un certain nombre d'inconvénients :
 
 * Augmente le temps de sauvegarde ainsi que le temps de restauration.
 * Il rend impossible d'ajouter des fichiers à la sauvegarde.
 
 !!! note "Remarque"
 
-    Il est donc préférable de faire une sauvegarde et de la compresser plutôt que de comprimer lors de la sauvegarde.
+    Il est donc préférable de faire une sauvegarde et de la compresser ensuite plutôt que de comprimer lors de la sauvegarde.
 
 ### Compression avec `gzip`
 
@@ -791,13 +810,13 @@ $ ls
 usr.tar.gz
 ```
 
-Le fichier obtient l'extension `.gz`.
+L'extension `.gz` s'ajoute au nom du fichier.
 
-Il conserve les mêmes droits et les mêmes dates d'accès et de modification.
+Elle conserve les mêmes droits et les mêmes dates d'accès et de modification.
 
-### Compression avec `bunzip2`
+### Compression avec `bzip2`
 
-La commande `bunzip2` compresse également des données.
+La commande `bzip2` compresse également des données.
 
 Syntaxe de la commande `bzip2` :
 
@@ -837,13 +856,14 @@ usr.tar
 
 Le nom du fichier est tronqué par `gunzip` et l'extension `.gz` est supprimée.
 
-`gunzip` décompresse également les fichiers ayant les extensions suivantes :
+`gunzip` décompresse également les fichiers possédant les extensions suivantes :
 
-* `.z`;
+* `.z` ;
 * `-z` ;
-* `_z`.
+* `_z` ;
+* `-gz` ;
 
-### Décompression avec `bunzip2`
+### Décompression en utilisant `bunzip2`
 
 La commande `bunzip2` décompresse des données compressées.
 
@@ -866,5 +886,5 @@ Le nom du fichier est tronqué par `bunzip2` et l'extension `.bz2` est supprimé
 `bunzip2` décompresse également un fichier avec les extensions suivantes :
 
 * `-bz` ;
-* `.tbz2` ;
+* `.tbz2`;
 * `tbz`.
