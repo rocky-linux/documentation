@@ -8,4 +8,5 @@ nav:
     - LXD Server: lxd_server
     - Incus Server: incus_server
     - Sed, Awk & Grep: sed_awk_grep
+    - Security Enhancements: security_enhancements
     - ...
