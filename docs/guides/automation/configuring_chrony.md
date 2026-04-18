@@ -1,7 +1,7 @@
 ---
 title: Configuring chrony
 author: Howard Van Der Wal
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 8, 9, 10
 ai_contributors: Claude (claude-opus-4-6)
 tags:
@@ -29,7 +29,7 @@ This guide covers the essential aspects of configuring `chrony` on Rocky Linux, 
 ## Prerequisites
 
 - A Rocky Linux 8, 9, or 10 system with `root` or `sudo` access.
-- The `chrony` package installed (installed by default on Rocky Linux).
+- The `chrony` package is installed (installed by default on Rocky Linux).
 - Network access to at least one NTP server (for internet-connected systems).
 
 Verify `chrony` is installed:
@@ -90,7 +90,7 @@ ntsdumpdir /var/lib/chrony
 logdir /var/log/chrony
 ```
 
-The key directive here is `pool 2.rocky.pool.ntp.org iburst`, which uses the Rocky Linux NTP pool to obtain time sources.
+The key directive here is `pool 2.rocky.pool.ntp.org iburst`, which uses the Rocky Linux NTP pool as a time source.
 
 !!! warning
 
@@ -131,7 +131,7 @@ The `pool` directive repeatedly resolves the DNS name to obtain multiple time so
 
 ### The `iburst` option
 
-The `iburst` option causes `chrony` to send a burst of 4 to 8 requests when it first starts communicating with a source, which speeds up the initial synchronization.
+The `iburst` option causes `chrony` to send a burst of 4 to 8 requests when it first starts communicating with a source, speeding up initial synchronization.
 
 ## Using enough NTP sources
 
@@ -208,7 +208,7 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 | Poll | Polling interval as a base-2 logarithm in seconds |
 | Reach | Reachability register in octal (377 = last 8 attempts all successful) |
 | LastRx | Time since last good sample |
-| Last sample | Offset between local clock and source |
+| Last sample | Offset between the local clock and the source |
 
 Check clock tracking status:
 
@@ -249,7 +249,7 @@ Check source statistics:
 chronyc sourcestats -v
 ```
 
-This command shows the number of sample points, estimated frequency offset, and standard deviation for each source. It is useful for evaluating the stability and reliability of individual NTP sources over time.
+This command displays the number of sample points, the estimated frequency offset, and the standard deviation for each source. It is useful for evaluating the stability and reliability of individual NTP sources over time.
 
 ## The `trust` option
 
@@ -262,7 +262,7 @@ server ntp2.example.com iburst trust
 
 !!! warning
 
-    The `trust` option is a workaround for environments where fewer than four NTP sources are available. It changes the falseticker detection so that trusted sources can only be rejected if another trusted source disagrees. Use it only when adding additional NTP sources is not possible. Always prefer adding more sources over using `trust`.
+    The `trust` option is a workaround for environments with fewer than 4 NTP sources. It changes the falseticker detection so that trusted sources can only be rejected if another trusted source disagrees. Use it only when adding additional NTP sources is not possible. Always prefer adding more sources over using `trust`.
 
 ## Hardware timestamping
 
@@ -339,7 +339,7 @@ Total kernel RX : 3
 
 ## NTP in air-gapped and restricted networks
 
-In environments without external NTP access, one or more internal machines can serve as the time reference for the network.
+In environments without external NTP access, one or more internal machines can serve as the network's time reference.
 
 ### Configuring a standalone time server
 
@@ -349,7 +349,7 @@ On the designated time server, configure the `local` directive^1^ to serve time 
 local stratum 10
 ```
 
-The `stratum` value (1 through 15, default 10) indicates the quality of the time. A higher number means lower confidence. Stratum 10 is the convention for unsynchronized local clocks.
+The `stratum` value (1-15, default 10) indicates the quality of the time. A higher number means lower confidence. Stratum 10 is the convention for unsynchronized local clocks.
 
 ### Orphan mode for redundancy
 
@@ -441,16 +441,16 @@ UNCONN 0      0            0.0.0.0:123       0.0.0.0:*    users:(("chronyd",pid=
 
 | Directive | Purpose | Example |
 | --------- | ------- | ------- |
-| `server` | Specify a single NTP server | `server ntp1.example.com iburst` |
-| `pool` | Specify an NTP server pool (DNS name) | `pool 2.rocky.pool.ntp.org iburst` |
-| `makestep` | Step clock if offset exceeds threshold | `makestep 1.0 3` |
+| `server` | Specifies a single NTP server | `server ntp1.example.com iburst` |
+| `pool` | Specifies an NTP server pool (DNS name) | `pool 2.rocky.pool.ntp.org iburst` |
+| `makestep` | Steps clock if offset exceeds threshold | `makestep 1.0 3` |
 | `driftfile` | File to record clock drift rate | `driftfile /var/lib/chrony/drift` |
-| `rtcsync` | Synchronize the hardware RTC | `rtcsync` |
-| `allow` | Allow NTP client access from subnet | `allow 192.168.1.0/24` |
-| `local` | Serve time when not externally synchronized | `local stratum 10` |
-| `hwtimestamp` | Enable hardware timestamping | `hwtimestamp *` |
-| `trust` | Assume source time is always correct | Added to `server` line |
-| `iburst` | Speed up initial synchronization | Added to `server` or `pool` line |
+| `rtcsync` | Synchronizes the hardware RTC | `rtcsync` |
+| `allow` | Allows NTP client access from the subnet | `allow 192.168.1.0/24` |
+| `local` | Serves time when not externally synchronized | `local stratum 10` |
+| `hwtimestamp` | Enables hardware timestamping | `hwtimestamp *` |
+| `trust` | Assumes source time is always correct | Added to `server` line |
+| `iburst` | Speeds up initial synchronization | Added to `server` or `pool` line |
 
 ## Conclusion
 
