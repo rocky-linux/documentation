@@ -7,7 +7,7 @@ tags:
   - access control
 ---
 
-<font color=red>All of the examples in this document use root actions, with ordinary users actions commented separately. In the markdown code block, the command description will be indicated with # on the previous line.</font>
+<font color=red>All of the examples in this document use root actions, with ordinary user actions commented separately. In the markdown code block, the command description will be indicated with # on the previous line.</font>
 
 # Review basic permissions
 
@@ -25,13 +25,13 @@ Their meanings are as follows:
 | Part | Description |
 |------|-------------|
 | 1    | File type. `-` indicates that this is an ordinary file. Seven file types will be introduced later. |
-| 2    | Permissions of owner user, the meaning of rwx respectively means: read, write, execute.  |
+| 2    | Permissions of the owner user, the meaning of rwx respectively means: read, write, execute.  |
 | 3    | Permissions of the owner group. |
 | 4    | Permissions of other users. |
 | 5    | Number of subdirectories (`.` and `..` included). For a file, it represents the number of hard links, and 1 represents itself. |
 | 6    | Name of the owner user. |
 | 7    | Name of the owner group. |
-| 8    | For files, it shows the size of the file. For directories, it shows the fixed value of 4096 bytes occupied by the file naming. To calculate the total size of a directory, use `du -sh` |
+| 8    | For files, it shows the file size. For directories, it shows the fixed 4096 bytes occupied by the file name. To calculate the total size of a directory, use `du -sh` |
 | 9    | Last modified date.   |
 | 10   | The name of the file (or directory). |
 
@@ -41,11 +41,11 @@ Their meanings are as follows:
 |:-----------:|--------------------------------------------------------------------------------------------------------------------------------------------|
 | **-**       | Represents an ordinary file. Including plain text files (ASCII); binary files (binary); data format files (data); various compressed files. |
 | **d**       | Represents a directory file. By default, there is one in every directory `.` and `..`. |
-| **b**       | Block device file. Including all kinds of hard drives, USB drives and so on. |
-| **c**       | Character device file. Interface device of serial port, such as mouse, keyboard, etc. |
+| **b**       | Block device file. Including all kinds of hard drives, USB drives, and so on. |
+| **c**       | Character device file. Interface device of a serial port, such as a mouse, keyboard, etc. |
 | **s**       | Socket file. It is a file specially used for network communication. |
-| **p**       | Pipe file. It is a special file type, the main purpose is to solve the errors caused by multiple programs accessing a file at the same time. FIFO is the abbreviation of first-in-first-out. |
-| **l**       | Soft link files, also called symbolic link files, are similar to shortcuts in Windows. Hard link file, also known as physical link file.|
+| **p**       | Pipe file. It is a special file type; its main purpose is to resolve errors caused by multiple programs accessing a file at the same time. FIFO is the abbreviation of first-in-first-out. |
+| **l**       | Soft link files, also called symbolic link files, are similar to shortcuts in Windows. Hard link file, also known as a physical link file.|
 
 ## The meaning of basic permissions
 
@@ -67,21 +67,21 @@ For directory:
 
 !!! info
 
-    For directories, **r** and **x** permissions usually appear at the same time.
+    For directories, the **r** and **x** permissions usually appear together.
 
 ## Special permissions
 
-In GNU/Linux, in addition to the basic permissions mentioned above, there are also some special permissions, which we will introduce one by one.
+In GNU/Linux, in addition to the basic permissions mentioned above, there are special permissions that we will introduce one by one.
 
 ### ACL permissions
 
 **Q: What is ACL?**
 
-ACL(Access Control List), the purpose is to solve the problem that the three identities under Linux can not meet the needs of resource permission allocation.
+ACL (Access Control List) solves the problem that the three identities under Linux cannot meet the needs of resource permission allocation.
 
-For example, the teacher gives lessons to the students, and the teacher creates a directory under the root directory of OS. Only the students in this class are allowed to upload and download, and others are not allowed. At this point, the permissions for the directory are 770. One day, a student from another school came to listen to the teacher, how should permissions be assigned? If you put this student in the **owner group**, he will have the same permissions as the students in this class - **rwx**. If the student is put into the **other users**, he will not have any permissions. At this time, the basic permission allocation cannot meet the requirements, and you need to use ACL.
+For example, the teacher gives lessons to the students and creates a directory under the OS's root directory. Only students in this class are allowed to upload and download; others are not. At this point, the directory's permissions are 770. One day, a student from another school came to listen to the teacher and asked how permissions should be assigned. If you put this student in the **owner group**, he will have the same permissions as the students in this class - **rwx**. If the student is added to the **other users**group, he will not have any permissions. At this time, the default permission allocation cannot meet the requirements; you need to use ACLs.
 
-There is a similar feature in the Windows operating system. For example, to assign permissions to a user for a file, for a user-defined directory/file, **right-click** ---> **Properties** ---> **Security** ---> **Edit** ---> **Add** ---> **Advanced** ---> **Find now**, find the corresponding user/group ---> assign specific permissions ---> **apply**, and complete.
+There is a similar feature in Windows. For example, to assign permissions to a user for a file, for a user-defined directory/file, **right-click** ---> **Properties** ---> **Security** ---> **Edit** ---> **Add** ---> **Advanced** ---> **Find now**, find the corresponding user/group ---> assign specific permissions ---> **apply**, and complete.
 
 <!--Screenshots of the English interface are required-->
 
@@ -89,7 +89,7 @@ The same is true of GNU/Linux: add the specified user/group to the file/director
 
 **Q: How do I enable an ACL?**
 
-You need to find the file name of the device where the mount point is located and its partition number. For example, on my machine, you could do something like this:
+You need to find the device's file name and the mount point's partition number. For example, on my machine, you could do something like this:
 
 ```bash
 Shell > df -hT
@@ -131,7 +131,7 @@ Shell > reboot
 
 To view ACL, you need to use the `getfacle` command -- `getfacle FILE_NAME`
 
-If you want to set ACL permissions, you need to use the `setfacl` command.
+To set ACL permissions, use the `setfacl` command.
 
 ```bash
 Shell > setfacl <option> <FILE_NAME>
@@ -146,7 +146,7 @@ Shell > setfacl <option> <FILE_NAME>
 | -k | remove the default ACL  |
 | -R | recurse into subdirectories  |
 
-Use the teacher's example mentioned at the beginning of the article to illustrate the use of ACL.
+Use the teacher's example mentioned at the beginning of the article to illustrate ACL.
 
 ```bash
 # The teacher is the root user
@@ -190,7 +190,7 @@ other::---
 
 **Q: When using the `getfacl` command, what does the "mask:: rwx" in the output message mean?**
 
-The **mask** is used to specify the maximum valid permissions. The permissions given to the user are not real permissions, the real permissions can only be obtained by using the "logical and" of the user's permissions and mask permissions.
+The **mask** specifies the maximum valid permissions. The permissions given to the user are not real permissions; the real permissions can only be obtained by using the "logical and" of the user's permissions and mask permissions.
 
 !!! info
 
@@ -205,7 +205,7 @@ The **mask** is used to specify the maximum valid permissions. The permissions g
 
 !!! info
 
-    Because the default mask is rwx, for any user's ACL permissions, the result is their own permissions.
+    Because the default mask is rwx, the result of any user's ACL permissions is their own permissions.
 
 You can also adjust mask permissions:
 
@@ -239,7 +239,7 @@ Shell > setfacl -b FILE_NAME
 
 **Q: What is the recursion of ACL permissions?**
 
-For ACL permissions, this means that when the parent directory sets ACL permissions, all subdirectories and sub-files will have the same ACL permissions.
+For ACL permissions, this means that when the parent directory sets ACL permissions, all subdirectories and subfiles inherit those permissions.
 
 !!! info
 
@@ -264,7 +264,7 @@ Shell > ls -l /project
 -rw-r-xr--+ 1 root root 0 Jan  12 14:35 file2
 ```
 
-**Q: if I create a new file in this directory, does it have ACL permission?**
+**Q: If I create a new file in this directory, does it inherit the ACL permissions?**
 
 The answer is no, because the newly created file is after the command `setfacl-m u:tom:rx -R /project` is executed.
 
@@ -302,7 +302,7 @@ default:other::---
 
 !!! info
 
-    The default and recursion of using ACL permissions require that the operating object of the command be a directory! If the operation object is a file, an error prompt will be output.
+    The default and recursive use of ACL permissions requires that the command's operating object be a directory! If the operation object is a file, an error prompt will be output.
 
 ### SetUID
 
@@ -319,16 +319,16 @@ Take the most common `passwd` command as an example:
 
 ![SetUID1](./images/SetUID1.png)
 
-As you can see, the ordinary users only has r and x, but the owner's x becomes s, proving that the `passwd` command has SUID permissions.
+As you can see, ordinary users have only r and x, but the owner's x becomes s, proving that the `passwd` command has SUID permissions.
 
-It is well known that the ordinary users (uid >= 1000) can change his own password. The real password is stored in the **/etc/shadow** file, but the permission of the shadows file is 000, and the ordinary users does not have any permissions.
+It is well known that the ordinary users (uid >= 1000) can change their own passwords. The real password is stored in the **/etc/shadow** file, but the shadow file has a permission of 000, so ordinary users do not have any permissions.
 
 ```bash
 Shell > ls -l /etc/shadow
 ---------- 1 root root 874 Jan  12 13:42 /etc/shadow
 ```
 
-Since the ordinary users can change their password, they must have written the password to the **/etc/shadow** file. When an ordinary user executes the `passwd` command, it will temporarily change to the owner of the file -- **root**. For **shadow** file, **root** can not be restricted by permissions. This is why `passwd` command needs SUID permission.
+Since ordinary users can change their passwords, the system must store their passwords in the **/etc/shadow** file. When an ordinary user executes the `passwd` command, it will temporarily change to the owner of the file -- **root**. For the **shadow** file, **root** can not be restricted by permissions. This is why the `passwd` command needs SUID permission.
 
 As mentioned earlier, basic permissions can be represented by numbers, such as 755, 644, and so on. SUID is represented by **4**. For executable binaries, you can set permissions like this -- **4755**.
 
@@ -362,7 +362,7 @@ Shell > chmod u-s FILE_NAME
 
 !!! warning
 
-    Because SUID can temporarily change the Ordinary users  to root, you need to be especially careful with files with this permission when maintaining the server. You can find files with SUID permissions by using the following command:
+    Because SUID can temporarily change ordinary users  to root, you need to be especially careful with files with this permission when maintaining the server. You can find files with SUID permissions by using the following command:
 
     ```bash
     Shell > find / -perm -4000 -a -type f -exec ls -l  {} \;
@@ -377,7 +377,7 @@ The role of "SetGID":
 * The executor of the command obtains the identity of the owner group of the program file when executing the program.
 * The identity change is only valid during execution, and once the binary program is finished, the executor's identity is restored to the original identity.
 
-Take the `locate` command for example:
+Take the `locate` command, for example:
 
 ```bash
 Shell > rpm -ql mlocate
@@ -396,7 +396,7 @@ The `locate` command uses the **mlocate.db** database file to quickly search for
 
 Because the `locate` command has SGID permission, when the executor (ordinary users) executes the `locate` command, the owner group is switched to **slocate**. `slocate` has r permission for the **/var/lib/mlocate/mlocate.db** file.
 
-The representation of SGID is with the number **2**, so the `locate` command has a permission of 2711.
+The SGID is represented by the number **2**, so the `locate` command has a permission of 2711.
 
 ```bash
 # Set SGID permissions
@@ -423,7 +423,7 @@ Shell > chmod g-s FILE_NAME
     -rwxr-S--x  1 root root         0 Jan  14 12:11 sgid
     ```
 
-SGID can be used not only for executable binary file/program, but also for directories, but it is rarely used.
+SGID can be applied not only to executable binary files/programs but also to directories, though it is rarely used.
 
 * Ordinary users must have rwx permissions on the directory.
 * For files created by ordinary users in this directory, the default owner group is the owner group of the directory.
@@ -453,9 +453,9 @@ Shell(tom) > cd /SGID_dir && touch tom_file && ls -l
 
 The role of "Sticky BIT":
 
-* Only valid for directory.
+* Only valid for the directory.
 * Ordinary users have w and x permissions on this directory.
-* If there is no Sticky Bit, ordinary users with w permission can delete all files in this directory (including files created by other users). Once the directory is given SBIT permission, only root user can delete all files. Even if ordinary users have w permission, they can only delete files created by themselves (files created by other users cannot be deleted).
+* If there is no Sticky Bit, ordinary users with w permission can delete all files in this directory (including files created by other users). Once the directory is given SBIT permission, only the root user can delete all files. Even if ordinary users have w permission, they can only delete their own files (files created by other users cannot be deleted).
 
 SBIT is represented by the number **1**.
 
@@ -502,7 +502,7 @@ Shell(tom) > rm -rf /tmp/tom_file1
 
 ### chattr
 
-The function of chattr permission: it is used to protect important files or directories in the system from being deleted by misoperation.
+The chattr permission is used to protect important files or directories in the system from accidental deletion.
 
 Usage of the `chattr` command -- `chattr [ -RVf ] [ -v version ] [ -p project ] [ mode ] files...`
 
@@ -512,7 +512,7 @@ The format of a symbolic mode is +-=[aAcCdDeFijPsStTu].
 * "-" means to reduce permissions;
 * "=" means equal to a permission.
 
-The most commonly used permissions (also called attribute) are **a** and **i**.
+The most commonly used permissions (also called attributes) are **a** and **i**.
 
 #### Description of attribute i
 
@@ -640,7 +640,7 @@ Shell > chattr -a /etc/tmpfile1 /etc/dira/
 
 !!! question
 
-    **Q: What happens when I set the ai attribute on a file?**
+    **Q: What happens when I set the AI attribute on a file?**
 
     You cannot do anything with the file other than to view it.
 
@@ -656,11 +656,11 @@ The role of "sudo":
 * Through the root user, assign the commands that can only be executed by the root user (uid=0) to ordinary users for execution.
 * The operation object of "sudo" is the system command.
 
-We know that in the GNU/Linux operating system, only the administrator root user has permission to use commands located in the **/sbin/** and **/usr/sbin/** directories. Generally speaking, a company has a team to maintain a set of servers. This set of servers can refer to a single computer room in one geographic location, or it can refer to a computer room in multiple geographical locations. The team leader uses the permissions of the root user, and other team members may only have the permissions of the ordinary user. As the person in charge has a lot of work, there is no time to maintain the daily work of the server, most of the work needs to be maintained by ordinary users. However, ordinary users have many restrictions on the use of commands, and at this point, you need to use sudo permissions.
+We know that in the GNU/Linux operating system, only the root (administrator) user has permission to run commands in the **/sbin/** and **/usr/sbin/** directories. Generally speaking, a company has a team to maintain a set of servers. This set of servers can refer to a single computer room in a single geographic location, or to a computer room across multiple geographic locations. The team leader uses the root user's permissions, while other team members may only have the permissions of an ordinary user. As the person in charge has a lot of work, there is no time to maintain the server's daily operations; most of the work falls to ordinary users. However, ordinary users have many restrictions on command use, and at this point you need to use sudo.
 
 To grant permissions to ordinary users, **you must use the root user (uid=0)**.
 
-You can empower ordinary users by using the `visudo` command, what you're actually changing is the **/etc/sudoers** file.
+You can empower ordinary users by using the `visudo` command. What you are actually changing is the **/etc/sudoers** file.
 
 ```bash
 Shell > visudo
@@ -709,11 +709,11 @@ Shell(tom) > sudo -l
 Shell(tom) > sudo /sbin/shutdown -r now
 ```
 
-If your authorization command is `/sbin/shutdown`, it means that authorized users can use any of the options of the command.
+If your authorization command is `/sbin/shutdown`, it means that authorized users can use any of its options.
 
 !!! warning
 
-    Since sudo is an operation that "increase user permissions", one must be extremely careful when dealing with the **/etc/sudoers** file!
+    Since sudo is an operation that "increases user permissions", one must be extremely careful when dealing with the **/etc/sudoers** file!
 
 Due to various reasons during the initial design of sudo (such as complex design, redundant functions, heavy historical burden, etc.), the current sudo has discovered many high-risk vulnerabilities:
 
