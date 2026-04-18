@@ -12,7 +12,7 @@ tags:
 
 !!! note
 
-    This document represents expanded content from its [parent document found here](../../gemstones/containers/podman.md). If you need a quick how-to, that parent document may suffice. 
+    This document contains expanded content from its [parent document](../../gemstones/containers/podman.md). If you need a quick how-to, that parent document may suffice. 
 
 [Podman](https://podman.io/) (Pod Manager) is a container and image management tool compatible with the [OCI](https://opencontainers.org/) (Open Container Initiative).
 
@@ -20,9 +20,9 @@ Podman:
 
 * works without a daemon (it can run containers as a `systemd` service)
 * allows you to manage containers as an unprivileged user (no need to be root)
-* included, unlike docker, in the Rocky Linux repositories
+* included, unlike Docker, in the Rocky Linux repositories
 
-That makes Podman not only a docker-compatible alternative container runtime but much more.
+That makes Podman not only a Docker-compatible alternative container runtime but much more.
 
 ## Install Podman
 
@@ -104,7 +104,7 @@ podman run -d -p 8080:80 nextcloud
 
 !!! note
 
-    Out of the box, Rocky Linux has `firewalld` enabled, and may block port 8080. Follow [the guide](../security/firewalld-beginners.md) to open up the port in order to be able to access the service.
+    Out of the box, Rocky Linux has `firewalld` enabled, and may block port 8080. Follow [the guide](../security/firewalld-beginners.md) to open the port and access the service.
 
 You will receive a prompt to select the container registry to download from. In our example, you will use `docker.io/library/nextcloud:latest`.
 
@@ -122,7 +122,7 @@ Enter **ip_address:8080** in your web browser (assuming you opened the port in `
 
 ### Using `quadlet`
 
-Since 4.4 Podman ships with [Quadlet](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html) – a systemd generator. It can be used to generate unit files for rootless and rootful systemd services.
+Since 4.4, Podman ships with [Quadlet](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html) – a systemd generator. It can be used to generate unit files for rootless and rootful systemd services.
 
 Place Quadlet files for rootful services in:
 
@@ -145,7 +145,7 @@ PublishPort=8080:80
 
 A [lot of other options](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html#container-units-container) are available.
 
-To run the generator and let systemd know that there is a new service run:
+To run the generator and let systemd know that there is a new service to run:
 
 ```bash
 systemctl --user daemon-reload
@@ -168,7 +168,7 @@ To automatically run the container upon system start or user login, you can add 
 WantedBy=default.target
 ```
 
-As the generated service files are considered transient, they cannot be enabled by systemd. To mitigate this, the generator manually applies installs during generation. This effectively also enables those services files.
+As the generated service files are considered transient, they cannot be enabled by systemd. To mitigate this, the generator manually applies and installs during generation. This effectively also enables those service files.
 
 Other file types are supported: pod, volume, network, image, and kube. [Pods](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html#pod-units-pod), for instance, can be used to group containers – the generated systemd services and their dependencies (create the pod before the containers) are automatically managed by systemd.
 
@@ -211,7 +211,7 @@ A Containerfile is a file used by Podman to create container images. Containerfi
 
 ### Web server from a Containerfile
 
-You will create an `httpd` server based on a RockyLinux 9.
+You will create an `httpd` server based on Rocky Linux 9.
 
 Create a folder dedicated to our image:
 
@@ -219,7 +219,7 @@ Create a folder dedicated to our image:
 mkdir myrocky && cd myrocky
 ```
 
-Create an `index.html` file that will run in our web server:
+Create an `index.html` file that will run on our web server:
 
 ```bash
 echo "Welcome to Rocky" > index.html
@@ -377,7 +377,7 @@ podman system prune -a -f
 
 ## Pods
 
-Pods are a way to group containers together. Containers in a pod share some settings, like mounts, resource allocations, or port mappings.
+Pods are a way to group containers together. Containers in a pod share settings such as mounts, resource allocations, and port mappings.
 
 In Podman, you manage pods using the `podman pod` subcommand, similar to many Podman commands, to control containers:
 
@@ -388,7 +388,7 @@ In Podman, you manage pods using the `podman pod` subcommand, similar to many Po
 | exists  | Checks if a pod exists in local storage.                                           |
 | inspect | Display information describing a pod.                                             |
 | kill    | Kills the main process of each container in one or more pods.                      |
-| logs    | Displays logs for pod with one or more containers.                                 |
+| logs    | Displays logs for a pod with one or more containers.                                 |
 | pause   | Pauses one or more pods.                                                           |
 | prune   | Removes all stopped pods and their containers.                                     |
 | ps      | Prints out information about pods.                                                 |
@@ -400,7 +400,7 @@ In Podman, you manage pods using the `podman pod` subcommand, similar to many Po
 | top     | Displays the running processes of containers in a pod.                             |
 | unpause | Unpauses one or more pods.                                                         |
 
-Containers grouped into a pod can access each other by using localhost. It is useful, for instance, when setting up Nextcloud with a dedicated database like Postgres. Nextcloud can access the database, but the database does not need to be accessible from outside the containers.
+Containers in a pod can access each other using localhost. It is useful, for instance, when setting up Nextcloud with a dedicated database like Postgres. Nextcloud can access the database, but the database does not need to be accessible from outside the containers.
 
 To create a pod containing Nextcloud and a dedicated database, run the following:
 
@@ -421,6 +421,6 @@ To run your newly created pod, run:
 podman pod start nextcloud
 ```
 
-You can now setup Nextcloud using a local database:
+You can now set up Nextcloud using a local database:
 
 ![Nextcloud setting up a database](img/podman_nextcloud_db_setup.png)
