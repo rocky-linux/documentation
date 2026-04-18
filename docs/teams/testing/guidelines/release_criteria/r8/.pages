@@ -1,0 +1,6 @@
+---
+nav:
+  - ... | index.md
+  - Rocky Linux 8 Release Criteria: 8_release_criteria.md
+  - Rocky Linux 8.6 QA and Testing Summary: 8.6_qa_testing_summary.md
+  - Rocky Linux 8.6 GO / NO-GO Status: 8.6_qa_testing_go_no_go.md
