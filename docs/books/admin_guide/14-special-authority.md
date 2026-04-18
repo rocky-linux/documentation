@@ -660,7 +660,7 @@ We know that in the GNU/Linux operating system, only the root (administrator) us
 
 To grant permissions to ordinary users, **you must use the root user (uid=0)**.
 
-You can empower ordinary users by using the `visudo` command. What you're actually changing is the **/etc/sudoers** file.
+You can empower ordinary users by using the `visudo` command. What you are actually changing is the **/etc/sudoers** file.
 
 ```bash
 Shell > visudo
