@@ -502,7 +502,7 @@ Shell(tom) > rm -rf /tmp/tom_file1
 
 ### chattr
 
-The chattr permission is used to protect important files or directories in the system from accidental deletion.
+The chattr permission protects important files or directories on the system from accidental deletion.
 
 Usage of the `chattr` command -- `chattr [ -RVf ] [ -v version ] [ -p project ] [ mode ] files...`
 
