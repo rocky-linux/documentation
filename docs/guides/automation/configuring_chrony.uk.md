@@ -1,7 +1,7 @@
 ---
 title: Налаштування chrony
 author: Howard Van Der Wal
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 8, 9, 10
 ai_contributors: Claude (claude-opus-4-6)
 tags:
