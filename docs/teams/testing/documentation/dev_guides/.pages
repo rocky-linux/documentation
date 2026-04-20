@@ -1,0 +1,9 @@
+---
+nav:
+  - Development Box Setup: wiki_development_boxes.md
+  - openQA - Manual Install: openqa_manual_install.md
+  - Git Commit Signing: commit_signing.md
+  - openQA - Rocky Production Access: openqa_access.md
+  - openQA - openqa-cli POST Examples: openqa_cli_post_examples.md
+  - openQA - openqa-clone-job Examples: openqa_clone_job_examples.md
+  - openQA - openqa-clone-custom-git-refspec Examples: openqa_clone_custom_git_refspec_examples.md
