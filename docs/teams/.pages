@@ -1,5 +1,6 @@
 ---
 nav:
-  - Community Team: community
-  - Testing Team: testing
-...
+    - Alt Architecture: alt_arch
+    - Community: community
+    - Testing: testing
+    - ...
