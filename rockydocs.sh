@@ -8,6 +8,7 @@ set -e
 # Author: Wale Soyinka
 # Changelog: tools/CHANGELOG.md
 #
+#
 
 VERSION="1.0.0"
 RELEASE="13.el10"
