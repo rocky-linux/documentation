@@ -1,0 +1,1 @@
+Platzhalter für alternative Architekturdokumente.
