@@ -1,5 +1,5 @@
 ---
-title: 'SOP: openQA — System-Upgrades'
+title: 'SOP: openQA – System-Upgrades'
 author: Trevor Cooper
 revision_date: 2026-04-17
 render_macros: true
