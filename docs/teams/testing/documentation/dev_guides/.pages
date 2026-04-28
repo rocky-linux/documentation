@@ -1,6 +1,5 @@
 ---
 nav:
-  - Development Box Setup: wiki_development_boxes.md
   - openQA - Manual Install: openqa_manual_install.md
   - Git Commit Signing: commit_signing.md
   - openQA - Rocky Production Access: openqa_access.md
