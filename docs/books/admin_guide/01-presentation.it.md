@@ -165,7 +165,7 @@ Linux è scritto in un linguaggio di alto livello che può essere adattato a div
 
 #### Aperto
 
-Linux si basa su standard riconosciuti come [POSIX](http://en.wikipedia.org/wiki/POSIX), [TCP/IP](https://en.wikipedia.org/wiki/Internet_protocol_suite), [NFS](https://en.wikipedia.org/wiki/Network_File_System), e [Samba](https://en.wikipedia.org/wiki/Samba_\(software\)), che gli consentono di condividere dati e servizi con altri sistemi applicativi.
+Linux si basa su standard riconosciuti come [POSIX](http://en.wikipedia.org/wiki/POSIX), [TCP/IP](https://en.wikipedia.org/wiki/Internet_protocol_suite), [NFS](https://en.wikipedia.org/wiki/Network_File_System), e [Samba](https://en.wikipedia.org/wiki/Samba_(software)), che gli consentono di condividere dati e servizi con altri sistemi applicativi.
 
 ### La filosofia UNIX/Linux
 
