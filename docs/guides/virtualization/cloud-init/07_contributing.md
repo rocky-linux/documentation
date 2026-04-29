@@ -21,9 +21,7 @@ Before you can contribute, please familiarize yourself with the project. Let us 
 
 ### The language and repository
 
-Written almost entirely in **Python**, Canonical hosts the `cloud-init`source code repository on **Launchpad**, but for easier collaboration and a more familiar interface, most contributors interact with its official mirror on **GitHub**.
-
-* **Canonical repository (Launchpad):** [https://git.launchpad.net/cloud-init](https://git.launchpad.net/cloud-init)
+Written almost entirely in **Python**, Canonical hosts the `cloud-init`source code repository on its official mirror on **GitHub**.
 
 * **GitHub mirror:** [https://github.com/canonical/cloud-init](https://github.com/canonical/cloud-init)
 

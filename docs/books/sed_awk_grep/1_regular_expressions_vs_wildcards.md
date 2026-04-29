@@ -1,7 +1,7 @@
 ---
 title: Regular expressions and wildcards
 author: tianci li
-contributors: 
+contributors:
 tags:
   - Regular expressions
   - Wildcards
@@ -82,15 +82,15 @@ BRE (Basic Regular Expression) is the oldest type of regular expression, introdu
 
 | metacharacter | description | bash example |
 | :---:         | :---        | :---         |
-| *             | Matches the number of occurrences of the previous character, which can be 0 or any number of times. |
-| .             | Matches any single character except for line breaks. |
-| ^             | Matches line beginning. For example - **^h** will match lines starting with h. |
-| $             | Matches End of Line. For example - **h$** will match lines ending in h. |
-| []            | Matches any single character specified in parentheses. For example - **[who]** will match w or h or o; **[0-9]** will match one digit; **[0-9][a-z]** will match characters composed of one digit and a single lowercase letter. | 
-| [^]           | Matches any single character except for the characters in parentheses. For example - **[^0-9]** will match any single non-numeric character. **[^a-z]** will match any single character that is not a lowercase letter. |
+| * | Matches the number of occurrences of the previous character, which can be 0 or any number of times. |  |
+| . | Matches any single character except for line breaks. |  |
+| ^ | Matches line beginning. For example - **^h** will match lines starting with h. |  |
+| $ | Matches End of Line. For example - **h$** will match lines ending in h. |  |
+| [] | Matches any single character specified in parentheses. For example - **[who]** will match w or h or o; **[0-9]** will match one digit; **[0-9][a-z]** will match characters composed of one digit and a single lowercase letter. |  |
+| [^] | Matches any single character except for the characters in parentheses. For example - **[^0-9]** will match any single non-numeric character. **[^a-z]** will match any single character that is not a lowercase letter. |  |
 | \             | Escape character, used to cancel the meaning represented by some special symbols. | `echo -e "1.2\n122"  \| grep -E '1\.2'`<br/>**1.2** |
 | \\{n\\}       | Matches the number of occurrences of the previous single character, n represents the number of matches.     | `echo -e "1994\n2000\n2222" \| grep "[24]\{4\}"`<br/>**2222** |
-| \\{n,\\}      | Matches the previous single character at least n times. | `echo -e "1994\n2000\n2222" \| grep  "[29]\{2,\}"`<br/>1**99**4<br/>**2222** | 
+| \\{n,\\}      | Matches the previous single character at least n times. | `echo -e "1994\n2000\n2222" \| grep  "[29]\{2,\}"`<br/>1**99**4<br/>**2222** |
 | \\{n,m\\}     | Matches the previous single character at least n times and at most m times. | `echo -e "abcd\n20\n300\n4444" \| grep "[0-9]\{2,4\}"`<br/>**20**<br/>**300**<br/>**4444** |
 
 ### ERE
@@ -113,7 +113,7 @@ ERE also supports characters with special meanings:
 | \\d                | Equivalent to **[0-9]**        |
 | \\D                | Equivalent to **[^0-9]**       |
 | \\b                | Equivalent to **\\<** or **\\>** |
-| \\B                | Matches non-boundary character.
+| \\B                | Matches non-boundary character. |
 | \\s                | Matches any whitespace character. Equivalent to **[ \f\n\r\t\v]** |
 | \\S                | Equivalent to **[^ \f\n\r\t\v]**  |
 
@@ -153,7 +153,5 @@ Many websites exist for practicing regular expression skills online, such as:
 * [oschina](https://tool.oschina.net/regex/)
 * [regexr](https://regexr.com/)
 * [regelearn](https://regexlearn.com/)
-* [coding](https://coding.tools/regex-tester)
-- [cyrilex](https://extendsclass.com/regex-tester.html)
-- [99Tools](https://99tools.net/regex-tester/)
-
+* [cyrilex](https://extendsclass.com/regex-tester.html)
+* [99Tools](https://99tools.net/regex-tester/)

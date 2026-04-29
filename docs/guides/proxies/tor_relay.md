@@ -245,7 +245,7 @@ IPv6Exit 1
 
 Direct connections to Tor are blocked in many parts of the world, including China, Iran, Russia, and Turkmenistan. In those countries, unlisted bridge relays are used by Tor clients.
 
-Tor operates using a system of [pluggable transports](https://support.torproject.org/glossary/pluggable-transports/), which allow Tor traffic to be masked as other protocols such as unidentifiable dummy traffic (obfs4), WebRTC (snowflake), or HTTPS connections to Microsoft services (meek).
+Tor operates using a system of pluggable transports, which allow the masking of Tor traffic as other protocols, such as unidentifiable dummy traffic (obfs4), WebRTC (snowflake), or HTTPS connections to Microsoft services (meek).
 
 Due to its versatility, obfs4 is the most popular pluggable transport.
 

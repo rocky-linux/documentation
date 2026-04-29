@@ -154,7 +154,7 @@ The process for [submitting original content](https://docs.rockylinux.org/guides
 
 ### AI-assisted contributions
 
-For information about the Rocky Linux documentation policy on AI-assisted contributions please review [Ai-assisted contributions policy](https://docs.rockylinux.org/guides/contribute/ai-contribution-policy.md).
+For information about the Rocky Linux documentation policy on AI-assisted contributions, review [Ai-assisted contributions policy](https://docs.rockylinux.org/guides/contribute/ai-contribution-policy).
 
 ### Links
 

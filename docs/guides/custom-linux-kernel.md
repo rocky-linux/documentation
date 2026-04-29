@@ -13,7 +13,6 @@ In this guide, you will walk through the process of acquiring a kernel source tr
 
 !!! warning "Kernel rebuilds are not recommended nor supported for Rocky Linux. This guide is best used for educational purposes only.
 
-
 ## The kernel
 
 Most often, when people say _Linux_, they are usually referring to a "_Linux distribution_" - for example, Rocky Linux and Debian are types of Linux distribution. A distribution comprises everything necessary to get Linux to exist as a functional operating system.
@@ -86,9 +85,7 @@ That is it for the prerequisite packages needed for actually building the kernel
 
 ## Downloading and unpacking the Linux kernel
 
-The version of the kernel that you are going to build in the following section is version **6.5.7**, which is available at:
-
-[www.kernel.org/pub/linux/kernel/v6.x/linux-6.5.7.tar.xz](https://www.kernel.org/pub/linux/kernel/v6.x/linux-6.5.7.tar.xz)
+The version of the kernel that you are going to build in the following section is version **6.5.7**.
 
 Let us begin the process.
 
@@ -374,7 +371,7 @@ You want to change the line in the file that looks like this:
 
 ## Installing the kernel
 
-Assuming you have a PC and are working out of the `~/build/kernel/` directory, the compiled kernel that you created in the last exercise will be in this path - `<kernel-build-dir>/arch/x86/boot/bzImage` or, to be precise, in our example  `~/build/kernel/arch/x86/boot/bzImage`.
+Assuming you have a PC and are working out of the `~/build/kernel/` directory, the compiled kernel that you created in the last exercise will be in this path - `<kernel-build-dir>/arch/x86/boot/bzImage` or, to be precise, in our example `~/build/kernel/arch/x86/boot/bzImage`.
 
 The location of the corresponding map file for this is at `~/build/kernel/System.map`. You will need both files for the install phase.
 
@@ -393,7 +390,7 @@ Let us go through the steps required to install the new kernel image.
     /boot/vmlinuz-<kernel-version>
     ```
 
-    Here, `<kernel-version>` is the version number of the kernel. The filename for the example kernel you are using in this guide is  `vmlinuz-6.5.7-custom`. So here is the exact command for this example:
+    Here, `<kernel-version>` is the version number of the kernel. The filename for the example kernel you are using in this guide is `vmlinuz-6.5.7-custom`. So here is the exact command for this example:
 
     ```bash
     sudo cp ~/build/kernel/arch/x86/boot/bzImage \

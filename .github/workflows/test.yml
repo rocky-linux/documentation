@@ -1,11 +1,9 @@
 name: Run Tests
 on:
   pull_request_target:
-
 permissions:
   contents: read
   pull-requests: write
-
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -13,26 +11,25 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-
       - name: check urls
         uses: urlstechie/urlchecker-action@master
         with:
           subfolder: docs
           file_types: .en.md,.md
           include_files: '\/([\w-]+)\.(en\.)?md'
-          exclude_patterns: 'avatars.githubusercontent.com,example.com,your-server-ip,your-server-hostname,nginx-server,apache-server,site1.com,site2.com,site.com,$releasever,proxy.rocky.lan,repo.rocky.lan,zfs-release,$host$request,fileserver.rockylinux.lan,your_fork_name,rundeck.rockylinux.org,manickathan.ch,breakingpitt.es,download.example,192.168,172.16,127.0.0.1,localhost,download.rockylinux.org,cyber.gov.au,herokuapp.com,rpa.st,home.arpa,SERVER_IP,dev.mysql.com,ip_address,github.com,reddit.com/r/rockylinux,planet.i2p,linode.com,server1.rockylinux.lan,docs.rockylinux.lan,developer.download.nvidia.com,azure.microsoft.com,www.gnu.org,www.samba.org,rsync.samba.org,server.kubernetes.local:6443,node-0:$,0.0.0.0:61208,azuremarketplace.microsoft.com'
+          exclude_patterns: 'avatars.githubusercontent.com,example.com,your-server-ip,your-server-hostname,nginx-server,apache-server,site1.com,site2.com,site.com,$releasever,proxy.rocky.lan,repo.rocky.lan,zfs-release,$host$request,fileserver.rockylinux.lan,your_fork_name,rundeck.rockylinux.org,manickathan.ch,breakingpitt.es,download.example,192.168,172.16,127.0.0.1,localhost,download.rockylinux.org,cyber.gov.au,herokuapp.com,rpa.st,home.arpa,SERVER_IP,dev.mysql.com,ip_address,github.com,reddit.com/r/rockylinux,planet.i2p,linode.com,server1.rockylinux.lan,docs.rockylinux.lan,developer.download.nvidia.com,azure.microsoft.com,www.gnu.org,www.samba.org,rsync.samba.org,server.kubernetes.local:6443,node-0:$,0.0.0.0:61208,azuremarketplace.microsoft.com,openqa.rockylinux.org,access.redhat.com,repocompare.rockylinux.org,your_ip,IP:11443,$(hostname):8080,ftp.gnu.org,www.digitalneanderthal.com,mirrors.fedoraproject.org,support.brother.com,ftp.gnu.org'
           # NOTE:(sspencerwire) 2022-10-25, cyber.gov.au added to excludes as a known good URL that will not pass the test. Probably blocking GitHub
           # NOTE:(sspencerwire) 2024-04-23, the reddit URL and the linode.com URL function fine, and test fine in the URL checker, but then throw errors at the end. The problem has been reported to the upstream package maintainer.
           # NOTE:(sspencerwire) 2024-09-11, a link to http://developer.download.nvidia.com/compute/cuda/repos/rhel9/$ failed. This is in a slice of code, and is actually correct, but will always fail the check.
           # NOTE:(sspencerwire) 2024-09-11, azure.microsoft.com/en-us/ has been failing consistently, but loads fine in a browser. They are probably blocking GitHub.
           # NOTE:(sspencerwire) 2025-03-11, www.gnu.org, www.samba,org, rsync.samba.org, fail consistently with the URL checker but load fine. Added them to the exceptions. Added azuremarketplace.microsoft.com too for frequent failure.
+          # NOTE:(sspencerwire) 2026-04-29, added some testing team URLs to the exclusion list, as well as some updated from contributors for other documents.
           print_all: false
           retry_count: 2
           timeout: 7
           force_pass: true # Don't block deployment
           save: "output.csv"
           verbose: true
-
       - name: Affected URLs
         id: gather
         run: |
@@ -44,7 +41,6 @@ jobs:
     outputs:
       URLS: ${{ steps.gather.outputs.URLS }}
       COUNT_U: ${{ steps.gather.outputs.COUNT_U }}
-
   comment:
     name: "Comment on PR"
     needs: test
