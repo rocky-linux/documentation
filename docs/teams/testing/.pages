@@ -1,8 +1,7 @@
 ---
 nav:
-  - ... | index.md
-  - ... | members.md
+  - ... | index*.md
+  - ... | members*.md
   - Documentation: documentation
   - Guidelines: guidelines
   - SOP: sop
-  - ...

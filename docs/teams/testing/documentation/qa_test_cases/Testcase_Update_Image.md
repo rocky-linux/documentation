@@ -1,7 +1,9 @@
 ---
 title: QA:Testcase Update Image
-author: Al Bowles
-revision_date: 2026-04-17
+author: 
+  - Al Bowles
+  - Trevor Cooper
+revision_date: 2026-04-29
 rc:
   prod: Rocky Linux
   ver: 8
@@ -45,8 +47,8 @@ The following openQA test suites satisfy this release criteria:
 - `install_scsi_updates_img`
 
 ## Additional References
-[Red Hat Debug Boot Options](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/performing_an_advanced_rhel_installation/kickstart-and-advanced-boot-options_installing-rhel-as-an-experienced-user#debug-boot-options_kickstart-and-advanced-boot-options)<br>
-[Fedora QA:Testcase Anaconda updates.img via URL](https://fedoraproject.org/wiki/QA:Testcase_Anaconda_updates.img_via_URL)<br>
-[Fedora QA:Testcase Anaconda updates.img via local media](https://fedoraproject.org/wiki/QA:Testcase_Anaconda_updates.img_via_local_media)<br>
+- [Red Hat Debug Boot Options (RHEL-9)](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/automatically_installing_rhel/custom-boot-options_rhel-installer#debug-boot-options_custom-boot-options), [Red Hat Debug Boot Options (RHEL-10)](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/automatically_installing_rhel/boot-options-reference#debug-boot-options)
+- [Fedora QA:Testcase Anaconda updates.img via URL](https://fedoraproject.org/wiki/QA:Testcase_Anaconda_updates.img_via_URL)
+- [Fedora QA:Testcase Anaconda updates.img via local media](https://fedoraproject.org/wiki/QA:Testcase_Anaconda_updates.img_via_local_media)
 
 {% include 'teams/testing/qa_testcase_bottom.md' %}

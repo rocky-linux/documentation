@@ -110,7 +110,7 @@ Find the *primary keypair* and import it (preferably into an ephemeral system li
 [Github: Signing Commits](https://docs.github.com/en/enterprise-server@3.5/authentication/managing-commit-signature-verification/signing-commits)<br>
 [Braincoke's Log: Create a GPG Key](https://blog.braincoke.fr/security/create-a-gpg-key/)<br>
 [Creating the Perfect GPG Keypair](https://alexcabal.com/creating-the-perfect-gpg-keypair)<br>
-[Digital Neanderthal: Generate GPG Keys With Curve Ed25519](https://www.digitalneanderthal.com/post/gpg/)<br>
+[Digital Neanderthal: Generate GPG Keys With Curve Ed25519](https://web.archive.org/web/20240512060111/https://www.digitalneanderthal.com/post/gpg/)<br>
 
 {% include 'teams/testing/content_bottom.md' %}
 

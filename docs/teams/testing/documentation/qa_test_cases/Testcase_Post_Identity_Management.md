@@ -1,7 +1,7 @@
 ---
 title: QA:Testcase Identity Management
 author: Lukas Magauer
-revision_date: 2026-04-17
+revision_date: 2026-04-29
 rc:
   prod: Rocky Linux
   ver:
@@ -16,7 +16,7 @@ render_macros: true
     This Testcase applies the following versions of {{ rc.prod }}: {% for version in rc.ver %}{{ version }}{% if not loop.last %}, {% endif %}{% endfor %}
 
 !!! info "Associated release criterion"
-    This test case is associated with the [Release_Criteria#packages-and-module-installation](../../guidelines/release_criteria/r10/10_release_criteria.md#packages-and-module-installation) release criterion. If you are doing release validation testing, a failure of this test case may be a breach of that release criterion.
+    This test case is associated with the [Release_Criteria#identity-management-server-setup](../../guidelines/release_criteria/r10/10_release_criteria.md#identity-management-server-setup) release criterion. If you are doing release validation testing, a failure of this test case may be a breach of that release criterion.
 
 ## Description
 

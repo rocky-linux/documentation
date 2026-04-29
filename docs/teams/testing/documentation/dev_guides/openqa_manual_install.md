@@ -1,8 +1,10 @@
 ---
 title: Manual Install of openQA for rockylinux
-author: Alan Marshall
-version: v1.2
-revision_date: 2026-04-17
+author: 
+  - Alan Marshall
+  - Trevor Cooper
+version: v1.3
+revision_date: 2026-04-28
 rc:
   prod: Rocky Linux
   level: Issue
@@ -110,16 +112,27 @@ sudo mkdir -p /var/lib/openqa/share/factory/hdd/fixed
 cd /var/lib/openqa/factory/hdd/fixed
 
 # start a long running process that provides hdd image files for ongoing tests
-~/createhdds/createhdds.py -t -b stg all
+~/createhdds/createhdds.py -l info -t all
 
 # get Rocky iso files for testing from staging repository
-sudo mkdir -p /var/lib/openqa/share/factory/iso/fixed
-cd /var/lib/openqa/factory/iso/fixed
+sudo mkdir -p /var/lib/openqa/share/factory/iso/fixed && \
+    cd /var/lib/openqa/share/factory/iso/fixed
 
-sudo curl -LOR https://dl.rockylinux.org/stg/rocky/9/isos/x86_64/Rocky-9.3-x86_64-boot.iso
-sudo curl -LOR https://dl.rockylinux.org/stg/rocky/9/isos/x86_64/Rocky-9.3-x86_64-minimal.iso
-sudo curl -LOR https://dl.rockylinux.org/stg/rocky/9/isos/x86_64/Rocky-9.3-x86_64-dvd.iso
-sudo curl -LOR https://dl.rockylinux.org/stg/rocky/9/isos/x86_64/CHECKSUM
+sudo curl -LR -o Rocky-9.7-x86_64-boot.iso \
+    --output-dir /var/lib/openqa/share/factory/iso/fixed \
+    https://dl.rockylinux.org/pub/rocky/9/isos/x86_64/Rocky-9-latest-x86_64-boot.iso
+
+sudo curl -LR -o Rocky-9.7-x86_64-minimal.iso \
+    --output-dir /var/lib/openqa/share/factory/iso/fixed \
+    https://dl.rockylinux.org/pub/rocky/9/isos/x86_64/Rocky-9-latest-x86_64-minimal.iso
+
+sudo curl -LR -o Rocky-9.7-x86_64-dvd.iso \
+    --output-dir /var/lib/openqa/share/factory/iso/fixed \
+    https://dl.rockylinux.org/pub/rocky/9/isos/x86_64/Rocky-9-latest-x86_64-dvd.iso
+
+sudo curl -LR -o CHECKSUM \
+    --output-dir /var/lib/openqa/share/factory/iso/fixed \
+    https://dl.rockylinux.org/pub/rocky/9/isos/x86_64/CHECKSUM
 
 sha256sum -c CHECKSUM
 
@@ -132,11 +145,11 @@ sudo init 6
 # post tests and view progress on webui
 cd /var/lib/openqa/tests/rocky/
 sudo ./fifloader.py -c -l templates.fif.json
-sudo openqa-cli api -X POST isos ISO=Rocky-9.3-x86_64-minimal.iso ARCH=x86_64 DISTRI=rocky FLAVOR=minimal-iso VERSION=9.3 BUILD="$(date +%Y%m%d.%H%M%S).0"-minimal
-sudo openqa-cli api -X POST isos ISO=Rocky-9.3-x86_64-boot.iso ARCH=x86_64 DISTRI=rocky FLAVOR=boot-iso VERSION=9.3 BUILD="$(date +%Y%m%d.%H%M%S).0"-boot
+sudo openqa-cli api -X POST isos ISO=Rocky-9.7-x86_64-minimal.iso ARCH=x86_64 DISTRI=rocky FLAVOR=minimal-iso VERSION=9.7 BUILD="$(date +%Y%m%d.%H%M%S).0"-minimal
+sudo openqa-cli api -X POST isos ISO=Rocky-9.7-x86_64-boot.iso ARCH=x86_64 DISTRI=rocky FLAVOR=boot-iso VERSION=9.7 BUILD="$(date +%Y%m%d.%H%M%S).0"-boot
 and for a  full build (this will post 95 jobs)
-sudo openqa-cli api -X POST isos ISO=Rocky-9.3-x86_64-dvd.iso ARCH=x86_64 DISTRI=rocky FLAVOR=dvd-iso VERSION=9.3 BUILD="$(date +%Y%m%d.%H%M%S).0"-dvd-iso
-sudo openqa-cli api -X POST isos ISO=Rocky-9.3-x86_64-dvd.iso ARCH=x86_64 DISTRI=rocky FLAVOR=universal VERSION=9.3 BUILD="$(date +%Y%m%d.%H%M%S).0"-universal
+sudo openqa-cli api -X POST isos ISO=Rocky-9.7-x86_64-dvd.iso ARCH=x86_64 DISTRI=rocky FLAVOR=dvd-iso VERSION=9.7 BUILD="$(date +%Y%m%d.%H%M%S).0"-dvd-iso
+sudo openqa-cli api -X POST isos ISO=Rocky-9.7-x86_64-dvd.iso ARCH=x86_64 DISTRI=rocky FLAVOR=universal VERSION=9.7 BUILD="$(date +%Y%m%d.%H%M%S).0"-universal
 ```
 You can watch progress of these tests on the webui on any browser on the same lan as the test host at 
 
@@ -299,6 +312,7 @@ See also: [Installation Info](https://github.com/rocky-linux/OpenQA-Fedora-Insta
 
 ### Revision History
 
+* v1.3 - 2026/04/28 - Fix broken URLs and modify curl to prevent repeat
 * v1.2 - 2026/04/16 - Add content_bottom.md include
 * v1.1 - 2025/06/05 - Minor updates
 * v1.0 - 2024/04/30 - First Issue

@@ -23,11 +23,11 @@ This verifies that Rocky Linux ISO image can be written to USB media using `dd` 
 1. Provide a USB media device that is larger than the ISO image you wish to test and that it can be completely erased.
 2. Provide a Linux (or other *nix system) that has the `dd` command available and an unoccupied USB port.
 3. Download the Rocky Linux ISO image you wish to test onto the test system.
-    - Example command:<br>`curl -LOR https://dl.rockylinux.org/pub/rocky/8/isos/x86_64/Rocky-x86_64-boot.iso`
+    - Example command:<br>`curl -LOR https://dl.rockylinux.org/pub/rocky/10/isos/x86_64/Rocky-10-latest-x86_64-boot.iso`
 4. Download the `CHECKSUM` file that goes with the Rocky Linux ISO image that you wish to test.
-    - Example command:<br>`curl -LOR https://dl.rockylinux.org/pub/rocky/8/isos/x86_64/CHECKSUM`
+    - Example command:<br>`curl -LOR https://dl.rockylinux.org/pub/rocky/10/isos/x86_64/CHECKSUM`
 5. Download the `CHECKSUM.sig` file that does with the `CHECKSUM` file.
-    - Example command:<br>`curl -LOR https://dl.rockylinux.org/pub/rocky/8/isos/x86_64/CHECKSUM.sig`
+    - Example command:<br>`curl -LOR https://dl.rockylinux.org/pub/rocky/10/isos/x86_64/CHECKSUM.asc`
 6. Download the Rocky Release Engineering GPG key.
     - Example command:<br>`curl -LOR https://dl.rockylinux.org/pub/rocky/RPM-GPG-KEY-rockyofficial`
 
@@ -36,7 +36,7 @@ This verifies that Rocky Linux ISO image can be written to USB media using `dd` 
 1. Import the Rocky Release Engineering GPG key.
     - Example command:<br>`gpg --import RPM-GPG-KEY-rockyofficial`
 2. Verify the signature of the CHECKSUM file.
-    - Example command:<br>`gpg --verify-file CHECKSUM.sig`
+    - Example command:<br>`gpg --verify-file CHECKSUM.asc`
 3. Verify the CHECKSUM of the Rocky Linux ISO...
     - Example command:<br>`shasum -a 256 --ignore-missing -c CHECKSUM`
 4. Write the Rocky Linux ISO to the USB media using `dd`...
