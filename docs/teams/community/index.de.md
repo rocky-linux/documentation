@@ -4,6 +4,7 @@ revision_date: 2026-04-17
 render_macros: true
 ---
 
-Platzhalter für Community-bezogene Dokumentation.
+Community-bezogene Dokumentation,
+Fortsetzung folgt...
 
 {% include "teams/community/content_bottom.md" %}
