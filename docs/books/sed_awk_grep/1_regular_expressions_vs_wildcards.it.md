@@ -46,7 +46,7 @@ Comandi differenti prevedono diversi stili di wildcard:
 - `mv`: accetta tutti gli stili di wildcard
 - `cp`: accetta tutti gli stili di wildcard
 
-Per esempio:
+Ad esempio:
 
 ```bash
 Shell > mkdir -p /root/dir{1..3}
