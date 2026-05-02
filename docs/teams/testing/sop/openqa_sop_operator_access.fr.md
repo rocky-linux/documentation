@@ -1,7 +1,5 @@
 ---
-title: "SOP: openQA —\ 
-
-  Demande d'accès de l'opérateur"
+title: 'SOP: openQA — Demande d''accès de l''opérateur'
 author: Trevor Cooper
 revision_date: 2026-04-17
 render_macros: true
