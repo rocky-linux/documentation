@@ -1,5 +1,5 @@
 ---
-title: Git-Commit – Signierung
+title: Git-Commit mit Signierung
 author: Al Bowles
 revision_date: 2026-04-16
 rc:
