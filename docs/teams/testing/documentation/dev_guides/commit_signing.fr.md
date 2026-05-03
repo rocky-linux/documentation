@@ -1,5 +1,5 @@
 ---
-title: Assurez-vous que votre clé a été publiée
+title: Git Commit avec Signature
 author: Al Bowles
 revision_date: 2026-04-16
 rc:
