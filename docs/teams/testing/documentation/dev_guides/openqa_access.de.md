@@ -16,11 +16,11 @@ Alternativ können Sie den openQA-Server auch auf Ihrem eigenen lokalen Rechner 
 
 ## Zugangsvoraussetzungen
 
-### API `GET` Zugriff
+### API `GET`–Zugang
 
 Das {{ rc.prod }} openQA-System ermöglicht uneingeschränkten öffentlichen Zugriff über seine Weboberfläche oder durch Verwendung des `openqa-client` für `GET`-Operationen gegen die API.
 
-### API `POST`–Zugriff
+### API `POST`–Zugang
 
 Um mit dem openQA-Client für `POST`-Operationen mit dem {{ rc.prod }} openQA-System zu interagieren, sind folgende Voraussetzungen erforderlich:
 
