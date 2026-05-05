@@ -1,5 +1,5 @@
 ---
-title: Git-Commit mit Signierung
+title: Git Commit avec Signature
 author: Al Bowles
 revision_date: 2026-04-16
 rc:
@@ -9,91 +9,91 @@ rc:
 render_macros: true
 ---
 
-# Erstellen Ihres primären Schlüsselpaares
+# Création de votre paire de clés principales
 
-1. Starten Sie den Assistenten zur Schlüsselpaargenerierung
+1. Lancez l'assistant de génération de paires de clés
 
         ```
          gpg --full-generate-key --expert
         ```
 
-2. Wählen Sie für den Schlüsseltyp die Option `(9) ECC and ECC`
+2. Sélectionnez l'option `(9) ECC et ECC` pour le type de clé
 
-3. Wählen Sie Option `(1) Curve 25519` für die elliptische Kurve
+3. Sélectionnez l'option `(1) Curve 25519` pour la courbe elliptique
 
-4. Legen Sie eine Gültigkeitsdauer Ihrer Wahl fest, idealerweise weniger als 1 Jahr
+4. Définissez la période de validité de votre choix, idéalement inférieure à 1 an
 
-5. Geben Sie Ihren echten Namen und Ihre E-Mail-Adresse an, die diesem Schlüsselpaar zugeordnet werden sollen. Die E-Mail-Adresse muss mit Ihrer verifizierten GitHub-E-Mail-Adresse übereinstimmen oder auf `your-github-username@users.noreply.github.com` gesetzt sein.
+5. Veuillez indiquer votre nom réel et votre adresse courriel à associer à cette paire de clés. L'adresse courriel doit correspondre à votre adresse courriel Github vérifiée ou être définie sur `your-github-username@users.noreply.github.com`.
 
-6. Geben Sie eine Passphrase ein (zweimal)
+6. Entrez une phrase secrète (deux fois)
 
-# Erstellen eines Signaturschlüsselpaares
+# Création d'une paire de clés de signature
 
-1. Fügen Sie einen Signatur-Unterschlüssel hinzu
+1. Ajoutez une sous-clé de signature
 
         ```
          gpg --expert --edit-key my@email.addr
          gpg> addkey
         ```
 
-2. Wählen Sie für den Schlüsseltyp die Option `(10) ECC (sign only)`.
+2. Sélectionnez l'option `(10) ECC (sign only)` pour le type de clé
 
-3. Wählen Sie Option `(1) Curve 25519` für die elliptische Kurve
+3. Sélectionnez l'option `(1) Curve 25519` pour la courbe elliptique
 
-4. Legen Sie eine Gültigkeitsdauer Ihrer Wahl fest, idealerweise weniger als 1 Jahr
+4. Définissez la période de validité de votre choix, idéalement inférieure à 1 an
 
-5. Bestätigen Sie die Eingabeaufforderungen und geben Sie eine Passphrase ein (zweimal)
+5. Confirmez les invites et saisissez une phrase secrète (deux fois)
 
-6. Speichern und Beenden
+6. Sauvegarder et quitter
 
         ```
          gpg> save
         ```
 
-# Erstellung eines Widerrufszertifikats
+# Création d'un certificat de révocation
 
     ```
     gpg --output my_email_addr.gpg-revocation-certificate --gen-revoke my@email.addr
     ```
 
-# Sicherungskopie Ihres Schlüsselpaares
+# Sauvegardez votre paire de clés
 
-Exportieren Sie das _primäre Schlüsselpaar_ (bewahren Sie diese zusammen mit dem Widerrufszertifikat an einem sehr sicheren Ort auf)
+Exportez la paire de clés primaires (conservez-les dans un endroit très sûr avec le certificat de révocation)
 
     ```
     gpg --export-secret-keys --armor my@email.addr > my_email_addr.private.gpg-key
     gpg --export --armor my@email.addr > my_email_addr.public.gpg-key
     ```
 
-# Entfernen des _primären Schlüsselpaares_ von Ihrem Schlüsselbund
+# Enlevez la paire de clés principale de votre porte-clés
 
-1. Export aller Unterschlüssel des neuen Schlüsselpaares in eine Datei
+1. Exportez toutes les sous-clés de la nouvelle paire de clés dans un fichier
 
         ```
          gpg --export-secret-subkeys my@email.addr > $HOME/.gnupg/subkeys
         ```
 
-2. Primärschlüssel aus dem Schlüsselbund löschen – _SICHERN SIE ZUERST IHR PRIMÄRES KEYPAAR!_
+2. Supprimer la clé principale du porte-clés - _ASSUREZ-VOUS DE SAUVEGARDER VOTRE PAIRE DE CLÉS PRINCIPALES AU PRÉALABLE !_
 
         ```
          gpg --delete-secret-key my@email.addr
         ```
 
-3. Die zuvor exportierten Schlüssel erneut importieren
+3. Réimportez les clés précédemment exportées
 
         ```
          gpg --import $HOME/.gnupg/subkeys
         ```
 
-4. Suchen Sie in der Ausgabe nach `sec#` anstelle von `sec` – das Raute-Zeichen bedeutet, dass der Signatur-Unterschlüssel _nicht_ im Schlüsselpaar aus dem Schlüsselring enthalten ist
+4. Cherchez `sec#` au lieu de `sec` dans le résultat ; le symbole dièse (#) indique que la sous-clé de signature ne fait _pas_ partie de la paire de clés située dans le trousseau.
 
         ```
          gpg --list-secret-keys $HOME/.gnupg/secring.gpg
         ```
 
-# Widerruf eines _Signaturschlüsselpaares_
+# Révocation d'une _paire de clés de signature_
 
-Suchen Sie das _primäre Schlüsselpaar_ und importieren Sie es (vorzugsweise in ein temporäres System wie einen Live-USB-Stick)
+Trouvez la _paire de clés principales_ et importez-la (de préférence dans un système éphémère comme une clé USB live)
 
     ```
     gpg --import /path/to/my_email_addr.public.gpg-key /path/to/my_email_addr.private.gpg-key
@@ -103,7 +103,7 @@ Suchen Sie das _primäre Schlüsselpaar_ und importieren Sie es (vorzugsweise in
     gpg> save
     ```
 
-# Erneuern Sie ein abgelaufenes oder demnächst ablaufendes Schlüsselpaar
+# Renouveler une paire de clés expirée ou sur le point d'expirer
 
     ```
     gpg --edit-key my@email.addr
@@ -113,13 +113,13 @@ Suchen Sie das _primäre Schlüsselpaar_ und importieren Sie es (vorzugsweise in
     gpg> save
     ```
 
-# Einen einzelnen signierten Git-Commit erstellen
+# Création d'un commit Git signé unique
 
     ```
     git commit -S -m "my awesome signed commit"
     ```
 
-# Konfigurieren Sie Git so, dass Commits immer mit einem bestimmten Schlüssel signiert werden
+# Configuration de Git afin de toujours signer les commits avec une clé spécifiée
 
     ```
     $ gpg --list-secret-keys --keyid-format=long # grab the fingerprint from the 'sec' line
@@ -127,26 +127,26 @@ Suchen Sie das _primäre Schlüsselpaar_ und importieren Sie es (vorzugsweise in
     git config [--global] user.signingkey DEADB33FBAD1D3A
     ```
 
-# Konfigurieren Sie VSCode so, dass Commits signiert werden
+# Configuration de VSCode pour signer les commits
 
     ```
     # User or workspace setting
     "git.enableCommitSigning": true
     ```
 
-# Laden Sie Ihren öffentlichen Schlüssel auf einen Schlüsselserver hoch
+# Téléchargement de votre clé publique sur un serveur de clés
 
     ```
     gpg --keyserver pgp.mit.edu --send-keys 0xDEADB33FBAD1D3A
     ```
 
-# Überprüfen Sie, ob Ihr Schlüssel veröffentlicht wurde.
+# Assurez-vous que votre clé a été publiée
 
     ```
     gpg --keyserver pgp.mit.edu --search-key my@email.addr
     ```
 
-# Referenzen
+# Références
 
 [OpenPGP Best Practices](https://riseup.net/en/security/message-security/openpgp/best-practices#key-configuration)<br>
 [Github: Signing Commits](https://docs.github.com/en/enterprise-server@3.5/authentication/managing-commit-signature-verification/signing-commits)<br>
