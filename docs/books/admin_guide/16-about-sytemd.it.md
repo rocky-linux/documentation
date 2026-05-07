@@ -59,7 +59,7 @@ Nel febbraio 2014, Ubuntu ha adottato `systemd` come init e ha abbandonato il pr
 
 Nell'agosto 2015, `systemd` ha iniziato a fornire shell di login richiamabili tramite `machinectl`.
 
-Nel 2016, `systemd` ha scoperto una vulnerabilità di sicurezza che consente a qualsiasi utente non privilegiato di eseguire un "denial of service attack" su `systemd`.
+Nel 2016, in `systemd` è stata individuata una vulnerabilità di sicurezza che consente a qualsiasi utente senza privilegi di sferrare un "attacco denial-of-service" contro `systemd`.
 
 Nel 2017, `systemd` ha scoperto un'altra vulnerabilità di sicurezza - **CVE-2017-9445**. Gli aggressori remoti possono attivare una vulnerabilità di overflow del buffer ed eseguire codice dannoso attraverso risposte DNS malevole.
 
@@ -294,7 +294,7 @@ Si può anche usare l'opzione `--all` per espandere tutte le "units".
 
 ### Tipi di Unit
 
-Il comando `systemctl` è lo strumento principale per gestire `systemd`, ed è una combinazione dei precedenti comandi `service` e `chkconfig`.
+Il comando `systemctl` è lo strumento principale per la gestione delle "unità" e dei file correlati di `systemd`.
 
 `systemd` gestisce le cosiddette "units", che sono rappresentazioni delle risorse e dei servizi del sistema. L'elenco seguente mostra i tipi di "unit" che `systemd` può gestire:
 
@@ -373,7 +373,7 @@ Shell > systemctl show sshd.service
 !!! info "Informazione"
 
 ```
- È possibile operare su una o più unit in un'unica riga di comando per le operazioni di cui sopra. Le operazioni di cui sopra non sono limitate a ".service".
+È possibile specificare una o più unità in un'unica riga di comando per le operazioni sopra indicate. Le operazioni sopra indicate non si limitano ai file ".service".
 ```
 
 Informazioni sulle "unit":
@@ -490,7 +490,7 @@ Di solito esistono tre intitolazioni per le unit di tipo ".service":
    - `Documentation=man:sshd(8) man:sshd_config(5)`.  Un elenco separato da spazi di URI che fanno riferimento alla documentazione di questa "unit" o della sua configurazione. Sono accettati solo URI del tipo "http://", "https://", "file:", "info:", "man:".
    - `After=network.target sshd-keygen.target`. Definisce la relazione della sequenza di avvio con altre "unit". In questo esempio, "network.target" e "sshd-keygen.target" si avviano per primi e "sshd.service" per ultimo.
    - `Before=`. Definisce la relazione della sequenza di avvio con le altre "unit".
-   - `Requires=`. Configura le dipendenze da altre "unit" I valori possono essere più unit separate da spazi. Se la '"unit" corrente è attivata, si attiveranno anche i valori qui elencati. Se almeno uno dei valori elencati di "unit" non si attiva correttamente, `systemd` non avvia la "unit" corrente.
+   - `Requires=`. Configurare le dipendenze da altre "unità". I valori possono essere più unit separate da spazi. Se la '"unit" corrente è attivata, si attiveranno anche i valori qui elencati. Se almeno uno dei valori elencati di "unit" non si attiva correttamente, `systemd` non avvia la "unit" corrente.
    - `Wants=sshd-keygen.target`. Simile alla chiave `Requires`. La differenza consiste nel fatto che se la unit dipendente non si avvia, ciò non influisce sul normale funzionamento della "unit" corrente.
    - `BindsTo=`. Simile alla chiave `Requires`. La differenza è data dal fatto che se una qualsiasi "unit" dipendente non si avvia, l'unità corrente viene arrestata in aggiunta alla "unit" che arresta la dipendenza.
    - `PartOf=`. Simile alla chiave `Requires`. La differenza consiste nel fatto che se una qualsiasi "unit" dipendente non si avvia, oltre all'arresto e al riavvio delle unit dipendenti, viene arrestata e riavviata anche la "unit" corrente.
@@ -590,13 +590,13 @@ Di solito esistono tre intitolazioni per le unit di tipo ".service":
 
    - `Also=`. Altre unit da installare o disinstallare durante l'installazione o la disinstallazione di questa unit.
 
-     Oltre alle pagine di manuale sopra menzionate, è possibile digitare `man 5 systemd.exec` o `man 5 systemd.kill` per accedere ad altre informazioni.
+Oltre alle pagine di manuale sopra citate, puoi anche digitare `man 5 systemd.exec` o `man 5 systemd.kill` per accedere ad altre informazioni.
 
-## Comando relativo ad altri componenti
+## Comandi relativi ad altri componenti
 
 - `timedatactl` - Interroga o modifica le impostazioni di data e ora del sistema.
-- `hostnamectl` - Interroga o modifica l'hostname del sistema.
-- `localectl` - Interroga o modifica le impostazioni del locale e della tastiera del sistema.
-- `systemd-analyze` - Profilo `systemd`, mostra le dipendenze delle unit, controlla i file delle unit.
-- `journalctl` - Visualizza i registri di sistema o di servizio. Il comando \`journalctl' è così importante che in seguito verrà dedicata una sezione separata che ne spiegherà l'uso e i comportamenti da tenere.
-- `loginctl` - Gestione delle sessioni degli utenti che effettuano il login.
+- `hostnamectl` - Interroga o modifica il nome host del sistema.
+- `localectl` - Consente di visualizzare o modificare le impostazioni di lingua e tastiera del sistema.
+- `systemd-analyze` - Crea un profilo di `systemd`, mostra le dipendenze delle unità e verifica i file delle unità.
+- `journalctl` - Visualizza i log di sistema o dei servizi. Il comando `journalctl` è talmente importante che più avanti verrà dedicata una sezione a parte per spiegarne l'uso e gli aspetti da tenere in considerazione.
+- `loginctl` - Gestione delle sessioni degli utenti che effettuano l'accesso.
