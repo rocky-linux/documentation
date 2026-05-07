@@ -266,7 +266,7 @@ Shell > ls -l /project
 
 **Q: If I create a new file in this directory, does it inherit the ACL permissions?**
 
-The answer is no, because the newly created file is after the command `setfacl-m u:tom:rx -R /project` is executed.
+The answer is no, because the newly created file is after the command `setfacl -m u:tom:rx -R /project` is executed.
 
 ```bash
 Shell > touch /project/file3
@@ -302,7 +302,7 @@ default:other::---
 
 !!! info
 
-    The default and recursive use of ACL permissions requires that the command's operating object be a directory! If the operation object is a file, an error prompt will be output.
+    When using the default and recursive options of ACL permissions, the `setfacl` command must operate on a directory. If the operation object is a file, an error prompt will be output.
 
 ### SetUID
 
@@ -640,7 +640,7 @@ Shell > chattr -a /etc/tmpfile1 /etc/dira/
 
 !!! question
 
-    **Q: What happens when I set the AI attribute on a file?**
+    **Q: What happens when I set the ia attribute on a file?**
 
     You cannot do anything with the file other than to view it.
 
