@@ -1,9 +1,11 @@
 ---
 title: Rocky Linux 9 Release Criteria
-author:
-  - Trevor Cooper
-  - Lukas Magauer
-revision_date: 2026-04-17
+author: Trevor Cooper
+contributors: Lukas Magauer
+tested_with:
+tags:
+  - testing
+revision_date: 2026-05-08
 rc:
   prod: Rocky Linux
   ver: 9

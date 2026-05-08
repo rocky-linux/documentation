@@ -1,7 +1,12 @@
 ---
 title: QA:Testcase Installer Help
 author: Al Bowles
-revision_date: 2026-04-17
+contributors:
+tested_with: 8.10, 9.7
+tags:
+  - testing
+  - qa
+revision_date: 2026-05-08
 rc:
   prod: Rocky Linux
   ver:

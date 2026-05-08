@@ -1,7 +1,14 @@
 ---
 title: 'SOP : openQA – Mises à niveau du système'
-author: Trevor Cooper
-revision_date: 2026-04-17
+author: Al Bowles
+contributors: Trevor Cooper
+tested_with: 8.10, 9.6, 10.0
+tags:
+  - openQA
+  - sop
+  - testing
+revision_date: 2026-05-08
+
 render_macros: true
 ---
 

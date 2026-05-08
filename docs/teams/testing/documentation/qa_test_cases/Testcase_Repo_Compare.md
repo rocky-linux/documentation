@@ -1,7 +1,12 @@
 ---
 title: QA:Testcase Media Repo Compare
 author: Trevor Cooper
-revision_date: 2022-05-18
+contributors:
+tested_with: 8.10, 9.7, 10.1
+tags:
+  - testing
+  - qa
+revision_date: 2026-05-08
 rc:
   prod: Rocky Linux
   ver: 8

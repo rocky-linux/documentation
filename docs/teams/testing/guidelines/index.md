@@ -1,7 +1,11 @@
 ---
 title: Guidelines
 author: Trevor Cooper
-revision_date: 2026-04-17
+contributors:
+tested_with:
+tags:
+  - testing
+revision_date: 2026-05-08
 render_macros: true
 ---
 

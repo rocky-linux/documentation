@@ -1,10 +1,13 @@
 ---
 title: Manual Install of openQA for rockylinux
-author: 
-  - Alan Marshall
-  - Trevor Cooper
+author: Bob Robison
+contributors: Trevor Cooper
+tested_with:
+tags:
+  - testing
+  - openQA
+revision_date: 2026-05-08
 version: v1.3
-revision_date: 2026-04-28
 rc:
   prod: Rocky Linux
   level: Issue

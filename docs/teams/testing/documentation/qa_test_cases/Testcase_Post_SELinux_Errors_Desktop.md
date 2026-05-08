@@ -1,7 +1,12 @@
 ---
 title: QA:Testcase SELinux Errors on Desktop clients
 author: Lukas Magauer
-revision_date: 2026-04-17
+contributors:
+tested_with: 8.10, 9.7, 10.1
+tags:
+  - testing
+  - qa
+revision_date: 2026-05-08
 rc:
   prod: Rocky Linux
   ver:

@@ -1,7 +1,11 @@
 ---
 title: Rocky Linux Release Criteria & Status
 author: Trevor Cooper
-revision_date: 2026-04-17
+contributors: Bob Robison
+tested_with:
+tags:
+  - testing
+revision_date: 2026-05-08
 rc:
   prod: Rocky Linux
 render_macros: true

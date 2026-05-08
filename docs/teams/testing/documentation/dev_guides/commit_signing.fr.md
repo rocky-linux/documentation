@@ -1,7 +1,12 @@
 ---
 title: Git Commit avec Signature
 author: Al Bowles
-revision_date: 2026-04-16
+contributors: Lukas Magauer 
+tested_with:
+tags:
+  - testing
+  - git
+revision_date: 2026-05-08
 rc:
   prod: Rocky Linux
   ver: 8

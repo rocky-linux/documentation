@@ -1,8 +1,12 @@
 ---
 title: QA:Testcase Firmware RAID
 author: Al Bowles
-revision_date: 2026-04-17
-rc:
+contributors:
+tested_with: 8.10, 9.7
+tags:
+  - testing
+  - qa
+revision_date: 2026-05-08rc:
   prod: Rocky Linux
   ver:
   - 8

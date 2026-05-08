@@ -1,7 +1,12 @@
 ---
 title: openQA - openqa-clone-custom-refspec Examples
 author: Trevor Cooper
-revision_date: 2026-04-17
+contributors: Lukas Magauer
+tested_with:
+tags:
+  - testing
+  - openQA
+revision_date: 2026-05-08
 rc:
   prod: Rocky Linux
   level: Final

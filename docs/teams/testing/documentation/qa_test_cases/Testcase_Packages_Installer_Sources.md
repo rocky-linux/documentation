@@ -1,7 +1,12 @@
 ---
 title: QA:Testcase Packages and Installer Sources
 author: Al Bowles
-revision_date: 2026-04-17
+contributors:
+tested_with: 8.10
+tags:
+  - testing
+  - qa
+revision_date: 2026-05-08
 rc:
   prod: Rocky Linux
   ver: 8

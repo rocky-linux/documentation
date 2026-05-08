@@ -1,8 +1,12 @@
 ---
 title: QA:Testcase Debranding
 author: Trevor Cooper
-revision_date: 2026-04-17
-rc:
+contributors:
+tested_with: 8.10
+tags:
+  - testing
+  - qa
+revision_date: 2026-05-08rc:
   prod: Rocky Linux
   ver: 8
   level: Final

@@ -1,10 +1,11 @@
 ---
 title: Rocky Linux 10 Release Criteria
-author:
-  - Trevor Cooper
-  - Lukas Magauer
-  - Bob Robison
-revision_date: 2026-04-17
+author: Bob Robison
+contributors: Lukas Magauer, Trevor Cooper
+tested_with:
+tags:
+  - testing
+revision_date: 2026-05-08
 rc:
   prod: Rocky Linux
   ver: 10
