@@ -181,17 +181,30 @@ Please note the following IEEE recommendation on naming local networks [RFC #837
 
 ### Translation
 
+!!! warning "Problems occur when changes are made to translated files outside of Crowdin"
+
+    When changes are made directly to translated files in GitHub PR, if they are approved and merged, they cause issues with Crowdin's tracking of the document changes. If you are making changes to an English (source) document, do not include the other languages where the file may exist (For example `index.fr.md` or `index.uk.md`) just make the change to the English source document and the translators will pick up the change in Crowdin and fix it in the other languages.
+
 #### Crowdin
 
 We are adding to these docs in new languages at the speed of getting translators on board. Seeking contributors for this area especially. We use [Crowdin](https://crowdin.com/) for updates.
 
 #### Translation and meta content
 
-Translators, if you find a word in the source document that does not translate well into your language, or an error that prevents a perfect translation, please fix that in the source document and make a Pull Request. In that case, please add yourself as a contributor in the meta content of that document.
+Translators, if you find a word in the source document that does not translate well into your language, or an error that prevents a perfect translation, please fix that in the source document and make a Pull Request. In that case, add yourself as a contributor in the meta content of that source (English)document.
 
-However, unless you modify the source document, please do not modify the meta content.
+Translators, you can also add yourself to the meta content as a translator if you wish. Example:
 
-The place where we do want to acknowledge you is in the all-contributors section--at the bottom of this page. This is a list of everyone who has been part of this documentation project, whether creating content, spotting and fixing errors, or translating. Translators, you may add yourself (or [request to be added](https://chat.rockylinux.org/rocky-linux/channels/documentation)) here. We appreciate your contribution!
+```meta
+title: This document title
+author: Sam Spade
+contributors: Some New Guy
+translators: Add this meta and your name
+```
+
+### All contributors acknowledgement
+
+We want to make sure we acknowledge you (contributor or translator) in the all-contributors section--at the bottom of this page. This is a list of everyone who has been part of this documentation project, whether creating content, spotting and fixing errors, or translating. If you are missed, and your name or handle does not appear, you can [request to be added](https://chat.rockylinux.org/rocky-linux/channels/documentation)) here. We appreciate your contributions.
 
 ## Communication channel
 
