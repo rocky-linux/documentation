@@ -191,7 +191,7 @@ We are adding to these docs in new languages at the speed of getting translators
 
 #### Translation and meta content
 
-Translators, if you find a word in the source document that does not translate well into your language, or an error that prevents a perfect translation, please fix that in the source document and make a Pull Request. In that case, add yourself as a contributor in the meta content of that source (English)document.
+Translators, if you find a word in the source document that does not translate well into your language, or an error that prevents a perfect translation, please fix that in the source document and make a Pull Request. In that case, add yourself as a contributor in the meta content of that source (English) document.
 
 Translators, you can also add yourself to the meta content as a translator if you wish. Example:
 
