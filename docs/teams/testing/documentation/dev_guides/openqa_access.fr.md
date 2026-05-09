@@ -1,5 +1,5 @@
 ---
-title: openQA - Rocky Produktionszugriff
+title: openQA - Accès à la production Rocky
 author: Trevor Cooper
 revision_date: 2026-04-17
 rc:
@@ -8,31 +8,32 @@ rc:
 render_macros: true
 ---
 
-## System Anforderungen
+## Exigences du système
 
-Um auf das Rocky Production openQA-System zuzugreifen und eines der folgenden Beispiele durchzuführen, benötigen Sie Zugriff auf ein System, das den openQA-Client bereitstellt. Typischerweise handelt es sich dabei um ein Fedora-basiertes System/einen Container (es könnte aber auch Rocky 9.6 sein), auf dem das Paket `openqa-client` und seine (~239) Abhängigkeiten installiert sind.
+Pour accéder au système openQA de Rocky Production et réaliser les exemples ci-dessous, vous aurez besoin d'un accès à un système fournissant le client openQA. En règle générale, il s'agira d'un système/conteneur basé sur Fedora (mais cela pourrait être Rocky 9.6) avec le paquet `openqa-client` et ses (~239) dépendances installés.
 
-Alternativ können Sie den openQA-Server auch auf Ihrem eigenen lokalen Rechner installieren.  Siehe: [Manual Install](openqa_manual_install.md)
+Vous pouvez aussi installer le serveur openQA sur votre propre machine locale.  Cf. : [Manual Install](openqa_manual_install.md)
 
-## Zugangsvoraussetzungen
+## Exigences en matière d'accès
 
-### API `GET`–Zugang
+### API `GET` access
 
-Das {{ rc.prod }} openQA-System ermöglicht uneingeschränkten öffentlichen Zugriff über seine Weboberfläche oder durch Verwendung des `openqa-client` für `GET`-Operationen gegen die API.
+Le système openQA {{ rc.prod }} permet un accès public sans restriction via son interface web ou en utilisant le `openqa-client` pour les opérations `GET` sur l'API.
 
-### API `POST`–Zugang
+### API `POST` access
 
-Um mit dem openQA-Client für `POST`-Operationen mit dem {{ rc.prod }} openQA-System zu interagieren, sind folgende Voraussetzungen erforderlich:
+Pour utiliser le client openQA afin d'interagir avec le système openQA {{ rc.prod }} pour les opérations `POST`, les éléments suivants sont requis :
 
-- ein Konto mit einwandfreiem Status im [{{ rc.prod }} Account Services](https://accounts.rockylinux.org)-System,
-- Autorisierung für den API-`POST`-Zugriff durch das {{ rc.prod }} Testteam, und
-- ein [openQA API-Schlüssel](https://open.qa/docs/#_authentication), der auf dem {{ rc.prod }}-openQA-System generiert wurde.
+- un compte en règle dans le système [{{ rc.prod }} Account Services](https://accounts.rockylinux.org),
+- autorisation d'accès à l'API `POST` de la part de l'équipe de test {{ rc.prod }}, et
+- une [clé API openQA](https://open.qa/docs/#_authentication) générée sur le système openQA {{ rc.prod }}.
 
-## Konfiguration Ihres OpenQA-Clients
+## Configuration de votre client OpenQA
 
-Mit dem Befehl `help` des OpenQA-Clients können Sie Ihren Client auf verschiedene Arten so konfigurieren, dass er Ihren API-Schlüssel verwendet.
+Selon la commande `help` du client openqa, vous pouvez configurer votre client pour utiliser votre clé API de plusieurs manières.
 
-Das folgende Beispiel zeigt, wie Sie Ihren Client mit der gebräuchlichsten Methode konfigurieren. Es ist möglich, mehrere OpenQA-Client-API-Schlüssel auf diese Weise zu konfigurieren.
+L'exemple suivant montre comment configurer votre client selon la méthode la plus courante. Il est possible de configurer
+plusieurs clés API client OpenQA de cette manière.
 
 ```bash
 $ mkdir -p ~/.config/openqa
@@ -48,13 +49,13 @@ key = your_api_key
 secret = your_api_secret
 ```
 
-## Testen Ihrer OpenQA-Clientinstallation
+## Test de votre installation client OpenQA
 
 ```bash
 $ openqa-cli api --host https://openqa.rockylinux.org --pretty jobs/overview
 ```
 
-sollte eine Liste der aktuellen `jobs`~ bereitstellen;  wählen Sie dann eine Jobnummer aus und sehen Sie Informationen zu diesem spezifischen Job an, z.B.:
+devrait fournir une liste des `jobs` actuels, puis sélectionnez un numéro de tâche et affichez les informations relatives à cette tâche spécifique, par exemple :
 
 ```bash
 $ openqa-cli api --host https://openqa.rockylinux.org --pretty jobs/1
@@ -121,10 +122,10 @@ $ openqa-cli api --host https://openqa.rockylinux.org --pretty jobs/1
 }
 ```
 
-## Referenzen
+## Références
 
-- [openQA-Documentation](https://open.qa/documentation/)
-- [Installation-Info](https://github.com/rocky-linux/OpenQA-Fedora-Installation)
-- [Tests für Rocky](https://git.resf.org/testing/os-autoinst-distri-rocky)
+- [openQA Documentation](https://open.qa/documentation/)
+- [Installation Info](https://github.com/rocky-linux/OpenQA-Fedora-Installation)
+- [Tests for Rocky](https://git.resf.org/testing/os-autoinst-distri-rocky)
 
 {% include 'teams/testing/content_bottom.md' %}

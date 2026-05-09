@@ -7,13 +7,13 @@ tags:
   - journald
 ---
 
-## Panoramica di base
+## Panoramica
 
 In questo capitolo si spiega come gestire i registri nel sistema operativo.
 
 **Q: Che cos'è un registro?**
 
-**Log**：Registra tutti gli eventi e i messaggi che si verificano dall'avvio del sistema operativo, compresi i registri di avvio, i registri di inizializzazione del kernel, i registri di inizializzazione di `systemd` e i registri di avvio o esecuzione delle applicazioni. Il registro è una delle funzioni più importanti del sistema operativo. Gli amministratori possono interrogare i registri per risolvere problemi esistenti o futuri.
+**Log**: registra tutti gli eventi e i messaggi verificatisi dall'avvio del sistema operativo, inclusi i registri di avvio, i registri di inizializzazione del kernel, i registri di inizializzazione di `systemd` e i registri relativi all'avvio o all'esecuzione delle applicazioni. Il registro è una delle funzioni indispensabili del sistema operativo. Gli amministratori possono interrogare i registri per risolvere problemi esistenti o futuri.
 
 In RHEL 8.x e RHEL 9.x, la raccolta dei log è completata principalmente dai due programmi seguenti:
 
@@ -30,7 +30,7 @@ In Rocky Linux 8.x o 9.x, ci sono vari file di log nella directory **/var/log/**
 - `/var/log/dmegs` - Registra il log dell'autoverifica del kernel dopo l'avvio. Il contenuto del file è testo normale. È anche possibile utilizzare il comando `dmegs` per visualizzare.
 - `/var/log/lastlog` - Registra l'orario dell'ultimo accesso di tutti gli utenti del sistema operativo. Per visualizzare questo binario è necessario utilizzare il comando `lastlog`.
 - `/var/log/maillog` - Registra i log relativi alla posta elettronica.
-- `/var/log/messages` - Il file di log a livello di sistema registra il cuore del sistema operativo. Il contenuto del file è testo normale. Quando si verificano alcuni errori nel sistema operativo, è necessario innanzitutto visualizzare il file di registro.
+- `/var/log/messages` - Il file di log di sistema registra le informazioni fondamentali del sistema operativo. Il contenuto del file è testo normale. Quando si verificano degli errori nel sistema operativo, è consigliabile consultare innanzitutto il contenuto di questo file di log.
 - `/var/log/secure` - Registra i log relativi all'identità dell'utente, come il login dell'utente, il passaggio a `su`, l'aggiunta di un nuovo utente, la modifica della password dell'utente e così via.
 - `/var/log/wtmp` - Registra gli eventi di login e logout degli utenti e gli eventi di avvio, spegnimento e riavvio del sistema operativo. Per visualizzare questo file binario, utilizzare il comando `last`.
 
@@ -43,7 +43,7 @@ Per i file di testo semplice, il formato è solitamente:
 5. Informazioni sull'utente e sul terminale
 6. Alcune parole chiave (come error, fail, info, ecc.)
 
-Il formato dei registri per scopi diversi varia notevolmente, pertanto la descrizione del formato sopra riportata non può rappresentare tutti i registri.
+I log destinati a scopi diversi variano notevolmente nel formato, pertanto la descrizione del formato sopra riportata non può coprire tutti i log.
 
 Se `rsyslog` non è presente nel sistema operativo, eseguire il seguente comando:
 
@@ -54,7 +54,7 @@ Shell > dnf install -y rsyslog
 ### File di configurazione
 
 - `/etc/rsyslog.conf` - File di configurazione principale
-- `/etc/rsyslog.d/` - Directory di archiviazione dei file di configurazione aggiuntivi
+- `/etc/rsyslog.d/` - Directory in cui vengono memorizzati i file di configurazione aggiuntivi
 
 \`/etc/rsyslog.conf' è composto principalmente da diverse parti:
 
@@ -141,11 +141,11 @@ authpriv.*  /var/log/auth.log
 kern.err;mail.alert  /var/log/critical.log
 ```
 
-| Connettore | Descrizione                                                                                                                                                                                 |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `.`        | Registra i log con una priorità maggiore rispetto alle parole chiave. Per esempio, `cron.info` significa che registrerà in `cron` la cui priorità di log è maggiore di info |
-| `.=`       | Registra solo la priorità della parola chiave corrispondente. Ad esempio, `*.=emerg` indica che registrerà i registri con priorità pari a `emerg` in tutte le applicazioni  |
-| `.!`       | Significa escluso o non uguale a                                                                                                                                                            |
+| Connettore | Descrizione                                                                                                                                                                                    |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.`        | Registra i log con una priorità maggiore rispetto alle parole chiave. Per esempio, `cron.info` significa che registrerà in `cron` la cui priorità di log è maggiore di info    |
+| `.=`       | Registra solo i log prioritari corrispondenti alle parole chiave. Ad esempio, `*.=emerg` indica che registrerà i registri con priorità pari a `emerg` in tutte le applicazioni |
+| `.!`       | Significa escluso o non uguale a                                                                                                                                                               |
 
 Le priorità sono ordinate dal basso all'alto:
 
@@ -178,14 +178,14 @@ Più bassa è la priorità del registro, più dettagliato è il contenuto regist
 
 - **Rotazione** - Archivia automaticamente il file di registro corrente in base a regole specifiche (come il tempo o la dimensione del file) e crea un nuovo file di registro vuoto per la registrazione per evitare che il file di registro sia troppo grande.
 - **Compressione** - Comprime i vecchi registri archiviati per risparmiare spazio su disco.
-- **Elimina** - Conserva i file di registro pertinenti ed elimina quelli vecchi e scaduti in base alle politiche pertinenti.
+- **Delete** - In base alle strategie previste, conservare i file di log che soddisfano i criteri e eliminare quelli obsoleti.
 
 Spesso si usa lo strumento `logrotate` per ruotare i log.
 
 Regole di denominazione per i file di registro durante la rotazione:
 
-- Parametro `dateext` - Utilizza la data come suffisso del file per la rotazione dei registri. Ad esempio, durante la prima rotazione dei log, il vecchio file di log "secure" cambierà in "secure-20250424" e `logrotate` creerà un nuovo file "secure"
-- Nessun parametro `dateetx` - Utilizza i numeri di rotazione come suffisso del file dopo la rotazione del registro. Ad esempio, quando si verifica la prima rotazione dei registri, il vecchio file di registro "secure" cambia in "secure.1" e `logrotate` crea un nuovo file "secure"
+- Parametro `dateext` - Utilizza la data come suffisso del file per la rotazione dei registri. Ad esempio, durante il primo ciclo di rotazione dei log, il vecchio file di log "secure" verrà rinominato "secure-20250424" e `logrotate` creerà un nuovo file "secure"
+- Nessun parametro `dateetx` - Utilizza i numeri di rotazione come suffisso del file dopo la rotazione del registro. Ad esempio, quando si verifica la prima rotazione dei log, il vecchio file di log "secure" verrà rinominato "secure.1" e `logrotate` creerà un nuovo file "secure"
 
 #### /etc/logrotate.conf and /etc/logrotate.d/
 
@@ -435,7 +435,7 @@ L'uso è `journalctl [OPTIONS...] [MATCHES...]`.
 
 Ecco un elenco delle opzioni in un elenco non ordinato:
 
-- `-u` - Specifica l''unità'; si può usare più volte in un comando a riga singola. Per esempio, `journalctl -u crond.service -u sshd.service`
+- `-u` - Specifica una singola "unità" per visualizzare le informazioni relative. È possibile utilizzare questa opzione più volte in un unico comando da riga di comando. Ad esempio, `journalctl -u crond.service -u sshd.service`
 - `--system` - Mostra i messaggi dei servizi di sistema e del kernel
 - `--user` - Mostra i messaggi del servizio dell'utente corrente
 - `-k` - Mostra il registro dei messaggi del kernel dall'avvio corrente
@@ -444,19 +444,19 @@ Ecco un elenco delle opzioni in un elenco non ordinato:
 - `--list-boots` - Mostra informazioni sintetiche sugli avvii registrati
 - `-n N` - Controlla il numero di voci emesse. Se non viene specificato "N", il valore predefinito è 10
 - `-p PRIORITY` - Specifica la priorità o l'intervallo di priorità. Se si specifica una singola parola chiave di priorità del registro, verrà visualizzata questa priorità e le voci superiori a questa priorità. Ad esempio, `journalctl -p 3` o `journalctl -p err` Equivalente a `journalctl -p 0..3` o `journalctl -p emerg..err`
-- `-b` - Interroga il registro dall'inizio dell'ID di avvio corrente. Non confondere l'ID di avvio con il numero di indice dell'avvio del kernel.
+- `-b` - Interroga il registro dall'inizio dell'ID di avvio corrente. Si prega di non confondere l'ID di avvio con il numero di indice dell'avvio del kernel
 - `-f` - Log dinamico delle query, simile al comando `tail -f`
 - `-x` - Aggiunge le spiegazioni dei messaggi, se disponibili
 - `-e` - Salta alla pagina finale del log, spesso usato con l'opzione `-x`
-- `-r` - Registro inverso.
+- `-r` - Registro inverso
 - `--disk-usage` - Visualizza lo spazio su disco occupato dai file di log
 - `--rotate` - Richiede la rotazione immediata dei journal file
 - `--vacuum-size=BYTES` - Riduce il file di log alla dimensione specificata. Elimina gradualmente il contenuto del vecchio registro fino a raggiungere la dimensione del file specificata. I suffissi di dimensione supportati sono K, M, G, T
 - `--vacuum-time=TIME` - È possibile eliminare i vecchi record di log specificando un punto temporale, cioè cancellerà i record di log precedenti. I suffissi temporali supportati sono s, m, h, giorni, mesi, settimane, anni
 - `--vacuum-files=INT` - Indica quanti file di log riservare
-- `-N` - Elenca tutti i nomi dei campi attualmente utilizzati. Gli utenti possono utilizzare il metodo "FIELD=VALUE" per abbinare i contenuti correlati. Ad esempio, `journalctl _SYSTEMD_UNIT=sshd.service`.
-- `-g` o `-grep=PATTERN` - Corrisponde al contenuto del registro attraverso uno schema e supporta le espressioni regolari. Se PATTERN è tutto minuscolo, il contenuto del registro non è sensibile alle maiuscole per impostazione predefinita. È possibile regolare la sensibilità alle maiuscole attraverso l'opzione `--case-sensitive`
-- `--case-sensitive=[BOOLEAN]` - Regola la sensibilità alle maiuscole.
+- `-N` - Elenca tutti i nomi dei campi attualmente utilizzati. Gli utenti possono utilizzare il metodo "FIELD=VALUE" per abbinare i contenuti correlati. Ad esempio, `journalctl _SYSTEMD_UNIT=sshd.service`
+- `-g` o `-grep=PATTERN` - Esegue una ricerca nel contenuto del log in base a un modello e supporta le espressioni regolari. Se PATTERN è tutto minuscolo, il contenuto del registro non è sensibile alle maiuscole per impostazione predefinita. È possibile regolare la sensibilità alle maiuscole attraverso l'opzione `--case-sensitive`
+- `--case-sensitive=[BOOLEAN]` - Indica se distinguere o meno tra maiuscole e minuscole
 - `-o` o `--output=STRING` - Cambia la modalità di output di `journalctl`. Una STRING può essere short, short-precise, short-iso, short-iso-precise, short-full, short-monotonic, short-unix, verbose, export, json, json-pretty, json-sse, cat, e with-unit
 - `-q` o `--quiet` - Output silenzioso
 - `--sync` - Sincronizza i messaggi del journal non scritti su disco
@@ -496,12 +496,12 @@ Shell > cat /etc/systemd/journald.conf
 #LineMax=48K
 ```
 
-Utilizzare "[ ]" per contenere il titolo, come per i file di configurazione di altri componenti di `systemd`, e sotto il titolo ci sono coppie chiave-valore specifiche. Nella coppia chiave-valore non ci sono **spazi su entrambi i lati del segno di uguale**. Per la pagina completa del manuale di configurazione, vedere `man 5 journald.conf`
+Utilizzare "[ ]" per contenere il titolo, come per i file di configurazione di altri componenti di `systemd`, e sotto il titolo ci sono coppie chiave-valore specifiche. Nella coppia chiave-valore non ci sono **spazi su entrambi i lati del segno di uguale**. Per la pagina completa del manuale di configurazione, consultare `man 5 journald.conf`.
 
 - `Storage=` - Controlla la posizione dell'archivio dati di `journald`. Il valore predefinito è auto.
 
-  - volatile - Memorizza i dati di registro in memoria, cioè nel file temporaneo situato nella directory **/run/log/journal/**.
-  - persistent - Memorizza i dati di log nella directory **/var/log/journal/**. È necessario crearla manualmente. Se questa directory non è scrivibile, i dati di log verranno scritti nella directory **/run/log/journal/**.
+  - volatile - Memorizza i dati di log in memoria, ovvero nel file temporaneo situato nella directory **/run/log/journal/**
+  - persistent - Memorizza i dati di log nella directory **/var/log/journal/**. È necessario crearla manualmente. Se questa directory non è scrivibile, i dati di log verranno scritti nella directory **/run/log/journal/**
   - auto - Simile a persistent
   - none - Non salva alcun registro, ma non influisce sui registri inoltrati ad altri "targets"
 
@@ -515,31 +515,31 @@ Utilizzare "[ ]" per contenere il titolo, come per i file di configurazione di a
 
 - `RateLimitIntervalSec=` - Definisce l'intervallo di tempo per la frequenza di generazione dei registri. Il valore predefinito è 30s.
 
-- `RateLimitBurst=` - Il numero massimo di voci che il log genera in un determinato intervallo di tempo. Il valore predefinito è 10000. Se le voci di registro sono superiori a 10000 in un determinato intervallo di tempo, vengono eliminati i registri ridondanti e non vengono create nuove voci di registro fino all'intervallo di tempo successivo.
+- `RateLimitBurst=` - Il numero massimo di voci che il log genera in un determinato intervallo di tempo. Il valore predefinito è 10000. Se il numero di voci di log supera le 10.000 in un determinato intervallo di tempo, il sistema eliminerà i log in eccesso e non creerà nuove voci di log fino al successivo intervallo di tempo
 
-- `SystemMaxUse=` - Controlla la dimensione totale di tutti i file di log nella directory **/var/log/journal/**.
+- `SystemMaxUse=` - Controlla la dimensione totale di tutti i file di log nella directory **/var/log/journal/**
 
 - `SystemKeepFree=` - Controlla quanto spazio su disco riservare alla directory **/var/log/journal/**. In base a 1024, i suffissi includono K, M, G, T, P, E
 
 - `SystemMaxFileSize=` - Limita la dimensione di un singolo file nella directory **/var/log/journal/**. Se la dimensione supera quella specificata, si verificherà una rotazione del registro
 
-- `SystemMaxFiles=` - Specifica quanti file mantenere nella directory **/var/log/journal/**. Quando supera il numero definito, cancella il registro più vecchio.
+- `SystemMaxFiles=` - Specifica quanti file mantenere nella directory **/var/log/journal/**. Quando supera il numero definito, eliminerà il log più vecchio
 
-- `RuntimeMaxUse=` - Controlla la dimensione totale dei dati di log nella directory **/run/log/journal/**.
+- `RuntimeMaxUse=` - Controlla la dimensione totale dei dati di log nella directory **/run/log/journal/**
 
-- `RuntimeKeepFree=` - Controlla quanto spazio riservare nella directory **/run/log/journal/**.
+- `RuntimeKeepFree=` - Controlla la quantità di spazio da riservare nella directory **/run/log/journal/**
 
-- `RuntimeMaxFileSize=` - Controlla la dimensione di un singolo file di log nella directory **/run/log/journal/**. Quando il registro raggiunge la dimensione specificata, si verifica la rotazione del registro.
+- `RuntimeMaxFileSize=` - Controlla la dimensione di un singolo file di log nella directory **/run/log/journal/**. Quando il file di log raggiunge la dimensione specificata, verrà avviata la rotazione del file di log
 
-- `RuntimeMaxFiles=` - Quanti file di log devono essere conservati nella directory **/run/log/journal/**.
+- `RuntimeMaxFiles=` - Numero massimo di file di log da conservare nella directory **/run/log/journal/**
 
 - `MaxRetentionSec=` - Definisce il tempo di conservazione dei file di log; se supera il tempo definito, cancella i vecchi file di log. Il valore 0 indica che la funzione è disattivata. Il suffisso del valore è anno, mese, settimana, giorno, h, m
 
-- `MaxFileSec=` - Rotazione del registro basata sul tempo. Poiché il polling basato sulle dimensioni dei file (`SystemMaxFileSize` e `RuntimeMaxFileSize`) esiste già, il polling dei registri basato sul tempo è solitamente inutile. Impostare su 0 per disabilitare questa funzione.
+- `MaxFileSec=` - Rotazione del registro basata sul tempo. Poiché il polling basato sulle dimensioni dei file (`SystemMaxFileSize` e `RuntimeMaxFileSize`) esiste già, il polling dei registri basato sul tempo è solitamente inutile. Impostare il valore su 0 per disattivare questa funzione
 
-- `ForwardToSyslog=` - Se inoltrare i messaggi di log raccolti al demone tradizionale `syslog`. Il valore predefinito è no.
+- `ForwardToSyslog=` - Se inoltrare i messaggi di log raccolti al demone tradizionale `syslog`. Il valore predefinito è "no"
 
-- `ForwardToKMsg=` - Se inoltrare il messaggio di log ricevuto a kmsg. Il valore predefinito è no.
+- `ForwardToKMsg=` - Se inoltrare il messaggio di log ricevuto a kmsg. Il valore predefinito è "no"
 
 - `ForwardToConsole=` - Se inoltrare i messaggi di log ricevuti alla console di sistema. Il valore predefinito è no. Se è impostato su yes, è necessario configurare anche `TTYPath`
 
@@ -555,7 +555,7 @@ Utilizzare "[ ]" per contenere il titolo, come per i file di configurazione di a
 
 - `MaxLevelConsole=` - Imposta il livello massimo di log inoltrato alla console di sistema. Il valore predefinito è info
 
-- `MaxLevelWall=` - Imposta il livello massimo di log inviato a tutti gli utenti connessi. Il valore predefinito è `emerg`
+- `MaxLevelWall=` - Imposta il livello massimo di log inviato a tutti gli utenti connessi. Il valore predefinito è emerg
 
 - `LineMax=` - La lunghezza massima consentita (byte) di ciascun record di log quando si converte il flusso di log in record di log. Con 1024 come base, il suffisso può essere K, M, G o T. Il valore predefinito è 48K
 
