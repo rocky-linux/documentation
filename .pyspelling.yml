@@ -1,0 +1,41 @@
+spellchecker: hunspell
+matrix:
+  - name: Markdown
+    sources:
+      - 'docs/**/*.md|!docs/**/*.{af,cs,de,en,es,fr,hi,id,it,ja,ko,pl,pt,pt-BR,ru,sv,tr,uk,zh}.md'
+    expect_match: false
+    hunspell:
+      d: en_US
+    dictionary:
+      wordlists:
+        - .wordlist.txt
+      output: build/spelling-wordlist.dic
+    pipeline:
+      - pyspelling.filters.context:
+          context_visible_first: true
+          escapes: '\\[\\`]'
+          delimiters:
+            - open: '(?s)^---'
+              close: '^---'
+            - open: '(?s)^(?P<open>`{3,}).*$'
+              close: '^(?P=open)$'
+            - open: '`'
+              close: '`'
+            - open: '\{%'
+              close: '%\}'
+            - open: '\{\{'
+              close: '\}\}'
+            - open: '\('
+              content: 'https?://[^\)]*'
+              close: '\)'
+            - open: '<'
+              content: '[^>]+@[^>]+'
+              close: '>'
+      - pyspelling.filters.markdown:
+      - pyspelling.filters.html:
+          comments: false
+          ignores:
+            - code
+            - pre
+            - kbd
+      - pyspelling.filters.url:
