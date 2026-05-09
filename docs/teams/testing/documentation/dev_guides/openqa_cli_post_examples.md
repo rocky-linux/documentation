@@ -91,7 +91,7 @@ A feature of openQA is that for a given job group test suites which use the same
 
 ![openQA Home View...](../../../../assets/teams/testing/openqa_home_view.png){ loading=lazy }
 
-Thus, the examples show above which all use `BUILD={{ rc.r9date }}-Rocky-{{ rc.r9 }}-x86_64.0` are all shown in a single view. Additionally, that view is accessible via a predictable URI, for example [`https://openqa.rockylinux.org/tests/overview?build={{ rc.r9date }}-Rocky-{{ rc.r9 }}-x86_64.0`](<https://openqa.rockylinux.org/tests/overview?build={{> rc.r9date }}-Rocky-{{ rc.r9 }}-x86_64.0) as shown below...
+Thus, the examples show above which all use `BUILD={{ rc.r9date }}-Rocky-{{ rc.r9 }}-x86_64.0` are all shown in a single view. Additionally, that view is accessible via a predictable URI, for example [`https://openqa.rockylinux.org/tests/overview?build={{ rc.r9date }}-Rocky-{{ rc.r9 }}-x86_64.0`](https://openqa.rockylinux.org/tests/overview?build=20250604-Rocky-9-x86_64.0) as shown below...
 
 ![openQA Build View...](../../../../assets/teams/testing/openqa_build_view.png){ loading=lazy }
 
