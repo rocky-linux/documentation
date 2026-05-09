@@ -20,14 +20,17 @@ render_macros: true
     This test case is associated with the [Release_Criteria#Disk Layouts](../../guidelines/release_criteria/r9/9_release_criteria.md#disk-layouts) release criterion. If you are doing release validation testing, a failure of this test case may be a breach of that release criterion.
 
 ## Description
+
 This test case verifies successful installation to any supported partition layout using any file system or format combination.
 
 {% include 'teams/testing/qa_data_loss_warning.md' %}
 
 ## Setup
+
 {% include 'teams/testing/qa_setup_boot_to_media.md' %}
 
 ## How to test
+
 1. Select the Installation Destination spoke.
 1. Select the volumes to which the operating system should be installed.
 1. Select the Custom radio button under the Storage Configuration section, then click "Done".
@@ -45,11 +48,13 @@ This test case verifies successful installation to any supported partition layou
 1. Continue the installation as normal.
 
 ## Expected Results
+
 1. The installation should complete successfully and boot to the appropriate disk.
 1. The specified filesystem type and partition scheme should be used.
 1. If configured, software RAID should function as expected.
 
 ## Testing with openQA
+
 The following openQA test suites satisfy this release criteria:
 
 - `install_standard_partition_ext4`

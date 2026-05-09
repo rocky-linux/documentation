@@ -13,7 +13,7 @@ rc:
 render_macros: true
 ---
 
-# {{ rc.prod }} {{ rc.ver }} {{ rc.level }} Release Objectives
+## {{ rc.prod }} {{ rc.ver }} {{ rc.level }} Release Objectives
 
 The objective of a release (major or minor) is to provide a solid Enterprise Linux release that is suitable to:
 
@@ -45,8 +45,8 @@ Release-blocking installer images must boot when written to optical media or USB
     Release-blocking images must boot when written to optical media of an appropriate size. Current size requirements are: boot.iso = 789M, minimal.iso = 2.0G and dvd.iso = 10G.
 
 ??? tldr "Officially supported USB flash drive writing methods"
-    The following methods of writing USB flash drives are officially support: dd<br>
-    The following methods of writing USB flash drives are _**not**_ supported: rufus
+    - The following methods of writing USB flash drives are officially support: `dd`
+    - The following methods of writing USB flash drives are _**not**_ supported: `rufus`
 
 ??? tldr "References"
     - Test cases:
@@ -55,12 +55,14 @@ Release-blocking installer images must boot when written to optical media or USB
         - [QA:Testcase Media USB dd](../../../documentation/qa_test_cases/Testcase_Media_USB_dd.md)
 
 #### VNC Graphics Mode behaviors
+
 The VNC installation option on all release-blocking installers must function as intended. This means launching the installer or desktop and connecting with VNC to complete the installation. There must be no bugs that prevent the installer from being reached in this configuration on all systems and classes of hardware supported by the enterprise linux kernel.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase VNC Graphics Mode](../../../documentation/qa_test_cases/Testcase_VNC_Graphics_Mode.md)
 
 #### No Broken Packages
+
 Critical errors, such as undeclared conflicts, unresolved dependencies, or modules relying on packages from another stream will be considered an automatic blocker. There are potential exceptions to this (eg, freeradius cannot be installed on an older perl stream, this is a known issue upstream).
 ??? tldr "References"
     - Test cases:
@@ -68,6 +70,7 @@ Critical errors, such as undeclared conflicts, unresolved dependencies, or modul
         - [QA:Testcase Media File Conflicts](../../../documentation/qa_test_cases/Testcase_Media_File_Conflicts.md)
 
 #### Repositories Must Match Upstream
+
 Repositories and the packages within them should match upstream as closely as possible. Notable exceptions would be kmods, kpatch, or what is deemed as “spyware” like insights. Packages that are available from upstream should not have hard requirements on RHSM and packages that have it default built in should be patched out.
 ??? tldr "References"
     - Test cases:
@@ -76,6 +79,7 @@ Repositories and the packages within them should match upstream as closely as po
         - [QA:Testcase Packages No RHSM](../../../documentation/qa_test_cases/Testcase_Packages_No_RHSM.md)
 
 #### Debranding
+
 Assets and functionality that are Red Hat specific should not be included. If they are not patched out, it will be considered an automatic blocker.
 ??? tldr "References"
     - Test cases:
@@ -84,6 +88,7 @@ Assets and functionality that are Red Hat specific should not be included. If th
 ### Installer Requirements
 
 #### Media Consistency Verification
+
 This means that the installer’s mechanism for verifying the install medium is intact and must complete successfully, with the assumption that the medium was correctly written. It should return a failure message if this not the case.
 ??? tldr "References"
     - Test cases:
@@ -92,79 +97,93 @@ This means that the installer’s mechanism for verifying the install medium is 
         - [QA:Testcase Boot Methods DVD](../../../documentation/qa_test_cases/Testcase_Boot_Methods_Dvd.md)
 
 #### Packages and Installer Sources
+
 The installer must be able to use all supported local/remote packages and installer sources.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Packages and Installer Sources](../../../documentation/qa_test_cases/Testcase_Packages_Installer_Sources.md)
 
 #### NAS (Network Attached Storage)"
+
 The installer must be able to detect and install to supported NAS devices (if possible and supported by the kernel).
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Network Attached Storage](../../../documentation/qa_test_cases/Testcase_Network_Attached_Storage.md)
 
 #### Installation Interfaces
+
 The installer must be able to complete an installation using all supported spokes.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Installation Interfaces](../../../documentation/qa_test_cases/Testcase_Installation_Interfaces.md)
 
 #### Minimal Installation
+
 A minimal installation (via network) must be able to install the minimal package set.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Minimal Installation](../../../documentation/qa_test_cases/Testcase_Minimal_Installation.md)
 
 #### Kickstart Installation
+
 A kickstart installation should succeed, whether from optical/USB media or via the network.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Kickstart Installation](../../../documentation/qa_test_cases/Testcase_Kickstart_Installation.md)
 
 #### Disk Layouts
+
 The installer must be able to create and install to any workable partition layout using any file system or format combination offered or supported by the installer. File systems that are not supported by the EL kernel is not tested here (this means btrfs, zfs, both of wish are not supported).
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Disk Layouts](../../../documentation/qa_test_cases/Testcase_Disk_Layouts.md)
 
 #### Firmware RAID
+
 The installer must be able to detect and install to firmware RAID devices. Note that system-specific bugs do not count as blockers. It is likely that some hardware support might be broken or not available at all. DUDs (driver update disks) are not considered for this criteria.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Firmware RAID](../../../documentation/qa_test_cases/Testcase_Firmware_RAID.md)
 
 #### Bootloader Disk Selection
+
 The installer must allow the user to choose which disk the bootloader will be installed to or, if the user so chooses, not to install a bootloader.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Bootloader Disk Selection](../../../documentation/qa_test_cases/Testcase_Bootloader_Disk_Selection.md)
 
 #### Storage Volume Resize
+
 Any installer mechanism for resizing storage volumes must correctly attempt the requested operation. This means that if the installer offers a way to resize storage volumes, then it must use the correct resizing tool with the correct parameters. However, it does not require the installer to disallow resizing of unformatted or volumes with an unknown filesystem type.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Storage Volume Resize](../../../documentation/qa_test_cases/Testcase_Storage_Volume_Resize.md)
 
 #### Update Image
+
 The installer must be able to use an installer update image retrieved from removable media or a remote package source. This includes DUDs (driver update disks).
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Update Image](../../../documentation/qa_test_cases/Testcase_Update_Image.md)
 
 #### Installer Help
+
 Any element in the installer which contains a “help” text must display the appropriate help documentation when selected.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Installer Help](../../../documentation/qa_test_cases/Testcase_Installer_Help.md)
 
 #### Installer Translations
+
 The installer must correctly display all complete translations that are available for use.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Installer Translations](../../../documentation/qa_test_cases/Testcase_Installer_Translations.md)
 
 ### Cloud Image Requirements
+
 #### Images Published to Cloud Providers
+
 Release-blocking cloud disk images must be published to appropriate cloud providers (such as Amazon) and they must successfully boot. This also applies to KVM based instances, such as x86 and aarch64 systems.
 ??? tldr "References"
     - Test cases:

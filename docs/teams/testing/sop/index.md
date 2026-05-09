@@ -14,4 +14,3 @@ This section goes over the various SOP's for the Testing Team. Please use the me
 to find the various pages of interest.
 
 {% include "teams/testing/content_bottom.md" %}
-

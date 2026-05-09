@@ -20,16 +20,19 @@ render_macros: true
     This test case is associated with the [Release_Criteria#Storage Volume Resize](../../guidelines/release_criteria/r9/9_release_criteria.md#storage-volume-resize) release criterion. If you are doing release validation testing, a failure of this test case may be a breach of that release criterion.
 
 ## Description
+
 This test case verifies that the installer will successfully resize or delete and overwrite existing partitions on storage volumes.
 
 {% include 'teams/testing/qa_data_loss_warning.md' %}
 
 ## Setup
+
 {% include 'teams/testing/qa_setup_boot_to_media.md' %}
 
 ## How to test
 
 ### Resize
+
 1. From the Installation Destination spoke, in the Storage Configuration section, select the Custom radio button, then click Done.
 1. Expand the list of available partitions by clicking the black arrow to the left of the release version and architecture.
 1. Select the partition you wish to resize. Be sure to uncheck the Reformat checkbox if you wish to resize without reformatting the partition.
@@ -38,6 +41,7 @@ This test case verifies that the installer will successfully resize or delete an
 1. Repeat as necessary for additional partitions, or click Done to return to the Anaconda main hub.
 
 ### Delete
+
 1. From the Installation Destination spoke, in the Storage Configuration section, select the Automatic radio button, then click Done.
 1. You should be presented with an "Installation Options" dialog, indicating the amount of disk space that is available for use and available to reclaim.
 1. Click the Reclaim Space button.
@@ -46,11 +50,13 @@ This test case verifies that the installer will successfully resize or delete an
 1. When you have finished, click the Reclaim Space button to reclaim available free space.
 
 ## Expected Results
+
 1. The installation should complete and boot successfully.
 1. Resized partitions should correctly reflect the desired size. This may be verified using the `lsblk` command.
 1. Deleted partitions should no longer exist.
 
 ## Testing in openQA
+
 The following openQA test suites satisfy this release criteria:
 
 - `install_delete_partial`

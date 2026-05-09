@@ -11,8 +11,6 @@ rc:
 render_macros: true
 ---
 
-# {{ rc.prod }} Release Status
-
 The QA and Testing efforts during releases are tracked in online shared documents. After release the status track and go/no-go documents are published here.
 
 | Rocky Linux Version  | Release Criteria                          | QA and Testing Status                      |  QA and Testing GO / NO-GO Summary          | Official Release Date       |

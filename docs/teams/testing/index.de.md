@@ -21,7 +21,7 @@ Das Testing Team ist für das Testen und die Qualitätssicherung von Rocky Linux
 ## Besprechungen / Kommunikation
 
 - Weekly Team Meeting: [Google Meet](http://meet.google.com/kqs-rxme-juw)
-  - Jeden Donnerstag, abwechselnd 23:00 Uhr UTC und 14:00 Uhr UTC – siehe [RESF Public Calendar](https://calendar.google.com/calendar/u/0/embed?src=c_2e1oqh6t0i6sqhja5nu9lq8lgo@group.calendar.google.com)
+    - Jeden Donnerstag, abwechselnd 23:00 Uhr UTC und 14:00 Uhr UTC – siehe [RESF Public Calendar](https://calendar.google.com/calendar/u/0/embed?src=c_2e1oqh6t0i6sqhja5nu9lq8lgo@group.calendar.google.com)
 
 ## Mitglieder
 

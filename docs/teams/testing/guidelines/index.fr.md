@@ -10,4 +10,3 @@ Cette section détaille les lignes directrices établies par l'équipe de test c
 Toutes les consignes sont indiquées à gauche de cette page.
 
 {% include "teams/testing/content_bottom.md" %}
-

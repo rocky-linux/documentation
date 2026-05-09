@@ -21,7 +21,7 @@ L'équipe de test gère les tests et l'assurance qualité de Rocky Linux.
 ## Réunions / Communication
 
 - Weekly Team Meeting: [Google Meet](http://meet.google.com/kqs-rxme-juw)
-  - Tous les jeudis, en alternance entre 23h00 UTC et 14h00 UTC - consultez le [Calendrier public RESF](https://calendar.google.com/calendar/u/0/embed?src=c_2e1oqh6t0i6sqhja5nu9lq8lgo@group.calendar.google.com)
+    - Tous les jeudis, en alternance entre 23h00 UTC et 14h00 UTC - consultez le [Calendrier public RESF](https://calendar.google.com/calendar/u/0/embed?src=c_2e1oqh6t0i6sqhja5nu9lq8lgo@group.calendar.google.com)
 
 ## Adhérent·es
 

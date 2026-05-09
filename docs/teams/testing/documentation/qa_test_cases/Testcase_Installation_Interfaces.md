@@ -19,11 +19,13 @@ render_macros: true
     This test case is associated with the [Release_Criteria#Installation Interfaces](../../guidelines/release_criteria/r9/9_release_criteria.md#installation-interfaces) release criterion. If you are doing release validation testing, a failure of this test case may be a breach of that release criterion.
 
 ## Description
+
 This test case verifies that the installer can complete an installation using all Anaconda spokes.
 
 {% include 'teams/testing/qa_data_loss_warning.md' %}
 
 ## Setup
+
 {% include 'teams/testing/qa_setup_boot_to_media.md' %}
 
 ## How to test
@@ -44,9 +46,11 @@ This test case verifies that the installer can complete an installation using al
 1. Select a security policy from the Security Policy spoke
 
 ## Expected Results
+
 1. The installation should complete and boot successfully.
 
 ## Testing in openQA
+
 The following openQA test suites satisfy this release criteria:
 
 - `install_arabic_language` OR `install_asian_language`

@@ -38,7 +38,7 @@ Obtain access to a suitable system with either a Workstation or a Graphical Serv
 
 ## Expected Results
 
-1. Open the SETroubleshoot Application and invoke the error summarization. 
+1. Open the SETroubleshoot Application and invoke the error summarization.
 2. There must not be shown any errors / denials
 
 {% include 'teams/testing/qa_testcase_bottom.md' %}

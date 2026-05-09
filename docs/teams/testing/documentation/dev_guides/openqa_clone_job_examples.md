@@ -13,8 +13,6 @@ rc:
 render_macros: true
 ---
 
-# openqa-clone-job Examples
-
 This page will provide a brief overview of basic and advanced job cloning using the `openqa-clone-job` command.
 
 ## System / Access Requirements

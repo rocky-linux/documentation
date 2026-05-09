@@ -79,6 +79,7 @@ These steps may also be necessary in some (but not all) cases.
     ```
 
 ## References
+
 - [Upgrading Fedora using the DNF system upgrade](https://docs.fedoraproject.org/en-US/quick-docs/dnf-system-upgrade/){target=_blank}
 - [How to Easily Upgrade to Fedora Workstation 36](https://www.makeuseof.com/how-to-upgrade-to-fedora-workstation-36/){target=_blank}
 

@@ -15,4 +15,3 @@ anything related to the infrastructure used for testing Rocky Linux.
 All guidelines are listed on the left side of this page.
 
 {% include "teams/testing/content_bottom.md" %}
-

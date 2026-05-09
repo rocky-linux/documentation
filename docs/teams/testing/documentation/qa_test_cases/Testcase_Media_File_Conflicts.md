@@ -18,31 +18,54 @@ render_macros: true
     This test case is associated with the [Release_Criteria#no-broken-packages](../../guidelines/release_criteria/r9/9_release_criteria.md#no-broken-packages) release criterion. If you are doing release validation testing, a failure of this test case may be a breach of that release criterion.
 
 ## Description
+
 This testcase will verify that the offline repository included on release blocking images will not contain any file conflicts between packages without explicit `Conflicts:` tag in the package metadata.
 
 ## Setup
+
 1. Obtain access to an environment with the `dnf` and `python3` commands.
 2. Download the ISO to be tested to that machine.
 3. Download the `potential_conflict.py` script provided by Rocky Linux Testing Team.
 
 ## How to test
+
 1. Mount the ISO to be tested locally.
-    - Example:<br>`mount -o loop Rocky-8.5-x86_64-minimal.iso /media`
+   - Example:
+
+   ```bash
+   mount -o loop Rocky-8.5-x86_64-minimal.iso /media
+   ```
+
 2. Determine the path to the `repodata` directory(ies) on the ISO.
-    - Example:<br>`find /media -name repodata`
+   - Example:
+
+   ```bash
+   find /media -name repodata
+   ```
+
 3. Run the `potential_conflict.py` script on the mounted ISO.
-    - Example:<br>`python3 /vagrant/scripts/potential_conflict.py --repofrompath BaseOS,/media/BaseOS --repoid BaseOS --repofrompath Minimal,/media/Minimal --repoid Minimal`
+   - Example:
+
+   ```bash
+   python3 /vagrant/scripts/potential_conflict.py --repofrompath BaseOS,/media/BaseOS --repoid BaseOS --repofrompath Minimal,/media/Minimal --repoid Minimal
+   ```
+
 4. Unmount the ISO.
-    - Example:<br>`umount /media`
+   - Example:
+
+   ```bash
+   umount /media
+   ```
 
 ## Expected Results
+
 1. The `potential_conflict.py` script does not report any packages with non-declared conflicts.
 
-<h3>Sample Output</h3>
+### Sample Output
 
 === "Success"
 
-    ```
+    ```bash
     $ sudo mount -o loop Rocky-8.5-aarch64-minimal.iso /media
     mount: /media: WARNING: device write-protected, mounted read-only.
 
@@ -85,7 +108,7 @@ This testcase will verify that the offline repository included on release blocki
 
 === "Failure"
 
-    ```
+    ```bash
     $ sudo mount -o loop Rocky-8.5-x86_64-dvd1.iso /media
     mount: /media: WARNING: device write-protected, mounted read-only.
 

@@ -18,32 +18,45 @@ render_macros: true
     This test case is associated with the [Release_Criteria#repositories-must-match-upstream](../../guidelines/release_criteria/r9/9_release_criteria.md#repositories-must-match-upstream) release criterion. If you are doing release validation testing, a failure of this test case may be a breach of that release criterion.
 
 ## Description
+
 This test will verify that `insights-client` package is not declared be installed as part of a package group.
 
 ## Setup
+
 1. Obtain access to an environment with the `dnf` command.
 2. Download the ISO to be tested to that machine.
 
 ## How to test
+
 1. Mount the ISO to be tested locally.
 2. Determine the path to the `comps` file(s) on the ISO.
 3. Verify that `insights-client` is not declared to be installed automatically.
-    - Example 1:<br>`find /media -name "*comps*.xml" -exec grep -H "insights-client" '{}' \;`
-    - Example 2:<br>`dnf --refresh --repofrompath BaseOS,/media/BaseOS --repo BaseOS --repofrompath AppStream,/media/AppStream --repo AppStream groupinfo base | grep -E ":|insights"`
+   - Example 1:
+
+   ```bash
+   find /media -name "*comps*.xml" -exec grep -H "insights-client" '{}' \;
+   ```
+
+   - Example 2:
+
+   ```bash
+   dnf --refresh --repofrompath BaseOS,/media/BaseOS --repo BaseOS --repofrompath AppStream,/media/AppStream --repo AppStream groupinfo base | grep -E ":|insights"
+   ```
+
 4. Unmount the ISO.
 
 ## Expected Results
+
 1. `insights-client` is not declared to be installed by default.
 
-<h3>Sample Output</h3>
+### Sample Output
 
 === "Success"
-
 
     !!! info "UPDATE SAMPLE"
         NOTE: This example needs to be refreshed when the 8.6 ISO has been produced. As seen in the Failure section below the `Rocky-8.5-x86_64-dvd1.iso` includes the `insights-client` as part of the `base` group. The package should be included on the DVD ISO but should **not** be installed automatically.
 
-    ```
+    ```bash
     $ sudo mount -o loop Rocky-8.5-aarch64-minimal.iso /media
     mount: /media: WARNING: device write-protected, mounted read-only.
 
@@ -70,7 +83,7 @@ This test will verify that `insights-client` package is not declared be installe
 
 === "Failure"
 
-    ```
+    ```bash
     $ sudo mount -o loop Rocky-8.5-x86_64-dvd1.iso /media
     mount: /media: WARNING: device write-protected, mounted read-only.
 

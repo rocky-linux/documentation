@@ -10,4 +10,3 @@ In diesem Abschnitt werden die Richtlinien erläutert, die das Testteam für all
 Alle Richtlinien sind auf der linken Seite dieser Seite aufgeführt.
 
 {% include "teams/testing/content_bottom.md" %}
-

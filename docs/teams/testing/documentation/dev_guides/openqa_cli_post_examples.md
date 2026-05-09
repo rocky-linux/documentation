@@ -19,8 +19,6 @@ rc:
 render_macros: true
 ---
 
-# openqa-cli POST Examples
-
 This page will provide a brief overview of some basic `openqa-cli` `POST` examples.
 
 ## System / Access Requirements
@@ -58,7 +56,7 @@ $ openqa-cli api -X POST isos ISO=Rocky-{{ rc.r9 }}-x86_64-dvd.iso ARCH=x86_64 \
   DISTRI=rocky FLAVOR=package-set VERSION={{ rc.r9 }} CURRREL=9 BUILD={{ rc.r9date }}-Rocky-{{ rc.r9 }}-x86_64.0
 ```
 
-These three test suites provide for the minimal testing of all ISOs produced for a given release of {{ rc.prod }}. 
+These three test suites provide for the minimal testing of all ISOs produced for a given release of {{ rc.prod }}.
 
 ## Advanced POST
 
@@ -93,7 +91,7 @@ A feature of openQA is that for a given job group test suites which use the same
 
 ![openQA Home View...](../../../../assets/teams/testing/openqa_home_view.png){ loading=lazy }
 
-Thus, the examples show above which all use `BUILD={{ rc.r9date }}-Rocky-{{ rc.r9 }}-x86_64.0` are all shown in a single view. Additionally, that view is accessible via a predictable URI, for example [`https://openqa.rockylinux.org/tests/overview?build={{ rc.r9date }}-Rocky-{{ rc.r9 }}-x86_64.0`](https://openqa.rockylinux.org/tests/overview?build={{ rc.r9date }}-Rocky-{{ rc.r9 }}-x86_64.0) as shown below...
+Thus, the examples show above which all use `BUILD={{ rc.r9date }}-Rocky-{{ rc.r9 }}-x86_64.0` are all shown in a single view. Additionally, that view is accessible via a predictable URI, for example [`https://openqa.rockylinux.org/tests/overview?build={{ rc.r9date }}-Rocky-{{ rc.r9 }}-x86_64.0`](<https://openqa.rockylinux.org/tests/overview?build={{> rc.r9date }}-Rocky-{{ rc.r9 }}-x86_64.0) as shown below...
 
 ![openQA Build View...](../../../../assets/teams/testing/openqa_build_view.png){ loading=lazy }
 

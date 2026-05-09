@@ -13,8 +13,6 @@ rc:
 render_macros: true
 ---
 
-# openqa-clone-custom-git-refspec Examples
-
 This page will provide a brief overview of basic and advanced job cloning using the `openqa-clone-custom-git-refspec` command.
 
 At a high level `openqa-clone-custom-git-refspec` can be viewed as a mechanism to test PRs for openQA tests directly in a {{ rc.prod }} openQA instance with making changes to the default configuration. As such, it can support testing of PRs that change test code and needles as long as changes to `templates.fif.json` are not also required. A combination of `openqa-clone-custom-git-refspec` and `openqa-clone-job` (which is actually used by `openqa-clone-custom-git-refspec` under the hood) can be used for some cases where `POST` variables are pre-defined in `templates.fif.json`.
@@ -27,7 +25,7 @@ To complete any of the examples please complete the API `POST` Access steps outl
 
 The following example demonstrates the testing of an open Github pull request in the {{ rc.prod }} openQA production system. The PR only changes test code and does not supply updated needles for the test.
 
-### Github PR information
+### Github PR information (for Basic example)
 
 ***NOTE: The Github CLI tool (`gh`) is used to display PR information statically in this guide.***
 
@@ -59,7 +57,7 @@ View this pull request on GitHub: https://github.com/rocky-linux/os-autoinst-dis
 
 Above is the information provided in the original PR and it includes tests performed in Alan's openQA development system. We can rerun failing tests in the {{ rc.prod }} openQA system after identifying an appropriate job ID for each Rocky Linux version we are testing. For this example the openQA WebUI was used to find appropriate test IDs to clone.
 
-### Run `openqa-clone-custom-git-refspec` in `--verbose --dry-run` mode
+### Run `openqa-clone-custom-git-refspec` in `--verbose --dry-run` mode (for Basic example)
 
 In practice it is useful to run `openqa-clone-custom-git-refspec` in `--verbose` and `--dry-run` mode to observe it's behavior even for the Basic cases...
 
@@ -120,7 +118,7 @@ What can be seen from the complete `--dry-run` output for `openqa-clone-custom-g
 
 Without using `--dry-run` the final `openqa-clone-job` command shown above will be run causing the job of interest to be cloned with additional `POST` variables that will cause the repository/branch referenced in the PR to be cloned into the test directory with important files referenced in the cloned job.
 
-### Run `openqa-clone-custom-git-refspec` without `--verbose --dry-run` mode...
+### Run `openqa-clone-custom-git-refspec` without `--verbose --dry-run` mode
 
 ```bash
 $ openqa-clone-custom-git-refspec \
@@ -129,7 +127,7 @@ $ openqa-clone-custom-git-refspec \
 Created job #16119: rocky-9.1-universal-x86_64-Build20230329-Rocky-9.1-x86_64.0-install_serial_console@64bit -> https://openqa.rockylinux.org/t16119
 ```
 
-### Cloned job information...
+### Cloned job information
 
 ```bash
 $ openqa-cli api jobs/16119 --pretty
@@ -206,12 +204,11 @@ $ openqa-cli api jobs/16119 --pretty
 }
 ```
 
-
 ## Advanced `openqa-clone-custom-git-refspec`
 
 The following example demonstrates the testing of an open Github pull request in the {{ rc.prod }} openQA production system. The PR changes test code and supplies updated needles for the test.
 
-### Github PR information
+### Github PR information (for Advanced example)
 
 ```text
 ➜  os-autoinst-distri-rocky git:(nazunalika/develop) gh pr view 162
@@ -246,7 +243,7 @@ akatch approved (Member) • 18h • Newest comment
 View this pull request on GitHub: https://github.com/rocky-linux/os-autoinst-distri-rocky/pull/162
 ```
 
-### Run `openqa-clone-custom-git-refspec` in `--verbose --dry-run` mode
+### Run `openqa-clone-custom-git-refspec` in `--verbose --dry-run` mode (for Advanced example)
 
 ```diff
 $ openqa-clone-custom-git-refspec --verbose --dry-run https://github.com/rocky-linux/os-autoinst-distri-rocky/pull/162 https://openqa.rockylinux.org/tests/13371
@@ -291,7 +288,7 @@ $ openqa-clone-custom-git-refspec --verbose --dry-run https://github.com/rocky-l
 
 This PR provides updated needles and the default behavior of `openqa-clone-custom-git-refspec` is to **not** provide an alternate location for `NEEDLES`. The `--verbose --dry-run` output needs to be modified to ensure the needles provided in the PR are used in the test.
 
-### Modify `--verbose --dry-run` output to point to needles in the PR...
+### Modify `--verbose --dry-run` output to point to needles in the PR
 
 Use output to modify clone job...
 
