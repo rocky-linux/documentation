@@ -1,0 +1,44 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer
+      - id: check-yaml
+        exclude: |
+          (?x)^(
+            tools/mkdocs-docker\.yml|
+            tools/docker-compose\.yml|
+            build_pdf/build_base\.yml|
+            mkdocs\.yml
+          )$
+      - id: check-added-large-files
+        args: ['--maxkb=1024']
+
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.38.0
+    hooks:
+      - id: markdownlint
+        args: [--config, .markdownlint.yml, --fix]
+        files: \.md$
+        exclude: |
+          (?x)^(
+            LICENSE\.md|
+            build_pdf/.*
+          )$
+
+  - repo: local
+    hooks:
+      - id: pyspelling
+        name: pyspelling
+        entry: pyspelling
+        language: system
+        types: [markdown]
+        stages: [manual]
+      - id: lychee
+        name: lychee
+        entry: lychee --no-progress
+        language: system
+        types: [markdown]
+        stages: [manual]
