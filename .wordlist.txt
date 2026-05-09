@@ -1,0 +1,94 @@
+# Rocky Linux Documentation - Custom Wordlist
+# Terms listed here are valid but not in standard dictionaries.
+# Maintained by the Documentation Team.
+# Contributors: Do not include .wordlist.txt changes in your PR.
+#
+# This wordlist is intentionally minimal. It covers terms needed for
+# the core documentation (contributing guides, team pages) and the
+# most commonly used technical terms across the docs. It will grow
+# as the Documentation Team reviews contributions.
+
+# Time zones / scheduling
+1400Z
+2300Z
+
+# Architectures
+aarch64
+x86
+
+# Rocky Linux ecosystem
+AppStream
+QA
+BaseOS
+CLI
+CentOS
+Crowdin
+EPEL
+Kickstart
+Mattermost
+MkDocs
+openQA
+RESF
+RHEL
+RL
+rockylinux
+
+# Editors and tools referenced in contributing guide
+cli
+cli2
+harper
+LanguageTool
+linter
+LSP
+ltex
+markdownlint
+MarkText
+Neovim
+NvChad
+nvim
+ReText
+Zettlr
+
+# Common Linux/sysadmin terms
+DHCP
+DNS
+filesystem
+Flatpak
+Flathub
+gpg
+hostname
+Incus
+init
+IPv4
+IPv6
+iso
+KDE
+Kubernetes
+Lua
+LXD
+NetworkManager
+NFS
+Nginx
+nginx
+Podman
+rebased
+repo
+SELinux
+SIG
+sudo
+systemd
+TCP
+TLS
+UEFI
+UI
+VirtualBox
+VM
+VMware
+
+# Terms missing from older dictionaries (hunspell-en-US 2014 on Rocky 9)
+workflow
+
+# File extensions appearing in prose
+js
+pre
+txt
