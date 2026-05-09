@@ -404,7 +404,7 @@ matrix:
   - name: Markdown
     sources:
       # Process English files only - exclude translations
-      - 'docs/**/*.md|!docs/**/*.{af,de,en,es,fr,hi,id,it,ja,ko,pl,pt,pt-BR,sv,tr,uk,zh}.md'
+      - 'docs/**/*.md|!docs/**/*.{af,cs,de,en,es,fr,hi,id,it,ja,ko,pl,pt,pt-BR,ru,sv,tr,uk,zh}.md'
     expect_match: false
     aspell:
       lang: en
@@ -414,13 +414,6 @@ matrix:
         - .wordlist.txt
       output: build/spelling-wordlist.dic
     pipeline:
-      - pyspelling.filters.markdown:
-      - pyspelling.filters.html:
-          comments: true
-          ignores:
-            - code
-            - pre
-            - kbd
       - pyspelling.filters.context:
           context_visible_first: true
           escapes: '\\[\\`]'
@@ -434,6 +427,12 @@ matrix:
             # Ignore inline code
             - open: '`'
               close: '`'
+            # Ignore Jinja2/MkDocs template blocks
+            - open: '\{%'
+              close: '%\}'
+            # Ignore Jinja2/MkDocs template expressions
+            - open: '\{\{'
+              close: '\}\}'
             # Ignore URLs
             - open: '\('
               content: 'https?://[^\)]*'
@@ -442,6 +441,13 @@ matrix:
             - open: '<'
               content: '[^>]+@[^>]+'
               close: '>'
+      - pyspelling.filters.markdown:
+      - pyspelling.filters.html:
+          comments: false
+          ignores:
+            - code
+            - pre
+            - kbd
       - pyspelling.filters.url:
 EOF
 ```
@@ -598,7 +604,8 @@ spellchecker: aspell
 matrix:
   - name: Markdown
     sources:
-      - 'docs/**/*.md'
+      # Process English files only - exclude translations
+      - 'docs/**/*.md|!docs/**/*.{af,cs,de,en,es,fr,hi,id,it,ja,ko,pl,pt,pt-BR,ru,sv,tr,uk,zh}.md'
     expect_match: false
     aspell:
       lang: en
@@ -608,12 +615,6 @@ matrix:
         - .wordlist.txt
       output: build/spelling-wordlist.dic
     pipeline:
-      - pyspelling.filters.markdown
-      - pyspelling.filters.html:
-          ignores:
-            - code
-            - pre
-            - kbd
       - pyspelling.filters.context:
           context_visible_first: true
           escapes: '\\[\\`]'
@@ -624,13 +625,24 @@ matrix:
               close: '^(?P=open)$'
             - open: '`'
               close: '`'
+            - open: '\{%'
+              close: '%\}'
+            - open: '\{\{'
+              close: '\}\}'
             - open: '\('
               content: 'https?://[^\)]*'
               close: '\)'
             - open: '<'
               content: '[^>]+@[^>]+'
               close: '>'
-      - pyspelling.filters.url
+      - pyspelling.filters.markdown:
+      - pyspelling.filters.html:
+          comments: false
+          ignores:
+            - code
+            - pre
+            - kbd
+      - pyspelling.filters.url:
 EOF
 ```
 
@@ -737,45 +749,12 @@ git clone https://github.com/YOUR_USERNAME/documentation.git
 cd documentation
 ```
 
-#### Step 8: Create pre-commit configuration
+#### Step 8: Verify pre-commit configuration
 
-Create a `.pre-commit-config.yaml` file in the repository root:
+The repository includes a `.pre-commit-config.yaml` file with hooks for trailing whitespace, end-of-file fixes, YAML validation, large file checks, and Markdown linting. Verify the file exists:
 
 ```powershell
-@"
-repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
-    hooks:
-      - id: trailing-whitespace
-        args: [--markdown-linebreak-ext=md]
-      - id: end-of-file-fixer
-      - id: check-yaml
-        exclude: |
-          (?x)^(
-            tools/mkdocs-docker\.yml|
-            tools/docker-compose\.yml|
-            build_pdf/build_base\.yml|
-            mkdocs\.yml
-          )$
-      - id: check-added-large-files
-        args: ['--maxkb=1024']
-
-  - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.38.0
-    hooks:
-      - id: markdownlint
-        args:
-          - --config
-          - .markdownlint.yml
-          - --fix
-        files: \.md$
-        exclude: |
-          (?x)^(
-            LICENSE\.md|
-            build_pdf/.*
-          )$
-"@ | Out-File -FilePath .pre-commit-config.yaml -Encoding UTF8
+Test-Path .pre-commit-config.yaml
 ```
 
 #### Step 9: Install pre-commit hooks
