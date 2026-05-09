@@ -435,7 +435,7 @@ L'uso è `journalctl [OPTIONS...] [MATCHES...]`.
 
 Ecco un elenco delle opzioni in un elenco non ordinato:
 
-- `-u` - Specifica l''unità'; si può usare più volte in un comando a riga singola. For example, `journalctl -u crond.service -u sshd.service`
+- `-u` - Specifica l''unità'; si può usare più volte in un comando a riga singola. Ad esempio, `journalctl -u crond.service -u sshd.service`
 - `--system` - Mostra i messaggi dei servizi di sistema e del kernel
 - `--user` - Mostra i messaggi del servizio dell'utente corrente
 - `-k` - Mostra il registro dei messaggi del kernel dall'avvio corrente
@@ -537,11 +537,11 @@ Utilizzare "[ ]" per contenere il titolo, come per i file di configurazione di a
 
 - `MaxFileSec=` - Rotazione del registro basata sul tempo. Poiché il polling basato sulle dimensioni dei file (`SystemMaxFileSize` e `RuntimeMaxFileSize`) esiste già, il polling dei registri basato sul tempo è solitamente inutile. Impostare su 0 per disabilitare questa funzione.
 
-- `ForwardToSyslog=` - Se inoltrare i messaggi di log raccolti al demone tradizionale `syslog`. The default value is no.
+- `ForwardToSyslog=` - Se inoltrare i messaggi di log raccolti al demone tradizionale `syslog`. Il valore predefinito è no.
 
-- `ForwardToKMsg=` - Se inoltrare il messaggio di log ricevuto a kmsg. The default value is no.
+- `ForwardToKMsg=` - Se inoltrare il messaggio di log ricevuto a kmsg. Il valore predefinito è no.
 
-- `ForwardToConsole=` - Se inoltrare i messaggi di log ricevuti alla console di sistema. The default value is no. Se è impostato su yes, è necessario configurare anche `TTYPath`
+- `ForwardToConsole=` - Se inoltrare i messaggi di log ricevuti alla console di sistema. Il valore predefinito è no. Se è impostato su yes, è necessario configurare anche `TTYPath`
 
 - `ForwardToWall=` - Se inviare il messaggio di log ricevuto come avviso a tutti gli utenti connessi. Il valore predefinito è yes.
 
