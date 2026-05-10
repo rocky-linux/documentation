@@ -1,13 +1,7 @@
 ---
 title: 'SOP, Standardarbeitsanweisung: openQA – Entfernung des Operator-Zugriffs'
 author: Trevor Cooper
-contributors: 
-tested_with:
-tags:
-  - openQA
-  - sop
-  - testing
-revision_date: 2026-05-08
+revision_date: 2026-04-17
 render_macros: true
 ---
 

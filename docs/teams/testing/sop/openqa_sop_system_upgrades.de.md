@@ -1,14 +1,7 @@
 ---
 title: 'SOP: openQA – System-Upgrades'
-author: Al Bowles
-contributors: Trevor Cooper
-tested_with: 8.10, 9.6, 10.0
-tags:
-  - openQA
-  - sop
-  - testing
-revision_date: 2026-05-08
-
+author: Trevor Cooper
+revision_date: 2026-04-17
 render_macros: true
 ---
 

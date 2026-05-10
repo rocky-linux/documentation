@@ -1,12 +1,7 @@
 ---
 title: openQA – openqa-cli POST — Beispiele
 author: Trevor Cooper
-contributors: Lukas Magauer
-tested_with:
-tags:
-  - testing
-  - openQA
-revision_date: 2026-05-08
+revision_date: 2026-04-17
 rc:
   prod: Rocky Linux
   level: Final
@@ -18,6 +13,8 @@ rc:
   r10date: 20250707
 render_macros: true
 ---
+
+# openqa-cli POST-Beispiele
 
 Diese Seite bietet einen kurzen Überblick über einige grundlegende `openqa-cli` `POST`-Beispiele.
 
@@ -91,7 +88,7 @@ Eine Besonderheit von openQA ist, dass für eine bestimmte Jobgruppe Testsuiten,
 
 ![openQA Home View...](../../../../assets/teams/testing/openqa_home_view.png){ loading=lazy }
 
-Daher werden die oben gezeigten Beispiele, die alle `BUILD={{ rc.r9date }}-Rocky-{{ rc.r9 }}-x86_64.0` verwenden, alle in einer einzigen Ansicht angezeigt. Diese Ansicht ist außerdem über eine vorhersehbare URI zugänglich, beispielsweise [`https://openqa.rockylinux.org/tests/overview?build={{ rc.r9date }}-Rocky-{{ rc.r9 }}-x86_64.0`](https://openqa.rockylinux.org/tests/overview?build=20250604-Rocky-9-x86_64.0), wie unten dargestellt...
+Daher werden die oben gezeigten Beispiele, die alle `BUILD={{ rc.r9date }}-Rocky-{{ rc.r9 }}-x86_64.0` verwenden, alle in einer einzigen Ansicht angezeigt. Diese Ansicht ist außerdem über eine vorhersehbare URI zugänglich, beispielsweise [`https://openqa.rockylinux.org/tests/overview?build={{ rc.r9date }}-Rocky-{{ rc.r9 }}-x86_64.0`](https://openqa.rockylinux.org/tests/overview?build={{ rc.r9date }}-Rocky-{{ rc.r9 }}-x86_64.0), wie unten dargestellt...
 
 ![openQA Build View...](../../../../assets/teams/testing/openqa_build_view.png){ loading=lazy }
 

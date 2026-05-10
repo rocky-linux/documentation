@@ -1,12 +1,7 @@
 ---
 title: openQA - Rocky Produktionszugriff
 author: Trevor Cooper
-contributors: Lukas Magauer
-tested_with:
-tags:
-  - testing
-  - openQA
-revision_date: 2026-05-08
+revision_date: 2026-04-17
 rc:
   prod: Rocky Linux
   level: Final
@@ -56,7 +51,7 @@ secret = your_api_secret
 ## Testen Ihrer OpenQA-Clientinstallation
 
 ```bash
-openqa-cli api --host https://openqa.rockylinux.org --pretty jobs/overview
+$ openqa-cli api --host https://openqa.rockylinux.org --pretty jobs/overview
 ```
 
 sollte eine Liste der aktuellen `jobs`~ bereitstellen;  wählen Sie dann eine Jobnummer aus und sehen Sie Informationen zu diesem spezifischen Job an, z.B.:
