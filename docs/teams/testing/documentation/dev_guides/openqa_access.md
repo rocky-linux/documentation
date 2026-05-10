@@ -1,7 +1,12 @@
 ---
 title: openQA - Rocky Production Access
 author: Trevor Cooper
-revision_date: 2026-04-17
+contributors: Lukas Magauer
+tested_with:
+tags:
+  - testing
+  - openQA
+revision_date: 2026-05-08
 rc:
   prod: Rocky Linux
   level: Final
@@ -52,8 +57,9 @@ secret = your_api_secret
 ## Testing your openqa client installation
 
 ```bash
-$ openqa-cli api --host https://openqa.rockylinux.org --pretty jobs/overview
+openqa-cli api --host https://openqa.rockylinux.org --pretty jobs/overview
 ```
+
 should provide a list of current jobs, then pick a job number and view info on that specific job, e.g.:
 
 ```bash
@@ -123,8 +129,8 @@ $ openqa-cli api --host https://openqa.rockylinux.org --pretty jobs/1
 
 ## References
 
-* [openQA Documentation](https://open.qa/documentation/)
-* [Installation Info](https://github.com/rocky-linux/OpenQA-Fedora-Installation)
-* [Tests for Rocky](https://git.resf.org/testing/os-autoinst-distri-rocky)
+- [openQA Documentation](https://open.qa/documentation/)
+- [Installation Info](https://github.com/rocky-linux/OpenQA-Fedora-Installation)
+- [Tests for Rocky](https://git.resf.org/testing/os-autoinst-distri-rocky)
 
 {% include 'teams/testing/content_bottom.md' %}

@@ -1,9 +1,12 @@
 ---
 title: QA:Testcase Update Image
-author: 
-  - Al Bowles
-  - Trevor Cooper
-revision_date: 2026-04-29
+author: Al Bowles
+contributors: Trevor Cooper
+tested_with: 8.10, 9.7, 10.1
+tags:
+  - testing
+  - qa
+revision_date: 2026-05-08
 rc:
   prod: Rocky Linux
   ver: 8
@@ -16,12 +19,14 @@ render_macros: true
 
 ## Description
 <!-- TODO provide documentation on the topic of updates.img -->
-This test case verifies that an [update image]() can be loaded into Anaconda and applied during the install process.
+This test case verifies that an **update image** can be loaded into Anaconda and applied during the install process.
 
 {% include 'teams/testing/qa_data_loss_warning.md' %}
 
 ## Setup
+
 {% include 'teams/testing/qa_setup_boot_to_media.md' %}
+
 1. Hit the Tab key to edit the boot command
 
 ## How to test
@@ -31,6 +36,7 @@ This test case verifies that an [update image]() can be loaded into Anaconda and
 1. In Anaconda, open the Installation Destination spoke.
 
 ## Expected Results
+
 1. Within the Installation Destination spoke, the selected install disk should have a pink background
 === "FAIL"
     ![No update provided - **FAIL**](../../../../assets/teams/testing/no_updates.png){ loading=lazy }
@@ -42,11 +48,13 @@ This test case verifies that an [update image]() can be loaded into Anaconda and
 <!-- TODO does /tmp/updates appear without completing installation? -->
 
 ## Testing with openQA
+
 The following openQA test suites satisfy this release criteria:
 
 - `install_scsi_updates_img`
 
 ## Additional References
+
 - [Red Hat Debug Boot Options (RHEL-9)](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/automatically_installing_rhel/custom-boot-options_rhel-installer#debug-boot-options_custom-boot-options), [Red Hat Debug Boot Options (RHEL-10)](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/automatically_installing_rhel/boot-options-reference#debug-boot-options)
 - [Fedora QA:Testcase Anaconda updates.img via URL](https://fedoraproject.org/wiki/QA:Testcase_Anaconda_updates.img_via_URL)
 - [Fedora QA:Testcase Anaconda updates.img via local media](https://fedoraproject.org/wiki/QA:Testcase_Anaconda_updates.img_via_local_media)

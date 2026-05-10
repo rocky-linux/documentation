@@ -1,7 +1,12 @@
 ---
 title: QA:Testcase Installer Help
 author: Al Bowles
-revision_date: 2026-04-17
+contributors:
+tested_with: 8.10, 9.7
+tags:
+  - testing
+  - qa
+revision_date: 2026-05-08
 rc:
   prod: Rocky Linux
   ver:
@@ -15,12 +20,15 @@ render_macros: true
     This test case is associated with the [Release_Criteria#Installer Help](../../guidelines/release_criteria/r9/9_release_criteria.md#installer-help) release criterion. If you are doing release validation testing, a failure of this test case may be a breach of that release criterion.
 
 ## Description
+
 Any element in the installer which contains a “help” text must display the appropriate help documentation when selected.
 
 ## Setup
+
 {% include 'teams/testing/qa_setup_boot_to_media.md' %}
 
 ## How to test
+
 1. From the Anaconda Hub, click the Help button in the upper right hand corner.
 1. Verify that you see the "Customizing your Installation" help page.
 1. Verify that the "Configuring language and location settings" link displays a topically appropriate page.
@@ -37,9 +45,11 @@ Any element in the installer which contains a “help” text must display the a
 1. Verify that the Help button in the User Creation spoke displays the "Creating a user account" page.
 
 ## Expected Results
+
 1. All links should work and display relevant content.
 
 ## Testing in openQA
+
 The following openQA test suites satisfy this release criteria:
 
 - `anaconda_help`

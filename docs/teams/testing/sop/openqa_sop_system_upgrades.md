@@ -1,7 +1,14 @@
 ---
 title: 'SOP: openQA - System Upgrades'
-author: Trevor Cooper
-revision_date: 2026-04-17
+author: Al Bowles
+contributors: Trevor Cooper
+tested_with: 8.10, 9.6, 10.0
+tags:
+  - openQA
+  - sop
+  - testing
+revision_date: 2026-05-08
+
 render_macros: true
 ---
 
@@ -72,6 +79,7 @@ These steps may also be necessary in some (but not all) cases.
     ```
 
 ## References
+
 - [Upgrading Fedora using the DNF system upgrade](https://docs.fedoraproject.org/en-US/quick-docs/dnf-system-upgrade/){target=_blank}
 - [How to Easily Upgrade to Fedora Workstation 36](https://www.makeuseof.com/how-to-upgrade-to-fedora-workstation-36/){target=_blank}
 

@@ -1,14 +1,17 @@
 ---
 title: openQA - openqa-clone-job Examples
 author: Trevor Cooper
-revision_date: 2026-04-17
+contributors: Lukas Magauer
+tested_with:
+tags:
+  - testing
+  - openQA
+revision_date: 2026-05-08
 rc:
   prod: Rocky Linux
   level: Final
 render_macros: true
 ---
-
-# openqa-clone-job Examples
 
 This page will provide a brief overview of basic and advanced job cloning using the `openqa-clone-job` command.
 

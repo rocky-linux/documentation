@@ -1,7 +1,12 @@
 ---
 title: QA:Testcase Vagrant Images
 author: Bob Robison
-revision_date: 2026-04-17
+contributors:
+tested_with: 8.10, 9.7, 10.1
+tags:
+  - testing
+  - qa
+revision_date: 2026-05-08
 rc:
   prod: Rocky Linux
 render_macros: true
@@ -10,7 +15,8 @@ render_macros: true
 This page provides information concerning how to boot/test the vagrant images.
 
 ## Vagrant File for BIOS Boot
-```
+
+```bash
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -43,7 +49,8 @@ end
 ```
 
 ## Vagrant BIOS Boot Example
-```
+
+```bash
 ~/boxes/official/rocky10u0 ❯ vagrant up
 Bringing machine 'default' up with 'virtualbox' provider...
 ==> default: Importing base box 'custom/rocky10u0-official'...
@@ -84,7 +91,8 @@ No coredumps found.
 ```
 
 ## Vagrant File for UEFI Boot
-```
+
+```bash
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -120,7 +128,8 @@ end
 ```
 
 ## Vagrant UEFI Boot Example
-```
+
+```bash
 ~/boxes/official/rocky10u0 ❯ vagrant up
 Bringing machine 'default' up with 'virtualbox' provider...
 ==> default: Importing base box 'custom/rocky10u0-official'...
@@ -159,7 +168,8 @@ No coredumps found.
 ```
 
 ## Vagrant File for UEFI Secure Boot
-```
+
+```bash
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -202,7 +212,8 @@ end
 ```
 
 ## Vagrant UEFI Secure Boot Example
-```
+
+```bash
 ~/boxes/official/rocky10u0 ❯ vagrant up
 Bringing machine 'default' up with 'virtualbox' provider...
 ==> default: Importing base box 'custom/rocky10u0-official'...
@@ -237,4 +248,3 @@ Bringing machine 'default' up with 'virtualbox' provider...
 [vagrant@rockylinux10 ~]$ sudo coredumpctl list
 No coredumps found.
 ```
-

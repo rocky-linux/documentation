@@ -1,7 +1,12 @@
 ---
 title: QA:Testcase Media Repoclosure
 author: Trevor Cooper
-revision_date: 2026-04-17
+contributors:
+tested_with: 8.10, 9.7, 10.1
+tags:
+  - testing
+  - qa
+revision_date: 2026-05-08
 rc:
   prod: Rocky Linux
   ver: 8
@@ -13,30 +18,53 @@ render_macros: true
     This test case is associated with the [Release_Criteria#no-broken-packages](../../guidelines/release_criteria/r9/9_release_criteria.md#no-broken-packages) release criterion. If you are doing release validation testing, a failure of this test case may be a breach of that release criterion.
 
 ## Description
+
 This testcase will verify that the offline repository included on release blocking images will not contain broken dependencies.
 
 ## Setup
+
 1. Obtain access to an environment with the `dnf repoclosure` command.
 2. Download the ISO to be tested to that machine.
 
 ## How to test
+
 1. Mount the ISO to be tested locally.
-    - Example:<br>`mount -o loop Rocky-8.5-x86_64-minimal.iso /media`
+    - Example:
+
+   ```bash
+   mount -o loop Rocky-8.5-x86_64-minimal.iso /media
+   ```
+
 2. Determine the path to the `repodata` directory(ies) on the ISO.
-    - Example:<br>`find /media -name repodata`
+    - Example:
+
+   ```bash
+   find /media -name repodata
+   ```
+
 3. Run the `dnf repoclosure` command on the mounted ISO.
-    - Example:<br>`dnf --verbose repoclosure --repofrompath BaseOS,/media/BaseOS --repo BaseOS --repofrompath Minimal,/media/Minimal --repo Minimal`
+    - Example:
+
+   ```bash
+   dnf --verbose repoclosure --repofrompath BaseOS,/media/BaseOS --repo BaseOS --repofrompath Minimal,/media/Minimal --repo Minimal
+   ```
+
 4. Unmount the ISO.
-    - Example:<br>`umount /media`
+    - Example:
+
+   ```bash
+   `umount /media
+   ```
 
 ## Expected Results
+
 1. The `dnf repoclosure` command does not generate any errors.
 
-<h3>Sample Output</h3>
+### Sample Output
 
 === "Success"
 
-    ```
+    ```bash
     $ sudo mount -o loop Rocky-8.5-x86_64-minimal.iso /media
     mount: /media: WARNING: device write-protected, mounted read-only.
 
@@ -55,7 +83,7 @@ This testcase will verify that the offline repository included on release blocki
 
     __NOTE: In this example the content of the `Rocky-8.5-x86_64-minimal.iso` was copied to `/tmp` then the BaseOS repository was modified to remove the `setup-2.12.2-6.el8.noarch.rpm` package and the repository metadata was regenerated.__
 
-    ```
+    ```bash
     [vagrant@localhost ~]$ dnf --refresh repoclosure \
       --repofrompath BaseOS,/tmp/media/BaseOS --repo BaseOS \
       --repofrompath Minimal,/tmp/media/Minimal --repo Minimal

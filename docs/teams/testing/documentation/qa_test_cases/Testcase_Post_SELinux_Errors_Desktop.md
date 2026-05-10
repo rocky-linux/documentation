@@ -1,7 +1,12 @@
 ---
 title: QA:Testcase SELinux Errors on Desktop clients
 author: Lukas Magauer
-revision_date: 2026-04-17
+contributors:
+tested_with: 8.10, 9.7, 10.1
+tags:
+  - testing
+  - qa
+revision_date: 2026-05-08
 rc:
   prod: Rocky Linux
   ver:
@@ -33,7 +38,7 @@ Obtain access to a suitable system with either a Workstation or a Graphical Serv
 
 ## Expected Results
 
-1. Open the SETroubleshoot Application and invoke the error summarization. 
+1. Open the SETroubleshoot Application and invoke the error summarization.
 2. There must not be shown any errors / denials
 
 {% include 'teams/testing/qa_testcase_bottom.md' %}

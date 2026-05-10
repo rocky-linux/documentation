@@ -1,21 +1,25 @@
 ---
 title: Manual Install of openQA for rockylinux
-author: 
-  - Alan Marshall
-  - Trevor Cooper
+author: Bob Robison
+contributors: Trevor Cooper
+tested_with:
+tags:
+  - testing
+  - openQA
+revision_date: 2026-05-08
 version: v1.3
-revision_date: 2026-04-28
 rc:
   prod: Rocky Linux
   level: Issue
 render_macros: true
 ---
 
+## Intended Audience
 
-#### Intended Audience
 Those who wish to use the openQA automated testing system configured for Rocky Linux tests. If so, you will need a PC or server with hardware virtualisation running an up-to-date Fedora Linux, or RockyLinux >= 9.6.
 
 ### Introduction
+
 This guide explains the use of the openQA automated testing system to test various aspects of Rocky Linux releases either at the pre-release stage or thereafter.
 
 openQA is an automated test tool that makes it possible to test the whole installation process. It uses virtual machines which it sets up to reproduce the process, check the output (both serial console and GUI screen) in every step and send the necessary keystrokes and commands to proceed to the next step. openQA checks whether the system can be installed, whether it works properly, whether applications work and whether the system responds as expected to different installation options and commands.
@@ -25,6 +29,7 @@ Rocky Linux openQA tests can be found in the [os-autoinst-distri-rocky](https://
 openQA can run numerous combinations of tests for every revision of the operating system, reporting the errors detected for each combination of hardware configuration, installation options and variant of the operating system.
 
 ### WebUI
+
 The web UI is a very useful feature of the openQA system since it provides an easily accessed view of the progress and details of openQA tests either on the local machine or remotely or both. It is intended to be intuitive and self-explanatory.
 
 Some pages use queries to select what should be shown. The query parameters are generated on clickable links, for example starting from the index page or the group overview page clicking on single builds. On the query pages there can be UI elements to control the parameters, for example to look for older builds or show only failed jobs, or other settings. Additionally, the query parameters can be tweaked by hand if you want to provide a link to specific views.
@@ -33,7 +38,7 @@ Some pages use queries to select what should be shown. The query parameters are 
 
 openQA can be installed only on a Fedora, OpenSUSE, or RockyLinux(>=9.6) server or workstation. The following install procedure was tested on Fedora 40 Server. You can use either a local terminal or an ssh login from another host on the lan.
 
-```
+```bash
 # install Packages
 # for openqa
 sudo dnf install -y openqa openqa-httpd openqa-worker fedora-messaging python3-jsonschema
@@ -151,7 +156,8 @@ and for a  full build (this will post 95 jobs)
 sudo openqa-cli api -X POST isos ISO=Rocky-9.7-x86_64-dvd.iso ARCH=x86_64 DISTRI=rocky FLAVOR=dvd-iso VERSION=9.7 BUILD="$(date +%Y%m%d.%H%M%S).0"-dvd-iso
 sudo openqa-cli api -X POST isos ISO=Rocky-9.7-x86_64-dvd.iso ARCH=x86_64 DISTRI=rocky FLAVOR=universal VERSION=9.7 BUILD="$(date +%Y%m%d.%H%M%S).0"-universal
 ```
-You can watch progress of these tests on the webui on any browser on the same lan as the test host at 
+
+You can watch progress of these tests on the webui on any browser on the same lan as the test host at
 
 ```http://<ip_addr_of_test_host>/tests```
 
@@ -161,10 +167,10 @@ At this point the multi-vm tests will fail or be skipped. This is because at the
 
 Installation of facilities for multi-vm testing, which is substantially more complicated, will be described in this document in a later revision (watch this space).
 
-
 ### Helpers
 
 #### Createhdds
+
 ```Createhdds``` is used to prepare ```.img``` and ```.qcow2``` files for some of the Rocky tests. If you ran the above procedure you will have noticed that it produces a number of files in ```/var/lib/openqa/factory/hdd/fixed``` determined by the files provided in [createhdds](https://github.com/rocky-linux/createhdds).
 
 #### openqa-cli
@@ -172,21 +178,23 @@ Installation of facilities for multi-vm testing, which is substantially more com
 Tests are normally posted using ```openqa-cli``` as you have already used above. Test parameters are listed and explained in the [openQA VARIABLES definition document](https://github.com/rocky-linux/os-autoinst-distri-rocky/blob/develop/VARIABLES.md)
 
 #### Scripts
-[helper scripts](https://github.com/rocky-linux/os-autoinst-distri-rocky/tree/develop/scripts) - 
+
+[helper scripts](https://github.com/rocky-linux/os-autoinst-distri-rocky/tree/develop/scripts) -
 ```cancel-build.sh``` is especially useful when you discover that you have initiated a large build and got it wrong... d'oh.
 
 ### Using Templates
 
 #### Challenge
+
 One of the challenges that arises when testing an operating system, especially when doing continuous testing, is that there is always a certain combination of jobs, each one with its own settings, that needs to be run for every revision. These combinations can be different for different ```FLAVORs``` of the same revision, like running a different set of jobs for each architecture. This combinational problem can go one step further if openQA is being used for different kinds of tests, like running some simple pre-integration tests for some snapshots combined with more comprehensive post-integration tests for release candidates.
 
 This section describes how an instance of openQA *could* be configured using the options in the admin area of the webUI to automatically create all the required jobs for each revision of your operating system that needs to be tested. *If* you were starting from scratch (the difficult way), you would probably go through the following order:
 
 1. Define machines in 'Machines' menu
-1. Define medium types (products) you have in 'Medium types' menu
-1. Specify various collections of tests you want to run in the 'Test suites' menu
-1. Define job groups in 'Job groups' menu for groups of tests
-1. Select individual 'Job groups' and decide what combinations make sense and need to be tested
+2. Define medium types (products) you have in 'Medium types' menu
+3. Specify various collections of tests you want to run in the 'Test suites' menu
+4. Define job groups in 'Job groups' menu for groups of tests
+5. Select individual 'Job groups' and decide what combinations make sense and need to be tested
 
 If you followed the install guide above then the cloned Rocky tests from [os-autoinst-distri-rocky](https://github.com/rocky-linux/os-autoinst-distri-rocky) will have pre-configured the admin area of the webUI. You may find it useful to consult when reading the following sections.
 
@@ -195,6 +203,7 @@ Machines, mediums, test suites and job templates can all set various configurati
 The configuration is set up from ```/var/lib/openqa/tests/rocky/templates.fif.json```
 
 #### Machines
+
 You need to have at least one machine set up to be able to run any tests. These machines represent virtual machine types that you want to test. Realistically to make tests actually happen, you have to have a number of ```openQA workers``` connected that can fulfill these specifications.
 
 - ```Name``` User defined ```string``` - only needed for operator to identify the machine configuration.
@@ -206,6 +215,7 @@ You need to have at least one machine set up to be able to run any tests. These 
     - ```USBBOOT``` when set to ```1``` the image will be loaded through an emulated USB stick.
 
 #### Medium Types
+
 - ```product```
     - A medium type ```product``` in openQA is a simple description without any definite meaning. It basically consists of a ```name``` and a set of ```variables``` that define or characterise this product in os-autoinst.
 
@@ -218,6 +228,7 @@ Some example variables are:
 - ```RESCUECD``` is set to ```1``` for rescue CD images.
 
 #### Test Suites
+
 A test suite consists of a name and a set of test variables that are used inside this particular test together with an optional description. The test variables can be used to parameterise the actual test code and influence the behaviour according to the settings.
 
 Some sample variables are:
@@ -229,6 +240,7 @@ Some sample variables are:
 - ```RAIDLEVEL RAID``` configuration variable
 
 #### Job Groups
+
 The job groups are the place where the actual test scenarios are defined by the selection of the medium type, the test suite and machine together with a priority value.
 
 The priority value is used in the scheduler to choose the next job. If multiple jobs are scheduled and their requirements for running them are fulfilled the ones with a lower priority value are triggered. The id is the second sorting key of two jobs with equal requirements and same priority value the one with lower id is triggered first.
@@ -243,14 +255,17 @@ The scenario definitions within the job groups can be created and configured by 
 - Using declarative schedule definitions in the YAML format using REST API routes or an online-editor within the web UI including a syntax checker.
 
 ### Needles
+
 Needles are very precise and the slightest deviation from the specified display will be detected. This means that every time there is a new release, very small changes occur in layout of displays resulting in many new or modified needles being required. There is always a significant amount of work needed by the Test Team to produce the automatic tests for a new version.
 
 A very useful feature of the webui is the online needle editor. When a test fails for a missing needle, the needle editor can be activated by clicking the icon and a new needle can be created, usually by copying a similar needle together with the current screenshot. The needle files are saved in the  ```/var/lib/openqa/tests/rocky/needles directory```
 
 ### Upstream Documentation
+
 [Starter Guide](http://open.qa/docs/) and [Upstream documentation](https://github.com/os-autoinst/openqa/blob/master/docs/Installing.asciidoc) are useful for reference but since they are a mixture of advice and instructions relating to openSUSE and Fedora which have substantial differences between them it is not always clear which are significant for Rocky.  However, as an rpm based distribution, Rocky Linux use is loosely related to the [Fedora](https://fedoraproject.org/wiki/OpenQA) version.
 
 ### Glossary
+
 The following terms are used within the context of openQA:-
 
 - test module
@@ -296,6 +311,7 @@ The following terms are used within the context of openQA:-
     - Different versions of a product as tested, can be considered a ```sub-version``` of ```version```, e.g. ```Build1234``` CAUTION: ambiguity: either with the prefix ```build``` included or not
 
 ### History (briefly)
+
 openQA started with OS-autoinst: automated testing of Operating Systems
 The OS-autoinst project aims at providing a means to run fully automated tests, especially to run tests of basic and low-level operating system components such as bootloader, kernel, installer and upgrade, which can not easily be tested with other automated testing frameworks. However, it can just as well be used to test firefox and openoffice operation on top of a newly installed OS.
 openQA is a test-scheduler and web-front for openSUSE and Fedora using OS-autoinst as a backend.
@@ -303,19 +319,20 @@ openQA originated at openSuse and was adopted by Fedora as the automated test sy
 openQA is free software released under the GPLv2 license.
 
 ### Attribution
+
 This guide is heavily inspired by the numerous upstream documents in which installation and usage of OS-autoinst and openQA are described.
 
 ### References
+
 Since Rocky Linux use of openQA is drawn from upstream Fedora and hence openSUSE this document contains **many** passages which are edited versions of upstream documentation and that use is hereby gratefully acknowledged. As with many open source projects, we build on previous work.
 
 See also: [Installation Info](https://github.com/rocky-linux/OpenQA-Fedora-Installation) for more details.
 
 ### Revision History
 
-* v1.3 - 2026/04/28 - Fix broken URLs and modify curl to prevent repeat
-* v1.2 - 2026/04/16 - Add content_bottom.md include
-* v1.1 - 2025/06/05 - Minor updates
-* v1.0 - 2024/04/30 - First Issue
+- v1.3 - 2026/04/28 - Fix broken URLs and modify curl to prevent repeat
+- v1.2 - 2026/04/16 - Add content_bottom.md include
+- v1.1 - 2025/06/05 - Minor updates
+- v1.0 - 2024/04/30 - First Issue
 
 {% include 'teams/testing/content_bottom.md' %}
-
