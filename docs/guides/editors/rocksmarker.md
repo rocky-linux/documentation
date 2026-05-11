@@ -1,12 +1,18 @@
 ---
 title: Rocksmarker
 author: Franco Colussi
+contributors: Steven Spencer
+translators:
 tags:
   - neovim
   - lua
   - markdown
   - editor
 ---
+
+## Introduction
+
+Rocksmarker began life as an idea to base an editor focused on Markdown by using Neovim as the base. The first commit for this project was in November 2024, and quickly became a usable, if not quite mature, product. The deputy team lead for the documentation project began using `Rocksmarker` in early 2025. Though projects such as these are always under development, it is now a mature and functional IDE. If you have a love for text-based editors and Neovim, I hope you will love Rocksmarker as much as the documentation team deputy does.
 
 ## Neovim IDE for Markdown documentation
 
@@ -105,7 +111,7 @@ Rocksmarker delivers a unified editing experience by enabling users to write,
 debug, and document code within a single environment, eliminating tool
 switching. It enhances efficiency through autocompletion, linting, and real-time
 error detection directly in Markdown, minimizing the risk of undocumented or
-non-functional code snippets.  
+nonfunctional code snippets.
 
 The solution scales effectively by supporting many languages in the same
 project, making it suitable for polyglot documentation, such as tutorials with
@@ -128,12 +134,12 @@ and seamless integration with Neovim's native features.
 The manager uses a declarative configuration approach, where users define
 plugins in a structured Lua table for consistent environment setup. It optimizes
 performance with fast loading and minimal overhead, reducing startup time.
-Rocks.nvim maintains full compatibility with Neovim's Lua API, LSP, Tree-sitter,
+`rocks.nvim` maintains full compatibility with Neovim's Lua API, LSP, Tree-sitter,
 and other modern features.
 
 ![rocks-edit.nvim](./images/rocks-edit-info.png)
 
-By using rocks.nvim, Rocksmarker ensures a reliable and maintainable plugin
+By using `rocks.nvim`, Rocksmarker ensures a reliable and maintainable plugin
 ecosystem, where each component is explicitly declared and version-locked.
 
 ### Core plugins
@@ -144,33 +150,43 @@ user experience:
 #### **UI and navigation**
 
 - **`mini.theme`** and **`nvim-highlight-colors`**
-Offer a cohesive visual theme and syntax highlighting for colors in code and
+ Offer a cohesive visual theme and syntax highlighting for colors in code and
 Markdown.
+
 - **`mini.icons`** and **`mini.pairs`**
-Improve visual clarity with file-type icons and automatic bracket pairing.
+ Improve visual clarity with file-type icons and automatic bracket pairing.
+
 - **`lualine.nvim`** and **`bufferline.nvim`**
-Deliver a customizable statusline and efficient buffer management for quick file
+ Deliver a customizable status line and efficient buffer management for quick file
 navigation.
+
 - **`gitsigns.nvim`**
-Displays Git changes directly in the editor, enabling real-time version control
+ Displays Git changes directly in the editor, enabling real-time version control
 feedback.
+
 - **`which-key.nvim`**
-Offers a menu for keybindings, improving **accessibility** and workflow efficiency.
+ Offers a menu for key bindings improving **accessibility** and workflow efficiency.
+
 - **`rainbow-delimiters.nvim`**
-Enhances code readability by color-coding nested delimiters.
+ Enhances code readability by color-coding nested delimiters.
+
 - **`persisted.nvim`**
-Manages session persistence, allowing users to restore their workspace state.
+ Manages session persistence, allowing users to restore their workspace state.
+
 - **`snacks.nvim`**
-Provides utility functions for module reloading, setting toggles, and window management.
+ Provides utility functions for module reloading, setting toggles, and window management.
+
 - **`grug-far.nvim`**
-Enables advanced search-and-replace operations across files.
+ Enables advanced search-and-replace operations across files.
+
 - **`neogit`**
-Integrates a Git interface directly within Neovim for streamlined version control.
+ Integrates a Git interface directly within Neovim for streamlined version control.
 
 #### **Autocompletion**
 
 - **`blink.cmp`**
 Offers intelligent, context-aware code completion for faster development.
+
 - **`luasnip`**
 Provides snippet expansion and management, supporting dynamic and customizable
 code templates.
@@ -179,8 +195,10 @@ code templates.
 
 - **`nvim-lint`**
 Performs asynchronous linting to enforce code quality and adherence to standards.
+
 - **`conform.nvim`**
 Ensures consistent code formatting across embedded blocks in Markdown.
+
 - **`trouble.nvim`**
 Provides a streamlined diagnostic viewer for navigating and resolving errors
 from LSP and linters.
@@ -195,7 +213,7 @@ Markdown IDE.
 
 This guide outlines the step-by-step process for installing Rocksmarker. You
 will configure Neovim, prepare the Lua 5.1 environment, and apply Rocksmarker
-settings.  
+settings.
 Each step ensures proper setup, performance optimization, and smooth integration
 with your development environment. By the end, you will have a fully operational
 Rocksmarker instance ready for advanced editing and plugin management.
@@ -241,6 +259,10 @@ Required to install *Neovim* and the required packages and configure *Lua 5.1*
     for code linting and analysis.  
 
     Upgrade to Rocky Linux 10 to ensure *full functionality*.
+
+!!! info "Getting around the `glibc` version issue with a container."
+
+    You can get around the glibc issue in older Rocky Linux versions by building Rocksmarker in a Rocky Linux 10.x container instead.
 
 ## Install Neovim from source
 
