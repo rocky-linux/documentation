@@ -1,7 +1,12 @@
 ---
 title: 'SOP: Repocompare'
-author: Trevor Cooper
-revision_date: 2026-04-17
+author: Al Bowles
+contributors: Trevor Cooper
+tested_with: 8.10, 9.6, 10.0
+tags:
+  - sop
+  - test logiciel
+revision_date: 2026-05-08
 render_macros: true
 ---
 
