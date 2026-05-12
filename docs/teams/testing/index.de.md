@@ -1,7 +1,11 @@
 ---
-title: Testing Team und QA
+title: Testing Team & QA
 author: Trevor Cooper
-revision_date: 2026-04-17
+contributors: Bob Robison
+tested_with:
+tags:
+  - Softwaretest
+revision_date: 2026-05-08
 render_macros: true
 ---
 
