@@ -1,7 +1,13 @@
 ---
 title: 'SOP: openQA — Suppression de l''accès de l''opérateur'
 author: Trevor Cooper
-revision_date: 2026-04-17
+contributors:
+tested_with:
+tags:
+  - openQA
+  - sop
+  - test logiciel
+revision_date: 2026-05-08
 render_macros: true
 ---
 
