@@ -1,11 +1,15 @@
 ---
-title: SOP (Standard Operating Procedures)
+title: Standard Operating Procedures
 author: Trevor Cooper
-revision_date: 2026-04-17
+contributors:
+tested_with:
+tags:
+  - sop
+  - test logiciel
+revision_date: 2026-05-08
 render_macros: true
 ---
 
 Cette section passe en revue les différentes procédures opérationnelles standard (SOP) de l'équipe de test. Veuillez utiliser les éléments du menu pour trouver les différentes pages qui vous intéressent.
 
 {% include "teams/testing/content_bottom.md" %}
-

@@ -20,11 +20,11 @@ Il `tar' attualmente utilizzato nei moderni GNU/Linux proveniva inizialmente dal
 !!! note
 
 ````
-`tar` in distribuzioni diverse può avere opzioni predefinite diverse. Fate attenzione quando le usate.
+Il comando `tar` può avere opzioni predefinite diverse a seconda della distribuzione. Si prega di prestare attenzione durante il suo utilizzo.
 
 ```bash
 # RockyLinux 8 e Fedora 41
-Shell > tar --show-defaults
+tar --show-defaults
 --format=gnu -f- -b20 --quoting-style=escape --rmt-command=/etc/rmt --rsh-command=/usr/bin/ssh
 ```
 ````
@@ -168,7 +168,7 @@ Ecco alcuni esempi di convenzioni di nomenclatura per gli archivi `tar`:
 1. Archivia e comprime **/etc/** in modalità percorso relativo, con un suffisso `.tar.gz`:
 
    ```bash
-   Shell > tar -czvf /tmp/etc-20241207.tar.gz /etc/
+   tar -czvf /tmp/etc-20241207.tar.gz /etc/
    ```
 
    Poiché `tar` lavora in modalità percorsi relativi per impostazione predefinita, la prima riga dell'output del comando mostrerà quanto segue:
@@ -180,9 +180,9 @@ Ecco alcuni esempi di convenzioni di nomenclatura per gli archivi `tar`:
 2. Archiviazione di **/var/log/** e selezionare il tipo xz per la compressione:
 
    ```bash
-   Shell > tar -cJvf /tmp/log-20241207.tar.xz /var/log/
+   tar -cJvf /tmp/log-20241207.tar.xz /var/log/
 
-   Shell > du -sh /var/log/ ; ls -lh /tmp/log-20241207.tar.xz
+   du -sh /var/log/ ; ls -lh /tmp/log-20241207.tar.xz
    18M     /var/log/
    -rw-r--r-- 1 root root 744K Dec  7 14:40 /tmp/log-20241207.tar.xz
    ```
@@ -190,7 +190,7 @@ Ecco alcuni esempi di convenzioni di nomenclatura per gli archivi `tar`:
 3. Stima delle dimensioni del file senza generare un archivio:
 
    ```bash
-   Shell > tar -cJf - /etc | wc -c
+   tar -cJf - /etc | wc -c
    tar: Removing leading `/' from member names
    3721884
    ```
@@ -200,9 +200,9 @@ Ecco alcuni esempi di convenzioni di nomenclatura per gli archivi `tar`:
 4. Taglia i file \`.tar.gz' di grandi dimensioni:
 
    ```bash
-   Shell > cd /tmp/ ; tar -czf - /etc/  | split -d -b 2M - etc-backup20241207.tar.gz.
+   cd /tmp/ ; tar -czf - /etc/  | split -d -b 2M - etc-backup20241207.tar.gz.
 
-   Shell > ls -lh /tmp/
+   ls -lh /tmp/
    -rw-r--r-- 1 root root 2.0M Dec  7 20:46 etc-backup20241207.tar.gz.00
    -rw-r--r-- 1 root root 2.0M Dec  7 20:46 etc-backup20241207.tar.gz.01
    -rw-r--r-- 1 root root 2.0M Dec  7 20:46 etc-backup20241207.tar.gz.02
@@ -214,9 +214,9 @@ Ecco alcuni esempi di convenzioni di nomenclatura per gli archivi `tar`:
    Per estrarre questi piccoli file tagliati, si può puntare alla seguente operazione:
 
    ```bash
-   Shell > cd /tmp/ ; cat etc-backup20241207.tar.gz.* >> /tmp/etc-backup-20241207.tar.gz
+   cd /tmp/ ; cat etc-backup20241207.tar.gz.* >> /tmp/etc-backup-20241207.tar.gz
 
-   Shell > cd /tmp/ ; tar -xvf etc-backup-20241207.tar.gz -C /tmp/dir1/
+   cd /tmp/ ; tar -xvf etc-backup-20241207.tar.gz -C /tmp/dir1/
    ```
 
 #### Casi con '-x'
@@ -224,15 +224,15 @@ Ecco alcuni esempi di convenzioni di nomenclatura per gli archivi `tar`:
 1. Scaricate il codice sorgente di Redis ed estrarlo nella directory `/usr/local/src/`:
 
    ```bash
-   Shell > wget -c https://github.com/redis/redis/archive/refs/tags/7.4.1.tar.gz
+   wget -c https://github.com/redis/redis/archive/refs/tags/7.4.1.tar.gz
 
-   Shell > tar -xvf 7.4.1.tar.gz -C /usr/local/src/
+   tar -xvf 7.4.1.tar.gz -C /usr/local/src/
    ```
 
 2. Estrarre solo un file dal file zip dell'archivio:
 
    ```bash
-   Shell > tar -xvf /tmp/etc-20241207.tar.gz etc/chrony.conf
+   tar -xvf /tmp/etc-20241207.tar.gz etc/chrony.conf
    ```
 
 #### Casi con '-A' o '-r'
@@ -240,11 +240,11 @@ Ecco alcuni esempi di convenzioni di nomenclatura per gli archivi `tar`:
 1. Aggiunge un file `.tar' a un altro file `.tar':
 
    ```bash
-   Shell > tar -cvf /tmp/etc.tar /etc/
+   tar -cvf /tmp/etc.tar /etc/
 
-   Shell > tar -cvf /tmp/log.tar /var/log/
+   tar -cvf /tmp/log.tar /var/log/
 
-   Shell > tar -Avf /tmp/etc.tar /tmp/log.tar
+   tar -Avf /tmp/etc.tar /tmp/log.tar
    ```
 
    Ciò significa che tutti i file in “log.tar” saranno aggiunti alla fine di “etc.tar”.
@@ -252,12 +252,12 @@ Ecco alcuni esempi di convenzioni di nomenclatura per gli archivi `tar`:
 2. Aggiunge file o directory a un file `.tar`:
 
    ```bash
-   Shell > tar -rvf /tmp/log.tar /etc/chrony.conf
+   tar -rvf /tmp/log.tar /etc/chrony.conf
    tar: Removing leading `/' from member names
    /etc/chrony.conf
    tar: Removing leading `/' from hard link targets
 
-   Shell > tar -rvf /tmp/log.tar /tmp/dir1
+   tar -rvf /tmp/log.tar /tmp/dir1
    ```
 
 !!! warning "Attenzione"
@@ -277,9 +277,9 @@ Sia che si utilizzi l'opzione `-A` o `-r`, considerare la modalità di salvatagg
 1. Esaminare il contenuto dell'archivio:
 
    ```bash
-   Shell > tar -tvf /tmp/log.tar
+   tar -tvf /tmp/log.tar
 
-   Shell > tar -tvf /tmp/etc-20241207.tar.gz | less
+   tar -tvf /tmp/etc-20241207.tar.gz | less
    ```
 
 #### Casi con '-d'
@@ -287,10 +287,10 @@ Sia che si utilizzi l'opzione `-A` o `-r`, considerare la modalità di salvatagg
 1. Confrontare le differenze:
 
    ```bash
-   Shell > cd / ; tar -dvf /tmp/etc.tar etc/chrony.conf
+   cd / ; tar -dvf /tmp/etc.tar etc/chrony.conf
    etc/chrony.conf
 
-   Shell > cd / ; tar -dvf /tmp/etc-20241207.tar.gz etc/
+   cd / ; tar -dvf /tmp/etc-20241207.tar.gz etc/
    ```
 
    Per i metodi di archiviazione che usano la modalità percorsi relativi, quando si usa il tipo \`-d', cambiare il percorso del file in ‘/’.
@@ -300,15 +300,15 @@ Sia che si utilizzi l'opzione `-A` o `-r`, considerare la modalità di salvatagg
 1. Se esistono più versioni dello stesso file, si può usare il parametro `-u`:
 
    ```bash
-   Shell > touch /tmp/tmpfile1
+   touch /tmp/tmpfile1
 
-   Shell > tar -rvf /tmp/log.tar /tmp/tmpfile1
+   tar -rvf /tmp/log.tar /tmp/tmpfile1
 
-   Shell > echo "File Name" >> /tmp/tmpfile1
+   echo "File Name" >> /tmp/tmpfile1
 
-   Shell > tar -uvf /tmp/log.tar /tmp/tmpfile1
+   tar -uvf /tmp/log.tar /tmp/tmpfile1
 
-   Shell > tar -tvf /tmp/log.tar
+   tar -tvf /tmp/log.tar
    ...
    -rw-r--r-- root/root         0 2024-12-07 18:53 tmp/tmpfile1
    -rw-r--r-- root/root        10 2024-12-07 18:54 tmp/tmpfile1
@@ -319,9 +319,9 @@ Sia che si utilizzi l'opzione `-A` o `-r`, considerare la modalità di salvatagg
 1. Si può anche usare `--delete` per cancellare i file all'interno di un file `.tar`.
 
    ```bash
-   Shell > tar --delete -vf /tmp/log.tar tmp/tmpfile1
+   tar --delete -vf /tmp/log.tar tmp/tmpfile1
 
-   Shell > tar --delete -vf /tmp/etc.tar etc/motd.d/
+   tar --delete -vf /tmp/etc.tar etc/motd.d/
    ```
 
    Quando si elimina, si eliminano tutti i file con lo stesso nome dall'archivio.

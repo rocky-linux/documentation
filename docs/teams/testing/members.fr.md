@@ -1,6 +1,11 @@
 ---
 title: Adhérent·es
 author: Trevor Cooper
+contributors:
+tested_with:
+tags:
+  - test logiciel
+revision_date: 2026-05-08
 render_macros: true
 ---
 
