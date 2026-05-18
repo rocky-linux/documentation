@@ -9,7 +9,7 @@ translators:
 
 A common question people have is "Will Rocky install on my machine?" It is an important question and generally the answer is "yes." However, the question becomes more challenging when it is "Will Rocky work with this device or setup?" At the beginning of the project, Testing Team needed as many reports as possible to know that Rocky did indeed install on a wide range of hardware. This information was scraped together with `xsos` and put into the [Git repository here](https://github.com/rocky-linux/testing/tree/main/test-reports).
 
-It worked for the time being, however, it was hard to contribute to, and it was hard to search and filter. Those reports have not been updated in years.
+At the time it worked well however, it was hard to contribute to, and it was hard to search and filter. Those reports have not been updated in years.
 
 However, the questions of "Does Rocky install on...?" Are still valid questions as new hardware is constantly being released. Thus, there is a desire to help build a database that users can search and contribute to.
 
@@ -43,15 +43,15 @@ dnf install -y epel-release
 
 Install `hw-probe`:
 
-    ```
-    sudo dnf install -y hw-probe
-    ```
-.
-    Do note, the EPEL package does not always get dependencies. On Rocky 8, also install `xorg-x11-utils` for edid-decode:
+```
+sudo dnf install -y hw-probe
+```
 
-    ```
-    sudo dnf install -y xorg-x11-utils
-    ```
+Do note, the EPEL package does not always get dependencies. On Rocky 8, also install `xorg-x11-utils` for edid-decode:
+
+```
+sudo dnf install -y xorg-x11-utils
+```
 
 Run the probe and upload the results:
 
@@ -87,13 +87,13 @@ sudo -E ./hw-probe-1.6.5-189-x86_64.AppImage -all -upload
 
 ### Notify the Testing team
 
-If running the probe on a official release (at the time of this writing:8.10, 9.7, 10.1), submit the result to the Testing Team via chat.rockylinux.org (Mattermost Chat) in the testing channel. This is only recommended and not required. It simply lets Testing Team know what hardware has been submitted and the current state of it with Rocky. There is a lot of value for the larger community and for Testing Team historical purposes (knowing if hardware did or did not work on previous releases).
+If running the probe on a official release (at the time of this writing: 8.10, 9.7, 10.1), submit the result to the Testing Team via chat.rockylinux.org (Mattermost Chat) in the testing channel. This is only recommended and not required. It simply lets Testing Team know what hardware has been submitted and the current state of it with Rocky. There is a lot of value for the larger community and for Testing Team historical purposes (knowing if hardware did or did not work on previous releases).
 
 If running the probe on a Release Candidate and/or Beta, It is important to report the link regardless of status to [chat.rockylinux.org](https://chat.rockylinux.org) (Mattermost Chat), in the release channel. If that is not possible, direct message Rocky Linux on your social media of choice, or post in the forums at [forums.rockylinux.org](https://forums.rockylinux.org). Testing Team cannot guarantee your name will appear in the credits for submissions outside of the Mattermost channels at [chat.rockylinux.org](https://chat.rockylinux.org), but we will do our best to include ALL those who give submissions.
 
 ## Additional ways to contribute
 
-It would be amazing to have `hw-probe` fully added into EPEL for 10, and for as many architectures as possible. Anyone with EPEL experience willing to assist there would be greatly appreciated.
+It would be amazing to have `hw-probe` fully added into EPEL for 10, and for as many architectures as possible. Anyone with EPEL experience willing to assist there would be greatly appreciated. You can review the [upstream bug-report here](https://bugzilla.redhat.com/show_bug.cgi?id=2479630) or follow along with the [Testing Team's issue](https://github.com/rocky-linux/testing/issues/89). 
 
 Additionally, anyone willing to contribue to the Hardware Probe project would be of great help. They are looking for people to assist with writing tests and managing the project.
 
