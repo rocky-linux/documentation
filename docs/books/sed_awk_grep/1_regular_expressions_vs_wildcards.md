@@ -145,9 +145,9 @@ Please note that the author rarely uses the "POSIX character class", but has inc
 | [:punct:]        | [][!"#$%&'()*+,./:;<=>?@\^_`{\|}~-] |
 | [:xdigit:]       | [A-Fa-f0-9]     |
 
-### Introducing regular expressions
+### Online Practice
 
-Many websites exist for practicing regular expression skills online, such as:
+Many websites exist for practicing regular expression skills online, for example:
 
 * [regex101](https://regex101.com/)
 * [oschina](https://tool.oschina.net/regex/)
