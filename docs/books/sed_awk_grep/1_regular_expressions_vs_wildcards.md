@@ -63,8 +63,8 @@ Shell > find / -iname "dir[1-9]" -a -type d
 Two major schools of regular expressions exist due to historical development:
 
 * POSIX:
-    * BRE（basic regular express）
-    * ERE（extend regular express）
+    * BRE(basic regular express)
+    * ERE(extend regular express)
     * POSIX character class
 * PCRE (Perl Compatible Regular Expressions): The most common among various programming languages.
 
