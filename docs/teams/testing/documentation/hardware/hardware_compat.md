@@ -47,7 +47,15 @@ Install `hw-probe`:
 sudo dnf install -y hw-probe
 ```
 
-Do note, the EPEL package does not always get dependencies. On Rocky 8, also install `xorg-x11-utils` for edid-decode:
+Do note, the EPEL package does not always get dependencies.
+
+For all versions, these packages must be installed:
+
+```
+sudo dnf install -y tar curl
+```
+
+On Rocky 8, also install `xorg-x11-utils` for edid-decode [Note: this package is not available for 9/10; ignore the warning]:
 
 ```
 sudo dnf install -y xorg-x11-utils
@@ -61,11 +69,7 @@ sudo -E hw-probe -all -upload
 
 ### Rocky 10
 
-For Rocky 10, at the time of this writing `hw-probe`, is not in the main EPEL repository, but [there is work on building it](https://packages.fedoraproject.org/pkgs/hw-probe/hw-probe). In the mean time, the easiest way to get `hw-probe` with least amount of dependency packages to install, is to download and use [the AppImage](https://github.com/linuxhw/hw-probe/blob/master/README.md#appimage). Check the link for the latest version.
-
-```text
-curl -o hw-probe-1.6.5-189-x86_64.AppImage 'https://release-assets.githubusercontent.com/github-production-release-asset/47073191/b65e3afa-625f-4954-99e4-58da82ab7dd5?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-05-18T17%3A29%3A57Z&rscd=attachment%3B+filename%3Dhw-probe-1.6.5-189-x86_64.AppImage&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-05-18T16%3A29%3A37Z&ske=2026-05-18T17%3A29%3A57Z&sks=b&skv=2018-11-09&sig=m%2FCSV5VjS%2FQv5vbq9EvY%2BXL9LbQhIo0sHmHmMQh7bgE%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc3OTEyMjYxMywibmJmIjoxNzc5MTIyMzEzLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.z8HdXVijlSI_s1DqNgjlJaAvHRluuaWXMyImjk0PF18&response-content-disposition=attachment%3B%20filename%3Dhw-probe-1.6.5-189-x86_64.AppImage&response-content-type=application%2Foctet-stream'
-```
+For Rocky 10, at the time of this writing `hw-probe`, is not in the main EPEL repository, but [there is work on building it](https://packages.fedoraproject.org/pkgs/hw-probe/hw-probe). In the mean time, the easiest way to get `hw-probe` with least amount of dependency packages to install, is to download and use [the AppImage](https://github.com/linuxhw/hw-probe/blob/master/README.md#appimage). Check the link for the latest version. Examples below use `1.6.5-189`.
 
 You need to install the `libxcrypt-compat` package:
 
