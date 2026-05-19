@@ -47,7 +47,15 @@ Install `hw-probe`:
 sudo dnf install -y hw-probe
 ```
 
-Do note, the EPEL package does not always get dependencies. On Rocky 8, also install `xorg-x11-utils` for edid-decode:
+Do note, the EPEL package does not always get dependencies.
+
+For all versions, these packages must be installed:
+
+```
+sudo dnf install -y tar curl
+```
+
+On Rocky 8, also install `xorg-x11-utils` for edid-decode [Note: this package is not available for 9/10; ignore the warning]:
 
 ```
 sudo dnf install -y xorg-x11-utils
