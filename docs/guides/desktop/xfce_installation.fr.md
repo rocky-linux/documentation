@@ -22,7 +22,6 @@ C'est aussi l'un des environnements de bureau les plus faciles à combiner avec 
 
 \=== "9"
 
-    ````
     ## 9: Introduction 
     
     L'équipe de développement de Rocky Linux 9 a facilité l'installation de XFCE et d'autres environnements de bureau populaires, en incluant des images de live CD. Une image d'installation autonome, pour ceux qui ne savent peut-être pas ce que c'est, est une image amorçable qui chargera le système d'exploitation sans installation. Une fois chargé, vous pouvez l'installer sur le disque de votre ordinateur et l'utiliser.
@@ -98,11 +97,9 @@ C'est aussi l'un des environnements de bureau les plus faciles à combiner avec 
     Ensuite, vous obtiendrez un écran de connexion avec l'utilisateur que vous avez créé précédemment. Saisissez votre mot de passe, qui vous mènera au bureau XFCE :
     
     ![xfce_desktop](images/xfce_desktop.png)
-    ````
 
 \=== "9-minimal"
 
-    ````
     ## 9 minimal : Introduction
     
     Si vous avez installé Rocky Linux 9.x et décidez d'installer XFCE par la suite, cette procédure vous guidera. Cette procédure suppose une installation préalable de `Rocky-9.4-x86_64-minimal.iso`.
@@ -165,11 +162,9 @@ C'est aussi l'un des environnements de bureau les plus faciles à combiner avec 
     Maintenant vous pouvez effectuer des tests. Relancez votre système avec la commande `sudo reboot`. Vous verrez votre système s'ouvrir avec l'écran de connexion du bureau XFCE.
     
     ![9_min7](images/xfce_9_min_7.png)
-    ````
 
 \=== "8"
 
-    ````
     ## 8: Installation de Rocky Linux Minimal
     
     !!! note
@@ -292,7 +287,6 @@ C'est aussi l'un des environnements de bureau les plus faciles à combiner avec 
     ```
     
     Vous devriez vous retrouver avec une invite de connexion dans l'interface XFCE et, lorsque vous vous connectez, vous aurez tout l'environnement XFCE.
-    ````
 
 ## Conclusion
 
