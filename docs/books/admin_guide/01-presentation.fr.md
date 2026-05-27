@@ -210,7 +210,7 @@ Dans le monde **GNU/Linux**, le mouvement du Logiciel Libre permet de fournir de
 
 Un logiciel libre est nécessairement open-source, mais le contraire n'est pas vrai car la liberté liée au logiciel open-source est distincte de la liberté offerte par la licence GPL.
 
-#### GPL (General Public License)
+#### GNU GPL (GNU General Public License)
 
 La **GPL** garantit à l'auteur d'un logiciel sa propriété intellectuelle, mais permet la modification, redistribution ou revente de logiciels par des tiers, à condition que le code source soit inclus dans le logiciel. La licence GPL est la licence issue du projet **GNU** (GNU is Not UNIX), projet déterminant dans la création de Linux.
 
