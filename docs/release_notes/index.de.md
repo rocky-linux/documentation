@@ -7,7 +7,7 @@ tags:
 
 # Rocky Linux Release Notes
 
-Willkommen auf unserer Liste der Release Notes und Changelogs für Rocky Linux. Sie finden die Versionshinweise für die zuletzt veröffentlichten Versionen mit der neuesten zuerst. Veröffentlichungstermine und Support-Informationen stehen weiter unten.
+Willkommen auf unserer Liste der Release Notes und Changelogs für Rocky Linux. Die zuletzt veröffentlichten Versionen sind im Menü aufgeführt, wobei die neueste an erster Stelle steht. Veröffentlichungstermine und Support-Informationen stehen weiter unten.
 
 ## Rocky Linux Versionen
 
