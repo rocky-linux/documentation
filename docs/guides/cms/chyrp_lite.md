@@ -2,7 +2,7 @@
 title: Chyrp Lite
 author: Neel Chauhan
 contributors: Steven Spencer, Ganna Zhyrnova
-tested_with: 9.5
+tested_with: 10.2
 tags:
   - cms
   - blogging
@@ -24,13 +24,19 @@ The following are the minimum requirements for using this procedure:
 We will use Caddy as the web server. To install Caddy, you need first to install the EPEL (Extra Packages for Enterprise Linux) and run updates:
 
 ```bash
-dnf -y install epel-release && dnf -y update
+sudo dnf -y install epel-release
 ```
 
 Then install Caddy:
 
 ```bash
-dnf -y install Caddy
+sudo dnf copr enable @caddy/caddy
+```
+
+Perform an upgrade to ensure the latest packages are on your system:
+
+```text
+sudo dnf upgrade
 ```
 
 Subsequently, open the `Caddyfile`:
@@ -48,6 +54,22 @@ your.domain.name {
         php_fastcgi 127.0.0.1:9000
 }
 ```
+
+!!! note "For `incus` containers"
+
+    While this procedure works perfectly fine in an `incus` container, `incus` does not come with the firewall enabled. You can install and use `firewalld` on a container, it just is not there by default. If you want to apply the firewall rules to your container, something that might be very important if you are using a public domain, then just be aware that you will have to install:
+
+    ```
+    sudo dnf install firewalld
+    ``` 
+
+    and enable:
+
+    ```
+    sudo systemctl enable --now firewalld
+    ```
+
+    Before continuing this procedure.
 
 Save the file with `:wq!` and then open the corresponding firewall ports:
 
@@ -67,12 +89,12 @@ systemctl enable --now caddy
 
 !!! note
 
-    If you are running Rocky Linux 8.x or 10.x, substitute "8" or "10" next to the release in the Remi package install line. 
+    If you are running Rocky Linux 8.x or 9.x, substitute "8" or "9" next to the release in the Remi package install line. 
 
 To install PHP, you will need the Remi repository. To install the Remi repository, run the following:
 
 ```bash
-dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
+dnf install https://rpms.remirepo.net/enterprise/remi-release-10.rpm
 ```
 
 Then install PHP and the required modules:
@@ -101,18 +123,25 @@ systemctl enable --now php83-php-fpm.service
 
 ## Installing Chyrp
 
-Now, we are going to install Chyrp Lite. Download the latest release:
+Install chyrp-lite by first going to the [release page](https://github.com/xenocrat/chyrp-lite/releases).
+Copy the URL for the latest release, by right-clicking on the `source.zip` file, and copying the link.
+Change to the `/var/www` directory:
 
 ```bash
 cd /var/www
-wget https://github.com/xenocrat/chyrp-lite/archive/refs/tags/v2024.03.zip
+```
+
+Paste the URL you copied for the `source.zip` file of the latest release into `wget`:
+
+```bash
+wget [URL you copied]
 ```
 
 Next, decompress and move the extracted folder:
 
 ```bash
-unzip v2024.03.zip
-mv chyrp-lite-2024.03/ chyrp-lite
+unzip v2026.01.zip
+mv chyrp-lite-2026.01/ chyrp-lite
 ```
 
 Set the correct permissions on the `chyrp-lite` folder:
@@ -127,6 +156,8 @@ Set up a data directory for storing the SQLite database:
 mkdir chyrp-lite-data
 chown -R apache:apache chyrp-lite-data/
 ```
+
+For `incus` container installs, you can skip the SELinux steps. SELinux does not exist in an `incus` container, nor is it supported.
 
 Next, set up the SELinux file contexts:
 
