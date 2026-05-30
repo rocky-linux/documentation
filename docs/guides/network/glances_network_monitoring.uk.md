@@ -2,7 +2,7 @@
 title: Моніторинг мережі та ресурсів з Glances
 author: Alex Zolotarov
 contributors: Steven Spencer
-tested_with: 9
+tested_with: 9.0
 tags:
   - моніторинг
   - мережа
@@ -78,9 +78,7 @@ Glances Web User Interface started on http://0.0.0.0:61208/
 
 !!! NOTE "Примітка"
 
-```
-У macOS використовуйте ++ctrl+h++, щоб видалити фільтр.
-```
+    У macOS використовуйте ++ctrl+h++, щоб видалити фільтр.
 
 Фільтр є шаблоном регулярного виразу:
 
