@@ -123,18 +123,25 @@ systemctl enable --now php83-php-fpm.service
 
 ## Installing Chyrp
 
-Now, we are going to install Chyrp Lite. Download the latest release:
+Install chyrp-lite by first going to the [release page](https://github.com/xenocrat/chyrp-lite/releases).
+Copy the URL for the latest release, by right-clicking on the `source.zip` file, and copying the link.
+Change to the `/var/www` directory:
 
 ```bash
 cd /var/www
-wget https://github.com/xenocrat/chyrp-lite/archive/refs/tags/v2024.03.zip
+```
+
+Paste the URL you copied for the `source.zip` file of the latest release into `wget`:
+
+```bash
+wget [URL you copied]
 ```
 
 Next, decompress and move the extracted folder:
 
 ```bash
-unzip v2024.03.zip
-mv chyrp-lite-2024.03/ chyrp-lite
+unzip v2026.01.zip
+mv chyrp-lite-2026.01/ chyrp-lite
 ```
 
 Set the correct permissions on the `chyrp-lite` folder:
