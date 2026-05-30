@@ -33,13 +33,13 @@ dnf -y install epel-release && dnf -y update
 dnf -y install Caddy
 ```
 
-Згодом відкрийте `Caddyfile`:
+Subsequently, open the `Caddyfile`:
 
 ```bash
 vi /etc/caddy/Caddyfile
 ```
 
-Додайте наступне до свого `Caddyfile`:
+Add the following to your `Caddyfile`:
 
 ```bash
 your.domain.name {
@@ -49,7 +49,7 @@ your.domain.name {
 }
 ```
 
-Збережіть файл за допомогою `:wq!`, а потім відкрийте відповідні порти брандмауера:
+Save the file with `:wq!` and then open the corresponding firewall ports:
 
 ```bash
 sudo firewall-cmd --permanent --zone=public --add-service=http
@@ -57,49 +57,49 @@ sudo firewall-cmd --permanent --zone=public --add-service=https
 sudo firewall-cmd --reload
 ```
 
-Нарешті, запустіть Caddy:
+Finally, start Caddy:
 
 ```bash
 systemctl enable --now caddy
 ```
 
-## Встановлення PHP
+## Installing PHP
 
 !!! note
 
     Якщо ви використовуєте Rocky Linux 8.x, замініть "8" поруч із назвою випуску в рядку встановлення пакета Remi.
 
-Щоб встановити PHP, вам знадобиться репозиторій Remi. Щоб встановити репозиторій Remi, виконайте наступне:
+To install PHP, you will need the Remi repository. To install the Remi repository, run the following:
 
 ```bash
 dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
 ```
 
-Потім встановіть PHP і необхідні модулі:
+Then install PHP and the required modules:
 
 ```bash
 dnf install -y php83-php php83-php-session php83-php-json php83-php-ctype php83-php-filter php83-php-libxml php83-php-simplexml php83-php-mbstring php83-php-pdo php83-php-curl
 ```
 
-Далі відкрийте файл конфігурації PHP:
+Next, open the PHP configuration file:
 
 ```bash
 vi /etc/opt/remi/php83/php-fpm.d/www.conf
 ```
 
-Перейдіть до рядка `listen =` і встановіть для нього наступне:
+Go down to the `listen =` line and set it to the following:
 
 ```bash
 listen = 127.0.0.1:9000
 ```
 
-Вийдіть із `vi` за допомогою `:wq!` і ввімкніть PHP:
+Exit `vi` with `:wq!` and enable PHP:
 
 ```bash
 systemctl enable --now php83-php-fpm.service
 ```
 
-## Встановлення Chyrp
+## Installing Chyrp
 
 Тепер ми збираємося встановити Chyrp Lite. Для цього завантажте останню версію:
 
@@ -108,27 +108,27 @@ cd /var/www
 wget https://github.com/xenocrat/chyrp-lite/archive/refs/tags/v2024.03.zip
 ```
 
-Далі розпакуйте та перемістіть видобуту папку:
+Next, decompress and move the extracted folder:
 
 ```bash
 unzip v2024.03.zip
 mv chyrp-lite-2024.03/ chyrp-lite
 ```
 
-Встановіть правильні дозволи для папки `chyrp-lite`:
+Set the correct permissions on the `chyrp-lite` folder:
 
 ```bash
 chown -R apache:apache chyrp-lite/
 ```
 
-Налаштуйте каталог даних для зберігання бази даних SQLite:
+Set up a data directory for storing the SQLite database:
 
 ```bash
 mkdir chyrp-lite-data
 chown -R apache:apache chyrp-lite-data/
 ```
 
-Далі налаштуйте контекст файлу SELinux:
+Next, set up the SELinux file contexts:
 
 ```bash
 semanage fcontext -a -t httpd_sys_rw_content_t "/var/www/chyrp-lite(/.*)?"
@@ -137,18 +137,18 @@ restorecon -Rv /var/www/chyrp-lite
 restorecon -Rv /var/www/chyrp-lite-data
 ```
 
-На клієнтській машині відкрийте веб-браузер за адресою `https://example.com/install.php` і запустіть програму інсталяції (замініть `example.com` фактичним іменем домену чи хосту):
+On a client machine, open up a web browser to `https://example.com/install.php` and run the installation program (replace `example.com` with your actual domain name or hostname):
 
 ![Chyrp Lite Setup](../images/chyrp_lite_setup.png)
 
-У розділі **Database** виберіть шлях у створеному раніше каталозі `chyrp-lite-data`, наприклад `/var/www/chyrp-lite-data/sqlite.db`.
+In the **Database** section, select a pathname in the `chyrp-lite-data` directory made earlier, such as `/var/www/chyrp-lite-data/sqlite.db`.
 
-Потім заповніть інші поля, які мають бути зрозумілими.
+Then, complete the other fields, which should be self-explanatory.
 
-Потім натисніть **Install me**, а потім **Take me to my site**. Тепер ви зможете відвідати завершену інсталяцію вашого сайту Chyrp:
+Next, click **Install me** and then **Take me to my site**. You should now be able to visit a completed installation of your Chyrp site:
 
 ![Chyrp Lite](../images/chyrp_lite.png)
 
-## Висновок
+## Conclusion
 
-Враховуючи, що WordPress перетворився на швейцарський армійський ніж веб-розробки, не дивно, що деякі веб-майстри (включно з автором) віддадуть перевагу легкому механізму ведення блогів. Chyrp Lite ідеально підходить для таких користувачів.
+Considering that WordPress has evolved into a Swiss army knife of web development, it is not surprising some webmasters (the author included) would prefer a lightweight blogging engine. Chyrp Lite is perfect for those users.
