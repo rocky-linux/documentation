@@ -32,9 +32,9 @@ dnf install -y cockpit-machines
 dnf install -y libvirt
 ```
 
-## Увімкнення `cockpit`
+## Enabling `cockpit`
 
-Щоб увімкнути віртуалізацію KVM і Cockpit, увімкніть служби `systemd`:
+To enable both KVM virtualization and Cockpit, enable the `systemd` services:
 
 ```bash
 systemctl enable --now libvirtd cockpit.socket
@@ -44,53 +44,53 @@ systemctl enable --now libvirtd cockpit.socket
 
 ![Cockpit login screen](../images/cockpit_login.png)
 
-Увійдіть як користувач не root, і ви побачите інформаційну панель, схожу на ту, що показана тут:
+Login as a non-root user, and you should see a dashboard similar to the one shown here:
 
 ![Cockpit dashboard](../images/cockpit_dashboard.png)
 
-## Створення віртуальної машини
+## Creating a virtual machine
 
-У цьому посібнику ви створите віртуальну машину Rocky Linux 9 на своїй хост-системі, використовуючи автоматизацію для додавання імені користувача та пароля root.
+In this guide, you will create a Rocky Linux 9 virtual machine on your host system, using automation to add a username and root password.
 
-Щоб створити віртуальну машину в Cockpit, спочатку натисніть синю кнопку **Turn on administrative access** і за потреби введіть свій пароль:
+To create a virtual machine in Cockpit, first click on the blue **Turn on administrative access** button, and enter your password if needed:
 
 ![Cockpit dashboard as root](../images/cockpit_root_dashboard.png)
 
-Тепер ви ввійшли як root у Cockpit. На бічній панелі натисніть **Virtual Machines**:
+You are now logged in as root in Cockpit. In the sidebar, click on **Virtual Machines**:
 
 ![Cockpit Virtual Machine dashboard](../images/cockpit_vm_dashboard.png)
 
-Потім натисніть **Create VM**:
+Then click on **Create VM**:
 
 ![Virtual Machine create dialog](../images/cockpit_vm_create_1.png)
 
-У спадному списку **Operating system** виберіть **Rocky Linux 9 (Blue Onyx)**:
+In the **Operating system** dropdown, select **Rocky Linux 9 (Blue Onyx)**:
 
 ![VM create dialog with Rocky Linux 9 selected](../images/cockpit_vm_create_2.png)
 
-Далі натисніть **Automation** та заповніть дані для входу, які ви хочете у своїй новій віртуальній машині:
+Next, click on **Automation**, and fill in the login details you want on your new VM:
 
 ![VM create dialog with root password and username filed in](../images/cockpit_vm_create_2.png)
 
-Нарешті виберіть **Create and run**.
+Finally, select **Create and run**.
 
-Через кілька хвилин виберіть свою щойно створену віртуальну машину, ви отримаєте її IP-адресу:
+In a few minutes, select your newly-created VM, you will have its IP address:
 
 ![Our VM's IP address](../images/cockpit_vm_ip.png)
 
-SSH у ваш гіпервізор і SSH в IP-адресу з Cockpit. У цьому прикладі це **172.20.0.103**. Ви увійдете на новий сервер:
+SSH into your hypervisor, and SSH into the IP address from Cockpit. In this example, it is **172.20.0.103**. You will be logged into your new server:
 
 ![Our VM's terminal](../images/cockpit_vm_terminal.png)
 
-## Обмеження
+## Limitations
 
-Хоча Cockpit чудово підходить для створення та керування віртуальними машинами, є кілька обмежень, про які слід знати:
+While Cockpit is great for creating and managing virtual machines, there are a few limitations to be aware of:
 
-- Ви не можете створити інтерфейс мосту.
-- Ви не можете створити новий образ у будь-якому пулі сховищ, лише у «за замовчуванням».
+- You cannot create a bridge interface.
+- You cannot create a new image in any storage pool, only the `default` one.
 
-На щастя, їх можна створити за допомогою командного рядка та використати в Cockpit.
+Fortunately, you can create these at the command line, and then Cockpit can use them.
 
-## Висновок
+## Conclusion
 
-Cockpit — безцінний інструмент для керування сервером Rocky Linux через веб-інтерфейс. Це інструмент автора для створення віртуальних машин у їхній домашній лабораторії. Хоча "cockpit-machines" можуть бути не такими повнофункціональними, як ESXi або Proxmox, вони виконують роботу в 90% випадків використання гіпервізора.
+Cockpit is an invaluable tool for managing a Rocky Linux server via a web interface. It is personally the author's go-to tool for creating virtual machines in their home lab. While `cockpit-machines` may not be as full-featured as ESXi or Proxmox, it gets the job done for 90% of hypervisor use cases.
