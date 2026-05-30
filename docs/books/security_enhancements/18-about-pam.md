@@ -34,11 +34,11 @@ PAM is open source. You can find more information [on the GitHub site here](http
 * How to specify time periods for system users to restrict access to services?
 * How to limit the usage of system resources by various applications or services?
 
-Without PAM, you can only write authentication functions in various applications. Once you need to modify a specific authentication method, developers might have to rewrite the program, recompile it, and reinstall it. Using PAM, it handles the application's identity authentication work, so the program subject can no longer focus on identity authentication itself.
+Without PAM, you can only write authentication functions in various applications. Once you need to modify a specific authentication method, developers might have to rewrite the program, recompile it, and reinstall it. Using PAM, the application's identity authentication is handled, so the program subject can no longer focus on identity authentication itself.
 
 ![pam_image](../../guides/security/images/pam-001.png)
 
-PAM is mainly composed of a set of shared libraries (.so files) and configuration files. Its main characteristics are as follows:
+PAM is primarily composed of shared libraries (.so files) and configuration files. Its main characteristics are as follows:
 
 * Based on a modular design and with insertable functionality
 * The authentication method is independent of the application
@@ -50,19 +50,19 @@ PAM is mainly composed of a set of shared libraries (.so files) and configuratio
 
 In the early days of PAM, **Vipin Samar** and **Charlie Lai** did not formally define these terms. Still, they used terms that were not formally defined, which led to misleading or incomprehensible situations when used. In 1999, **Andrew G. Morgan** (author of Linux-PAM) established consistent, clear terminology for the first time in his white paper, though it was not yet perfect.
 
-FreeBSD’s documentation provides explanations of the following terms:
+FreeBSD documentation provides explanations of the following terms:
 
 * **account** - The set of credentials the applicant is requesting from the arbitrator.
 * **applicant** - The user or entity requesting authentication.
 * **arbitrator** - The user or entity who has the privileges necessary to verify the applicant’s credentials and the authority to grant or deny the request.
-* **chain** - A sequence of modules that will invoke, when responding to a PAM request. The chain includes information about the order in which to invoke the modules, what arguments to pass to them, and how to interpret the results.
-* **client** - The application is responsible for initiating an authentication request on behalf of the applicant and for obtaining the necessary authentication information from them.
+* **chain** - The system invokes a sequence of modules when responding to a PAM request. The chain includes information about the order in which to invoke the modules, what arguments to pass to them, and how to interpret the results.
+* **client** - The application is responsible for initiating an authentication request on the applicant's behalf and obtaining the necessary authentication information from them.
 * **facility** - One of the four basic groups of functionality provided by PAM: **_authentication_**, **_account management_**, **_session management_**, and **_authentication token update_**.
 * **module** - A collection of one or more related functions implementing a particular authentication facility, gathered into a single (normally dynamically loadable) binary file and identified by a single name.
 * **policy** - The complete set of configuration statements describing how to handle PAM requests for a particular service. **_A policy normally consists of four chains, one for each facility, though some services do not use all four facilities_**.
 * **server** - The application acts on behalf of the arbitrator to converse with the client, retrieve authentication information, verify the applicant’s credentials, and grant or deny requests.
 * **service** - A class of servers providing similar or related functionality and requiring similar authentication. PAM defines policies on a per-service basis, so all servers that claim the same service name are subject to the same policy.
-* **session** - The context within which the rendering of the service takes place to the applicant by the server. One of PAM’s four facilities, session management, concerns itself exclusively with setting up and tearing down this context.
+* **session** - The context in which the service is rendered to the applicant by the server. One of PAM’s four facilities, session management, concerns itself exclusively with setting up and tearing down this context.
 * **token** - A chunk of information associated with the account, such as a password or passphrase, which the applicant must provide to prove their identity.
 * **transaction** - A sequence of requests from the same applicant to the same instance of the same server, beginning with authentication and session setup and ending with session tear-down.
 
@@ -180,7 +180,7 @@ When a server invokes one of the six PAM primitives, PAM retrieves the chain for
 
 !!! tip "tip"
 
-    Note that it is possible, though not very common, to have the same module listed several times in the same chain. For instance, a module that looks up user names and passwords in a directory server could be invoked multiple times, each with different parameters specifying a different directory server to contact. PAM considers different positions of the same module within the same chain to be distinct and unrelated modules.
+    Note that it is possible, though not very common, to have the same module listed several times in the same chain. For instance, a module that looks up user names and passwords in a directory server could be invoked multiple times, each with different parameters specifying a different directory server to contact. PAM treats different positions of the same module within the same chain as distinct, unrelated modules.
 
 ## Configuration file description
 
@@ -346,11 +346,11 @@ As you can see, this policy file uses a complete set of 4 chains, each correspon
 
 #### `auth chain`
 
-When a user logs in, verification of their identity and password will be through **auth**.
+When a user logs in, their identity and password will be verified through **auth**.
 
 * **pam_env.so** - Defines environment variables after user login. By default, if no configuration file exists, environment variable settings are in the **/etc/security/pam_env.conf** file.
-* **pam_unix.so** - Uses this module to prompt the user to enter their password and compare it with the password information recorded in **/etc/shadow**. The user can log in if the password comparison result is correct. Using the "sufficient " control flag means that, provided verification of this configuration item passes, the user can fully authenticate without having to request other modules. The nullok module parameter indicates the allowing of null passwords.
-* **pam_deny.so** - Directly rejects all login requests that do not meet any of the above conditions through the **pam_deny.so** module. **pam_deny.so** is a special module that always returns "no". As with most security mechanisms, requests that do not match the authentication rules result in rejection after the completion of all authentication rules.
+* **pam_unix.so** - Uses this module to prompt the user to enter their password and compare it with the password information recorded in **/etc/shadow**. The user can log in if the password comparison succeeds. Using the "sufficient " control flag means that, provided verification of this configuration item passes, the user can fully authenticate without requesting other modules. The nullok module parameter indicates whether null passwords are allowed.
+* **pam_deny.so** - Directly rejects all login requests that do not meet any of the above conditions through the **pam_deny.so** module. **pam_deny.so** is a special module that always returns "no". As with most security mechanisms, requests that do not match the authentication rules are rejected after all authentication rules are completed.
 
 #### account chain
 
@@ -367,24 +367,24 @@ When a user logs in, verification of their identity and password will be through
     * retry=N - The number of password retries allowed after changing the password; the default value is 1.
     * minlen=N - What is the minimum length for a new password? The default value is 8.
     * difok=N - What is the minimum number of characters that must differ between the new and old passwords? The default value is 1. The special value of 0 disables all checks of similarity of the new password with the old password, except that the new password is exactly the same as the old one.
-    * dcredit=N - When N>0, it indicates the maximum number of allowed numeric characters in the new password. When N<0, this indicates the minimum number of numeric characters required for the new password. When N=0, it means the new password can contain any number of numeric characters.
-    * lcredit=N - When N>0, it indicates the maximum number of lowercase letters allowed in the new password. When N<0, this indicates the minimum number of lowercase letters you must include in the new password. When N=0, this indicates that there is no limit on the number of lowercase letters in the new password.
+    * dcredit=N - When N>0, it indicates the maximum number of allowed numeric characters in the new password. When N<0, this indicates that the minimum number of numeric characters required for the new password is 0. When N=0, it means the new password can contain any number of numeric characters.
+    * lcredit=N - When N>0, it indicates the maximum number of lowercase letters allowed in the new password. When N<0, this indicates that the minimum number of lowercase letters you must include in the new password is 0. When N=0, this indicates that there is no limit on the number of lowercase letters in the new password.
     * ucredit=N - When N>0, it indicates the maximum number of uppercase letters allowed in the new password. When N<0, this indicates the minimum number of uppercase letters you must include in the new password. When N=0, this indicates that there is no limit on the number of uppercase letters in the new password.
-    * ocredit=N - When N>0, it indicates the maximum number of special characters allowed in the new password. When N<0, it indicates the minimum number of special characters required in the new password. When N=0, this indicates that there is no limit on the number of special characters in the new password.
-    * maxrepeat=N - Reject passwords containing N or more identical consecutive characters. The default value is 0, indicating the disabling of this check.
-    * maxsequence=N - Reject passwords which contain monotonic character sequences longer than N. The default is 0, indicating the disabling of this check. Examples of such sequences are '12345' or 'fedcb'. Note that most such passwords will not pass the simplicity check unless the sequence is only a minor part of the password.
-    * maxclassrepeat=N - Reject passwords which contain more than N consecutive characters of the same class. The default is 0 indicating the disabling of this check.
+    * ocredit=N - When N>0, it indicates the maximum number of special characters allowed in the new password. When N<0, it indicates that the minimum number of special characters required in the new password is 0. When N=0, this indicates that there is no limit on the number of special characters in the new password.
+    * maxrepeat=N - Reject passwords containing N or more identical consecutive characters. The default value is 0, which disables this check.
+    * maxsequence=N - Reject passwords which contain monotonic character sequences longer than N. The default is 0, which disables this check. Examples of such sequences are '12345' or 'fedcb'. Note that most such passwords will not pass the simplicity check unless the sequence is only a minor part of the password.
+    * maxclassrepeat=N - Reject passwords which contain more than N consecutive characters of the same class. The default is 0, which disables this check.
     * enforce_for_root - After adding this parameter, it indicates that the password complexity requirement applies to the root user.
 
 #### session chain
 
-* **pam_keyinit.so** - Create a corresponding keyring during the user login process and revoke it after the user logs out. You can only use this module in a session facility.
+* **pam_keyinit.so** - Create a corresponding keyring during user login and revoke it after logout. You can only use this module in a session facility.
 
     * revoke - Causes the revoking of the session keyring of the invoking process when the invoking process exits. (Provided the creation of the session keyring existed for this process in the first place.)
 
 * **pam_limits.so** - Modules that restrict system resources, including root (uid=0) users. By default, this module first reads the contents of **/etc/security/limits.conf** file, and then read all .conf files in the **/etc/security/limits.d/** directory.
 
-* **pam_systemd.so** - The `pam_systemd` module will register user sessions in the `systemd` login manager (i.e. `systemd-logind.service`) and also register them in the `systemd` control group. You can only use this module in a session facility.
+* **pam_systemd.so** - The `pam_systemd` module will register user sessions in the `systemd` login manager (i.e., `systemd-logind.service`) and also register them in the `systemd` control group. You can only use this module in a session facility.
 
 * **pam_succeed_if.so** - A module that performs logical judgments on the characteristics of user accounts. From the module name, you can infer that you need to first define the criteria for judgment. The basic usage is `pam_succeed_if.so  [flag...]  [condition...]`
 
@@ -405,7 +405,7 @@ When a user logs in, verification of their identity and password will be through
 
 ## Actual configuration case
 
-**Requirement for case 1**: Increase the complexity of passwords. The requirement for ordinary users (with UID >= 1000) when they change their passwords, is that the password must be at least 10 characters long, and it must contain at least one digit character, at least one capital letter character, at least one lowercase letter character, and at least one special character. When a user changes their password, they are only allowed to retry 3 times.
+**Requirement for case 1**: Increase the complexity of passwords. The requirement for ordinary users (with UID >= 1000) when changing their passwords is that the password must be at least 10 characters long and contain at least one digit, at least one uppercase letter, at least one lowercase letter, and at least one special character. When a user changes their password, they are only allowed to retry 3 times.
 
 ```bash
 Bash > vim /etc/pam.d/system-auth
@@ -471,7 +471,7 @@ Bash >
 
 After three failed requests, the password change interaction process will end.
 
-**Requirement for case 2**: Limit SSH password attempts and lock the account after reaching the maximum limit. Entering the password incorrectly 3 times within 900 seconds when a user logs in remotely via SSH results in the locking of the user account for 180 seconds.
+**Requirement for case 2**: Limit SSH password attempts and lock the account after reaching the maximum limit. Entering the password incorrectly 3 times within 900 seconds when a user logs in remotely via SSH results in the user account being locked for 180 seconds.
 
 First, let us look at the module parameters for the **pam_faillock.so** module:
 
@@ -482,7 +482,7 @@ First, let us look at the module parameters for the **pam_faillock.so** module:
 * deny=n - If the user attempting to log in has failed to log in continuously for more than n times in the recent interval, then the denial of the user's access occurs. The default value is 3.
 * audit - If no corresponding user exists, it records the user name in the system log.
 * even_deny_root - The restriction of locking accounts also applies to root.
-* root_unlock_time=n - Set the time for locking the root account. If this parameter is not specified, it uses the value of the unlock_time parameter instead.
+* root_unlock_time=n - Set the time for locking the root account. If this parameter is not specified, it uses the unlock_time parameter's value instead.
 * unlock_time=n - The time to lock the account is in seconds, with a default value of 600. After exceeding this time limit, the account will be automatically unlocked.
 * fail_interval=n - Define the interval between login failures, with a default of 900. That is to say, it counts the login failures within fifteen minutes.
 
