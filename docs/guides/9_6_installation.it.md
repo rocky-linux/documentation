@@ -31,9 +31,7 @@ Per esempio, `Rocky-9.6-x86_64-minimal.iso`
 
 !!! Note
 
-    ```
     Il sito web del Rocky Project elenca diversi mirror situati in tutto il mondo. Selezionate il mirror geograficamente più vicino a voi. L'elenco dei mirror ufficiali è disponibile [qui] (https://mirrors.rockylinux.org/mirrormanager/mirrors).
-    ```
 
 ## Verifica del file ISO del programma di installazione
 
@@ -135,9 +133,7 @@ Poiché l'installazione utilizza un'immagine ISO di Rocky Linux 9.6, si noterà 
 
 !!! Tip
 
-    ```
     L'area Source dell'installazione consente di eseguire un'installazione network-based (ad esempio, se si utilizza la ISO di avvio di Rocky Linux - Rocky-9.6-x86_64-boot.iso). Per un'installazione network-based, è necessario innanzitutto assicurarsi che una scheda di rete sul sistema di destinazione sia configurata correttamente e possa accedere a Internet. Per eseguire un'installazione network-based, fare clic su +++"Installation Source"++ e selezionare il pulsante di opzione ++"On the network"++. Una volta selezionato, scegliere il protocollo corretto e digitare l'URI dell'origine dell'installazione. Fare clic su ++"Done"++.
-    ```
 
 #### Sezione Software
 
@@ -174,19 +170,15 @@ Il seguente importante compito della procedura di installazione, nell'area Siste
 
 !!! Note
 
-    ```
     Dopo aver fatto clic sull'opzione ++"Network & Hostname"++ , tutti i dispositivi di interfaccia di rete correttamente rilevati (come schede di rete Ethernet, wireless, ecc.) saranno elencati nel riquadro sinistro della schermata di configurazione della rete. A seconda della configurazione hardware specifica, i dispositivi Ethernet in Linux hanno nomi simili a `eth0`, `eth1`, `ens3`, `ens4`, `em1`, `em2`, `p1p1`, `enp0s3` e così via. 
     È possibile configurare ogni interfaccia utilizzando DHCP o impostando manualmente l'indirizzo IP. 
     Se si sceglie di configurare manualmente, assicurarsi di avere pronte tutte le informazioni necessarie, come l'indirizzo IP, la netmask e altri dettagli rilevanti.
-    ```
 
 Facendo clic sul pulsante ++"Network & Hostname"++ nella schermata principale _Installation Summary_ si apre la schermata di configurazione corrispondente. Tra le altre cose, è possibile configurare l'hostname del sistema.
 
 !!! Note
 
-    ```
     È possibile modificare facilmente l'hostname del sistema in un secondo momento, dopo l'installazione del sistema operativo.
-    ```
 
 La seguente importante operazione di configurazione riguarda le interfacce di rete del sistema.
 
@@ -196,9 +188,7 @@ La seguente importante operazione di configurazione riguarda le interfacce di re
 
 !!! Note
 
-    ```
     Nel nostro sistema campione, abbiamo due dispositivi Ethernet (`ens3` e `ens4`), tutti in stato di connessione. Il tipo, il nome, la quantità e lo stato dei dispositivi di rete sul vostro sistema potrebbero essere diversi da quelli del nostro sistema demo.
-    ```
 
 Verificare che l'interruttore del dispositivo che si desidera configurare sia in posizione `ON` (blu) nel riquadro di destra.
 In questa sezione verranno accettate tutte le impostazioni predefinite.
@@ -207,9 +197,7 @@ Fare clic su ++"done "++ per tornare alla schermata principale _Installation Sum
 
 !!! Warning "Attenzione"
 
-    ```
     Prestare attenzione all'indirizzo IP del server in questa sezione del programma di installazione. Supponiamo che non si disponga di un accesso fisico o facile alla console del sistema. In tal caso, queste informazioni saranno utili in seguito, quando sarà necessario collegarsi al server per continuare a lavorarci dopo il completamento dell'installazione del sistema operativo (OS).
-    ```
 
 ### Sezione User Settings
 
@@ -221,9 +209,7 @@ Utilizzare questa sezione per creare una password per l'account utente `root` e 
 
    !!! Warning "Attenzione"
 
-        ```
-         Il superutente root è l'account più privilegiato del sistema. Se si sceglie di utilizzarlo o abilitarlo, è necessario proteggere questo account con una password forte.
-        ```
+        Il superutente root è l'account più privilegiato del sistema. Se si sceglie di utilizzarlo o abilitarlo, è necessario proteggere questo account con una password forte.
 
 2. Nella casella di testo _Root Password_, impostare una password forte per l'utente root.
 
@@ -240,9 +226,7 @@ Per creare l'utente:
 
    !!! Info
 
-        ```
-         La creazione e l'uso di un account non privilegiato per le attività quotidiane di un sistema è una pratica ottimale nell'amministrazione del sistema.
-        ```
+        La creazione e l'uso di un account non privilegiato per le attività quotidiane di un sistema è una pratica ottimale nell'amministrazione del sistema.
 
    Sarà creato un utente normale che può invocare i poteri di superutente (amministratore) quando necessario.
 
@@ -276,9 +260,7 @@ Dopo l'avvio dell'installazione, vengono eseguite varie attività in background,
 
 !!! Note
 
-    ```
     Se non si desidera continuare dopo aver fatto clic sul pulsante Inizia l'installazione, si può comunque uscire dall'installazione senza perdere i dati. Per uscire dal programma di installazione, è sufficiente resettare il sistema facendo clic sul pulsante Esci, premendo Ctrl-Alt-Canc sulla tastiera o premendo l'interruttore di reset o di alimentazione.
-    ```
 
 ### Completare l'Installazione
 
