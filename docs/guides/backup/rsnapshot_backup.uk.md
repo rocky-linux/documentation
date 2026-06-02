@@ -27,7 +27,6 @@ tags:
 
 \=== "EPEL Install"
 
-    ````
     ## Installing `rsnapshot`
     
     Calling all commands here from the command line unless otherwise noted.
@@ -73,11 +72,9 @@ tags:
     Installed size: 1.2 M
     Is this ok [y/N]: y
     ```
-    ````
 
 \=== "Source Install"
 
-    ````
     ## Installing `rsnapshot` from source
     
     Installing `rsnapshot` from source is not difficult. It does come with a downside, however, in that if there is a new version released, it will require a fresh install from source to update the version, whereas the EPEL installation method would keep you up-to-date with a simple `dnf upgrade`. 
@@ -155,7 +152,6 @@ tags:
     ```
     
     This covers copying the configuration file over. The section below on "Configuring rsnapshot" will cover the changes needed in this configuration file.
-    ````
 
 ## Монтування диска або файлової системи для резервного копіювання
 
