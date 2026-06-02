@@ -111,9 +111,7 @@ To serve PHP pages in CGI mode, you must install the Apache server, configure it
  sudo dnf install httpd
  ```
 
-    ```
     activation:
-    ```
 
  ```bash
  sudo systemctl enable --now httpd
