@@ -119,7 +119,7 @@ The installer must be able to complete an installation using all supported spoke
 
 #### Minimal Installation
 
-A minimal installation (via network) must be able to install the minimal set of packages.
+When installing with the generic network install image, aka `boot-iso`, with no update repositories enabled, the installer must be able to install the 'Minimal' package set.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Minimal Installation](../../../documentation/qa_test_cases/Testcase_Minimal_Installation.md)
