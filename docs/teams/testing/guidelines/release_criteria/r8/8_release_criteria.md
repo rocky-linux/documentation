@@ -140,7 +140,7 @@ The installer must be able to create and install to any workable partition layou
 
 #### Firmware RAID
 
-The installer must be able to detect and install firmware on RAID devices. Note that system-specific bugs do not count as blockers. It is likely that some hardware support may be broken or unavailable. DUDs (driver update disks) are not considered for this criterion.
+The installer must be able to detect and install on firmware RAID devices. Note that system-specific bugs do not count as blockers. It is likely that some hardware support may be broken or unavailable. DUDs (driver update disks) are not considered for this criterion.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Firmware RAID](../../../documentation/qa_test_cases/Testcase_Firmware_RAID.md)
