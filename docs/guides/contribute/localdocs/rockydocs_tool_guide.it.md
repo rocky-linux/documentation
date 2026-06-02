@@ -108,9 +108,7 @@ Questa opzione offre la stessa identica esperienza del sito web live docs.rockyl
        !!! tip "Modalità Servizio Statico"
                Questo serve file statici predefiniti esattamente come nella produzione senza reindirizzamenti. Perfetto per verificare come appariranno i contenuti sul sito live. L'URL principale (`http://localhost:8000/`) fornisce direttamente i contenuti più recenti, proprio come docs.rockylinux.org.
 
-        ```
-         **Note**: È necessario eseguire nuovamente `--deploy` per visualizzare le modifiche al contenuto, poiché questo serve i file precompilati.
-        ```
+        **Note**: È necessario eseguire nuovamente `--deploy` per visualizzare le modifiche al contenuto, poiché questo serve i file precompilati.
 
        !!! note "Supporto Lingue"
                Per impostazione predefinita, lo script crea versioni in lingua inglese e ucraina per una configurazione e una compilazione più rapide. Per eseguire il test completo con tutte le lingue disponibili, utilizzare il flag `--full`:
@@ -153,9 +151,7 @@ Questa opzione aggiorna automaticamente il browser quando si modifica i file dei
        !!! tip "Modalità Sviluppo Live"
                Questo consente il ricaricamento in tempo reale: modifica qualsiasi file Markdown nella directory `docs/` e visualizza immediatamente le modifiche nel browser. Perfetto per scrivere e modificare contenuti in modo attivo. Le modifiche vengono visualizzate automaticamente senza bisogno di eseguire nuovamente `--deploy`.
 
-        ```
-         **Note**: può includere reindirizzamenti e comportamenti leggermente diversi da quello in produzione. Utilizzare la modalità statica per la verifica finale.
-        ```
+        **Note**: può includere reindirizzamenti e comportamenti leggermente diversi da quello in produzione. Utilizzare la modalità statica per la verifica finale.
 
 ### Opzione 3: Modalità doppio server (il meglio di entrambi i mondi)
 
@@ -186,12 +182,10 @@ Questa opzione esegue due server contemporaneamente, offrendoti sia la navigazio
        !!! tip "Modalità Dual Server"
                Questo fa funzionare due server contemporaneamente per ottenere il meglio da entrambi i mondi:
 
-        ```
-        - **Port 8000**: Mike serve with full version selector and site navigation
-         - **Port 8001**: MkDocs live reload for instant content updates
-         
-         Switch between ports depending on whether you need live editing (8001) or full site testing (8000). This mode is ideal for contributors who want both immediate content feedback and complete site navigation testing.
-        ```
+       - **Port 8000**: Mike serve with full version selector and site navigation
+        - **Port 8001**: MkDocs live reload for instant content updates
+        
+        Switch between ports depending on whether you need live editing (8001) or full site testing (8000). This mode is ideal for contributors who want both immediate content feedback and complete site navigation testing.
 
 ### Opzione 4: Ambiente Docker
 

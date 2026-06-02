@@ -199,9 +199,7 @@ Creeremo un file composto da più parti che prima esegue uno script shell e poi 
 
        !!! note "Informazioni sul delimitatore  MIME"
 
-        ```
-         La stringa di delimitazione (in questo caso `//`) è una stringa arbitraria che non deve comparire nel contenuto di nessuna parte. Viene utilizzata per separare le diverse sezioni del file.
-        ```
+        La stringa di delimitazione (in questo caso `//`) è una stringa arbitraria che non deve comparire nel contenuto di nessuna parte. Viene utilizzata per separare le diverse sezioni del file.
 
 2. _Boot e verifica._\*
 
