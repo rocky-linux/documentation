@@ -18,7 +18,6 @@ Esistono diversi software aggiuntivi che, pur non essendo necessari, facilitano 
 
 \=== "Installare RipGrep da EPEL"
 
-    ````
     In entrambi Rocky Linux 8 e 9, è possibile installare RipGrep dall'EPEL. Per farlo, installare la `epel-release`, aggiornare il sistema e quindi installare `ripgrep`:
     
     ```bash
@@ -26,11 +25,9 @@ Esistono diversi software aggiuntivi che, pur non essendo necessari, facilitano 
     sudo dnf upgrade
     sudo dnf install ripgrep
     ```
-    ````
 
 \=== "Installare RipGrep usando cargo"
 
-    ````
     Ripgrep è un software scritto in *Rust* ed è installabile con l'utilità `cargo`. Da notare, tuttavia, che `cargo' non è installato dall'installazione predefinita di *rust*, quindi è necessario installarlo esplicitamente. Se si verificano errori con questo metodo, tornare all'installazione da EPEL.
     
     ```bash
@@ -50,7 +47,6 @@ Esistono diversi software aggiuntivi che, pur non essendo necessari, facilitano 
     ```bash
     ln -s ~/.cargo/bin/rg ~/.local/bin/
     ```
-    ````
 
 ## :material-check-all: Verificare RipGrep
 
