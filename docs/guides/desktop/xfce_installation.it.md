@@ -22,7 +22,6 @@ It is also one of the most accessible desktop environments to combine with alter
 
 \=== "9"
 
-    ````
     ## 9: Introduzione
     
     Il team di sviluppo di Rocky Linux 9 ha semplificato l'installazione di XFCE e di altri ambienti desktop popolari includendo immagini live. Per chi non sapesse di cosa si tratta, un'immagine live è un'immagine avviabile che carica il sistema operativo senza installarlo. Una volta caricata, è possibile installarla sul disco rigido del computer e utilizzarla.
@@ -97,11 +96,9 @@ It is also one of the most accessible desktop environments to combine with alter
     Successivamente verrà visualizzata una schermata di accesso con l'utente creato in precedenza. Inserite la password per accedere al desktop XFCE:
     
     ![xfce_desktop](images/xfce_desktop.png)
-    ````
 
 \=== "9-minimal"
 
-    ````
     ## 9 minimal: Introduzione
     
     Se avete installato Rocky Linux 9.x e successivamente decidete di installare XFCE, questa procedura vi permetterà di farlo. Questa procedura presuppone l'installazione di `Rocky-9.4-x86_64-minimal.iso`.
@@ -164,11 +161,9 @@ It is also one of the most accessible desktop environments to combine with alter
     Ora è possibile testarlo. Riavviare il sistema con il comando `sudo reboot`. Il sistema si aprirà con la schermata di accesso al desktop XFCE.
     
     ![9_min7](images/xfce_9_min_7.png)
-    ````
 
 \=== "8"
 
-    ````
     ## 8: Installare Rocky Linux minimale
     
     !!! note "Nota"
@@ -291,7 +286,6 @@ It is also one of the most accessible desktop environments to combine with alter
     ```
     
     Dovrebbe apparire un prompt di login nella GUI di XFCE e, una volta effettuato il login, si avrà a disposizione tutto l'ambiente XFCE.
-    ````
 
 ## Conclusion
 
