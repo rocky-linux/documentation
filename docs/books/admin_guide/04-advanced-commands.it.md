@@ -220,9 +220,7 @@ Il pacchetto `yum-utils` è una raccolta di utilità, realizzate per `yum` da va
 
 !!! Note "Nota"
 
-    ```
     Mentre `yum` è stato sostituito da `dnf` in Rocky Linux 8, il nome del pacchetto è rimasto `yum-utils`, sebbene possa essere installato anche come `dnf-utils`. Queste sono le classiche utilities YUM implementate come shims CLI sopra a DNF per mantenere la retrocompatibilità con `yum-3`.
-    ```
 
 Ecco alcuni esempi di queste utilità.
 
@@ -274,9 +272,7 @@ Il comando `yumdownloader` scarica i pacchetti RPM dai repository.  Equivalente 
 
 !!! Note "Nota"
 
-    ```
     Questo comando è molto utile per creare rapidamente un repository locale di alcuni rpm!
-    ```
 
 Esempio: `yumdownloader` scaricherà il pacchetto rpm _samba_ e tutte le sue dipendenze:
 
@@ -339,9 +335,7 @@ L'opzione `-n` consente di specificare il numero di secondi tra ogni esecuzione 
 
 !!! Note "Nota"
 
-    ```
     Per uscire dal comando `watch`, è necessario digitare i tasti: ++control+c++ per terminare il processo.
-    ```
 
 Esempi:
 
