@@ -78,9 +78,7 @@ I seguenti comandi (tasto premuto) sono supportati in Glances:
 
 !!! NOTE
 
-    ```
     Su macOS, usare ++ctrl+h++ per eliminare il filtro.
-    ```
 
 Il filtro è un modello di espressione regolare:
 
