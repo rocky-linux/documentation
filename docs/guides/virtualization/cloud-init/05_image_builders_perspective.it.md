@@ -90,9 +90,7 @@ La nostra VM ora contiene la nostra configurazione personalizzata, ma contiene a
 
        !!! note "Riguardo a `cloud-init clean --seed`"
 
-        ```
-         Questo comando rimuove il seed univoco utilizzato da `cloud-init` per identificare l'istanza, costringendola a eseguire il processo da zero al successivo avvio. **Non** rimuove le configurazioni personalizzate in `/etc/cloud/cloud.cfg.d/`. Questo passaggio è essenziale per creare un modello veramente generico.
-        ```
+        Questo comando rimuove il seed univoco utilizzato da `cloud-init` per identificare l'istanza, costringendola a eseguire il processo da zero al successivo avvio. **Non** rimuove le configurazioni personalizzate in `/etc/cloud/cloud.cfg.d/`. Questo passaggio è essenziale per creare un modello veramente generico.
 
 2. **Spegnimento immediato:** dopo la pulizia, spegnere immediatamente la VM.
 
