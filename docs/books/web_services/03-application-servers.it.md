@@ -51,9 +51,7 @@ PHP-FPM, **oltre a prestazioni migliori**, porta:
 
 !!! Note
 
-    ```
     Since Apache has a PHP module, php-fpm is more commonly used on an Nginx server.
-    ```
 
 ### Choose a PHP version
 
@@ -113,9 +111,7 @@ To serve PHP pages in CGI mode, you must install the Apache server, configure it
  sudo dnf install httpd
  ```
 
-    ```
     activation:
-    ```
 
  ```bash
  sudo systemctl enable --now httpd
@@ -143,9 +139,7 @@ Use a web browser to check that the server works properly by going to the page [
 
 !!! Warning "Attenzione"
 
-    ```
     Non lasciare il file `info.php` sul server!
-    ```
 
 ### Installation of the PHP cgi mode (PHP-FPM)
 
@@ -178,9 +172,7 @@ daemonize = yes
 
 !!! Note
 
-    ```
     The php-fpm configuration files are widely commented on. Go and have a look!
-    ```
 
 Come si può vedere, i file della cartella `/etc/php-fpm.d/` con estensione `.conf` sono sempre inclusi.
 
@@ -229,9 +221,7 @@ O con un socket UNIX:
 
 !!! Note
 
-    ```
     Using a socket when the web server and PHP server are on the same machine removes the TCP/IP layer and optimizes the performance.
-    ```
 
 Quando si lavora con un'interfaccia, è necessario configurare `listen.owner`, `listen.group`, `listen.mode` per specificare il proprietario, il gruppo di proprietari e i diritti del socket UNIX. **Attenzione:** Entrambi i server (web e PHP) devono avere i diritti di accesso al socket.
 
@@ -272,9 +262,7 @@ Una terza modalità di funzionamento è la modalità `ondemand`. Questa modalit�
 
 !!! Note
 
-    ```
     The configuration of the operating mode of PHP-FPM is essential to ensure the optimal functioning of your web server.
-    ```
 
 #### Stato del processo
 
@@ -462,15 +450,11 @@ Per configurare l'opcache, fare riferimento a una pagina `info.php` (compresa la
 
 !!! Note
 
-    ```
     Ad ogni nuova implementazione di codice, sarà necessario svuotare l'opcache (ad esempio riavviando il processo php-fpm).
-    ```
 
 !!! Note
 
-    ```
     Non sottovalutate l'aumento di velocità che si può ottenere impostando e configurando correttamente l'opcache.
-    ```
 
 <!---
 
