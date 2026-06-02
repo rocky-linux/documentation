@@ -135,9 +135,7 @@ Ora, ogni volta che si aprono i progetti, i file aggiornati vengono scaricati au
 
 !!! Warning "Attenzione"
 
-    ```
     I file aperti nei buffer di sessione salvati di NvChad non vengono aggiornati automaticamente.
-    ```
 
 Per verificare se i file aperti non corrispondono a quelli aggiornati dal repository si può usare il comando `:checktime`, che controlla se i file aperti nell'editor sono stati modificati al di fuori di NvChad e avvisa della necessità di aggiornare i buffer.
 

@@ -63,9 +63,7 @@ ansible-galaxy collection [import|init|install|login|remove|...]
 
 !!! Примітка
 
-    ```
     Більше інформації можна [знайти тут](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html)
-    ```
 
 ### Встановлення корисних ролей
 
@@ -432,9 +430,7 @@ localhost                  : ok=5    changed=1    unreachable=0    failed=0    s
 
 !!! Примітка
 
-    ```
     Додаткову інформацію можна [знайти тут](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html)
-    ```
 
 Щоб встановити або оновити колекцію:
 

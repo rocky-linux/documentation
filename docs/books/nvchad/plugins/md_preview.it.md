@@ -33,9 +33,7 @@ Per installare il server linguistico nella configurazione dell'editor, si utiliz
 
 !!! Warning "Attenzione"
 
-    ```
     Il server linguistico **deve** essere installato prima di procedere all'installazione del plugin. In caso contrario, l'installazione fallirà e sarà necessario rimuovere il codice da **plugins/init.lua**, eseguire una pulizia della configurazione aprendo `Lazy` e digitando ++"X "++ per eliminare il plugin e quindi ripetere la procedura di installazione.
-    ```
 
 Per installare il plugin è necessario modificare il file **plugins/init.lua** aggiungendo il seguente blocco di codice:
 
@@ -139,9 +137,7 @@ In questo modo è possibile aprire l'anteprima del markdown digitando ++enter++ 
 
 !!! Note "Nota"
 
-    ```
     Il plugin fornisce anche il comando `:MarkdownPreviewToggle`, ma al momento della stesura di questo documento non sembra funzionare correttamente. Se si prova a richiamarlo, non cambierà il tema dell'anteprima ma si aprirà una nuova scheda del browser con la stessa anteprima.
-    ```
 
 ![Markdown Preview](./images/markdown_preview_nvim.png)
 

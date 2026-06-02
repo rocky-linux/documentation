@@ -36,9 +36,7 @@ Gruppo diversi dal gruppo primario sono chiamati **supplementary groups**.
 
 !!! Note "Nota"
 
-    ```
     Ogni utente ha un gruppo primario e può essere invitato in uno o più gruppi supplementari.
-    ```
 
 I gruppi e gli utenti sono gestiti dai loro identificatori numerici unici `GID` e `UID`.
 
@@ -59,17 +57,13 @@ I file relativi agli utenti/gruppi sono:
 
 !!! Danger "Pericolo"
 
-    ```
     Dovresti sempre usare i comandi di amministrazione invece di modificare manualmente i file.
-    ```
 
 !!! Note "Nota"
 
-    ```
     Alcuni comandi in questo capitolo richiedono i diritti di amministratore. 
     Per convenzione, si specifica il comando `sudo` quando i comandi devono essere eseguiti con diritti di amministratore.
     Affinché gli esempi funzionino correttamente, assicuratevi che il vostro account abbia il permesso di usare il comando `sudo`.
-    ```
 
 ## Gestione del gruppo
 
@@ -105,7 +99,6 @@ Regole di denominazione del gruppo:
 
 !!! Note "Nota"
 
-    ````
     In **Debian**, l'amministratore dovrebbe usare, tranne che negli script destinati a essere trasferiti a tutte le distribuzioni Linux, i comandi `addgroup` e `delgroup` come specificato in `man`:
     
     ```
@@ -116,7 +109,6 @@ Regole di denominazione del gruppo:
     by default, choosing Debian policy conformant UID and GID values, creating a home directory with skeletal configuration,
     running a custom script, and other features.
     ```
-    ````
 
 ### Comando `groupmod`
 
@@ -163,7 +155,6 @@ sudo groupdel GroupC
 
 !!! Tip "Suggerimento"
 
-    ````
     Quando si elimina un gruppo, possono verificarsi due condizioni:
     
     * Se un utente ha un gruppo primario unico e si lancia il comando `groupdel` su quel gruppo, verrà indicato che c'è un utente specifico sotto il gruppo e che non può essere cancellato.
@@ -183,17 +174,13 @@ sudo groupdel GroupC
     uid=1000(test) gid=100(users) group=100(users),1000(test)
     $ sudo groupdel test
     ```
-    ````
 
 !!! Tip "Suggerimento"
 
-    ```
     Quando si elimina un utente con il comando `userdel -r`, viene eliminato anche il gruppo primario corrispondente. Il nome del gruppo primario di solito corrisponde al nome dell'utente.
-    ```
 
 !!! Tip "Suggerimento"
 
-    ````
     Ogni gruppo ha un `GID` univoco. Più utenti possono utilizzare un gruppo come gruppo supplementare. Per convenzione, il GID del super amministratore è 0. Il GIDS riservato ad alcuni servizi o processi è 201-999, chiamato gruppo di sistema o gruppo di pseudo-utenti. Il GID per gli utenti è solitamente maggiore o uguale a 1000. Questi sono relativi a <font color=red>/etc/login.defs</font>, di cui parleremo più tardi.
     
     ```bash
@@ -218,13 +205,10 @@ sudo groupdel GroupC
     USERGROUPS_ENAB yes
     ENCRYPT_METHOD SHA512
     ```
-    ````
 
 !!! Tip "Suggerimento"
 
-    ```
     Poiché un utente fa necessariamente parte di un gruppo, è meglio creare i gruppi prima di aggiungere gli utenti. Pertanto, un gruppo potrebbe non avere alcun membro.
-    ```
 
 ### file `/etc/group`
 
@@ -243,9 +227,7 @@ GroupP:x:516:patrick
 
 !!! Note "Nota"
 
-    ```
     Ogni riga del file `/etc/group` corrisponde a un gruppo. Le informazioni sull'utente principale sono memorizzate in `/etc/passwd`.
-    ```
 
 ### file `/etc/gshadow`
 
@@ -264,9 +246,7 @@ GroupA:$6$2,9,v...SBn160:alain:rockstar
 
 !!! Warning "Attenzione"
 
-    ```
     I nomi dei gruppi in **/etc/group** e **/etc/gshadow** devono corrispondere uno a uno. Cioè, ogni riga del file **/etc/group** deve avere una riga corrispondente nel file **/etc/gshadow**.
-    ```
 
 Un `!` nella password indica che è bloccata.
 In questo modo, nessun utente può utilizzare la password per accedere al gruppo (poiché i membri del gruppo non ne hanno bisogno).
@@ -363,9 +343,7 @@ Regole di denominazione dell'account:
 
 !!! Warning "Attenzione"
 
-    ```
     L'utente deve creare la home directory, ad eccezione dell'ultima directory.
-    ```
 
 L'ultima directory viene creata dal comando `useradd`, che approfitta dell'occasione per copiarvi i file da `/etc/skel`.
 
@@ -379,7 +357,6 @@ sudo useradd -u 1000 -g GroupA -G GroupP,GroupC albert
 
 !!! Note "Nota"
 
-    ````
     In **Debian**, è necessario specificare l'opzione `-m` per forzare la creazione della directory di login o impostare la variabile `CREATE_HOME` nel file `/etc/login.defs`. In tutti i casi, l'amministratore dovrebbe usare i comandi `adduser` e `deluser` come specificato in `man`, tranne che negli script destinati ad essere trasferiti a tutte le distribuzioni Linux:
     
     ```
@@ -388,7 +365,6 @@ sudo useradd -u 1000 -g GroupA -G GroupP,GroupC albert
         **useradd** is a low-level utility for adding users. On Debian, administrators should usually use **adduser(8)**
          instead.
     ```
-    ````
 
 #### Valore predefinito per la creazione di un utente
 
@@ -441,9 +417,7 @@ Opzioni identiche al comando `useradd`.
 
 !!! Tip "Suggerimento"
 
-    ```
     Per essere modificato, un utente deve essere disconnesso e non avere processi in corso.
-    ```
 
 Dopo la modifica dell'identificatore, i file appartenenti all'utente hanno un `UID` sconosciuto. Deve essere riassegnato il nuovo `UID`.
 
@@ -499,9 +473,7 @@ sudo userdel -r carine
 
 !!! Tip "Suggerimento"
 
-    ```
     Per essere eliminato, un utente deve essere disconnesso e non avere processi in esecuzione.
-    ```
 
 Il comando `userdel` rimuove le righe corrispondenti in `/etc/passwd`, `/ etc/shadow`, `/etc/group`, `/etc/gshadow`. Come accennato in precedenza, `userdel -r` cancellerà anche il corrispondente gruppo primario dell'utente.
 
@@ -545,9 +517,7 @@ root:$6$...:15399:0:99999:7:::
 
 !!! Danger "Pericolo"
 
-    ```
     Per ogni riga del file `/etc/passwd` deve esserci una riga corrispondente nel file `/etc/shadow`.
-    ```
 
 Per la conversione della data e dell'ora, fare riferimento al seguente formato di comando:
 
@@ -563,9 +533,7 @@ $ echo $(($(date --date="2018-07-06" +%s)/86400+1))
 
 !!! Danger "Pericolo"
 
-    ```
     Tutti i file appartengono necessariamente a un utente e a un gruppo.
-    ```
 
 Per impostazione predefinita, il gruppo primario dell'utente che crea il file è il gruppo proprietario del file.
 
@@ -643,9 +611,7 @@ sudo chgrp group1 file
 
 !!! Note "Nota"
 
-    ```
     È possibile applicare a un file un proprietario e un gruppo di proprietari prendendo come riferimento quelli di un altro file:
-    ```
 
 ```bash
 chown [options] --reference=RRFILE FILE
@@ -802,9 +768,7 @@ sudo passwd alain
 
 !!! Note "Nota"
 
-    ```
     Gli utenti connessi al sistema possono usare il comando `passwd` per cambiare la propria password (questo processo richiede la richiesta della vecchia password dell'utente). L'utente root(uid=0) può cambiare la password di qualsiasi utente.
-    ```
 
 La modifica delle password richiede la conformità ai criteri di sicurezza prescritti, il che implica la conoscenza di **PAM (Pluggable Authentication Modules)**.
 
@@ -820,9 +784,7 @@ sudo echo "azerty,1" | passwd --stdin philippe
 
 !!! Warning "Attenzione"
 
-    ```
     La password viene inserita in chiaro, mentre `passwd` la cripta.
-    ```
 
 ### comando `chage`
 
@@ -870,11 +832,9 @@ File di configurazione:
 
 !!! Note "Nota"
 
-    ```
     La modifica del file `/etc/default/useradd` viene eseguita con il comando `useradd`.
     
     Gli altri file devono essere modificati con un editor di testo.
-    ```
 
 ### file `/etc/default/useradd`
 
@@ -1007,7 +967,6 @@ Gli utenti standard dovranno digitare la password per la nuova identità.
 
 !!! Tip "Suggerimento"
 
-    ````
     È possibile utilizzare il comando `exit`/`logout` per uscire dagli utenti commutati. Si noti che dopo il cambio di utente non esiste una nuova `child shell` o `sub shell`, ad esempio:
     
     ```
@@ -1022,7 +981,6 @@ Gli utenti standard dovranno digitare la password per la nuova identità.
     1
     0
     ```
-    ````
 
 Attention please! `su` e `su -` sono diversi, come mostrato nell'esempio seguente:
 

@@ -132,9 +132,7 @@ tags:
 
 !!! custom "Власний заголовок"
 
-    ```
     Спеціальний тип^1^. Тут ми використали "спеціальний" як наш тип попередження. Знову ж таки, це завжди відображатиметься синім кольором.
-    ```
 
 !!! warning "Власний заголовок"
 
@@ -164,15 +162,11 @@ tags:
 
 \=== "9.0"
 
-    ```
     Процедура для цього в 9.0
-    ```
 
 \=== "8.6"
 
-    ```
     Процедура для цього в 8.6
-    ```
 
 У вашому редакторі це виглядатиме так:
 
@@ -453,20 +447,18 @@ or
 
        !!! warning "важливо: здається, у мене болить мозок!"
 
-        ```
-         Під час поєднання кількох елементів форматування ваш мозок може трохи збожеволіти. Подумайте про те, щоб випити трохи більше кофеїну, перш ніж почати!
-        
-         | type            |   caffeine daily allowance       |
-         |-----------------|----------------------------------|
-         | tea             | it will get you there eventually |
-         | coffee          | for discerning taste buds        |
-         | red bull        | tastes terrible - but it will keep you going! |
-         | mountain dew    | over hyped                       |
-        
-         > **sugar** if caffeine is not to your liking
-        
-         > **suffer** if all else fails, concentrate more
-        ```
+        Під час поєднання кількох елементів форматування ваш мозок може трохи збожеволіти. Подумайте про те, щоб випити трохи більше кофеїну, перш ніж почати!
+       
+        | type            |   caffeine daily allowance       |
+        |-----------------|----------------------------------|
+        | tea             | it will get you there eventually |
+        | coffee          | for discerning taste buds        |
+        | red bull        | tastes terrible - but it will keep you going! |
+        | mountain dew    | over hyped                       |
+       
+        > **sugar** if caffeine is not to your liking
+       
+        > **suffer** if all else fails, concentrate more
 
 3. Є більше прикладів, але наведене вище повинно показати, що все може бути вкладено всередину. Просто запам’ятайте чотири (4) магічних місця.
 

@@ -44,7 +44,6 @@ Di seguito una breve analisi dei principali plugin:
 
 \=== "init.lua plugins"
 
-    ```
     - [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim) - Fornisce una libreria di funzioni lua comunemente utilizzate dagli altri plugin, ad esempio *telescope* e *gitsigns*.
     
     - [stevearc/conform.nvim](https://github.com/stevearc/conform.nvim) Plugin di formattazione per Neovim, veloce ed estensibile grazie al file `configs/conform.lua` fornito dalla configurazione utente
@@ -73,11 +72,9 @@ Di seguito una breve analisi dei principali plugin:
     - [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) - Offre funzionalità avanzate di ricerca dei file, è altamente personalizzabile e può anche essere utilizzato (ad esempio) per selezionare i temi di NvChad (comando `:Telescope themes`).
     
     ![Telescope find_files](../images/telescope_find_files.png)
-    ```
 
 \=== "ui.lua plugins"
 
-    ```
     - [NvChad/base46](https://github.com/NvChad/base46) - Fornisce i temi per l'interfaccia.
     
     - [NvChad/ui](https://github.com/NvChad/ui) - Fornisce l'interfaccia attuale e le utilità di base di NvChad. Grazie a questo plugin possiamo avere una *statusline* che ci fornisce le informazioni durante la modifica e una *tabufline* che ci permette di gestire i buffer aperti. Questo plugin fornisce anche le utilità **NvChadUpdate** per l'aggiornamento, **NvCheatsheet** per una panoramica delle scorciatoie da tastiera e **Nvdash** da cui è possibile eseguire operazioni sui file.
@@ -95,7 +92,6 @@ Di seguito una breve analisi dei principali plugin:
     - [folke/which-key.nvim](https://github.com/folke/which-key.nvim) - Visualizza tutti i possibili autocompletamenti disponibili per il comando parziale inserito.
     
     ![Which Key](../images/which_key.png)
-    ```
 
 ## Conclusioni e considerazioni finali
 

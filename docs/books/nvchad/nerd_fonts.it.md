@@ -31,9 +31,7 @@ L'installazione dei Nerd Fonts in Rocky Linux si effettua interamente dalla riga
 
 !!! Note
 
-    ```
     Questo metodo può essere usato su tutte le distribuzioni *linux* che usano [fontconfig](https://www.freedesktop.org/wiki/Software/fontconfig/) per la gestione dei font di sistema.
-    ```
 
 Per iniziare, recuperare i file necessari dal repository del progetto:
 
@@ -60,9 +58,7 @@ Il comando scaricherà i font nella cartella _patched-fonts_ e al termine sarà 
 
 !!! Note "Nome riservato"
 
-    ```
     Il font durante l'installazione viene rinominato in *BlexMono* per rispettare la SIL Open Font License (OFL) e in particolare il meccanismo [reserved name mechanism](http://scripts.sil.org/cms/scripts/page.php?item_id=OFL_web_fonts_and_RFNs#14cbfd4a).
-    ```
 
 Lo script _install.sh_ copia i font nella cartella utente `~/.local/share/fonts/` e invoca il programma _fc-cache_ per registrarli nel sistema. Una volta terminato, i font saranno disponibili per l'emulatore di terminale; in particolare, troveremo installati i seguenti font:
 

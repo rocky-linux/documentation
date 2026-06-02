@@ -27,7 +27,6 @@ La cartella viene creata da un modello della repository di NvChad di GitHub: ([e
 
 \=== "Installazione all'avvio"
 
-    ```
     Per crearla durante l'installazione, rispondere "y" alla domanda che viene posta all'inizio dell'installazione:
     
     > Do you want to install example custom config? (y/N):
@@ -36,11 +35,9 @@ La cartella viene creata da un modello della repository di NvChad di GitHub: ([e
     Rimuovendola, la cartella può essere posta sotto un controllo di versione personale.
     
     La cartella è pronta e verrà utilizzata al successivo avvio di NvChad per inserire le configurazioni personalizzate nell'editor.
-    ```
 
 \=== "Installazione dal repository"
 
-    ````
     L'installazione della configurazione fornita da ==example-config== può essere fatta anche dopo l'installazione di NvChad, nel qual caso il repository è ugualmente utilizzato ma viene recuperato con un'operazione manuale.
     
     L'installazione standard senza ==example-config== crea comunque una cartella *custom* in cui salvare il file ==chadrc.lua== per le personalizzazioni dell'utente e deve essere cancellata o salvata in un ==backup== per consentire l'esecuzione del clone. Salvare quindi la configurazione esistente con:
@@ -65,7 +62,6 @@ La cartella viene creata da un modello della repository di NvChad di GitHub: ([e
     
     
     La cartella è pronta e verrà utilizzata al successivo avvio di NvChad per inserire le configurazioni personalizzate nell'editor.
-    ````
 
 ## :material-file-outline: Struttura
 
@@ -217,9 +213,7 @@ Questa mappatura viene inserita per lo stato NORMAL `n =` il carattere ++";"++ u
 
 !!! Tip "Suggerimento"
 
-    ```
     Per gli utenti con tastiere europee (come quella italiana), si consiglia di sostituire il carattere ++";"++ con ++","++.
-    ```
 
 #### :material-language-lua: highlights.lua
 
@@ -290,9 +284,7 @@ Anche in questo caso, la configurazione richiede l'installazione del pacchetto c
 
 !!! Note "Nota"
 
-    ```
     La configurazione di questo formattatore richiede anche la creazione di un file di configurazione nella cartella home, che non verrà trattato in questo documento.
-    ```
 
 #### :material-language-lua: overrides.lua
 

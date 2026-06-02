@@ -31,9 +31,7 @@ https://www.nerdfonts.com/font-downloads
 
 !!! Note "Примітка"
 
-    ```
     Цей метод можна використовувати в усіх дистрибутивах *linux*, які використовують [fontconfig](https://www.freedesktop.org/wiki/Software/fontconfig/) для керування системними шрифтами.
-    ```
 
 Для початку отримайте необхідні файли зі сховища проекту:
 
@@ -60,9 +58,7 @@ git sparse-checkout add patched-fonts/IBMPlexMono
 
 !!! Note "Зарезервована Назва"
 
-    ```
     Під час інсталяції шрифт перейменовується на BlexMono відповідно до ліцензії SIL Open Font License (OFL) і, зокрема, [механізму зарезервованих імен](http://scripts.sil.org/cms/scripts/page.php? item_id=OFL_web_fonts_and_RFNs#14cbfd4a).
-    ```
 
 Скрипт _install.sh_ копіює шрифти до папки користувача `~/.local/share/fonts/` та викликає програму _fc-cache_ для їх реєстрації в системі. Після завершення шрифти будуть доступні для емулятора терміналу; зокрема, ми знайдемо такі встановлені шрифти:
 

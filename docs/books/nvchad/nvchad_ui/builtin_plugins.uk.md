@@ -44,7 +44,6 @@ tags:
 
 \=== "init.lua plugins"
 
-    ```
     - [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim) – надає бібліотеку поширених функцій lua, які використовуються іншими плагінами, наприклад *telescope* і *gitsigns*.
     
     - [stevearc/conform.nvim](https://github.com/stevearc/conform.nvim) Плагін форматування для Neovim, швидкий і розширюваний завдяки файлу `configs/conform.lua`, наданому конфігурацією користувача
@@ -73,11 +72,9 @@ tags:
     - [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) – надає розширені можливості пошуку файлів, має широкі можливості налаштування та також може бути (для прикладу), який використовується для вибору тем NvChad (команда `:Telescope themes`).
     
     ![Telescope find_files](../images/telescope_find_files.png)
-    ```
 
 \=== "ui.lua plugins"
 
-    ```
     - [NvChad/base46](https://github.com/NvChad/base46) – надає теми для інтерфейсу.
     
     - [NvChad/ui](https://github.com/NvChad/ui) – надає фактичний інтерфейс і основні утиліти NvChad. Завдяки цьому плагіну ми можемо мати *рядок стану*, який надає нам інформацію під час редагування, і *рядок вкладок*, який дозволяє щоб керувати відкритими буферами. Цей плагін також містить утиліти **NvChadUpdate** для його оновлення, **NvCheatsheet** для огляду комбінацій клавіш і **Nvdash**, з якого можна виконувати операції з файлами.
@@ -95,7 +92,6 @@ tags:
     - [folke/which-key.nvim](https://github.com/folke/which-key.nvim) – відображає всі можливі автозаповнення, доступні для введеної часткової команди.
     
     ![Which Key](../images/which_key.png)
-    ```
 
 ## Висновки та заключні думки
 

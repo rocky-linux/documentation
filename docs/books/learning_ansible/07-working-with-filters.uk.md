@@ -30,9 +30,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 !!! Примітка
 
-    ```
     Більше інформації можна [знайти тут](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html).
-    ```
 
 У цьому розділі ми будемо використовувати наступний playbook, щоб перевірити різні представлені фільтри:
 
@@ -75,10 +73,8 @@ contributors: Steven Spencer, Ganna Zhyrnova
 
 !!! Примітка
 
-    ```
     Нижче наведено неповний список фільтрів, з якими ви, швидше за все, зіткнетеся.
     На щастя, є багато інших. Ви навіть можете написати свій!
-    ```
 
 Playbook відбуватиметься таким чином:
 

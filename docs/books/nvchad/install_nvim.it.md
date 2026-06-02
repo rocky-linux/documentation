@@ -48,7 +48,6 @@ Come per Vim, Neovim richiede una conoscenza di base dei suoi comandi e delle su
 
 \=== "Installazione da Pacchetto Precompilato"
 
-    ````
     L'uso del pacchetto precompilato consente di installare sia la versione di sviluppo che quella stabile, che soddisfano i requisiti e possono essere utilizzate come base per la configurazione di NvChad.
     
     Per utilizzare tutte le funzionalità dell'editor, è necessario soddisfare le dipendenze richieste da Neovim fornendo manualmente le dipendenze del pacchetto precompilato. I pacchetti necessari possono essere installati con:
@@ -96,11 +95,9 @@ Come per Vim, Neovim richiede una conoscenza di base dei suoi comandi e delle su
     Build type: RelWithDebInfo
     LuaJIT 2.1.1692716794
     ```
-    ````
 
 \=== "Installazione da sorgente"
 
-    ````
     L'installazione dal pacchetto precompilato fornisce `nvim` solo all'utente che lo esegue. Se si desidera rendere Neovim disponibile a tutti gli utenti del sistema, è necessario eseguire un'installazione da sorgente. La compilazione di Neovim non è particolarmente difficile e consiste nei seguenti passaggi.
     
     Per prima cosa installiamo i pacchetti necessari alla compilazione:
@@ -188,7 +185,6 @@ Come per Vim, Neovim richiede una conoscenza di base dei suoi comandi e delle su
     
     
     Anche in questo caso, è necessario eseguire questi comandi con i permessi di superutente.
-    ````
 
 ## :material-image-outline: Uso di Base
 
