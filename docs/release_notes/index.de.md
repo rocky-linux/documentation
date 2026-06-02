@@ -7,7 +7,7 @@ tags:
 
 # Rocky Linux Release Notes
 
-Willkommen auf unserer Liste der Release Notes und Changelogs für Rocky Linux. Sie finden die Versionshinweise für die zuletzt veröffentlichten Versionen mit der neuesten zuerst. Veröffentlichungstermine und Support-Informationen stehen weiter unten.
+Willkommen auf unserer Liste der Release Notes und Changelogs für Rocky Linux. Die zuletzt veröffentlichten Versionen sind im Menü aufgeführt, wobei die neueste an erster Stelle steht. Veröffentlichungstermine und Support-Informationen stehen weiter unten.
 
 ## Rocky Linux Versionen
 
@@ -38,6 +38,7 @@ Rocky 9 (Codename „Blue Onyx“) erhält allgemeinen Support bis zum 31. Mai 2
 | 9.5            | 2024-11-19          | 5.14.0-503.14.1 |
 | 9.6            | 2025-06-04          | 5.14.0-570.18.1 |
 | 9.7            | 2025-12-01          | 5.14.0-611.5.1  |
+| 9.8            | 2026-05-28          | 5.14.0-687.10.1 |
 
 ## Rocky 8
 

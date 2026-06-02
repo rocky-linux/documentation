@@ -2,7 +2,7 @@
 title: Chyrp Lite
 author: Neel Chauhan
 contributors: Steven Spencer, Ganna Zhyrnova
-tested_with: 9.5
+tested_with: 10.2
 tags:
   - cms
   - blogging
@@ -24,13 +24,19 @@ tags:
 Ми будемо використовувати Caddy як веб-сервер. Щоб інсталювати Caddy, спочатку потрібно інсталювати EPEL (додаткові пакети для Enterprise Linux) і запустити оновлення:
 
 ```bash
-dnf -y install epel-release && dnf -y update
+sudo dnf -y install epel-release
 ```
 
 Потім встановіть Caddy:
 
 ```bash
-dnf -y install Caddy
+sudo dnf copr enable @caddy/caddy
+```
+
+Виконайте оновлення, щоб переконатися, що у вашій системі є найновіші пакети:
+
+```text
+sudo dnf upgrade
 ```
 
 Згодом відкрийте `Caddyfile`:
@@ -48,6 +54,24 @@ your.domain.name {
         php_fastcgi 127.0.0.1:9000
 }
 ```
+
+!!! примітка «Для контейнерів `incus`»
+
+````
+Хоча ця процедура чудово працює в контейнері `incus`, `incus` не постачається з увімкненим брандмауером. Ви можете встановити та використовувати `firewalld` у контейнері, але він не встановлений за замовчуванням. Якщо ви хочете застосувати правила брандмауера до свого контейнера, що може бути дуже важливим, якщо ви використовуєте публічний домен, тоді майте на увазі, що вам доведеться встановити:
+
+```
+sudo dnf install firewalld
+``` 
+
+and enable:
+
+```
+sudo systemctl enable --now firewalld
+```
+
+Перш ніж продовжувати цю процедуру.
+````
 
 Збережіть файл за допомогою `:wq!`, а потім відкрийте відповідні порти брандмауера:
 
@@ -68,13 +92,13 @@ systemctl enable --now caddy
 !!! note "Примітка"
 
 ```
-Якщо ви використовуєте Rocky Linux 8.x або 10.х, замініть "8" або "10" біля випуску в рядку встановлення пакета Remi. 
+Якщо ви використовуєте Rocky Linux 8.x або 9.x, замініть "8" або "9" на відповідний номер випуску в рядку встановлення пакета Remi. 
 ```
 
 Щоб встановити PHP, вам знадобиться репозиторій Remi. Щоб встановити репозиторій Remi, виконайте наступне:
 
 ```bash
-dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
+dnf install https://rpms.remirepo.net/enterprise/remi-release-10.rpm
 ```
 
 Потім встановіть PHP і необхідні модулі:
@@ -103,18 +127,25 @@ systemctl enable --now php83-php-fpm.service
 
 ## Встановлення Chyrp
 
-Тепер ми збираємося встановити Chyrp Lite. Для цього завантажте останню версію:
+Встановіть chyrp-lite, спочатку перейшовши на [сторінку релізу](https://github.com/xenocrat/chyrp-lite/releases).
+Скопіюйте URL-адресу останнього випуску, клацнувши правою кнопкою миші файл `source.zip` та вибравши «Копіювати посилання».
+Перейдіть до каталогу `/var/www`:
 
 ```bash
 cd /var/www
-wget https://github.com/xenocrat/chyrp-lite/archive/refs/tags/v2024.03.zip
+```
+
+Вставте скопійовану URL-адресу файлу `source.zip` останнього випуску в `wget`:
+
+```bash
+wget [URL you copied]
 ```
 
 Далі розпакуйте та перемістіть видобуту папку:
 
 ```bash
-unzip v2024.03.zip
-mv chyrp-lite-2024.03/ chyrp-lite
+unzip v2026.01.zip
+mv chyrp-lite-2026.01/ chyrp-lite
 ```
 
 Встановіть правильні дозволи для папки `chyrp-lite`:
@@ -129,6 +160,8 @@ chown -R apache:apache chyrp-lite/
 mkdir chyrp-lite-data
 chown -R apache:apache chyrp-lite-data/
 ```
+
+Для встановлення контейнерів `incus` кроки SELinux можна пропустити. SELinux не існує в контейнері `incus` і не підтримується.
 
 Далі налаштуйте контекст файлу SELinux:
 
