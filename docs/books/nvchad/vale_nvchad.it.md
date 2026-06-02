@@ -77,7 +77,6 @@ La sola installazione di `vale` non è sufficiente. Sono necessari un paio di el
 
 \=== "Installazione dal percorso del file binario `vale`"
 
-    ````
     Se vi trovate nel percorso del binario `vale` qui: `~/.local/share/nvim/mason/packages/vale/` si può semplicemente creare il file `.vale.ini` qui, generare la cartella "styles" e poi spostare entrambi nella propria root `~/`. La creazione del file `.vale.ini' è semplice utilizzando l'utilità di configurazione del sito web `vale.sh` (https://vale.sh/generator). Scegliere "Red Hat Documentation Style Guide" per lo stile di base e "alex" per lo stile supplementare. L'uso di 'alex' è facoltativo, ma aiuta a individuare e correggere le parole di genere, polarizzanti, razziali, ecc. Se si scelgono queste opzioni, la schermata dovrebbe apparire come questa: If you choose those options, your screen should look like this:
     
     ![vale_ini_nvchad](images/vale_ini_nvchad.png)
@@ -101,11 +100,9 @@ La sola installazione di `vale` non è sufficiente. Sono necessari un paio di el
     cp .vale.ini ~/
     cp -rf styles ~/
     ```
-    ````
 
 Copiare il file <code>.vale.ini</code> e la cartella <code>styles</code> nella radice della cartella home:
 
-    ````
     Se si preferisce non dover copiare i file e si vuole semplicemente crearli nella propria cartella personale, si può usare questo comando da `~/`:
     
     Per prima cosa, creare il file `.vale.ini' nella propria cartella personale usando [il sito web `vale.sh`] (https://vale.sh/generator). Anche in questo caso, scegliere "Red Hat Documentation Style Guide" per lo stile di base e "alex" per lo stile supplementare. Quindi copiare il contenuto nel file `.vale.ini`.
@@ -122,7 +119,6 @@ Copiare il file <code>.vale.ini</code> e la cartella <code>styles</code> nella r
     ![vale_sync](images/vale_sync.png)
     
     In questo caso, non è necessario copiare i file, poiché verranno creati nella directory principale.
-    ````
 
 ### :material-file-edit-outline: Modifiche al file `lint.lua`
 
