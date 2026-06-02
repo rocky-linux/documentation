@@ -21,7 +21,6 @@ Cette procédure vous permettra d'utiliser MATE sur Rocky Linux.
 
 \=== "9"
 
-    ````
     ## 9: Introduction 
     
     L'équipe de développement de Rocky Linux 9 a facilité l'installation de MATE et d'autres environnements de bureau populaires, en incluant des images de live CD. Une image d'installation autonome, pour ceux qui ne savent peut-être pas ce que c'est, est une image amorçable qui chargera le système d'exploitation sans installation. Une fois chargée, vous avez la possibilité de l'installer sur le disque dur de votre machine et de l'utiliser. En plus des instructions pour l'image live, nous avons inclus des instructions pour ceux qui souhaitent installer MATE seulement après avoir installé le système d'exploitation.
@@ -149,11 +148,9 @@ Cette procédure vous permettra d'utiliser MATE sur Rocky Linux.
     ```
     
     Lorsque le système redémarre, cliquez sur votre nom d'utilisateur, mais avant d'entrer le mot de passe, cliquez sur l'icône d'engrenage en bas à droite de l'écran et sélectionnez `MATE` dans la liste des interfaces. Ensuite, connectez-vous et vous devriez avoir un environnement de bureau MATE entièrement fonctionnel. Les prochaines connexions devraient utiliser automatiquement la sélection choisie.
-    ````
 
 \=== "8"
 
-    ````
     Et répondez 'Y' pour installer le dépôt EPEL.
     
     Allez-y et exécutez `dnf update` pour vous assurer que tous les dépôts activés sont accessibles dans le système.
@@ -191,7 +188,6 @@ Cette procédure vous permettra d'utiliser MATE sur Rocky Linux.
     ```
     
     Ensuite, cliquez sur votre nom d'utilisateur à l'écran, mais avant d'entrer votre mot de passe et de vous connecter, cliquez sur l’icône d’engrenage à gauche de l’option `Sign in`. Sélectionnez `MATE` dans les choix de desktop disponibles et vous pourrez ensuite entrer votre mot de passe et vous connecter. Les prochaines connexions devraient utiliser automatiquement la sélection choisie.
-    ````
 
 ## Conclusion
 
