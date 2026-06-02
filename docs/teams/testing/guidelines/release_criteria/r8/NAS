@@ -15,10 +15,10 @@ render_macros: true
 
 ## {{ rc.prod }} {{ rc.ver }} {{ rc.level }} Release Objectives
 
-The objective of a release (major or minor) is to provide a solid Enterprise Linux release that is suitable for:
+The objective of a release (major or minor) is to provide a solid Enterprise Linux release that meets the needs:
 
-- Meet the needs of end users
-- Meet the needs of enterprises, big or small
+- Of end users
+- Of enterprises, big or small
 
 ## {{ rc.prod }} {{ rc.ver }} {{ rc.level }} Release Requirements
 
