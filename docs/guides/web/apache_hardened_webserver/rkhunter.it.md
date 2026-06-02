@@ -11,9 +11,7 @@ tags:
 
 !!! Warning Avviso: “`rkhunter` è un progetto abbandonato dal 2018”
 
-    ```
     Sebbene sia ancora possibile installare `rkhunter` su Rocky Linux 9, è bene sapere che il progetto è ufficialmente morto dal 2018. Lo sviluppo del progetto è cessato in quell'anno. Un buon firewall e altre pratiche di sicurezza dovrebbero essere sufficienti per mantenere il vostro server sicuro oggi.
-    ```
 
 ## Introduction
 
