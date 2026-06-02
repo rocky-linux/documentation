@@ -121,9 +121,7 @@ Nachdem das Rocky Linux-Remote hinzugefügt und korrekt benannt wurde, müssen S
 
        !!! warning "Dies funktioniert nicht, wenn Ihr Klon von Ihrem Fork stammt."
 
-        ```
-         Deshalb erfolgt der Klonvorgang von Rocky Linux aus und nicht von Ihrem Fork. Ihr Fork kennt die älteren Branches nicht. Um die folgende Meldung zu erhalten, müssen Sie Ihr lokales Dokumentations-Repository von Rocky Linux klonen. 
-        ```
+        Deshalb erfolgt der Klonvorgang von Rocky Linux aus und nicht von Ihrem Fork. Ihr Fork kennt die älteren Branches nicht. Um die folgende Meldung zu erhalten, müssen Sie Ihr lokales Dokumentations-Repository von Rocky Linux klonen. 
 
    Wenn Sie Ihre `remotes` richtig eingerichtet haben, sollten Sie jetzt Folgendes sehen:
 
