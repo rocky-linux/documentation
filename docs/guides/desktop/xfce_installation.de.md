@@ -22,7 +22,6 @@ It is also one of the most accessible desktop environments to combine with alter
 
 \=== "9"
 
-    ````
     ## 9: Introduction
     
     The development team for Rocky Linux 9 has made installing XFCE, and other popular desktop environments, uncomplicated by including live images. For those that might not know what that is, a live image is a bootable image that will load the OS without installation. When loaded, you have the option to install it to your machine's disk drive and use it.
@@ -97,19 +96,14 @@ It is also one of the most accessible desktop environments to combine with alter
     Next you will get a login screen with the user you created above. Enter your password, which will get you to the XFCE desktop:
     
     ![xfce_desktop](images/xfce_desktop.png)
-    ````
 
 \=== "9-minimal"
 
-    ```
     
-    ```
 
 \=== "8"
 
-    ```
     .
-    ```
 
 ## Conclusion
 

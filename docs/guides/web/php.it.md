@@ -31,9 +31,7 @@ PHP-FPM, **in addition to better performances**, brings:
 
 !!! Note
 
-    ```
     Poiché Apache ha un modulo PHP, `php-fpm`è più comunemente usato su un server Nginx.
-    ```
 
 ## Scegliere una versione PHP
 
@@ -96,9 +94,7 @@ Per servire pagine PHP in modalità CGI, è necessario installare il server Apac
  sudo dnf install httpd
  ```
 
-    ```
     * Attivazione:
-    ```
 
  ```bash
  sudo systemctl enable --now httpd
@@ -126,9 +122,7 @@ Use a web browser to check that the server works properly by going to the page [
 
 !!! Warning Attenzione
 
-    ```
     Non lasciare il file `info.php` sul tuo server!
-    ```
 
 ## PHP-FPM (FastCGI)
 
@@ -163,9 +157,7 @@ daemonize = yes
 
 !!! Note
 
-    ```
     The `php-fpm` configuration files are widely commented on. Go and have a look!
-    ```
 
 As you can see, the files in the `/etc/php-fpm.d/` directory with the `.conf` extension are always included.
 
@@ -214,9 +206,7 @@ Oppure con un socket Unix:
 
 !!! Note
 
-    ```
     Utilizzando un socket, quando il server web e il server PHP si trovano sulla stessa macchina, si elimina il livello TCP/IP e si ottimizzano le prestazioni.
-    ```
 
 When working with an interface, you have to configure `listen.owner`, `listen.group`, `listen.mode` to specify the owner, the owner group and the rights of the Unix socket. **Warning:** Both servers (web and PHP) must have access rights on the socket.
 
@@ -257,9 +247,7 @@ There is a third mode of operation, the `ondemand` mode. Questa modalità avvia 
 
 !!! Note
 
-    ```
     La configurazione della modalità operativa di PHP-FPM è essenziale per garantire il funzionamento ottimale del server web.
-    ```
 
 #### Stato del processo
 
@@ -447,12 +435,8 @@ You can refer to an `info.php` page (including the `phpinfo();`) to configure th
 
 !!! Note
 
-    ```
     At each new deployment of new code, it will be necessary to empty the opcache (for example by restarting the `php-fpm` process).
-    ```
 
 !!! Note
 
-    ```
     Do not underestimate the speed gain that can be achieved by setting up and configuring the `opcache` correctly.
-    ```
