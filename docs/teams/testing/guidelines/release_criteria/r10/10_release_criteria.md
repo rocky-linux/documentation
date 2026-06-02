@@ -15,22 +15,22 @@ render_macros: true
 
 ## {{ rc.prod }} {{ rc.ver }} {{ rc.level }} Release Objectives
 
-The objective of a release (major or minor) is to provide a solid Enterprise Linux release that is suitable to:
+The objective of a release (major or minor) is to provide a solid Enterprise Linux release that meets the needs:
 
-- Meet the needs of end users
-- Meet the needs of enterprises big or small
+- Of end users
+- Of enterprises, big or small
 
 ## {{ rc.prod }} {{ rc.ver }} {{ rc.level }} Release Requirements
 
-In order for {{ rc.prod }} to be released to the general public, a compose must be able to meet all the following criteria as provided in this document. This is allows the decision process to be straightforward and as clear as possible. This document only contains “hard requirement” items. Optional/nice to have items are not to be included in this list.
+In order for {{ rc.prod }} to be released to the general public, a compose must be able to meet all the following criteria as provided in this document. This makes the decision process straightforward and as clear as possible. This document only contains “hard requirement” items. Optional/nice-to-have items are not to be included in this list.
 
-There may cases where a requirement cannot be met but only in particular configurations. In these types of cases, the Release Engineering Team should use their judgement to determine whether or not the issue should be considered to block the release. They should consider the number of users likely to be affected by said issue, the severity of the case, if the issue can be avoided with ease (by both informed and uninformed users), and if the problem exists upstream in the current Red Hat Enterprise Linux that the release is based on.
+There may be cases where a requirement cannot be met, but only in particular configurations. In these cases, the Release Engineering Team should use their judgment to determine whether the issue should be considered a block to the release. They should consider the number of users likely to be affected by the issue, the severity of the case, whether the issue can be avoided with ease (by both informed and uninformed users), and whether the problem exists upstream in the current Red Hat Enterprise Linux release on which the release is based.
 
 !!! info "Release-blocking Server"
-    ...means bugs as it pertains to server functionality can be considered to block a release. This applies to any packages that provide a service such as httpd, nginx, etc. All architectures apply.
+    ...means bugs that pertain to server functionality can be considered a block to a release. This applies to any packages that provide a service, such as httpd and nginx. All architectures apply.
 
 !!! info "Release-blocking Desktop"
-    ...means bugs as it pertains to desktop functionality (GNOME) can be considered to block a release. This applies to both x86_64 and aarch64. Additional desktops (as provided by EPEL or a SIG) are not considered blockers.
+    ...means bugs related to desktop functionality (GNOME) can be considered a block to a release. This applies to both x86_64 and aarch64. Additional desktops (as provided by EPEL or a SIG) are not considered blockers.
 
 !!! info "Release-blocking Image"
     ...means bugs as it pertains to the images built that can block a release. This applies to the DVD, minimal, and boot images on all architectures.
@@ -39,10 +39,10 @@ There may cases where a requirement cannot be met but only in particular configu
 
 #### Release-blocking images must boot
 
-Release-blocking installer images must boot when written to optical media or USB flash drive of appropriate sizes (if applicable) via officially supported methods. It is not the testing team’s responsibility to test optical media, but they can and report back. If a bug is found, it is considered a blocker.
+Release-blocking installer images must boot when written to optical media or USB flash drives of appropriate sizes (if applicable) via officially supported methods. It is not the testing team’s responsibility to test optical media, but they can and report back. If a bug is found, it is considered a blocker.
 
 ??? tldr "Optical Media Requirements"
-    Release-blocking images must boot when written to optical media of an appropriate size. Current size requirements are: boot.iso = 789M, minimal.iso = 2.0G and dvd.iso = 10G.
+    Release-blocking images must boot when written to optical media of an appropriate size. Current size requirements are: boot.iso = 789M, minimal.iso = 2.0G, and dvd.iso = 10G.
 
 ??? tldr "Officially supported USB flash drive writing methods"
     - The following methods of writing USB flash drives are officially support: `dd`
@@ -56,14 +56,14 @@ Release-blocking installer images must boot when written to optical media or USB
 
 #### RDP Graphics Mode behaviors
 
-VNC has been removed from Rocky 10, and desktop sharing is now handled by gnome-remote-desktop, using RDP. The RDP installation option on all release-blocking installers must function as intended. This means launching the installer or desktop and connecting with RDP to complete the installation. There must be no bugs that prevent the installer from being reached in this configuration on all systems and classes of hardware supported by the enterprise linux kernel.
+VNC has been removed from Rocky 10, and desktop sharing is now handled by gnome-remote-desktop, using RDP. The RDP installation option on all release-blocking installers must function as intended. This means launching the installer or desktop and connecting with RDP to complete the installation. There must be no bugs that prevent the installer from being reached in this configuration on all systems and classes of hardware supported by the enterprise Linux kernel.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase RDP Graphics Mode](../../../documentation/qa_test_cases/Testcase_RDP_Graphics_Mode.md)
 
 #### No Broken Packages
 
-Critical errors, such as undeclared conflicts, unresolved dependencies, or modules relying on packages from another stream will be considered an automatic blocker. There are potential exceptions to this (eg, freeradius cannot be installed on an older perl stream, this is a known issue upstream).
+Critical errors, such as undeclared conflicts, unresolved dependencies, or modules that rely on packages from another stream, will be considered automatic blockers. There are potential exceptions to this (e.g., freeradius cannot be installed on an older Perl stream; this is a known upstream issue).
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Media Repoclosure](../../../documentation/qa_test_cases/Testcase_Media_Repoclosure.md)
@@ -71,7 +71,7 @@ Critical errors, such as undeclared conflicts, unresolved dependencies, or modul
 
 #### Repositories Must Match Upstream
 
-Repositories and the packages within them should match upstream as closely as possible. Notable exceptions would be kmods, kpatch, or what is deemed as “spyware” like insights. Packages that are available from upstream should not have hard requirements on RHSM and packages that have it default built in should be patched out.
+Repositories and the packages within them should match upstream as closely as possible. Notable exceptions would be kmods, kpatch, or what is deemed “spyware,” such as insights. Packages available from upstream should not have hard requirements on RHSM, and packages that have it as a default built-in should be patched out.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Repo Compare](../../../documentation/qa_test_cases/Testcase_Repo_Compare.md)
@@ -80,7 +80,7 @@ Repositories and the packages within them should match upstream as closely as po
 
 #### Debranding
 
-Assets and functionality that are Red Hat specific should not be included. If they are not patched out, it will be considered an automatic blocker.
+Assets and functionality that are Red Hat-specific should not be included. If they are not patched out, it will be considered an automatic blocker.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Debranding](../../../documentation/qa_test_cases/Testcase_Debranding.md)
@@ -89,7 +89,7 @@ Assets and functionality that are Red Hat specific should not be included. If th
 
 #### Media Consistency Verification
 
-This means that the installer’s mechanism for verifying the install medium is intact and must complete successfully, with the assumption that the medium was correctly written. It should return a failure message if this not the case.
+This means that the installer’s mechanism for verifying the installation medium is intact and must complete successfully, assuming the medium was correctly written. It should return a failure message if this is not the case.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Media USB dd](../../../documentation/qa_test_cases/Testcase_Media_USB_dd.md)
@@ -105,7 +105,7 @@ The installer must be able to use all supported local/remote packages and instal
 
 #### NAS (Network Attached Storage)"
 
-The installer must be able to detect and install to supported NAS devices (if possible and supported by the kernel).
+The installer must be able to detect and install on supported NAS devices (if possible and supported by the kernel).
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Network Attached Storage](../../../documentation/qa_test_cases/Testcase_Network_Attached_Storage.md)
@@ -119,7 +119,7 @@ The installer must be able to complete an installation using all supported spoke
 
 #### Minimal Installation
 
-A minimal installation (via network) must be able to install the minimal package set.
+A minimal installation (via network) must be able to install the minimal set of packages.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Minimal Installation](../../../documentation/qa_test_cases/Testcase_Minimal_Installation.md)
@@ -133,28 +133,28 @@ A kickstart installation should succeed, whether from optical/USB media or via t
 
 #### Disk Layouts
 
-The installer must be able to create and install to any workable partition layout using any file system or format combination offered or supported by the installer. File systems that are not supported by the EL kernel is not tested here (this means btrfs, zfs, both of wish are not supported).
+The installer must be able to create and install to any workable partition layout using any file system or format combination offered or supported by the installer. File systems that are not supported by the EL kernel are not tested here (this means btrfs, zfs, both of which are not supported).
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Disk Layouts](../../../documentation/qa_test_cases/Testcase_Disk_Layouts.md)
 
 #### Firmware RAID
 
-The installer must be able to detect and install to firmware RAID devices. Note that system-specific bugs do not count as blockers. It is likely that some hardware support might be broken or not available at all. DUDs (driver update disks) are not considered for this criteria.
+The installer must be able to detect and install firmware on RAID devices. Note that system-specific bugs do not count as blockers. It is likely that some hardware support may be broken or unavailable. DUDs (driver update disks) are not considered for this criterion.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Firmware RAID](../../../documentation/qa_test_cases/Testcase_Firmware_RAID.md)
 
 #### Bootloader Disk Selection
 
-The installer must allow the user to choose which disk the bootloader will be installed to or, if the user so chooses, not to install a bootloader.
+The installer must allow the user to choose which disk the bootloader will be installed on or, if the user so chooses, not to install a bootloader.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Bootloader Disk Selection](../../../documentation/qa_test_cases/Testcase_Bootloader_Disk_Selection.md)
 
 #### Storage Volume Resize
 
-Any installer mechanism for resizing storage volumes must correctly attempt the requested operation. This means that if the installer offers a way to resize storage volumes, then it must use the correct resizing tool with the correct parameters. However, it does not require the installer to disallow resizing of unformatted or volumes with an unknown filesystem type.
+Any installer mechanism for resizing storage volumes must correctly attempt the requested operation. This means that if the installer offers a way to resize storage volumes, then it must use the correct resizing tool with the correct parameters. However, it does not require the installer to disallow resizing of unformatted volumes or volumes with an unknown filesystem type.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Storage Volume Resize](../../../documentation/qa_test_cases/Testcase_Storage_Volume_Resize.md)
@@ -168,7 +168,7 @@ The installer must be able to use an installer update image retrieved from remov
 
 #### Installer Translations
 
-The installer must correctly display all complete translations that are available for use.
+The installer must correctly display all available complete translations.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Installer Translations](../../../documentation/qa_test_cases/Testcase_Installer_Translations.md)
@@ -177,7 +177,7 @@ The installer must correctly display all complete translations that are availabl
 
 #### Images Published to Cloud Providers
 
-Release-blocking cloud disk images must be published to appropriate cloud providers (such as Amazon) and they must successfully boot. This also applies to KVM based instances, such as x86 and aarch64 systems.
+Release-blocking cloud disk images must be published to appropriate cloud providers (such as Amazon), and they must successfully boot. This also applies to KVM-based instances, such as x86 and aarch64 systems.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase TBD](../../../documentation/qa_test_cases/Testcase_Template.md)
@@ -186,7 +186,7 @@ Release-blocking cloud disk images must be published to appropriate cloud provid
 
 #### System Services
 
-All system services present after installation must start properly, with the exception of services that require hardware which is not present. Examples of such services would be:
+All system services present after installation must start properly, with the exception of services that require hardware that is not present. Examples of such services would be:
 
 - sshd
 - firewalld
@@ -255,7 +255,7 @@ All elements of GNOME should function properly in regular use.
 
 #### Dual Monitor Setup (Desktop Only)
 
-Computers using two monitors, the graphical output is correctly shown on both monitors.
+On computers with two monitors, the graphical output is correctly shown on both monitors.
 
 ??? tldr "References"
     - Test cases:
@@ -263,7 +263,7 @@ Computers using two monitors, the graphical output is correctly shown on both mo
 
 #### Artwork and Assets (Server and Desktop)
 
-Proposed final artwork (such as wallpapers and other assets) must be included. A wallpaper from this package should show up as a default for GDM and GNOME.
+Proposed final artwork (such as wallpapers and other assets) must be included. A wallpaper from this package should appear as the default for GDM and GNOME.
 
 ??? tldr "References"
     - Test cases:
@@ -271,7 +271,7 @@ Proposed final artwork (such as wallpapers and other assets) must be included. A
 
 #### Package Installation
 
-Packages should be able to be installed without conflicts or dependent on repositories outside of {{ rc.prod }}.
+Packages should be installable without conflicts or dependencies on repositories outside of {{ rc.prod }}.
 
 - Note that modular content is no longer being distributed with Rocky 10.
 
@@ -281,7 +281,7 @@ Packages should be able to be installed without conflicts or dependent on reposi
 
 #### Identity Management Server Setup
 
-It should be possible to setup a IdM server (FreeIPA), use it's functionality and connect clients.
+It should be possible to set up an IdM server (FreeIPA), use its functionality, and connect clients.
 
 ??? tldr "References"
     - Test cases
