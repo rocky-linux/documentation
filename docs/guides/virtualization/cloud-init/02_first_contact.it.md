@@ -111,9 +111,7 @@ Uno dei modi più comuni per fornire dati a `cloud-init` in un ambiente locale �
 
        !!! tip "Accedi in modo sicuro con le chiavi SSH"
 
-        ```
-         Connettersi con un utente predefinito è comodo per un rapido test di laboratorio, ma non è una pratica sicura. Nel prossimo capitolo vedremo come utilizzare `cloud-init` per inserire automaticamente la tua chiave pubblica SSH, consentendo accessi sicuri e senza password.
-        ```
+        Connettersi con un utente predefinito è comodo per un rapido test di laboratorio, ma non è una pratica sicura. Nel prossimo capitolo vedremo come utilizzare `cloud-init` per inserire automaticamente la tua chiave pubblica SSH, consentendo accessi sicuri e senza password.
 
 3. **Verifica le modifiche:** controlla il nome host e il file creato da `runcmd`.
 
