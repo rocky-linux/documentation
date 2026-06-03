@@ -5,24 +5,20 @@ contributors: Lukas Magauer
 tested_with:
 tags:
   - testing
-revision_date: 2026-05-08
-rc:
-  prod: Rocky Linux
-  ver: 8
-  level: Final
+revision_date: 2026-06-02
 render_macros: true
 ---
 
-## {{ rc.prod }} {{ rc.ver }} {{ rc.level }} Release Objectives
+## Rocky Linux 8 Final Release Objectives
 
 The objective of a release (major or minor) is to provide a solid Enterprise Linux release that meets the needs:
 
 - Of end users
 - Of enterprises, big or small
 
-## {{ rc.prod }} {{ rc.ver }} {{ rc.level }} Release Requirements
+## Rocky Linux 8 Final Release Requirements
 
-In order for {{ rc.prod }} to be released to the general public, a compose must be able to meet all the following criteria as provided in this document. This makes the decision process straightforward and as clear as possible. This document only contains “hard requirement” items. Optional/nice-to-have items are not to be included in this list.
+In order for Rocky Linux to be released to the general public, a compose must be able to meet all the following criteria as provided in this document. This makes the decision process straightforward and as clear as possible. This document only contains “hard requirement” items. Optional/nice-to-have items are not to be included in this list.
 
 The system may fail to meet a requirement in certain configurations. In these cases, the Release Engineering Team should use their judgment to determine whether the issue should be considered a block to the release. They should consider the number of users likely to be affected by the issue, the severity of the case, whether the issue can be avoided with ease (by both informed and uninformed users), and whether the problem exists upstream in the current Red Hat Enterprise Linux release on which the release is based.
 
@@ -119,7 +115,7 @@ The installer must be able to complete an installation using all supported spoke
 
 #### Minimal Installation
 
-A minimal installation (via network) must be able to install the minimal set of packages.
+When installing with the generic network install image, aka `boot-iso`, with no update repositories enabled, the installer must be able to install the 'Minimal' package set.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Minimal Installation](../../../documentation/qa_test_cases/Testcase_Minimal_Installation.md)
@@ -140,7 +136,7 @@ The installer must be able to create and install to any workable partition layou
 
 #### Firmware RAID
 
-The installer must be able to detect and install firmware on RAID devices. Note that system-specific bugs do not count as blockers. It is likely that some hardware support may be broken or unavailable. DUDs (driver update disks) are not considered for this criterion.
+The installer must be able to detect and install on firmware RAID devices. Note that system-specific bugs do not count as blockers. It is likely that some hardware support may be broken or unavailable. DUDs (driver update disks) are not considered for this criterion.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Firmware RAID](../../../documentation/qa_test_cases/Testcase_Firmware_RAID.md)
@@ -278,7 +274,7 @@ Proposed final artwork (such as wallpapers and other assets) must be included. A
 
 #### Packages and Module Installation
 
-Packages (non-module) should be installable without conflicts or dependencies on repositories outside of {{ rc.prod }}.
+Packages (non-module) should be installable without conflicts or dependencies on repositories outside of Rocky Linux.
 
 - Default modules (as listed in dnf module list) should be installed without requiring them to be enabled.
 - Module streams should be able to be switched, and those packages should be able to be installed without errors or unresolved dependencies.
