@@ -15,9 +15,9 @@ Tout au long de ce livre, vous trouverez des moyens d'implémenter Neovim, avec 
 
 Nous disons "moyens" car il y a de nombreuses possibilités. L'auteur se concentre ici sur l'utilisation de ces outils pour écrire en markdown, mais si markdown n'est pas votre focus, ne vous inquiétez pas et survolez simplement les détails de markdown. Si vous n'êtes pas familier avec l'un de ces outils (NvChad ou Neovim), alors ce livre vous donnera une introduction aux deux, et si vous parcourez ces documents, vous réaliserez bientôt que vous pouvez configurer cet environnement pour être une aide considérable pour n'importe quel besoin de programmation ou d'écriture de scripts.
 
-Vous voulez un IDE qui vous aidera à écrire desplay books Ansible? Vous pouvez obtenir cela ! Vous voulez un IDE pour Golang ? C'est également disponible. Vous voulez simplement une bonne interface pour écrire des scripts BASH ? C'est tout aussi possible.
+Vous voulez un IDE qui vous aidera à écrire des playbooks Ansible? Vous pouvez obtenir cela ! Vous voulez un IDE pour Golang ? C'est également disponible. Vous voulez simplement une bonne interface pour écrire des scripts BASH ? C'est tout aussi possible.
 
-Grâce à l'utilisation de ==**L**anguage **S**serveur **P**rotocols== et ==linters==, vous pouvez configurer un environnement personnalisé pour vous-même. Un des avantages est qu'une fois que vous avez la configuration de l'environnement, elle peut être rapidement mise à jour lorsque de nouveaux changements sont disponibles grâce à l'utilisation de [lazy.nvim](https://github.com/folke/lazy.nvim) et [Mason](https://github.com/williamboman/mason.nvim), qui sont tous deux couverts ici.
+Grâce à l'utilisation de ==**L**anguage **S**erver **P**rotocols== et ==linters==, vous pouvez configurer un environnement personnalisé pour vous-même. Un des avantages est qu'une fois que vous avez la configuration de l'environnement, elle peut être rapidement mise à jour lorsque de nouveaux changements sont disponibles grâce à l'utilisation de [lazy.nvim](https://github.com/folke/lazy.nvim) et [Mason](https://github.com/williamboman/mason.nvim), qui sont tous deux couverts ici.
 
 Comme Neovim est un fork de [Vim](https://www.vim.org/), l'interface globale sera familière aux utilisateurs de *vim*. Si vous n'êtes pas un utilisateur `vim`, vous assimilerez rapidement la syntaxe des commandes en utilisant ce livre. Il y a beaucoup d'informations couvertes ici, mais il est facile de les suivre et, une fois que vous avez terminé le contenu, vous en saurez assez pour construire votre propre IDE adapté à *vos exigences* avec ces outils.
 
@@ -54,7 +54,7 @@ Comme les développeurs de NvChad tiennent à le souligner, le projet est unique
 
 Lua est un langage de script robuste et léger, qui supporte une variété de paradigmes de programmation. Le nom « Lua » vient du mot portugais signifiant « lune ».
 
-Lua a été développé à l'université catholique de Rio de Janeiro par Roberto Lerusalimschy, Luiz Henrique de Figueiredo et Waldemar Celes. Le développement était nécessaire pour eux parce que, jusqu'en 1992, le Brésil était soumis à des règles d'importation strictes pour le matériel et les logiciels. Par simple nécessité, ces trois programmeurs développent leur propre langage de script appelé Lua.
+Lua a été développé à l'université catholique de Rio de Janeiro par Roberto Lerusalimschy, Luiz Henrique de Figueiredo et Waldemar Celes. Ce développement leur était nécessaire car, jusqu'en 1992, le Brésil était soumis à des réglementations strictes en matière d'importation de matériel et de logiciels ; ainsi, par pure nécessité, ces trois programmeurs ont développé leur propre langage de script, baptisé Lua.
 
 Comme le langage Lua se concentre principalement sur les scripts, il est rarement utilisé comme un langage de programmation autonome. Par conséquent, il est le plus souvent utilisé comme un langage de script qui peut être intégré (intégré) à d'autres programmes.
 
@@ -106,7 +106,7 @@ Un analyseur est un composant qui décompose des données en éléments plus pet
 * réusinage de code
 * objets texte et mouvements
 
-??? note "complémentarité de LSP et tree-sitter".
+??? note "complémentarité de LSP et tree-sitter"
 
     Bien qu'il puisse sembler que les deux services (LSP et tree-sitter) soient redondants, ils sont en fait complémentaires dans la mesure où LSP travaille au niveau du projet alors que tree-sitter ne fonctionne que sur le fichier open source.
 
