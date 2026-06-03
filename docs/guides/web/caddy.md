@@ -46,7 +46,7 @@ Then, install the `epel-release` software repository:
 sudo dnf install -y epel-release
 ```
 
-If you're running Rocky Linux 10, enable the Copr repository:
+If you are running Rocky Linux 10, enable the Copr repository:
 
 ```bash
 sudo dnf copr enable @caddy/caddy
@@ -77,7 +77,7 @@ Breaking this down:
 * `–-zone=public` tells the firewall to allow incoming connections to this port from everyone.
 * Lastly, `--add-service=http` and `--add-service=https` tells `firewalld` to pass all HTTP and HTTPS traffic to the server.
 
-These configurations won’t take effect until you force the issue. To do that, tell `firewalld` to reload its configurations:
+These configurations will not take effect until you force the issue. To do that, tell `firewalld` to reload its configurations:
 
 ```bash
 sudo firewall-cmd --reload
@@ -114,7 +114,7 @@ That should be everything you need, firewall-wise.
 
 ## Configuring Caddy
 
-Unlike traditional web servers like Apache and Nginx, Caddy's configuration format is significantly simpler. Gone are the days where you had to configure the nitty-gritty, like your web server's threading model or SSL certificates, unless you want to.
+Unlike traditional web servers such as Apache and Nginx, Caddy's configuration format is significantly simpler. Gone are the days where you had to configure the nitty-gritty, such as your web server's threading model or SSL certificates, unless you want to.
 
 To edit the Caddy configuration file:
 
@@ -137,7 +137,7 @@ You must also add a website to the folder in Caddy's "root" directory. For simpl
 
 ```bash
 mkdir -p /usr/share/caddy/example.com
-echo "<h1>Hi!</h1>" >> /usr/share/caddy/example.com/index.html
+echo '<h1>Hi!</h1>' | sudo tee /usr/share/caddy/example.com/index.html
 ```
 
 After that, enable Caddy's systemd service:
@@ -188,7 +188,16 @@ Replace it with this:
 listen = 127.0.0.1:9000
 ```
 
-We can now enable and start php-fpm:
+!!! warning "SELinux policy and Rocky Linux 10.2"
+
+    For those running Rocky Linux 10.2, there is a bug in the default selinux.policy that prevents the `php-fpm` service from starting. There is an issued bug report. For a work around, use this until the bug is fixed:
+
+    ```bash
+    echo "/var/opt/remi/php85 /var" | sudo tee -a /etc/selinux/targeted/contexts/files/file_contexts.subs
+    restorecon -RF "/var/opt/remi/"
+    ```
+
+You can now enable and start `php-fpm`:
 
 ```bash
 sudo systemctl enable --now php85-php-fpm
@@ -245,4 +254,4 @@ Open your browser to the file you created, and you should be presented with PHP 
 
 The basic installation and configuration of Caddy is incredibly easy. Gone are the days when you spent hours configuring Apache. Yes, Nginx is certainly an improvement, but it still lacks modern but essential features such as Let's Encrypt and Kubernetes ingress support that Caddy builds in, whereas on Nginx (and Apache) you must add them separately.
 
-I've been using Caddy since 2019 as my go-to web server, and it's just so good. In fact, whenever I deal with Apache, Nginx or IIS, it's almost like taking a time machine back to 2010 or earlier.
+The author uses Caddy and has done so since 2019 for their go-to web server and it is just so good. In fact, whenever I deal with Apache, Nginx or IIS, it is almost like taking a time machine back to 2010 or earlier.
