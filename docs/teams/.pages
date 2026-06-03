@@ -2,5 +2,10 @@
 nav:
     - Alt Architecture: alt_arch
     - Community: community
+    - Infrastructure: infra
+    - Operations: operations
+    - Release Engineering: rel_eng
+    - Security: security
     - Testing: testing
+    - Web and Design: web_design
     - ...
