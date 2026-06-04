@@ -184,13 +184,13 @@ listen = /var/opt/remi/php83/run/php-fpm/www.sock
 listen = 127.0.0.1:9000
 ```
 
-Потім збережіть і закрийте файл `www.conf` і відкрийте Caddyfile:
+Then save and exit the `www.conf` file, and open the Caddyfile:
 
 ```bash
 vim /etc/caddy/Caddyfile
 ```
 
-Перейдіть до блоку сервера, який ми створили раніше:
+Navigate to the server block we created earlier:
 
 ```bash
 example.com {
@@ -199,13 +199,13 @@ example.com {
 }
 ```
 
-Додайте наступний рядок після рядка "file_server":
+Add the following line after the "file_server" line:
 
 ```bash
     php_fastcgi 127.0.0.1:9000
 ```
 
-Ваш серверний блок із підтримкою PHP виглядатиме так:
+Your PHP-enabled server block will look like this:
 
 ```bash
 example.com {
@@ -215,24 +215,24 @@ example.com {
 }
 ```
 
-Потім збережіть і вийдіть із Caddyfile і перезапустіть Caddy:
+Then save and exit the Caddyfile, and restart Caddy:
 
 ```bash
 systemctl restart caddy
 ```
 
-Щоб перевірити, чи працює PHP, давайте додамо простий файл PHP:
+To test if PHP works, let's add a simple PHP file:
 
 ```bash
 echo "<?php phpinfo(); ?>" >> /usr/share/caddy/rockyexample.duckdns.org/phpinfo.php
 ```
 
-Відкрийте в браузері файл, який ви створили, і вам має бути представлена інформація PHP:
+Open your browser to the file you created, and you should be presented with PHP information:
 
 ![Caddy serving our PHP file](../images/caddy_php.png)
 
-## Висновок
+## Conclusion
 
-Базове встановлення та налаштування Caddy дуже прості. Пройшли ті часи, коли ви витрачали години на налаштування Apache. Так, Nginx, безсумнівно, є вдосконаленням, але йому все ще бракує сучасних, але важливих функцій, таких як Let's Encrypt і підтримка входу Kubernetes, яку вбудовано в Caddy. Натомість у Nginx (і Apache) ви повинні додавати їх окремо.
+The basic installation and configuration of Caddy is incredibly easy. Gone are the days when you spent hours configuring Apache. Yes, Nginx is certainly an improvement, but it still lacks modern but essential features such as Let's Encrypt and Kubernetes ingress support that Caddy builds in, whereas on Nginx (and Apache) you must add them separately.
 
 Я використовую Caddy з 2019 року як свій веб-сервер, і він просто чудовий. Насправді, щоразу, коли я маю справу з Apache, Nginx або IIS, це майже як повертати машину часу в 2010 рік або раніше.
