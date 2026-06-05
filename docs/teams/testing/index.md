@@ -5,7 +5,7 @@ contributors: Bob Robison
 tested_with:
 tags:
   - testing
-revision_date: 2026-05-08
+revision_date: 2026-06-05
 render_macros: true
 ---
 
@@ -20,7 +20,7 @@ The Testing Team handles testing and QA for Rocky Linux.
 
 ## Meetings / Communications
 
-- Weekly Team Meeting: [Google Meet](http://meet.google.com/kqs-rxme-juw)
+- Weekly Team Meeting: [Google Meet](http://meet.google.com/kqs-rxme-juw), [Meeting Summaries](https://git.resf.org/testing/meetings)
     - Every Thursday, alternating between 2300Z and 1400Z - check [RESF Public Calendar](https://calendar.google.com/calendar/u/0/embed?src=c_2e1oqh6t0i6sqhja5nu9lq8lgo@group.calendar.google.com)
 
 ## Members
