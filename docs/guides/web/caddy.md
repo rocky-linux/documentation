@@ -188,15 +188,6 @@ Replace it with this:
 listen = 127.0.0.1:9000
 ```
 
-!!! warning "SELinux policy and Rocky Linux 10.2"
-
-    For those running Rocky Linux 10.2, there is a bug in the default selinux.policy that prevents the `php-fpm` service from starting. There is an issued bug report. For a work around, use this until the bug is fixed:
-
-    ```bash
-    echo "/var/opt/remi/php85 /var" | sudo tee -a /etc/selinux/targeted/contexts/files/file_contexts.subs
-    restorecon -RF "/var/opt/remi/"
-    ```
-
 You can now enable and start `php-fpm`:
 
 ```bash
