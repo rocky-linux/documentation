@@ -9,6 +9,10 @@ tags:
   - mirroring
 ---
 
+!!! warning "`lsyncd` project is no-longer maintained."
+
+    Since November 27, 2024, the [`lsyncd` project](https://github.com/lsyncd/lsyncd) has been looking for a group or person to adopt the project. That means that it is not in active development or maintenance, and the Extra Packages for Enterprise Linux (EPEL) has not, and likely will not, pick the package up and include it in their repository for EL 10. [Atomicorp](https://www6.atomicorp.com/channels/atomic/) has graciously built `lsyncd` as an RPM for Rocky Linux 10.x, so you can still install this highly useful tool that way. If you are a package maintainer, consider forking or adopting the original project. The Atomic repository method of installation is included here along with the source install method. 
+
 ## Prerequisites
 
 - A computer running Rocky Linux
@@ -36,21 +40,31 @@ You will also want to set up [Rocky Linux SSH Public Private Key Pairs](../secur
 
 ## Installing `lsyncd`
 
-!!! info
-
-    As of this date (September 2025), Rocky Linux 10, with the EPEL (Extra Packages for Enterprise Linux) enabled, does not include the `lsyncd` package. To use `lsyncd` on Rocky Linux 10, you will need to use the **Installing `lsyncd` - source method**. The RPM method is retained here, as EPEL is likely to build this package for version 10 in the future. It never hurts to check whether the package is available before building from source. 
-
-You can install `lsyncd` in two ways. Included are descriptions of each method. The RPMs lag behind the source packages by a little, but only a little. The version installed by the RPM method at the time of this writing is 2.2.3-5, whereas the source code version is now 2.3.1. Choose the method you feel the most comfortable with.
+You can install `lsyncd` in two ways. Included are descriptions of each method.
 
 ## Installing `lsyncd` - RPM method
 
-The only thing you will need to install first is the EPEL software repository from Fedora. Do this with:
+Install the EPEL repository:
 
 ```bash
-dnf install -y epel-release
+sudo dnf install -y epel-release
 ```
 
-Now install `lsyncd` along with any missing dependencies:
+Ensure you have `wget`:
+
+```bash
+sudo dnf install -y wget
+```
+
+Install the Atopmic software repository from Atomicorp:
+
+```bash
+wget -q -O - https://www.atomicorp.com/installers/atomic | sh
+```
+
+Accept the default install options.
+
+Install `lsyncd` and any missing dependencies:
 
 ```bash
 dnf install lsyncd
