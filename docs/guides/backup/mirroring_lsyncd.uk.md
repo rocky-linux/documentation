@@ -22,17 +22,17 @@ tags:
 
 ## Вступ
 
-Якщо ви хочете автоматично синхронізувати файли та папки між комп'ютерами, `lsyncd` — чудовий варіант. Але ви повинні налаштувати все з командного рядка.
+Якщо ви хочете автоматично синхронізувати файли та папки між комп'ютерами, `lsyncd` — чудовий варіант. However, you must configure everything from the command line.
 
-Це програма, яку варто вивчити будь-якому системному адміністратору.
+It is a program worth learning for any system administrator.
 
-Найкращий опис `lsyncd` можна знайти на його сторінці довідки (man). Трохи перефразовано, `lsyncd` — це легке рішення для живого дзеркала, яке нескладно встановити. Він не потребує нових файлових систем або блокових пристроїв і не перешкоджає продуктивності локальної файлової системи. Коротше кажучи, він відображає файли.
+Найкращий опис `lsyncd` можна знайти на його сторінці довідки (man). Трохи перефразовано, `lsyncd` — це легке рішення для живого дзеркала, яке нескладно встановити. Він не потребує нових файлових систем або блокових пристроїв і не перешкоджає продуктивності локальної файлової системи. In short, it mirrors files.
 
-`lsyncd` спостерігає за інтерфейсом монітора подій локального дерева каталогів (inotify). Він агрегує та об’єднує події протягом кількох секунд і породжує один (чи більше) процес(ів) для синхронізації змін. За замовчуванням це `rsync`.
+`lsyncd` спостерігає за інтерфейсом монітора подій локального дерева каталогів (inotify). It aggregates and combines events for a few seconds and spawns one (or more) process(es) to synchronize the changes. За замовчуванням це `rsync`.
 
 У цьому посібнику ви називатимете систему з оригінальними файлами «джерелом»; той, з яким ви синхронізуєтеся, буде «ціллю». Використовуючи `lsyncd`, ви можете повністю віддзеркалити сервер, ретельно вказавши каталоги та файли, які потрібно синхронізувати.
 
-Вам також потрібно буде налаштувати [пари публічних закритих ключів Rocky Linux SSH] (../security/ssh_public_private_keys.md) для віддаленої синхронізації. У наведених тут прикладах використовується SSH (порт 22).
+Вам також потрібно буде налаштувати [пари публічних закритих ключів Rocky Linux SSH] (../security/ssh_public_private_keys.md) для віддаленої синхронізації. The examples here use SSH (port 22).
 
 ## Встановлення `lsyncd`
 
@@ -52,7 +52,7 @@ dnf install -y epel-release
 dnf install lsyncd
 ```
 
-Налаштуйте службу на запуск під час завантаження, але поки не запускайте її:
+Set up the service to start on boot, but do not start it just yet:
 
 ```bash
 systemctl enable lsyncd
@@ -60,7 +60,7 @@ systemctl enable lsyncd
 
 ## Встановлення `lsyncd` - вихідний метод
 
-Встановлення з вихідного коду не складний процес.
+Installing from the source is not difficult.
 
 ### Встановлення залежностей
 
@@ -86,7 +86,7 @@ dnf install lua lua-libs lua-devel cmake unzip wget rsync
 
 ### Завантаження `lsyncd` і його збірка
 
-Далі вам знадобиться вихідний код:
+Next, you need the source code:
 
 ```bash
 wget https://github.com/axkibe/lsyncd/archive/master.zip
@@ -102,19 +102,19 @@ wget https://github.com/axkibe/lsyncd/archive/master.zip
 cd lsyncd-master
 ```
 
-Потім:
+Then:
 
 ```bash
 mkdir build
 ```
 
-Змініть каталоги, щоб отримати доступ до каталогу збірки:
+Change directories to access the build directory:
 
 ```bash
 cd build
 ```
 
-Виконайте ці команди:
+Run these commands:
 
 ```bash
 cmake ..
@@ -126,19 +126,19 @@ make install
 
 ### `lsyncd` Служба Systemd
 
-За допомогою методу встановлення RPM служба systemd встановиться за вас, але якщо ви встановлюєте з джерела, вам потрібно буде створити службу systemd. Хоча ви можете запустити бінарний файл без служби systemd, ви хочете переконатися, що він _дійсно_ запускається під час завантаження. Якщо ні, перезавантаження сервера припинить вашу синхронізацію. Якщо ви забудете знову запустити його вручну, це буде проблема!
+За допомогою методу встановлення RPM служба systemd встановиться за вас, але якщо ви встановлюєте з джерела, вам потрібно буде створити службу systemd. Хоча ви можете запустити бінарний файл без служби systemd, ви хочете переконатися, що він _дійсно_ запускається під час завантаження. If not, a server reboot will stop your synchronization effort. Якщо ви забудете знову запустити його вручну, це буде проблема!
 
 Створення служби systemd відносно просте і заощадить ваш час у довгостроковій перспективі.
 
 #### Створення службового файлу `lsyncd`
 
-Ви можете створити цей файл будь-де, навіть у кореневому каталозі вашого сервера. Після створення ви можете перемістити його в правильне місце.
+You can create this file anywhere, even in your server's root directory. Once created, you can move it to the right location.
 
 ```bash
 vi /root/lsyncd.service`
 ```
 
-Вміст цього файлу буде:
+The contents of this file will be:
 
 ```bash
 [Unit]
@@ -171,7 +171,7 @@ systemctl daemon-reload
 
 ## Конфігурація `lsyncd`
 
-Для будь-якого з методів встановлення `lsyncd` вам знадобиться файл конфігурації: _/etc/lsyncd.conf_. У наступному розділі описано, як створити та перевірити файл конфігурації.
+Для будь-якого з методів встановлення `lsyncd` вам знадобиться файл конфігурації: _/etc/lsyncd.conf_. The following section will tell you how to build and test a configuration file.
 
 ### Зразок конфігурації для тестування
 
@@ -202,7 +202,7 @@ sync {
 }
 ```
 
-Трохи розбиваючи цей файл:
+Breaking down this file a bit:
 
 - `logfile` і `statusFile` будуть створені автоматично під час запуску служби.
 - `statusInterval` - це кількість секунд, яку необхідно зачекати перед записом у файл statusFile.
@@ -215,17 +215,17 @@ sync {
 - Розділ `rsync =` та параметри, з якими ви запускаєте `rsync`
 - Розділ `ssh =` вказує порт SSH, який прослуховує цільовий комп’ютер
 
-Якщо ви додаєте більше ніж один каталог для синхронізації, ви повинні повторити весь розділ «синхронізації», включаючи всі відкриваючі та закриваючі дужки для кожного каталогу.
+If you add more than one directory to sync, you must repeat the entire "sync" section, including all the opening and closing brackets for each directory.
 
 ## Файл lsyncd.exclude
 
-Розділ `rsync =` та параметри, з якими ви запускаєте `rsync`. Створіть це зараз:
+Розділ `rsync =` та параметри, з якими ви запускаєте `rsync`. Create that now:
 
 ```bash
 touch /etc/lsyncd.exclude
 ```
 
-Наприклад, якщо ви синхронізували папку `/etc` на своєму комп’ютері, то в процесі `lsyncd` потрібно було б виключити багато файлів і каталогів. Кожен виключений файл або каталог знаходиться у файлі, по одному на рядок:
+Наприклад, якщо ви синхронізували папку `/etc` на своєму комп’ютері, то в процесі `lsyncd` потрібно було б виключити багато файлів і каталогів. Each excluded file or directory is in the file, one per line:
 
 ```bash
 /etc/hostname
@@ -236,13 +236,13 @@ touch /etc/lsyncd.exclude
 
 ## Перевірка
 
-Коли все налаштовано, ви можете перевірити все. Переконайтеся, що наш системний `lsyncd.service` запуститься:
+With everything set up, you can test it all. Переконайтеся, що наш системний `lsyncd.service` запуститься:
 
 ```bash
 systemctl start lsyncd
 ```
 
-Якщо після виконання цієї команди не з’являється жодних помилок, перевірте статус служби, щоб переконатися, що:
+If no errors appear after executing this command, check the status of the service just to ensure:
 
 ```bash
 systemctl status lsyncd
@@ -261,7 +261,7 @@ tail /var/log/lsyncd-status.log
 touch /home/[user]/testfile
 ```
 
-Перейдіть на цільовий комп’ютер і подивіться, чи з’явився файл. Якщо так, то все працює. Встановіть `lsyncd.service` для запуску під час завантаження за допомогою:
+Go to the target computer and see if the file shows up. If so, everything is working. Встановіть `lsyncd.service` для запуску під час завантаження за допомогою:
 
 ```bash
 systemctl enable lsyncd
@@ -269,9 +269,9 @@ systemctl enable lsyncd
 
 ## Пам'ятайте про обережність
 
-Щоразу, коли ви синхронізуєте набір файлів або каталогів з іншим комп’ютером, уважно подумайте про вплив цього на цільовий комп’ютер. Припустимо, що ви повертаєтеся до **Файлу lsyncd.exclude** у нашому прикладі вище. Чи можете ви уявити, що може статися, якщо ви не виключите _/etc/fstab_?
+Anytime you synchronize a set of files or directories to another computer, think carefully about its effect on the target computer. Припустимо, що ви повертаєтеся до **Файлу lsyncd.exclude** у нашому прикладі вище. Чи можете ви уявити, що може статися, якщо ви не виключите _/etc/fstab_?
 
-`fstab` — це файл, який налаштовує накопичувачі на будь-якому комп'ютері з Linux. Диски та етикетки майже напевно відрізняються на різних машинах. Наступне перезавантаження цільового комп’ютера, ймовірно, не вдасться.
+`fstab` — це файл, який налаштовує накопичувачі на будь-якому комп'ютері з Linux. The disks and labels are almost certainly different on different machines. The next reboot of the target computer would likely fail.
 
 ## Висновки та література
 
