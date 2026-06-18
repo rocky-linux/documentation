@@ -36,3 +36,6 @@ nav:
   - admin_guide/12-network.md
   - admin_guide/13-softwares.md
   - admin_guide/14-special-authority.md
+  - admin_guide/16-about-system.md
+  - admin_guide/17-log.md
+  - admin_guide/99-conclusions.md
