@@ -12,9 +12,9 @@ tags:
 Now that you have read this administrator's guide from cover to cover, you are
 ready to administer Linux servers without fear.
 
-Throughout these pages, you were introduced to many advanced commands and
+Throughout these pages, you had an introduction to many advanced commands and
 tricks. We have chosen to gather some of them here, along with a few of our own
-favourite tips as a bonus.
+favorite tips as a bonus.
 
 These are the kinds of things that make the difference between a linux
 administrator and a Linux Administrator.
@@ -27,7 +27,7 @@ administrator and a Linux Administrator.
 
 ## The end-of-options marker `--`
 
-A `--` marks the end of a command's options. Anything after it is treated as an
+A `--` marks the end of a command's options. This means that anything after is an
 argument, even if it starts with a dash. In the following command, `--hard` is
 not a long option but the name of the directory to create:
 
@@ -54,9 +54,9 @@ make the files you create belong to the right group.
 
 ## Giving a group a password with `gpasswd`
 
-The `gpasswd` command lets you assign a password to a group. What could that
+The `gpasswd` command allows for the assigning of a password to a group. What could that
 possibly be useful for? Someone who knows the group password can `newgrp` into
-that group without being a member of it. `gpasswd` also lets you designate group
+that group without being a member of it. `gpasswd` also allows for the designation of group
 administrators (`gpasswd -A`) who can add or remove members without needing root
 privileges.
 
@@ -102,7 +102,7 @@ bzip2, a `z` for gzip), whereas modern versions detect it automatically.
 ## The two integers at the end of `/etc/fstab` lines
 
 At the end of each line in `/etc/fstab`, there are two integers, usually `0 0`.
-The first one indicated whether the filesystem should be included in backups
+The first one indicated whether you should include the filesystem in backups
 (through the `dump` utility). The second one sets the order in which `fsck`
 checks filesystems at boot, back when checking a filesystem could take a very
 long time:
@@ -116,7 +116,7 @@ long time:
 ## Save and quit in vim with `:x`
 
 In vim, `:x` saves and quits in two keystrokes instead of three for `:wq`. There
-is a subtlety: unlike `:wq`, `:x` only writes the file if it has been modified,
+is a subtlety: unlike `:wq`, `:x` only writes the file if there is a modification,
 so it does not needlessly touch the modification time, which can matter with
 `make` or file watchers. In normal mode, ++shift+z++ ++shift+z++ does exactly the
 same thing.
@@ -163,7 +163,7 @@ Instead of retyping a filename, let the shell expand `{,.bak}` into two strings
 cp file.conf{,.bak}
 ```
 
-This creates `file.conf.bak`. The same principle lets you create a whole tree at
+This creates `file.conf.bak`. The same principle allows for the creation of a whole tree at
 once:
 
 ```bash
@@ -181,14 +181,14 @@ mkdir -p /some/slightly/long/path && cd !$
 
 ++alt+"."++ does the same thing interactively and, pressed repeatedly, walks
 back through the history of arguments. ++esc++ then ++"_"++ produces the same
-readline function (`yank-last-arg`), with ++esc++ acting as the Meta key. As for
+`readline` function (`yank-last-arg`), with ++esc++ acting as the Meta key. As for
 the famous:
 
 ```bash
 sudo !!
 ```
 
-it re-runs the previous command prefixed with `sudo`, the reflex for when you
+it reruns the previous command prefixed with `sudo`, the reflex for when you
 forgot it.
 
 ## Jump back with `cd -`
@@ -229,7 +229,7 @@ comfortable than editing a three-line command with the arrow keys.
 chattr +i /etc/resolv.conf
 ```
 
-The file can then no longer be modified or deleted, even by root, until you
+You can no longer modify the file or delete it, even by root, until you
 remove the attribute (`chattr -i`). It is the perfect safeguard against an
 unfortunate `rm`, or against the service that rewrites your `resolv.conf` on
 every reboot.
