@@ -633,7 +633,7 @@ From there, you can write your own tests and submit them to the Rocky Linux Test
 3. "Rocky Linux LAMP Check" by Alexey Melezhik [https://github.com/melezhik/rocky-linux-lamp-check](https://github.com/melezhik/rocky-linux-lamp-check)
 4. "Sparky Project" by Alexey Melezhik [https://github.com/melezhik/sparky](https://github.com/melezhik/sparky)
 5. "Sparky Rocky" by Alexey Melezhik and Chris "Stack" Stackpole [https://git.resf.org/testing/Sparky_Rocky](https://git.resf.org/testing/Sparky_Rocky)
-6. "Sparrow" by Alexey Melezhik and José Joaquín Atria [https://github.com/melezhik/Sparrow6](https://github.com/melezhik/Sparrow6)
+6. "Sparrow" by Alexey Melezhik [https://github.com/melezhik/Sparrow6](https://github.com/melezhik/Sparrow6)
 7. "SSH public and private key" by Steven Spencer, Ezequiel Bruni, and Ganna Zhyrnova [https://docs.rockylinux.org/guides/security/ssh_public_private_keys/?h=ssh+key](https://docs.rockylinux.org/guides/security/ssh_public_private_keys/?h=ssh+key)
 8. "Tmux Cheat Sheet & Quick Reference" by l9c and contributors [https://tmuxcheatsheet.com/](https://tmuxcheatsheet.com/)
 9. "VI Text Editor" by Antoine Le Morvan, Ezequiel Bruni, Ganna Zhyrnova, Patrick Starrenburg, Serge Croisé, and Tianci Li [https://docs.rockylinux.org/10/books/admin_guide/05-vi/](https://docs.rockylinux.org/10/books/admin_guide/05-vi/)
