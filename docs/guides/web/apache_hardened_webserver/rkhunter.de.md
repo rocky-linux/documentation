@@ -9,7 +9,7 @@ tags:
   - rkhunter
 ---
 
-!!! warning "Das Projekt `rkhunter` wird seit 2018 nicht mehr gepflegt"
+!!! warning "Das Projekt `rkhunter` wird seit 2018 nicht mehr gepflegt."
 
     Obwohl Sie `rkhunter` weiterhin in Rocky Linux 9 installieren können, sollten Sie sich bewusst sein, dass das Projekt seit 2018 funktional obsolet ist. Die Entwicklung des Projekts wurde damals eingestellt. Eine gute Firewall und andere Sicherheitsmaßnahmen sollten heute ausreichen, um Ihren Server sicher zu halten.
 
