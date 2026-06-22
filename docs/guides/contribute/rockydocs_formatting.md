@@ -95,7 +95,7 @@ Admonitions are special visual "boxes" that call attention to important facts an
 | custom ^1^ | always displays text in a blue box                        |
 | custom ^2^ | displays text in the color of the box of the chosen type  |
 
-As noted in custom <sub>1</sub> above, admonitions are limitless. Add a custom title to any admonition type to get the box color you want for a specific admonition, as noted in custom <sub>2</sub> above.
+As noted in custom <sub>1</sub> above, admonitions are open-ended. Add a custom title to any admonition type to get the box color you want for a specific admonition, as noted in custom <sub>2</sub> above.
 
 An admonition is always entered in this way:
 
@@ -145,6 +145,10 @@ Here are examples of each admonition type and how they will look in your documen
 
     text
 
+!!! bug
+
+    text
+
 !!! custom
 
     A custom^1^ type. We have used "custom" as our admonition type. Again, this will always render in blue.
@@ -159,7 +163,7 @@ Here are examples of each admonition type and how they will look in your documen
 
 ### Expandable admonitions
 
-If an admonition is very long, consider an expandable admonition. It has the same characteristics of a regular admonition but starts with three question marks, rather than three exclamation marks. All the other admonition rules apply. An expandable admonition looks like this:
+If an admonition is very long, consider an expandable admonition. It has the same characteristics as a regular admonition but starts with three question marks, rather than three exclamation marks. All the other admonition rules apply. An expandable admonition looks like this:
 
 ??? warning "Warning Content"
 
@@ -233,7 +237,7 @@ Here is an example of a multi-line numbered list with a code block thrown in for
     dnf update
     ```
 
-1. Here is our second listed item. Because you used the four (4) space indentation (above), it renders with the next sequence of numbering (2). If you had entered item 1 without the indentation (in the subsequent paragraph and code), then this would show up as item 1 again, which is not what you want.
+1. Here is our second listed item. Because you used the four (4) space indentation (above), it renders with the next number in sequence (2). If you had entered item 1 without the indentation (in the subsequent paragraph and code), then this would show up as a second item 1, which is not what you want.
 
 And here is how that looks as raw text:
 
@@ -252,7 +256,7 @@ And here is how that looks as raw text:
 
 !!! tip "Numbering the numbered list does not necessarily correspond to the actual number displayed."
 
-    When including a numbered (ordered) list, the natural inclination of the author is to number them in sequence, but Markdown actually handles this task itself, and therefor numbering in sequence has no effect on the actual number shown. What matters is the formattting (spaces, indentation, and so on). As an example, these two lists are functionally the same:
+    When including a numbered (ordered) list, the natural inclination of the author is to number them in sequence, but Markdown actually handles this task itself, and therefor numbering in sequence has no effect on the actual number shown. What matters is the formattting (spaces, indentation, and so on). As an example, these two lists are very similar:
 
     ```text
     1. This is item 1
@@ -267,7 +271,7 @@ And here is how that looks as raw text:
     1. This is item 2
     ```
 
-    Here is how they both render in markdown:
+    But they render quite differently in Markdown:
 
     1. This is item 1
     2. This is item 2
@@ -280,7 +284,7 @@ And here is how that looks as raw text:
 
     To make things more complicated visually, some editors may strip away manually added numbers and replace them with "1" BUT if you are editing a document and adding numbered list items, the same editor will helpfully number sequentially for you so that you are seeing the correct number. When saved, these editors will strip away the sequential numbers and replace them with the same "1". 
 
-    Just be aware that if you see what you think are the removal of the numbered lists sequences by an author, that this may have happened from the editor they use and probably will not affect the markdown rendered numbered sequence.
+    Just be aware that if you see what you think are the removal of the numbered lists sequences by an author, that this may have happened from the editor they use and probably will not affect the Markdown-rendered numbered sequence.
 
     As further proof of this, when the author pulled this document in to add this note, the editor stripped away the numbered list items shown at the top of this section and replaced them all with 1. They still render correctly as 1, 2, 3, and so on.
 
@@ -294,12 +298,12 @@ In the above case, tables help us lay out command options or admonition types an
 | note      | displays text in a blue box                                |
 | abstract  | displays text in a light blue box                          |
 | info      | displays text in a blue-green box                          |
-| tip       | displays text in a  blue-green box (icon slightly greener) |
-| success   | displays text in a  green box                              |
+| tip       | displays text in a blue-green box (icon slightly greener)  |
+| success   | displays text in a green box                               |
 | question  | displays text in a light green box                         |
 | warning   | displays text in an orange box                             |
 | failure   | displays text in a light red box                           |
-| danger    | displays text in a  red box                                |
+| danger    | displays text in a red box                                 |
 | bug       | displays text in a red box                                 |
 | example   | displays text in a purple box                              |
 | quote     | displays text in a gray box                                |
@@ -308,11 +312,11 @@ In the above case, tables help us lay out command options or admonition types an
 
 ```
 
-Note that it is not necessary to break each column by size (as we did in the first part of the table), but it is certainly more readable in the markdown source file. It can get confusing when you string the items together, simply by breaking the columns with the pipe character "|" wherever the natural break is, as you can see in the last item in the table.
+Note that it is not necessary to break each column by size (as we did in the first part of the table), but it is certainly more readable in the Markdown source file. It can get confusing when you string the items together, simply by breaking the columns with the pipe character "|" wherever the natural break is, as you can see in the last item in the table.
 
 ## Block quotes
 
-Block quotes are for quoting text from other sources to include in your documentation. Examples of block quotes in markdown would be:
+Block quotes are for quoting text from other sources to include in your documentation. Examples of block quotes in Markdown would be:
 
 ```text
 > **an item** - A description of that item
@@ -322,7 +326,7 @@ Followed by:
 > **another item** - Another description of that item
 ```
 
-If you are putting two quotes together, you need to separate them by other words to avoid generating a markdown error (as done above).
+If you are putting two quotes together, you need to separate them by other words to avoid generating a Markdown error (as done above).
 
 That ends up looking like this when the page displays:
 
@@ -334,7 +338,7 @@ Followed by:
 
 ## Inline and block-level code blocks
 
-Our approach to code blocks is pretty simple. If `your code` is short enough that you can (and want to) use it in a sentence like you just saw, use single backticks ++"`"++:
+Our approach to code blocks is pretty simple. If `your code` is short enough that you can (and want to) use it in a sentence like you just saw, use single backticks around it ++"`"++:
 
 ```bash
 A sentence with a `command of your choosing` in it.
@@ -348,7 +352,7 @@ sudo dnf install the-kitchen-sink
 ```
 ````
 
-The `bash` bit of that formatting is a markdown recommended code identifier but can help with syntax highlighting. If you showcase text, Python, PHP, Ruby, HTML, CSS, or any other code, the "bash" will change to whatever language you use.
+The `bash` bit of that formatting is a Markdown recommended code identifier but can help with syntax highlighting. If you showcase text, Python, PHP, Ruby, HTML, CSS, or any other code, change "bash" to whatever language you are using.
 
 Incidentally, if you need to show a code block within a code block, add one more backtick ++"`"++ to the parent block:
 
@@ -380,7 +384,7 @@ When using this method, the automatic line feed is also suppressed.
 
 ## Keyboard
 
-Another way to add as much clarity as possible to your documents is to show the correct way to enter keys on a keyboard. In markdown, do this by surrounding the key or keys with double plus signs (`++`). Do this with `++key++`. For instance, to represent that you need to hit the escape key in your document, you would use `++escape++`. When you need to indicate the pressing of multiple keys, add a `+` between them like this: `++ctrl+f4++`. For keys that aren't defined (for instance, we are indicating a mystery function key, `Fx` below), put your definition in quotes (`++ctrl+"Fx"++`). If requiring simultaneous key pressing, add "simultaneously," "at the same time," or a similar phrase to your instructions. Here is an example of a keyboard instruction in your editor:
+Another way to add as much clarity as possible to your documents is to show the correct way to enter keys on a keyboard. In Markdown, do this by surrounding the key or keys with double plus signs (`++`). Do this with `++key++`. For instance, to represent that you need to hit the escape key in your document, you would use `++escape++`. When you need to indicate the pressing of multiple keys, add a `+` between them like this: `++ctrl+f4++`. For keys that aren't defined (for instance, we are indicating a mystery function key, `Fx` below), put your definition in quotes (`++ctrl+"Fx"++`). If requiring simultaneous key pressing, add "simultaneously," "at the same time," or a similar phrase to your instructions. Here is an example of a keyboard instruction in your editor:
 
 ```text
 A workstation-type installation (with a graphical interface) starts this interface on terminal 1. Since Linux is multi-user, it is possible to connect several users simultaneously to different **physical terminals** (TTYs) or **virtual terminals** (PTSs). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using ++alt+"Fx"++ from the command line or ++ctrl+alt+"Fx"++.
@@ -398,7 +402,7 @@ A list of accepted keyboard commands [in this document](https://facelessuser.git
 
 ## Forcing line breaks
 
-There are times when a simple ++enter++ on the keyboard will not give you a new line in markdown. This sometimes occurs when bulleted items contain many formatting characters. The suggestion is to add a line break to better format text as well. In cases like these, you need to add two spaces to the end of the line where you want a new line.  Since spaces will not be visible in some markdown editors, this example shows the spaces being entered:
+There are times when a simple ++enter++ on the keyboard will not give you a new line in Markdown. This sometimes occurs when bulleted items contain many formatting characters. The suggestion is to add a line break to better format text as well. In cases like these, you need to add two spaces to the end of the line where you want a new line.  Since spaces will not be visible in some Markdown editors, this example shows the spaces being entered:
 
 * **A bullet item with extra formatting** ++space+space++
 * **Another item**
@@ -413,7 +417,7 @@ Superscript and subscript notation are supported in Rocky Linux documentation by
 
 Some of the special characters, such as &copy;, are generally not superscript, while others, such as &trade;, are.
 
-Here is how all the above looks in your markdown code:
+Here is how all the above looks in your Markdown code:
 
 ```text
 * represent ordinal numbers, such as 1^st^, 2^nd^, 3^rd^
@@ -567,7 +571,7 @@ Some Markdown characters will not display correctly. Sometimes it is because the
 | \[ \]       | brackets (used for link titles)                   |
 | &#60; &#62; | angle brackets (used for direct HTML)             |
 | \( \)       | parentheses (used for link content)               |
-| \#          | pound sign (used for markdown headers)            |
+| \#          | pound sign (used for Markdown headers)            |
 | &#124;      | pipe (used in tables)                             |
 | &#43;       | plus sign (used in tables)                        |
 | &#45;       | minus sign or hyphen (used in tables and bullets) |
@@ -586,7 +590,7 @@ That table in code is:
 | \[ \]       | brackets (used for link titles)                   |
 | &#60; &#62; | angle brackets (used for direct HTML)             |
 | \( \)       | parentheses (used for link content)               |
-| \#          | pound sign (used for markdown headers)            |
+| \#          | pound sign (used for Markdown headers)            |
 | &#124;      | pipe (used in tables)                             |
 | &#43;       | plus sign (used in tables)                        |
 | &#45;       | minus sign or hyphen (used in tables and bullets) |
@@ -603,9 +607,9 @@ In actual text, you would escape the character. For example, \| will show the pi
 
 ## One final item - comments
 
-From time to time, you might want to add a comment to your markdown that will not display when rendered. Many reasons exist for this. If you want to add a placeholder for something that you are adding later, you could use a comment to mark your spot.
+From time to time, you might want to add a comment to your Markdown that will not display when rendered. Many reasons exist for this. If you want to add a placeholder for something that you are adding later, you could use a comment to mark your spot.
 
-The best way to add a comment to your markdown is to use the square brackets "[]" around two forward slashes "//" followed by a colon and the content. This would look like this:
+The best way to add a comment to your Markdown is to use the square brackets "[]" around two forward slashes "//" followed by a colon and the content. This would look like this:
 
 ```text
 
