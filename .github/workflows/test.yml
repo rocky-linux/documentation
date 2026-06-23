@@ -11,12 +11,22 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
+      - name: Gather changed markdown files
+        id: changed
+        run: |
+          git fetch origin ${{ github.base_ref }}
+
+          FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD \
+            | grep -E '^docs/.*\.(md|en\.md)$' \
+            | paste -sd "," -)
+
+          echo "FILES=$FILES" >> $GITHUB_OUTPUT
       - name: check urls
         uses: urlstechie/urlchecker-action@v1
         with:
-          subfolder: docs
+          subfolder: .
           file_types: .en.md,.md
-          include_files: '\/([\w-]+)\.(en\.)?md'
+          include_files: ${{ steps.changed.outputs.FILES }}
           exclude_patterns: >
            avatars.githubusercontent.com,
            example.com,
