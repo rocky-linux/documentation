@@ -108,7 +108,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Comment
-        uses: actions/github-script@v5
+        uses: actions/github-script@v7
         env:
           URLS: "${{ needs.test.outputs.URLS }}"
           COUNT_U: "${{ needs.test.outputs.COUNT_U }}"
