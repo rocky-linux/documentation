@@ -51,7 +51,7 @@ This guide should be everything you need to get started running the Rocky test s
 sudo dnf install -y wget tar perl xorriso bash-completion qemu-kvm vim sqlite git openssl-devel rsync tmux genisoimage
 ```
 
-### Install Raku x86_64
+### Install Raku for x86_64 and aarch64 
 
 There are two ways and the recommended one is from the package repository:
 
@@ -62,50 +62,24 @@ sudo rpm --import 'https://dl.cloudsmith.io/public/nxadm-pkgs/rakudo-pkg/gpg.0DD
 sudo curl -1sLf 'https://dl.cloudsmith.io/public/nxadm-pkgs/rakudo-pkg/config.rpm.txt?distro=el&codename=9' > /tmp/nxadm-pkgs-rakudo-pkg.repo
 sudo dnf config-manager --add-repo '/tmp/nxadm-pkgs-rakudo-pkg.repo'
 sudo dnf --refresh -y install rakudo-pkg
+# Both rakudo and zef need to be added to the path
 /opt/rakudo-pkg/bin/add-rakudo-to-path
+/opt/rakudo-pkg/bin/install-zef
+# Ensure current environment matches
 source ~/.bash_profile
 # Verify raku is in the path
 which raku
-# Verify zef is in the path - if it is, skip to the next section
+# Verify zef is in the path
 which zef
-/opt/rakudo-pkg/bin/install-zef
-source ~/.bash_profile
 ```
-
-You will be prompted to add `.raku/bin` to your path. You can do this via the following command:
-
-```bash
-tee -a ~/.profile << 'EOF'
-export PATH=~/.raku/bin:$PATH
-EOF
-```
-
-After that, run `source` to continue using the binary in your running session with:
-
-```bash
-source ~/.bash_profile
-```
-
 #### Pulling down and running a remote script
 
 ```bash
 curl https://rakubrew.org/install-on-perl.sh | sh
 echo 'eval "$(~/.rakubrew/bin/rakubrew init Bash)"' >> ~/.bashrc
 eval "$(~/.rakubrew/bin/rakubrew init Bash)"
-rakubrew download moar-2026.02
-```
-
-### Install Raku on aarch64
-
-There are not yet package repositories available for aarch64, thus manual compiling is necessary at this time:
-
-```bash
-sudo dnf -y group install "Development Tools"
-curl https://rakubrew.org/install-on-perl.sh | sh
-echo 'eval "$(~/.rakubrew/bin/rakubrew init Bash)"' >> ~/.bashrc
-eval "$(~/.rakubrew/bin/rakubrew init Bash)"
-rakubrew build moar-2026.02
-rakubrew build zef
+# Verify latest version
+rakubrew download moar-2026.05
 ```
 
 ### Install Raku on RISC-V
