@@ -90,7 +90,7 @@ Maybe you have found a broken link or incorrect information while exploring the 
 
 1. Review changes
 
-    Now you can review what your changes, line by line. If you missed anything, back up to the previous page and correct it again (you will have to start over), then click Propose Changes again.
+    Now you can review your changes, line by line. If you missed anything, back up to the previous page and correct it again (you will have to start over), then click Propose Changes again.
 
     Once the doc is the way you want it, click the green button that says Create Pull Request (PR). This provides one more chance to double check your changes and confirm the doc is ready.
 
