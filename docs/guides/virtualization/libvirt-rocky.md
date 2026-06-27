@@ -2,23 +2,28 @@
 title: Setting Up libvirt on Rocky Linux
 author: Howard Van Der Wal
 contributors: Steven Spencer 
-tested with: 9.5
+ai_contributors: Gemma 4 (gemma-4-31B-it-UD-Q4_K_XL)
+tested with: 9, 10
 tags:
 - libvirt
 - kvm
 - virtualization
 ---
 
+## AI usage
+
+This document adheres to the [AI contribution policy found here.](../contribute/ai-contribution-policy.md) If you find any errors in the instructions, please let us know.
+
 ## Introduction
 
-[libvirt](https://libvirt.org/) is an incredible virtualization API that allows for the virtualization of almost any operating system of your choice with the power of KVM as the hypervisor, and QEMU as the emulator.
+libvirt^1^ is an incredible virtualization API that allows for the virtualization of almost any operating system of your choice with the power of KVM as the hypervisor, and QEMU as the emulator.
 
-This document will provide the instructions for setting up libvirt on Rocky Linux 9.
-
+This document will provide the instructions for setting up libvirt on Rocky Linux 9 and 10. Where steps differ between the two versions, these are clearly marked.
+ 
 ## Prerequisites
 
-* A 64 bit machine running Rocky Linux 9.
-* Ensure the enabling of virtualization in your BIOS settings. If the following command returns output, that means enabling of virtualization is complete:
+* A machine running Rocky Linux 9 and 10.
+* Ensure you enable virtualization in your BIOS settings. If the following command returns output, virtualization has been successfully enabled:
 
 ```bash
 sudo grep -e 'vmx' /proc/cpuinfo
@@ -38,9 +43,20 @@ sudo dnf install -y epel-release
 sudo dnf install -y bridge-utils virt-top libguestfs-tools bridge-utils virt-viewer qemu-kvm libvirt virt-manager virt-install
 ```
 
+!!! note
+    The `virt-manager` package has been deprecated and is no longer available in Rocky Linux 10 (it remains available in Rocky Linux 9). For Rocky Linux 10, you should install the following packages instead and enable the `cockpit` service:
+
+    ```bash
+    sudo dnf install -y bridge-utils virt-top libguestfs-tools bridge-utils virt-viewer qemu-kvm libvirt virt-install
+    sudo dnf install -y cockpit cockpit-machines
+    sudo systemctl enable --now cockpit.socket
+    ```
+
+    After installation, you can manage your VMs by navigating to the Cockpit console at `https://<your-host>:9090`
+
 ## libvirt user setup
 
-* Add your user to the `libvirt` group. This enables the management of your VMs and use commands such as `virt-install` as a non-root user:
+* Add your user to the `libvirt` group. This enables the management of your VMs and allows you to use commands such as `virt-install` as a non-root user:
 
 ```bash
 sudo usermod -aG libvirt $USER
@@ -49,7 +65,7 @@ sudo usermod -aG libvirt $USER
 * Activate the `libvirt` group by using the `newgrp` command:
 
 ```bash
-sudo newgrp libvirt
+newgrp libvirt
 ```
 
 * Enable and start the `libvirtd` service:
@@ -63,23 +79,23 @@ sudo systemctl enable --now libvirtd
 * Check the current interfaces in use and note down the main interface with an Internet connection:
 
 ```bash
-sudo nmcli connection show
+nmcli connection show
 ```
 
 * Delete the interface connected to the Internet and any virtual bridge connections currently present:
 
 ```bash
-sudo nmcli connection delete <CONNECTION_NAME>
+nmcli connection delete <CONNECTION_NAME>
 ```
 
 !!! warning
 
-    Make sure you have direct access to the machine. If you are configuring the machine over SSH, the connection will be severed after deleting the main interface connection.
+    Make sure you have direct access to the machine. If you are configuring the machine over SSH, the connection will be severed after deleting the main interface connection. While you can run the below commands (up to "nmcli connection up") via a BASH script on a remote system, this is risky and ideally, having another way to connect to the system via a direct or console connection is the best approach.
 
 * Create the new bridge connection:
 
 ```bash
-sudo nmcli connection add type bridge autoconnect yes con-name <VIRTUAL_BRIDGE_CON-NAME> ifname <VIRTUAL_BRIDGE_IFNAME>
+nmcli connection add type bridge autoconnect yes con-name <VIRTUAL_BRIDGE_CON-NAME> ifname <VIRTUAL_BRIDGE_IFNAME>
 ```
 
 * Assign a static IP address:
@@ -91,25 +107,25 @@ sudo nmcli connection modify <VIRTUAL_BRIDGE_CON-NAME> ipv4.addresses <STATIC_IP
 * Assign a gateway address:
 
 ```bash
-sudo nmcli connection modify <VIRTUAL_BRIDGE_CON-NAME> ipv4.gateway <GATEWAY_IP>
+nmcli connection modify <VIRTUAL_BRIDGE_CON-NAME> ipv4.gateway <GATEWAY_IP>
 ```
 
 * Assign a DNS address:
 
 ```bash
-sudo nmcli connection modify <VIRTUAL_BRIDGE_CON-NAME> ipv4.dns <DNS_IP>
+nmcli connection modify <VIRTUAL_BRIDGE_CON-NAME> ipv4.dns <DNS_IP>
 ```
 
 * Add the bridge slave connection:
 
 ```bash
-sudo nmcli connection add type bridge-slave autoconnect yes con-name <MAIN_INTERFACE_WITH_INTERNET_ACCESS_CON-NAME> ifname <MAIN_INTERFACE_WITH_INTERNET_ACCESS_IFNAME> master <VIRTUAL_BRIDGE_CON-NAME>
+nmcli connection add type bridge-slave autoconnect yes con-name <MAIN_INTERFACE_WITH_INTERNET_ACCESS_CON-NAME> ifname <MAIN_INTERFACE_WITH_INTERNET_ACCESS_IFNAME> master <VIRTUAL_BRIDGE_CON-NAME>
 ```
 
 * Start the bridge connection:
 
 ```bash
-sudo nmcli connection up <VIRTUAL_BRIDGE_CON-NAME>
+nmcli connection up <VIRTUAL_BRIDGE_CON-NAME>
 ```
 
 * Add the `allow all` line to `bridge.conf`:
@@ -120,10 +136,37 @@ allow all
 EOF
 ```
 
-* Restart the `libvirtd` service:
+* Enable and start the `libvirtd` service:
 
 ```bash
-sudo systemctl restart libvirtd
+sudo systemctl enable --now libvirtd
+```
+
+## Installing and running VMs outside of /var/lib/libvirt/ for Rocky Linux 10
+
+```bash
+# Grant read and traversal access to the directory where you are storing your ISOs
+sudo setfacl -R -m u:qemu:rx <ISO_DIRECTORY>
+sudo setfacl -d -m u:qemu:rx <ISO_DIRECTORY>
+
+# Configure SELinux for read access
+sudo semanage fcontext -a -t virt_image_t "<ISO_DIRECTORY>os(/.*)?"
+sudo restorecon -Rv <ISO_DIRECTORY>
+
+# 1. Grant traversal access to the home directory
+sudo setfacl -m u:qemu:x <HOME_DIRECTORY>
+
+# 2. Grant access to your images directory where you will store the VMs
+sudo setfacl -m u:qemu:rwx <IMAGES_DIRECTORY>
+
+# 3. Ensure new files created in the directory inherit these permissions
+sudo setfacl -d -m u:qemu:rwx <IMAGES_DIRECTORY>
+
+# 4. Define the SELinux context for the directory and its contents
+sudo semanage fcontext -a -t virt_image_t "<IMAGES_DIRECTORY>(/.*)?"
+
+# 5. Apply the SELinux context
+sudo restorecon -Rv <IMAGES_DIRECTORY>
 ```
 
 ## Virtual machine installation
@@ -134,13 +177,13 @@ sudo systemctl restart libvirtd
 sudo chown -R $USER:libvirt /var/lib/libvirt/
 ```
 
-* You can create a virtual machine on the command line by using the `virt-install` command. For example, to create a Rocky Linux 9.5 Minimal VM, you would run the following command:
+* You can create a virtual machine on the command line by using the `virt-install` command. For example, to create a Rocky Linux 9.8 VM, you can run the following command:
 
 ```bash
-virt-install --name Rocky-Linux-9 --ram 4096 --vcpus 4 --disk path=/var/lib/libvirt/images/rocky-linux-9.img,size=20 --os-variant rocky9 --network bridge=virbr0,model=virtio --graphics none --console pty,target_type=serial --extra-args 'console=ttyS0,115200n8' --location ~/isos/Rocky-9.5-x86_64-minimal.iso
+virt-install --name Rocky-Linux-9 --ram 4096 --vcpus 4 --disk path=/var/lib/libvirt/images/rocky-linux-9.img,size=20 --os-variant rocky9 --network bridge=virbr0,model=virtio --graphics none --console pty,target_type=serial --extra-args 'console=ttyS0,115200n8' --location ~/isos/Rocky-9.8-x86_64-dvd.iso
 ```
 
-* For those that want to manage their VMs via a GUI, `virt-manager` is the perfect tool.
+* For those that want to manage their VMs via a GUI, `virt-manager` is the perfect tool for Rocky Linux 9. For Rocky Linux 10, Cockpit is now the standard after `virt-manager` was deprecated.
 
 ## How to shutdown a virtual machine
 
@@ -168,4 +211,8 @@ virsh undefine --domain <YOUR_VM_NAME> --nvram
 
 ## Conclusion
 
-* libvirt provides many possibilities and allows you to install and manage your virtual machines with ease. If you have further additions or alterations to this document you would like to share, the author kindly invites you to do so.
+* libvirt allows you to install and manage your virtual machines with ease, alongside extensive XML editing options, secureboot, cloud-init support, and more.
+
+## References
+
+1. "libvirt.org" by the libvirt project [https://libvirt.org/index.html](https://libvirt.org/index.html)
