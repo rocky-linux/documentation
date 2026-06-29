@@ -22,7 +22,7 @@ jobs:
 
           echo "FILES=$FILES" >> $GITHUB_OUTPUT
       - name: check urls
-        uses: urlstechie/urlchecker-action@v1
+        uses: urlstechie/urlchecker-action@master
         with:
           subfolder: .
           file_types: .en.md,.md
