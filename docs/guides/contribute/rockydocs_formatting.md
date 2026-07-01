@@ -429,7 +429,7 @@ Some special characters such as &copy; are generally not superscripted, while ot
 
 To force superscript, surround what you want superscripted with `^`.
 
-Specify subscript by surrounding your text with the `~` tag (H~2~0 is `H~2~0`); as noted earlier, it is not used nearly as much.
+Specify subscript by surrounding your text with the `~` tag (H~2~0 is `H~2~0`); as noted earlier, it is not used nearly as much as superscript.
 
 ### Superscript for references
 
