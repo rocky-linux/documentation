@@ -384,15 +384,15 @@ When using this method, the automatic line feed is also suppressed.
 
 ## Keyboard
 
-Another way to add as much clarity as possible to your documents is to show the correct way to enter keys on a keyboard. In Markdown, do this by surrounding the key or keys with double plus signs (`++`), like `++key++`. For instance to show that you need to hit the Esc key in your document, you would use `++Esc++`. To indicate pressing multiple keys add a `+` between them, like this: `++Ctrl+F4++`. For keys which aren't defined (for instance, to indicate a mystery function key, `Fx`, below), put your definition in quotes (`++Ctrl+"Fx"++`). To specify simultaneous key presses add "simultaneously," "at the same time," or a similar phrase to your instructions. Here is an example of a keyboard instruction in your editor:
+Another way to add as much clarity as possible to your documents is to show the correct way to enter keys on a keyboard. In Markdown, do this by surrounding the key or keys with double plus signs (`++`), like `++key++`. For instance to show that you need to hit the Esc key in your document, you would use `++esc++`. To indicate pressing multiple keys add a `+` between them, like this: `++ctrl+F4++`. For keys which aren't defined (for instance, to indicate a mystery function key, `Fx`, below), put your definition in quotes (`++ctrl+"Fx"++`). To specify simultaneous key presses add "simultaneously," "at the same time," or a similar phrase to your instructions. Here is an example of a keyboard instruction in your editor:
 
 ```text
-A workstation-type installation (with a graphical interface) starts this interface on terminal 1. Since Linux is multi-user, it is possible to connect several users simultaneously to different **physical terminals** (TTYs) or **virtual terminals** (PTSs). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using ++Alt+"Fx"++ from the command line or ++Ctrl+Alt+"Fx"++.
+A workstation-type installation (with a graphical interface) starts this interface on terminal 1. Since Linux is multi-user, it is possible to connect several users simultaneously to different **physical terminals** (TTYs) or **virtual terminals** (PTSs). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using ++alt+"Fx"++ from the command line or ++ctrl+alt+"Fx"++.
 ```
 
 Here is how that renders when displayed:
 
-A workstation-type installation (with a graphical interface) starts this interface on terminal 1. Since Linux is multi-user, it is possible to connect several users simultaneously to different **physical terminals** (TTYs) or **virtual terminals** (PTSs). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using ++Alt+"Fx"++ from the command line or ++Ctrl+Alt+"Fx"++.
+A workstation-type installation (with a graphical interface) starts this interface on terminal 1. Since Linux is multi-user, it is possible to connect several users simultaneously to different **physical terminals** (TTYs) or **virtual terminals** (PTSs). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using ++alt+"Fx"++ from the command line or ++ctrl+alt+"Fx"++.
 
 A list of accepted keyboard commands [in this document](https://facelessuser.github.io/pymdown-extensions/extensions/keys/#key-map-index).
 
