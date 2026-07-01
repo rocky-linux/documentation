@@ -95,7 +95,7 @@ Admonitions are special visual "boxes" that call attention to important facts an
 | custom ^1^ | always displays text in a blue box                        |
 | custom ^2^ | displays text in the color of the box of the chosen type  |
 
-As noted in custom <sub>1</sub> above, admonitions are open-ended. Add a custom title to any admonition type to get the box color you want for a specific admonition, as noted in custom <sub>2</sub> above.
+As noted in custom ^1^ above, admonitions are open-ended. Add a custom title to any admonition type to get the box color you want for a specific admonition, as noted in custom <sub>2</sub> above.
 
 An admonition is always entered in this way:
 
