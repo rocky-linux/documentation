@@ -11,7 +11,9 @@ tags:
 
 # First-Time Contributor Guide
 
-*Everybody starts somewhere. If this is the first time you have contributed to open source documentation on GitHub, congratulations on taking this step. We can not wait to see what you have to say!* For best results, read [our style guide](style_guide.md) which includes several other document links to help you learn best-practices for documentation.
+*Everybody starts somewhere. If this is the first time you have contributed to open source documentation on GitHub, congratulations on taking this step. We can not wait to see what you have to say!*
+
+For best results read [our style guide](style_guide.md), which includes several other links to help you learn documentation best practices.
 
 ## Git and GitHub
 
