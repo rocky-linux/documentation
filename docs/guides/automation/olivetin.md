@@ -41,26 +41,20 @@ To follow this guide you will need:
 OliveTin is an active project with continuous bug-fixes and improvements, so it is a good idea to install the latest version for your architecture. Pre-built RPMs are available for most architectures.
 
 1. Go to the [OliveTin GitHub releases page here](https://github.com/OliveTin/OliveTin/releases/).
-
-1. Click the "Assets" arrow for the most recent version, and then at the bottom of the shown list, click "Show all 36 assets."
-
-1. From the list, select the RPM version for your architecture (amd64, arm64, risc64).
-
-1. Right-click that version and copy the link.
-
-1. Type `wget` and then paste the content of the URL you copied into your `wget` command. Replace `[release_version]` with the release and `[arch]` with your architecture:
+2. Click the "Assets" arrow for the most recent version, and then at the bottom of the shown list, click "Show all 36 assets."
+3. From the list, select the RPM version for your architecture (amd64, arm64, risc64).
+4. Right-click that version and copy the link.
+5. Type `wget` and then paste the content of the URL you copied into your `wget` command. Replace `[release_version]` with the release and `[arch]` with your architecture:
 
     ```bash
     wget https://github.com/OliveTin/OliveTin/releases/download/[release_version]/OliveTin_linux_[arch].rpm
     ```
 
-Then install the app with:
+6. Then install the app with this, remembering to replace the URL with your actual URL:
 
-```bash
-sudo rpm -i OliveTin_linux_[arch].rpm
-```
-
-Remember to replace this with your actual RPM name.
+    ```bash
+    sudo rpm -i OliveTin_linux_[arch].rpm
+    ```
 
 OliveTin can run as a normal `systemd` service. Do not enable the service yet. You need to set up your configuration file first.
 
