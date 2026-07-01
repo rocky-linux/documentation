@@ -95,7 +95,7 @@ Admonitions are special visual "boxes" that call attention to important facts an
 | custom ^1^ | always displays text in a blue box                        |
 | custom ^2^ | displays text in the color of the box of the chosen type  |
 
-As noted in custom <sub>1</sub> above, admonitions are open-ended. Add a custom title to any admonition type to get the box color you want for a specific admonition, as noted in custom <sub>2</sub> above.
+As noted in custom ^1^ above, admonitions are open-ended. Add a custom title to any admonition type to get the box color you want for a specific admonition, as noted in custom ^2^ above.
 
 An admonition is always entered in this way:
 
@@ -402,9 +402,9 @@ A list of accepted keyboard commands [in this document](https://facelessuser.git
 
 ## Forcing line breaks
 
-There are times when a simple ++Enter++ on the keyboard will not give you a new line in Markdown. This sometimes occurs when bulleted items contain many formatting characters. The suggestion is to add a line break to better format text as well. In cases like these, you need to add two spaces to the end of the line where you want a new line.  Since spaces will not be visible in some Markdown editors, this example shows the spaces being entered:
+There are times when a simple ++enter++ on the keyboard will not give you a new line in Markdown. This sometimes occurs when bulleted items contain many formatting characters. The suggestion is to add a line break to better format text as well. In cases like these, you need to add two spaces to the end of the line where you want a new line.  Since spaces will not be visible in some Markdown editors, this example shows the spaces being entered:
 
-* **A bullet item with extra formatting** ++Space+Space++
+* **A bullet item with extra formatting** ++space+space++
 * **Another item**
 
 ## Superscript, subscript, and special symbols
