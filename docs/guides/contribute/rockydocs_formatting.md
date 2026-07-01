@@ -384,15 +384,15 @@ When using this method, the automatic line feed is also suppressed.
 
 ## Keyboard
 
-Another way to add as much clarity as possible to your documents is to show the correct way to enter keys on a keyboard. In Markdown, do this by surrounding the key or keys with double plus signs (`++`). Do this with `++key++`. For instance, to represent that you need to hit the escape key in your document, you would use `++escape++`. When you need to indicate the pressing of multiple keys, add a `+` between them like this: `++ctrl+f4++`. For keys that aren't defined (for instance, we are indicating a mystery function key, `Fx` below), put your definition in quotes (`++ctrl+"Fx"++`). If requiring simultaneous key pressing, add "simultaneously," "at the same time," or a similar phrase to your instructions. Here is an example of a keyboard instruction in your editor:
+Another way to add as much clarity as possible to your documents is to show the correct way to enter keys on a keyboard. In Markdown, do this by surrounding the key or keys with double plus signs (`++`), like `++key++`. For instance to show that you need to hit the Esc key in your document, you would use `++Esc++`. To indicate pressing multiple keys add a `+` between them, like this: `++Ctrl+F4++`. For keys which aren't defined (for instance, to indicate a mystery function key, `Fx`, below), put your definition in quotes (`++Ctrl+"Fx"++`). To specify simultaneous key presses add "simultaneously," "at the same time," or a similar phrase to your instructions. Here is an example of a keyboard instruction in your editor:
 
 ```text
-A workstation-type installation (with a graphical interface) starts this interface on terminal 1. Since Linux is multi-user, it is possible to connect several users simultaneously to different **physical terminals** (TTYs) or **virtual terminals** (PTSs). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using ++alt+"Fx"++ from the command line or ++ctrl+alt+"Fx"++.
+A workstation-type installation (with a graphical interface) starts this interface on terminal 1. Since Linux is multi-user, it is possible to connect several users simultaneously to different **physical terminals** (TTYs) or **virtual terminals** (PTSs). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using ++Alt+"Fx"++ from the command line or ++Ctrl+Alt+"Fx"++.
 ```
 
 Here is how that renders when displayed:
 
-A workstation-type installation (with a graphical interface) starts this interface on terminal 1. Since Linux is multi-user, it is possible to connect several users simultaneously to different **physical terminals** (TTYs) or **virtual terminals** (PTSs). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using ++alt+"Fx"++ from the command line or ++ctrl+alt+"Fx"++.
+A workstation-type installation (with a graphical interface) starts this interface on terminal 1. Since Linux is multi-user, it is possible to connect several users simultaneously to different **physical terminals** (TTYs) or **virtual terminals** (PTSs). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using ++Alt+"Fx"++ from the command line or ++Ctrl+Alt+"Fx"++.
 
 A list of accepted keyboard commands [in this document](https://facelessuser.github.io/pymdown-extensions/extensions/keys/#key-map-index).
 
@@ -402,9 +402,9 @@ A list of accepted keyboard commands [in this document](https://facelessuser.git
 
 ## Forcing line breaks
 
-There are times when a simple ++enter++ on the keyboard will not give you a new line in Markdown. This sometimes occurs when bulleted items contain many formatting characters. The suggestion is to add a line break to better format text as well. In cases like these, you need to add two spaces to the end of the line where you want a new line.  Since spaces will not be visible in some Markdown editors, this example shows the spaces being entered:
+There are times when a simple ++Enter++ on the keyboard will not give you a new line in Markdown. This sometimes occurs when bulleted items contain many formatting characters. The suggestion is to add a line break to better format text as well. In cases like these, you need to add two spaces to the end of the line where you want a new line.  Since spaces will not be visible in some Markdown editors, this example shows the spaces being entered:
 
-* **A bullet item with extra formatting** ++space+space++
+* **A bullet item with extra formatting** ++Space+Space++
 * **Another item**
 
 ## Superscript, subscript, and special symbols
@@ -424,12 +424,12 @@ Here is how all the above looks in your Markdown code:
 * copyright and trademark symbols, like ^&copy;^, ^TM^ or ^&trade;^, ^&reg;^
 * as notation for references, such as this^1^, this^2^, and this^3^
 
-Some special characters, such as &copy; are generally not superscript, while others such as &trade;, are.
+Some special characters such as &copy; are generally not superscripted, while others such as &trade; are.
 ```
 
-To force superscript, you surround what you want superscripted with `^`.
+To force superscript, surround what you want superscripted with `^`.
 
-Enter subscript by surrounding your text with the `~` tag (H~2~0 is `H~2~0`), and as noted earlier, it is not used nearly as much in writing.
+Specify subscript by surrounding your text with the `~` tag (H~2~0 is `H~2~0`); as noted earlier, it is not used nearly as much.
 
 ### Superscript for references
 
