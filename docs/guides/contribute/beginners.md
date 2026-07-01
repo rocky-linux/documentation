@@ -29,7 +29,7 @@ Markdown is an easy language that allows for the inclusion of formatting, code, 
 
 ## Local repository editor
 
-To create a local repository, first find and install a Markdown editor that works with your computer and operating system. Here are some options, but there are others. Use what you know.
+To create a local repository, first find and install an IDE (Integrated Development Environment -- a programmer's editor) which works with your computer and operating system -- hopefully one which understands Markdown formatting. Here are some options, but there are others. Use what you know.
 
 - [ReText](https://github.com/retext-project/retext) - Free, cross-platform, and open source
 - [Zettlr](https://www.zettlr.com/) - Free, cross-platform, and open source
@@ -40,15 +40,17 @@ To create a local repository, first find and install a Markdown editor that work
 
 ## Create a local repository
 
-Once you have a Markdown editor installed, follow instructions to connect it to your GitHub account and download your repository to your local machine. Every time you prepare to update a document, follow these steps to sync your local and online forks with the main branch to ensure you are working with the most current version:
+Once you have an IDE installed, follow its instructions to connect it to your GitHub account and download the Rocky Linux Documentation repository to your local machine. Every time you prepare to update a document, first follow these steps to sync your local and online forks with the main branch to ensure you are working with the most current version:
 
 1. Within GitHub, sync your fork of the documentation repository with the main branch.
-2. Follow your Markdown editor’s instructions to sync your current fork with your local machine.
-3. Inside your Markdown editor, open the document you want to change.
+2. Follow your IDE’s instructions to sync your current fork with your local machine.
+3. Inside your IDE, open the document you want to change.
 4. Change the document.
 5. Save.
-6. Commit your changes within your editor, which should sync your local repository with your online fork.
+6. Commit your changes within your IDE, which should sync your local repository with your online fork.
 7. Within GitHub, find the updated document in your fork and create a Pull Request to merge it with the main document.
+
+If you're using the `git` command instead of an IDE, you can download the Rocky Linux documentation to a local directory with `git clone https://github.com/rocky-linux/documentation`.
 
 ## Submit an update
 
