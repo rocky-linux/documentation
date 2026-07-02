@@ -66,9 +66,9 @@ directory or file control:
 | options                  | description |
 | :---                     | :---        |
 | --include=FILE_PATTERN   | Searches only files that match FILE_PATTERN. Wildcard characters for file names support *, ?, [], [^], [-], {..}, {,} |
-| --exclude=FILE_PATTERN   | Skips files and directories matching FILE_PATTERN. Wildcard characters for file names support *, ?, [], [^], [-], {..}, {,}  |
+| --exclude=FILE_PATTERN   | Skips files matching FILE_PATTERN. Wildcard characters for file names support *, ?, [], [^], [-], {..}, {,}  |
 | --exclude-dir=PATTERN    | Excludes the specified directory name. Directory name support *, ?, [], [^], [-], {..}, {,} |
-| --exclude-from=FILE      | Excludes the specified directory from the file content. |
+| --exclude-from=FILE      | Excludes the specified file from the file content |
 
 ## Examples of usage
 
