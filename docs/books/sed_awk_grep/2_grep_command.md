@@ -8,7 +8,7 @@ tags:
 
 # `grep` command
 
-The `grep` command filters the content of single or multiple files. Some variants of this command tool exist, such as `egrep (grep -E)` and `fgrep (grep -f)`. For information not covered, see [the `grep` manual](https://www.gnu.org/software/grep/manual/ "grep manual").
+The `grep` command filters the content of single or multiple files. Some variants of this command tool exist, such as `egrep (grep -E)` and `fgrep (grep -f)`. For information not covered, see [the grep manual page(s)](https://www.gnu.org/software/grep/manual/).
 
 The usage of the `grep` command is:
 
