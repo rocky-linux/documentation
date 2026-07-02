@@ -25,7 +25,7 @@ The options are mainly divided into four parts:
 * content line control
 * directory or file control
 
-match control：
+match control:
 
 | options                | description                                             |
 |------------------------|---------------------------------------------------------|
