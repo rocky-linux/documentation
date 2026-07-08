@@ -8,7 +8,7 @@ tags:
 
 # `grep` command
 
-The `grep` command filters the content of single or multiple files. Some variants of this command tool exist, such as `egrep (grep -E)` and `fgrep (grep -f)`. For information not covered, see [the `grep` manual](https://www.gnu.org/software/grep/manual/ "grep manual").
+The `grep` command filters the content of single or multiple files. Some variants of this command tool exist, such as `egrep (grep -E)` and `fgrep (grep -f)`. For information not covered, see [the grep manual page(s)](https://www.gnu.org/software/grep/manual/).
 
 The usage of the `grep` command is:
 
@@ -25,7 +25,7 @@ The options are mainly divided into four parts:
 * content line control
 * directory or file control
 
-match control：
+match control:
 
 | options                | description                                             |
 |------------------------|---------------------------------------------------------|
@@ -66,9 +66,9 @@ directory or file control:
 | options                  | description |
 | :---                     | :---        |
 | --include=FILE_PATTERN   | Searches only files that match FILE_PATTERN. Wildcard characters for file names support *, ?, [], [^], [-], {..}, {,} |
-| --exclude=FILE_PATTERN   | Skips files and directories matching FILE_PATTERN. Wildcard characters for file names support *, ?, [], [^], [-], {..}, {,}  |
+| --exclude=FILE_PATTERN   | Skips files matching FILE_PATTERN. Wildcard characters for file names support *, ?, [], [^], [-], {..}, {,}  |
 | --exclude-dir=PATTERN    | Excludes the specified directory name. Directory name support *, ?, [], [^], [-], {..}, {,} |
-| --exclude-from=FILE      | Excludes the specified directory from the file content. |
+| --exclude-from=FILE      | Excludes the specified file from the file content |
 
 ## Examples of usage
 
