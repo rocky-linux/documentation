@@ -16,7 +16,10 @@ jobs:
         run: |
           git fetch origin ${{ github.base_ref }}
 
-          FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD \
+          # Create a merge base for proper merge comparison
+          git merge-base --is ancestor origin/${{ github.base_ref }} HEAD || git merge-base origin/${{ github.base_ref }} HEAD > /dev/null
+
+          FILES=$(git diff --name-only origin/${{ github.base_ref }}..HEAD \
             | grep -E '^docs/.*\.(md|en\.md)$' \
             | paste -sd "," -)
 
