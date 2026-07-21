@@ -1,7 +1,11 @@
 ---
 title: QA Richtlinien
 author: Trevor Cooper
-revision_date: 2026-04-17
+contributors:
+tested_with:
+tags:
+  - Softwaretest
+revision_date: 2026-05-08
 render_macros: true
 ---
 
@@ -10,4 +14,3 @@ In diesem Abschnitt werden die Richtlinien erläutert, die das Testteam für all
 Alle Richtlinien sind auf der linken Seite dieser Seite aufgeführt.
 
 {% include "teams/testing/content_bottom.md" %}
-
