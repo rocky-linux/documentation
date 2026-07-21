@@ -440,7 +440,7 @@ opcache.interned_strings_buffer=8
 opcache.max_accelerated_files=4000
 ```
 
-Where:
+Où :
 
 - `opcache.memory_consumption` corresponds to the amount of memory needed for the opcache (increase this until obtaining a correct hit ratio).
 - `opcache.interned_strings_buffer` is the amount of strings to cache.
