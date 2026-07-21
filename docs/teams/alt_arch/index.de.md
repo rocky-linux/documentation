@@ -4,10 +4,10 @@ Fortsetzung folgt...<small>
 🌐 Übersetzungen: 
 <a href="https://crowdin.com/project/rockydocs/de">crowdin.com/project/rockydocs</a>
 <br/>
-🌍 Übersetzer:
+🌍 Übersetzer: 
 <a href="https://crowdin.com/project/rockydocs/activity-stream">rockydocs/activity-stream</a>
-, <a href="https://crowdin.com/project/rockylin3uxorg/activity-stream">rockylinux.org</a>
+, <a href="https://crowdin.com/project/rockylinuxorg/activity-stream">rockylinux.org</a>
 <br/>
-🖋 Mitwirkende:
+🖋 Mitwirkende: 
 <a href="https://github.com/rocky-linux/documentation?tab=readme-ov-file#mattermost">github.com/rocky-linux</a>
 </small>
