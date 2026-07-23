@@ -1,7 +1,12 @@
 ---
 title: openQA – openqa-cli POST — Beispiele
 author: Trevor Cooper
-revision_date: 2026-04-17
+contributors: Lukas Magauer
+tested_with:
+tags:
+  - Softwaretest
+  - openQA
+revision_date: 2026-05-08
 rc:
   prod: Rocky Linux
   level: Final
@@ -13,8 +18,6 @@ rc:
   r10date: 20250707
 render_macros: true
 ---
-
-# openqa-cli POST-Beispiele
 
 Diese Seite bietet einen kurzen Überblick über einige grundlegende `openqa-cli` `POST`-Beispiele.
 
@@ -66,7 +69,7 @@ Zusätzlich zu den oben beschriebenen [Basic POSTs](#basic-post) gibt es weitere
 - PXE-Installation von verschiedenen Netzwerkquellen
 - Installation in verschiedenen Sprachen
 
-Die Standard-POST-Anfragen für diese Test-Suites ähneln sehr den oben genannten grundlegenden POST-Anfragen und werden im Folgenden dargestellt...
+Die Standard-`POST`-Anfragen für diese Test-Suites ähneln sehr den oben genannten Basic-POST-Anfragen und werden im Folgenden gezeigt...
 
 ### FLAVOR=dvd-iso
 
@@ -84,16 +87,16 @@ $ openqa-cli api -X POST isos ISO=Rocky-{{ rc.r9 }}-x86_64-dvd.iso ARCH=x86_64 \
 
 ## Sammlung von Testsuiten nach BUILD
 
-Eine Besonderheit von openQA ist, dass für eine bestimmte Jobgruppe Testsuiten, die denselben `BUILD`-Identifikator verwenden, in einer einzigen Ansicht in der Web-Benutzeroberfläche zusammengefasst werden.
+Eine Besonderheit von openQA ist, dass für eine bestimmte Jobgruppe Test-Suites, die denselben `BUILD`-Identifikator verwenden, in einer einzigen Ansicht in der Web-Benutzeroberfläche zusammengefasst werden.
 
 ![openQA Home View...](../../../../assets/teams/testing/openqa_home_view.png){ loading=lazy }
 
-Daher werden die oben gezeigten Beispiele, die alle `BUILD={{ rc.r9date }}-Rocky-{{ rc.r9 }}-x86_64.0` verwenden, alle in einer einzigen Ansicht angezeigt. Diese Ansicht ist außerdem über eine vorhersehbare URI zugänglich, beispielsweise [`https://openqa.rockylinux.org/tests/overview?build={{ rc.r9date }}-Rocky-{{ rc.r9 }}-x86_64.0`](https://openqa.rockylinux.org/tests/overview?build={{ rc.r9date }}-Rocky-{{ rc.r9 }}-x86_64.0), wie unten dargestellt...
+Daher werden die oben gezeigten Beispiele, die alle `BUILD={{ rc.r9date }}-Rocky-{{ rc.r9 }}-x86_64.0` verwenden, alle in einer einzigen Ansicht angezeigt. Zudem ist diese Ansicht über eine vorhersehbare URI erreichbar, zum Beispiel [`https://openqa.rockylinux.org/tests/overview?build={{ rc.r9date }}-Rocky-{{ rc.r9 }}-x86_64.0`](https://openqa.rockylinux.org/tests/overview?build=20250604-Rocky-9-x86_64.0), wie unten gezeigt...
 
 ![openQA Build View...](../../../../assets/teams/testing/openqa_build_view.png){ loading=lazy }
 
 ## Referenzen
 
-[openQA-Documentation](https://open.qa/documentation/)
+[openQA Documentation](https://open.qa/documentation/)
 
 {% include 'teams/testing/content_bottom.md' %}
