@@ -36,7 +36,7 @@ No Rocky Linux, queremos tornar o site de documentação o mais acessível poss�
 1. Localização da interface do site: ao escolher outro idioma, por exemplo Francês, você notará que a interface, como os botões de navegação 'Próximo' e 'Anterior', será exibida no idioma selecionado.
 1. Conteúdo: tradução do conteúdo é uma [tarefa](https://crowdin.com/project/rockydocs/activity-stream) [contínua](https://crowdin.com/project/rockydocs/activity-stream) (e significativa). Ainda nem todo o conteúdo foi traduzido para todos os idiomas. As páginas que já tiverem sido traduzidas (para o idioma selecionado) serão exibidas nesse idioma; as que não tiverem tradução, serão exibidas no idioma padrão, o inglês. Se você deseja contribuir com a comunidade por meio de traduções, a equipe de documentação terá o prazer de contar com sua ajuda — veja abaixo como participar.
 
-!!! nota
+!!! note "Nota"
 
     Nem todas as funcionalidades podem estar disponíveis em todos os idiomas, essa é uma limitação dos módulos do MkDocs utilizados pelo site.
 
