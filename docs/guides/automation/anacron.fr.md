@@ -1,5 +1,5 @@
 ---
-title: anacron - Automatisation de tâches
+title: anacron – Automatisation de tâches
 author: tianci li
 contributors: Steven Spencer, Ganna Zhyrnova
 update: 2021-10-20
@@ -11,7 +11,7 @@ update: 2021-10-20
 - Savoir comment utiliser votre éditeur favori pour modifier le fichier de configuration (par exemple *vim*) dans la ligne de commande.
 - Comprendre la gestion des paquets RPM.
 
-## Prérequis
+## Conditions supplémentaires
 
 - Vous avez des connaissances de base en bash, Python ou autres outils de script ou de programmation, et vous voulez exécuter le script automatiquement.
 - Vous êtes connecté en tant qu'utilisateur root ou pouvez accéder à root avec `su - root`.
