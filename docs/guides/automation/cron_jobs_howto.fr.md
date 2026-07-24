@@ -1,5 +1,5 @@
 ---
-title: cron - Automatisation de Tâches
+title: cron – Automatisation de Tâches
 author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested on: 8.5
@@ -20,7 +20,7 @@ tags:
 
 - Connaissances de base de bash, python ou d'autres outils de programmation et le désir d'avoir un script exécuté automatiquement
 - Que vous puissiez être utilisateur root ou que vous ayez la possibilité d'utiliser `sudo -s`  
-  ** (Vous pouvez exécuter certains scripts dans vos propres répertoires en tant que votre propre utilisateur, Dans ce cas, le passage à root n'est pas nécessaire)**.
+  ** (vous pouvez exécuter certains scripts dans vos propres répertoires en tant que votre propre utilisateur, dans ce cas, le passage à root n'est pas nécessaire)**.
 
 ## Introduction
 
