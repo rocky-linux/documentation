@@ -14,7 +14,7 @@ tags:
 
 **"pattern space" and "hold space"**: An area of memory where data is processed and stored.
 
-For information not covered, review [the `sed` manual](https://www.gnu.org/software/sed/manual/ "sed manual").
+For information not covered, review [the `sed` manual page(s)](https://www.gnu.org/software/sed/manual/).
 
 The usage of the command is:
 
@@ -51,18 +51,18 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 | x                      | Exchange the contents of the hold and pattern spaces |
 | l                      | List out the current line in a "visually unambiguous" form |
 | n N                    | Read/append the next line of input into the "pattern space" |
-| w FILENAME             | Write the current pattern space to FILENAME       |
+| w FILENAME             | Write the current "pattern space" to FILENAME       |
 | !                      | negation |
 | &                      | Referencing a string that already matches |
 
 | Addresses    | description |
 | :---:        |  :---       |
-| first~step   | Use "first" to specify the first line, and 'step' to specify the step size. For example, outputting odd lines of text with `sed -n "1~2p" /etc/services` |
+| first~step   | Use "first" to specify the first line, and "step" to specify the step size. For example, outputting odd lines of text with `sed -n "1~2p" /etc/services` |
 | $            | Match the last line of text |
 | /regexp/     | Using regular expressions to match text lines |
 | number       | Specify line number  |
 | addr1,addr2  | Use line number positioning to match all lines from "addr1" to "addr2" |
-| addr1,+N     | Use line number positioning to match addr1 and the N lines following addr1  |
+| addr1,+N     | Use line number positioning to match "addr1" and the N lines following "addr1"  |
 
 ## Examples of usage
 
