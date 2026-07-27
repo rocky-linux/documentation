@@ -37,8 +37,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 |  d                     | Delete "pattern space". Start next cycle    |
 |  D                     | Delete the first line of the "pattern space" and start next  cycle |
 |  =                     | Print Line Number |
-| a \text                | Add one or more lines of content after the matching line. When adding multiple lines, all lines except the last line need to use "\" to indicate that the content has not ended
- |
+| a \text                | Add one or more lines of content after the matching line. When adding multiple lines, all lines except the last line need to use "\" to indicate that the content has not ended |
 | i \text                | Add one or more lines of content before the matching line. When adding multiple lines, all lines except the last line need to use "\" to indicate that the content is not ended |
 | c \text                | Replace matching lines with new text |
 | q                      | Immediately exit the `sed` script    |
@@ -222,16 +221,16 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
       Matches only "Three Digits" + "/udp".
 
       ```bash
-      Shell > cat /etc/services | sed -r -n '/[^0-9]([1-9]{3}\/udp)/p'
-      sunrpc          111/udp         portmapper rpcbind      # RPC 4.0 portmapper UDP
-      auth            113/udp         authentication tap ident
-      sftp            115/udp
-      uucp-path       117/udp
-      nntp            119/udp         readnews untp   # USENET News Transfer Protocol
-      ntp             123/udp                         # Network Time Protocol
-      netbios-ns      137/udp
-      netbios-dgm     138/udp
-      netbios-ssn     139/udp
+      Shell > cat /etc/services  | sed -r -n '/\s([1-9][0-9]{2}\/udp)/p' | sort -k 2
+      hostname        101/udp         hostnames       # usually from sri-nic
+      iso-tsap        102/udp                 # ISO-TSAP Class 0
+      gppitnp         103/udp                 # Genesis Point-to-Point Trans Net
+      acr-nema        104/udp                 # ACR-NEMA Digital Imag. & Comm. 300
+      csnet-ns        105/udp         cso
+      poppassd        106/udp                         # Eudora
+      #3com-tsmux     106/udp         poppassd
+      rtelnet         107/udp
+      snagas          108/udp                 # SNA Gateway Access Server
       ...
       ```
 
