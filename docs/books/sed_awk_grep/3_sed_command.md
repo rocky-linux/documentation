@@ -294,22 +294,22 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 
     | Syntax                               | Syntax description|
     | :---                                 | :---              |
-    | `sed 's/string/replace/g' FILENAME`  | **s**: All lines representing the content of the file. You can also specify the range of lines, for example: `sed '20,200s/netbios/TMP/g' /etc/services.  **g** (Global): If there is no g, This means that when multiple matching strings appear on a single line, only the first matching string will be replaced.   **/**: Delimiter style. You can also specify other styles, for example:`sed '20,200s?netbios?TMP?g' /etc/services` |
+    | `sed 's/string/replace/g' FILENAME`  | **s**: All lines representing the content of the file. You can also specify the range of lines, for example: `sed '20,200s/netbios/TMP/g' /etc/services`. **g** (Global): If there is no g, This means that when multiple matching strings appear on a single line, only the first matching string will be replaced. **/**: Delimiter style. You can also specify other styles, for example: `sed '20,200s?netbios?TMP?g' /etc/services` |
 
-    !!! tip
+    You can also use the replacement function in bash scripts.
 
-        Example in the bash script:
+    For example:
 
-        ```bash
-        Shell > vim /root/sedReplace.sh
-        #!/bin/bash
-        a="SELINUX=enforcing"
-        b="SELINUX=disabled"
+    ```bash
+    Shell > vim /root/sedReplace.sh
+    #!/bin/bash
+    a="SELINUX=enforcing"
+    b="SELINUX=disabled"
 
-        sed -i 's/'${a}'/'${b}'/g' /etc/selinux/config
-        # or
-        sed -i "s/${a}/${b}/g" /etc/selinux/config
-        ```
+    sed -i 's/'${a}'/'${b}'/g' /etc/selinux/config
+    # or
+    sed -i "s/${a}/${b}/g" /etc/selinux/config
+    ```
 
     * Replace and print
 
@@ -319,7 +319,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
       SSH             22/udp
       ```
 
-    * Use the "&" symbol to reference a string<a id="symbol"></a>
+    * Use the "&" symbol to reference a string
 
       ```bash
       Shell > sed -n '44,45s/ssh/&-SSH/gp' /etc/services
@@ -400,7 +400,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 
       **\t**: That is, a tab
 
-    * Replace all comment lines with blank space
+    * Replace all comment lines with blank lines
 
       ```bash
       Shell > cat /etc/services | sed -r 's/(^#.*)//g'
@@ -467,7 +467,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 
 4. Execute multiple times using the -e option
 
-    The following example:
+    The example is as follows:
 
     ```bash
     Shell > tail -n 10 /etc/services
@@ -484,7 +484,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 
     Shell > tail -n 10 /etc/services | sed  -e '1,3d' -e '/cloud/s/ping/PING/g'
     # or
-    Shell > tail -n 10 /etc/services | sed  '1,3d ; /cloud/s/ping/PING/g'      
+    Shell > tail -n 10 /etc/services | sed  '1,3d ; /cloud/s/ping/PING/g'
     edi_service     34567/udp               # dhanalakshmi.org EDI Service
     axio-disc       35100/tcp               # Axiomatic discovery protocol
     axio-disc       35100/udp               # Axiomatic discovery protocol
@@ -702,7 +702,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 
     * Print even text lines
 
-      First, read the first line, as an n command is present; the second line will be printed out, and so on.
+      First, read the first line. Because the `n` command is used, the second line will be printed, and so on.
 
       ```bash
       Shell > cat -n /root/test.txt | sed -n '{n;p}'
