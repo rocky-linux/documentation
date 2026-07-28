@@ -26,15 +26,17 @@ Les sections principales du site de documentation sont :
 * **Livres** : contiennent des informations plus détaillées concernant des sujets spécifiques.
 * **Labs** : c'est un retour à l'école, mais vous aimerez suivre ces tutoriels !
 * **Gemstones (pépites)** : quelques scripts communs ou conseils d'utilisation de commandes peuvent être partagés ici.
-* **Notes de version** : qui contiennent les notes de version de Rocky Linux et les informations de mise à jour de version.
-* **Rocky Linux** : lien vers la page d'accueil du site officiel.
+* **Desktop**: applications de bureau.
+* **Releases** : couvre les versions de Rocky Linux, les notes de version et les renseignements sur les mises à jour de version.
+* **Rocky Insights** couvre les annonces, les blogues, les liens et plus encore.
+* **Teams** : guides destinés au public des différentes équipes de Rocky Linux.
 
 ### Multilingue
 
 Dans l'équipe Rocky Linux, nous voulons rendre le site de documentation accessible à autant de monde que possible —  *la traduction dans différentes langues est importante pour cela*. Si vous cliquez sur le sélecteur de langue (symbole `文A`, `wén-A`) dans le menu supérieur, vous verrez les langues dans lesquelles le site est disponible. Il y a deux parties à cela :
 
 1. Traduction de l'interface du site web : si vous choisissez une autre langue, par exemple le Français, vous noterez que l'interface, par exemple les boutons de navigation `Suivant` et `Précédent` seront traduits.
-1. Contenu : [la traduction du contenu est une tâche](https://crowdin.com/project/rockydocs/activity-stream) (https://crowdin.com/project/rockydocs/activity-stream) [en cours](https://crowdin.com/project/rockydocs).
+2. Contenu : [la traduction du contenu est une tâche](https://crowdin.com/project/rockydocs/activity-stream) (https://crowdin.com/project/rockydocs/activity-stream) [en cours](https://crowdin.com/project/rockydocs).
 
 . Tout le contenu n'est pas encore traduit dans toutes les langues. Toutes les pages qui ont été traduites (dans la langue sélectionnée) seront vues dans la langue choisie, celles qui ne le sont pas encore se retrouveront dans la langue anglaise par défaut. Si vous voulez contribuer à la communauté par le biais des traductions, l'équipe de documentation sera ravie de faire votre connaissance, voir ci-dessous pour plus de détails.</li> </ol> 
    
