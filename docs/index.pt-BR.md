@@ -26,15 +26,17 @@ As principais seções do site de documentação são:
 * **Livros**: contêm informações mais detalhadas sobre uma área específica.
 * **Laboratório**: é como 'voltar à escola', mas esses tutoriais você vai gostar de fazer!
 * **Pedras Preciosas**: reúne dicas úteis sobre uso de scripts e comandos.
+* **Desktop**: desktop apps.
 * **Notas de Versão**: apresentam as notas de lançamento do Rocky Linux e as informações sobre atualizações de versão.
-* **Rocky Linux**: link para página inicial do site oficial.
+* **Rocky Insights** abrange comunicados, blogs, links e muito mais.
+* **Teams**: Guias públicos das diversas equipes do Rocky Linux.
 
 ### Múltiplos Idiomas
 
 No Rocky Linux, queremos tornar o site de documentação o mais acessível possível para todos,  *a tradução para diferentes idiomas é uma parte importante desse objetivo*. Se você clicar no seletor de idioma (ícone correspondente) no menu superior, verá os idiomas em que o site está disponível. Isso é composto por duas partes:
 
 1. Localização da interface do site: ao escolher outro idioma, por exemplo Francês, você notará que a interface, como os botões de navegação 'Próximo' e 'Anterior', será exibida no idioma selecionado.
-1. Conteúdo: tradução do conteúdo é uma [tarefa](https://crowdin.com/project/rockydocs/activity-stream) [contínua](https://crowdin.com/project/rockydocs/activity-stream) (e significativa). Ainda nem todo o conteúdo foi traduzido para todos os idiomas. As páginas que já tiverem sido traduzidas (para o idioma selecionado) serão exibidas nesse idioma; as que não tiverem tradução, serão exibidas no idioma padrão, o inglês. Se você deseja contribuir com a comunidade por meio de traduções, a equipe de documentação terá o prazer de contar com sua ajuda — veja abaixo como participar.
+2. Conteúdo: tradução do conteúdo é uma [tarefa](https://crowdin.com/project/rockydocs/activity-stream) [contínua](https://crowdin.com/project/rockydocs/activity-stream) (e significativa). Ainda nem todo o conteúdo foi traduzido para todos os idiomas. As páginas que já tiverem sido traduzidas (para o idioma selecionado) serão exibidas nesse idioma; as que não tiverem tradução, serão exibidas no idioma padrão, o inglês. Se você deseja contribuir com a comunidade por meio de traduções, a equipe de documentação terá o prazer de contar com sua ajuda — veja abaixo como participar.
 
 !!! note "Nota"
 
