@@ -371,7 +371,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
     * Multiple matches and replacements
 
         ```bash
-        Shell > cat /etc/services | sed 's/netbios/test1/g ; s/^#//d ; s/dhcp/&t2/g'
+        Shell > cat /etc/services | sed 's/netbios/test1/g ; s/^#//g ; s/dhcp/&t2/g'
         ```
 
     * Group replacement of regular expressions

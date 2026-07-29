@@ -28,7 +28,7 @@ The main sections of the documentation site are:
 * **Gemstones**: share some common script or command usage tips here.
 * **Desktop**: desktop applications.
 * **Releases**: covers Rocky Linux releases, release notes and version update information.
-* **Rocky Insights** covers announcements, blogs, links, and more.
+* **Rocky Insights**: covers announcements, blogs, links, and more.
 * **Teams**: public-facing guides from the various Rocky Linux teams.
 
 ### Multiple Languages
