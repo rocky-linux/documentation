@@ -17,13 +17,13 @@ Here are the current releases:
 | Rocky Linux 9   | Blue Onyx      | 2022-07-14 | 2027-05-31         | 2032-05-31         | 9.8 (2026-05-28)  |
 | Rocky Linux 10  | Red Quartz     | 2025-06-11 | 2030-05-31         | 2035-05-31         | 10.2 (2026-05-29) |
 
-!!! warning "Only the latest minor release of each major version is supported."
+!!! warning "Only the latest minor release of each major version is supported"
 
-    The release date, active support ends date, and the end of life date, refer to the major version. In order to remain in a supported state, you need to update your operating system to the latest minor release. No minor release is supported past the release of the next minor release. For instance, 8.9 is unsupported, whereas 8.10 is supported. You should always perform a `sudo dnf upgrade` when the next minor release is available. For more information, see the section on Timeline and terminology.
+    The release date, active support ends date, and the end of life date, refer to the major version. In order to remain in a supported state, you need to update your operating system to the latest minor release. No minor release is supported past the release of the next minor release. For instance, 8.9 is unsupported, whereas 8.10 is supported. You should always perform a `sudo dnf upgrade` when the next minor release is available. For more information, see the section on "Timeline and terminology".
 
 ## Rocky 10
 
-Rocky 10 (Code Name "Red Quartz") has general support until 31 May 2030 and security support through 31 May 2035. The supported architectures are x86_64_v3, riscv64, aarch64, ppc64le, and s390x.
+Rocky 10 (Codename "Red Quartz") has general support until 31 May 2030 and security support through 31 May 2035. The supported architectures are x86-64-v3, riscv64, aarch64, ppc64le, and s390x.
 
 | Release Number | General Availability Date | Kernel Version  |
 |----------------|---------------------------|-----------------|
@@ -33,7 +33,7 @@ Rocky 10 (Code Name "Red Quartz") has general support until 31 May 2030 and secu
 
 ## Rocky 9
 
-Rocky 9 (Code Name "Blue Onyx") has general support until 31 May 2027 and security support through 31 May 2032. The supported architectures are x86_64-v2, aarch64, ppc64le, and s390x.
+Rocky 9 (Codename "Blue Onyx") has general support until 31 May 2027 and security support through 31 May 2032. The supported architectures are x86-64-v2, aarch64, ppc64le, and s390x.
 
 | Release Number | General Availability Date | Kernel Version  |
 |----------------|---------------------------|-----------------|
@@ -49,7 +49,7 @@ Rocky 9 (Code Name "Blue Onyx") has general support until 31 May 2027 and securi
 
 ## Rocky 8
 
-Rocky 8 (Code Name "Green Obsidian") has general support until 1 May 2024 and security support through 01 May 2029. The supported architectures are x86_64 and aarch64.
+Rocky 8 (Codename "Green Obsidian") has general support until 31 May 2024 and security support through 31 May 2029. The supported architectures are x86_64 and aarch64.
 
 | Release Number | General Availability Date | Kernel Version  |
 | -------------- | ------------------------- | --------------- |
@@ -74,7 +74,11 @@ Throughout this page, you will see terms such as "major version" or "minor versi
 | Minor Version  | The number in the rightmost position of a version denotes the minor version. For example in the version "Rocky Linux 9.3", the "3" is the minor version. These updates come with version upgrades, rebases, new software and features. |
 | Release        | Release typically refers to a major version release, such as "Rocky Linux 9". It is typically assumed it is referring to the latest/current version of that release. |
 | Minor Release  | Used as "Minor Version" in most cases. |
-| Active Support | Active support, also known as "full support" is the period of time where minor releases come out every six (6) months. These provide new software, rebases, or other new features. When Active Support ends, a release receives maintenance-only updates. |
+| Active Support | Active Support (also known as "Full Support") is the period of time where minor releases come out every six (6) months. These provide new software, rebases, or other new features. When Active Support ends, a release receives maintenance-only updates. |
+| Security Support | Security Support (also known as "Maintenance Support"), it refers to the period after the end of "Active Support". |
+| General Availability | General Availability (GA) is a critical stage in the software lifecycle, where a product has completed all testing, is fully functional, and is officially released to all target users. Normally, GA does not refer to any specific version. |
+| Codename | A name used internally during the product development phase to identify different development versions or stages. |
+| End of Life  | In Rocky Linux, End of Life (EOL) refers to the product no longer receiving any form of updates or support. In some commercial software, EOL refers to stopping the sale of the software and then entering the EOS (End of Support) phase. |
 
 ### Timeline
 
