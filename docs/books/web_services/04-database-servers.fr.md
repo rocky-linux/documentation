@@ -1,7 +1,7 @@
 ---
 author:
 contributors:
-title: Chapitre 4. Serveurs de Base de Données
+title: Chapitre 4 Serveurs de Base de Données
 ---
 
 !!! info "Info"

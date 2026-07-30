@@ -1,7 +1,11 @@
 ---
 title: Lignes directrices
 author: Trevor Cooper
-revision_date: 2026-04-17
+contributors:
+tested_with:
+tags:
+  - test logiciel
+revision_date: 2026-05-08
 render_macros: true
 ---
 
@@ -10,4 +14,3 @@ Cette section détaille les lignes directrices établies par l'équipe de test c
 Toutes les consignes sont indiquées à gauche de cette page.
 
 {% include "teams/testing/content_bottom.md" %}
-
