@@ -1,5 +1,5 @@
 ---
-title: 主页
+title: Home
 ---
 
 # Rocky Linux 文档
