@@ -128,7 +128,7 @@ Lychee is not available in the Rocky Linux repositories, so install the binary d
 cd /tmp
 curl -sLO https://github.com/lycheeverse/lychee/releases/latest/download/lychee-x86_64-unknown-linux-gnu.tar.gz
 tar xzf lychee-x86_64-unknown-linux-gnu.tar.gz
-sudo mv lychee-x86_64-unknown-linux-gnu/lychee
+sudo mv lychee-x86_64-unknown-linux-gnu/lychee /usr/local/bin/
 sudo chmod +x /usr/local/bin/lychee
 rm -f lychee-x86_64-unknown-linux-gnu.tar.gz
 ```

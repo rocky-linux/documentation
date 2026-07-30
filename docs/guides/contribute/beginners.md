@@ -11,7 +11,9 @@ tags:
 
 # First-Time Contributor Guide
 
-*Everybody starts somewhere. If this is the first time you have contributed to open source documentation on GitHub, congratulations on taking this step. We can not wait to see what you have to say!* For best results, read [our style guide](style_guide.md) which includes several other document links to help you learn best-practices for documentation.
+*Everybody starts somewhere. If this is the first time you have contributed to open source documentation on GitHub, congratulations on taking this step. We cannot wait to see what you have to say!*
+
+For best results read [our style guide](style_guide.md), which includes several other links to help you learn documentation best practices.
 
 ## Git and GitHub
 
@@ -29,7 +31,7 @@ Markdown is an easy language that allows for the inclusion of formatting, code, 
 
 ## Local repository editor
 
-To create a local repository, first find and install a Markdown editor that works with your computer and operating system. Here are some options, but there are others. Use what you know.
+To create a local repository, first find and install an IDE (Integrated Development Environment -- a programmer's editor) which works with your computer and operating system -- hopefully one which understands Markdown formatting. Here are some options, but there are others. Use what you know.
 
 - [ReText](https://github.com/retext-project/retext) - Free, cross-platform, and open source
 - [Zettlr](https://www.zettlr.com/) - Free, cross-platform, and open source
@@ -40,15 +42,17 @@ To create a local repository, first find and install a Markdown editor that work
 
 ## Create a local repository
 
-Once you have a Markdown editor installed, follow instructions to connect it to your GitHub account and download your repository to your local machine. Every time you prepare to update a document, follow these steps to sync your local and online forks with the main branch to ensure you are working with the most current version:
+Once you have an IDE installed, follow its instructions to connect it to your GitHub account and download the Rocky Linux Documentation repository to your local machine. Every time you prepare to update a document, first follow these steps to sync your local and online forks with the main branch to ensure you are working with the most current version:
 
 1. Within GitHub, sync your fork of the documentation repository with the main branch.
-2. Follow your Markdown editor’s instructions to sync your current fork with your local machine.
-3. Inside your Markdown editor, open the document you want to change.
+2. Follow your IDE’s instructions to sync your current fork with your local machine.
+3. Inside your IDE, open the document you want to change.
 4. Change the document.
 5. Save.
-6. Commit your changes within your editor, which should sync your local repository with your online fork.
+6. Commit your changes within your IDE, which should sync your local repository with your online fork.
 7. Within GitHub, find the updated document in your fork and create a Pull Request to merge it with the main document.
+
+If you're using the `git` command instead of an IDE, you can download the Rocky Linux documentation to a local directory with `git clone https://github.com/rocky-linux/documentation`.
 
 ## Submit an update
 
@@ -56,44 +60,44 @@ Once you have a Markdown editor installed, follow instructions to connect it to 
 
 1. Start on the page you want to update.
 
-    Click the “Edit” pencil in the upper right corner of the document you want to update. This will take you to the original document on GitHub.
+   Click the “Edit” pencil in the upper right corner of the document you want to update. This will take you to the original document on GitHub.
 
-    The first time you contribute to the Rocky Linux (RL) repository, you will see a prompt with a green button to “**Fork** this **repository** and propose changes.” This creates a duplicate copy of the RL repository where you make your suggested edits. Click the green button and continue.
+   The first time you contribute to the Rocky Linux (RL) repository, you will see a prompt with a green button to “**Fork** this **repository** and propose changes.” This creates a duplicate copy of the RL repository where you make your suggested edits. Click the green button and continue.
 
 2. Make your changes
 
-    Follow the Markdown formatting. Perhaps there’s a missing word, or you need to fix the link on line 21, for example. Make the necessary change.
+   Follow the Markdown formatting. Perhaps there’s a missing word, or you need to fix the link on line 21, for example. Make the necessary change.
 
 3. Propose changes
 
-    At the bottom of the page, write a one-line description in the title of the block entitled, “**Propose changes”**. It is helpful, but not necessary, to reference the filename found at the top of the doc.
+   At the bottom of the page, write a one-line description in the title of the block entitled, “**Propose changes”**. It is helpful, but not necessary, to reference the filename found at the top of the doc.
 
-    If you updated a link within line 21 of the markdown text, you might say, "Update README.md with correct links."
+   If you updated a link within line 21 of the markdown text, you might say, "Update README.md with correct links."
 
-    **Note: Word your action in the present tense.**
+   **Note: Word your action in the present tense.**
 
-    Then click Propose changes, which will **Commit** your changes to a complete document within your forked repository.
+   Then click Propose changes, which will **Commit** your changes to a complete document within your forked repository.
 
 4. Review changes
 
-    You can now review your changes, line by line. Did you miss anything? Back up to the previous page and correct it again (you will have to start over), then click Propose Changes again.
+   You can now review your changes, line by line. Did you miss anything? Back up to the previous page and correct it again (you will have to start over), then click Propose Changes again.
 
-    Once the doc is the way you want it, click the green button that says Create Pull Request. This provides one more chance to double-check your changes and confirm the doc is ready.
+   Once the doc is the way you want it, click the green button that says Create Pull Request. This provides one more chance to double-check your changes and confirm the doc is ready.
 
 5. Create Pull Request (PR)
 
-    You completed all of your work so far in your own repository, with no opportunity to break the RL main repository. Next, you submit it to the documentation team to merge your version into the main version of the document.
+   You completed all of your work so far in your own repository, with no opportunity to break the RL main repository. Next, you submit it to the documentation team to merge your version into the main version of the document.
 
-    Click the big green button that says Create Pull Request. Good news, you still have not broken anything, because now it goes to the RL documentation team for review.
+   Click the big green button that says Create Pull Request. Good news, you still have not broken anything, because now it goes to the RL documentation team for review.
 
 6. Wait
 
-    Once the RL team gets your request, they will respond in one of three ways.
+   Once the RL team gets your request, they will respond in one of three ways.
 
     - Accept and merge your PR
     - Comment with feedback and ask for changes
     - Deny your PR with an explanation
 
-    The last response is unlikely. We really want to include your perspective here! If you have to make changes, you will suddenly understand why you need a local repository. The team can [talk you through](https://chat.rockylinux.org/rocky-linux/channels/documentation) what to do next. In good news, it’s still fixable. If you need to add or change your pull request, a team member will add them to the comment section.
+   The last response is unlikely. We really want to include your perspective here! If you have to make changes, you will suddenly understand why you need a local repository. The team can [talk you through](https://chat.rockylinux.org/rocky-linux/channels/documentation) what to do next. In good news, it’s still fixable. If you need to add or change your pull request, a team member will add them to the comment section.
 
-    Otherwise, the team will accept your request and merge it. Welcome to the team, you are officially a contributor now! Look for your name to show up on the all-contributors list at the bottom of the Contributor Guide in a few days.
+   Otherwise, the team will accept your request and merge it. Welcome to the team, you are officially a contributor now! Look for your name to show up on the all-contributors list at the bottom of the Contributor Guide in a few days.

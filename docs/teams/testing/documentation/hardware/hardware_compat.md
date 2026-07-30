@@ -39,7 +39,7 @@ Here we are only covering the features needed to install and upload to the datab
 Install EPEL if you have not done so already:
 
 ```bash
-dnf install -y epel-release
+sudo dnf install -y epel-release
 ```
 
 Install `hw-probe`:
