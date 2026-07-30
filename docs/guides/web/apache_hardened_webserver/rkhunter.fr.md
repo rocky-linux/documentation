@@ -24,7 +24,7 @@ Rootkit Hunter (`rkhunter`) est un outil bien connu pour vérifier les vulnérab
 - Maîtrise d'un éditeur de ligne de commande (nous utilisons `vi` dans nos exemples)
 - Être à l'aise avec la saisie de commandes à partir de la ligne de commande, la consultation de journaux et d'autres tâches générales d'administrateur de systèmes
 - Il est utile de comprendre ce qui peut déclencher une réponse à des fichiers modifiés sur le système de fichiers (comme les mises à jour de paquets)
-- Exécuter toutes les commandes en tant que root ou en tant qu'utilisateur normal avec `sudo`
+- Exécuter toutes les commandes en tant que `root` ou en tant qu'utilisateur normal avec `sudo`
 
 Ce document a été écrit à l'origine en conjonction avec les routines du serveur web Apache renforcé, mais il fonctionne également sur un serveur utilisant n'importe quel logiciel.
 
@@ -33,7 +33,7 @@ Ce document a été écrit à l'origine en conjonction avec les routines du serv
 1. installer `rkhunter`
 2. configurer `rkhunter`
 3. configurer le courrier électronique et s'assurer qu'il fonctionne correctement
-4. exécuter `rkhunter` manuellement pour générer une liste d'avertissements afin de tester vos paramètres de messagerie`(rkhunter --check`)
+4. exécuter `rkhunter` manuellement pour générer une liste d'avertissements afin de tester vos paramètres de messagerie (`rkhunter --check`)
 5. exécuter `rkhunter --propupd` pour générer un fichier `rkhunter.dat` que `rkhunter` utilisera à partir de maintenant comme base de référence pour les vérifications ultérieures.
 
 ## Installation de `rkhunter`
@@ -70,11 +70,11 @@ Recherche de :
 #MAIL-ON-WARNING=me@mydomain root@mydomain
 ```
 
-Supprimez la marque de commentaire et modifiez l'`adresse me@mydomain.com` pour qu'elle corresponde à votre adresse électronique.
+Supprimez la marque de commentaire et modifiez l'adresse `me@mydomain.com` pour qu'elle corresponde à votre propre adresse électronique.
 
 Remplacez `root@mydomain` par `root@whatever_the_server_name_is`.
 
-Vous voudrez probablement décommenter (et modifier en fonction de vos besoins) la ligne `MAIL-CMD` :
+Vous voudrez probablement aussi supprimer la marque de commentaire de la ligne `MAIL-CMD` (et la modifier selon vos besoins) :
 
 ```bash
 MAIL_CMD=mail -s "[rkhunter] Avertissements trouvés pour ${HOST_NAME}"
