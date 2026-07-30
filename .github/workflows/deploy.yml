@@ -1,8 +1,8 @@
 ---
-name: Build and Deploy (Fastly)
+name: Trigger docs.rockylinux.org deploy
 on:
   push:
-    branches: ['main']
+    branches: ['main', 'rocky-8', 'rocky-9']
   workflow_dispatch:
 
 jobs:
@@ -15,4 +15,5 @@ jobs:
         with:
           token: ${{ secrets.CROSS_REPO_PAT }}
           repository: rocky-linux/docs.rockylinux.org
-          event-type: deploy-staging
+          event-type: deploy-docs
+          client-payload: '{"repo": "${{ github.repository }}", "ref": "${{ github.ref_name }}", "sha": "${{ github.sha }}"}'
