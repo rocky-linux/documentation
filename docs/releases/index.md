@@ -89,7 +89,7 @@ Rocky Linux attempts to follow CentOS Stream development and Red Hat Enterprise 
 For a new Rocky Linux release, the following should be true:
 
 * New major version is released with support of ten (10) years, starting at `.0`.
-* Release will have five (5) years of minor version updates or "active support"
+* ‌Rocky Linux will have five (5) years of "Active Support" and five (5) years of "Security Support" over its ten-year lifecycle.
 
     * Each major version will come with two minor version releases a year: Every six (6) months
     * Minor version releases will come with new features, software rebases, and sometimes brand new software
@@ -104,14 +104,14 @@ For a new Rocky Linux minor version release, the following should be true:
 
 However, when the minor version is `.10`, this means:
 
-* Rocky Linux (and other Enterprise Linux derivatives) go into security maintenance for the next five (5) years.
+* Rocky Linux (and other RHEL-based downstream distributions) go into security maintenance for the next five (5) years.
 * This version of Rocky Linux will likely not receive new features, but new packages might appear occasionally.
 
-### Release schedule
+#### Release schedule
 
-Rocky releases new major version in the month of May, and bases this on Red Hat's life cycle policy. Every May and November, Rocky releases a new minor version for all supported releases, except those that have reached a minor version of ".10". Rocky Linux attempts to follow this system as closely as possible.
+Rocky releases new major version in the month of May, and bases this on Red Hat's life cycle policy. Every May and November, Rocky releases a new minor version for all supported releases, except those that have reached a minor version of ".10". The Rocky Linux team will do their best to follow this release schedule.
 
-Below is a general guideline (based on Red Hat documentation) for the "full support" cycle for Rocky Linux.
+The following is a general guideline to the Rocky Linux "Full Support" lifecycle, based on Red Hat documentation.
 
 | Version | Month    |
 |---------|----------|
@@ -133,7 +133,15 @@ Upon each new minor release, (`X.Y+1`), the previous version becomes unsupported
 
     `X.10` is the final minor release and marks the end of "active support". When it is released, that version of Rocky Linux is now in maintenance mode for the next five (5) years until End of Life, receiving only maintenance related updates. CentOS Stream X will also cease development upstream, marking that upstream's end of life.
 
-## Version policy
+#### General update timeline
+
+* Updates - On the premise that the software package packaging work is normal, there are no new dependencies added upstream, and the development team makes every effort, the update should be completed within 24-48 hours after the upstream release.
+* Minor releases - After the upstream releases a minor version, the team expects to take one week or more to complete the final release work. This expectation is based on the following premise: the development team will make every effort to complete the packaging process of the software package and pass the OpenQA and general testing of the testing team. As an open-source community, we cannot guarantee the GA date for minor versions.
+* Major releases - After the upstream is **ready**, our team will start packaging and testing the software package, and ultimately complete the construction and release of the image. As an open-source community, we cannot guarantee the GA date for major versions.
+
+## Policy
+
+### Version policy
 
 Rocky Linux attempts to follow closely with the updates of our upstreams CentOS Stream and Red Hat Enterprise Linux. This means that the Release Engineering team attempts releases as closely as possible after our upstreams.
 
@@ -143,13 +151,30 @@ Previous versions of packages will coexist in the repositories to allow a user t
 
     When a new minor release arrives, all previous updates/versions are *not* carried over and will be found in the [vault](https://dl.rockylinux.org/vault/).
 
-### General update timeline
+Most Linux distributions go through these version states or stages throughout their lifecycle:
 
-* Updates - assuming no build complications, unforeseen added upstream dependencies, and best effort by the development team, should happen within twenty-four (24) to forty-eight (48) hours following the upstream release.
-* Minor releases - The expectation is that Rocky Linux will build and release **at least a week (7 days)** after the upstream. This assumes that best effort allows the packages to build without any complications, and it passes the Testing Team's OpenQA and general testing. There is never a guaranteed release timetable.
-* Major releases - The expectation is that building and releasing these will happen **when they are ready**. Major releases have no guaranteed ETA.
+```
+Alpha --> ‌Beta --> RC (RC1, RC2, RC3 ...) --> GA --> EOL
+                                               |
+                                               |
+                                               ↓
+                                             Alpha --> ‌Beta --> RC (RC1, RC2, RC3 ...) --> GA --> EOL
+```
 
-## End of life and unsupported release or version policy
+Rocky Linux may release Beta versions that are very close to the upstream source code in some cases, mainly because:
+
+* Identify issues or bugs during the build process.
+* Linking the discovered issues to upstream.
+* Provided convenience for members of the testing team or other members of the community to download and test.
+
+When the status of the minor version changes to GA, it is not recommended or advisable for ordinary or experienced users to update from the Beta version to the minor version.
+
+The following updates are not supported:
+
+* Update the stable version of GA phase to Beta version.
+* Update the Beta version to the stable version at the GA stage.
+
+### Lifecycle policy
 
 A release or version of Rocky Linux becomes unsupported if:
 
@@ -158,23 +183,23 @@ A release or version of Rocky Linux becomes unsupported if:
 
 See below for examples of unsupported releases.
 
-### Example: An unsupported version
+**Example 1: An unsupported version**
 
-When a new Rocky Linux minor release arrives in May or November, the following is true:
+When a new Rocky Linux minor release arrives in May or November, the following contentis true:
 
 * The previous version is no longer supported by Release Engineering and the community.
 * The previous version is no longer updated and moves to the [vault](http://dl.rockylinux.org/vault/rocky/).
 * The previous version **does not** receive bug fix nor security updates.
 * **to maintain the supported status of your system** you need to run `sudo dnf upgrade`.
 
-### Example: An end of life release
+**Example 2: Reaching EOL stage**
 
-When a Rocky Linux release has reached its End of Life date typically after ten (10) years, the following is true:
+When a Rocky Linux release has reached its End of Life date typically after ten (10) years, the following contentis true:
 
 * The major version/release is no longer supported in full by Release Engineering and the community.
 * The team moves the final version of that release to the [vault](http://dl.rockylinux.org/vault/rocky/).
-* This release no longer receives updates **and is no longer supported**.
-* The recommendation is to install a supported Rocky Linux version and migrate your data.
+* This release will no longer receive any form of updates or maintenance.
+* Due to increased security risks, it is recommended that individuals or businesses install a supported version of Rocky Linux and migrate your data.
 
 If you cannot install a new system and migrate and you still need support for your system or systems, you might be able to find a support provider.
 
@@ -182,26 +207,14 @@ If you cannot install a new system and migrate and you still need support for yo
 
     Support providers will maintain their own packages and policies outside of the Rocky Linux ecosystem, and thus their policies *do not* apply here. The release is still considered EOL and unsupported by the Rocky Linux project. You should work with your support provider for any assistance.
 
-## Beta to stable policy
+### Major version update policy
 
-Rocky Linux might release beta versions when possible. These are typically close to our upstreams where reasonably possible. The team releases these specifically to find bugs or issues in our build process. This also helps correlate issues with our upstreams if they also have bugs. These version provide our Testing Team members and others in the community the ability to download and test.
+**Major version update**: It refers to the operation of upgrading the current major version to another major version.
 
-However, when the stable minor version releases, updating from the beta to the stable version is not recommended nor is it supported, even for experienced users.
+The Rocky Linux team does **not recommend** individuals or businesses to perform major version upgrade operations. 
 
-The following is unsupported:
+The tasks performed by each enterprise or individual when using Rocky Linux are quite different. If you use some tools for the major version migration, you may lose important data. The recommended approach is:
 
-* Updating from a stable release to beta release
-* Updating from a beta release to stable release
+* Back up your important data in the old operating system, then install a new operating system, and import the data according to the relevant methods.
 
-## Upgrade policy
-
-Upgrades from major version to major version are **NOT** supported by the Rocky Linux team. If you wish to perform upgrades between major releases, there is a tool called ELevate that might be able to help you. However:
-
-* The Rocky Linux team **does not** support this method of upgrading.
-* The only supported upgrade path is to backup your data, and perform a fresh install of the latest major release.
-
-!!! note
-
-    If you would like to see the project support major version upgrades, we encourage all interested parties to join our mattermost or our forums and open a conversation on the topic.
-
-If you have any questions or comments, please join the discussion [here](https://chat.rockylinux.org/rocky-linux/channels/documentation).
+If you have any questions, comments or suggestions regarding the upgrade operation of the main version, please join our [Mattermost](https://chat.rockylinux.org/rocky-linux/channels/documentation) for discussion.
