@@ -104,10 +104,10 @@ For a new Rocky Linux minor version release, the following should be true:
 
 However, when the minor version is `.10`, this means:
 
-* Rocky Linux (and other RHEL-based downstream distributions) go into security maintenance for the next five (5) years.
+* Rocky Linux (and other Enterprise Linux distributions) go into security maintenance for the next five (5) years.
 * This version of Rocky Linux will likely not receive new features, but new packages might appear occasionally.
 
-#### Release schedule
+### Release schedule
 
 Rocky releases new major version in the month of May, and bases this on Red Hat's life cycle policy. Every May and November, Rocky releases a new minor version for all supported releases, except those that have reached a minor version of ".10". The Rocky Linux team will do their best to follow this release schedule.
 
@@ -151,16 +151,6 @@ Previous versions of packages will coexist in the repositories to allow a user t
 
     When a new minor release arrives, all previous updates/versions are *not* carried over and will be found in the [vault](https://dl.rockylinux.org/vault/).
 
-Most Linux distributions go through these version states or stages throughout their lifecycle:
-
-```
-Alpha --> ‌Beta --> RC (RC1, RC2, RC3 ...) --> GA --> EOL
-                                               |
-                                               |
-                                               ↓
-                                             Alpha --> ‌Beta --> RC (RC1, RC2, RC3 ...) --> GA --> EOL
-```
-
 Rocky Linux may release Beta versions that are very close to the upstream source code in some cases, mainly because:
 
 * Identify issues or bugs during the build process.
@@ -183,7 +173,7 @@ A release or version of Rocky Linux becomes unsupported if:
 
 See below for examples of unsupported releases.
 
-**Example 1: An unsupported version**
+#### Example: An unsupported version
 
 When a new Rocky Linux minor release arrives in May or November, the following contentis true:
 
@@ -192,7 +182,7 @@ When a new Rocky Linux minor release arrives in May or November, the following c
 * The previous version **does not** receive bug fix nor security updates.
 * **to maintain the supported status of your system** you need to run `sudo dnf upgrade`.
 
-**Example 2: Reaching EOL stage**
+#### Example: Reaching end-of-life stage
 
 When a Rocky Linux release has reached its End of Life date typically after ten (10) years, the following contentis true:
 
@@ -207,13 +197,13 @@ If you cannot install a new system and migrate and you still need support for yo
 
     Support providers will maintain their own packages and policies outside of the Rocky Linux ecosystem, and thus their policies *do not* apply here. The release is still considered EOL and unsupported by the Rocky Linux project. You should work with your support provider for any assistance.
 
-### Major version update policy
+### Major version upgrade policy
 
-**Major version update**: It refers to the operation of upgrading the current major version to another major version.
+Major version upgrade refers to the operation of upgrading the current major version to another major version.
 
-The Rocky Linux team does **not recommend** individuals or businesses to perform major version upgrade operations. 
+The Rocky Linux team does **not recommend** performing major version upgrades. 
 
-The tasks performed by each enterprise or individual when using Rocky Linux are quite different. If you use some tools for the major version migration, you may lose important data. The recommended approach is:
+The tasks performed by Rocky Linux users are quite different. If you use some tools for the major version migration, you may lose important data. The recommended approach is:
 
 * Back up your important data in the old operating system, then install a new operating system, and import the data according to the relevant methods.
 
