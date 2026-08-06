@@ -26,15 +26,17 @@ Die Hauptbereiche der Dokumentationseite sind:
 * **Bücher**: enthalten detailliertere Informationen rund um einen bestimmten Bereich.
 * **Labs**: „Zurück zur Schule“, diese Tutorials werden Ihnen Spaß machen!
 * **Gems**: Hier werden nützliche Skripte und Tipps zur Verwendung von Befehlen vorgestellt.
-* **Release Notes**: enthalten Rocky Linux Release Notes und Versionsupdate Informationen.
-* **Rocky Linux**: Link zur Offiziellen Homepage.
+* **Desktop**: Desktop-Anwendungen
+* **Releases**: behandelt Rocky-Linux-Releases, Release-Notes und Informationen zu Versionsaktualisierungen.
+* **Rocky Insights**: umfasst Ankündigungen, Blogs, Links und mehr.
+* **Teams**: öffentlich zugängliche Leitfäden der verschiedenen Rocky-Linux-Teams.
 
 ### Multilingual
 
-Bei Rocky Linux wollen wir die Dokumentationsseite für jeden in seiner Lieblingssprache zugänglich  machen —  *deshalb sind Übersetzungen in verschiedenen Sprachen wesentlich*. Wenn Sie auf die Sprachauswahl (文A bzw. `wén-A` Icon) im oberen Menü klicken, sehen Sie die Sprachen, die zurzeit verfügbar sind: Dazu gibt es zwei Teile:
+Bei Rocky Linux möchten wir die Dokumentations-Website für alle so zugänglich wie möglich gestalten – *die Übersetzung in verschiedene Sprachen ist dabei ein wichtiger Bestandteil*. Wenn Sie auf die Sprachauswahl (文A bzw. `wén-A` Icon) im oberen Menü klicken, sehen Sie die Sprachen, die zurzeit verfügbar sind: Dazu gibt es zwei Teile:
 
 1. Lokalisierung der Webseiten-Schnittstelle: Wenn Sie eine andere Sprache wählen, zum Beispiel Français, werden Sie feststellen, dass die Schnittstelle, zum Beispiel die Navigatoren 'Weiter' und 'Vorheriger' übersetzt werden.
-1. Inhalt: Das Übersetzen von Inhalten ist eine [laufende](https://crowdin.com/project/rockydocs/activity-stream) (https://crowdin.com/project/rockydocs/activity-stream) [Aufgabe](https://crowdin.com/project/rockydocs). Noch nicht alle Inhalte sind in allen Sprachen übersetzt. Alle Seiten, die übersetzt wurden (in der ausgewählten Sprache) werden entsprechend dargestellt, diejenigen, die es noch nicht vollständig sind, werden in Englisch angezeigt. Wenn Sie der Community durch Übersetzungen helfen möchten, sind Sie sehr willkommen — siehe unten für weitere Details zur Vorgehensweise.
+2. Inhalt: Das Übersetzen von Inhalten ist eine [laufende](https://crowdin.com/project/rockydocs/activity-stream) (https://crowdin.com/project/rockydocs/activity-stream) [Aufgabe](https://crowdin.com/project/rockydocs). Noch nicht alle Inhalte sind in allen Sprachen übersetzt. Alle Seiten, die übersetzt wurden (in der ausgewählten Sprache) werden entsprechend dargestellt, diejenigen, die es noch nicht vollständig sind, werden in Englisch angezeigt. Wenn Sie der Community durch Übersetzungen helfen möchten, sind Sie sehr willkommen — siehe unten für weitere Details zur Vorgehensweise.
 
 !!! note "Anmerkung"
 
