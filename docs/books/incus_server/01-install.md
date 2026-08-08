@@ -45,12 +45,19 @@ dnf install dkms vim kernel-devel bash-completion
 
 ## Install Incus
 
-You will need the CRB repository available for some special packages and Neil Hanlon's COPR (Cool Other Package Repo):
+You will need the CRB repository available for some build packages and the COPR (Cool Other Package Repo):
 
 ```bash
 dnf config-manager --enable crb
-dnf copr enable neil/incus
+dnf copr enable ligenix/enterprise-qemu-spice
+dnf upgrade
 dnf install incus incus-tools
+```
+
+Alternatively, you can install the complete set of packages from the COPR with:
+
+```bash
+dnf install virt-manager
 ```
 
 Enable and start the service:
