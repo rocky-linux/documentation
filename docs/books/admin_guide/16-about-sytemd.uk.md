@@ -1,5 +1,5 @@
 ---
-title: Про systemd
+title: About systemd
 author: tianci li
 contributors: Steven Spencer
 tags:
@@ -9,120 +9,114 @@ tags:
   - System V
 ---
 
-# Основний огляд
+# Basic overview
 
-**`systemd`**, також відомий як **системний демон**, є різновидом програмного забезпечення ініціалізації в операційній системі GNU/Linux.
+**`systemd`**, also known as **system daemon**, is a kind of init software under GNU/Linux operating system.
 
-Мета розробки:
+Purpose of development:
 
-- забезпечення кращої структури для представлення залежностей між службами
-- реалізація паралельного запуску служб при ініціалізації системи
-- зменшення витрат оболонки та заміна ініціалізації у стилі SysV
+- to provide a better framework for representing dependencies between services
+- implements parallel startup of services at system initialization
+- reduces shell overhead and replaces SysV style init
 
-**`systemd`** надає низку системних компонентів для операційної системи GNU/Linux для уніфікації конфігурації служби та поведінки в усіх дистрибутивах GNU/Linux та усунення відмінностей у їх використанні.
+**`systemd`** provides a series of system components for the GNU/Linux operating system to unify the service configuration and behavior across GNU/Linux distributions and eliminate differences in their usage.
 
 З 2015 року більшість дистрибутивів GNU/Linux прийняли `systemd` для заміни традиційних програм ініціалізації, таких як SysV. Варто зазначити, що багато концепцій і дизайнів `systemd` натхненні **launchd** від Apple Mac OS.
 
 ![init-compare](./images/16-init-compare.jpg)
 
-Поява `systemd` викликала масові суперечки в спільноті відкритих джерел.
+The emergence of `systemd` caused massive controversy in the open source community.
 
-Схвальні відгуки:
+Praising voices:
 
-- Розробники та користувачі похвалили `systemd` за усунення відмінностей у використанні між GNU/Linux і забезпечення стабільнішого та швидшого готового рішення.
+- Developers and users have praised `systemd` for eliminating the usage differences between GNU/Linux and providing a more stable and faster out-of-the-box solution.
 
-Критика:
+Critical voices:
 
-- `systemd` бере на себе надто багато компонентів операційної системи, порушуючи принцип UNIX KISS (**K**eep **I**t **S**imple, **S**tupid).
-- З точки зору коду, `systemd` є надто складним і громіздким, містить понад мільйон рядків коду, що зменшує зручність обслуговування та збільшує площу атаки.
+- `systemd` takes over too many components on the operating system, violating UNIX's KISS (**K**eep **I**t **S**imple, **S**tupid) principle.
+- From a code perspective, `systemd` is too complex and cumbersome, with over a million lines of code, thus reducing maintainability and increasing attack surface.
 
-Офіційний веб-сайт - [https://systemd.io/](https://systemd.io/)
-Репозиторій GitHub - [https://github.com/systemd/systemd](https://github.com/systemd/systemd)
+Official website - [https://systemd.io/](https://systemd.io/)
+The GitHub repository - [https://github.com/systemd/systemd](https://github.com/systemd/systemd)
 
-## Історія розвитку
+## Development history
 
-У 2010 році двоє програмістів Red Hat, Леннарт Поеттерінг і Кей Сіверс, розробили першу версію `systemd`, щоб замінити традиційний SysV.
+In 2010, two Red Hat software engineers, Lennart Poettering and Kay Sievers, developed the first version of `systemd` to replace the traditional SysV.
 
 ![Lennart Poettering](./images/16-Lennart-Poettering.jpg)
 
 ![Kay Sievers](./images/16-Kay-Sievers.jpg)
 
-У травні 2011 року Fedora 15 стала першим дистрибутивом GNU/Linux, який увімкнув `systemd` за замовчуванням, тоді була названа причина:
+In May 2011, Fedora 15 became the first GNU/Linux distribution to enable `systemd` by default, with the reason given at the time:
 
 > systemd надає потужні можливості розпаралелювання, використовує активацію сокета та D-Bus для запуску служб, пропонує запуск демонов на вимогу, відстежує процеси за допомогою контрольних груп Linux, підтримує знімок і відновлення стану системи, підтримує точки монтування та автоматичного монтування та реалізує потужна логіка керування послугами на основі транзакційних залежностей. Він може працювати як додаткова заміна sysvinit.
 
-У жовтні 2012 року Arch Linux завантажувався з `systemd` за замовчуванням.
+In October 2012, Arch Linux booted with `systemd` by default.
 
-З жовтня 2013 року по лютий 2014 року Технічний комітет Debian мав тривалу дискусію щодо списку розсилки Debian, зосереджуючись на тому, «який init має використовувати Debian 8 Jessie як системний за замовчуванням», і врешті вирішив використати `systemd`.
+From October 2013 to February 2014, the Debian Technical Committee had a lengthy debate on the Debian mailing list, focusing on "which init should be used by Debian 8 Jessie as the system default" and finally decided to use `systemd`.
 
-У лютому 2014 року Ubuntu прийняла `systemd` як свій init і відмовилася від власного Upstart.
+In February 2014, Ubuntu adopted `systemd` as its init and abandoned its own Upstart.
 
-У серпні 2015 року `systemd` почав надавати оболонки входу, які можна викликати через `machinectl`.
+In August 2015, `systemd` began providing login shells callable through `machinectl`.
 
 У 2016 році `systemd` виявила вразливість безпеки, яка дозволяє будь-якому непривілейованому користувачеві виконувати «атаку відмови в обслуговуванні» на `systemd`.
 
 У 2017 році `systemd` виявив ще одну вразливість безпеки - **CVE-2017-9445**. Віддалені зловмисники можуть викликати вразливість переповнення буфера та виконати зловмисний код через зловмисні відповіді DNS.
 
-!!! info "примітка"
+!!! info
 
-```
-**Переповнення буфера**: це дефект конструкції програми, який записує у вхідний буфер програми, щоб викликати його переповнення (зазвичай більше даних, ніж максимальний обсяг даних, який може зберігатися в буфері), таким чином порушуючи роботу програми., скориставшись випадком перерви та отримавши контроль над програмою чи навіть системою.
-```
+    **Buffer overflow**: It is a program design flaw that writes to the input buffer of a program to make it overflow (usually more data than the maximum amount of data that can be stored in the buffer), thus disrupting the program operation, taking advantage of the occasion of interruption, and obtaining control of the program or even the system.
 
-## Архітектурний дизайн
+## Architecture design
 
-Тут автор вибрав як приклад `systemd` той, який використовується Tizen від Samsung для ілюстрації його архітектури.
+Here, the author chose as an example of `systemd` the one used by Samsung's Tizen to illustrate its architecture.
 
 ![Tizen-systemd](./images/16-tizen-systemd.png)
 
-!!! info "примітка"
+!!! info
 
-```
-**Tizen** – мобільна операційна система на основі ядра Linux, яка підтримується Linux Foundation, в основному розроблена та використовується компанією Samsung.
-```
+    **Tizen** - A mobile operating system based on the Linux kernel, supported by the Linux Foundation, mainly developed and used by Samsung.
 
-!!! info "примітка"
+!!! info
 
-```
-Деякі «цілі» `systemd` не належать до компонентів `systemd`, наприклад `telephony`, `bootmode`, `dlog`, `tizen service`, вони належать Tizen.
-```
+    Some "targets" of `systemd` do not belong to `systemd` components, such as `telephony`, `bootmode`, `dlog`, `tizen service`, they belong to Tizen.
 
 `systemd` використовує модульний дизайн. Багато перемикачів конфігурації існують під час компіляції, щоб визначити, що буде, а що не буде створено, подібно до модульної конструкції ядра Linux. Після компіляції `systemd` може мати до 69 двійкових виконуваних файлів, які виконують такі завдання, зокрема:
 
 - `systemd` працює з PID 1 і забезпечує запуск якомога більшої кількості паралельних служб. Це також керує послідовністю завершення роботи.
-- Програма `systemctl` надає інтерфейс користувача для керування послугами.
-- Для забезпечення сумісності також надається підтримка сценаріїв SysV і LSB.
-- Порівняно з SysV, керування службою systemd і звітність можуть виводити більш детальну інформацію.
-- Монтуючи та демонтуючи файлові системи по рівнях, `systemd` може безпечніше каскадувати змонтовані файлові системи.
-- `systemd` забезпечує керування базовою конфігурацією компонента, включаючи ім’я хоста, час і дату, мову, журнал тощо.
-- Забезпечує керування сокетами.
-- Таймери `systemd` забезпечують функції, подібні до запланованих завдань cron.
-- Підтримка створення та керування тимчасовими файлами, включаючи видалення.
+- The `systemctl` program provides a user interface for service management.
+- Support for SysV and LSB scripts are also provided to ensure compatibility.
+- Compared to SysV, `systemd` service management and reporting can output more detailed information.
+- By mounting and unmounting file systems in layers, `systemd` can cascade mounted file systems more securely.
+- `systemd` provides management of basic component configuration, including hostname, time and date, locale, log, and so on.
+- Provides management of sockets.
+- `systemd` timers provide functions similar to cron scheduled tasks.
+- Support for the creation and management of temporary files, including deletion.
 - Інтерфейс D-Bus дозволяє запускати сценарії, коли пристрій вставлено або вилучено. Таким чином, усі пристрої, незалежно від того, підключаються чи ні, можна розглядати як пристрої, що підключаються та працюють, що значно спрощує обробку пристроїв.
-- Інструмент аналізу послідовності запуску можна використовувати для визначення місцезнаходження служби, яка потребує найбільше часу.
-- Управління журналами та службовими журналами.
+- The startup sequence analysis tool can be used to locate the service that takes the longest time.
+- The management of logs and service logs.
 
-**`systemd` — це не просто програма ініціалізації, це великий програмний пакет, який бере на себе багато системних компонентів.**
+**`systemd` is not just an initialization program, it is a large software suite that takes over many system components.**
 
-## `systemd` як PID 1
+## `systemd` as PID 1
 
-Монтування `systemd` визначається за допомогою вмісту файлу **/etc/fstab**, включаючи розділ підкачки.
+The `systemd` mount is determined by using the contents of the **/etc/fstab** file, including the swap partition.
 
-Конфігурація "ціль" за замовчуванням визначається за допомогою **/etc/systemd/system/default.target**.
+The default "target" configuration is determined by using **/etc/systemd/system/default.target**.
 
 Раніше з ініціалізацією SysV існувала концепція **runlevel**. З `systemd` також існує пов’язана таблиця порівняння сумісності, як показано нижче (перераховано в порядку спадання за кількома залежностями):
 
-| цілі systemd                      | SystemV runlevel | цільовий псевдонім (м'яке посилання) | опис                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| :-------------------------------- | :--------------- | :------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| default.target    |                  |                                                         | Ця «ціль» завжди є м’яким посиланням на «multi-user.target» або «graphical.target». `systemd` завжди використовує "default.target" для запуску системи. Увага, будь ласка! Це не може бути програмне посилання на "halt.target", "poweroff.target" або "reboot.target". |
-| graphical.target  | 5                | runlevel5.target                        | GUI середовище.                                                                                                                                                                                                                                                                                                                                                                                         |
-|                                   | 4                | runlevel4.target                        | Зарезервований і невикористовуваний. У програмі ініціалізації SysV runlevel4 такий самий, як runlevel3. У програмі ініціалізації `systemd` користувачі можуть створювати та налаштовувати цю "ціль" для запуску локальних служб без зміни типового "multi-user.target".                                                                                 |
-| multi-user.target | 3                | runlevel3.target                        | Повноцінний багатокористувацький режим командного рядка.                                                                                                                                                                                                                                                                                                                                                |
-|                                   | 2                |                                                         | У SystemV це стосується багатокористувацького режиму командного рядка, який не включає службу NFS.                                                                                                                                                                                                                                                                                                      |
-| rescue.target     | 1                | runlevel1.target                        | У SystemV це називається **однокористувацький режим**, який запускає мінімальні служби та не запускає інші додаткові програми чи драйвери. В основному використовується для відновлення операційної системи. Він схожий на режим безпеки операційної системи Windows.                                                                                                   |
-| emergency.target  |                  |                                                         | В основному еквівалент "rescue.target".                                                                                                                                                                                                                                                                                                                                                 |
-| reboot.target     | 6                | runlevel6.target                        | перезавантаження.                                                                                                                                                                                                                                                                                                                                                                                       |
-| poweroff.target   | 0                | runlevel0.target                        | Закриває операційну систему та вимикає живлення.                                                                                                                                                                                                                                                                                                                                                        |
+| systemd targets                   | SystemV runlevel | target alias (soft link) | description                                                                                                                                                                                                                                                                                                                                                                                                             |
+| :-------------------------------- | :--------------- | :------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| default.target    |                  |                                             | Ця «ціль» завжди є м’яким посиланням на «multi-user.target» або «graphical.target». `systemd` завжди використовує "default.target" для запуску системи. Увага, будь ласка! Це не може бути програмне посилання на "halt.target", "poweroff.target" або "reboot.target". |
+| graphical.target  | 5                | runlevel5.target            | GUI environment.                                                                                                                                                                                                                                                                                                                                                                                        |
+|                                   | 4                | runlevel4.target            | Зарезервований і невикористовуваний. У програмі ініціалізації SysV runlevel4 такий самий, як runlevel3. У програмі ініціалізації `systemd` користувачі можуть створювати та налаштовувати цю "ціль" для запуску локальних служб без зміни типового "multi-user.target".                                                                                 |
+| multi-user.target | 3                | runlevel3.target            | Full multi-user command line mode.                                                                                                                                                                                                                                                                                                                                                                      |
+|                                   | 2                |                                             | In SystemV, it refers to the multi-user command line mode that does not include the NFS service.                                                                                                                                                                                                                                                                                                        |
+| rescue.target     | 1                | runlevel1.target            | У SystemV це називається **однокористувацький режим**, який запускає мінімальні служби та не запускає інші додаткові програми чи драйвери. В основному використовується для відновлення операційної системи. Він схожий на режим безпеки операційної системи Windows.                                                                                                   |
+| emergency.target  |                  |                                             | Basically equivalent to "rescue.target".                                                                                                                                                                                                                                                                                                                                                |
+| reboot.target     | 6                | runlevel6.target            | reboot.                                                                                                                                                                                                                                                                                                                                                                                                 |
+| poweroff.target   | 0                | runlevel0.target            | Shut down the operating system and power off.                                                                                                                                                                                                                                                                                                                                                           |
 
 ```bash
 Shell > find  / -iname  runlevel?\.target -a -type l -exec ls -l {} \;
@@ -140,7 +134,7 @@ lrwxrwxrwx. 1 root root 41 12月 23 2022 /etc/systemd/system/default.target -> /
 
 Кожна «ціль» має набір залежностей, описаних у файлі конфігурації: служби, необхідні для запуску хосту GNU/Linux на певному рівні виконання. Чим більше функцій у вас є, тим більше залежностей вимагає «ціль». Наприклад, середовище GUI вимагає більше послуг, ніж режим командного рядка.
 
-З довідкової сторінки (`man 7 bootup`) ми можемо переглянути діаграму завантаження `systemd`:
+From the man page (`man 7 bootup`), we can consult the boot diagram of `systemd`:
 
 ```text
  local-fs-pre.target
@@ -190,20 +184,20 @@ lrwxrwxrwx. 1 root root 41 12月 23 2022 /etc/systemd/system/default.target -> /
 
 - "sysinit.target" і "basic.target" є контрольними точками під час процесу запуску. Хоча однією з цілей розробки `systemd` є паралельний запуск системних служб, необхідно запустити "цілі" певних служб і функцій перед запуском інших служб і "цілей"
 - Після завершення «одиниць», від яких залежить «sysinit.target», запуск перейде до фази «sysinit.target». Ці «одиниці» можна запускати паралельно, зокрема:
-  - Монтування файлової системи
-  - Налаштування файлу підкачки
-  - Запуск udev
-  - Встановлення початкового значення генератора випадкових змін
-  - Запуск низькорівневої служби
-  - Налаштувати служби шифрування
-- "sysinit.target" запустить усі низькорівневі служби та "модулі", необхідні для основних функцій операційної системи, які необхідні перед переходом у фазу "basic.target".
+  - Mount the file system
+  - Set up the swap file
+  - Start udev
+  - Set Random Generator seed
+  - Start low-level services
+  - Set up encryption services
+- "sysinit.target" will start all the low-level services and "units" required for the essential functions of the operating system, which are necessary before entering the "basic.target" phase.
 - Після завершення фази «sysinit.target» `systemd` запускає всі «одиниці», необхідні для завершення наступної «цілі» (тобто «basic.target»). Ціль надає додаткові функції, зокрема:
-  - Встановлення шляхів до каталогу для різних виконуваних файлів.
-  - комунікаційні сокети
-  - таймери
+  - Set the directory paths for the various executable files.
+  - communication sockets
+  - timers
 - Нарешті, ініціалізація виконується для "цілі" на рівні користувача ("multi-user.target" або "graphical.target"). `systemd` має досягти "multi-user.target" перед тим, як ввести "graphical.target".
 
-Ви можете виконати таку команду, щоб побачити залежності, необхідні для повного запуску:
+You can run the following command to see the dependencies required for full startup:
 
 ```bash
 Shell > systemctl list-dependencies multi-user.target
@@ -288,11 +282,11 @@ multi-user.target
 ● └─remote-fs.target
 ```
 
-Ви також можете використовувати опцію `--all`, щоб розгорнути всі "одиниці".
+You can also use the `--all` option to expand all "units".
 
-## Використання `systemd`
+## Use `systemd`
 
-### Типи юнітів
+### Unit types
 
 Команда `systemctl` є основним інструментом для керування "юнітами" та пов'язаними з ними файлами `systemd`.
 
@@ -311,23 +305,23 @@ multi-user.target
 - **slice** - Обмеження ресурсів через вузли Linux Control Group (cgroups). Дивись `man 5 systemd.slice`.
 - **scope** - Інформація з інтерфейсів шини `systemd`. Зазвичай використовується для керування процесами зовнішньої системи. Дивись `man 5 systemd.scope`.
 
-### Оперативні "юніти"
+### Operational "units"
 
 Використання команди `systemictl` - `systemctl [OPTIONS...] COMMAND [UNIT...]`.
 
-COMMAND можна розділити на:
+COMMAND can be divided into:
 
-- Команди юнітів
-- Команди Unit File
-- Машинні команди
+- Unit Commands
+- Unit File Commands
+- Machine Commands
 - Job Commands
-- Команди середовища
-- Команди життєвого циклу менеджера
-- Системні команди
+- Environment Commands
+- Manager Lifecycle Commands
+- System Commands
 
-Ви можете використовувати `systemctl --help`, щоб дізнатися деталі.
+You can use `systemctl --help` to discover the details.
 
-Ось кілька поширених демонстраційних команд:
+Here are some common operational demonstration commands:
 
 ```bash
 # Start the service
@@ -370,13 +364,11 @@ Shell > systemctl edit sshd.service
 Shell > systemctl show sshd.service
 ```
 
-!!! info "примітка"
+!!! info
 
-```
-Ви можете виконати вищезазначені операції на одному або кількох пристроях за допомогою одного командного рядка. Вищезазначені операції не обмежуються ".service".
-```
+    Ви можете виконувати вищезазначені операції з одним або кількома блоками за допомогою одного командного рядка. Вищезазначені операції не обмежуються ".service".
 
-Про "юніти":
+About "units":
 
 ```bash
 # List all currently running units.
@@ -390,7 +382,7 @@ Shell > systemctl --type=target
 Shell > systemctl list-unit-files
 ```
 
-Про "цілі":
+About "targets":
 
 ```bash
 # Query current "target" ("runlevel") information
@@ -404,28 +396,28 @@ Shell > systemctl isolate graphical.target
 Shell > systemctl set-default graphical.target
 ```
 
-### Важливі каталоги
+### Important directories
 
-Існує три основні важливі каталоги, розташовані в порядку зростання пріоритету:
+Three main important directories exist, arranged in ascending order of priority:
 
 - **/usr/lib/systemd/system/** - Файли модуля Systemd, що розповсюджуються разом із встановленими пакетами RPM. Подібно до каталогу /etc/init.d/ для Centos 6.
-- **/run/systemd/system/** - Файли модуля Systemd, створені під час виконання.
-- **/etc/systemd/system/** - Файли модуля Systemd, створені за допомогою `systemctl enable`, і файли модуля, додані для розширення служби.
+- **/run/systemd/system/** - Systemd unit files created at run time.
+- **/etc/systemd/system/** - Systemd unit files created by `systemctl enable` as well as unit files added for extending a service.
 
-### Конфігураційні файли `systemd`
+### `systemd` configuration files
 
 `man 5 systemd-system.conf`:
 
 > При запуску як системного екземпляра systemd інтерпретує файл конфігурації "system.conf" і файли в каталогах "system.conf.d"; коли він запускається як екземпляр користувача, він інтерпретує файл конфігурації user.conf (у домашньому каталозі користувача або, якщо його не знайдено, у "/etc/systemd/") та файли в "user.conf.d" довідники. Ці конфігураційні файли містять кілька налаштувань, які керують основними операціями менеджера.
 
-В операційній системі Rocky Linux 8.x відповідні конфігураційні файли:
+In the Rocky Linux 8.x operating system, the relevant configuration files are:
 
 - **/etc/systemd/system.conf** - Редагує файл, щоб змінити налаштування. Видалення файлу відновлює налаштування за замовчуванням. Дивись `man 5 systemd-system.conf`
 - **/etc/systemd/user.conf** - Ви можете змінити директиви в цьому файлі, створивши файли в "/etc/systemd/user.conf.d/\*.conf". Дивись `man 5 systemd-user.conf`
 
-### Опис вмісту файлу одиниць `systemd`
+### `systemd` units file content description
 
-Візьмемо для прикладу файл sshd.service:
+Take the file sshd.service as an example:
 
 ```bash
 Shell > systemctl cat sshd.service
@@ -476,13 +468,13 @@ method=disabled
 [proxy]
 ```
 
-Зазвичай існує три назви для одиниці типу ".service":
+Usually three titles exist for the ".service" type unit:
 
 - **Unit**
 - **Service**
 - **Install**
 
-1. Назва підрозділу
+1. Unit title
 
    Можна використовувати наступні пари ключ-значення:
 
@@ -490,7 +482,7 @@ method=disabled
    - `Documentation=man:sshd(8) man:sshd_config(5)`.  Відокремлений пробілами список URI, що посилається на документацію для цього «блока» або його конфігурації. Приймаються лише URI типів "http://", "https://", "file:", "info:", "man:".
    - `After=network.target sshd-keygen.target`. Визначає зв'язок послідовності запуску з іншими "одиницями". У цьому прикладі "network.target" і "sshd-keygen.target" починаються першими, а "sshd.service" починається останнім.
    - `Before=`. Визначте зв’язок послідовності запуску з іншими «одиницями».
-   - `Requires=`. Налаштуйте залежності від інших «одиниць». Значення можуть бути кількома одиницями, розділеними пробілами. Якщо поточна «одиниця» активована, значення, наведені тут, також активуються. Якщо принаймні одне з перелічених значень "одиниці" не вдається успішно активувати, `systemd` не запускає поточний "блок".
+   - `Requires=`. Налаштуйте залежності від інших "юнітів". Значення можуть бути кількома одиницями, розділеними пробілами. Якщо поточна «одиниця» активована, значення, наведені тут, також активуються. Якщо принаймні одне з перелічених значень "одиниці" не вдається успішно активувати, `systemd` не запускає поточний "блок".
    - `Wants=sshd-keygen.target`. Подібно до ключа `Requires`. Різниця в тому, що якщо залежний блок не запускається, це не вплине на нормальну роботу поточного «блока».
    - `BindsTo=`. Подібно до ключа `Requires`. Різниця полягає в тому, що якщо будь-який залежний "блок" не запускається, поточний блок зупиняється на додаток до "блоку", який зупиняє залежність.
    - `PartOf=`. Подібно до ключа `Requires`. Різниця полягає в тому, що якщо будь-який залежний «блок» не запускається, окрім зупинки та перезапуску залежних блоків, поточний «блок» буде зупинено та перезапущено.
@@ -565,28 +557,28 @@ method=disabled
 
    - `RequiredBy=` or `WantedBy=multi-user.target`. Визначте одиницю поточної операції як залежність одиниці від значення. Після завершення визначення ви зможете знайти відповідні файли в каталозі /etc/systemd/systemd/. Наприклад:
 
-     ```bash
-     Shell > systemctl is-enabled chronyd.service
-     enabled
-
-     Shell > systemctl cat chronyd.service
-     ...
-     [Install]
-     WantedBy=multi-user.target
-
-     Shell > ls -l /etc/systemd/system/multi-user.target.wants/
-     total 0
-     lrwxrwxrwx. 1 root root 38 Sep 25 14:03 auditd.service -> /usr/lib/systemd/system/auditd.service
-     lrwxrwxrwx. 1 root root 39 Sep 25 14:03 chronyd.service -> /usr/lib/systemd/system/chronyd.service  ←←
-     lrwxrwxrwx. 1 root root 37 Sep 25 14:03 crond.service -> /usr/lib/systemd/system/crond.service
-     lrwxrwxrwx. 1 root root 42 Sep 25 14:03 irqbalance.service -> /usr/lib/systemd/system/irqbalance.service
-     lrwxrwxrwx. 1 root root 37 Sep 25 14:03 kdump.service -> /usr/lib/systemd/system/kdump.service
-     lrwxrwxrwx. 1 root root 46 Sep 25 14:03 NetworkManager.service -> /usr/lib/systemd/system/NetworkManager.service
-     lrwxrwxrwx. 1 root root 40 Sep 25 14:03 remote-fs.target -> /usr/lib/systemd/system/remote-fs.target
-     lrwxrwxrwx. 1 root root 36 Sep 25 14:03 sshd.service -> /usr/lib/systemd/system/sshd.service
-     lrwxrwxrwx. 1 root root 36 Sep 25 14:03 sssd.service -> /usr/lib/systemd/system/sssd.service
-     lrwxrwxrwx. 1 root root 37 Sep 25 14:03 tuned.service -> /usr/lib/systemd/system/tuned.service
-     ```
+      ```bash
+      Shell > systemctl is-enabled chronyd.service
+      enabled
+      
+      Shell > systemctl cat chronyd.service
+      ...
+      [Install]
+      WantedBy=multi-user.target
+      
+      Shell > ls -l /etc/systemd/system/multi-user.target.wants/
+      total 0
+      lrwxrwxrwx. 1 root root 38 Sep 25 14:03 auditd.service -> /usr/lib/systemd/system/auditd.service
+      lrwxrwxrwx. 1 root root 39 Sep 25 14:03 chronyd.service -> /usr/lib/systemd/system/chronyd.service  ←←
+      lrwxrwxrwx. 1 root root 37 Sep 25 14:03 crond.service -> /usr/lib/systemd/system/crond.service
+      lrwxrwxrwx. 1 root root 42 Sep 25 14:03 irqbalance.service -> /usr/lib/systemd/system/irqbalance.service
+      lrwxrwxrwx. 1 root root 37 Sep 25 14:03 kdump.service -> /usr/lib/systemd/system/kdump.service
+      lrwxrwxrwx. 1 root root 46 Sep 25 14:03 NetworkManager.service -> /usr/lib/systemd/system/NetworkManager.service
+      lrwxrwxrwx. 1 root root 40 Sep 25 14:03 remote-fs.target -> /usr/lib/systemd/system/remote-fs.target
+      lrwxrwxrwx. 1 root root 36 Sep 25 14:03 sshd.service -> /usr/lib/systemd/system/sshd.service
+      lrwxrwxrwx. 1 root root 36 Sep 25 14:03 sssd.service -> /usr/lib/systemd/system/sssd.service
+      lrwxrwxrwx. 1 root root 37 Sep 25 14:03 tuned.service -> /usr/lib/systemd/system/tuned.service
+      ```
 
    - `Also=`. Інші пристрої для встановлення або видалення під час встановлення або видалення цього пристрою.
 
