@@ -37,7 +37,8 @@ Installation de dépôts supplémentaires :
 
 ```bash
 sudo dnf config-manager --enable crb
-sudo dnf copr enable neil/incus
+sudo dnf copr enable ligenix/enterprise-qemu-spice
+sudo dnf upgrade
 ```
 
 Installation de paquets nécessaires :
