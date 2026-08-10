@@ -7,7 +7,7 @@
 # Contribution Guide
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-138-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-139-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Introduction
@@ -398,6 +398,7 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/dvenadm"><img src="https://avatars.githubusercontent.com/u/119517709?v=4?s=100" width="100px;" alt="Remyl Vrij"/><br /><sub><b>Remyl Vrij</b></sub></a><br /><a href="#content-dvenadm" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://99tools.net/"><img src="https://avatars.githubusercontent.com/u/206251832?v=4?s=100" width="100px;" alt="Bansidhar kadiya"/><br /><sub><b>Bansidhar kadiya</b></sub></a><br /><a href="#content-bansidhark" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/mkyren"><img src="https://avatars.githubusercontent.com/u/96393095?v=4?s=100" width="100px;" alt="Ky"/><br /><sub><b>Ky</b></sub></a><br /><a href="https://github.com/rocky-linux/documentation/commits?author=mkyren" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/jamesbooker"><img src="https://avatars.githubusercontent.com/u/2065275?v=4?s=100" width="100px;" alt="James Booker"/><br /><sub><b>James Booker</b></sub></a><br /><a href="#content-jamesbooker" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>
