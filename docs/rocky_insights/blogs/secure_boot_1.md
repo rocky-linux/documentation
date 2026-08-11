@@ -4,7 +4,6 @@ author: Wale Soyinka
 ai-contributor: Gemini 3 Flash Image (Nano Banana 2) 
 ---
 
-
 # UEFI, SHIMs, and Secure Boot
 
 When you press the power button on a modern computer, a complex sequence of events begins long before Linux starts.
@@ -13,7 +12,6 @@ For decades this process relied on firmware that performed little or no verifica
 UEFI and Secure Boot were introduced to address this problem.
 
 This article introduces the modern PC boot architecture and explains why Secure Boot exists. Later posts in this series will build on this foundation and explore how Linux distributions integrate with Secure Boot.
-
 
 ## The Boot Process at a High Level
 
@@ -31,7 +29,6 @@ A simplified version of the modern boot sequence looks like this:
 Each stage runs with extremely high privilege. If an attacker can insert malicious code early in this sequence, that code may control everything that runs later.
 
 Because of this, the boot process is a critical security boundary.
-
 
 ## Legacy BIOS Boot
 
@@ -81,7 +78,6 @@ These weaknesses motivated the industry to rethink the boot architecture.
 
 ![Legacy BIOS Boot Process](images/fig_1_secure_boot_1.png)
 
-
 ## The Move to UEFI
 
 The Unified Extensible Firmware Interface replaces the legacy BIOS model.
@@ -103,7 +99,6 @@ Examples include:
     A *boot manager* is responsible for selecting which operating system or boot entry should be started. It presents a menu of choices and decides which boot target to launch. A *bootloader*, on the other hand, is responsible for loading the operating system kernel into memory and transferring control to it.
 
     In many Linux systems these roles are combined in the same program. For example, GRUB2 can present a boot menu (acting as a boot manager) and then load the Linux kernel (acting as a bootloader).
-
 
 The modern boot flow looks roughly like this:
 
@@ -128,7 +123,7 @@ This partition is usually formatted with FAT32 and mounted at `/boot/efi` in Lin
 
 Use the `tree or ls command to view the contents of the EFI System Partition:
 
-```
+```bash
 # tree  /boot/efi/
 /boot/efi/
 └── EFI
@@ -151,7 +146,6 @@ These EFI binaries/executables form the beginning of the Linux boot chain.
 
 Later articles will explore how these files are signed and verified.
 
-
 ## Why Secure Boot Was Introduced
 
 UEFI alone does not automatically make systems secure.
@@ -165,8 +159,6 @@ When Secure Boot is enabled, firmware verifies that EFI binaries are signed by t
 If a binary is not signed by a trusted key, the firmware refuses to run it.
 
 This mechanism establishes the beginning of a trust chain that continues through the bootloader and eventually to the operating system kernel.
-
-
 
 ## The Concept of a Chain of Trust
 
@@ -184,23 +176,19 @@ If any stage fails verification, the boot process stops.
 
 Later articles will explore how this trust chain works in detail.
 
-
-
 ## Hands-On: Determine Whether Your System Uses UEFI
 
 You can quickly determine whether a Linux system booted using UEFI.
 
 Run the following command:
 
-```
+```bash
 ls /sys/firmware/efi
 ```
 
 If the directory exists, the system booted using UEFI.
 
 If the directory does not exist, the system booted using legacy BIOS mode.
-
-
 
 ## Hands-On: View UEFI Boot Entries
 
@@ -210,13 +198,13 @@ You can inspect them using the `efibootmgr` tool.
 
 Install it if necessary:
 
-```
+```bash
 sudo dnf -y install efibootmgr
 ```
 
 Then run:
 
-```
+```bash
 efibootmgr -v
 ```
 
@@ -227,7 +215,6 @@ Example output is shown in the figure below:
 ![UEFI Boot Entries](images/fig_3_secure_boot_1.png)
 
 These entries tell firmware which EFI applications to launch during boot.
-
 
 ## Summary
 
@@ -243,4 +230,3 @@ Key ideas introduced here include:
 In the next installment of this secure boot series, we will examine the cryptographic foundations that make Secure Boot possible.
 
 We will introduce digital signatures, public key cryptography, and the concept of a chain of trust.
-

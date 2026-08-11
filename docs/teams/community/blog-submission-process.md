@@ -10,14 +10,14 @@ All blog work is tracked on the [Rocky Linux Community project board](https://gi
 
 ### Column definitions
 
-| Status | Meaning |
-|--------|---------| 
-| **To Do** | Topic identified, needed information collected and documented, assigned to a writer |
-| **In Progress** | Actively being written |
-| **Blocked** | Waiting on another party for information or input |
-| **Review** | Draft complete, in the community feedback process |
-| **Approved** | All revisions complete, awaiting publication |
-| **Done** | Published |
+| Status          | Meaning                                                                             |
+| --------------- | ----------------------------------------------------------------------------------- |
+| **To Do**       | Topic identified, needed information collected and documented, assigned to a writer |
+| **In Progress** | Actively being written                                                              |
+| **Blocked**     | Waiting on another party for information or input                                   |
+| **Review**      | Draft complete, in the community feedback process                                   |
+| **Approved**    | All revisions complete, awaiting publication                                        |
+| **Done**        | Published                                                                           |
 
 ---
 

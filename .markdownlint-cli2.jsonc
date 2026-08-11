@@ -1,0 +1,11 @@
+{
+  // Rules come from .markdownlint.json (auto-detected in this directory)
+  "globs": [
+    "**/*.md"
+  ],
+  "ignores": [
+    "**/*.{af,de,es,fr,hi,id,it,ja,ko,pt-BR,pt,tr,uk,zh}.md",
+    "LICENSE.md",
+    "build_pdf/**"
+  ]
+}
