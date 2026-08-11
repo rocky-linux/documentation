@@ -76,7 +76,7 @@ What we call *devices* are the files stored without `/dev`, identifying the diff
 
 The service called udev is responsible for applying the naming conventions (rules) and applying them to the devices it detects.
 
-For more information, please see [here](https://www.kernel.org/doc/html/latest/admin-guide/devices.html).
+For more information, please see [the kernel administration documentation](https://www.kernel.org/doc/html/latest/admin-guide/devices.html).
 
 ### Device partition number
 

@@ -4,8 +4,6 @@ author: Antoine Le Morvan
 contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
-# User Management
-
 In this chapter you will learn how to manage users.
 
 ****

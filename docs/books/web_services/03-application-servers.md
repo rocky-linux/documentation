@@ -191,10 +191,10 @@ php_value[session.save_path]    = /var/lib/php/session
 php_value[soap.wsdl_cache_dir]  = /var/lib/php/wsdlcache
 ```
 
-| Instructions | Description                                                   |
-|--------------|---------------------------------------------------------------|
+| Instructions | Description                                                                                                                      |
+|--------------|----------------------------------------------------------------------------------------------------------------------------------|
 | `[pool]`     | Process pool name. The configuration file can comprise several process pools (the pool's name in brackets starts a new section). |
-| `listen`     | Defines the listening interface or the Unix socket used. |
+| `listen`     | Defines the listening interface or the Unix socket used.                                                                         |
 
 #### Configuring the way to access php-fpm processes
 

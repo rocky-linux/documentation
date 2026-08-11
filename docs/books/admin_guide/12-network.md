@@ -56,7 +56,7 @@ IP addresses are used for the proper routing of messages (packets). They are div
 * network bits - The part associated with consecutive "1s" in the binary subnet mask
 * host bits - The part associated with consecutive "0s" in the binary subnet mask
 
-```
+```bash
                                             |<- host bits ->|
                   |<--    network bits  -->|
 192.168.1.10  ==> 11000000.10101000.00000001.00001010
@@ -68,7 +68,7 @@ The subnet mask defines the network and host bits of an IP address. By using the
 * the network address (**NetID** or **SubnetID**) by performing a bitwise logical AND between the IP address and the mask;
 * the host address (**HostID**) by performing a bitwise logical AND between the IP address and the complement of the mask.
 
-```
+```bash
 192.168.1.10  ==> 11000000.10101000.00000001.00001010
 255.255.255.0 ==> 11111111.11111111.11111111.00000000
 
@@ -81,7 +81,7 @@ HostID            00000000.00000000.00000000.00001010
 
 **Legitimate subnet mask** - In order from left to right, consecutive 1s can be defined as valid subnet masks.
 
-```
+```bash
 legitimate       11111111.11111111.11111111.00000000
 
 illegitimate     11001001.11111111.11111111.00000000
@@ -95,7 +95,7 @@ There are also specific addresses within a network, which must be identified. Th
 
 * The first address of a range is the **network address**. It is used to identify networks and route information between them. This address can be obtained through Logic and Operations.
 
-    ```
+    ```bash
     192.168.1.10  ==> 11000000.10101000.00000001.00001010
     255.255.255.0 ==> 11111111.11111111.11111111.00000000
                       
@@ -107,7 +107,7 @@ There are also specific addresses within a network, which must be identified. Th
 
 * The last address of a range is the **broadcast address**. It is used to broadcast information to all the machines on the network. Keep the network bits unchanged and replace all host bits with 1 to obtain this address.
 
-    ```
+    ```bash
     192.168.1.10  ==> 11000000.10101000.00000001.00001010
     255.255.255.0 ==> 11111111.11111111.11111111.00000000
                       
@@ -179,7 +179,7 @@ As mentioned earlier, subnet masks divide IPv4 addresses into two parts: network
 
 For example **2001:0db8:130F:0000:0000:09C0:876A:130B/64**:
 
-```
+```bash
     Network prefix
 |<-    64 bits   ->|
 
@@ -200,7 +200,7 @@ IPv4 packets contain both header and data parts:
 
 **IHL**: A field used to control the length of the header. When the "Options" field is not included, the minimum value is 5 (namely, binary 0101). At this time, the head occupies 20 bytes. The maximum value is 15 (namely, binary 1111), and the header is 60 bytes long.
 
-```
+```bash
 The actual length of the IPv4 header = The value of the IHL field * 4
 ```
 
@@ -208,7 +208,7 @@ The actual length of the IPv4 header = The value of the IHL field * 4
 
 **Total Length**: Represents the total length of the entire IPv4 datagram (IPv4 packet) in bytes.
 
-!!! note 
+!!! note
 
     An IP packet and an IP datagram are technically distinct terms for the same concept: data units transmitted at the network layer.
 
@@ -258,7 +258,7 @@ The fixed length of the Basic header is 40 bytes and it is fixed to 8 fields:
 
 **Flow Label**: This IPv6 new field is used to control packet flow. A non-zero value in this field indicates that the packet should be treated specially; i.e., it should not be routed through different paths to reach the destination, but instead use the same path. An advantage of this is that the receiving end doesn’t have to reorder the package, thereby speeding up the process. This field helps prevent data packet reordering and is specifically designed for streaming media/live media.
 
-**Payload Length**: Indicate the size of the payload. This field can only represent a Payload with a maximum length of 65535 bytes. In case the length of the payload is greater than 65535 bytes, then the payload length field will be set to 0 and the jumbo payload option is used in the Hop-by-Hop Options extension header. 
+**Payload Length**: Indicate the size of the payload. This field can only represent a Payload with a maximum length of 65535 bytes. In case the length of the payload is greater than 65535 bytes, then the payload length field will be set to 0 and the jumbo payload option is used in the Hop-by-Hop Options extension header.
 
 **Next header**: Used to indicate the type of packet header after the basic header. If there is a first extension header, it represents the type of the first extension header. Otherwise, it represents the protocol type used by the upper layer, such as 6 (TCP) and 17 (UDP).
 
@@ -272,9 +272,9 @@ The fixed length of the Basic header is 40 bytes and it is fixed to 8 fields:
 
 In IPv4 datagrams, the IPv4 header contains optional fields such as Options, which include Security, Timestamp, Record Route, etc. These Options can increase the IPv4 header length from 20 to 60 bytes. During forwarding, handling IPv4 datagrams carrying these Options can consume significant device resources, so they are rarely used in practice.
 
-IPv6 removes these Options from the IPv6 basic header and places them in the extension header, which is placed between the IPv6 Basic header and the Upper Layer Protocol Data Unit. 
+IPv6 removes these Options from the IPv6 basic header and places them in the extension header, which is placed between the IPv6 Basic header and the Upper Layer Protocol Data Unit.
 
-An IPv6 packet can contain 0, 1, or multiple extension headers, which are only added by the sender when the device or destination node requires special processing. 
+An IPv6 packet can contain 0, 1, or multiple extension headers, which are only added by the sender when the device or destination node requires special processing.
 
 Unlike the IPv4 Options field (which can be extended up to 40 bytes and requires continuous storage), the IPv6 extension header adopts a chain structure and has no fixed length limit, making it more scalable in the future. Its 8 byte alignment mechanism is implemented through the Next header field, which ensures processing efficiency and avoids fragmentation overhead.
 
@@ -470,11 +470,11 @@ Display the ARP table:
 
 The mtr command is introduced in detail in [this document](../../gemstones/network/mtr.md)
 
-### `ss` command 
+### `ss` command
 
 This command replaces the old `netstat` and is mainly used to view the status of ports and sockets. Its usage is:
 
-```
+```bash
 ss [OPTIONS] [FILTER]
 ```
 
@@ -536,7 +536,7 @@ If you need to know the correspondence between default ports and services, pleas
 
 Frequently use the `ethtool` command to view the properties of NIC (Network Interface Card). Its usage is:
 
-```
+```bash
 ethtool [option] DEVNAME
 ```
 
@@ -642,14 +642,14 @@ HOSTNAME=localhost
     [root]# ipcalc –b 172.16.66.203 255.255.240.0 >> /etc/sysconfig/network-scripts/ifcfg-eth0
     ```
 
-|  Option                   |  Description                           |
-| :---:                     | :---:                                  |
-|  `-b` or `--broadcast `   | Displays the broadcast address.        |
-|  `-n` or `--network`      | Displays network address                |
-|  `-p` or `--prefix`       | Displays network prefix                 |   
-|  `-m` or `--netmask`      | Displays netmask for IP                 |
-|  `-s` or`--silent`        | Does not display any error messages    |
-|  `-h` or `--hostname`     | Shows hostname determined via DNS       |
+| Option                  | Description                         |
+| :---:                   | :---:                               |
+|  `-b` or `--broadcast`  | Displays the broadcast address.     |
+|  `-n` or `--network`    | Displays network address            |
+|  `-p` or `--prefix`     | Displays network prefix             |
+|  `-m` or `--netmask`    | Displays netmask for IP             |
+|  `-s` or`--silent`      | Does not display any error messages |
+|  `-h` or `--hostname`   | Shows hostname determined via DNS   |
 
 ## Content related to the hostname
 
@@ -659,7 +659,7 @@ systemd is not just an initialization program; it is a large software suite that
 
 The `hostnamectl` command is an alternative to `hostname`. It should be noted that the modifications made by the `hostnamectl` command are **permanent**. Its usage is:
 
-```
+```bash
 hostnamectl [OPTIONS...] COMMAND ...
 ```
 
@@ -738,7 +738,7 @@ Each line represents a single mapping relationship. The content of this file can
 
 Example of **/etc/hosts** file:
 
-```
+```bash
 127.0.0.1       localhost localhost.localdomain
 ::1             localhost localhost.localdomain
 192.168.1.10    rockstar.rockylinux.lan rockstar
@@ -750,13 +750,13 @@ When a user types www.rockylinux.org in a browser, this happens:
 
 1. **Local resolution stage**
 
-> 1. Search browser cache (DNS cache). If the corresponding mapping record is found, the query ends. If not found, the next step will be executed 
+> 1. Search browser cache (DNS cache). If the corresponding mapping record is found, the query ends. If not found, the next step will be executed
 > 2. Search for the local Hosts file (/etc/hosts). If there is a corresponding mapping record, the query ends. Otherwise, proceed to the next step
 
 2. **Recursive query stage**
 
 > 1. Initiate a query request to the DNS server configured in /etc/resolv.conf (such as 8.8.8.8). The DNS server (s) users configure in the operating system are also known as the Local DNS server(s). The Local DNS server(s) here refer to public DNS provided for public use, such as 8.8.8.8 and 114.114.114. If the query request hits the cache record of the Local DNS server, the request ends and returns the result; otherwise, it enters the iterative query process
-> 2. The local DNS server initiates a request to the Root Name Server and obtains the address of the .org domain. 
+> 2. The local DNS server initiates a request to the Root Name Server and obtains the address of the .org domain.
 > 3. The top-level domain (TLD) server will query the address of rockylinux.org from the .org server
 > 4. The Name Server ‌finally gets the exact IP address of www.rockylinux.org from the rockylinux.org server
 
@@ -863,7 +863,7 @@ hosts:      files dns myhostname
 
 The basic syntax for each line is:
 
-```
+```bash
 <Database Name>: <Method1> [Action1] <Methond2> [Action2] ...
     ↑               ↑          ↑
 required        required    optional
@@ -885,7 +885,7 @@ The `getent` (get entry) command gets an NSSwitch entry (`hosts` + `dns`)
 
 Syntax of the `getent` command:
 
-```
+```bash
 getent [OPTION...] database [key ...]
 ```
 
@@ -896,7 +896,7 @@ Example:
 76.223.126.88   rockylinux.org
 ```
 
-Solely querying a Local DNS server may yield incorrect resolution results by failing to account for **/etc/hosts** file entries, though this is uncommon in modern systems. 
+Solely querying a Local DNS server may yield incorrect resolution results by failing to account for **/etc/hosts** file entries, though this is uncommon in modern systems.
 
 For proper **/etc/hosts** file resolution, query the NSSwitch name service which handles DNS resolution.
 
@@ -914,7 +914,7 @@ Please refer to the contents of `man 5 nm-settings` and `man 5 NetworkManager.co
 
 You can use the `mtr` or `ping` command to gradually check the communication status of the network. The objects of inspection are:
 
-1. TCP/IP software layer. For example `mtr -c 4 localhost` or `ping -c 4 localhost`. 
+1. TCP/IP software layer. For example `mtr -c 4 localhost` or `ping -c 4 localhost`.
 2. NIC (Network Interface Card). For example `mtr 192.168.100.20` or `ping 192.168.100.20`
 3. Gateway. For example `mtr 192.168.100.1` or `ping 192.168.100.1`
 4. Remote servers for wide area networks. For example `mtr 151.101.42.132` or `ping 151.101.42.132`
@@ -944,7 +944,7 @@ dnf install arp-scan
 
 Usage is
 
-```
+```bash
 arp-scan [options] [hosts...]
 ```
 
@@ -974,7 +974,6 @@ Common options for the `arp-scan` command:
 | `-D`                      | Displays RTT (round-trip time) of data packets |
 | `-g`                      | Doesn't display duplicate packets |
 | `-t timeout`              | Sets the timeout time (in milliseconds) for each host, with a default value of 500 |
-
 
 !!! Tip
 

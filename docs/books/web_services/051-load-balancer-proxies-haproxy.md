@@ -8,7 +8,6 @@ title: Part 5.1 HAProxy
 
     This content is not written yet.
 
-
 <!---
 
 ## HAProxy

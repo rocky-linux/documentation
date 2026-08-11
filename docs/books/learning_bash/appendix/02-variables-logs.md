@@ -19,8 +19,7 @@ In lesson two, "Bash - Using Variables", you've seen some ways to use variables 
 
 When a system administrator has to deal with log files, there are sometimes different formats that come into play. Let's say that you want to get some information out of the `dnf.log` (`/var/log/dnf.log`). Let's take a quick look at what that log file looks like using `tail /var/log/dnf.log`:
 
-
-```
+```bash
 2022-05-04T09:02:18-0400 DEBUG extras: using metadata from Thu 28 Apr 2022 04:25:35 PM EDT.
 2022-05-04T09:02:18-0400 DEBUG repo: using cache for: powertools
 2022-05-04T09:02:18-0400 DEBUG powertools: using metadata from Thu 28 Apr 2022 04:25:36 PM EDT.
@@ -35,7 +34,7 @@ When a system administrator has to deal with log files, there are sometimes diff
 
 Now take a look at the `messages` log file `tail /var/log/messages`:
 
-```
+```bash
 May  4 08:47:19 localhost systemd[1]: Starting dnf makecache...
 May  4 08:47:19 localhost dnf[108937]: Metadata cache refreshed recently.
 May  4 08:47:19 localhost systemd[1]: dnf-makecache.service: Succeeded.
@@ -50,7 +49,7 @@ May  4 08:52:09 localhost systemd[1]: NetworkManager-dispatcher.service: Succeed
 
 And finally let's take a look at the output of the `date` command:
 
-```
+```bash
 Wed May  4 09:47:00 EDT 2022
 ```
 
@@ -62,7 +61,7 @@ What we can see here is that the two log files, `dnf.log` and `messages` display
 
 To accomplish what we want, we are going to use a variable in our script called "today" that will format the date according to the date displayed in the `dnf.log`.  To get the correct `date` format, we are using the `+%F` which will get us the yyyy-mm-dd format we are looking for. Since all we are concerned with is the day, not the times or any other information, that's all we will need to get the correct information out of the `dnf.log`. Try just this much of the script:
 
-```
+```bash
 #!/usr/bin/env bash
 # script to grab dnf.log data and send it to administrator daily
 
@@ -72,13 +71,13 @@ echo $today
 
 Here we are using the `echo` command to see if we have been successful with our date formatting. When you run the script, you should get an output with today's date that looks something like this:
 
-```
+```bash
 2022-05-04
 ```
 
 If so then great, we can remove our "debug" line and continue. Let's add another variable called "logfile" that we will set to `/var/log/dnf.log` and then let's see if we can `grep` that using our "today" variable. For now, let's just let it run to standard output:
 
-```
+```bash
 !/usr/bin/env bash
 # script to grab dnf.log data and send it to administrator daily
 
@@ -99,7 +98,7 @@ The `dnf.log` has a lot of information in it every day, so we are not posting th
     systemctl enable --now postfix
     ```
 
-```
+```bash
 #!/usr/bin/env bash
 # script to grab dnf.log data and send it to administrator daily
 
@@ -109,7 +108,7 @@ logfile=/var/log/dnf.log
 /bin/grep $today $logfile | /bin/mail -s "DNF logfile data for $today" systemadministrator@domain.ext
 ```
 
-Let's take a look at the additions to the script here. We've added a pipe `|` to redirect output to `/bin/mail` set the subject of the email (`-s`) with what is in double quotes and set the recipient to be "systemadministrator@domain.ext". Replace that last bit with your email address and then try running the script again.
+Let's take a look at the additions to the script here. We've added a pipe `|` to redirect output to `/bin/mail` set the subject of the email (`-s`) with what is in double quotes and set the recipient to be "<systemadministrator@domain.ext>". Replace that last bit with your email address and then try running the script again.
 
 As noted, you probably won't get the email without some changes to your Postfix mail setup, but you should see the attempt in `/var/log/maillog`.
 

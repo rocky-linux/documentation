@@ -9,8 +9,6 @@ tags:
   - bash
 ---
 
-# Bash - Tests
-
 ****
 
 **Objectives**: In this chapter you will learn how to:

@@ -475,7 +475,7 @@ Each Application Stream has a different lifecycle. Please refer to the following
 * https://access.redhat.com/support/policy/updates/rhel-app-streams-life-cycle#rhel9_application_streams
 * https://access.redhat.com/support/policy/updates/rhel-app-streams-life-cycle#rhel10_dependent_application_streams
 
-In this document, the author mainly explains the Application Streams of modular architecture. 
+In this document, the author mainly explains the Application Streams of modular architecture.
 
 ### Module Streams
 
@@ -484,7 +484,7 @@ Important note:
 * To use modular architecture Application Streams in RL 8.x and RL 9.x, you need to enable the **AppStream** repository first. In the Appstream repository, **modules** represent collections of software packages for logical units that are built, tested, and published together. A single module can contain multiple streams (versions) of the same application.
 * Each module receives updates separately.
 * After enabling a single module, users can only use one stream (version) of that module.
-* Each module can have its own default stream (default version) marked with "[d]". 
+* Each module can have its own default stream (default version) marked with "[d]".
 * The default stream is active unless you disable the module or enable another stream for the module.
 
 ### Module Profiles

@@ -9,8 +9,6 @@ tags:
   - bash
 ---
 
-# Learning Bash with Rocky
-
 In this section, you will learn more about Bash scripting, an exercise that every administrator will have to perform one day or another.
 
 ## Generalities

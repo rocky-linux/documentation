@@ -57,8 +57,7 @@ To check its status:
     If the `crond` daemon is not running, you will have to initialize it manually and/or automatically at startup. Indeed, even if tasks are scheduled, they will not be launched.
 
 Initialization of the `crond` daemon in the manual:
-author: Antoine Le Morvan
-contributors: Steven Spencer, Ganna Zhyrnova
+
 ```bash
 [root]# systemctl {status|start|restart|stop} crond
 ```
