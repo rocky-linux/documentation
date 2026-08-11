@@ -1,8 +1,8 @@
 ---
 title: Process Management
+author: Antoine Le Morvan
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
-
-# Process Management
 
 In this chapter, you will learn how to work with processes.
 
@@ -29,19 +29,22 @@ An operating system consists of processes. These processes are executed in a spe
 
 When a program runs, the system will create a process by placing the program data and code in memory and creating a **runtime stack**. A process is an instance of a program with an associated processor environment (ordinal counter, registers, etc...) and memory environment.
 
-Each process has:
+Each process has a :
 
-* a *PID*: _**P**rocess **ID**entifier_, a unique process identifier
-* a *PPID*: _**P**arent **P**rocess **ID**entifier_, unique identifier of parent process
+PID
+: _**P**rocess **ID**entifier_, a unique process identifier
+
+PPID
+: _**P**arent **P**rocess **ID**entifier_, unique identifier of parent process
 
 By successive filiations, the `init` process is the father of all processes.
 
 * A parent process always creates a process
 * A parent process can have multiple child processes
 
-There is a parent/child relationship between processes. A child process results from the parent calling the *fork()* primitive and duplicating its code to create a child. The *PID* of the child is returned to the parent process so that it can talk to it. Each child has its parent's identifier, the *PPID*.
+There is a parent/child relationship between processes. A child process results from the parent calling the _fork()_ primitive and duplicating its code to create a child. The _PID_ of the child is returned to the parent process so that it can talk to it. Each child has its parent's identifier, the _PPID_.
 
-The *PID* number represents the process at the time of execution. When the process finishes, the number is available again for another process. Running the same command several times will produce a different *PID* each time.
+The _PID_ number represents the process at the time of execution. When the process finishes, the number is available again for another process. Running the same command several times will produce a different _PID_ each time.
 
 <!-- TODO ![Parent/child relationship between processes](images/FON-050-001.png) -->
 
@@ -66,7 +69,7 @@ Example:
 |  Option    |  Description                     |
 |------------|----------------------------------|
 | `-e`       | Displays all processes.          |
-| `-f`       | Displays full format list.        |
+| `-f`       | Displays full format list.       |
 | `-u` login | Displays the user's processes.   |
 
 Some additional options:
@@ -77,9 +80,9 @@ Some additional options:
 | `-t tty`              | Displays the processes running from the terminal. |
 | `-p PID`              | Displays the process information.                 |
 | `-H`                  | Displays the information in a tree structure.     |
-| `-l`                  | Displays in long format.                           |
+| `-l`                  | Displays in long format.                          |
 | `--sort COL`          | Sort the result according to a column.            |
-| `--headers`           | Displays the header on each terminal page. |
+| `--headers`           | Displays the header on each terminal page.        |
 | `--format "%a %b %c"` | Customize the output display format.              |
 
 Without an option specified, the `ps` command only displays processes running from the current terminal.
@@ -92,7 +95,7 @@ UID  PID PPID C STIME  TTY TIME      CMD
 root 1   0    0 Jan01  ?   00:00/03  /sbin/init
 ```
 
-| Column  |  Description                |
+| Column   |  Description                |
 |----------|-----------------------------|
 | `UID`    | Owner user.                 |
 | `PID`    | Process identifier.         |
@@ -125,14 +128,14 @@ The user process:
 * is started from a terminal associated with a user
 * accesses resources via requests or daemons
 
-The system process (*daemon*):
+The system process (_daemon_):
 
 * is started by the system
 * is not associated with any terminal and is owned by a system user (often `root`)
 * is loaded at boot time, resides in memory, and is waiting for a call
 * is usually identified by the letter `d` associated with the process name
 
-System processes are therefore called daemons (***D**isk **A**nd **E**xecution **MON**itor*).
+System processes are therefore called daemons (_**D**isk **A**nd **E**xecution **MON**itor_).
 
 ## Permissions and rights
 
@@ -204,13 +207,13 @@ Example:
 kill -9 1664
 ```
 
-| Code | Signal    | Description                                            |
-|------|-----------|--------------------------------------------------------|
-| `2`  | *SIGINT*  | Immediate termination of the process                   |
-| `9`  | *SIGKILL* | Interrupts the process (++control+"d"++)                |
-| `15` | *SIGTERM* | Clean termination of the process                       |
-| `18` | *SIGCONT* | Resumes the process. Processes that use the SIGSTOP signal can use it to continue running |
-| `19` | *SIGSTOP* | Suspends the process (Stops process). The effect of this signal is equivalent to ++ctrl+"z"++ |
+| Code | Signal    | Description                                                                                         |
+| ---- | --------- | --------------------------------------------------------------------------------------------------- |
+| `2`  | _SIGINT_  | Immediate termination of the process                                                                |
+| `9`  | _SIGKILL_ | Interrupts the process ( ++control++ + ++"d"++ )                                                    |
+| `15` | _SIGTERM_ | Clean termination of the process                                                                    |
+| `18` | _SIGCONT_ | Resumes the process. Processes that use the SIGSTOP signal can use it to continue running           |
+| `19` | _SIGSTOP_ | Suspends the process (Stops process). The effect of this signal is equivalent to ++ctrl++ + ++"z"++ |
 
 Signals are the means of communication between processes. The `kill` command sends a signal to a process.
 
@@ -248,7 +251,7 @@ The synchronous process is temporarily suspended by pressing the ++control+"z"++
 
 ### `&` instruction
 
-The `&` statement executes the command asynchronously (the command is then called *job*) and displays the number of *job*. Access to the prompt is then returned.
+The `&` statement executes the command asynchronously (the command is then called _job_) and displays the number of _job_. Access to the prompt is then returned.
 
 Example:
 
@@ -258,7 +261,7 @@ $ time ls -lR / > list.ls 2> /dev/null &
 $
 ```
 
-The *job* number is obtained during background processing and is displayed in square brackets, followed by the `PID` number.
+The _job_ number is obtained during background processing and is displayed in square brackets, followed by the `PID` number.
 
 ### `fg` and `bg` commands
 
@@ -303,7 +306,7 @@ The columns represent:
    * a `+` : The process selected by default for the `fg` and `bg` commands when no job number is specified
    * a `-` : This process is the next process to take the `+`
   
-3. *Running* (running process) or *Stopped* (suspended process)  
+3. _Running_ (running process) or _Stopped_ (suspended process)  
 4. the command
 
 ### `nice` and `renice` commands
@@ -380,7 +383,7 @@ PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND
 2514 root 20 0       15    5.5 0:01.14   top
 ```
 
-| Column   | Description           |
+| Column    | Description           |
 |-----------|-----------------------|
 | `PID`     | Process identifier.   |
 | `USER`    | Owner user.           |
@@ -395,9 +398,9 @@ The `top` command allows control of the processes in real-time and in interactiv
 
 ### `pgrep` and `pkill` commands
 
-The `pgrep` command searches the running processes for a process name and displays the *PID* matching the selection criteria on the standard output.
+The `pgrep` command searches the running processes for a process name and displays the _PID_ matching the selection criteria on the standard output.
 
-The `pkill` command will send each process the specified signal (by default *SIGTERM*).
+The `pkill` command will send each process the specified signal (by default _SIGTERM_).
 
 ```bash
 pgrep process
@@ -430,13 +433,13 @@ pkill -t pts/1
 
 ### `killall` command
 
-This command's function is roughly the same as that of the `pkill` command. The usage is —`killall [option] [ -s SIGNAL | -SIGNAL ] NAME`. The default signal is *SIGTERM*.
+This command's function is roughly the same as that of the `pkill` command. The usage is —`killall [option] [ -s SIGNAL | -SIGNAL ] NAME`. The default signal is _SIGTERM_.
 
-| Options | Description |
-| :--- | :--- |
-| `-l` | lists all known signal names |
-| `-i` | asks for confirmation before killing |
-| `-I` | case insensitive process name match |
+| Options | Description                          |
+| :------ | :----------------------------------- |
+| `-l`    | lists all known signal names         |
+| `-i`    | asks for confirmation before killing |
+| `-I`    | case insensitive process name match  |
 
 Example:
 
@@ -448,12 +451,12 @@ killall tomcat
 
 This command displays the progress in a tree style, and its usage is - `pstree [option]`.
 
-| Option | Description |
-| :--- | :--- |
-| `-p` | Displays the PID of the process |
-| `-n` | sorts output by PID |
-| `-h` | highlights the current process and its ancestors |
-| `-u` | shows uid transitions |
+| Option | Description                                      |
+| :----- | :----------------------------------------------- |
+| `-p`   | Displays the PID of the process                  |
+| `-n`   | sorts output by PID                              |
+| `-h`   | highlights the current process and its ancestors |
+| `-u`   | shows uid transitions                            |
 
 ```bash
 $ pstree -pnhu

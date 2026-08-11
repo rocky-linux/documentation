@@ -1,5 +1,7 @@
 ---
 title: Deploy With Ansistrano
+author: Antoine Le Morvan
+contributors: Steven Spencer
 ---
 
 # Ansible Deployments with Ansistrano

@@ -1,8 +1,8 @@
 ---
 title: Implementing the Network
+author: Antoine Le Morvan
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
-
-# Implementing the Network
 
 In this chapter, you will learn how to work with and manage the network.
 

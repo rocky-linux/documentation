@@ -1,5 +1,7 @@
 ---
 title: User Management
+author: Antoine Le Morvan
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 # User Management
@@ -84,10 +86,10 @@ Example:
 sudo groupadd -g 1012 GroupeB
 ```
 
-| Option   | Description                               |
-| -------- | ----------------------------------------- |
-| `-g GID` | Defines the `GID` of the group to create. |
-| `-f`     | The system chooses a `GID` if the one specified by the `-g` option already exists. |
+| Option   | Description                                                                                                                        |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `-g GID` | Defines the `GID` of the group to create.                                                                                          |
+| `-f`     | The system chooses a `GID` if the one specified by the `-g` option already exists.                                                 |
 | `-r`     | Creates a system group with a `GID` between `SYS_GID_MIN` and `SYS_GID_MAX`. These two variables are defined in `/etc/login.defs`. |
 
 Group naming rules:
@@ -288,17 +290,17 @@ Example:
 sudo useradd -u 1000 -g 1013 -d /home/GroupC/carine carine
 ```
 
-| Option        | Description                                                            |
-| --------------| ---------------------------------------------------------------------- |
-|`-u UID`       | `UID` of the user to create.                                           |
-|`-g GID`       | `GID` of the primary group. The `GID` here can also be a `group name`. |
-|`-G GID1,[GID2]...`       | `GID` of the supplementary groups. The `GID` here can also be a `group name`. It is possible to specify many supplementary groups separated by commas. |
-|`-d directory` | Creates the home directory.                                            |
-|`-s shell`     | Specifies the user's shell.                                            |
-|`-c COMMENT`           | Adds a comment.                                                |
-|`-U`           | Adds the user to a group with the same name created simultaneously. If not specified, the creation of a group with the same name occurs when creating the user. |
-|`-M`           | Does not create the user's home directory.                             |
-|`-r`           | Creates a system account.                                              |
+| Option             | Description                                                                                                                                                     |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|`-u UID`            | `UID` of the user to create.                                                                                                                                    |
+|`-g GID`            | `GID` of the primary group. The `GID` here can also be a `group name`.                                                                                          |
+|`-G GID1,[GID2]...` | `GID` of the supplementary groups. The `GID` here can also be a `group name`. It is possible to specify many supplementary groups separated by commas.          |
+|`-d directory`      | Creates the home directory.                                                                                                                                     |
+|`-s shell`          | Specifies the user's shell.                                                                                                                                     |
+|`-c COMMENT`        | Adds a comment.                                                                                                                                                 |
+|`-U`                | Adds the user to a group with the same name created simultaneously. If not specified, the creation of a group with the same name occurs when creating the user. |
+|`-M`                | Does not create the user's home directory.                                                                                                                      |
+|`-r`                | Creates a system account.                                                                                                                                       |
 
 At creation, the account has no password and is locked.
 
@@ -378,14 +380,14 @@ Example:
 sudo useradd -D -g 1000 -b /home -s /bin/bash
 ```
 
-| Option         | Description                                                                      |
-| -------------- | -------------------------------------------------------------------------------- |
-| `-D`           | Sets the default values for user creation.                                       |
-| `-b base_directory` | Defines the base directory for the user's home directory. If you do not specify this option, use the HOME variable in the /etc/default/useradd file or /home/  |
-| `-g group`     | Sets the default group.                                                          |
-| `-s shell`     | Sets the default shell.                                                          |
-| `-f`           | Sets the number of days after the password expires before disabling the account. |
-| `-e`           | Sets the date for disabling the account.                                         |
+| Option              | Description                                                                                                                                                       |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-D`                | Sets the default values for user creation.                                                                                                                        |
+| `-b base_directory` | Defines the base directory for the user's home directory. If you do not specify this option, use the HOME variable in the `/etc/default/useradd` file or `/home/` |
+| `-g group`          | Sets the default group.                                                                                                                                           |
+| `-s shell`          | Sets the default shell.                                                                                                                                           |
+| `-f`                | Sets the number of days after the password expires before disabling the account.                                                                                  |
+| `-e`                | Sets the date for disabling the account.                                                                                                                          |
 
 ### `usermod` command
 
@@ -403,15 +405,15 @@ sudo usermod -u 1044 carine
 
 Options identical to the `useradd` command.
 
-| Option         | Description                                                                                  |
-| -------------- | --------------------------------------------------------------------------------------------- |
-|`-m`            | Associated with the `-d` option. Moves the contents of the old login directory to the new one. If the old home directory does not exist, creation of a new home directory does not occur; Creation of the new home directory occurs when it does not exist.|
-|`-l login`      | Modifies the login name. After you modify the login name, you also need to modify the name of the home directory to match it. |
-|`-e YYYY-MM-DD` | Modifies the account expiration date.                                                         |
-|`-L`            | Locks the account permanently. That is, it adds an `!` at the beginning of the `/etc/shadow` password field.  |
-|`-U`            | Unlocks the account.                                                                          |
-|`-a`            | Appends the user's supplementary groups, which must be used together with the `-G` option.  |
-|`-G`            | Modifies the user's supplementary groups and overwrites previous supplementary groups.    |
+| Option         | Description                                                                                                                                                                                                                                                 |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|`-m`            | Associated with the `-d` option. Moves the contents of the old login directory to the new one. If the old home directory does not exist, creation of a new home directory does not occur; Creation of the new home directory occurs when it does not exist. |
+|`-l login`      | Modifies the login name. After you modify the login name, you also need to modify the name of the home directory to match it.                                                                                                                               |
+|`-e YYYY-MM-DD` | Modifies the account expiration date.                                                                                                                                                                                                                       |
+|`-L`            | Locks the account permanently. That is, it adds an `!` at the beginning of the `/etc/shadow` password field.                                                                                                                                                |
+|`-U`            | Unlocks the account.                                                                                                                                                                                                                                        |
+|`-a`            | Appends the user's supplementary groups, which must be used together with the `-G` option.                                                                                                                                                                  |
+|`-G`            | Modifies the user's supplementary groups and overwrites previous supplementary groups.                                                                                                                                                                      |
 
 !!! Tip
 
@@ -465,8 +467,8 @@ The `userdel` command lets you delete a user's account.
 sudo userdel -r carine
 ```
 
-| Option | Description                                               |
-| -------| --------------------------------------------------------- |
+| Option | Description                                                                                  |
+| -------| -------------------------------------------------------------------------------------------- |
 | `-r`   | Deletes the user's home directory and mail files located in the `/var/spool/mail/` directory |
 
 !!! Tip
@@ -602,10 +604,10 @@ Example:
 sudo chgrp group1 file
 ```
 
-| Option | Description                                                              |
-| ------ | ------------------------------------------------------------------------ |
+| Option | Description                                                                        |
+| ------ | ---------------------------------------------------------------------------------- |
 | `-R`   | Recursively changes the groups of the directory and all files under the directory. |
-| `-v`   | Displays the changes.                                           |
+| `-v`   | Displays the changes.                                                              |
 
 !!! Note
 
@@ -736,17 +738,17 @@ sudo passwd -l albert
 sudo passwd -n 60 -x 90 -w 80 -i 10 patrick
 ```
 
-| Option | Description                                            |
-| ------ | ------------------------------------------------------ |
-| `-d` | Permanently removes the password. For root (uid=0) use only.         |
-| `-l` | Permanently locks the user account. For root (uid=0) use only.            |
-| `-S` | Displays the account status. For root (uid=0) use only.  |
-| `-u` | Permanently unlocks user account. For root (uid=0) use only.          |
-| `-e` | Permanently expires the password. For root (uid=0) use only.         |
-| `-n DAYS` | Defines the minimum password lifetime. Permanent change. For root (uid=0) use only. |
-| `-x DAYS` | Defines the maximum password lifetime. Permanent change. For root (uid=0) use only. |
-| `-w DAYS` | Defines the warning time before expiration. Permanent change. For root (uid=0) use only. |
-| `-i DAYS` | Defines the delay before deactivation when the password expires. Permanent change. For root (uid=0) use only.|
+| Option    | Description                                                                                                   |
+| --------- | ------------------------------------------------------------------------------------------------------------- |
+| `-d`      | Permanently removes the password. For root (uid=0) use only.                                                  |
+| `-l`      | Permanently locks the user account. For root (uid=0) use only.                                                |
+| `-S`      | Displays the account status. For root (uid=0) use only.                                                       |
+| `-u`      | Permanently unlocks user account. For root (uid=0) use only.                                                  |
+| `-e`      | Permanently expires the password. For root (uid=0) use only.                                                  |
+| `-n DAYS` | Defines the minimum password lifetime. Permanent change. For root (uid=0) use only.                           |
+| `-x DAYS` | Defines the maximum password lifetime. Permanent change. For root (uid=0) use only.                           |
+| `-w DAYS` | Defines the warning time before expiration. Permanent change. For root (uid=0) use only.                      |
+| `-i DAYS` | Defines the delay before deactivation when the password expires. Permanent change. For root (uid=0) use only. |
 
 Use `password -l`, that is, add "!!" at the beginning of the password field of the user corresponding to `/etc/shadow`.
 
@@ -798,15 +800,15 @@ Example:
 sudo chage -m 60 -M 90 -W 80 -I 10 alain
 ```
 
-| Option | Description                                    |
-| ------ | ---------------------------------------------- |
-| `-I DAYS` | Defines the days to delay before deactivation, password expired. Permanent change.|
-| `-l`      | Displays the policy details.                |
-| `-m DAYS` | Defines the minimum lifetime of the password. Permanent change.          |
-| `-M DAYS` | Defines the maximum lifetime of the password. Permanent change.          |
-| `-d LAST_DAY` | Defines the number of days since the password was last changed. You can use the days' timestamp style or the YYYY-MM-DD style. Permanent change.                 |
-| `-E EXPIRE_DATE` | Defines the account expiration date. You can use the days' timestamp style or the YYYY-MM-DD style. Permanent change.             |
-| `-W WARN_DAYS` | Defines the number of days warning time before expiration. Permanent change.            |
+| Option           | Description                                                                                                                                      |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `-I DAYS`        | Defines the days to delay before deactivation, password expired. Permanent change.                                                               |
+| `-l`             | Displays the policy details.                                                                                                                     |
+| `-m DAYS`        | Defines the minimum lifetime of the password. Permanent change.                                                                                  |
+| `-M DAYS`        | Defines the maximum lifetime of the password. Permanent change.                                                                                  |
+| `-d LAST_DAY`    | Defines the number of days since the password was last changed. You can use the days' timestamp style or the YYYY-MM-DD style. Permanent change. |
+| `-E EXPIRE_DATE` | Defines the account expiration date. You can use the days' timestamp style or the YYYY-MM-DD style. Permanent change.                            |
+| `-W WARN_DAYS`   | Defines the number of days warning time before expiration. Permanent change.                                                                     |
 
 Examples:
 
@@ -855,15 +857,15 @@ SKEL=/etc/skel
 CREATE_MAIL_SPOOL=yes
 ```
 
-| Parameters | Comment                                                                            |
-| ---------- | ---------------------------------------------------------------------------------- |
-| `GROUP`    | Defines the default primary group GID.                                             |
-| `HOME`     | Defines the directory path of the upper level of the common user's home directory. |
-| `INACTIVE` | Defines the number of days of grace after password expiration. Corresponds to the 7th field of the `/etc/shadow` file. `-1` value means that the grace period feature is turned off.|
-| `EXPIRE`   | Defines the account expiration date. Corresponds to the 8th field of the `/etc/shadow` file.                                                |
-| `SHELL`    | Defines the command interpreter.                                                   |
-| `SKEL`     | Defines the skeleton directory of the login directory.                             |
-| `CREATE_MAIL_SPOOL` | Defines the mailbox creation in `/var/spool/mail/`.                       |
+| Parameters          | Comment                                                                                                                                                                              |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `GROUP`             | Defines the default primary group GID.                                                                                                                                               |
+| `HOME`              | Defines the directory path of the upper level of the common user's home directory.                                                                                                   |
+| `INACTIVE`          | Defines the number of days of grace after password expiration. Corresponds to the 7th field of the `/etc/shadow` file. `-1` value means that the grace period feature is turned off. |
+| `EXPIRE`            | Defines the account expiration date. Corresponds to the 8th field of the `/etc/shadow` file.                                                                                         |
+| `SHELL`             | Defines the command interpreter.                                                                                                                                                     |
+| `SKEL`              | Defines the skeleton directory of the login directory.                                                                                                                               |
+| `CREATE_MAIL_SPOOL` | Defines the mailbox creation in `/var/spool/mail/`.                                                                                                                                  |
 
 If you do not need a primary group with the same name when creating users, you can do this:
 

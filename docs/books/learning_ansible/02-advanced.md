@@ -1,5 +1,7 @@
 ---
 title: Ansible Intermediate
+author: Antoine Le Morvan
+contributors: Steven Spencer
 ---
 
 # Ansible Intermediate

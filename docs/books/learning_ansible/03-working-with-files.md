@@ -1,5 +1,7 @@
 ---
 title: File Management
+author: Antoine Le Morvan
+contributors: Steven Spencer
 ---
 
 # Ansible - Management of Files

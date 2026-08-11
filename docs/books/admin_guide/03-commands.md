@@ -3,7 +3,7 @@ title: Linux Commands
 author: Antoine Le Morvan
 contributors: Steven Spencer, Aditya Putta, tianci li, Grammaresque, Ganna Zhyrnova
 ---
-<!-- markdownlint-disable MD025 MD007 -->
+<!-- markdownlint-disable MD025 -->
 # Commands for Linux Users
 
 In this chapter you will learn Linux commands and how to use them.
@@ -120,7 +120,7 @@ It is impossible for an administrator at any level to know all the commands and 
 
 The command `apropos` allows you to search by keyword within these manual pages:
 
-| Options                                     | Description                                               |
+| Options                                     | Description                                                |
 | ------------------------------------------- | ---------------------------------------------------------- |
 | `-s`, `--sections list` or `--section list` | Limited to manual sections.                                |
 | `-a` or `--and`                             | Displays only the item matching all the provided keywords. |
@@ -222,10 +222,10 @@ Examples:
 
 Options:
 
-| Options | Remarks                          |
-| ------- | -------------------------------- |
+| Options | Remarks                               |
+| ------- | ------------------------------------- |
 | `-h`    | Shuts down the system electronically. |
-| `-r`    | Restarts the system.              |
+| `-r`    | Restarts the system.                  |
 
 ### `history` command
 
@@ -241,8 +241,8 @@ $ history
 148 man history
 ```
 
-| Options | Comments                                                                                                           |
-| ------- | ------------------------------------------------------------------------------------------------------------------ |
+| Options | Comments                                                                                       |
+| ------- | ---------------------------------------------------------------------------------------------- |
 | `-w`    | Writes the current history to the history file.                                                |
 | `-c`    | Deletes the history of the current session (but not the contents of the `.bash_history` file). |
 
@@ -250,13 +250,13 @@ $ history
 
 To manipulate the history, the following commands entered from the command prompt will:
 
-| Keys               | Function                                                  |
-| ------------------ | --------------------------------------------------------- |
-| ++exclam+exclam++      | Recalls the last command placed.                           |
-| ++exclam+n++      | Recalls the command by its number in the list.             |
-| ++exclam+"string"++ | Recalls the most recent command beginning with the string. |
-| ++arrow-up++       | Navigates through your history working backward in time from the most recent command. |
-| ++arrow-down++       | Navigates through your history working forward in time. |
+| Keys                | Function                                                                              |
+| ------------------- | ------------------------------------------------------------------------------------- |
+| ++exclam+exclam++   | Recalls the last command placed.                                                      |
+| ++exclam+n++        | Recalls the command by its number in the list.                                        |
+| ++exclam+"string"++ | Recalls the most recent command beginning with the string.                            |
+| ++arrow-up++        | Navigates through your history working backward in time from the most recent command. |
+| ++arrow-down++      | Navigates through your history working forward in time.                               |
 
 ### Auto-complete
 
@@ -303,11 +303,11 @@ Among the frequently used sequences, we can mention:
 
 | Sequence | Result                |
 | -------- | --------------------- |
-| `\a`     | Sends a sonar beep      |
+| `\a`     | Sends a sonar beep    |
 | `\b`     | Back                  |
 | `\n`     | Adds a line break     |
 | `\t`     | Adds a horizontal tab |
-| `\v`     | Adds a vertical tab     |
+| `\v`     | Adds a vertical tab   |
 
 ### `date` command
 
@@ -478,24 +478,28 @@ $ ls /home
 
 The main options of the `ls` command are:
 
-| Option                                                       | Information                                                                                                                          |
-| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `-a`                                                         | Displays all files, even hidden ones. Hidden files in Linux are those beginning with `.`.                                            |
-| `-i`                                                         | Displays inode numbers.                                                                                                              |
-| `-l`                                                         | Use a long listing format, that is, each line displays long format information for a file or directory.                                 |
+| Option                                                       | Information                                                                                             |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
+| `-a`                                                         | Displays all files, even hidden ones. Hidden files in Linux are those beginning with `.`.               |
+| `-i`                                                         | Displays inode numbers.                                                                                 |
+| `-l`                                                         | Use a long listing format, that is, each line displays long format information for a file or directory. |
 
 The `ls` command, however, has a lot of options (see `man`):
 
-| Option                                                       | Information                                                                                                                          |
-| ------                                                       | ------------                                                                                                                         |
-| `-d`                                                         | Displays information about a directory instead of listing its contents.                                                              |
-| `-g`                                                         | Like -l option, but do not list owner.                                                                                               |
-| `-h`                                                         | Displays file sizes in the most appropriate format (byte, kilobyte, megabyte, gigabyte, ...). `h` stands for Human Readable. Needs to be used with -l option.         |
-| `-s`                                                         | Displays the allocated size of each file, in blocks. In the `ls` command, the default size of a single block is 1024-Byte. In the GNU/Linux operating system, "block" is the smallest unit of storage in the file system, and generally speaking, one block is equal to 4096-Byte. In the Windows operating system, taking the NTFS file system as an example, its smallest storage unit is called a "Cluster". The definition of the minimum storage unit name may vary depending on different file systems. |
-| `-A`                                                         | Displays all files in the directory except `.` and `..`                                                                              |
-| `-R`                                                         | Displays the contents of subdirectories recursively.                                                                                 |
-| `-F`                                                         | Displays the type of files. Prints a `/` for a directory, `*` for executables, `@` for a symbolic link, and nothing for a text file. |
-| `-X`                                                         | Sorts files according to their extensions.                                                                                           |
+| Option | Information                                                                                                                                                   |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-d`   | Displays information about a directory instead of listing its contents.                                                                                       |
+| `-g`   | Like -l option, but do not list owner.                                                                                                                        |
+| `-h`   | Displays file sizes in the most appropriate format (byte, kilobyte, megabyte, gigabyte, ...). `h` stands for Human Readable. Needs to be used with -l option. |
+| `-s`   | Displays the allocated size of each file, in blocks.                                                                                                          |
+| `-A`   | Displays all files in the directory except `.` and `..`                                                                                                       |
+| `-R`   | Displays the contents of subdirectories recursively.                                                                                                          |
+| `-F`   | Displays the type of files. Prints a `/` for a directory, `*` for executables, `@` for a symbolic link, and nothing for a text file.                          |
+| `-X`   | Sorts files according to their extensions.                                                                                                                    |
+
+!!! Note
+
+    In the `ls` command, the default size of a single block is 1024-Byte. In the GNU/Linux operating system, "block" is the smallest unit of storage in the file system, and generally speaking, one block is equal to 4096-Byte. In the Windows operating system, taking the NTFS file system as an example, its smallest storage unit is called a "Cluster". The definition of the minimum storage unit name may vary depending on different file systems.
 
 * Description of columns generated by running the `ls -lia` command:
 
@@ -504,16 +508,16 @@ $ ls -lia /home
 78489 drwx------ 4 rockstar rockstar 4096 25 oct. 08:10 rockstar
 ```
 
-| Value           | Information                                                                                                   |
-| --------------- | ------------------------------------------------------------------------------------------------------------- |
-| `78489`         | Inode Number.                                                                                                 |
-| `drwx------`    | File type (`d`) and rights (`rwx------`).                                                                     |
-| `4`             | Number of subdirectories (`.` and `..` included). For a file, it represents the number of hard links, and 1 represents itself. |
-| `rockstar`      | User ownership.                                                                                               |
-| `rockstar`      | Group ownership.                                                                                              |
+| Value           | Information                                                                                                                                                                                       |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `78489`         | Inode Number.                                                                                                                                                                                     |
+| `drwx------`    | File type (`d`) and rights (`rwx------`).                                                                                                                                                         |
+| `4`             | Number of subdirectories (`.` and `..` included). For a file, it represents the number of hard links, and 1 represents itself.                                                                    |
+| `rockstar`      | User ownership.                                                                                                                                                                                   |
+| `rockstar`      | Group ownership.                                                                                                                                                                                  |
 | `4096`          | For files, it shows the size of the file. For directories, it shows the fixed value of 4096 bytes occupied by the file naming. To calculate the total size of a directory, use `du -sh rockstar/` |
-| `25 oct. 08:10` | Last modified date.                                                                                           |
-| `rockstar`      | The name of the file (or directory).                                                                          |
+| `25 oct. 08:10` | Last modified date.                                                                                                                                                                               |
+| `rockstar`      | The name of the file (or directory).                                                                                                                                                              |
 
 !!! Note
 
@@ -646,9 +650,9 @@ Example:
 touch /home/rockstar/myfile
 ```
 
-| Option                            | Information                                                                |
-| --------------------------------- | -------------------------------------------------------------------------- |
-| `-t date`                         | Changes the date of last modification of the file with the specified date. |
+| Option    | Information                                                                |
+| --------- | -------------------------------------------------------------------------- |
+| `-t date` | Changes the date of last modification of the file with the specified date. |
 
 Date format: `[AAAA]MMJJhhmm[ss]`
 
@@ -666,9 +670,9 @@ Example:
 rmdir /home/rockstar/work
 ```
 
-| Option                                                                  | Information |
-| ----------------------------------------------------------------------- | ----------- |
-| `-p` |  Removes the parent directory or directories provided if they are empty.           |
+| Option | Information                                                              |
+| ------ | ------------------------------------------------------------------------ |
+| `-p`   |  Removes the parent directory or directories provided if they are empty. |
 
 !!! Tip
 
@@ -686,11 +690,11 @@ rm [-f] [-r] file [file] [...]
 
     Any deletion of a file or directory is final.
 
-| Options | Information                              |
-| ------- | ---------------------------------------- |
-| `-f`    | Do not ask whether to delete. |
-| `-i`    | Ask whether to delete.       |
-| `-r`    | Delete a directory and recursively delete its subdirectories.      |
+| Options | Information                                                   |
+| ------- | ------------------------------------------------------------- |
+| `-f`    | Do not ask whether to delete.                                 |
+| `-i`    | Ask whether to delete.                                        |
+| `-r`    | Delete a directory and recursively delete its subdirectories. |
 
 !!! Note
 
@@ -727,10 +731,10 @@ mv /home/rockstar/file1 /home/rockstar/file2
 mv /home/rockstar/file1 /home/rockstar/file2 /tmp
 ```
 
-| Options                                                                        | Information                                                     |
-| ------------------------------------------------------------------------------ | --------------------------------------------------------------- |
-| `-f`                                                                           | Don't ask for confirmation if overwriting the destination file. |
-| `-i`                                                                           | Request confirmation if overwriting destination file (default). |
+| Options | Information                                                     |
+| ------- | --------------------------------------------------------------- |
+| `-f`    | Don't ask for confirmation if overwriting the destination file. |
+| `-i`    | Request confirmation if overwriting destination file (default). |
 
 A few concrete cases will help you understand the difficulties that can arise:
 
@@ -790,7 +794,7 @@ cp -r /home/rockstar /tmp
 | `-f`    | Do not ask for confirmation if overwriting the destination file. |
 | `-p`    | Keeps the owner, permissions and timestamp of the copied file.   |
 | `-r`    | Copies a directory with its files and subdirectories.            |
-| `-s`    | Creates a symbolic link rather than copying.                    |
+| `-s`    | Creates a symbolic link rather than copying.                     |
 
 ```bash
 cp file1 /repexist/file2
@@ -862,16 +866,16 @@ less file1 [files]
 
 The commands specific to `less` are:
 
-| Command           | Action                                          |
-| ----------------- | ----------------------------------------------- |
-| ++"h"++ or ++h++              | Help.                                           |
-| ++arrow-up++ ++arrow-down++ ++arrow-right++ ++arrow-left++         | Move up, down a line, or to the right or left.  |
-| ++enter++           | Move down one line.                             |
-| ++space++           | Move down one page.                             |
-| ++page-up++ and ++page-down++ | Move up or down one page.                       |
-| ++"g"++ and ++g++ | Move to the first and last pages         |
-| `/text`           | Search for text.                                |
-| ++"q"++ or ++q++              | Quit the `less` command.                        |
+| Command                                                    | Action                                          |
+| ---------------------------------------------------------- | ----------------------------------------------- |
+| ++"h"++ or ++h++                                           | Help.                                           |
+| ++arrow-up++ ++arrow-down++ ++arrow-right++ ++arrow-left++ | Move up, down a line, or to the right or left.  |
+| ++enter++                                                  | Move down one line.                             |
+| ++space++                                                  | Move down one page.                             |
+| ++page-up++ and ++page-down++                              | Move up or down one page.                       |
+| ++"g"++ and ++g++                                          | Move to the first and last pages                |
+| `/text`                                                    | Search for text.                                |
+| ++"q"++ or ++q++                                           | Quit the `less` command.                        |
 
 ### `cat` command
 
@@ -943,7 +947,7 @@ The `head` command displays the beginning of a file.
 head [-n x] file
 ```
 
-| Option                                                                                                | Description                            |
+| Option                                                                                                | Description                             |
 | ----------------------------------------------------------------------------------------------------- | --------------------------------------- |
 | `-n x`                                                                                                | Display the first `x` lines of the file |
 
@@ -957,7 +961,7 @@ The `tail` command displays the end of a file.
 tail [-f] [-n x] file
 ```
 
-| Option   | Description                             |
+| Option   | Description                               |
 | -------- | ----------------------------------------- |
 | `-n x`   | Displays the last `x` lines of the file   |
 | `-f`     | Displays changes to the file in real time |
@@ -993,14 +997,14 @@ root:x:0:0:root:/root:/bin/bash
 adm:x:3:4:adm:/var/adm/:/sbin/nologin
 ```
 
-| Option    | Description                              |
-| --------- | ------------------------------------------- |
-| `-k`     | Specify the columns to be separated. You can specify multiple columns.         |
-| `-n`      | Requests a numeric sort.                     |
-| `-o file` | Saves the sort to the specified file.        |
-| `-t`     | Specify a delimiter, which requires that the contents of the corresponding file must be regularly delimited column contents, otherwise they cannot be sorted properly. |
-| `-r`      | Reverse the order of the result. Used in conjunction with the `-n` option to sort in order from largest to smallest.             |
-| `-u`     | Remove duplicates after sorting. Equivalent to `sort FILE | uniq` command.                   |
+| Option    | Description                                                                                                                                                            |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-k`      | Specify the columns to be separated. You can specify multiple columns.                                                                                                 |
+| `-n`      | Requests a numeric sort.                                                                                                                                               |
+| `-o file` | Saves the sort to the specified file.                                                                                                                                  |
+| `-t`      | Specify a delimiter, which requires that the contents of the corresponding file must be regularly delimited column contents, otherwise they cannot be sorted properly. |
+| `-r`      | Reverse the order of the result. Used in conjunction with the `-n` option to sort in order from largest to smallest.                                                   |
+| `-u`      | Remove duplicates after sorting. Equivalent to `sort FILE | uniq` command.                                                                                             |
 
 The `sort` command sorts the file only on the screen. The file is not modified by the sorting. To save the sort, use the `-o` option or an output redirection `>`.
 
@@ -1113,7 +1117,7 @@ The `wc` command counts the number of lines, words and/or bytes in a file.
 wc [-l] [-m] [-w] file [files]
 ```
 
-| Option | Description                    |
+| Option | Description                     |
 | ------ | ------------------------------- |
 | `-c`   | Count the number of bytes.      |
 | `-m`   | Count the number of characters. |
@@ -1184,7 +1188,7 @@ ls: /bin/ls
 
 | Option | Description                     |
 | ------ | ------------------------------- |
-| `-b`   | Searches only the binary file.    |
+| `-b`   | Searches only the binary file.  |
 | `-m`   | Searches only for man pages.    |
 | `-s`   | Searches only for source files. |
 
@@ -1203,11 +1207,11 @@ $ grep -w "root:" /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 ```
 
-| Option                                                                                  | Description                             |
-| --------------------------------------------------------------------------------------- | --------------------------------------- |
-| `-i`                                                                                    | Ignores the case of the searched string. |
-| `-v`                                                                                    | Excludes lines containing the string.   |
-| `-w`                                                                                    | Searches for the exact word.              |
+| Option | Description                              |
+| ------ | ---------------------------------------- |
+| `-i`   | Ignores the case of the searched string. |
+| `-v`   | Excludes lines containing the string.    |
+| `-w`   | Searches for the exact word.             |
 
 The `grep` command returns the complete line containing the string you are looking for.
 

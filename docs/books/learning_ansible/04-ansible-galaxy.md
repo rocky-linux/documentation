@@ -1,5 +1,7 @@
 ---
 title: Ansible Galaxy
+author: Antoine Le Morvan
+contributors: Steven Spencer
 ---
 
 # Ansible Galaxy: Collections and Roles

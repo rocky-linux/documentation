@@ -1,5 +1,7 @@
 ---
 title: Learning Ansible with Rocky
+author: Antoine Le Morvan
+contributors: Steven Spencer
 ---
 
 # Learning Ansible with Rocky

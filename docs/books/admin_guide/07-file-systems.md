@@ -7,8 +7,6 @@ tags:
   - system administration
 ---
 
-# File System
-
 In this chapter, you will learn how to work with file systems.
 
 ---
@@ -172,20 +170,26 @@ The partition created by the **standard partition** cannot dynamically adjust th
 The principle of LVM is very simple:
 
 - a logical abstraction layer is added between the physical disk (or disk partition) and the file system
-- merge multiple disks (or disk partition) into Volume Group(**VG**)
-- perform underlying disk management operations on them through something called Logical Volume(**LV**).
+- merge multiple disks (or disk partition) into Volume Group (**VG**)
+- perform underlying disk management operations on them through something called Logical Volume (**LV**).
 
-**The physical media**: The storage medium of the LVM can be the entire hard disk, disk partition, or RAID array. The device must be converted, or initialized, to an LVM Physical Volume(**PV**), before further operations can be performed.
+The physical media
+: The storage medium of the LVM can be the entire hard disk, disk partition, or RAID array. The device must be converted, or initialized, to an LVM Physical Volume(**PV**), before further operations can be performed.
 
-**PV(Physical Volume)** is the basic storage logic block of LVM. You can create a physical volume by using a disk partition or the disk itself.
+PV (Physical Volume)
+: is the basic storage logic block of LVM. You can create a physical volume by using a disk partition or the disk itself.
 
-**VG(Volume Group)**: Similar to physical disks in a standard partition, a VG consists of one or more PV.
+VG (Volume Group)
+: Similar to physical disks in a standard partition, a VG consists of one or more PV.
 
-**LV(Logical Volume)**: Similar to hard disk partitions in standard partitions, LV is built on top of VG. You can set up a file system on LV.
+LV (Logical Volume)
+: Similar to hard disk partitions in standard partitions, LV is built on top of VG. You can set up a file system on LV.
 
-<b><font color="blue">PE</font></b>: The smallest unit of storage that can be allocated in a Physical Volume, default to <b>4MB</b>. You can specify an additional size.
+PE
+: The smallest unit of storage that can be allocated in a Physical Volume, default to **4MB**. You can specify an additional size.
 
-<b><font color="blue">LE</font></b>: The smallest unit of storage that can be allocated in a Logical Volume. In the same VG, PE, and LE are the same and correspond one to one.
+LE
+: The smallest unit of storage that can be allocated in a Logical Volume. In the same VG, PE, and LE are the same and correspond one to one.
 
 ![Volume group, PE size equal to 4MB](images/07-file-systems-004.png)
 
@@ -780,10 +784,18 @@ There are two types of link files:
 
 Their main features are:
 
-| Link types     | Description                                                                                                                                                                                                                                                                |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Soft link file | This file is similar to a shortcut for Windows. It has permission of 0777 and points to the original file. When the original file is deleted, you can use `ls -l` to view the output information of the soft link file. In the output information, the file name of the soft link appears in red, and the pointed original file appears in red with a flashing prompt.  |
-| Hard link file | This file represents different mappings occupying the same *inode* number. They can be updated synchronously (including file content, modification time, owner, group affiliation, access time, etc.). Hard-linked files cannot span partitions and file systems and cannot be used in directories. |
+| Link types     | Description                                                                                                                                                                                            |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Soft link file | This file is similar to a shortcut for Windows. It has permission of 0777 and points to the original file.                                                                                             |
+| Hard link file | This file represents different mappings occupying the same *inode* number. They can be updated synchronously (including file content, modification time, owner, group affiliation, access time, etc.). |
+
+!!! note
+
+    When the original file is deleted, you can use `ls -l` to view the output information of the soft link file. In the output information, the file name of the soft link appears in red, and the pointed original file appears in red with a flashing prompt.
+
+!!! warning
+
+    Hard-linked files cannot span partitions and file systems and cannot be used in directories
 
 Specific examples are as follows:
 

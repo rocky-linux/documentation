@@ -9,8 +9,6 @@ tags:
   - software management
 ---
 
-# Software Management
-
 ## Generalities
 
 On a Linux system, it is possible to install software in two ways:
