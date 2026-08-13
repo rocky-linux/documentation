@@ -1,5 +1,7 @@
 ---
 title: Rocky Linux Errata
+author: Release Engineering
+contributors: Steven Spencer
 ---
 
 This page goes over general information about the Rocky Linux errata and its backend system.
@@ -13,15 +15,15 @@ This page goes over general information about the Rocky Linux errata and its bac
 
 ## General Errata Information
 
-Errata is generated via a system called "Apollo" together with the build system peridot. The Apollo system replaces the old errata system "secparse" and effectively generates the updateinfo.xml data that will appear in repositories. This provides information such as:
+A system called "Apollo" together with the build system `peridot` generate errata. The Apollo system replaces the old errata system "secparse" and effectively generates the `updateinfo.xml` data that will appear in repositories. This provides information such as:
 
 * Security advisories (RLSA)
 * Bugfix advisories (RLBA)
 * Enhancement advisories (RLEA)
 
-This information generally attempts to match the advisories provided by Red Hat. Errata for your system can be found by running `dnf updateinfo`.
+This information generally attempts to match the advisories provided by Red Hat. You can find errata for your system by running `dnf updateinfo`.
 
-```
+```bash
 # dnf updateinfo
 Last metadata expiration check: 1:41:31 ago on Thu 22 Sep 2022 10:00:23 PM MST.
 Updates Information Summary: available
@@ -35,9 +37,9 @@ Security: kernel-core-4.18.0-372.19.1.el8_6.x86_64 is an installed security upda
 Security: kernel-core-4.18.0-372.9.1.el8.x86_64 is the currently running version
 ```
 
-You can also run `dnf updateinfo list` to see the full list that applies to your system. If you use EPEL, you may see `FEDORA-EPEL` advisories as well.
+You can also run `dnf updateinfo list` to see the full list that applies to your system. If you use the EPEL (Extra Packages for Enterprise Linux), you might see `FEDORA-EPEL` advisories as well.
 
-```
+```bash
 # dnf updateinfo list
 RLSA-2022:6159              Moderate/Sec.  curl-7.61.1-22.el8_6.4.x86_64
 FEDORA-EPEL-2022-232803ed1b enhancement    distribution-gpg-keys-1.77-1.el8.noarch
