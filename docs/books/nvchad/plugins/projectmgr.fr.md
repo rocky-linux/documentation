@@ -21,7 +21,7 @@ Le plugiciel enregistre également l'état de l'éditeur quand il se ferme vous 
 
 ### Installation du plugiciel
 
-Pour installer le plugiciel, vous devrez éditer le fichier **custom/plugins.lua** en ajoutant le bloc de code suivant :
+Pour installer le plugiciel, vous devrez éditer le fichier **custom/plugins.lua** et ajouter le code suivant :
 
 ```lua
 {
@@ -141,15 +141,11 @@ Pour vérifier si les fichiers ouverts ne correspondent pas à ceux mis à jour 
 
 ### Mapping
 
-Pour accélérer l'ouverture de vos projets, vous pouvez créer un raccourci clavier à définir dans **/custom/mapping.lua**. Par exemple :
+Pour accélérer l'accès à vos projets, vous pouvez créer un raccourci clavier à définir dans **/custom/mapping.lua**. Par exemple :
 
 ```lua
 -- Projects
-M.projects = {
-    n = {
-        ["<leader>fp"] = { "<cmd> ProjectMgr<CR>", "Open Projects" },
-    },
-}
+map("n", "<leader>fp", "<CMD> ProjectMgr<CR>", { desc = "Open Projects" })
 ```
 
 Avec l'éditeur dans l'état **NORMAL** vous pouvez ouvrir le gestionnaire de projet avec la combinaison ++space++ + ++"f"++ suivie de ++"p"++.
