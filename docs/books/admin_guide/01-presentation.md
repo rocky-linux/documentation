@@ -1,7 +1,9 @@
 ---
 title: Introduction to Linux
+author: Antoine Le Morvan
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
-<!-- markdownlint-disable MD025 MD007 -->
+<!-- markdownlint-disable MD025 -->
 
 # Introduction to the Linux Operating System
 

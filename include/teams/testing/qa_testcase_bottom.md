@@ -1,10 +1,8 @@
-
-<h3>Additional Information</h3>
+### Additional Information
 
 === "Contact"
 
     If you have questions with respect to this content or to report concerns regarding the use or misuse content please do not hesitate to contact us at [testing@rockylinux.org](mailto:testing@rockylinux.org).
-
 
 === "Disclaimer"
 

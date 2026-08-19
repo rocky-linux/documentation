@@ -1,8 +1,8 @@
 ---
 title: System Startup
+author: Antoine Le Morvan
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
-
-# System Startup
 
 In this chapter, you will learn how the system starts.
 
@@ -146,8 +146,8 @@ To password-protect the GRUB2 bootloader:
 
 Sometimes, you may see in some documents that the `grub2-set-password` (`grub2-setpassword`) command is used to protect the GRUB2 bootloader:
 
-| command                 | Core functions                        | Configuration file modification method | automaticity |
-|-------------------------|---------------------------------------|----------------------------------------|--------------|
+| command                 | Core functions                         | Configuration file modification method | automaticity |
+|-------------------------|----------------------------------------|----------------------------------------|--------------|
 | `grub2-set-password`    | Sets password and update configuration | Auto Completion                        | high         |
 | `grub2-mkpasswd-pbkdf2` | Only generates encrypted hash values   | Requires manual editing                | low          |
 
@@ -192,11 +192,11 @@ The development of `systemd` was to:
 
 `systemd` introduces the concept of unit files, also known as `systemd` units.
 
-| Type         | File extension | Functionality                              |
+| Type         | File extension | Functionality                            |
 |--------------|----------------|------------------------------------------|
-| Service unit | `.service`       | System service                           |
-| Target unit  | `.target`        | A group of systemd units                 |
-| Mount unit   | `.automount`     | An automatic mount point for file system |
+| Service unit | `.service`     | System service                           |
+| Target unit  | `.target`      | A group of systemd units                 |
+| Mount unit   | `.automount`   | An automatic mount point for file system |
 
 !!! Note
 
@@ -222,15 +222,15 @@ Due to space limitations, this document will not provide a detailed introduction
 
 Service units end with the `.service` file extension and have a similar purpose to init scripts. The use of `systemctl` command is to `display`, `start`, `stop`, or `restart` a system service. Except for very few cases, the `systemctl` single line command can operate on one or more units in most cases (not limited to the unit type of ".service"). You can view it through the help system.
 
-| systemctl                                 | Description                             |
-|-------------------------------------------|-----------------------------------------|
-| systemctl start *name*.service ...        | Start one or more services              |
-| systemctl stop *name*.service ...         | Stop one or more services               |
-| systemctl restart *name*.service ...      | Restart one or more services            |
-| systemctl reload *name*.service ...       | Reload one or more services             |
-| systemctl status *name*.service ...       | Check one or more services status       |
-| systemctl try-restart *name*.service ...  | Restart one or more services (If they are running)      |
-| systemctl list-units --type service --all | Displays the status of all services      |
+| systemctl                                 | Description                                        |
+|-------------------------------------------|----------------------------------------------------|
+| systemctl start *name*.service ...        | Start one or more services                         |
+| systemctl stop *name*.service ...         | Stop one or more services                          |
+| systemctl restart *name*.service ...      | Restart one or more services                       |
+| systemctl reload *name*.service ...       | Reload one or more services                        |
+| systemctl status *name*.service ...       | Check one or more services status                  |
+| systemctl try-restart *name*.service ...  | Restart one or more services (If they are running) |
+| systemctl list-units --type service --all | Displays the status of all services                |
 
 The `systemctl` command is also used for the `enable` or `disable` of a system service and displaying associated services:
 
@@ -302,13 +302,13 @@ For example, the `graphical.target` unit that starts a graphical session starts 
 
 `sysinit.target` and `basic.target` are checkpoints during the startup process. Although one of the design goals of `systemd` is to start system services in parallel, it is necessary to start the "targets" of certain services and features before starting other services and "targets". Any error in `sysinit.target` or `basic target` will cause the initialization of `systemd` to fail. At this time, your terminal may have entered "emergency mode" (`emergency.target`).
 
-| Target Units      | Description                                               |
-|-------------------|-----------------------------------------------------------|
-| poweroff.target   | Shuts down the system and turns it off                    |
-| rescue.target     | Activates a rescue shell                                  |
+| Target Units      | Description                                                 |
+|-------------------|-------------------------------------------------------------|
+| poweroff.target   | Shuts down the system and turns it off                      |
+| rescue.target     | Activates a rescue shell                                    |
 | multi-user.target | Activates a multi-user system without a graphical interface |
 | graphical.target  | Activates a multi-user system with a graphical interface    |
-| reboot.target     | Shuts down and restarts the system                        |
+| reboot.target     | Shuts down and restarts the system                          |
 
 #### The default target
 
@@ -395,14 +395,14 @@ systemctl emergency
 
 The `systemctl` command replaces many power management commands used in previous versions:
 
-|Old command          | New command              | Description            |
-|---------------------|--------------------------|------------------------|
-| `halt`              | `systemctl halt`         |Shuts down the system.  |
-| `poweroff`          | `systemctl poweroff`     |Turns off the system.   |
-| `reboot`            | `systemctl reboot`       |Restarts the system.    |
-| `pm-suspend`        | `systemctl suspend`      |Suspends the system.    |
-| `pm-hibernate`      | `systemctl hibernate`    |Hibernates the system.  |
-| `pm-suspend-hybrid` | `systemctl hybrid-sleep` |Hibernates and suspends the system.|
+|Old command          | New command              | Description                        |
+|---------------------|--------------------------|------------------------------------|
+| `halt`              | `systemctl halt`         |Shuts down the system.              |
+| `poweroff`          | `systemctl poweroff`     |Turns off the system.               |
+| `reboot`            | `systemctl reboot`       |Restarts the system.                |
+| `pm-suspend`        | `systemctl suspend`      |Suspends the system.                |
+| `pm-hibernate`      | `systemctl hibernate`    |Hibernates the system.              |
+| `pm-suspend-hybrid` | `systemctl hybrid-sleep` |Hibernates and suspends the system. |
 
 ### The `journald` process
 

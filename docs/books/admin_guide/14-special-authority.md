@@ -723,4 +723,3 @@ Due to various reasons during the initial design of sudo (such as complex design
 * ‌CVE-2025-32463
 
 You can use the Rust version of sudo as an alternative. For more details, see [here](https://github.com/trifectatechfoundation/sudo-rs).
-

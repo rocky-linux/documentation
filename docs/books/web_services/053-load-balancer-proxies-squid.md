@@ -154,12 +154,12 @@ Syntax of the command:
 squid [-z|-s|-k parse|-k rotate]
 ```
 
-| Option      | Description                  |
-|-------------|------------------------------|
+| Option      | Description                   |
+|-------------|-------------------------------|
 | `-z`        | Initializes cache directories |
-| `-s`        | Enables syslog logging       |
-| `-k parse`  | Test configuration file      |
-| `-k rotate` | Rotates logs                 |
+| `-s`        | Enables syslog logging        |
+| `-k parse`  | Test configuration file       |
+| `-k rotate` | Rotates logs                  |
 
 Logging client requests can quickly lead to storing large amounts of data.
 

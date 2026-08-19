@@ -1,8 +1,8 @@
 ---
 title: Backup and Restore
+author: Antoine Le Morvan
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
-
-# Backup and Restore
 
 In this chapter, you will learn how to back up and restore your data using Linux.
 
@@ -211,15 +211,15 @@ $ tar cjf - /directory/to/backup/ | wc -c
 
 Here is an example of a naming convention for a `tar` backup, knowing that the date will be added to the name.
 
-| keys    | Files   | Suffix           | Functionality                                |
-|---------|---------|------------------|----------------------------------------------|
-| `cvf`   | `home`  | `home.tar`       | `/home` in relative mode, uncompressed form  |
-| `cvfP`  | `/etc`  | `etc.A.tar`      | `/etc` in absolute mode, no compression      |
-| `cvfz`  | `usr`   | `usr.tar.gz`     | `/usr` in relative mode, *gzip* compression  |
-| `cvfj`  | `usr`   | `usr.tar.bz2`    | `/usr` in relative mode, *bzip2* compression |
+| keys    | Files   | Suffix           | Functionality                                 |
+| ------- | ------- | ---------------- | --------------------------------------------- |
+| `cvf`   | `home`  | `home.tar`       | `/home` in relative mode, uncompressed form   |
+| `cvfP`  | `/etc`  | `etc.A.tar`      | `/etc` in absolute mode, no compression       |
+| `cvfz`  | `usr`   | `usr.tar.gz`     | `/usr` in relative mode, *gzip* compression   |
+| `cvfj`  | `usr`   | `usr.tar.bz2`    | `/usr` in relative mode, *bzip2* compression  |
 | `cvfPz` | `/home` | `home.A.tar.gz`  | `/home` in absolute mode, *gzip* compression  |
 | `cvfPj` | `/home` | `home.A.tar.bz2` | `/home` in absolute mode, *bzip2* compression |
-| …       |         |                  |                                        |
+| …       |         |                  |                                               |
 
 #### Create a backup
 
@@ -279,7 +279,7 @@ tar cvzf backup.tar.gz dirname/
 
 | Key | Description                      |
 |-----|----------------------------------|
-| `z` |Compresses the backup in *gzip*. |
+| `z` |Compresses the backup in *gzip*.  |
 
 !!! Note
 
@@ -299,7 +299,7 @@ tar cvfj backup.tar.bz2 dirname/
 
 | Key | Description                       |
 |-----|-----------------------------------|
-| `j` |Compresses the backup in *bzip2*. |
+| `j` |Compresses the backup in *bzip2*.  |
 
 !!! Note
 
@@ -337,10 +337,10 @@ Adding a directory is similar. Here add `dirtoadd` to `backup_name.tar`:
 tar rvf backup_name.tar dirtoadd
 ```
 
-| Key | Description                                                                      |
-|-----|----------------------------------------------------------------------------------|
-| `r` | Appends the files or directories to the end of the archive.                       |
-| `A` | Appends all files in one archive to the end of another archive.         |
+| Key | Description                                                     |
+|-----|-----------------------------------------------------------------|
+| `r` | Appends the files or directories to the end of the archive.     |
+| `A` | Appends all files in one archive to the end of another archive. |
 
 !!! Note
 
@@ -367,7 +367,7 @@ tar t[key(s)] [device]
 ```
 
 | Key |Description                                           |
-|-----|-------------------------------------------------------|
+|-----|------------------------------------------------------|
 | `t` |Displays the content of a backup (compressed or not). |
 
 Examples:
@@ -467,8 +467,8 @@ tar xvfP /backups/etc.133.P.tar
 
     Once again, before performing extraction operations, you should always check the contents of the backup files (particularly those saved in absolute mode).
 
-| Key |Description                                       |
-|------|----------------------------------------------------|
+| Key  | Description                                             |
+|------|---------------------------------------------------------|
 | `x`  | Extracts files from backups (whether compressed or not) |
 
 Extracting a *tar-gzipped* (`*.tar.gz`) backup is done with the `xvfz` keys:
@@ -534,7 +534,7 @@ tar xvf backup.tar --wildcards '*.conf'
 
 keys:
 
-* __--wildcards *.conf__ corresponds to files with the extension `.conf`.
+* **`--wildcards *.conf`** corresponds to files with the extension `.conf`.
 
 !!! tip "Expanded Knowledge"
 
@@ -610,11 +610,11 @@ Here, the `find /etc` command returns a list of files corresponding to the conte
 
 Do not forget the `>` sign when saving or the `F save_name_cpio`.
 
-| Options |Description                                    |
-|---------|------------------------------------------------|
-| `-o`    |Creates a backup through _cp-out_ mode.                   |
-| `-v`    |Displays the name of the processed files.      |
-| `-F`    |Backup to specific media, which can replace standard input ("<") and standard output (">") in the `cpio` command |
+| Options | Description                                                                                                      |
+|---------|------------------------------------------------------------------------------------------------------------------|
+| `-o`    | Creates a backup through *cp-out* mode.                                                                          |
+| `-v`    | Displays the name of the processed files.                                                                        |
+| `-F`    | Backup to specific media, which can replace standard input ("<") and standard output (">") in the `cpio` command |
 
 Backup to a media:
 
@@ -658,10 +658,10 @@ find /etc/shadow | cpio -o -AF SystemFiles.A.cpio
 
 Adding files is only possible on direct access media.
 
-| Option | Description                                 |
-|--------|---------------------------------------------|
+| Option | Description                                      |
+|--------|--------------------------------------------------|
 | `-A`   | Appends one or more files to an existing backup. |
-| `-F`   | Designates the backup to be modified.       |
+| `-F`   | Designates the backup to be modified.            |
 
 #### Compressing a backup
 
@@ -701,7 +701,7 @@ Example:
 cpio -tv < /backups/etc.152.cpio | less
 ```
 
-| Options |Description               |
+| Options | Description               |
 |---------|---------------------------|
 | `-t`    | Reads a backup.           |
 | `-v`    | Displays file attributes. |
@@ -726,7 +726,7 @@ cpio -iv < /backups/etc.152.cpio | less
 
 | Options                      | Description                                                         |
 |------------------------------|---------------------------------------------------------------------|
-| `-i`                         | Restores a complete backup.                                          |
+| `-i`                         | Restores a complete backup.                                         |
 | `-E file`                    | Restores only the files whose name is contained in file.            |
 | `--make-directories` or `-d` | Rebuilds the missing tree structure.                                |
 | `-u`                         | Replaces all files even if they exist.                              |

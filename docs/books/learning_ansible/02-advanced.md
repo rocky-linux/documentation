@@ -1,5 +1,7 @@
 ---
 title: Ansible Intermediate
+author: Antoine Le Morvan
+contributors: Steven Spencer
 ---
 
 # Ansible Intermediate
@@ -152,7 +154,7 @@ Use of a stored variable:
 
 The strings that make up the stored variable can be accessed via the `stdout` value (which allows you to do things like `homes.stdout.find("core") != -1`), to exploit them using a loop (see `loop`), or simply by their indices as seen in the previous example.
 
-### Exercises:
+### Exercises
 
 * Write a playbook, `play-vars.yml,` using global variables that print the target's distribution name and major version.
 
@@ -350,7 +352,7 @@ You will probably have to test that a variable exists to avoid execution errors:
 when: myboolean is defined and myboolean
 ```
 
-### Exercises:
+### Exercises
 
 * Print the value of `service.web` only when `type` equals to `web`.
 

@@ -16,12 +16,11 @@ repos:
       - id: check-added-large-files
         args: ['--maxkb=1024']
 
-  - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.38.0
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.23.2
     hooks:
-      - id: markdownlint
-        args: [--config, .markdownlint.yml, --fix]
-        files: \.md$
+      - id: markdownlint-cli2
+        args: [--fix]
         exclude: |
           (?x)^(
             LICENSE\.md|

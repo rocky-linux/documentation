@@ -9,8 +9,6 @@ tags:
   - bash
 ---
 
-# Bash - First script
-
 In this chapter you will learn how to write your first script in bash.
 
 ****

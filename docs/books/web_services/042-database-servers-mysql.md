@@ -52,7 +52,7 @@ You can now follow the previous chapter by replacing the following commands:
 
 You will have to use a different repository to install the latest version of MySQL server.
 
-Visit this page: https://dev.mysql.com/downloads/repo/yum/ and copy the repository URL.
+Visit this page: [https://dev.mysql.com/downloads/repo/yum/](https://dev.mysql.com/downloads/repo/yum/) and copy the repository URL.
 
 For example:
 

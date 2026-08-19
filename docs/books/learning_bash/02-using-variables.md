@@ -9,8 +9,6 @@ tags:
   - bash
 ---
 
-# Bash - Using Variables
-
 In this chapter you will learn how to use variables in your bash scripts.
 
 ****
@@ -165,15 +163,15 @@ The `set` command displays all used system variables.
 
 Among the dozens of environment variables, several are of interest to be used in a shell script:
 
-| Variables                        | Description                                              |
-|----------------------------------|-----------------------------------------------------------|
-| `HOSTNAME`                       | Host name of the machine.                                 |
-| `USER`, `USERNAME` and `LOGNAME` | Name of the user connected to the session.                |
-| `PATH`                           | Path to find the commands.                                |
+| Variables                        | Description                                                      |
+|----------------------------------|------------------------------------------------------------------|
+| `HOSTNAME`                       | Host name of the machine.                                        |
+| `USER`, `USERNAME` and `LOGNAME` | Name of the user connected to the session.                       |
+| `PATH`                           | Path to find the commands.                                       |
 | `PWD`                            | Current directory, updated each time the cd command is executed. |
-| `HOME`                           | Login directory.                                          |
-| `$$`                             | Process id of the script execution.                       |
-| `$?`                             | Return code of the last command executed.                 |
+| `HOME`                           | Login directory.                                                 |
+| `$$`                             | Process id of the script execution.                              |
+| `$?`                             | Return code of the last command executed.                        |
 
 The `export` command allows you to export a variable.
 

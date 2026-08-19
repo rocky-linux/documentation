@@ -10,8 +10,6 @@ tags:
   - kmod
 ---
 
-# View Current Kernel Configuration
-
 The Linux kernel stores running kernel information in two places via special filesystems:
 
 - The older [procfs](https://man7.org/linux/man-pages/man5/procfs.5.html) which mounts `/proc` (verify via `mount -l -t proc`)

@@ -9,8 +9,6 @@ tags:
   - bash
 ---
 
-# Bash - Data entry and manipulations
-
 In this chapter you will learn how to make your scripts interact with users and manipulate the data.
 
 ****
@@ -50,11 +48,11 @@ read name firstname
 read -p "Please type your name: " name
 ```
 
-| Option | Functionality                                   |
-|--------|-----------------------------------------------|
-| `-p`   | Displays a prompt message.                    |
+| Option | Functionality                                  |
+|--------|------------------------------------------------|
+| `-p`   | Displays a prompt message.                     |
 | `-n`   | Limits the number of characters to be entered. |
-| `-s`   | Hides the input.                              |
+| `-s`   | Hides the input.                               |
 
 When using the `-n` option, the shell automatically validates the input after the specified number of characters. The user does not have to press the ++enter++ key.
 

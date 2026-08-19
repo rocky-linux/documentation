@@ -8,7 +8,7 @@ title: Rocky Linux Summer of Docs 2024
 
 ## Project: Desktop User Documentation Enhancement
 
-Our first Rocky Linux (RL) Summer of Docs initiative aims to create a new documentation category for Enterprise Linux Desktop Users. 
+Our first Rocky Linux (RL) Summer of Docs initiative aims to create a new documentation category for Enterprise Linux Desktop Users.
 
 Inspired by the highly esteemed and eponymous Google Season of Docs project, this project aims to fill a gap in the current RL documentation.
 
@@ -28,13 +28,14 @@ By developing comprehensive, user-friendly, and multilingual desktop user guides
 - **Sept 1 - Sept 15**: Revisions based on community feedback and final translations.
 
 ## Application Process
-This project is open to everyone. Interested candidates should email docs@rockylinux.org with any of the following:
+
+This project is open to everyone. Interested candidates should email <docs@rockylinux.org> with any of the following:
 
 - Portfolios or other open-source contributions
 - Proposed topics/titles for RL desktop documentation
 - Preferred languages for translation
 
-(If you have any questions or need assistance participating, please connect with us at https://chat.rockylinux.org)
+(If you have any questions or need assistance participating, please connect with us at [https://chat.rockylinux.org](https://chat.rockylinux.org))
 
 ## Grant
 
@@ -42,7 +43,3 @@ This project is open to everyone. Interested candidates should email docs@rockyl
 - Review and translate 4 desktop-focused guides and receive $100 (up to $500).
 
 The goal is to add at least 25 new documents and 20 translations to the new Desktop category.
-
-
-
-

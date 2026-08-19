@@ -1,11 +1,10 @@
+### Additional Information
 
-<h3>Additional Information</h3>
 <!-- include source: include/teams/testing/content_bottom.md -->
 
 === "Contact"
 
     If you have questions with respect to this content or to report concerns regarding the use or misuse content please do not hesitate to contact us at [info@rockylinux.org](mailto:info@rockylinux.org).
-
 
 === "Disclaimer"
 
@@ -14,4 +13,3 @@
 === "License"
 
     This content is licensed under under [Attribution-Share Alike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) license unless otherwise noted.
-

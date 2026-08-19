@@ -66,14 +66,14 @@ After decades of development, `rsyslog` currently supports three different confi
 
 1. basic (sysklogd) - This format is suitable for representing the basic configuration in a single line.
 
-    ```
+    ```bash
     mail.info /var/log/mail.log
     mail.err @@server.example.net
     ```
 
 2. advanced (RainerScript) - Highly flexible and accurate configuration format.
 
-    ```
+    ```bash
     mail.err action(type="omfwd" protocol="tcp" queue.type="linkedList")
     ```
 

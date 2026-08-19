@@ -9,8 +9,6 @@ tags:
   - bash
 ---
 
-# Bash - Check your knowledge
-
 :heavy_check_mark: Among these 4 shells, which one does not exist:
 
 - [ ] Bash

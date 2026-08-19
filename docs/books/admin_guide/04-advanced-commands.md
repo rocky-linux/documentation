@@ -1,5 +1,7 @@
 ---
 title: Advanced Linux Commands
+author: Antoine Le Morvan
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 # Advanced Commands for Linux users
@@ -379,15 +381,15 @@ install -d directory
 
 Options:
 
-| Options | Remarks                                                      |
-| ------- | ------------------------------------------------------------ |
-| `-b` or `--backup[=suffix]` | creates a backup of destination file     |
-| `-d`    | treats arguments as directory names                          |
-| `-D`    | creates all leading components before copying SOURCE to DEST |
-| `-g` and `-o`    | sets ownership                                      |
-| `-m`    | sets permissions                                             |
-| `-p`    | preserves the timestamps of the sources files                |
-| `-t`    | copies all source arguments to the directory                 |
+| Options                     | Remarks                                                      |
+| --------------------------- | ------------------------------------------------------------ |
+| `-b` or `--backup[=suffix]` | creates a backup of destination file                         |
+| `-d`                        | treats arguments as directory names                          |
+| `-D`                        | creates all leading components before copying SOURCE to DEST |
+| `-g` and `-o`               | sets ownership                                               |
+| `-m`                        | sets permissions                                             |
+| `-p`                        | preserves the timestamps of the sources files                |
+| `-t`                        | copies all source arguments to the directory                 |
 
 !!! note
 

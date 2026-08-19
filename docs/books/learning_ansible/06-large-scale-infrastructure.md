@@ -1,5 +1,7 @@
 ---
 title: Large Scale infrastructure
+author: Antoine Le Morvan
+contributors: Steven Spencer
 ---
 
 # Ansible - Large Scale infrastructure

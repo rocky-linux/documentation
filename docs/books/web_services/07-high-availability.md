@@ -20,10 +20,10 @@ This availability is a performance measure expressed as a percentage obtained by
 | -------- | ----------------------------- |
 | 90%      | 876 hours                     |
 | 95%      | 438 hours                     |
-| 99%      | 87 hours 36 minutes        |
+| 99%      | 87 hours 36 minutes           |
 | 99,9%    | 8 hours 45 minutes 36 seconds |
-| 99,99%   | 52 minutes 33 seconds        |
-| 99,999%  | 5 minutes 15 seconds         |
+| 99,99%   | 52 minutes 33 seconds         |
+| 99,999%  | 5 minutes 15 seconds          |
 | 99,9999% | 31,68 seconds                 |
 
 "High Availability" (**HA**) refers to all measures taken to guarantee a service's highest possible availability—that is, correct operation 24 hours a day.
@@ -501,7 +501,7 @@ Return server1 to the pool:
 sudo pcs node unstandby server1
 ```
 
-!!! Note 
+!!! Note
 Once server1 has been `unstandby`, the cluster returns to its normal state, but the resource is not transferred back to server1: it remains on server2.
 
 ##### Service configuration

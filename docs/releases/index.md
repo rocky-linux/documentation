@@ -12,10 +12,10 @@ You have reached the releases section of the documentation. This page provides d
 Here are the current releases:
 
 | Release         | Codename       | Release Date  | Active Support Ends  | End of Life          | Latest/Current Version   |
-|-----------------|----------------|---------------|----------------------|----------------------|--------------------------|
+| --------------- | -------------- | ------------- | -------------------- | -------------------- | ------------------------ |
 | Rocky Linux 8   | Green Obsidian | 2021-05-01    | 2024-05-31           | 2029-05-31           | 8.10 (2024-05-31)        |
-| Rocky Linux 9   | Blue Onyx      | 2022-07-14 | 2027-05-31         | 2032-05-31         | 9.8 (2026-05-28)  |
-| Rocky Linux 10  | Red Quartz     | 2025-06-11 | 2030-05-31         | 2035-05-31         | 10.2 (2026-05-29) |
+| Rocky Linux 9   | Blue Onyx      | 2022-07-14    | 2027-05-31           | 2032-05-31           | 9.8 (2026-05-28)         |
+| Rocky Linux 10  | Red Quartz     | 2025-06-11    | 2030-05-31           | 2035-05-31           | 10.2 (2026-05-29)        |
 
 !!! warning "Only the latest minor release of each major version is supported"
 
@@ -53,7 +53,7 @@ Rocky 8 (Codename "Green Obsidian") has general support until 31 May 2024 and se
 
 | Release Number | General Availability Date | Kernel Version  |
 | -------------- | ------------------------- | --------------- |
-| 8.3 | 2021-05-01 | 4.18.0-240 |
+| 8.3            | 2021-05-01                | 4.18.0-240      |
 | 8.4            | 2021-06-21                | 4.18.0-305      |
 | 8.5            | 2021-11-15                | 4.18.0-348      |
 | 8.6            | 2022-05-16                | 4.18.0-372.9.1  |
@@ -68,17 +68,17 @@ Rocky 8 (Codename "Green Obsidian") has general support until 31 May 2024 and se
 
 Throughout this page, you will see terms such as "major version" or "minor version", among others. You will see these terms used throughout many discussions online forums, mail lists, or even our Mattermost.
 
-| Term           | Definitions |
-|----------------|-------------|
-| Major Version  | A whole number in the leftmost position of the version, denotes a major version, such as "Rocky Linux 9". For example, in the version 9.1, the "9" is the major version. Major version releases come with significant changes to its preceding major version. |
-| Minor Version  | The number in the rightmost position of a version denotes the minor version. For example in the version "Rocky Linux 9.3", the "3" is the minor version. These updates come with version upgrades, rebases, new software and features. |
-| Release        | Release typically refers to a major version release, such as "Rocky Linux 9". It is typically assumed it is referring to the latest/current version of that release. |
-| Minor Release  | Used as "Minor Version" in most cases. |
-| Active Support | Active Support (also known as "Full Support") is the period of time where minor releases come out every six (6) months. These provide new software, rebases, or other new features. When Active Support ends, a release receives maintenance-only updates. |
-| Security Support | Security Support (also known as "Maintenance Support"), it refers to the period after the end of "Active Support". |
-| General Availability | General Availability (GA) is a critical stage in the software lifecycle, where a product has completed all testing, is fully functional, and is officially released to all target users. Normally, GA does not refer to any specific version. |
-| Codename | A name used internally during the product development phase to identify different development versions or stages. |
-| End of Life  | In Rocky Linux, End of Life (EOL) refers to the product no longer receiving any form of updates or support. In some commercial software, EOL refers to stopping the sale of the software and then entering the EOS (End of Support) phase. |
+| Term                 |Definitions                                                                                                                                                                                                                                                    |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Major Version        | A whole number in the leftmost position of the version, denotes a major version, such as "Rocky Linux 9". For example, in the version 9.1, the "9" is the major version. Major version releases come with significant changes to its preceding major version. |
+| Minor Version        | The number in the rightmost position of a version denotes the minor version. For example in the version "Rocky Linux 9.3", the "3" is the minor version. These updates come with version upgrades, rebases, new software and features.                        |
+| Release              | Release typically refers to a major version release, such as "Rocky Linux 9". It is typically assumed it is referring to the latest/current version of that release.                                                                                          |
+| Minor Release        | Used as "Minor Version" in most cases.                                                                                                                                                                                                                        |
+| Active Support       | Active Support (also known as "Full Support") is the period of time where minor releases come out every six (6) months. These provide new software, rebases, or other new features. When Active Support ends, a release receives maintenance-only updates.    |
+| Security Support     | Security Support (also known as "Maintenance Support"), it refers to the period after the end of "Active Support".                                                                                                                                            |
+| General Availability | General Availability (GA) is a critical stage in the software lifecycle, where a product has completed all testing, is fully functional, and is officially released to all target users. Normally, GA does not refer to any specific version.                 |
+| Codename             | A name used internally during the product development phase to identify different development versions or stages.                                                                                                                                             |
+| End of Life          | In Rocky Linux, End of Life (EOL) refers to the product no longer receiving any form of updates or support. In some commercial software, EOL refers to stopping the sale of the software and then entering the EOS (End of Support) phase.                    |
 
 ### Timeline
 
@@ -201,7 +201,7 @@ If you cannot install a new system and migrate and you still need support for yo
 
 Major version upgrade refers to the operation of upgrading the current major version to another major version.
 
-The Rocky Linux team does **not recommend** performing major version upgrades. 
+The Rocky Linux team does **not recommend** performing major version upgrades.
 
 The tasks performed by Rocky Linux users are quite different. If you use some tools for the major version migration, you may lose important data. The recommended approach is:
 

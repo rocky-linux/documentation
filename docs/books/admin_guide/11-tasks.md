@@ -1,8 +1,8 @@
 ---
 title: Task Management
+author: Antoine Le Morvan
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
-
-# Task Management
 
 In this chapter, you will learn how to manage scheduled tasks.
 
@@ -143,12 +143,12 @@ Example:
 [root]# crontab -u user1 -e
 ```
 
-| Option |Description                                              |
-|--------|-----------------------------------------------------------|
-| `-e`   | Edits the schedule file with vi                            |
-| `-l`   | Displays the contents of the schedule file                |
-| `-u <user>`   | Specify a single user to operate                |
-| `-r`   | Deletes the schedule file                                  |
+| Option      | Description                                |
+|-------------|--------------------------------------------|
+| `-e`        | Edits the schedule file with vi            |
+| `-l`        | Displays the contents of the schedule file |
+| `-u <user>` | Specify a single user to operate           |
+| `-r`        | Deletes the schedule file                  |
 
 !!! Warning
 
@@ -206,12 +206,12 @@ The `crontab` file is structured according to the following rules.
 
 To simplify the notation for the definition of time, it is advisable to use special symbols.
 
-| Special symbol | Description                      |
-|---------------|----------------------------------|
-| `*`           | Indicates all the time values of the field |
-| `-`           | Indicates a continuous time range     |
-| `,`           | Indicates the discontinuous time range      |
-| `/`           | Indicates time interval                  |
+| Special symbol | Description                                |
+|----------------|--------------------------------------------|
+| `*`            | Indicates all the time values of the field |
+| `-`            | Indicates a continuous time range          |
+| `,`            | Indicates the discontinuous time range     |
+| `/`            | Indicates time interval                    |
 
 Examples:
 
@@ -241,14 +241,14 @@ Run every 10 minutes during working hours on weekdays:
 
 For the root user, `crontab` also has some special time settings:
 
-| Setting  | Description                   |
-|----------|-------------------------------|
-| @reboot  | Runs a command on system reboot  |
-| @hourly  | Runs a command every hour        |
-| @daily   | Runs daily just after midnight|
-| @weekly  | Runs command every Sunday just after midnight    |
-| @monthly | Runs command on the first day of the month just after midnight |
-| @annually| Runs January 1st just after midnight |
+| Setting   | Description                                                    |
+|-----------|----------------------------------------------------------------|
+| @reboot   | Runs a command on system reboot                                |
+| @hourly   | Runs a command every hour                                      |
+| @daily    | Runs daily just after midnight                                 |
+| @weekly   | Runs command every Sunday just after midnight                  |
+| @monthly  | Runs command on the first day of the month just after midnight |
+| @annually | Runs January 1st just after midnight                           |
 
 ### Task execution process
 

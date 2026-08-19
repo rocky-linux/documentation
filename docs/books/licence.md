@@ -8,7 +8,7 @@ RockyLinux materials are published under Creative Commons-BY-SA. This means you 
 
 **SA** : **Share Alike**.
 
-- Creative Commons-BY-SA licence : https://creativecommons.org/licenses/by-sa/4.0/  
+- Creative Commons-BY-SA licence : [https://creativecommons.org/licenses/by-sa/4.0/](Rocky Linux Instructional Books)
 
 The documents and their sources are freely downloadable from:
 
@@ -17,7 +17,7 @@ The documents and their sources are freely downloadable from:
 
 Our media sources are hosted at github.com. You'll find the source code repository where the version of this document was created.
 
-From these sources, you can generate your own personalized training material using [mkdocs](https://www.mkdocs.org/). You will find instructions for generating your document [here](https://github.com/rocky-linux/documentation/tree/main/build_pdf).
+From these sources, you can generate your own personalized training material using [mkdocs](https://www.mkdocs.org/). You will find instructions for generating your document [in this directory](https://github.com/rocky-linux/documentation/tree/main/build_pdf).
 
 > How can I contribute to the documentation project?
 

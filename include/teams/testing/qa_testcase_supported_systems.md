@@ -1,5 +1,4 @@
-
-<h3>Supported Systems and Hardware Classes</h3>
+### Supported Systems and Hardware Classes
 
 === "x86_64"
 
