@@ -1,5 +1,6 @@
 ---
 nav:
+    - ... | index*.md
     - Alt Architecture: alt_arch
     - Community: community
     - Infrastructure: infra
