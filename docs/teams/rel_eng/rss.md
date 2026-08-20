@@ -1,7 +1,7 @@
 ---
 title: Rocky Linux RSS feeds
 author: Release Engineering
-contributors: Stevn Spencer
+contributors: Steven Spencer
 ---
 
 This page covers the RSS (Really Simple Syndication) feeds provided by the Rocky Linux project.
