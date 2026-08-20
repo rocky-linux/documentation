@@ -10,6 +10,6 @@ Release Engineering combines software development and infrastructure management 
 * Build system management
 * Infrastructure maintenance
 * Community and Special Interest Group (SIG) support
-* And, with the assistance of the Testing team, Quality assurance
+* And, with the assistance of the Testing team, quality assurance
 
-To communicate or participate in Release Engineering, consider joining the conversation [in their Mattermost channel.](https://chat.rockylinux.org/rocky-linux/channels/releng--infra)
+To communicate or participate in Release Engineering, consider joining the conversation [in their Mattermost channel.](https://chat.rockylinux.org/rocky-linux/channels/releng--infra). Because of the tight integration between teams, Release Engineering and Infrastructure Services share this communications channel.
