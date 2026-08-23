@@ -14,7 +14,7 @@ Inspired by the highly esteemed and eponymous Google Season of Docs project, thi
 
 By developing comprehensive, user-friendly, and multilingual desktop user guides, we can expand RL's user base and improve its usability. This will make Rocky Linux more appealing to a wider audience and strengthen its position in the enterprise Linux market.
 
-## Scope
+## Champ d'application
 
 - Develop a framework and template for contributing desktop-focused documentation.
 - Create user-friendly guides for desktop users.
@@ -37,7 +37,7 @@ This project is open to everyone. Interested candidates should email docs@rockyl
 
 (If you have any questions or need assistance participating, please connect with us at https://chat.rockylinux.org)
 
-## Grant
+## Subvention
 
 - Contribute 5 original desktop-focused guides to the new "Desktop" category and receive $200 (up to $1000).
 - Review and translate 4 desktop-focused guides and receive $100 (up to $500).
