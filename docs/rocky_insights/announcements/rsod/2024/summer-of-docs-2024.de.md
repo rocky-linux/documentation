@@ -37,7 +37,7 @@ This project is open to everyone. Interested candidates should email docs@rockyl
 
 (If you have any questions or need assistance participating, please connect with us at https://chat.rockylinux.org)
 
-## Grant
+## Förderung
 
 - Contribute 5 original desktop-focused guides to the new "Desktop" category and receive $200 (up to $1000).
 - Review and translate 4 desktop-focused guides and receive $100 (up to $500).
