@@ -34,7 +34,7 @@ There are occasions that Rocky Linux users might find problems. These might or m
 In the same vein as bug hunting, the [Testing team](../../testing/index.md) is one of the most active groups in the project, with all communication in Mattermost. They work together on testing various aspects of Rocky Linux, including refining their openQA system, their various methods of testing to find bugs, and test functionality. They are always
 open to more users that can help them with these efforts.
 
-## Help with or join the EPEL Effort
+## Help with or join the EPEL effort
 
 EPEL (or Extra Packages for Enterprise Linux) is a SIG within the [Fedora Project](https://docs.fedoraproject.org/en-US/project/) that maintains and manages a set of additional packages for Enterprise Linux such as Red Hat Enterprise Linux,
 Rocky Linux, and many others. It is a very common repository that many users enable and start using right away
@@ -52,6 +52,6 @@ If you want to join a Rocky Linux SIG, read the [getting started](start.md) guid
 
 If you want to join a CentOS SIG, check out their [SIG page](https://sigs.centos.org/) for general and participation information. Participating in a CentOS SIG helps all Enterprise Linux distributions, not just CentOS Stream. Most SIG packages in CentOS will work and be applicable to Rocky Linux and other Enterprise Linux distributions.
 
-## Other Participation and Contribution Information
+## Other participation and contribution information
 
-For more on information on general contribution, see our [getting started](start.md) guide.
+For more information about general contribution, see our [getting started](start.md) guide.
