@@ -1,0 +1,8 @@
+---
+nav:
+  - ... | index.md
+  - 'Proposing a SIG': 'proposal.md'
+  - 'Managing Content': 'content.md'
+  - 'Building Packages': 'build.md'
+  - 'Automated Testing': 'testing.md'
+  - 'Releasing Packages': 'release.md'
