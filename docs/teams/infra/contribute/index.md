@@ -31,8 +31,7 @@ There are occasions that Rocky Linux users might find problems. These might or m
 
 ## Helping with general testing
 
-In the same vein as bug hunting, the [Testing team](../../testing/index.md) is one of the most active groups in the project, with all communication in Mattermost. They work together on testing various aspects of Rocky Linux, including refining their openQA system, their various methods of testing to find bugs, and test functionality. They are always
-open to more users that can help them with these efforts.
+In the same vein as bug hunting, the [Testing team](../../testing/index.md) is one of the most active groups in the project, with all communication in Mattermost. They work together on testing various aspects of Rocky Linux. This includes refining their openQA system, their various methods of testing to find bugs, and test functionality. They are always open to more users that can help them with these efforts.
 
 ## Help with or join the EPEL effort
 
