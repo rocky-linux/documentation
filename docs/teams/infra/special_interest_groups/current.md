@@ -1,11 +1,8 @@
 ---
 title: Current SIGs
+author: Infrastructure team
+contributors: Steven Spencer
 ---
-This section goes over the current SIGs that may have sponsors and are active or has community interest.
-
-Below are some that may be established with sponsors/members or are in progress to being established.
-
-If you want to join one of these SIGs, check out their Wiki for information on how to get in touch and become a member.
 
 ## Active Special Interest Groups
 

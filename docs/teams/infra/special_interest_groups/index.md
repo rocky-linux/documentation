@@ -1,23 +1,18 @@
 ---
-title: Special Interest Groups
+title: Special interest groups
+author: Infrastructure team
+contributors: Steven Spencer
 ---
 
-Special Interest Groups are a core component of the Rocky Linux community, in
-which various members of these groups can extend the Enterprise Linux experience,
-by way of packages, images, and/or other community engagement.
+Special Interest Groups (SIGs)are a core component of the Rocky Linux community. Various members of these groups can extend the Enterprise Linux experience, with packages, images, or community engagement.
 
-For the case of this wiki, Special Interest Groups are recommended not to have
-direct wiki pages, but instead maintain their own wiki pages, maintained at
-the [RESF Git Service](https://git.resf.org).
+The recommendation is that a SIGs public-facing are recommended not to have direct wiki pages, but instead maintain their own wiki pages, maintained at the [RESF Git Service](https://git.resf.org).
 
-This page serves simply as an overview to Special Interest Groups. See the
-[SIG Guide](sig_guide/index.md) for specific information such as proposing a SIG,
-content management, and much more.
+This page serves simply as an overview to Special Interest Groups. See the [SIG Guide](sig_guide/index.md) for specific information such as proposing a SIG, content management, and much more.
 
-See the [Current SIGs](current.md) page for a list of current Special Interest
-Groups that may or may not be active in the community.
+See the [Current SIGs](current.md) page for a list of current Special Interest Groups that may or may not be active in the community.
 
-## Special Interest Group Requirements
+## SIG requirements
 
 We expect SIGs to satisfy some basic requirements, such as:
 
@@ -39,7 +34,7 @@ When onboarding a new member, follow the guidelines in the [SIG Onboarding Guide
 
 Leads are welcome and encouraged to maintain a customized set of instructions on the SIG wiki--especially for instructions that are unique to the SIG.
 
-## Special Interest Group Wiki
+## SIG wiki
 
 Each SIG should have a wiki that will have documentation for their particular group as well as information on how the group operates. Required information should be as follows:
 
@@ -49,11 +44,10 @@ Each SIG should have a wiki that will have documentation for their particular gr
 * Meeting Information (time, location, other information that they feel is important)
 * Policies and Resources, if applicable
 
-## SIG Membership and Participation
+## SIG membership and participation
 
 The following rules apply for SIG membership:
 
-* Mailing lists of SIGs are open and can be joined freely
 * SIG members are appointed/approved by SIG sponsors/leaders - The sponsors/leaders typically have write permissions to relevant wikis and git repos
 * SIG sponsors/leaders may be asked to be a mailing list moderator
 * SIG channels will be public under a name such as `SIG/name` with an optional IRC channel to be bridged.
@@ -63,14 +57,14 @@ Special Interest Groups (SIGs) in Rocky Linux are required to report quarterly, 
 
 Completion of these reports helps the Community team have a large selection of content to promote and market so the SIG can grow in membership and usage.
 
-### Suggested Outline:
+### Suggested outline
 
 * **Membership Update**: Include details on new members, departures, and any changes in sponsors or leaders.
 * **Releases**: List releases from the current quarter (or previous quarter if there have been no new releases).
 * **General Activity/Health Report**: Provide a summary of the overall activity and health of the SIG.
 * **Issues**: Identify any issues the SIG is currently facing and any actions being taken to address them.
 
-### Markdown Template
+### Markdown template
 
 ```markdown
 # [SIG Name] Quarterly Report
@@ -119,61 +113,8 @@ _**Quarter:** [Specify the quarter and year]_
 * Brief conclusion or call to action for SIG members.
 ```
 
-## Joining a Special Interest Group
+## Joining a SIG
 
-Joining an established Special Interest Group should be simple. Each SIG will
-have its own process and outlines, but the general process can be seen [here](onboarding.md).
-Please see sponsors or other members of the Special Interest Group you're interested in if
-you can't find an answer to your question
+Joining an established Special Interest Group should be simple. Each SIG will have its own process and outlines, but the general process can be seen [here](onboarding.md).
 
-<h4>Resources</h4>
-
-=== "Account Services"
-
-    **URL**: [https://accounts.rockylinux.org](https://accounts.rockylinux.org)
-
-    **Purpose**: Account Services maintains the accounts for almost all components of the Rocky ecosystem
-
-    **Technology**: Noggin used by Fedora Infrastructure
-
-    **Contact**: `~Infrastructure` in Mattermost and `#rockylinux-infra` in Libera IRC
-
-=== "Git (RESF Git Service)"
-
-    **URL**: [https://git.resf.org](https://git.resf.org)
-
-    **Purpose**: General projects, code, and so on for the Rocky Enterprise Software Foundation.
-
-    **Technology**: [Forgejo](https://forgejo.org/)
-
-    **Contact**: `~Infrastructure`, `~Development` in Mattermost and `#rockylinux-infra`, `#rockylinux-devel` in Libera IRC
-
-=== "Git (Rocky Linux GitLab)"
-
-    **URL**: [https://git.rockylinux.org](https://git.rockylinux.org)
-
-    **Purpose**: Packages and light code for the Rocky Linux distribution
-
-    **Technology**: [GitLab](https://gitlab.com)
-
-    **Contact**: `~Infrastructure`, `~Development` in Mattermost and `#rockylinux-infra`, `#rockylinux-devel` in Libera IRC
-
-=== "Mirrors"
-
-    **URL**: [https://mirrors.rockylinux.org](https://mirrors.rockylinux.org)
-
-    **Purpose**: Users can apply to be a mirror to host Rocky content (SIG or the base operating system)
-
-    **Technology**: MirrorManager 2
-
-    **Contact**: `~Infrastructure` in Mattermost and `#rockylinux-infra` in Libera IRC
-
-=== "Mail Lists"
-
-    **URL**: [https://lists.resf.org](https://lists.resf.org)
-
-    **Purpose**: Users can subscribe and interact with various mail lists for the Rocky ecosystem
-
-    **Technology**: Mailman 3 + Hyper Kitty
-
-    **Contact**: `~Infrastructure` in Mattermost and `#rockylinux-infra` in Libera IRC
+Please see sponsors or other members of the Special Interest Group you're interested in if you can't find an answer to your question
