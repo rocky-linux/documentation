@@ -28,5 +28,12 @@ nav:
     - Mirror Management: mirror_management
     - Network: network
     - Package Management: package_management
+    - Proxies: proxies
+    - Repositories: repositories
+    - Security: security
+    - Troubleshooting: troubleshooting
+    - Virtualization: virtualization
+    - Web: web
+    - Rocky Insights: rocky_insights
     - ...
 
