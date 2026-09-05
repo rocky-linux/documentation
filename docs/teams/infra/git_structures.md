@@ -6,7 +6,7 @@ contributors: Steven Spencer
 
 !!! info
 
-    While this document is filed under the Infrastructure team, there is a great deal of crossover between Infrastructure and Release Engineering regarding Git services. If you ever need to ask a question regarding anything in this document, refer your question to the [RelEng & Infra](https://chat.rockylinux.org/rocky-linux/channels/releng--infra) Mattermost channel.
+    While this document is filed under the Infrastructure team, there is a great deal of crossover between Infrastructure and Release Engineering regarding Git services. If you ever need to ask a question regarding anything in this document, refer your question to either the [Infrastructure](https://chat.rockylinux.org/rocky-linux/channels/infrastructure) or [Development](https://chat.rockylinux.org/rocky-linux/channels/development) Mattermost channels.
 
 This document covers how the Rocky Enterprise Software Foundation (RESF) handles the use of Git in the ecosystem for the RESF and its projects such as Rocky Linux. It contains information about how various teams and the community interact and work with Git, project expectations and requirements.
 
@@ -193,4 +193,4 @@ Examples of groups are:
 
 ### Resources
 
-You can find Infrastructure services [addition resources here](resource_list.md).
+You can find Infrastructure services [additional resources here](resource_list.md).

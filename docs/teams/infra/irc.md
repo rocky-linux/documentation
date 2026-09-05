@@ -234,7 +234,7 @@ With a true Rocky Linux system:
 * SELinux is enforcing by default
 * Has a working firewall by default
 
-Volunteers might ask you to run one of these commands to give you more help1:
+Volunteers might ask you to run one of these commands to give you more help:
 
 * `dnf install rpaste -y ; rpaste --sysinfo`
 * `cat /etc/os-release ; uname -a ; rpm -V dnf rocky-release rocky-repos ; ls /etc/yum.repos.d/ ; dnf repolist all`
