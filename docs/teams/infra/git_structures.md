@@ -143,9 +143,9 @@ It is typical that a SIG might end up having repositories with packages that can
 
 A SIG will always have an organization in RESF Git Services.
 
-### Structure (Packaging)
+### Structure (packaging)
 
-Using the RPM structure as a guide, the general idea is the same. A `patch` group may not be needed, but could be useful. An example of how a SIG could set up their group might be:
+Using the RPM structure as a guide, the general idea is the same. You might not need a `patch` group, but it could be useful. An example of how a SIG could set up their group might be:
 
 ```text
 .
@@ -177,7 +177,7 @@ This is not a strict requirement, but could be good for the purposes of organiza
 SIG group access is typically obtained by contacting a sponsor, found in [Account Services](https://accounts.rockylinux.org/), and requesting access to be a part of the SIG. Once added to the group and the `gitusers` group, you can do work within the SIG.
 .
 
-## Other Groups
+## Other groups
 
 Other groups generally will not exist in the Rocky GitLab instance. Rather, they will (and should) exist in the RESF Forgejo instance instead. These groups could contain repos for:
 
