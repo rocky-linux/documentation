@@ -47,7 +47,7 @@ Joining a SIG can help augment Rocky Linux in many ways, such as additional pack
 
 You can join a SIG in Rocky Linux, CentOS, or the Fedora Project (such as the aforementioned EPEL SIG).
 
-If you want to join a Rocky Linux SIG, read the [getting started](start.md) guide, and review the [Special Interest Group](../special_interest_groups) section.
+If you want to join a Rocky Linux SIG, read the [getting started](start.md) guide, and review the Special Interest Group section. Note, this is currently under extensive revision.
 
 If you want to join a CentOS SIG, check out their [SIG page](https://sigs.centos.org/) for general and participation information. Participating in a CentOS SIG helps all Enterprise Linux distributions, not just CentOS Stream. Most SIG packages in CentOS will work and be applicable to Rocky Linux and other Enterprise Linux distributions.
 

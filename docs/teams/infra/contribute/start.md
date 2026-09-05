@@ -57,9 +57,7 @@ In general, the baseline steps to requesting access starts here:
 * Fill out your profile
 * Sign the appropriate agreements
 * Find the group or groups you want to join and find the sponsors
-
-    * Check out the [Special Interest Group](../special_interest_groups/index.md) page.
-    * Check out the [IRC and Chat Page](../irc.md) page.
+    * Check out the [IRC and Chat page](../irc.md).
 * Contact the sponsor directly or send a message to appropriate channel for the group.
 
 Each group will have different procedures for becoming part of the groups within Rocky Account Services. Most groups will require the signing of other agreement(s). Others might be on a per-request basis. Each group should have "sponsors" that you can contact with information about joining the groups. You can contact them in the [Rocky Linux Mattermost](https://chat.rockylinux.org).
