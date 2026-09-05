@@ -40,7 +40,7 @@ Hier behandeln wir lediglich die Funktionen, die für die Installation und das H
 Installieren Sie EPEL, falls Sie dies noch nicht getan haben:
 
 ```bash
-dnf install -y epel-release
+sudo dnf install -y epel-release
 ```
 
 Installieren Sie `hw-probe`:
