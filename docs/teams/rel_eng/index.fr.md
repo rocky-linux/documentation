@@ -12,4 +12,4 @@ L'ingénierie des mises en production combine le développement logiciel et la g
 - Soutien communautaire et des groupes d'intérêt spéciaux (SIG)
 - Et, avec l'aide de l'équipe de test, l'assurance qualité
 
-Pour communiquer ou participer à l'ingénierie des versions, pensez à vous joindre à la conversation [dans leur canal Mattermost.](https://chat.rockylinux.org/rocky-linux/channels/releng--infra). En raison de l'intégration étroite entre les équipes, l'ingénierie des mises en production et les services d'infrastructure partagent ce canal de communication.
+Pour communiquer ou participer à l'ingénierie des versions, pensez à vous joindre à la conversation [dans le canal Mattermost de développement](https://chat.rockylinux.org/rocky-linux/channels/development).
