@@ -68,7 +68,6 @@ Rocky Linux Infrastructure have responsibility over several areas including:
 * [Account Services](https://accounts.rockylinux.org)
 * [RESF Git Service](https://git.resf.org)
 * [Rocky Linux Git Service](https://git.rockylinux.org)
-* [Mail List](https://lists.resf.org)
 * General Special Interest Group requests (such as resources)
 
 Infrastructure and Services encourages the submission of issues and requests go to their [Infrastructure Meta](https://git.resf.org/infrastructure/meta/issues) tracker.
