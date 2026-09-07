@@ -17,7 +17,7 @@ As with most online or open source communities, getting started begins at the "j
 
 * Join our [Mattermost](https://chat.rockylinux.org) and search for channels that interest you.
 
-* Join our [Internet Relay Chat (IRC) channels](irc.md). A bridge exists between the IRC channels and Mattermost.
+* Join our [Internet Relay Chat (IRC) channels](../irc.md). A bridge exists between the IRC channels and Mattermost.
 
 * Check out our [forums](https://forums.rockylinux.org) and [reddit](https://reddit.com/r/rockylinux).
 

@@ -96,7 +96,7 @@ Action {
 }
 ```
 
-This goes into further detail at our [Debrand HowTo](https://wiki.rockylinux.org/team/release_engineering/debranding/) page.
+ You can find more in the [Debrand HowTo here.](../../guides/package_management/package_debranding.md/)
 
 ### Branch strategy
 

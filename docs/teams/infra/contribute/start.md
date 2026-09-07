@@ -40,12 +40,10 @@ The infrastructure team suggests that you add an OTP (one time password) to your
 
 ### Signing agreements
 
-While editing your profile, there is an "Agreements" tab with all of the current agreements for Rocky. You should review and sign:
+While editing your profile, there is an "Agreements" tab with the current agreements for Rocky. You should review and sign:
 
-* Rocky Open Source Contributor Agreement
-* Rocky Git Contributor Agreement
-
-See the [details](#details) section for more information.
+* [Rocky Open Source Contributor Agreement](opensource_agreement.md)
+* [Rocky Git Contributor Agreement](git_agreement.md)
 
 ### Requesting access to groups
 
