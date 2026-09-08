@@ -12,4 +12,4 @@ Infrastructure Services combines the core back-end systems, tools, and servers, 
 * Mirror management
 * Communication tools
 
-To communicate and participate in Infrastructure Services, consider joining the conversation [in their Mattermost channel.](https://chat.rockylinux.org/rocky-linux/channels/releng--infra) Because of the tight integration between teams, Infrastructure Services and Release Engineering share this communications channel.
+To communicate and participate in Infrastructure Services, consider joining the conversation [in their Mattermost channel.](https://chat.rockylinux.org/rocky-linux/channels/infrastructure).
