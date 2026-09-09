@@ -6,7 +6,7 @@ contributors: Steven Spencer
 
 !!! info
 
-    This is the contribute section for the Rocky Linux project, and covers more project-focused information than the documents in the [Guides](../../../guides/contribute/) section, which deals with Documentation team contribution.
+    This is the contribute section for the Rocky Linux project, and covers more project-focused information than the documents in the [Guides](../../../guides/contribute/README.md) section, which deals with Documentation team contribution.
 
 Thank you for your interest in contributing to the project. There are many ways you can contribute to Rocky Linux, such as helping users on forums, Mattermost, or IRC, to debugging packages, hunting bugs, and finding fixes. Other ways to
 contribute might be joining a Special Interest Group (SIG).

@@ -7,8 +7,6 @@ tags:
   - style guide
 ---
 
-# Rocky Linux Documentation Style Guide
-
 *Rocky Linux (RL) is the fastest-growing enterprise Linux in the world, with its documentation also growing exponentially thanks to contributors like you. Your content is welcome in any format, and the RL document stylists will help you align it with the standards set forth here.*
 
 ## Introduction
@@ -30,11 +28,11 @@ For a more complete understanding of contributing, consult our related guides:
 - [Rocky Linux First Time Contributors Guide](beginners.md) for an orientation to GitHub, our documentation home base.
 - [Rocky Docs Formatting](rockydocs_formatting.md) for Markdown structure.
 
-## Style Guidelines
+## Style guidelines
 
 *RL documentation aims to use clear and consistent language for accessibility and to aid ongoing translation efforts.*
 
-### Grammar and Punctuation
+### Grammar and punctuation
 
 **Distinctives for technical writing** as outlined in the Chicago Manual of Style include the following:
 
@@ -50,7 +48,7 @@ For a more complete understanding of contributing, consult our related guides:
 
     The current standard for documentation is sentence-style capitalization. People using `vale` and other language linters will find that these suggest using sentence-style capitalization. Much of the documentation created within our documentation pool uses this style of heading capitalization. This differs from the Chicago Manual of Style, but because the industry has gravitated towards this style in documentation headings, this document is amended to include this recommendation.
 
-### Voice and Tone
+### Voice and tone
 
 - **Plain language.** Described as a *less-conversational* style. Most of our documentation fits within this standard.
     - Avoid metaphors and idioms.
@@ -72,8 +70,8 @@ For a more complete understanding of contributing, consult our related guides:
 !!! info "Other reading on voice and tone"
 
     The creation of several additional documents on voice and tone since this style guide's creation includes:  
-    - [Good Docs-A translator's viewpoint](../../rocky_insights/blogs/good_docs.md)  
-    - [Active voice-The way to simple, clear, communication](../../rocky_insights/blogs/active_voice.md)  
+    - [Good Docs-A translator's viewpoint](../rocky_insights/blogs/good_docs.md) 
+    - [Active voice-The way to simple, clear, communication](../rocky_insights/blogs/active_voice.md) 
 
 ## Formatting
 
@@ -81,7 +79,7 @@ For a more complete understanding of contributing, consult our related guides:
 
 When possible, use the month name in the format {day} {Month} {year}. However, {Month} {day}, {year} is also acceptable to resolve clarity or appearance issues. Either way, to avoid confusion, write out month names rather than a series of numbers. For example: 24 January 2023, but January 24, 2023 is also acceptable—with both preferable over 1/24/2023 or 24/01/2023.
 
-### Single-step Procedures
+### Single-step procedures
 
 If you have a procedure with only one step, use a bullet rather than a number. For example:
 
@@ -91,7 +89,7 @@ If you have a procedure with only one step, use a bullet rather than a number. F
 
     While markdown rules generally accept either the asterisk or the dash for bulleted lists (provided they are consistently used throughout the document and not mixed), to maintain consistency, the recommendation is to use dashes. If your document uses asterisks for bulleted lists, an editor might change them to dashes during content review. 
 
-### Graphical Interface Language
+### Graphical interface language
 
 - Text instructions regarding a UI: When describing the entry of a command into a user interface, use the word “enter” rather than “put” or “type.” Use a codeblock to write out the command (set it off with backticks):
 
@@ -105,11 +103,11 @@ If you have a procedure with only one step, use a bullet rather than a number. F
 
 ## Structure
 
-### Starting content of each guide, or page/chapter of a book
+### Starting content of each guide, or each page of a book
 
 - **Abstract.** A brief statement of what to expect from this page
 - **Objectives.** A bulleted list of what this page will convey to the reader
-- **Skills** required/learned.
+- **Skills** required or learned.
 - **Difficulty level.** 1 star for easy, 2 for intermediate, and so on.
 - **Reading time.** Divide the number of words in your document by a reading rate of 75 words per minute to determine this number.
 
@@ -141,7 +139,7 @@ Within Markdown, admonitions are a way to put information into a box to highligh
 ### Colors
 
 - Some elements in Markdown, such as admonitions, have an assigned color to assist with visual comprehension. In general they also have an assigned name; for example, the “danger” admonition displays a red box but also has the descriptor “danger” built into the description. But when creating a custom admonition, be aware that color cannot be the only means of communicating a command or level of warning.
-- Any command that includes a sensory direction, such as *above* or *below*, *color*, *size*, *visual location* on the page, etc., should also include a direction that is communicable by only text description.
+- Any command that includes a sensory direction, such as *above* or *below*, *color*, *size*, *visual location* on the page, should also include a direction that is communicable by only text description.
 - When creating a graphical element, ensure that there is enough contrast between the foreground and background colors to be easy for a screen reader to interpret.
 
 ### Headings
