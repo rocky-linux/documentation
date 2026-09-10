@@ -1,5 +1,5 @@
 ---
-title: Web et Design – Description
+title: Description de Web et Design
 author: Web and Design
 contributors: Steven Spencer
 ---
