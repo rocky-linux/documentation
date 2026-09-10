@@ -1,7 +1,7 @@
 ---
 title: Gestione del Software
 author: Antoine Le Morvan
-contributors: Steven Spencer, Ganna Zhyrnova
+contributors: Steven Spencer, Ganna Zhyrnova, tianci li
 tested version: 8.5
 tags:
   - education
@@ -15,92 +15,105 @@ tags:
 
 Su un sistema Linux, è possibile installare il software in due modi:
 
-* Utilizzando un pacchetto di installazione;
-* Compilandolo da un file sorgente.
+* Scaricare i pacchetti software dal repository e installarli sul computer locale
+* Compilare il pacchetto del codice sorgente del progetto e installarlo sul computer locale
 
 !!! Note "Nota"
 
-    L'installazione da sorgente non è trattata qui. Di norma, è necessario utilizzare il metodo del pacchetto a meno che il software desiderato non sia disponibile tramite il gestore pacchetti. La ragione di ciò è che le dipendenze sono generalmente gestite dal sistema di pacchetti, mentre con il sorgente, è necessario gestire manualmente le dipendenze.
+    L'installazione da sorgente non è trattata qui. Di norma, è necessario scaricare il pacchetto software corrispondente dal repository, a meno che il pacchetto software di cui avete bisogno non sia presente nel repository. Questo perché il sistema di gestione dei pacchetti può aiutare gli utenti a risolvere i problemi di dipendenza. Per i principianti, risolvere le dipendenze necessarie per compilare i pacchetti di codice sorgente può risultare complicato.
 
-**Il pacchetto**: si tratta di un singolo file contenente tutti i dati necessari per installare il programma. Può essere eseguito direttamente sul sistema da un repository software.
+**Il pacchetto**: gli sviluppatori compilano in anticipo una serie di file sorgente in codice macchina eseguibile e li raggruppano in file binari in un formato specifico. Salvo diversa indicazione, il termine "pacchetto software" in Linux si riferisce ai pacchetti software binari.
 
-**I file sorgente**: Alcuni software non sono forniti in pacchetti pronti per essere installati, ma tramite un archivio contenente i file sorgente. Spetta all'amministratore preparare questi file e compilarli per installare il programma.
+**Il file sorgente**: un singolo file di codice leggibile dall'utente (con estensioni quali .c, .py, .java), che può essere semplicemente un frammento di codice o un modulo dell'intero progetto e che richiede la compilazione o un interprete per essere eseguito su un computer.
 
-## RPM: Gestione pacchetti RedHat
+**Il pacchetto del codice sorgente**: un file di archivio compresso che contiene i file sorgente e i file correlati (come i file di compilazione quali Makefile e configure; i file di documentazione quali README e LICENSE) dell'intero progetto. Estensioni come `.tar.gz` o `.tar.xz` indicano spesso questo tipo di file.
 
-**RPM** (RedHat Package Manager) è un sistema di gestione software. È possibile installare, disinstallare, aggiornare o controllare il software contenuto nei pacchetti.
+## Panoramica su RPM
 
-**RPM** è il formato utilizzato da tutte le distribuzioni basate su RedHat (RockyLinux, Fedora, CentOS, SuSe, Mandriva, ...). Il suo equivalente nel mondo Debian è DPKG (Debian Package).
+**RPM** (RedHat Package Manager) è un sistema di gestione del software. È possibile installare, disinstallare, aggiornare o verificare lo stato del software contenuto nei pacchetti.
 
-Il nome di un pacchetto RPM segue una nomenclatura specifica:
+**RPM** è il sistema di gestione dei pacchetti utilizzato da tutte le distribuzioni Red Hat (Rocky Linux, Fedora, CentOS, SUSE, Mandriva, ...), i cui pacchetti sono identificati dall'estensione `.rpm`. Debian e le sue distribuzioni derivate utilizzano il sistema di gestione dei pacchetti DPKG per gestire i pacchetti software, identificati dall'estensione `.deb`.
 
-![Illustration of a package name](images/software-001.png)
+Convenzioni di denominazione per i pacchetti software RPM:
 
-### comando `rpm`
+![Illustrazione del nome di un package](images/software-001.png)
 
-Il comando rpm consente di installare un pacchetto.
+!!! tip "Spiegazione della terminologia"
+
+    Quando utilizziamo l'acronimo "RPM" in maiuscolo, ci riferiamo al sistema di gestione dei pacchetti. Quando si usa "rpm" con la "r" minuscola, nella stragrande maggioranza dei casi ci si riferisce specificatamente al comando `rpm`. Quando si utilizza `.rpm`, si fa riferimento al suffisso del formato del pacchetto. I lettori non devono lasciarsi confondere da questi elementi durante la lettura dei documenti.
+
+Il sistema di gestione dei pacchetti RPM è ancora oggi oggetto di aggiornamenti e miglioramenti costanti; per ulteriori informazioni, si consulti [qui](https://rpm.org/).
+
+## Gestore di pacchetti locale
+
+Il comando `rpm`: strumento da riga di comando per la gestione dei pacchetti RPM locali nelle distribuzioni a monte e a valle di Red Hat.
+
+**Nome completo del pacchetto**: il nome completo del pacchetto software binario, ad esempio `tree-1.7.0-15.el8.x86_64.rpm`.
+
+**Nome del pacchetto**: il nome del pacchetto software, ad esempio `tree`.
+
+Se il pacchetto software in questione non è ancora presente nel sistema operativo (non è installato), è necessario utilizzare il "nome completo del pacchetto" quando si esegue il comando `rpm`. Se il pacchetto software in questione non è nuovo per il sistema operativo (è già installato), è necessario utilizzare il "nome del pacchetto" quando si impiega il comando `rpm`. Questo perché il formato `rpm` memorizza le informazioni relative ai pacchetti software nella directory del database **/var/lib/rpm/**.
+
+Il comando `rpm` si utilizza nel modo seguente:
 
 ```bash
-rpm [-i][-U] package.rpm [-e] package
+rpm [options] <Package-Name> | <Full-Package-Name>
 ```
 
-Esempio (per un pacchetto denominato 'package'):
+### Installare, aggiornare e disinstallare pacchetti software
+
+Le opzioni disponibili sono le seguenti:
+
+| Opzione                        | Descrizione                                         |
+| ------------------------------ | --------------------------------------------------- |
+| `-i <Full-Package-Name>` | Installa il pacchetto.                              |
+| `-U <Full-Package-Name>` | Aggiorna un pacchetto già installato.               |
+| `-e <Package-Name>`      | Disinstalla il pacchetto.                           |
+| `-h`                           | Visualizza una barra di avanzamento.                |
+| `-v`                           | Informa sullo stato di avanzamento dell'operazione. |
+| `--test`                       | Esegue il test del comando senza eseguirlo.         |
+
+* Installa uno o più pacchetti - `rpm -ivh <Nome-completo-del-pacchetto> ...`
+* Aggiornare uno o più pacchetti - `rpm -Uvh <Nome-completo-del-pacchetto> ...`
+* Disinstallare uno o più pacchetti - `rpm -e <Nome-pacchetto> ...`
+
+Poiché `rpm` è un gestore di pacchetti locale, gli utenti devono risolvere manualmente eventuali problemi di dipendenza durante l'installazione del software. Se mancano alcune dipendenze necessarie, verrà visualizzato un messaggio del tipo "failed dependencies".
+
+Comprendere le relazioni di dipendenza dei pacchetti RPM:
+
+* **Relazione di dipendenza ad albero (a.rpm ---> b.rpm ---> c.rpm)** - Quando si installa a.rpm, viene richiesto di installare prima b.rpm. Durante l'installazione di b.rpm, viene richiesto di installare prima c.rpm. Il modo più semplice per risolvere questo problema è concatenare le installazioni con: `rpm -ivh a.rpm b.rpm c.rpm`
+* **Relazione di dipendenza circolare (a.rpm ---> b.rpm ---> c.rpm ---> a.rpm)** - `rpm -ivh a.rpm b.rpm c.rpm`
+* **Relazioni di dipendenza tra moduli** - Vai su [questo sito web](https://www.rpmfind.net/) per effettuare una ricerca
+
+**D: Perché l'installazione dei pacchetti software comporta sempre problemi di dipendenze?**
+
+Poiché i software o le applicazioni si basano quasi sempre su altri software o librerie, se il programma o la libreria condivisa richiesti non sono presenti nel sistema operativo, è necessario soddisfare questo prerequisito prima di installare l'applicazione desiderata.
+
+### Ricerca pacchetti
+
+Le opzioni disponibili sono le seguenti:
+
+| Opzione  | Descrizione                                                                                                                                                                                                                                                                |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-q`     | Verificare se il pacchetto software è stato installato, ad esempio con il comando `rpm -q tree-1.7.0-15.el8.x86_64.rpm`                                                                                                                                                    |
+| `-a`     | Se utilizzata insieme all'opzione `-q`, consente di visualizzare tutti i pacchetti RPM installati, come nel comando `rpm -qa`                                                                                                                                              |
+| `-i`     | Da utilizzare insieme all'opzione `-q` per ottenere informazioni dettagliate sul pacchetto RPM installato corrispondente. Ad esempio `rpm -qi bash`                                                                                                                        |
+| `-l`     | Se utilizzata insieme all'opzione `-q`, visualizza l'elenco dei file distribuiti dal pacchetto RPM installato corrispondente                                                                                                                                               |
+| `-p`     | Indica i pacchetti software disinstallati, ad esempio `rpm -qip tree-1.7.0-15.el8.x86_64.rpm` e `rpm -qlp tree-1.7.0-15.el8.x86_64.rpm`                                                                                                                                    |
+| `-f`     | Se utilizzata insieme all'opzione `-q`, consente di verificare a quale pacchetto software appartiene il file di installazione, ad esempio `rpm -qf /usr/bin/bash`                                                                                                          |
+| `-R`     | Se utilizzata insieme all'opzione `-q`, consente di verificare le dipendenze dei pacchetti RPM installati. Se utilizzata insieme all'opzione `-p`, è possibile verificare le dipendenze dei pacchetti RPM non installati, ad esempio: `rpm -qRp mtr-0.92-3.el8.x86_64.rpm` |
+| `--last` | Elenca i pacchetti in base alla data di installazione, a partire dal più recente                                                                                                                                                                                           |
+
+Il database RPM si trova nella directory `/var/lib/rpm/`.
+
+Alcuni esempi:
 
 ```bash
-rpm -ivh package.rpm
-```
+sudo rpm -qa
 
-| Opzione          | Descrizione                                         |
-| ---------------- | --------------------------------------------------- |
-| `-i package.rpm` | Installa il pacchetto.                              |
-| `-U package.rpm` | Aggiorna un pacchetto già installato.               |
-| `-e package.rpm` | Disinstalla il pacchetto.                           |
-| `-h`             | Visualizza una barra di avanzamento.                |
-| `-v`             | Informa sullo stato di avanzamento dell'operazione. |
-| `--test`         | Esegue il test del comando senza eseguirlo.         |
+sudo rpm -qilp zork-1.0.3-1.el8.x86_64.rpm tree-1.7.0-15.el8.x86_64.rpm
 
-Il comando `rpm` consente inoltre di interrogare il database dei pacchetti sul sistema aggiungendo l'opzione `-q`.
-
-È possibile eseguire diversi tipi di ricerche per ottenere informazioni sui pacchetti installati. Il database RPM si trova nella directory `/var/lib/rpm`.
-
-Esempio:
-
-```bash
-rpm -qa
-```
-
-Questo comando esegue una ricerca su tutti i pacchetti installati nel sistema.
-
-```bash
-rpm -q [-a][-i][-l] package [-f] file
-```
-
-Esempio:
-
-```bash
-rpm -qil package
-rpm -qf /path/to/file
-```
-
-| Opzione          | Descrizione                                                                                                                   |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `-a`             | Elenca tutti i pacchetti installati nel sistema.                                                                              |
-| `-i __package__` | Visualizza le informazioni sul pacchetto.                                                                                     |
-| `-l __package__` | Elenca i file contenuti nel pacchetto.                                                                                        |
-| `-f`             | Mostra il nome del pacchetto contenente il file specificato.                                                                  |
-| `--last`         | L'elenco dei pacchetti è indicato per data di installazione (gli ultimi pacchetti installati vengono visualizzati per primi). |
-
-!!! Warning "Attenzione"
-
-    Dopo l'opzione `-q`, il nome del pacchetto deve essere esatto. I metacaratteri (wildcards) non sono supportati.
-
-!!! Tip "Suggerimento"
-
-    Tuttavia, è possibile elencare tutti i pacchetti installati e filtrarli con il comando `grep`.
-
-Esempio: elencare gli ultimi pacchetti installati:
-
-```bash
+# list the last installed packages:
 sudo rpm -qa --last | head
 NetworkManager-config-server-1.26.0-13.el8.noarch Mon 24 May 2021 02:34:00 PM CEST
 iwl2030-firmware-18.168.6.1-101.el8.1.noarch  Mon 24 May 2021 02:34:00 PM CEST
@@ -112,726 +125,714 @@ iwl1000-firmware-39.31.5.1-101.el8.1.noarch   Mon 24 May 2021 02:34:00 PM CEST
 alsa-sof-firmware-1.5-2.el8.noarch            Mon 24 May 2021 02:34:00 PM CEST
 iwl7260-firmware-25.30.13.0-101.el8.1.noarch  Mon 24 May 2021 02:33:59 PM CEST
 iwl6050-firmware-41.28.5.1-101.el8.1.noarch   Mon 24 May 2021 02:33:59 PM CEST
-```
 
-Esempio: elencare la cronologia di installazione del kernel:
-
-```bash
+# list the installation history of the kernel:
 sudo rpm -qa --last kernel
 kernel-4.18.0-305.el8.x86_64                  Tue 25 May 2021 06:04:56 AM CEST
 kernel-4.18.0-240.22.1.el8.x86_64             Mon 24 May 2021 02:33:35 PM CEST
 ```
 
-Esempio: elencare tutti i pacchetti installati con un nome specifico utilizzando 'grep':
+!!! tip "Consigli d'uso"
+
+    Quando si utilizza la funzione di query (l'opzione `-q`), il pacchetto software corrispondente deve essere deterministico. In altre parole, non è possibile utilizzare caratteri jolly nella riga di comando `rpm` per trovare corrispondenze con il nome del pacchetto. Per filtrare uno o più pacchetti specifici, è necessario utilizzare il simbolo della barra verticale (`|`) e il comando `grep`.
+
+    ```bash
+    sudo rpm -qa | grep ^dbus
+    dbus-common-1.12.8-27.el8_10.noarch
+    dbus-glib-0.110-2.el8.x86_64
+    dbus-libs-1.12.8-27.el8_10.x86_64
+    dbus-daemon-1.12.8-27.el8_10.x86_64
+    dbus-tools-1.12.8-27.el8_10.x86_64
+    dbus-1.12.8-27.el8_10.x86_64
+    ```
+
+### Verificare la firma del pacchetto software
+
+Per eseguire questa operazione è necessario utilizzare l'opzione `-K`.
+
+Quando scarichi un pacchetto binario RPM da un sito web sconosciuto o da una fonte non attendibile, non puoi sapere se è stato manomesso. Pertanto, gli utenti devono verificare la firma del pacchetto software per assicurarsi che il pacchetto scaricato sia completo e non sia stato manomesso.
+
+Importare la chiave pubblica richiesta prima di eseguire la verifica della firma sul pacchetto software. Di solito è compito dell'amministratore di sistema.
+
+A partire da RHEL 8.x, è possibile utilizzare il comando `dnf download` per scaricare pacchetti software specifici. Ad esempio, se devi scaricare il pacchetto `wget`, usa:
 
 ```bash
-sudo dnf list installed | grep httpd
-centos-logos-httpd.noarch           80.5-2.el8                              @baseos
-httpd.x86_64                        2.4.37-30.module_el8.3.0+561+97fdbbcc   @appstream
-httpd-filesystem.noarch             2.4.37-30.module_el8.3.0+561+97fdbbcc   @appstream
-httpd-tools.x86_64                  2.4.37-30.module_el8.3.0+561+97fdbbcc   @appstream
+sudo dnf download wget
+
+ls -l wget-1.19.5-12.el8_10.x86_64.rpm
+-rw-r--r-- 1 root root 750748 Jan  3 17:29 wget-1.19.5-12.el8_10.x86_64.rpm
+
+# Use the "-K" option to verify the signature of the corresponding software package
+## You can also use the "-v" or "-vv" option to display more detailed information
+sudo rpm -K wget-1.19.5-12.el8_10.x86_64.rpm
+wget-1.19.5-12.el8_10.x86_64.rpm: digests signatures OK
+
+# If the software package you downloaded has been tampered with, the following information will be displayed:
+echo  "change content" >> /root/wget-1.19.5-12.el8_10.x86_64.rpm
+sudo rpm -K wget-1.19.5-12.el8_10.x86_64.rpm
+wget-1.19.5-12.el8_10.x86_64.rpm: DIGESTS SIGNATURES NOT OK
 ```
 
-## DNF: Dandified Yum
+Se la firma di un pacchetto software non supera la verifica, è consigliabile non continuare a utilizzarlo.
 
-**DNF** (**Dandified Yum**) è un gestore di pacchetti software, successore di **YUM** (**Y**ellow Dog **U**pdater **M**odified). Funziona con pacchetti **RPM** raggruppati in un repository locale o remoto (una directory per l'archiviazione dei pacchetti). Per i comandi più comuni, il suo utilizzo è identico a quello di `yum`.
+### Verifica le modifiche apportate ai file dopo l'installazione del pacchetto software
 
-Il comando `dnf` permette la gestione dei pacchetti confrontando quelli installati sul sistema con quelli nei repository definiti sul server. Installa inoltre automaticamente le dipendenze, se sono presenti anche nei repository.
+Per eseguire questa operazione è necessario utilizzare l'opzione `-V`.
 
-`dnf` è il gestore utilizzato da molte distribuzioni basate su RedHat (RockyLinux, Fedora, CentOS, ...). Il suo equivalente nel mondo Debian è **APT** (**A**dvanced **P**ackaging **T**ool).
-
-### comando `dnf`
-
-Il comando `dnf` consente di installare un pacchetto specificando solo il nome breve.
+Dopo l'installazione del pacchetto software RPM, il database RPM registra le caratteristiche iniziali e quelle modificate dei file in questione per stabilire se siano stati alterati in modo doloso.
 
 ```bash
-dnf [install][remove][list all][search][info] package
+sudo rpm -q chrony
+chrony-4.5-2.el8_10.x86_64
+
+rpm -V chrony
+S.5....T.  c /etc/chrony.conf
 ```
 
-Esempio:
+Il risultato è suddiviso in 3 colonne distinte.
 
-```bash
-dnf install tree
+- **Prima colonna (S.5....T.)**
+
+    Utilizza 9 campi per rappresentare le informazioni valide del file dopo l'installazione del pacchetto software RPM. Ogni campo o caratteristica che ha superato un determinato controllo o test è contrassegnato da un ".".
+
+    Questi 9 diversi campi o controlli sono:
+
+    - S: Se la dimensione del file è stata modificata.
+    - M: Se è stata apportata una modifica al tipo di file o ai permessi del file (rwx).
+    - 5: Se il checksum MD5 del file è stato modificato.
+    - D: Se vi è una modifica al numero di dispositivi.
+    - L: Se è stata apportata una modifica al percorso del file.
+    - U: Se è stata apportata una modifica al proprietario del file.
+    - G: Se è stata apportata una modifica al gruppo a cui appartiene il file.
+    - T: Se è stata apportata una modifica alla data di modifica (mTime) del file.
+    - P: Se vi è una modifica alla funzionalità del programma.
+
+- **Seconda colonna (c)**
+
+    **c**: Indica le modifiche apportate al file di configurazione. Può anche assumere i seguenti valori:
+
+    - d: file di documentazione
+    - g: file ghost. Se ne vedono pochissimi
+    - l: file di licenza
+    - r: file readme
+
+- **Terza colonna (/etc/chrony.conf)**
+
+    - **/etc/chrony.conf**: Indica il percorso del file modificato.
+
+## Gestore pacchetti DNF
+
+**DNF** (**Dandified Yum**) è un gestore di pacchetti software, successore di **YUM** (**Y**ellow dog **U**pdater **M**odified).
+
+Il comando `dnf`: questo comando consente di gestire i pacchetti software binari interagendo con il repository. Per i comandi relativi alle voci funzionali più comuni, il loro utilizzo è identico a quello del comando `yum`. Per alcune distribuzioni più recenti (come Rocky Linux 10.x o Fedora 43), sono disponibili aggiornamenti per lo strumento da riga di comando `dnf`. Ad esempio, in Rocky Linux 10.x, gli utenti possono installare in modo selettivo `dnf5` dal repository.
+
+Le distribuzioni basate su Red Hat, come Rocky Linux, Fedora e CentOS, utilizzano lo strumento da riga di comando `dnf`. Il suo equivalente nell'ambiente Debian è lo strumento da riga di comando `apt` (**A**dvanced **P**ackaging **T**ool).
+
+### I comandi relativi agli oggetti funzionali di `dnf`
+
+La sintassi del comando `dnf` è la seguente:
+
+```
+dnf [options] <command> [<args>...]
 ```
 
-È richiesto solo il nome breve del pacchetto.
+Il termine "command" nella sintassi rappresenta l'elemento funzionale command di `dnf`. Alcuni comandi sono integrati, mentre altri richiedono il supporto di plugin di terze parti. È possibile visualizzare le istruzioni per l'uso di ciascun comando utilizzando l'opzione `--help`, ad esempio `dnf list --help`.
 
-| Opzione                   | Descrizione                                                                 |
-| ------------------------- | --------------------------------------------------------------------------- |
-| `install`                 | Installa il pacchetto.                                                      |
-| `remove`                  | Disinstalla il pacchetto.                                                   |
-| `list all`                | Elenca i pacchetti già nel repository.                                      |
-| `search`                  | Cerca un pacchetto nel repository.                                          |
-| `provides */command_name` | Cerca un comando.                                                           |
-| `info "Informazione"`     | Visualizza le informazioni sul pacchetto.                                   |
-| `autoremove`              | Rimuove tutti i pacchetti installati come dipendenze, ma non più necessari. |
+1. **Comando `list`**
 
-Il comando `dnf install` consente di installare il pacchetto desiderato senza preoccuparsi delle sue dipendenze, che sarà risolto direttamente da `dnf` stesso.
+    Elenca i pacchetti software in base alle diverse opzioni disponibili con questo comando. Per impostazione predefinita, vengono elencati tutti i pacchetti software disponibili per l'installazione nel sistema operativo (il comando `dnf list` equivale a `dnf list --all`).
+
+    * `dnf list --installed` - Elenca i pacchetti software installati per il sistema operativo corrente
+    * `dnf list --updates` - Elenca i pacchetti software che è possibile aggiornare
+
+    Le opzioni specifiche del comando list sono le seguenti:
+
+    | Opzioni specifiche | Descrizione                                         |
+    | ------------------ | --------------------------------------------------- |
+    | `--all`            | mostra tutti i pacchetti (impostazione predefinita) |
+    | `--available`      | mostra solo i pacchetti disponibili                 |
+    | `--installed`      | mostra solo i pacchetti installati                  |
+    | `--extras`         | mostra solo i pacchetti aggiuntivi                  |
+    | `--updates`        | mostra solo i pacchetti di aggiornamento            |
+    | `--upgrades`       | mostra solo i pacchetti di aggiornamento            |
+    | `--autoremove`     | mostra solo i pacchetti con rimozione automatica    |
+    | `--recent`         | mostra solo i pacchetti modificati di recente       |
+
+1. **Comando `search`**
+
+    Cerca i pacchetti software nel repository utilizzando la stringa indicata. Ad esempio `dnf search vim`.
+
+1. **Comando `install`**
+
+    Installa uno o più pacchetti software dal repository. Ad esempio `dnf -y install wget tree`. L'opzione `-y` indica che la risposta automatica è "yes". Quando si installano i pacchetti in questo modo, `dnf` gestisce automaticamente la risoluzione delle dipendenze.
+
+    Oltre a installare pacchetti software dal repository, è possibile installare pacchetti software da un URL specificato o da un pacchetto RPM locale, ad esempio `dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm`, `dnf install /tmp/mtr-0.92-3.el8.x86_64.rpm`
+
+1. **Comando `info`**
+
+    Visualizza le informazioni su uno o più pacchetti software, ad esempio `dnf info wget tree`
+
+1. Comando **`deplist`** (obsoleto)
+
+    Elenca le dipendenze del pacchetto software. In alternativa, utilizzare il comando `dnf repoquery --deplist <Nome-del-pacchetto>`.
+
+1. **Comando `repolist`**
+
+    Visualizza le informazioni relative ai repository; per impostazione predefinita vengono visualizzati i repository abilitati (il comando `dnf repolist` equivale a `dnf repolist --enabled`)
+
+    * `dnf repolist --all` - Elenca tutti i repository
+    * `dnf repolist -v` - Visualizza informazioni dettagliate sui repository abilitati
+    * `dnf repolist --disabled` - Elenca solo i repository disabilitati.
+
+1. **Comando `history`**
+
+    Mostra la cronologia dei comandi `dnf` digitati. Per impostazione predefinita, `dnf history` equivale a `dnf history list`. È possibile sostituire "list" con una delle seguenti opzioni: `info`, `redo`, `replay`, `rollback`, `store`, `undo` o `userinstalled`.
+
+1. **Comando `provides`**
+
+    Visualizza il pacchetto software a cui appartiene il file indicato. Ad esempio, `dnf provides /usr/bin/systemctl`.
+
+1. **Comando `remove`**
+
+    Rimuove uno o più pacchetti software dal sistema operativo corrente. Per impostazione predefinita, verrà chiesto se si desidera disinstallare il pacchetto software e il relativo pacchetto di dipendenze; è possibile rispondere automaticamente "yes" tramite l'opzione `-y`.
+
+1. **Comando `autoremove`**
+
+    Elimina automaticamente i pacchetti che in passato erano utilizzati come dipendenze ma che ora non vengono più utilizzati. Ad esempio `dnf -y autoremove`.
+
+1. **Comando `makecache`**
+
+    Crea una cache per i repository appena aggiunti o per i metadati non aggiornati.
+
+1. **Comando `update` o `upgrade`**
+
+    Aggiorna uno o più pacchetti software del sistema operativo. Ad esempio, `dnf update -y` aggiornerà tutti i pacchetti software aggiornabili presenti nel sistema operativo.
+
+1. **Comando `grouplist`, `groupinstall`, `groupremove` o `groupinfo`**
+
+    L'oggetto di questi comandi sono i gruppi di pacchetti, ovvero insiemi di pacchetti software predisposti per uno scenario o un ambiente specifico.
+
+    In Rocky Linux 8.x sono presenti i seguenti gruppi di pacchetti:
+
+    ```bash
+    sudo dnf grouplist
+    Available Environment Groups:
+       Server with GUI
+       Server
+       Workstation
+       KDE Plasma Workspaces
+       Virtualization Host
+       Custom Operating System
+    Installed Environment Groups:
+       Minimal Install
+    Available Groups:
+       Container Management
+       .NET Core Development
+       RPM Development Tools
+       Development Tools
+       Graphical Administration Tools
+       Headless Management
+       Legacy UNIX Compatibility
+       Network Servers
+       Scientific Support
+       Security Tools
+       Smart Card Support
+       System Tools
+       Fedora Packager
+       Xfce
+    ```
+
+    Per evitare ambiguità, quando si opera su uno o più gruppi di pacchetti, è opportuno racchiudere il nome di un singolo gruppo di pacchetti tra virgolette doppie.
+
+1. **Comando `clean`**
+
+    Cancella i dati memorizzati nella cache. È possibile ripulire tutte le cache dei dati con il comando: `dnf clean all`.
+
+    | Tipo di metadati da ripulire | Descrizione                                                        |
+    | ---------------------------- | ------------------------------------------------------------------ |
+    | `all`                        | Elimina tutti i file temporanei creati per i repository abilitati. |
+    | `dbcache`                    | Elimina i file di cache generati dai metadati del repository.      |
+    | `expire-cache`               | Contrassegna i metadati dell'archivio come scaduti.                |
+    | `metadata`                   | Rimuove i metadati del repository.                                 |
+    | `packages`                   | Rimuove tutti i pacchetti memorizzati nella cache dal sistema.     |
+
+1. **`download` plugin**
+
+    Scarica uno o più pacchetti software dal repository sul computer locale senza installarli.
+
+    È possibile utilizzare le opzioni `--destdir DESTDIR` o `--downloaddir DESRDIR` per specificare il percorso di salvataggio, ad esempio `dnf download tree --downloaddir /tmp/`.
+
+1. **`versionlock` plugin**
+
+    Richiede le informazioni pertinenti utilizzando le diverse opzioni che seguono il comando, in modo simile a `rpm -q`.
+
+    * `dnf repoquery --deplist <Nome-pacchetto>` - Visualizza le dipendenze
+    * `dnf repoquery --list <Nome-pacchetto>` - Visualizza l'elenco dei file dopo l'installazione del pacchetto software (indipendentemente dal fatto che il software sia già installato sul sistema operativo)
+
+1. **`config-manager` plugin**
+
+    Gestisce i repository tramite la riga di comando, comprese le operazioni di aggiunta, eliminazione, attivazione e disattivazione dei repository.
+
+    * `dnf config-manager --add-repo <URL>` - Aggiunge un nuovo repository
+    * `dnf config-manager --set-disabled devel` - Disattiva in modo permanente un singolo repository
+    * `dnf config-manager --set-enabled devel` - Abilita in modo permanente un singolo repository
+
+È possibile visualizzare i comandi disponibili del plugin tramite l'output del comando `dnf --help`:
 
 ```bash
-dnf install nginx
-Last metadata expiration check: 3:13:41 ago on Wed 23 Mar 2022 07:19:24 AM CET.
-Dependencies resolved.
-============================================================================================================================
- Package                             Architecture    Version                                        Repository         Size
-============================================================================================================================
-Installing:
- nginx                               aarch64         1:1.14.1-9.module+el8.4.0+542+81547229         appstream         543 k
-Installing dependencies:
- nginx-all-modules                   noarch          1:1.14.1-9.module+el8.4.0+542+81547229         appstream          22 k
- nginx-mod-http-image-filter         aarch64         1:1.14.1-9.module+el8.4.0+542+81547229         appstream          33 k
- nginx-mod-http-perl                 aarch64         1:1.14.1-9.module+el8.4.0+542+81547229         appstream          44 k
- nginx-mod-http-xslt-filter          aarch64         1:1.14.1-9.module+el8.4.0+542+81547229         appstream          32 k
- nginx-mod-mail                      aarch64         1:1.14.1-9.module+el8.4.0+542+81547229         appstream          60 k
- nginx-mod-stream                    aarch64         1:1.14.1-9.module+el8.4.0+542+81547229         appstream          82 k
+sudo dnf --help
+...
+List of Plugin Commands:
 
-Transaction Summary
-============================================================================================================================
-Install  7 Packages
-
-Total download size: 816 k
-Installed size: 2.2 M
-Is this ok [y/N]:
-```
-
-Nel caso in cui non ricordi il nome esatto del pacchetto, puoi cercarlo con il comando `dnf nome_di_ricerca`. Come puoi vedere, c'è una sezione che contiene il nome esatto e un'altra che contiene la corrispondenza del pacchetto, tutti i quali sono evidenziati per facilitare la ricerca.
-
-```bash
-dnf search nginx
-Last metadata expiration check: 0:20:55 ago on Wed 23 Mar 2022 10:40:43 AM CET.
-=============================================== Name Exactly Matched: nginx ================================================
-nginx.aarch64 : A high performance web server and reverse proxy server
-============================================== Name & Summary Matched: nginx ===============================================
-collectd-nginx.aarch64 : Nginx plugin for collectd
-munin-nginx.noarch : NGINX support for Munin resource monitoring
-nginx-all-modules.noarch : A meta package that installs all available Nginx modules
-nginx-filesystem.noarch : The basic directory layout for the Nginx server
-nginx-mod-http-image-filter.aarch64 : Nginx HTTP image filter module
-nginx-mod-http-perl.aarch64 : Nginx HTTP perl module
-nginx-mod-http-xslt-filter.aarch64 : Nginx XSLT module
-nginx-mod-mail.aarch64 : Nginx mail modules
-nginx-mod-stream.aarch64 : Nginx stream modules
-pagure-web-nginx.noarch : Nginx configuration for Pagure
-pcp-pmda-nginx.aarch64 : Performance Co-Pilot (PCP) metrics for the Nginx Webserver
-python3-certbot-nginx.noarch : The nginx plugin for certbot
-```
-
-Un altro modo per cercare un pacchetto inserendo una chiave di ricerca aggiuntiva è quello di inviare il risultato del comando `dnf` attraverso una pipe al comando grep con la chiave desiderata.
-
-```bash
-dnf search nginx | grep mod
-Last metadata expiration check: 3:44:49 ago on Wed 23 Mar 2022 06:16:47 PM CET.
-nginx-all-modules.noarch : A meta package that installs all available Nginx modules
-nginx-mod-http-image-filter.aarch64 : Nginx HTTP image filter module
-nginx-mod-http-perl.aarch64 : Nginx HTTP perl module
-nginx-mod-http-xslt-filter.aarch64 : Nginx XSLT module
-nginx-mod-mail.aarch64 : Nginx mail modules
-nginx-mod-stream.aarch64 : Nginx stream modules
-```
-
-Il comando `dnf remove` rimuove un pacchetto dal sistema e le sue dipendenze. Di seguito è riportato un estratto del comando **dnf remove httpd**.
-
-```bash
-dnf remove httpd
-Dependencies resolved.
-============================================================================================================================
- Package                        Architecture    Version                                            Repository          Size
-============================================================================================================================
-Removing:
- httpd                          aarch64         2.4.37-43.module+el8.5.0+727+743c5577.1            @appstream         8.9 M
-Removing dependent packages:
- mod_ssl                        aarch64         1:2.4.37-43.module+el8.5.0+727+743c5577.1          @appstream         274 k
- php                            aarch64         7.4.19-1.module+el8.5.0+696+61e7c9ba               @appstream         4.4 M
- python3-certbot-apache         noarch          1.22.0-1.el8                                       @epel              539 k
-Removing unused dependencies:
- apr                            aarch64         1.6.3-12.el8                                       @appstream         299 k
- apr-util                       aarch64         1.6.1-6.el8.1                                      @appstream         224 k
- apr-util-bdb                   aarch64         1.6.1-6.el8.1                                      @appstream          67 k
- apr-util-openssl               aarch64         1.6.1-6.el8.1                                      @appstream          68 k
- augeas-libs                    aarch64         1.12.0-6.el8                                       @baseos            1.4 M
- httpd-filesystem               noarch          2.4.37-43.module+el8.5.0+727+743c5577.1            @appstream         400
- httpd-tools                    aarch64         2.4.37-43.module+el8.5.0+727+743c5577.1
+builddep                  Install build dependencies for package or spec file
+changelog                 Show changelog data of packages
+config-manager            manage dnf configuration options and repositories
+copr                      Interact with Copr repositories.
+debug-dump                dump information about installed rpm packages to file
+debug-restore             restore packages recorded in debug-dump file
+debuginfo-install         install debuginfo packages
+download                  Download package to current directory
+groups-manager            create and edit groups metadata file
+needs-restarting          determine updated binaries that need restarting
+offline-distrosync        Prepare offline distrosync of the system
+offline-upgrade           Prepare offline upgrade of the system
+playground                Interact with Playground repository.
+repoclosure               Display a list of unresolved dependencies for repositories
+repodiff                  List differences between two sets of repositories
+repograph                 Output a full package dependency graph in dot format
+repomanage                Manage a directory of rpm packages
+reposync                  download all packages from remote repo
+system-upgrade            Prepare system for upgrade to a new release
 ...
 ```
 
-Il comando `dnf list` elenca tutti i pacchetti installati sul sistema e presenti nel repository. Accetta diversi parametri:
+!!! tip 
 
-| Parametro   | Descrizione                                                               |
-| ----------- | ------------------------------------------------------------------------- |
-| `all`       | Elenca i pacchetti installati e quindi quelli disponibili nei repository. |
-| `available` | Elenca solo i pacchetti disponibili per l'installazione.                  |
-| `updates`   | Elenca i pacchetti che possono essere aggiornati.                         |
-| `obsoletes` | Elenca i pacchetti resi obsoleti dalle versioni superiori disponibili.    |
-| `recent`    | Elenca i pacchetti più recenti aggiunti al repository.                    |
+    Se questi comandi dei plugin non sono presenti, installare il pacchetto `dnf-plugins-core`. Per ulteriori informazioni, clicca qui: https://dnf-plugins-core.readthedocs.io/en/latest/index.html
 
-Il comando `dnf info`, come ci si può aspettare, fornisce informazioni dettagliate su un pacchetto:
+### Descrizione del file di configurazione
+
+Tutti i file di configurazione dei repository (che terminano con `.repo`) si trovano nella directory **/etc/yum.repos.d/**. Ogni file `.repo` può contenere uno o più repository, e gli utenti possono attivarli o disattivarli in modo selettivo a seconda delle loro esigenze specifiche.
 
 ```bash
-dnf info firewalld
-Last metadata expiration check: 15:47:27 ago on Tue 22 Mar 2022 05:49:42 PM CET.
-Installed Packages
-Name         : firewalld
-Version      : 0.9.3
-Release      : 7.el8
-Architecture : noarch
-Size         : 2.0 M
-Source       : firewalld-0.9.3-7.el8.src.rpm
-Repository   : @System
-From repo    : baseos
-Summary      : A firewall daemon with D-Bus interface providing a dynamic firewall
-URL          : http://www.firewalld.org
-License      : GPLv2+
-Description  : firewalld is a firewall service daemon that provides a dynamic customizable
-             : firewall with a D-Bus interface.
-
-Available Packages
-Name         : firewalld
-Version      : 0.9.3
-Release      : 7.el8_5.1
-Architecture : noarch
-Size         : 501 k
-Source       : firewalld-0.9.3-7.el8_5.1.src.rpm
-Repository   : baseos
-Summary      : A firewall daemon with D-Bus interface providing a dynamic firewall
-URL          : http://www.firewalld.org
-License      : GPLv2+
-Description  : firewalld is a firewall service daemon that provides a dynamic customizable
-             : firewall with a D-Bus interface.
+ls -l /etc/yum.repos.d/
+total 72
+-rw-r--r--  1 root root 1919 Sep 13  2024 docker-ce.repo
+-rw-r--r--  1 root root 1680 Aug 31  2024 epel-modular.repo
+-rw-r--r--  1 root root 1332 Aug 31  2024 epel.repo
+-rw-r--r--  1 root root 1779 Aug 31  2024 epel-testing-modular.repo
+-rw-r--r--  1 root root 1431 Aug 31  2024 epel-testing.repo
+-rw-r--r--. 1 root root  710 Jun  7  2024 Rocky-AppStream.repo
+-rw-r--r--. 1 root root  695 Jun  7  2024 Rocky-BaseOS.repo
+-rw-r--r--  1 root root 1773 Jun  7  2024 Rocky-Debuginfo.repo
+-rw-r--r--. 1 root root  360 Jul 11  2024 Rocky-Devel.repo
+-rw-r--r--. 1 root root  695 Jun  7  2024 Rocky-Extras.repo
+-rw-r--r--. 1 root root  731 Jun  7  2024 Rocky-HighAvailability.repo
+-rw-r--r--. 1 root root  680 Jun  7  2024 Rocky-Media.repo
+-rw-r--r--. 1 root root  680 Jun  7  2024 Rocky-NFV.repo
+-rw-r--r--. 1 root root  690 Jun  7  2024 Rocky-Plus.repo
+-rw-r--r--. 1 root root  715 Mar 29 17:39 Rocky-PowerTools.repo
+-rw-r--r--. 1 root root  746 Jun  7  2024 Rocky-ResilientStorage.repo
+-rw-r--r--. 1 root root  681 Jun  7  2024 Rocky-RT.repo
+-rw-r--r--  1 root root 2335 Jun  7  2024 Rocky-Sources.repo
 ```
 
-A volte si conosce solo l'eseguibile che si desidera utilizzare, ma non il pacchetto che lo contiene, in questo caso è possibile utilizzare il comando `dnf provides */package_name` che cercherà il database per la corrispondenza desiderata.
+Il formato dei contenuti di un singolo repository in ciascun file `.repo` è fisso, ad esempio:
 
-Esempio di ricerca del comando `semanage`:
-
-```bash
-dnf provides */semanage
-Last metadata expiration check: 1:12:29 ago on Wed 23 Mar 2022 10:40:43 AM CET.
-libsemanage-devel-2.9-6.el8.aarch64 : Header files and libraries used to build policy manipulation tools
-Repo        : powertools
-Matched from:
-Filename    : /usr/include/semanage
-
-policycoreutils-python-utils-2.9-16.el8.noarch : SELinux policy core python utilities
-Repo        : baseos
-Matched from:
-Filename    : /usr/sbin/semanage
-Filename    : /usr/share/bash-completion/completions/semanage
+```
+[baseos]
+name=Rocky Linux $releasever - BaseOS
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=BaseOS-$releasever
+#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/BaseOS/$basearch/os/
+gpgcheck=1
+enabled=1
+countme=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
 ```
 
-Il comando `dnf autoremove` non necessita di alcun parametro. Dnf si occupa della ricerca dei pacchetti candidati per la rimozione.
+Descrizione del contenuto:
+
+* Utilizzare "[ ]" per inserire l'ID del repository, che deve essere univoco.
+* Sotto i simboli "[ ]" si trovano le opzioni del repository.
+* L'opzione "name" - Indica il nome completo del repository.
+* L'opzione "mirrorlist" - URL di un elenco di mirror per il repository. Gli URL supportano diversi protocolli, quali https, http, ftp, file, NFS, ecc. Il simbolo "$" nel valore rappresenta la variabile del repository corrispondente.
+* L'opzione "baseurl" - Elenco degli URL del repository. Gli URL supportano diversi protocolli, quali https, http, ftp, file, NFS, ecc. Il simbolo "$" nel valore rappresenta la variabile del repository corrispondente.
+* Le righe che iniziano con "#" sono righe di commento.
+* L'opzione "gpgcheck" - Indica se eseguire il controllo della firma GPG sui pacchetti presenti in questo repository. Il valore predefinito è False (0).
+* L'opzione "enabled" - Include questo repository come fonte di pacchetti. Il valore predefinito è True (1).
+* L'opzione "countme" - Carica dati statistici anonimi sull'utilizzo. Il valore predefinito è False (0).
+* L'opzione "gpgkey" - Percorso della chiave pubblica GPG.
+
+Per ulteriori informazioni, consultare `man 5 yum.conf`.
+
+## Flussi di applicazioni
+
+**Flussi di applicazioni in RL 8.x e RL 9.x:**: Rocky Linux 8.x e 9.x utilizzano una nuova tecnologia modulare che consente ai repository di ospitare più versioni delle applicazioni e delle relative dipendenze. Grazie all'adozione di un'architettura modulare, gli Application Streams in questi due sistemi operativi vengono anche denominati "Module Streams". Gli amministratori di sistema possono scegliere una versione specifica, il che garantisce una maggiore flessibilità. Se gli amministratori di sistema devono gestire gli Application Streams, spesso devono ricorrere al comando `dnf module`.
+
+**Application Streams in RL 10.x**: A partire da Rocky Linux 10.x, gli amministratori di sistema possono continuare a utilizzare gli Application Streams, ma questi non sono più disponibili in forma modulare. In altre parole, il comando `dnf module` nella versione 10.x non funziona più, e gli amministratori di sistema possono gestire le diverse versioni delle applicazioni nel modo tradizionale. In questa versione del sistema operativo, il termine "Application Streams" non corrisponde a "Module Streams".
+
+Ogni flusso di applicazioni ha un ciclo di vita diverso. Si prega di consultare il seguente link:
+
+* https://access.redhat.com/support/policy/updates/rhel-app-streams-life-cycle#rhel8_application_streams
+* https://access.redhat.com/support/policy/updates/rhel-app-streams-life-cycle#rhel9_application_streams
+* https://access.redhat.com/support/policy/updates/rhel-app-streams-life-cycle#rhel10_dependent_application_streams
+
+In questo documento, l'autore illustra principalmente i flussi applicativi dell'architettura modulare.
+
+### Flussi dei moduli
+
+Nota importante:
+
+* Per utilizzare l'architettura modulare Application Streams nelle versioni RL 8.x e RL 9.x, è necessario abilitare prima il repository **AppStream**. Nel repository Appstream, i **moduli** rappresentano insiemi di pacchetti software destinati a unità logiche che vengono compilati, testati e pubblicati insieme. Un singolo modulo può contenere più flussi (versioni) della stessa applicazione.
+* Ogni modulo riceve gli aggiornamenti separatamente.
+* Dopo aver abilitato un singolo modulo, gli utenti possono utilizzare solo una versione di quel modulo.
+* Ogni modulo può avere un proprio flusso predefinito (versione predefinita) contrassegnato con "[d]".
+* Lo stream predefinito rimane attivo a meno che non si disattivi il modulo o si attivi un altro stream per il modulo.
+
+### Profili dei moduli
+
+**Profili dei moduli**: un insieme di elenchi di pacchetti software raggruppati in base a specifici scenari di utilizzo. Ad esempio:
 
 ```bash
-dnf autoremove
-Last metadata expiration check: 0:24:40 ago on Wed 23 Mar 2022 06:16:47 PM CET.
-Dependencies resolved.
-Nothing to do.
-Complete!
-```
-
-### Altre utili opzioni `dnf`
-
-| Opzione     | Descrizione                                    |
-| ----------- | ---------------------------------------------- |
-| `repolist`  | Elenca i repository configurati sul sistema.   |
-| `grouplist` | Elenca le collezioni di pacchetti disponibili. |
-| `clean`     | Rimuove i file temporanei.                     |
-
-Il comando `dnf repolist` elenca i repository configurati sul sistema. Per impostazione predefinita elenca solo i repository abilitati, ma può essere utilizzato con questi parametri:
-
-| Parametro    | Descrizione                            |
-| ------------ | -------------------------------------- |
-| `--all`      | Elenca tutti i repository.             |
-| `--enabled`  | Default                                |
-| `--disabled` | Elenca solo i repository disabilitati. |
-
-Esempio:
-
-```bash
-dnf repolist
-repo id                                                  repo name
-appstream                                                Rocky Linux 8 - AppStream
-baseos                                                   Rocky Linux 8 - BaseOS
-epel                                                     Extra Packages for Enterprise Linux 8 - aarch64
-epel-modular                                             Extra Packages for Enterprise Linux Modular 8 - aarch64
-extras                                                   Rocky Linux 8 - Extras
-powertools                                               Rocky Linux 8 - PowerTools
-rockyrpi                                                 Rocky Linux 8 - Rasperry Pi
-```
-
-E un estratto del comando con la flag `--all`.
-
-```bash
-dnf repolist --all
-
-...
-repo id                                             repo name                                                                                       status
-appstream                                           Rocky Linux 8 - AppStream                                                                       enabled
-appstream-debug                                     Rocky Linux 8 - AppStream - Source                                                              disabled
-appstream-source                                    Rocky Linux 8 - AppStream - Source                                                              disabled
-baseos                                              Rocky Linux 8 - BaseOS                                                                          enabled
-baseos-debug                                        Rocky Linux 8 - BaseOS - Source                                                                 disabled
-baseos-source                                       Rocky Linux 8 - BaseOS - Source                                                                 disabled
-devel                                               Rocky Linux 8 - Devel WARNING! FOR BUILDROOT AND KOJI USE                                       disabled
-epel                                                Extra Packages for Enterprise Linux 8 - aarch64                                                 enabled
-epel-debuginfo                                      Extra Packages for Enterprise Linux 8 - aarch64 - Debug                                         disabled
-epel-modular                                        Extra Packages for Enterprise Linux Modular 8 - aarch64                                         enabled
-epel-modular-debuginfo                              Extra Packages for Enterprise Linux Modular 8 - aarch64 - Debug                                 disabled
-epel-modular-source                                 Extra Packages for Enterprise Linux Modular 8 - aarch64 - Source
-...
-```
-
-E qui sotto è un estratto dalla lista dei repository disabilitati.
-
-```bash
-dnf repolist --disabled
-repo id                                 repo name
-appstream-debug                         Rocky Linux 8 - AppStream - Source
-appstream-source                        Rocky Linux 8 - AppStream - Source
-baseos-debug                            Rocky Linux 8 - BaseOS - Source
-baseos-source                           Rocky Linux 8 - BaseOS - Source
-devel                                   Rocky Linux 8 - Devel WARNING! FOR BUILDROOT AND KOJI USE
-epel-debuginfo                          Extra Packages for Enterprise Linux 8 - aarch64 - Debug
-epel-modular-debuginfo                  Extra Packages for Enterprise Linux Modular 8 - aarch64 - Debug
-epel-modular-source                     Extra Packages for Enterprise Linux Modular 8 - aarch64 - Source
-epel-source                             Extra Packages for Enterprise Linux 8 - aarch64 - Source
-epel-testing                            Extra Packages for Enterprise Linux 8 - Testing - aarch64
-...
-```
-
-L'utilizzo dell'opzione `-v` migliora la lista con molte informazioni aggiuntive. Qui sotto puoi vedere parte del risultato del comando.
-
-```bash
-dnf repolist -v
-
-...
-Repo-id            : powertools
-Repo-name          : Rocky Linux 8 - PowerTools
-Repo-revision      : 8.5
-Repo-distro-tags      : [cpe:/o:rocky:rocky:8]:  ,  , 8, L, R, c, i, k, n, o, u, x, y
-Repo-updated       : Wed 16 Mar 2022 10:07:49 PM CET
-Repo-pkgs          : 1,650
-Repo-available-pkgs: 1,107
-Repo-size          : 6.4 G
-Repo-mirrors       : https://mirrors.rockylinux.org/mirrorlist?arch=aarch64&repo=PowerTools-8
-Repo-baseurl       : https://example.com/pub/rocky/8.8/PowerTools/x86_64/os/ (30 more)
-Repo-expire        : 172,800 second(s) (last: Tue 22 Mar 2022 05:49:24 PM CET)
-Repo-filename      : /etc/yum.repos.d/Rocky-PowerTools.repo
-...
-```
-
-!!! info "Usare i Gruppi"
-
-    I gruppi sono una raccolta di una serie di pacchetti (si può pensare a loro come pacchetti virtuali) che logicamente raggruppa una serie di applicazioni per realizzare uno scopo (un ambiente desktop, un server, strumenti di sviluppo, ecc.).
-
-Il comando `dnf grouplist` elenca tutti i gruppi disponibili.
-
-```bash
-dnf grouplist
-Last metadata expiration check: 1:52:00 ago on Wed 23 Mar 2022 02:11:43 PM CET.
-Available Environment Groups:
-   Server with GUI
-   Server
-   Minimal Install
-   KDE Plasma Workspaces
-   Custom Operating System
-Available Groups:
-   Container Management
-   .NET Core Development
-   RPM Development Tools
-   Development Tools
-   Headless Management
-   Legacy UNIX Compatibility
-   Network Servers
-   Scientific Support
-   Security Tools
-   Smart Card Support
-   System Tools
-   Fedora Packager
-   Xfce
-```
-
-Il comando `dnf groupinstall` consente di installare uno di questi gruppi.
-
-```bash
-dnf groupinstall "Network Servers"
-Last metadata expiration check: 2:33:26 ago on Wed 23 Mar 2022 02:11:43 PM CET.
-Dependencies resolved.
-================================================================================
- Package           Architecture     Version             Repository         Size
-================================================================================
-Installing Groups:
- Network Servers
-
-Transaction Summary
-================================================================================
-
-Is this ok [y/N]:
-```
-
-Notate che è buona pratica racchiudere il nome del gruppo tra virgolette doppie poiché senza il comando verrà eseguito correttamente solo se il nome del gruppo non contiene spazi.
-
-Quindi un `dnf groupinstall Network Server` produce il seguente errore.
-
-```bash
-dnf groupinstall Network Servers
-Last metadata expiration check: 3:05:45 ago on Wed 23 Mar 2022 02:11:43 PM CET.
-Module or Group 'Network' is not available.
-Module or Group 'Servers' is not available.
-Error: Nothing to do.
-```
-
-Il comando corrispondente per rimuovere un gruppo è `dnf groupremove "name group"`.
-
-Il comando `dnf clean` pulisce tutte le cache e i file temporanei creati da `dnf`. Può essere utilizzato con i seguenti parametri.
-
-| Parametri      | Descrizione                                                        |
-| -------------- | ------------------------------------------------------------------ |
-| `all`          | Rimuove tutti i file temporanei creati per i repository abilitati. |
-| `dbcache`      | Rimuove i file cache per i metadati del repository.                |
-| `expire-cache` | Rimuovere i file dei cookie locali.                                |
-| `metadata`     | Rimuove tutti i metadati dei repository.                           |
-| `packages`     | Rimuove qualsiasi pacchetto nella cache.                           |
-
-### Come funziona DNF
-
-Il gestore DNF si basa su uno o più file di configurazione per indirizzare i repository contenenti i pacchetti RPM.
-
-Questi file si trovano in `/etc/yum.repos.d/` e devono terminare con `.repo` per poter essere utilizzati da DNF.
-
-Esempio:
-
-```bash
-/etc/yum.repos.d/Rocky-BaseOS.repo
-```
-
-Ogni file `.repo` consiste almeno delle seguenti informazioni, una direttiva per riga.
-
-Esempio:
-
-```bash
-[baseos] # Short name of the repository
-name=Rocky Linux $releasever - BaseOS # Short name of the repository #Detailed name
-mirrorlist=http://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=BaseOS-$releasever # http address of a list or mirror
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/BaseOS/$basearch/os/ # http address for direct access
-gpgcheck=1 # Repository requiring a signature
-enabled=1 # Activated =1, or not activated =0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial # GPG public key path
-```
-
-Per impostazione predefinita, la direttiva `enabled` è assente, il che significa che il repository è abilitato. Per disabilitare un repository, è necessario specificare la direttiva `enabled=0`.
-
-## Moduli DNF
-
-I moduli sono stati introdotti in Rocky Linux 8 dall'upstream. Per utilizzare i moduli, il repository AppStream deve esistere ed essere abilitato.
-
-!!! hint "Confusione tra i pacchetti"
-
-    La creazione di flussi di moduli nel repository AppStream ha creato molta confusione. Poiché i moduli sono impacchettati all'interno di un flusso (si vedano i nostri esempi qui sotto), un particolare pacchetto viene visualizzato nei nostri RPM, ma se si tenta di installarlo senza abilitare il modulo, non succede nulla. Ricordate di guardare i moduli se cercate di installare un pacchetto e non lo trovate.
-
-### Cosa sono i moduli
-
-I moduli provengono dal repository AppStream e contengono sia flussi che profili. Questi possono essere descritti come segue:
-
-* **flussi di moduli:** Un flusso di moduli può essere considerato come un repository separato all'interno del repository AppStream che contiene diverse versioni di applicazioni. Questi repository di moduli contengono gli RPM delle applicazioni, le dipendenze e la documentazione per quel particolare flusso. Un esempio di flusso di moduli in Rocky Linux 8 è `postgresql`. Se si installa `postgresql` utilizzando la procedura standard `sudo dnf install postgresql` si otterrà la versione 10. Tuttavia, utilizzando i moduli, è possibile installare le versioni 9.6, 12 o 13.
-
-* **profili dei moduli:** Un profilo del modulo prende in considerazione il caso d'uso del flusso del modulo quando si installa il pacchetto. L'applicazione di un profilo regola i pacchetti RPM, le dipendenze e la documentazione per soddisfare l'uso del modulo. Utilizzando lo stesso flusso `postgresql` del nostro esempio, è possibile applicare un profilo "server" o "client". Ovviamente, non è necessario installare gli stessi pacchetti sul sistema se si intende usare `postgresql` solo come client per accedere a un server.
-
-### Elenco dei moduli
-
-È possibile ottenere un elenco di tutti i moduli eseguendo il seguente comando:
-
-```bash
-dnf module list
-```
-
-In questo modo si ottiene un lungo elenco dei moduli disponibili e dei profili che possono essere utilizzati per essi. Il fatto è che probabilmente sapete già a quale pacchetto siete interessati, quindi per scoprire se ci sono moduli per un particolare pacchetto, aggiungete il nome del pacchetto dopo "list". Utilizzeremo di nuovo l'esempio del pacchetto `postgresql`:
-
-```bash
-dnf module list postgresql
-```
-
-Si otterrà un risultato simile a questo:
-
-```bash
+sudo dnf module list nginx
+Last metadata expiration check: 10:04:05 ago on Wed 07 Jan 2026 01:42:24 PM CST.
 Rocky Linux 8 - AppStream
-Name                       Stream                 Profiles                           Summary                                            
-postgresql                 9.6                    client, server [d]                 PostgreSQL server and client module                
-postgresql                 10 [d]                 client, server [d]                 PostgreSQL server and client module                
-postgresql                 12                     client, server [d]                 PostgreSQL server and client module                
-postgresql                 13                     client, server [d]                 PostgreSQL server and client module
-```
+Name                      Stream                       Profiles                       Summary
+nginx                     1.14 [d]                     common [d]                     nginx webserver
+nginx                     1.16                         common [d]                     nginx webserver
+nginx                     1.18                         common [d]                     nginx webserver
+nginx                     1.20                         common [d]                     nginx webserver
+nginx                     1.22                         common [d]                     nginx webserver
+nginx                     1.24                         common [d]                     nginx webserver
 
-Nell'elenco si noti la dicitura "[d]". Ciò significa che è l'impostazione predefinita. Mostra che la versione predefinita è la 10 e che, indipendentemente dalla versione scelta, se non si specifica un profilo, verrà utilizzato il profilo del server, che è anche quello predefinito.
-
-### Abilitazione dei Moduli
-
-Utilizzando il nostro pacchetto di esempio `postgresql`, supponiamo di voler abilitare la versione 12. Per farlo, è sufficiente utilizzare la seguente procedura:
-
-```bash
-dnf module enable postgresql:12
-```
-
-Il comando enable richiede il nome del modulo seguito da un ":" e il nome del flusso.
-
-Per verificare che sia stato abilitato il flusso del modulo `postgresql` versione 12, utilizzare nuovamente il comando list che dovrebbe mostrare il seguente output:
-
-```bash
-Rocky Linux 8 - AppStream
-Name                       Stream                 Profiles                           Summary                                            
-postgresql                 9.6                    client, server [d]                 PostgreSQL server and client module                
-postgresql                 10 [d]                 client, server [d]                 PostgreSQL server and client module                
-postgresql                 12 [e]                 client, server [d]                 PostgreSQL server and client module                
-postgresql                 13                     client, server [d]                 PostgreSQL server and client module
-```
-
-Qui si può notare il simbolo "[e]" per "enabled" accanto allo stream 12, quindi sappiamo che la versione 12 è abilitata.
-
-### Installazione dei pacchetti dal flusso del modulo
-
-Ora che il nostro flusso di moduli è abilitato, il passo successivo è installare `postgresql`, l'applicazione client per il server postgresql. Questo può essere ottenuto eseguendo il seguente comando:
-
-```bash
-dnf install postgresql
-```
-
-Che dovrebbe fornire questo risultato:
-
-```bash
-========================================================================================================================================
- Package                    Architecture           Version                                              Repository                 Size
-========================================================================================================================================
+sudo sudo dnf module install nginx:1.14
+Last metadata expiration check: 10:04:31 ago on Wed 07 Jan 2026 01:42:24 PM CST.
+Dependencies resolved.
+========================================================================================================================
+ Package                            Architecture  Version                                        Repository        Size
+========================================================================================================================
 Installing group/module packages:
- postgresql                 x86_64                 12.12-1.module+el8.6.0+1049+f8fc4c36                 appstream                 1.5 M
+ nginx                              x86_64        1:1.14.1-9.module+el8.4.0+542+81547229         appstream        566 k
+ nginx-all-modules                  noarch        1:1.14.1-9.module+el8.4.0+542+81547229         appstream         22 k
+ nginx-filesystem                   noarch        1:1.14.1-9.module+el8.4.0+542+81547229         appstream         23 k
+ nginx-mod-http-image-filter        x86_64        1:1.14.1-9.module+el8.4.0+542+81547229         appstream         34 k
+ nginx-mod-http-perl                x86_64        1:1.14.1-9.module+el8.4.0+542+81547229         appstream         45 k
+ nginx-mod-http-xslt-filter         x86_64        1:1.14.1-9.module+el8.4.0+542+81547229         appstream         32 k
+ nginx-mod-mail                     x86_64        1:1.14.1-9.module+el8.4.0+542+81547229         appstream         63 k
+ nginx-mod-stream                   x86_64        1:1.14.1-9.module+el8.4.0+542+81547229         appstream         84 k
 Installing dependencies:
- libpq                      x86_64                 13.5-1.el8                                           appstream                 197 k
-
-Transaction Summary
-========================================================================================================================================
-Install  2 Packages
-Total download size: 1.7 M
-Installed size: 6.1 M
-Is this ok [y/N]:
-```
-
-Dopo aver approvato digitando "y", verrà installata l'applicazione.
-
-### Installazione di pacchetti dai profili di flusso del modulo
-
-È anche possibile installare direttamente i pacchetti senza nemmeno dover abilitare il flusso dei moduli! In questo esempio, supponiamo di voler applicare il profilo client solo alla nostra installazione. Per farlo, basta inserire questo comando:
-
-```bash
-dnf install postgresql:12/client
-```
-
-Che dovrebbe fornire questo risultato:
-
-```bash
-========================================================================================================================================
- Package                    Architecture           Version                                              Repository                 Size
-========================================================================================================================================
-Installing group/module packages:
- postgresql                 x86_64                 12.12-1.module+el8.6.0+1049+f8fc4c36                 appstream                 1.5 M
-Installing dependencies:
- libpq                      x86_64                 13.5-1.el8                                           appstream                 197 k
+ dejavu-fonts-common                noarch        2.35-7.el8                                     baseos            73 k
+ dejavu-sans-fonts                  noarch        2.35-7.el8                                     baseos           1.5 M
+ fontconfig                         x86_64        2.13.1-4.el8                                   baseos           273 k
+ fontpackages-filesystem            noarch        1.44-22.el8                                    baseos            15 k
+ gd                                 x86_64        2.2.5-7.el8                                    appstream        143 k
+ jbigkit-libs                       x86_64        2.1-14.el8                                     appstream         54 k
+ libX11                             x86_64        1.6.8-9.el8_10                                 appstream        611 k
+ libX11-common                      noarch        1.6.8-9.el8_10                                 appstream        157 k
+ libXau                             x86_64        1.0.9-3.el8                                    appstream         36 k
+ libXpm                             x86_64        3.5.12-11.el8                                  appstream         58 k
+ libjpeg-turbo                      x86_64        1.5.3-14.el8_10                                appstream        156 k
+ libtiff                            x86_64        4.0.9-36.el8_10                                appstream        190 k
+ libwebp                            x86_64        1.0.0-11.el8_10                                appstream        273 k
+ libxcb                             x86_64        1.13.1-1.el8                                   appstream        228 k
 Installing module profiles:
- postgresql/client
+ nginx/common
 Enabling module streams:
- postgresql                                        12
+ nginx                                            1.14
 
 Transaction Summary
-========================================================================================================================================
-Install  2 Packages
+========================================================================================================================
+Install  22 Packages
 
-Total download size: 1.7 M
-Installed size: 6.1 M
+Total download size: 4.5 M
+Installed size: 14 M
 Is this ok [y/N]:
 ```
 
-Rispondendo "y" al prompt, si installerà tutto ciò che serve per utilizzare postgresql versione 12 come client.
+Ogni flusso di moduli può avere un numero qualsiasi di profili (o anche nessuno). I profili predefiniti del modulo Stream sono contrassegnati con "[d]".
 
-### Rimozione e Ripristino del modulo o Commutazione
-
-Dopo l'installazione, si potrebbe decidere che, per qualsiasi motivo, è necessaria una versione diversa dello stream. Il primo passo è rimuovere i pacchetti. Utilizzando di nuovo il nostro pacchetto di esempio `postgresql`, lo faremo con:
+Nell'esempio sopra riportato, quando l'utente deve installare nginx, il comando seguente è equivalente:
 
 ```bash
-dnf remove postgresql
+sudo dnf install nginx
+
+sudo dnf install nginx:1.14
+
+sudo dnf install nginx:1.14/common
 ```
 
-Questa procedura mostrerà un risultato simile a quello della procedura di installazione precedente, tranne che per la rimozione del pacchetto e di tutte le sue dipendenze. Rispondere "y" alla richiesta e premere invio per disinstallare `postgresql`.
+### Percorsi del modulo di gestione
 
-Una volta completata questa fase, è possibile lanciare il comando di reset per il modulo utilizzando:
+Il comando utilizzato è `dnf module` e prevede alcuni sottocomandi per le diverse funzionalità.
+
+!!! tip "Consigli per l'uso"
+
+    Quando si esegue il comando `dnf module` su una singola riga che riguarda i moduli, è possibile specificare più nomi di moduli, ad esempio `dnf module enable nginx httpd:2.4` o `dnf module list nodejs:10 perl`.
+
+#### Visualizzare
+
+Per eseguire questa operazione, utilizzare `list` o `info` nei sottocomandi.
+
+* `dnf module list` - Restituisce un elenco di tutti i moduli disponibili.
+* `dnf module list <Nome-modulo>` oppure `dnf module list <Nome-modulo>:<Stream>` - Elenca tutti gli stream (versioni) disponibili per il modulo corrente. Elenca le informazioni relative a un singolo flusso di modulo. Ad esempio `dnf module list postgresql` o `dnf module list postgresql:15`.
+* `dnf module list --enabled` - Lists the enabled module stream(s).
+* `dnf module info <Nome-modulo>` oppure `dnf module info <Nome-modulo>:<Stream>` - Visualizza le informazioni relative allo stream del modulo. Se si digita solo il nome di un modulo senza specificare uno stream, verranno visualizzate tutte le informazioni relative agli stream di quel modulo. Ad esempio `dnf module info ruby` o `dnf module info ruby:2.6`.
+* `dnf module --info --profile <Nome-modulo>` oppure `dnf module --info --profile <Nome-modulo>:<Stream>` - Elenca le informazioni sul profilo dello stream del modulo. Se si digita solo il nome di un modulo senza specificare uno stream, verranno visualizzate tutte le informazioni relative al profilo dello stream per quel modulo.
+
+#### Installazione
+
+Prima di installare lo specifico stream di un modulo, è necessario abilitarlo. La sintassi utilizzata è la seguente:
 
 ```bash
-dnf module reset postgresql
+dnf module enable <Module-Name>:<Stream> ...
 ```
 
-Che fornirà un risultato come questo:
+Ad esempio:
 
 ```bash
-Dependencies resolved.
-========================================================================================================================================
- Package                         Architecture                   Version                           Repository                       Size
-========================================================================================================================================
-Disabling module profiles:
- postgresql/client                                                                                                                     
-Resetting modules:
- postgresql                                                                                                                            
-
-Transaction Summary
-========================================================================================================================================
-
-Is this ok [y/N]:
+dnf -y module enable httpd:2.4
 ```
 
-Rispondendo "y" al prompt, `postgresql` tornerà al flusso predefinito e il flusso che avevamo abilitato (12 nel nostro esempio) non sarà più abilitato:
+!!! tip "Ribadiamo"
+
+    Lo stream predefinito rimane attivo a meno che non si disattivi il modulo o si attivi un altro stream per il modulo.
+
+Sono ammessi i seguenti metodi d'installazione:
+
+* `dnf -y module install <Module-Name>` - Utilizza lo stream predefinito e il profilo predefinito di un singolo modulo (se esiste un profilo predefinito). Ad esempio: `dnf -y install httpd`
+* `dnf -y install <Module-Name>:<Stream>/<Profile>` - Utilizzare uno stream e un profilo specifici di un singolo modulo. Ad esempio, `dnf -y install httpd:2.4:/minimal`. Se sono presenti più profili, è possibile utilizzare `*` per rappresentarli tutti, ad esempio `dnf module install httpd:2.4/*`
+
+#### Remove
+
+Per rimuovere di pacchetti è possibile utilizzare la seguente sintassi:
+
+* `dnf -y module remove --all <Module-name>:<Stream> ...` - Rimuove tutti i pacchetti da un singolo stream all’interno di un singolo modulo. Ad esempio: `dnf -y module remove --all httpd:2.4`
+* `dnf -y module remove --all <Nome-modulo>:<Stream>/<Profilo> ...` - Rimuove tutti i pacchetti associati a un profilo specifico, utilizzando `*` per indicare tutti i profili. Ad esempio `dnf -y module remove httpd:2.4/*`
+
+#### Reset
+
+È possibile utilizzare il comando `reset` per riportare il modulo allo stato iniziale. La sintassi corrispondente è la seguente:
+
+* `dnf -y module reset <Module-Name> ...` - For example `dnf -y module reset httpd`
+
+!!! tip "Nota Importante"
+
+    Il reset del modulo non modificherà i pacchetti software installati.
+
+#### Switch
+
+Si può passare allo stream aggiornato. Sono necessari due prerequisiti per eseguire questa operazione:
+
+1. Il sistema operativo è stato completamente aggiornato
+2. I pacchetti software installati nel sistema operativo non sono più recenti di quelli disponibili nel repository
+
+È possibile utilizzare il comando `dnf distro-sync` per passare al nuovo stream.
+
+Se sono disponibili aggiornamenti per lo stream del modulo, è necessario eseguire i seguenti passaggi:
+
+1. `dnf module reset <Module-Name> ...`
+2. `dnf module enable <Module-Name>:<New-Stream> ...`
+3. `dnf distro-sync`
+
+Se sono già installati nel sistema operativo, è possibile utilizzare l'opzione di comando `switch-to` per eseguire l'aggiornamento o il downgrade di questi pacchetti software. La sintassi in questo caso è:
 
 ```bash
+dnf module switch-to <Module-Name>:<Stream>
+```
+
+#### Disable
+
+La sintassi utilizzata è:
+
+```bash
+dnf module disable <Module-Name> ...
+```
+
+#### Personalizzazione utilizzando un file YAML
+
+Un amministratore di sistema può personalizzare lo stream predefinito e il profilo predefinito creando un file YAML nella directory <strong x-id=“1”>/etc/dnf/modules.defaults.d/</strong>.
+
+Prendendo il modulo PostgreSQL come esempio, dalle informazioni visualizzate si può notare che il suo stream predefinito è 10 e il profilo predefinito è “server”:
+
+```bash
+sudo dnf module list postgresql
+Name                   Stream             Profiles                       Summary
+postgresql             9.6                client, server [d]             PostgreSQL server and client module
+postgresql             10 [d]             client, server [d]             PostgreSQL server and client module
+postgresql             12                 client, server [d]             PostgreSQL server and client module
+postgresql             13                 client, server [d]             PostgreSQL server and client module
+postgresql             15                 client, server [d]             PostgreSQL server and client module
+postgresql             16                 client, server [d]             PostgreSQL server and client module
+
+Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
+```
+
+Impostare 15 come stream predefinito e impostare il profilo predefinito per postgresql:12 su “client”:
+
+```bash
+sudo vim /etc/dnf/modules.defaults.d/postgresql.yaml
+---
+document: modulemd-defaults
+version: 1
+data:
+        module: postgresql
+        stream: "15"
+        profiles:
+                "9.6": [server]
+                "10": [server]
+                "12": [client]
+                "13": [server]
+                "15": [server]
+...
+
+sudo dnf module list postgresql
+Last metadata expiration check: 0:41:35 ago on Sat 10 Jan 2026 10:10:22 PM CST.
 Rocky Linux 8 - AppStream
-Name                       Stream                 Profiles                           Summary                                            
-postgresql                 9.6                    client, server [d]                 PostgreSQL server and client module                
-postgresql                 10 [d]                 client, server [d]                 PostgreSQL server and client module                
-postgresql                 12                     client, server [d]                 PostgreSQL server and client module                
-postgresql                 13                     client, server [d]                 PostgreSQL server and client module
+Name                   Stream             Profiles                       Summary
+postgresql             9.6                client, server [d]             PostgreSQL server and client module
+postgresql             10                 client, server [d]             PostgreSQL server and client module
+postgresql             12                 client [d], server             PostgreSQL server and client module
+postgresql             13                 client, server [d]             PostgreSQL server and client module
+postgresql             15 [d]             client, server [d]             PostgreSQL server and client module
+postgresql             16                 client, server                 PostgreSQL server and client module
+
+Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
 ```
 
-Ora è possibile utilizzare l'impostazione predefinita.
+#### Esempio:
 
-Si può anche usare il sottocomando switch-to per passare da un flusso abilitato a un altro. Utilizzando questo metodo non solo si passa al nuovo flusso, ma si installano i pacchetti necessari (sia per il downgrade che per l'upgrade) senza un passaggio separato. Per usare questo metodo per abilitare lo stream `postgresql` versione 13 e usare il profilo "client", si deve usare:
-
-```bash
-dnf module switch-to postgresql:13/client
-```
-
-### Disattivare un flusso di moduli
-
-Può capitare che si voglia disabilitare la possibilità di installare pacchetti da un flusso di moduli. Nel caso del nostro esempio di `postgresql`, questo potrebbe essere dovuto al fatto che si vuole usare il repository direttamente da [PostgreSQL](https://www.postgresql.org/download/linux/redhat/), in modo da poter usare una versione più recente (al momento in cui scriviamo, le versioni 14 e 15 sono disponibili da questo repository). La disabilitazione di un flusso di moduli rende impossibile l'installazione di qualsiasi pacchetto senza prima abilitarlo nuovamente.
-
-Per disabilitare i flussi del modulo per `postgresql` è sufficiente fare:
+Prendiamo come esempio il modulo nodejs:
 
 ```bash
-dnf module disable postgresql
-```
-
-Se si elencano di nuovo i moduli `postgresql`, si vedrà quanto segue, tutte le versioni dei moduli `postgresql` sono disabilitate:
-
-```bash
+sudo dnf module list nodejs
+Last metadata expiration check: 0:44:38 ago on Sat 10 Jan 2026 10:10:22 PM CST.
 Rocky Linux 8 - AppStream
-Name                       Stream                   Profiles                          Summary                                           
-postgresql                 9.6 [x]                  client, server [d]                PostgreSQL server and client module               
-postgresql                 10 [d][x]               client, server [d]                PostgreSQL server and client module               
-postgresql                 12 [x]                   client, server [d]                PostgreSQL server and client module               
-postgresql                 13 [x]                   client, server [d]                PostgreSQL server and client module
+Name                Stream              Profiles                                          Summary
+nodejs              10 [d]              common [d], development, minimal, s2i             Javascript runtime
+nodejs              12                  common [d], development, minimal, s2i             Javascript runtime
+nodejs              14                  common [d], development, minimal, s2i             Javascript runtime
+nodejs              16                  common [d], development, minimal, s2i             Javascript runtime
+nodejs              18                  common [d], development, minimal, s2i             Javascript runtime
+nodejs              20                  common [d], development, minimal, s2i             Javascript runtime
+nodejs              22                  common, development, minimal, s2i                 Javascript runtime
+nodejs              24                  common, development, minimal, s2i                 Javascript runtime
+
+Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
+
+sudo dnf -y module enable nodejs:18
+
+sudo dnf module list --enabled nodejs
+Last metadata expiration check: 0:46:01 ago on Sat 10 Jan 2026 10:10:22 PM CST.
+Rocky Linux 8 - AppStream
+Name                Stream              Profiles                                          Summary
+nodejs              18 [e]              common [d], development, minimal, s2i             Javascript runtime
+
+Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
+
+sudo dnf -y module install nodejs:18/minimal
+
+sudo dnf module list --enabled nodejs
+Last metadata expiration check: 0:47:26 ago on Sat 10 Jan 2026 10:10:22 PM CST.
+Rocky Linux 8 - AppStream
+Name               Stream             Profiles                                             Summary
+nodejs             18 [e]             common [d], development, minimal [i], s2i            Javascript runtime
+
+Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
+
+sudo dnf -y module install nodejs:18/common
+
+sudo dnf module list --enabled nodejs
+Last metadata expiration check: 0:48:34 ago on Sat 10 Jan 2026 10:10:22 PM CST.
+Rocky Linux 8 - AppStream
+Name              Stream            Profiles                                                Summary
+nodejs            18 [e]            common [d] [i], development, minimal [i], s2i           Javascript runtime
+
+Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
+
+sudo dnf -y module remove --all nodejs:18/*
+
+sudo dnf -y module reset nodejs
+
+sudo dnf module list nodejs
+Last metadata expiration check: 0:50:03 ago on Sat 10 Jan 2026 10:10:22 PM CST.
+Rocky Linux 8 - AppStream
+Name                Stream              Profiles                                          Summary
+nodejs              10 [d]              common [d], development, minimal, s2i             Javascript runtime
+nodejs              12                  common [d], development, minimal, s2i             Javascript runtime
+nodejs              14                  common [d], development, minimal, s2i             Javascript runtime
+nodejs              16                  common [d], development, minimal, s2i             Javascript runtime
+nodejs              18                  common [d], development, minimal, s2i             Javascript runtime
+nodejs              20                  common [d], development, minimal, s2i             Javascript runtime
+nodejs              22                  common, development, minimal, s2i                 Javascript runtime
+nodejs              24                  common, development, minimal, s2i                 Javascript runtime
+
+Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
 ```
 
 ## Il repository EPEL
 
-### Che cos’è EPEL e come si usa?
+**Che cos’è EPEL e come si usa?**
 
-**EPEL** (**E**xtra **P**ackages for **E**nterprise **L**inux) è un repository contenente pacchetti software aggiuntivi per Enterprise Linux, che include RedHat Enterprise Linux (RHEL), RockyLinux, CentOS, ecc.
+<strong x-id=“1”>EPEL</strong> (<strong x-id=“1”>E</strong>xtra <strong x-id=“1”>P</strong>ackages for <strong x-id=‘1’>E</strong>nterprise <strong x-id=“1” >L</strong>inux) è un repository open source e gratuito basato sulla comunità, gestito dal [Gruppo di interesse speciale EPEL di Fedora](https://docs.fedoraproject.org/en-US/epel/). Questa risorsa fornisce una serie di pacchetti aggiuntivi per RHEL (oltre che per CentOS, Rocky Linux e altre distribuzioni) provenienti dai repository di Fedora.
 
-Fornisce pacchetti che non sono inclusi nei repository RHEL ufficiali. Questi non sono inclusi perché non sono considerati necessari in un ambiente enterprise o considerati al di fuori del campo di applicazione di RHEL. Non dobbiamo dimenticare che RHEL è una distribuzione di classe enterprise, e le utility desktop o altri software specializzati possono non essere una priorità per un progetto enterpise.
+Sia che si tratti di utenti privati o aziende che utilizzano Rocky Linux 8.x/9.x/10.x, di solito si consiglia di abilitare il repository EPEL.
 
-### Installazione
-
-L'installazione dei file necessari può essere effettuata facilmente con il pacchetto fornito di default da Rocky Linux.
-
-Se sei dietro un proxy internet:
-
-```bash
-export http_proxy=http://172.16.1.10:8080
-```
-
-Quindi:
+È possibile installare il repository EPEL nei seguenti modi:
 
 ```bash
 dnf install epel-release
 ```
 
-Una volta installato è possibile controllare che il pacchetto sia stato installato correttamente con il comando `dnf info`.
+Esaminare le informazioni pertinenti e verificare che l'installazione sia stata eseguita correttamente:
 
 ```bash
-dnf info epel-release
-Last metadata expiration check: 1:30:29 ago on Thu 24 Mar 2022 09:36:42 AM CET.
+sudo dnf info epel-release
+Last metadata expiration check: 1 day, 23:02:38 ago on Sat 10 Jan 2026 10:10:22 PM CST.
 Installed Packages
 Name         : epel-release
 Version      : 8
-Release      : 14.el8
+Release      : 22.el8
 Architecture : noarch
-Size         : 32 k
-Source       : epel-release-8-14.el8.src.rpm
+Size         : 34 k
+Source       : epel-release-8-22.el8.src.rpm
 Repository   : @System
 From repo    : epel
 Summary      : Extra Packages for Enterprise Linux repository configuration
 URL          : http://download.fedoraproject.org/pub/epel
 License      : GPLv2
-Description  : This package contains the Extra Packages for Enterprise Linux
-             : (EPEL) repository GPG key as well as configuration for yum.
-```
+Description  : This package contains the Extra Packages for Enterprise Linux (EPEL) repository
+             : GPG key as well as configuration for yum.
 
-Il pacchetto, come si può vedere dalla descrizione del pacchetto sopra, non contiene eseguibili, librerie, ecc... ma solo i file di configurazione e le chiavi GPG per impostare il repository.
-
-Un altro modo per verificare la corretta installazione è quello di interrogare il database degli rpm.
-
-```bash
 rpm -qa | grep epel
 epel-release-8-14.el8.noarch
-```
 
-Ora è necessario eseguire un aggiornamento per consentire a `dnf` di riconoscere il repository. Ti verrà chiesto di accettare le chiavi GPG dei repository. Chiaramente, è necessario rispondere SÌ per utilizzarli.
-
-```bash
-dnf update
-```
-
-Una volta completato l'aggiornamento, è possibile verificare che il repository sia stato configurato correttamente con il comando `dnf repolist` che dovrebbe ora elencare i nuovi repository.
-
-```bash
-dnf repolist
+sudo dnf repolist
 repo id            repo name
 ...
-epel               Extra Packages for Enterprise Linux 8 - aarch64
-epel-modular       Extra Packages for Enterprise Linux Modular 8 - aarch64
+epel                                      Extra Packages for Enterprise Linux 8 - x86_64
 ...
 ```
 
-I file di configurazione del repository si trovano in `/etc/yum.repos.d/`.
+Qui si può notare come il pacchetto non contiene file eseguibili, librerie e così via, ma solo i file di configurazione e le chiavi GPG necessari per configurare il repository.
+
+File `.repo` associati:
 
 ```bash
-ll /etc/yum.repos.d/ | grep epel
--rw-r--r--. 1 root root 1485 Jan 31 17:19 epel-modular.repo
--rw-r--r--. 1 root root 1422 Jan 31 17:19 epel.repo
--rw-r--r--. 1 root root 1584 Jan 31 17:19 epel-testing-modular.repo
--rw-r--r--. 1 root root 1521 Jan 31 17:19 epel-testing.repo
+ls -lh /etc/yum.repos.d/epel*
+-rw-r--r-- 1 root root 1.7K Apr 23  2025 /etc/yum.repos.d/epel-modular.repo
+-rw-r--r-- 1 root root 1.4K Apr 23  2025 /etc/yum.repos.d/epel.repo
+-rw-r--r-- 1 root root 1.8K Apr 23  2025 /etc/yum.repos.d/epel-testing-modular.repo
+-rw-r--r-- 1 root root 1.4K Apr 23  2025 /etc/yum.repos.d/epel-testing.repo
 ```
 
-E di seguito possiamo vedere il contenuto del file `epel.repo`.
+Di default, sono abilitati solo i repository con l'ID epel presenti nel file `epel.repo`.
 
 ```bash
+cat /etc/yum.repos.d/epel.repo
 [epel]
-name=Extra Packages for Enterprise Linux $releasever - $basearch
+name=Extra Packages for Enterprise Linux 8 - $basearch
 # It is much more secure to use the metalink, but if you wish to use a local mirror
 # place its address here.
-#baseurl=https://download.example/pub/epel/$releasever/Everything/$basearch
-metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-$releasever&arch=$basearch&infra=$infra&content=$contentdir
-enabled=1
-gpgcheck=1
-countme=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
-
-[epel-debuginfo]
-name=Extra Packages for Enterprise Linux $releasever - $basearch - Debug
-# It is much more secure to use the metalink, but if you wish to use a local mirror
-# place its address here.
-#baseurl=https://download.example/pub/epel/$releasever/Everything/$basearch/debug
-metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-debug-$releasever&arch=$basearch&infra=$infra&content=$contentdir
-enabled=0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
-gpgcheck=1
-
-[epel-source]
-name=Extra Packages for Enterprise Linux $releasever - $basearch - Source
-# It is much more secure to use the metalink, but if you wish to use a local mirror
-# place it's address here.
 #baseurl=https://download.example/pub/epel/$releasever/Everything/source/tree/
 metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-source-$releasever&arch=$basearch&infra=$infra&content=$contentdir
 enabled=0
@@ -839,181 +840,39 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
 gpgcheck=1
 ```
 
-### Usare EPEL
-
-A questo punto, una volta configurati, siamo pronti per installare i pacchetti da EPEL. Per iniziare, possiamo elencare i pacchetti disponibili nel repository con il comando:
+Elencare tutti i pacchetti software disponibili con ID repository epel:
 
 ```bash
-dnf --disablerepo="*" --enablerepo="epel" list available
+dnf --repoid epel list --available 
 ```
 
-E un estratto del comando
+Se nel tuo sistema operativo sono presenti altri repository, ma desideri installare pacchetti solo da EPEL:
 
 ```bash
-dnf --disablerepo="*" --enablerepo="epel" list available | less
-Last metadata expiration check: 1:58:22 ago on Fri 25 Mar 2022 09:23:29 AM CET.
-Available Packages
-3proxy.aarch64                                                    0.8.13-1.el8                                    epel
-AMF-devel.noarch                                                  1.4.23-2.el8                                    epel
-AMF-samples.noarch                                                1.4.23-2.el8                                    epel
-AusweisApp2.aarch64                                               1.22.3-1.el8                                    epel
-AusweisApp2-data.noarch                                           1.22.3-1.el8                                    epel
-AusweisApp2-doc.noarch                                            1.22.3-1.el8                                    epel
-BackupPC.aarch64                                                  4.4.0-1.el8                                     epel
-BackupPC-XS.aarch64                                               0.62-1.el8                                      epel
-BibTool.aarch64                                                   2.68-1.el8                                      epel
-CCfits.aarch64                                                    2.5-14.el8                                      epel
-CCfits-devel.aarch64                                              2.5-14.el8                                      epel
-...
-```
-
-Dal comando possiamo vedere che per installare da EPEL dobbiamo forzare **dnf** a interrogare il repository richiesto con le opzioni `--disablerepo` e `--enablerepo`, questo perché altrimenti una corrispondenza trovata in altri repository opzionali (RPM Fusion, REMI, ELRepo, ecc.) potrebbe essere più recente e quindi avere la priorità. Queste opzioni non sono necessarie se hai installato EPEL come solo repository opzionale perché i pacchetti nel repository non saranno mai disponibili in quelli ufficiali. Almeno nella stessa versione!
-
-!!! attention "Considerazione sul Supporto"
-
-    Un aspetto da considerare per quanto riguarda il supporto (aggiornamenti, correzioni di bug, patch di sicurezza) è che i pacchetti EPEL non hanno alcun supporto ufficiale da RHEL e tecnicamente la loro vita potrebbe durare lo spazio di uno sviluppo di Fedora (sei mesi) e poi scomparire. Questa è una possibilità remota ma una da considerare.
-
-Quindi, per installare un pacchetto dai repository EPEL si utilizzerà:
-
-```bash
-dnf --disablerepo="*" --enablerepo="epel" install nmon
-Last metadata expiration check: 2:01:36 ago on Fri 25 Mar 2022 04:28:04 PM CET.
-Dependencies resolved.
-==============================================================================================================================================================
- Package                            Architecture                          Version                                    Repository                          Size
-==============================================================================================================================================================
+sudo dnf --disablerepo="*" --enablerepo="epel" install nmon
+Last metadata expiration check: 0:08:13 ago on Mon 12 Jan 2026 09:34:25 PM CST.
+Dipendenze risolte.
+========================================================================================================================
+ Package                   Architecture                Version                          Repository                 Size
+========================================================================================================================
 Installing:
- nmon                               aarch64                               16m-1.el8                                  epel                                71 k
+ nmon                      x86_64                      16p-5.el8                        epel                       80 k
 
 Transaction Summary
-==============================================================================================================================================================
+========================================================================================================================
 Install  1 Package
 
-Total download size: 71 k
-Installed size: 214 k
+Total download size: 80 k
+Installed size: 161 k
 Is this ok [y/N]:
 ```
 
-### Conclusione
+!!! tip "Promemoria utile"
 
-EPEL non è un repository ufficiale per RHEL, ma può essere utile per gli amministratori e gli sviluppatori che lavorano con RHEL o derivati e hanno bisogno di alcune utility preparate per RHEL da una fonte di cui si possono fidare.
+    Quando sono abilitati più repository, lo stesso pacchetto software può avere più versioni e, per impostazione predefinita, la versione più recente ha la priorità più alta. Questo è anche il motivo per cui si utilizzano le opzioni `--disablerepo` e `--enablerepo`.
 
-## Plugin DNF
+!!! attention "Considerazione sul Supporto"
 
-Il pacchetto `dnf-plugins-core` aggiunge plugin a `dnf` che saranno utili per la gestione dei repository.
+    EPEL è un progetto avviato da volontari della comunità Fedora, pertanto non beneficia del supporto commerciale di Red Hat. Proprio come per Fedora stessa, Red Hat ospita l'infrastruttura di questo progetto e i tecnici di Red Hat vi partecipano in qualità di manutentori e responsabili, ma Red Hat non offre contratti di assistenza commerciale né accordi sul livello di servizio per i pacchetti presenti in EPEL.
 
-!!! NOTE "Nota"
-
-    Maggiori informazioni qui: https://dnf-plugins-core.readthedocs.io/en/latest/index.html
-
-Installare il pacchetto sul vostro sistema:
-
-```bash
-dnf install dnf-plugins-core
-```
-
-Non tutti i plugin saranno presentati qui, ma si può fare riferimento alla documentazione del pacchetto per un elenco completo dei plugin e per informazioni dettagliate.
-
-### `config-manager` plugin
-
-Gestire le opzioni DNF, aggiungere repository o disabilitarli.
-
-Esempi:
-
-* Scaricare un file `.repo` e utilizzarlo:
-
-```bash
-dnf config-manager --add-repo https://packages.centreon.com/ui/native/rpm-standard/23.04/el8/centreon-23.04.repo
-```
-
-* È anche possibile impostare un url come url di base per un repo:
-
-```bash
-dnf config-manager --add-repo https://repo.rocky.lan/repo
-```
-
-* Abilitare o disabilitare uno o più repo:
-
-```bash
-dnf config-manager --set-enabled epel centreon
-dnf config-manager --set-disabled epel centreon
-```
-
-* Aggiungi un proxy al file di configurazione:
-
-```bash
-dnf config-manager --save --setopt=*.proxy=http://proxy.rocky.lan:3128/
-```
-
-### `copr` plugin
-
-`copr` è un fork automatico di rpm, che fornisce un repo con i pacchetti compilati.
-
-* Attivare un repo copr:
-
-```bash
-copr enable xxxx
-```
-
-### `download` plugin
-
-Scaricare il pacchetto rpm invece di installarlo:
-
-```bash
-dnf download ansible
-```
-
-Se si vuole ottenere solo l'url della posizione remota del pacchetto:
-
-```bash
-dnf download --url ansible
-```
-
-Oppure se si desidera scaricare anche le dipendenze:
-
-```bash
-dnf download --resolv --alldeps ansible
-```
-
-### `needs-restart` plugin
-
-Dopo aver eseguito un `dnf update`, i processi in esecuzione continueranno a funzionare ma con i vecchi binari. Per adottare le modifiche al codice e soprattutto gli aggiornamenti di sicurezza, devono essere riavviati.
-
-Il plugin `needs-restarting` consente di rilevare i processi che si trovano in questo stato.
-
-```bash
-dnf needs-restarting [-u] [-r] [-s]
-```
-
-| Opzioni | Descrizione                                                      |
-| ------- | ---------------------------------------------------------------- |
-| `- u`   | Considera solo i processi appartenenti all'utente in esecuzione. |
-| `-r`    | per verificare se è necessario un riavvio.                       |
-| `-s`    | per verificare se i servizi devono essere riavviati.             |
-| `-s -r` | per fare entrambe le cose in un unico ciclo.                     |
-
-### `versionlock` plugin
-
-A volte è utile proteggere i pacchetti da tutti gli aggiornamenti o escludere alcune versioni di un pacchetto (ad esempio a causa di problemi noti). A questo scopo, il plugin versionlock sarà di grande aiuto.
-
-È necessario installare un pacchetto aggiuntivo:
-
-```bash
-dnf install python3-dnf-plugin-versionlock
-```
-
-Esempi:
-
-* Blocca la versione ansibile:
-
-```bash
-dnf versionlock add ansible
-Adding versionlock on: ansible-0:6.3.0-2.el9.*
-```
-
-* Lista pacchetti bloccati:
-
-```bash
-dnf versionlock list
-ansible-0:6.3.0-2.el9.*
-```
+Per le domande frequenti su EPEL, consultare [le FAQ su EPEL nella documentazione di Fedora](https://docs.fedoraproject.org/en-US/epel/epel-faq/).
