@@ -6,7 +6,7 @@ title: Home
 
 ## 欢迎！
 
-欢迎来到 Rocky Linux 文档中心；很高兴在此相遇。 我们有许多贡献者向文档添加内容，而且内容一直在增长。 在此处，您将找到有关如何构建 Rocky Linux 本身的文档，以及有关 Rocky Linux 社区的各种重要主题文档。 您会问，是谁构成了这个社区？
+欢迎来到 Rocky Linux 文档中心；很高兴在此相遇。 We have several contributors adding content, and that content is growing all the time. 在此处，您将找到有关如何构建 Rocky Linux 本身的文档，以及有关 Rocky Linux 社区的各种重要主题文档。 Who makes up that community you ask?
 
 事实上，您就是其中之一。
 
