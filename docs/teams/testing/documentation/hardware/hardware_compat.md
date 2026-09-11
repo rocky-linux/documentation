@@ -31,10 +31,10 @@ There are three reasons why Testing Team would like you to contribute your syste
 
 ## How to contribute
 
-Fortunately for Rocky Linux, the `hw-probe` tool is available in EPEL except for Rocky Linux 10 (yet). This is not a complete comprehensive guide on how to use this tool. There are a number of useful features built-in that are not covered below.
+Fortunately for Rocky Linux, the `hw-probe` tool is available in EPEL. This is not a complete comprehensive guide on how to use this tool. There are a number of useful features built-in that are not covered below.
 Here we are only covering the features needed to install and upload to the database.
 
-### Rocky 8 and Rocky 9
+### Rocky 8, Rocky 9, and Rocky 10
 
 Install EPEL if you have not done so already:
 
@@ -68,38 +68,14 @@ Run the probe and upload the results:
 sudo -E hw-probe -all -upload
 ```
 
-### Rocky 10
-
-For Rocky 10, at the time of this writing `hw-probe`, is not in the main EPEL repository, but [there is work on building it](https://packages.fedoraproject.org/pkgs/hw-probe/hw-probe). In the mean time, the easiest way to get `hw-probe` with least amount of dependency packages to install, is to download and use [the AppImage](https://github.com/linuxhw/hw-probe/blob/master/README.md#appimage). Check the link for the latest version. Examples below use `1.6.5-189`.
-
-You need to install the `libxcrypt-compat` package:
-
-```bash
-sudo dnf install -y libxcrypt-compat
-```
-
-Finally make the AppImage executable:
-
-```bash
-chmod +x ./hw-probe-1.6.5-189-x86_64.AppImage
-```
-
-Run the probe and upload the results:
-
-```bash
-sudo -E ./hw-probe-1.6.5-189-x86_64.AppImage -all -upload
-```
-
 ### Notify the Testing team
 
-If running the probe on a official release (at the time of this writing: 8.10, 9.7, 10.1), submit the result to the Testing Team via chat.rockylinux.org (Mattermost Chat) in the testing channel. This is only recommended and not required. It simply lets Testing Team know what hardware you submitted and the current state of it with Rocky. There is a lot of value for the larger community and for Testing Team historical purposes (knowing if hardware did or did not work on previous releases).
+If running the probe on a official release (at the time of this writing: 8.10, 9.8, 10.2), submit the result to the Testing Team via chat.rockylinux.org (Mattermost Chat) in the testing channel. This is only recommended and not required. It simply lets Testing Team know what hardware you submitted and the current state of it with Rocky. There is a lot of value for the larger community and for Testing Team historical purposes (knowing if hardware did or did not work on previous releases).
 
 If running the probe on a Release Candidate or Beta, it is important to report the link regardless of status to [chat.rockylinux.org](https://chat.rockylinux.org) (Mattermost Chat), in the release channel. If that is not possible, direct message Rocky Linux on your social media of choice, or post in the forums at [forums.rockylinux.org](https://forums.rockylinux.org). Testing Team cannot guarantee your name will appear in the credits for submissions outside of the Mattermost channels at [chat.rockylinux.org](https://chat.rockylinux.org), but we will do our best to include ALL those who give submissions.
 
 ## Additional ways to contribute
 
-It would be amazing to have `hw-probe` fully added into EPEL for 10, and for as many architectures as possible. Anyone with EPEL experience willing to assist there would be greatly appreciated. You can review the [upstream bug-report here](https://bugzilla.redhat.com/show_bug.cgi?id=2479630) or follow along with the [Testing Team's issue](https://github.com/rocky-linux/testing/issues/89).
-
-Additionally, anyone willing to contribute to the Hardware Probe project would be of great help. They are looking for people to assist with writing tests and managing the project.
+Anyone willing to contribute to the Hardware Probe project would be of great help. They are looking for people to assist with writing tests and managing the project.
 
 Lastly, anyone willing to assist by coming up with a good method where Testing Team can review all of the Rocky submissions without overloading the upstream database would be greatly appreciated.
