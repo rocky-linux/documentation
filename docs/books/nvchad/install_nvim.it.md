@@ -112,7 +112,7 @@ Come per Vim, Neovim richiede una conoscenza di base dei suoi comandi e delle su
     Il clone di Neovim, per impostazione predefinita, è sincronizzato con il ramo di sviluppo di Neovim (al momento in cui scriviamo, la versione 0.10.0). Per compilare la versione stabile, si dovrà passare al ramo corrispondente prima di clonarlo:
 
     ```bash
-    mkdir ~/lab/build
+    mkdir -p ~/lab/build
     cd ~/lab/build
     ```
 
