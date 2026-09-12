@@ -32,10 +32,10 @@ Es gibt drei Gründe, warum das Testing-Team Sie bitten möchte, Ihr System zur 
 
 ## Wie Sie beitragen können
 
-Glücklicherweise ist das Tool `hw-probe` für Rocky Linux in EPEL verfügbar – mit Ausnahme von Rocky Linux 10 (noch). Dies ist kein vollständiger und umfassender Leitfaden zur Verwendung dieses Tools. Es sind eine Reihe nützlicher Funktionen integriert, die im Folgenden nicht behandelt werden.
+Glücklicherweise ist das Tool `hw-probe` für Rocky Linux in EPEL verfügbar. Dies ist kein vollständiger und umfassender Leitfaden zur Verwendung dieses Tools. Es sind eine Reihe nützlicher Funktionen integriert, die im Folgenden nicht behandelt werden.
 Hier behandeln wir lediglich die Funktionen, die für die Installation und das Hochladen in die Datenbank erforderlich sind.
 
-### Rocky 8 und Rocky 9
+### Rocky 8, Rocky 9, and Rocky 10
 
 Installieren Sie EPEL, falls Sie dies noch nicht getan haben:
 
@@ -69,38 +69,14 @@ Führen Sie die `hw-probe` aus und laden Sie die Ergebnisse hoch:
 sudo -E hw-probe -all -upload
 ```
 
-### Rocky 10
-
-Für Rocky 10 ist `hw-probe` zum Zeitpunkt der Verfassung dieses Textes noch nicht im Haupt-EPEL-Repository enthalten; es wird jedoch bereits an dessen Erstellung gearbeitet ([siehe hier](https://packages.fedoraproject.org/pkgs/hw-probe/hw-probe)). In der Zwischenzeit besteht die einfachste Möglichkeit, `hw-probe` mit der geringstmöglichen Anzahl an zu installierenden Abhängigkeiten zu erhalten, darin, [das AppImage](https://github.com/linuxhw/hw-probe/blob/master/README.md#appimage) herunterzuladen und zu verwenden. Überprüfen Sie den Link auf die neueste Version. Die folgenden Beispiele verwenden Version `1.6.5-189`.
-
-Sie müssen das Paket `libxcrypt-compat` installieren:
-
-```bash
-sudo dnf install -y libxcrypt-compat
-```
-
-Machen Sie das AppImage abschließend ausführbar:
-
-```bash
-chmod +x ./hw-probe-1.6.5-189-x86_64.AppImage
-```
-
-Führen Sie die `hw-probe` aus und laden Sie die Ergebnisse hoch:
-
-```bash
-sudo -E ./hw-probe-1.6.5-189-x86_64.AppImage -all -upload
-```
-
 ### Benachrichtigen Sie das Testing-Team
 
-Falls Sie die `hw-probe` auf einer offiziellen Rocky Linux Version ausführen (zum Zeitpunkt der Verfassung dieses Textes: 8.10, 9.7, 10.1), übermitteln Sie das Ergebnis bitte über chat.rockylinux.org (Mattermost-Chat) an das Testing-Team im Kanal „testing“. Dies wird lediglich nur empfohlen und ist nicht zwingend erforderlich. Es informiert das Testteam lediglich darüber, welche Hardware Sie eingereicht haben und welchen aktuellen Status diese bei Rocky hat. Dies bietet einen erheblichen Mehrwert für die breitere Community sowie für die historischen Aufzeichnungen des Testteams (um zu wissen, ob Hardware in früheren Releases funktioniert hat oder nicht).
+Falls Sie die `hw-probe` auf einer offiziellen Rocky Linux Version ausführen (zum Zeitpunkt der Verfassung dieses Textes: 8.10, 9.8, 10.2), übermitteln Sie das Ergebnis bitte über chat.rockylinux.org (Mattermost-Chat) an das Testing-Team im Kanal „testing“. Dies wird lediglich nur empfohlen und ist nicht zwingend erforderlich. Es informiert das Testteam lediglich darüber, welche Hardware Sie eingereicht haben und welchen aktuellen Status diese bei Rocky hat. Dies bietet einen erheblichen Mehrwert für die breitere Community sowie für die historischen Aufzeichnungen des Testteams (um zu wissen, ob Hardware in früheren Releases funktioniert hat oder nicht).
 
 Falls Sie die `hw-probe` auf einem Release Candidate oder einer Beta ausführen, ist es wichtig, den Link – unabhängig vom Status – unter [chat.rockylinux.org](https://chat.rockylinux.org) (Mattermost-Chat) im Release-Kanal zu melden. Falls dies nicht möglich ist, senden Sie Rocky Linux eine Direktnachricht über das soziale Netzwerk Ihrer Wahl oder posten Sie im Forum unter [forums.rockylinux.org](https://forums.rockylinux.org). Das Testing-Team kann nicht garantieren, dass Ihr Name bei Einsendungen außerhalb der Mattermost-Kanäle unter [chat.rockylinux.org](https://chat.rockylinux.org) in den Credits erscheint; wir werden jedoch unser Bestes geben, um alle Personen aufzunehmen, die Einsendungen beisteuern.
 
 ## Weitere Möglichkeiten, einen Beitrag zu leisten
 
-Es wäre fantastisch, wenn `hw-probe` vollständig in EPEL für Version 10 aufgenommen würde – und zwar für so viele Architekturen wie möglich. Wir wären sehr dankbar für jeden, der über EPEL-Erfahrung verfügt und bereit ist, dabei mitzuwirken. Sie können den [Upstream-Fehlerbericht hier einsehen](https://bugzilla.redhat.com/show_bug.cgi?id=2479630) oder das [Issue des Testing-Teams verfolgen](https://github.com/rocky-linux/testing/issues/89).
+Jeder, der bereit ist, einen Beitrag zum Hardware Probe-Projekt zu leisten, wäre eine große Hilfe. Die Projektbeteiligten suchen nach Personen, die beim Schreiben von Tests und bei der Verwaltung des Projekts unterstützen.
 
-Darüber hinaus wäre jeder, der zum Hardware Probe-Projekt beitragen möchte, eine große Hilfe. Sie suchen nach Personen, die beim Schreiben von Tests und bei der Verwaltung des Projekts unterstützen.
-
-Abschließend möchten wir uns bei allen bedanken, die bereit sind, eine gute Methode zu entwickeln, mit der das Testteam alle Rocky-Einreichungen überprüfen kann, ohne die Upstream-Datenbank zu überlasten.
+Abschließend möchten wir uns bei allen bedanken, die bereit sind, eine geeignete Methode zu entwickeln, mit der das Testteam alle Rocky-Einreichungen überprüfen kann, ohne die Upstream-Datenbank zu überlasten.
