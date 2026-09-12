@@ -22,15 +22,15 @@ Im Folgenden finden Sie eine Linksammlung zu verschiedenen Ressourcen und Tools 
 ## Entwicklung
 
 - [GitHub](https://github.com/rocky-linux)
-  - [Container-Roots](https://github.com/rocky-linux/sig-cloud-instance-images)
+- [Container Roots](https://github.com/rocky-linux/sig-cloud-instance-images)
   - [Image-Kickstarts](https://github.com/rocky-linux/kickstarts/tree/main)
 - [RESF Git-Dienst](https://git.resf.org)
 - [GitLab-Server](https://git.rockylinux.org)
-  - [RPM-Quellen](https://git.rockylinux.org/staging/rpms)
-  - [Rocky Package-Quellen](https://git.rockylinux.org/staging/src)
-  - [Modulen-Quellen](https://git.rockylinux.org/staging/modules)
-  - [Rocky individuelle Anpassungen](https://git.rockylinux.org/staging/patch)
-  - [Repo Comps](https://git.rockylinux.org/rocky/comps)
+- [RPM-Quellen](https://git.rockylinux.org/staging/rpms)
+- [Rocky Package-Quellen](https://git.rockylinux.org/staging/src)
+- [Modul-Quellen](https://git.rockylinux.org/staging/modules)
+- [Rocky individuelle Anpassungen](https://git.rockylinux.org/staging/patch)
+- [Repo Comps](https://git.rockylinux.org/rocky/comps)
 - [Bug Tracker](https://bugs.rockylinux.org)
 - [Docker Hub](https://hub.docker.com/u/rockylinux)
 - [Quay.io](https://quay.io/organization/rockylinux)
@@ -54,7 +54,7 @@ Im Folgenden finden Sie eine Linksammlung zu verschiedenen Ressourcen und Tools 
 ## Soziale Medien
 
 - [Mattermost](https://chat.rockylinux.org)
-- IRC ([libera.chat](https://libera.chat)): [IRC<-->Mattermost-Mapping](irc.md)
+- IRC ([libera.chat](https://libera.chat)): [IRC<-->Mattermost-Mappings](../teams/infra/irc.md)
 - [Twitter](https://twitter.com/rocky_linux)
 - LinkedIn
   - [Unternehmensseite](https://linkedin.com/company/rockylinux)
@@ -64,4 +64,4 @@ Im Folgenden finden Sie eine Linksammlung zu verschiedenen Ressourcen und Tools 
 - [YouTube](https://www.youtube.com/c/RockyLinux)
   - [auf anderen Kanälen](https://www.youtube.com/playlist?list=PLMYofMfEpWQP34PxQv6-GASrF5Zc5soAF)
 - Sonstiges
-  - [DistroWatch](https://distrowatch.com/table.php?distribution=rocky)
+- [DistroWatch](https://distrowatch.com/table.php?distribution=rocky)
