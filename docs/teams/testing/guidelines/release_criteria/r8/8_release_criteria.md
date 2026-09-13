@@ -33,7 +33,7 @@ The system may fail to meet a requirement in certain configurations. In these ca
 
 ### Initialization Requirements
 
-#### Release-blocking images must boot
+#### Release-blocking images must boot {#release-blocking-images-must-boot}
 
 Release-blocking installer images must boot when written to optical media or USB flash drives of appropriate sizes (if applicable) via officially supported methods. It is not the testing team’s responsibility to test optical media, but they can and report back. If a bug is found, it is considered a blocker.
 
@@ -50,14 +50,14 @@ Release-blocking installer images must boot when written to optical media or USB
         - [QA:Testcase Boot Methods DVD](../../../documentation/qa_test_cases/Testcase_Boot_Methods_Dvd.md)
         - [QA:Testcase Media USB dd](../../../documentation/qa_test_cases/Testcase_Media_USB_dd.md)
 
-#### Basic Graphics Mode behaviors
+#### Basic Graphics Mode behaviors {#basic-graphics-mode-behaviors}
 
 The generic video driver option (“basic graphics mode”) on all release-blocking installers must function as intended. This means launching the installer or desktop and attempting to use a generic driver. There must be no bugs that prevent the installer from being reached in this configuration on all systems and classes of hardware supported by the enterprise Linux kernel.
 ??? tldr "References"
     - Test cases:
         - [QA:Testcase Basic Graphics Mode](../../../documentation/qa_test_cases/Testcase_Basic_Graphics_Mode.md)
 
-#### No Broken Packages
+#### No Broken Packages {#no-broken-packages}
 
 Critical errors, such as undeclared conflicts, unresolved dependencies, or modules that rely on packages from another stream, will be considered automatic blockers. There are potential exceptions to this (e.g., freeradius cannot be installed on an older Perl stream; this is a known upstream issue).
 ??? tldr "References"
@@ -65,7 +65,7 @@ Critical errors, such as undeclared conflicts, unresolved dependencies, or modul
         - [QA:Testcase Media Repoclosure](../../../documentation/qa_test_cases/Testcase_Media_Repoclosure.md)
         - [QA:Testcase Media File Conflicts](../../../documentation/qa_test_cases/Testcase_Media_File_Conflicts.md)
 
-#### Repositories Must Match Upstream
+#### Repositories Must Match Upstream {#repositories-must-match-upstream}
 
 Repositories and the packages within them should match upstream as closely as possible. Notable exceptions would be kmods, kpatch, or what is deemed “spyware,” such as insights. Packages available from upstream should not have hard requirements on RHSM, and packages that have it as a default built-in should be patched out.
 ??? tldr "References"
@@ -74,7 +74,7 @@ Repositories and the packages within them should match upstream as closely as po
         - [QA:Testcase Packages No Insights](../../../documentation/qa_test_cases/Testcase_Packages_No_Insights.md)
         - [QA:Testcase Packages No RHSM](../../../documentation/qa_test_cases/Testcase_Packages_No_RHSM.md)
 
-#### Debranding
+#### Debranding {#debranding}
 
 Assets and functionality that are Red Hat specific should not be included. If they are not patched out, it will be considered an automatic blocker.
 ??? tldr "References"
