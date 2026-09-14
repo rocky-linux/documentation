@@ -7,7 +7,7 @@ tags:
   - access control
 ---
 
-<font color=red>Tutti gli esempi in questo documento usano le azioni di root, con le azioni ordinarie degli utenti commentate separatamente. Nel blocco di codice markdown, la descrizione del comando sarà indicata con # sulla riga precedente.</font>
+<font color=red>Tutti gli esempi di questo documento utilizzano le azioni di root, mentre le azioni degli utenti ordinari sono commentate separatamente. Nel blocco di codice markdown, la descrizione del comando sarà indicata con # sulla riga precedente.</font>
 
 # Rivedere le autorizzazioni di base
 
@@ -22,30 +22,30 @@ Shell > ls -l
 
 I loro significati sono i seguenti:
 
-| Parte | Descrizione                                                                                                                                                                                    |
-| ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1     | Tipo di file. `-` indica che si tratta di un file ordinario. In seguito verranno introdotti sette tipi di file.                                                                                |
-| 2     | Permessi dell'utente proprietario, il significato di rwx significa, rispettivamente, leggere, scrivere, eseguire.                                                                              |
-| 3     | Permessi del gruppo proprietario.                                                                                                                                                              |
-| 4     | Permessi di altri utenti.                                                                                                                                                                      |
-| 5     | Numero di sottodirectory. (`.` e `..` incluse). Per un file, rappresenta il numero di collegamenti diretti e 1 rappresenta se stesso.                                                          |
-| 6     | Nome dell'utente proprietario.                                                                                                                                                                 |
-| 7     | Nome del gruppo proprietario.                                                                                                                                                                  |
-| 8     | Per i file, mostra la dimensione del file. Per le directory, mostra il valore fisso di 4096 byte occupati dal nome del file. Per calcolare la dimensione totale di una directory, usa `du -sh` |
-| 9     | Ultima data di modifica.                                                                                                                                                                       |
-| 10    | Il nome del file (o directory).                                                                                                                                                                |
+| Parte | Descrizione                                                                                                                                                                                           |
+| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1     | Tipo di file. `-` indica che si tratta di un file ordinario. In seguito verranno introdotti sette tipi di file.                                                                                       |
+| 2     | Per le autorizzazioni dell'utente proprietario, il significato di rwx significa rispettivamente: leggere, scrivere, eseguire.                                                                         |
+| 3     | Permessi del gruppo proprietario.                                                                                                                                                                     |
+| 4     | Permessi di altri utenti.                                                                                                                                                                             |
+| 5     | Numero di sottodirectory. (`.` e `..` incluse). Per un file, rappresenta il numero di collegamenti diretti e 1 rappresenta se stesso.                                                                 |
+| 6     | Nome dell'utente proprietario.                                                                                                                                                                        |
+| 7     | Nome del gruppo proprietario.                                                                                                                                                                         |
+| 8     | Per i file, mostra la dimensione del file. Per le directory invece, mostra il valore fisso di 4096 byte occupati dal nome del file. Per calcolare la dimensione totale di una directory, usa `du -sh` |
+| 9     | Ultima data di modifica.                                                                                                                                                                              |
+| 10    | Il nome del file (o directory).                                                                                                                                                                       |
 
 ## Sette tipi di file
 
-| Tipi di file | Descrizione                                                                                                                                                                                                                  |
-|:------------:| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|    **-**     | Rappresenta un file ordinario. Compresi i file di testo semplice (ASCII); file binari (binario); file in formato dati (dati); vari file compressi.                                                                           |
-|    **d**     | Rappresenta un file di directory. Per impostazione predefinita, ce n'è una in ogni directory `.` e `..`.                                                                                                                     |
-|    **b**     | File del dispositivo a blocchi. Compresi tutti i tipi di dischi rigidi, unità USB e così via.                                                                                                                                |
-|    **c**     | File del dispositivo a caratteri. Dispositivo di interfaccia della porta seriale, come il mouse, la tastiera, ecc.                                                                                                           |
-|    **s**     | File Socket. Si tratta di un file appositamente utilizzato per la comunicazione di rete.                                                                                                                                     |
-|    **p**     | File Pipe. Si tratta di un tipo di file speciale, il cui scopo principale è quello di risolvere gli errori causati da più programmi che accedono a un file contemporaneamente. FIFO è l'abbreviazione di first-in-first-out. |
-|    **l**     | I file soft link, chiamati anche file di collegamento simbolico, sono simili ai collegamenti di Windows. File di collegamento rigido, noto anche come file di collegamento fisico.                                           |
+| Tipi di file | Descrizione                                                                                                                                                                                                                   |
+|:------------:| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|    **-**     | Rappresenta un file ordinario. Compresi i file di testo semplice (ASCII); file binari (binario); file in formato dati (dati); vari file compressi.                                                                            |
+|    **d**     | Rappresenta un file di directory. Per impostazione predefinita, ce n'è una in ogni directory `.` e `..`.                                                                                                                      |
+|    **b**     | File del dispositivo a blocchi. Comprende tutti i tipi di dischi rigidi, unità USB e così via.                                                                                                                                |
+|    **c**     | File del dispositivo a caratteri. Dispositivo di interfaccia della porta seriale, come mouse, tastiera, ecc.                                                                                                                  |
+|    **s**     | File Socket. Si tratta di un file appositamente utilizzato per la comunicazione di rete.                                                                                                                                      |
+|    **p**     | File Pipe. Si tratta di uno speciale tipo di file, il cui scopo principale è quello di risolvere gli errori causati da più programmi che accedono a un file contemporaneamente. FIFO è l'abbreviazione di first-in-first-out. |
+|    **l**     | I file soft link, chiamati anche file di collegamento simbolico, sono simili ai collegamenti di Windows. Link hard ad un file, noto anche come link al file fisico.                                                           |
 
 ## Il significato dei permessi di base
 
@@ -65,27 +65,31 @@ Per la directory:
 |             2             | w(scrivere) | Indica che è possibile creare, eliminare e rinominare i file in questa directory, es. comandi `mkdir`, `touch`, `rm`, ecc. |
 |             1             | x(eseguire) | Indica che è possibile entrare nella directory, come con il comando `cd`.                                                  |
 
-!!! info "Informazione"
+!!! !!!
 
     Per le directory, i permessi **r** e **x** di solito appaiono contemporaneamente.
 
 ## Autorizzazioni Speciali
 
-In GNU/Linux, oltre ai permessi di base menzionati sopra, esistono anche alcuni permessi speciali, che presenteremo uno per uno.
+In GNU/Linux, oltre ai permessi di base menzionati sopra, esistono anche alcuni permessi speciali, che vedremo uno per uno.
 
 ### Autorizzazioni ACL
 
-Che cos'è l'ACL? ACL (Access Control List), il cui scopo è quello di risolvere il problema delle tre identità in Linux che non riescono a soddisfare le esigenze di allocazione delle risorse.
+**Cos'è ACL?**
 
-Ad esempio, l'insegnante impartisce lezioni agli studenti e crea una directory sotto la directory principale del sistema operativo. Solo gli studenti di questa classe possono caricare e scaricare, gli altri non possono farlo. A questo punto, le autorizzazioni per la directory sono 770. Un giorno, uno studente di un'altra scuola è venuto ad ascoltare l'insegnante: come dovrebbero essere assegnati i permessi? Se si inserisce questo studente nel **gruppo proprietario**, avrà gli stessi permessi degli studenti di questa classe - **rwx**. Se lo studente viene inserito tra gli **altri utenti**, non avrà alcun permesso. In questo momento, l'allocazione dei permessi di base non è in grado di soddisfare i requisiti ed è necessario utilizzare le ACL.
+ACL (Access Control List) risolve il problema secondo cui le tre identità presenti in Linux non sono in grado di soddisfare le esigenze relative all'assegnazione dei permessi sulle risorse.
 
-Una funzione simile è presente nel sistema operativo Windows. Ad esempio, per assegnare le autorizzazioni a un utente per un file, per una directory/file definita dall'utente, fare **clic con il pulsante destro del mouse** ---&gt; **Proprietà** ---&gt; **Sicurezza** ---&gt; **Modifica** ---&gt; **Aggiungi** ---&gt; **Avanzate** ---&gt; **Trova ora**, trovare l'utente/gruppo corrispondente ---&gt; assegnare le autorizzazioni specifiche ---&gt; **Applica** e completare.
+Ad esempio, l'insegnante impartisce lezioni agli studenti e crea una directory sotto la directory principale del sistema operativo. Solo gli studenti di questa classe possono caricare e scaricare, gli altri non possono farlo. A questo punto, i permessi assegnati alla directory sono 770. Un giorno, uno studente di un'altra scuola è venuto ad ascoltare l'insegnante: come dovrebbero essere assegnati i permessi? Se si inserisce questo studente nel **gruppo proprietario**, avrà gli stessi permessi degli studenti di questa classe - **rwx**. Se lo studente viene inserito tra gli **altri utenti**, non avrà alcun permesso. In questo momento, l'allocazione dei permessi di base non è in grado di soddisfare i requisiti ed è necessario utilizzare le ACL.
+
+Su Windows è presente una funzione simile. Ad esempio, per assegnare le autorizzazioni a un utente per un file, per una directory/file definita dall'utente, fare **clic con il pulsante destro del mouse** ---&gt; **Proprietà** ---&gt; **Sicurezza** ---&gt; **Modifica** ---&gt; **Aggiungi** ---&gt; **Avanzate** ---&gt; **Trova ora**, trovare l'utente/gruppo corrispondente ---&gt; assegnare le autorizzazioni specifiche ---&gt; **Applica** e completare.
 
 <!--Screenshots of the English interface are required-->
 
 Lo stesso vale per GNU/Linux: aggiungete l'utente/gruppo specificato al file/directory e concedete i permessi appropriati per completare l'assegnazione dei permessi ACL.
 
-Come si abilita una ACL? È necessario trovare il nome del file del dispositivo in cui si trova il punto di montaggio e il suo numero di partizione. Ad esempio, sulla mia macchina, si può fare qualcosa di simile:
+**Come si abilita una ACL?**
+
+È necessario trovare il nome del file del dispositivo in cui si trova il punto di montaggio e il suo numero di partizione. Ad esempio, sulla mia macchina, si può fare qualcosa di simile:
 
 ```bash
 Shell > df -hT
@@ -112,7 +116,7 @@ Filesystem state:         clean
 Errors behavior:          Continue
 ```
 
-Quando viene visualizzata la riga **"Default mount options: user_xattr acl"**, indica che l'ACL è stato abilitato. Se non è abilitato, puoi anche attivarlo temporaneamente -- `mount -o remount,acl /`. Può anche essere attivato in modo permanente:
+Quando è presente la riga **"Default mount options: user_xattr acl"**, questo indica che l'ACL è stato abilitato. Se non è abilitato, si può attivarlo temporaneamente -- `mount -o remount,acl /`. Può anche essere attivato in modo permanente:
 
 ```bash
 Shell > vim /etc/fstab
@@ -127,7 +131,7 @@ Shell > reboot
 
 Per visualizzare l'ACL, è necessario utilizzare il comando `getfacle` -- `getfacle NOME_FILE`
 
-Se si desidera impostare i permessi ACL, è necessario utilizzare il comando `setfacl`.
+Per impostare i permessi ACL, è necessario utilizzare il comando `setfacl`.
 
 ```bash
 Shell > setfacl <option> <FILE_NAME>
@@ -184,9 +188,11 @@ other::---
 
 #### Autorizzazioni massime valide di ACL
 
-Quando si utilizza il comando `getfacl`, cosa significa "mask:: rwx" nel messaggio di output? La **maschera** viene utilizzata per specificare i permessi massimi validi. I permessi dati all'utente non sono permessi reali, i permessi reali possono essere ottenuti solo utilizzando i permessi "logici and" dell'utente e le autorizzazioni di maschera.
+**Quando si utilizza il comando `getfacl`, cosa significa "mask:: rwx" nel messaggio di output?**
 
-!!! info "Informazione"
+La **mask** viene utilizzata per specificare i permessi massimi validi. I permessi dati all'utente non sono permessi reali, i permessi reali possono essere ottenuti solo utilizzando i permessi "logici and" dell'utente e le autorizzazioni di maschera.
+
+!!! info
 
     "Logica and" significa: se tutti sono veri, il risultato è vero; se ce n'è uno falso, il risultato è falso.
     
@@ -231,13 +237,15 @@ Shell > setfacl -b FILE_NAME
 
 #### Predefinito e ricorsivo dei permessi ACL
 
-Qual è la ricorsione dei permessi ACL? Per i permessi ACL, ciò significa che quando la directory principale imposta i permessi ACL, tutte le sottodirectory e i file secondari avranno gli stessi permessi ACL.
+**Quas'è la ricorsione dei permessi ACL?**
+
+Per i permessi ACL, ciò significa che quando la directory principale imposta i permessi ACL, tutte le sottodirectory e i file secondari avranno gli stessi permessi ACL.
 
 !!! info "Informazione"
 
     La ricorsione è adatta a file/directory già esistenti nella directory.
 
-Osservate il seguente esempio:
+Si consideri l'esempio seguente:
 
 ```bash
 Shell > setfacl -m m:rwx /project
@@ -256,7 +264,9 @@ Shell > ls -l /project
 -rw-r-xr--+ 1 root root 0 Jan  12 14:35 file2
 ```
 
-Ora c'è una domanda: se creo un nuovo file in questa directory, ha i permessi ACL? La risposta è no, perché il file è stato creato dopo l'esecuzione dell comando `setfacl-m u:tom:rx -R / project`.
+**Il comando autorizzato, che deve essere rappresentato da un percorso assoluto.**
+
+La risposta è no, perché il file è stato creato dopo l'esecuzione dell comando `setfacl-m u:tom:rx -R / project`.
 
 ```bash
 Shell > touch /project/file3
@@ -290,9 +300,9 @@ default:mask::rwx
 default:other::---
 ```
 
-!!! info "Informazione"
+!!! info
 
-    Il valore predefinito e la ricorsione dell'uso dei permessi ACL richiedono che l'oggetto operativo del comando sia una directory! Se l'oggetto dell'operazione è un file, viene emesso un messaggio di errore.
+    Quando si utilizzano le opzioni di default e ricorsive delle autorizzazioni ACL, il comando `setfacl` deve essere eseguito su una directory. Se l'oggetto dell'operazione è un file, viene emesso un messaggio di errore.
 
 ### SetUID
 
@@ -303,22 +313,24 @@ Il ruolo di "SetUID":
 * L'esecutore del comando ottiene l'identità del proprietario del file del programma durante l'esecuzione del programma stesso.
 * Il cambiamento di identità è valido solo durante l'esecuzione, e una volta terminato il programma binario, l'identità dell'esecutore viene ripristinata all'identità originale.
 
-Perché GNU/Linux ha bisogno di queste strane autorizzazioni? Prendiamo ad esempio il comando più comune `passwd`:
+**Perché GNU/Linux ha bisogno di queste strane autorizzazioni?**
+
+Prendiamo come esempio il comando `passwd`, uno dei più comuni:
 
 ![SetUID1](./images/SetUID1.png)
 
 Come si può vedere, l'utente ordinario ha solo r e x, ma la x del proprietario diventa s, dimostrando che il comando `passwd` ha permessi SUID.
 
-È noto che gli utenti ordinari (uid >= 1000) possono modificare la propria password. La vera password è memorizzata nel file **/etc/shadow**, ma il permesso del file shadows è 000 e gli utenti ordinari non hanno alcun permesso.
+È noto che gli utenti comuni (uid >= 1000) possono modificare la propria password. La vera password è memorizzata nel file **/etc/shadow**, ma il permesso del file shadows è 000 e gli utenti comuni non hanno alcun permesso.
 
 ```bash
 Shell > ls -l /etc/shadow
 ---------- 1 root root 874 Jan  12 13:42 /etc/shadow
 ```
 
-Poiché gli utenti ordinari possono cambiare la loro password, devono averla scritta nel file **/etc/shadow**. Quando un utente normale esegue il comando `passwd`, passa temporaneamente al proprietario del file -- **root**. Per il file **shadow** , **root** non può essere limitato dai permessi. Questo è il motivo per cui il comando `passwd` necessita dell'autorizzazione SUID.
+Poiché i comuni utenti possono cambiare la loro password, devono averla salvata nel file **/etc/shadow**. Quando un comune utente esegue il comando `passwd`, cambia temporaneamente come proprietario del file -- **root**. Per il file **shadow** , **root** non può essere limitato dai permessi. Questo è il motivo per cui il comando `passwd` necessita dell'autorizzazione SUID.
 
-Come accennato in precedenza, i permessi di base possono essere rappresentati da numeri, come 755, 644, e così via. Il SUID è rappresentato da **4**. Per i binari eseguibili, è possibile impostare permessi come questo -- **4755**.
+Come accennato in precedenza, i permessi di base possono essere rappresentati da numeri, come 755, 644, e così via. Il SUID è rappresentato da **4**. Per i file eseguibili binari, è possibile impostare i permessi come questo -- **4755**.
 
 ```bash
 # Set SUID permissions
@@ -351,7 +363,7 @@ Shell > chmod u-s FILE_NAME
 
 !!! warning "Attenzione"
 
-    Poiché SUID può cambiare temporaneamente gli utenti ordinari in root, è necessario prestare particolare attenzione ai file con questo permesso durante la manutenzione del server. È possibile trovare i file con permessi SUID utilizzando il seguente comando:
+    Poiché SUID può cambiare temporaneamente i comuni utenti in root, è necessario prestare particolare attenzione ai file con questo permesso durante la manutenzione del server. È possibile trovare i file con permessi SUID utilizzando il seguente comando:
 
     ```bash
     Shell > find / -perm -4000 -a -type f -exec ls -l  {} \;
@@ -366,7 +378,7 @@ Il ruolo di "SetGID":
 * L'esecutore del comando ottiene l'identità del gruppo proprietario del file di programma durante l'esecuzione del programma.
 * Il cambio di identità è valido solo durante l'esecuzione e, una volta terminato il programma binario, l'identità dell'esecutore viene ripristinata a quella originale.
 
-Prendiamo ad esempio il comando `locate`:
+Ad esempio, consideriamo il comando `locate`:
 
 ```bash
 Shell > rpm -ql mlocate
@@ -381,11 +393,11 @@ Shell > ll /usr/bin/locate
 -rwx--s--x. 1 root slocate 42248 4月  12 2021 /usr/bin/locate
 ```
 
-Il comando `locate` utilizza il file di database **mlocate.db** per cercare rapidamente i file.
+Il comando `locate` usa il database **mlocate.db** per cercare rapidamente i file.
 
-Poiché il comando `locate` ha il permesso SGID, quando l'esecutore (utenti ordinari) esegue il comando `locate`, il gruppo proprietario passa a **slocate**. `slocate` ha i permessi r per il file **/var/lib/mlocate/mlocate.db**.
+Poiché il comando `locate` ha il permesso SGID, quando l'esecutore (utenti comuni) esegue il comando `locate`, il gruppo proprietario passa a **slocate**. `slocate` ha i permessi r per il file **/var/lib/mlocate/mlocate.db**.
 
-Lo SGID è indicato dal numero **2**, quindi il comando `locate` ha un permesso di 2711.
+L'SGID è rappresentato dal numero <strong x-id=“1”>2</strong>, quindi il comando `locate` ha un permesso pari a 2711.
 
 ```bash
 # Set SGID permissions
@@ -412,12 +424,12 @@ Shell > chmod g-s FILE_NAME
     -rwxr-S--x  1 root root         0 Jan  14 12:11 sgid
     ```
 
-SGID può essere utilizzato non solo per i file/programmi binari eseguibili, ma anche per le directory, ma viene usato raramente.
+SGID si applica non solo ai file/programmi eseguibili binari, ma anche alle directory, ma è usato raramente.
 
 * Gli utenti ordinari devono avere i permessi rwx sulla directory.
 * Per i file creati dagli utenti ordinari in questa directory, il gruppo proprietario predefinito è il gruppo proprietario della directory.
 
-Per esempio:
+Ad esempio:
 
 ```bash
 Shell > mkdir /SGID_dir
@@ -442,15 +454,29 @@ Shell(tom) > cd /SGID_dir && touch tom_file && ls -l
 
 Il ruolo di "Sticky BIT":
 
-* Valido solo per la directory.
+* Valido solo per directory.
 * Gli utenti ordinari hanno i permessi w e x in questa directory.
-* Se non c'è Sticky Bit, gli utenti ordinari con il permesso w possono eliminare tutti i file in questa directory (inclusi i file creati da altri utenti). Una volta che la directory riceve l'autorizzazione SBIT, solo l'utente root può eliminare tutti i file. Anche se gli utenti ordinari hanno l'autorizzazione w, possono eliminare solo i file creati da loro stessi (i file creati da altri utenti non possono essere eliminati).
+* Se non c'è Sticky Bit, gli utenti ordinari con il permesso w possono eliminare tutti i file in questa directory (inclusi i file creati da altri utenti). Una volta che la directory riceve l'autorizzazione SBIT, solo l'utente root può eliminare tutti i file. Anche se i comuni utenti hanno l'autorizzazione w, in scrittura, possono eliminare solo i file creati da loro stessi (i file creati da altri utenti non possono essere eliminati).
 
-Lo SBIT è rappresentato dal numero **1**.
+SBIT è rappresentato dal numero <strong x-id=“1”>1</strong>.
 
-Il file o la directory possono avere i permessi **7755**? No, sono rivolti ad oggetti diversi. SUID è per i file binari eseguibili; SGID è usato per i file binari eseguibili e le directory; SBIT è solo per le directory. È quindi necessario impostare queste autorizzazioni speciali in base ai diversi oggetti.
+```bash
+# Set SBIT permissions for the directory
+Shell > chmod 1777 DIR
+# or
+Shell > chmod o+t DIR
 
-La directory **/tmp** ha il permesso SBIT. Un esempio è il seguente:
+# Remove SBIT permissions from the directory
+Shell > chmod 777 DIR
+# or
+Shell > chmow o-t DIR
+```
+
+**Il file o la directory possono avere i permessi **7755**?**
+
+No, sono rivolti ad oggetti diversi. SUID è per i file binari eseguibili; SGID è usato per i file binari eseguibili e le directory; SBIT è solo per le directory. È quindi necessario impostare queste autorizzazioni speciali in base ai diversi oggetti.
+
+La directory **/tmp** ha il permesso SBIT. A seguire ecco un esempio:
 
 ```bash
 # The permissions of the /tmp directory are 1777
@@ -471,15 +497,15 @@ Shell > su - tom
 Shell(tom) > rm -rf /tmp/tom_file1
 ```
 
-!!! info "Informazione"
+!!! !!!
 
     gli utenti root (uid=0) non sono limitati dai permessi di SUID, SGID e SBIT.
 
 ### chattr
 
-La funzione del permesso chattr: serve a proteggere i file o le directory importanti del sistema dall'eliminazione per errore.
+La funzione di permesso chattr serve a proteggere i file o le directory importanti di sistema dall'eliminazione accidentale.
 
-Uso del comando `chattr` -- `chattr [ -RVf ] [ -v version ] [ -p project ] [ mode ] file...`
+Sintassi del comando `chattr` -- `chattr [ -RVf ] [ -v version ] [ -p project ] [ mode ] file...`
 
 Il formato di una modalità simbolica è +-=[aAcCdDeFijPsStTu].
 
@@ -494,7 +520,7 @@ I permessi più comunemente usati (chiamati anche attributi) sono **a** e **i**.
 |           |                      Elimina                      |          Modifica libera           |  Aggiungere il contenuto del file  |             Visualizza             | Crea file |
 |:---------:|:-------------------------------------------------:|:----------------------------------:|:----------------------------------:|:----------------------------------:|:---------:|
 |   file    |                         ×                         |                 ×                  |                 ×                  |                 √                  |     -     |
-| directory | x <br>(Directory e file sotto la directory) | √ <br>(File nella directory) | √ <br>(File nella directory) | √ <br>(File nella directory) |     x     |
+| directory | x <br>(Directory e file sotto la directory) | √ <br>(File nella directory) | √ <br>(File nella directory) | √ <br>(File nella directory) |     ×     |
 
 Esempi per i file:
 
@@ -546,7 +572,7 @@ Shell > touch /tmp/diri/file2
 touch: settng time of '/tmp/diri/file2': No such file or directory
 ```
 
-Rimuovere l'attributo i dall'esempio precedente:
+Rimuovere l'attributo i dell'esempio precedente:
 
 ```bash
 Shell > chattr -i /tmp/filei /tmp/diri
@@ -607,7 +633,7 @@ new line
 Shell > touch /etc/dira/newfile
 ```
 
-Rimuovere l'attributo a dall'esempio precedente:
+Rimuovere l'attributo a dell'esempio precedente:
 
 ```bash
 Shell > chattr -a /etc/tmpfile1 /etc/dira/
@@ -615,25 +641,27 @@ Shell > chattr -a /etc/tmpfile1 /etc/dira/
 
 !!! question "Domanda"
 
-    Cosa succede quando ho impostato l'attributo ai su un file? 
+    **Cosa succede quando ho impostato l'attributo ai su un file?** 
+    
     Non è possibile fare nulla con il file, se non visualizzarlo.
     
-    Che dire della directory?
+    **E per le directory?**
+    
     Sono consentite: la modifica libera, l'aggiunta del contenuto del file e la visualizzazione.
-    Non consentito: eliminare e creare file.
+    Non è consentito: eliminare e creare file.
 
 ### sudo
 
 Il ruolo di "sudo":
 
-* Tramite l'utente root, assegnare i comandi che possono essere eseguiti solo dall'utente root (uid=0) agli utenti ordinari per l'esecuzione.
+* Tramite l'utente root, assegnare i comandi che possono essere eseguiti solo dall'utente root (uid=0) ai comuni utenti per essere eseguiti da questi ultimi.
 * L'oggetto dell'operazione di "sudo" è il comando di sistema.
 
-Sappiamo che solo l'amministratore root ha il permesso di usare i comandi sotto **/sbin/** e **/usr/sbin/** nella directory GNU/Linux. In generale, un'azienda dispone di un team per la manutenzione di una serie di server. Questo insieme di server può riferirsi a una singola sala computer in un'unica località geografica, oppure a una sala computer in più località geografiche. Il team leader utilizza i permessi dell'utente root, mentre gli altri membri del team possono avere solo i permessi dell'utente ordinario. Poiché il responsabile ha molto lavoro, non ha il tempo di occuparsi del lavoro quotidiano del server e la maggior parte del lavoro deve essere svolto dagli utenti comuni. Tuttavia, gli utenti ordinari hanno molte restrizioni sull'uso dei comandi e, a questo punto, è necessario utilizzare i permessi sudo.
+Nel sistema operativo GNU/Linux, solo l'amministratore root ha il permesso di usare i comandi sotto le directory **/sbin/** e **/usr/sbin/**. In generale, un'azienda dispone di un team per la manutenzione di una serie di server. Questo insieme di server può riferirsi a una singola sala computer in un'unica località geografica, oppure a una sala computer in più località geografiche. Il team leader utilizza i permessi dell'utente root, mentre gli altri membri del team possono avere solo i permessi dell'utente ordinario. Poiché il responsabile ha molto lavoro, non ha il tempo di occuparsi del lavoro quotidiano del server e la maggior parte del lavoro deve essere svolto dai comuni utenti. Tuttavia, i comuni utenti hanno diverse restrizioni sull'uso dei comandi e, a questo punto, è necessario utilizzare i permessi sudo.
 
 Per concedere i permessi agli utenti ordinari, è **necessario utilizzare l'utente root (uid=0)**.
 
-È possibile dare i permessi agli utenti ordinari usando il comando `visudo`; ciò che si sta effettivamente modificando è il file **/etc/sudoers**.
+È possibile conferire maggiori poteri ai comuni utenti utilizzando il comando `visudo`. Ciò che si stà effettivamente modificando è il file **/etc/sudoers**.
 
 ```bash
 Shell > visudo
@@ -660,7 +688,7 @@ Shell > visudo
 |   1   | Nome utente o nome del gruppo proprietario. Si riferisce all'utente/gruppo a cui vengono concessi i permessi. Se si tratta di un gruppo di proprietari, è necessario scrivere "%", ad esempio **%root**. |
 |   2   | Quali macchine sono autorizzate a eseguire i comandi. Può essere un singolo indirizzo IP, un segmento di rete o TUTTO.                                                                                   |
 |   3   | Indica in quali identità è possibile trasformarsi.                                                                                                                                                       |
-|   4   | Il comando autorizzato, che deve essere rappresentato da un percorso assoluto.                                                                                                                           |
+|   4   | Uno o più comandi autorizzati (rappresentati da percorsi assoluti). I comandi di autorizzazione multipli devono essere separati con la virgola.                                                          |
 
 Per esempio:
 
@@ -686,3 +714,13 @@ Se il comando di autorizzazione è `/sbin/shutdown`, significa che gli utenti au
 !!! warning "Attenzione"
 
     Poiché sudo è un'operazione "ultra vires", occorre fare attenzione quando si ha a che fare con i file **/etc/sudoers**!
+
+A causa di vari fattori emersi durante la fase iniziale di progettazione di sudo (quali la complessità del progetto, la presenza di funzioni ridondanti, il pesante fardello storico, ecc.), l'attuale versione di sudo presenta numerose vulnerabilità ad alto rischio:
+
+* ‌CVE-2019-14287
+* ‌CVE-2021-3156
+* ‌CVE-2025-32462
+* ‌CVE-2025-32463
+
+In alternativa, puoi utilizzare la versione Rust di sudo. Per ulteriori dettagli, consultare [qui](https://github.com/trifectatechfoundation/sudo-rs)
+

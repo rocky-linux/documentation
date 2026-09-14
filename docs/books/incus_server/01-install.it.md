@@ -49,8 +49,15 @@ dnf install dkms vim kernel-devel bash-completion
 
 ```bash
 dnf config-manager --enable crb
-dnf copr enable neil/incus
+dnf copr enable ligenix/enterprise-qemu-spice
+dnf upgrade
 dnf install incus incus-tools
+```
+
+In alternativa, è possibile installare l'insieme completo di pacchetti dal COPR con il comando:
+
+```bash
+dnf install virt-manager
 ```
 
 Abilitare ed attivare il serivzio:
@@ -67,7 +74,7 @@ Riavviare il server prima di continuare.
 dnf install zfs
 ```
 
-## Impostazione dell'ambiente
+## Configurazione dell'ambiente
 
 Per eseguire molti container sono necessarie diverse impostazioni del kernel del server. Se si presume fin dall'inizio che si utilizzerà il server in produzione, è necessario apportare queste modifiche in anticipo per evitare errori come "Too many open files".
 
@@ -96,7 +103,7 @@ root            hard    nofile           1048576
 
 Salvare le modifiche e uscire (++shift+colon+"w ‘+’q ”+exclam++ per _vi_).
 
-### Modifica di `sysctl.conf` con `90-incus-override.conf`
+### Modificare `sysctl.conf` con `90-incus-override.conf`
 
 Con _systemd_, è possibile modificare la configurazione di sistema e le opzioni del kernel _senza_ modificare il file di configurazione principale. Le impostazioni vanno invece inserite in un file separato che sovrascrive le impostazioni specifiche necessarie.
 
@@ -170,7 +177,7 @@ A questo punto, riavviare il server.
 
 Dopo il riavvio, accedere nuovamente al server come utente root. È necessario verificare che il nostro file di override abbia effettivamente completato il lavoro.
 
-Non è difficile da fare. Non è necessario verificare tutte le impostazioni, a meno che non lo si voglia fare, ma controllarne alcune consente di verificare che le impostazioni siano state modificate. Per farlo, utilizzare il comando `sysctl`:
+Non è difficile da fare. Non è necessario verificare tutte le impostazioni, a meno che non lo si voglia fare, ma controllarne alcune consente di verificare che le impostazioni siano state modificate. Per farlo, eseuire il comando `sysctl`:
 
 ```bash
 sysctl net.core.bpf_jit_limit

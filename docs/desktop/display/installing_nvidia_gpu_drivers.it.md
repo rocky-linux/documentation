@@ -16,6 +16,8 @@ Alcuni altri modi alternativi per installare i driver NVIDIA includono:
 
 Nella maggior parte dei casi, è meglio installare i driver NVIDIA dalla fonte ufficiale. RPMFusion e ELRepo sono disponibili per chi preferisce un repository più comunity-based. Per l'hardware più vecchio, la soluzione migliore è RPMFusion. È consigliabile evitare di usare il programma di installazione `.run`. Sebbene sia comodo, l'uso del programma di installazione `.run` è noto per la sovrascrittura dei file di sistema e per i problemi di incompatibilità.
 
+Il driver GPU NVIDIA per Linux contiene due “varianti” di moduli del kernel: una variante con modulo del kernel aperto, supportata per le architetture Turing e successive, e una variante con modulo del kernel proprietario, necessaria per quelle precedenti. Notare che, a partire dalla versione 560 del driver, la variante con modulo kernel aperto è diventata l'installazione predefinita e consigliata, e che le serie di GPU più recenti, come la serie RTX 50, supportano esclusivamente questa variante.
+
 ## Presupposti
 
 Per questa guida sono necessari i seguenti elementi:
@@ -76,6 +78,16 @@ Mentre per i moduli kernel proprietari, eseguire:
 ```bash
 sudo dnf install cuda-drivers -y
 ```
+
+### GPU meno recenti
+
+La versione 590 del driver NVIDIA [ha interrotto il supporto per le GPU basate su Maxwell, Pascal e Volta](https://forums.developer.nvidia.com/t/unix-graphics-feature-deprecation-schedule/60588). Su tali sistemi, seguendo le istruzioni sopra riportate, il driver verrà installato senza errori, ma al riavvio il modulo non verrà caricato perché non riuscirà a individuare alcuna GPU compatibile. Tuttavia, se si dispone di una GPU di questo tipo, è possibile comunque installare il driver precedente:
+
+```bash
+sudo dnf install cuda-drivers-580 -y
+```
+
+Si dovrà quindi proteggere il pacchetto `cuda-drivers` da futuri aggiornamenti tramite il [plugin versionlock di dnf](https://docs.rockylinux.org/books/admin_guide/13-softwares/#versionlock-plugin).
 
 ## Disabilitare Nouveau
 
