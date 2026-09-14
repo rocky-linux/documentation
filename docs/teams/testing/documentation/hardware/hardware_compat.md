@@ -68,6 +68,34 @@ Run the probe and upload the results:
 sudo -E hw-probe -all -upload
 ```
 
+#### Other useful options for hw-probe
+
+The recommended and easiest way to use hw-probe is what is listed above:
+
+```bash
+sudo -E hw-probe -all -upload
+```
+
+For those that want to know what it is before they upload, which is a good safety check, then we recommend the use of saving the probe. This is also a useful option for those who may have systems they would like to contribute, but do not have direct internet access (please don't subvert any policies! But for those with approval yet do not have direct access to the internet this is a useful option):
+
+```bash
+sudo -E hw-probe -all -save /path/to/writable/folder
+```
+
+Then the probe can be uploaded with this:
+
+```bash
+sudo -E hw-probe -upload -src path/to/hw.info.txz
+```
+
+If the amount of data, especially in the log files it can collect, is of any concern then please consider the minimal flag instead of the all flag. This can also be combined with the save flag above:
+
+```bash
+sudo -E hw-probe -minimal -upload
+# or 
+sudo -E hw-probe -minimal -save /path/to/writable/folder
+```
+
 ### Notify the Testing team
 
 If running the probe on a official release (at the time of this writing: 8.10, 9.8, 10.2), submit the result to the Testing Team via chat.rockylinux.org (Mattermost Chat) in the testing channel. This is only recommended and not required. It simply lets Testing Team know what hardware you submitted and the current state of it with Rocky. There is a lot of value for the larger community and for Testing Team historical purposes (knowing if hardware did or did not work on previous releases).
