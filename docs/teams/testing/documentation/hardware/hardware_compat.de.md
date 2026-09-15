@@ -69,6 +69,34 @@ Führen Sie die `hw-probe` aus und laden Sie die Ergebnisse hoch:
 sudo -E hw-probe -all -upload
 ```
 
+#### Weitere nützliche Optionen für `hw-probe`
+
+Die empfohlene und einfachste Methode zur Verwendung von `hw-probe` ist die oben aufgeführte:
+
+```bash
+sudo -E hw-probe -all -upload
+```
+
+Für diejenigen, die vor dem Hochladen wissen möchten, worum es sich handelt – was eine sinnvolle Sicherheitsmaßnahme darstellt –, empfehlen wir, die "Probe" zu speichern. Dies ist auch eine nützliche Option für diejenigen, die Systeme beisteuern möchten, aber keinen direkten Internetzugang haben (bitte keine Richtlinien verletzen! Für diejenigen, die bereits eine Genehmigung erhalten haben, aber keinen direkten Internetzugang besitzen, ist dies jedoch eine nützliche Option):
+
+```bash
+sudo -E hw-probe -all -save /path/to/writable/folder
+```
+
+Anschließend kann die "Probe" hiermit hochgeladen werden:
+
+```bash
+sudo -E hw-probe -upload -src path/to/hw.info.txz
+```
+
+Sollte die Datenmenge – insbesondere bei den Logdateien, die erfasst werden können – ein Problem darstellen, ziehen Sie bitte die Verwendung des Flags `minimal` anstelle des Flags `all` in Betracht. Dies lässt sich auch mit dem oben genannten `save`-Flag kombinieren:
+
+```bash
+sudo -E hw-probe -minimal -upload
+# oder 
+sudo -E hw-probe -minimal -save /path/to/writable/folder
+```
+
 ### Benachrichtigen Sie das Testing-Team
 
 Falls Sie die `hw-probe` auf einer offiziellen Rocky Linux Version ausführen (zum Zeitpunkt der Verfassung dieses Textes: 8.10, 9.8, 10.2), übermitteln Sie das Ergebnis bitte über chat.rockylinux.org (Mattermost-Chat) an das Testing-Team im Kanal „testing“. Dies wird lediglich nur empfohlen und ist nicht zwingend erforderlich. Es informiert das Testteam lediglich darüber, welche Hardware Sie eingereicht haben und welchen aktuellen Status diese bei Rocky hat. Dies bietet einen erheblichen Mehrwert für die breitere Community sowie für die historischen Aufzeichnungen des Testteams (um zu wissen, ob Hardware in früheren Releases funktioniert hat oder nicht).
