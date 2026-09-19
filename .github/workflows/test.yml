@@ -1,9 +1,8 @@
 name: Run Tests
 on:
-  pull_request_target:
+  pull_request:
 permissions:
   contents: read
-  pull-requests: write
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -44,79 +43,19 @@ jobs:
           force_pass: true # Don't block deployment
           save: "output.csv"
           verbose: true
-      - name: Affected URLs
-        id: gather
-        run: |
-          if [ ! -f output.csv ]; then
-            {
-              echo 'URLS<<EOF'
-              echo 'EOF'
-              echo "COUNT_U=0"
-            } >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          OUT="$(awk -F, 'NR==1 || $2=="failed"' output.csv)"
-          {
-            echo 'URLS<<EOF'
-            echo "$OUT"
-            echo 'EOF'
-            echo "COUNT_U=$(( $(grep -c '' <<<"$OUT") - 1 ))"
-          } >> "$GITHUB_OUTPUT"
-    outputs:
-      URLS: ${{ steps.gather.outputs.URLS }}
-      COUNT_U: ${{ steps.gather.outputs.COUNT_U }}
-  comment:
-    name: "Comment on PR"
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Comment
-        uses: actions/github-script@v7
+      - name: Collect results
         env:
-          URLS: "${{ needs.test.outputs.URLS }}"
-          COUNT_U: "${{ needs.test.outputs.COUNT_U }}"
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          mkdir -p url-check
+          if [ -f output.csv ]; then
+            cp output.csv url-check/output.csv
+          fi
+          echo "$PR_NUMBER" > url-check/pr-number
+          echo "$HEAD_SHA" > url-check/head-sha
+      - name: Upload results
+        uses: actions/upload-artifact@v4
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const count_u = process.env.COUNT_U.toString();
-            const commentText = 'Test results for ' + context.payload.pull_request.head.sha + ":\n\nNumber of broken URLs: " + count_u + "\n";
-            const output = process.env.URLS.toString().trimEnd();
-            var body = "<details>\n<summary>" + commentText + "</summary>\n\n```csv\n" + output + "\n```\n\n</details>";
-
-            const fs = require('fs');
-            fs.writeFileSync(process.env.GITHUB_STEP_SUMMARY, body);
-            needNewComment = true;
-            console.log('Reviewing existing comments...');
-            for await (const { data: comments } of github.paginate.iterator(
-              github.rest.issues.listComments,
-              {
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.payload.pull_request.number,
-              }
-            )) {
-              for (const comment of comments) {
-                if (comment.user.login === 'github-actions[bot]') {
-                  if (needNewComment && comment.body.includes(commentText)) {
-                    needNewComment = false;
-                  } else {
-                    console.log('Deleting comment: ' + comment.id);
-                    await github.rest.issues.deleteComment({
-                      owner: context.repo.owner,
-                      repo: context.repo.repo,
-                      comment_id: comment.id,
-                    });
-                  }
-                }
-              }
-            }
-            if (needNewComment) {
-              console.log('Creating new comment...');
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.payload.pull_request.number,
-                body: body,
-              });
-            }
+          name: url-check
+          path: url-check/
