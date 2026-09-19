@@ -8,23 +8,28 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
       - name: Gather changed markdown files
         id: changed
+        env:
+          BASE_REF: ${{ github.base_ref }}
         run: |
-          git fetch origin ${{ github.base_ref }}
+          git fetch --no-tags origin "$BASE_REF"
 
-          # Create a merge base for proper merge comparison
-          git merge-base --is ancestor origin/${{ github.base_ref }} HEAD || git merge-base origin/${{ github.base_ref }} HEAD > /dev/null
-
-          FILES=$(git diff --name-only origin/${{ github.base_ref }}..HEAD \
-            | grep -E '^docs/.*\.(md|en\.md)$' \
+          # Three dots diffs against the merge base, so files that changed on
+          # the base branch after the PR branched are not counted as changes.
+          # Deleted files are dropped; the checker cannot read them.
+          FILES=$(git diff --name-only --diff-filter=d "origin/$BASE_REF...HEAD" \
+            | { grep -E '^docs/.*\.md$' || true; } \
             | paste -sd "," -)
 
-          echo "FILES=$FILES" >> $GITHUB_OUTPUT
+          echo "FILES=$FILES" >> "$GITHUB_OUTPUT"
       - name: check urls
+        # An empty include_files makes the checker scan every file in the repo.
+        if: steps.changed.outputs.FILES != ''
         uses: urlstechie/urlchecker-action@master
         with:
           subfolder: .
@@ -42,11 +47,22 @@ jobs:
       - name: Affected URLs
         id: gather
         run: |
-          OUT="$(awk -F, '((NR>1 && $2=="failed") || NR==1 ){print}' output.csv)"
-          echo 'URLS<<EOF' >> $GITHUB_OUTPUT
-          echo $OUT >> $GITHUB_OUTPUT
-          echo 'EOF' >> $GITHUB_OUTPUT
-          echo "COUNT_U=$(( $(wc -l <<<$OUT) - 1 ))" >> $GITHUB_OUTPUT
+          if [ ! -f output.csv ]; then
+            {
+              echo 'URLS<<EOF'
+              echo 'EOF'
+              echo "COUNT_U=0"
+            } >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          OUT="$(awk -F, 'NR==1 || $2=="failed"' output.csv)"
+          {
+            echo 'URLS<<EOF'
+            echo "$OUT"
+            echo 'EOF'
+            echo "COUNT_U=$(( $(grep -c '' <<<"$OUT") - 1 ))"
+          } >> "$GITHUB_OUTPUT"
     outputs:
       URLS: ${{ steps.gather.outputs.URLS }}
       COUNT_U: ${{ steps.gather.outputs.COUNT_U }}
