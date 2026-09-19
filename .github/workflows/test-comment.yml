@@ -1,0 +1,97 @@
+name: Comment on PR
+on:
+  workflow_run:
+    workflows:
+      - Run Tests
+    types:
+      - completed
+permissions:
+  actions: read
+  pull-requests: write
+jobs:
+  comment:
+    name: "Comment on PR"
+    if: github.event.workflow_run.event == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download results
+        id: download
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: url-check
+          path: url-check
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Affected URLs
+        id: gather
+        if: steps.download.outcome == 'success'
+        run: |
+          if [ ! -f url-check/output.csv ]; then
+            {
+              echo 'URLS<<EOF'
+              echo 'EOF'
+              echo "COUNT_U=0"
+            } >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          OUT="$(awk -F, 'NR==1 || $2=="failed"' url-check/output.csv)"
+          {
+            echo 'URLS<<EOF'
+            echo "$OUT"
+            echo 'EOF'
+            echo "COUNT_U=$(( $(grep -c '' <<<"$OUT") - 1 ))"
+          } >> "$GITHUB_OUTPUT"
+      - name: Comment
+        if: steps.download.outcome == 'success'
+        uses: actions/github-script@v7
+        env:
+          URLS: "${{ steps.gather.outputs.URLS }}"
+          COUNT_U: "${{ steps.gather.outputs.COUNT_U }}"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const issue_number = Number(fs.readFileSync('url-check/pr-number', 'utf8').trim());
+            const head_sha = fs.readFileSync('url-check/head-sha', 'utf8').trim();
+            const count_u = process.env.COUNT_U.toString();
+            const commentText = 'Test results for ' + head_sha + ":\n\nNumber of broken URLs: " + count_u + "\n";
+            const output = process.env.URLS.toString().trimEnd();
+            var body = "<details>\n<summary>" + commentText + "</summary>\n\n```csv\n" + output + "\n```\n\n</details>";
+
+            fs.writeFileSync(process.env.GITHUB_STEP_SUMMARY, body);
+            let needNewComment = true;
+            console.log('Reviewing existing comments...');
+            for await (const { data: comments } of github.paginate.iterator(
+              github.rest.issues.listComments,
+              {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue_number,
+              }
+            )) {
+              for (const comment of comments) {
+                if (comment.user.login === 'github-actions[bot]') {
+                  if (needNewComment && comment.body.includes(commentText)) {
+                    needNewComment = false;
+                  } else {
+                    console.log('Deleting comment: ' + comment.id);
+                    await github.rest.issues.deleteComment({
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      comment_id: comment.id,
+                    });
+                  }
+                }
+              }
+            }
+            if (needNewComment) {
+              console.log('Creating new comment...');
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue_number,
+                body: body,
+              });
+            }

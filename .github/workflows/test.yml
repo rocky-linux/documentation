@@ -1,37 +1,97 @@
 name: Run Tests
 on:
-  pull_request_target:
+  pull_request:
 permissions:
   contents: read
-  pull-requests: write
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
       - name: Gather changed markdown files
         id: changed
+        env:
+          BASE_REF: ${{ github.base_ref }}
         run: |
-          git fetch origin ${{ github.base_ref }}
+          git fetch --no-tags origin "$BASE_REF"
 
-          # Create a merge base for proper merge comparison
-          git merge-base --is ancestor origin/${{ github.base_ref }} HEAD || git merge-base origin/${{ github.base_ref }} HEAD > /dev/null
-
-          FILES=$(git diff --name-only origin/${{ github.base_ref }}..HEAD \
-            | grep -E '^docs/.*\.(md|en\.md)$' \
+          # Three dots diffs against the merge base, so files that changed on
+          # the base branch after the PR branched are not counted as changes.
+          # Deleted files are dropped; the checker cannot read them.
+          FILES=$(git diff --name-only --diff-filter=d "origin/$BASE_REF...HEAD" \
+            | { grep -E '^docs/.*\.md$' || true; } \
             | paste -sd "," -)
 
-          echo "FILES=$FILES" >> $GITHUB_OUTPUT
+          echo "FILES=$FILES" >> "$GITHUB_OUTPUT"
       - name: check urls
+        # An empty include_files makes the checker scan every file in the repo.
+        if: steps.changed.outputs.FILES != ''
         uses: urlstechie/urlchecker-action@master
         with:
           subfolder: .
           file_types: .en.md,.md
           include_files: ${{ steps.changed.outputs.FILES }}
-          exclude_patterns: >
-            avatars.githubusercontent.com, example.com, your-server-ip, your-server-hostname, nginx-server, apache-server, site1.com, site2.com, site.com, $releasever, proxy.rocky.lan, repo.rocky.lan, zfs-release, $host$request, fileserver.rockylinux.lan, your_fork_name, rundeck.rockylinux.org, manickathan.ch, breakingpitt.es, download.example, 192.168, 172.16, 127.0.0.1, localhost, download.rockylinux.org, cyber.gov.au, herokuapp.com, rpa.st, home.arpa, SERVER_IP, dev.mysql.com, ip_address, github.com, reddit.com/r/rockylinux, planet.i2p, linode.com, server1.rockylinux.lan, docs.rockylinux.lan, developer.download.nvidia.com, azure.microsoft.com, www.gnu.org, www.samba.org, rsync.samba.org, server.kubernetes.local:6443, node-0:$,0.0.0.0:61208, azuremarketplace.microsoft.com, openqa.rockylinux.org, access.redhat.com, repocompare.rockylinux.org, your_ip, IP:11443, $(hostname):8080, ftp.gnu.org, www.digitalneanderthal.com, mirrors.fedoraproject.org, support.brother.com, www.intel.com
+          exclude_patterns: "avatars.githubusercontent.com,\
+            example.com,\
+            your-server-ip,\
+            your-server-hostname,\
+            nginx-server,\
+            apache-server,\
+            site1.com,\
+            site2.com,\
+            site.com,\
+            $releasever,\
+            proxy.rocky.lan,\
+            repo.rocky.lan,\
+            zfs-release,\
+            $host$request,\
+            fileserver.rockylinux.lan,\
+            your_fork_name,\
+            rundeck.rockylinux.org,\
+            manickathan.ch,\
+            breakingpitt.es,\
+            download.example,\
+            192.168,\
+            172.16,\
+            127.0.0.1,\
+            localhost,\
+            download.rockylinux.org,\
+            cyber.gov.au,\
+            herokuapp.com,\
+            rpa.st,\
+            home.arpa,\
+            SERVER_IP,\
+            dev.mysql.com,\
+            ip_address,\
+            github.com,\
+            reddit.com/r/rockylinux,\
+            planet.i2p,\
+            linode.com,\
+            server1.rockylinux.lan,\
+            docs.rockylinux.lan,\
+            developer.download.nvidia.com,\
+            azure.microsoft.com,\
+            www.gnu.org,\
+            www.samba.org,\
+            rsync.samba.org,\
+            server.kubernetes.local:6443,\
+            node-0:$,\
+            0.0.0.0:61208,\
+            azuremarketplace.microsoft.com,\
+            openqa.rockylinux.org,\
+            access.redhat.com,\
+            repocompare.rockylinux.org,\
+            your_ip,\
+            IP:11443,\
+            $(hostname):8080,\
+            ftp.gnu.org,\
+            www.digitalneanderthal.com,\
+            mirrors.fedoraproject.org,\
+            support.brother.com,\
+            www.intel.com"
 
           print_all: false
           retry_count: 1
@@ -39,68 +99,19 @@ jobs:
           force_pass: true # Don't block deployment
           save: "output.csv"
           verbose: true
-      - name: Affected URLs
-        id: gather
-        run: |
-          OUT="$(awk -F, '((NR>1 && $2=="failed") || NR==1 ){print}' output.csv)"
-          echo 'URLS<<EOF' >> $GITHUB_OUTPUT
-          echo $OUT >> $GITHUB_OUTPUT
-          echo 'EOF' >> $GITHUB_OUTPUT
-          echo "COUNT_U=$(( $(wc -l <<<$OUT) - 1 ))" >> $GITHUB_OUTPUT
-    outputs:
-      URLS: ${{ steps.gather.outputs.URLS }}
-      COUNT_U: ${{ steps.gather.outputs.COUNT_U }}
-  comment:
-    name: "Comment on PR"
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Comment
-        uses: actions/github-script@v7
+      - name: Collect results
         env:
-          URLS: "${{ needs.test.outputs.URLS }}"
-          COUNT_U: "${{ needs.test.outputs.COUNT_U }}"
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          mkdir -p url-check
+          if [ -f output.csv ]; then
+            cp output.csv url-check/output.csv
+          fi
+          echo "$PR_NUMBER" > url-check/pr-number
+          echo "$HEAD_SHA" > url-check/head-sha
+      - name: Upload results
+        uses: actions/upload-artifact@v4
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const count_u = process.env.COUNT_U.toString();
-            const commentText = 'Test results for ' + context.payload.pull_request.head.sha + ":\n\nNumber of broken URLs: " + count_u + "\n";
-            const output = process.env.URLS.toString().trimEnd();
-            var body = "<details>\n<summary>" + commentText + "</summary>\n\n```csv\n" + output + "\n```\n\n</details>";
-
-            const fs = require('fs');
-            fs.writeFileSync(process.env.GITHUB_STEP_SUMMARY, body);
-            needNewComment = true;
-            console.log('Reviewing existing comments...');
-            for await (const { data: comments } of github.paginate.iterator(
-              github.rest.issues.listComments,
-              {
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.payload.pull_request.number,
-              }
-            )) {
-              for (const comment of comments) {
-                if (comment.user.login === 'github-actions[bot]') {
-                  if (needNewComment && comment.body.includes(commentText)) {
-                    needNewComment = false;
-                  } else {
-                    console.log('Deleting comment: ' + comment.id);
-                    await github.rest.issues.deleteComment({
-                      owner: context.repo.owner,
-                      repo: context.repo.repo,
-                      comment_id: comment.id,
-                    });
-                  }
-                }
-              }
-            }
-            if (needNewComment) {
-              console.log('Creating new comment...');
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.payload.pull_request.number,
-                body: body,
-              });
-            }
+          name: url-check
+          path: url-check/
