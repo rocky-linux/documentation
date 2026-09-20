@@ -10,9 +10,9 @@ Dans ce chapitre, vous allez apprendre à gérer les tâches planifiées.
 
 **Objectifs** : Dans ce chapitre, les futurs administrateurs Linux vont apprendre comment :
 
-:heavy_check_mark: Linux gère la planification des tâches planifiées ;  
-:heavy_check_mark: restreindre l'utilisation de **`cron`** à certains utilisateurs ;  
-:heavy_check_mark: planifier des tâches.
+:heavy_check_mark: Linux gère la planification des tâches ;  
+:heavy_check_mark: restreint l'utilisation de **`cron`** à certains utilisateurs ;  
+:heavy_check_mark: planifie les tâches.
 
 :checkered_flag: **crontab**, **crond**, **planification**, **linux**
 
@@ -44,7 +44,7 @@ Le service `cron` sert notamment pour :
 
 ## Comment fonctionne le service
 
-Le service `cron` est exécuté par un démon `crond` présent en mémoire.
+Un démon `crond` présent exécute le service `cron` en mémoire.
 
 Pour vérifier son statut :
 
@@ -56,7 +56,7 @@ Pour vérifier son statut :
 
     Si le démon `crond` n'est pas en cours d'exécution, vous devrez le lancer manuellement et/ou automatiquement au démarrage. En effet, même si des tâches sont planifiées, elles ne seront pas lancées.
 
-Initialisation du démon `crond` manuellement :
+Initialisation du démon `crond` dans le manuel :
 
 ```bash
 [root]# systemctl {status|start|restart|stop} crond
@@ -99,7 +99,7 @@ Les utilisateurs indiqués dans ce fichier ne sont pas autorisés à utiliser `c
 
 S'il est vide, tous les utilisateurs peuvent utiliser `cron`.
 
-Par défaut, `/etc/cron.deny` existe et est vide et `/etc/cron.allow` n'existe pas.
+Par défaut, le fichier `/etc/cron.deny` existe et est vide et `/etc/cron.allow` n'existe pas. Lorsque deux fichiers existent en même temps, le système utilise uniquement le contenu de `cron.allow` comme référence et ignore complètement l'existence des fichiers `cron.deny`.
 
 ### Autoriser un utilisateur
 
@@ -112,20 +112,20 @@ user1
 
 ### Interdire un utilisateur
 
-Seul **user2** ne pourra pas utiliser `cron`.
+Seul **user2** ne sera pas capable d'utiliser `cron`. Notez que le fichier `/etc/cron.allow` ne peut pas exister.
 
 ```bash
 [root]# vi /etc/cron.deny
 user2
 ```
 
-`cron.allow` ne doit pas exister.
+Si le même utilisateur figure à la fois dans `/etc/cron.deny` et `/etc/cron.allow`, il peut utiliser `cron` normalement.
 
 ## Planification des tâches
 
-Lorsqu'un utilisateur planifie une tâche, un fichier avec son nom est créé sous `/var/spool/cron/`.
+Lorsqu'un utilisateur planifie une tâche, un fichier portant son nom est créé dans le répertoire `/var/spool/cron/`.
 
-Ce fichier contient toutes les informations dont `crond` a besoin de savoir concernant toutes les tâches créées par cet utilisateur, les commandes ou programmes à exécuter, et quand les exécuter (heure, minute, jour...).
+Ce fichier contient toutes les informations que `crond` doit connaître concernant les tâches créées par cet utilisateur, y compris les commandes ou programmes à exécuter, ainsi que le calendrier de leur exécution (heure, minute, jour, etc.). Note that the minimum time unit that `crond` can recognize is 1 minute. Il existe des tâches de planification similaires dans les SGBDR (comme MySQL), où les tâches de planification basées sur le temps sont appelées « Planificateur d'événements, Event Scheduler » (dont l'unité de temps reconnaissable est 1 seconde), et les tâches de planification basées sur les événements sont appelées « Déclencheurs, Triggers ».
 
 ![Arborescence cron](images/tasks-001.png)
 
@@ -143,18 +143,18 @@ Exemple :
 [root]# crontab -u user1 -e
 ```
 
-| Option | Observation                                                              |
-| ------ | ------------------------------------------------------------------------ |
-| `-e`   | Modifier le fichier de planification avec vi                             |
-| `-l`   | Affiche le contenu du fichier de planification                           |
-| `-u`   | Nom de l'utilisateur dont le fichier de planification doit être manipulé |
-| `-r`   | Supprime le fichier de planification                                     |
+| Option            | Description                                    |
+| ----------------- | ---------------------------------------------- |
+| `-e`              | Modifie le fichier de planification avec vi    |
+| `-l`              | Affiche le contenu du fichier de planification |
+| `-u <user>` | Spécifier un seul utilisateur à considérer     |
+| `-r`              | Supprime le fichier de planification           |
 
 !!! warning "Avertissement"
 
-    `crontab` sans option efface le fichier schedule existant et attends la saisie de nouvelles lignes par l'utilisateur. Vous devez utiliser <kbd>ctrl</kbd> + <kbd>d</kbd> pour quitter le mode éditeur.
+    `crontab` sans options supprime l'ancien fichier de planification et attend que l'utilisateur entre de nouvelles lignes. Vous devez utiliser <kbd>ctrl</kbd> + <kbd>d</kbd> pour quitter le mode éditeur.
     
-    Seul `root` peut utiliser l'option `-u user` pour gérer le fichier de planification d'un autre utilisateur.
+    Seul l'utilisateur `root` peut utiliser l'option `-u <utilisateur>` pour gérer le fichier de planification d'un autre utilisateur.
     
     L'exemple ci-dessus permet à root de planifier une tâche pour l'utilisateur user1.
 
@@ -181,7 +181,7 @@ Le fichier `crontab` est structuré selon les règles suivantes.
 
 * Chaque ligne de ce fichier correspond à un planning ;
 * Chaque ligne a six champs, 5 pour la date et 1 pour la commande;
-* Chaque champ est séparé par un espace ;
+* Chaque champ est séparé par un espace ou un tab ;
 * Chaque ligne se termine par un retour chariot ;
 * Un `#` au début de la ligne indique un commentaire.
 
@@ -191,7 +191,7 @@ Le fichier `crontab` est structuré selon les règles suivantes.
 1  2 3 4 5       6
 ```
 
-| Champ | Observation           | Détail                      |
+| Champ | Description           | Détail                      |
 | ----- | --------------------- | --------------------------- |
 | 1     | Minute(s)             | De 0 à 59                   |
 | 2     | Heure(s)              | De 0 à 23                   |
@@ -204,14 +204,14 @@ Le fichier `crontab` est structuré selon les règles suivantes.
 
     Les tâches à effectuer doivent utiliser des chemins absolus et, si possible, utiliser des redirections.
 
-Afin de simplifier la notation pour la définition du temps, il est conseillé d'utiliser des symboles spéciaux.
+Pour simplifier la notation relative à la définition du temps, il est conseillé d'utiliser des symboles spécifiques.
 
-| Wildcards | Observation                           |
-| --------- | ------------------------------------- |
-| `*`       | Toutes les valeurs possibles du champ |
-| `-`       | Indique une plage de valeurs          |
-| `,`       | Indique une liste de valeurs          |
-| `-n`      | Définit une étape                     |
+| Symboles Spéciaux | Description                                  |
+| ----------------- | -------------------------------------------- |
+| `*`               | Indique toutes les valeurs de temps du champ |
+| `-`               | Indique une plage de temps continue          |
+| `,`               | Indique une plage de temps discontinue       |
+| `-n`              | Indique un intervalle de temps               |
 
 Exemples :
 
@@ -221,19 +221,19 @@ Script exécuté le 15 avril à 10h25:
 25 10 15 04 * /root/scripts/script > /log/…
 ```
 
-Run at 11am and then at 4pm every day:
+Lancement à 11: 00 puis à 16: 00 tous les jours :
 
 ```bash
 00 11,16 * * * /root/scripts/scrip t > /log/…
 ```
 
-Lancer à chaque heure de 11 h à 16 h tous les jours :
+Lancement à chaque heure de 11:00 à 16:00 tous les jours :
 
 ```bash
 00 11-16 * * * /root/scripts/script > /log/…
 ```
 
-Lancer toutes les 10 minutes pendant les heures de travail :
+Lancer toutes les 10 minutes pendant les heures de travail des jours de la semaine :
 
 ```bash
 */10 8-17 * * 1-5 /root/scripts/script > /log/…
@@ -241,9 +241,9 @@ Lancer toutes les 10 minutes pendant les heures de travail :
 
 Pour l'utilisateur root `crontab` a également des paramètres de temps spéciaux :
 
-| Réglages      | Observation                                                    |
+| Réglages      | Description                                                    |
 | ------------- | -------------------------------------------------------------- |
-| @reboot       | Exécuter la commande au redémarrage du système                 |
+| @reboot       | Exécute une commande au redémarrage du système                 |
 | @hourly       | Exécuter la commande toutes les heures                         |
 | @daily        | Exécute tous les jours juste après minuit                      |
 | @hebdomadaire | Exécute la commande tous les dimanches juste après minuit      |
@@ -254,12 +254,12 @@ Pour l'utilisateur root `crontab` a également des paramètres de temps spéciau
 
 Un utilisateur, rockstar, veut éditer son fichier `crontab` :
 
-1. `crond` vérifie s'iel est autorisé (`/etc/cron.allow` et `/etc/cron.deny`).
+1. Le démon `crond` vérifie si l'utilisateur est autorisé (`/etc/cron.allow` et `/etc/cron.deny`).
 
-2. S'iel l'est, il accède à son fichier `crontab` (`/var/spool/cron/rockstar`).
+2. Si l'utilisateur y est autorisé, il accède à son fichier `crontab` (`/var/spool/cron/rockstar`).
 
-    Chaque minute, `crond` lit les fichiers de planification.
+Le démon `crond` :
 
-3. Iel exécute les tâches planifiées.
-
-4. Iel rend compte systématiquement dans un fichier log (`/var/log/cron`).
+* Reads - Lit les fichiers de tâches planifiées de tous les utilisateurs toutes les minutes.
+* Runs - Exécute les tâches selon le calendrier.
+* Writes - Écrit les événements et messages correspondants dans le fichier (`/var/log/cron`).
