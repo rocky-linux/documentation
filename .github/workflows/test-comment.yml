@@ -53,45 +53,29 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
+            const marker = '<!-- url-check-results -->';
             const issue_number = Number(fs.readFileSync('url-check/pr-number', 'utf8').trim());
             const head_sha = fs.readFileSync('url-check/head-sha', 'utf8').trim();
-            const count_u = process.env.COUNT_U.toString();
-            const commentText = 'Test results for ' + head_sha + ":\n\nNumber of broken URLs: " + count_u + "\n";
-            const output = process.env.URLS.toString().trimEnd();
-            var body = "<details>\n<summary>" + commentText + "</summary>\n\n```csv\n" + output + "\n```\n\n</details>";
+            const csv = process.env.URLS.toString().trimEnd().replace(/`/g, "'");
+            const body = marker + '\n<details>\n<summary>Test results for ' + head_sha +
+              ':\n\nNumber of broken URLs: ' + process.env.COUNT_U + '\n</summary>\n\n' +
+              '```csv\n' + csv + '\n```\n\n</details>';
 
             fs.writeFileSync(process.env.GITHUB_STEP_SUMMARY, body);
-            let needNewComment = true;
-            console.log('Reviewing existing comments...');
-            for await (const { data: comments } of github.paginate.iterator(
-              github.rest.issues.listComments,
-              {
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issue_number,
-              }
-            )) {
-              for (const comment of comments) {
-                if (comment.user.login === 'github-actions[bot]') {
-                  if (needNewComment && comment.body.includes(commentText)) {
-                    needNewComment = false;
-                  } else {
-                    console.log('Deleting comment: ' + comment.id);
-                    await github.rest.issues.deleteComment({
-                      owner: context.repo.owner,
-                      repo: context.repo.repo,
-                      comment_id: comment.id,
-                    });
-                  }
-                }
-              }
-            }
-            if (needNewComment) {
-              console.log('Creating new comment...');
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issue_number,
-                body: body,
+
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner: context.repo.owner, repo: context.repo.repo, issue_number, per_page: 100,
+            });
+            // the legacy match also clears comments posted before the marker existed
+            const ours = comments.filter(c => c.user.login === 'github-actions[bot]' &&
+              (c.body.includes(marker) || c.body.includes('<summary>Test results for ')));
+            if (ours.some(c => c.body === body)) return;   // results unchanged, leave the comment alone
+
+            for (const c of ours) {
+              await github.rest.issues.deleteComment({
+                owner: context.repo.owner, repo: context.repo.repo, comment_id: c.id,
               });
             }
+            await github.rest.issues.createComment({
+              owner: context.repo.owner, repo: context.repo.repo, issue_number, body,
+            });
