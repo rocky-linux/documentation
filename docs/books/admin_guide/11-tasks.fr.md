@@ -56,7 +56,7 @@ Pour vérifier son statut :
 
     Si le démon `crond` n'est pas en cours d'exécution, vous devrez le lancer manuellement et/ou automatiquement au démarrage. En effet, même si des tâches sont planifiées, elles ne seront pas lancées.
 
-Initialisation du démon `crond` dans le manuel :
+Initialisation du démon `crond` manuellement :
 
 ```bash
 [root]# systemctl {status|start|restart|stop} crond
@@ -70,7 +70,7 @@ Initialisation du démon `crond` au démarrage :
 
 ## Sécurité
 
-Afin d'implémenter un schedule, un utilisateur doit avoir la permission d'utiliser le service `cron`.
+Pour mettre en œuvre une planification, un utilisateur doit avoir l'autorisation d'utiliser le service `cron`.
 
 Cette permission varie en fonction des informations contenues dans les fichiers ci-dessous :
 
@@ -156,7 +156,7 @@ Exemple :
     
     Seul l'utilisateur `root` peut utiliser l'option `-u <utilisateur>` pour gérer le fichier de planification d'un autre utilisateur.
     
-    L'exemple ci-dessus permet à root de planifier une tâche pour l'utilisateur user1.
+    L'exemple ci-dessus permet à l'administrateur root de planifier une tâche pour l'utilisateur `user1`.
 
 ### Utilisations de `crontab`
 
@@ -202,7 +202,7 @@ Le fichier `crontab` est structuré selon les règles suivantes.
 
 !!! warning "Avertissement"
 
-    Les tâches à effectuer doivent utiliser des chemins absolus et, si possible, utiliser des redirections.
+    Les tâches à exécuter doivent utiliser des chemins absolus et, si possible, des redirections.
 
 Pour simplifier la notation relative à la définition du temps, il est conseillé d'utiliser des symboles spécifiques.
 
@@ -244,7 +244,7 @@ Pour l'utilisateur root `crontab` a également des paramètres de temps spéciau
 | Réglages      | Description                                                    |
 | ------------- | -------------------------------------------------------------- |
 | @reboot       | Exécute une commande au redémarrage du système                 |
-| @hourly       | Exécuter la commande toutes les heures                         |
+| @hourly       | Exécute une commande toutes les heures                         |
 | @daily        | Exécute tous les jours juste après minuit                      |
 | @hebdomadaire | Exécute la commande tous les dimanches juste après minuit      |
 | @mensuel      | Exécute la commande le premier jour du mois juste après minuit |
