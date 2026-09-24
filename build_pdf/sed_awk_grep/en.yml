@@ -16,8 +16,8 @@ pdf-config: &pdf-config
 plugins:
   - with-pdf:
       <<: *pdf-config
-      cover_title: Sed & Awk & Grep - The Tree Swordsmen (English version)
-      output_path: ../pdf/Sed_Awk_Grep_TheTreeSwordsmen.pdf
+      cover_title: Sed & Awk & Grep - The Three Swordsmen (English version)
+      output_path: ../pdf/Sed_Awk_Grep_TheThreeSwordsmen.pdf
 
 # Customize your own book
 nav:
