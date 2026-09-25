@@ -8,34 +8,35 @@ contributors: Ganna Zhyrnova
 
 ## Introduction
 
-Since day one of the Rocky Linux project, some have asked: ==How do you upgrade from CentOS 7 to Rocky 8, or Rocky 8 to Rocky 9?== The answer is always the same: **The project does not support in-place upgrades of one major version to another major version. You need to reinstall to move to the next major version.** To be clear, this **IS** the correct answer. This document allows users to move from one major version to the next, using the correct Rocky-supported procedure for a fresh installation. You can use this method to rebuild the same Rocky Linux version. For example, install 9.5 to a fresh 9.5 with all the packages.
+Since day one of the Rocky Linux project, some have asked: ==How do you upgrade from CentOS 7 to Rocky 8, or Rocky 8 to Rocky 9?== The answer is always the same: **The project does not support in-place upgrades of one major version to another major version. You need to reinstall to move to the next major version.** To be clear, this **IS** the correct answer. This document helps users move from one major version to the next, using the correct Rocky-supported procedure for a fresh installation. You can also use this method to rebuild the same Rocky Linux version. For example, install 9.5 to a fresh 9.5 with all the packages.
 
 !!! note "Caveats"
 
-    Even given this procedure, many things can go wrong when going from an older version of one operating system (OS) to a newer version of the same or different OS. Programs become obsolete and replaced by the maintainers with completely different package names, or the names do not match up from one OS to the next. Also, please know about your machine's software repositories and verify they are still functional for the new OS. If going from a much older version to a much newer one, please ensure that your CPU and other machine requirements match the new one. For these and many different reasons, you must remain cautious and note any errors or problems while performing this procedure. Here, the author has used Rocky Linux 8 as the old version and Rocky Linux 9 as the new major version. The formulation of all examples uses these two versions. You can always go ahead and proceed at your own risk.
+    Even given this procedure, many things can go wrong when going from an older version of one operating system (OS) to a newer version of the same or different OS. Programs become obsolete and replaced by the maintainers with completely different package names, or the names do not match up from one OS to the next. Also, know about your machine's software repositories and verify they are still functional for the new OS. If going from a much older version to a much newer one, ensure that your CPU and other machine requirements match the new prerequisites. For these and many different reasons, you must remain cautious and note any errors or problems while performing this procedure. Here, the author has used Rocky Linux 8 as the old version and Rocky Linux 9 as the new major version. The formulation of all examples uses these two versions. You can always go ahead and proceed at your own risk.
 
 ## Steps summary
 
 1. Obtain a list of users from the old installation (`userid.txt`).
-2. Obtain a list of repositories from the old installation (`repolist.txt`).
-3. Obtain a list of packages from the old installation (`installed.txt`).
-4. Backup all data, configuration, utilities, and scripts from the old installation to a non-volatile location along with the `.txt` files created.
-5. Verify that the hardware you will be installing supports the operating system that you are installing. (CPU, memory, disk space, and so on.)
-6. Perform a fresh install of the operating system you use on the hardware.
-7. Do a `dnf upgrade` to get any packages that might have been updated since the ISO file's creation.  
-8. Create any needed users by examining the `userid.txt` file.
-9. Install any missing repositories that are not Rocky-related in the `repolist.txt` file. (See notes for the EPEL and Code Ready Builder (CRB) repositories.)
-10. Install the packages using the procedure for the `installed.txt` file.
+2. Obtain a list of the enabled modules (8 and 9 only) (`modules.txt`).
+3. Obtain a list of repositories from the old installation (`repolist.txt`).
+4. Obtain a list of packages from the old installation (`installed.txt`).
+5. Backup all data, configuration, utilities, and scripts from the old installation to a non-volatile location along with the `.txt` files created.
+6. Verify that the hardware you will be installing supports the operating system that you are installing. (CPU, memory, disk space, and so on.)
+7. Perform a fresh install of the operating system you use on the hardware.
+8. Do a `dnf upgrade` to get any packages that might have been updated since the ISO file's creation.  
+9. Create any needed users by examining the `userid.txt` file.
+10. Install any missing repositories that are not Rocky-related in the `repolist.txt` file. (See notes for the EPEL and Code Ready Builder (CRB) repositories.)
+11. Install the packages using the procedure for the `installed.txt` file.
 
 ## Steps detail
 
 !!! info "Same version upgrades"
 
-    As discussed earlier, this procedure should work equally well to duplicate a machine installation with the same operating system release, such as 8.10 to 8.10 or 9.5 to 9.5. The difference is that you should not need `--skip-broken` when installing the packages from the `installed.txt` file. If you get package errors when installing a version, you are probably missing a repository. Stop the procedure and re-examine the `repolist.txt` file. The examples here use 8.10 as the old installation and 9.5 as the new one.
+    As discussed earlier, this procedure should work equally well to duplicate a machine installation with the same operating system release, such as 8.10 to 8.10 or 9.5 to 9.5. The difference is that you should not need `--skip-broken` when installing the packages from the `installed.txt` file. If you get package errors when installing a version to the same version, you are probably missing a repository. Stop the procedure and re-examine the `repolist.txt` file. The examples here use 8.10 as the old installation and 9.5 as the new one.
 
-!!! warning "Version 10 is unknown"
+!!! info "Version upgrades work with 10 as well"
 
-    Because of the vast changes between 9.5 and the upcoming version 10, this procedure **might not work** to move between 9.5 and 10. The exploration of this will occur once there is a release of 10 to test. 
+    There are many changes between 8.x, 9.x, and 10.x, but this procedure works for moving between older 8.x and 9.x installations to 10.x. Just keep in mind that the machine requirements for 10.x (CPU compatibility in particular) must be met prior to beginning the procedure.
 
 ### Example old machine
 
@@ -55,6 +56,14 @@ You will need to manually create any users on the new machine, so you need to kn
 
 ```bash
 sudo getent passwd > userid.txt
+```
+
+#### Obtain a list of modules
+
+Rocky 8.x and 9.x had modules. You need to track these modules when moving to a new OS version. Version 10 does **NOT** have modules, so if moving to Rocky 10.x, there is no need for this step.
+
+```bash
+sudo dnf module list -enabled > modules.txt
 ```
 
 #### Obtain a list of repositories
@@ -179,4 +188,4 @@ This procedure assumes a simple installation. However, if your installation is c
 
 ## Disclaimer
 
-While the basic document is the author's, two individuals in the [Forum] (https://forums.rockylinux.org/t/boot-too-small-rebuild/17415) suggested a cleaner way to generate the `installed.txt` and eliminated the kernel packages. Thanks to all who provided input on that procedure.
+While the basic document is the author's, two individuals in the [Forum] (<https://forums.rockylinux.org/t/boot-too-small-rebuild/17415>) suggested a cleaner way to generate the `installed.txt` and eliminated the kernel packages. Thanks to all who provided input on that procedure.
