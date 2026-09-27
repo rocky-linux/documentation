@@ -54,7 +54,7 @@ Im Folgenden finden Sie eine Linksammlung zu verschiedenen Ressourcen und Tools 
 ## Soziale Medien
 
 - [Mattermost](https://chat.rockylinux.org)
-- IRC ([libera.chat](https://libera.chat)): [IRC<-->Mattermost-Mappings](../teams/infra/irc.md)
+- IRC ([libera.chat](https://libera.chat)): [IRC<-->Mattermost Zuordnungen](../teams/infra/irc.md)
 - [Twitter](https://twitter.com/rocky_linux)
 - LinkedIn
   - [Unternehmensseite](https://linkedin.com/company/rockylinux)
