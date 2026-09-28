@@ -22,16 +22,16 @@ Voici un répertoire de liens vers diverses ressources et outils Rocky Linux. Si
 ## Développement
 
 - [GitHub](https://github.com/rocky-linux)
-  - [Container Roots](https://github.com/rocky-linux/sig-cloud-instance-images)
+- [Container Roots](https://github.com/rocky-linux/sig-cloud-instance-images)
   - [Image Kickstarts](https://github.com/rocky-linux/kickstarts/tree/main)
 - [RESF Git Service](https://git.resf.org)
 - [Serveur GitLab](https://git.rockylinux.org)
-  - [Sources RPM](https://git.rockylinux.org/staging/rpms)
-  - [Sources de packages Rocky](https://git.rockylinux.org/staging/src)
-  - [Sources de Module](https://git.rockylinux.org/staging/modules)
-  - [Customisations Rocky](https://git.rockylinux.org/staging/patch)
-  - [Repo Comps](https://git.rockylinux.org/rocky/comps)
-- [Bug Tracker](https://bugs.rockylinux.org)
+- [Sources RPM](https://git.rockylinux.org/staging/rpms)
+- [Sources de packages Rocky](https://git.rockylinux.org/staging/src)
+- [Sources des modules](https://git.rockylinux.org/staging/modules)
+- [Personnalisation de Rocky](https://git.rockylinux.org/staging/patch)
+- [Repo Comps](https://git.rockylinux.org/rocky/comps)
+- [Suivi des Bugs](https://bugs.rockylinux.org)
 - [Docker Hub](https://hub.docker.com/u/rockylinux)
 - [Quay.io](https://quay.io/organization/rockylinux)
 - [Vagrant](https://app.vagrantup.com/rockylinux)
@@ -54,7 +54,7 @@ Voici un répertoire de liens vers diverses ressources et outils Rocky Linux. Si
 ## Réseaux Sociaux
 
 - [Mattermost](https://chat.rockylinux.org)
-- IRC ([libera.chat](https://libera.chat)): [IRC<-->Mattermost mappings](irc.md)
+- IRC ([libera.chat](https://libera.chat)): [correspondances IRC<-->Mattermost](../teams/infra/irc.md)
 - [Twitter](https://twitter.com/rocky_linux)
 - LinkedIn
   - [Company Page](https://linkedin.com/company/rockylinux)
@@ -65,4 +65,4 @@ Voici un répertoire de liens vers diverses ressources et outils Rocky Linux. Si
   - [sur d’autres canaux]
     (https://www.youtube.com/playlist?list=PLMYofMfEpWQP34PxQv6-GASrF5Zc5soAF)
 - Autres
-  - [DistroWatch](https://distrowatch.com/table.php?distribution=rocky)
+- [DistroWatch](https://distrowatch.com/table.php?distribution=rocky)
