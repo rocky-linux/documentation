@@ -90,6 +90,16 @@ You will not need to install any kernel-related packages. It does not hurt to in
 sudo sed -i '/kernel/d' installed.txt
 ```
 
+!!! info "Alternative method for generating `installed.txt`"
+
+    In the referenced forum post here, someone suggested another way to generate the `installed.txt` file. It is a simpler method that does not require the removal of column headers or repository info, so it might be better. Both methods work:
+
+    ```bash
+    rpm -qa > installed.txt
+    ```
+
+    You might still want to remove the kernel packages from the list. 
+
 #### Backup any data
 
 This can encompass many things. Make sure you know the purpose of the machine you are replacing and all of its program components (database, mail server, DNS, and more). If you have any doubts, just back it up.
