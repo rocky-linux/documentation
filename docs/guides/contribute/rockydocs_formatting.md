@@ -54,13 +54,17 @@ A document might or might not need to contain any of these elements. However, if
 
     If you need to use a supported HTML element, you can see if you can find another way to write your document that will not use these elements. If you must use them, it is still allowed.
 
-!!! info "A Note About Links"
+## Links
 
-    Links are not special formatting; they are standard methods for referencing other documents (internal links) or external web pages. However, there is one particular type of link you should not use when composing documents for Rocky Linux: an anchor, or a link to a spot in the same document.
+Links are not special formatting, but standard methods for referencing other documents (internal links) or external web pages. There is nothing different to do with external links to web pages or links directly to document titles.
 
-    Anchors work in the source language for Rocky Linux (English), but as soon as our Crowdin interface translates them, they break in those languages. This happens because an acceptable anchor in markdown that does not contain HTML elements uses the header to create the link:
+### Anchor links
 
-    ```
+Traditional anchors work in the source language for Rocky Linux (English), but as soon as translation occurs in our Crowdin interface, they break in those languages. This happens because while the link is protected from editing in Crowdin, the heading it references is not (nor should it be).
+
+Example of traditional anchor link using markdown:
+
+    ```markdown
     ## A Header
 
     Some text
@@ -68,11 +72,27 @@ A document might or might not need to contain any of these elements. However, if
     A Link to [that header](#-a-header)
     ```
 
-    This link is found by hovering your mouse over the permalink in a created document and is essentially the header with the "#" plus the header in lowercase, separated by a dash (-).
+To create a working anchor link that Crowdin will ignore, requires using braces and appending a link title to the heading that you will reference later:
 
-    When the document is translated, though, the header is translated, BUT the link is outside of what Crowdin allows to be translated, so it remains in its original (English) state.
+Example of working anchor link for documents subject to translation:
 
-    If you need to use an anchor, please review your document to see if reorganizing the content makes it unnecessary. Just know that if you use an anchor in a newly composed document, that anchor will break once translation of that document occurs.
+    ```markdown
+    ## A Header again { id="new-header" }
+
+    Some text
+
+    A link to [that new header](#new-header)
+    ```
+
+If linking to a completely different document, use the path to that document, the document name, and the link:
+
+    ```markdown
+    [link to document and anchor](../path/to/document/document_name.md#new-header)
+    ```
+
+The curly braces protect the id from translation so that when translation occurs, with the header changing accordingly, it preserves the link unchanged.
+
+If you require anchor links in your documents, use this method.
 
 ## Admonitions
 
@@ -231,7 +251,7 @@ Here is an example of a multi-line numbered list with a code block thrown in for
 
 1. When dealing with multi-line numbered lists that include code blocks or other elements, use the space indentation to get what you want.
 
-    For example: this has the four (4) space indentation and represents a new paragraph of text. In addition, we are adding a code block in. It is also indented by the same four (4) spaces as our paragraph:
+   For example: this has the four (4) space indentation and represents a new paragraph of text. In addition, we are adding a code block in. It is also indented by the same four (4) spaces as our paragraph:
 
     ```bash
     dnf update
@@ -252,7 +272,6 @@ And here is how that looks as raw text:
 
 1. Here is our second listed item. Because you used the four (4) space indentation (above), it renders with the next sequence of numbering (2). Still, if you had entered item 1 without the indentation (in the subsequent paragraph and code), then this would show up as item 1 again, which is not what you want.
 ```
-
 
 !!! tip "Numbering the numbered list does not necessarily correspond to the actual number displayed."
 
@@ -402,7 +421,7 @@ A list of accepted keyboard commands [in this document](https://facelessuser.git
 
 ## Forcing line breaks
 
-There are times when a simple ++enter++ on the keyboard will not give you a new line in Markdown. This sometimes occurs when bulleted items contain many formatting characters. The suggestion is to add a line break to better format text as well. In cases like these, you need to add two spaces to the end of the line where you want a new line.  Since spaces will not be visible in some Markdown editors, this example shows the spaces being entered:
+There are times when a simple ++enter++ on the keyboard will not give you a new line in Markdown. This sometimes occurs when bulleted items contain many formatting characters. The suggestion is to add a line break to better format text as well. In cases like these, you need to add two spaces to the end of the line where you want a new line. Since spaces will not be visible in some Markdown editors, this example shows the spaces being entered:
 
 * **A bullet item with extra formatting** ++space+space++
 * **Another item**
@@ -490,15 +509,15 @@ Or you may have a numbered list, with an additional admonition:
 
 1. This item is very important
 
-    Here you are adding a keyboard command to the list item:
+   Here you are adding a keyboard command to the list item:
 
-    Press ++escape++ for no particular reason.
+   Press ++escape++ for no particular reason.
 
 1. But this item is something very important *and* has multiple paragraphs to it
 
-    And it has an admonition in the middle of it:
+   And it has an admonition in the middle of it:
 
-    !!! warning
+   !!! warning
 
         Things can get a little crazy when multiple elements are in different formatting types!   
 
@@ -510,7 +529,7 @@ You can even embed a table or block quote (literally any formatting item type) w
 
 1. If you are feeling overwhelmed, consider:
 
-    !!! warning "important: I think my brain hurts!"
+   !!! warning "important: I think my brain hurts!"
 
         When combining multiple formatting elements, your brain can go a little crazy. Consider sucking down some extra caffeine before you begin!
 
