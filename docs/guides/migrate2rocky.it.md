@@ -81,7 +81,7 @@ Supponendo che sia installata l'utilità `curl`, eseguire il seguente comando pe
     Se si utilizza un sistema 9.x, aggiungere un 9 prima del file `.sh`.
 
 ```bash
-curl https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh -o migrate2rocky.sh
+curl -O https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh
 ```
 
 Questo comando scaricherà il file sul server e *solo* quello desiderato. Ma anche in questo caso, i problemi di sicurezza suggeriscono che questa non è necessariamente la pratica migliore, quindi tenetene conto.
