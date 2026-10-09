@@ -185,6 +185,16 @@ If successful, you should see the following output:
 ```bash
 All candidates are currently installed
 ```
+!!! warning
+
+    RISC-V support is still in early testing.
+
+For RISC-V run the following command:
+
+```bash
+rakupp install Sparky::JobApi
+```
+
 
 ## Configure
 
