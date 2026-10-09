@@ -40,7 +40,7 @@ sudo dnf install -y epel-release
 * Install the required packages for `libvirt` (optionally for `virt-manager` if you want to use a GUI to manage your VMs):
 
 ```bash
-sudo dnf install -y bridge-utils virt-top libguestfs-tools bridge-utils virt-viewer qemu-kvm libvirt virt-manager virt-install
+sudo dnf install -y bridge-utils virt-top libguestfs-tools virt-viewer qemu-kvm libvirt virt-manager virt-install
 ```
 
 !!! note
