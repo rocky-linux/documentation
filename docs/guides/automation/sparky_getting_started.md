@@ -158,9 +158,9 @@ cd sparrowdo
 rakupp reinstall --no-test .
 ```
 
-### Install Sparky
+### Initialize Sparky Database
 
-Only run this command after `zef install .` has finished:
+Only run this command after Sparky install has finished
 
 ```bash
 raku db-init.raku
