@@ -91,18 +91,20 @@ There are not yet package repos for RISC-V, thus manual compiling is necessary a
     RISC-V support is still in early testing.
 
 ```bash
-sudo dnf -y group install "Development Tools"
-sudo dnf -y install libffi-devel
-curl https://rakubrew.org/install-on-perl.sh | sh
-echo 'eval "$(~/.rakubrew/bin/rakubrew init Bash)"' >> ~/.bashrc
-eval "$(~/.rakubrew/bin/rakubrew init Bash)"
-# This is almost certainly going to fail at this stage with failure of MoarVM and dyncall. The next steps fix it
-rakubrew build moar-2026.02
-cd ~/.rakubrew/versions/moar-2026.02/nqp/MoarVM/
-/usr/bin/perl Configure.pl --optimize --git-cache-dir=~/.rakubrew/git_reference --prefix=~/.rakubrew/versions/moar-2025.08/install --make-install --has-libffi
-# This should find a working MoarVM and continue the compilation
-rakubrew build moar-2026.02
-rakubrew build zef
+sudo yum -q -y install curl wget openssl-devel perl-JSON-PP
+sudo curl -L -s -f  http://sparrowhub.io/riscv/rakupp -o /usr/local/bin/rakupp
+sudo chmod a+x /usr/local/bin/rakupp
+sudo ln -fs /usr/local/bin/rakupp /usr/local/bin/raku
+rakupp --info
+# should show something:
+# Raku++  5.2.1 🦋 a Raku interpreter and compiler in C++
+# Raku    6.d (6.e with `use v6.e.PREVIEW`)
+# Build   v5.2.1-21-ge90d6b3a, 2026-10-04
+# Target  riscv64-linux, gcc 14.2.0
+# FFI     libffi: libffi.so.8 (abi 1)
+# Cnp     none — this build carries no stencils (see the build log for cnp-extract)
+# Exe     /home/users/amelezhik/.local/bin/rakupp
+# Home    https://raku.online
 ```
 
 Now test that it works:
@@ -138,9 +140,27 @@ zef install cro
 zef install .
 ```
 
-### Install Sparky
+Because packages are different on RISC-V, the process is slightly different. After this portion, the remainder of the guide should be the same.
 
-Only run this command after `zef install .` has finished:
+!!! warning
+
+    RISC-V support is still in early testing.
+
+```bash
+git clone https://github.com/melezhik/sparky.git
+cd sparky
+rakupp install --no-test .
+
+# we need to install sparrowdo from GH
+# to support risc-v arch
+git clone https://github.com/melezhik/sparrowdo.git
+cd sparrowdo
+rakupp reinstall --no-test .
+```
+
+### Initialize Sparky Database
+
+Only run this command after Sparky install has finished
 
 ```bash
 raku db-init.raku
@@ -165,6 +185,16 @@ If successful, you should see the following output:
 ```bash
 All candidates are currently installed
 ```
+!!! warning
+
+    RISC-V support is still in early testing.
+
+For RISC-V run the following command:
+
+```bash
+rakupp install Sparky::JobApi
+```
+
 
 ## Configure
 
