@@ -36,9 +36,9 @@ These are items which are easy for most to be able to test without having a requ
 | Category | Requirement | Test Case | Status |
 |-|-|-|-|
 | ⬇️ | [Physical Media Testing on CD/DVD/Bluray](Testcase_Physical_Media_Testing.md) | To ensure a user can burn the ISO files to physical disc and boot/install from that disc. | Community, openQA covered |
-| ❎ | [Media Consistency Verification](Testcase_Consistency_Verification.md) | To ensure that a user can write the ISO files to a thumbdrive and boot/install from that thumbdrive. | Community |
-| ⬇️ | Boot Live Image | To ensure that each live environment can boot into the intended desktop. | Community |
-| ❗ | FWUPD Secureboot | To ensure that secureboot and firmware updates function with the latest packages. | Community |
+| ❎ | [Media Consistency Verification](Testcase_Media_Consistency_Verification.md) | To ensure that a user can write the ISO files to a thumbdrive and boot/install from that thumbdrive. | Community |
+| ⬇️ | [Boot Live Image](Testcase_Live_Image.md) | To ensure that each live environment can boot into the intended desktop. | Community |
+| ❗ | [FWUPD Secureboot](Testcase_FWUPD.md) | To ensure that secureboot and firmware updates function with the latest packages. | Community |
 
 ## Initialization Requirements
 
