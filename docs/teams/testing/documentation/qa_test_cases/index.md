@@ -1,7 +1,7 @@
 ---
 title: QA:Test Cases
-author: Trevor Cooper
-contributors: Bob Robison
+author: Chris Stackpole
+contributors: Trevor Cooper, Bob Robison
 tested_with:
 tags:
   - testing
@@ -11,7 +11,34 @@ rc:
 render_macros: true
 ---
 
-This page lists all test cases in work and who is/was last working on them. If an item list Assignee as `@tbd` we need assistance documenting the Testcase (typically manually) so that it can be performed by any future team member. Specific Testcases can/will be implemented in openQA if appropriate issues are created in the [os-autoinst-distri-rocky](https://github.com/rocky-linux/os-autoinst-distri-rocky/issues) repository.
+Every release undergoes numerous tests to validate a proper release of Rocky Linux. The 2026.10 update of release criteria is the latest coordination between Release Engineering and Testing Team.
+
+Specific Testcases can/will be implemented in either openQA or Sparky/Sparrow. For further details, please see:-
+* [Testing's Meta Project](https://git.resf.org/testing/meta) repository
+* [os-autoinst-distri-rocky](https://github.com/rocky-linux/os-autoinst-distri-rocky/issues) repository
+* [Sparky Rocky](https://git.resf.org/testing/Sparky_Rocky) repository
+
+For historical testing, please see the release channels in [Mattermost chat](https://chat.rockylinux.org).
+
+For 9.9+, 10.3+ releases, please see [TestRARC](https://testrarc.rockylinux.org/).
+
+Icon guide:-
+* ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential. 
+* ❗ - Important. It is best to have this tested, but if it isn't or if it fails then it won't block the release.
+* ❎ - Release blocker. This must be tested and until it is, or if it fails, then the issue must be properly addressed.
+
+The information below is intended to be for high level review. Details on which major release, architecture, and testing details are linked.
+
+## Community Testable Items
+
+These are items which are easy for most to be able to test without having a requirement of specific hardware/software testing.
+
+| Category | Requirement | Test Case | Status |
+|-|-|-|-|
+| ⬇️ | [Physical Media Testing on CD/DVD/Bluray](Testcase_Physical_Media_Testing.md) | To ensure a user can burn the ISO files to physical disc and boot/install from that disc. | Community, openQA covered |
+| ❎ | [Media Consistency Verification](Testcase_Media_Consistency_Verification.md) | To ensure that a user can write the ISO files to a thumbdrive and boot/install from that thumbdrive. | Community |
+| ⬇️ | [Boot Live Image](Testcase_Live_Image.md) | To ensure that each live environment can boot into the intended desktop. | Community |
+| ❗ | [FWUPD Secureboot](Testcase_FWUPD.md) | To ensure that secureboot and firmware updates function with the latest packages. | Community |
 
 ## Initialization Requirements
 
