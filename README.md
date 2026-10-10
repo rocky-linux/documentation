@@ -7,7 +7,7 @@
 # Contribution Guide
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-140-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-141-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Introduction
@@ -400,6 +400,9 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/mkyren"><img src="https://avatars.githubusercontent.com/u/96393095?v=4?s=100" width="100px;" alt="Ky"/><br /><sub><b>Ky</b></sub></a><br /><a href="https://github.com/rocky-linux/documentation/commits?author=mkyren" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/jamesbooker"><img src="https://avatars.githubusercontent.com/u/2065275?v=4?s=100" width="100px;" alt="James Booker"/><br /><sub><b>James Booker</b></sub></a><br /><a href="#content-jamesbooker" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/pgrbnsn"><img src="https://avatars.githubusercontent.com/u/1372007?v=4?s=100" width="100px;" alt="Patrick Robinson"/><br /><sub><b>Patrick Robinson</b></sub></a><br /><a href="#content-pgrbnsn" title="Content">🖋</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/saulolimabrito"><img src="https://avatars.githubusercontent.com/u/100214355?v=4?s=100" width="100px;" alt="Saulo Brito"/><br /><sub><b>Saulo Brito</b></sub></a><br /><a href="#content-saulolimabrito" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>
