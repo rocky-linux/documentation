@@ -1,11 +1,13 @@
 ---
 title: Network Configuration
-contributors: Steven Spencer, Hayden Young, Ganna Zhyrnova
-tested_with: 8.5, 8.6, 9.0
+contributors: Steven Spencer, Hayden Young, Ganna Zhyrnova, Saulo Brito
+tested_with: 8.5, 8.6, 9.0, 9.8
 tags:
   - networking
   - configuration
   - network
+  - IPv6
+  - nmtui
 ---
 
 # Introduction
@@ -207,6 +209,111 @@ You can't do much with a computer these days without network connectivity. Wheth
     64 bytes from lga15s46-in-f14.1e100.net (172.217.4.46): icmp_seq=3 ttl=119 time=14.4 ms
     ^C
     ```
+
+    ## IPv6 configuration
+
+    NetworkManager can configure IPv4 and IPv6 on the same connection. The IPv6 examples in this section were tested on Rocky Linux 9.8 with NetworkManager 1.54.3.
+
+    An address beginning with `fe80::` is link-local: it allows communication on the local link, but does not provide connectivity to other IPv6 networks. Automatic IPv6 configuration requires Router Advertisements (RA) from a router. Depending on the network, addresses can come from Stateless Address Autoconfiguration (SLAAC), DHCPv6, or both. DNS servers can be advertised by the router or supplied by DHCPv6. With automatic configuration, the IPv6 default gateway is learned from RA, not DHCPv6.
+
+    ### Identify the connection
+
+    List active connection profiles and their devices:
+
+    ```bash
+    nmcli -f NAME,DEVICE connection show --active
+    ```
+
+    The connection name and interface name can differ. For the following examples, assume a connection called `Wired connection 1` on `enp0s8`. Replace these values with your connection and interface:
+
+    ```bash
+    CONNECTION="Wired connection 1"
+    DEVICE="enp0s8"
+    ```
+
+    Inspect the saved IPv6 settings:
+
+    ```bash
+    nmcli -f ipv6.method,ipv6.addresses,ipv6.gateway,ipv6.dns connection show "$CONNECTION"
+    ```
+
+    ### Configure IPv6 with `nmtui`
+
+    Run `sudo nmtui`, select **Edit a connection**, choose your connection, and select **Edit**. In **IPv6 CONFIGURATION**, choose:
+
+    - **Automatic** to obtain configuration from the network
+    - **Manual** to enter an IPv6 address with its prefix length, a gateway, and DNS servers
+
+    Use **Show** to expand the IPv6 fields. When changing from manual to automatic configuration, remove the manual address, gateway, and DNS entries if you want the network to supply them. Save with **OK**, then use **Activate a connection** to deactivate and reactivate the profile.
+
+    !!! note "Applying connection changes"
+
+        Reactivating a connection can interrupt network access. Use a local console when changing the connection that carries your remote session.
+
+    ### Configure a manual IPv6 address with `nmcli`
+
+    This example uses the following values:
+
+    | Setting | Example |
+    |---------|---------|
+    | Address and prefix | `2001:db8:1::10/64` |
+    | Gateway | `2001:db8:1::1` |
+    | DNS server | `2001:db8:2::53` |
+
+    The `2001:db8::/32` prefix is reserved for documentation and is not routed on the Internet. Replace these addresses with the IPv6 configuration supplied by your network administrator or provider. Use a gateway reachable on the interface's link.
+
+    ```bash
+    sudo nmcli connection modify "$CONNECTION" \
+        ipv6.method manual \
+        ipv6.addresses "2001:db8:1::10/64" \
+        ipv6.gateway "2001:db8:1::1" \
+        ipv6.dns "2001:db8:2::53" \
+        ipv6.ignore-auto-dns yes
+    sudo nmcli connection up "$CONNECTION"
+    ```
+
+    These settings are saved in the connection profile. Confirm the active address, DNS server, and default route:
+
+    ```bash
+    nmcli -f GENERAL.CONNECTION,IP6 device show "$DEVICE"
+    ip -6 address show dev "$DEVICE"
+    ip -6 route show dev "$DEVICE"
+    ```
+
+    The address listing should include the configured address. The route listing should include a default route through the configured gateway. An IPv6 address alone does not establish connectivity outside its link; routing must also be available.
+
+    ### Switch to automatic IPv6 configuration
+
+    To use the network's automatic configuration instead of the preceding manual settings, clear the manual values and allow automatically supplied DNS:
+
+    ```bash
+    sudo nmcli connection modify "$CONNECTION" \
+        ipv6.method auto \
+        ipv6.addresses "" \
+        ipv6.gateway "" \
+        ipv6.dns "" \
+        ipv6.ignore-auto-dns no
+    sudo nmcli connection up "$CONNECTION"
+    ```
+
+    Repeat the address, DNS, and route checks. On a network advertising an autonomous prefix, expect a SLAAC address as well as a link-local address. The default route can use the router's link-local address as its next hop. If the interface has only a link-local address and no default route, check that the network provides RA and usable IPv6 configuration.
+
+    ### Check IPv6 connectivity and DNS
+
+    For the manual example, test the gateway and a reachable host on another IPv6 subnet:
+
+    ```bash
+    ping -6 -c 3 -I "$DEVICE" 2001:db8:1::1
+    ping -6 -c 3 -I "$DEVICE" 2001:db8:2::53
+    ```
+
+    Use addresses from your own network when running these tests. To check DNS, replace `ipv6-docs.home.arpa` below with a hostname that has an AAAA record in your DNS:
+
+    ```bash
+    getent ahostsv6 ipv6-docs.home.arpa
+    ```
+
+    Look for native IPv6 addresses in the output. IPv4-mapped addresses beginning with `::ffff:` do not confirm an AAAA record. A successful lookup does not by itself confirm that the returned address is reachable. Use `ping -6` to test connectivity separately. Networks can filter ICMP echo requests, so a failed ping alone does not establish that the address or route is incorrect.
 
     ## Using The `ip` Utility
 
