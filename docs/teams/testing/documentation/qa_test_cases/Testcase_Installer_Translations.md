@@ -23,6 +23,16 @@ render_macros: true
 
 The installer must correctly display all complete translations that are available for use.
 
+* ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential. 
+* ❗ - Important. It is best to have this tested, but if it isn't or if it fails then it won't block the release.
+
+## Releases, Architectures, and ISO's
+
+| Distro         | Aarch64 | ppc64le | risc-v | s390x | x86_64 |
+| -------------- | ------- | -------- | ------ | ----- | ------ |
+| Rocky Linux  9 | ❗       | ⬇️        | N/A    | ⬇️     | ❗      |
+| Rocky Linux 10 | ❗       | ⬇️        | ⬇️      | ⬇️     | ❗      |
+
 ## Setup
 
 {% include 'teams/testing/qa_setup_boot_to_media.md' %}

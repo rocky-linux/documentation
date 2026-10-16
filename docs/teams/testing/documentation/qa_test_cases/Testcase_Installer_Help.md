@@ -23,6 +23,16 @@ render_macros: true
 
 Any element in the installer which contains a “help” text must display the appropriate help documentation when selected.
 
+* ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential. 
+* ❗ - Important. It is best to have this tested, but if it isn't or if it fails then it won't block the release.
+
+## Releases, Architectures, and ISO's
+
+| Distro         | Aarch64 | ppc64le | risc-v | s390x | x86_64 |
+| -------------- | ------- | -------- | ------ | ----- | ------ |
+| Rocky Linux  9 | ❗       | ⬇️        | N/A    | ⬇️     | ❗      |
+| Rocky Linux 10 | ❗       | ⬇️        | ⬇️      | ⬇️     | ❗      |
+
 ## Setup
 
 {% include 'teams/testing/qa_setup_boot_to_media.md' %}
@@ -34,9 +44,9 @@ Any element in the installer which contains a “help” text must display the a
 1. Verify that the "Configuring language and location settings" link displays a topically appropriate page.
 1. Close the Help browser to return to the Anaconda Hub.
 1. Verify that the Localization help page displays for the Keyboard, Language Support, and Time & Date spokes:
-    1. Select the spoke, then click the Help button.
-    1. Verify that you see the "Configuring localization options" page containing a functioning link to the "Configuring keyboard, language, and time and date settings" page.
-    1. Close the Help browser (and click Done if necessary) to return to the Anaconda Hub.
+   1. Select the spoke, then click the Help button.
+   1. Verify that you see the "Configuring localization options" page containing a functioning link to the "Configuring keyboard, language, and time and date settings" page.
+   1. Close the Help browser (and click Done if necessary) to return to the Anaconda Hub.
 1. Verify that the Help button in the Installation Source spoke displays the "Configuring installation source" page.
 1. Verify that the Help button in the Software Selection spoke displays the "Configuring software selection" page.
 1. Verify that the Help button in the Installation Destination spoke displays the "Configuring storage devices" page.

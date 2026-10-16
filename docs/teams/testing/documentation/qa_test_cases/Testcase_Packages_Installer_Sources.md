@@ -32,7 +32,16 @@ The following package sets are only available from remote sources and require a 
 - graphical-server
 - virtualization-host
 
+All items in this category are considered ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential.
+
 {% include 'teams/testing/qa_data_loss_warning.md' %}
+
+## Releases, Architectures, and ISO's
+
+| Distro         | Aarch64 | ppc64le | risc-v | s390x | x86_64 |
+| -------------- | ------- | -------- | ------ | ----- | ------ |
+| Rocky Linux  9 | ⬇️       | ⬇️        | ⬇️      | ⬇️     | ⬇️      |
+| Rocky Linux 10 | ⬇️       | ⬇️        | ⬇️      | ⬇️     | ⬇️      |
 
 ## Setup
 
@@ -42,8 +51,8 @@ The following package sets are only available from remote sources and require a 
 
 1. For local package installations it is not necessary to enable networking or specify a mirror.
 1. For package installation from remote sources:
-    1. From the Network and Hostname spoke, enable networking.
-    1. From the Installation Source spoke, configure a remote software source, supplying an appropriate [mirror](https://mirrors.rockylinux.org) for the version and architecture under test.
+   1. From the Network and Hostname spoke, enable networking.
+   1. From the Installation Source spoke, configure a remote software source, supplying an appropriate [mirror](https://mirrors.rockylinux.org) for the version and architecture under test.
 1. Complete the installer and wait for the machine to reboot.
 
 ## Expected Results

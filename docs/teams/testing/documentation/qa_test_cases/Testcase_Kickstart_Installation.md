@@ -23,13 +23,23 @@ render_macros: true
 
 This test case verifies that installations via both local and remote Kickstart configuration files are successful.
 
+* ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential. 
+* ❗ - Important. It is best to have this tested, but if it isn't or if it fails then it won't block the release.
+
 {% include 'teams/testing/qa_data_loss_warning.md' %}
+
+## Releases, Architectures, and ISO's
+
+| Distro         | Aarch64 | ppc64le | risc-v | s390x | x86_64 |
+| -------------- | ------- | -------- | ------ | ----- | ------ |
+| Rocky Linux  9 | ❗       | ⬇️        | N/A    | ⬇️     | ❗      |
+| Rocky Linux 10 | ❗       | ⬇️        | ⬇️      | ⬇️     | ❗      |
 
 ## Setup
 
 1. Copy a valid Kickstart file to a USB stick
 1. Connect the USB stick to the test system
-{% include 'teams/testing/qa_setup_boot_to_media.md' %}
+   {% include 'teams/testing/qa_setup_boot_to_media.md' %}
 1. Hit the Tab key to edit the boot command
 1. Provide a local Kickstart file by supplying the GRUB boot option `inst.ks=file:/path/to/local.ks` or a remote Kickstart file by supplying the GRUB boot option `inst.ks=https://git.resf.org/testing/createhdds/raw/branch/rocky/server.ks`.
 
@@ -47,6 +57,7 @@ The following openQA test suites satisfy this release criteria:
 
 - `install_kickstart_nfs`
 - `server_realmd_join_kickstart`
+
 <!-- TODO provide a test suite that does not require PARALLEL_WITH= -->
 
 {% include 'teams/testing/qa_testcase_bottom.md' %}

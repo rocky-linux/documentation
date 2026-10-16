@@ -22,24 +22,42 @@ render_macros: true
 
 This test case verifies that the installer can complete an installation using all Anaconda spokes.
 
+* ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential. 
+* ❗ - Important. It is best to have this tested, but if it isn't or if it fails then it won't block the release.
+
 {% include 'teams/testing/qa_data_loss_warning.md' %}
+
+## Releases, Architectures, and ISO's
+
+| Distro         | Aarch64 | ppc64le | risc-v | s390x | x86_64 |
+| -------------- | ------- | -------- | ------ | ----- | ------ |
+| Rocky Linux  9 | ❗       | ⬇️        | N/A    | ⬇️     | ❗      |
+| Rocky Linux 10 | ❗       | ⬇️        | ⬇️      | ⬇️     | ❗      |
 
 ## Setup
 
 {% include 'teams/testing/qa_setup_boot_to_media.md' %}
 
 ## How to test
+
 <!-- localization -->
+
 1. Select a keyboard layout in the Keyboard Layout spoke
 1. Set language support in the Language spoke
 1. Set the system time and date in the Time and Date spoke
+
 <!-- user settings -->
+
 1. Set a root password in the Root Password spoke
 1. Create a user in the user creation spoke
+
 <!-- software -->
+
 1. Select an installation source from the Installation Source spoke
 1. Select a set of packages to install from the Package Selection spoke
+
 <!-- system -->
+
 1. Set a disk to which the operating system should install in the Installation Destination spoke
 1. Set the kdump state from the Kdump spoke
 1. Configure the system's network and hostname from the Network and Hostname spoke
@@ -54,6 +72,7 @@ This test case verifies that the installer can complete an installation using al
 The following openQA test suites satisfy this release criteria:
 
 - `install_arabic_language` OR `install_asian_language`
+
 <!--
 TODO
 - something with kdump

@@ -22,6 +22,15 @@ The Rocky Linux [Release Engineering Team](https://sig-core.rocky.page/) builds 
 
 This testcase will verify that all packages available on released media that Rocky Linux Release Engineering has identified as requiring debranding are debranded successfully per their specification.
 
+* All items in this category are considered ❌ - Release blocker. This must be tested and until it is, or if it fails, then the issue must be properly addressed.
+
+## Releases, Architectures, and ISO's
+
+| Distro         | Aarch64 | ppc64le | risc-v | s390x | x86_64 |
+| -------------- | ------- | -------- | ------ | ----- | ------ |
+| Rocky Linux  9 | ❌       | ❌        | N/A    | ❌     | ❌      |
+| Rocky Linux 10 | ❌       | ❌        | ❌      | ❌     | ❌      |
+
 ## Setup
 
 1. Obtain access to an environment with the `dnf`, and `koji` commands and access to [Rocky Linux Gitlab](https://git.rockylinux.org) and [Rocky Linux Koji](https://koji.rockylinux.org)
@@ -35,44 +44,49 @@ This testcase will verify that all packages available on released media that Roc
 ## How to test
 
 1. Mount the ISO to be tested locally.
-    - Example:
 
-    ```bash
-    mount -o loop Rocky-8.5-x86_64-dvd1.iso /media
-    ```
+   - Example:
+
+   ```bash
+   mount -o loop Rocky-8.5-x86_64-dvd1.iso /media
+   ```
 
 2. Determine the path(s) to the `repodata` directory(ies) on the ISO.
-    - Example:
 
-    ```bash
-    find /media -name repodata
-    ```
+   - Example:
+
+   ```bash
+   find /media -name repodata
+   ```
 
 3. For each package to be validated get the names of the `noarch` and `<arch>` specific packages created from it.
-    - Example:
 
-    ```bash
-    koji --quiet latest-build --arch=x86_64 dist-rocky8-compose <package>
-    koji --quiet latest-build --arch=noarch dist-rocky8-compose <package>
-    ```
+   - Example:
+
+   ```bash
+   koji --quiet latest-build --arch=x86_64 dist-rocky8-compose <package>
+   koji --quiet latest-build --arch=noarch dist-rocky8-compose <package>
+   ```
 
 4. Use `dnf` to obtain the paths to the binary packages requiring debranding.
-    - Example:
 
-    ```bash
-    $ dnf download --urls --repofrompath BaseOS,/media/BaseOS --repo BaseOS \
-        --repofrompath Minimal,/media/Minimal --repo Minimal \
-        <binary_package>
-    ```
+   - Example:
+
+   ```bash
+   $ dnf download --urls --repofrompath BaseOS,/media/BaseOS --repo BaseOS \
+       --repofrompath Minimal,/media/Minimal --repo Minimal \
+       <binary_package>
+   ```
 
 5. Copy the `<binary_package>` from the media and examine it's metadata and/or contents to determine if it has obviously been patched.
-    - Example:
+
+   - Example:
 
    ```bash
    $ rpm -q --changelog -p <path_to_binary_package> | head | \
    grep "Release Engineering <releng@rockylinux.org>" -C2 | \
    grep -Eq "<pattern_to_find>"
-
+   
    $ rpm2cpio <path_to_binary_package> |
    cpio --quiet --extract --to-stdout .<file_to_examine> | \
    grep -Eq "<pattern_to_find>"
@@ -82,7 +96,8 @@ This testcase will verify that all packages available on released media that Roc
         Note all debranding patches will patch files directly and leave very obvious traces, some patches don't even add changelog messages to use as an indicator that the package has been patched or debranded. Sometimes the only solution is to extract the binary package and examine the contents directly to find something to test.
 
 6. Unmount the ISO.
-    - Example:
+
+   - Example:
 
    ```bash
    umount /media
@@ -96,124 +111,124 @@ This testcase will verify that all packages available on released media that Roc
 
 === "Success"
 
-   ```bash
-   $ sudo mount -o loop Rocky-8.5-aarch64-minimal.iso /media
-   mount: /media: WARNING: device write-protected, mounted read-only.
+```bash
+$ sudo mount -o loop Rocky-8.5-aarch64-minimal.iso /media
+mount: /media: WARNING: device write-protected, mounted read-only.
 
-   $ find /media -name repodata
-   /media/BaseOS/repodata
-   /media/Minimal/repodata
+$ find /media -name repodata
+/media/BaseOS/repodata
+/media/Minimal/repodata
 
-   $ curl -LOR https://git.rockylinux.org/rocky/metadata/-/raw/main/patch.yml
-   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                  Dload  Upload   Total   Spent    Left  Speed
-   100  3410  100  3410    0     0  20419      0 --:--:-- --:--:-- --:--:-- 20419
+$ curl -LOR https://git.rockylinux.org/rocky/metadata/-/raw/main/patch.yml
+% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                               Dload  Upload   Total   Spent    Left  Speed
+100  3410  100  3410    0     0  20419      0 --:--:-- --:--:-- --:--:-- 20419
 
-   $ yq .debrand.all[] patch.yml | column -x -c 100 -o " "
-   abrt                   anaconda               anaconda-user-help   chrony
-   cloud-init             cockpit                crash                dhcp
-   dnf                    firefox                fwupd                gcc
-   gcc-toolset-9-gcc      gcc-toolset-10-gcc     gcc-toolset-11-gcc   gcc-toolset-12-gcc
-   gnome-settings-daemon  grub2                  httpd                initial-setup
-   kernel                 kernel-rt              libdnf               libreoffice
-   libreport              nginx                  opa-ff               opa-fm
-   openscap               pesign                 PackageKit           python-pip
-   python3                redhat-rpm-config      scap-security-guide  shim
-   shim-unsigned-x64      shim-unsigned-aarch64  sos                  subscription-manager
-   systemd                thunderbird            WALinuxAgent
+$ yq .debrand.all[] patch.yml | column -x -c 100 -o " "
+abrt                   anaconda               anaconda-user-help   chrony
+cloud-init             cockpit                crash                dhcp
+dnf                    firefox                fwupd                gcc
+gcc-toolset-9-gcc      gcc-toolset-10-gcc     gcc-toolset-11-gcc   gcc-toolset-12-gcc
+gnome-settings-daemon  grub2                  httpd                initial-setup
+kernel                 kernel-rt              libdnf               libreoffice
+libreport              nginx                  opa-ff               opa-fm
+openscap               pesign                 PackageKit           python-pip
+python3                redhat-rpm-config      scap-security-guide  shim
+shim-unsigned-x64      shim-unsigned-aarch64  sos                  subscription-manager
+systemd                thunderbird            WALinuxAgent
 
-   $ ./yq .debrand.r8[] patch.yml | column -x -c 100 -o " "
-   dotnet3.0  fwupdate  gnome-boxes  libguestfs  pcs  plymouth
-   python2
+$ ./yq .debrand.r8[] patch.yml | column -x -c 100 -o " "
+dotnet3.0  fwupdate  gnome-boxes  libguestfs  pcs  plymouth
+python2
 
-   NOTE: Only a single package will be shown in this Example.
+NOTE: Only a single package will be shown in this Example.
 
-   $ koji --quiet latest-build --arch=x86_64 dist-rocky8-compose sos
+$ koji --quiet latest-build --arch=x86_64 dist-rocky8-compose sos
 
-   $ koji --quiet latest-build --arch=noarch dist-rocky8-compose sos
-   sos-4.1-9.el8_5.rocky.3.noarch
-   sos-audit-4.1-9.el8_5.rocky.3.noarch
+$ koji --quiet latest-build --arch=noarch dist-rocky8-compose sos
+sos-4.1-9.el8_5.rocky.3.noarch
+sos-audit-4.1-9.el8_5.rocky.3.noarch
 
-   $ dnf download --urls --repofrompath BaseOS,/media/BaseOS --repo BaseOS \
-   --repofrompath Minimal,/media/Minimal --repo Minimal \
-   sos sos-audit | grep -E "^file"
-   file:///media/BaseOS/Packages/s/sos-4.1-5.el8.noarch.rpm
-   file:///media/BaseOS/Packages/s/sos-audit-4.1-5.el8.noarch.rpm
+$ dnf download --urls --repofrompath BaseOS,/media/BaseOS --repo BaseOS \
+--repofrompath Minimal,/media/Minimal --repo Minimal \
+sos sos-audit | grep -E "^file"
+file:///media/BaseOS/Packages/s/sos-4.1-5.el8.noarch.rpm
+file:///media/BaseOS/Packages/s/sos-audit-4.1-5.el8.noarch.rpm
 
-   $ rpm -q --changelog -p /media/BaseOS/Packages/s/sos-4.1-5.el8.noarch.rpm | \
-     head | grep "Release Engineering <releng@rockylinux.org>" -C2
-   * Mon Oct 18 2021 Release Engineering <releng@rockylinux.org> - 4.1-5
-   - Remove Red Hat branding from sos
-   $ echo $?
-   0
+$ rpm -q --changelog -p /media/BaseOS/Packages/s/sos-4.1-5.el8.noarch.rpm | \
+  head | grep "Release Engineering <releng@rockylinux.org>" -C2
+* Mon Oct 18 2021 Release Engineering <releng@rockylinux.org> - 4.1-5
+- Remove Red Hat branding from sos
+$ echo $?
+0
 
-   $ rpm -q --changelog -p /media/BaseOS/Packages/s/sos-audit-4.1-5.el8.noarch.rpm | \
-     head | grep "Release Engineering <releng@rockylinux.org>" -C2
-   * Mon Oct 18 2021 Release Engineering <releng@rockylinux.org> - 4.1-5
-   - Remove Red Hat branding from sos
-   $ echo $?
-   0
+$ rpm -q --changelog -p /media/BaseOS/Packages/s/sos-audit-4.1-5.el8.noarch.rpm | \
+  head | grep "Release Engineering <releng@rockylinux.org>" -C2
+* Mon Oct 18 2021 Release Engineering <releng@rockylinux.org> - 4.1-5
+- Remove Red Hat branding from sos
+$ echo $?
+0
 
-   $ umount /media
-   ```
+$ umount /media
+```
 
 === "Failure"
 
-   ```bash
-   $ sudo mount -o loop Rocky-8.5-aarch64-minimal.iso /media
-   mount: /media: WARNING: device write-protected, mounted read-only.
+```bash
+$ sudo mount -o loop Rocky-8.5-aarch64-minimal.iso /media
+mount: /media: WARNING: device write-protected, mounted read-only.
 
-   $ find /media -name repodata
-   /media/BaseOS/repodata
-   /media/Minimal/repodata
+$ find /media -name repodata
+/media/BaseOS/repodata
+/media/Minimal/repodata
 
-   $ curl -LOR https://git.rockylinux.org/rocky/metadata/-/raw/main/patch.yml
-   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                Dload  Upload   Total   Spent    Left  Speed
-   100  3410  100  3410    0     0  20419      0 --:--:-- --:--:-- --:--:-- 20419
+$ curl -LOR https://git.rockylinux.org/rocky/metadata/-/raw/main/patch.yml
+% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                             Dload  Upload   Total   Spent    Left  Speed
+100  3410  100  3410    0     0  20419      0 --:--:-- --:--:-- --:--:-- 20419
 
-   $ yq .debrand.all[] patch.yml | column -x -c 100 -o " "
-   abrt                   anaconda               anaconda-user-help   chrony
-   cloud-init             cockpit                crash                dhcp
-   dnf                    firefox                fwupd                gcc
-   gcc-toolset-9-gcc      gcc-toolset-10-gcc     gcc-toolset-11-gcc   gcc-toolset-12-gcc
-   gnome-settings-daemon  grub2                  httpd                initial-setup
-   kernel                 kernel-rt              libdnf               libreoffice
-   libreport              nginx                  opa-ff               opa-fm
-   openscap               pesign                 PackageKit           python-pip
-   python3                redhat-rpm-config      scap-security-guide  shim
-   shim-unsigned-x64      shim-unsigned-aarch64  sos                  subscription-manager
-   systemd                thunderbird            WALinuxAgent
+$ yq .debrand.all[] patch.yml | column -x -c 100 -o " "
+abrt                   anaconda               anaconda-user-help   chrony
+cloud-init             cockpit                crash                dhcp
+dnf                    firefox                fwupd                gcc
+gcc-toolset-9-gcc      gcc-toolset-10-gcc     gcc-toolset-11-gcc   gcc-toolset-12-gcc
+gnome-settings-daemon  grub2                  httpd                initial-setup
+kernel                 kernel-rt              libdnf               libreoffice
+libreport              nginx                  opa-ff               opa-fm
+openscap               pesign                 PackageKit           python-pip
+python3                redhat-rpm-config      scap-security-guide  shim
+shim-unsigned-x64      shim-unsigned-aarch64  sos                  subscription-manager
+systemd                thunderbird            WALinuxAgent
 
-   $ ./yq .debrand.r8[] patch.yml | column -x -c 100 -o " "
-   dotnet3.0  fwupdate  gnome-boxes  libguestfs  pcs  plymouth
-   python2
+$ ./yq .debrand.r8[] patch.yml | column -x -c 100 -o " "
+dotnet3.0  fwupdate  gnome-boxes  libguestfs  pcs  plymouth
+python2
 
-   NOTE: Only a single package will be shown in this Example.
+NOTE: Only a single package will be shown in this Example.
 
-   $ koji --quiet latest-build --arch=x86_64 dist-rocky8-compose sos
+$ koji --quiet latest-build --arch=x86_64 dist-rocky8-compose sos
 
-   $ koji --quiet latest-build --arch=noarch dist-rocky8-compose sos
-   sos-4.1-9.el8_5.rocky.3.noarch
-   sos-audit-4.1-9.el8_5.rocky.3.noarch
+$ koji --quiet latest-build --arch=noarch dist-rocky8-compose sos
+sos-4.1-9.el8_5.rocky.3.noarch
+sos-audit-4.1-9.el8_5.rocky.3.noarch
 
-   $ dnf download --urls --repofrompath BaseOS,/media/BaseOS --repo BaseOS \
-   --repofrompath Minimal,/media/Minimal --repo Minimal \
-   sos sos-audit | grep -E "^file"
-   file:///media/BaseOS/Packages/s/sos-4.1-5.el8.noarch.rpm
-   file:///media/BaseOS/Packages/s/sos-audit-4.1-5.el8.noarch.rpm
+$ dnf download --urls --repofrompath BaseOS,/media/BaseOS --repo BaseOS \
+--repofrompath Minimal,/media/Minimal --repo Minimal \
+sos sos-audit | grep -E "^file"
+file:///media/BaseOS/Packages/s/sos-4.1-5.el8.noarch.rpm
+file:///media/BaseOS/Packages/s/sos-audit-4.1-5.el8.noarch.rpm
 
-   $ rpm -q --changelog -p /media/BaseOS/Packages/s/sos-4.1-5.el8.noarch.rpm | \
-   head | grep "Release Engineering <releng@rockylinux.org>" -C2
-   $ echo $?
-   1
+$ rpm -q --changelog -p /media/BaseOS/Packages/s/sos-4.1-5.el8.noarch.rpm | \
+head | grep "Release Engineering <releng@rockylinux.org>" -C2
+$ echo $?
+1
 
-   $ rpm -q --changelog -p /media/BaseOS/Packages/s/sos-audit-4.1-5.el8.noarch.rpm | \
-   head | grep "Release Engineering <releng@rockylinux.org>" -C2
-   $ echo $?
-   1
+$ rpm -q --changelog -p /media/BaseOS/Packages/s/sos-audit-4.1-5.el8.noarch.rpm | \
+head | grep "Release Engineering <releng@rockylinux.org>" -C2
+$ echo $?
+1
 
-   $ umount /media
-   ```
+$ umount /media
+```
 
 {% include 'teams/testing/qa_testcase_bottom.md' %}

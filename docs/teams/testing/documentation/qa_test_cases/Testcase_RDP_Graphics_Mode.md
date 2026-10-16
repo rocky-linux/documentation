@@ -21,13 +21,20 @@ render_macros: true
 
 This test case will verify that release-blocking installers function as intended using the RDP installation method (via gnome-remote-desktop) on supported systems and classes of hardware.
 
-{% include 'teams/testing/qa_testcase_supported_systems.md' %}
+* All items in this category are considered ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential.
+
+## Releases, Architectures, and ISO's
+
+| Distro         | Aarch64 | ppc64le | risc-v | s390x | x86_64 |
+| -------------- | ------- | -------- | ------ | ----- | ------ |
+| Rocky Linux  9 | N/A     | N/A      | N/A    | N/A   | N/A    |
+| Rocky Linux 10 | ⬇️       | ⬇️        | ⬇️      | ⬇️     | ⬇️      |
 
 ## Setup
 
 1. Obtain access to supported system and hardware class to be installed.
 2. Prepare appropriate media for the selected ISO to be tested.
-    - Example: [QA:Testcase Media USB dd](Testcase_Media_USB_dd.md)
+   - Example: [QA:Testcase Media USB dd](Testcase_Media_USB_dd.md)
 3. Obtain access to remote system with an RDP client installed to use for RDP connection.
 
 !!! info "Suggested RDP Clients"
@@ -36,7 +43,7 @@ This test case will verify that release-blocking installers function as intended
 ## How to test
 
 1. Boot the system from the prepared optical, USB media or virtual device attachment.
-    - Examples: [QA:Testcase Custom Boot Methods Boot ISO](Testcase_Custom_Boot_Methods_Boot_Iso.md)
+   - Examples: [QA:Testcase Custom Boot Methods Boot ISO](Testcase_Custom_Boot_Methods_Boot_Iso.md)
 2. Interrupt the kernel boot and specify the appropriate RDP installation option on the boot command line.
 3. Proceed with installation on the test system. **Depending on installer choices this MAY destroy all the data on the test system.**
 4. Depending on the choice or `direct` or `connect` mode connect inbound to the system under test or wait for it to connect to your listening RDP client.

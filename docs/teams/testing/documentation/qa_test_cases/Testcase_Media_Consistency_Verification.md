@@ -16,13 +16,15 @@ render_macros: true
 
 This is to verify that the Anaconda installer starts correctly when booting iso's from physical thumbdrives.
 
+* ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential. 
+* ❌ - Release blocker. This must be tested and until it is, or if it fails, then the issue must be properly addressed.
+
 ## Releases, Architectures, and ISO's
 
-| Distro | Aarch64 | ppc 64le | risc-v | s390x | x86_64 |
-|-|-|-|-|-|-|
-| Rocky Linux  9 | boot, minimal, dvd  | boot, minimal, dvd | N/A | boot, minimal, dvd | boot, minimal, dvd | 
-| Rocky Linux 10 | boot, minimal, dvd  | boot, minimal, dvd | boot, minimal, dvd | boot, minimal, dvd | boot, minimal, dvd | 
-
+| Distro         | Aarch64                         | ppc64le                       | risc-v                         | s390x                          | x86_64                          |
+| -------------- | ------------------------------- | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------- |
+| Rocky Linux  9 | ❌boot, <br/>❌minimal, <br/>❌dvd | ⬇️boot, <br/>⬇️minimal,<br/>⬇️dvd | N/A                            | ⬇️boot, <br/>⬇️minimal,<br/>⬇️dvd | ❌boot, <br/>❌minimal, <br/>❌dvd |
+| Rocky Linux 10 | ❌boot, <br/>❌minimal,<br/>❌dvd  | ⬇️boot, <br/>⬇️minimal,<br/>⬇️dvd | ⬇️boot, <br/>⬇️minimal,<br/>⬇️dvd | ⬇️boot, <br/>⬇️minimal,<br/>⬇️dvd | ❌boot, <br/>❌minimal, <br/>❌dvd |
 
 ## Setup
 
