@@ -17,7 +17,7 @@ Specific Testcases can/will be implemented in either openQA or Sparky/Sparrow. F
 
 * [Testing's Meta Project](https://git.resf.org/testing/meta) repository
 * [os-autoinst-distri-rocky](https://github.com/rocky-linux/os-autoinst-distri-rocky/issues) repository
-* [Sparky Rocky](https://git.resf.org/testing/Sparky_Rocky) repository
+* [Sparky Rocky](https://git.resf.org/testing/Sparrow_Rocky) repository
 
 For historical testing, please see the release channels in [Mattermost chat](https://chat.rockylinux.org).
 
@@ -102,6 +102,33 @@ These are items which are easy for most to be able to test without having a requ
 | ⬇️        | [Vagrant - Libvirt](Testcase_Cloud_Vagrant_Libvirt.md)       | Verify Vagrant Libvirt image is functional    | manual |
 | ⬇️        | [Vagrant - VirtualBox](Testcase_Cloud_Vagrant_VirtualBox.md) | Verify Vagrant VirtualBox image is functional | manual |
 | ⬇️        | [Vagrant - VMWare](Testcase_Cloud_Vagrant_VMWare.md)         | Verify Vagrant VMWare image is functional     | manual |
+
+## Sparrow/Sparky Testing
+
+| Category | Requirement                                      | Test Case                                 | Status  |
+| -------- | ------------------------------------------------ | ----------------------------------------- | ------- |
+|          | [Anacrond](Sparrow_Anacrond.md)                   | Test documentation of Anacrond            | Sparrow |
+|          | [Bind](Sparrow_Bind.md)                           | Test documentation of Bind                | Sparrow |
+|          | [Caddy](Sparrow_Caddy.md)                         | Test documentation of Caddy               | Sparrow |
+|          | [Chrony](Sparrow_Chrony.md)                       | Test documentation of Chrony              | Sparrow |
+|          | [Chyrp](Sparrow_Chyrp.md)                         | Test documentation of Chyrp               | Sparrow |
+|          | [DNF](Sparrow_DNF.md)                             | Test documentation of DNF                 | Sparrow |
+|          | [Knot](Sparrow_Knot.md)                           | Test documentation of Knott               | Sparrow |
+|          | [Nvinx Multi Site](Sparrow_Nginx_Multi_Site.md)   | Test documentation of Nginx (Multi site)  | Sparrow |
+|          | [Nginx Single Site](Sparrow_Nginx_Single_Site.md) | Test documentation of Nginx (Single site) | Sparrow |
+|          | [NFS](Sparrow_NFS.md)                             | Test documentation of NFS                 | Sparrow |
+|          | [NSD](Sparrow_NSD.md)                             | Test documentation of NSD                 | Sparrow |
+|          | [PHP](Sparrow_PHP.md)                             | Test documentation of PHP                 | Sparrow |
+|          | [Podman](Sparrow_Podman.md)                       | Test documentation of Podman              | Sparrow |
+|          | [Python SSL](Sparrow_Python_SSL.md)               | Test documentation of  Python SSL         | Sparrow |
+|          | [Redis](Sparrow_Redis.md)                         | Test documentation of Redis               | Sparrow |
+|          | [Slurm](Sparrow_Slurm.md)                         | Test documentation of Slurm               | Sparrow |
+|          | [Swap](Sparrow_Swap.md)                           | Test documentation of Swap                | Sparrow |
+|          | [Tar](Sparrow_Tar.md)                             | Test documentation of Tar                 | Sparrow |
+|          | [Unbound](Sparrow_Unbound.md)                     | Test documentation of Unbound             | Sparrow |
+|          | [Wordpress LAMP](Sparrow_WP_LAMP.md)              | Test documentation of Wordpress LAMP      | Sparrow |
+|          | [XFS Recovery](Sparrow_XfsRecovery.md)            | Test documentation of XFS Recovery        | Sparrow |
+|          | [ZFS](Sparrow_ZFS.md)                             | Test documentation of ZFS                 | Sparrow |
 
 ## SIG/AltArch
 
