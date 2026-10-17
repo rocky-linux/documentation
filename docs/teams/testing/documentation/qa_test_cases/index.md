@@ -17,7 +17,7 @@ Specific Testcases can/will be implemented in either openQA or Sparky/Sparrow. F
 
 * [Testing's Meta Project](https://git.resf.org/testing/meta) repository
 * [os-autoinst-distri-rocky](https://github.com/rocky-linux/os-autoinst-distri-rocky/issues) repository
-* [Sparky Rocky](https://git.resf.org/testing/Sparrow_Rocky) repository
+* [Sparky Rocky](https://git.resf.org/testing/Sparky_Rocky) repository
 
 For historical testing, please see the release channels in [Mattermost chat](https://chat.rockylinux.org).
 
