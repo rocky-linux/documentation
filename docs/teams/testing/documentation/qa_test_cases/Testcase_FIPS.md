@@ -1,5 +1,5 @@
 ---
-title: QA:Testcase Media Consistency Verification
+title: QA:Testcase FIPS
 author: Chris Stackpole
 contributors: 
 tags:
@@ -14,15 +14,17 @@ render_macros: true
 
 ## Description
 
-This is to ensure that SecureBoot and firmware updates function with the lastest packages.
+This is to ensure that FIPS is working.
 
-## Releases, Architectures, and ISO's
+* ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential. 
+* ❗ - Important. It is best to have this tested, but if it isn't or if it fails then it won't block the release.
 
-| Distro | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
-|-|-|-|-|-|-|
-| Rocky Linux  9 | optional | N/A | N/A | N/A | required | 
-| Rocky Linux 10 | optional | N/A | N/A | N/A | required | 
+## Releases and Architectures
 
+| Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
+| -------------- | ------- | ------- | ------- | ----- | ------ |
+| Rocky Linux  9 | ⬇️       | N/A     | N/A     | N/A   | ❗      |
+| Rocky Linux 10 | ⬇️       | N/A     | N/A     | N/A   | ❗      |
 
 ## Setup
 
@@ -35,4 +37,4 @@ This is to ensure that SecureBoot and firmware updates function with the lastest
 ## Expected Results
 
 1. TBD 
-{% include 'teams/testing/qa_testcase_bottom.md' %}
+   {% include 'teams/testing/qa_testcase_bottom.md' %}

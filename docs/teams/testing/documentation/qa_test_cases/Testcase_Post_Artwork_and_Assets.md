@@ -1,7 +1,7 @@
 ---
 title: QA:Testcase Artwork and Assets
 author: Lukas Magauer
-contributors:
+contributors: Chris Stackpole
 tested_with: 8.10, 9.7, 10.1
 tags:
   - testing
@@ -12,6 +12,7 @@ rc:
   ver:
     - 8
     - 9
+    - 10
   level: Final
 render_macros: true
 ---
@@ -26,11 +27,20 @@ render_macros: true
 
 There are several brand artworks and assets throughout the whole OS, this testcase will take care of checking, that these are actually in place, and don't produce any UI errors. This is exclusively for installations with the default desktop environment GDM and GNOME.
 
+All items in this category are ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential. 
+
+## Releases and Architectures
+
+| Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
+| -------------- | ------- | ------- | ------- | ----- | ------ |
+| Rocky Linux  9 | ⬇️       | ⬇️       | N/A     | ⬇️     | ⬇️      |
+| Rocky Linux 10 | ⬇️       | ⬇️       | ⬇️       | ⬇️     | ⬇️      |
+
 ## Setup
 
 1. Acquire access to either a baremetal machine or a VM host, to install a new machine
 2. Prepare appropriate media for the selected ISO to be tested.
-    - Example: [QA:Testcase Media USB dd](Testcase_Media_USB_dd.md)
+   - Example: [QA:Testcase Media USB dd](Testcase_Media_USB_dd.md)
 
 ## How to test
 

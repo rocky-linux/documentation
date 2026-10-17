@@ -1,7 +1,7 @@
 ---
 title: QA:Testcase Multimonitor Setup
 author: Lukas Magauer
-contributors:
+contributors: Chris Stackpole
 tested_with: 8.10, 9.7, 10.1
 tags:
   - testing
@@ -25,6 +25,15 @@ render_macros: true
 ## Description
 
 This test covers the check if GNOME behaves as it should in multi-monitor setups.
+
+All items in this category are ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential. 
+
+## Releases and Architectures
+
+| Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
+| -------------- | ------- | ------- | ------- | ----- | ------ |
+| Rocky Linux  9 | ⬇️       | ⬇️       | N/A     | ⬇️     | ⬇️      |
+| Rocky Linux 10 | ⬇️       | ⬇️       | ⬇️       | ⬇️     | ⬇️      |
 
 ## Setup
 

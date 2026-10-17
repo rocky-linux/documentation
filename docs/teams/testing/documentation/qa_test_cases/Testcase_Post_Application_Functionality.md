@@ -1,7 +1,7 @@
 ---
 title: QA:Testcase Application Functionality
 author: Lukas Magauer
-contributors:
+contributors: Chris Stackpole
 tested_with: 8.10, 9.7, 10.1
 tags:
   - testing
@@ -12,6 +12,7 @@ rc:
   ver:
     - 8
     - 9
+    - 10
   level: Final
 render_macros: true
 ---
@@ -43,6 +44,18 @@ The following tasks apply in general to all of the following applications:
 - Help Viewer
 - System Settings
 - vim (Console Text Editor)
+
+.
+
+* ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential. 
+* ❗ - Important. It is best to have this tested, but if it isn't or if it fails then it won't block the release.
+
+## Releases and Architectures
+
+| Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
+| -------------- | ------- | ------- | ------- | ----- | ------ |
+| Rocky Linux  9 | ❗       | ⬇️       | N/A     | ⬇️     | ❗      |
+| Rocky Linux 10 | ❗       | ⬇️       | ⬇️       | ⬇️     | ❗      |
 
 ## Setup
 

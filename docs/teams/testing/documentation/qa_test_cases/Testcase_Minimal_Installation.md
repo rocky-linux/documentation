@@ -1,7 +1,7 @@
 ---
 title: QA:Testcase Minimal Installation
 author: Al Bowles
-contributors:
+contributors: Chris Stackpole
 tested_with: 8.10, 9.7
 tags:
   - testing

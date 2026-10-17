@@ -1,7 +1,7 @@
 ---
 title: QA:Testcase Vagrant Images
 author: Bob Robison
-contributors:
+contributors: Chris Stackpole
 tested_with: 8.10, 9.7, 10.1
 tags:
   - testing

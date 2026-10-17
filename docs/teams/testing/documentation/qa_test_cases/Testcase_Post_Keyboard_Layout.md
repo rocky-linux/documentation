@@ -1,7 +1,7 @@
 ---
 title: QA:Testcase Keyboard Layout
 author: Lukas Magauer
-contributors:
+contributors: Chris Stackpole
 tested_with: 8.10, 9.7, 10.1
 tags:
   - testing
@@ -26,12 +26,33 @@ render_macros: true
 
 As there are a lot of different keyboard layouts available, it is necessary to test if the keyboard functionality works without any issues throughout the system.
 
+If a particular keyboard layout has been configured for the system, that layout must be used:
+
+- When unlocking storage volumes (encrypted by LUKS)
+
+- When logging in at a TTY console
+
+- When logging in via GDM
+
+- After logging into a GNOME desktop system, if the user does not have their own layout configuration set.
+
+  
+* ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential. 
+* ❗ - Important. It is best to have this tested, but if it isn't or if it fails then it won't block the release.
+
+## Releases and Architectures
+
+| Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
+| -------------- | ------- | ------- | ------- | ----- | ------ |
+| Rocky Linux  9 | ❗       | ⬇️       | N/A     | ⬇️     | ❗      |
+| Rocky Linux 10 | ❗       | ⬇️       | ⬇️       | ⬇️     | ❗      |
+
 ## Setup
 
 - Obtain access to a few different system configurations, especially with and without UI, and not to forget with disk encryption.
 - Acquire access to either a baremetal machine or a VM host, to install a new machine
-    - Prepare appropriate media for the selected ISO to be tested.
-    - Example: [QA:Testcase Media USB dd](Testcase_Media_USB_dd.md)
+  - Prepare appropriate media for the selected ISO to be tested.
+  - Example: [QA:Testcase Media USB dd](Testcase_Media_USB_dd.md)
 
 ## How to test
 

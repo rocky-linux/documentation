@@ -1,7 +1,7 @@
 ---
 title: QA:Testcase Debranding
 author: Trevor Cooper
-contributors:
+contributors: Chris Stackpole
 tested_with: 8.10
 tags:
   - testing

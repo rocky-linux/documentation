@@ -1,7 +1,7 @@
 ---
 title: QA:Testcase Packages and Installer Sources
 author: Al Bowles
-contributors:
+contributors: Chris Stackpole
 tested_with: 8.10
 tags:
   - testing

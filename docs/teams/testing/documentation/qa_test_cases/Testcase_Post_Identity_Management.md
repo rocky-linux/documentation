@@ -1,7 +1,7 @@
 ---
 title: QA:Testcase Identity Management
 author: Lukas Magauer
-contributors:
+contributors: Chris Stackpole
 tested_with: 8.10, 9.7, 10.1
 tags:
   - testing
@@ -27,6 +27,15 @@ render_macros: true
 
 Setting up a IdM system (FreeIPA) and using it's functionality leverages not also a lot of the packages in the official repos, it also tests quite a lot of used functions a corporate environment. This installatation will host it's own dns server for more generic testing without relying on the individual infrastructure of the environment.
 
+All items in this category are ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential. 
+
+## Releases and Architectures
+
+| Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
+| -------------- | ------- | ------- | ------- | ----- | ------ |
+| Rocky Linux  9 | ⬇️       | ⬇️       | N/A     | ⬇️     | ⬇️      |
+| Rocky Linux 10 | ⬇️       | ⬇️       | ⬇️       | ⬇️     | ⬇️      |
+
 ## Requirements
 
 - A freshly provisioned system (no other functions are allowed on this system except running the IdM services)
@@ -37,32 +46,33 @@ Setting up a IdM system (FreeIPA) and using it's functionality leverages not als
 
 1. Rocky Linux version:
 
-    - 8:`dnf module install idm:DL1/dns`  
-    - 9/10: `dnf install ipa-server-dns`
+   - 8:`dnf module install idm:DL1/dns`  
+   - 9/10: `dnf install ipa-server-dns`
 
 2. `ipa-server-install`
 
-    - Do you want to configure integrated DNS (BIND)? [no]: yes
-    - Server host name [r10-ipa1-dev.example.com]: `leave empty`
-    - Please confirm the domain name [example.com]: ipa1.network
-    - Please provide a realm name [IPA1.NETWORK]: `leave empty`
-    - Directory Manager password: `<password>`
-      Password (confirm): `<password>`
-    - IPA admin password: `<other-password>`
-      Password (confirm): `<other-password>`
-    - (8 only) Please provide the IP address to be used for this host name: 10.30.30.1
-    - (8 only) Enter an additional IP address, or press Enter to skip: `leave empty`
-    - Do you want to configure DNS forwarders? [yes]: `leave empty`
-    - Do you want to configure these servers as DNS forwarders? [yes]: `leave empty`
-    - Enter an IP address for a DNS forwarder, or press Enter to skip: `leave empty`
-    - Do you want to search for missing reverse zones? [yes]: `leave empty`
-    - NetBIOS domain name [IPA1]: `leave empty`
-    - Do you want to configure chrony with NTP server or pool address? [no]: yes
-    - Enter NTP source server addresses separated by comma, or press Enter to skip: `leave empty`
-    - Enter a NTP source pool address, or press Enter to skip: pool.ntp.org
-    - Continue to configure the system with these values? [no]: yes
+   - Do you want to configure integrated DNS (BIND)? [no]: yes
+   - Server host name [r10-ipa1-dev.example.com]: `leave empty`
+   - Please confirm the domain name [example.com]: ipa1.network
+   - Please provide a realm name [IPA1.NETWORK]: `leave empty`
+   - Directory Manager password: `<password>`
+     Password (confirm): `<password>`
+   - IPA admin password: `<other-password>`
+     Password (confirm): `<other-password>`
+   - (8 only) Please provide the IP address to be used for this host name: 10.30.30.1
+   - (8 only) Enter an additional IP address, or press Enter to skip: `leave empty`
+   - Do you want to configure DNS forwarders? [yes]: `leave empty`
+   - Do you want to configure these servers as DNS forwarders? [yes]: `leave empty`
+   - Enter an IP address for a DNS forwarder, or press Enter to skip: `leave empty`
+   - Do you want to search for missing reverse zones? [yes]: `leave empty`
+   - NetBIOS domain name [IPA1]: `leave empty`
+   - Do you want to configure chrony with NTP server or pool address? [no]: yes
+   - Enter NTP source server addresses separated by comma, or press Enter to skip: `leave empty`
+   - Enter a NTP source pool address, or press Enter to skip: pool.ntp.org
+   - Continue to configure the system with these values? [no]: yes
 
 3. `firewall-cmd --add-service={freeipa-4,dns} --permanent`
+
 4. `firewall-cmd --reload`
 
 ## How to test

@@ -1,7 +1,7 @@
 ---
 title: QA:Testcase VNC Graphics Mode
 author: Trevor Cooper
-contributors:
+contributors: Chris Stackpole
 tested_with: 9.7
 tags:
   - testing
