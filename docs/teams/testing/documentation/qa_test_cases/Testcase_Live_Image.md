@@ -21,7 +21,7 @@ All items in this category are considered ⬇️ - Low priority. It would be goo
 
 Live images are only created for Aarch64 and x86_64. Not all Desktop live images are created at release but will be updated as upstream dependencies allow.
 
-| Distro         | Aarch64                                                                 | ppc64le | risc-v | s390x | x86_64                                                                  |
+| Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
 | -------------- | ----------------------------------------------------------------------- | ------- | ------ | ----- | ----------------------------------------------------------------------- |
 | Rocky Linux  9 | Cinnamon<br/>KDE<br/>MATE<br/>Workstation<br/>Workstation Lite<br/>XFCE | N/A     | N/A    | N/A   | Cinnamon<br/>KDE<br/>MATE<br/>Workstation<br/>Workstation Lite<br/>XFCE |
 | Rocky Linux 10 | KDE<br/>Workstation<br/>Workstation Lite                                | N/A     | N/A    | N/A   | KDE<br/>Workstation<br/>Workstation Lite                                |

@@ -21,7 +21,7 @@ This is to verify that the Anaconda installer starts correctly when booting iso'
 
 ## Releases, Architectures, and ISO's
 
-| Distro         | Aarch64                         | ppc64le                       | risc-v                         | s390x                          | x86_64                          |
+| Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
 | -------------- | ------------------------------- | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------- |
 | Rocky Linux  9 | ❌boot, <br/>❌minimal, <br/>❌dvd | ⬇️boot, <br/>⬇️minimal,<br/>⬇️dvd | N/A                            | ⬇️boot, <br/>⬇️minimal,<br/>⬇️dvd | ❌boot, <br/>❌minimal, <br/>❌dvd |
 | Rocky Linux 10 | ❌boot, <br/>❌minimal,<br/>❌dvd  | ⬇️boot, <br/>⬇️minimal,<br/>⬇️dvd | ⬇️boot, <br/>⬇️minimal,<br/>⬇️dvd | ⬇️boot, <br/>⬇️minimal,<br/>⬇️dvd | ❌boot, <br/>❌minimal, <br/>❌dvd |

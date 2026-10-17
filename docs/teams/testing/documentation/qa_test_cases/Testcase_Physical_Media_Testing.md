@@ -20,7 +20,7 @@ All testing in this category is considered ⬇️ - Low priority. It would be go
 
 ## Releases, Architectures, and ISO's
 
-| Distro         | Aarch64            | ppc64le           | risc-v             | s390x              | x86_64             |
+| Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
 | -------------- | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
 | Rocky Linux  9 | boot, minimal, dvd | boot, minimal, dvd | N/A                | boot, minimal, dvd | boot, minimal, dvd |
 | Rocky Linux 10 | boot, minimal, dvd | boot, minimal, dvd | boot, minimal, dvd | boot, minimal, dvd | boot, minimal, dvd |

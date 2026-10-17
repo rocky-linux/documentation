@@ -30,7 +30,7 @@ This test case verifies successful installation to any supported partition layou
 
 ## Releases, Architectures, and ISO's
 
-| Distro         | Aarch64                                           | ppc64le                                          | risc-v                             | s390x                                             | x86_64                                            |
+| Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
 | -------------- | ------------------------------------------------- | ------------------------------------------------- | ---------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
 | Rocky Linux  9 | ❗XFS<br/>❗EXT4<br/>⬇️EXT3<br/>⬇️EXT2<br/><br/>⬇️VFAT | ❗XFS<br/>❗EXT4<br/>⬇️EXT3<br/>⬇️EXT2<br/><br/>⬇️VFAT | N/A                                | ❗XFS<br/>❗EXT4<br/>⬇️EXT3<br/>⬇️EXT2<br/><br/>⬇️VFAT | ❗XFS<br/>❗EXT4<br/>⬇️EXT3<br/>⬇️EXT2<br/><br/>⬇️VFAT |
 | Rocky Linux 10 | ❗XFS<br/>❗EXT4<br/>⬇️EXT3<br/>⬇️EXT2                | ❗XFS<br/>❗EXT4<br/>⬇️EXT3<br/>⬇️EXT2                | ❗XFS<br/>❗EXT4<br/>⬇️EXT3<br/>⬇️EXT2 | ❗XFS<br/>❗EXT4<br/>⬇️EXT3<br/>⬇️EXT2                | ❗XFS<br/>❗EXT4<br/>⬇️EXT3<br/>⬇️EXT2                |

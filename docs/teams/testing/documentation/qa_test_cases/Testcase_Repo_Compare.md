@@ -26,7 +26,7 @@ This test case will verify that repositories and the packages within them match 
 
 ## Releases, Architectures, and ISO's
 
-| Distro         | Aarch64 | ppc64le | risc-v | s390x | x86_64 |
+| Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
 | -------------- | ------- | -------- | ------ | ----- | ------ |
 | Rocky Linux  9 | ❗       | ❗        | N/A    | ❗     | ❗      |
 | Rocky Linux 10 | ❗       | ❗        | ⬇️      | ❗     | ❗      |
