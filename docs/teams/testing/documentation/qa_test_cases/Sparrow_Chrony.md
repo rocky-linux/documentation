@@ -16,7 +16,7 @@ render_macros: true
 
 Documentation link:- https://docs.rockylinux.org/guides/automation/configuring_chrony/
 
-Project link:- https://git.resf.org/testing/Sparky_Chronyd
+Project link:- https://git.resf.org/testing/Sparky_Chrony
 
 🔴 - Tested and known to fail.
 ✅ - Tested and known to work.
