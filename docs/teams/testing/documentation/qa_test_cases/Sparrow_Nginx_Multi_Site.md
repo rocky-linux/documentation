@@ -26,9 +26,9 @@ Project link:- https://git.resf.org/testing/Sparky_Nginx_Multi_Site
 
 | Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
 | -------------- | ------- | ------- | ------- | ----- | ------ |
-| Rocky Linux  8 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅     |
-| Rocky Linux  9 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅     |
-| Rocky Linux 10 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅     |
+| Rocky Linux  8 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅      |
+| Rocky Linux  9 | ✅       | ⚠️       | ⚠️       | ⚠️     | ✅      |
+| Rocky Linux 10 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅      |
 
 ## Setup
 
@@ -36,9 +36,18 @@ Project link:- https://git.resf.org/testing/Sparky_Nginx_Multi_Site
 
 ## How to test
 
-1. TBD
+1. See Sparky guide.
 
 ## Expected Results
 
-1. TBD 
-   {% include 'teams/testing/qa_testcase_bottom.md' %}
+```
+[task check]
+stdout match (s) <enabled> True
+stdout match (s) <active> True
+stdout match (s) <^^ \s* "<h1>This is Site 1</h1>"> True
+stdout match (s) <200> True
+stdout match (s) <^^ \s* "<h1>This is Site 2</h1>"> True
+stdout match (s) <200> True
+```
+
+{% include 'teams/testing/qa_testcase_bottom.md' %}

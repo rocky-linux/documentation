@@ -36,7 +36,7 @@ Project link:- https://git.resf.org/testing/Sparky_ZFS
 
 ## How to test
 
-1. TBD
+1. See Sparky guide.
 
 ## Expected Results
 

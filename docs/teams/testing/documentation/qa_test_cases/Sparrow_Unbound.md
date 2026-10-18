@@ -26,9 +26,9 @@ Project link:- https://git.resf.org/testing/Sparky_Unbound
 
 | Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
 | -------------- | ------- | ------- | ------- | ----- | ------ |
-| Rocky Linux  8 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅     |
-| Rocky Linux  9 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅     |
-| Rocky Linux 10 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅     |
+| Rocky Linux  8 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅      |
+| Rocky Linux  9 | ✅       | ⚠️       | ⚠️       | ⚠️     | ✅      |
+| Rocky Linux 10 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅      |
 
 ## Setup
 
@@ -36,9 +36,18 @@ Project link:- https://git.resf.org/testing/Sparky_Unbound
 
 ## How to test
 
-1. TBD
+1. See Sparky guide.
 
 ## Expected Results
 
-1. TBD 
-   {% include 'teams/testing/qa_testcase_bottom.md' %}
+```
+[task check]
+stdout match (s) <Using domain server:> True
+stdout match (s) <Name: 127.0.0.1> True
+stdout match (s) <Address: 127.0.0.1> True
+stdout match (s) <Aliases:> True
+stdout match (s) <^^ \s* $$> True
+stdout match (s) <google.com has address> True
+```
+
+{% include 'teams/testing/qa_testcase_bottom.md' %}

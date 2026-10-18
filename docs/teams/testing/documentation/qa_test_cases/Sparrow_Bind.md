@@ -26,9 +26,9 @@ Project link:- https://git.resf.org/testing/Sparky_Bind
 
 | Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
 | -------------- | ------- | ------- | ------- | ----- | ------ |
-| Rocky Linux  8 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅     |
-| Rocky Linux  9 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅     |
-| Rocky Linux 10 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅     |
+| Rocky Linux  8 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅      |
+| Rocky Linux  9 | ✅       | ⚠️       | ⚠️       | ⚠️     | ✅      |
+| Rocky Linux 10 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅      |
 
 ## Setup
 
@@ -36,9 +36,22 @@ Project link:- https://git.resf.org/testing/Sparky_Bind
 
 ## How to test
 
-1. TBD
+1. See Sparky guide.
 
 ## Expected Results
 
-1. TBD 
-   {% include 'teams/testing/qa_testcase_bottom.md' %}
+```
+[task check]
+stdout match (s) <enabled> True
+stdout match (s) <active> True
+stdout match (s) <ok> True
+stdout match (s) <zone ourdomain.lan/IN: loaded serial 2019061800> True
+stdout match (s) <OK> True
+stdout match (s) <zone 192.168.1.136/IN: loaded serial 2019061800> True
+stdout match (s) <OK> True
+stdout match (s) <192.168.1.13> True
+stdout match (s) <192.168.1.14> True
+stdout match (s) <192.168.1.15> True
+```
+
+{% include 'teams/testing/qa_testcase_bottom.md' %}

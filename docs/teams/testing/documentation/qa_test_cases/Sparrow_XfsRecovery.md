@@ -26,8 +26,8 @@ Project link:- https://git.resf.org/testing/Sparky_XfsRecovery
 
 | Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
 | -------------- | ------- | ------- | ------- | ----- | ------ |
-| Rocky Linux  8 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅     |
-| Rocky Linux  9 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅     |
+| Rocky Linux  8 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅      |
+| Rocky Linux  9 | ✅       | ⚠️       | ⚠️       | ⚠️     | ✅      |
 | Rocky Linux 10 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | 🔴     |
 
 ## Setup
@@ -36,9 +36,19 @@ Project link:- https://git.resf.org/testing/Sparky_XfsRecovery
 
 ## How to test
 
-1. TBD
+1. See Sparky guide.
 
 ## Expected Results
 
-1. TBD 
-   {% include 'teams/testing/qa_testcase_bottom.md' %}
+```
+[task check]
+stdout match <installed> True
+stdout match <xfs_info ok> True
+stdout match <mounted> True
+stdout match <thp disabled> True
+stdout match <grubby ok> True
+stdout match <lvm ok> True
+stdout match <slab fields present> True
+```
+
+{% include 'teams/testing/qa_testcase_bottom.md' %}

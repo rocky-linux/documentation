@@ -105,13 +105,14 @@ These are items which are easy for most to be able to test without having a requ
 
 ## Sparrow/Sparky Testing
 
-| Category | Requirement                                      | Test Case                                 | Status  |
-| -------- | ------------------------------------------------ | ----------------------------------------- | ------- |
+| Category | Requirement                                       | Test Case                                 | Status  |
+| -------- | ------------------------------------------------- | ----------------------------------------- | ------- |
 |          | [Anacrond](Sparrow_Anacrond.md)                   | Test documentation of Anacrond            | Sparrow |
 |          | [Bind](Sparrow_Bind.md)                           | Test documentation of Bind                | Sparrow |
 |          | [Caddy](Sparrow_Caddy.md)                         | Test documentation of Caddy               | Sparrow |
 |          | [Chrony](Sparrow_Chrony.md)                       | Test documentation of Chrony              | Sparrow |
 |          | [Chyrp](Sparrow_Chyrp.md)                         | Test documentation of Chyrp               | Sparrow |
+|          | [Cronie](Sparrow_Cronie.md)                       | Test documentation of Cronie              | Sparrow |
 |          | [DNF](Sparrow_DNF.md)                             | Test documentation of DNF                 | Sparrow |
 |          | [Knot](Sparrow_Knot.md)                           | Test documentation of Knott               | Sparrow |
 |          | [Nvinx Multi Site](Sparrow_Nginx_Multi_Site.md)   | Test documentation of Nginx (Multi site)  | Sparrow |

@@ -26,9 +26,9 @@ Project link:- https://git.resf.org/testing/Sparky_Tar
 
 | Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
 | -------------- | ------- | ------- | ------- | ----- | ------ |
-| Rocky Linux  8 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅     |
-| Rocky Linux  9 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅     |
-| Rocky Linux 10 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅     |
+| Rocky Linux  8 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅      |
+| Rocky Linux  9 | ✅       | ⚠️       | ⚠️       | ⚠️     | ✅      |
+| Rocky Linux 10 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅      |
 
 ## Setup
 
@@ -36,9 +36,25 @@ Project link:- https://git.resf.org/testing/Sparky_Tar
 
 ## How to test
 
-1. TBD
+1. See Sparky guide.
 
 ## Expected Results
 
-1. TBD 
-   {% include 'teams/testing/qa_testcase_bottom.md' %}
+```
+[task check]
+stdout match </tmp/etc-sparky.tar.gz exists and is not empty> True
+stdout match </tmp/log-sparky.tar.xz exists and is not empty> True
+stdout match <Estimated size is greater than 0> True
+stdout match <Split files exist> True
+stdout match <Files extracted to /tmp/dir1> True
+stdout match <Files extracted to /usr/local/src/redis-7.4.1> True
+stdout match </etc/chrony.conf extracted successfully> True
+stdout match <Validation successful: both /etc/ and /var/log/ are in the tar> True
+stdout match <File etc/chrony.conf found in /tmp/log.tar> True
+stdout match <Contents of /tmp/log.tar exists> True
+stdout match <Contents of /tmp/etc-sparky.tar.gz exists> True
+stdout match <Successfully compared etc/chrony.conf in /tmp/etc.tar> True
+stdout match <Successfully deleted> True
+```
+
+{% include 'teams/testing/qa_testcase_bottom.md' %}

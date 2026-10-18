@@ -27,7 +27,7 @@ Project link:- https://git.resf.org/testing/Sparky-Redis
 | Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
 | -------------- | ------- | ------- | ------- | ----- | ------ |
 | Rocky Linux  8 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | 🔴     |
-| Rocky Linux  9 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅     |
+| Rocky Linux  9 | ✅       | ⚠️       | ⚠️       | ⚠️     | ✅      |
 | Rocky Linux 10 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | 🔴     |
 
 ## Setup
@@ -36,9 +36,14 @@ Project link:- https://git.resf.org/testing/Sparky-Redis
 
 ## How to test
 
-1. TBD
+1. See Sparky guide.
 
 ## Expected Results
 
-1. TBD 
-   {% include 'teams/testing/qa_testcase_bottom.md' %}
+```
+[task check]
+stdout match <NOAUTH Authentication required> True
+```
+
+
+{% include 'teams/testing/qa_testcase_bottom.md' %}

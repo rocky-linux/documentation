@@ -26,9 +26,9 @@ Project link:- https://git.resf.org/testing/Sparky_NFS
 
 | Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
 | -------------- | ------- | ------- | ------- | ----- | ------ |
-| Rocky Linux  8 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅     |
-| Rocky Linux  9 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅     |
-| Rocky Linux 10 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅     |
+| Rocky Linux  8 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅      |
+| Rocky Linux  9 | ✅       | ⚠️       | ⚠️       | ⚠️     | ✅      |
+| Rocky Linux 10 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅      |
 
 ## Setup
 
@@ -36,9 +36,27 @@ Project link:- https://git.resf.org/testing/Sparky_NFS
 
 ## How to test
 
-1. TBD
+1. See Sparky guide.
 
 ## Expected Results
 
-1. TBD 
-   {% include 'teams/testing/qa_testcase_bottom.md' %}
+```
+[task check]
+stdout match (s) <active> True
+stdout match (s) <rpcbind is running> True
+stdout match (s) <nfs-utils is installed> True
+stdout match (s) <active> True
+stdout match (s) <nfs-server is running> True
+stdout match (s) </share directory exists> True
+stdout match (s) </etc/exports configured> True
+stdout match (s) <export is active> True
+stdout match (s) <showmount shows export> True
+stdout match (s) </mnt/nfs mount point exists> True
+stdout match (s) <nfs share is mounted> True
+stdout match (s) <can read from nfs share> True
+stdout match (s) <write test> True
+stdout match (s) <can write to nfs share> True
+stdout match (s) <written file appears in share> True
+```
+
+{% include 'teams/testing/qa_testcase_bottom.md' %}
