@@ -18,6 +18,8 @@ Documentation link:- https://docs.rockylinux.org/guides/cms/wordpress-on-lamp
 
 Project link:- https://git.resf.org/testing/Sparky_WP_LAMP
 
+Note:- This test frequently breaks due to updates of Wordpress. Investigating failures and reporting updates is a HUGE help to the project.
+
 🔴 - Tested and known to fail.
 ✅ - Tested and known to work.
 ⚠️  - Untested.
