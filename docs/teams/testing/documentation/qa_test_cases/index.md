@@ -57,18 +57,18 @@ These are items which are easy for most to be able to test without having a requ
 
 ## Installer Requirements
 
-| Category | Requirement                                                              | Test Case                                                                          | Status          |
-| -------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- | --------------- |
-| ⬇️        | [VNC Graphics Mode](Testcase_VNC_Graphics_Mode.md)                       | EL9:- Ensure that systems with very basic graphics can install.                    | openQA          |
-| ⬇️        | [Check RDP Graphics Mode](Testcase_RDP_Graphics_Mode.md)                 | EL10:- Ensure that systems with very basic graphics can install.                   | openQA          |
-| ⬇️        | [Packages and Installer Sources](Testcase_Packages_Installer_Sources.md) | Check all options for supported installation.                                      | openQA          |
-| ❗        | [Installation Interfaces](Testcase_Installation_Interfaces.md)           | The installer must be able to complete an installation using all supported spokes. | openQA          |
-| ❗        | [Minimal Installation](Testcase_Minimal_Installation.md)                 | Ensure a minimal package set installation is functional.                           | openQA          |
-| ❗        | [Kickstart Installation](Testcase_Kickstart_Installation.md)             | Ensure kickstart installations are working.                                        | openQA, Sparrow |
-| ❗        | [Disk Layouts](Testcase_Disk_Layouts.md)                                 | Test installs to a variety of partitions.                                          | openQA          |
-| ❗        | [Storage Volume Resize](Testcase_Storage_Volume_Resize.md)               | Test resizing in the installation.                                                 | openQA          |
-| ❗        | [Installer Help](Testcase_Installer_Help.md)                             | Verify Help text                                                                   | openQA          |
-| ❗        | [Installer Translations](Testcase_Installer_Translations.md)             | Test all translations available.                                                   | openQA          |
+| Category | Requirement                                                              | Test Case                                                                                                                | Status          |
+| -------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| ⬇️        | [VNC Graphics Mode](Testcase_VNC_Graphics_Mode.md)                       | EL9:- Ensure that systems with very basic graphics can install.                                                          | openQA          |
+| ⬇️        | [Check RDP Graphics Mode](Testcase_RDP_Graphics_Mode.md)                 | EL10:- Ensure that systems with very basic graphics can install.                                                         | openQA          |
+| ⬇️        | [Packages and Installer Sources](Testcase_Packages_Installer_Sources.md) | Check all options for supported installation.                                                                            | openQA          |
+| ❗        | [Installation Interfaces](Testcase_Installation_Interfaces.md)           | The installer must be able to complete an installation using all supported spokes.                                       | openQA          |
+| ❗        | [Minimal Installation](Testcase_Minimal_Installation.md)                 | Ensure a minimal package set installation is functional.                                                                 | openQA          |
+| ❗        | [Kickstart Installation](Testcase_Kickstart_Installation.md)             | Ensure kickstart installations are working.                                                                              | openQA, Sparrow |
+| ❗        | [Disk Layouts](Testcase_Disk_Layouts.md)                                 | Test installs to a variety of partitions.                                                                                | openQA          |
+| ❗        | [Storage Volume Resize](Testcase_Storage_Volume_Resize.md)               | Test resizing in the installation.                                                                                       | openQA          |
+| ❗        | [Installer Help](Testcase_Installer_Help.md)                             | Any element in the installer which contains a “help” text must display the appropriate help documentation when selected. | openQA          |
+| ❗        | [Installer Translations](Testcase_Installer_Translations.md)             | Test all translations available.                                                                                         | openQA          |
 
 ## Post-Installation Requirements
 
