@@ -37,7 +37,7 @@ All items in this category are ⬇️ - Low priority. It would be good to have t
 
 ## Setup
 
-You will need either a machine which can be reinstalled with multiple screens, or a virtualization software which is capable of providing multiple screens (like VMware Workstation ([Pro](https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html) or [Player](https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html)) or [VMware Fusion](https://www.vmware.com/products/fusion/fusion-evaluation.html), but there is also a [hack](https://communities.vmware.com/t5/VMware-vSphere-Discussions/ESXi-6-7-Multiple-Monitors-for-VMs/td-p/2748906) for [VMware ESXi](https://customerconnect.vmware.com/en/web/vmware/evalcenter?p=vsphere-eval-7))
+You will need either a machine which can be reinstalled with multiple screens, or a virtualization software which is capable of providing multiple screens (like VMware Workstation ([Pro](https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html) or [Player](https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html) or [VMware Fusion](https://www.vmware.com/products/fusion/fusion-evaluation.html))
 
 ## How to test
 
