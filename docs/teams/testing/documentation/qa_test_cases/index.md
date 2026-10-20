@@ -41,8 +41,8 @@ These are items which are easy for most to be able to test without having a requ
 | ❌        | [Media Consistency Verification](Testcase_Media_Consistency_Verification.md)  | To ensure that a user can write the ISO files to a thumbdrive and boot/install from that thumbdrive. | Community         |
 | ⬇️        | [Boot Live Image](Testcase_Live_Image.md)                                     | To ensure that each live environment can boot into the intended desktop.                             | Community         |
 | ❗        | [FWUPD Secureboot](Testcase_FWUPD.md)                                         | To ensure that secureboot and firmware updates function with the latest packages.                    | Community         |
-| ❗        | [Test Upgrade](Testcase_Upgrade.md)                      | Ensure upgrades from previous versions work without issues.              | Manual        |
-| ❗        | [Test Torrents](Testcase_Torrents.md)                    | Verify Torrents (when released).                                         | Manual        |
+| ❗        | [Test Upgrade](Testcase_Upgrade.md)                                           | Ensure upgrades from previous versions work without issues.                                          | Manual            |
+| ❗        | [Test Torrents](Testcase_Torrents.md)                                         | Verify Torrents (when released).                                                                     | Manual            |
 
 ## Initialization Requirements
 
