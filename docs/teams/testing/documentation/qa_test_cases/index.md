@@ -52,6 +52,8 @@ These are items which are easy for most to be able to test without having a requ
 | ❌        | [No Insights](Testcase_Packages_No_Insights.md)          | To ensure Insights has been removed.                                     | Manual Script |
 | ❌        | [No RHSM](Testcase_Packages_No_RHSM.md)                  | To ensure RHSM has been removed.                                         | Manual Script |
 | ❌        | [Debranding](Testcase_Debranding.md)                     | Ensure all debranding has been applied properly.                         | Manual Script |
+| ❗        | [Test Upgrade](Testcase_Upgrade.md)                      | Ensure upgrades from previous versions work without issues.              | Manual        |
+| ❗        | [Test Torrents](Testcase_Torrents.md)                    | Verify Torrents (when released).                                         | Manual        |
 
 ## Installer Requirements
 
