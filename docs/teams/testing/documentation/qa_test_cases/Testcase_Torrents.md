@@ -38,8 +38,13 @@ One of the last steps of release is generating torrents for users. Torrents shou
 ## How to test
 
 1. Download the torrents and content.
-2. Verify Checksums.
+2. Verify Checksums; `sha256sum -c *.CHECKSUM --ignore-missing`
 3. Verify GPG key signature.
+
+   ```
+   gpg --import RPM-GPG-KEY-rockyofficial
+   gpg --verify-file CHECKSUM.asc
+   ```
 
 ## Expected Results
 
