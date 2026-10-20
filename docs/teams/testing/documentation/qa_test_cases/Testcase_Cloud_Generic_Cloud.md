@@ -14,7 +14,7 @@ render_macros: true
 
 ## Description
 
-This is to test the cloud image for Generic Cloud.
+This is to test the cloud image for Generic Cloud. This image has had a history of not properly booting in both BIOS and UEFI mode. Please test both.
 
 * ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential. 
 * ❌ - Release blocker. This must be tested and until it is, or if it fails, then the issue must be properly addressed.
@@ -22,9 +22,9 @@ This is to test the cloud image for Generic Cloud.
 ## Releases, and Architectures
 
 | Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
-| -------------- | ------- | ------- | ------ | ----- | ------ |
-| Rocky Linux  9 | ❌       | ⬇️       | N/A    | ⬇️     | ❌      |
-| Rocky Linux 10 | ❌       | ⬇️       | ⬇️      | ⬇️     | ❌      |
+| -------------- | ------- | ------- | ------- | ----- | ------ |
+| Rocky Linux  9 | ❌       | ⬇️       | N/A     | ⬇️     | ❌      |
+| Rocky Linux 10 | ❌       | ⬇️       | ⬇️       | ⬇️     | ❌      |
 
 ## Setup
 
