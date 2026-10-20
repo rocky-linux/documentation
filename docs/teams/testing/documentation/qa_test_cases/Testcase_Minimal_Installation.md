@@ -1,7 +1,7 @@
 ---
 title: QA:Testcase Minimal Installation
 author: Al Bowles
-contributors:
+contributors: Chris Stackpole
 tested_with: 8.10, 9.7
 tags:
   - testing
@@ -23,7 +23,17 @@ render_macros: true
 
 This test case verifies that a networked minimal installation is able to install the 'Minimal' package set. The installation should not require use of local packages to complete.
 
+* ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential. 
+* ❗ - Important. It is best to have this tested, but if it isn't or if it fails then it won't block the release.
+
 {% include 'teams/testing/qa_data_loss_warning.md' %}
+
+## Releases, Architectures, and ISO's
+
+| Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
+| -------------- | ------- | -------- | ------ | ----- | ------ |
+| Rocky Linux  9 | ❗       | ⬇️        | N/A    | ⬇️     | ❗      |
+| Rocky Linux 10 | ❗       | ⬇️        | ⬇️      | ⬇️     | ❗      |
 
 ## Setup
 

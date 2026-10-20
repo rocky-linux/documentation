@@ -1,7 +1,7 @@
 ---
 title: QA:Testcase Media Repo Compare
 author: Trevor Cooper
-contributors:
+contributors: Chris Stackpole
 tested_with: 8.10, 9.7, 10.1
 tags:
   - testing
@@ -19,7 +19,17 @@ render_macros: true
 
 ## Description
 
-This test case will verify that repositories and the packages within them match upstream as closely as possible.
+This test case will verify that repositories and the packages within them match upstream as closely as possible. Notable exceptions would be kmods, kpatch, or what is deemed as “spyware” like insights. Packages that are available from upstream should not have hard requirements on RHSM and packages that have it default built in should be patched out.
+
+* ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential. 
+* ❗ - Important. It is best to have this tested, but if it isn't or if it fails then it won't block the release.
+
+## Releases, Architectures, and ISO's
+
+| Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
+| -------------- | ------- | -------- | ------ | ----- | ------ |
+| Rocky Linux  9 | ❗       | ❗        | N/A    | ❗     | ❗      |
+| Rocky Linux 10 | ❗       | ❗        | ⬇️      | ❗     | ❗      |
 
 ## Setup
 

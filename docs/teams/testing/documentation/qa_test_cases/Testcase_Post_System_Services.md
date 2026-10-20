@@ -1,7 +1,7 @@
 ---
 title: QA:Testcase System Services
 author: Lukas Magauer
-contributors:
+contributors: Chris Stackpole
 tested_with: 8.10, 9.7, 10.1
 tags:
   - testing
@@ -26,11 +26,34 @@ render_macros: true
 
 This test covers the check, that all basic system service which are getting installed with the base groups are starting / running normally.
 
+* ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential. 
+  * While some items are listed as low priority for testing, any failure is considered ❌ - Release blocker
+* ❌ - Release blocker. This must be tested and until it is, or if it fails, then the issue must be properly addressed.
+
+## Services
+
+These services need to be tested and follow the same process:-
+
+* SSHD
+
+* FirewallD
+
+* AuditD
+
+* ChronyD
+
+## Releases and Architectures
+
+| Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
+| -------------- | ------- | -------- | ------ | ----- | ------ |
+| Rocky Linux  9 | ❌       | ⬇️        | N/A    | ⬇️     | ❌      |
+| Rocky Linux 10 | ❌       | ⬇️        | ⬇️      | ⬇️     | ❌      |
+
 ## Setup
 
 1. Acquire access to either a baremetal machine or a VM host, to install a new machine
 2. Prepare appropriate media for the selected ISO to be tested.
-    - Example: [QA:Testcase Media USB dd](Testcase_Media_USB_dd.md)
+   - Example: [QA:Testcase Media USB dd](Testcase_Media_USB_dd.md)
 
 ## How to test
 

@@ -1,7 +1,7 @@
 ---
 title: QA:Testcase Multimonitor Setup
 author: Lukas Magauer
-contributors:
+contributors: Chris Stackpole
 tested_with: 8.10, 9.7, 10.1
 tags:
   - testing
@@ -26,9 +26,18 @@ render_macros: true
 
 This test covers the check if GNOME behaves as it should in multi-monitor setups.
 
+All items in this category are ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential. 
+
+## Releases and Architectures
+
+| Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
+| -------------- | ------- | ------- | ------- | ----- | ------ |
+| Rocky Linux  9 | ⬇️       | ⬇️       | N/A     | ⬇️     | ⬇️      |
+| Rocky Linux 10 | ⬇️       | ⬇️       | ⬇️       | ⬇️     | ⬇️      |
+
 ## Setup
 
-You will need either a machine which can be reinstalled with multiple screens, or a virtualization software which is capable of providing multiple screens (like VMware Workstation ([Pro](https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html) or [Player](https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html)) or [VMware Fusion](https://www.vmware.com/products/fusion/fusion-evaluation.html), but there is also a [hack](https://communities.vmware.com/t5/VMware-vSphere-Discussions/ESXi-6-7-Multiple-Monitors-for-VMs/td-p/2748906) for [VMware ESXi](https://customerconnect.vmware.com/en/web/vmware/evalcenter?p=vsphere-eval-7))
+You will need either a machine which can be reinstalled with multiple screens, or a virtualization software which is capable of providing multiple screens (like VMware Workstation ([Pro](https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html) or [Player](https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html) or [VMware Fusion](https://www.vmware.com/products/fusion/fusion-evaluation.html))
 
 ## How to test
 

@@ -1,7 +1,7 @@
 ---
 title: QA:Testcase Basic Package installs
 author: Lukas Magauer
-contributors:
+contributors: Chris Stackpole
 tested_with: 8.10, 9.7, 10.1
 tags:
   - testing
@@ -12,6 +12,7 @@ rc:
   ver:
     - 8
     - 9
+    - 10
   level: Final
 render_macros: true
 ---
@@ -41,12 +42,21 @@ Please also test these usecases (it's basically the fun of learning to install s
 - postgresql-server
 - postgresql-server with secure setup
 - compiling packages with:
-    - cmake
-    - g++
+  - cmake
+  - g++
 - ipa-server
 - ipa-server with dns
 
-## Setup
+
+
+All items in this category are ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential. 
+
+## Releases and Architectures
+
+| Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
+| -------------- | ------- | ------- | ------- | ----- | ------ |
+| Rocky Linux  9 | ⬇️       | ⬇️       | N/A     | ⬇️     | ⬇️      |
+| Rocky Linux 10 | ⬇️       | ⬇️       | ⬇️       | ⬇️     | ⬇️Setup |
 
 Obtain access to a suitable system where any of the tested packages can be installed without any issues.
 

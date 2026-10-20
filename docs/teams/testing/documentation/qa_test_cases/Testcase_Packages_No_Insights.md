@@ -1,7 +1,7 @@
 ---
 title: QA:Testcase Packages No Insights
 author: Trevor Cooper
-contributors:
+contributors: Chris Stackpole
 tested_with: 8.10, 9.7, 10.1
 tags:
   - testing
@@ -21,6 +21,13 @@ render_macros: true
 
 This test will verify that `insights-client` package is not declared be installed as part of a package group.
 
+## Releases, Architectures, and ISO's
+
+| Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
+| -------------- | ------- | -------- | ------ | ----- | ------ |
+| Rocky Linux  9 | ❌       | ❌        | N/A    | ❌     | ❌      |
+| Rocky Linux 10 | ❌       | ❌        | ⬇️      | ❌     | ❌      |
+
 ## Setup
 
 1. Obtain access to an environment with the `dnf` command.
@@ -29,8 +36,11 @@ This test will verify that `insights-client` package is not declared be installe
 ## How to test
 
 1. Mount the ISO to be tested locally.
+
 2. Determine the path to the `comps` file(s) on the ISO.
+
 3. Verify that `insights-client` is not declared to be installed automatically.
+
    - Example 1:
 
    ```bash
@@ -55,20 +65,20 @@ This test will verify that `insights-client` package is not declared be installe
 
     !!! info "UPDATE SAMPLE"
         NOTE: This example needs to be refreshed when the 8.6 ISO has been produced. As seen in the Failure section below the `Rocky-8.5-x86_64-dvd1.iso` includes the `insights-client` as part of the `base` group. The package should be included on the DVD ISO but should **not** be installed automatically.
-
+    
     ```bash
     $ sudo mount -o loop Rocky-8.5-aarch64-minimal.iso /media
     mount: /media: WARNING: device write-protected, mounted read-only.
-
+    
     $ dnf --refresh --repofrompath BaseOS,/media/BaseOS --repo BaseOS --repofrompath Minimal,/media/Minimal --repo Minimal search insights-client
     Added BaseOS repo from /media/BaseOS
     Added Minimal repo from /media/Minimal
     BaseOS                                                                    3.8 MB/s | 3.9 kB     00:00
     Minimal                                                                   3.7 MB/s | 3.8 kB     00:00
     No matches found.
-
+    
     $ find /media -name "*comps*.xml" -exec grep -H "insights-client" '{}' \;
-
+    
     $ dnf --refresh --repofrompath BaseOS,/media/BaseOS --repo BaseOS --repofrompath Minimal,/media/Minimal --repo Minimal groupinfo base | grep -E ":|insights"
     BaseOS                                          3.8 MB/s | 3.9 kB     00:00
     Minimal                                         3.7 MB/s | 3.8 kB     00:00
@@ -77,7 +87,7 @@ This test will verify that `insights-client` package is not declared be installe
      Mandatory Packages:
      Default Packages:
      Optional Packages:
-
+    
     $ sudo umount /media
     ```
 
@@ -86,7 +96,7 @@ This test will verify that `insights-client` package is not declared be installe
     ```bash
     $ sudo mount -o loop Rocky-8.5-x86_64-dvd1.iso /media
     mount: /media: WARNING: device write-protected, mounted read-only.
-
+    
     $ dnf --refresh --repofrompath BaseOS,/media/BaseOS --repo BaseOS --repofrompath AppStream,/media/AppStream --repo AppStream search insights-client
     Added BaseOS repo from /media/BaseOS
     Added AppStream repo from /media/AppStream
@@ -94,11 +104,11 @@ This test will verify that `insights-client` package is not declared be installe
     AppStream                                                                 4.2 MB/s | 4.3 kB     00:00
     ================================= Name Exactly Matched: insights-client ==================================
     insights-client.noarch : Uploads Insights information to Red Hat on a periodic basis
-
+    
     $ find /media -name "*comps*.xml" -exec grep -H "insights-client" '{}' \;
     /media/AppStream/repodata/a6742e1300e1c786af91656b152d3b98bb7aff598e650509381417970e1f1b7e-comps-AppStream.x86_64.xml:      <packagereq type="default">insights-client</packagereq>
     /media/AppStream/repodata/a6742e1300e1c786af91656b152d3b98bb7aff598e650509381417970e1f1b7e-comps-AppStream.x86_64.xml:      <packagereq type="default">insights-client</packagereq>
-
+    
     $ dnf --refresh --repofrompath BaseOS,/media/BaseOS --repo BaseOS --repofrompath AppStream,/media/AppStream --repo AppStream groupinfo base | grep -E ":|insights"
     BaseOS                                          3.8 MB/s | 3.9 kB     00:00
     AppStream                                       4.2 MB/s | 4.3 kB     00:00
@@ -108,7 +118,7 @@ This test will verify that `insights-client` package is not declared be installe
      Default Packages:
        insights-client
      Optional Packages:
-
+    
     $ sudo umount /media
     ```
 

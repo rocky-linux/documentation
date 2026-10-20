@@ -1,7 +1,7 @@
 ---
 title: QA:Testcase Vagrant Images
 author: Bob Robison
-contributors:
+contributors: Chris Stackpole
 tested_with: 8.10, 9.7, 10.1
 tags:
   - testing
@@ -12,7 +12,18 @@ rc:
 render_macros: true
 ---
 
-This page provides information concerning how to boot/test the vagrant images.
+## Description
+
+This is to provide information concerning how to boot/test the vagrant images.
+
+All items in this category are ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential. 
+
+## Releases, and Architectures
+
+| Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
+| -------------- | ------- | ------- | ------ | ----- | ------ |
+| Rocky Linux  9 | ⬇️       | ⬇️       | N/A    | ⬇️     | ⬇️      |
+| Rocky Linux 10 | ⬇️       | ⬇️       | ⬇️      | ⬇️     | ⬇️      |
 
 ## Vagrant File for BIOS Boot
 

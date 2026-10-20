@@ -1,7 +1,7 @@
 ---
 title: QA:Testcase Media Repoclosure
 author: Trevor Cooper
-contributors:
+contributors: Chris Stackpole
 tested_with: 8.10, 9.7, 10.1
 tags:
   - testing
@@ -19,7 +19,17 @@ render_macros: true
 
 ## Description
 
-This testcase will verify that the offline repository included on release blocking images will not contain broken dependencies.
+This testcase will verify that the offline repository included on release blocking images will not contain broken dependencies. Critical errors, such as undeclared conflicts, unresolved dependencies, or modules relying on packages from another stream will be considered an automatic blocker. There are potential exceptions to this (eg, freeradius cannot be installed on an older perl stream, this is a known issue upstream).
+
+* ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential. 
+* ❗ - Important. It is best to have this tested, but if it isn't or if it fails then it won't block the release.
+
+## Releases, Architectures, and ISO's
+
+| Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
+| -------------- | ------- | -------- | ------ | ----- | ------ |
+| Rocky Linux  9 | ❗       | ❗        | N/A    | ❗     | ❗      |
+| Rocky Linux 10 | ❗       | ❗        | ⬇️      | ❗     | ❗      |
 
 ## Setup
 
@@ -29,28 +39,32 @@ This testcase will verify that the offline repository included on release blocki
 ## How to test
 
 1. Mount the ISO to be tested locally.
-    - Example:
+
+   - Example:
 
    ```bash
    mount -o loop Rocky-8.5-x86_64-minimal.iso /media
    ```
 
 2. Determine the path to the `repodata` directory(ies) on the ISO.
-    - Example:
+
+   - Example:
 
    ```bash
    find /media -name repodata
    ```
 
 3. Run the `dnf repoclosure` command on the mounted ISO.
-    - Example:
+
+   - Example:
 
    ```bash
    dnf --verbose repoclosure --repofrompath BaseOS,/media/BaseOS --repo BaseOS --repofrompath Minimal,/media/Minimal --repo Minimal
    ```
 
 4. Unmount the ISO.
-    - Example:
+
+   - Example:
 
    ```bash
    `umount /media
@@ -67,7 +81,7 @@ This testcase will verify that the offline repository included on release blocki
     ```bash
     $ sudo mount -o loop Rocky-8.5-x86_64-minimal.iso /media
     mount: /media: WARNING: device write-protected, mounted read-only.
-
+    
     [vagrant@localhost ~]$ dnf --refresh repoclosure \
       --repofrompath BaseOS,/media/BaseOS --repo BaseOS \
       --repofrompath Minimal,/media/Minimal --repo Minimal
@@ -75,14 +89,14 @@ This testcase will verify that the offline repository included on release blocki
     Added Minimal repo from /media/Minimal
     BaseOS                                               102 MB/s | 2.6 MB     00:00
     Minimal                                               90 kB/s | 384  B     00:00
-
+    
     $ sudo umount /media
     ```
 
 === "Failure"
 
     __NOTE: In this example the content of the `Rocky-8.5-x86_64-minimal.iso` was copied to `/tmp` then the BaseOS repository was modified to remove the `setup-2.12.2-6.el8.noarch.rpm` package and the repository metadata was regenerated.__
-
+    
     ```bash
     [vagrant@localhost ~]$ dnf --refresh repoclosure \
       --repofrompath BaseOS,/tmp/media/BaseOS --repo BaseOS \
