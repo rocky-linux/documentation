@@ -28,13 +28,17 @@ This is to ensure that FIPS is working.
 
 ## Setup
 
-1. TBD
+1. During installation select FIPS mode. Reboot into the install for testing.
 
 ## How to test
 
-1. TBD
+1. `fips-mode-setup --check`
+2. `cat /proc/sys/crypto/fips_enabled # Should return 1`
+3. `grep fips=1 /proc/cmdline`
 
 ## Expected Results
 
-1. TBD 
+1. `FIPS mode is enabled.` should be displayed.
+2. `1` should be returned.
+3. `fips=1` should be highlighted.
    {% include 'teams/testing/qa_testcase_bottom.md' %}
