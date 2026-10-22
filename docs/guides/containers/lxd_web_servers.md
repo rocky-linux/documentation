@@ -622,7 +622,7 @@ dnf install nginx
 Then, enable and start Nginx:
 
 ```bash
-dnf enable --now nginx
+systemctl enable --now nginx
 ```
 
 !!! Note
@@ -774,7 +774,7 @@ Add the appropriate text:
 
 ```nginx
 upstream nginx-server {
-    server rocky-nginx.lxd:80;
+    server nginx-server.lxd:80;
 }
 
 server {
@@ -803,7 +803,7 @@ Again, reload the proxy server, point your browser at the appropriate address, a
 Exit back out of the "proxy-server" container, and restart the servers in your other two containers with one simple command:
 
 ```bash
-lxc exec apache-server systemctl restart httpd && lxc exec nginx-server restart nginx
+lxc exec apache-server systemctl restart httpd && lxc exec nginx-server systemctl restart nginx
 ```
 
 That will apply the "real-ip.conf" files we made to their respective server configurations.
