@@ -42,11 +42,11 @@ This is to ensure that SecureBoot and firmware updates function with the lastest
    ESP_DEV=$(findmnt -no SOURCE /boot/efi) # i.e. /dev/vda1
    ESP_DISK=/dev/$(lsblk -no PKNAME "$ESP_DEV") # i.e. /dev/vda
    ESP_PART=$(echo "$ESP_DEV" | grep -oE '[0-9]+$') # i.e. 1
-   cp /usr/libexec/fwupd/efi/fwupdx64.efi.signed /boot/efi/EFI/centos/fwupdx64.efi
+   cp /usr/libexec/fwupd/efi/fwupdx64.efi.signed /boot/efi/EFI/rocky/fwupdx64.efi
    # load option for fwupd: basename, leading backslash, UCS-2 LE, NUL-terminated
    printf '\\fwupdx64.efi\0' | iconv -f ASCII -t UTF-16LE > /tmp/opt.bin
    efibootmgr -C -d "$ESP_DISK" -p "$ESP_PART" -L "Linux Firmware Updater" \
-              -l '\EFI\centos\shimx64.efi' -@ /tmp/opt.bin
+              -l '\EFI\rocky\shimx64.efi' -@ /tmp/opt.bin
    efibootmgr -n $(efibootmgr | sed -n 's/^Boot\([0-9A-F]*\)\* Linux Firmware Updater$/\1/p')
    systemctl reboot
    ```
