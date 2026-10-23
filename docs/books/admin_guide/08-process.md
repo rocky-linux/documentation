@@ -138,9 +138,9 @@ System processes are therefore called daemons (***D**isk **A**nd **E**xecution *
 
 The user's credentials are passed to the created process when a command is executed.
 
-By default, the process's actual `UID` and `GID` (of the process) are identical to the **actual** `UID` and `GID` (the `UID` and `GID` of the user who executed the command).
+By default, the process's effective `UID` and `GID` (of the process) are identical to the **real** `UID` and `GID` (the `UID` and `GID` of the user who executed the command).
 
-When a `SUID` (and/or `SGID`) is set on a command, the actual `UID` (and/or `GID`) becomes that of the owner (and/or owner group) of the command and no longer that of the user or user group that issued the command. Effective and real **UIDs** are therefore **different**.
+When a `SUID` (and/or `SGID`) is set on a command, the effective `UID` (and/or `GID`) becomes that of the owner (and/or owner group) of the command and no longer that of the user or user group that issued the command. Effective and real **UIDs** are therefore **different**.
 
 Each time a file is accessed, the system checks the rights of the process according to its effective identifiers.
 
@@ -150,7 +150,7 @@ A process cannot be run indefinitely, as this would be to the detriment of other
 
 Therefore, the total processing time available is divided into small ranges, and each process (with a priority) accesses the processor sequentially. The process will take several states during its life among the states:
 
-* ready: waiting for the availability of the process
+* ready: waiting for the availability of the processor
 * in execution: accesses the processor
 * suspended: waiting for an I/O (input/output)
 * stopped: waiting for a signal from another process
@@ -206,8 +206,8 @@ kill -9 1664
 
 | Code | Signal    | Description                                            |
 |------|-----------|--------------------------------------------------------|
-| `2`  | *SIGINT*  | Immediate termination of the process                   |
-| `9`  | *SIGKILL* | Interrupts the process (++control+"d"++)                |
+| `2`  | *SIGINT*  | Interrupts the process (++control+"c"++)               |
+| `9`  | *SIGKILL* | Immediate termination of the process                   |
 | `15` | *SIGTERM* | Clean termination of the process                       |
 | `18` | *SIGCONT* | Resumes the process. Processes that use the SIGSTOP signal can use it to continue running |
 | `19` | *SIGSTOP* | Suspends the process (Stops process). The effect of this signal is equivalent to ++ctrl+"z"++ |
@@ -267,7 +267,7 @@ The `fg` command puts the process in the foreground:
 ```bash
 $ time ls -lR / > list.ls 2>/dev/null &
 $ fg 1
-time ls -lR / > list.ls 2/dev/null
+time ls -lR / > list.ls 2> /dev/null
 ```
 
 while the command `bg` places it in the background:
@@ -446,7 +446,7 @@ killall tomcat
 
 ### `pstree` command
 
-This command displays the progress in a tree style, and its usage is - `pstree [option]`.
+This command displays the processes in a tree style, and its usage is - `pstree [option]`.
 
 | Option | Description |
 | :--- | :--- |
@@ -482,7 +482,7 @@ systemd(1)─┬─systemd-journal(595)
 
 ### Orphan process and zombie process
 
-**orphan process**: When a parent process dies, their children are said to be orphans. The init process adopts these special state processes, and status collection is completed until they are destroyed. Conceptually speaking, the orphanage process does not pose any harm.
+**orphan process**: When a parent process dies, their children are said to be orphans. The init process adopts these special state processes, and status collection is completed until they are destroyed. Conceptually speaking, the orphan process does not pose any harm.
 
 **zombie process**: After a child process completes its work and is terminated, its parent process needs to call the signal processing function wait() or waitpid() to obtain the termination status of the child process. If the parent process does not do so, although the child process has already exited, it still retains some exit status information in the system process table. Because the parent process cannot obtain the status information of the child process, these processes will continue to occupy resources in the process table. We refer to processes in this state as zombies.
 
