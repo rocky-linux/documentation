@@ -11,7 +11,7 @@ rc:
 render_macros: true
 ---
 
-Every release undergoes numerous tests to validate a proper release of Rocky Linux. The 2026.10 update of release criteria is the latest coordination between Release Engineering and Testing Team.
+Every release undergoes numerous tests to validate a proper release of Rocky Linux. Listed below is the 2026.10 update of release criteria which represents the latest coordination between Release Engineering and Testing Team.
 
 Specific Testcases can/will be implemented in either openQA or Sparky/Sparrow. For further details, please see:-
 
