@@ -43,6 +43,7 @@ These are items which are easy for most to be able to test without having a requ
 | ❗        | [FWUPD Secureboot](Testcase_FWUPD.md)                                         | To ensure that secureboot and firmware updates function with the latest packages.                    | Community         |
 | ❗        | [Test Upgrade](Testcase_Upgrade.md)                                           | Ensure upgrades from previous versions work without issues.                                          | Manual            |
 | ❗        | [Test Torrents](Testcase_Torrents.md)                                         | Verify Torrents (when released).                                                                     | Manual            |
+| ⬇️      | [Hardware Probe](Testcase_Hardware_Probe.md)                                     | Hardware Probe (physical hardware; additional test; not RelEng request).                             | Manual            |
 
 ## Initialization Requirements
 
