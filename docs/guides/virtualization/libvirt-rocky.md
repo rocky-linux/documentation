@@ -52,7 +52,7 @@ sudo dnf install -y bridge-utils virt-top libguestfs-tools virt-viewer qemu-kvm 
     sudo systemctl enable --now cockpit.socket
     ```
 
-    After installation, you can manage your VMs by navigating to the Cockpit console at `https://<your-host>:9090`
+    After installation, you can manage your VMs by navigating to the Cockpit console at `https://<YOUR_HOST>:9090`
 
 ## libvirt user setup
 
@@ -150,7 +150,7 @@ sudo setfacl -R -m u:qemu:rx <ISO_DIRECTORY>
 sudo setfacl -d -m u:qemu:rx <ISO_DIRECTORY>
 
 # Configure SELinux for read access
-sudo semanage fcontext -a -t virt_image_t "<ISO_DIRECTORY>os(/.*)?"
+sudo semanage fcontext -a -t virt_image_t "<ISO_DIRECTORY>(/.*)?"
 sudo restorecon -Rv <ISO_DIRECTORY>
 
 # 1. Grant traversal access to the home directory
