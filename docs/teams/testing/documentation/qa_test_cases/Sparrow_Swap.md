@@ -28,7 +28,7 @@ Project link:- https://git.resf.org/testing/Sparky_Swap
 | -------------- | ------- | ------- | ------- | ----- | ------ |
 | Rocky Linux  8 | 🔴      | ⚠️       | ⚠️       | ⚠️     | 🔴     |
 | Rocky Linux  9 | ✅      | ⚠️       | ⚠️       | ⚠️     | ✅     |
-| Rocky Linux 10 | 🔴      | ⚠️       | ⚠️       | ⚠️     | 🔴     |
+| Rocky Linux 10 | ✅      | ⚠️       | ⚠️       | ⚠️     | ✅     |
 
 ## Setup
 
