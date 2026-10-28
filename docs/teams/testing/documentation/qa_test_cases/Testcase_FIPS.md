@@ -32,7 +32,7 @@ This is to ensure that FIPS is working.
 
 ## How to test
 
-1. `fips-mode-setup --check`
+1. `fips-mode-setup --check` # Rocky 9 only; not available in 10
 2. `cat /proc/sys/crypto/fips_enabled # Should return 1`
 3. `grep fips=1 /proc/cmdline`
 
