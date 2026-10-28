@@ -1,5 +1,5 @@
 ---
-title: QA:Testcase Media Consistency Verification
+title: QA:Testcase FWUPD
 author: Chris Stackpole
 contributors: 
 tags:
@@ -21,9 +21,9 @@ This is to ensure that SecureBoot and firmware updates function with the lastest
 ## Releases and Architectures
 
 | Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
-| -------------- | ------- | ------- | ------ | ----- | ------ |
-| Rocky Linux  9 | ❗       | N/A     | N/A    | N/A   | ❌      |
-| Rocky Linux 10 | ❗       | N/A     | N/A    | N/A   | ❌      |
+| -------------- | ------- | ------- | ------- | ----- | ------ |
+| Rocky Linux  9 | ❗       | N/A     | N/A     | N/A   | ❗      |
+| Rocky Linux 10 | ❌       | N/A     | N/A     | N/A   | ❌      |
 
 ## Setup
 

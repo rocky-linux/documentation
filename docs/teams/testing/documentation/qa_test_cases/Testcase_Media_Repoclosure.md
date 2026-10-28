@@ -22,14 +22,14 @@ render_macros: true
 This testcase will verify that the offline repository included on release blocking images will not contain broken dependencies. Critical errors, such as undeclared conflicts, unresolved dependencies, or modules relying on packages from another stream will be considered an automatic blocker. There are potential exceptions to this (eg, freeradius cannot be installed on an older perl stream, this is a known issue upstream).
 
 * ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential. 
-* ❗ - Important. It is best to have this tested, but if it isn't or if it fails then it won't block the release.
+* ❌ - Release blocker. This must be tested and until it is, or if it fails, then the issue must be properly addressed.
 
 ## Releases, Architectures, and ISO's
 
 | Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
-| -------------- | ------- | -------- | ------ | ----- | ------ |
-| Rocky Linux  9 | ❗       | ❗        | N/A    | ❗     | ❗      |
-| Rocky Linux 10 | ❗       | ❗        | ⬇️      | ❗     | ❗      |
+| -------------- | ------- | ------- | ------- | ----- | ------ |
+| Rocky Linux  9 | ❌       | ❌       | N/A     | ❌     | ❌      |
+| Rocky Linux 10 | ❌       | ❌       | ⬇️       | ❌     | ❌      |
 
 ## Setup
 
