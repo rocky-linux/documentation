@@ -47,9 +47,11 @@ This is to ensure that SecureBoot and firmware updates function with the lastest
    printf '\\fwupdx64.efi\0' | iconv -f ASCII -t UTF-16LE > /tmp/opt.bin
    efibootmgr -C -d "$ESP_DISK" -p "$ESP_PART" -L "Linux Firmware Updater" \
               -l '\EFI\rocky\shimx64.efi' -@ /tmp/opt.bin
-   efibootmgr -n $(efibootmgr | sed -n 's/^Boot\([0-9A-F]*\)\* Linux Firmware Updater$/\1/p')
+   efibootmgr -n $(efibootmgr | sed -n 's/^Boot\([0-9A-F]*\)\* Linux Firmware Updater.*$/\1/p')
    systemctl reboot
    ```
+
+Note:- The above commands are for x86_64. To use these on aarch64 change `fwupdx64.efi` to `fwupda64.efi` in all three locations.
 
 ## Expected Results
 
