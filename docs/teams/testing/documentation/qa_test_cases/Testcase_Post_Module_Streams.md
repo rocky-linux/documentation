@@ -34,7 +34,7 @@ All items in this category are ⬇️ - Low priority. It would be good to have t
 | Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
 | -------------- | ------- | ------- | ------- | ----- | ------ |
 | Rocky Linux  9 | ⬇️       | ⬇️       | N/A     | ⬇️     | ⬇️      |
-| Rocky Linux 10 | ⬇️       | ⬇️       | ⬇️       | ⬇️     | ⬇️      |
+| Rocky Linux 10 | N/A     | N/A     | N/A     | N/A   | N/A    |
 
 ## Setup
 

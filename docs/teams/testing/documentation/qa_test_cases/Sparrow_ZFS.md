@@ -28,9 +28,9 @@ This tests the stable branch (currently 2.2), and the latest branch (currently 2
 
 | Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
 | -------------- | ------- | ------- | ------- | ----- | ------ |
-| Rocky Linux  8 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | 🔴     |
-| Rocky Linux  9 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅     |
-| Rocky Linux 10 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅     |
+| Rocky Linux  8 | ⚠️       | ⚠️       | N/A     | ⚠️     | 🔴     |
+| Rocky Linux  9 | ⚠️       | ⚠️       | N/A     | ⚠️     | ✅      |
+| Rocky Linux 10 | ⚠️       | ⚠️       | ⚠️       | ⚠️     | ✅      |
 
 ## Setup
 
@@ -64,7 +64,6 @@ stdout match (s) <data \s*> True
 # Checking zpool list
 stdout match (s) <NAME   SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT> True
 stdout match (s) <data \s*> True
-
 ```
 
    {% include 'teams/testing/qa_testcase_bottom.md' %}
