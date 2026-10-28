@@ -134,9 +134,9 @@ I processi di sistema sono quindi chiamati daemons (_**D**isk **A**nd **E**xecut
 
 Le credenziali dell'utente vengono passate al processo creato quando viene eseguito un comando.
 
-Per impostazione predefinita., l'attuale `UID` e `GID` (del processo) sono quindi identici al **effettivo** `UID` e `GID` (il `UID` e `GID` dell'utente che ha eseguito il comando).
+Per impostazione predefinita, l'`UID` e il `GID` effettivi (del processo) sono identici all'`UID` e al `GID` **reali** (ovvero l'`UID` e il `GID` dell'utente che ha eseguito il comando).
 
-Quando un `SUID` (e/o `SGID`) è impostato su un comando, l'attuale `UID` (e/o `GID`) diventa quello del proprietario (e/o gruppo proprietario) del comando e non più quello dell'utente o del gruppo di utenti che ha emesso il comando. Effettivo e reale **UIDs** sono quindi **differenti**.
+Quando viene assegnato un `SUID` (e/o un `SGID`) a un comando, l’`UID` (e/o il `GID`) effettivo diventa quello del proprietario (e/o del gruppo del proprietario) del comando e non più quello dell’utente o del gruppo di utenti che ha impartito il comando. Effettivo e reale **UIDs** sono quindi **differenti**.
 
 Ogni volta che si accede a un file, il sistema controlla i diritti del processo in base ai suoi effettivi identificatori.
 
@@ -146,7 +146,7 @@ Un processo non può essere eseguito indefinitamente, perchè questo sarebbe a d
 
 Pertanto, il tempo di elaborazione totale disponibile viene suddiviso in piccoli intervalli e ogni processo (con una priorità) accede al processore in modo sequenziale. Il processo prenderà diversi stati durante la sua vita tra gli stati:
 
-* pronto: in attesa della disponibilità del processo
+* ready: in attesa della disponibilità del processo
 * in esecuzione: accede al processore
 * sospeso: aspettando un I/O (input/output);
 * fermato: aspettando un segnale da un altro processo
@@ -202,8 +202,8 @@ kill -9 1664
 
 | Codice | Segnale   | Descrizione                                                                                                     |
 | ------ | --------- | --------------------------------------------------------------------------------------------------------------- |
-| `2`    | *SIGINT*  | Arresto immediato del processo                                                                                  |
-| `9`    | *SIGKILL* | Interruzione del processo (++control+"d"++)                                                                     |
+| `2`    | *SIGINT*  | Interrompe il processo (++control+"c"++)                                                                        |
+| `9`    | *SIGKILL* | Il processo viene terminato immediatamente                                                                      |
 | `15`   | *SIGTERM* | Arresto pulito del processo                                                                                     |
 | `18`   | *SIGCONT* | Riprendere il processo. I processi che utilizzano il segnale SIGSTOP possono usarlo per continuare l'esecuzione |
 | `19`   | *SIGSTOP* | Sospendere il processo (Stop process). L'effetto di questo segnale è equivalente a ++ctrl+"z ”++                |
@@ -263,7 +263,7 @@ Il comando `fg` mette il processo in primo piano:
 ```bash
 $ time ls -lR / > list.ls 2>/dev/null &
 $ fg 1
-time ls -lR / > list.ls 2/dev/null
+time ls -lR / > list.ls 2> /dev/null
 ```
 
 mentre il comando `bg` lo colloca in background:
@@ -442,7 +442,7 @@ killall tomcat
 
 ### comando `pstree`
 
-Questo comando visualizza l'avanzamento in uno stile ad albero e il suo utilizzo è - `pstree [option]`.
+Questo comando visualizza i processi in formato ad albero; la sua sintassi è: - `pstree [opzione]`.
 
 | Opzione | Descrizione                                           |
 |:------- |:----------------------------------------------------- |
@@ -478,7 +478,7 @@ systemd(1)─┬─systemd-journal(595)
 
 ### Processi orfani e processi zombie
 
-**processo orfano**: Quando un processo genitore termina, i suoi figli sono detti orfani. Il processo di init adotta questi processi in stato speciale e la raccolta dello stato viene completata finché non vengono distrutti. Dal punto di vista concettuale, il processo di orfanizzazione non comporta alcun danno.
+**processo orfano**: Quando un processo genitore termina, i suoi figli sono detti orfani. Il processo di init adotta questi processi in stato speciale e la raccolta dello stato viene completata finché non vengono distrutti. Da un punto di vista concettuale, il processo orfano non comporta alcun rischio.
 
 **processo zombie**: Dopo che un processo figlio ha completato il suo lavoro e viene terminato, il suo processo genitore deve chiamare la funzione di elaborazione del segnale wait() o waitpid() per ottenere lo stato di cessazione del processo figlio. Se il processo padre non lo fa, anche se il processo figlio è già uscito, conserva alcune informazioni sullo stato di uscita nella tabella dei processi di sistema. Poiché il processo padre non può ottenere le informazioni sullo stato del processo figlio, questi processi continueranno a occupare risorse nella tabella dei processi. I processi in questo stato vengono chiamati zombie.
 

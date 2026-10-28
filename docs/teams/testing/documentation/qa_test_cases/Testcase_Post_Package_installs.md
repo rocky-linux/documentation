@@ -47,8 +47,6 @@ Please also test these usecases (it's basically the fun of learning to install s
 - ipa-server
 - ipa-server with dns
 
-
-
 All items in this category are ⬇️ - Low priority. It would be good to have this tested, but if it isn't or if it fails then it is inconsequential. 
 
 ## Releases and Architectures
@@ -56,7 +54,7 @@ All items in this category are ⬇️ - Low priority. It would be good to have t
 | Distro         | aarch64 | ppc64le | riscv64 | s390x | x86_64 |
 | -------------- | ------- | ------- | ------- | ----- | ------ |
 | Rocky Linux  9 | ⬇️       | ⬇️       | N/A     | ⬇️     | ⬇️      |
-| Rocky Linux 10 | ⬇️       | ⬇️       | ⬇️       | ⬇️     | ⬇️Setup |
+| Rocky Linux 10 | ⬇️       | ⬇️       | ⬇️       | ⬇️     | ⬇️      |
 
 Obtain access to a suitable system where any of the tested packages can be installed without any issues.
 
