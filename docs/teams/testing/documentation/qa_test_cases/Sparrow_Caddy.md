@@ -14,9 +14,9 @@ render_macros: true
 
 ## Description
 
-Documentation link:- https://docs.rockylinux.org/guides/web/caddy/
+Documentation link:- [Caddy Web Server](https://docs.rockylinux.org/guides/web/caddy/)
 
-Project link:- https://git.resf.org/testing/Sparky_Caddy
+Project link:- [https://git.resf.org/testing/Sparky_Caddy](https://git.resf.org/testing/Sparky_Caddy)
 
 🔴 - Tested and known to fail.
 ✅ - Tested and known to work.

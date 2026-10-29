@@ -2,7 +2,7 @@
 title: QA:Testcase RDP Graphics Mode
 author: Trevor Cooper
 contributors: Chris Stackpole
-tested_with: 8.10, 9.7, 10.1
+tested_with: 10.2
 tags:
   - testing
   - qa

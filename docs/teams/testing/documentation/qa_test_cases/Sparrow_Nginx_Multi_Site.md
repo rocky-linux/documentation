@@ -14,9 +14,9 @@ render_macros: true
 
 ## Description
 
-Documentation link:- https://docs.rockylinux.org/10/guides/web/nginx-multisite/
+Documentation link:- [How to Set up Nginx for Multiple Websites on Rocky Linux](https://docs.rockylinux.org/10/guides/web/nginx-multisite/)
 
-Project link:- https://git.resf.org/testing/Sparky_Nginx_Multi_Site
+Project link:- [https://git.resf.org/testing/Sparky_Nginx_Multi_Site](https://git.resf.org/testing/Sparky_Nginx_Multi_Site)
 
 🔴 - Tested and known to fail.
 ✅ - Tested and known to work.

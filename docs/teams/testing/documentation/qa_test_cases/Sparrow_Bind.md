@@ -14,9 +14,9 @@ render_macros: true
 
 ## Description
 
-Documentation link:- https://docs.rockylinux.org/guides/dns/private_dns_server_using_bind/
+Documentation link:- [Private DNS server with bind](https://docs.rockylinux.org/guides/dns/private_dns_server_using_bind/)
 
-Project link:- https://git.resf.org/testing/Sparky_Bind
+Project link:- [https://git.resf.org/testing/Sparky_Bind](https://git.resf.org/testing/Sparky_Bind)
 
 🔴 - Tested and known to fail.
 ✅ - Tested and known to work.

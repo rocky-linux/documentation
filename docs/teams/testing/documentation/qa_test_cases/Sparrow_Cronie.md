@@ -14,9 +14,9 @@ render_macros: true
 
 ## Description
 
-Documentation link:- https://docs.rockylinux.org/guides/automation/cronie/
+Documentation link:- [cronie - Timed Tasks](https://docs.rockylinux.org/guides/automation/cronie/)
 
-Project link:- https://git.resf.org/testing/Sparky_Cronie
+Project link:- [https://git.resf.org/testing/Sparky_Cronie](https://git.resf.org/testing/Sparky_Cronie)
 
 🔴 - Tested and known to fail.
 ✅ - Tested and known to work.

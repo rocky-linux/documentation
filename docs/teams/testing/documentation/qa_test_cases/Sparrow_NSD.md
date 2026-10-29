@@ -14,9 +14,9 @@ render_macros: true
 
 ## Description
 
-Documentation link:- https://docs.rockylinux.org/guides/dns/nsd_authoritative_dns/
+Documentation link:- [NSD Authoritative DNS](https://docs.rockylinux.org/guides/dns/nsd_authoritative_dns/)
 
-Project link:- https://git.resf.org/testing/Sparky_NSD
+Project link:- [https://git.resf.org/testing/Sparky_NSD](https://git.resf.org/testing/Sparky_NSD)
 
 🔴 - Tested and known to fail.
 ✅ - Tested and known to work.

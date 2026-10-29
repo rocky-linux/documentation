@@ -14,9 +14,9 @@ render_macros: true
 
 ## Description
 
-Documentation link:- https://docs.rockylinux.org/guides/package_management/dnf_package_manager/
+Documentation link:- [DNF package manager](https://docs.rockylinux.org/guides/package_management/dnf_package_manager/)
 
-Project link:- https://git.resf.org/testing/Sparky_DNF
+Project link:- [https://git.resf.org/testing/Sparky_DNF](https://git.resf.org/testing/Sparky_DNF)
 
 🔴 - Tested and known to fail.
 ✅ - Tested and known to work.

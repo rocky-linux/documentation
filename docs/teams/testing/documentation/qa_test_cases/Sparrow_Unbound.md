@@ -14,9 +14,9 @@ render_macros: true
 
 ## Description
 
-Documentation link:- https://docs.rockylinux.org/guides/dns/unbound_recursive_dns/
+Documentation link:- [Unbound Recursive DNS](https://docs.rockylinux.org/guides/dns/unbound_recursive_dns/)
 
-Project link:- https://git.resf.org/testing/Sparky_Unbound
+Project link:- [https://git.resf.org/testing/Sparky_Unbound](https://git.resf.org/testing/Sparky_Unbound)
 
 🔴 - Tested and known to fail.
 ✅ - Tested and known to work.

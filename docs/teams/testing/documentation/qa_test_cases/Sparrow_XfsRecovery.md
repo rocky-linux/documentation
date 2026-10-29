@@ -14,9 +14,9 @@ render_macros: true
 
 ## Description
 
-Documentation link:- https://docs.rockylinux.org/guides/filesystems/xfs_recovery/
+Documentation link:- [XFS recovery](https://docs.rockylinux.org/guides/filesystems/xfs_recovery/)
 
-Project link:- https://git.resf.org/testing/Sparky_XfsRecovery
+Project link:- [https://git.resf.org/testing/Sparky_XfsRecovery](https://git.resf.org/testing/Sparky_XfsRecovery)
 
 🔴 - Tested and known to fail.
 ✅ - Tested and known to work.

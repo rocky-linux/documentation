@@ -14,9 +14,9 @@ render_macros: true
 
 ## Description
 
-Documentation link:- https://docs.rockylinux.org/10/guides/cms/chyrp_lite/
+Documentation link:- [Chyrp Lite](https://docs.rockylinux.org/10/guides/cms/chyrp_lite/)
 
-Project link:- https://git.resf.org/testing/Sparky_Chyrp
+Project link:- [https://git.resf.org/testing/Sparky_Chyrp](https://git.resf.org/testing/Sparky_Chyrp)
 
 🔴 - Tested and known to fail.
 ✅ - Tested and known to work.

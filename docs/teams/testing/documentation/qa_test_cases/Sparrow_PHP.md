@@ -14,9 +14,9 @@ render_macros: true
 
 ## Description
 
-Documentation link:- https://docs.rockylinux.org/10/books/web_services/03-application-servers
+Documentation link:- [Application servers](https://docs.rockylinux.org/10/books/web_services/03-application-servers)
 
-Project link:- https://git.resf.org/testing/Sparky_PHP
+Project link:- [https://git.resf.org/testing/Sparky_PHP](https://git.resf.org/testing/Sparky_PHP)
 
 🔴 - Tested and known to fail.
 ✅ - Tested and known to work.

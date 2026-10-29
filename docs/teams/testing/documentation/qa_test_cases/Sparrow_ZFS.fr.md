@@ -16,7 +16,7 @@ render_macros: true
 
 Lien de documentation :-
 
-Lien du projet :- https://git.resf.org/testing/Sparky_ZFS
+Lien du projet :- [https://git.resf.org/testing/Sparky_ZFS](https://git.resf.org/testing/Sparky_ZFS)
 
 Ce cas permet de tester la branche stable (actuellement 2.2) ainsi que la branche la plus récente (actuellement 2.3). Les deux tests doivent être effectués. Pour l'instant, nous ne testons pas la branche de test (actuellement la 2.4). Étant donné que le test utilise la méthode RPM pour l'installation, il n'est pour l'instant valide que pour l'architecture x86_64.
 

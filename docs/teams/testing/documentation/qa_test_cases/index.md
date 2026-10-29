@@ -31,30 +31,28 @@ Icon guide:-
 
 The information below is intended to be for high level review. Details on which major release, architecture, and testing details are linked.
 
-## Community Testable Items
+## ISO Testing
 
-These are items which are easy for most to be able to test without having a requirement of specific hardware/software testing.
+These are items which test the generated ISO's in various ways.
 
 | Category | Requirement                                                                   | Test Case                                                                                            | Status            |
 | -------- | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ----------------- |
 | ⬇️        | [Physical Media Testing on CD/DVD/Bluray](Testcase_Physical_Media_Testing.md) | To ensure a user can burn the ISO files to physical disc and boot/install from that disc.            | Community, openQA |
-| ❌        | [Media Consistency Verification](Testcase_Media_Consistency_Verification.md)  | To ensure that a user can write the ISO files to a thumbdrive and boot/install from that thumbdrive. | Community         |
+| ❌       | [Media Consistency Verification](Testcase_Media_Consistency_Verification.md)  | To ensure that a user can write the ISO files to a thumbdrive and boot/install from that thumbdrive. | Community         |
 | ⬇️        | [Boot Live Image](Testcase_Live_Image.md)                                     | To ensure that each live environment can boot into the intended desktop.                             | Community         |
-| ❗        | [FWUPD Secureboot](Testcase_FWUPD.md)                                         | To ensure that secureboot and firmware updates function with the latest packages.                    | Community         |
-| ❗        | [Test Upgrade](Testcase_Upgrade.md)                                           | Ensure upgrades from previous versions work without issues.                                          | Manual            |
-| ❗        | [Test Torrents](Testcase_Torrents.md)                                         | Verify Torrents (when released).                                                                     | Manual            |
-| ⬇️      | [Hardware Probe](Testcase_Hardware_Probe.md)                                     | Hardware Probe (physical hardware; additional test; not RelEng request).                             | Manual            |
+| ❗       | [Test Torrents](Testcase_Torrents.md)                                         | Verify Torrents (when released).                                                                     | Community         |
 
-## Initialization Requirements
+## Repository and Upgrade Requirements
 
 | Category | Requirement                                              | Test Case                                                                | Status        |
 | -------- | -------------------------------------------------------- | ------------------------------------------------------------------------ | ------------- |
-| ❌        | [Media Repoclosure](Testcase_Media_Repoclosure.md)       | To ensure that there are no critical errors between release and upstream | Manual Script |
-| ❌        | [Media File Conflicts](Testcase_Media_File_Conflicts.md) | To ensure that there are no critical errors between package streams.     | Manual Script |
-| ❗        | [Repo Compare](Testcase_Repo_Compare.md)                 | To ensure packages in repositories match upstream.                       | Manual Script |
-| ❌        | [No Insights](Testcase_Packages_No_Insights.md)          | To ensure Insights has been removed.                                     | Manual Script |
-| ❌        | [No RHSM](Testcase_Packages_No_RHSM.md)                  | To ensure RHSM has been removed.                                         | Manual Script |
-| ❌        | [Debranding](Testcase_Debranding.md)                     | Ensure all debranding has been applied properly.                         | Manual Script |
+| ❌       | [Media Repoclosure](Testcase_Media_Repoclosure.md)       | To ensure that there are no critical errors between release and upstream | Manual Script |
+| ❌       | [Media File Conflicts](Testcase_Media_File_Conflicts.md) | To ensure that there are no critical errors between package streams.     | Manual Script |
+| ❗       | [Repo Compare](Testcase_Repo_Compare.md)                 | To ensure packages in repositories match upstream.                       | Manual Script |
+| ❌       | [No Insights](Testcase_Packages_No_Insights.md)          | To ensure Insights has been removed.                                     | Manual Script |
+| ❌       | [No RHSM](Testcase_Packages_No_RHSM.md)                  | To ensure RHSM has been removed.                                         | Manual Script |
+| ❌       | [Debranding](Testcase_Debranding.md)                     | Ensure all debranding has been applied properly.                         | Manual Script |
+| ❗       | [Test Upgrade](Testcase_Upgrade.md)                      | Ensure upgrades from previous versions work without issues.              | Community     |
 
 ## Installer Requirements
 
@@ -63,48 +61,50 @@ These are items which are easy for most to be able to test without having a requ
 | ⬇️        | [VNC Graphics Mode](Testcase_VNC_Graphics_Mode.md)                       | EL9:- Ensure that systems with very basic graphics can install.                                                          | openQA          |
 | ⬇️        | [Check RDP Graphics Mode](Testcase_RDP_Graphics_Mode.md)                 | EL10:- Ensure that systems with very basic graphics can install.                                                         | openQA          |
 | ⬇️        | [Packages and Installer Sources](Testcase_Packages_Installer_Sources.md) | Check all options for supported installation.                                                                            | openQA          |
-| ❗        | [Installation Interfaces](Testcase_Installation_Interfaces.md)           | The installer must be able to complete an installation using all supported spokes.                                       | openQA          |
-| ❗        | [Minimal Installation](Testcase_Minimal_Installation.md)                 | Ensure a minimal package set installation is functional.                                                                 | openQA          |
-| ❗        | [Kickstart Installation](Testcase_Kickstart_Installation.md)             | Ensure kickstart installations are working.                                                                              | openQA, Sparrow |
-| ❗        | [Disk Layouts](Testcase_Disk_Layouts.md)                                 | Test installs to a variety of partitions.                                                                                | openQA          |
-| ❗        | [Storage Volume Resize](Testcase_Storage_Volume_Resize.md)               | Test resizing in the installation.                                                                                       | openQA          |
-| ❗        | [Installer Help](Testcase_Installer_Help.md)                             | Any element in the installer which contains a “help” text must display the appropriate help documentation when selected. | openQA          |
-| ❗        | [Installer Translations](Testcase_Installer_Translations.md)             | Test all translations available.                                                                                         | openQA          |
+| ❗       | [Installation Interfaces](Testcase_Installation_Interfaces.md)           | The installer must be able to complete an installation using all supported spokes.                                       | openQA          |
+| ❗       | [Minimal Installation](Testcase_Minimal_Installation.md)                 | Ensure a minimal package set installation is functional.                                                                 | openQA          |
+| ❗       | [Kickstart Installation](Testcase_Kickstart_Installation.md)             | Ensure kickstart installations are working.                                                                              | openQA, Sparrow |
+| ❗       | [Disk Layouts](Testcase_Disk_Layouts.md)                                 | Test installs to a variety of partitions.                                                                                | openQA          |
+| ❗       | [Storage Volume Resize](Testcase_Storage_Volume_Resize.md)               | Test resizing in the installation.                                                                                       | openQA          |
+| ❗       | [Installer Help](Testcase_Installer_Help.md)                             | Any element in the installer which contains a “help” text must display the appropriate help documentation when selected. | openQA          |
+| ❗       | [Installer Translations](Testcase_Installer_Translations.md)             | Test all translations available.                                                                                         | openQA          |
 
 ## Post-Installation Requirements
 
-| Category | Requirement                                                             | Test Case                                                                                                                                                                                                                                                   | Status         |
-| -------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
-| ❌        | [System Service SSHD](Testcase_Post_System_Services.md)                 | Ensure SSH works.                                                                                                                                                                                                                                           | openQA, manual |
-| ❌        | [System Service FirewallD](Testcase_Post_System_Services.md)            | Ensure FirewallD works.                                                                                                                                                                                                                                     | openQA, manual |
-| ❌        | [System Service AuditD](Testcase_Post_System_Services.md)               | Ensure AuditD works.                                                                                                                                                                                                                                        | openQA, manual |
-| ❌        | [System Service ChronyD](Testcase_Post_System_Services.md)              | Ensure ChronyD works.                                                                                                                                                                                                                                       | openQA, manual |
-| ❗        | [Keyboard Layout](Testcase_Post_Keyboard_Layout.md)                     | Test that keyboard matches layout.                                                                                                                                                                                                                          | openQA         |
-| ❗        | [SELinux Errors on Server](Testcase_Post_SELinux_Errors_Server.md)      | Check for SELinux denials.                                                                                                                                                                                                                                  | openQA         |
-| ❗        | [SELinux Errors on Desktop](Testcase_Post_SELinux_Errors_Desktop.md)    | Check for SELinux denials.                                                                                                                                                                                                                                  | openQA         |
-| ❗        | [Application Functionality](Testcase_Post_Application_Functionality.md) | Applications that can be launched within GNOME or on the command line must start successfully and withstand basic functionality tests.                                                                                                                      | openQA, manual |
-| ❗        | [GNOME UI Functionality](Testcase_Post_GNOME_UI_Functionality.md)       | All elements of GNOME should function properly in regular use.                                                                                                                                                                                              | openQA, manual |
-| ⬇️        | [Multimonitor Setup](Testcase_Post_Multimonitor_Setup.md)               | Computers using two monitors, the graphical output is correctly shown on both monitors.                                                                                                                                                                     | manual         |
-| ⬇️        | [Artwork and Assets](Testcase_Post_Artwork_and_Assets.md)               | Proposed final artwork (such as wallpapers and other assets) must be included. A wallpaper from this package should show up as a default for GDM and GNOME.                                                                                                 | manual         |
-| ⬇️        | [Basic Package Installs](Testcase_Post_Package_installs.md)             | Packages (non-module) should be able to be installed without conflicts or dependencies on repositories outside of Rocky Linux.                                                                                                                              | openQA         |
-| ⬇️        | [Module Stream Package Installs](Testcase_Post_Module_Streams.md)       | Default modules (as listed in dnf module list) should be installed without requiring them to be enabled.<br/><br/>Module streams should be able to be switched and those packages should be able to be installed without errors or unresolved dependencies. | openQA         |
-| ⬇️        | [Identity Management](Testcase_Post_Identity_Management.md)             | It should be possible to setup a IdM server (FreeIPA), use it's functionality and connect clients.                                                                                                                                                          | openQA         |
-| ❗        | [FIPS Mode](Testcase_FIPS.md)                                           | Verify FIPS mode is functional and working.                                                                                                                                                                                                                 | openQA         |
+| Category | Requirement                                                             | Test Case                                                                                                                                                                                                                                                   | Status            |
+| -------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
+| ❌       | [System Service SSHD](Testcase_Post_System_Services.md)                 | Ensure SSH works.                                                                                                                                                                                                                                           | openQA, Community |
+| ❌       | [System Service FirewallD](Testcase_Post_System_Services.md)            | Ensure FirewallD works.                                                                                                                                                                                                                                     | openQA, Community |
+| ❌       | [System Service AuditD](Testcase_Post_System_Services.md)               | Ensure AuditD works.                                                                                                                                                                                                                                        | openQA, Community |
+| ❌       | [System Service ChronyD](Testcase_Post_System_Services.md)              | Ensure ChronyD works.                                                                                                                                                                                                                                       | openQA, Community |
+| ❗       | [FWUPD Secureboot](Testcase_FWUPD.md)                                   | To ensure that secureboot and firmware updates function with the latest packages.                                                                                                                                                                           | Community         |
+| ❗       | [FIPS Mode](Testcase_FIPS.md)                                           | Verify FIPS mode is functional and working.                                                                                                                                                                                                                 | openQA, Community |
+| ❗       | [Keyboard Layout](Testcase_Post_Keyboard_Layout.md)                     | Test that keyboard matches layout.                                                                                                                                                                                                                          | openQA            |
+| ❗       | [SELinux Errors on Server](Testcase_Post_SELinux_Errors_Server.md)      | Check for SELinux denials.                                                                                                                                                                                                                                  | openQA, Community |
+| ❗       | [SELinux Errors on Desktop](Testcase_Post_SELinux_Errors_Desktop.md)    | Check for SELinux denials.                                                                                                                                                                                                                                  | openQA, Community |
+| ❗       | [Application Functionality](Testcase_Post_Application_Functionality.md) | Applications that can be launched within GNOME or on the command line must start successfully and withstand basic functionality tests.                                                                                                                      | openQA, Community |
+| ❗       | [GNOME UI Functionality](Testcase_Post_GNOME_UI_Functionality.md)       | All elements of GNOME should function properly in regular use.                                                                                                                                                                                              | openQA, Community |
+| ⬇️        | [Hardware Probe](Testcase_Hardware_Probe.md)                            | Hardware Probe (physical hardware; additional test; not RelEng request).                                                                                                                                                                                    | Community         |
+| ⬇️        | [Multimonitor Setup](Testcase_Post_Multimonitor_Setup.md)               | Computers using two monitors, the graphical output is correctly shown on both monitors.                                                                                                                                                                     | Community         |
+| ⬇️        | [Artwork and Assets](Testcase_Post_Artwork_and_Assets.md)               | Proposed final artwork (such as wallpapers and other assets) must be included. A wallpaper from this package should show up as a default for GDM and GNOME.                                                                                                 | Community         |
+| ⬇️        | [Basic Package Installs](Testcase_Post_Package_installs.md)             | Packages (non-module) should be able to be installed without conflicts or dependencies on repositories outside of Rocky Linux.                                                                                                                              | openQA, Community |
+| ⬇️        | [Module Stream Package Installs](Testcase_Post_Module_Streams.md)       | Default modules (as listed in dnf module list) should be installed without requiring them to be enabled.<br/><br/>Module streams should be able to be switched and those packages should be able to be installed without errors or unresolved dependencies. | openQA, Community |
+| ⬇️        | [Identity Management](Testcase_Post_Identity_Management.md)             | It should be possible to setup a IdM server (FreeIPA), use it's functionality and connect clients.                                                                                                                                                          | openQA, Community |
 
 ## Cloud Image Testing
 
 | Category | Requirement                                                  | Test Case                                     | Status |
 | -------- | ------------------------------------------------------------ | --------------------------------------------- | ------ |
-| ❌        | [Container Base](Testcase_Cloud_Container_Base.md)           | Verify Container Base is functional           | manual |
-| ❌        | [Container Minimal](Testcase_Cloud_Container_Minimal.md)     | Verify Container Minimal is functional        | manual |
-| ❌        | [Container UBI](Testcase_Cloud_Container_UBI.md)             | Verify Container UBI is functional            | manual |
-| ❌        | [GenericCloud](Testcase_Cloud_Generic_Cloud.md)              | Verify GenericCloud is functional             | manual |
-| ❌        | [Amazon EC2](Testcase_Cloud_Amazon_EC2.md)                   | Verify Amazon EC2 image is functional         | manual |
-| ❌        | [Azure](Testcase_Cloud_Azure.md)                             | Verify Azure image is functional              | manual |
-| ❗        | [Oracle](Testcase_Cloud_Oracle.md)                           | Verify Oracle image is functional             | manual |
-| ⬇️        | [Vagrant - Libvirt](Testcase_Cloud_Vagrant_Libvirt.md)       | Verify Vagrant Libvirt image is functional    | manual |
-| ⬇️        | [Vagrant - VirtualBox](Testcase_Cloud_Vagrant_VirtualBox.md) | Verify Vagrant VirtualBox image is functional | manual |
-| ⬇️        | [Vagrant - VMWare](Testcase_Cloud_Vagrant_VMWare.md)         | Verify Vagrant VMWare image is functional     | manual |
+| ❌       | [Container Base](Testcase_Cloud_Container_Base.md)           | Verify Container Base is functional           | Manual |
+| ❌       | [Container Minimal](Testcase_Cloud_Container_Minimal.md)     | Verify Container Minimal is functional        | Manual |
+| ❌       | [Container UBI](Testcase_Cloud_Container_UBI.md)             | Verify Container UBI is functional            | Manual |
+| ❌       | [GenericCloud](Testcase_Cloud_Generic_Cloud.md)              | Verify GenericCloud is functional             | Manual |
+| ❌       | [Amazon EC2](Testcase_Cloud_Amazon_EC2.md)                   | Verify Amazon EC2 image is functional         | Manual |
+| ❌       | [Azure](Testcase_Cloud_Azure.md)                             | Verify Azure image is functional              | Manual |
+| ❗       | [Oracle](Testcase_Cloud_Oracle.md)                           | Verify Oracle image is functional             | Manual |
+| ⬇️        | [Vagrant - Libvirt](Testcase_Cloud_Vagrant_Libvirt.md)       | Verify Vagrant Libvirt image is functional    | Manual |
+| ⬇️        | [Vagrant - VirtualBox](Testcase_Cloud_Vagrant_VirtualBox.md) | Verify Vagrant VirtualBox image is functional | Manual |
+| ⬇️        | [Vagrant - VMWare](Testcase_Cloud_Vagrant_VMWare.md)         | Verify Vagrant VMWare image is functional     | Manual |
 
 ## Sparrow/Sparky Testing
 
