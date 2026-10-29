@@ -1,5 +1,5 @@
 ---
-title: QA:Testcase Torrents
+title: QA:Hardware Probe
 author: Chris Stackpole
 contributors: 
 tested_with: 8.10, 9.8, 10.2
@@ -42,6 +42,7 @@ All tests are considered ⬇️ - Low priority. It would be good to have this te
 ## Expected Results
 
 From the link the command outputs, please verify:-
+
 1. The "System" field is the correct version of the release. Especially true post update from past version.
 2. The "Kernel" field is the correct version of the kernel.
 3. There are no known errors or warnings. (exclude hardware warnings such as a failing SMART harddrive which is specific to that failing device and not a indicator of working hardware not being functional.)
