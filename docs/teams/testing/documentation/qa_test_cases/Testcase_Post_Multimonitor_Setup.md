@@ -12,6 +12,7 @@ rc:
   ver:
     - 8
     - 9
+    - 10
   level: Final
 render_macros: true
 ---

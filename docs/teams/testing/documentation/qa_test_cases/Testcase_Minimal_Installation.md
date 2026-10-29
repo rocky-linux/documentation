@@ -10,8 +10,9 @@ revision_date: 2026-05-08
 rc:
   prod: Rocky Linux
   ver:
-  - 8
-  - 9
+    - 8
+    - 9
+    - 10
   level: Final
 render_macros: true
 ---

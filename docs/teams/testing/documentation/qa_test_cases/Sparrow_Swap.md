@@ -14,9 +14,9 @@ render_macros: true
 
 ## Description
 
-Documentation link:- 
+Documentation link:- [DNF - Swap command](https://docs.rockylinux.org/gemstones/dnf-swap/)
 
-Project link:- https://git.resf.org/testing/Sparky_Swap
+Project link:- [https://git.resf.org/testing/Sparky_Swap](https://git.resf.org/testing/Sparky_Swap)
 
 🔴 - Tested and known to fail.
 ✅ - Tested and known to work.

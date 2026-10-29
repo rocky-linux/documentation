@@ -16,7 +16,7 @@ render_macros: true
 
 Documentation link:- 
 
-Project link:- https://git.resf.org/testing/Sparky-Redis
+Project link:- [https://git.resf.org/testing/Sparky-Redis](https://git.resf.org/testing/Sparky-Redis)
 
 🔴 - Tested and known to fail.
 ✅ - Tested and known to work.

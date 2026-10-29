@@ -14,9 +14,9 @@ render_macros: true
 
 ## Description
 
-Documentation link:- https://docs.rockylinux.org/guides/dns/knot_authoritative_dns/
+Documentation link:- [Knot Authoritative DNS](https://docs.rockylinux.org/guides/dns/knot_authoritative_dns/)
 
-Project link:- https://git.resf.org/testing/Sparky_Knot
+Project link:- [https://git.resf.org/testing/Sparky_Knot](https://git.resf.org/testing/Sparky_Knot)
 
 🔴 - Tested and known to fail.
 ✅ - Tested and known to work.

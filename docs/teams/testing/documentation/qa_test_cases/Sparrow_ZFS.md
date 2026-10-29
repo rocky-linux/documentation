@@ -16,7 +16,7 @@ render_macros: true
 
 Documentation link:- 
 
-Project link:- https://git.resf.org/testing/Sparky_ZFS
+Project link:- [https://git.resf.org/testing/Sparky_ZFS](https://git.resf.org/testing/Sparky_ZFS)
 
 This tests the stable branch (currently 2.2), and the latest branch (currently 2.3). Both tests should be run. Currently we do not test the testing branch (currently 2.4). Because the test utilizes the RPM method for install, the test is only valid for x86_64 at this time.
 

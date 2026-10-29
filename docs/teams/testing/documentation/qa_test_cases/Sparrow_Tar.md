@@ -14,9 +14,9 @@ render_macros: true
 
 ## Description
 
-Documentation link:- https://docs.rockylinux.org/guides/backup/tar/
+Documentation link:- [Tar command](https://docs.rockylinux.org/guides/backup/tar/)
 
-Project link:- https://git.resf.org/testing/Sparky_Tar
+Project link:- [https://git.resf.org/testing/Sparky_Tar](https://git.resf.org/testing/Sparky_Tar)
 
 🔴 - Tested and known to fail.
 ✅ - Tested and known to work.

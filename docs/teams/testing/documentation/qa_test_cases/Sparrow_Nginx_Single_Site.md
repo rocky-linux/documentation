@@ -14,9 +14,9 @@ render_macros: true
 
 ## Description
 
-Documentation link:- https://docs.rockylinux.org/10/guides/web/nginx-mainline/
+Documentation link:- [How to Install the Latest Nginx on Rocky Linux](https://docs.rockylinux.org/10/guides/web/nginx-mainline/)
 
-Project link:- https://git.resf.org/testing/Sparky_Nginx_Single_Site
+Project link:- [https://git.resf.org/testing/Sparky_Nginx_Single_Site](https://git.resf.org/testing/Sparky_Nginx_Single_Site)
 
 🔴 - Tested and known to fail.
 ✅ - Tested and known to work.

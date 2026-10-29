@@ -14,9 +14,9 @@ render_macros: true
 
 ## Description
 
-Documentation link:- https://docs.rockylinux.org/guides/file_sharing/nfsserver/
+Documentation link:- [Network File System](https://docs.rockylinux.org/guides/file_sharing/nfsserver/)
 
-Project link:- https://git.resf.org/testing/Sparky_NFS
+Project link:- [https://git.resf.org/testing/Sparky_NFS](https://git.resf.org/testing/Sparky_NFS)
 
 🔴 - Tested and known to fail.
 ✅ - Tested and known to work.

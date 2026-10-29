@@ -16,7 +16,7 @@ render_macros: true
 
 Documentation link:- 
 
-Project link:- https://git.resf.org/testing/Sparky-Python-SSL
+Project link:- [https://git.resf.org/testing/Sparky-Python-SSL](https://git.resf.org/testing/Sparky-Python-SSL)
 
 🔴 - Tested and known to fail.
 ✅ - Tested and known to work.

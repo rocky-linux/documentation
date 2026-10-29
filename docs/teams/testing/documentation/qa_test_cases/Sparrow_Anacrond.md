@@ -14,9 +14,9 @@ render_macros: true
 
 ## Description
 
-Documentation link:- https://docs.rockylinux.org/guides/automation/anacron/
+Documentation link:- [anacron - Automating commands](https://docs.rockylinux.org/guides/automation/anacron/)
 
-Project link:- https://git.resf.org/testing/Sparky_Anacron
+Project link:- [https://git.resf.org/testing/Sparky_Anacron](https://git.resf.org/testing/Sparky_Anacron)
 
 🔴 - Tested and known to fail.
 ✅ - Tested and known to work.
