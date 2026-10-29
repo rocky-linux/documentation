@@ -4,6 +4,8 @@ on:
   push:
     branches: ['main', 'rocky-8', 'rocky-9']
   workflow_dispatch:
+  schedule:
+    - cron: '0 4 * * *'
 
 jobs:
   trigger:
