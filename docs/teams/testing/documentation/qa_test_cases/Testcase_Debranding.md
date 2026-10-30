@@ -6,7 +6,8 @@ tested_with: 8.10
 tags:
   - testing
   - qa
-revision_date: 2026-05-08rc:
+revision_date: 2026-05-08
+rc:
   prod: Rocky Linux
   ver: 8
   level: Final
