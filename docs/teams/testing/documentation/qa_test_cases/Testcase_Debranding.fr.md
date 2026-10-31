@@ -39,8 +39,7 @@ Ce test permettra de vérifier que tous les paquets disponibles sur les supports
 3. Configurez `/etc/koji.conf` pour accéder à [Rocky Linux Koji](https://koji.rockylinux.org).
 4. Téléchargez une copie récente du [patch.yml](https://git.rockylinux.org/rocky/metadata/-/blob/main/patch.yml) depuis [Rocky Linux Gitlab](https://git.rockylinux.org).
 
-!!! info "patch.yml" "
-    "  
+!!! info "patch.yml" ""
     Packages listed in `patch.yml` are names of source RPMs. Binary RPMs containing content produced by building the patched source RPMs need to be validated. The easiest way to get the list of all possible binary RPMs for a particular package and arch is to ask obtain that information in koji.
 
 ## Marche à suivre
