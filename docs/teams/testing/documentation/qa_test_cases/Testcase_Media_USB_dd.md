@@ -53,7 +53,8 @@ This verifies that Rocky Linux ISO image can be written to USB media using `dd` 
     - Example command:
 
     ```bash
-    curl -LOR https://dl.rockylinux.org/pub/rocky/RPM-GPG-KEY-rockyofficial
+    # If you do not have the GPG keys already, please download the keys for each release from:-
+    # https://rockylinux.org/resources/gpg-key-info
     ```
 
 ## How to test
@@ -62,7 +63,8 @@ This verifies that Rocky Linux ISO image can be written to USB media using `dd` 
     - Example command:
 
     ```bash
-    gpg --import RPM-GPG-KEY-rockyofficial
+    gpg --import RPM-GPG-KEY-Rocky-9
+    gpg --import RPM-GPG-KEY-Rocky-10
     ```
 
 2. Verify the signature of the CHECKSUM file.
