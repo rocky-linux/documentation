@@ -42,8 +42,29 @@ One of the last steps of release is generating torrents for users. Torrents shou
 3. Verify GPG key signature.
 
    ```
-   gpg --import RPM-GPG-KEY-rockyofficial
+   # If you do not have the GPG keys already, please download the keys for each release from:-
+   # https://rockylinux.org/resources/gpg-key-info
+   #
+   # Import those keys
+   gpg --import RPM-GPG-KEY-Rocky-9
+   gpg --import RPM-GPG-KEY-Rocky-10
+   #
+   # Alternatively, if you are on a Rocky system you can get the system key from:-
+   sudo dnf install rocky-gpg-keys
+   gpg --import /etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-*
+   #
+   # Test that the GPG key matches that website
+   gpg --list-keys
+   #
+   # Now test
    gpg --verify-file CHECKSUM.asc
+   #
+   # Output you are looking for is one of the following with keys that match the website above:-
+   gpg: Good signature from "Rocky Enterprise Software Foundation - Release key 2022 <releng@rockylinux.org>"
+   gpg: Good signature from "Release Engineering (Rocky Linux 10) <releng@rockylinux.org>"
+   #
+   # The following WARNING can be ignored for this test:-
+   gpg: WARNING: This key is not certified with a trusted signature!
    ```
 
 ## Expected Results
