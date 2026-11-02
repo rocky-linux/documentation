@@ -1,11 +1,11 @@
 ---
-title: rsync brief description
+title: `rsync` brief description
 author: tianci li
 contributors: Steven Spencer, Ganna Zhyrnova
 update : 2026-Nov-02
 ---
 
-# Backup
+## Backup
 
 Before explaining Rsync in detail, it is necessary to first understand the concept, classification, and implementation methods of backup.
 
@@ -44,7 +44,7 @@ In GNU/Linux, common tools for local media backup include:
 * `cp`
 * ...
 
-When backing up existing local data, we can store the backup file on the current storage medium or on an additional independent storage medium. However, both the currently used storage media and standalone storage media may be damaged. To prevent this risk, an additional backup method should be adopted, which is remote off-site backup.
+When backing up existing local data, you can store the backup file on the current storage medium or on an additional independent storage medium. However, both the currently used storage media and standalone storage media may be damaged. To prevent this risk, an additional backup method should be adopted, which is remote off-site backup.
 
 On the other hand, the data volume in the production environment is extremely large. If you use traditional and commonly seen tools, such as:
 
@@ -64,8 +64,8 @@ In terms of platform support, most Unix-like systems are supported, whether it i
 
 The original version of Rsync was developed and maintained by Australian programmer **Andrew Tridgell** (yes, the same programmer who developed Samba), and was maintained by **Wayne Davison** from 2004 to 2024. You can find more information on the [GitHub project page](https://github.com/RsyncProject/rsync).
 
-![ Andrew Tridgell ](images/Andrew_Tridgell.jpg)
-![ Wayne Davison ](images/Wayne_Davison.jpg)
+![Andrew Tridgell](images/Andrew_Tridgell.jpg)
+![Wayne Davison](images/Wayne_Davison.jpg)
 
 !!! note "Note"
 
@@ -86,7 +86,7 @@ The main features of Rsync include:
 
 ### Install Rsync
 
-Whether you're using RL 8.x, RL 9.x, or RL 10.x, simply type the following command to complete the installation:
+Whether you are using RL 8.x, RL 9.x, or RL 10.x, simply type the following command to complete the installation:
 
 ```bash
 [root@Rocky ~]# dnf -y install rsync
