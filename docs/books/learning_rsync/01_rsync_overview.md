@@ -1,5 +1,5 @@
 ---
-title: `rsync` brief description
+title: rsync brief description
 author: tianci li
 contributors: Steven Spencer, Ganna Zhyrnova
 update : 2026-Nov-02
