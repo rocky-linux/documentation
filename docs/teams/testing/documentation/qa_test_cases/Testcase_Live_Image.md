@@ -29,7 +29,7 @@ Live images are only created for Aarch64 and x86_64. Not all Desktop live images
 ## Setup
 
 1. For each ISO in a release architecture, download the corresponding ISO.
-2. Use an virtualization application to boot the ISO image.
+2. Use a virtualization application to boot the ISO image.
 
 ## How to test
 
