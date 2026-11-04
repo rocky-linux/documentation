@@ -42,7 +42,7 @@ Project link:- [https://git.resf.org/testing/Sparky_PHP](https://git.resf.org/te
 
 ```
 [task check]
-# php repo should be inabled
+# php repo should be enabled
 stdout match (r) <php \s+ "remi-8.5" \s+ "[e]"> True
 # php version should be installed
 stdout match <"PHP "8.5"."> True
