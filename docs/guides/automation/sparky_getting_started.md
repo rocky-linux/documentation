@@ -564,6 +564,24 @@ There will be several sub-jobs launched. Results are for Rocky 9.8 as 8.10 has i
 
 Click on the ID for the job to get more details. You should see a successful partition ("normal*      up 7-00:00:00      1   idle master"), followed by a message of "Test complete!"
 
+## Running Container Tests
+
+The preference is to use podman as podman exists on every arch where docker is not easily available on every arch.
+
+```bash
+# Install podman.
+$ sudo dnf install podman podman-docker
+
+# Need this to silence the warning about using docker commands
+$ sudo touch /etc/containers/nodocker
+
+# Modify the registry so that that the automation doesn't get stuck asking which registry to use
+$ sudo vim /etc/containers/registries.conf
+unqualified-search-registries = [ "docker.io"]
+
+# All of that will allow podman to run for Sparky container tests using what's in the registry.
+```
+
 ## Writing new tests
 
 ### Creating a repository
