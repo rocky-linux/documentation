@@ -36,7 +36,7 @@ All tests are considered ⬇️ - Low priority. It would be good to have this te
 
 ## How to test
 
-1. `sudo -E hw-probe -all -upload` (or equivellent command; see [Hardware Compatibility](https://docs.rockylinux.org/teams/testing/documentation/hardware/hardware_compat/) for more options)
+1. `sudo -E hw-probe -all -upload` (or equivalent command; see [Hardware Compatibility](https://docs.rockylinux.org/teams/testing/documentation/hardware/hardware_compat/) for more options)
 2. Post the link the tool provides (ex: https://linux-hardware.org/?probe=a42dbc6763) along with the information in the next section.
 
 ## Expected Results
@@ -45,6 +45,6 @@ From the link the command outputs, please verify:-
 
 1. The "System" field is the correct version of the release. Especially true post update from past version.
 2. The "Kernel" field is the correct version of the kernel.
-3. There are no known errors or warnings. (exclude hardware warnings such as a failing SMART harddrive which is specific to that failing device and not a indicator of working hardware not being functional.)
+3. There are no known errors or warnings. (exclude hardware warnings such as a failing SMART harddrive which is specific to that failing device and not an indicator of working hardware not being functional.)
 
 {% include 'teams/testing/qa_testcase_bottom.md' %}
