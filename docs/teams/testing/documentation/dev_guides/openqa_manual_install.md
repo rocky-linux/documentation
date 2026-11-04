@@ -237,7 +237,7 @@ Some sample variables are:
 - ```ENCRYPT``` encrypt the home directory via ```YaST```
 - ```HDDSIZEGB``` hard disk size in GB.
 - ```HDD_1``` path for the pre-created hard disk
-- ```RAIDLEVEL RAID``` configuration variable
+- ```RAIDLEVEL``` RAID configuration variable
 
 #### Job Groups
 
@@ -315,7 +315,7 @@ The following terms are used within the context of openQA:-
 openQA started with OS-autoinst: automated testing of Operating Systems
 The OS-autoinst project aims at providing a means to run fully automated tests, especially to run tests of basic and low-level operating system components such as bootloader, kernel, installer and upgrade, which can not easily be tested with other automated testing frameworks. However, it can just as well be used to test firefox and openoffice operation on top of a newly installed OS.
 openQA is a test-scheduler and web-front for openSUSE and Fedora using OS-autoinst as a backend.
-openQA originated at openSuse and was adopted by Fedora as the automated test system for their frequent distribution updates. Maintenance activity is fairly intense and is ongoing at various levels of users. openQA was adopted by Rocky Linux Test Team as the preferred automated testing system for the ongoing releases of it's distribution.
+openQA originated at openSuse and was adopted by Fedora as the automated test system for their frequent distribution updates. Maintenance activity is fairly intense and is ongoing at various levels of users. openQA was adopted by Rocky Linux Test Team as the preferred automated testing system for the ongoing releases of its distribution.
 openQA is free software released under the GPLv2 license.
 
 ### Attribution
