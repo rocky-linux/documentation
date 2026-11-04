@@ -37,7 +37,7 @@ The Venn diagram overlap of OpenQA, Kickstart tests, and Sparky is fairly minima
 
 ## Prerequisites
 
-- A Rocky Linux 9 base install on x86_64 or aarch64. The RISC-V instructions assume Rocky Linux 10.
+- A Rocky Linux 9 or 10 base install on x86_64 or aarch64. The RISC-V instructions assume Rocky Linux 10.
 - Administrative access through `sudo` to install packages and open a firewall port.
 - Optional: you can run this inside a virtual machine as long as the host provides QEMU pass through for nested virtualization. That setup is not covered in this guide, but it helps if you are doing a lot of configuration testing and you need to restart or reset quickly.
 
@@ -48,7 +48,14 @@ This guide should be everything you need to get started running the Rocky test s
 ### Install dependencies
 
 ```bash
-sudo dnf install -y wget tar perl xorriso bash-completion qemu-kvm vim sqlite git openssl-devel rsync tmux genisoimage
+sudo dnf install -y wget tar perl xorriso bash-completion qemu-kvm vim git openssl-devel rsync tmux genisoimage
+```
+
+NOTE: On Rocky 10, `genisoimage` is not available. Instead, run these two commands:-
+
+```bash
+sudo ln -s /usr/bin/xorrisofs /etc/alternatives/mkisofs-genisoimage
+sudo ln -s /etc/alternatives/mkisofs-genisoimage /usr/bin/genisoimage
 ```
 
 ### Install Raku for x86_64 and aarch64 
