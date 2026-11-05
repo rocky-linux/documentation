@@ -18,7 +18,7 @@ contributors:
 
 ## Sign the agreements
 
-1. Login to your [accounts.rockylinux.org] account.
+1. Login to your [accounts.rockylinux.org](https://accounts.rockylinux.org) account.
 2. Select the down arrow next to your profile icon (next to "Groups") in the upper right corner and select "Settings."
 3. In the tabs across the top select "Agreements."
 4. Review and sign the "Rocky Open Source Contributor Agreement" and the "Rocky Git Contributor Agreement."
