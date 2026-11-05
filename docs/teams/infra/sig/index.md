@@ -1,5 +1,5 @@
 ---
-Title: SIG introduction
+title: SIG introduction
 author: Infrastructure, Steven Spencer
 contributors:
 ---
@@ -20,4 +20,4 @@ Special Interest Groups or SIGs, provide a method for interested users to extend
 
 ## SIG membership
 
-* SIG members are appointed or approved by SIG sponsors or leaders
+* The appointment or approval of SIG members is by SIG sponsors or leaders.
