@@ -14,7 +14,7 @@ SIG leader responsibilities for smooth onboarding of new members. This involves,
 
 **Communication:** Promptly acknowledge receipt of membership requests and provide clear next steps. Send a welcome message and introduce the new member to the rest of the SIG membership.
 
-**Add to necessary groups:** Guide new members through the process of joining any relevant project teams. Grant necessary permissions on platforms such as [git.rockylinux.org](https://git.rockylinux.org) and [git.resf.org](https://git.resf.org).
+**Add to necessary groups:** Guide new members through the process of joining any relevant project teams. Grant necessary permissions on platforms such as [github.com/rocky-linux](https://github.com/rocky-linux) and [git.resf.org](https://git.resf.org).
 
 **Facilitate integration:** Introduce new members during the next SIG meeting. Encourage active participation and discuss current projects or areas where the SIG needs help. Ensure new members understand how to access and use collaboration tools.
 

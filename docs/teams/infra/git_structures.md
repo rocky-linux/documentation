@@ -30,7 +30,7 @@ You can find the information about how to use our Git services, the team's expec
 
 ## RPM system
 
-This section goes over the RPM system, such as importing, patching, and how it ultimately gets built into a binary RPM. This happens on [git.rockylinux.org](https://git.rockylinux.org).
+This section goes over the RPM system, such as importing, patching, and how it ultimately gets built into a binary RPM. This happens on [git.resf.org](https://git.resf.org).
 
 ### Current RPM structure
 
