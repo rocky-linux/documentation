@@ -22,14 +22,6 @@ Projets généraux, codés et plus encore pour la Rocky Enterprise Software Foun
 - Technologie: [Forgejo](https://forgejo.org)
 - Contact : [Infrastructure](https://chat.rockylinux.org/rocky-linux/channels/infrastructure) ou [Development](https://chat.rockylinux.org/rocky-linux/channels/development) dans Mattermost et `#rockylinux-infra` ou `#rockylinux-devel` dans Libera IRC.
 
-## Rocky Linux GitLab
-
-Paquets et code léger pour la distribution Rocky Linux.
-
-- URL : [Rocky GitLab](https://git.rockylinux.org)
-- Technologie : [GitLab](https://gitlab.com)
-- Contact : [Infrastructure](https://chat.rockylinux.org/rocky-linux/channels/infrastructure) ou [Development](https://chat.rockylinux.org/rocky-linux/channels/development) dans Mattermost et `#rockylinux-infra` ou `#rockylinux-devel` dans Libera IRC.
-
 ## Services de miroirs
 
 Demande permettant aux utilisateurs de devenir un serveur miroir pour le contenu Rocky, que ce soit pour le système d'exploitation ou pour les contenus SIG.
