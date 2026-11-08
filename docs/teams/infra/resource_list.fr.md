@@ -29,4 +29,5 @@ Application permettant aux utilisateurs d'héberger un serveur miroir pour le co
 - URL: [Mirror services](https://mirrors.rockylinux.org)
 - Technologie : MirrorManager 2
 - Contact: [Infrastructure](https://chat.rockylinux.org/rocky-linux/channels/infrastructure) dans Mattermost et `#rockylinux-infra` dans Libera IRC.
-- etc...
+- Cf. :  
+  https://fr.crowdin.com/project/rockydocs/fr#
