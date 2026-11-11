@@ -76,7 +76,7 @@ The recommended and easiest way to use hw-probe is what is listed above:
 sudo -E hw-probe -all -upload
 ```
 
-For those that want to know what it is before they upload, which is a good safety check, then we recommend the use of saving the probe. This is also a useful option for those who may have systems they would like to contribute, but do not have direct internet access (please don't subvert any policies! But for those with approval yet do not have direct access to the internet this is a useful option):
+For those that want to know what it is before they upload, which is a good safety check, then we recommend the use of saving the probe. This is also a useful option for those who may have systems they would like to contribute, but do not have direct internet access (please do not subvert any policies! But for those with approval yet do not have direct access to the internet this is a useful option):
 
 ```bash
 sudo -E hw-probe -all -save /path/to/writable/folder
@@ -98,7 +98,7 @@ sudo -E hw-probe -minimal -save /path/to/writable/folder
 
 ### Notify the Testing team
 
-If running the probe on a official release (at the time of this writing: 8.10, 9.8, 10.2), submit the result to the Testing Team via chat.rockylinux.org (Mattermost Chat) in the testing channel. This is only recommended and not required. It simply lets Testing Team know what hardware you submitted and the current state of it with Rocky. There is a lot of value for the larger community and for Testing Team historical purposes (knowing if hardware did or did not work on previous releases).
+If running the probe on an official release (at the time of this writing: 8.10, 9.8, 10.2), submit the result to the Testing Team via chat.rockylinux.org (Mattermost Chat) in the testing channel. This is only recommended and not required. It simply lets Testing Team know what hardware you submitted and the current state of it with Rocky. There is a lot of value for the larger community and for Testing Team historical purposes (knowing if hardware did or did not work on previous releases).
 
 If running the probe on a Release Candidate or Beta, it is important to report the link regardless of status to [chat.rockylinux.org](https://chat.rockylinux.org) (Mattermost Chat), in the release channel. If that is not possible, direct message Rocky Linux on your social media of choice, or post in the forums at [forums.rockylinux.org](https://forums.rockylinux.org). Testing Team cannot guarantee your name will appear in the credits for submissions outside of the Mattermost channels at [chat.rockylinux.org](https://chat.rockylinux.org), but we will do our best to include ALL those who give submissions.
 
