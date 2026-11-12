@@ -7,7 +7,7 @@ update: 2021-11-04
 
 # 编译安装
 
-在服务器中执行以下操作， 在你的环境中，可能会缺少一些依赖的包， 使用以下方式安装它们： `dnf -y install autoconf automake libtool`
+在服务器中执行以下操作，在你的环境中，可能会缺少一些依赖的包，使用以下方式安装它们： `dnf -y install autoconf automake libtool`
 
 ```bash
 [root@Rocky ~]# wget -c https://github.com/inotify-tools/inotify-tools/archive/refs/tags/3.21.9.6.tar.gz
@@ -33,13 +33,13 @@ PATH=$PATH:/usr/local/inotify-tools/bin/
 [root@Rocky ~]# . /etc/profile
 ```
 
-**为什么不使用EPEL存储库的inotify-tools RPM包？ 而使用源代码编译安装的方式？**
+**为什么不使用EPEL存储库的inotify-tools RPM包？而使用源代码编译安装的方式？**
 
-作者个人认为，远程传输数据关乎效率问题，特别在在生产环境下，要同步的文件数量多且单文件特别大的前提下，这特别重要。 而且新版本会有一些bug修复与功能拓展，也许新版本的传输效率会更加高，所以我更加推荐用源代码的方式安装 inotify-tools 。 当然，这是作者的个人建议，不是每个用户都必须遵循的。
+作者个人认为，远程传输数据关乎效率问题，特别在在生产环境下，要同步的文件数量多且单文件特别大的前提下，这特别重要。而且新版本会有一些bug修复与功能拓展，也许新版本的传输效率会更加高，所以我更加推荐用源代码的方式安装 inotify-tools 。当然，这是作者的个人建议，不是每个用户都必须遵循的。
 
 ## 内核参数调整
 
-您可以根据生产环境的需要，对内核参数进行调整。 默认情况下，在 **/proc/sys/fs/inotity/** 有三个文件
+您可以根据生产环境的需要，对内核参数进行调整。默认情况下，在 **/proc/sys/fs/inotity/** 有三个文件
 
 ```bash
 [root@Rocky ~]# cd /proc/sys/fs/inotify/
@@ -53,7 +53,7 @@ PATH=$PATH:/usr/local/inotify-tools/bin/
 * max_user_instances - 最多监控实例数，默认128
 * max_user_watches - 每个实例最多监控的文件数，默认8192
 
-写入一些参数与值到 **/etc/sysctl.conf** 当中，示例如下。 然后使用`sysctl -p`让文件它们生效
+写入一些参数与值到 **/etc/sysctl.conf** 当中，示例如下。然后使用`sysctl -p`让文件它们生效
 
 ```txt
 fs.inotify.max_queued_events = 16384
@@ -65,7 +65,7 @@ fs.inotify.max_user_watches = 1048576
 
 inotify-tools工具有两个命令，分别是：
 
-* **inotifywait**：用于持续监控，实时输出结果。 它通常与 rsync 增量备份工具一起使用。 因为它是对文件系统的监控，所以可以搭配脚本一起使用。 我们稍后将介绍具体的脚本编写。
+* **inotifywait**：用于持续监控，实时输出结果。它通常与 rsync 增量备份工具一起使用。因为它是对文件系统的监控，所以可以搭配脚本一起使用。我们稍后将介绍具体的脚本编写。
 
 * **inotifywatch**：用于短期监控，任务完成后输出结果。
 
@@ -129,7 +129,7 @@ inotifywait 主要有以下选项：
 
     我们在Rocky Linux 8服务器上操作，使用SSH协议进行演示。
 
-SSH协议的免密验证登录，可参考 [rsync 免密验证登录](05_rsync_authentication-free_login.zh.md)，这里不具体说明。 bash脚本内容示例如下。 您可以根据需要，在命令的后面加上不同的选项来满足需求。 bash脚本内容示例如下，您可以根据需要，在命令的后面加上不同的选项来满足需求，例如还可以在`rsync`命令后面加入`--delete`
+SSH协议的免密验证登录，可参考 [rsync 免密验证登录](05_rsync_authentication-free_login.zh.md)，这里不具体说明。 bash脚本内容示例如下。您可以根据需要，在命令的后面加上不同的选项来满足需求。 bash脚本内容示例如下，您可以根据需要，在命令的后面加上不同的选项来满足需求，例如还可以在`rsync`命令后面加入`--delete`
 
 ```bash
 #!/bin/bash
