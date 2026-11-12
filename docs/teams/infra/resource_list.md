@@ -29,4 +29,3 @@ Application for users to become a mirror host for Rocky content, either for the 
 * URL: [Mirror services](https://mirrors.rockylinux.org)
 * Technology: MirrorManager 2
 * Contact: [Infrastructure](https://chat.rockylinux.org/rocky-linux/channels/infrastructure) in Mattermost, and `#rockylinux-infra` in Libera IRC.
-* `
