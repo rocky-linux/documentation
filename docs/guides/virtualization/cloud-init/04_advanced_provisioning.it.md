@@ -19,7 +19,7 @@ Questo capitolo tratta due argomenti avanzati e molto importanti:
 1. Configurazione di rete dichiarativa: come andare oltre il DHCP e definire configurazioni di rete statiche per le tue istanze.
 2. Payload MIME multiparte: come combinare diversi tipi di dati utente, come script di shell e file `#cloud-config`, in un unico potente payload.
 
-## 1) Configurazione per rete dichiarativa
+## 1. Configurazione per rete dichiarativa
 
 Per impostazione predefinita, la configurazione della maggior parte delle immagini cloud prevede l'acquisizione di un indirizzo IP tramite DHCP. Sebbene sia comodo, molti ambienti di produzione richiedono che i server abbiano indirizzi IP statici. Il sistema di configurazione di rete `cloud-init` offre un modo dichiarativo e indipendente dalla piattaforma per gestire tutto questo.
 
@@ -133,7 +133,7 @@ Uno scenario comune nel mondo reale è un server con più interfacce di rete. Qu
 
 3. **Verifica:** esegure SSH all'indirizzo assegnato dal DHCP su `eth0`, quindi controlla l'IP statico su `eth1` con `ip a show eth1`.
 
-## 2) Unificazione dei payload con MIME multi-part
+## 2. Unificazione dei payload con MIME multi-part
 
 A volte è necessario eseguire uno script di configurazione _prima_ dell'esecuzione dei moduli principali `#cloud-config`. I file multi-part MIME sono la soluzione ideale, poiché consentono di raggruppare diversi tipi di contenuti in un unico payload ordinato.
 
