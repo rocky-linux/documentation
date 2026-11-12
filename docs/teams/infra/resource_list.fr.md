@@ -24,9 +24,10 @@ Projets généraux, codés et plus encore pour la Rocky Enterprise Software Foun
 
 ## Services de miroirs
 
-Demande permettant aux utilisateurs de devenir un serveur miroir pour le contenu Rocky, que ce soit pour le système d'exploitation ou pour les contenus SIG.
+Application permettant aux utilisateurs d'héberger un serveur miroir pour le contenu Rocky, que ce soit pour le système d'exploitation ou pour les contenus SIG.
 
 - URL: [Mirror services](https://mirrors.rockylinux.org)
 - Technologie : MirrorManager 2
 - Contact: [Infrastructure](https://chat.rockylinux.org/rocky-linux/channels/infrastructure) dans Mattermost et `#rockylinux-infra` dans Libera IRC.
-- etc...
+- Cf. :  
+  https://fr.crowdin.com/project/rockydocs/fr#
