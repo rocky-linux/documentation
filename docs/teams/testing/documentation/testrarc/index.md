@@ -32,7 +32,7 @@ From the TESTRARC landing page the status of each active Testbook can be seen pe
 
 # Logging In
 
-In order for a contributor to submit their own test results they must have a [Rocky Account Services (RAS)](https://accounts.rockylinux.org/) account. The RAS system manages accounts across Rocky Enterprise Software Foundation(RESF) and Rocky Linux managed systems. The process and requirements for obtaining a RAS account are **documented in the [Getting Started guide](https://docs.rockylinux.org/teams/infra/contribute/start/)**.
+In order for a contributor to submit their own test results they must have a [Rocky Account Services (RAS)](https://accounts.rockylinux.org/) account. The RAS system manages accounts across Rocky Enterprise Software Foundation (RESF) and Rocky Linux managed systems. The process and requirements for obtaining a RAS account are **documented in the [Getting Started guide](https://docs.rockylinux.org/teams/infra/contribute/start/)**.
 
 A contributor with a RAS account will be able to log in to [https://testrarc.rockylinux.org/](https://testrarc.rockylinux.org/) and submit results.
 
@@ -42,7 +42,7 @@ A contributor with a RAS account will be able to log in to [https://testrarc.roc
 ## Terminology
 
 **TestBook**
-: A TestBook is a defined collection of TestGroups, which in turn contain BasicTests which is affiliated with a specific Rocky Linux release. Testbooks will usually have multiple sub-releases such as BETA and RC-1 associated with them. Active Testbooks are displayed on the TESTRARC landing page in a tiled layout.
+: A TestBook is a defined collection of TestGroups, which in turn contain BasicTests which are affiliated with a specific Rocky Linux release. TestBooks will usually have multiple sub-releases such as BETA and RC-1 associated with them. Active TestBooks are displayed on the TESTRARC landing page in a tiled layout.
 
 **TestGroup**
 : A TestGroup is a collection of BasicTests with a generally common property. Sample TestGroups are: ISO Testing, Installer Requirements, Cloud Image Testing.
@@ -60,7 +60,7 @@ A contributor with a RAS account will be able to log in to [https://testrarc.roc
 : A test may be labelled with one or more identifying tags which are/can be used to collect specific BasicTests for review/reporting easily using the Filtering capability which will be described later in this document.
 
 **Bare Metal**
-: A bare metal test result is collected directly on a physical machine directly not in a container or VM instance on a physical machine.
+: A bare metal test result is collected directly on a physical machine not in a container or VM instance on a physical machine.
 
 **Container**
 : A container test result can be collected with any common container technology like `docker`, `podman` or `apptainer`. The details of the container technology used may be useful to include in the test result `Comments` field.
@@ -81,7 +81,7 @@ A contributor with a RAS account will be able to log in to [https://testrarc.roc
 - Test result data values are identified *`like this`*.
 
 ## Categories
-Clicking on one of the Testbooks on the TESTRARC landing page will open to a view of all of the tests for the associated Rocky Linux release organized into their respective categories. By default, the display of the categories are expanded. The **`Collapse All`** option will collapse the categories to show only the category names along with summary completion statistics. Conversely, **`Expand All`** will expand all of the categories and show all the tests that are part of each category along with individual test completion statistics.
+Clicking on one of the TestBooks on the TESTRARC landing page will open to a view of all of the tests for the associated Rocky Linux release organized into their respective categories. By default, the display of the categories is expanded. The **`Collapse All`** option will collapse the categories to show only the category names along with summary completion statistics. Conversely, **`Expand All`** will expand all of the categories and show all the tests that are part of each category along with individual test completion statistics.
 
 ![Category Headings](images/category_headings.png)
 
