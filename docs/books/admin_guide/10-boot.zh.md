@@ -78,7 +78,7 @@ root          1      0  0 02:10 ?        00:00:02 /usr/lib/systemd/systemd --swi
 
 ### `systemd`
 
-`systemd` 是所有系统进程的父进程。 它会读取 `/etc/systemd/system/default.target` 链接的目标 (例如 `/usr/lib/systemd/system/multi-user.target`) ，以确定系统的默认目标。 该文件定义了要启动的服务。
+`systemd` 是所有系统进程的父进程。它会读取 `/etc/systemd/system/default.target` 链接的目标 (例如 `/usr/lib/systemd/system/multi-user.target`) ，以确定系统的默认目标。该文件定义了要启动的服务。
 
 `systemd` 然后通过执行以下初始化任务以将系统置于定义目标的状态：
 
@@ -97,11 +97,11 @@ root          1      0  0 02:10 ?        00:00:02 /usr/lib/systemd/systemd --swi
 
 1. 防止 *单* 用户模式访问 - 如果攻击者能够启动到单用户模式，他就会成为 root 用户。
 2. 防止访问 GRUB 控制台 - 如果攻击者设法使用 GRUB 控制台，他可以通过使用 `cat` 命令改变其配置或收集有关系统的信息。
-3. 防止访问不安全的操作系统。 如果系统上有双引导，攻击者可以在引导时选择像 DOS 这样的操作系统从而忽略访问控制和文件权限。
+3. 防止访问不安全的操作系统。如果系统上有双引导，攻击者可以在引导时选择像 DOS 这样的操作系统从而忽略访问控制和文件权限。
 
 用密码保护 GRUB2 引导加载程序：
 
-1. 以 root 用户身份登录操作系统并执行 `grub2-mkpasswd-pbkdf2` 命令。 此命令的输出如下：
+1. 以 root 用户身份登录操作系统并执行 `grub2-mkpasswd-pbkdf2` 命令。此命令的输出如下：
 
     ```bash
     Enter password:
@@ -109,9 +109,9 @@ root          1      0  0 02:10 ?        00:00:02 /usr/lib/systemd/systemd --swi
     PBKDF2 hash of your password is grub.pbkdf2.sha512.10000.D0182EDB28164C19454FA94421D1ECD6309F076F1135A2E5BFE91A5088BD9EC87687FE14794BE7194F67EA39A8565E868A41C639572F6156900C81C08C1E8413.40F6981C22F1F81B32E45EC915F2AB6E2635D9A62C0BA67105A9B900D9F365860E84F1B92B2EF3AA0F83CECC68E13BA9F4174922877910F026DED961F6592BB7
     ```
 
-    您需要在交互中输入密码。 密码密文是长字符串 "grub.pbkdf2.sha512..."。
+    您需要在交互中输入密码。密码密文是长字符串 "grub.pbkdf2.sha512..."。
 
-2. 将密码密文粘贴到 **/etc/grub.d/00_header** 文件的最后一行。 粘贴格式如下：
+2. 将密码密文粘贴到 **/etc/grub.d/00_header** 文件的最后一行。粘贴格式如下：
 
     ```bash
     cat <<EOF
@@ -133,7 +133,7 @@ root          1      0  0 02:10 ?        00:00:02 /usr/lib/systemd/systemd --swi
 
 3. 最后一步是运行命令 `grub2-mkconfig -o /boot/grub2/grub.cfg` 来更新 GRUB2 的设置。
 
-4. 重新启动操作系统以验证 GRUB2 的加密。 选择第一个启动菜单项并键入 ++"e"++ 键，然后输入相应的用户和密码。
+4. 重新启动操作系统以验证 GRUB2 的加密。选择第一个启动菜单项并键入 ++"e"++ 键，然后输入相应的用户和密码。
 
     ```bash
     Enter username:
@@ -206,21 +206,21 @@ Enter password:
 
 * 您可以将挂载点配置为 `systemd` target。
 
-* 在启动时，`systemd` 会为所有支持这种激活类型的系统服务创建监听套接字，并在这些服务启动后立即将这些套接字传递给它们。 这使得在服务不可用期间可以重新启动该服务而不会丢失网络发送给它的任何消息。 所有消息在排队期间，相应的套接字仍保持可访问状态。
+* 在启动时，`systemd` 会为所有支持这种激活类型的系统服务创建监听套接字，并在这些服务启动后立即将这些套接字传递给它们。这使得在服务不可用期间可以重新启动该服务而不会丢失网络发送给它的任何消息。所有消息在排队期间，相应的套接字仍保持可访问状态。
 
 * 使用 D-BUS 进行进程间通信的系统服务可在客户端首次使用时按需启动。
 
-* `systemd` 仅停止或重新启动正在运行的服务。 以前的版本（RHEL7 之前）会尝试直接停止服务而不会检查其当前状态。
+* `systemd` 仅停止或重新启动正在运行的服务。以前的版本（RHEL7 之前）会尝试直接停止服务而不会检查其当前状态。
 
-* 系统服务不会继承任何上下文环境（如 HOME 和 PATH 等环境变量）。 每个服务均在其独立的执行上下文中运行。
+* 系统服务不会继承任何上下文环境（如 HOME 和 PATH 等环境变量）。每个服务均在其独立的执行上下文中运行。
 
 所有服务 unit 的操作默认受 5 分钟超时限制，以防止故障服务导致系统冻结。
 
-由于篇幅限制，本文将不提供 `systemd` 的详细介绍。 如果你有兴趣进一步探索 `systemd`，在 [这个文档](./16-about-sytemd.md) 中有非常详细的介绍。
+由于篇幅限制，本文将不提供 `systemd` 的详细介绍。如果你有兴趣进一步探索 `systemd`，在 [这个文档](./16-about-sytemd.md) 中有非常详细的介绍。
 
 ### 管理系统服务
 
-服务 unit 以 `.service` 文件扩展名结尾，其用途与 init 脚本类似。 `systemctl` 命令的用途是 `显示`、`启动`、`停止` 或 `重新启动` 系统服务。 除极少数情况外，`systemctl` 单行命令在大多数情况下可以操作一个或多个 unit（不限于 “.service”的 unit 类型）。 您可以通过帮助系统查看它。
+服务 unit 以 `.service` 文件扩展名结尾，其用途与 init 脚本类似。 `systemctl` 命令的用途是 `显示`、`启动`、`停止` 或 `重新启动` 系统服务。除极少数情况外，`systemctl` 单行命令在大多数情况下可以操作一个或多个 unit（不限于 “.service”的 unit 类型）。您可以通过帮助系统查看它。
 
 | systemctl                                 | 说明                  |
 | ----------------------------------------- | ------------------- |
@@ -298,9 +298,9 @@ WantedBy=multi-user.target
 
 `systemd` target 的表示是通过 target unit 进行的。 Target unit 以 `.target ` 文件扩展名结尾，其唯一目的是将其他 `systemd` unit 组织成具有依赖关系的链式结构。
 
-例如，启动图形会话的 `graphical.target` unit 会启动相应的系统服务，如 **GNOME 显示管理器**（`gdm.service`）或 **帐户服务**（`accounts-daemon.service`），并同时激活 `multi-user.target` unit。 如果需要查看某个 "target" 的依赖关系，请执行 `systemctl list-dependencies` 命令。 （例如，`systemctl list-dependencies multi-user.target`）。
+例如，启动图形会话的 `graphical.target` unit 会启动相应的系统服务，如 **GNOME 显示管理器**（`gdm.service`）或 **帐户服务**（`accounts-daemon.service`），并同时激活 `multi-user.target` unit。如果需要查看某个 "target" 的依赖关系，请执行 `systemctl list-dependencies` 命令。（例如，`systemctl list-dependencies multi-user.target`）。
 
-`sysinit.target` 和 `basic.target` 是启动过程中的检查点。 尽管 `systemd` 的设计目标之一是并行启动系统服务，但在启动其他服务和 "targets"之前，有必要先启动某些服务和功能的 "targets"。 `sysinit.target` 或 `basic target` 中的任何错误都将导致 `systemd` 的初始化失败。 此时，您的终端可能已进入到 "紧急模式"（`emergency.target`）。
+`sysinit.target` 和 `basic.target` 是启动过程中的检查点。尽管 `systemd` 的设计目标之一是并行启动系统服务，但在启动其他服务和 "targets"之前，有必要先启动某些服务和功能的 "targets"。 `sysinit.target` 或 `basic target` 中的任何错误都将导致 `systemd` 的初始化失败。此时，您的终端可能已进入到 "紧急模式"（`emergency.target`）。
 
 | Target Units      | 说明             |
 | ----------------- | -------------- |
@@ -383,7 +383,7 @@ systemctl isolate name.target
 systemctl rescue
 ```
 
-**紧急模式** 提供了尽可能的最小环境并允许系统在无法进入到救援模式的情况下进行维护。 在紧急模式下，操作系统以只读选项挂载根文件系统。 它不会尝试挂载任何其他本地文件系统，也不会激活任何网络接口，并且会启动一些基本服务。
+**紧急模式** 提供了尽可能的最小环境并允许系统在无法进入到救援模式的情况下进行维护。在紧急模式下，操作系统以只读选项挂载根文件系统。它不会尝试挂载任何其他本地文件系统，也不会激活任何网络接口，并且会启动一些基本服务。
 
 更改当前 target 并进入到紧急模式：
 
@@ -415,7 +415,7 @@ systemctl emergency
 * Initramfs 和系统启动日志
 * 所有服务的标准输出（stdout）和标准错误输出（stderr）信息
 
-捕获后，`journald` 将对这些日志进行索引，并通过结构化存储机制提供给用户。该机制以二进制格式存储日志，支持按时间顺序跟踪事件，并提供灵活的过滤、搜索和多种格式（如 text/JSON）输出功能。 请注意，`journald` 默认情况下不启用日志持久性，这意味着该组件仅保留和记录自启动以来的所有日志。 操作系统重新启动后，会删除历史日志。 默认情况下，所有临时保存的日志文件都位于 **/run/log/journal/** 目录中。
+捕获后，`journald` 将对这些日志进行索引，并通过结构化存储机制提供给用户。该机制以二进制格式存储日志，支持按时间顺序跟踪事件，并提供灵活的过滤、搜索和多种格式（如 text/JSON）输出功能。请注意，`journald` 默认情况下不启用日志持久性，这意味着该组件仅保留和记录自启动以来的所有日志。操作系统重新启动后，会删除历史日志。默认情况下，所有临时保存的日志文件都位于 **/run/log/journal/** 目录中。
 
 ### `journalctl` 命令
 
@@ -440,11 +440,11 @@ journalctl
 journalctl -f
 ```
 
-该命令返回最近十个日志行的列表。 然后 `journalctl` 实用程序将继续运行，并等待发生新的更改，然后立即显示它们。
+该命令返回最近十个日志行的列表。然后 `journalctl` 实用程序将继续运行，并等待发生新的更改，然后立即显示它们。
 
 #### 过滤消息
 
-可以使用不同的过滤方法来提取符合不同需求的信息。 日志消息通常用于跟踪系统上的错误行为。 要查看具有选定或更高优先级的条目，请执行以下操作：
+可以使用不同的过滤方法来提取符合不同需求的信息。日志消息通常用于跟踪系统上的错误行为。要查看具有选定或更高优先级的条目，请执行以下操作：
 
 ```bash
 journalctl -p priority

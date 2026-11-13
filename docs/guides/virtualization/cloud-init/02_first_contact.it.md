@@ -120,7 +120,7 @@ Uno dei modi più comuni per fornire dati a `cloud-init` in un ambiente locale �
     sudo cat /root/boot_done.txt
     ```
 
-## 3) Metodo 2: Iniezione diretta con `virt-install`
+## 3. Metodo 2: Iniezione diretta con `virt-install`
 
 La creazione di un ISO è un metodo affidabile, ma per gli utenti di `libvirt` e `virt-install` esiste un modo molto più semplice. Il flag `--cloud-init` consente di passare direttamente `user-data`, lasciando che `virt-install` gestisca automaticamente la creazione dell'origine dati.
 

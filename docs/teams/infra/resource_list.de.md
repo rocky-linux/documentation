@@ -29,5 +29,3 @@ Anwendung für Nutzer, die einen Mirror-Host für Rocky-Inhalte – sei es für 
 - URL: [Mirror-Services](https://mirrors.rockylinux.org)
 - Technologie: MirrorManager 2
 - Kontakt: [Infrastructure](https://chat.rockylinux.org/rocky-linux/channels/infrastructure) in Mattermost und `#rockylinux-infra` in Libera IRC.
-- Siehe:  
-  https://de.crowdin.com/project/rockydocs/de#

@@ -20,17 +20,17 @@ tags:
 
 !!! note "说明"
 
-    本文档不描述如何在本地计算机上编译并安装源代码包。 通常，您应该从存储库中获取相应的软件包，除非您需要的软件包不在存储库中。 这是因为包管理系统可以帮助用户解决依赖性问题。 对于初学者而言，解决编译源代码包所需的依赖关系可能颇具挑战性。
+    本文档不描述如何在本地计算机上编译并安装源代码包。通常，您应该从存储库中获取相应的软件包，除非您需要的软件包不在存储库中。这是因为包管理系统可以帮助用户解决依赖性问题。对于初学者而言，解决编译源代码包所需的依赖关系可能颇具挑战性。
 
-**软件包**：开发人员提前将一组源文件编译成可执行的机器语言，并将其打包成特定格式的二进制文件。 除非另有说明，否则 Linux 中的 "软件包" 一词指二进制软件包。
+**软件包**：开发人员提前将一组源文件编译成可执行的机器语言，并将其打包成特定格式的二进制文件。除非另有说明，否则 Linux 中的 "软件包" 一词指二进制软件包。
 
 **源文件**：人类可读的单个代码文件（扩展名如 .c、.py、.java），它可能只是整个项目的一个代码片段或模块，需要编译或解释器才能在计算机上运行。
 
-**源代码包**：一个压缩的归档文件，用于打包整个项目的源文件和相关文件（如 Makefile 和 configure 等构建文件；README 和 LICENSE 等文档文件）。 文件后缀如 `.tar.gz` 或 `.tar.xz` 通常表示此类文件类型。
+**源代码包**：一个压缩的归档文件，用于打包整个项目的源文件和相关文件（如 Makefile 和 configure 等构建文件；README 和 LICENSE 等文档文件）。文件后缀如 `.tar.gz` 或 `.tar.xz` 通常表示此类文件类型。
 
 ## RPM 概述
 
-**RPM**（RedHat Package Manager） 是一个软件管理系统。 它可以安装、卸载、更新或检查软件包中包含的软件。
+**RPM**（RedHat Package Manager） 是一个软件管理系统。它可以安装、卸载、更新或检查软件包中包含的软件。
 
 **RPM** 是所有 Red Hat 发行版（Rocky Linux、Fedora、CentOS、SUSE、Mandriva 等）使用的包管理系统，这些包通过文件后缀 `.rpm` 进行标识。 Debian 及其衍生版使用 DPKG 包管理系统来管理软件包，这些包通过文件后缀 `.deb` 进行标识。
 
@@ -40,7 +40,7 @@ RPM 软件包的命名规范：
 
 !!! tip "术语解释"
 
-    当我们使用大写的 “RPM" 时，它指的是包管理系统。 使用小写的 “rpm" 时，绝大多数情况下特指 `rpm` 命令。 而使用 `.rpm` 时，则指软件包的格式后缀。 读者在阅读文档时不应将它们混淆。
+    当我们使用大写的 “RPM" 时，它指的是包管理系统。使用小写的 “rpm" 时，绝大多数情况下特指 `rpm` 命令。而使用 `.rpm` 时，则指软件包的格式后缀。读者在阅读文档时不应将它们混淆。
 
 今天的 RPM 包管理系统仍在不断更新和迭代，请参阅 [此处](https://rpm.org/)。
 
@@ -52,7 +52,7 @@ RPM 软件包的命名规范：
 
 **包名称**：软件包的名称，如 `tree`。
 
-如果相关软件包对操作系统而言是新的（尚未安装），则在使用 `rpm` 命令时应使用 "完整包名称"。 如果相关软件包对操作系统而言是非全新的（已经安装），则在使用 `rpm` 命令时应使用 "包名称"。 这是因为 `rpm` 会将相关的软件包信息存储在 **/var/lib/rpm/** 数据库目录中。
+如果相关软件包对操作系统而言是新的（尚未安装），则在使用 `rpm` 命令时应使用 "完整包名称"。如果相关软件包对操作系统而言是非全新的（已经安装），则在使用 `rpm` 命令时应使用 "包名称"。这是因为 `rpm` 会将相关的软件包信息存储在 **/var/lib/rpm/** 数据库目录中。
 
 `rpm` 命令的用法如下：
 
@@ -77,11 +77,11 @@ rpm [options] <Package-Name> | <Full-Package-Name>
 * 升级一个或多个软件包 - `rpm -Uvh <Full-Package-Name> ...`
 * 卸载一个或多个软件包 - `rpm -e <Package-Name> ...`
 
-由于 `rpm` 是一个本地包管理器，因此用户需要在软件安装过程中手动解决依赖关系问题。 如果缺少相关依赖项，将出现如 "failed dependencies" 的提示。
+由于 `rpm` 是一个本地包管理器，因此用户需要在软件安装过程中手动解决依赖关系问题。如果缺少相关依赖项，将出现如 "failed dependencies" 的提示。
 
 理解 RPM 软件包的依赖关系：
 
-* **树型依赖关系（a.rpm ---> b.rpm ---> c.rpm）** - 安装 a.rpm 时，它会提示需先安装 b.rpm。 安装 b.rpm 时，它会提示需先安装 c.rpm。 最简便的解决方法是将这些安装串接起来：`rpm -ivh a.rpm b.rpm c.rpm`
+* **树型依赖关系（a.rpm ---> b.rpm ---> c.rpm）** - 安装 a.rpm 时，它会提示需先安装 b.rpm。安装 b.rpm 时，它会提示需先安装 c.rpm。最简便的解决方法是将这些安装串接起来：`rpm -ivh a.rpm b.rpm c.rpm`
 * **环形依赖关系（a.rpm ---> b.rpm ---> c.rpm ---> a.rpm）** - `rpm -ivh a.rpm b.rpm c.rpm`
 * **模块依赖关系** - 访问 [此网站](https://www.rpmfind.net/) 进行搜索
 
@@ -93,16 +93,16 @@ rpm [options] <Package-Name> | <Full-Package-Name>
 
 相关选项如下：
 
-| 选项       | 说明                                                                                                            |
-| -------- | ------------------------------------------------------------------------------------------------------------- |
-| `-q`     | 查询软件包是否已安装，如 `rpm -q tree-1.7.0-15.el8.x86_64.rpm`                                                            |
-| `-a`     | 当与 `-q` 选项结合使用时，查询所有已安装的 rpm 包，如 `rpm-qa`                                                                     |
-| `-i`     | 与 `-q` 选项结合使用，可查询对应已安装 rpm 软件包的详细信息。 如 `rpm -qi bash`                                                         |
-| `-l`     | 当与 `-q` 选项结合使用时，可查询对应已安装 rpm 包释放出的文件列表                                                                        |
-| `-p`     | 指定未安装的软件包，例如 `rpm -qip tree-1.7.0-15.el8.x86_64.rpm` 和 `rpm -qlp tree-1.7.0-15.el8.x86_64.rpm`                |
-| `-f`     | 当与 `-q` 选项结合使用时，查询安装文件所属的软件包，例如 `rpm -qf /usr/bin/bash`                                                       |
-| `-R`     | 当与 `-q` 选项结合使用时，查询已安装 rpm 包的依赖关系。 当与 `-p` 选项结合使用时，您可以查询未安装 rpm 包的依赖关系，例如 `rpm -qRp mtr-0.92-3.el8.x86_64.rpm` |
-| `--last` | 按安装时间对软件包进行排序，时间最近的排在最前面                                                                                      |
+| 选项       | 说明                                                                                                           |
+| -------- | ------------------------------------------------------------------------------------------------------------ |
+| `-q`     | 查询软件包是否已安装，如 `rpm -q tree-1.7.0-15.el8.x86_64.rpm`                                                           |
+| `-a`     | 当与 `-q` 选项结合使用时，查询所有已安装的 rpm 包，如 `rpm-qa`                                                                    |
+| `-i`     | 与 `-q` 选项结合使用，可查询对应已安装 rpm 软件包的详细信息。如 `rpm -qi bash`                                                         |
+| `-l`     | 当与 `-q` 选项结合使用时，可查询对应已安装 rpm 包释放出的文件列表                                                                       |
+| `-p`     | 指定未安装的软件包，例如 `rpm -qip tree-1.7.0-15.el8.x86_64.rpm` 和 `rpm -qlp tree-1.7.0-15.el8.x86_64.rpm`               |
+| `-f`     | 当与 `-q` 选项结合使用时，查询安装文件所属的软件包，例如 `rpm -qf /usr/bin/bash`                                                      |
+| `-R`     | 当与 `-q` 选项结合使用时，查询已安装 rpm 包的依赖关系。当与 `-p` 选项结合使用时，您可以查询未安装 rpm 包的依赖关系，例如 `rpm -qRp mtr-0.92-3.el8.x86_64.rpm` |
+| `--last` | 按安装时间对软件包进行排序，时间最近的排在最前面                                                                                     |
 
 RPM 数据库位于 `/var/lib/rpm/` 目录中。
 
@@ -134,7 +134,7 @@ kernel-4.18.0-240.22.1.el8.x86_64             Mon 24 May 2021 02:33:35 PM CEST
 
 !!! tip "使用技巧"
 
-    使用查询功能（`-q` 选项）时，对应的软件包必须具有确定性。 换句话说，您不能在 `rpm` 命令行中使用通配符来匹配包名。 要筛选特定的一个或多个包，您需要使用管道符（`|`）和 `grep` 命令。
+    使用查询功能（`-q` 选项）时，对应的软件包必须具有确定性。换句话说，您不能在 `rpm` 命令行中使用通配符来匹配包名。要筛选特定的一个或多个包，您需要使用管道符（`|`）和 `grep` 命令。
 
     ```bash
     sudo rpm -qa | grep ^dbus
@@ -150,11 +150,11 @@ kernel-4.18.0-240.22.1.el8.x86_64             Mon 24 May 2021 02:33:35 PM CEST
 
 您必须使用 `-K` 选项来完成此操作。
 
-当您从未知网站或不受信任的位置下载 rpm 二进制包时，您无法确定该包是否已被篡改。 因此，用户需要验证软件包的签名，以确保下载的软件包完整且未被篡改。
+当您从未知网站或不受信任的位置下载 rpm 二进制包时，您无法确定该包是否已被篡改。因此，用户需要验证软件包的签名，以确保下载的软件包完整且未被篡改。
 
-在对软件包进行签名验证之前，请先导入所需的公钥。 这通常由系统管理员完成。
+在对软件包进行签名验证之前，请先导入所需的公钥。这通常由系统管理员完成。
 
-从 RHEL 8.x 开始，您可以使用 `dnf download` 命令下载特定的软件包。 例如，若您需要下载 `wget` 包，请使用：
+从 RHEL 8.x 开始，您可以使用 `dnf download` 命令下载特定的软件包。例如，若您需要下载 `wget` 包，请使用：
 
 ```bash
 sudo dnf download wget
@@ -193,7 +193,7 @@ S.5....T.  c /etc/chrony.conf
 
 - **第一列（S.5....T.）**
 
-    使用 9 个字段来表示安装 RPM 软件包后的文件有效信息。 任何通过特定检查/测试的字段或特征均以 "." 标记。
+    使用 9 个字段来表示安装 RPM 软件包后的文件有效信息。任何通过特定检查/测试的字段或特征均以 "." 标记。
 
     这 9 个不同的字段或检查是：
 
@@ -209,10 +209,10 @@ S.5....T.  c /etc/chrony.conf
 
 - **第二列（c）**
 
-    **c**：表示对配置文件进行了修改。 它也可以是以下值：
+    **c**：表示对配置文件进行了修改。它也可以是以下值：
 
     - d：文档文件
-    - g：鬼文件。 极少能看到
+    - g：鬼文件。极少能看到
     - l：许可证文件
     - r：自述文件
 
@@ -224,9 +224,9 @@ S.5....T.  c /etc/chrony.conf
 
 **DNF**（**Dandified Yum**） 是一个软件包管理器，是 **YUM**（**Y**ellow dog **U**pdater **M**odified）的继任者。
 
-`dnf` 命令：此命令允许您通过与存储库交互来管理二进制软件包。 对于最常见的功能项命令，其使用方式与 `yum` 命令相同。 对于一些较新的发行版（例如 Rocky Linux 10.x 或 Fedora 43），`dnf` 命令行工具已更新。 例如在 Rocky Linux 10.x 中，用户可从存储库中选择性地安装 `dnf5` 。
+`dnf` 命令：此命令允许您通过与存储库交互来管理二进制软件包。对于最常见的功能项命令，其使用方式与 `yum` 命令相同。对于一些较新的发行版（例如 Rocky Linux 10.x 或 Fedora 43），`dnf` 命令行工具已更新。例如在 Rocky Linux 10.x 中，用户可从存储库中选择性地安装 `dnf5` 。
 
-基于红帽的发行版（如 Rocky Linux、Fedora 和 CentOS ）使用 `dnf` 命令行工具。 而在 Debian 的世界中，其对应的是 `apt`（**A**dvanced **P**ackaging **T**ool）命令行工具。
+基于红帽的发行版（如 Rocky Linux、Fedora 和 CentOS ）使用 `dnf` 命令行工具。而在 Debian 的世界中，其对应的是 `apt`（**A**dvanced **P**ackaging **T**ool）命令行工具。
 
 ### `dnf` 的功能项命令
 
@@ -236,11 +236,11 @@ S.5....T.  c /etc/chrony.conf
 dnf [options] <command> [<args>...]
 ```
 
-语法中的 "命令" 代表 `dnf` 的功能项命令。 有些命令是内置的，而其他命令则需要第三方插件的支持。 您可以通过使用 `--help` 选项来查看每个功能命令的用法，例如 `dnf list --help`。
+语法中的 "命令" 代表 `dnf` 的功能项命令。有些命令是内置的，而其他命令则需要第三方插件的支持。您可以通过使用 `--help` 选项来查看每个功能命令的用法，例如 `dnf list --help`。
 
 1. **`list` 命令**
 
-    根据此命令之后的不同选项列出软件包。 默认情况下，列出操作系统中可供安装的所有软件包（`dnf list` 等同于 `dnf list --all`）。
+    根据此命令之后的不同选项列出软件包。默认情况下，列出操作系统中可供安装的所有软件包（`dnf list` 等同于 `dnf list --all`）。
 
     * `dnf list --installed` - 列出当前操作系统已安装的软件包
     * `dnf list --updates` - 列出您可以升级的软件包
@@ -260,11 +260,11 @@ dnf [options] <command> [<args>...]
 
 1. **`search` 命令**
 
-    使用给定的字符串在存储库中搜索软件包。 例如 `dnf search vim`。
+    使用给定的字符串在存储库中搜索软件包。例如 `dnf search vim`。
 
 1. **`install` 命令**
 
-    从存储库中安装一个或多个软件包。 例如 `dnf -y install wget tree`。 其中 `-y` 选项表示自动应答为 "yes"。 通过这种方式安装软件包时，`dnf` 会自动处理依赖关系解析。
+    从存储库中安装一个或多个软件包。例如 `dnf -y install wget tree`。其中 `-y` 选项表示自动应答为 "yes"。通过这种方式安装软件包时，`dnf` 会自动处理依赖关系解析。
 
     除了从存储库中安装软件包外，您还可以通过指定 URL 或本地 RPM 软件包进行安装，例如 `dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm`、`dnf install /tmp/mtr-0.92-3.el8.x86_64.rpm`
 
@@ -274,7 +274,7 @@ dnf [options] <command> [<args>...]
 
 1. **`deplist` command** （已弃用）
 
-    列出软件包的依赖项。 请使用 `dnf repoquery --deplist <Package-Name>` 作为替代方案。
+    列出软件包的依赖项。请使用 `dnf repoquery --deplist <Package-Name>` 作为替代方案。
 
 1. **`repolist` 命令**
 
@@ -286,19 +286,19 @@ dnf [options] <command> [<args>...]
 
 1. **`history` 命令**
 
-    显示输入的 `dnf` 命令的历史记录。 默认情况下， `dnf history` 等同于 `dnf history list`，您可以用 `info`、`redo`、`replay`、`rollback`、`store`、`undo` 或 `userinstalled` 中的任意一个替换这里的 "list"。
+    显示输入的 `dnf` 命令的历史记录。默认情况下， `dnf history` 等同于 `dnf history list`，您可以用 `info`、`redo`、`replay`、`rollback`、`store`、`undo` 或 `userinstalled` 中的任意一个替换这里的 "list"。
 
 1. **`provides` 命令**
 
-    查看给定文件所属的软件包。 例如 `dnf provides /usr/bin/systemctl`。
+    查看给定文件所属的软件包。例如 `dnf provides /usr/bin/systemctl`。
 
 1. **`remove` 命令**
 
-    从当前操作系统中移除一个或多个软件包。 默认情况下，它会询问是否要卸载该软件包及其相关的依赖包，且可通过 `-y` 选项自动响应为 "yes"。
+    从当前操作系统中移除一个或多个软件包。默认情况下，它会询问是否要卸载该软件包及其相关的依赖包，且可通过 `-y` 选项自动响应为 "yes"。
 
 1. **`autoremove` 命令**
 
-    自动删除那些曾经作为依赖项使用但现在已不再使用的软件包。 例如 `dnf -y autoremove`。
+    自动删除那些曾经作为依赖项使用但现在已不再使用的软件包。例如 `dnf -y autoremove`。
 
 1. **`makecache` 命令**
 
@@ -306,7 +306,7 @@ dnf [options] <command> [<args>...]
 
 1. **`update` 或 `upgrade` 命令**
 
-    在操作系统中升级一个或多个软件包。 例如，`dnf update -y` 会更新操作系统中所有可升级的软件包。
+    在操作系统中升级一个或多个软件包。例如，`dnf update -y` 会更新操作系统中所有可升级的软件包。
 
 1. **`grouplist`、`groupinstall`、`groupremove` 或 `groupinfo` 命令**
 
@@ -346,7 +346,7 @@ dnf [options] <command> [<args>...]
 
 1. **`clean` 命令**
 
-    清理缓存数据。 你可以用该命令清理所有数据缓存：`dnf clean all`。
+    清理缓存数据。你可以用该命令清理所有数据缓存：`dnf clean all`。
 
     | 可清理的元数据类型      | 说明                 |
     | -------------- | ------------------ |
@@ -408,11 +408,11 @@ system-upgrade            Prepare system for upgrade to a new release
 
 !!! tip "提示" 
 
-    如果缺少这些插件命令，请安装 `dnf-plugins-core` 包。 在此处查阅更多信息：https://dnf-plugins-core.readthedocs.io/en/latest/index.html
+    如果缺少这些插件命令，请安装 `dnf-plugins-core` 包。在此处查阅更多信息：https://dnf-plugins-core.readthedocs.io/en/latest/index.html
 
 ### 配置文件说明
 
-您可以在 **/etc/yum.repos.d/** 目录中找到所有存储库配置文件（以 `.repo` 结尾）。 每个 `.repo` 文件可以包含一个或多个存储库，用户可以根据自身具体情况选择性地启用或禁用它们。
+您可以在 **/etc/yum.repos.d/** 目录中找到所有存储库配置文件（以 `.repo` 结尾）。每个 `.repo` 文件可以包含一个或多个存储库，用户可以根据自身具体情况选择性地启用或禁用它们。
 
 ```bash
 ls -l /etc/yum.repos.d/
@@ -455,23 +455,23 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
 * 使用 "[ ]" 包含存储库 ID，该 ID 必须是唯一的。
 * "[ ]" 下方是存储库选项。
 * "name" 选项 - 指定存储库的详细名称。
-* "mirrorlist" 选项 - 存储库镜像列表的 URL 。 URL 支持多种协议，如 https、http、ftp、file、NFS 等。 值中的 "$" 代表相关的存储库变量。
-* "baseurl" 选项 - 存储库的 URL 列表。 URL 支持多种协议，如 https、http、ftp、file、NFS 等。 值中的 "$" 代表相关的存储库变量。
+* "mirrorlist" 选项 - 存储库镜像列表的 URL 。 URL 支持多种协议，如 https、http、ftp、file、NFS 等。值中的 "$" 代表相关的存储库变量。
+* "baseurl" 选项 - 存储库的 URL 列表。 URL 支持多种协议，如 https、http、ftp、file、NFS 等。值中的 "$" 代表相关的存储库变量。
 * 以 "#" 开头的行是注释行。
-* "gpgcheck" 选项 - 是否对此存储库中找到的包执行 GPG 签名检查。 默认值是 False(0)。
-* "enabled" 选项 - 将此存储库作为软件包源包含在内。 默认值是 True(1)。
-* "countme" 选项 - 上传匿名使用统计数据。 默认值是 False(0)。
+* "gpgcheck" 选项 - 是否对此存储库中找到的包执行 GPG 签名检查。默认值是 False(0)。
+* "enabled" 选项 - 将此存储库作为软件包源包含在内。默认值是 True(1)。
+* "countme" 选项 - 上传匿名使用统计数据。默认值是 False(0)。
 * "gpgkey" 选项 - GPG公钥路径。
 
 有关更多信息，请参阅 `man 5 yum.conf`。
 
 ## 应用程序流
 
-**在 RL 8.x 和 RL 9.x 中的应用程序流**：Rocky Linux 8.x 和 9.x 使用了一种新的模块化技术，允许存储库托管多个版本的应用程序及其依赖项。 由于采用了模块化架构，这两个操作系统中的应用程序流也被称为 “模块流” 。 系统管理员可以选择一个特定的版本，这提供了更大的灵活性。 如果系统管理员需要管理应用程序流，他们通常需要使用 `dnf module` 命令。
+**在 RL 8.x 和 RL 9.x 中的应用程序流**：Rocky Linux 8.x 和 9.x 使用了一种新的模块化技术，允许存储库托管多个版本的应用程序及其依赖项。由于采用了模块化架构，这两个操作系统中的应用程序流也被称为 “模块流” 。系统管理员可以选择一个特定的版本，这提供了更大的灵活性。如果系统管理员需要管理应用程序流，他们通常需要使用 `dnf module` 命令。
 
-**在 RL 10.x 中的应用程序流**：从 Rocky Linux 10.x 开始，系统管理员仍然可以使用应用程序流，但应用程序流不再以模块化形式提供。 换言之，在 10.x 中的 `dnf module` 命令已经不起作用，系统管理员可以采用传统方式管理不同版本的应用程序。 在此版本的操作系统中，术语 “应用程序流” 不等于 “模块流”。
+**在 RL 10.x 中的应用程序流**：从 Rocky Linux 10.x 开始，系统管理员仍然可以使用应用程序流，但应用程序流不再以模块化形式提供。换言之，在 10.x 中的 `dnf module` 命令已经不起作用，系统管理员可以采用传统方式管理不同版本的应用程序。在此版本的操作系统中，术语 “应用程序流” 不等于 “模块流”。
 
-每个应用程序流都有不同的生命周期。 请访问以下链接：
+每个应用程序流都有不同的生命周期。请访问以下链接：
 
 * https://access.redhat.com/support/policy/updates/rhel-app-streams-life-cycle#rhel8_application_streams
 * https://access.redhat.com/support/policy/updates/rhel-app-streams-life-cycle#rhel9_application_streams
@@ -483,7 +483,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
 
 重要说明：
 
-* 要在 RL 8.x 和 RL 9.x 中使用模块化架构的应用程序流，请首先启用 **AppStream** 存储库。 在 Appstream 存储库中，**模块** 代表逻辑单元的软件包集合，这些软件包被共同构建、测试并发布。 单个模块可以包含同一应用程序的多个流（版本）。
+* 要在 RL 8.x 和 RL 9.x 中使用模块化架构的应用程序流，请首先启用 **AppStream** 存储库。在 Appstream 存储库中，**模块** 代表逻辑单元的软件包集合，这些软件包被共同构建、测试并发布。单个模块可以包含同一应用程序的多个流（版本）。
 * 每个模块都是单独进行更新的。
 * 启用单个模块后，用户只能使用该模块的一个流（版本）。
 * 每个模块都可以有自己的默认流（默认版本），标记为 "[d]"。
@@ -491,7 +491,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
 
 ### 模块配置集
 
-**模块配置集**：为特定使用场景绑定在一起的一组软件包列表。 例如：
+**模块配置集**：为特定使用场景绑定在一起的一组软件包列表。例如：
 
 ```bash
 sudo dnf module list nginx
@@ -549,7 +549,7 @@ Installed size: 14 M
 Is this ok [y/N]:
 ```
 
-每个模块流都可以有任意数量的配置集（或者完全没有）。 模块流的默认配置集被标记为 “[d]"。
+每个模块流都可以有任意数量的配置集（或者完全没有）。模块流的默认配置集被标记为 “[d]"。
 
 在上面的例子中，当用户需要安装 nginx 时，以下命令是等效的：
 
@@ -574,14 +574,14 @@ sudo dnf install nginx:1.14/common
 您可以在子命令中使用 `list` 或 `info` 来完成此操作。
 
 * `dnf module list` - 获取所有可用模块的列表。
-* `dnf module list <Module-Name>` or `dnf module list <Module-Name>:<Stream>` - 列出当前模块的所有可用流（版本）。 列出单个模块流的信息。 例如 `dnf module list postgresql` 或 `dnf module list postgresql:15`。
+* `dnf module list <Module-Name>` or `dnf module list <Module-Name>:<Stream>` - 列出当前模块的所有可用流（版本）。列出单个模块流的信息。例如 `dnf module list postgresql` 或 `dnf module list postgresql:15`。
 * `dnf module list --enabled` - 列出启用的模块流。
-* `dnf module info <Module-Name>` 或 `dnf module info <Module-name>:<Stream>` - 显示模块流信息。 如果只键入没有流的模块名称，则将显示该模块的所有流信息。 例如 `dnf module info ruby` 或 `dnf module info ruby:2.6`。
-* `dnf module --info --profile <Module-Name>` 或 `dnf module --info --profile <Module-Name>:<Stream>` - 列出模块流的配置集信息。 如果只键入没有流的模块名称，则将显示该模块的所有流配置集信息。
+* `dnf module info <Module-Name>` 或 `dnf module info <Module-name>:<Stream>` - 显示模块流信息。如果只键入没有流的模块名称，则将显示该模块的所有流信息。例如 `dnf module info ruby` 或 `dnf module info ruby:2.6`。
+* `dnf module --info --profile <Module-Name>` 或 `dnf module --info --profile <Module-Name>:<Stream>` - 列出模块流的配置集信息。如果只键入没有流的模块名称，则将显示该模块的所有流配置集信息。
 
 #### 安装
 
-在安装模块的某一特定流之前，您需要先启用该流。 使用的语法如下：
+在安装模块的某一特定流之前，您需要先启用该流。使用的语法如下：
 
 ```bash
 dnf module enable <Module-Name>:<Stream> ...
@@ -599,19 +599,19 @@ dnf -y module enable httpd:2.4
 
 以下安装方法均可接受：
 
-* `dnf -y module install <Module-Name>` - 使用单个模块的默认流和默认配置集（如果存在默认配置集）。 例如 `dnf -y install httpd`
-* `dnf -y install <Module-Name>:<Stream>/<Profile>` - 使用单个模块的特定流和配置集。 例如 `dnf -y install httpd:2.4:/minimal`。 如果有多个配置集，可以使用 `*` 表示所有配置集，例如 `dnf module install httpd:2.4/*`
+* `dnf -y module install <Module-Name>` - 使用单个模块的默认流和默认配置集（如果存在默认配置集）。例如 `dnf -y install httpd`
+* `dnf -y install <Module-Name>:<Stream>/<Profile>` - 使用单个模块的特定流和配置集。例如 `dnf -y install httpd:2.4:/minimal`。如果有多个配置集，可以使用 `*` 表示所有配置集，例如 `dnf module install httpd:2.4/*`
 
 #### 移除
 
 您可以使用以下语法进行移除：
 
-* `dnf -y module remove --all <Module-name>:<Stream> ...` - 从单个模块中的单个流中删除所有包。 例如 `dnf -y module remove --all httpd:2.4`
-* `dnf -y module remove --all <Module-name>:<Stream>/<Profile> ...` - 删除与特定配置集关联的所有包，使用 `*` 表示所有配置集。 例如 `dnf -y module remove httpd:2.4/*`
+* `dnf -y module remove --all <Module-name>:<Stream> ...` - 从单个模块中的单个流中删除所有包。例如 `dnf -y module remove --all httpd:2.4`
+* `dnf -y module remove --all <Module-name>:<Stream>/<Profile> ...` - 删除与特定配置集关联的所有包，使用 `*` 表示所有配置集。例如 `dnf -y module remove httpd:2.4/*`
 
 #### 重置
 
-您可以使用 `reset` 功能项命令将模块重置为初始状态。 相应的语法如下：
+您可以使用 `reset` 功能项命令将模块重置为初始状态。相应的语法如下：
 
 * `dnf -y module reset <Module-Name> ...` - 例如 `dnf -y module reset httpd`
 
@@ -621,7 +621,7 @@ dnf -y module enable httpd:2.4
 
 #### 切换
 
-您可以切换到更新的流。 完成此操作有两个先决条件：
+您可以切换到更新的流。完成此操作有两个先决条件：
 
 1. 操作系统已完全更新
 2. 操作系统中安装的软件包不比存储库中可用的软件包新
@@ -634,7 +634,7 @@ dnf -y module enable httpd:2.4
 2. `dnf module enable <Module-Name>:<New-Stream> ...`
 3. `dnf distro-sync`
 
-如果这些软件包已在操作系统中安装，您可以使用 `switch-to` 命令选项来升级或降级它们。 具体语法为：
+如果这些软件包已在操作系统中安装，您可以使用 `switch-to` 命令选项来升级或降级它们。具体语法为：
 
 ```bash
 dnf module switch-to <Module-Name>:<Stream>
@@ -773,7 +773,7 @@ Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
 
 **Q：什么是 EPEL，它是如何使用的？**
 
-**EPEL**（**E**xtra **P**ackages for **E**nterprise **L**inux）是由 [EPEL Fedora Special Interest Group](https://docs.fedoraproject.org/en-US/epel/) 维护的开源和免费的社区存储库。 该资源从 Fedora 源中为 RHEL（以及 CentOS、Rocky Linux 等）提供了一系列附加软件包。
+**EPEL**（**E**xtra **P**ackages for **E**nterprise **L**inux）是由 [EPEL Fedora Special Interest Group](https://docs.fedoraproject.org/en-US/epel/) 维护的开源和免费的社区存储库。该资源从 Fedora 源中为 RHEL（以及 CentOS、Rocky Linux 等）提供了一系列附加软件包。
 
 无论是个人还是企业使用 Rocky Linux 8.x/9.x/10.x，通常都建议启用 EPEL 存储库。
 
@@ -871,10 +871,10 @@ Is this ok [y/N]:
 
 !!! tip "温馨提示"
 
-    启用多个存储库时，同一软件包可能有多个版本，默认情况下，较新版本具有最高优先级。 这也是为什么使用 `--disablerepo` 和 `--enablerepo` 选项的原因。
+    启用多个存储库时，同一软件包可能有多个版本，默认情况下，较新版本具有最高优先级。这也是为什么使用 `--disablerepo` 和 `--enablerepo` 选项的原因。
 
 !!! attention "支持考虑"
 
-    EPEL 是由 Fedora 社区的志愿者发起的一个项目，因此它没有得到红帽的商业支持。 就像 Fedora 本身一样，红帽为这个项目托管基础设施，红帽工程师作为维护者和领导者参与其中，但红帽没有为 EPEL 中的软件包提供商业支持合同或服务级别协议。
+    EPEL 是由 Fedora 社区的志愿者发起的一个项目，因此它没有得到红帽的商业支持。就像 Fedora 本身一样，红帽为这个项目托管基础设施，红帽工程师作为维护者和领导者参与其中，但红帽没有为 EPEL 中的软件包提供商业支持合同或服务级别协议。
 
 关于 EPEL 的常见问题解答，请参考 [Fedora 文档中的 EPEL 常见问题解答](https://docs.fedoraproject.org/en-US/epel/epel-faq/)。

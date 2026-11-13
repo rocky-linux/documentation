@@ -56,7 +56,7 @@ Questo log registra l'intero `stdout` e `stderr` di tutti gli script eseguiti da
     ls: cannot access '/non-existent-dir': No such file or directory
     ```
 
-## 2) Troubleshooting lato host con `libguestfs-tools`
+## 2. Troubleshooting lato host con `libguestfs-tools`
 
 A volte, una VM non riesce ad avviarsi completamente, rendendo inutili gli strumenti in-guest. In questi casi, è possibile diagnosticare i problemi ispezionando l'immagine del disco della VM direttamente dall'host utilizzando la potente suite `libguestfs-tools` (installabile con `sudo dnf install libguestfs-tools`).
 

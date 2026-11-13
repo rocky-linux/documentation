@@ -24,7 +24,7 @@ title: 高级Linux 命令
 
 ## `uniq` 命令
 
-`uniq`命令是一个非常强大的命令，与`sort`命令一起使用尤其适合用于日志文件分析。 它允许您通过删除重复项来排序和显示条目。
+`uniq`命令是一个非常强大的命令，与`sort`命令一起使用尤其适合用于日志文件分析。它允许您通过删除重复项来排序和显示条目。
 
 为了说明 `uniq` 命令的工作原理，让我们使用一个包含名字列表的 `firstnames.txt` 文件：
 
@@ -116,7 +116,7 @@ xargs
 use of xargs
 ```
 
-`xargs`命令等待来自标准 **stdin** 输入的输入， 输入三行。 用户输入的结束是通过按键顺序 ++ctrl+d++ 指定给 `xargs` 的。 `xargs` 然后执行默认命令 `echo`，后跟与用户输入对应的三个参数，即：
+`xargs`命令等待来自标准 **stdin** 输入的输入，输入三行。用户输入的结束是通过按键顺序 ++ctrl+d++ 指定给 `xargs` 的。 `xargs` 然后执行默认命令 `echo`，后跟与用户输入对应的三个参数，即：
 
 ```bash
 $ echo "use" "of" "xargs"
@@ -202,9 +202,9 @@ $ tar tvfP /root/log.tar
 -rw-r--r-- root/root    499270 2017-04-06 11:01 /var/log/audit/audit.log
 ```
 
-`xargs` 命令的特殊功能是将输入参数放在被调用命令的结尾， 这在上面的示例中工作得非常好，因为传入的文件将形成要添加到存档中的文件列表。
+`xargs` 命令的特殊功能是将输入参数放在被调用命令的结尾，这在上面的示例中工作得非常好，因为传入的文件将形成要添加到存档中的文件列表。
 
-现在，如果我们以 `cp` 命令为例并希望复制目录中的文件列表，则该文件列表将被添加到该命令的结尾... 但是 `cp` 命令在命令结尾要求的是目标文件。 为此，我们使用 `-I` 选项将输入参数放在行尾以外的其他位置。
+现在，如果我们以 `cp` 命令为例并希望复制目录中的文件列表，则该文件列表将被添加到该命令的结尾... 但是 `cp` 命令在命令结尾要求的是目标文件。为此，我们使用 `-I` 选项将输入参数放在行尾以外的其他位置。
 
 ```bash
 $ find /var/log -type f -name "*.log" | xargs -I % cp % /root/backup
@@ -218,7 +218,7 @@ $ find /var/log -type f -name "*.log" | xargs -I % cp % /root/backup
 
 !!! note "说明"
 
-    在 Rocky Linux 8 中，`yum`被替换为`dnf`，虽然也可以安装`dnf-utils`，但包名仍然是`yum-utils`。 这些都是经典的YUM工具，在DNF之上以CLI shims的形式实现，以保持与`yum-3`的向后兼容。
+    在 Rocky Linux 8 中，`yum`被替换为`dnf`，虽然也可以安装`dnf-utils`，但包名仍然是`yum-utils`。这些都是经典的YUM工具，在DNF之上以CLI shims的形式实现，以保持与`yum-3`的向后兼容。
 
 以下是这些实用程序的一些示例。
 
@@ -266,7 +266,7 @@ $ repoquery -l yum-utils
 
 ### `yumdownloader` 命令
 
-`yumdownloader` 命令用来从存储库下载 RPM 软件包。  等同于 `dnf download --downloadonly --downloaddir ./  package-name`
+`yumdownloader` 命令用来从存储库下载 RPM 软件包。等同于 `dnf download --downloadonly --downloaddir ./  package-name`
 
 !!! note "说明"
 
@@ -415,7 +415,7 @@ install: creating directory '~/samples'
 'src/sample.txt' -> '~/samples/sample.txt'
 ```
 
-这个命令已经节省了时间。 将其与所有者、所属组和权限管理相结合，以节省时间：
+这个命令已经节省了时间。将其与所有者、所属组和权限管理相结合，以节省时间：
 
 ```bash
 sudo install -v -o rocky -g users -m 644 -D -t ~/samples/ src/sample.txt
@@ -496,19 +496,19 @@ Change: 2024-01-24 16:37:34.315995221 +0800
 ```
 
 * `File` - 显示文件的路径位置。
-* `Size` - 以字节为单位显示文件大小。 如果这是一个目录，则显示目录名所占用的固定 4096 字节。
-* `Blocks` - 显示已分配的块数。 请注意！ 此命令中每个块的大小为 512 字节。 `ls -ls`中每个块的默认大小为 1024 字节。
+* `Size` - 以字节为单位显示文件大小。如果这是一个目录，则显示目录名所占用的固定 4096 字节。
+* `Blocks` - 显示已分配的块数。请注意！此命令中每个块的大小为 512 字节。 `ls -ls`中每个块的默认大小为 1024 字节。
 * `Device` - 以十进制或十六进制表示的设备编号。
 * `Inode` - Inode是 Linux 内核为文件或目录分配的唯一 ID 号。
-* `Links` - 硬链接数。 硬链接有时也被称为物理链接。
+* `Links` - 硬链接数。硬链接有时也被称为物理链接。
 * `Access` - 文件和目录的最后访问时间，即 GNU/Linux 中的 `atime` 。
 * `Modify` - 文件和目录的最后修改时间，即 GNU/Linux 中的 `mtime` 。
 * `Change` - 最后一次修改属性的时间，即 GNU/Linux 中的 `ctime` 。
-* `Birth` - 诞生时间（创建时间）。 在某些文档中，缩写为 `btime` 或 `crtime` 。 您需要一个高于某个版本的文件系统和内核版本来显示创建时间。
+* `Birth` - 诞生时间（创建时间）。在某些文档中，缩写为 `btime` 或 `crtime` 。您需要一个高于某个版本的文件系统和内核版本来显示创建时间。
 
 对于文件而言：
 
-**atime** - 使用 `cat`、`less`、`more` 和 `head` 等命令访问文件内容后，可以更新文件的 `atime` 。 请注意！ 文件的 `atime` 不是实时更新的，出于性能原因，需要等待一段时间才能显示。 **mtime** - 修改文件内容可以更新文件的 `mtime` （如通过重定向追加或覆盖文件内容），因为文件大小是文件的属性，所以 `ctime` 也会同步更新。 **ctime** - 变更文件的所有者、所属组、权限、文件大小和链接（软链接和硬链接）将更新 ctime 。
+**atime** - 使用 `cat`、`less`、`more` 和 `head` 等命令访问文件内容后，可以更新文件的 `atime` 。请注意！文件的 `atime` 不是实时更新的，出于性能原因，需要等待一段时间才能显示。 **mtime** - 修改文件内容可以更新文件的 `mtime` （如通过重定向追加或覆盖文件内容），因为文件大小是文件的属性，所以 `ctime` 也会同步更新。 **ctime** - 变更文件的所有者、所属组、权限、文件大小和链接（软链接和硬链接）将更新 ctime 。
 
 对于目录而言：
 

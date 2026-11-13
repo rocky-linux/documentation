@@ -120,7 +120,7 @@ cp Rocky-10-GenericCloud.qcow2 first-boot-vm.qcow2
     sudo cat /root/boot_done.txt
     ```
 
-## 3) Спосіб 2: Пряме впровадження за допомогою `virt-install`
+## 3. Спосіб 2: Пряме впровадження за допомогою `virt-install`
 
 Створення ISO-образу — це надійний метод, але для користувачів `libvirt` та `virt-install` існує набагато простіший спосіб. Прапорець `--cloud-init` дозволяє передавати `user-data` безпосередньо, дозволяючи `virt-install` автоматично створювати джерело даних.
 

@@ -19,7 +19,7 @@ Il nostro obiettivo è quello di creare una nuova immagine personalizzata con le
 1. **Personalizzazione delle impostazioni predefinite a livello di sistema:** Modifica della configurazione `cloud-init` _all'interno dell'immagine stessa_.
 2. **Generalizzazione dell'immagine:** utilizzo di strumenti quali `cloud-init clean` e `virt-sysprep` per rimuovere tutti i dati specifici della macchina, preparando l'immagine per la clonazione.
 
-## 1) Configurazione del laboratorio di personalizzazione
+## 1. Configurazione del laboratorio di personalizzazione
 
 Per iniziare, abbiamo bisogno di un'istanza funzionante dell'immagine cloud di base da poter modificare. Avvieremo questa VM _senza_ fornire alcun `dato utente` per ottenere un sistema pulito.
 

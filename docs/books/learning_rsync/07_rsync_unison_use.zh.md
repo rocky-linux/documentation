@@ -7,7 +7,7 @@ update: 2021-11-06
 
 # 简述
 
-前面我们提到，单向同步使用的是rsync + inotify-tools。 在一些比较特殊的使用场景下可能需要双向同步，这就需要inotify-tools + unison。
+前面我们提到，单向同步使用的是rsync + inotify-tools。在一些比较特殊的使用场景下可能需要双向同步，这就需要inotify-tools + unison。
 
 ## 环境准备
 
