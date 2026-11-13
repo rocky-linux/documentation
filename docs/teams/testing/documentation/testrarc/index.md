@@ -27,12 +27,12 @@ The ability to view testing results and release status in the TESTRARC system is
 
 From the TESTRARC landing page the status of each active Testbook can be seen per architecture. Selecting a different "arch" will update the status for each Testbook.
 
-> Note: The information for Testbooks without the arch may display incorrect information (ex: Rocky Linux 9 does not have riscv64 arch).
+> Note: The information for Testbooks without the arch may display incorrect information (e.g.: Rocky Linux 9 does not have riscv64 arch).
 
 
 # Logging In
 
-In order for a contributor to submit their own test results the must have a [Rocky Account Services (RAS)](https://accounts.rockylinux.org/) account. The RAS system manages accounts across Rocky Enterprise Software Foundation(RESF) and Rocky Linux managed systems. The process and requirements for obtaining a RAS account are **documented in the [Getting Started guide](https://docs.rockylinux.org/teams/infra/contribute/start/)**.
+In order for a contributor to submit their own test results they must have a [Rocky Account Services (RAS)](https://accounts.rockylinux.org/) account. The RAS system manages accounts across Rocky Enterprise Software Foundation(RESF) and Rocky Linux managed systems. The process and requirements for obtaining a RAS account are **documented in the [Getting Started guide](https://docs.rockylinux.org/teams/infra/contribute/start/)**.
 
 A contributor with a RAS account will be able to log in to [https://testrarc.rockylinux.org/](https://testrarc.rockylinux.org/) and submit results.
 
@@ -42,7 +42,7 @@ A contributor with a RAS account will be able to log in to [https://testrarc.roc
 ## Terminology
 
 **TestBook**
-: A TestBook is a defined collection TestGroups, which in turn contain BasicTests which is affiliated with a specific Rocky Linux release. Testbooks will usually have multiple sub-releases such as BETA and RC-1 associated with them. Active Testbooks are displayed on the TESTRARC landing page in a tiled layout.
+: A TestBook is a defined collection of TestGroups, which in turn contain BasicTests which is affiliated with a specific Rocky Linux release. Testbooks will usually have multiple sub-releases such as BETA and RC-1 associated with them. Active Testbooks are displayed on the TESTRARC landing page in a tiled layout.
 
 **TestGroup**
 : A TestGroup is a collection of BasicTests with a generally common property. Sample TestGroups are: ISO Testing, Installer Requirements, Cloud Image Testing.
@@ -57,13 +57,13 @@ A contributor with a RAS account will be able to log in to [https://testrarc.roc
 >NOTE: Throughout this document TestResults may be referred to as Results.
 
 **Tag**
-: A test may be labelled with one or more identifying tags which are/can be used to collect specific BasicTests for review/reporting easily using the Filtering capability which will be describe later in this document.
+: A test may be labelled with one or more identifying tags which are/can be used to collect specific BasicTests for review/reporting easily using the Filtering capability which will be described later in this document.
 
 **Bare Metal**
 : A bare metal test result is collected directly on a physical machine directly not in a container or VM instance on a physical machine.
 
 **Container**
-: A container test result can be collected with any common container technology like `docker`, `podman` or `apptainer`. The details of the container technology use may be useful to include in the test result `Comments` field.
+: A container test result can be collected with any common container technology like `docker`, `podman` or `apptainer`. The details of the container technology used may be useful to include in the test result `Comments` field.
 
 **CloudVM**
 : A cloud VM test result can be collected with any common cloud provider like `AWS`, `GCP` or `Azure`. The details of the cloud provider used and instance details may be useful to include in the test result `Comments` field.
@@ -110,9 +110,9 @@ Let's assume for this example that the ISO was downloaded, burned to a disc, boo
 - Select the architecture (`arch`) that the test was run on.
 - Select `Pass`, `Fail`, or `Partial` as appropriate for this test result.
 - Select the `Deploy Type` which for this case should be *`Bare Metal`*, but other tests could be *`KVM`*, *`Container`*, *`VM`*, or *`CloudVM`*.
-- The `AdminPass` should only be available for those who contribute frequently. It's our hope that _you_ will one day have this option!
-- Fill out the `Comments` in [Markdown](https://www.markdownguide.org/basic-syntax/) format. Please fill in relevant details on what environment you tested on, the results of the test, and anything else that may be relevant. This is particularly needed when testing other `Deploy Types` as it helps to know even greater details about the environment. Here details of tests considered to be *`Fail`* state may be most helpful especially if not enough is know to be able to create a Bug report.
-- An optional `Bug URL` is very useful if you discover a problem and are able to file the bug with the relevant group. In some cases the appropriate location to file a bug might be the Rocky Linux [Bug Tracker](https://bugs.rockylinux.org/) while in other cases the appropriate location might be a reference to an upstream Bug Tracker if/when the issue has already been found to be reported upstream
+- The `AdminPass` should only be available for those who contribute frequently. It is our hope that _you_ will one day have this option!
+- Fill out the `Comments` in [Markdown](https://www.markdownguide.org/basic-syntax/) format. Please fill in relevant details on what environment you tested on, the results of the test, and anything else that may be relevant. This is particularly needed when testing other `Deploy Types` as it helps to know even greater details about the environment. Here details of tests considered to be *`Fail`* state may be most helpful especially if not enough is known to be able to create a Bug report.
+- An optional `Bug URL` is very useful if you discover a problem and are able to file the bug with the relevant group. In some cases the appropriate location to file a bug might be the Rocky Linux [Bug Tracker](https://bugs.rockylinux.org/) while in other cases the appropriate location might be a reference to an upstream Bug Tracker if/when the issue has already been found to be reported upstream.
 
 Finally, **`Submit Result`** will save the results. You should be returned to the main TestBook page. Click on the **`Thank You`** link at the top to see your name mentioned!
 
