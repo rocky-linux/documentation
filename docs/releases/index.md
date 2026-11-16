@@ -14,7 +14,7 @@ Here are the current releases:
 | Release         | Codename       | Release Date  | Active Support Ends  | End of Life          | Latest/Current Version   |
 |-----------------|----------------|---------------|----------------------|----------------------|--------------------------|
 | Rocky Linux 8   | Green Obsidian | 2021-05-01    | 2024-05-31           | 2029-05-31           | 8.10 (2024-05-31)        |
-| Rocky Linux 9   | Blue Onyx      | 2022-07-14 | 2027-05-31         | 2032-05-31         | 9.8 (2026-05-28)  |
+| Rocky Linux 9   | Blue Onyx      | 2022-07-14 | 2027-05-31         | 2032-05-31         | 9.9 (2026-11-16)  |
 | Rocky Linux 10  | Red Quartz     | 2025-06-11 | 2030-05-31         | 2035-05-31         | 10.2 (2026-05-29) |
 
 !!! warning "Only the latest minor release of each major version is supported"
@@ -46,6 +46,7 @@ Rocky 9 (Codename "Blue Onyx") has general support until 31 May 2027 and securit
 | 9.6            | 2025-06-04                | 5.14.0-570.18.1 |
 | 9.7            | 2025-12-01                | 5.14.0-611.5.1  |
 | 9.8            | 2026-05-28                | 5.14.0-687.10.1 |
+| 9.9            | 2026-11-16                | 5.14.0-741.22.1 |
 
 ## Rocky 8
 
@@ -201,7 +202,7 @@ If you cannot install a new system and migrate and you still need support for yo
 
 Major version upgrade refers to the operation of upgrading the current major version to another major version.
 
-The Rocky Linux team does **not recommend** performing major version upgrades. 
+The Rocky Linux team does **not recommend** performing major version upgrades.
 
 The tasks performed by Rocky Linux users are quite different. If you use some tools for the major version migration, you may lose important data. The recommended approach is:
 
