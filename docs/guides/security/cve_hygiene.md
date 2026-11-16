@@ -324,11 +324,11 @@ Vulnerability scanners such as Nessus (Tenable), Wazuh, and Nexpose can produce 
 
 1. **Module stream version comparison**: Scanners flag `el8.6.0` as outdated compared to `el8.10.0` (see the "Module stream version naming" section)
 
-2. **Upstream version comparison**: Scanners compare against upstream (unpatched) version numbers without accounting for enterprise Linux backporting
+1. **Upstream version comparison**: Scanners compare against upstream (unpatched) version numbers without accounting for enterprise Linux backporting
 
-3. **Missing Rocky Linux OVAL data**: Some scanners lack proper Rocky Linux vulnerability mappings and fall back to generic NVD feeds
+1. **Missing Rocky Linux OVAL data**: Some scanners lack proper Rocky Linux vulnerability mappings and fall back to generic NVD feeds
 
-4. **Platform-inapplicable CVEs**: Scanners flag all CVEs in an advisory regardless of operating system applicability
+1. **Platform-inapplicable CVEs**: Scanners flag all CVEs in an advisory regardless of operating system applicability
 
 ### Verification workflow for scanner findings
 
@@ -421,4 +421,4 @@ Effective CVE management on Rocky Linux requires understanding how backporting, 
 11. "OpenSCAP Portal" by the OpenSCAP Project [https://www.open-scap.org/](https://www.open-scap.org/)
 12. "DNF Automatic" by the DNF Development Team [https://dnf.readthedocs.io/en/latest/automatic.html](https://dnf.readthedocs.io/en/latest/automatic.html)
 13. "Explaining Errata" by Upstream [https://access.redhat.com/articles/explaining_redhat_errata](https://access.redhat.com/articles/explaining_redhat_errata)
-14. "Rocky Linux Version Information" by the Rocky Enterprise Software Foundation [https://wiki.rockylinux.org/rocky/version/](https://wiki.rockylinux.org/rocky/version/)
+14. "Rocky Linux Version Information" by the Rocky Enterprise Software Foundation [https://docs.rockylinux.org/releases](https://docs.rockylinux.org/releases/)
