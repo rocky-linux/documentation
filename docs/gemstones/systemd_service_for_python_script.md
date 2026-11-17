@@ -119,6 +119,7 @@ shell > sudo systemctl start my_service.service
 
 We can now view the logs via journalctl:
 
+<div translate="no" markdown="1">
 ```bash
 shell > journalctl -f -u my_service
 oct. 14 11:07:48 rocky8 systemd[1]: Started My Service.
@@ -126,9 +127,11 @@ oct. 14 11:07:49 rocky8 __main__[270267]: [INFO] Starting the service
 oct. 14 11:08:49 rocky8 __main__[270267]: [INFO] Total duration: 60
 oct. 14 11:09:49 rocky8 __main__[270267]: [INFO] Total duration: 120
 ```
+</div>
 
 Now let's see what happens if the script crashes:
 
+<div translate="no" markdown="1">
 ```bash
 shell > ps -elf | grep my_service
 4 S root      270267       1  0  80   0 - 82385 -      11:07 ?        00:00:00 /usr/bin/python3 my_service.py
@@ -147,9 +150,11 @@ oct. 14 11:12:19 rocky8 systemd[1]: Stopped My Service.
 oct. 14 11:12:19 rocky8 systemd[1]: Started My Service.
 oct. 14 11:12:19 rocky8 __main__[270863]: [INFO] Starting the service
 ```
+</div>
 
 We can also wait 5 minutes for the script to crash by itself: (remove this for your production)
 
+<div translate="no" markdown="1">
 ```bash
 oct. 14 11:16:02 rocky8 systemd[1]: Started My Service.
 oct. 14 11:16:03 rocky8 __main__[271507]: [INFO] Starting the service
@@ -166,6 +171,7 @@ oct. 14 11:21:03 rocky8 systemd[1]: Stopped My Service.
 oct. 14 11:21:03 rocky8 systemd[1]: Started My Service.
 oct. 14 11:21:03 rocky8 __main__[271993]: [INFO] Starting the service
 ```
+</div>
 
 As you can see, the restart feature of systemd is very useful.
 
