@@ -13,9 +13,11 @@ Please do not submit mirrors hosted in an Anycast-CDN like Cloudflare, etc., as 
 
 Please note that we cannot accept public mirrors in countries subject to US export regulations. You can find a list of those countries here: <https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations>
 
-As of November 2026, a complete mirror of `rocky-linux` is about 6 TiB, rising to around 10 TiB around a point release, when the new release is synchronized before the one it replaces moves to the vault. Provision for the larger figure. While you are catching up, Mirror Manager keeps offering your mirror for the releases it already has and only adds the new one once you have it, so a sync in progress does not take your mirror out of service.
+As of November 2026, a complete mirror of `rocky-linux` takes about 4.5 TB, rising to roughly 5.5 TB around a point release, when the new release is synchronized before the one it replaces moves to the vault. Provision for the larger figure. While you are catching up, Mirror Manager keeps offering your mirror for the releases it already has and only adds the new one once you have it, so a sync in progress does not take your mirror out of service.
 
-Half of the total is debug symbols, so mirrors that do not need them are considerably smaller. See [Reducing the size of your mirror](#reducing-the-size-of-your-mirror) below.
+These figures assume your mirror preserves hardlinks. We hardlink identical packages across the repositories, and a mirror that does not keep them uses close to twice the space. If your mirror is much larger than the figures above, see [Checking the size of your mirror](#checking-the-size-of-your-mirror).
+
+Half of the total is debug symbols, so mirrors that do not need them are considerably smaller. See [Reducing the size of your mirror](#reducing-the-size-of-your-mirror).
 
 Our master mirror is `rsync://msync.rockylinux.org/rocky-linux`.
 For your first synchronization use a mirror near to you. You can find all official mirrors [here](https://mirrors.rockylinux.org).
@@ -62,7 +64,9 @@ Consider using a locking mechanism to avoid running multiple `rsync` jobs simult
 
 You can also use and modify our example script implementing locking and full sync if required. It can be found at <https://github.com/rocky-linux/rocky-tools/blob/main/mirror/mirrorsync.sh>.
 
-Keep `-H` in whichever command you use. The master hardlinks identical packages across trees, and without `-H` `rsync` writes each one as a separate file, which roughly doubles the space your mirror uses.
+!!! warning "Keep `-H`"
+
+    The master hardlinks identical packages across the repositories. Without `-H`, `rsync` writes every copy as a separate file and your mirror uses close to twice the space it needs. The commands on this page all include it. If you write your own, keep it, and check that your filesystem preserves hardlinks.
 
 After your first complete synchronization check that everything is fine with your mirror. Most importantly, check that all files and directories got synchronized, that your cron job is working properly, and that your mirror is reachable from the public Internet. Double check your firewall rules! To avoid any problems do not enforce http to https redirection.
 
@@ -155,17 +159,17 @@ Once the information is filled out, the site should appear on the mirror list as
 
 ## Reducing the size of your mirror
 
-Public mirrors are encouraged to carry everything, but there is no partial rsync module, so if you need a smaller mirror use `--exclude`. The largest components, measured during a point release with the tree at its 9.8 TiB peak, are:
+Public mirrors are encouraged to carry everything, but there is no partial rsync module, so if you need a smaller mirror use `--exclude`. The largest components, with hardlinks counted once, are:
 
 | Component | Size | Share |
 | --------- | ---- | ----- |
-| `debug` (debug symbols) | 4.9 TiB | 50% |
-| `ppc64le` | 952 GiB | 9% |
-| `source` (SRPMs) | 781 GiB | 8% |
-| `s390x` | 759 GiB | 8% |
-| `riscv64` | 486 GiB | 5% |
+| `debug` (debug symbols) | 2.7 TB | 50% |
+| `ppc64le` | 480 GB | 9% |
+| `source` (SRPMs) | 390 GB | 7% |
+| `s390x` | 380 GB | 7% |
+| `riscv64` | 270 GB | 5% |
 
-At that peak, excluding debug symbols and sources brings the mirror to about 4.2 TiB, and also limiting it to `x86_64` and `aarch64` brings it to about 2.9 TiB:
+Excluding debug symbols and sources brings the mirror to about 2.4 TB, and also limiting it to `x86_64` and `aarch64` brings it to about 1.8 TB:
 
 ```bash
 rsync -aqH --delete \
@@ -180,6 +184,15 @@ Excluding content does not break anything for users. The crawler records which d
 
 Please still note in the comment field for your host that the mirror is partial, so users know what to expect.
 
-!!! tip "Checking the size of your mirror"
+## Checking the size of your mirror
 
-    Because of the hardlinks, `du` and graphical file managers disagree, often by a factor of two. `du -sh` counts each file once and reports the space actually used. Tools that add up directory entries count a file once per link. Both numbers are correct, but only the first is the space on your disk.
+Because of the hardlinks, different tools report very different sizes for the same tree. `du` counts each file once and gives the space actually used. File managers and quota tools usually add up directory entries, counting a file once per link, and report close to twice as much.
+
+If your mirror looks much larger than it should, compare the two:
+
+```bash
+du -sh  /path/to/rocky
+du -shl /path/to/rocky
+```
+
+A result about twice the first means the hardlinks are intact and whatever reported the larger figure was counting links. Two similar results mean the hardlinks were not preserved, and the mirror really is using close to twice the space it needs. Re-synchronizing with `-H` onto a filesystem that supports hardlinks recovers the difference.
