@@ -2,99 +2,145 @@
 title: rsync password-free authentication login
 author: tianci li
 contributors: Steven Spencer, Ganna Zhyrnova
-update: 2021-11-04
+update: 2026-11-17
 ---
 
 # Foreword
 
-From [rsync Brief Description](01_rsync_overview.md) we know that rsync is an incremental synchronization tool. Every time the `rsync` command is executed, data can be synchronized once, but data cannot be synchronized in real time. How to do it?
+As explained in the [Rsync Overview](./01_rsync_overview.md) document, Rsync is a tool for incremental backups, each time the `rsync` command is executed, it synchronizes the data. To enable real-time data synchronization, you need to use it in conjunction with the inotify-tools program, provided that password-free authentication login is enabled.
 
-With inotify-tools, this program tool can realize one-way real-time synchronization. Since it is real-time data synchronization, the prerequisite is to log in without password authentication.
+!!! tip "Friendly Reminder"
 
-**Regardless of whether it is rsync protocol or SSH protocol, both can achieve password-free authentication login.**
+    Regardless of whether it is RSYNC protocol or SSH protocol, both can achieve password-free authentication login.
 
 ## SSH protocol password-free authentication login
 
-First, generate a public key and private key pair on the client, and keep pressing Enter after typing the command. The key pair is saved in the <font color=red>/root/.ssh/</font> directory.
+The explanation is as follows:
+
+| OS | IPv4 address | Role |
+| :---: | :---: | :---: |
+| Rocky Linux 8.10 | 192.168.100.20/24 | Rsync server (Synchronization source) |
+| Rocky Linux 10.3 | 192.168.100.21/24 | Client (Initiator) |
+
+The operation steps are as follows:
+
+* Generate a key pair in the client, where the private key file is **id_rsa** and the public key file is **id_rsa.pub**. The client needs to keep the private key file safe.
+* Upload the generated public key file to the Rsync Server. The path location and name should be `~/.ssh/authorized_keys`, `~` represents the home directory (primary directory) of the corresponding user.
+
+Assuming that the root (UID=0) user of the Rsync server needs to complete password-free authentication login:
 
 ```bash
-[root@fedora ~]# ssh-keygen -t rsa -b 2048
+[root@RL10.3 ~]# ssh-keygen -t rsa -b 2048
 Generating public/private rsa key pair.
 Enter file in which to save the key (/root/.ssh/id_rsa):
-Enter passphrase (empty for no passphrase):
+Enter passphrase for "/root/.ssh/id_rsa" (empty for no passphrase):
 Enter same passphrase again:
 Your identification has been saved in /root/.ssh/id_rsa
 Your public key has been saved in /root/.ssh/id_rsa.pub
 The key fingerprint is:
-SHA256: TDA3tWeRhQIqzTORLaqy18nKnQOFNDhoAsNqRLo1TMg root@fedora
+SHA256:V/N5q7DBIqIbBkrlWS9SWRTO5vaisJsDbWUMaWffupk root@HOST100
 The key's randomart image is:
 +---[RSA 2048]----+
-|O+. +o+o. .+. |
-|BEo oo*....o. |
-|*o+o..*.. ..o |
-|.+..o. = o |
-|o o S |
-|. o |
-| o +. |
-|....=. |
-| .o.o. |
+|    . .+.        |
+|   + o=          |
+|  ..=+.+.   o    |
+|  o +++. . . o . |
+| o.+o. +S .   o .|
+|o..o. o....    ..|
+|. o+ . o+o +   . |
+|  ..* oEo . + .  |
+|   *+.     . .   |
 +----[SHA256]-----+
+
+[root@RL10.3 ~]# ls -l /root/.ssh/id*
+-rw------- 1 root root 1823 Nov  4 19:08 /root/.ssh/id_rsa
+-rw-r--r-- 1 root root  394 Nov  4 19:08 /root/.ssh/id_rsa.pub
+
+[root@RL10.3 ~]# scp -P 22 /root/.ssh/id_rsa.pub root@192.168.100.20:/tmp/
+
+[root@RL8.10 ~]# cat /tmp/id_rsa.pub > /root/.ssh/authorized_keys
+
+[root@RL8.10 ~]# sed -i '/PasswordAuthentication/s/yes/no/g' /etc/ssh/sshd_config
+
+[root@RL8.10 ~]# sed -i '/PubkeyAuthentication/s/^# //g' /etc/ssh/sshd_config
+
+[root@RL8.10 ~]# grep -E "^Password|Pubkey" /etc/ssh/sshd_config
+PubkeyAuthentication yes
+PasswordAuthentication no
+
+[root@RL8.10 ~]# systemctl restart sshd.service
 ```
 
-Then, use the `scp` command to upload the public key file to the server. For example, I upload this public key to the user **testrsync**
+Try SSH protocol for password-free login in the client:
 
 ```bash
-[root@fedora ~]# scp -P 22 /root/.ssh/id_rsa.pub root@192.168.100.4:/home/testrsync/
+[root@RL10.3 ~]# ssh -p 22 -i /root/.ssh/id_rsa root@192.168.100.20
 ```
 
+Notes:
+
+* The server configuration file **/etc/ssh/sshd_config** should be opened `PubkeyAuthentication yes`.
+* The above operations are applicable to the root (UID=0) user. For regular users (UID>=1000), their home directory (primary directory) may not have the **.ssh** directory, and it needs to be created manually.
+
+## RSYNC protocol password-free authentication login
+
+In the client, the system variable `RSYNC_PASSWORD` of the Rsync service can be assigned a value. By default, the value of this system variable is empty:
+
 ```bash
-[root@Rocky ~]# cat /home/testrsync/id_rsa.pub >> /home/testrsync/.ssh/authorized_keys
+[root@RL10.3 ~]# echo "$RSYNC_PASSWORD"
+
+[root@RL10.3 ~]# 
 ```
 
-Try to log in without secret authentication, success!
+In the Rsync server, the password for the virtual user "li" is **246810**. This password needs to be assigned to the `RSYNC_PASSWORD` system variable, and this system variable should also be declared as global.
 
 ```bash
-[root@fedora ~]# ssh -p 22 testrsync@192.168.100.4
-Last login: Tue Nov 2 21:42:44 2021 from 192.168.100.5
-[testrsync@Rocky ~]$
+[root@RL8.10 ~]# cat /etc/rsyncd_users.db
+li:246810
+
+[root@RL8.10 ~]# cat /etc/rsyncd.conf
+address = 192.168.100.20
+port = 873
+pid file = /var/run/rsyncd.pid
+log file = /var/log/rsyncd.log
+
+[share]
+comment = rsync
+path = /rsync/
+read only = no
+dont compress = *.gz *.bz2 *.zip
+auth users = li
+secrets file = /etc/rsyncd_users.db
+
+[root@RL8.10 ~]# getfacl /rsync/
+getfacl: Removing leading '/' from absolute path names
+# file: rsync/
+# owner: root
+# group: root
+user::rwx
+user:ruser1:rwx
+user:nobody:rwx
+group::r-x
+mask::rwx
+other::r-x
+
+[root@RL8.10 ~]# systemctl status rsyncd.service
 ```
 
-!!! tip "tip"
-
-    The server configuration file **/etc/ssh/sshd_config** should be opened <font color=red>PubkeyAuthentication yes</font>
-
-## rsync protocol password-free authentication login
-
-On the client side, the rsync service prepares an environment variable for the system-**RSYNC_PASSWORD**, which is empty by default, as shown below:
+Attempted download operation:
 
 ```bash
-[root@fedora ~]# echo "$RSYNC_PASSWORD"
-
-[root@fedora ~]#
-```
-
-If you want to achieve password-free authentication login, you only need to assign a value to this variable. The value assigned is the password previously set for the virtual user <font color=red>li</font>. At the same time, declare this variable as a global variable.
-
-```bash
-[root@Rocky ~]# cat /etc/rsyncd_users.db
-li:13579
-```
-
-```bash
-[root@fedora ~]# export RSYNC_PASSWORD=13579
-```
-
-Try it, success! No new files appear here, so the list of transferred files is not displayed.
-
-```bash
-[root@fedora ~]# rsync -avz li@192.168.100.4::share /root/
+[root@RL10.3 ~]# export RSYNC_PASSWORD=246810
+[root@RL10.3 ~]# rsync -avz li@192.168.100.20::share /root/
 receiving incremental file list
 ./
 
-sent 30 bytes received 193 bytes 148.67 bytes/sec
-total size is 883 speedup is 3.96
+sent 30 bytes  received 154 bytes  368.00 bytes/sec
+total size is 24  speedup is 0.13
 ```
 
-!!! tip "tip"
+Because there are no new files appearing in the **/rsync/** directory on the Rsync server, the list of transferred files is not displayed.
 
-    You can write this variable into **/etc/profile** to make it take effect permanently. The content is: `export RSYNC_PASSWORD=13579`
+!!! Note "Note"
+
+    You can write the declaration and assignment of the variable into the `/etc/profile` file to make the system variable effective permanently. The text content to be written is `export RSYNC_PASSWORD=246810`.
