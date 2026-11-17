@@ -1,6 +1,6 @@
 ---
 title: Adding a Rocky Mirror
-contributors: Amin Vakil, Steven Spencer, Ganna Zhyrnova
+contributors: Amin Vakil, Steven Spencer, Ganna Zhyrnova, Brian Clemens
 ---
 
 # Adding a public mirror to Rocky's mirror manager
@@ -13,10 +13,24 @@ Please do not submit mirrors hosted in an Anycast-CDN like Cloudflare, etc., as 
 
 Please note that we cannot accept public mirrors in countries subject to US export regulations. You can find a list of those countries here: <https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations>
 
-As of this writing (late 2022), storage space requirements for mirroring all current and past Rocky Linux releases is about 2 TB.
+As of November 2026, a complete mirror of `rocky-linux` is about 6 TiB, rising to around 10 TiB around a point release, when the new release is synchronized before the one it replaces moves to the vault. Provision for the larger figure. While you are catching up, Mirror Manager keeps offering your mirror for the releases it already has and only adds the new one once you have it, so a sync in progress does not take your mirror out of service.
+
+Half of the total is debug symbols, so mirrors that do not need them are considerably smaller. See [Reducing the size of your mirror](#reducing-the-size-of-your-mirror) below.
 
 Our master mirror is `rsync://msync.rockylinux.org/rocky-linux`.
 For your first synchronization use a mirror near to you. You can find all official mirrors [here](https://mirrors.rockylinux.org).
+
+The master offers several modules. Most mirrors want `rocky-linux`:
+
+| Module | Contents |
+| ------ | -------- |
+| `rocky-linux` | Current releases |
+| `rocky-vault` | Archived releases |
+| `rocky-everything` | Rocky (current and vault) plus the CentOS vault |
+| `rocky-sigs` | Special Interest Group content |
+| `centos-vault` | CentOS 8 vault |
+
+`rocky-linux` carries the current point release of each supported major version, and briefly the previous one after a new release. Older ones remain as empty directories containing a `README.txt` that points to the vault, so there is no need to exclude them.
 
 Please note that we might restrict access to the official master mirror to official public mirrors in the future. So please consider `rsyncing` from a public mirror close to you if you are running a private mirror. Also local mirrors might be faster to sync from.
 
@@ -44,15 +58,48 @@ For a simple synchronization you can use the following `rsync` command:
 rsync -aqH --delete source-mirror destination-dir
 ```
 
-Consider using a locking mechanism to avoid running multiple `rsync` job simultaneously when we push a new release.
+Consider using a locking mechanism to avoid running multiple `rsync` jobs simultaneously when we push a new release.
 
 You can also use and modify our example script implementing locking and full sync if required. It can be found at <https://github.com/rocky-linux/rocky-tools/blob/main/mirror/mirrorsync.sh>.
+
+Keep `-H` in whichever command you use. The master hardlinks identical packages across trees, and without `-H` `rsync` writes each one as a separate file, which roughly doubles the space your mirror uses.
 
 After your first complete synchronization check that everything is fine with your mirror. Most importantly check all files and dirs got synchronized, your cron job is working properly and your mirror is reachable from the public Internet. Double check your firewall rules! To avoid any problems do not enforce http to https redirection.
 
 If you have any questions setting up your mirror join <https://chat.rockylinux.org/rocky-linux/channels/infrastructure>
 
 When you are done head over to the next section and propose your mirror to become public!
+
+## Reducing the size of your mirror
+
+Public mirrors are encouraged to carry everything, but there is no partial rsync module, so if you need a smaller mirror use `--exclude`. The largest components, measured during a point release with the tree at its 9.8 TiB peak, are:
+
+| Component | Size | Share |
+| --------- | ---- | ----- |
+| `debug` (debug symbols) | 4.9 TiB | 50% |
+| `ppc64le` | 952 GiB | 9% |
+| `source` (SRPMs) | 781 GiB | 8% |
+| `s390x` | 759 GiB | 8% |
+| `riscv64` | 486 GiB | 5% |
+
+At that peak, excluding debug symbols and sources brings the mirror to about 4.2 TiB, and also limiting it to `x86_64` and `aarch64` brings it to about 2.9 TiB:
+
+```bash
+rsync -aqH --delete \
+  --exclude=debug --exclude=source \
+  --exclude=ppc64le --exclude=s390x --exclude=riscv64 \
+  source-mirror destination-dir
+```
+
+Excludes only affect what is transferred next. Anything already mirrored stays until you delete it, either with `--delete-excluded` or by removing the directories yourself.
+
+Excluding content does not break anything for users. The crawler records which directories your mirror carries, and the mirror list is generated per repository, so your mirror is only offered for the repositories it actually has. A mirror that excludes `debug` is still returned for BaseOS and AppStream, and is simply not among the mirrors returned for debuginfo. Dropping content does not make your mirror appear out of date either, because directories you do not carry are not counted when deciding whether a parent directory is up to date.
+
+Please still note in the comment field for your host that the mirror is partial, so users know what to expect.
+
+!!! tip "Checking the size of your mirror"
+
+    Because of the hardlinks, `du` and graphical file managers disagree, often by a factor of two. `du -sh` counts each file once and reports the space actually used. Tools that add up directory entries count a file once per link. Both numbers are correct, but only the first is the space on your disk.
 
 ## What You Need
 
