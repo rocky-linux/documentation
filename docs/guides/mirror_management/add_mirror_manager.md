@@ -124,7 +124,7 @@ Fill out the following options that are appropriate for the site:
 - "ASN" - Autonomous System Number, used in BGP routing tables. Only if you are an ISP.
 - "ASN Clients" - Serve all clients from the same ASN. Used for ISPs, companies, or schools, not personal networks.
 - "Robot email" - email address, will receive notice of upstream content updates
-- "Comment" - text, anything else you'd like a public end user to know about your mirror
+- "Comment" - text, anything else you would like a public end user to know about your mirror
 - "Max connections" - Maximum parallel download connections per client, suggested via metalinks.
 
 Click "Create" and it will redirect back to the Information site for the host.
@@ -137,7 +137,7 @@ At the bottom of the Information site, the option for "Hosts" should now display
 
 - "Peer ASNs": Peer ASNs are used to guide an end user on nearby networks to our mirror. For example, a university might list their peer ASNs, and the mirror list would return the university-local mirror rather than a country-local mirror. You must be in the Mirror Manager administrators group in order to create new entries here.
 
-- "Countries Allowed": Some mirrors need to restrict themselves to serving only end users from their country. If you're one of these, list the 2-letter ISO code for the countries you will allow end users to be from. The mirror list will honor this.
+- "Countries Allowed": Some mirrors need to restrict themselves to serving only end users from their country. If you are one of these, list the 2-letter ISO code for the countries you will allow end users to be from. The mirror list will honor this.
 
 - "Categories Carried": Hosts carry categories of software. For Rocky this is "Rocky Linux".
 
