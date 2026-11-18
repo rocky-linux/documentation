@@ -13,7 +13,9 @@ Please do not submit mirrors hosted in an Anycast-CDN like Cloudflare, etc., as 
 
 Please note that we cannot accept public mirrors in countries subject to US export regulations. You can find a list of those countries here: <https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations>
 
-As of November 2026, a complete mirror of `rocky-linux` takes about 4.5 TB, rising to roughly 5.5 TB around a point release, when the new release is synchronized before the one it replaces moves to the vault. Provision for the larger figure. While you are catching up, Mirror Manager keeps offering your mirror for the releases it already has and only adds the new one once you have it, so a sync in progress does not take your mirror out of service.
+The size of a complete `rocky-linux` mirror varies over the release cycle. When a point release ships, the new release is synchronized alongside the one it replaces and the tree reaches around 5.5 TB. The superseded releases move to the vault a few days later, which brings it down to roughly 2.5 TB, and it grows back over the following months as the current releases accumulate updates. Provision for the peak.
+
+While you are catching up, Mirror Manager keeps offering your mirror for the releases it already has and only adds the new one once you have it, so a sync in progress does not take your mirror out of service.
 
 These figures assume your mirror preserves hardlinks. We hardlink identical packages across the repositories, and a mirror that does not keep them uses close to twice the space. If your mirror is much larger than the figures above, see [Checking the size of your mirror](#checking-the-size-of-your-mirror).
 
@@ -159,17 +161,29 @@ Once the information is filled out, the site should appear on the mirror list as
 
 ## Reducing the size of your mirror
 
-Public mirrors are encouraged to carry everything, but there is no partial rsync module, so if you need a smaller mirror use `--exclude`. The largest components, with hardlinks counted once, are:
+Public mirrors are encouraged to carry everything, but there is no partial rsync module, so if you need a smaller mirror use `--exclude`.
 
-| Component | Size | Share |
-| --------- | ---- | ----- |
-| `debug` (debug symbols) | 2.7 TB | 50% |
-| `ppc64le` | 480 GB | 9% |
-| `source` (SRPMs) | 390 GB | 7% |
-| `s390x` | 380 GB | 7% |
-| `riscv64` | 270 GB | 5% |
+Debug symbols and sources are over half the tree between them:
 
-Excluding debug symbols and sources brings the mirror to about 2.4 TB, and also limiting it to `x86_64` and `aarch64` brings it to about 1.8 TB:
+| Component | At peak | At the low point |
+| --------- | ------- | ---------------- |
+| `debug` (debug symbols) | 2.7 TB (50%) | 1.1 TB (40%) |
+| `source` (SRPMs) | 390 GB (7%) | 270 GB (10%) |
+
+By architecture, counting the debug and source content belonging to each, so these overlap with the figures above:
+
+| Architecture | At peak | At the low point |
+| ------------ | ------- | ---------------- |
+| `x86_64` | 1.9 TB (36%) | 1.2 TB (44%) |
+| `aarch64` | 1.9 TB (35%) | 880 GB (33%) |
+| `ppc64le` | 480 GB (9%) | 120 GB (5%) |
+| `s390x` | 380 GB (7%) | 100 GB (4%) |
+| `riscv64` | 270 GB (5%) | 50 GB (2%) |
+| `i686` | 60 GB (1%) | 50 GB (2%) |
+
+The architectures do not add up to the whole tree because the installer images, live media and metadata sit outside them. Shares also shift over the cycle: a freshly released tree carries proportionally less debug content than one that has been accumulating updates for months.
+
+At peak, excluding debug symbols and sources brings the mirror to about 2.4 TB, and also limiting it to `x86_64` and `aarch64` brings it to about 1.8 TB. At the low point those are about 1.3 TB and 1.1 TB:
 
 ```bash
 rsync -aqH --delete \
