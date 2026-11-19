@@ -89,7 +89,7 @@ The result is displayed in the following columns:
 ```bash
 # ps -ef
 UID  PID PPID C STIME  TTY TIME      CMD
-root 1   0    0 Jan01  ?   00:00/03  /sbin/init
+root 1   0    0 Jan01  ?   00:00:03  /sbin/init
 ```
 
 | Column  |  Description                |
