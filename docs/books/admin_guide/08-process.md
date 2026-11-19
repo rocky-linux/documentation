@@ -27,7 +27,7 @@ In this chapter, you will learn how to work with processes.
 
 An operating system consists of processes. These processes are executed in a specific order and are related. There are two categories of processes, those focused on the user environment and those focused on the hardware environment.
 
-When a program runs, the system will create a process by placing the program data and code in memory and creating a **runtime stack**. A process is an instance of a program with an associated processor environment (ordinal counter, registers, etc...) and memory environment.
+When a program runs, the system will create a process by placing the program data and code in memory and creating a **runtime stack**. A process is an instance of a program with an associated processor environment (ordinal counter, registers, etc.) and memory environment.
 
 Each process has:
 
