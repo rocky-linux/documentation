@@ -34,7 +34,7 @@ Each process has:
 * a *PID*: _**P**rocess **ID**entifier_, a unique process identifier
 * a *PPID*: _**P**arent **P**rocess **ID**entifier_, the unique identifier of the parent process
 
-By successive filiations, the `init` process is the father of all processes.
+Through parent-child inheritance, the init process is the ancestor of all processes.
 
 * A parent process always creates a process
 * A parent process can have multiple child processes
