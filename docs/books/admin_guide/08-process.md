@@ -138,7 +138,7 @@ System processes are therefore called daemons (***D**isk **A**nd **E**xecution *
 
 The user's credentials are passed to the created process when a command is executed.
 
-By default, the `EUID` (Effective User Identifier) and `EGID` (Effective Group Identifier) of a process are the same as the `RUID` (Real User Identifier) and `RGID` (Real Group Identifier). `EUID` and `EGID` refer to the `UID` and `GID` on the corresponding process, while `RUID` and `RGID` refer to the `UID` and `GID` of the original initiator of the process.
+By default, the `EUID` (Effective User Identifier) and `EGID` (Effective Group Identifier) of a process are the same as the `RUID` (Real User Identifier) and `RGID` (Real Group Identifier). `EUID` and `EGID` refer to the `UID` and `GID` of the corresponding process, while `RUID` and `RGID` refer to the `UID` and `GID` of the original initiator of the process.
 
 When a command is set to have `SUID` or `SGID` permissions, after the user executes the command, the `EUID` or `EGID` of the process will change to the `UID` or `GID` of the command, rather than the `UID` (`RUID`) or `GID` (`RGID`) of the user who initiated the process. Therefore, in special circumstances, it is also allowed for the process's `EUID` (or `EGID`) to be different from `RUID` (or `RGID`).
 
