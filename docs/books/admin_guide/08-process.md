@@ -482,7 +482,7 @@ systemd(1)─┬─systemd-journal(595)
 
 ### Orphan process and zombie process
 
-**orphan process**: When a parent process dies, their children are said to be orphans. The init process adopts these special state processes, and status collection is completed until they are destroyed. Conceptually speaking, the orphan process does not pose any harm.
+**orphan process**: When a parent process dies, its children are said to be orphans. The init process adopts these special state processes, and status collection is completed until they are destroyed. Conceptually speaking, the orphan process does not pose any harm.
 
 **zombie process**: After a child process completes its work and is terminated, its parent process needs to call the signal processing function wait() or waitpid() to obtain the termination status of the child process. If the parent process does not do so, although the child process has already exited, it still retains some exit status information in the system process table. Because the parent process cannot obtain the status information of the child process, these processes will continue to occupy resources in the process table. We refer to processes in this state as zombies.
 
