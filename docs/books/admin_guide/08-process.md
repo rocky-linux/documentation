@@ -188,7 +188,7 @@ The constraints of the asynchronous mode:
 * the command or script must not return any result on the screen
 * quitting the shell ends the process
 
-## Process management controls
+## Process management commands
 
 ### `kill` command
 
