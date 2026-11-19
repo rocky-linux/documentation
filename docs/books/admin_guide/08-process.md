@@ -27,14 +27,14 @@ In this chapter, you will learn how to work with processes.
 
 An operating system consists of processes. These processes are executed in a specific order and are related. There are two categories of processes, those focused on the user environment and those focused on the hardware environment.
 
-When a program runs, the system will create a process by placing the program data and code in memory and creating a **runtime stack**. A process is an instance of a program with an associated processor environment (ordinal counter, registers, etc...) and memory environment.
+When a program runs, the system will create a process by placing the program data and code in memory and creating a **runtime stack**. A process is an instance of a program with an associated processor environment (ordinal counter, registers, etc.) and memory environment.
 
 Each process has:
 
 * a *PID*: _**P**rocess **ID**entifier_, a unique process identifier
-* a *PPID*: _**P**arent **P**rocess **ID**entifier_, unique identifier of parent process
+* a *PPID*: _**P**arent **P**rocess **ID**entifier_, the unique identifier of the parent process
 
-By successive filiations, the `init` process is the father of all processes.
+Through parent-child inheritance, the init process is the ancestor of all processes.
 
 * A parent process always creates a process
 * A parent process can have multiple child processes
@@ -89,7 +89,7 @@ The result is displayed in the following columns:
 ```bash
 # ps -ef
 UID  PID PPID C STIME  TTY TIME      CMD
-root 1   0    0 Jan01  ?   00:00/03  /sbin/init
+root 1   0    0 Jan01  ?   00:00:03  /sbin/init
 ```
 
 | Column  |  Description                |
@@ -138,9 +138,9 @@ System processes are therefore called daemons (***D**isk **A**nd **E**xecution *
 
 The user's credentials are passed to the created process when a command is executed.
 
-By default, the process's effective `UID` and `GID` (of the process) are identical to the **real** `UID` and `GID` (the `UID` and `GID` of the user who executed the command).
+By default, the `EUID` (Effective User Identifier) and `EGID` (Effective Group Identifier) of a process are the same as the `RUID` (Real User Identifier) and `RGID` (Real Group Identifier). `EUID` and `EGID` refer to the `UID` and `GID` of the corresponding process, while `RUID` and `RGID` refer to the `UID` and `GID` of the original initiator of the process.
 
-When a `SUID` (and/or `SGID`) is set on a command, the effective `UID` (and/or `GID`) becomes that of the owner (and/or owner group) of the command and no longer that of the user or user group that issued the command. Effective and real **UIDs** are therefore **different**.
+When a command is set to have `SUID` or `SGID` permissions, after the user executes the command, the `EUID` or `EGID` of the process will change to the `UID` or `GID` of the command, rather than the `UID` (`RUID`) or `GID` (`RGID`) of the user who initiated the process. Therefore, in special circumstances, it is also allowed for the process's `EUID` (or `EGID`) to be different from `RUID` (or `RGID`).
 
 Each time a file is accessed, the system checks the rights of the process according to its effective identifiers.
 
@@ -188,7 +188,7 @@ The constraints of the asynchronous mode:
 * the command or script must not return any result on the screen
 * quitting the shell ends the process
 
-## Process management controls
+## Process management commands
 
 ### `kill` command
 
@@ -482,7 +482,7 @@ systemd(1)─┬─systemd-journal(595)
 
 ### Orphan process and zombie process
 
-**orphan process**: When a parent process dies, their children are said to be orphans. The init process adopts these special state processes, and status collection is completed until they are destroyed. Conceptually speaking, the orphan process does not pose any harm.
+**orphan process**: When a parent process dies, its children are said to be orphans. The init process adopts these special state processes, and status collection is completed until they are destroyed. Conceptually speaking, the orphan process does not pose any harm.
 
 **zombie process**: After a child process completes its work and is terminated, its parent process needs to call the signal processing function wait() or waitpid() to obtain the termination status of the child process. If the parent process does not do so, although the child process has already exited, it still retains some exit status information in the system process table. Because the parent process cannot obtain the status information of the child process, these processes will continue to occupy resources in the process table. We refer to processes in this state as zombies.
 
