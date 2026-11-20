@@ -82,6 +82,7 @@ This testcase will verify that the offline repository included on release blocki
 
 === "Success"
 
+<div translate="no" markdown="1">
     ```bash
     $ sudo mount -o loop Rocky-8.5-aarch64-minimal.iso /media
     mount: /media: WARNING: device write-protected, mounted read-only.
@@ -122,9 +123,11 @@ This testcase will verify that the offline repository included on release blocki
     
     $ sudo umount /media
     ```
+</div>
 
 === "Failure"
 
+<div translate="no" markdown="1">
     ```bash
     $ sudo mount -o loop Rocky-8.5-x86_64-dvd1.iso /media
     mount: /media: WARNING: device write-protected, mounted read-only.
@@ -217,5 +220,6 @@ This testcase will verify that the offline repository included on release blocki
     
     $ sudo umount /media
     ```
+</div>
 
 {% include 'teams/testing/qa_testcase_bottom.md' %}
