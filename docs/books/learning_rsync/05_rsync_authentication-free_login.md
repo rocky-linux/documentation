@@ -5,15 +5,15 @@ contributors: Steven Spencer, Ganna Zhyrnova
 update: 2026-11-17
 ---
 
-# Foreword
+## Foreword
 
-As explained in the [Rsync Overview](./01_rsync_overview.md) document, Rsync is a tool for incremental backups, each time the `rsync` command is executed, it synchronizes the data. To enable real-time data synchronization, you need to use it in conjunction with the inotify-tools program, provided that password-free authentication login is enabled.
+As explained in the [Rsync Overview](./01_rsync_overview.md) document, Rsync is a tool for incremental backups. Each time the `rsync` command runs, it synchronizes the data. To enable real-time data synchronization, you need to use it in conjunction with the `inotify-tools` program, and enable password-free authentication login (as the author describes here).
 
 !!! tip "Friendly Reminder"
 
     Regardless of whether it is RSYNC protocol or SSH protocol, both can achieve password-free authentication login.
 
-## SSH protocol password-free authentication login
+### SSH protocol password-free authentication login
 
 The explanation is as follows:
 
@@ -82,7 +82,7 @@ Notes:
 * The server configuration file **/etc/ssh/sshd_config** should be opened `PubkeyAuthentication yes`.
 * The above operations are applicable to the root (UID=0) user. For regular users (UID>=1000), their home directory (primary directory) may not have the **.ssh** directory, and it needs to be created manually.
 
-## RSYNC protocol password-free authentication login
+### RSYNC protocol password-free authentication login
 
 In the client, the system variable `RSYNC_PASSWORD` of the Rsync service can be assigned a value. By default, the value of this system variable is empty:
 
