@@ -5,17 +5,17 @@ contributors: Steven Spencer, Ganna Zhyrnova
 update: 2026-11-18
 ---
 
-# Overview
+## Overview
 
-Rsync combined with inotify-tools can achieve real-time one-way data synchronization. In addition, the password-free authentication for the SSH protocol and the RSYNC protocol has already been completed in the previous document. In this chapter, you will learn how to install and use inotify-tools.
+Rsync combined with `inotify-tools` can achieve real-time one-way data synchronization. In addition, you can see the password-free authentication for the SSH protocol and the RSYNC protocol in the previous chapter. In this chapter, you will learn how to install and use `inotify-tools`.
 
-## Contents related to inotify-tools
+## Contents related to `inotify-tools`
 
-inotify-tools is a filesystem monitoring program written primarily in Rust, and it provides a `libinotifytools.so` that is compatible with the **ABI (Application Binary Interface)** of the legacy C library.
+`inotify-tools` is a filesystem monitoring program written primarily in Rust. It provides a `libinotifytools.so` that is compatible with the **ABI (Application Binary Interface)** of the legacy C library.
 
-For the GNU/Linux operating system, the Linux kernel version must be greater than or equal to 2.6.13 in order to utilize the inotify-tools feature.
+For the GNU/Linux operating system, the Linux kernel version must be greater than or equal to 2.6.13 in order to utilize the `inotify-tools` feature.
 
-* Github project repository - https://github.com/inotify-tools/inotify-tools
+* Github project repository - <https://github.com/inotify-tools/inotify-tools>
 
 ### Installation
 
@@ -25,17 +25,17 @@ Enter the following command to install:
 [root@RL8.10 ~]# dnf -y install inotify-tools
 ```
 
-The inotify-tools version in RL 8.10 is 3.14, while the 4.x version of inotify-tools has been rewritten in Rust language.
+The `inotify-tools` version in RL 8.10 is 3.14, while the 4.x version of `inotify-tools` is rewritten in the Rust language.
 
 !!! tip "Friendly Reminder"
 
-    The inotify-tools precompiled software package can only be found in the EPEL repository.
+    You can only find the `inotify-tools` precompiled software package in the EPEL repository.
 
 ### Related commands
 
 There are mainly two commands:
 
-* `inotifywait` - for continuous monitoring, real-time output results. It is generally used with the rsync incremental backup tool.
+* `inotifywait` - for continuous monitoring and real-time output results. You use this generally with the `rsync` incremental backup tool.
 * `inotifywatch` - for short-term monitoring, output results after the task is completed.
 
 The usage of the `inotifywait` command is `inotifywait [ options ] file1 [ file2 ] [ file3 ] [ ... ]`, and its common options are as follows:
@@ -90,7 +90,7 @@ You can adjust the kernel parameters according to the needs of the production en
 
 In the production environment, the following content can be added to the **/etc/sysctl.conf** file:
 
-```
+```text
 fs.inotify.max_user_instances  = 1024
 fs.inotify.max_user_watches   = 1048576
 fs.inotify.max_queued_events  = 1048576
@@ -113,7 +113,7 @@ In the second terminal pts/1, go to the /rsync/ directory and create a file.
 
 Back to the first terminal pts/0, the output information is as follows:
 
-```
+```text
 /rsync/ CREATE inotify
 ```
 
