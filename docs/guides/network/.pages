@@ -2,6 +2,7 @@ nav:
     - ... | accel-ppp_pppoe_server*.md
     - ... | basic_network_configuration*.md
     - ... | hurricane_electric_ipv6_tunnel*.md
+    - ... | kea_dhcp_server*.md
     - ... | librenms_monitoring_server*.md
     - ... | openbgpd_bgp_router*.md
     - Performance tuning: performance_tuning
