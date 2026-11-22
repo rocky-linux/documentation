@@ -71,7 +71,7 @@ PasswordAuthentication no
 [root@RL8.10 ~]# systemctl restart sshd.service
 ```
 
-Try SSH protocol for password-free login in the client:
+Try SSH protocol for password-free login on the client:
 
 ```bash
 [root@RL10.3 ~]# ssh -p 22 -i /root/.ssh/id_rsa root@192.168.100.20
