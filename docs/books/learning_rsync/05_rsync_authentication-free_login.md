@@ -141,6 +141,6 @@ total size is 24  speedup is 0.13
 
 Because there are no new files appearing in the **/rsync/** directory on the Rsync server, the list of transferred files is not displayed.
 
-!!! Note "Note"
+!!! note "Note"
 
     You can write the declaration and assignment of the variable into the `/etc/profile` file to make the system variable effective permanently. The text content to be written is `export RSYNC_PASSWORD=246810`.
