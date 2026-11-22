@@ -9,7 +9,7 @@ tags:
   - incus install
 ---
 
-Throughout this chapter, you must be the root user or be able to *sudo* to root.
+Throughout this chapter, you must be the root user or able to use *sudo* to run commands as root.
 
 ## Install EPEL and OpenZFS repositories
 
@@ -19,13 +19,13 @@ Incus requires the EPEL (Extra Packages for Enterprise Linux) repository, which 
 dnf install epel-release -y
 ```
 
-When installed, verify there are no updates:
+When installed, verify that there are no updates:
 
 ```bash
 dnf upgrade
 ```
 
-If there were kernel updates during the upgrade process, reboot the server.
+If kernel updates were installed during the upgrade, reboot the server.
 
 ### OpenZFS repository
 
@@ -45,7 +45,7 @@ dnf install dkms vim kernel-devel bash-completion
 
 ## Install Incus
 
-You will need the CRB repository available for some build packages and the COPR (Cool Other Package Repo):
+You will need the CRB repository for some build packages and the COPR (Cool Other Package Repo):
 
 ```bash
 dnf config-manager --enable crb
@@ -76,19 +76,19 @@ dnf install zfs
 
 ## Environment set up
 
-More than most server kernel settings is required to run many containers. If you assume from the beginning that you will use your server in production, you need to make these changes up front to avoid errors such as "Too many open files" from occurring.
+More than most server kernel settings are required to run many containers. If you assume from the beginning that you will use your server in production, you need to make these changes up front to avoid errors such as "Too many open files" from occurring.
 
-Luckily, tweaking the settings for Incus is not hard with a few file modifications and a reboot.
+Luckily, tweaking Incus settings isn't hard, with a few file modifications and a reboot.
 
 ### Modifying `limits.conf`
 
-The first file you must change is the `limits.conf` file. This file is self-documented. Examine the explanations in the comment in the file to understand what this file does. To make your modifications, enter:
+The first file you must change is `limits.conf`. This file is self-documented. Review the comments to understand what this file does. To make your modifications, enter:
 
 ```bash
 vi /etc/security/limits.conf
 ```
 
-This entire file consists of comments and, at the bottom, shows the current default settings. You need to add our custom settings in the blank space above the end of the file marker (#End of file). The end of the file will look like this when completed:
+This entire file consists of comments and, at the bottom, shows the current default settings. Add our custom settings in the blank space above the end-of-file marker (#End of file). The end of the file will look like this when completed:
 
 ```text
 # Modifications made for LXD
@@ -105,7 +105,7 @@ Save your changes and exit (++shift+colon+"w"+"q"+exclam++ for *vi*).
 
 ### Modifying `sysctl.conf` with `90-incus-override.conf`
 
-With *systemd*, you can change your system's overall configuration and kernel options *without* modifying the main configuration file. Instead, put your settings in a separate file that will override the particular settings you need.
+With *systemd*, you can change your system's overall configuration and kernel options *without* modifying the main configuration file. Instead, put your settings in a separate file that overrides the specific settings you need.
 
 To make these kernel changes, you will create a file called `90-incus-override.conf` in `/etc/sysctl.d`. To do this, type the following:
 
@@ -118,7 +118,7 @@ Place the following content in that file. Note that if you are wondering what yo
 ```bash
 ## The following changes have been made for LXD ##
 
-# fs.inotify.max_queued_events specifies an upper limit on the number of events that can be queued to the corresponding inotify instance - (default is 16384)
+# fs.inotify.max_queued_events specifies an upper limit on the number of events that can be queued to the corresponding inotify instance (default is 16384)
 
 fs.inotify.max_queued_events = 1048576
 
@@ -130,11 +130,11 @@ fs.inotify.max_user_instances = 1048576
 
 fs.inotify.max_user_watches = 1048576
 
-# vm.max_map_count contains the maximum number of memory map areas a process may have. Memory map areas are used as a side-effect of calling malloc, directly by mmap and mprotect, and also when loading shared libraries - (default is 65530)
+# vm.max_map_count contains the maximum number of memory map areas a process may have. Memory map areas are used as a side-effect of calling malloc, directly by mmap and mprotect, and also when loading shared libraries (default is 65530)
 
 vm.max_map_count = 262144
 
-# kernel.dmesg_restrict denies container access to the messages in the kernel ring buffer. Please note that this also will deny access to non-root users on the host system - (default is 0)
+# kernel.dmesg_restrict denies container access to the messages in the kernel ring buffer. Please note that this will also deny access to non-root users on the host system (default is 0)
 
 kernel.dmesg_restrict = 1
 
@@ -142,15 +142,15 @@ kernel.dmesg_restrict = 1
 
 net.ipv4.neigh.default.gc_thresh3 = 8192
 
-# This is the maximum number of entries in ARP table (IPv6). You should increase this if you plan to create over 1024 containers.Not needed if not using IPv6, but...
+# This is the maximum number of entries in the ARP table (IPv6). You should increase this if you plan to create over 1024 containers. Not needed if not using IPv6, but...
 
 net.ipv6.neigh.default.gc_thresh3 = 8192
 
-# This is a limit on the size of eBPF JIT allocations which is usually set to PAGE_SIZE * 40000. Set this to 1000000000 if you are running Rocky Linux 9.x
+# This is a limit on the size of eBPF JIT allocations, which is usually set to PAGE_SIZE * 40000. Set this to 1000000000 if you are running Rocky Linux 9.x
 
 net.core.bpf_jit_limit = 1000000000
 
-# This is the maximum number of keys a non-root user can use, should be higher than the number of containers
+# This is the maximum number of keys a non-root user can use; it should be higher than the number of containers
 
 kernel.keys.maxkeys = 2000
 
@@ -158,26 +158,26 @@ kernel.keys.maxkeys = 2000
 
 kernel.keys.maxbytes = 2000000
 
-# This is the maximum number of concurrent async I/O operations. You might need to increase it further if you have a lot of workloads that use the AIO subsystem (e.g. MySQL)
+# This is the maximum number of concurrent async I/O operations. You might need to increase it further if you have a lot of workloads that use the AIO subsystem (e.g., MySQL)
 
 fs.aio-max-nr = 524288
 ```
 
 Save your changes and exit.
 
-At this point, reboot the server.
+Now reboot the server.
 
 ### Checking `sysctl.conf` values
 
-After the reboot, log back in as the root user to the server. You need to check that our override file has actually completed the job.
+After the reboot, log back in as the root user. Check that our override file has actually completed the job.
 
-This is not hard to do. There's no need to verify every setting unless you want to, but checking a few will verify that the settings have changed. Do this with the `sysctl` command:
+There's no need to verify every setting unless you want to, but checking a few will verify that the settings have changed. Do this with the `sysctl` command:
 
 ```bash
 sysctl net.core.bpf_jit_limit
 ```
 
-Which will show you:
+This will show you:
 
 ```bash
 net.core.bpf_jit_limit = 1000000000 
