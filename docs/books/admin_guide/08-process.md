@@ -138,15 +138,15 @@ System processes are therefore called daemons (***D**isk **A**nd **E**xecution *
 
 The user's credentials are passed to the created process when a command is executed.
 
-By default, the `EUID` (Effective User Identifier) and `EGID` (Effective Group Identifier) of a process are the same as the `RUID` (Real User Identifier) and `RGID` (Real Group Identifier). `EUID` and `EGID` refer to the `UID` and `GID` of the corresponding process, while `RUID` and `RGID` refer to the `UID` and `GID` of the original initiator of the process.
+By default, a process's `EUID` (Effective User Identifier) and `EGID` (Effective Group Identifier) are the same as its `RUID` (Real User Identifier) and `RGID` (Real Group Identifier). `EUID` and `EGID` refer to the `UID` and `GID` of the corresponding process, while `RUID` and `RGID` refer to the `UID` and `GID` of the process's original initiator.
 
-When a command is set to have `SUID` or `SGID` permissions, after the user executes the command, the `EUID` or `EGID` of the process will change to the `UID` or `GID` of the command, rather than the `UID` (`RUID`) or `GID` (`RGID`) of the user who initiated the process. Therefore, in special circumstances, it is also allowed for the process's `EUID` (or `EGID`) to be different from `RUID` (or `RGID`).
+When a command is set to have `SUID` or `SGID` permissions, after the user executes the command, the `EUID` or `EGID` of the process will change to the `UID` or `GID` of the command, rather than the `UID` (`RUID`) or `GID` (`RGID`) of the user who initiated the process. Therefore, in special circumstances, the process's `EUID` (or `EGID`) may be different from `RUID` (or `RGID`).
 
-Each time a file is accessed, the system checks the rights of the process according to its effective identifiers.
+Each time a file is accessed, the system checks the process's rights according to its effective identifiers.
 
 ## Process management
 
-A process cannot be run indefinitely, as this would be to the detriment of other running processes and would prevent multitasking.
+A process cannot run indefinitely, as this would harm other running processes and prevent multitasking.
 
 Therefore, the total processing time available is divided into small ranges, and each process (with a priority) accesses the processor sequentially. The process will take several states during its life among the states:
 
@@ -163,7 +163,7 @@ The end-of-process sequencing is as follows:
 2. Release of the used memory
 3. Sending a signal to the parent and child processes
 
-When a parent process dies, their children are said to be orphans. They are then adopted by the `init` process, which will destroy them.
+When a parent process dies, its children are said to be orphans. They are then adopted by the `init` process, which will destroy them.
 
 ### The priority of a process
 
@@ -224,7 +224,7 @@ Signals are the means of communication between processes. The `kill` command sen
 
 ### `nohup` command
 
-`nohup` allows the launching of a process independently of a connection.
+`nohup` allows you to launch a process independently of a connection.
 
 ```bash
 nohup command
@@ -244,11 +244,11 @@ nohup myprogram.sh 0</dev/null &
 
 ### [Ctrl] + [z]
 
-The synchronous process is temporarily suspended by pressing the ++control+"z"++ keys simultaneously. Access to the prompt is restored after displaying the number of the process that has just been suspended.
+The synchronous process is temporarily suspended by pressing the ++control+"z"++ keys simultaneously. Access to the prompt is restored after the number of the process that was just suspended is displayed.
 
 ### `&` instruction
 
-The `&` statement executes the command asynchronously (the command is then called *job*) and displays the number of *job*. Access to the prompt is then returned.
+The `&` statement executes the command asynchronously (the command is then called *job*) and displays the number of *job*. The prompt is then returned.
 
 Example:
 
@@ -258,7 +258,7 @@ $ time ls -lR / > list.ls 2> /dev/null &
 $
 ```
 
-The *job* number is obtained during background processing and is displayed in square brackets, followed by the `PID` number.
+The *job* number is assigned during background processing and displayed in square brackets, followed by the `PID`.
 
 ### `fg` and `bg` commands
 
@@ -298,7 +298,7 @@ $ jobs
 The columns represent:
 
 1. job number
-2. the order that the processes run:
+2. the order in which the processes run:
 
    * a `+` : The process selected by default for the `fg` and `bg` commands when no job number is specified
    * a `-` : This process is the next process to take the `+`
@@ -308,7 +308,7 @@ The columns represent:
 
 ### `nice` and `renice` commands
 
-The command `nice` allows the execution of a command by specifying its priority.
+The `nice` command allows you to run a command by specifying its priority.
 
 ```bash
 nice priority command
@@ -328,15 +328,15 @@ nice -n 5 find / -name "file"
 nice find / -name "file"
 ```
 
-Unlike `root`, a standard user can only reduce the priority of a process and only values between 0 and 19 will be accepted.
+Unlike `root`, a standard user can only reduce a process's priority, and only values between 0 and 19 will be accepted.
 
-As shown in the example above, the first three commands indicate setting the Nice value to "-5", while the second command is our recommended usage. The fourth command indicates setting the Nice value to "5". For the fifth command, not typing any options means that the Nice value is set to "10".
+As shown in the example above, the first three commands indicate setting the Nice value to "-5", while the second command is our recommended usage. The fourth command indicates setting the Nice value to "5". For the fifth command, not typing any options sets the Nice value to "10".
 
 !!! Tip
 
     "Nice" is the abbreviation for "niceness". 
     
-    Directly typing the `nice` command will return the Nice value of the current shell. 
+    Typing `nice` directly will return the Nice value of the current shell. 
     
     You can lift the Nice value limit for each user or group by modifying the `/etc/security/limits.conf` file.
 
@@ -354,11 +354,11 @@ renice -n 15 -p 1664
 
 | Option | Description                       |
 |--------|-----------------------------------|
-| `-g`   | `GID` of the process owner group. |
+| `-g`   | `GID` of the process owner's group. |
 | `-p`   | `PID` of the process.             |
 | `-u`   | `UID` of the process owner.       |
 
-The `renice` command acts on existing processes. Therefore, it is possible to change the priority of a specific process and several processes belonging to a user or a group.
+The `renice` command acts on existing processes. Therefore, you can change the priority of a specific process and of several processes belonging to a user or a group.
 
 !!! Tip
 
@@ -368,7 +368,7 @@ The `renice` command acts on existing processes. Therefore, it is possible to ch
     $ pidof sleep | xargs renice -n 20
     ```
 
-To adapt to different distributions, you should try to use command forms such as `nice -n 5` or `renice -n 6` as much as possible.
+To adapt to different distributions, use command forms such as `nice -n 5` or `renice -n 6` as much as possible.
 
 ### `top` command
 
@@ -391,7 +391,7 @@ PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND
 | `TIME+`   | Processor usage time. |
 | `COMMAND` | Command executed.     |
 
-The `top` command allows control of the processes in real-time and in interactive mode.
+The `top` command allows you to control processes in real time and in interactive mode.
 
 ### `pgrep` and `pkill` commands
 
@@ -430,7 +430,7 @@ pkill -t pts/1
 
 ### `killall` command
 
-This command's function is roughly the same as that of the `pkill` command. The usage is —`killall [option] [ -s SIGNAL | -SIGNAL ] NAME`. The default signal is *SIGTERM*.
+This command functions roughly the same as the `pkill` command. The usage is —`killall [option] [ -s SIGNAL | -SIGNAL ] NAME`. The default signal is *SIGTERM*.
 
 | Options | Description |
 | :--- | :--- |
@@ -446,7 +446,7 @@ killall tomcat
 
 ### `pstree` command
 
-This command displays the processes in a tree style, and its usage is - `pstree [option]`.
+This command displays processes in a tree style; its usage is `pstree [option]`.
 
 | Option | Description |
 | :--- | :--- |
@@ -482,9 +482,9 @@ systemd(1)─┬─systemd-journal(595)
 
 ### Orphan process and zombie process
 
-**orphan process**: When a parent process dies, its children are said to be orphans. The init process adopts these special state processes, and status collection is completed until they are destroyed. Conceptually speaking, the orphan process does not pose any harm.
+**orphan process**: When a parent process dies, its children are said to be orphans. The init process adopts these processes, and status collection continues until they are destroyed. Conceptually, an orphan process does not pose any harm.
 
-**zombie process**: After a child process completes its work and is terminated, its parent process needs to call the signal processing function wait() or waitpid() to obtain the termination status of the child process. If the parent process does not do so, although the child process has already exited, it still retains some exit status information in the system process table. Because the parent process cannot obtain the status information of the child process, these processes will continue to occupy resources in the process table. We refer to processes in this state as zombies.
+**zombie process**: After a child process completes its work and is terminated, its parent process needs to call the signal-processing function wait() or waitpid() to obtain the child process's termination status. If the parent process does not do so, the child process may have already exited, but it still retains exit status information in the system process table. Because the parent process cannot obtain the child process's status information, these processes will continue to occupy resources in the process table. We refer to processes in this state as zombies.
 
 Hazard:
 
@@ -504,7 +504,7 @@ These characters may appear in this column:
 * **R** - running or runnable (on run queue)
 * **S** - interruptible sleep (waiting for an event to complete)
 * **T** - stopped by job control signal
-* **t** - stopped by debugger during the tracing
+* **t** - stopped by debugger during tracing
 * **W** - paging (not valid since the 2.6.xx kernel)
 * **X** - dead (should never be seen)
 * **Z** - defunct ("zombie") process, terminated but not reaped by its parent
