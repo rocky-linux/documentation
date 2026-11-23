@@ -25,7 +25,7 @@ When installed, verify that there are no updates:
 dnf upgrade
 ```
 
-If kernel updates were installed during the upgrade, reboot the server.
+If the upgrade installed kernel updates, reboot the server.
 
 ### OpenZFS repository
 
