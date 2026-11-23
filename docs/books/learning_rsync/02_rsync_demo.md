@@ -9,14 +9,14 @@ update: 2026-11-11
 
 In this chapter, you will learn the basic functionality demonstration of Rsync.
 
-Rsync needs to verify the user's identity before performing data synchronization. There are two protocols that can complete identity verification:
+Rsync needs to verify the user's identity before synchronizing data. There are two protocols that can complete identity verification:
 
-* **SSH protocol** - Using default port 22. This protocol will use the existing user and password of GNU/Linux for authentication, and data synchronization will begin after successful authentication.
-* **RSYNC protocol** - Using default port 873. This protocol will use the username and password customized by the system administrator for authentication (non-GNU/Linux system users, similar to vsftpd virtual users), and data synchronization will only begin after successful authentication.
+* **SSH protocol** - Using default port 22. This protocol uses the existing GNU/Linux username and password for authentication, and data synchronization begins after successful authentication.
+* **RSYNC protocol** - Using default port 873. This protocol uses the username and password configured by the system administrator for authentication (non-GNU/Linux system users, similar to vsftpd virtual users), and data synchronization begins only after successful authentication.
 
 ## Description of options for `rsync` command
 
-The usage of this command is `rsync [options] SOURCE_LOCATION TARGET_LOCATION`.
+The syntax is `rsync [options] SOURCE_LOCATION TARGET_LOCATION`.
 
 Commonly used options:
 
@@ -30,8 +30,8 @@ Commonly used options:
 * `-l` - Still reserved for symbolic link files
 * `-p` - Permission to retain file attributes
 * `-t` - Time to retain file attributes
-* `-g` - Retain the group belonging to the file attribute (only for super users)
-* `-o` - Retain the owner of the file attributes (only for super users)
+* `-g` - Retain the group belonging to the file attribute (only for superusers)
+* `-o` - Retain the owner of the file attributes (only for superusers)
 * `-D` - Keep device files and other special files
 
 For example:
@@ -54,7 +54,7 @@ graph LR;
 A(Rocky Linux 8.10) --> | Push/Upload | B(Rocky Linux 10.2) --> | Pull/Download | A
 ```
 
-You can also use Rocky Linux 10.2 to uploading and downloading:
+You can also use Rocky Linux 10.2 to upload and download:
 
 ```mermaid
 graph LR;
@@ -63,7 +63,7 @@ A(Rocky Linux 10.2) --> | Push/Upload | B(Rocky Linux 8.10) --> | Pull/Download 
 
 ## Demonstration based on SSH protocol
 
-Here, both Rocky Linux 8.10 and Rocky Linux 10.2 use root (UID=0) for login, where Rocky Linux 8.10 is the server (synchronous source) and Rocky Linux 10.2 is the client (initiator).
+Here, both Rocky Linux 8.10 and Rocky Linux 10.2 use root (UID=0) for login, where Rocky Linux 8.10 is the server (synchronous source), and Rocky Linux 10.2 is the client (initiator).
 
 ### Pull/Download
 
@@ -114,7 +114,7 @@ total size is 7  speedup is 0.03
 rsync error: some files/attrs were not transferred (see previous errors) (code 23) at main.c(1394) [sender=3.5.0-g5c0688d4]
 ```
 
-From the output text information, it can be inferred that this is an error caused by permission issues.
+From the output, it can be inferred that this error is caused by permission issues.
 
 Go to the server (synchronization source) to view the information of the **/rsync/** directory:
 
@@ -123,7 +123,7 @@ Go to the server (synchronization source) to view the information of the **/rsyn
 drwxr-xr-x 2 root root 4096 Nov  1 20:58 /rsync/
 ```
 
-The permission for this directory is 755, and both the owner and the group are root (UID=0,GID=0). The ruser1 user does not have "w" permission for this directory, so errors will occur.
+The permissions for this directory are 755, and both the owner and the group are root (UID=0, GID=0). The ruser1 user does not have "w" permission for this directory, so errors will occur.
 
 Using ACL permissions can solve the problem:
 
@@ -142,7 +142,7 @@ mask::rwx
 other::r-x
 ```
 
-Attempt again in the client (initiator), successful!
+Attempted again from the client (initiator); successful!
 
 ```bash
 [root@RL10.2 ~]# rsync -avz /root/appfile ruser1@192.168.100.20:/rsync/
@@ -156,13 +156,13 @@ total size is 7  speedup is 0.05
 
 ## Demonstration based on RSYNC protocol
 
-As mentioned earlier, SSH protocol based authentication requires the use of existing users and passwords in the operating system. But in actual production environments, if there are many synchronization requirements, it is necessary to create many operating system users, which can lead to:
+As mentioned earlier, SSH protocol-based authentication requires using existing users and passwords in the operating system. But in actual production environments, if there are many synchronization requirements, it is necessary to create many operating system users, which can lead to:
 
 * Difficult to maintain
 * High security risk
 * Not in compliance with safety regulations
 
-In Rsync, for the sake of security and other comprehensive considerations, an identity verification mechanism based on the RSYNC protocol is introduced.
+In Rsync, for security and other considerations, an identity verification mechanism based on the RSYNC protocol is introduced.
 
 Firstly, you need to manually create the file **/etc/rsyncd.conf** in the server (synchronous source), and write some necessary parameters and values into the file.
 
@@ -181,14 +181,14 @@ The description of common parameter items is as follows:
 | [share] | Share name |
 | comment = rsync | Remarks or description information |
 | path = /rsync/ | Specify the path of the directory |
-| read only = yes | yes means read only, no means read and write |
+| read only = yes | yes means read-only, no means read and write |
 | dont compress = \*.gz \*.gz2 \*.zip | Which file types do not compress it |
 | auth users = li | Enable one or more virtual users, separated by commas in English |
 | secrets file = /etc/rsyncd_users.db | Used to specify the location of the virtual user's password file, which must end in .db. The content format of the file is "Username:Password", one per line |
 
 !!! tip "tip"
 
-    The permission of the password file must be **600**.
+    The password file permissions must be **600**.
 
 The operation steps are as follows:
 
@@ -237,7 +237,7 @@ Create a new file on the server (synchronization source):
 [root@RL8.10 ~]# echo "World" > /rsync/rsync-p.txt 
 ```
 
-Perform download operation in the client (initiator):
+Perform the download operation on the client (initiator):
 
 ```bash
 [root@RL10.2 ~]# rsync -avz li@192.168.100.20::share /root/
@@ -266,7 +266,7 @@ rsync: [sender] read error: Connection reset by peer (104)
 rsync error: error in socket IO (code 10) at io.c(907) [sender=3.5.0-g5c0688d4]
 ```
 
-The text output indicates a read error, which is related to the configuration item `read only = yes` in the server (synchronization source). Change it to `no` and restart the service:
+The output indicates a read error related to the configuration item `read only = yes` on the server (synchronization source). Change it to `no` and restart the service:
 
 ```bash
 [root@RL8.10 ~]# sed -i '/read/s/yes/no/g' /etc/rsyncd.conf
@@ -274,7 +274,7 @@ The text output indicates a read error, which is related to the configuration it
 [root@RL8.10 ~]# systemctl restart rsyncd.service
 ```
 
-Try again in the client (initiator):
+Try again on the client (initiator):
 
 ```bash
 [root@RL10.2 ~]# rsync -avz /root/new.md rsync://li@192.168.100.20/share
@@ -288,7 +288,7 @@ total size is 4  speedup is 0.02
 rsync error: some files/attrs were not transferred (see previous errors) (code 23) at main.c(1394) [sender=3.5.0-g5c0688d4]
 ```
 
-Output text indicates that there is a problem with the permission. **Attention! The virtual users (custom virtual users) in the RSYNC protocol are mapped to the `nobody` user of the operating system by default.**
+The output indicates a permissions issue. **Attention! The virtual users (custom virtual users) in the RSYNC protocol are mapped to the `nobody` user by default.**
 
 Similarly, using ACL permissions to address this issue:
 
@@ -308,7 +308,7 @@ mask::rwx
 other::r-x
 ```
 
-Client (initiator) performs upload operation, successful!
+Client (initiator) performs the upload operation successfully!
 
 ```bash
 [root@RL10.2 ~]# rsync -avz /root/new.md rsync://li@192.168.100.20/share
