@@ -73,7 +73,7 @@ For example:
 
 ### Adjusting Linux kernel parameters
 
-You can adjust the kernel parameters according to the needs of the production environment. By default, there are three files in **/proc/sys/fs/inotity/**.
+You can adjust the kernel parameters according to the needs of the production environment. By default, there are three files in **/proc/sys/fs/inotify/**.
 
 ```bash
 [root@RL8.10 ~]# cd /proc/sys/fs/inotify/
@@ -121,7 +121,7 @@ Press ++"ctrl"+"c"++ in the locked window to exit.
 
 ## Combination of `inotifywait` and `rsync`
 
-Create a new Bash script in 192.168.1000.20/24 with the following content:
+Create a new Bash script in 192.168.100.20/24 with the following content:
 
 ```bash
 #!/bin/bash

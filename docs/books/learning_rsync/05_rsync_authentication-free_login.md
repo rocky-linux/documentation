@@ -25,7 +25,7 @@ The explanation is as follows:
 The operation steps are as follows:
 
 * Generate a key pair in the client, where the private key file is **id_rsa** and the public key file is **id_rsa.pub**. The client needs to keep the private key file safe.
-* Upload the generated public key file to the Rsync Server. The path location and name should be `~/.ssh/authorized_keys`, `~` represents the home directory (primary directory) of the corresponding user.
+* Upload the generated public key file to the Rsync server. The path location and name should be `~/.ssh/authorized_keys`, `~` represents the home directory (primary directory) of the corresponding user.
 
 Assuming that the root (UID=0) user of the Rsync server needs to complete password-free authentication login:
 
@@ -71,7 +71,7 @@ PasswordAuthentication no
 [root@RL8.10 ~]# systemctl restart sshd.service
 ```
 
-Try SSH protocol for password-free login in the client:
+Try SSH protocol for password-free login on the client:
 
 ```bash
 [root@RL10.3 ~]# ssh -p 22 -i /root/.ssh/id_rsa root@192.168.100.20
@@ -141,6 +141,6 @@ total size is 24  speedup is 0.13
 
 Because there are no new files appearing in the **/rsync/** directory on the Rsync server, the list of transferred files is not displayed.
 
-!!! Note "Note"
+!!! note "Note"
 
     You can write the declaration and assignment of the variable into the `/etc/profile` file to make the system variable effective permanently. The text content to be written is `export RSYNC_PASSWORD=246810`.
