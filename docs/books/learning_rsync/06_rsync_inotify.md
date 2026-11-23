@@ -73,7 +73,7 @@ For example:
 
 ### Adjusting Linux kernel parameters
 
-You can adjust the kernel parameters according to the needs of the production environment. By default, there are three files in **/proc/sys/fs/inotity/**.
+You can adjust the kernel parameters according to the needs of the production environment. By default, there are three files in **/proc/sys/fs/inotify/**.
 
 ```bash
 [root@RL8.10 ~]# cd /proc/sys/fs/inotify/
