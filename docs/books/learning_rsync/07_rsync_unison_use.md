@@ -14,13 +14,13 @@ As we mentioned earlier, one-way synchronization uses Rsync + inotify-tools. In 
 
 ## Preparing the environment
 
-* Both RL 8.10 and RL 10.3 require the installation of Unison and inotify-tools.
-* Two machines completed bidirectional password-free authentication login using SSH protocol.
+* Both RL 8.10 and RL 10.3 require the installation of Unison and `inotify-tools`.
+* Two machines with complete bidirectional password-free authentication login using SSH protocol.
 * [Unison](https://github.com/bcpierce00/unison/) relies on [OCaml](https://github.com/ocaml/ocaml/) compiled language at the bottom layer.
 
 !!! tip "Friendly Reminder"
 
-    Unison and OCaml here are compiled and installed from source code, and the specific steps will be explained later. In terms of version selection, OCaml recommends using version 4.14.2, while Unison recommends using version 2.54.0.
+    Compile and install Unison and OCaml from source code. Use the specific steps in this document. In terms of version selection, OCaml recommends using version 4.14.2, while Unison recommends using version 2.54.0.
 
 Environment verification for RL 8.10:
 
@@ -217,11 +217,17 @@ done
 Important note:
 
 * When synchronizing in both directions, the scripts of both servers must be started, otherwise errors may occur.
+
 * The user permission settings for the corresponding directory should be correct.
+
 * When using the `unison` command, be sure not to omit the leading "/" in the target directory path. For example, in the "/dir1" section of `/usr/local/bin/unison -batch /dir2/ ssh://r8riu@192.168.100.20:22//dir1 -sshargs "-i /root/.ssh/r8_id_rsa"`.
+
 * The contents of the log file are very useful for troubleshooting errors.
+
 * Make sure to check the status of the Bash script. If it is in the "Running" state, it is in a normal condition. However, if it is in the "Stopped" state, you need to investigate the error.
+
 * To stop the process corresponding to the script, commands such as `kill`, `pkill`, or `killall` can be used.
+
 * If the script needs to start automatically upon system boot, you can write the relevant content into the **/etc/rc.local** file. For example:
 
     ```bash
