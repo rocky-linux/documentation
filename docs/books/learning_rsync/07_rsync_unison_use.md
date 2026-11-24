@@ -5,7 +5,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 update: 2026-11-23
 ---
 
-# Brief
+## Brief
 
 As we mentioned earlier, one-way synchronization uses Rsync + inotify-tools. In some special usage scenarios, two-way synchronization may be required, which requires inotify-tools + Unison.
 
