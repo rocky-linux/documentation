@@ -62,7 +62,7 @@ Rsync is an ideal tool that meets these requirements. It uses the GNU open-sourc
 
 In terms of platform support, most Unix-like systems are supported, whether it is GNU/Linux or BSD. In addition, there are related Rsync implementations on Windows, such as cwRsync.
 
-The original version of Rsync was developed and maintained by Australian programmer **Andrew Tridgell** (yes, the same programmer who developed Samba), and was maintained by **Wayne Davison** from 2004 to 2024. You can find more information on the [GitHub project page](https://github.com/RsyncProject/rsync).
+The original version of Rsync was developed and maintained by Australian programmer **Andrew Tridgell** (yes, the same programmer who developed Samba) and **Paul Mackerras**, and was maintained by **Wayne Davison** from 2004 to 2024. You can find more information on the [GitHub project page](https://github.com/RsyncProject/rsync).
 
 ![Andrew Tridgell](images/Andrew_Tridgell.jpg)
 ![Wayne Davison](images/Wayne_Davison.jpg)
