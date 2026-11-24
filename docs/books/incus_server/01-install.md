@@ -76,9 +76,9 @@ dnf install zfs
 
 ## Environment set up
 
-More than most server kernel settings are required to run many containers. If you assume from the beginning that you will use your server in production, you need to make these changes up front to avoid errors such as "Too many open files" from occurring.
+You need to modify `kernel` server settings to run many containers at the same time. If you assume from the beginning that you will use your server in production, you need to make these changes up front to avoid errors such as "Too many open files" from occurring.
 
-Luckily, tweaking Incus settings isn't hard, with a few file modifications and a reboot.
+Luckily, tweaking Incus settings is not hard, with a few file modifications and a reboot.
 
 ### Modifying `limits.conf`
 
@@ -91,7 +91,7 @@ vi /etc/security/limits.conf
 This entire file consists of comments and, at the bottom, shows the current default settings. Add our custom settings in the blank space above the end-of-file marker (#End of file). The end of the file will look like this when completed:
 
 ```text
-# Modifications made for LXD
+# Modifications made for incus 
 
 *               soft    nofile           1048576
 *               hard    nofile           1048576
@@ -107,7 +107,7 @@ Save your changes and exit (++shift+colon+"w"+"q"+exclam++ for *vi*).
 
 With *systemd*, you can change your system's overall configuration and kernel options *without* modifying the main configuration file. Instead, put your settings in a separate file that overrides the specific settings you need.
 
-To make these kernel changes, you will create a file called `90-incus-override.conf` in `/etc/sysctl.d`. To do this, type the following:
+To make these kernel changes, you will create a file called `90-incus-override.conf` in `/etc/sysctl.d`. To do this, run:
 
 ```bash
 vi /etc/sysctl.d/90-incus-override.conf
@@ -116,7 +116,7 @@ vi /etc/sysctl.d/90-incus-override.conf
 Place the following content in that file. Note that if you are wondering what you are doing here, the file content is self-documenting:
 
 ```bash
-## The following changes have been made for LXD ##
+## The following changes have been made for incus ##
 
 # fs.inotify.max_queued_events specifies an upper limit on the number of events that can be queued to the corresponding inotify instance (default is 16384)
 
@@ -169,9 +169,9 @@ Now reboot the server.
 
 ### Checking `sysctl.conf` values
 
-After the reboot, log back in as the root user. Check that our override file has actually completed the job.
+After the reboot, log back in as the root user. Check that your override file has actually completed the job.
 
-There's no need to verify every setting unless you want to, but checking a few will verify that the settings have changed. Do this with the `sysctl` command:
+There is no need to verify every setting unless you want to, but checking a few will verify that the settings have changed. Do this with the `sysctl` command:
 
 ```bash
 sysctl net.core.bpf_jit_limit
