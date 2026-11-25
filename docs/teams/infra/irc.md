@@ -51,7 +51,7 @@ There are cases where it might do more harm than good to deny providing help to 
 
 * **The question is in releation to software in EPEL**
 
-    * If a problem is reproducible or its an issue out of our control, you should go to `#epel` or [EPEL's Matrix Channel](https://matrix.to/#/#epel:fedoraproject.org).
+    * If a problem is reproducible or it is an issue out of our control, you should go to `#epel` or [EPEL's Matrix Channel](https://matrix.to/#/#epel:fedoraproject.org).
 
 * **The question is in relation to drivers from elrepo or rpmfusion**
 
@@ -64,16 +64,25 @@ There are cases where it might do more harm than good to deny providing help to 
 ### What is not supported
 
 * **Kernel Rebuilds**
+
 * **Other Derivatives or Forks**
 
     * This includes, but is not limited to RHEL, OEL, Alma, Springdale, SL
+
 * **Broken "V" servers**
+
 * **Old minor or point releases of Rocky Linux (See our [version policy](../../releases/index.md))**
+
 * **Upgrades or upgraded Rocky Linux systems (upgrading Rocky Linux 8 to 9, or 9 to 10, see our [version policy](../../releases/index.md))**
+
 * **Upgrades of the default python version (such as python 3.6 to 3.9 or python 3.9 to 3.11)**
+
 * **Upgrades of the default `glibc` version provided**
+
 * **Politics or Profanity**
+
 * **Distro X is better or worse than Rocky Linux**
+
 * **Personal drama from other channels, namespaces, or other users**
 
     * IRC: The quieting or banning of repeat offenders from the `#rockylinux*` namespace
@@ -86,15 +95,19 @@ There are cases where it might do more harm than good to deny providing help to 
 When coming into the IRC or Mattermost channels, it is important to be able to field your question in a manner in which the other users will be able to understand the question and provide assistance. Here are some general ideas:
 
 * **Do not ask to ask** - Just ask your question
+
 * **Do not paste large quantities of text into the channel**
 
     * This can be disruptive to users on both sides of the IRC and Mattermost bridge
     * If at all possible, use a paste bin such as [rpaste](https://rpa.st)
+
 * **Limit edits** - Refrain from unnecessary edits in Mattermost.
 
     * Edits do not propagate to IRC at this time.
     * Consider sending a new separate message instead with only the added content. Users on our bridges can then help more effectively.
+
 * **Be patient** - You might not get an instant answer. We are all volunteers, so it might take minutes or hours to receive an answer to your question.
+
 * **Read the Topic** - The topic might contain useful information you want to know about.
 
 ### Expectations
@@ -102,13 +115,17 @@ When coming into the IRC or Mattermost channels, it is important to be able to f
 As `#rockylinux` is the general Rocky Linux support and discussion channel on Libera, it is not a primary support area for learning Linux or general chatting and off-topic matters. Off-topic matter should go to `#rockylinux-social` or `~off-topic`. Here is a list of things you should know:
 
 * **The channels have many supporters of Rocky, end users, and volunteers, with many skill sets and who are knowledgeable. These people use the distribution on a professional or personal level**
+
 * **Polite and on-topic people get answers to their queries**
 
     * Insulting, rude, or off topic users are generally ignored or warned for their behavior
     * Consider the human, be civil - Treat people how you want them to treat you
     * Those who are consistently disruptive (or "trolls") will face removal from the channel by a quiet, or ban
+
 * **The channel can be busy with several threads running in parallel**
+
 * **We support what we ship**
+
 * **It is common for others to ask for system or package information. Do this with:**
 
     * `rpaste -s`
@@ -169,22 +186,24 @@ Kernel rebuilds are neither recommended nor supported for Rocky Linux. Before bu
 
     As a final warning, if you break the kernel, you are on your own for your system. Rocky Linux volunteers or developers are unable to assist you with these issues.
 
-### Upgraded systems
+### Upgraded system major versions
 
-System upgrades are generally unsupported. There are quite a few methods out there of users performing upgrades:
+System major version upgrades (for instance, 8 to 9) are unsupported. There are quite a few methods out there of users performing upgrades:
 
 * Updating the system release packages (such as, centos-release to rocky-release, or updating rocky-release to another) and running a `yum distro-sync` or `yum update`
 
     * Example 1: replacing centos-\* packages with rocky-\* packages and running `yum update` or `yum distro-sync`
     * Example 2: updating rocky-\* packages from 8 to 9, and then running `dnf update` or `dnf distro-sync`
+
 * Using scripts or tools that a user might not review that promise smooth upgrades from X to Y
+
 * Following guides that promise smooth upgrades from X to Y
 
-Regardless of the method, a system that has been "upgraded" is generally considered unsupported. The team always recommends that you build a new system and restore from backups. Users might try to help or assist with your system, but it can be difficult to do so.
+Regardless of the method used, when you perform major version upgrades, these become unsupported by the community. The team always recommends that you build a new system and restore from backups. Users might try to help or assist with your system, but it can be difficult to do so.
 
 !!! note
 
-    The tool ELevate exists to help users transition from one major release of an Enterprise Linux to another. The Rocky Linux team has not formally tested it. The team cannot officially provide assistance or feedback to the tool or support an upgraded system. There might be users in the channel who have done so and can assist, but at this time it is still unsupported.
+    The tool ELevate exists to help users transition from one major release of an Enterprise Linux to another. The Rocky Linux team has not formally tested it. The team cannot officially provide assistance or feedback to the tool or support an upgraded system. There might be users in the channel who have done so and can assist, but it is **still** unsupported.
 
 ### Outdated or end of life releases
 
