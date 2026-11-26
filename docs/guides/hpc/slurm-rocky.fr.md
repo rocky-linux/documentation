@@ -41,7 +41,7 @@ Rocky Linux 8 utilise toujours `cgroups v1` et, par conséquent, dans le cadre d
 
 Un playbook Ansible est utilisé pour le processus de déploiement.
 
-Configuration du fichier `hôtes` d'Ansible :
+Configuration du fichier `hosts` d'Ansible :
 
 ```bash
 cat << "EOF" | sudo tee /etc/ansible/hosts
@@ -105,7 +105,7 @@ En général, il est préférable de laisser l'utilisateur `SlurmUser` comme `sl
 
 ## Mise en place de `slurm` sous Rocky Linux 9
 
-Configuration du fichier `hôtes` d'Ansible :
+Configuration du fichier `hosts` d'Ansible :
 
 ```bash
 cat << "EOF" | sudo tee /etc/ansible/hosts
@@ -147,7 +147,7 @@ EOF
 
 ## Mise en place de `slurm` sous Rocky Linux 10
 
-Configuration du fichier `hôtes` d'Ansible :
+Configuration du fichier `hosts` d'Ansible :
 
 ```bash
 cat << "EOF" | sudo tee /etc/ansible/hosts
