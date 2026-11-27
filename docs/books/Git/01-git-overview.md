@@ -76,7 +76,7 @@ For detailed installation instructions, please refer to the [official instructio
 
 The current software versions mainly adopt two naming conventions:
 
-* **SemVer (Semantic Versioning‌)** - This version naming convention was proposed by **Tom Preston-Werne** and widely used in the global open source community. In daily conversations, it is also known as the three-segment version naming specification or the dot-separated version naming specification. Its core format is **X.Y.Z (Major-version.Minor-version.Revision-number)**, and sometimes some extended version identifiers are added. For example:
+* **SemVer (Semantic Versioning‌)** - This version naming convention was proposed by **Tom Preston-Werner** and widely used in the global open source community. In daily conversations, it is also known as the three-segment version naming specification or the dot-separated version naming specification. Its core format is **X.Y.Z (Major-version.Minor-version.Revision-number)**, and sometimes some extended version identifiers are added. For example:
 
     ```
     1.0.0
