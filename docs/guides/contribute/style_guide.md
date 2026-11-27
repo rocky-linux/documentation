@@ -115,6 +115,14 @@ If you have a procedure with only one step, use a bullet rather than a number. F
 
 Within Markdown, admonitions are a way to put information into a box to highlight it. They are not essential to documentation, but they are a tool you might find useful. Learn more about admonitions from our [Rocky Formatting doc](rockydocs_formatting.md).
 
+### Naming conventions
+
+The underlying structures of the project rely on case-sensitive naming (Linux, GitHub, and so on). Other platforms may not use strict case-sensitive structures, and as such, without a clear guide to the contrary, using naming of files and folders that include capital letters, spaces, and special characters, can cause issues in a cross-platform environment. Here are some core rules for document and folder naming:
+
+- All directory and file names must use only lower-case letters. Example: `/docs/guides/web/nginx.md`
+- Any multi-word directory or file names must use an underscore (`_`) or a dash (`-`) between words with **NO** spaces. Example: `docs/guides/web/apache_hardened_webserver.md`
+- For both directory and file names, use **ONLY** standard ASCII letters (`a-z`), numbers (`0-9`), hyphens (`-`), or underscores (`_`)
+
 ## Accessibility
 
 *The following standards enhance accessibility for those using accommodations, such as screen readers, to access our documentation.*
