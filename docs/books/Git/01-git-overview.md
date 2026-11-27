@@ -100,6 +100,6 @@ The current software versions mainly adopt two naming conventions:
 
 * **CalVer (‌Calendar Versioning)** - A version naming convention centered around the project release calendar. The mainstream formats include:
 
-    * **YYYY.MINOR.MICRO** - "YYYY" represents a four digit year, with "MINOR" and "MICRO" increasing from 0 each year. For example `2026.0.0`
+    * **YYYY.MINOR.MICRO** - "YYYY" represents a four-digit year, with "MINOR" and "MICRO" increasing from 0 each year. For example `2026.0.0`
     * **YYYY.M.D** - The year, month and day corresponding to the natural date. Dates with fewer than two digits are usually uniformly padded with a leading zero, for example `2026.01.14`
     * **YYYY.M.D-modifier.N‌** - For example `2026.5.4-alpha.2`
