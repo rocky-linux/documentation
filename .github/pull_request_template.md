@@ -2,6 +2,8 @@
 - [ ] Good fit for the Rocky Linux project? Title and Author Metatags inserted ?
 - [ ] If applicable, steps and instructions have been tested to work
 - [ ] Initial self-review to fix basic typos and grammar completed
+- [ ] I have read the [style](https://docs.rockylinux.org/guides/contribute/style_guide/) and/or [expert contribution](https://docs.rockylinux.org/guides/contribute/expert_contributing/#document-naming
+) guides
 
 #### Rocky Documentation checklist (Completed by Rocky team) 
 - [ ] 1st Pass (Document is good fit for project and author checklist completed)
