@@ -39,7 +39,7 @@ In addition to [Git](https://git-scm.com/), there are also version control syste
 
 ## Classification of version control
 
-1. **Local version control** - Store the historical versions of files on the local computer's hard drive and record file updates through snapshots or patch files. This version control does not support multi person cross device collaboration and is more suitable for individuals. A typical representative is [RCS](https://www.gnu.org/software/rcs/).
+1. **Local version control** - Store the historical versions of files on the local computer's hard drive and record file updates through snapshots or patch files. This version control does not support multi-person cross-device collaboration and is more suitable for individuals. A typical representative is [RCS](https://www.gnu.org/software/rcs/).
 2. **C/S version control (Also known as centralized version control)** - All version history data is stored uniformly on the central server, and users only keep the latest synchronized file copy locally. Users must be connected to the internet to submit updates and view historical versions. If the central server fails, all data will be lost, which is known as a single point of failure. A typical representative is SVN.
 3. **Distributed version control** - Each user synchronizes the complete project version history locally, allowing offline submission and viewing of the full history without the need for an internet connection. A typical representative is Git.
 
