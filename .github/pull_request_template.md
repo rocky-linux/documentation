@@ -3,7 +3,7 @@
 - [ ] If applicable, steps and instructions have been tested to work
 - [ ] Initial self-review to fix basic typos and grammar completed
 
-- [x] I have read the [style](https://docs.rockylinux.org/guides/contribute/style_guide/) and/or [docs versioning](https://docs.rockylinux.org/guides/contribute/docs_versions_1/#cloning-the-repository
+- [ ] I have read the [style](https://docs.rockylinux.org/guides/contribute/style_guide/) and/or [docs versioning](https://docs.rockylinux.org/guides/contribute/docs_versions_1/#cloning-the-repository
 ) guides
 
 #### Rocky Documentation checklist (Completed by Rocky team) 
